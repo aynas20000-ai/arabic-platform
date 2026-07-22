@@ -14,13 +14,13 @@
     body {
       margin: 0;
       font-family: Tahoma, Arial, sans-serif;
-      background: linear-gradient(135deg, #fff7ed, #ffedd5);
-      color: #3f2d20;
+      background: linear-gradient(135deg, #f5f3ff, #ede9fe);
+      color: #312e81;
       min-height: 100vh;
     }
 
     header {
-      background: linear-gradient(135deg, #ea580c, #f97316);
+      background: linear-gradient(135deg, #7c3aed, #a855f7);
       color: white;
       text-align: center;
       padding: 35px 15px;
@@ -54,13 +54,14 @@
     .progress-text {
       display: flex;
       justify-content: space-between;
+      gap: 10px;
       margin-bottom: 10px;
       font-weight: bold;
     }
 
     .progress {
       height: 14px;
-      background: #fed7aa;
+      background: #ddd6fe;
       border-radius: 20px;
       overflow: hidden;
     }
@@ -68,7 +69,7 @@
     .progress-bar {
       height: 100%;
       width: 0;
-      background: linear-gradient(90deg, #f97316, #fb923c);
+      background: linear-gradient(90deg, #7c3aed, #c084fc);
       transition: width 0.4s;
     }
 
@@ -80,7 +81,7 @@
     }
 
     .question-number {
-      color: #ea580c;
+      color: #7c3aed;
       font-weight: bold;
       margin-bottom: 10px;
     }
@@ -99,8 +100,8 @@
 
     .answer {
       width: 100%;
-      border: 2px solid #fdba74;
-      background: #fff7ed;
+      border: 2px solid #c4b5fd;
+      background: #f5f3ff;
       padding: 15px;
       border-radius: 15px;
       font-size: 18px;
@@ -110,7 +111,7 @@
     }
 
     .answer:hover {
-      background: #ffedd5;
+      background: #ede9fe;
     }
 
     .answer.correct {
@@ -161,13 +162,13 @@
     }
 
     .next-btn {
-      background: #ea580c;
+      background: #7c3aed;
       color: white;
       display: none;
     }
 
     .restart-btn {
-      background: #7c3aed;
+      background: #db2777;
       color: white;
     }
 
@@ -190,7 +191,7 @@
     }
 
     .result h2 {
-      color: #ea580c;
+      color: #7c3aed;
       font-size: 30px;
     }
 
@@ -227,4 +228,465 @@
 
     <div class="progress-box">
       <div class="progress-text">
-        <span id
+        <span id="progressText">السؤال 1 من 15</span>
+        <span id="scoreText">الدرجة: 0</span>
+      </div>
+
+      <div class="progress">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+    </div>
+
+    <div class="quiz-card" id="quizCard">
+
+      <div class="question-number" id="questionNumber"></div>
+
+      <div class="question" id="question"></div>
+
+      <div class="answers" id="answers"></div>
+
+      <div class="message" id="message"></div>
+
+      <button class="next-btn" id="nextBtn" onclick="nextQuestion()">
+        السؤال التالي ←
+      </button>
+
+    </div>
+
+  </div>
+
+  <div class="result" id="result">
+
+    <div class="result-icon" id="resultIcon">🏆</div>
+
+    <h2 id="resultTitle">أحسنتِ</h2>
+
+    <div class="score" id="finalScore"></div>
+
+    <p id="resultMessage"></p>
+
+    <button class="restart-btn" onclick="restartQuiz()">
+      🔄 إعادة الاختبار
+    </button>
+
+    <a class="back-btn" href="tamyiz.html">
+      العودة إلى درس التمييز
+    </a>
+
+  </div>
+
+</main>
+
+<script>
+  const questions = [
+    {
+      question: "ما تعريف التمييز؟",
+      answers: [
+        "اسم معرفة يصف ما قبله",
+        "اسم نكرة يوضح اسمًا أو معنى مبهمًا قبله",
+        "فعل يوضح زمن الجملة",
+        "حرف يربط بين كلمتين"
+      ],
+      correct: 1
+    },
+    {
+      question: "ما المميَّز في جملة: اشتريتُ عشرين كتابًا؟",
+      answers: [
+        "اشتريتُ",
+        "عشرين",
+        "كتابًا",
+        "التاء"
+      ],
+      correct: 1
+    },
+    {
+      question: "ما التمييز في جملة: اشتريتُ عشرين كتابًا؟",
+      answers: [
+        "اشتريتُ",
+        "عشرين",
+        "كتابًا",
+        "التاء"
+      ],
+      correct: 2
+    },
+    {
+      question: "ما التمييز في جملة: شربتُ لترًا ماءً؟",
+      answers: [
+        "شربتُ",
+        "لترًا",
+        "ماءً",
+        "التاء"
+      ],
+      correct: 2
+    },
+    {
+      question: "تمييز المفرد يسمى أيضًا:",
+      answers: [
+        "تمييز النسبة",
+        "تمييز الجملة",
+        "تمييز الذات أو الملفوظ",
+        "الحال"
+      ],
+      correct: 2
+    },
+    {
+      question: "تمييز الجملة يسمى أيضًا:",
+      answers: [
+        "تمييز الذات",
+        "تمييز النسبة أو الملحوظ",
+        "تمييز العدد",
+        "المفعول به"
+      ],
+      correct: 1
+    },
+    {
+      question: "أي الجمل الآتية تحتوي على تمييز عدد؟",
+      answers: [
+        "ازداد الطالب علمًا",
+        "اشتريتُ عشرين قلمًا",
+        "طاب المكان هواءً",
+        "امتلأ الإناء ماءً"
+      ],
+      correct: 1
+    },
+    {
+      question: "في جملة: اشتريتُ كيلو تمرًا، كلمة تمرًا تمييز:",
+      answers: [
+        "عدد",
+        "وزن",
+        "مساحة",
+        "جملة"
+      ],
+      correct: 1
+    },
+    {
+      question: "في جملة: زرعتُ هكتارًا قمحًا، كلمة قمحًا تمييز:",
+      answers: [
+        "كيل",
+        "عدد",
+        "مساحة",
+        "وزن"
+      ],
+      correct: 2
+    },
+    {
+      question: "أي الجمل الآتية تحتوي على تمييز جملة؟",
+      answers: [
+        "قرأتُ عشرين صفحةً",
+        "اشتريتُ كيلو تمرًا",
+        "ازداد الطالب علمًا",
+        "شربتُ لترًا حليبًا"
+      ],
+      correct: 2
+    },
+    {
+      question: "ما إعراب كلمة علمًا في: ازداد الطالب علمًا؟",
+      answers: [
+        "فاعل مرفوع",
+        "مفعول به منصوب",
+        "تمييز منصوب",
+        "حال منصوب"
+      ],
+      correct: 2
+    },
+    {
+      question: "ما علامة نصب التمييز غالبًا؟",
+      answers: [
+        "الضمة",
+        "الكسرة",
+        "الفتحة",
+        "السكون"
+      ],
+      correct: 2
+    },
+    {
+      question: "ما التمييز في جملة: محمد أكثر الطلاب اجتهادًا؟",
+      answers: [
+        "محمد",
+        "أكثر",
+        "الطلاب",
+        "اجتهادًا"
+      ],
+      correct: 3
+    },
+    {
+      question: "المميَّز الملحوظ يُفهم من:",
+      answers: [
+        "كلمة واحدة فقط",
+        "معنى الجملة كلها",
+        "الفعل وحده",
+        "الحرف الأخير"
+      ],
+      correct: 1
+    },
+    {
+      question: "أي إعراب مما يأتي صحيح؟",
+      answers: [
+        "ماءً: فاعل مرفوع",
+        "كتابًا: تمييز منصوب",
+        "علمًا: مبتدأ مرفوع",
+        "اجتهادًا: مضاف إليه"
+      ],
+      correct: 1
+    }
+  ];
+
+  const encouragements = [
+    "إجابة لامعة! أضيفت نجمة إلى رصيدك ⭐",
+    "مذهلة يا بطلة! 🎉",
+    "أحسنتِ، أنتِ تتقدمين بسرعة 🚀",
+    "إجابة ذكية جدًا 🧠",
+    "رائعة! واصلي التألق 🌟",
+    "يا سلام عليكِ! 👏"
+  ];
+
+  const tryAgainMessages = [
+    "لا بأس، الخطأ يساعدنا على التعلم 🌱",
+    "قريبة جدًا، ركزي في الكلمة التي تزيل الإبهام 🔍",
+    "محاولة جميلة، السؤال القادم فرصتك 💪",
+    "لا تتوقفي، البطلات يتعلمن من الخطأ 🌷",
+    "راجعي نوع التمييز ثم واصلي بثقة ✨"
+  ];
+
+  let currentQuestion = 0;
+  let score = 0;
+  let answered = false;
+
+  const questionElement = document.getElementById("question");
+  const answersElement = document.getElementById("answers");
+  const messageElement = document.getElementById("message");
+  const nextBtn = document.getElementById("nextBtn");
+  const quizCard = document.getElementById("quizCard");
+
+  function loadQuestion() {
+    answered = false;
+
+    const item = questions[currentQuestion];
+
+    document.getElementById("questionNumber").textContent =
+      "السؤال رقم " + (currentQuestion + 1);
+
+    document.getElementById("progressText").textContent =
+      "السؤال " + (currentQuestion + 1) + " من " + questions.length;
+
+    document.getElementById("scoreText").textContent =
+      "الدرجة: " + score;
+
+    document.getElementById("progressBar").style.width =
+      ((currentQuestion / questions.length) * 100) + "%";
+
+    questionElement.textContent = item.question;
+
+    answersElement.innerHTML = "";
+    messageElement.textContent = "";
+    messageElement.className = "message";
+    nextBtn.style.display = "none";
+
+    item.answers.forEach((answer, index) => {
+      const button = document.createElement("button");
+
+      button.className = "answer";
+      button.textContent = answer;
+
+      button.onclick = () => selectAnswer(index, button);
+
+      answersElement.appendChild(button);
+    });
+  }
+
+  function selectAnswer(index, selectedButton) {
+    if (answered) return;
+
+    answered = true;
+
+    const correctIndex = questions[currentQuestion].correct;
+    const buttons = document.querySelectorAll(".answer");
+
+    buttons.forEach(button => {
+      button.disabled = true;
+    });
+
+    if (index === correctIndex) {
+      score++;
+
+      selectedButton.classList.add("correct");
+
+      messageElement.textContent =
+        encouragements[
+          Math.floor(Math.random() * encouragements.length)
+        ];
+
+      messageElement.className = "message success";
+
+      playSound(true);
+    } else {
+      selectedButton.classList.add("wrong");
+      buttons[correctIndex].classList.add("correct");
+
+      messageElement.textContent =
+        tryAgainMessages[
+          Math.floor(Math.random() * tryAgainMessages.length)
+        ];
+
+      messageElement.className = "message error";
+
+      quizCard.classList.add("shake");
+
+      setTimeout(() => {
+        quizCard.classList.remove("shake");
+      }, 400);
+
+      if ("vibrate" in navigator) {
+        navigator.vibrate([120, 60, 120]);
+      }
+
+      playSound(false);
+    }
+
+    document.getElementById("scoreText").textContent =
+      "الدرجة: " + score;
+
+    nextBtn.style.display = "block";
+
+    if (currentQuestion === questions.length - 1) {
+      nextBtn.textContent = "عرض النتيجة 🏆";
+    } else {
+      nextBtn.textContent = "السؤال التالي ←";
+    }
+  }
+
+  function playSound(correct) {
+    try {
+      const audioContext =
+        new (window.AudioContext || window.webkitAudioContext)();
+
+      const oscillator = audioContext.createOscillator();
+      const gain = audioContext.createGain();
+
+      oscillator.connect(gain);
+      gain.connect(audioContext.destination);
+
+      if (correct) {
+        oscillator.frequency.setValueAtTime(
+          700,
+          audioContext.currentTime
+        );
+
+        oscillator.frequency.setValueAtTime(
+          950,
+          audioContext.currentTime + 0.12
+        );
+      } else {
+        oscillator.frequency.setValueAtTime(
+          220,
+          audioContext.currentTime
+        );
+
+        oscillator.frequency.setValueAtTime(
+          160,
+          audioContext.currentTime + 0.12
+        );
+      }
+
+      gain.gain.setValueAtTime(
+        0.15,
+        audioContext.currentTime
+      );
+
+      gain.gain.exponentialRampToValueAtTime(
+        0.01,
+        audioContext.currentTime + 0.3
+      );
+
+      oscillator.start();
+      oscillator.stop(audioContext.currentTime + 0.3);
+    } catch (error) {
+      console.log("الصوت غير مدعوم في هذا الجهاز");
+    }
+  }
+
+  function nextQuestion() {
+    currentQuestion++;
+
+    if (currentQuestion < questions.length) {
+      loadQuestion();
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    } else {
+      showResult();
+    }
+  }
+
+  function showResult() {
+    document.getElementById("quizArea").style.display = "none";
+    document.getElementById("result").style.display = "block";
+
+    const percentage =
+      Math.round((score / questions.length) * 100);
+
+    document.getElementById("finalScore").textContent =
+      "درجتك: " +
+      score +
+      " من " +
+      questions.length +
+      " — " +
+      percentage +
+      "%";
+
+    const icon = document.getElementById("resultIcon");
+    const title = document.getElementById("resultTitle");
+    const resultMessage =
+      document.getElementById("resultMessage");
+
+    if (percentage >= 90) {
+      icon.textContent = "🏆";
+      title.textContent = "بطلة التمييز!";
+      resultMessage.textContent =
+        "إتقان رائع جدًا، تستحقين وسام التميز الذهبي.";
+    } else if (percentage >= 70) {
+      icon.textContent = "🌟";
+      title.textContent = "أداء رائع!";
+      resultMessage.textContent =
+        "فهمك ممتاز، راجعي الأخطاء البسيطة وستصلين إلى الدرجة الكاملة.";
+    } else if (percentage >= 50) {
+      icon.textContent = "🌱";
+      title.textContent = "بداية جميلة";
+      resultMessage.textContent =
+        "راجعي أنواع التمييز والأمثلة ثم أعيدي المحاولة.";
+    } else {
+      icon.textContent = "💪";
+      title.textContent = "لا تستسلمي";
+      resultMessage.textContent =
+        "شاهدي الفيديو واقرئي ملف الدرس، ثم عودي للاختبار بثقة.";
+    }
+
+    if ("vibrate" in navigator && percentage >= 70) {
+      navigator.vibrate([100, 70, 100, 70, 200]);
+    }
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+
+  function restartQuiz() {
+    currentQuestion = 0;
+    score = 0;
+    answered = false;
+
+    document.getElementById("quizArea").style.display = "block";
+    document.getElementById("result").style.display = "none";
+
+    loadQuestion();
+  }
+
+  loadQuestion();
+</script>
+
+</body>
+</html>
+      
