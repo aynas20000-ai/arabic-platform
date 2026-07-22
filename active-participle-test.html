@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>الاختبار التجريبي - اسم الفاعل</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: Tahoma, Arial, sans-serif;
+      background: #f4fbf9;
+      color: #23443f;
+      line-height: 1.8;
+    }
+
+    .container {
+      max-width: 850px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      color: #087f78;
+    }
+
+    .intro {
+      text-align: center;
+      background: #dff6f1;
+      padding: 16px;
+      border-radius: 18px;
+      margin-bottom: 25px;
+    }
+
+    .question {
+      background: white;
+      border: 2px solid #bde9e2;
+      border-radius: 18px;
+      padding: 18px;
+      margin: 18px 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    .question h3 {
+      color: #087f78;
+      margin-top: 0;
+    }
+
+    label {
+      display: block;
+      background: #f1fbf8;
+      padding: 11px;
+      margin: 9px 0;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+    label:hover {
+      background: #ddf5ef;
+    }
+
+    input {
+      margin-left: 8px;
+    }
+
+    .buttons {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    button {
+      border: none;
+      padding: 14px 25px;
+      margin: 8px;
+      border-radius: 14px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .check {
+      background: #087f78;
+      color: white;
+    }
+
+    .reset {
+      background: #e6a52d;
+      color: white;
+    }
+
+    #result {
+      display: none;
+      text-align: center;
+      padding: 20px;
+      margin-top: 25px;
+      border-radius: 18px;
+      font-size: 21px;
+      font-weight: bold;
+    }
+
+    .correct {
+      background: #ddf7e7;
+      border: 2px solid #3ca66b;
+      color: #18643b;
+    }
+
+    .medium {
+      background: #fff5d8;
+      border: 2px solid #e5ad2f;
+      color: #76510a;
+    }
+
+    .weak {
+      background: #ffe7e7;
+      border: 2px solid #dc5b5b;
+      color: #872929;
+    }
+
+    .answer-correct {
+      background: #dff7e7 !important;
+      border: 2px solid #3ca66b;
+    }
+
+    .answer-wrong {
+      background: #ffe3e3 !important;
+      border: 2px solid #dc5b5b;
+    }
+
+    .back {
+      display: block;
+      width: fit-content;
+      margin: 35px auto 10px;
+      padding: 13px 24px;
+      background: #087f78;
+      color: white;
+      text-decoration: none;
+      border-radius: 14px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>📝 الاختبار التجريبي لاسم الفاعل</h1>
+
+    <div class="intro">
+      اختاري الإجابة الصحيحة، ثم اضغطي زر
+      <strong>إظهار النتيجة</strong>.
+    </div>
+
+    <form id="quiz">
+
+      <div class="question" data-answer="b">
+        <h3>1. اسم الفاعل اسم مشتق يدل على:</h3>
+
+        <label>
+          <input type="radio" name="q1" value="a">
+          من وقع عليه الفعل
+        </label>
+
+        <label>
+          <input type="radio" name="q1" value="b">
+          من قام بالفعل أو اتصف به
+        </label>
+
+        <label>
+          <input type="radio" name="q1" value="c">
+          مكان وقوع الفعل
+        </label>
+      </div>
+
+      <div class="question" data-answer="a">
+        <h3>2. اسم الفاعل من الفعل «كتب» هو:</h3>
+
+        <label>
+          <input type="radio" name="q2" value="a">
+          كاتب
+        </label>
+
+        <label>
+          <input type="radio" name="q2" value="b">
+          مكتوب
+        </label>
+
+        <label>
+          <input type="radio" name="q2" value="c">
+          كتاب
+        </label>
+      </div>
+
+      <div class="question" data-answer="c">
+        <h3>3. يُصاغ اسم الفاعل من الفعل الثلاثي على وزن:</h3>
+
+        <label>
+          <input type="radio" name="q3" value="a">
+          مفعول
+        </label>
+
+        <label>
+          <input type="radio" name="q3" value="b">
+          فعّال
+        </label>
+
+        <label>
+          <input type="radio" name="q3" value="c">
+          فاعل
+        </label>
+      </div>
+
+      <div class="question" data-answer="b">
+        <h3>4. اسم الفاعل من الفعل «حفظ» هو:</h3>
+
+        <label>
+          <input type="radio" name="q4" value="a">
+          محفوظ
+        </label>
+
+        <label>
+          <input type="radio" name="q4" value="b">
+          حافظ
+        </label>
+
+        <label>
+          <input type="radio" name="q4" value="c">
+          حفيظ
+        </label>
+      </div>
+
+      <div class="question" data-answer="a">
+        <h3>5. اسم الفاعل من الفعل «أكرم» هو:</h3>
+
+        <label>
+          <input type="radio" name="q5" value="a">
+          مُكرِم
+        </label>
+
+        <label>
+          <input type="radio" name="q5" value="b">
+          مُكرَم
+        </label>
+
+        <label>
+          <input type="radio" name="q5" value="c">
+          كريم
+        </label>
+      </div>
+
+      <div class="question" data-answer="c">
+        <h3>6. اسم الفاعل من الفعل «استخرج» هو:</h3>
+
+        <label>
+          <input type="radio" name="q6" value="a">
+          مُستخرَج
+        </label>
+
+        <label>
+          <input type="radio" name="q6" value="b">
+          استخراج
+        </label>
+
+        <label>
+          <input type="radio" name="q6" value="c">
+          مُستخرِج
+        </label>
+      </div>
+
+      <div class="question" data-answer="b">
+        <h3>7. عند صياغة اسم الفاعل من غير الثلاثي:</h3>
+
+        <label>
+          <input type="radio" name="q7" value="a">
+          نفتح ما قبل الآخر
+        </label>
+
+        <label>
+          <input type="radio" name="q7" value="b">
+          نكسر ما قبل الآخر
+        </label>
+
+        <label>
+          <input type="radio" name="q7" value="c">
+          نحذف الحرف الأخير
+        </label>
+      </div>
+
+      <div class="question" data-answer="a">
+        <h3>8. الكلمة التي تعد اسم فاعل في الجملة «الطالب مجتهد في دروسه» هي:</h3>
+
+        <label>
+          <input type="radio" name="q8" value="a">
+          مجتهد
+        </label>
+
+        <label>
+          <input type="radio" name="q8" value="b">
+          الطالب
+        </label>
+
+        <label>
+          <input type="radio" name="q8" value="c">
+          دروسه
+        </label>
+      </div>
+
+      <div class="question" data-answer="c">
+        <h3>9. اسم الفاعل من الفعل «قال» هو:</h3>
+
+        <label>
+          <input type="radio" name="q9" value="a">
+          مقول
+        </label>
+
+        <label>
+          <input type="radio" name="q9" value="b">
+          قول
+        </label>
+
+        <label>
+          <input type="radio" name="q9" value="c">
+          قائل
+        </label>
+      </div>
+
+      <div class="question" data-answer="b">
+        <h3>10. في الجملة «المعلم شارحٌ الدرسَ»، كلمة «الدرسَ»:</h3>
+
+        <label>
+          <input type="radio" name="q10" value="a">
+          فاعل
+        </label>
+
+        <label>
+          <input type="radio" name="q10" value="b">
+          مفعول به لاسم الفاعل
+        </label>
+
+        <label>
+          <input type="radio" name="q10" value="c">
+          مبتدأ
+        </label>
+      </div>
+
+    </form>
+
+    <div class="buttons">
+
+      <button
+        class="check"
+        type="button"
+        onclick="checkAnswers()"
+      >
+        إظهار النتيجة
+      </button>
+
+      <button
+        class="reset"
+        type="button"
+        onclick="resetQuiz()"
+      >
+        إعادة الاختبار
+      </button>
+
+    </div>
+
+    <div id="result"></div>
+
+    <a
+      class="back"
+      href="active-participle.html"
+    >
+      العودة إلى درس اسم الفاعل
+    </a>
+
+  </div>
+
+  <script>
+    function checkAnswers() {
+      const questions = document.querySelectorAll(".question");
+      let score = 0;
+      let answered = 0;
+
+      questions.forEach(function (question) {
+        const correctAnswer = question.dataset.answer;
+        const selected = question.querySelector(
+          'input[type="radio"]:checked'
+        );
+
+        const labels = question.querySelectorAll("label");
+
+        labels.forEach(function (label) {
+          label.classList.remove(
+            "answer-correct",
+            "answer-wrong"
+          );
+
+          const input = label.querySelector("input");
+
+          if (input.value === correctAnswer) {
+            label.classList.add("answer-correct");
+          }
+        });
+
+        if (selected) {
+          answered++;
+
+          if (selected.value === correctAnswer) {
+            score++;
+          } else {
+            selected.parentElement.classList.add("answer-wrong");
+          }
+        }
+      });
+
+      const result = document.getElementById("result");
+
+      result.style.display = "block";
+      result.className = "";
+
+      if (answered < questions.length) {
+        result.textContent =
+          "أجبتِ عن " +
+          answered +
+          " أسئلة من أصل " +
+          questions.length +
+          ". نتيجتك: " +
+          score +
+          " من " +
+          questions.length;
+
+        result.classList.add("medium");
+        return;
+      }
+
+      if (score >= 8) {
+        result.textContent =
+          "ممتازة جدًا 🌟 نتيجتك: " +
+          score +
+          " من " +
+          questions.length;
+
+        result.classList.add("correct");
+      } else if (score >= 5) {
+        result.textContent =
+          "نتيجة جيدة 👍 نتيجتك: " +
+          score +
+          " من " +
+          questions.length +
+          ". راجعي الأخطاء ثم أعيدي المحاولة.";
+
+        result.classList.add("medium");
+      } else {
+        result.textContent =
+          "تحتاجين إلى مراجعة الدرس 📘 نتيجتك: " +
+          score +
+          " من " +
+          questions.length;
+
+        result.classList.add("weak");
+      }
+
+      result.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+    }
+
+    function resetQuiz() {
+      document.getElementById("quiz").reset();
+
+      const labels = document.querySelectorAll("label");
+
+      labels.forEach(function (label) {
+        label.classList.remove(
+          "answer-correct",
+          "answer-wrong"
+        );
+      });
+
+      const result = document.getElementById("result");
+
+      result.style.display = "none";
+      result.textContent = "";
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+  </script>
+
+</body>
+
+</html>
