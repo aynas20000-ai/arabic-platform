@@ -59,14 +59,640 @@
 </header>
 
 <section>
+<style>
+  .quiz-wrap {
+    max-width: 760px;
+    margin: 20px auto;
+    padding: 15px;
+    font-family: Tahoma, Arial, sans-serif;
+  }
 
-  <div class="box">
-    سيتم إضافة الاختبار التجريبي لدرس الاستثناء هنا
+  .quiz-info,
+  .quiz-card,
+  .result-card {
+    background: white;
+    border-radius: 24px;
+    padding: 22px;
+    box-shadow: 0 8px 25px rgba(15, 118, 110, 0.14);
+  }
+
+  .quiz-info {
+    margin-bottom: 18px;
+  }
+
+  .quiz-stats {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    color: #0f766e;
+    font-weight: bold;
+    margin-bottom: 12px;
+  }
+
+  .progress-track {
+    height: 14px;
+    background: #ccfbf1;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, #0f766e, #2dd4bf);
+    transition: width 0.4s;
+  }
+
+  .question-number {
+    color: #0f766e;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .question-text {
+    font-size: 23px;
+    font-weight: bold;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    color: #134e4a;
+  }
+
+  .answers {
+    display: grid;
+    gap: 13px;
+  }
+
+  .answer-btn {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #5eead4;
+    border-radius: 18px;
+    background: #f0fdfa;
+    color: #134e4a;
+    font-size: 18px;
+    text-align: right;
+    cursor: pointer;
+  }
+
+  .answer-btn.correct {
+    background: #dcfce7;
+    border-color: #22c55e;
+    color: #166534;
+  }
+
+  .answer-btn.wrong {
+    background: #fee2e2;
+    border-color: #ef4444;
+    color: #991b1b;
+  }
+
+  .feedback {
+    min-height: 55px;
+    margin-top: 18px;
+    padding: 13px;
+    border-radius: 16px;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .feedback.good {
+    background: #dcfce7;
+    color: #166534;
+  }
+
+  .feedback.bad {
+    background: #fee2e2;
+    color: #991b1b;
+  }
+
+  .next-btn,
+  .restart-btn,
+  .return-btn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 17px;
+    font-size: 19px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .next-btn {
+    display: none;
+    background: linear-gradient(135deg, #0f766e, #14b8a6);
+    color: white;
+  }
+
+  .restart-btn {
+    background: #7c3aed;
+    color: white;
+  }
+
+  .return-btn {
+    background: #334155;
+    color: white;
+  }
+
+  .result-card {
+    display: none;
+    text-align: center;
+  }
+
+  .result-icon {
+    font-size: 70px;
+  }
+
+  .result-title {
+    color: #0f766e;
+    font-size: 30px;
+  }
+
+  .final-score {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 18px 0;
+  }
+
+  .shake {
+    animation: shake 0.35s;
+  }
+
+  @keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(8px); }
+    50% { transform: translateX(-8px); }
+    75% { transform: translateX(6px); }
+    100% { transform: translateX(0); }
+  }
+</style>
+
+<div class="quiz-wrap">
+
+  <div id="quizArea">
+
+    <div class="quiz-info">
+      <div class="quiz-stats">
+        <span id="progressText">السؤال 1 من 15</span>
+        <span id="scoreText">الدرجة: 0</span>
+      </div>
+
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+
+    <div class="quiz-card" id="quizCard">
+      <div class="question-number" id="questionNumber"></div>
+      <div class="question-text" id="questionText"></div>
+      <div class="answers" id="answers"></div>
+      <div class="feedback" id="feedback"></div>
+
+      <button class="next-btn" id="nextBtn" onclick="nextQuestion()">
+        السؤال التالي ←
+      </button>
+    </div>
+
   </div>
 
-  <p>
-    <a class="back" href="exception-style.html">العودة إلى درس الاستثناء</a>
-  </p>
+  <div class="result-card" id="resultCard">
+    <div class="result-icon" id="resultIcon">🏆</div>
+    <h2 class="result-title" id="resultTitle">أحسنتِ</h2>
+    <div class="final-score" id="finalScore"></div>
+    <p id="resultMessage"></p>
+
+    <button class="restart-btn" onclick="restartQuiz()">
+      🔄 إعادة الاختبار
+    </button>
+
+    <a class="return-btn" href="exception-style.html">
+      العودة إلى درس الاستثناء
+    </a>
+  </div>
+
+</div>
+
+<script>
+  const questions = [
+    {
+      question: "ما تعريف أسلوب الاستثناء؟",
+      answers: [
+        "إخراج اسم من حكم ما قبله بواسطة أداة استثناء",
+        "وصف اسم بصفة",
+        "تأكيد معنى الجملة",
+        "ربط جملتين بحرف عطف"
+      ],
+      correct: 0
+    },
+    {
+      question: "ما المستثنى منه في جملة: حضر الطلابُ إلا طالبًا؟",
+      answers: [
+        "حضر",
+        "الطلابُ",
+        "إلا",
+        "طالبًا"
+      ],
+      correct: 1
+    },
+    {
+      question: "ما المستثنى في جملة: حضر الطلابُ إلا طالبًا؟",
+      answers: [
+        "حضر",
+        "الطلابُ",
+        "إلا",
+        "طالبًا"
+      ],
+      correct: 3
+    },
+    {
+      question: "أي الكلمات الآتية أداة استثناء؟",
+      answers: [
+        "لكن",
+        "إلا",
+        "ثم",
+        "لعل"
+      ],
+      correct: 1
+    },
+    {
+      question: "ما نوع الاستثناء في: حضر الطلابُ إلا طالبًا؟",
+      answers: [
+        "تام مثبت",
+        "تام منفي",
+        "ناقص منفي",
+        "أسلوب شرط"
+      ],
+      correct: 0
+    },
+    {
+      question: "ما حكم المستثنى في الاستثناء التام المثبت؟",
+      answers: [
+        "يجب رفعه",
+        "يجب جره",
+        "يجب نصبه",
+        "يجوز جزمه"
+      ],
+      correct: 2
+    },
+    {
+      question: "ما نوع الاستثناء في: ما حضر الطلابُ إلا طالبٌ؟",
+      answers: [
+        "تام مثبت",
+        "تام منفي",
+        "ناقص منفي",
+        "مفرغ مثبت"
+      ],
+      correct: 1
+    },
+    {
+      question: "في الاستثناء التام المنفي يجوز في المستثنى:",
+      answers: [
+        "النصب فقط",
+        "الرفع فقط",
+        "النصب على الاستثناء أو الإتباع على البدلية",
+        "الجر فقط"
+      ],
+      correct: 2
+    },
+    {
+      question: "ما نوع الاستثناء في: ما حضر إلا طالبٌ؟",
+      answers: [
+        "تام مثبت",
+        "تام منفي",
+        "ناقص منفي مفرغ",
+        "منقطع"
+      ],
+      correct: 2
+    },
+    {
+      question: "ما إعراب كلمة طالبٌ في: ما حضر إلا طالبٌ؟",
+      answers: [
+        "مستثنى منصوب",
+        "فاعل مرفوع",
+        "مفعول به منصوب",
+        "مضاف إليه مجرور"
+      ],
+      correct: 1
+    },
+    {
+      question: "في جملة: حضر الطلابُ غيرَ طالبٍ، تعرب غيرَ:",
+      answers: [
+        "فاعلًا مرفوعًا",
+        "مستثنى منصوبًا وهو مضاف",
+        "مفعولًا به",
+        "مضافًا إليه"
+      ],
+      correct: 1
+    },
+    {
+      question: "في جملة: حضر الطلابُ غيرَ طالبٍ، تعرب طالبٍ:",
+      answers: [
+        "فاعلًا",
+        "تمييزًا",
+        "مضافًا إليه مجرورًا",
+        "حالًا"
+      ],
+      correct: 2
+    },
+    {
+      question: "أي الأدوات الآتية تعامل معاملة غير؟",
+      answers: [
+        "سوى",
+        "إلا",
+        "عدا",
+        "حاشا"
+      ],
+      correct: 0
+    },
+    {
+      question: "في جملة: حضر الطلابُ ما عدا طالبًا، تعرب طالبًا:",
+      answers: [
+        "فاعلًا مرفوعًا",
+        "مفعولًا به منصوبًا",
+        "مضافًا إليه",
+        "بدلًا مرفوعًا"
+      ],
+      correct: 1
+    },
+    {
+      question: "أي جملة تمثل استثناءً ناقصًا منفيًا؟",
+      answers: [
+        "نجح الطلابُ إلا طالبًا",
+        "ما نجح الطلابُ إلا طالبٌ",
+        "ما نجح إلا طالبٌ",
+        "نجح غيرُ طالبٍ"
+      ],
+      correct: 2
+    }
+  ];
+
+  const goodMessages = [
+    "صوت النجاح لكِ! إجابة رائعة 🎵🌟",
+    "أبدعتِ، خطوة أقرب إلى الإتقان 🏆",
+    "إجابة صحيحة يا خبيرة الاستثناء 👏",
+    "رائعة! حافظي على هذا التركيز 🚀",
+    "ممتازة، تم فتح مستوى جديد 🔓",
+    "يا سلام! إجابة دقيقة جدًا ✨"
+  ];
+
+  const badMessages = [
+    "محاولة طيبة، راجعي نوع الاستثناء ثم واصلي 🌱",
+    "لا بأس، الخطأ تدريب للعقل 💪",
+    "قريبة جدًا، انتبهي لوجود النفي والمستثنى منه 🔍",
+    "السؤال القادم فرصتك للتعويض 🌷",
+    "استمري، البطلات لا يتوقفن عند خطأ واحد ⭐"
+  ];
+
+  let currentQuestion = 0;
+  let score = 0;
+  let answered = false;
+
+  const questionText = document.getElementById("questionText");
+  const answersBox = document.getElementById("answers");
+  const feedback = document.getElementById("feedback");
+  const nextBtn = document.getElementById("nextBtn");
+  const quizCard = document.getElementById("quizCard");
+
+  function loadQuestion() {
+    answered = false;
+
+    const item = questions[currentQuestion];
+
+    document.getElementById("questionNumber").textContent =
+      "السؤال رقم " + (currentQuestion + 1);
+
+    document.getElementById("progressText").textContent =
+      "السؤال " + (currentQuestion + 1) + " من " + questions.length;
+
+    document.getElementById("scoreText").textContent =
+      "الدرجة: " + score;
+
+    document.getElementById("progressFill").style.width =
+      ((currentQuestion / questions.length) * 100) + "%";
+
+    questionText.textContent = item.question;
+    answersBox.innerHTML = "";
+    feedback.textContent = "";
+    feedback.className = "feedback";
+    nextBtn.style.display = "none";
+
+    item.answers.forEach((answer, index) => {
+      const button = document.createElement("button");
+
+      button.className = "answer-btn";
+      button.textContent = answer;
+      button.onclick = () => selectAnswer(index, button);
+
+      answersBox.appendChild(button);
+    });
+  }
+
+  function selectAnswer(index, selectedButton) {
+    if (answered) return;
+
+    answered = true;
+
+    const correctIndex = questions[currentQuestion].correct;
+    const buttons = document.querySelectorAll(".answer-btn");
+
+    buttons.forEach(button => {
+      button.disabled = true;
+    });
+
+    if (index === correctIndex) {
+      score++;
+
+      selectedButton.classList.add("correct");
+
+      feedback.textContent =
+        goodMessages[Math.floor(Math.random() * goodMessages.length)];
+
+      feedback.className = "feedback good";
+
+      playTone(true);
+    } else {
+      selectedButton.classList.add("wrong");
+      buttons[correctIndex].classList.add("correct");
+
+      feedback.textContent =
+        badMessages[Math.floor(Math.random() * badMessages.length)];
+
+      feedback.className = "feedback bad";
+
+      quizCard.classList.add("shake");
+
+      setTimeout(() => {
+        quizCard.classList.remove("shake");
+      }, 400);
+
+      if ("vibrate" in navigator) {
+        navigator.vibrate([100, 60, 100]);
+      }
+
+      playTone(false);
+    }
+
+    document.getElementById("scoreText").textContent =
+      "الدرجة: " + score;
+
+    nextBtn.style.display = "block";
+
+    if (currentQuestion === questions.length - 1) {
+      nextBtn.textContent = "عرض النتيجة 🏆";
+    } else {
+      nextBtn.textContent = "السؤال التالي ←";
+    }
+  }
+
+  function playTone(correct) {
+    try {
+      const audioContext =
+        new (window.AudioContext || window.webkitAudioContext)();
+
+      const oscillator = audioContext.createOscillator();
+      const gain = audioContext.createGain();
+
+      oscillator.connect(gain);
+      gain.connect(audioContext.destination);
+
+      oscillator.type = correct ? "sine" : "triangle";
+
+      if (correct) {
+        oscillator.frequency.setValueAtTime(
+          620,
+          audioContext.currentTime
+        );
+
+        oscillator.frequency.setValueAtTime(
+          820,
+          audioContext.currentTime + 0.1
+        );
+
+        oscillator.frequency.setValueAtTime(
+          1040,
+          audioContext.currentTime + 0.2
+        );
+      } else {
+        oscillator.frequency.setValueAtTime(
+          260,
+          audioContext.currentTime
+        );
+
+        oscillator.frequency.setValueAtTime(
+          190,
+          audioContext.currentTime + 0.15
+        );
+      }
+
+      gain.gain.setValueAtTime(
+        0.12,
+        audioContext.currentTime
+      );
+
+      gain.gain.exponentialRampToValueAtTime(
+        0.01,
+        audioContext.currentTime + 0.35
+      );
+
+      oscillator.start();
+      oscillator.stop(audioContext.currentTime + 0.35);
+    } catch (error) {
+      console.log("الصوت غير مدعوم في هذا الجهاز");
+    }
+  }
+
+  function nextQuestion() {
+    currentQuestion++;
+
+    if (currentQuestion < questions.length) {
+      loadQuestion();
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    } else {
+      showResult();
+    }
+  }
+
+  function showResult() {
+    document.getElementById("quizArea").style.display = "none";
+    document.getElementById("resultCard").style.display = "block";
+
+    const percentage =
+      Math.round((score / questions.length) * 100);
+
+    document.getElementById("finalScore").textContent =
+      "درجتك: " +
+      score +
+      " من " +
+      questions.length +
+      " — " +
+      percentage +
+      "%";
+
+    const icon = document.getElementById("resultIcon");
+    const title = document.getElementById("resultTitle");
+    const message = document.getElementById("resultMessage");
+
+    if (percentage >= 90) {
+      icon.textContent = "🏆";
+      title.textContent = "خبيرة الاستثناء!";
+      message.textContent =
+        "إتقان مذهل، تستحقين وسام النجمة الذهبية.";
+    } else if (percentage >= 70) {
+      icon.textContent = "🌟";
+      title.textContent = "أداء رائع!";
+      message.textContent =
+        "فهمك قوي، راجعي الأخطاء البسيطة فقط.";
+    } else if (percentage >= 50) {
+      icon.textContent = "🌱";
+      title.textContent = "تقدم جميل";
+      message.textContent =
+        "راجعي أنواع الاستثناء وأحكامه ثم أعيدي المحاولة.";
+    } else {
+      icon.textContent = "💪";
+      title.textContent = "المحاولة تصنع الإتقان";
+      message.textContent =
+        "اقرئي ملف الدرس وشاهدي الفيديو ثم عودي بثقة.";
+    }
+
+    if ("vibrate" in navigator && percentage >= 70) {
+      navigator.vibrate([100, 70, 100, 70, 180]);
+    }
+
+    playTone(percentage >= 70);
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+
+  function restartQuiz() {
+    currentQuestion = 0;
+    score = 0;
+    answered = false;
+
+    document.getElementById("quizArea").style.display = "block";
+    document.getElementById("resultCard").style.display = "none";
+
+    loadQuestion();
+  }
+
+  loadQuestion();
+</script>
+  
+    
+  
+
+  
+    
+  
 
 </section>
 
