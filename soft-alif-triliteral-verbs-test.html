@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>الاختبار التجريبي - الألف اللينة في الأفعال الثلاثية</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: Tahoma, Arial, sans-serif;
+      background: #fffaf5;
+      color: #593f32;
+      line-height: 1.8;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 850px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      color: #b85c38;
+    }
+
+    .intro {
+      text-align: center;
+      background: #ffecdf;
+      padding: 16px;
+      border-radius: 18px;
+      margin-bottom: 20px;
+    }
+
+    .sound-note {
+      text-align: center;
+      background: #edf6ff;
+      border: 2px solid #b8d8f3;
+      border-radius: 14px;
+      padding: 12px;
+      margin-bottom: 22px;
+    }
+
+    .question {
+      background: white;
+      border: 2px solid #f0c7b2;
+      border-radius: 18px;
+      padding: 18px;
+      margin: 18px 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    .question h3 {
+      color: #b85c38;
+      margin-top: 0;
+    }
+
+    label {
+      display: block;
+      background: #fff5ef;
+      padding: 11px;
+      margin: 9px 0;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    label:hover {
+      background: #ffe8da;
+    }
+
+    input {
+      margin-left: 8px;
+    }
+
+    .feedback {
+      display: none;
+      margin-top: 12px;
+      padding: 11px;
+      border-radius: 12px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .feedback-success {
+      background: #ddf7e7;
+      color: #18643b;
+      border: 2px solid #3ca66b;
+    }
+
+    .feedback-error {
+      background: #ffe7e7;
+      color: #872929;
+      border: 2px solid #dc5b5b;
+    }
+
+    .answer-correct {
+      background: #dff7e7 !important;
+      border: 2px solid #3ca66b;
+    }
+
+    .answer-wrong {
+      background: #ffe3e3 !important;
+      border: 2px solid #dc5b5b;
+    }
+
+    .buttons {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    button {
+      max-width: 100%;
+      border: none;
+      padding: 14px 25px;
+      margin: 8px;
+      border-radius: 14px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .check {
+      background: #b85c38;
+      color: white;
+    }
+
+    .reset {
+      background: #d89b2f;
+      color: white;
+    }
+
+    .sound-button {
+      background: #5478b8;
+      color: white;
+    }
+
+    #result {
+      display: none;
+      text-align: center;
+      padding: 22px;
+      margin-top: 25px;
+      border-radius: 18px;
+      font-size: 21px;
+      font-weight: bold;
+    }
+
+    .excellent {
+      background: #ddf7e7;
+      border: 2px solid #3ca66b;
+      color: #18643b;
+    }
+
+    .medium {
+      background: #fff5d8;
+      border: 2px solid #e5ad2f;
+      color: #76510a;
+    }
+
+    .weak {
+      background: #ffe7e7;
+      border: 2px solid #dc5b5b;
+      color: #872929;
+    }
+
+    .back {
+      display: block;
+      width: fit-content;
+      max-width: 100%;
+      margin: 35px auto 10px;
+      padding: 13px 24px;
+      background: #b85c38;
+      color: white;
+      text-decoration: none;
+      border-radius: 14px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 12px;
+      }
+
+      .question {
+        padding: 15px;
+      }
+
+      h1 {
+        font-size: 25px;
+      }
+
+      button {
+        width: 100%;
+        margin: 6px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>
+      📝 الاختبار التجريبي للألف اللينة
+      في الأفعال الثلاثية
+    </h1>
+
+    <div class="intro">
+      اختاري الإجابة الصحيحة، ثم اضغطي
+      <strong>إظهار النتيجة</strong>.
+    </div>
+
+    <div class="sound-note">
+      🔊 يحتوي الاختبار على أصوات تحفيزية،
+      ويمكن إيقافها من الزر أسفل الصفحة.
+    </div>
+
+    <form id="quiz">
+
+      <div class="question" data-answer="b">
+        <h3>1. الرسم الصحيح للفعل هو:</h3>
+
+        <label>
+          <input type="radio" name="q1" value="a">
+          دعى
+        </label>
+
+        <label>
+          <input type="radio" name="q1" value="b">
+          دعا
+        </label>
+
+        <label>
+          <input type="radio" name="q1" value="c">
+          دعي
+        </label>
+
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question" data-answer="a">
+        <h3>2. كتبت الألف في «دعا» قائمة لأن مضارعه:</h3>
+
+        <label>
+          <input type="radio" name="q2" value="a">
+          يدعو
+        </label>
+
+        <label>
+          <input type="radio" name="q2" value="b">
+          يدعي
+        </label>
+
+        <label>
+          <input type="radio" name="q2" value="c">
+          يدعى
+        </label>
+
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question" data-answer="c">
+        <h3>3. الرسم الصحيح للفعل هو:</h3>
+
+        <label>
+          <input type="radio" name="q3" value="a">
+          رما
+        </label>
+
+        <label>
+          <input type="radio" name="q3" value="b">
+          رمي
+        </label>
+
+        <label>
+          <input type="radio" name="q3" value="c">
+          رمى
+        </label>
+
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question" data-answer="b">
+        <h3>4. كتبت الألف في «رمى» مقصورة لأن مضارعه:</h3>
+
+        <label>
+          <input type="radio" name="q4" value="a">
+          يرمو
+        </label>
+
+        <label>
+          <input type="radio" name="q4" value="b">
+          يرمي
+        </label>
+
+        <label>
+          <input type="radio" name="q4" value="c">
+          يرمى
+        </label>
+
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question" data-answer="a">
+        <h3>5. إذا كان أصل الألف واوًا فإنها تكتب:</h3>
+
+        <label>
+          <input type="radio" name="q5" value="a">
+          ألفًا قائمة «ا»
+        </label>
+
+        <label>
+          <input type="radio" name="q5" value="b">
+          ألفًا مقصورة «ى»
+        </label>
+
+        <label>
+          <input type="radio" name="q5" value="c">
+          ياءً منقوطة «ي»
+        </label>
+
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question" data-answer="c">
+        <h3>6. إذا كان أصل الألف ياءً فإنها تكتب:</h3>
+
+        <label>
+          <input type="radio" name="q6" value="a">
+          ألفًا قائمة «ا»
+        </label>
+
+        <label>
+          <input type="radio" name="q6" value="b">
+          واوًا «و»
+        </label>
+
+        <label>
+          <input type="radio" name="q6" value="c">
+          ألفًا مقصورة «ى»
+        </label>
+
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question" data-answer="b">
+        <h3>7. الرسم الصحيح للفعل في الجملة «... الطالب إلى النجاح» هو:</h3>
+
+        <label>
+          <input type="radio" name="q7" value="a">
+          سعا
+        </label>
+
+        <label>
+          <input type="radio" name="q7" value="b">
+          سعى
+        </label>
+
+        <label>
+          <input type="radio" name="q7" value="c">
+          سعي
+        </label>
+
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question" data-answer="a">
+        <h3>8. نعرف أصل الألف في «سعى» من:</h3>
+
+        <label>
+          <input type="radio" name="q8" value="a">
+          سعيتُ أو سعي
+        </label>
+
+        <label>
+          <input type="radio" name="q8" value="b">
+          يسعو
+        </label>
+
+        <label>
+          <input type="radio" name="q8" value="c">
+          سعاة
+        </label>
+
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question" data-answer="c">
+        <h3>9. الجملة المكتوبة كتابة صحيحة هي:</h3>
+
+        <label>
+          <input type="radio" name="q9" value="a">
+          قضا القاضي بالعدل
+        </label>
+
+        <label>
+          <input type="radio" name="q9" value="b">
+          قضي القاضي بالعدل
+        </label>
+
+        <label>
+          <input type="radio" name="q9" value="c">
+          قضى القاضي بالعدل
+        </label>
+
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question" data-answer="b">
+        <h3>10. الفعل الذي تكتب ألفه قائمة هو:</h3>
+
+        <label>
+          <input type="radio" name="q10" value="a">
+          بكى
+        </label>
+
+        <label>
+          <input type="radio" name="q10" value="b">
+          سما
+        </label>
+
+        <label>
+          <input type="radio" name="q10" value="c">
+          مشى
+        </label>
+
+        <div class="feedback"></div>
+      </div>
+
+    </form>
+
+    <div class="buttons">
+
+      <button
+        class="check"
+        type="button"
+        onclick="checkAnswers()"
+      >
+        إظهار النتيجة
+      </button>
+
+      <button
+        class="reset"
+        type="button"
+        onclick="resetQuiz()"
+      >
+        إعادة الاختبار
+      </button>
+
+      <button
+        class="sound-button"
+        id="soundButton"
+        type="button"
+        onclick="toggleSound()"
+      >
+        🔊 الصوت يعمل
+      </button>
+
+    </div>
+
+    <div id="result"></div>
+
+    <a
+      class="back"
+      href="soft-alif-triliteral-verbs.html"
+    >
+      العودة إلى درس الألف اللينة
+    </a>
+
+  </div>
+
+  <script>
+    let soundEnabled = true;
+
+    const successMessages = [
+      "إجابة صحيحة، رائعة جدًا 🌟",
+      "أحسنتِ يا بطلة 👏",
+      "ممتازة، واصلي التألق ✨",
+      "إجابة موفقة جدًا 🌷",
+      "تقدم رائع، استمري 💪"
+    ];
+
+    const errorMessages = [
+      "محاولة جيدة، راجعي أصل الألف 🌱",
+      "اقتربتِ، حوّلي الفعل إلى المضارع 💡",
+      "لا بأس، الخطأ يساعدنا على التعلم 📘",
+      "جربي تاء الفاعل أو المصدر ✍️",
+      "أنتِ قادرة، حاولي مرة أخرى 🌸"
+    ];
+
+    function randomMessage(messages) {
+      const index = Math.floor(Math.random() * messages.length);
+      return messages[index];
+    }
+
+    function playTone(frequency, duration, type) {
+      if (!soundEnabled) {
+        return;
+      }
+
+      const AudioContext =
+        window.AudioContext || window.webkitAudioContext;
+
+      if (!AudioContext) {
+        return;
+      }
+
+      const context = new AudioContext();
+      const oscillator = context.createOscillator();
+      const gain = context.createGain();
+
+      oscillator.type = type || "sine";
+      oscillator.frequency.value = frequency;
+
+      gain.gain.setValueAtTime(0.12, context.currentTime);
+
+      gain.gain.exponentialRampToValueAtTime(
+        0.001,
+        context.currentTime + duration
+      );
+
+      oscillator.connect(gain);
+      gain.connect(context.destination);
+
+      oscillator.start();
+      oscillator.stop(context.currentTime + duration);
+    }
+
+    function playSuccessSound() {
+      playTone(523, 0.18, "sine");
+
+      setTimeout(function () {
+        playTone(659, 0.18, "sine");
+      }, 130);
+
+      setTimeout(function () {
+        playTone(784, 0.3, "sine");
+      }, 260);
+    }
+
+    function playErrorSound() {
+      playTone(240, 0.22, "triangle");
+
+      setTimeout(function () {
+        playTone(190, 0.28, "triangle");
+      }, 170);
+    }
+
+    function checkAnswers() {
+      const questions = document.querySelectorAll(".question");
+
+      let score = 0;
+      let answered = 0;
+
+      questions.forEach(function (question) {
+        const correctAnswer = question.dataset.answer;
+
+        const selected = question.querySelector(
+          'input[type="radio"]:checked'
+        );
+
+        const labels = question.querySelectorAll("label");
+        const feedback = question.querySelector(".feedback");
+
+        labels.forEach(function (label) {
+          label.classList.remove(
+            "answer-correct",
+            "answer-wrong"
+          );
+
+          const input = label.querySelector("input");
+
+          if (input.value === correctAnswer) {
+            label.classList.add("answer-correct");
+          }
+        });
+
+        feedback.style.display = "block";
+        feedback.className = "feedback";
+
+        if (!selected) {
+          feedback.textContent =
+            "لم تختاري إجابة لهذا السؤال.";
+
+          feedback.classList.add("feedback-error");
+          return;
+        }
+
+        answered++;
+
+        if (selected.value === correctAnswer) {
+          score++;
+
+          feedback.textContent =
+            randomMessage(successMessages);
+
+          feedback.classList.add("feedback-success");
+        } else {
+          selected.parentElement.classList.add("answer-wrong");
+
+          feedback.textContent =
+            randomMessage(errorMessages);
+
+          feedback.classList.add("feedback-error");
+        }
+      });
+
+      const result = document.getElementById("result");
+
+      result.style.display = "block";
+      result.className = "";
+
+      if (answered < questions.length) {
+        result.textContent =
+          "أجبتِ عن " +
+          answered +
+          " أسئلة من أصل " +
+          questions.length +
+          ". نتيجتك الحالية: " +
+          score +
+          " من " +
+          questions.length;
+
+        result.classList.add("medium");
+        playErrorSound();
+      } else if (score >= 8) {
+        result.textContent =
+          "مبدعة جدًا 🌟 نتيجتك: " +
+          score +
+          " من " +
+          questions.length +
+          ". أتقنتِ قاعدة الألف اللينة!";
+
+        result.classList.add("excellent");
+        playSuccessSound();
+      } else if (score >= 5) {
+        result.textContent =
+          "نتيجة جيدة جدًا 👍 نتيجتك: " +
+          score +
+          " من " +
+          questions.length +
+          ". راجعي الأخطاء ثم أعيدي المحاولة.";
+
+        result.classList.add("medium");
+        playSuccessSound();
+      } else {
+        result.textContent =
+          "بداية طيبة 🌱 نتيجتك: " +
+          score +
+          " من " +
+          questions.length +
+          ". راجعي القاعدة وستتحسن النتيجة.";
+
+        result.classList.add("weak");
+        playErrorSound();
+      }
+
+      result.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+    }
+
+    function resetQuiz() {
+      document.getElementById("quiz").reset();
+
+      document.querySelectorAll("label").forEach(
+        function (label) {
+          label.classList.remove(
+            "answer-correct",
+            "answer-wrong"
+          );
+        }
+      );
+
+      document.querySelectorAll(".feedback").forEach(
+        function (feedback) {
+          feedback.style.display = "none";
+          feedback.textContent = "";
+          feedback.className = "feedback";
+        }
+      );
+
+      const result = document.getElementById("result");
+
+      result.style.display = "none";
+      result.textContent = "";
+      result.className = "";
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+
+    function toggleSound() {
+      soundEnabled = !soundEnabled;
+
+      const soundButton =
+        document.getElementById("soundButton");
+
+      if (soundEnabled) {
+        soundButton.textContent = "🔊 الصوت يعمل";
+        playTone(600, 0.18, "sine");
+      } else {
+        soundButton.textContent = "🔇 الصوت متوقف";
+      }
+    }
+  </script>
+
+</body>
+
+</html>
