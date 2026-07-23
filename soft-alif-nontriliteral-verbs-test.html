@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>اختبار الألف اللينة في الأفعال</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      margin: 0;
+      padding: 15px;
+      min-height: 100vh;
+      font-family: Tahoma, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top, #fff5dc, transparent 35%),
+        linear-gradient(135deg, #fff8f2, #f4f0ff);
+      color: #4f3d48;
+      line-height: 1.8;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 850px;
+      margin: auto;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 28px 18px;
+      margin-bottom: 25px;
+      border-radius: 26px;
+      color: white;
+      text-align: center;
+      background: linear-gradient(135deg, #8b5cc7, #e66f9e);
+      box-shadow: 0 10px 25px rgba(107, 68, 143, 0.22);
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "★";
+      position: absolute;
+      color: rgba(255, 255, 255, 0.25);
+      font-size: 70px;
+    }
+
+    .hero::before {
+      right: 18px;
+      top: -15px;
+      transform: rotate(15deg);
+    }
+
+    .hero::after {
+      left: 22px;
+      bottom: -28px;
+      transform: rotate(-18deg);
+    }
+
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: 31px;
+    }
+
+    .hero p {
+      margin: 0;
+      font-size: 17px;
+    }
+
+    .progress-card {
+      position: sticky;
+      top: 8px;
+      z-index: 20;
+      padding: 14px;
+      margin-bottom: 20px;
+      border: 2px solid #eadcf7;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      backdrop-filter: blur(8px);
+    }
+
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #76519b;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 13px;
+      overflow: hidden;
+      border-radius: 20px;
+      background: #eee6f5;
+    }
+
+    .progress-bar {
+      width: 0;
+      height: 100%;
+      border-radius: 20px;
+      background: linear-gradient(90deg, #f6bc42, #ec6da0);
+      transition: width 0.4s ease;
+    }
+
+    .question {
+      position: relative;
+      overflow: visible;
+      padding: 20px;
+      margin: 20px 0;
+      border: 2px solid #eadcf7;
+      border-radius: 22px;
+      background: white;
+      box-shadow: 0 6px 17px rgba(0, 0, 0, 0.07);
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .question.answered {
+      border-color: #d3b7eb;
+    }
+
+    .question-number {
+      display: inline-block;
+      padding: 4px 13px;
+      margin-bottom: 8px;
+      border-radius: 20px;
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
+      background: linear-gradient(135deg, #8b5cc7, #b376d9);
+    }
+
+    .question h2 {
+      margin: 8px 0 16px;
+      color: #604276;
+      font-size: 21px;
+    }
+
+    .options {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .option {
+      width: 100%;
+      min-height: 55px;
+      padding: 12px;
+      border: 2px solid #e6d8ef;
+      border-radius: 15px;
+      background: #fcf9ff;
+      color: #513e5c;
+      font-family: inherit;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    .option:hover,
+    .option:focus {
+      transform: translateY(-2px);
+      border-color: #a978cb;
+      outline: none;
+    }
+
+    .option.correct {
+      color: #166239;
+      border-color: #4db77a;
+      background: #e8f9ef;
+    }
+
+    .option.wrong {
+      color: #9b3444;
+      border-color: #e46f82;
+      background: #fff0f2;
+    }
+
+    .option:disabled {
+      cursor: default;
+    }
+
+    .feedback {
+      display: none;
+      padding: 11px 14px;
+      margin-top: 14px;
+      border-radius: 13px;
+      font-weight: bold;
+    }
+
+    .feedback.show {
+      display: block;
+      animation: appear 0.35s ease;
+    }
+
+    .feedback.good {
+      color: #17643b;
+      background: #e9f9ef;
+    }
+
+    .feedback.try {
+      color: #944052;
+      background: #fff0f3;
+    }
+
+    .finish-btn {
+      display: block;
+      width: 100%;
+      max-width: 390px;
+      padding: 15px 18px;
+      margin: 28px auto;
+      border: 0;
+      border-radius: 18px;
+      color: white;
+      font-family: inherit;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      background: linear-gradient(135deg, #8b5cc7, #e66f9e);
+      box-shadow: 0 8px 18px rgba(139, 92, 199, 0.25);
+    }
+
+    .finish-btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .result {
+      display: none;
+      padding: 25px 18px;
+      margin: 24px 0;
+      border: 3px solid #f1c65a;
+      border-radius: 25px;
+      text-align: center;
+      background: linear-gradient(135deg, #fff9df, #fff0f7);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.09);
+    }
+
+    .result.show {
+      display: block;
+      animation: resultPop 0.6s ease;
+    }
+
+    .result-icon {
+      font-size: 55px;
+    }
+
+    .result h2 {
+      margin: 4px 0;
+      color: #8052a0;
+    }
+
+    .score {
+      margin: 8px 0;
+      color: #dd6a97;
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    .restart,
+    .back {
+      display: inline-block;
+      padding: 12px 20px;
+      margin: 7px;
+      border: 0;
+      border-radius: 14px;
+      color: white;
+      text-decoration: none;
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .restart {
+      background: #8b5cc7;
+    }
+
+    .back {
+      background: #c05f82;
+    }
+
+    /* النجوم المتصاعدة */
+
+    .star-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .floating-star {
+      position: fixed;
+      z-index: 9999;
+      font-size: 23px;
+      line-height: 1;
+      pointer-events: none;
+      animation: starRise 1.45s ease-out forwards;
+      filter: drop-shadow(0 3px 3px rgba(0, 0, 0, 0.14));
+    }
+
+    .gold-star {
+      color: #f4b928;
+    }
+
+    .pink-star {
+      color: #ef69a2;
+    }
+
+    @keyframes starRise {
+      0% {
+        opacity: 0;
+        transform:
+          translate(-50%, 10px)
+          scale(0.25)
+          rotate(0deg);
+      }
+
+      20% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+        transform:
+          translate(
+            calc(-50% + var(--move-x)),
+            var(--move-y)
+          )
+          scale(1.3)
+          rotate(var(--rotate));
+      }
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(-7px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes resultPop {
+      0% {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+
+      70% {
+        transform: scale(1.04);
+      }
+
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 10px;
+      }
+
+      .hero h1 {
+        font-size: 25px;
+      }
+
+      .question {
+        padding: 16px;
+      }
+
+      .question h2 {
+        font-size: 19px;
+      }
+
+      .options {
+        grid-template-columns: 1fr;
+      }
+
+      .option {
+        font-size: 17px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div
+    class="star-layer"
+    id="starLayer"
+  ></div>
+
+  <main class="container">
+
+    <header class="hero">
+      <h1>🌟 تحدي الألف اللينة</h1>
+
+      <p>
+        ميّزي بين الأفعال الثلاثية وغير الثلاثية
+      </p>
+    </header>
+
+    <section class="progress-card">
+
+      <div class="progress-info">
+        <span id="progressText">أُجيب عن 0 من 10</span>
+        <span id="liveScore">النجوم: 0 ⭐</span>
+      </div>
+
+      <div class="progress-track">
+        <div
+          class="progress-bar"
+          id="progressBar"
+        ></div>
+      </div>
+
+    </section>
+
+    <section
+      class="question"
+      data-answer="نجا"
+    >
+      <span class="question-number">السؤال 1</span>
+
+      <h2>
+        اختاري الكتابة الصحيحة:
+        ___ المسافرُ من الخطر.
+      </h2>
+
+      <div class="options">
+        <button class="option">نجا</button>
+        <button class="option">نجى</button>
+      </div>
+
+      <div class="feedback"></div>
+    </section>
+
+    <section
+      class="question"
+      data-answer="بكى"
+    >
+      <span class="question-number">السؤال 2</span>
+
+      <h2>
+        اختاري الفعل المكتوب كتابة صحيحة:
+      </h2>
+
+      <div class="options">
+        <button class="option">بكا الطفلُ</button>
+        <button class="option" data-value="بكى">بكى الطفلُ</button>
+      </div>
+
+      <div class="feedback"></div>
+    </section>
+
+    <section
+      class="question"
+      data-answer="عفا"
+    >
+      <span class="question-number">السؤال 3</span>
+
+      <h2>
+        ___ الرجلُ عمّن أساء إليه.
+      </h2>
+
+      <div class="options">
+        <button class="option">عفى</button>
+        <button class="option">عفا</button>
+      </div>
+
+      <div class="feedback"></div>
+    </section>
+
+    <section
+      class="question"
+      data-answer="مشى"
+    >
+      <span class="question-number">السؤال 4</span>
+
+      <h2>
+        أيهما صحيح؟
+      </h2>
+
+      <div class="options">
+        <button class="option">مشا الطالبُ بهدوء</button>
+        <button class="option" data-value="مشى">
+          مشى الطالبُ بهدوء
+        </button>
+      </div>
+
+      <div class="feedback"></div>
+    </section>
+
+    <section
+      class="question"
+      data-answer="ارتقى"
+    >
+      <span class="question-number">السؤال 5</span>
+
+      <h2>
+        ___ المجتهدُ بأخلاقه وعلمه.
+      </h2>
+
+      <div class="options">
+        <button class="option">ارتقا</button>
+        <button class="option">ارتقى</button>
+      </div>
+
+      <div class="feedback"></div>
+    </section>
+
+    <section
+      class="question"
+      data-answer="استوفى"
+    >
+      <span class="question-number">السؤال 6</span>
+
+      <h2>
+        اختاري الرسم الصحيح للفعل غير الثلاثي:
+      </h2>
+
+      <div class="options">
+        <button class="option">استوفا</button>
+        <button class="option">استوفى</button>
+      </div>
+
+      <div class="feedback"></div>
+    </section>
+
+    <section
+      class="question"
+      data-answer="ابتغى"
+    >
+      <span class="question-number">السؤال 7</span>
+
+      <h2>
+        ___ الطالبُ النجاحَ بالاجتهاد.
+      </h2>
+
+      <div class="options">
+        <button class="option">ابتغى</button>
+        <button class="option">ابتغا</button>
+      </div>
+
+      <div class="feedback"></div>
+    </section>
+
+    <section
+      class="question"
+      data-answer="أحيا"
+    >
+      <span class="question-number">السؤال 8</span>
+
+      <h2>
+        ___ المطرُ الأرضَ بعد جفافها.
+      </h2>
+
+      <div class="options">
+        <button class="option">أحيى</button>
+        <button class="option">أحيا</button>
+      </div>
+
+      <div class="feedback"></div>
+    </section>
+
+    <section
+      class="question"
+      data-answer="استحيا"
+    >
+      <span class="question-number">السؤال 9</span>
+
+      <h2>
+        اختاري الكلمة الصحيحة:
+      </h2>
+
+      <div class="options">
+        <button class="option">استحيا الطالبُ من خطئه</button>
+
+        <button class="option" data-value="استحيى">
+          استحيى الطالبُ من خطئه
+        </button>
+      </div>
+
+      <div class="feedback"></div>
+    </section>
+
+    <section
+      class="question"
+      data-answer="هدى"
+    >
+      <span class="question-number">السؤال 10</span>
+
+      <h2>
+        ___ المرشدُ الزائرَ إلى الطريق.
+      </h2>
+
+      <div class="options">
+        <button class="option">هدا</button>
+        <button class="option">هدى</button>
+      </div>
+
+      <div class="feedback"></div>
+    </section>
+
+    <button
+      class="finish-btn"
+      id="finishButton"
+      disabled
+    >
+      🎉 إظهار النتيجة
+    </button>
+
+    <section
+      class="result"
+      id="result"
+    >
+      <div
+        class="result-icon"
+        id="resultIcon"
+      >
+        🏆
+      </div>
+
+      <h2 id="resultTitle">
+        أحسنتِ
+      </h2>
+
+      <div
+        class="score"
+        id="finalScore"
+      ></div>
+
+      <p id="resultMessage"></p>
+
+      <button
+        class="restart"
+        onclick="location.reload()"
+      >
+        🔄 إعادة الاختبار
+      </button>
+
+      <a
+        class="back"
+        href="soft-alif-verbs-review.html"
+      >
+        📚 العودة إلى المراجعة
+      </a>
+    </section>
+
+  </main>
+
+  <script>
+    const questions = document.querySelectorAll(".question");
+    const finishButton = document.getElementById("finishButton");
+    const progressBar = document.getElementById("progressBar");
+    const progressText = document.getElementById("progressText");
+    const liveScore = document.getElementById("liveScore");
+    const result = document.getElementById("result");
+
+    let answeredCount = 0;
+    let score = 0;
+
+    function getOptionValue(button) {
+      return button.dataset.value || button.textContent.trim().split(" ")[0];
+    }
+
+    function playTone(correct) {
+      try {
+        const AudioContext =
+          window.AudioContext || window.webkitAudioContext;
+
+        const context = new AudioContext();
+        const oscillator = context.createOscillator();
+        const gain = context.createGain();
+
+        oscillator.connect(gain);
+        gain.connect(context.destination);
+
+        oscillator.type = correct ? "sine" : "triangle";
+        oscillator.frequency.value = correct ? 720 : 230;
+
+        gain.gain.setValueAtTime(0.13, context.currentTime);
+        gain.gain.exponentialRampToValueAtTime(
+          0.001,
+          context.currentTime + 0.35
+        );
+
+        oscillator.start();
+        oscillator.stop(context.currentTime + 0.35);
+      } catch (error) {
+        console.log("تعذر تشغيل الصوت.");
+      }
+    }
+
+    function createStars(button, amount = 14) {
+      const rect = button.getBoundingClientRect();
+      const startX = rect.left + rect.width / 2;
+      const startY = rect.top + rect.height / 2;
+
+      for (let i = 0; i < amount; i++) {
+        const star = document.createElement("span");
+
+        star.className =
+          "floating-star " +
+          (i % 2 === 0 ? "gold-star" : "pink-star");
+
+        star.textContent = "★";
+        star.style.left = startX + "px";
+        star.style.top = startY + "px";
+
+        const horizontal = Math.floor(Math.random() * 190) - 95;
+        const vertical = -(90 + Math.floor(Math.random() * 170));
+        const rotation = Math.floor(Math.random() * 360) - 180;
+        const delay = Math.random() * 0.18;
+
+        star.style.setProperty("--move-x", horizontal + "px");
+        star.style.setProperty("--move-y", vertical + "px");
+        star.style.setProperty("--rotate", rotation + "deg");
+        star.style.animationDelay = delay + "s";
+
+        document.body.appendChild(star);
+
+        setTimeout(() => {
+          star.remove();
+        }, 1800);
+      }
+    }
+
+    function updateProgress() {
+      const percentage =
+        (answeredCount / questions.length) * 100;
+
+      progressBar.style.width = percentage + "%";
+
+      progressText.textContent =
+        "أُجيب عن " +
+        answeredCount +
+        " من " +
+        questions.length;
+
+      liveScore.textContent =
+        "النجوم: " + score + " ⭐";
+
+      if (answeredCount === questions.length) {
+        finishButton.disabled = false;
+      }
+    }
+
+    questions.forEach((question) => {
+      const options = question.querySelectorAll(".option");
+      const feedback = question.querySelector(".feedback");
+      const correctAnswer = question.dataset.answer;
+
+      options.forEach((button) => {
+        button.addEventListener("click", () => {
+          if (question.classList.contains("answered")) {
+            return;
+          }
+
+          question.classList.add("answered");
+          answeredCount++;
+
+          const selectedValue = getOptionValue(button);
+          const isCorrect = selectedValue === correctAnswer;
+
+          createStars(button, isCorrect ? 18 : 10);
+          playTone(isCorrect);
+
+          options.forEach((option) => {
+            option.disabled = true;
+
+            if (getOptionValue(option) === correctAnswer) {
+              option.classList.add("correct");
+            }
+          });
+
+          if (isCorrect) {
+            score++;
+            button.classList.add("correct");
+
+            feedback.textContent =
+              "🌟 إجابة رائعة! اختيارك صحيح.";
+
+            feedback.className = "feedback show good";
+          } else {
+            button.classList.add("wrong");
+
+            feedback.textContent =
+              "💗 محاولة جميلة، والإجابة الصحيحة هي: " +
+              correctAnswer;
+
+            feedback.className = "feedback show try";
+          }
+
+          updateProgress();
+        });
+      });
+    });
+
+    finishButton.addEventListener("click", () => {
+      const finalScore = document.getElementById("finalScore");
+      const resultTitle = document.getElementById("resultTitle");
+      const resultMessage = document.getElementById("resultMessage");
+      const resultIcon = document.getElementById("resultIcon");
+
+      finalScore.textContent =
+        score + " من " + questions.length;
+
+      if (score === questions.length) {
+        resultIcon.textContent = "👑";
+        resultTitle.textContent = "إتقان مذهل!";
+        resultMessage.textContent =
+          "أجبتِ عن جميع الأسئلة بصورة صحيحة، أنتِ نجمة الألف اللينة.";
+      } else if (score >= 8) {
+        resultIcon.textContent = "🏆";
+        resultTitle.textContent = "ممتازة جدًا!";
+        resultMessage.textContent =
+          "نتيجة قوية، لقد أتقنتِ الفرق بين الفعل الثلاثي وغير الثلاثي.";
+      } else if (score >= 6) {
+        resultIcon.textContent = "🌷";
+        resultTitle.textContent = "أداء جميل!";
+        resultMessage.textContent =
+          "راجعي الكلمات التي أخطأتِ فيها، ثم حاولي مرة أخرى.";
+      } else {
+        resultIcon.textContent = "💪";
+        resultTitle.textContent = "بداية موفقة!";
+        resultMessage.textContent =
+          "عودي إلى المراجعة، وتذكري: الثلاثي نبحث عن أصله، وغير الثلاثي يُكتب غالبًا بالألف المقصورة.";
+      }
+
+      result.classList.add("show");
+      createStars(finishButton, 35);
+      result.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+    });
+  </script>
+
+</body>
+
+</html>
