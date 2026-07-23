@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>الاختبار التجريبي - اسم المفعول</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: Tahoma, Arial, sans-serif;
+      background: #f7f9ff;
+      color: #2d3f66;
+      line-height: 1.8;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 850px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      color: #4758a8;
+    }
+
+    .intro {
+      text-align: center;
+      background: #e9edff;
+      padding: 16px;
+      border-radius: 18px;
+      margin-bottom: 25px;
+    }
+
+    .question {
+      background: white;
+      border: 2px solid #ccd3f5;
+      border-radius: 18px;
+      padding: 18px;
+      margin: 18px 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    .question h3 {
+      color: #4758a8;
+      margin-top: 0;
+    }
+
+    label {
+      display: block;
+      background: #f2f4ff;
+      padding: 11px;
+      margin: 9px 0;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+    label:hover {
+      background: #e5e9ff;
+    }
+
+    input {
+      margin-left: 8px;
+    }
+
+    .buttons {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    button {
+      max-width: 100%;
+      border: none;
+      padding: 14px 25px;
+      margin: 8px;
+      border-radius: 14px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .check {
+      background: #4758a8;
+      color: white;
+    }
+
+    .reset {
+      background: #e3a52f;
+      color: white;
+    }
+
+    #result {
+      display: none;
+      text-align: center;
+      padding: 20px;
+      margin-top: 25px;
+      border-radius: 18px;
+      font-size: 21px;
+      font-weight: bold;
+    }
+
+    .excellent {
+      background: #ddf7e7;
+      border: 2px solid #3ca66b;
+      color: #18643b;
+    }
+
+    .medium {
+      background: #fff5d8;
+      border: 2px solid #e5ad2f;
+      color: #76510a;
+    }
+
+    .weak {
+      background: #ffe7e7;
+      border: 2px solid #dc5b5b;
+      color: #872929;
+    }
+
+    .answer-correct {
+      background: #dff7e7 !important;
+      border: 2px solid #3ca66b;
+    }
+
+    .answer-wrong {
+      background: #ffe3e3 !important;
+      border: 2px solid #dc5b5b;
+    }
+
+    .back {
+      display: block;
+      width: fit-content;
+      max-width: 100%;
+      margin: 35px auto 10px;
+      padding: 13px 24px;
+      background: #4758a8;
+      color: white;
+      text-decoration: none;
+      border-radius: 14px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 12px;
+      }
+
+      .question {
+        padding: 15px;
+      }
+
+      h1 {
+        font-size: 27px;
+      }
+
+      button {
+        width: 100%;
+        margin: 6px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>📝 الاختبار التجريبي لاسم المفعول</h1>
+
+    <div class="intro">
+      اختاري الإجابة الصحيحة، ثم اضغطي
+      <strong>إظهار النتيجة</strong>.
+    </div>
+
+    <form id="quiz">
+
+      <div class="question" data-answer="b">
+        <h3>1. اسم المفعول اسم مشتق يدل على:</h3>
+
+        <label>
+          <input type="radio" name="q1" value="a">
+          من قام بالفعل
+        </label>
+
+        <label>
+          <input type="radio" name="q1" value="b">
+          من وقع عليه الفعل
+        </label>
+
+        <label>
+          <input type="radio" name="q1" value="c">
+          زمن وقوع الفعل
+        </label>
+      </div>
+
+      <div class="question" data-answer="a">
+        <h3>2. اسم المفعول من الفعل «كتب» هو:</h3>
+
+        <label>
+          <input type="radio" name="q2" value="a">
+          مكتوب
+        </label>
+
+        <label>
+          <input type="radio" name="q2" value="b">
+          كاتب
+        </label>
+
+        <label>
+          <input type="radio" name="q2" value="c">
+          كتاب
+        </label>
+      </div>
+
+      <div class="question" data-answer="c">
+        <h3>3. يُصاغ اسم المفعول من الفعل الثلاثي على وزن:</h3>
+
+        <label>
+          <input type="radio" name="q3" value="a">
+          فاعل
+        </label>
+
+        <label>
+          <input type="radio" name="q3" value="b">
+          فعّال
+        </label>
+
+        <label>
+          <input type="radio" name="q3" value="c">
+          مفعول
+        </label>
+      </div>
+
+      <div class="question" data-answer="b">
+        <h3>4. اسم المفعول من الفعل «حفظ» هو:</h3>
+
+        <label>
+          <input type="radio" name="q4" value="a">
+          حافظ
+        </label>
+
+        <label>
+          <input type="radio" name="q4" value="b">
+          محفوظ
+        </label>
+
+        <label>
+          <input type="radio" name="q4" value="c">
+          حفيظ
+        </label>
+      </div>
+
+      <div class="question" data-answer="a">
+        <h3>5. اسم المفعول من الفعل «أكرم» هو:</h3>
+
+        <label>
+          <input type="radio" name="q5" value="a">
+          مُكرَم
+        </label>
+
+        <label>
+          <input type="radio" name="q5" value="b">
+          مُكرِم
+        </label>
+
+        <label>
+          <input type="radio" name="q5" value="c">
+          كريم
+        </label>
+      </div>
+
+      <div class="question" data-answer="c">
+        <h3>6. اسم المفعول من الفعل «استخرج» هو:</h3>
+
+        <label>
+          <input type="radio" name="q6" value="a">
+          مُستخرِج
+        </label>
+
+        <label>
+          <input type="radio" name="q6" value="b">
+          استخراج
+        </label>
+
+        <label>
+          <input type="radio" name="q6" value="c">
+          مُستخرَج
+        </label>
+      </div>
+
+      <div class="question" data-answer="b">
+        <h3>7. عند صياغة اسم المفعول من غير الثلاثي:</h3>
+
+        <label>
+          <input type="radio" name="q7" value="a">
+          نكسر ما قبل الآخر
+        </label>
+
+        <label>
+          <input type="radio" name="q7" value="b">
+          نفتح ما قبل الآخر
+        </label>
+
+        <label>
+          <input type="radio" name="q7" value="c">
+          نحذف الحرف الأخير
+        </label>
+      </div>
+
+      <div class="question" data-answer="a">
+        <h3>8. اسم المفعول في الجملة «الباب مفتوح» هو:</h3>
+
+        <label>
+          <input type="radio" name="q8" value="a">
+          مفتوح
+        </label>
+
+        <label>
+          <input type="radio" name="q8" value="b">
+          الباب
+        </label>
+
+        <label>
+          <input type="radio" name="q8" value="c">
+          لا يوجد اسم مفعول
+        </label>
+      </div>
+
+      <div class="question" data-answer="c">
+        <h3>9. اسم المفعول من الفعل «باع» هو:</h3>
+
+        <label>
+          <input type="radio" name="q9" value="a">
+          بائع
+        </label>
+
+        <label>
+          <input type="radio" name="q9" value="b">
+          مباع
+        </label>
+
+        <label>
+          <input type="radio" name="q9" value="c">
+          مبيع
+        </label>
+      </div>
+
+      <div class="question" data-answer="b">
+        <h3>10. في الجملة «أمقبولٌ العملُ؟» كلمة «العملُ»:</h3>
+
+        <label>
+          <input type="radio" name="q10" value="a">
+          مفعول به
+        </label>
+
+        <label>
+          <input type="radio" name="q10" value="b">
+          نائب فاعل لاسم المفعول
+        </label>
+
+        <label>
+          <input type="radio" name="q10" value="c">
+          مبتدأ
+        </label>
+      </div>
+
+    </form>
+
+    <div class="buttons">
+
+      <button
+        class="check"
+        type="button"
+        onclick="checkAnswers()"
+      >
+        إظهار النتيجة
+      </button>
+
+      <button
+        class="reset"
+        type="button"
+        onclick="resetQuiz()"
+      >
+        إعادة الاختبار
+      </button>
+
+    </div>
+
+    <div id="result"></div>
+
+    <a
+      class="back"
+      href="passive-participle.html"
+    >
+      العودة إلى درس اسم المفعول
+    </a>
+
+  </div>
+
+  <script>
+    function checkAnswers() {
+      const questions = document.querySelectorAll(".question");
+      let score = 0;
+      let answered = 0;
+
+      questions.forEach(function (question) {
+        const correctAnswer = question.dataset.answer;
+        const selected = question.querySelector(
+          'input[type="radio"]:checked'
+        );
+
+        const labels = question.querySelectorAll("label");
+
+        labels.forEach(function (label) {
+          label.classList.remove(
+            "answer-correct",
+            "answer-wrong"
+          );
+
+          const input = label.querySelector("input");
+
+          if (input.value === correctAnswer) {
+            label.classList.add("answer-correct");
+          }
+        });
+
+        if (selected) {
+          answered++;
+
+          if (selected.value === correctAnswer) {
+            score++;
+          } else {
+            selected.parentElement.classList.add("answer-wrong");
+          }
+        }
+      });
+
+      const result = document.getElementById("result");
+
+      result.style.display = "block";
+      result.className = "";
+
+      if (answered < questions.length) {
+        result.textContent =
+          "أجبتِ عن " +
+          answered +
+          " أسئلة من أصل " +
+          questions.length +
+          ". نتيجتك: " +
+          score +
+          " من " +
+          questions.length;
+
+        result.classList.add("medium");
+        return;
+      }
+
+      if (score >= 8) {
+        result.textContent =
+          "ممتازة جدًا 🌟 نتيجتك: " +
+          score +
+          " من " +
+          questions.length;
+
+        result.classList.add("excellent");
+      } else if (score >= 5) {
+        result.textContent =
+          "نتيجة جيدة 👍 نتيجتك: " +
+          score +
+          " من " +
+          questions.length +
+          ". راجعي الأخطاء ثم أعيدي المحاولة.";
+
+        result.classList.add("medium");
+      } else {
+        result.textContent =
+          "تحتاجين إلى مراجعة الدرس 📘 نتيجتك: " +
+          score +
+          " من " +
+          questions.length;
+
+        result.classList.add("weak");
+      }
+
+      result.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+    }
+
+    function resetQuiz() {
+      document.getElementById("quiz").reset();
+
+      document.querySelectorAll("label").forEach(function (label) {
+        label.classList.remove(
+          "answer-correct",
+          "answer-wrong"
+        );
+      });
+
+      const result = document.getElementById("result");
+
+      result.style.display = "none";
+      result.textContent = "";
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+  </script>
+
+</body>
+
+</html>
