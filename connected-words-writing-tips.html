@@ -21,9 +21,9 @@
 
     body {
       margin: 0;
-      padding: 14px;
+      padding: 12px;
       font-family: Tahoma, Arial, sans-serif;
-      background: linear-gradient(180deg, #f5fbff, #fff9f2);
+      background: linear-gradient(180deg, #f4faff, #fff9f1);
       color: #334155;
       line-height: 1.9;
     }
@@ -35,18 +35,18 @@
     }
 
     .hero {
-      padding: 25px 16px;
       background: linear-gradient(135deg, #2563a6, #4d9bd8);
       color: white;
-      border-radius: 24px;
       text-align: center;
-      margin-bottom: 22px;
+      padding: 25px 15px;
+      border-radius: 24px;
+      margin-bottom: 20px;
       box-shadow: 0 7px 18px rgba(37, 99, 166, 0.2);
     }
 
     .hero h1 {
       margin: 0 0 8px;
-      font-size: 29px;
+      font-size: 28px;
     }
 
     .hero p {
@@ -55,13 +55,13 @@
     }
 
     .title {
-      background: linear-gradient(135deg, #e8793e, #f2a15f);
+      background: linear-gradient(135deg, #e8793e, #f3a15e);
       color: white;
       text-align: center;
       padding: 13px;
       border-radius: 17px;
       margin-top: 24px;
-      font-size: 22px;
+      font-size: 21px;
     }
 
     .card {
@@ -72,18 +72,19 @@
       box-shadow: 0 4px 13px rgba(0, 0, 0, 0.07);
     }
 
-    .key,
+    .step,
     .example,
+    .tip,
     .warning,
-    .memory {
+    .activity {
       padding: 13px;
       border-radius: 13px;
       margin: 12px 0;
     }
 
-    .key {
+    .step {
       background: #fff6d8;
-      border-right: 5px solid #dfa82e;
+      border-right: 5px solid #dda82f;
     }
 
     .example {
@@ -91,19 +92,19 @@
       border-right: 5px solid #438fcf;
     }
 
+    .tip {
+      background: #edf9ef;
+      border-right: 5px solid #63a974;
+    }
+
     .warning {
       background: #fff0f0;
       border-right: 5px solid #d85f5f;
     }
 
-    .memory {
-      background: #edf9ef;
-      border-right: 5px solid #63a974;
-    }
-
-    .wrong {
-      color: #c0392b;
-      font-weight: bold;
+    .activity {
+      background: #f6f0ff;
+      border-right: 5px solid #8667be;
     }
 
     .correct {
@@ -112,37 +113,37 @@
       font-size: 19px;
     }
 
+    .wrong {
+      color: #c0392b;
+      font-weight: bold;
+    }
+
     .arrow {
       color: #2563a6;
       font-weight: bold;
-      padding: 0 6px;
+      padding: 0 7px;
     }
 
-    .table-wrap {
-      width: 100%;
-      overflow-x: auto;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
+    .word-box {
+      display: inline-block;
       background: white;
+      border: 2px solid #cbdcea;
+      border-radius: 10px;
+      padding: 5px 10px;
+      margin: 4px;
+      font-weight: bold;
     }
 
-    th,
-    td {
-      border: 1px solid #d9e4ef;
-      padding: 10px;
-      text-align: center;
-    }
-
-    th {
-      background: #eaf4ff;
-      color: #2563a6;
+    .checklist {
+      background: #eef8ff;
+      border: 2px dashed #68a5d6;
+      border-radius: 15px;
+      padding: 14px;
+      margin: 14px 0;
     }
 
     details {
-      background: #f7f1ff;
+      background: white;
       border: 2px solid #d9ccef;
       border-radius: 14px;
       padding: 12px;
@@ -151,8 +152,8 @@
 
     summary {
       cursor: pointer;
-      color: #684ba3;
       font-weight: bold;
+      color: #684ba3;
     }
 
     .back {
@@ -170,16 +171,12 @@
     }
 
     @media (max-width: 600px) {
-      body {
-        padding: 10px;
-      }
-
       .hero h1 {
         font-size: 24px;
       }
 
       .title {
-        font-size: 20px;
+        font-size: 19px;
       }
 
       .card {
@@ -196,92 +193,134 @@
     <div class="hero">
       <h1>✍️ مفاتيح الكتابة بلا أخطاء</h1>
       <p>
-        تذكّري الكلمات التي تُكتب موصولة
-        ولا تفصلي بين أجزائها
+        استراتيجيات عملية تساعدك على ملاحظة الخطأ
+        وتصحيحه قبل تسليم كتابتك
       </p>
     </div>
 
-    <h2 class="title">المفتاح الأول: إذ المنوّنة</h2>
+    <h2 class="title">المفتاح الأول: افهمي قبل أن تكتبي</h2>
 
     <div class="card">
 
-      <div class="key">
-        إذا سبقت كلمةٌ «إذ» فإنهما تُكتبان
-        كلمةً واحدة، وتُنوَّن «إذ».
-      </div>
-
-      <div class="example">
-        وقت + إذ
-        <span class="arrow">←</span>
-        <span class="correct">وقتئذٍ</span>
+      <div class="step">
+        لا تكتبي الكلمة مباشرة.
+        اسألي نفسك:
+        هل هي كلمة واحدة، أم كلمتان أصبحتا موصولتين؟
       </div>
 
       <div class="example">
         يوم + إذ
         <span class="arrow">←</span>
-        <span class="correct">يومئذٍ</span>
-      </div>
-
-      <div class="example">
-        حين + إذ
+        كلمتان في الأصل
         <span class="arrow">←</span>
-        <span class="correct">حينئذٍ</span>
-      </div>
-
-      <div class="memory">
-        💡 تذكّريها:
-        <strong>وقتئذٍ، يومئذٍ، حينئذٍ</strong>.
-      </div>
-
-    </div>
-
-    <h2 class="title">المفتاح الثاني: مَن الاستفهامية أو الموصولة</h2>
-
-    <div class="card">
-
-      <div class="key">
-        عند دخول بعض حروف الجر على «مَن»،
-        تُكتب الكلمتان موصولتين.
+        <span class="correct">يومئذٍ</span>
       </div>
 
       <div class="example">
         من + مَن
         <span class="arrow">←</span>
+        التقت الميمان
+        <span class="arrow">←</span>
         <span class="correct">ممّن</span>
+      </div>
+
+      <div class="tip">
+        عندما تفهمين أصل الكلمة، يصبح رسمها أسهل
+        ولا تعتمدين على الحفظ وحده.
+      </div>
+
+    </div>
+
+    <h2 class="title">المفتاح الثاني: استراتيجية انظري – غطّي – اكتبي – تحققي</h2>
+
+    <div class="card">
+
+      <div class="step">
+        1. انظري إلى الكلمة الصحيحة خمس ثوانٍ.
+        <br>
+        2. غطّيها.
+        <br>
+        3. اكتبيها من الذاكرة.
+        <br>
+        4. اكشفي الكلمة وقارني.
+      </div>
+
+      <div class="activity">
+        انظري:
+        <span class="word-box">لئلّا</span>
+        <br>
+        غطّيها، ثم اكتبيها.
+        <br>
+        تحققي:
+        هل كتبتِ الهمزة والشدة والألف المقصورة؟
+      </div>
+
+      <div class="tip">
+        هذه الطريقة تدرب الذاكرة البصرية،
+        وهي مفيدة للكلمات التي يكثر الخطأ فيها.
+      </div>
+
+    </div>
+
+    <h2 class="title">المفتاح الثالث: اكتبي الكلمة داخل جملة</h2>
+
+    <div class="card">
+
+      <div class="step">
+        لا تحفظي الكلمة وحدها؛
+        اكتبيها في جملة مفيدة.
+      </div>
+
+      <div class="example">
+        <span class="correct">حينئذٍ</span>
+        أدركتُ قيمة الوقت.
+      </div>
+
+      <div class="example">
+        اجتهدتُ
+        <span class="correct">كيلا</span>
+        أندم.
+      </div>
+
+      <div class="example">
+        أحبُّ
+        <span class="correct">ممّن</span>
+        ينصحني بصدق.
+      </div>
+
+      <div class="tip">
+        الجملة تربط شكل الكلمة بمعناها،
+        فيثبت رسمها في الذاكرة.
+      </div>
+
+    </div>
+
+    <h2 class="title">المفتاح الرابع: استخدمي أسهم التحويل</h2>
+
+    <div class="card">
+
+      <div class="example">
+        وقت + إذ
+        <span class="arrow">←</span>
+        وقتئذ
+        <span class="arrow">←</span>
+        <span class="correct">وقتئذٍ</span>
       </div>
 
       <div class="example">
         عن + مَن
         <span class="arrow">←</span>
+        عنمن
+        <span class="arrow">←</span>
         <span class="correct">عمّن</span>
       </div>
 
       <div class="example">
-        في + مَن
+        أن + لا
         <span class="arrow">←</span>
-        <span class="correct">فيمَن</span>
-      </div>
-
-      <div class="example">
-        بـ + مَن
+        أنلا
         <span class="arrow">←</span>
-        <span class="correct">بمَن</span>
-      </div>
-
-      <div class="memory">
-        عند اتصال «من» بـ«مَن» تُدغم الميمان:
-        <strong>ممّن</strong>.
-      </div>
-
-    </div>
-
-    <h2 class="title">المفتاح الثالث: ما الموصولة</h2>
-
-    <div class="card">
-
-      <div class="key">
-        إذا سبقت «ما» بعض الكلمات أو حروف الجر،
-        فقد تُكتب معها موصولة.
+        <span class="correct">ألّا</span>
       </div>
 
       <div class="example">
@@ -290,238 +329,188 @@
         <span class="correct">فيما</span>
       </div>
 
-      <div class="example">
-        عن + ما
-        <span class="arrow">←</span>
-        <span class="correct">عمّا</span>
-      </div>
-
-      <div class="example">
-        كل + ما
-        <span class="arrow">←</span>
-        <span class="correct">كلما</span>
-      </div>
-
-      <div class="example">
-        حيث + ما
-        <span class="arrow">←</span>
-        <span class="correct">حيثما</span>
-      </div>
-
-      <div class="example">
-        حين + ما
-        <span class="arrow">←</span>
-        <span class="correct">حينما</span>
+      <div class="tip">
+        السهم يساعدك على رؤية التغيير الذي حدث
+        عند وصل الكلمتين.
       </div>
 
     </div>
 
-    <h2 class="title">المفتاح الرابع: لا النافية</h2>
+    <h2 class="title">المفتاح الخامس: صيد الخطأ</h2>
 
     <div class="card">
 
-      <div class="key">
-        تتصل «لا» ببعض الكلمات فتُكتبان كلمةً واحدة.
-      </div>
-
-      <div class="example">
-        أن + لا
-        <span class="arrow">←</span>
-        <span class="correct">ألّا</span>
-      </div>
-
-      <div class="example">
-        كي + لا
-        <span class="arrow">←</span>
-        <span class="correct">كيلا</span>
-      </div>
-
-      <div class="example">
-        لِـ + لا
-        <span class="arrow">←</span>
-        <span class="correct">لئلّا</span>
+      <div class="step">
+        ابحثي عن الخطأ كأنك محققة،
+        ولا تكتفي بقراءة الجملة بسرعة.
       </div>
 
       <div class="warning">
-        انتبهي إلى الهمزة والشدة في:
-        <strong>ألّا، لئلّا</strong>.
+        <span class="wrong">ذهبت يوم إذٍ إلى المدرسة.</span>
+        <br>
+        الصواب:
+        <span class="correct">ذهبت يومئذٍ إلى المدرسة.</span>
+      </div>
+
+      <div class="warning">
+        <span class="wrong">سأراجع كي لا أنسى.</span>
+        <br>
+        في درس الكلمات الموصولة تكتب:
+        <span class="correct">كيلا أنسى.</span>
+      </div>
+
+      <div class="warning">
+        <span class="wrong">هذا الطالب من من تفوقوا.</span>
+        <br>
+        الصواب:
+        <span class="correct">هذا الطالب ممّن تفوقوا.</span>
       </div>
 
     </div>
 
-    <h2 class="title">المفتاح الخامس: كلمات تحفظ كما هي</h2>
+    <h2 class="title">المفتاح السادس: قارني بين الخطأ والصواب</h2>
 
     <div class="card">
 
       <div class="example">
-        حب + ذا
-        <span class="arrow">←</span>
-        <span class="correct">حبّذا</span>
+        <span class="wrong">حين إذ</span>
+        <span class="arrow">✖</span>
+        <span class="correct">حينئذٍ</span>
       </div>
 
       <div class="example">
-        نعم + ما
-        <span class="arrow">←</span>
-        <span class="correct">نِعْمَما</span>
+        <span class="wrong">عن من</span>
+        <span class="arrow">✖</span>
+        <span class="correct">عمّن</span>
       </div>
 
       <div class="example">
-        بئس + ما
-        <span class="arrow">←</span>
-        <span class="correct">بِئْسَما</span>
-      </div>
-
-      <div class="memory">
-        هذه الكلمات تُحفظ في صورتها الموصولة.
-      </div>
-
-    </div>
-
-    <h2 class="title">أخطاء شائعة</h2>
-
-    <div class="card">
-
-      <div class="warning">
-        <span class="wrong">وقت إذ</span>
-        <span class="arrow">✖</span>
-        <span class="correct">وقتئذٍ</span>
-      </div>
-
-      <div class="warning">
-        <span class="wrong">من من</span>
-        <span class="arrow">✖</span>
-        <span class="correct">ممّن</span>
-      </div>
-
-      <div class="warning">
-        <span class="wrong">عن ما</span>
-        <span class="arrow">✖</span>
-        <span class="correct">عمّا</span>
-      </div>
-
-      <div class="warning">
         <span class="wrong">أن لا</span>
         <span class="arrow">✖</span>
         <span class="correct">ألّا</span>
       </div>
 
-      <div class="warning">
+      <div class="example">
         <span class="wrong">حب ذا</span>
         <span class="arrow">✖</span>
         <span class="correct">حبّذا</span>
       </div>
 
-    </div>
-
-    <h2 class="title">جدول الحفظ السريع</h2>
-
-    <div class="card">
-
-      <div class="table-wrap">
-
-        <table>
-
-          <tr>
-            <th>قبل الوصل</th>
-            <th>بعد الوصل</th>
-          </tr>
-
-          <tr>
-            <td>وقت + إذ</td>
-            <td>وقتئذٍ</td>
-          </tr>
-
-          <tr>
-            <td>يوم + إذ</td>
-            <td>يومئذٍ</td>
-          </tr>
-
-          <tr>
-            <td>من + مَن</td>
-            <td>ممّن</td>
-          </tr>
-
-          <tr>
-            <td>عن + مَن</td>
-            <td>عمّن</td>
-          </tr>
-
-          <tr>
-            <td>في + ما</td>
-            <td>فيما</td>
-          </tr>
-
-          <tr>
-            <td>أن + لا</td>
-            <td>ألّا</td>
-          </tr>
-
-          <tr>
-            <td>لِـ + لا</td>
-            <td>لئلّا</td>
-          </tr>
-
-          <tr>
-            <td>حب + ذا</td>
-            <td>حبّذا</td>
-          </tr>
-
-        </table>
-
+      <div class="tip">
+        رؤية الخطأ بجانب الصواب تجعل الفرق أوضح
+        وتمنع تكرار الغلط.
       </div>
 
     </div>
 
-    <h2 class="title">تدريب سريع</h2>
+    <h2 class="title">المفتاح السابع: قائمة الفحص قبل التسليم</h2>
 
     <div class="card">
 
-      <div class="example">
-        اختاري الصحيح:
+      <div class="checklist">
+        ✅ هل فصلتُ كلمة يجب أن تكون موصولة؟
         <br>
-        وقت إذٍ — وقتئذٍ
+        ✅ هل كتبتُ الشدة في «ممّن» و«عمّن»؟
+        <br>
+        ✅ هل كتبتُ الهمزة في «يومئذٍ» و«لئلّا»؟
+        <br>
+        ✅ هل راجعتُ الألف اللينة والهمزات؟
+        <br>
+        ✅ هل قرأتُ الجملة مرة أخيرة ببطء؟
+      </div>
+
+      <div class="tip">
+        لا تسلّمي كتابتك قبل تطبيق هذه القائمة.
+      </div>
+
+    </div>
+
+    <h2 class="title">المفتاح الثامن: دفتر أخطائي</h2>
+
+    <div class="card">
+
+      <div class="step">
+        خصصي صفحة للكلمات التي تخطئين فيها.
+        واكتبي لكل كلمة:
+      </div>
+
+      <div class="activity">
+        1. الكلمة الخاطئة:
+        <span class="wrong">من من</span>
+        <br>
+        2. الكلمة الصحيحة:
+        <span class="correct">ممّن</span>
+        <br>
+        3. جملة:
+        أحبُّ ممّن يساعد الآخرين.
+        <br>
+        4. أعيد كتابتها ثلاث مرات:
+        ممّن – ممّن – ممّن.
+      </div>
+
+      <div class="tip">
+        الخطأ الذي تسجلينه وتصححينه
+        يقل احتمال تكراره.
+      </div>
+
+    </div>
+
+    <h2 class="title">المفتاح التاسع: الإملاء المتدرج</h2>
+
+    <div class="card">
+
+      <div class="step">
+        تدربي على ثلاث مراحل:
       </div>
 
       <div class="example">
-        اختاري الصحيح:
-        <br>
-        من من — ممّن
+        المرحلة الأولى:
+        انسخي الكلمة وأنت تنظرين إليها.
       </div>
 
       <div class="example">
-        اختاري الصحيح:
-        <br>
-        في ما — فيما
+        المرحلة الثانية:
+        شاهدي الكلمة ثم اكتبيها بعد إخفائها.
       </div>
 
       <div class="example">
-        اختاري الصحيح:
-        <br>
-        أن لا — ألّا
+        المرحلة الثالثة:
+        اكتبي الكلمة عند سماعها داخل جملة.
       </div>
 
-      <div class="example">
-        اختاري الصحيح:
+      <div class="tip">
+        الانتقال بالتدرج من الرؤية إلى الذاكرة
+        ثم إلى السماع يثبت الكتابة الصحيحة.
+      </div>
+
+    </div>
+
+    <h2 class="title">تحدي المراجعة</h2>
+
+    <div class="card">
+
+      <div class="activity">
+        صححي الكلمات الآتية:
         <br>
-        حب ذا — حبّذا
+        يوم إذ – عن من – أن لا – في ما – حب ذا
       </div>
 
       <details>
-        <summary>إظهار الإجابات</summary>
+        <summary>إظهار التصحيح</summary>
 
         <p>
-          وقتئذٍ، ممّن، فيما، ألّا، حبّذا.
+          يومئذٍ – عمّن – ألّا – فيما – حبّذا
         </p>
 
       </details>
 
-    <</div>
+    </div>
 
-    <div class="memory">
-      ⭐ قاعدة النجاح:
+    <div class="tip">
+      ⭐ قاعدة الكاتبة الذكية:
       <br>
-      لا تنظري إلى نطق الكلمتين فقط؛
-      بل تذكّري صورتهما الإملائية بعد الوصل.
+      أفهم الكلمة، ألاحظ شكلها، أكتبها في جملة،
+      ثم أراجعها قبل التسليم.
     </div>
 
     <a class="back" href="connected-words.html">
