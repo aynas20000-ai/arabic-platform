@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>الاختبار التجريبي للكلمات الموصولة</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      margin: 0;
+      padding: 14px;
+      font-family: Tahoma, Arial, sans-serif;
+      background: linear-gradient(180deg, #eef8ff, #fff5fa);
+      color: #26364a;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 760px;
+      margin: auto;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #5b5bd6, #2ba8c9);
+      color: white;
+      text-align: center;
+      padding: 24px 16px;
+      border-radius: 25px;
+      box-shadow: 0 9px 22px rgba(72, 86, 190, 0.22);
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: 27px;
+    }
+
+    .hero p {
+      margin: 0;
+      font-size: 17px;
+    }
+
+    .progress-card {
+      background: white;
+      border-radius: 18px;
+      padding: 14px;
+      margin-bottom: 16px;
+      box-shadow: 0 5px 14px rgba(0, 0, 0, 0.07);
+    }
+
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-weight: bold;
+      margin-bottom: 9px;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 13px;
+      background: #e9edf4;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, #39b979, #72d69e);
+      border-radius: 20px;
+      transition: width 0.4s ease;
+    }
+
+    .quiz-card {
+      position: relative;
+      background: white;
+      border-radius: 24px;
+      padding: 22px 16px;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.09);
+      overflow: hidden;
+    }
+
+    .question-number {
+      display: inline-block;
+      background: #eeeaff;
+      color: #6551bd;
+      padding: 7px 13px;
+      border-radius: 20px;
+      font-weight: bold;
+      margin-bottom: 14px;
+    }
+
+    .question {
+      font-size: 22px;
+      font-weight: bold;
+      text-align: center;
+      line-height: 1.7;
+      margin: 10px 0 20px;
+    }
+
+    .answers {
+      display: grid;
+      gap: 12px;
+    }
+
+    .answer {
+      width: 100%;
+      border: 2px solid #dce6f0;
+      background: #f8fbff;
+      color: #26364a;
+      border-radius: 16px;
+      padding: 15px 12px;
+      font-family: inherit;
+      font-size: 19px;
+      cursor: pointer;
+      transition:
+        transform 0.18s ease,
+        background 0.18s ease,
+        border-color 0.18s ease;
+    }
+
+    .answer:active {
+      transform: scale(0.98);
+    }
+
+    .answer.correct {
+      background: #e9faef;
+      border-color: #35af6f;
+      color: #167242;
+      animation: pop 0.45s ease;
+    }
+
+    .answer.wrong {
+      background: #fff0f1;
+      border-color: #e45f69;
+      color: #b52c39;
+      animation: shake 0.4s ease;
+    }
+
+    .feedback {
+      min-height: 62px;
+      margin-top: 17px;
+      padding: 13px;
+      border-radius: 15px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      display: none;
+    }
+
+    .feedback.success {
+      display: block;
+      background: #e9faef;
+      color: #167242;
+      border: 2px solid #9cdeb9;
+    }
+
+    .feedback.error {
+      display: block;
+      background: #fff0f1;
+      color: #b52c39;
+      border: 2px solid #f2a4aa;
+    }
+
+    .next-button {
+      display: none;
+      width: 100%;
+      margin-top: 14px;
+      border: 0;
+      border-radius: 16px;
+      padding: 14px;
+      background: linear-gradient(135deg, #5b5bd6, #2ba8c9);
+      color: white;
+      font-family: inherit;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .result {
+      display: none;
+      background: white;
+      border-radius: 24px;
+      padding: 25px 17px;
+      text-align: center;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.09);
+    }
+
+    .result h2 {
+      color: #5b5bd6;
+      font-size: 28px;
+      margin-top: 0;
+    }
+
+    .score-circle {
+      width: 145px;
+      height: 145px;
+      margin: 18px auto;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ffd66b, #ff8d8d);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      box-shadow: 0 8px 18px rgba(255, 145, 115, 0.25);
+    }
+
+    .score-circle strong {
+      font-size: 39px;
+    }
+
+    .restart,
+    .back {
+      display: block;
+      width: 100%;
+      margin-top: 12px;
+      padding: 13px;
+      border-radius: 15px;
+      text-align: center;
+      font-family: inherit;
+      font-size: 17px;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .restart {
+      border: 0;
+      background: #5b5bd6;
+      color: white;
+    }
+
+    .back {
+      background: #edf7ff;
+      color: #27799b;
+      border: 2px solid #b9deed;
+    }
+
+    .confetti {
+      position: fixed;
+      top: -20px;
+      width: 10px;
+      height: 18px;
+      border-radius: 3px;
+      z-index: 9999;
+      pointer-events: none;
+      animation: fall linear forwards;
+    }
+
+    @keyframes pop {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.05);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes shake {
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      25% {
+        transform: translateX(-8px);
+      }
+
+      50% {
+        transform: translateX(8px);
+      }
+
+      75% {
+        transform: translateX(-5px);
+      }
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-30px) rotate(0deg);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(110vh) rotate(760deg);
+        opacity: 0.9;
+      }
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 10px;
+      }
+
+      .hero h1 {
+        font-size: 23px;
+      }
+
+      .question {
+        font-size: 20px;
+      }
+
+      .answer {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="hero">
+      <h1>✅ الاختبار التجريبي</h1>
+      <p>رسم بعض الكلمات الموصولة خطًّا</p>
+    </div>
+
+    <div class="progress-card">
+      <div class="progress-info">
+        <span id="progressText">السؤال 1 من 10</span>
+        <span id="scoreText">النقاط: 0</span>
+      </div>
+
+      <div class="progress-track">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+    </div>
+
+    <div class="quiz-card" id="quizCard">
+
+      <div class="question-number" id="questionNumber">
+        السؤال الأول
+      </div>
+
+      <div class="question" id="question">
+        جاري تحميل السؤال...
+      </div>
+
+      <div class="answers" id="answers"></div>
+
+      <div class="feedback" id="feedback"></div>
+
+      <button class="next-button" id="nextButton">
+        السؤال التالي ←
+      </button>
+
+    </div>
+
+    <div class="result" id="result">
+
+      <h2>🎉 أحسنتِ إكمال الاختبار</h2>
+
+      <div class="score-circle">
+        <strong id="finalScore">0/10</strong>
+        <span>درجتك</span>
+      </div>
+
+      <p id="resultMessage"></p>
+
+      <button class="restart" onclick="restartQuiz()">
+        إعادة الاختبار
+      </button>
+
+      <a class="back" href="connected-words.html">
+        العودة إلى الدرس
+      </a>
+
+    </div>
+
+  </div>
+
+  <script>
+    const questions = [
+      {
+        question: "اختاري الرسم الإملائي الصحيح:",
+        answers: ["يوم إذٍ", "يومئذٍ", "يومأذٍ"],
+        correct: "يومئذٍ",
+        explanation: "تتصل «إذ» بما قبلها وتكتب الهمزة على نبرة: يومئذٍ."
+      },
+      {
+        question: "كيف نكتب «من + مَن»؟",
+        answers: ["منمن", "من مَن", "ممّن"],
+        correct: "ممّن",
+        explanation: "تلتقي الميمان وتُدغمان، فتكتب: ممّن."
+      },
+      {
+        question: "اختاري الكلمة الصحيحة:",
+        answers: ["عمّن", "عن من", "عمنّ"],
+        correct: "عمّن",
+        explanation: "عند اتصال «عن» بـ«مَن» تحذف النون وتدغم الميمان: عمّن."
+      },
+      {
+        question: "اختاري الرسم الصحيح لكلمتي «في + ما»:",
+        answers: ["فيما", "في ما", "فيمى"],
+        correct: "فيما",
+        explanation: "تتصل «ما» بحرف الجر «في» فتكتب: فيما."
+      },
+      {
+        question: "كيف تكتب «أن + لا» في صورة موصولة؟",
+        answers: ["أنلا", "ألّا", "إلا"],
+        correct: "ألّا",
+        explanation: "تدغم النون في اللام وتكتب الشدة: ألّا."
+      },
+      {
+        question: "اختاري الكلمة الصحيحة:",
+        answers: ["لئلّا", "لأن لا", "لئلاا"],
+        correct: "لئلّا",
+        explanation: "الصورة الإملائية الصحيحة هي: لئلّا، بهمزة على نبرة وشدة."
+      },
+      {
+        question: "كيف تكتب «حب + ذا»؟",
+        answers: ["حب ذا", "حبّذا", "حبا ذا"],
+        correct: "حبّذا",
+        explanation: "تكتب الكلمتان موصولتين مع الشدة: حبّذا."
+      },
+      {
+        question: "اختاري الرسم الصحيح:",
+        answers: ["حين إذٍ", "حينئذٍ", "حينأذ"],
+        correct: "حينئذٍ",
+        explanation: "تتصل «إذ» بكلمة «حين» فتكتب: حينئذٍ."
+      },
+      {
+        question: "أي الكلمات الآتية مكتوبة كتابة صحيحة؟",
+        answers: ["كل ما", "كلما", "كلمى"],
+        correct: "كلما",
+        explanation: "تتصل «ما» بكلمة «كل» فتكتب: كلما."
+      },
+      {
+        question: "أكملي الجملة: اجتهدتُ ____ أندم.",
+        answers: ["كي لا", "كيلا", "كى لا"],
+        correct: "كيلا",
+        explanation: "في هذا الدرس تكتب «كي + لا» موصولة: كيلا."
+      }
+    ];
+
+    const encouragements = [
+      "رائعة! إجابة صحيحة 🌟",
+      "أحسنتِ، استمري 👏",
+      "ممتازة يا بطلة 🎉",
+      "اختيار موفق جدًا 💫",
+      "إجابة ذكية وصحيحة ✅"
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+    let answered = false;
+
+    const questionElement = document.getElementById("question");
+    const answersElement = document.getElementById("answers");
+    const feedbackElement = document.getElementById("feedback");
+    const nextButton = document.getElementById("nextButton");
+    const progressText = document.getElementById("progressText");
+    const scoreText = document.getElementById("scoreText");
+    const progressBar = document.getElementById("progressBar");
+    const questionNumber = document.getElementById("questionNumber");
+    const quizCard = document.getElementById("quizCard");
+    const result = document.getElementById("result");
+
+    function loadQuestion() {
+      answered = false;
+
+      const item = questions[currentQuestion];
+
+      questionElement.textContent = item.question;
+      answersElement.innerHTML = "";
+      feedbackElement.className = "feedback";
+      feedbackElement.textContent = "";
+      nextButton.style.display = "none";
+
+      progressText.textContent =
+        `السؤال ${currentQuestion + 1} من ${questions.length}`;
+
+      questionNumber.textContent =
+        `السؤال ${currentQuestion + 1}`;
+
+      scoreText.textContent = `النقاط: ${score}`;
+
+      progressBar.style.width =
+        `${(currentQuestion / questions.length) * 100}%`;
+
+      item.answers.forEach(answer => {
+        const button = document.createElement("button");
+
+        button.className = "answer";
+        button.textContent = answer;
+
+        button.addEventListener("click", () => {
+          checkAnswer(button, answer);
+        });
+
+        answersElement.appendChild(button);
+      });
+    }
+
+    function checkAnswer(button, selectedAnswer) {
+      if (answered) {
+        return;
+      }
+
+      answered = true;
+
+      const item = questions[currentQuestion];
+      const buttons = document.querySelectorAll(".answer");
+
+      buttons.forEach(btn => {
+        btn.disabled = true;
+
+        if (btn.textContent === item.correct) {
+          btn.classList.add("correct");
+        }
+      });
+
+      if (selectedAnswer === item.correct) {
+        score++;
+        button.classList.add("correct");
+
+        const message =
+          encouragements[
+            Math.floor(Math.random() * encouragements.length)
+          ];
+
+        feedbackElement.className = "feedback success";
+        feedbackElement.innerHTML =
+          `${message}<br>${item.explanation}`;
+
+        scoreText.textContent = `النقاط: ${score}`;
+
+        celebrate(55);
+        playSuccessSound();
+      } else {
+        button.classList.add("wrong");
+
+        feedbackElement.className = "feedback error";
+        feedbackElement.innerHTML =
+          `محاولة جيدة 🌷<br>${item.explanation}`;
+
+        playWrongSound();
+      }
+
+      nextButton.style.display = "block";
+
+      if (currentQuestion === questions.length - 1) {
+        nextButton.textContent = "عرض النتيجة 🎯";
+      } else {
+        nextButton.textContent = "السؤال التالي ←";
+      }
+    }
+
+    nextButton.addEventListener("click", () => {
+      currentQuestion++;
+
+      if (currentQuestion < questions.length) {
+        loadQuestion();
+      } else {
+        showResult();
+      }
+    });
+
+    function showResult() {
+      quizCard.style.display = "none";
+      result.style.display = "block";
+
+      progressBar.style.width = "100%";
+      progressText.textContent = "اكتمل الاختبار";
+      scoreText.textContent = `النقاط: ${score}`;
+
+      document.getElementById("finalScore").textContent =
+        `${score}/${questions.length}`;
+
+      const resultMessage =
+        document.getElementById("resultMessage");
+
+      if (score === questions.length) {
+        resultMessage.textContent =
+          "مذهلة! أتقنتِ الكلمات الموصولة بالكامل 🏆";
+        celebrate(130);
+      } else if (score >= 8) {
+        resultMessage.textContent =
+          "نتيجة رائعة جدًا، بقيت لمسات بسيطة 🌟";
+        celebrate(95);
+      } else if (score >= 6) {
+        resultMessage.textContent =
+          "أداء جميل، راجعي الكلمات التي أخطأتِ فيها 💛";
+        celebrate(65);
+      } else {
+        resultMessage.textContent =
+          "بداية طيبة، أعيدي المحاولة وستتحسن النتيجة 🌷";
+        celebrate(40);
+      }
+    }
+
+    function restartQuiz() {
+      currentQuestion = 0;
+      score = 0;
+      answered = false;
+
+      result.style.display = "none";
+      quizCard.style.display = "block";
+
+      loadQuestion();
+    }
+
+    function celebrate(amount) {
+      const colors = [
+        "#ff4f81",
+        "#ffd23f",
+        "#3ec6e0",
+        "#6edb75",
+        "#875cff",
+        "#ff7c43"
+      ];
+
+      for (let i = 0; i < amount; i++) {
+        const piece = document.createElement("span");
+
+        piece.className = "confetti";
+        piece.style.left = `${Math.random() * 100}vw`;
+        piece.style.background =
+          colors[Math.floor(Math.random() * colors.length)];
+        piece.style.animationDuration =
+          `${2.2 + Math.random() * 2.2}s`;
+        piece.style.animationDelay =
+          `${Math.random() * 0.35}s`;
+        piece.style.transform =
+          `rotate(${Math.random() * 360}deg)`;
+
+        document.body.appendChild(piece);
+
+        setTimeout(() => {
+          piece.remove();
+        }, 5000);
+      }
+    }
+
+    function playSuccessSound() {
+      playTone(620, 0.12);
+      setTimeout(() => playTone(820, 0.16), 130);
+    }
+
+    function playWrongSound() {
+      playTone(220, 0.18);
+    }
+
+    function playTone(frequency, duration) {
+      try {
+        const audioContext =
+          new (window.AudioContext || window.webkitAudioContext)();
+
+        const oscillator = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+
+        oscillator.connect(gain);
+        gain.connect(audioContext.destination);
+
+        oscillator.frequency.value = frequency;
+        oscillator.type = "sine";
+
+        gain.gain.setValueAtTime(
+          0.08,
+          audioContext.currentTime
+        );
+
+        gain.gain.exponentialRampToValueAtTime(
+          0.001,
+          audioContext.currentTime + duration
+        );
+
+        oscillator.start();
+        oscillator.stop(
+          audioContext.currentTime + duration
+        );
+      } catch (error) {
+        console.log("تعذر تشغيل الصوت.");
+      }
+    }
+
+    loadQuestion();
+  </script>
+
+</body>
+
+</html>
