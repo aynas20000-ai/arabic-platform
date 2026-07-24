@@ -1,218 +1,519 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>المنصة العربية</title>
+  <meta charset="UTF-8">
 
-<style>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>منصة آفاق</title>
+
+  <style>
     * {
-  box-sizing: border-box;
-}
+      box-sizing: border-box;
+    }
 
-html,
-body {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
-}
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      margin: 0;
+      overflow-x: hidden;
+    }
 
-img,
-video,
-iframe {
-  max-width: 100%;
-  height: auto;
-}
-body{
-    margin:0;
-    font-family:Tahoma,Arial,sans-serif;
-    background:#f5f5f5;
-    text-align:center;
-}
+    body {
+      font-family: Tahoma, Arial, sans-serif;
+      background: #f8f6fb;
+      color: #393444;
+    }
 
-header{
-    background:#1565c0;
-    color:white;
-    padding:25px;
-}
+    /* أعلى الصفحة */
 
-nav{
-    background:#0d47a1;
-    padding:15px;
-}
+    .top-header {
+      width: 100%;
+      padding: 25px 15px;
+      text-align: center;
+      background:
+        linear-gradient(
+          135deg,
+          #776ba2,
+          #9b8cbd
+        );
+      color: white;
+      border-bottom: 4px solid #d8bb72;
+      box-shadow: 0 5px 16px rgba(70, 55, 95, 0.18);
+    }
 
-nav a{
-    color:white;
-    text-decoration:none;
-    margin:12px;
-    font-weight:bold;
-}
+    .top-header h1 {
+      margin: 0;
+      font-size: 34px;
+    }
 
-section{
-    background:white;
-    margin:30px;
-    padding:25px;
-    border-radius:12px;
-    box-shadow:0 2px 8px rgba(0,0,0,.15);
-}
+    .top-header p {
+      margin: 9px 0 0;
+      font-size: 17px;
+      color: #faf7ff;
+    }
 
-footer{
-    background:#222;
-    color:white;
-    padding:20px;
-    margin-top:30px;
-}
-   .sidebar{
-  position:fixed;
-  top:0;
-  right:0;
-  width:240px;
-  height:100vh;
-  padding:24px 16px;
-background:linear-gradient(180deg,#1f4f5f,#2f6f73);
-  box-shadow:-6px 0 18px rgba(0,0,0,0.12);
-  z-index:1000;
-  overflow-y:auto;
-}
+    /* تقسيم الصفحة */
 
-.sidebar-title{
-  color:white;
-  font-size:23px;
-  font-weight:bold;
-  margin-bottom:22px;
-  padding-bottom:14px;
-  border-bottom:1px solid rgba(255,255,255,0.35);
-}
+    .page-layout {
+      display: grid;
+      grid-template-columns: 42% 58%;
+      min-height: calc(100vh - 135px);
+      direction: rtl;
+    }
 
-.sidebar a{
-  display:block;
-  color:white;
-  text-decoration:none;
-  padding:13px 12px;
-  margin:8px 0;
-  border-radius:14px;
-  font-size:17px;
-  text-align:right;
-  transition:0.2s;
-}
+    /* القائمة اليمنى */
 
-.sidebar a:hover{
-  background:rgba(255,255,255,0.18);
-}
+    .sidebar {
+      background:
+        linear-gradient(
+          180deg,
+          #756a98,
+          #9487b5
+        );
+      padding: 25px 15px 35px;
+      border-left: 4px solid #d8bb72;
+      box-shadow: -5px 0 18px rgba(70, 55, 95, 0.14);
+    }
 
-header,
-section,
-footer{
-  margin-right:260px;
-}
+    .sidebar-title {
+      text-align: center;
+      color: #fff7df;
+      font-size: 24px;
+      font-weight: bold;
+      padding-bottom: 17px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.32);
+    }
 
-@media(max-width:700px){
+    .main-link,
+    .sub-link {
+      display: block;
+      text-decoration: none;
+      transition: 0.2s;
+    }
 
-  .sidebar{
-    position:fixed;
-    top:0;
-    right:-270px;
-    width:250px;
-    height:100vh;
-    border-radius:0;
-    transition:right 0.3s ease;
-  }
+    .main-link {
+      background: rgba(255, 255, 255, 0.12);
+      color: white;
+      padding: 13px 12px;
+      margin: 9px 0;
+      border: 1px solid rgba(255, 255, 255, 0.20);
+      border-radius: 13px;
+      font-size: 17px;
+      font-weight: bold;
+    }
 
-  .sidebar.open{
-    right:0;
-  }
+    .main-link:hover,
+    .main-link:active {
+      background: rgba(255, 255, 255, 0.22);
+      transform: translateX(-2px);
+    }
 
-  header,
-  section,
-  footer{
-    margin-right:0;
-  }
-}
-  
-   
+    .semester {
+      margin: 17px 0 8px;
+      padding: 11px 12px;
+      background: #d8bb72;
+      color: #473d60;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(60, 45, 80, 0.14);
+    }
 
+    .sub-menu {
+      padding: 2px 8px 7px;
+    }
 
-   
-  
+    .sub-link {
+      color: #ffffff;
+      padding: 9px 13px;
+      margin: 5px 0;
+      border-right: 3px solid #ead9a7;
+      background: rgba(255, 255, 255, 0.07);
+      border-radius: 9px;
+      font-size: 15px;
+    }
 
-  
-  
-  
-   
-  
-.menu-button{
-  position:fixed;
-  top:15px;
-  right:15px;
-  z-index:2000;
-  border:0;
-  background:#1f4f5f;
-  color:white;
-  width:48px;
-  height:48px;
-  border-radius:12px;
-  font-size:26px;
-  cursor:pointer;
-}
-</style>
+    .sub-link:hover,
+    .sub-link:active {
+      background: rgba(255, 255, 255, 0.18);
+    }
 
+    /* المحتوى في الجهة اليسرى */
+
+    .main-content {
+      padding: 35px 22px;
+      background:
+        linear-gradient(
+          180deg,
+          #faf9fc,
+          #f3eff8
+        );
+    }
+
+    .welcome-card {
+      width: 100%;
+      max-width: 720px;
+      margin: 0 auto 24px;
+      padding: 35px 22px;
+      background: white;
+      border-radius: 24px;
+      border-top: 5px solid #d8bb72;
+      box-shadow: 0 8px 22px rgba(78, 63, 100, 0.13);
+      text-align: center;
+    }
+
+    .welcome-card h2 {
+      margin: 0 0 20px;
+      color: #62557f;
+      font-size: 29px;
+      line-height: 1.7;
+    }
+
+    .welcome-card p {
+      margin: 0;
+      color: #4e4857;
+      font-size: 19px;
+      line-height: 2;
+    }
+
+    .quick-title {
+      width: fit-content;
+      max-width: 100%;
+      margin: 30px auto 18px;
+      padding: 10px 22px;
+      border-radius: 30px;
+      background: #776a99;
+      color: white;
+      font-size: 20px;
+    }
+
+    .quick-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      max-width: 720px;
+      margin: auto;
+    }
+
+    .quick-card {
+      display: block;
+      padding: 22px 12px;
+      background: white;
+      color: #554a70;
+      text-decoration: none;
+      text-align: center;
+      font-weight: bold;
+      font-size: 18px;
+      border-radius: 18px;
+      border-bottom: 4px solid #d8bb72;
+      box-shadow: 0 6px 15px rgba(78, 63, 100, 0.11);
+    }
+
+    .quick-card:hover,
+    .quick-card:active {
+      transform: translateY(-2px);
+    }
+
+    .contact-card {
+      max-width: 720px;
+      margin: 25px auto 0;
+      padding: 20px;
+      text-align: center;
+      background: #eee9f5;
+      border: 2px solid #d8cfea;
+      border-radius: 18px;
+    }
+
+    .contact-card h3 {
+      margin: 0 0 8px;
+      color: #62557f;
+    }
+
+    .contact-card p {
+      margin: 0;
+      line-height: 1.8;
+    }
+
+    /* الجوال */
+
+    @media (max-width: 700px) {
+      .top-header {
+        padding: 22px 10px;
+      }
+
+      .top-header h1 {
+        font-size: 28px;
+      }
+
+      .top-header p {
+        font-size: 15px;
+      }
+
+      .page-layout {
+        grid-template-columns: 43% 57%;
+      }
+
+      .sidebar {
+        padding: 18px 8px 28px;
+      }
+
+      .sidebar-title {
+        font-size: 19px;
+      }
+
+      .main-link {
+        padding: 11px 7px;
+        font-size: 14px;
+      }
+
+      .semester {
+        padding: 9px 7px;
+        font-size: 15px;
+      }
+
+      .sub-menu {
+        padding: 2px 3px 6px;
+      }
+
+      .sub-link {
+        padding: 8px 6px;
+        font-size: 13px;
+      }
+
+      .main-content {
+        padding: 20px 9px;
+      }
+
+      .welcome-card {
+        padding: 24px 12px;
+        border-radius: 18px;
+      }
+
+      .welcome-card h2 {
+        font-size: 22px;
+      }
+
+      .welcome-card p {
+        font-size: 16px;
+        line-height: 1.9;
+      }
+
+      .quick-title {
+        font-size: 17px;
+        padding: 9px 13px;
+      }
+
+      .quick-cards {
+        grid-template-columns: 1fr;
+        gap: 11px;
+      }
+
+      .quick-card {
+        padding: 16px 7px;
+        font-size: 15px;
+      }
+
+      .contact-card {
+        padding: 15px 9px;
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .page-layout {
+        grid-template-columns: 45% 55%;
+      }
+
+      .sidebar-title {
+        font-size: 17px;
+      }
+
+      .main-link {
+        font-size: 13px;
+      }
+
+      .semester {
+        font-size: 14px;
+      }
+
+      .sub-link {
+        font-size: 12px;
+      }
+
+      .welcome-card h2 {
+        font-size: 19px;
+      }
+
+      .welcome-card p {
+        font-size: 14px;
+      }
+    }
+  </style>
 </head>
-<script>
-  function toggleMenu(){
-    document.querySelector(".sidebar").classList.toggle("open");
-  }
-</script>
-  
-    
-  
 
 <body>
-<button class="menu-button" onclick="toggleMenu()">☰</button>
-<header>
-<h1>📚 مَنَصَّةُ آفَاق</h1>
-<p>إعداد المعلمة إيناس محمد مدخلي</p>
-</header>
 
-<aside class="sidebar">
+  <header class="top-header">
+    <h1>📚 منصة آفاق</h1>
+    <p>إعداد المعلمة إيناس محمد مدخلي</p>
+  </header>
 
-  <div class="sidebar-title">
-    📚 منصة آفاق
+  <div class="page-layout">
+
+    <!-- القائمة الظاهرة دائمًا على اليمين -->
+
+    <aside class="sidebar">
+
+      <div class="sidebar-title">
+        ✦ أقسام المنصة
+      </div>
+
+      <a class="main-link" href="index.html">
+        🏠 الصفحة الرئيسة
+      </a>
+
+      <a class="main-link" href="lessons.html">
+        📖 الدروس
+      </a>
+
+      <div class="semester">
+        📘 الفصل الأول
+      </div>
+
+      <div class="sub-menu">
+
+        <a class="sub-link" href="lessons.html">
+          الوظيفة النحوية
+        </a>
+
+        <a class="sub-link" href="lessons.html">
+          الصنف اللغوي
+        </a>
+
+        <a class="sub-link" href="lessons.html">
+          الأسلوب اللغوي
+        </a>
+
+        <a class="sub-link" href="lessons.html">
+          الرسم الإملائي
+        </a>
+
+        <a class="sub-link" href="lessons.html">
+          الرسم الكتابي
+        </a>
+
+      </div>
+
+      <div class="semester">
+        📙 الفصل الثاني
+      </div>
+
+      <div class="sub-menu">
+
+        <a class="sub-link" href="lessons.html">
+          الوظيفة النحوية
+        </a>
+
+        <a class="sub-link" href="lessons.html">
+          الصنف اللغوي
+        </a>
+
+        <a class="sub-link" href="lessons.html">
+          الأسلوب اللغوي
+        </a>
+
+        <a class="sub-link" href="lessons.html">
+          الرسم الإملائي
+        </a>
+
+        <a class="sub-link" href="lessons.html">
+          الرسم الكتابي
+        </a>
+
+      </div>
+
+      <a class="main-link" href="tests.html">
+        ✅ الاختبارات
+      </a>
+
+      <a class="main-link" href="surveys.html">
+        📊 استمارات استطلاع الرأي
+      </a>
+
+      <a class="main-link" href="achievements.html">
+        🏆 إنجاز الطالبات
+      </a>
+
+      <a class="main-link" href="#contact">
+        💌 تواصل معنا
+      </a>
+
+    </aside>
+
+    <!-- المحتوى الظاهر على اليسار -->
+
+    <main class="main-content">
+
+      <section class="welcome-card">
+
+        <h2>
+          🌸 أهلًا بطالبات الصف الثالث
+        </h2>
+
+        <p>
+          أهلًا بكنّ في منصة آفاق للغة العربية،
+          هنا تبدأ خطواتكنّ نحو الإبداع والتميّز،
+          فثقن بأنفسكنّ واصنعن نجاحكنّ بكل حب.
+        </p>
+
+      </section>
+
+      <h2 class="quick-title">
+        ✨ وصول سريع
+      </h2>
+
+      <div class="quick-cards">
+
+        <a class="quick-card" href="lessons.html">
+          📖 تصفح الدروس
+        </a>
+
+        <a class="quick-card" href="tests.html">
+          ✅ الاختبارات
+        </a>
+
+        <a class="quick-card" href="achievements.html">
+          🏆 إنجاز الطالبات
+        </a>
+
+        <a class="quick-card" href="surveys.html">
+          📊 استطلاع الرأي
+        </a>
+
+      </div>
+
+      <section class="contact-card" id="contact">
+
+        <h3>💌 تواصل معنا</h3>
+
+        <p>
+          يسعدنا استقبال آرائكنّ ومقترحاتكنّ
+          لتطوير منصة آفاق.
+        </p>
+
+      </section>
+
+    </main>
+
   </div>
 
-  <a href="index.html">🏠 الرئيسية</a>
-  <a href="lessons.html">📖 الدروس</a>
-  <a href="tests.html">✅ الاختبارات</a>
-  <a href="achievements.html">🏆 إنجازات الطالبات</a>
-  <a href="enrichment.html">✨ الإثراء</a>
-  <a href="nafes.html">🎯 نافس</a>
-  <a href="surveys.html">📊 استطلاعات الرأي</a>
-  
-
-</aside>
-
-<section>
-    <h2>أَهْلًا بِطَالِبَاتِ الصَّفِّ الثَّالِثِ 🌸</h2>
-
-<p>
-أَهْلًا بِكُنَّ فِي مَنَصَّةِ آفَاقِ اللُّغَةِ العَرَبِيَّةِ، هُنَا تَبْدَأُ خُطُوَاتُكُنَّ نَحْوَ الإِبْدَاعِ وَالتَّمَيُّزِ، فَثِقْنَ بِأَنْفُسِكُنَّ وَاصْنَعْنَ نَجَاحَكُنَّ بِكُلِّ حُبٍّ.
-</p>
-
-
-
-
-
-
-
-</section>
-
-<script>
-  function toggleMenu(){
-    document.querySelector(".sidebar").classList.toggle("open");
-  }
-</script>
-
 </body>
+
 </html>
-
-
-
