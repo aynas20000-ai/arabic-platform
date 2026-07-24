@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+  <title>بوابة لغة القرآن | منصة آفاق اللغة</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --purple-dark: #60358b;
+      --purple: #8651ad;
+      --purple-light: #f2e9fa;
+
+      --gold: #e8a33b;
+      --gold-light: #fff5dc;
+
+      --green: #358b6c;
+      --green-light: #eaf8f2;
+
+      --blue: #477fae;
+      --blue-light: #edf5fc;
+
+      --rose: #bd6880;
+      --rose-light: #fff0f4;
+
+      --text: #574960;
+      --white: #ffffff;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Tahoma, Arial, sans-serif;
+      color: var(--text);
+
+      background:
+        radial-gradient(circle at top right, #fff1cd, transparent 32%),
+        radial-gradient(circle at bottom left, #e9dcff, transparent 40%),
+        linear-gradient(135deg, #fffdf8, #f8f1ff);
+    }
+
+    button,
+    summary {
+      font-family: inherit;
+    }
+
+    /* الشريط العلوي */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+
+      padding: 17px 6%;
+
+      color: white;
+      background: linear-gradient(135deg, #60358b, #9a60c2);
+
+      box-shadow: 0 5px 20px rgba(75, 38, 105, 0.2);
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .back-link {
+      padding: 9px 16px;
+
+      border: 1px solid rgba(255, 255, 255, 0.42);
+      border-radius: 25px;
+
+      color: white;
+      text-decoration: none;
+
+      background: rgba(255, 255, 255, 0.14);
+
+      transition: 0.3s;
+    }
+
+    .back-link:hover {
+      color: var(--purple-dark);
+      background: white;
+    }
+
+    /* الصفحة */
+
+    main {
+      width: min(960px, 92%);
+      margin: auto;
+      padding: 47px 0 65px;
+    }
+
+    .hero {
+      margin-bottom: 32px;
+      text-align: center;
+    }
+
+    .hero-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 88px;
+      height: 88px;
+
+      margin: 0 auto 16px;
+
+      border-radius: 50%;
+
+      font-size: 44px;
+
+      background: linear-gradient(135deg, #ffd979, #eda044);
+
+      box-shadow: 0 10px 27px rgba(221, 140, 45, 0.27);
+
+      animation: floatIcon 2.6s ease-in-out infinite;
+    }
+
+    @keyframes floatIcon {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-7px);
+      }
+    }
+
+    .hero h1 {
+      margin-bottom: 12px;
+
+      font-size: 37px;
+      color: var(--purple-dark);
+    }
+
+    .hero p {
+      max-width: 740px;
+      margin: auto;
+
+      font-size: 17px;
+      line-height: 2;
+
+      color: #75677d;
+    }
+
+    /* بطاقة المقدمة */
+
+    .intro-card {
+      margin-bottom: 29px;
+      padding: 25px;
+
+      border-radius: 25px;
+
+      color: white;
+      text-align: center;
+
+      background: linear-gradient(135deg, #70419a, #9e68c4);
+
+      box-shadow: 0 12px 31px rgba(89, 48, 120, 0.19);
+    }
+
+    .intro-card h2 {
+      margin-bottom: 10px;
+      font-size: 24px;
+    }
+
+    .intro-card p {
+      line-height: 1.9;
+      color: #f8effd;
+    }
+
+    /* تعليمات الاستخدام */
+
+    .instruction {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+
+      width: fit-content;
+      max-width: 100%;
+
+      margin: 0 auto 24px;
+      padding: 11px 17px;
+
+      border-radius: 25px;
+
+      color: #68427d;
+      background: #f1e7f8;
+    }
+
+    /* مجموعة البطاقات */
+
+    .cards-list {
+      display: grid;
+      gap: 20px;
+    }
+
+    .knowledge-card {
+      overflow: hidden;
+
+      border: 1px solid rgba(113, 71, 143, 0.12);
+      border-radius: 24px;
+
+      background: rgba(255, 255, 255, 0.97);
+
+      box-shadow: 0 10px 29px rgba(75, 42, 99, 0.12);
+
+      transition:
+        transform 0.3s,
+        box-shadow 0.3s,
+        background 0.3s;
+    }
+
+    .knowledge-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(75, 42, 99, 0.17);
+    }
+
+    .knowledge-card[open] {
+      border-color: rgba(136, 81, 174, 0.28);
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(247, 238, 255, 0.98),
+          rgba(255, 249, 235, 0.98)
+        );
+
+      box-shadow: 0 16px 38px rgba(78, 43, 104, 0.18);
+    }
+
+    /* رأس البطاقة */
+
+    .card-summary {
+      position: relative;
+
+      display: flex;
+      align-items: center;
+      gap: 17px;
+
+      min-height: 95px;
+      padding: 20px 65px 20px 21px;
+
+      cursor: pointer;
+      list-style: none;
+
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .card-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .card-summary::after {
+      content: "＋";
+
+      position: absolute;
+      right: 21px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 34px;
+      height: 34px;
+
+      border-radius: 50%;
+
+      color: white;
+      font-size: 23px;
+
+      background: linear-gradient(135deg, #75439f, #9c64c1);
+
+      transition: transform 0.3s;
+    }
+
+    .knowledge-card[open] .card-summary::after {
+      content: "−";
+      transform: rotate(180deg);
+    }
+
+    .card-icon {
+      display: flex;
+      flex: 0 0 60px;
+      align-items: center;
+      justify-content: center;
+
+      width: 60px;
+      height: 60px;
+
+      border-radius: 50%;
+
+      font-size: 31px;
+
+      background: linear-gradient(135deg, #f1e7fb, #fff1d6);
+    }
+
+    .card-title small {
+      display: block;
+      margin-bottom: 5px;
+
+      color: #997cac;
+      font-size: 13px;
+    }
+
+    .card-title h2 {
+      font-size: 22px;
+      line-height: 1.5;
+
+      color: var(--purple-dark);
+    }
+
+    /* محتوى البطاقة */
+
+    .card-content {
+      padding: 0 25px 26px;
+
+      animation: revealContent 0.42s ease;
+    }
+
+    @keyframes revealContent {
+      from {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .verse-box {
+      margin-bottom: 18px;
+      padding: 19px;
+
+      border-right: 5px solid var(--gold);
+      border-radius: 18px;
+
+      text-align: center;
+
+      color: #684a27;
+      background: var(--gold-light);
+    }
+
+    .verse-box .verse-label {
+      display: block;
+      margin-bottom: 9px;
+
+      font-size: 14px;
+      font-weight: bold;
+
+      color: #8b652d;
+    }
+
+    .verse-box q {
+      display: block;
+
+      font-size: 19px;
+      font-weight: bold;
+      line-height: 2;
+    }
+
+    .verse-source {
+      display: block;
+      margin-top: 8px;
+
+      font-size: 13px;
+      color: #896c45;
+    }
+
+    .explanation {
+      margin-bottom: 17px;
+      padding: 18px;
+
+      border-radius: 18px;
+
+      line-height: 2;
+      font-size: 16px;
+
+      background: #fbf9fd;
+      border-right: 5px solid #9360b4;
+    }
+
+    .explanation strong {
+      color: var(--purple-dark);
+    }
+
+    .benefit {
+      margin-bottom: 16px;
+      padding: 17px;
+
+      border-radius: 17px;
+
+      line-height: 1.9;
+
+      color: #28634e;
+      background: var(--green-light);
+      border-right: 5px solid var(--green);
+    }
+
+    .benefit strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .reflection {
+      padding: 17px;
+
+      border-radius: 17px;
+
+      line-height: 1.9;
+
+      color: #315e80;
+      background: var(--blue-light);
+      border-right: 5px solid var(--blue);
+    }
+
+    .reflection strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    /* خاتمة */
+
+    .closing-card {
+      margin-top: 32px;
+      padding: 29px 23px;
+
+      border-radius: 25px;
+
+      text-align: center;
+      color: white;
+
+      background: linear-gradient(135deg, #70409a, #a26ac6);
+
+      box-shadow: 0 12px 31px rgba(88, 47, 119, 0.2);
+    }
+
+    .closing-card .closing-icon {
+      margin-bottom: 10px;
+      font-size: 48px;
+    }
+
+    .closing-card h2 {
+      margin-bottom: 9px;
+      font-size: 24px;
+    }
+
+    .closing-card p {
+      max-width: 700px;
+      margin: auto;
+
+      line-height: 1.9;
+      color: #faf2fd;
+    }
+
+    footer {
+      padding: 23px;
+
+      text-align: center;
+      font-size: 14px;
+
+      color: #796a82;
+    }
+
+    /* الجوال */
+
+    @media (max-width: 700px) {
+      header {
+        padding: 14px 5%;
+      }
+
+      .logo {
+        font-size: 18px;
+      }
+
+      .back-link {
+        padding: 8px 12px;
+        font-size: 13px;
+      }
+
+      main {
+        width: 94%;
+        padding-top: 32px;
+      }
+
+      .hero h1 {
+        font-size: 29px;
+      }
+
+      .hero p {
+        font-size: 15px;
+      }
+
+      .intro-card {
+        padding: 21px 16px;
+      }
+
+      .intro-card h2 {
+        font-size: 21px;
+      }
+
+      .card-summary {
+        gap: 12px;
+        min-height: 88px;
+        padding: 17px 53px 17px 14px;
+      }
+
+      .card-summary::after {
+        right: 13px;
+
+        width: 31px;
+        height: 31px;
+
+        font-size: 20px;
+      }
+
+      .card-icon {
+        flex-basis: 52px;
+
+        width: 52px;
+        height: 52px;
+
+        font-size: 27px;
+      }
+
+      .card-title h2 {
+        font-size: 18px;
+      }
+
+      .card-content {
+        padding: 0 15px 20px;
+      }
+
+      .verse-box {
+        padding: 16px 13px;
+      }
+
+      .verse-box q {
+        font-size: 16px;
+      }
+
+      .explanation,
+      .benefit,
+      .reflection {
+        padding: 15px 13px;
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+
+    <div class="logo">
+      منصة آفاق اللغة
+    </div>
+
+    <!-- غيّري treasures.html إذا كان اسم صفحة كنوز آفاق مختلفًا -->
+    <a href="treasures.html" class="back-link">
+      العودة إلى كنوز آفاق
+    </a>
+
+  </header>
+
+  <main>
+
+    <section class="hero">
+
+      <div class="hero-icon">📖</div>
+
+      <h1>بوابة لغة القرآن</h1>
+
+      <p>
+        نقترب في هذه البوابة من مكانة اللغة العربية،
+        ونتعرف إلى صلتها بالقرآن الكريم، وحاجتنا إليها
+        في الفهم والتدبر والمحافظة على هويتنا.
+      </p>
+
+    </section>
+
+    <section class="intro-card">
+
+      <h2>لغة اختارها الله لكتابه الكريم</h2>
+
+      <p>
+        تعلم العربية ليس مادة دراسية فقط، بل هو طريق إلى فهم كلام الله،
+        وتذوق جماله، والتعبير عن أفكارنا بوضوح واعتزاز.
+      </p>
+
+    </section>
+
+    <div class="instruction">
+      <span>👆</span>
+      <span>اضغطي على كل بطاقة لاكتشاف كنزها</span>
+    </div>
+
+    <section class="cards-list">
+
+      <!-- البطاقة الأولى -->
+
+      <details class="knowledge-card">
+
+        <summary class="card-summary">
+
+          <div class="card-icon">📜</div>
+
+          <div class="card-title">
+            <small>الكنز الأول</small>
+            <h2>العربية لغة القرآن الكريم</h2>
+          </div>
+
+        </summary>
+
+        <div class="card-content">
+
+          <div class="verse-box">
+
+            <span class="verse-label">
+              قال الله تعالى:
+            </span>
+
+            <q>
+              إِنَّا أَنْزَلْنَاهُ قُرْآنًا عَرَبِيًّا
+              لَعَلَّكُمْ تَعْقِلُونَ
+            </q>
+
+            <span class="verse-source">
+              سورة يوسف، الآية ٢
+            </span>
+
+          </div>
+
+          <div class="explanation">
+
+            <strong>المعنى المبسط:</strong>
+
+            أنزل الله القرآن باللغة العربية حتى يفهمه المخاطبون به،
+            ويتدبروا معانيه، ويدركوا ما فيه من هداية وأحكام وقصص ومواعظ.
+
+          </div>
+
+          <div class="benefit">
+
+            <strong>الفائدة:</strong>
+
+            كلما ازدادت معرفتنا بالعربية، أصبحنا أقدر على فهم ألفاظ
+            القرآن ومعانيه، والتمييز بين الكلمات المتقاربة.
+
+          </div>
+
+          <div class="reflection">
+
+            <strong>فكري:</strong>
+
+            كيف يساعدكِ فهم معنى كلمة قرآنية جديدة على تدبر الآية بصورة أعمق؟
+
+          </div>
+
+        </div>
+
+      </details>
+
+      <!-- البطاقة الثانية -->
+
+      <details class="knowledge-card">
+
+        <summary class="card-summary">
+
+          <div class="card-icon">💡</div>
+
+          <div class="card-title">
+            <small>الكنز الثاني</small>
+            <h2>لماذا نزل القرآن بلسان عربي مبين؟</h2>
+          </div>
+
+        </summary>
+
+        <div class="card-content">
+
+          <div class="verse-box">
+
+            <span class="verse-label">
+              قال الله تعالى:
+            </span>
+
+            <q>
+              بِلِسَانٍ عَرَبِيٍّ مُبِينٍ
+            </q>
+
+            <span class="verse-source">
+              سورة الشعراء، الآية ١٩٥
+            </span>
+
+          </div>
+
+          <div class="explanation">
+
+            <strong>المعنى المبسط:</strong>
+
+            كلمة «مبين» تدل على الوضوح والبيان. والعربية لغة واسعة
+            غنية بالمفردات والأساليب، تستطيع التعبير عن المعاني الدقيقة
+            بألفاظ واضحة وجميلة.
+
+          </div>
+
+          <div class="benefit">
+
+            <strong>الفائدة:</strong>
+
+            نزل القرآن بلغة القوم الذين بُعث فيهم الرسول ﷺ،
+            ليقوم عليهم البيان والحجة، ثم حملوا رسالته إلى العالم.
+
+          </div>
+
+          <div class="reflection">
+
+            <strong>فكري:</strong>
+
+            ما الصفة التي تفهمينها من كلمة «مبين» عند وصف اللسان العربي؟
+
+          </div>
+
+        </div>
+
+      </details>
+
+      <!-- البطاقة الثالثة -->
+
+      <details class="knowledge-card">
+
+        <summary class="card-summary">
+
+          <div class="card-icon">🔎</div>
+
+          <div class="card-title">
+            <small>الكنز الثالث</small>
+            <h2>حاجتنا إلى اللغة العربية</h2>
+          </div>
+
+        </summary>
+
+        <div class="card-content">
+
+          <div class="verse-box">
+
+            <span class="verse-label">
+              قال الله تعالى:
+            </span>
+
+            <q>
+              كِتَابٌ فُصِّلَتْ آيَاتُهُ قُرْآنًا عَرَبِيًّا
+              لِقَوْمٍ يَعْلَمُونَ
+            </q>
+
+            <span class="verse-source">
+              سورة فصلت، الآية ٣
+            </span>
+
+          </div>
+
+          <div class="explanation">
+
+            <strong>المعنى المبسط:</strong>
+
+            نحتاج إلى العربية لفهم القرآن والسنة، ولأداء كثير من العبادات،
+            وللقراءة والكتابة والتواصل، وللاطلاع على تراث أمتنا وعلومها.
+
+          </div>
+
+          <div class="benefit">
+
+            <strong>الفائدة:</strong>
+
+            العربية ليست مرتبطة بحصة دراسية فقط؛ فهي لغة نستخدمها
+            في الصلاة والدعاء والتعلم والتعبير عن مشاعرنا وأفكارنا.
+
+          </div>
+
+          <div class="reflection">
+
+            <strong>فكري:</strong>
+
+            في أي موقف يومي تشعرين أن إتقان العربية يساعدكِ على التعبير بوضوح؟
+
+          </div>
+
+        </div>
+
+      </details>
+
+      <!-- البطاقة الرابعة -->
+
+      <details class="knowledge-card">
+
+        <summary class="card-summary">
+
+          <div class="card-icon">🌟</div>
+
+          <div class="card-title">
+            <small>الكنز الرابع</small>
+            <h2>العربية طريق إلى الفهم والتدبر</h2>
+          </div>
+
+        </summary>
+
+        <div class="card-content">
+
+          <div class="verse-box">
+
+            <span class="verse-label">
+              قال الله تعالى:
+            </span>
+
+            <q>
+              قُرْآنًا عَرَبِيًّا غَيْرَ ذِي عِوَجٍ
+              لَعَلَّهُمْ يَتَّقُونَ
+            </q>
+
+            <span class="verse-source">
+              سورة الزمر، الآية ٢٨
+            </span>
+
+          </div>
+
+          <div class="explanation">
+
+            <strong>المعنى المبسط:</strong>
+
+            وصف الله القرآن بأنه عربي مستقيم واضح، لا اضطراب فيه.
+            وفهم تراكيب العربية وأساليبها يعين على إدراك المعنى الصحيح،
+            والابتعاد عن الفهم الناقص أو الخاطئ.
+
+          </div>
+
+          <div class="benefit">
+
+            <strong>الفائدة:</strong>
+
+            تعلم المفردات والنحو والأساليب ليس غاية منفصلة؛ بل وسيلة
+            تساعدنا على قراءة النصوص وفهم مقاصدها بدقة.
+
+          </div>
+
+          <div class="reflection">
+
+            <strong>فكري:</strong>
+
+            لماذا قد يتغير فهم الجملة عندما نخطئ في تحديد الفاعل أو المفعول به؟
+
+          </div>
+
+        </div>
+
+      </details>
+
+      <!-- البطاقة الخامسة -->
+
+      <details class="knowledge-card">
+
+        <summary class="card-summary">
+
+          <div class="card-icon">🤲</div>
+
+          <div class="card-title">
+            <small>الكنز الخامس</small>
+            <h2>مسؤوليتنا تجاه لغة القرآن</h2>
+          </div>
+
+        </summary>
+
+        <div class="card-content">
+
+          <div class="verse-box">
+
+            <span class="verse-label">
+              قال الله تعالى:
+            </span>
+
+            <q>
+              قُرْآنًا عَرَبِيًّا لَعَلَّكُمْ تَعْقِلُونَ
+            </q>
+
+            <span class="verse-source">
+              سورة الزخرف، الآية ٣
+            </span>
+
+          </div>
+
+          <div class="explanation">
+
+            <strong>المعنى المبسط:</strong>
+
+            الاعتزاز بالعربية لا يكون بالكلام عنها فقط، بل بتعلمها،
+            والقراءة بها، والكتابة الصحيحة، واختيار الألفاظ الطيبة،
+            والابتعاد عن السخرية ممن يخطئ أثناء تعلمها.
+
+          </div>
+
+          <div class="benefit">
+
+            <strong>الفائدة:</strong>
+
+            نحافظ على العربية عندما نستخدمها بوعي، ونراجع أخطاءنا،
+            ونقرأ الكتب، ونتعلم معنى الكلمات الجديدة.
+
+          </div>
+
+          <div class="reflection">
+
+            <strong>تحدي اليوم:</strong>
+
+            اختاري كلمة عربية جديدة، واكتبي معناها، ثم استخدميها
+            في جملة من إنشائكِ.
+
+          </div>
+
+        </div>
+
+      </details>
+
+    </section>
+
+    <section class="closing-card">
+
+      <div class="closing-icon">✨</div>
+
+      <h2>العربية مفتاح لفهم كنوز القرآن</h2>
+
+      <p>
+        كل قاعدة تتعلمينها، وكل كلمة تفهمين معناها،
+        تقرّبك خطوة من قراءة أكثر وعيًا وتدبرًا.
+        ابدئي بالقليل، وواصلي؛ فكنوز العربية لا تنتهي.
+      </p>
+
+    </section>
+
+  </main>
+
+  <footer>
+    جميع الحقوق محفوظة © منصة آفاق اللغة
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+      const cards =
+        document.querySelectorAll(".knowledge-card");
+
+      function playOpenSound() {
+        try {
+          const AudioContext =
+            window.AudioContext ||
+            window.webkitAudioContext;
+
+          const audioContext =
+            new AudioContext();
+
+          const oscillator =
+            audioContext.createOscillator();
+
+          const gain =
+            audioContext.createGain();
+
+          oscillator.type = "sine";
+          oscillator.frequency.value = 620;
+
+          gain.gain.setValueAtTime(
+            0.001,
+            audioContext.currentTime
+          );
+
+          gain.gain.exponentialRampToValueAtTime(
+            0.11,
+            audioContext.currentTime + 0.02
+          );
+
+          gain.gain.exponentialRampToValueAtTime(
+            0.001,
+            audioContext.currentTime + 0.18
+          );
+
+          oscillator.connect(gain);
+          gain.connect(audioContext.destination);
+
+          oscillator.start();
+          oscillator.stop(
+            audioContext.currentTime + 0.2
+          );
+
+        } catch (error) {
+          console.log("تعذر تشغيل النغمة.");
+        }
+      }
+
+      cards.forEach(function (card) {
+
+        card.addEventListener("toggle", function () {
+
+          if (card.open) {
+            playOpenSound();
+
+            setTimeout(function () {
+              card.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+              });
+            }, 120);
+          }
+
+        });
+
+      });
+
+    });
+  </script>
+
+</body>
+
+</html>
