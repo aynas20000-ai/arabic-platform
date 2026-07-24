@@ -6,30 +6,31 @@
 
   <meta
     name="viewport"
-    content="width=device-width, initial-scale=1.0">
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>خزانة القواعد الذهبية | منصة آفاق اللغة</title>
 
   <style>
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
 
     :root {
       --purple-dark: #60358b;
       --purple: #8752ae;
-      --purple-light: #f2e8fa;
-      --gold: #e6a03a;
+      --purple-light: #f3eafb;
+      --gold: #e4a13e;
       --gold-light: #fff4d9;
-      --green: #388e70;
+      --green: #347b62;
       --green-light: #eaf8f2;
-      --blue: #4c82b2;
-      --blue-light: #edf5fc;
-      --rose: #c16c84;
+      --blue: #3e739d;
+      --blue-light: #edf6fd;
+      --rose: #a94f69;
       --rose-light: #fff0f4;
-      --text: #574960;
+      --text: #55485e;
       --white: #ffffff;
     }
 
@@ -41,59 +42,57 @@
       min-height: 100vh;
       font-family: Tahoma, Arial, sans-serif;
       color: var(--text);
+
       background:
-        radial-gradient(circle at top right, #fff1cf, transparent 32%),
+        radial-gradient(circle at top right, #fff0cb, transparent 30%),
         radial-gradient(circle at bottom left, #eadcff, transparent 40%),
         linear-gradient(135deg, #fffdf8, #f8f1ff);
-    }
-
-    summary,
-    button {
-      font-family: inherit;
     }
 
     header {
       position: sticky;
       top: 0;
       z-index: 20;
+
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 15px;
-      padding: 17px 6%;
+      gap: 12px;
+
+      padding: 16px 6%;
+
       color: white;
       background: linear-gradient(135deg, #60358b, #9b61c4);
+
       box-shadow: 0 5px 20px rgba(75, 38, 105, 0.2);
     }
 
     .logo {
-      font-size: 22px;
+      font-size: 21px;
       font-weight: bold;
     }
 
     .back-link {
-      padding: 9px 16px;
-      border: 1px solid rgba(255, 255, 255, 0.42);
-      border-radius: 25px;
+      padding: 9px 14px;
+
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      border-radius: 24px;
+
       color: white;
       text-decoration: none;
-      background: rgba(255, 255, 255, 0.14);
-      transition: 0.3s;
-    }
+      font-size: 14px;
 
-    .back-link:hover {
-      color: var(--purple-dark);
-      background: white;
+      background: rgba(255, 255, 255, 0.13);
     }
 
     main {
-      width: min(1040px, 92%);
+      width: min(1050px, 93%);
       margin: auto;
-      padding: 47px 0 65px;
+      padding: 42px 0 65px;
     }
 
     .hero {
-      margin-bottom: 32px;
+      margin-bottom: 27px;
       text-align: center;
     }
 
@@ -101,14 +100,21 @@
       display: flex;
       align-items: center;
       justify-content: center;
+
       width: 88px;
       height: 88px;
-      margin: 0 auto 16px;
+
+      margin: 0 auto 15px;
+
       border-radius: 50%;
+
       font-size: 44px;
-      background: linear-gradient(135deg, #ffd979, #ed9f43);
-      box-shadow: 0 10px 27px rgba(221, 140, 45, 0.27);
-      animation: floatIcon 2.6s ease-in-out infinite;
+
+      background: linear-gradient(135deg, #ffdc81, #e99b3c);
+
+      box-shadow: 0 10px 26px rgba(219, 143, 49, 0.27);
+
+      animation: floatIcon 2.7s ease-in-out infinite;
     }
 
     @keyframes floatIcon {
@@ -123,95 +129,101 @@
     }
 
     .hero h1 {
-      margin-bottom: 12px;
-      font-size: 37px;
+      margin-bottom: 10px;
       color: var(--purple-dark);
+      font-size: 36px;
     }
 
     .hero p {
-      max-width: 760px;
+      max-width: 780px;
       margin: auto;
+
+      color: #74677d;
       font-size: 17px;
       line-height: 2;
-      color: #75677d;
     }
 
     .intro-card {
-      margin-bottom: 28px;
-      padding: 25px;
-      border-radius: 25px;
-      color: white;
+      margin-bottom: 25px;
+      padding: 24px;
+
+      border-radius: 24px;
+
       text-align: center;
+      color: white;
+
       background: linear-gradient(135deg, #70419a, #9e68c4);
-      box-shadow: 0 12px 31px rgba(89, 48, 120, 0.19);
+
+      box-shadow: 0 12px 30px rgba(89, 48, 120, 0.18);
     }
 
     .intro-card h2 {
-      margin-bottom: 10px;
-      font-size: 24px;
+      margin-bottom: 9px;
+      font-size: 23px;
     }
 
     .intro-card p {
+      color: #faf2fd;
       line-height: 1.9;
-      color: #f8effd;
     }
 
     .instruction {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 9px;
       width: fit-content;
       max-width: 100%;
-      margin: 0 auto 24px;
-      padding: 11px 17px;
-      border-radius: 25px;
+
+      margin: 0 auto 22px;
+      padding: 11px 18px;
+
+      border-radius: 24px;
+
       color: #68427d;
+      text-align: center;
+
       background: #f1e7f8;
     }
 
     .sections-list {
       display: grid;
-      gap: 22px;
+      gap: 21px;
     }
 
     .rules-section {
       overflow: hidden;
-      border: 1px solid rgba(113, 71, 143, 0.12);
-      border-radius: 25px;
-      background: rgba(255, 255, 255, 0.97);
-      box-shadow: 0 10px 29px rgba(75, 42, 99, 0.12);
-      transition:
-        transform 0.3s,
-        box-shadow 0.3s,
-        background 0.3s;
-    }
 
-    .rules-section:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 35px rgba(75, 42, 99, 0.17);
+      border: 1px solid rgba(113, 71, 143, 0.13);
+      border-radius: 24px;
+
+      background: rgba(255, 255, 255, 0.97);
+
+      box-shadow: 0 10px 28px rgba(75, 42, 99, 0.11);
     }
 
     .rules-section[open] {
+      border-color: rgba(136, 81, 174, 0.3);
+
       background:
         linear-gradient(
           135deg,
-          rgba(248, 240, 255, 0.98),
-          rgba(255, 250, 238, 0.98)
+          rgba(249, 242, 255, 0.98),
+          rgba(255, 251, 241, 0.98)
         );
-      border-color: rgba(136, 81, 174, 0.28);
-      box-shadow: 0 16px 38px rgba(78, 43, 104, 0.18);
+
+      box-shadow: 0 15px 36px rgba(78, 43, 104, 0.17);
     }
 
     .section-summary {
       position: relative;
+
       display: flex;
       align-items: center;
-      gap: 17px;
-      min-height: 100px;
-      padding: 20px 68px 20px 22px;
+      gap: 16px;
+
+      min-height: 96px;
+      padding: 19px 66px 19px 21px;
+
       cursor: pointer;
       list-style: none;
+
       user-select: none;
       -webkit-tap-highlight-color: transparent;
     }
@@ -222,59 +234,70 @@
 
     .section-summary::after {
       content: "＋";
+
       position: absolute;
-      right: 21px;
+      right: 20px;
+
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 35px;
-      height: 35px;
+
+      width: 34px;
+      height: 34px;
+
       border-radius: 50%;
+
       color: white;
-      font-size: 23px;
+      font-size: 22px;
+
       background: linear-gradient(135deg, #75439f, #9c64c1);
-      transition: transform 0.3s;
     }
 
     .rules-section[open] .section-summary::after {
       content: "−";
-      transform: rotate(180deg);
     }
 
     .section-icon {
       display: flex;
-      flex: 0 0 62px;
+      flex: 0 0 60px;
       align-items: center;
       justify-content: center;
-      width: 62px;
-      height: 62px;
+
+      width: 60px;
+      height: 60px;
+
       border-radius: 50%;
-      font-size: 32px;
+
+      font-size: 31px;
+
       background: linear-gradient(135deg, #f1e7fb, #fff1d6);
     }
 
     .section-title small {
       display: block;
-      margin-bottom: 5px;
-      color: #997cac;
+
+      margin-bottom: 4px;
+
+      color: #987bac;
       font-size: 13px;
     }
 
     .section-title h2 {
-      font-size: 23px;
-      line-height: 1.5;
       color: var(--purple-dark);
+      font-size: 22px;
+      line-height: 1.5;
     }
 
     .section-content {
-      padding: 0 25px 27px;
-      animation: revealContent 0.42s ease;
+      padding: 0 24px 27px;
+
+      animation: reveal 0.35s ease;
     }
 
-    @keyframes revealContent {
+    @keyframes reveal {
       from {
         opacity: 0;
-        transform: translateY(-8px);
+        transform: translateY(-7px);
       }
 
       to {
@@ -284,11 +307,14 @@
     }
 
     .section-description {
-      margin-bottom: 18px;
+      margin-bottom: 17px;
       padding: 17px;
+
       border-right: 5px solid var(--purple);
-      border-radius: 17px;
+      border-radius: 16px;
+
       line-height: 1.9;
+
       background: #fbf8fd;
     }
 
@@ -300,22 +326,20 @@
 
     .rule-card {
       padding: 18px;
-      border-radius: 18px;
-      background: white;
-      border: 1px solid rgba(113, 71, 143, 0.1);
-      box-shadow: 0 7px 20px rgba(75, 42, 99, 0.08);
-      transition: 0.3s;
-    }
 
-    .rule-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 11px 24px rgba(75, 42, 99, 0.13);
+      border: 1px solid rgba(113, 71, 143, 0.1);
+      border-radius: 18px;
+
+      background: white;
+
+      box-shadow: 0 7px 19px rgba(75, 42, 99, 0.08);
     }
 
     .rule-card h3 {
-      margin-bottom: 10px;
-      font-size: 18px;
+      margin-bottom: 12px;
+
       color: var(--purple-dark);
+      font-size: 18px;
     }
 
     .rule-card p,
@@ -333,13 +357,13 @@
     }
 
     .rule-card ul {
-      padding-right: 20px;
-      margin-bottom: 10px;
+      margin: 6px 0 11px;
+      padding-right: 22px;
     }
 
     .example,
-    .warning,
     .tip,
+    .warning,
     .gold-box {
       padding: 11px 13px;
       border-radius: 13px;
@@ -350,14 +374,14 @@
       background: var(--green-light);
     }
 
-    .warning {
-      color: #8a3d50;
-      background: var(--rose-light);
-    }
-
     .tip {
       color: #315f82;
       background: var(--blue-light);
+    }
+
+    .warning {
+      color: #8a3d50;
+      background: var(--rose-light);
     }
 
     .gold-box {
@@ -365,17 +389,16 @@
       background: var(--gold-light);
     }
 
-    .mini-title {
-      font-weight: bold;
-    }
-
     .quick-key {
       margin-top: 18px;
-      padding: 18px;
+      padding: 17px;
+
       border-right: 5px solid var(--gold);
-      border-radius: 17px;
+      border-radius: 16px;
+
       color: #684a27;
       line-height: 1.9;
+
       background: var(--gold-light);
     }
 
@@ -385,60 +408,66 @@
     }
 
     .closing-card {
-      margin-top: 32px;
-      padding: 29px 23px;
-      border-radius: 25px;
+      margin-top: 31px;
+      padding: 28px 22px;
+
+      border-radius: 24px;
+
       text-align: center;
       color: white;
+
       background: linear-gradient(135deg, #70409a, #a26ac6);
-      box-shadow: 0 12px 31px rgba(88, 47, 119, 0.2);
+
+      box-shadow: 0 12px 30px rgba(88, 47, 119, 0.19);
     }
 
-    .closing-card .closing-icon {
-      margin-bottom: 10px;
-      font-size: 48px;
+    .closing-card div {
+      margin-bottom: 8px;
+      font-size: 46px;
     }
 
     .closing-card h2 {
       margin-bottom: 9px;
-      font-size: 24px;
+      font-size: 23px;
     }
 
     .closing-card p {
-      max-width: 720px;
+      max-width: 730px;
       margin: auto;
-      line-height: 1.9;
+
       color: #faf2fd;
+      line-height: 1.9;
     }
 
     footer {
-      padding: 23px;
+      padding: 22px;
+
+      color: #796a82;
       text-align: center;
       font-size: 14px;
-      color: #796a82;
     }
 
     @media (max-width: 750px) {
       header {
-        padding: 14px 5%;
+        padding: 13px 4%;
       }
 
       .logo {
-        font-size: 18px;
+        font-size: 17px;
       }
 
       .back-link {
-        padding: 8px 12px;
-        font-size: 13px;
+        padding: 8px 10px;
+        font-size: 12px;
       }
 
       main {
         width: 94%;
-        padding-top: 32px;
+        padding-top: 31px;
       }
 
       .hero h1 {
-        font-size: 29px;
+        font-size: 28px;
       }
 
       .hero p {
@@ -446,30 +475,26 @@
       }
 
       .intro-card {
-        padding: 21px 16px;
-      }
-
-      .intro-card h2 {
-        font-size: 21px;
+        padding: 20px 15px;
       }
 
       .section-summary {
-        gap: 12px;
-        min-height: 90px;
-        padding: 17px 54px 17px 14px;
+        gap: 11px;
+        min-height: 88px;
+        padding: 16px 52px 16px 13px;
       }
 
       .section-summary::after {
-        right: 13px;
-        width: 31px;
-        height: 31px;
-        font-size: 20px;
+        right: 12px;
+        width: 30px;
+        height: 30px;
+        font-size: 19px;
       }
 
       .section-icon {
-        flex-basis: 52px;
-        width: 52px;
-        height: 52px;
+        flex-basis: 51px;
+        width: 51px;
+        height: 51px;
         font-size: 27px;
       }
 
@@ -478,7 +503,7 @@
       }
 
       .section-content {
-        padding: 0 14px 20px;
+        padding: 0 13px 19px;
       }
 
       .rules-grid {
@@ -510,28 +535,27 @@
       <h1>خزانة القواعد الذهبية</h1>
 
       <p>
-        قواعد مختصرة وسهلة تساعدكِ على الكتابة الصحيحة،
-        وفهم الأساليب، ومعرفة أنواع الكلمات والجمل بثقة.
+        شرح واضح ومفصل لأهم القواعد الإملائية والنحوية،
+        مع أمثلة تساعد الطالبة على الفهم والتطبيق.
       </p>
     </section>
 
     <section class="intro-card">
-      <h2>كل قاعدة مفتاح لجملة أجمل</h2>
+      <h2>افهمي القاعدة ثم طبقيها</h2>
 
       <p>
-        افتحي كل خزانة، واقرئي القاعدة والأمثلة والحيلة السهلة،
-        ثم طبقيها في جملة من إنشائكِ.
+        افتحي كل خزانة، واقرئي التعريف والعلامة الإعرابية
+        والأمثلة والتنبيهات، ثم كوّني مثالًا من إنشائكِ.
       </p>
     </section>
 
     <div class="instruction">
-      <span>👆</span>
-      <span>اضغطي على كل قسم لفتح خزانته</span>
+      👆 اضغطي على اسم الخزانة لفتح محتواها
     </div>
 
     <section class="sections-list">
 
-      <!-- الرسم الإملائي -->
+      <!-- الخزانة الأولى -->
 
       <details class="rules-section">
 
@@ -547,53 +571,93 @@
         <div class="section-content">
 
           <div class="section-description">
-            قواعد تساعدكِ على كتابة الكلمات بصورة صحيحة،
-            والتمييز بين الحروف المتشابهة والأخطاء الشائعة.
+            قواعد تساعد على كتابة الكلمات كتابة صحيحة،
+            والتمييز بين الحروف والصور الإملائية المتشابهة.
           </div>
 
           <div class="rules-grid">
 
             <article class="rule-card">
-              <h3>التاء المفتوحة والتاء المربوطة والهاء</h3>
+              <h3>التاء المفتوحة</h3>
 
               <p>
-                التاء المفتوحة تُنطق تاءً عند الوصل والوقف:
-                بنت، نبات.
+                هي التاء التي تبقى تاءً عند وصل الكلام وعند الوقف عليها.
               </p>
 
-              <p>
-                التاء المربوطة تُنطق تاءً عند الوصل وهاءً عند الوقف:
-                مدرسة، قصة.
-              </p>
-
-              <p>
-                الهاء تُنطق هاءً عند الوصل والوقف:
-                كتابه، وجهه.
+              <p class="example">
+                بنت، نبات، كتبتْ، أبيات.
               </p>
 
               <p class="tip">
-                <span class="mini-title">حيلة:</span>
-                قفي على الكلمة؛ إن نطقتها هاء وكانت اسمًا مؤنثًا،
-                فهي غالبًا تاء مربوطة.
+                عند الوقف نقول: بنتْ، ولا تتحول التاء إلى هاء.
               </p>
             </article>
 
             <article class="rule-card">
-              <h3>همزة الوصل وهمزة القطع</h3>
+              <h3>التاء المربوطة</h3>
 
               <p>
-                همزة القطع تُنطق في أول الكلام ووسطه:
-                أحمد، أكرم، إنسان.
+                تُنطق تاءً عند وصلها بما بعدها،
+                وتُنطق هاءً ساكنة عند الوقف عليها.
               </p>
 
+              <p class="example">
+                هذه مدرسةٌ جميلة.<br>
+                عند الوقف نقول: هذه مدرسهْ.
+              </p>
+
+              <p class="warning">
+                التاء المربوطة لا تأتي في الأفعال.
+              </p>
+            </article>
+
+            <article class="rule-card">
+              <h3>الهاء</h3>
+
               <p>
-                همزة الوصل تُنطق عند البدء وتسقط عند وصلها بما قبلها:
-                المدرسة، استمع، ابن.
+                تبقى هاءً عند الوصل والوقف.
+              </p>
+
+              <p class="example">
+                كتابه، بيته، وجهه.
               </p>
 
               <p class="tip">
-                ضعي قبل الكلمة حرف الواو؛ إن بقي صوت الهمزة فهي قطع،
-                وإن اختفى فهي وصل.
+                جربي إضافة كلمة بعدها؛ ستبقى الهاء منطوقة هاءً.
+              </p>
+            </article>
+
+            <article class="rule-card">
+              <h3>همزة القطع</h3>
+
+              <p>
+                تُكتب وتُنطق في بداية الكلام وفي وسطه.
+              </p>
+
+              <p class="example">
+                أحمد، أكرم، إنسان، إلى، أكتب.
+              </p>
+
+              <p class="tip">
+                عند إضافة الواو نقول: وأحمد،
+                ويبقى صوت الهمزة ظاهرًا.
+              </p>
+            </article>
+
+            <article class="rule-card">
+              <h3>همزة الوصل</h3>
+
+              <p>
+                تُنطق عند البدء بالكلمة،
+                وتسقط عند وصلها بالكلمة التي قبلها.
+              </p>
+
+              <p class="example">
+                المدرسة، استمع، اكتب، ابن.
+              </p>
+
+              <p class="tip">
+                نقول: والمدرسة، فيسقط صوت الهمزة عند الوصل.
               </p>
             </article>
 
@@ -601,8 +665,8 @@
               <h3>الهمزة المتوسطة</h3>
 
               <p>
-                نُقارن بين حركة الهمزة وحركة الحرف الذي قبلها،
-                ثم نكتبها على ما يناسب أقوى الحركتين.
+                ننظر إلى حركة الهمزة وحركة الحرف الذي قبلها،
+                ثم نكتبها على الحرف المناسب لأقوى الحركتين.
               </p>
 
               <p class="gold-box">
@@ -619,11 +683,15 @@
               <h3>الهمزة المتطرفة</h3>
 
               <p>
-                تُكتب حسب حركة الحرف الذي قبلها فقط.
+                تُكتب في نهاية الكلمة بحسب حركة الحرف الذي قبلها.
               </p>
 
               <p class="example">
                 قارئ، لؤلؤ، يقرأ، شيء.
+              </p>
+
+              <p class="tip">
+                في الهمزة المتطرفة ننظر إلى الحرف السابق فقط.
               </p>
             </article>
 
@@ -631,12 +699,12 @@
               <h3>الألف اللينة</h3>
 
               <p>
-                تأتي في آخر الكلمة ألفًا قائمة «ا»
-                أو ألفًا مقصورة «ى».
+                ألف ساكنة تأتي في آخر الكلمة،
+                وتُكتب ألفًا قائمة «ا» أو مقصورة «ى».
               </p>
 
               <p class="example">
-                دعا، رمى، عصا، فتى.
+                دعا، عصا، رمى، فتى.
               </p>
 
               <p class="tip">
@@ -650,22 +718,36 @@
 
               <p>
                 الفاصلة «،» بين الجمل القصيرة،
-                والنقطة «.» عند اكتمال المعنى،
+                والنقطة «.» عند انتهاء المعنى،
                 وعلامة الاستفهام «؟» بعد السؤال.
               </p>
 
               <p class="example">
-                قرأتُ القصة، ثم كتبتُ ملخصًا عنها.
+                قرأتُ الدرس، ثم أجبتُ عن الأسئلة.<br>
+                متى يبدأ الاختبار؟
+              </p>
+            </article>
+
+            <article class="rule-card">
+              <h3>كلمات يكثر الخطأ فيها</h3>
+
+              <p class="example">
+                الصحيح:
+                هذا، لكن، هؤلاء، مسؤول، إن شاء الله.
+              </p>
+
+              <p class="warning">
+                الخطأ:
+                هاذا، لاكن، هاؤلاء، مسؤل، إنشاء الله.
               </p>
             </article>
 
           </div>
-
         </div>
 
       </details>
 
-      <!-- الأساليب -->
+      <!-- الخزانة الثانية -->
 
       <details class="rules-section">
 
@@ -681,75 +763,158 @@
         <div class="section-content">
 
           <div class="section-description">
-            الأسلوب يحدد الغرض من الجملة:
-            سؤال، أو أمر، أو نهي، أو نداء، أو تمني.
+            لكل أسلوب غرض ومعنى خاص،
+            ويُعرف من أداة الأسلوب وسياق الجملة.
           </div>
 
           <div class="rules-grid">
 
             <article class="rule-card">
-              <h3>الاستفهام</h3>
-              <p>يُستخدم للسؤال عن شيء مجهول.</p>
-              <p class="example">هل قرأتِ الكتاب؟ متى يبدأ الاختبار؟</p>
-              <p class="tip">من أدواته: هل، من، ماذا، متى، أين، كيف.</p>
+              <h3>أسلوب الاستفهام</h3>
+
+              <p>
+                يُستخدم للسؤال عن أمر مجهول.
+              </p>
+
+              <p class="example">
+                هل قرأتِ القصة؟<br>
+                أين يقع المتحف؟
+              </p>
+
+              <p class="tip">
+                من أدواته:
+                هل، الهمزة، من، ماذا، متى، أين، كيف، لماذا.
+              </p>
             </article>
 
             <article class="rule-card">
-              <h3>الأمر</h3>
-              <p>يُستخدم لطلب القيام بفعل.</p>
-              <p class="example">اقرئي النص بعناية.</p>
+              <h3>أسلوب الأمر</h3>
+
+              <p>
+                يُستخدم لطلب القيام بفعل.
+              </p>
+
+              <p class="example">
+                اقرئي النص.<br>
+                احفظي القصيدة.
+              </p>
             </article>
 
             <article class="rule-card">
-              <h3>النهي</h3>
-              <p>يُستخدم لطلب الكف عن فعل.</p>
-              <p class="example">لا تهملي واجبكِ.</p>
+              <h3>أسلوب النهي</h3>
+
+              <p>
+                يُستخدم لطلب الامتناع عن فعل.
+              </p>
+
+              <p class="example">
+                لا تهملي واجبكِ.<br>
+                لا تتأخري عن الحصة.
+              </p>
+
+              <p class="tip">
+                يتكون غالبًا من «لا الناهية» وفعل مضارع مجزوم.
+              </p>
             </article>
 
             <article class="rule-card">
-              <h3>النفي</h3>
-              <p>يُستخدم لإنكار وقوع الفعل أو ثبوت الصفة.</p>
-              <p class="example">لم تتأخر الطالبة. لن أهمل واجبي.</p>
+              <h3>أسلوب النفي</h3>
+
+              <p>
+                يُستخدم لإنكار حدوث الفعل أو ثبوت الصفة.
+              </p>
+
+              <p class="example">
+                لم تتأخر الطالبة.<br>
+                لن أهمل دروسي.<br>
+                ليس الكسل محمودًا.
+              </p>
             </article>
 
             <article class="rule-card">
-              <h3>النداء</h3>
-              <p>يُستخدم لتنبيه المنادى أو طلب إقباله.</p>
-              <p class="example">يا طالبةَ العلم، اجتهدي.</p>
+              <h3>أسلوب النداء</h3>
+
+              <p>
+                يُستخدم لتنبيه المنادى أو طلب إقباله.
+              </p>
+
+              <p class="example">
+                يا طالبةَ العلم، اجتهدي.
+              </p>
             </article>
 
             <article class="rule-card">
               <h3>التمني والترجي</h3>
+
               <p>
-                التمني يكون غالبًا لما يصعب وقوعه،
-                والترجي لما يمكن وقوعه.
+                التمني طلب أمر محبوب يصعب وقوعه،
+                وأشهر أدواته «ليت».
               </p>
+
               <p class="example">
-                ليت الشباب يعود. لعل النجاح قريب.
+                ليت الشباب يعود يومًا.
+              </p>
+
+              <p>
+                الترجي طلب أمر محبوب يمكن وقوعه،
+                وأشهر أدواته «لعل».
+              </p>
+
+              <p class="example">
+                لعل النجاح قريب.
               </p>
             </article>
 
             <article class="rule-card">
               <h3>المدح والذم</h3>
-              <p>يُستخدمان لإظهار الاستحسان أو عدم الرضا.</p>
+
+              <p>
+                المدح لإظهار الاستحسان،
+                والذم لإظهار عدم الرضا.
+              </p>
+
               <p class="example">
-                نعم الخلقُ الصدقُ. بئس الخلقُ الكذبُ.
+                نعم الخلقُ الصدقُ.<br>
+                بئس الخلقُ الكذبُ.
               </p>
             </article>
 
             <article class="rule-card">
               <h3>التعجب</h3>
-              <p>يُستخدم لإظهار الدهشة أو الإعجاب.</p>
-              <p class="example">ما أجمل اللغة العربية!</p>
+
+              <p>
+                يُستخدم لإظهار الدهشة أو الإعجاب.
+              </p>
+
+              <p class="example">
+                ما أجمل اللغة العربية!<br>
+                أجملْ بالصدق!
+              </p>
+            </article>
+
+            <article class="rule-card">
+              <h3>أسلوب الشرط</h3>
+
+              <p>
+                يربط حدوث أمر بحدوث أمر آخر.
+              </p>
+
+              <p class="example">
+                من يجتهدْ ينجحْ.
+              </p>
+
+              <p class="tip">
+                يتكون من أداة الشرط،
+                وفعل الشرط، وجواب الشرط.
+              </p>
             </article>
 
           </div>
-
         </div>
 
       </details>
 
-      <!-- أقسام الكلام والاسم -->
+      <!-- الخزانة الثالثة -->
 
       <details class="rules-section">
 
@@ -758,38 +923,34 @@
 
           <div class="section-title">
             <small>الخزانة الثالثة</small>
-            <h2>أقسام الكلام والاسم</h2>
+            <h2>الاسم وأقسامه</h2>
           </div>
         </summary>
 
         <div class="section-content">
 
           <div class="section-description">
-            نتعرف إلى الاسم والفعل والحرف، ثم نصنف الاسم من حيث
-            العدد والجنس والتعريف والتنكير.
+            نصنّف الاسم من حيث العدد والجنس والتعريف والتنكير،
+            ونتعرف إلى علامات كل نوع.
           </div>
 
           <div class="rules-grid">
 
             <article class="rule-card">
-              <h3>الاسم والفعل والحرف</h3>
+              <h3>ما الاسم؟</h3>
 
               <p>
-                <strong>الاسم:</strong>
-                يدل على إنسان أو شيء أو معنى دون زمن:
-                طالبة، كتاب، أمانة.
+                كلمة تدل على إنسان أو حيوان أو نبات أو جماد
+                أو معنى، ولا ترتبط بزمن.
               </p>
 
-              <p>
-                <strong>الفعل:</strong>
-                يدل على حدث وزمن:
-                كتب، يكتب، اكتب.
+              <p class="example">
+                طالبة، حصان، شجرة، كتاب، أمانة.
               </p>
 
-              <p>
-                <strong>الحرف:</strong>
-                لا يظهر معناه كاملًا إلا مع غيره:
-                من، إلى، في، هل.
+              <p class="tip">
+                من علامات الاسم:
+                دخول «أل»، والتنوين، والجر، والنداء.
               </p>
             </article>
 
@@ -797,100 +958,16 @@
               <h3>الاسم من حيث العدد</h3>
 
               <p>
-                <strong>المفرد:</strong>
-                يدل على واحد أو واحدة:
-                طالب، طالبة.
+                ينقسم الاسم من حيث العدد إلى:
               </p>
 
-              <p>
-                <strong>المثنى:</strong>
-                يدل على اثنين أو اثنتين:
-                طالبان، طالبتان.
-              </p>
-
-              <p>
-                <strong>الجمع:</strong>
-                يدل على أكثر من اثنين:
-                طلاب، طالبات.
-              </p>
-            </article>
-
-            <article class="rule-card">
-              <h3>المثنى</h3>
-
-              <p>
-                يُرفع بالألف:
-                حضرت طالبتانِ.
-              </p>
-
-              <p>
-                ويُنصب ويُجر بالياء:
-                رأيت طالبتينِ، سلمت على طالبتينِ.
-              </p>
-
-              <p class="tip">
-                النون في المثنى تُحذف عند الإضافة:
-                طالبتا الصف.
-              </p>
-            </article>
-
-            <article class="rule-card">
-              <h3>جمع المذكر السالم</h3>
-
-              <p>
-                يدل على أكثر من اثنين بزيادة واو ونون،
-                أو ياء ونون.
-              </p>
-
-              <p>
-                يُرفع بالواو:
-                حضر المعلمون.
-              </p>
-
-              <p>
-                ويُنصب ويُجر بالياء:
-                كرّمت المعلمين، سلمت على المعلمين.
-              </p>
-            </article>
-
-            <article class="rule-card">
-              <h3>جمع المؤنث السالم</h3>
-
-              <p>
-                يدل على أكثر من اثنتين بزيادة ألف وتاء:
-                طالبات، معلمات.
-              </p>
-
-              <p>
-                يُرفع بالضمة:
-                حضرت الطالباتُ.
-              </p>
-
-              <p>
-                ويُنصب ويُجر بالكسرة:
-                كرّمت الطالباتِ، سلمت على الطالباتِ.
-              </p>
-            </article>
-
-            <article class="rule-card">
-              <h3>جمع التكسير</h3>
-
-              <p>
-                يتغير بناء مفرده عند الجمع.
-              </p>
+              <ul>
+                <li>مفرد.</li>
+                <li>مثنى.</li>
+                <li>جمع.</li>
+              </ul>
 
               <p class="example">
-                كتاب: كتب، قلم: أقلام، رجل: رجال.
+                طالبة، طالبتان، طالبات.
               </p>
-            </article>
-
-            <article class="rule-card">
-              <h3>المذكر والمؤنث</h3>
-
-              <p>
-                <strong>المذكر الحقيقي:</strong>
-                طالب، أب.
-              </p>
-
-              <p>
-                <st
+ 
