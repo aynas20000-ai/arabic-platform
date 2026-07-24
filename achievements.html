@@ -1,40 +1,40 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>حكايات صنعت النجاح | منصة آفاق</title>
+  <title>حكايات صنعت النجاح | منصة آفاق اللغة</title>
 
   <style>
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
 
     :root {
-      --purple-dark: #61368c;
-      --purple: #814eb0;
-      --purple-light: #eee1fb;
-      --gold: #f1aa3f;
-      --gold-light: #fff3d8;
-      --green: #2f9b78;
-      --red: #d85d70;
-      --text: #51425e;
+      --purple-dark: #543f67;
+      --purple: #725987;
+      --purple-light: #eee7f3;
+      --purple-soft: #f8f4fa;
+      --gold: #b89a5e;
+      --gold-light: #ead9b5;
       --white: #ffffff;
+      --text: #403448;
+      --green: #59806d;
+      --red-soft: #fff0f0;
     }
 
     body {
       min-height: 100vh;
       font-family: Tahoma, Arial, sans-serif;
       color: var(--text);
-      overflow-x: hidden;
       background:
-        radial-gradient(circle at top right, #fff0cf 0, transparent 34%),
-        radial-gradient(circle at bottom left, #eadcff 0, transparent 40%),
-        linear-gradient(135deg, #fffdf8, #f8f1ff);
+        radial-gradient(circle at top right, #f5eefa, transparent 34%),
+        radial-gradient(circle at bottom left, #fff7e6, transparent 30%),
+        linear-gradient(135deg, #f9f6fb, #eee5f3);
+      overflow-x: hidden;
     }
 
     button,
@@ -42,322 +42,243 @@
       font-family: inherit;
     }
 
-    /* الشريط العلوي */
-
-    header {
+    .top-bar {
+      min-height: 72px;
+      padding: 14px 6%;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 15px;
-      padding: 17px 6%;
-      color: white;
-      background: linear-gradient(135deg, #60338b, #9a61c3);
-      box-shadow: 0 5px 20px rgba(72, 35, 105, 0.2);
+      gap: 14px;
+      background: rgba(84, 63, 103, 0.97);
+      border-bottom: 3px solid var(--gold);
+      box-shadow: 0 4px 18px rgba(55, 38, 68, 0.18);
     }
 
-    .logo {
-      font-size: 22px;
+    .brand {
+      color: white;
+      font-size: 21px;
       font-weight: bold;
     }
 
     .home-link {
-      padding: 9px 16px;
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      border-radius: 25px;
+      padding: 10px 16px;
       color: white;
       text-decoration: none;
-      background: rgba(255, 255, 255, 0.14);
-      transition: 0.3s;
+      border: 1px solid var(--gold-light);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.08);
+      transition: 0.25s;
     }
 
     .home-link:hover {
-      color: var(--purple-dark);
-      background: white;
+      background: var(--gold);
+      transform: translateY(-2px);
     }
 
-    /* المحتوى */
+    .hero {
+      padding: 46px 18px 38px;
+      text-align: center;
+      color: white;
+      background:
+        linear-gradient(rgba(84, 63, 103, 0.88), rgba(84, 63, 103, 0.95)),
+        radial-gradient(circle, #977dab, #4c385c);
+      border-bottom-left-radius: 38px;
+      border-bottom-right-radius: 38px;
+      box-shadow: 0 10px 28px rgba(60, 42, 70, 0.2);
+    }
 
-    main {
+    .hero-icon {
+      display: block;
+      margin-bottom: 12px;
+      font-size: 48px;
+      animation: floatIcon 2.7s ease-in-out infinite;
+    }
+
+    .hero h1 {
+      margin-bottom: 12px;
+      font-size: clamp(28px, 6vw, 48px);
+      color: #fff6dc;
+    }
+
+    .hero p {
+      max-width: 760px;
+      margin: auto;
+      font-size: 18px;
+      line-height: 1.9;
+      color: #f8f4fb;
+    }
+
+    .container {
       width: min(920px, 92%);
-      margin: 0 auto;
-      padding: 42px 0 60px;
+      margin: 32px auto 60px;
     }
 
-    .page-heading {
-      margin-bottom: 25px;
+    .welcome-card,
+    .story-area,
+    .finish-card {
+      padding: 26px;
+      background: rgba(255, 255, 255, 0.96);
+      border: 2px solid var(--gold-light);
+      border-radius: 26px;
+      box-shadow: 0 13px 35px rgba(70, 48, 82, 0.14);
+    }
+
+    .welcome-card {
       text-align: center;
     }
 
-    .page-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 82px;
-      height: 82px;
-      margin: 0 auto 15px;
-      border-radius: 50%;
-      font-size: 42px;
-      background: linear-gradient(135deg, #ffd676, #ee9840);
-      box-shadow: 0 10px 25px rgba(221, 138, 45, 0.28);
+    .welcome-card h2 {
+      margin-bottom: 12px;
+      color: var(--purple-dark);
+      font-size: 27px;
     }
 
-    .page-heading h1 {
-      margin-bottom: 10px;
-      font-size: 35px;
+    .welcome-card p {
+      margin: 0 auto 22px;
+      max-width: 650px;
+      line-height: 1.9;
+      font-size: 17px;
+    }
+
+    .name-label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
       color: var(--purple-dark);
     }
 
-    .page-heading p {
-      max-width: 700px;
-      margin: auto;
+    .name-input {
+      width: min(420px, 100%);
+      padding: 14px 16px;
+      margin-bottom: 16px;
+      text-align: center;
       font-size: 17px;
-      line-height: 1.9;
-      color: #75657e;
+      color: var(--text);
+      background: var(--purple-soft);
+      border: 2px solid #d7c6e2;
+      border-radius: 15px;
+      outline: none;
+      transition: 0.2s;
     }
 
-    /* شريط التقدم */
+    .name-input:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 4px rgba(184, 154, 94, 0.15);
+    }
 
-    .progress-container {
+    .main-button {
+      padding: 14px 24px;
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+      border-radius: 15px;
+      background: linear-gradient(135deg, var(--purple), var(--purple-dark));
+      box-shadow: 0 7px 16px rgba(84, 63, 103, 0.25);
+      transition: 0.25s;
+    }
+
+    .main-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(84, 63, 103, 0.3);
+    }
+
+    .story-area {
       display: none;
-      margin: 25px 0;
-      padding: 18px;
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.86);
-      box-shadow: 0 8px 24px rgba(81, 46, 108, 0.1);
+      position: relative;
+      overflow: hidden;
     }
 
-    .progress-information {
+    .progress-wrapper {
+      margin-bottom: 25px;
+    }
+
+    .progress-info {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 10px;
-      font-size: 14px;
-      color: #725b80;
+      gap: 10px;
+      margin-bottom: 8px;
+      color: var(--purple-dark);
+      font-weight: bold;
     }
 
     .progress-track {
-      height: 12px;
+      height: 13px;
       overflow: hidden;
+      background: #e9e0ee;
       border-radius: 20px;
-      background: #eadff1;
     }
 
     .progress-bar {
       width: 0;
       height: 100%;
       border-radius: 20px;
-      background: linear-gradient(90deg, #7846a5, #efaa42);
+      background: linear-gradient(90deg, var(--gold), #ddc37f);
       transition: width 0.5s ease;
     }
 
-    /* البطاقات */
-
-    .screen {
-      display: none;
-      padding: 34px;
-      border: 1px solid rgba(116, 72, 150, 0.09);
-      border-radius: 30px;
-      background: rgba(255, 255, 255, 0.96);
-      box-shadow: 0 15px 45px rgba(72, 40, 98, 0.15);
-      animation: appear 0.55s ease;
-    }
-
-    .screen.active {
-      display: block;
-    }
-
-    @keyframes appear {
-      from {
-        opacity: 0;
-        transform: translateY(18px) scale(0.98);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-
-    /* شاشة البداية */
-
-    .start-screen {
-      text-align: center;
-    }
-
-    .start-symbol {
-      margin-bottom: 13px;
-      font-size: 70px;
-      animation: floating 2.4s ease-in-out infinite;
-    }
-
-    @keyframes floating {
-      0%,
-      100% {
-        transform: translateY(0);
-      }
-
-      50% {
-        transform: translateY(-9px);
-      }
-    }
-
-    .start-screen h2 {
-      margin-bottom: 14px;
-      font-size: 28px;
-      color: var(--purple-dark);
-    }
-
-    .start-screen p {
-      max-width: 650px;
-      margin: 0 auto 23px;
-      font-size: 17px;
-      line-height: 2;
-    }
-
-    .name-box {
-      max-width: 480px;
-      margin: auto;
-    }
-
-    .name-input {
-      width: 100%;
-      margin-bottom: 14px;
-      padding: 15px 18px;
-      border: 2px solid #dbc6eb;
-      border-radius: 18px;
-      outline: none;
-      text-align: center;
-      font-size: 17px;
-      color: var(--purple-dark);
-      background: #fdfaff;
-      transition: 0.3s;
-    }
-
-    .name-input:focus {
-      border-color: #8a55b2;
-      box-shadow: 0 0 0 4px rgba(138, 85, 178, 0.1);
-    }
-
-    .warning {
-      display: none;
-      margin: 0 0 12px;
-      color: var(--red);
-      font-size: 14px;
-    }
-
-    /* الأزرار */
-
-    .primary-button,
-    .next-button,
-    .restart-button {
-      border: none;
-      border-radius: 28px;
-      color: white;
-      cursor: pointer;
-      font-size: 16px;
+    .story-number {
+      margin-bottom: 8px;
+      color: var(--gold);
       font-weight: bold;
-      background: linear-gradient(135deg, #70409c, #9d64c4);
-      box-shadow: 0 7px 18px rgba(105, 57, 143, 0.22);
-      transition: 0.3s;
     }
 
-    .primary-button {
-      padding: 14px 30px;
-    }
-
-    .next-button,
-    .restart-button {
-      display: none;
-      margin: 22px auto 0;
-      padding: 13px 26px;
-    }
-
-    .primary-button:hover,
-    .next-button:hover,
-    .restart-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 22px rgba(105, 57, 143, 0.28);
-    }
-
-    /* القصص */
-
-    .story-header {
+    .story-title {
       margin-bottom: 22px;
-      text-align: center;
-    }
-
-    .story-symbol {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 72px;
-      height: 72px;
-      margin-bottom: 12px;
-      border-radius: 50%;
-      font-size: 38px;
-      background: linear-gradient(135deg, #f2e6ff, #fff0cf);
-    }
-
-    .story-label {
-      display: block;
-      width: fit-content;
-      margin: 0 auto 10px;
-      padding: 7px 15px;
-      border-radius: 20px;
-      font-size: 14px;
-      color: #76479a;
-      background: #f0e6f8;
-    }
-
-    .story-header h2 {
-      font-size: 27px;
       color: var(--purple-dark);
+      font-size: clamp(25px, 5vw, 34px);
+      line-height: 1.4;
     }
 
-    .story-body {
-      padding: 22px;
-      border-radius: 22px;
-      background: linear-gradient(135deg, #fffdf9, #fbf7ff);
-      border-right: 5px solid #9a64c0;
-    }
-
-    .story-body p {
-      margin-bottom: 15px;
+    .story-text {
       font-size: 17px;
-      line-height: 2.15;
-      color: #5f5168;
+      line-height: 2.05;
     }
 
-    .story-body p:last-child {
-      margin-bottom: 0;
+    .story-text p {
+      margin-bottom: 17px;
+    }
+
+    .quote {
+      margin: 19px 0;
+      padding: 18px;
+      color: var(--purple-dark);
+      font-weight: bold;
+      text-align: center;
+      background: var(--purple-light);
+      border-right: 5px solid var(--gold);
+      border-radius: 16px;
     }
 
     .lesson-box {
-      margin-top: 22px;
-      padding: 17px;
-      border-radius: 18px;
-      color: #6b4d22;
+      margin-top: 26px;
+      padding: 19px;
       line-height: 1.9;
-      background: linear-gradient(135deg, #fff3d7, #fffaf0);
-      border-right: 5px solid var(--gold);
+      background: linear-gradient(135deg, #fff9ec, #f7edce);
+      border: 1px solid #ddc58d;
+      border-radius: 18px;
     }
 
-    /* السؤال */
+    .lesson-box strong {
+      display: block;
+      margin-bottom: 5px;
+      color: #765e2e;
+      font-size: 18px;
+    }
 
     .question-box {
       margin-top: 25px;
       padding: 22px;
-      border-radius: 22px;
-      background: #f7f0fc;
+      background: var(--purple-soft);
+      border-radius: 20px;
     }
 
     .question-box h3 {
-      margin-bottom: 8px;
-      color: var(--purple-dark);
-    }
-
-    .question-box > p {
       margin-bottom: 17px;
-      line-height: 1.8;
+      color: var(--purple-dark);
+      font-size: 20px;
+      line-height: 1.6;
     }
 
     .answers {
@@ -367,222 +288,275 @@
 
     .answer-button {
       width: 100%;
-      padding: 14px 17px;
-      border: 2px solid #e1d2eb;
-      border-radius: 16px;
+      padding: 15px;
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.6;
       text-align: right;
       cursor: pointer;
-      font-size: 16px;
-      color: #5b4966;
       background: white;
-      transition: 0.25s;
+      border: 2px solid #dfd0e7;
+      border-radius: 14px;
+      transition: 0.22s;
     }
 
     .answer-button:hover {
-      border-color: #9870b6;
-      transform: translateX(-3px);
+      border-color: var(--gold);
+      transform: translateX(-4px);
     }
 
-    .answer-button.correct {
-      color: #176a51;
-      border-color: #48af8c;
-      background: #e6f8f1;
+    .answer-button.selected {
+      color: white;
+      background: var(--green);
+      border-color: var(--green);
     }
 
-    .answer-button.wrong {
-      color: #9d3547;
-      border-color: #e37988;
-      background: #fff0f2;
+    .encouragement {
+      display: none;
+      margin-top: 18px;
+      padding: 17px;
+      color: #315344;
+      font-weight: bold;
+      line-height: 1.8;
+      text-align: center;
+      background: #e6f4ec;
+      border: 1px solid #a8ccb9;
+      border-radius: 15px;
+      animation: pop 0.4s ease;
     }
 
-    .answer-button:disabled {
-      cursor: default;
+    .navigation {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    .nav-button {
+      min-width: 125px;
+      padding: 13px 18px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 14px;
+      transition: 0.22s;
+    }
+
+    .previous-button {
+      color: var(--purple-dark);
+      background: white;
+      border: 2px solid #d7c5e2;
+    }
+
+    .next-button {
+      color: white;
+      background: var(--purple-dark);
+      border: 2px solid var(--purple-dark);
+    }
+
+    .nav-button:hover {
+      transform: translateY(-2px);
+    }
+
+    .nav-button:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
       transform: none;
     }
 
-    .feedback {
+    .finish-card {
       display: none;
-      margin-top: 15px;
-      padding: 14px 16px;
-      border-radius: 15px;
-      line-height: 1.8;
-      font-weight: bold;
-    }
-
-    .feedback.success {
-      display: block;
-      color: #17684f;
-      background: #e8f8f2;
-    }
-
-    .feedback.try-again {
-      display: block;
-      color: #9c3d4c;
-      background: #fff0f2;
-    }
-
-    /* شاشة النهاية */
-
-    .finish-screen {
-      position: relative;
-      overflow: hidden;
       text-align: center;
     }
 
-    .trophy {
-      margin-bottom: 10px;
-      font-size: 90px;
-      animation: trophyMove 1.1s ease infinite alternate;
+    .finish-card .trophy {
+      margin-bottom: 15px;
+      font-size: 65px;
+      animation: trophyBounce 1.2s ease-in-out infinite alternate;
     }
 
-    @keyframes trophyMove {
-      from {
-        transform: rotate(-5deg) scale(1);
-      }
-
-      to {
-        transform: rotate(5deg) scale(1.08);
-      }
-    }
-
-    .finish-screen h2 {
-      margin-bottom: 14px;
-      font-size: 31px;
+    .finish-card h2 {
+      margin-bottom: 13px;
       color: var(--purple-dark);
+      font-size: 30px;
     }
 
-    .finish-message {
-      max-width: 650px;
-      margin: auto;
+    .finish-card p {
+      margin-bottom: 20px;
       font-size: 18px;
-      line-height: 2;
+      line-height: 1.9;
     }
 
-    .student-badge {
-      width: fit-content;
-      margin: 22px auto 0;
-      padding: 13px 25px;
-      border-radius: 30px;
-      color: #694519;
-      font-size: 18px;
+    .certificate {
+      margin: 23px auto;
+      padding: 24px;
+      max-width: 600px;
+      background: #fffaf0;
+      border: 3px double var(--gold);
+      border-radius: 22px;
+    }
+
+    .certificate h3 {
+      margin-bottom: 11px;
+      color: #765e2e;
+      font-size: 23px;
+    }
+
+    .student-certificate-name {
+      color: var(--purple-dark);
+      font-size: 25px;
       font-weight: bold;
-      background: linear-gradient(135deg, #ffe291, #ffc45e);
-      box-shadow: 0 7px 20px rgba(221, 153, 51, 0.24);
-    }
-
-    /* البالونات والاحتفال */
-
-    .celebration-layer {
-      position: fixed;
-      inset: 0;
-      z-index: 1000;
-      overflow: hidden;
-      pointer-events: none;
     }
 
     .confetti-piece {
-      position: absolute;
+      position: fixed;
       top: -30px;
-      width: 12px;
-      height: 18px;
-      border-radius: 3px;
-      animation: confettiFall linear forwards;
-    }
-
-    @keyframes confettiFall {
-      to {
-        transform: translateY(110vh) rotate(760deg);
-        opacity: 0.8;
-      }
+      z-index: 1000;
+      pointer-events: none;
+      animation: fall linear forwards;
     }
 
     .balloon {
-      position: absolute;
+      position: fixed;
       bottom: -140px;
-      width: 58px;
-      height: 72px;
-      border-radius: 50% 50% 47% 47%;
-      animation: balloonRise linear forwards;
-      box-shadow: inset -8px -8px 0 rgba(0, 0, 0, 0.07);
+      z-index: 999;
+      width: 46px;
+      height: 59px;
+      pointer-events: none;
+      border-radius: 50% 50% 46% 46%;
+      animation: balloonRise 4.5s ease-in forwards;
+    }
+
+    .balloon::before {
+      content: "";
+      position: absolute;
+      left: 19px;
+      bottom: -9px;
+      width: 8px;
+      height: 10px;
+      background: inherit;
+      clip-path: polygon(50% 0, 100% 100%, 0 100%);
     }
 
     .balloon::after {
       content: "";
       position: absolute;
-      right: 27px;
-      top: 70px;
+      left: 22px;
+      top: 58px;
       width: 2px;
-      height: 90px;
-      background: rgba(100, 75, 110, 0.5);
-    }
-
-    @keyframes balloonRise {
-      to {
-        transform: translateY(-125vh) translateX(25px) rotate(8deg);
-      }
+      height: 65px;
+      background: rgba(90, 70, 100, 0.45);
     }
 
     footer {
-      padding: 22px;
+      padding: 24px 15px;
+      color: #f7eff9;
+      line-height: 1.8;
       text-align: center;
-      font-size: 14px;
-      color: #7b6986;
+      background: var(--purple-dark);
+      border-top: 3px solid var(--gold);
     }
 
-    /* الجوال */
-
-    @media (max-width: 700px) {
-      header {
-        padding: 14px 5%;
+    @keyframes floatIcon {
+      0%, 100% {
+        transform: translateY(0);
       }
 
-      .logo {
-        font-size: 18px;
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    @keyframes pop {
+      from {
+        opacity: 0;
+        transform: scale(0.92);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes fall {
+      from {
+        transform: translateY(-20px) rotate(0deg);
+        opacity: 1;
+      }
+
+      to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0.9;
+      }
+    }
+
+    @keyframes balloonRise {
+      0% {
+        transform: translateY(0) rotate(-4deg);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(-125vh) rotate(8deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes trophyBounce {
+      from {
+        transform: translateY(0) rotate(-3deg);
+      }
+
+      to {
+        transform: translateY(-10px) rotate(3deg);
+      }
+    }
+
+    @media (max-width: 650px) {
+      .top-bar {
+        padding: 12px 14px;
+      }
+
+      .brand {
+        font-size: 17px;
       }
 
       .home-link {
-        padding: 8px 12px;
-        font-size: 13px;
+        padding: 9px 11px;
+        font-size: 14px;
       }
 
-      main {
-        width: 94%;
-        padding-top: 30px;
+      .hero {
+        padding: 36px 17px 32px;
       }
 
-      .page-heading h1 {
-        font-size: 28px;
-      }
-
-      .page-heading p {
-        font-size: 15px;
-      }
-
-      .screen {
-        padding: 23px 17px;
-        border-radius: 23px;
-      }
-
-      .start-screen h2,
-      .story-header h2 {
-        font-size: 23px;
-      }
-
-      .story-body {
-        padding: 17px;
-      }
-
-      .story-body p {
+      .hero p {
         font-size: 16px;
-        line-height: 2;
       }
 
-      .question-box {
-        padding: 18px 14px;
+      .container {
+        width: 94%;
+        margin-top: 22px;
       }
 
-      .answer-button {
-        font-size: 15px;
+      .welcome-card,
+      .story-area,
+      .finish-card {
+        padding: 20px 16px;
+        border-radius: 21px;
+      }
+
+      .story-text {
+        font-size: 16px;
+        line-height: 1.95;
+      }
+
+      .navigation {
+        flex-direction: column-reverse;
+      }
+
+      .nav-button {
+        width: 100%;
       }
     }
   </style>
@@ -590,290 +564,306 @@
 
 <body>
 
-  <header>
-    <div class="logo">منصة آفاق اللغة</div>
-    <a href="index.html" class="home-link">العودة للرئيسة</a>
+  <header class="top-bar">
+    <div class="brand">منصة آفاق اللغة</div>
+
+    <a class="home-link" href="index.html">
+      العودة للرئيسية
+    </a>
   </header>
 
-  <main>
+  <section class="hero">
+    <span class="hero-icon">🏆</span>
 
-    <section class="page-heading">
-      <div class="page-icon">🏆</div>
-      <h1>حكايات صنعت النجاح</h1>
-      <p>
-        ليست كل قصص النجاح تبدأ بالقوة؛ بعضها يبدأ بخوف صغير،
-        أو محاولة مترددة، ثم يصنع الإصرار منها حكاية تستحق أن تُروى.
-      </p>
-    </section>
+    <h1>حكايات صنعت النجاح</h1>
 
-    <section class="progress-container" id="progressContainer">
-      <div class="progress-information">
-        <span id="progressText">القصة الأولى من ثلاث قصص</span>
-        <span id="progressPercent">0٪</span>
-      </div>
+    <p>
+      قصص مشوّقة تثبت أن البداية الصغيرة، والصبر، والمحاولة
+      قد تصنع إنجازًا كبيرًا.
+    </p>
+  </section>
 
-      <div class="progress-track">
-        <div class="progress-bar" id="progressBar"></div>
-      </div>
-    </section>
+  <main class="container">
 
-    <!-- شاشة البداية -->
-
-    <section class="screen start-screen active" id="startScreen">
-
-      <div class="start-symbol">✨</div>
-
-      <h2>هل أنتِ مستعدة لبدء رحلة النجاح؟</h2>
+    <section class="welcome-card" id="welcomeCard">
+      <h2>أهلًا بصانعة النجاح 🌟</h2>
 
       <p>
-        اكتبي اسمكِ، ثم اقرئي الحكايات بعناية. بعد كل حكاية سيظهر لكِ
-        سؤال صغير، وكل إجابة صحيحة ستفتح لكِ باب الحكاية التالية.
+        اكتبي اسمك، ثم افتحي أبواب الحكايات واحدة بعد أخرى.
+        في كل حكاية ستجدين موقفًا، وقرارًا، وفائدة تستطيعين تطبيقها في حياتك.
       </p>
 
-      <div class="name-box">
+      <label class="name-label" for="studentName">
+        ما اسمك؟
+      </label>
 
-        <input
-          type="text"
-          id="studentName"
-          class="name-input"
-          maxlength="25"
-          placeholder="اكتبي اسمكِ هنا"
-          autocomplete="off">
+      <input
+        class="name-input"
+        id="studentName"
+        type="text"
+        maxlength="30"
+        placeholder="اكتبي اسمك هنا"
+        autocomplete="off"
+      >
 
-        <p class="warning" id="nameWarning">
-          اكتبي اسمكِ أولًا لنبدأ الرحلة.
-        </p>
+      <br>
 
-        <button type="button" class="primary-button" id="startButton">
-          هيا نبدأ 🚀
+      <button class="main-button" onclick="startStories()">
+        ابدئي الحكايات ✨
+      </button>
+    </section>
+
+    <section class="story-area" id="storyArea">
+
+      <div class="progress-wrapper">
+        <div class="progress-info">
+          <span id="progressText">الحكاية 1 من 6</span>
+          <span id="progressPercent">17٪</span>
+        </div>
+
+        <div class="progress-track">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+      </div>
+
+      <div class="story-number" id="storyNumber"></div>
+
+      <h2 class="story-title" id="storyTitle"></h2>
+
+      <div class="story-text" id="storyText"></div>
+
+      <div class="lesson-box">
+        <strong>الفائدة من الحكاية:</strong>
+        <span id="storyLesson"></span>
+      </div>
+
+      <div class="question-box">
+        <h3 id="storyQuestion"></h3>
+
+        <div class="answers" id="answers"></div>
+
+        <div class="encouragement" id="encouragement"></div>
+      </div>
+
+      <div class="navigation">
+        <button
+          class="nav-button previous-button"
+          id="previousButton"
+          onclick="previousStory()"
+        >
+          الحكاية السابقة
         </button>
 
+        <button
+          class="nav-button next-button"
+          id="nextButton"
+          onclick="nextStory()"
+          disabled
+        >
+          الحكاية التالية
+        </button>
       </div>
 
     </section>
 
-    <!-- القصة الأولى -->
+    <section class="finish-card" id="finishCard">
+      <div class="trophy">🏆</div>
 
-    <section class="screen story-screen" id="story1">
+      <h2 id="finishTitle">أحسنتِ يا صانعة النجاح!</h2>
 
-      <div class="story-header">
-        <div class="story-symbol">🌱</div>
-        <span class="story-label">الحكاية الأولى</span>
-        <h2>المحاولة التي غيّرت كل شيء</h2>
-      </div>
+      <p>
+        أتممتِ حكايات النجاح، واكتشفتِ أن الإنجاز لا يبدأ بخطوة مثالية،
+        بل يبدأ بقرار صادق ومحاولة مستمرة.
+      </p>
 
-      <div class="story-body">
+      <div class="certificate">
+        <h3>وسام صانعة النجاح</h3>
 
-        <p>
-          جلست سارة أمام ورقة الاختبار، تقرأ السؤال مرة بعد مرة،
-          بينما كانت الكلمات تتداخل أمام عينيها. لم تكن الإجابة غائبة تمامًا،
-          لكنها كانت تخشى أن تكتبها ثم تكتشف أنها أخطأت.
-        </p>
+        <div class="student-certificate-name" id="certificateName"></div>
 
         <p>
-          انتهى الوقت، وسلّمت الورقة وفي قلبها شعور ثقيل. وعندما عادت إلى
-          منزلها قالت لنفسها: «ربما أنا لا أجيد اللغة العربية، وربما لن أستطيع
-          التفوق فيها مهما حاولت».
+          لأنك قرأتِ، وفكرتِ، واخترتِ أن تبدئي بخطوة إيجابية.
         </p>
-
-        <p>
-          في اليوم التالي أعادتها معلمتها إلى السؤال نفسه، لكنها لم تطلب
-          منها الإجابة مباشرة. قالت لها: «اقرئي الجملة الأولى فقط، ثم أخبريني:
-          ماذا فهمتِ منها؟». أجابت سارة بتردد، فابتسمت المعلمة وقالت:
-          «إجابتك صحيحة، أنتِ تعرفين، لكن الخوف يسبق كلماتك».
-        </p>
-
-        <p>
-          بدأت سارة منذ ذلك اليوم عادة صغيرة: سؤال واحد كل مساء.
-          كانت تخطئ أحيانًا، لكنها لم تعد تمزق الورقة أو تغلق الكتاب.
-          كانت تكتب سبب الخطأ، ثم تحاول مرة أخرى. وبعد أسابيع دخلت اختبارًا
-          جديدًا، وكتبت إجاباتها بثبات. لم تحصل على الدرجة الكاملة،
-          لكنها حصلت على شيء أهم: ثقتها بنفسها.
-        </p>
-
       </div>
 
-      <div class="lesson-box">
-        <strong>كنز الحكاية:</strong>
-        الخطأ لا يعني أنكِ لا تستطيعين، بل يدل على المهارة التي تحتاج إلى
-        تدريب جديد.
-      </div>
-
-      <div class="question-box">
-
-        <h3>ماذا تعلّمت سارة من تجربتها؟</h3>
-
-        <p>اختاري الإجابة التي تعبّر عن الفكرة الأعمق للحكاية:</p>
-
-        <div class="answers">
-
-          <button type="button" class="answer-button"
-            data-story="1" data-correct="false">
-            النجاح يعني ألّا نخطئ أبدًا.
-          </button>
-
-          <button type="button" class="answer-button"
-            data-story="1" data-correct="true">
-            الثقة تنمو عندما نستمر في المحاولة ونتعلم من أخطائنا.
-          </button>
-
-          <button type="button" class="answer-button"
-            data-story="1" data-correct="false">
-            الأفضل ترك المادة التي نشعر بصعوبتها.
-          </button>
-
-        </div>
-
-        <div class="feedback" id="feedback1"></div>
-
-      </div>
-
-      <button type="button" class="next-button" id="next1">
-        الانتقال إلى الحكاية الثانية ←
+      <button class="main-button" onclick="restartStories()">
+        أعيدي الحكايات من البداية
       </button>
-
     </section>
 
-    <!-- القصة الثانية -->
+  </main>
 
-    <section class="screen story-screen" id="story2">
+  <footer>
+    منصة آفاق اللغة<br>
+    إعداد المعلمة إيناس محمد يحيى مدخلي
+  </footer>
 
-      <div class="story-header">
-        <div class="story-symbol">📖</div>
-        <span class="story-label">الحكاية الثانية</span>
-        <h2>حين أصبحت القراءة نافذة</h2>
-      </div>
+  <script>
+    const stories = [
+      {
+        title: "🌱 بدأت من الصفر",
+        text: `
+          <p>
+            كانت سارة تجلس في آخر الصف، وكلما كتبت المعلمة جملةً للإعراب
+            على السبورة، أسرعت إلى خفض عينيها. كانت تخشى أن تناديها المعلمة،
+            لأنها لا تعرف من أين تبدأ، وكانت ترى كلمات الجملة متشابهة ومتداخلة.
+          </p>
 
-      <div class="story-body">
+          <p>
+            في أحد الأيام قالت المعلمة: «سنختار اليوم طالبة تشرح لنا الجملة».
+            شعرت سارة أن قلبها يطرق بقوة، ثم سمعت اسمها. نهضت ببطء،
+            وتقدمت نحو السبورة وهي تمسك القلم بيد مرتجفة.
+          </p>
 
-        <p>
-          كانت ليان تقرأ النصوص بسرعة، لا لأنها تحب القراءة، بل لأنها تريد
-          الوصول إلى نهاية الصفحة. وحين تسألها المعلمة عن الفكرة الرئيسة،
-          تبحث في النص عن جملة تشبه السؤال، ثم تختارها دون أن تتأكد من معناها.
-        </p>
+          <p>
+            نظرت إلى الجملة طويلًا، ولم تقل شيئًا. انتظرت أن تسمع ضحكات،
+            لكن المعلمة ابتسمت وقالت:
+          </p>
 
-        <p>
-          ذات يوم قرأت الصف قصة عن فتاة وجدت محفظة في الطريق. توقفت المعلمة
-          قبل نهاية القصة وسألت: «ماذا تتوقعن أن تفعل الفتاة؟ وما الدليل؟».
-          رفعت ليان يدها وقالت: «ستحتفظ بها؛ لأنها كانت تحتاج المال».
-        </p>
+          <div class="quote">
+            لا تحاولي إعراب الجملة كلها دفعة واحدة؛ ابدئي بسؤال واحد:
+            هل الجملة اسمية أم فعلية؟
+          </div>
 
-        <p>
-          سألتها المعلمة بهدوء: «هل في النص ما يدل على ذلك؟». عادت ليان
-          إلى الجمل السابقة، ولاحظت أن الفتاة كانت تبحث عن صاحب كتاب وجدته
-          في يوم سابق. عندها غيّرت توقعها وقالت: «أظن أنها ستعيد المحفظة؛
-          لأن تصرفها السابق يدل على أمانتها».
-        </p>
+          <p>
+            أجابت سارة: «فعلية». سألتها المعلمة: «أين الفعل؟»
+            أشارت إليه. ثم سألتها: «ومن الذي قام بالفعل؟»
+            وفجأة وجدت سارة الفاعل بنفسها.
+          </p>
 
-        <p>
-          شعرت ليان في تلك اللحظة أن القراءة ليست كلمات تمر أمام العين،
-          بل أدلة صغيرة تقود إلى المعنى. بدأت تضع خطًا تحت الكلمات المهمة،
-          وتسأل نفسها: لماذا حدث هذا؟ وما الذي يدل عليه؟ ومع مرور الأيام
-          أصبحت تناقش النص، وتدافع عن رأيها بالشواهد، وتكتشف معاني لم تكن
-          تراها من قبل.
-        </p>
+          <p>
+            عادت إلى مقعدها وهي تفكر في تلك الخطوات. ومنذ ذلك اليوم،
+            خصصت عشر دقائق فقط كل مساء لإعراب جملة واحدة.
+            كانت تكتب الخطأ، ثم تكتب تحته التصحيح وسببَه.
+          </p>
 
-      </div>
+          <p>
+            بعد أسابيع، ظهرت في الاختبار جملة تشبه الجمل التي تدربت عليها.
+            هذه المرة لم تخفض سارة عينيها، بل ابتسمت وبدأت بالسؤال نفسه:
+            «هل الجملة اسمية أم فعلية؟»
+          </p>
+        `,
+        lesson:
+          "المهارة الصعبة تصبح أسهل عندما نقسمها إلى خطوات صغيرة واضحة ونكرر التدريب عليها.",
+        question:
+          "ما الخطوة التي ستبدئين بها اليوم؟",
+        answers: [
+          "سأتدرّب على جملة واحدة وأفهم سبب كل علامة.",
+          "سأنتظر حتى أشعر أن الإعراب أصبح سهلًا وحده.",
+          "سأكتفي بحفظ الإجابات من غير فهم."
+        ],
+        positive: 0
+      },
 
-      <div class="lesson-box">
-        <strong>كنز الحكاية:</strong>
-        القارئة الواعية لا تكتفي بالإجابة؛ بل تبحث عن الدليل الذي يجعل
-        إجابتها أقوى.
-      </div>
+      {
+        title: "✍️ الخطأ الذي لم تخجل منه",
+        text: `
+          <p>
+            كانت ريم تحب المشاركة، لكنها توقفت عنها بعد أن أخطأت في قراءة
+            كلمة أمام زميلاتها. صححت لها المعلمة الكلمة، إلا أن ريم سمعت
+            ضحكة خافتة من آخر الصف، فشعرت بالخجل وجلست بسرعة.
+          </p>
 
-      <div class="question-box">
+          <p>
+            في الأيام التالية كانت تعرف كثيرًا من الإجابات، لكنها لا ترفع يدها.
+            كانت تقول في نفسها: «ماذا لو أخطأت مرة أخرى؟»
+          </p>
 
-        <h3>ما التغيّر الحقيقي الذي حدث لليان؟</h3>
+          <p>
+            لاحظت المعلمة صمتها، فوضعت على طاولتها ورقة صغيرة كُتب فيها:
+          </p>
 
-        <p>اختاري الإجابة الأدق:</p>
+          <div class="quote">
+            الطالبة التي لا تخطئ لا تتعلم شيئًا جديدًا،
+            لأنها لا تحاول شيئًا جديدًا.
+          </div>
 
-        <div class="answers">
+          <p>
+            احتفظت ريم بالورقة في دفترها. وفي الحصة التالية سألت المعلمة
+            سؤالًا صعبًا. عرفت ريم نصف الإجابة فقط، لكنها رفعت يدها.
+            بدأت كلامها ثم توقفت، فقالت المعلمة: «أكملي، أنتِ قريبة جدًا».
+          </p>
 
-          <button type="button" class="answer-button"
-            data-story="2" data-correct="false">
-            أصبحت تقرأ النصوص بسرعة أكبر فقط.
-          </button>
+          <p>
+            أخطأت ريم في كلمة، ثم صححتها بنفسها. لم يضحك أحد هذه المرة،
+            بل سمعت زميلة تقول: «كنت أفكر في الإجابة نفسها».
+          </p>
 
-          <button type="button" class="answer-button"
-            data-story="2" data-correct="false">
-            أصبحت تحفظ الجمل الطويلة كما هي.
-          </button>
+          <p>
+            أصبحت ريم بعد ذلك تسجل أخطاءها في صفحة سمتها:
+            «أخطاء جعلتني أفضل». وكلما تعلمت من خطأ، وضعت بجانبه نجمة.
+            وبعد مدة امتلأت الصفحة بالنجوم، واختفى خوفها من المشاركة.
+          </p>
+        `,
+        lesson:
+          "الخطأ ليس دليلًا على ضعفك، بل فرصة تكشف لك ما تحتاجين إلى تعلمه.",
+        question:
+          "كيف ستتعاملين مع خطئك القادم؟",
+        answers: [
+          "سأخفيه وأتوقف عن المشاركة.",
+          "سأعرف سببه وأحاول مرة أخرى بثقة.",
+          "سألوم السؤال وأترك التدريب."
+        ],
+        positive: 1
+      },
 
-          <button type="button" class="answer-button"
-            data-story="2" data-correct="true">
-            أصبحت تفهم النص وتربط استنتاجاتها بالأدلة والشواهد.
-          </button>
+      {
+        title: "⏰ الدقائق التي غيّرت النتيجة",
+        text: `
+          <p>
+            كانت ليان تؤجل المذاكرة حتى الليلة الأخيرة. تفتح الكتاب،
+            وترى الدروس الكثيرة، فتشعر أن الوقت انتهى قبل أن تبدأ.
+            كانت تذاكر ساعات متأخرة، ثم تدخل الاختبار متعبة ومتوترة.
+          </p>
 
-        </div>
+          <p>
+            بعد نتيجة لم ترضها، قررت أن تجرب طريقة مختلفة.
+            لم تضع خطة طويلة، ولم تقل إنها ستدرس ثلاث ساعات يوميًا.
+            بل كتبت في أعلى دفترها:
+          </p>
 
-        <div class="feedback" id="feedback2"></div>
+          <div class="quote">
+            عشرون دقيقة الآن، خير من ثلاث ساعات مؤجلة.
+          </div>
 
-      </div>
+          <p>
+            في اليوم الأول راجعت قاعدة واحدة. وفي اليوم الثاني حلت خمسة أسئلة.
+            وفي اليوم الثالث قرأت فقرة وحددت الكلمات الجديدة.
+            كانت المهمة قصيرة، لذلك لم تجد سببًا لتأجيلها.
+          </p>
 
-      <button type="button" class="next-button" id="next2">
-        الانتقال إلى الحكاية الثالثة ←
-      </button>
+          <p>
+            بعد أسبوعين لاحظت أنها أصبحت تدخل الحصة وهي تعرف موضوع الدرس،
+            وتفهم أسئلة المعلمة بسرعة أكبر. ولم تعد ليلة الاختبار مخيفة،
+            لأنها لم تكن تبدأ من الصفر.
+          </p>
 
-    </section>
+          <p>
+            وعندما ظهرت النتيجة الجديدة، لم تكن المفاجأة في ارتفاع الدرجة فقط،
+            بل في شعور ليان بالهدوء. أدركت أن النجاح لم يأتِ في ليلة واحدة،
+            بل صنعته دقائق صغيرة تجمعت يومًا بعد يوم.
+          </p>
+        `,
+        lesson:
+          "الوقت القصير المنتظم يصنع نتيجة أكبر من المذاكرة الطويلة المتقطعة.",
+        question:
+          "ما القرار الأنسب بعد قراءة الحكاية؟",
+        answers: [
+          "سأحدد وقتًا قصيرًا ثابتًا للمراجعة كل يوم.",
+          "سأؤجل كل شيء إلى ليلة الاختبار.",
+          "سأضع خطة صعبة ثم أتركها بعد يوم."
+        ],
+        positive: 0
+      },
 
-    <!-- القصة الثالثة -->
+      {
+        title: "📚 الكلمة التي فتحت الباب",
+        text: `
+          <p>
+            لم تكن هدى تحب القراءة، لأنها كانت تتوقف عند كل كلمة لا تعرف معناها.
+            كانت تشعر أن النص طويل، وأن فهمه يحتاج إلى قاموس ضخم ووقت كثير.
+          </p>
 
-    <section class="screen story-screen" id="story3">
-
-      <div class="story-header">
-        <div class="story-symbol">✍️</div>
-        <span class="story-label">الحكاية الثالثة</span>
-        <h2>الكلمة التي انتظرت صاحبتها</h2>
-      </div>
-
-      <div class="story-body">
-
-        <p>
-          كانت نورة تحب كتابة الخواطر، لكنها كانت تخفي أوراقها داخل الدرج.
-          كلما كتبت سطرًا أعجبها، عادت فقرأته بعين قاسية، ثم قالت:
-          «من سيهتم بكلماتي؟ هناك من يكتب أفضل مني بكثير».
-        </p>
-
-        <p>
-          أعلنت المدرسة عن مسابقة بعنوان «رسالة إلى المستقبل»، وشجعتها
-          زميلتها على المشاركة. كتبت نورة مسودة طويلة، ثم حذفت معظمها.
-          حاولت مرة ثانية، لكنها لم ترسل النص. وفي الليلة الأخيرة قبل
-          انتهاء التسجيل، وجدت ورقة قديمة كتبت عليها:
-          «لن تعرفي إلى أين تصل كلماتكِ ما دمتِ تحبسينها في الدرج».
-        </p>
-
-        <p>
-          جلست نورة بهدوء، وقرأت نصها كأنها تقرأه لصديقة لا لنفسها.
-          رتبت الأفكار، وحذفت العبارات المكررة، واختارت عنوانًا أكثر تأثيرًا،
-          ثم ضغطت زر الإرسال قبل انتهاء الوقت بدقائق.
-        </p>
-
-        <p>
-          لم تكن تتوقع الفوز، لكنها فوجئت بإعلان اسمها في الإذاعة المدرسية.
-          والأجمل أن إحدى الطالبات أخبرتها أن رسالتها منحتها أملًا في وقت
-          كانت تحتاج إليه. عندها فهمت نورة أن نجاح الكلمة لا يقاس بالجائزة
-          وحدها، بل بالأثر الذي تتركه في قلب من يقرؤها.
-        </p>
-
-      </div>
-
-      <div class="lesson-box">
-        <strong>كنز الحكاية:</strong>
-        الموهبة لا تكبر وهي مختبئة؛ تحتاج إلى شجاعة التجربة، ثم المراجعة
-        والتطوير.
-      </div>
-
-      <div class="question-box">
-
-        <h3>ما الرسالة الأبرز في قصة نورة؟</h3>
-
-        <p>اختاري الإجابة الأصوب:</p>
-
-        <div class="answers">
-
-          <button type="button" class="answer-button"
-            data-story="3" data-correct="true">
-            مشاركة الموهبة وتطويرها قد يصنعان أثرًا يتجاوز توقعاتنا.
-          </button>
-
-          <button type="button" class
+          <p>
+            طلبت منها المعلمة أن تقرأ قصة قصيرة، فاختارت هدى أقصر قصة وجدتها.
+            وفي أول صفحة
