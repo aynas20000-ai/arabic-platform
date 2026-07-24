@@ -3,9 +3,12 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-  <title>مختبر أسلوب القسم</title>
+  <title>روائع أسلوب القسم</title>
 
   <style>
     * {
@@ -23,277 +26,162 @@
       margin: 0;
       padding: 12px;
       font-family: Tahoma, Arial, sans-serif;
-      background: linear-gradient(180deg, #f1f7ff, #fff8f0);
-      color: #29384b;
-      line-height: 1.8;
-      min-height: 100vh;
+      background: linear-gradient(180deg, #f4f8ff, #fff9f2);
+      color: #334155;
+      line-height: 1.9;
     }
 
     .container {
       width: 100%;
-      max-width: 800px;
+      max-width: 850px;
       margin: auto;
     }
 
     .hero {
-      background: linear-gradient(135deg, #5946c8, #268ebc);
+      background: linear-gradient(135deg, #5b4bc4, #288db8);
       color: white;
       text-align: center;
-      padding: 24px 15px;
-      border-radius: 24px;
-      box-shadow: 0 8px 20px rgba(74, 71, 188, 0.2);
-      margin-bottom: 18px;
+      padding: 26px 16px;
+      border-radius: 25px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 20px rgba(65, 76, 175, 0.22);
     }
 
     .hero h1 {
-      margin: 0 0 7px;
-      font-size: 27px;
+      margin: 0 0 8px;
+      font-size: 28px;
     }
 
     .hero p {
       margin: 0;
-      font-size: 16px;
-    }
-
-    .progress-card,
-    .lab-card {
-      background: white;
-      border-radius: 20px;
-      padding: 16px;
-      margin-bottom: 16px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-    }
-
-    .progress-info {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      font-weight: bold;
-      margin-bottom: 9px;
-    }
-
-    .track {
-      width: 100%;
-      height: 12px;
-      border-radius: 20px;
-      background: #e8edf4;
-      overflow: hidden;
-    }
-
-    .bar {
-      width: 0;
-      height: 100%;
-      background: linear-gradient(90deg, #42bb78, #82dda9);
-      transition: width 0.4s ease;
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 6px 12px;
-      border-radius: 20px;
-      background: #eeeaff;
-      color: #624db5;
-      font-weight: bold;
-      margin-bottom: 12px;
+      font-size: 17px;
     }
 
     .title {
+      background: linear-gradient(135deg, #df743d, #f2a25f);
+      color: white;
+      padding: 13px;
+      border-radius: 17px;
       text-align: center;
-      color: #30445c;
+      margin-top: 24px;
       font-size: 22px;
-      margin: 6px 0 16px;
     }
 
-    .instruction {
-      background: #fff5d7;
-      border-right: 5px solid #dfa72c;
-      border-radius: 13px;
-      padding: 12px;
-      margin-bottom: 15px;
+    .card {
+      background: white;
+      padding: 16px;
+      border-radius: 19px;
+      margin: 14px 0;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
+    }
+
+    .verse,
+    .reflection,
+    .value,
+    .warning,
+    .example {
+      padding: 14px;
+      border-radius: 14px;
+      margin: 12px 0;
+    }
+
+    .verse {
+      background: #f1edff;
+      border-right: 5px solid #795fc3;
+      font-size: 19px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .reflection {
+      background: #edf7ff;
+      border-right: 5px solid #438fcf;
+    }
+
+    .value {
+      background: #edf9ef;
+      border-right: 5px solid #63a974;
+    }
+
+    .warning {
+      background: #fff0f0;
+      border-right: 5px solid #d85f5f;
     }
 
     .example {
-      background: #edf7ff;
-      border-right: 5px solid #438fcf;
-      border-radius: 13px;
-      padding: 12px;
-      margin: 11px 0;
+      background: #fff6d8;
+      border-right: 5px solid #dda82f;
     }
 
-    .parts {
-      display: grid;
-      gap: 10px;
-      margin-top: 13px;
+    .label {
+      color: #5b4bc4;
+      font-weight: bold;
     }
 
-    .part {
-      background: #f6f2ff;
+    .correct {
+      color: #178146;
+      font-weight: bold;
+    }
+
+    .wrong {
+      color: #c0392b;
+      font-weight: bold;
+    }
+
+    details {
+      background: #faf7ff;
       border: 2px solid #d8ccef;
-      border-radius: 13px;
-      padding: 12px;
-      text-align: center;
-    }
-
-    .part strong {
-      color: #6a4eb1;
-    }
-
-    .answers {
-      display: grid;
-      gap: 11px;
-      margin-top: 14px;
-    }
-
-    button {
-      font-family: inherit;
-    }
-
-    .answer,
-    .next,
-    .restart {
-      width: 100%;
       border-radius: 15px;
       padding: 13px;
-      font-size: 18px;
+      margin: 13px 0;
+    }
+
+    summary {
       cursor: pointer;
+      color: #684ba3;
+      font-weight: bold;
+      font-size: 17px;
     }
 
-    .answer {
-      background: #f8fbff;
-      border: 2px solid #d9e5ef;
-      color: #29384b;
-    }
-
-    .answer.correct {
-      background: #e9faef;
-      border-color: #39ad6c;
-      color: #187343;
-      animation: pop 0.4s ease;
-    }
-
-    .answer.wrong {
-      background: #fff0f1;
-      border-color: #df626d;
-      color: #b42f3c;
-      animation: shake 0.4s ease;
-    }
-
-    .feedback {
-      display: none;
-      margin-top: 14px;
-      padding: 12px;
-      border-radius: 13px;
+    .pledge {
+      background: linear-gradient(135deg, #eef8ff, #f1fff4);
+      border: 2px dashed #65a6c9;
+      border-radius: 17px;
+      padding: 17px;
+      margin-top: 17px;
       text-align: center;
       font-weight: bold;
-    }
-
-    .feedback.success {
-      display: block;
-      background: #e9faef;
-      color: #187343;
-    }
-
-    .feedback.error {
-      display: block;
-      background: #fff0f1;
-      color: #b42f3c;
-    }
-
-    .next,
-    .restart {
-      display: none;
-      border: 0;
-      background: linear-gradient(135deg, #5946c8, #268ebc);
-      color: white;
-      font-weight: bold;
-      margin-top: 13px;
-    }
-
-    .result {
-      display: none;
-      text-align: center;
-    }
-
-    .score {
-      width: 135px;
-      height: 135px;
-      margin: 18px auto;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #ffcf61, #ff8b92);
-      color: white;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      box-shadow: 0 8px 18px rgba(255, 139, 146, 0.25);
-    }
-
-    .score strong {
-      font-size: 36px;
     }
 
     .back {
       display: block;
-      width: 100%;
-      margin-top: 12px;
-      padding: 13px;
+      width: fit-content;
+      max-width: 100%;
+      margin: 30px auto 10px;
+      padding: 13px 23px;
+      background: #5b4bc4;
+      color: white;
+      text-decoration: none;
       border-radius: 15px;
       text-align: center;
-      text-decoration: none;
-      background: #edf7ff;
-      color: #27779a;
-      border: 2px solid #b8ddea;
       font-weight: bold;
-    }
-
-    .confetti {
-      position: fixed;
-      top: -20px;
-      width: 9px;
-      height: 17px;
-      border-radius: 3px;
-      pointer-events: none;
-      z-index: 9999;
-      animation: fall linear forwards;
-    }
-
-    @keyframes pop {
-      50% {
-        transform: scale(1.04);
-      }
-    }
-
-    @keyframes shake {
-      25% {
-        transform: translateX(-7px);
-      }
-
-      50% {
-        transform: translateX(7px);
-      }
-
-      75% {
-        transform: translateX(-4px);
-      }
-    }
-
-    @keyframes fall {
-      to {
-        transform: translateY(110vh) rotate(700deg);
-        opacity: 0.8;
-      }
     }
 
     @media (max-width: 600px) {
       .hero h1 {
-        font-size: 23px;
+        font-size: 24px;
       }
 
       .title {
         font-size: 20px;
       }
 
-      .answer {
-        font-size: 17px;
+      .card {
+        padding: 14px;
+      }
+
+      .verse {
+        font-size: 18px;
       }
     }
   </style>
@@ -304,341 +192,347 @@
   <div class="container">
 
     <div class="hero">
-      <h1>🧩 مختبر أسلوب القسم</h1>
+      <h1>✨ روائع أسلوب القسم</h1>
+
       <p>
-        اكتشفي عناصر القسم، وركّبي الجمل،
-        وصحّحي الأخطاء بنفسك
+        نتأمل جمال القسم في القرآن الكريم،
+        ونربطه بالقيم والسلوك المسؤول
       </p>
     </div>
 
-    <div class="progress-card">
+    <h2 class="title">
+      لماذا يُعدّ القسم من جماليات العربية؟
+    </h2>
 
-      <div class="progress-info">
-        <span id="stepText">المهمة 1 من 6</span>
-        <span id="pointsText">النقاط: 0</span>
+    <div class="card">
+
+      <div class="reflection">
+        استخدم العرب القسم لتقوية الكلام،
+        وتأكيد الخبر، وإظهار الصدق والعزم.
       </div>
 
-      <div class="track">
-        <div class="bar" id="bar"></div>
+      <div class="example">
+        الجملة العادية:
+        <br>
+        سأحافظ على الأمانة.
+      </div>
+
+      <div class="verse">
+        واللهِ لأحافظنَّ على الأمانة.
+      </div>
+
+      <div class="value">
+        نلاحظ أن الجملة الثانية أقوى،
+        لأنها تحمل توكيدًا والتزامًا واضحًا.
       </div>
 
     </div>
 
-    <div class="lab-card" id="labCard">
+    <h2 class="title">
+      من روائع القسم في القرآن الكريم
+    </h2>
 
-      <div class="badge" id="badge">اكتشفي العناصر</div>
+    <div class="card">
 
-      <h2 class="title" id="taskTitle"></h2>
-
-      <div class="instruction" id="instruction"></div>
-
-      <div id="content"></div>
-
-      <div class="answers" id="answers"></div>
-
-      <div class="feedback" id="feedback"></div>
-
-      <button class="next" id="nextButton">
-        المهمة التالية ←
-      </button>
-
-    </div>
-
-    <div class="lab-card result" id="result">
-
-      <h2>🎉 أنهيتِ مختبر القسم</h2>
-
-      <div class="score">
-        <strong id="finalScore">0/6</strong>
-        <span>النتيجة</span>
+      <div class="verse">
+        ﴿وَالْعَصْرِ﴾
       </div>
 
-      <p id="message"></p>
+      <div class="reflection">
+        أقسم الله بالعصر، وفي ذلك لفتٌ للنظر
+        إلى قيمة الزمن وعِظم شأنه.
+      </div>
 
-      <button class="restart" id="restartButton">
-        إعادة المختبر
-      </button>
+      <div class="verse">
+        ﴿وَالضُّحَى ۝ وَاللَّيْلِ إِذَا سَجَى﴾
+      </div>
 
-      <a class="back" href="oath-style.html">
-        العودة إلى درس القسم
-      </a>
+      <div class="reflection">
+        يجمع القسم بين الضحى والليل،
+        في مشهد يذكّر بتعاقب النور والسكون.
+      </div>
+
+      <div class="verse">
+        ﴿وَالشَّمْسِ وَضُحَاهَا﴾
+      </div>
+
+      <div class="reflection">
+        يفتح القسم بالشمس باب التأمل
+        في ضيائها ونظامها وعظمة خالقها.
+      </div>
+
+      <div class="verse">
+        ﴿وَالْفَجْرِ ۝ وَلَيَالٍ عَشْرٍ﴾
+      </div>
+
+      <div class="reflection">
+        يوجّه القسم النظر إلى الزمن المبارك
+        وإلى ما يحمله من معانٍ عظيمة.
+      </div>
+
+      <div class="verse">
+        ﴿وَالتِّينِ وَالزَّيْتُونِ﴾
+      </div>
+
+      <div class="reflection">
+        قسمٌ بمخلوقات نافعة،
+        يدعو إلى التأمل في نعم الله.
+      </div>
 
     </div>
+
+    <h2 class="title">
+      لله أن يُقسم بما شاء
+    </h2>
+
+    <div class="card">
+
+      <div class="value">
+        لله سبحانه أن يقسم بما شاء من مخلوقاته؛
+        لأنها آيات تدل على قدرته وعظمته.
+      </div>
+
+      <div class="example">
+        أقسم الله بالزمن:
+        العصر، الفجر، الليل، الضحى.
+      </div>
+
+      <div class="example">
+        وأقسم بمخلوقات:
+        الشمس، القمر، التين، الزيتون.
+      </div>
+
+      <div class="reflection">
+        عندما نقرأ القسم في القرآن،
+        نسأل أنفسنا:
+        لماذا اختير هذا المقسم به؟
+        وما المعنى العظيم الذي جاء بعده؟
+      </div>
+
+    </div>
+
+    <h2 class="title">
+      الإنسان لا يقسم إلا بالله
+    </h2>
+
+    <div class="card">
+
+      <div class="warning">
+        لا يجوز للإنسان أن يحلف بمخلوق،
+        فلا يقول:
+        وحياتي، والأمانة، والنبي، والكعبة.
+      </div>
+
+      <div class="value">
+        الصيغة الصحيحة:
+        <br>
+        <span class="correct">واللهِ</span>
+        أو
+        <span class="correct">باللهِ</span>
+        أو
+        <span class="correct">تاللهِ</span>.
+      </div>
+
+      <div class="example">
+        <span class="wrong">وحياة أمي لأصدقنَّ.</span>
+        <br>
+        الصواب:
+        <span class="correct">واللهِ لأصدقنَّ.</span>
+      </div>
+
+      <div class="example">
+        <span class="wrong">والأمانة لن أخون.</span>
+        <br>
+        الصواب:
+        <span class="correct">باللهِ لن أخون الأمانة.</span>
+      </div>
+
+    </div>
+
+    <h2 class="title">
+      القسم مسؤولية وليس عادة
+    </h2>
+
+    <div class="card">
+
+      <div class="value">
+        المسلم لا يكثر من الحلف،
+        ولا يستعمل القسم في المزاح،
+        ولا يحلف كاذبًا.
+      </div>
+
+      <div class="warning">
+        القسم الكاذب ذنب عظيم؛
+        لأنه يجمع بين الكذب وتعظيم اسم الله
+        في غير موضع الحق.
+      </div>
+
+      <div class="reflection">
+        من جمال اللسان:
+        أن يكون الكلام صادقًا وواضحًا،
+        فلا يحتاج صاحبه إلى كثرة الأيمان.
+      </div>
+
+    </div>
+
+    <h2 class="title">
+      عدسة المتأملة
+    </h2>
+
+    <div class="card">
+
+      <details>
+        <summary>
+          تأملي: ﴿وَالْعَصْرِ﴾
+        </summary>
+
+        <p>
+          ما القيمة التي يوحي بها القسم بالعصر؟
+          <br>
+          يوحي بأهمية الوقت،
+          وأن عمر الإنسان رأس ماله.
+        </p>
+      </details>
+
+      <details>
+        <summary>
+          تأملي: ﴿وَالشَّمْسِ وَضُحَاهَا﴾
+        </summary>
+
+        <p>
+          ماذا تلاحظين في الشمس؟
+          <br>
+          الضوء، والدفء، والنظام،
+          ودقة حركتها بأمر الله.
+        </p>
+      </details>
+
+      <details>
+        <summary>
+          تأملي: ﴿وَاللَّيْلِ إِذَا يَغْشَى﴾
+        </summary>
+
+        <p>
+          ما الجمال في هذا التعبير؟
+          <br>
+          يصوّر الليل كأنه يغطي الكون بهدوء.
+        </p>
+      </details>
+
+      <details>
+        <summary>
+          تأملي: ﴿وَالضُّحَى﴾
+        </summary>
+
+        <p>
+          ما الشعور الذي يوحي به الضحى؟
+          <br>
+          النور، والأمل، والانشراح،
+          وبداية الحركة والنشاط.
+        </p>
+      </details>
+
+    </div>
+
+    <h2 class="title">
+      اكتشفي المقسم به
+    </h2>
+
+    <div class="card">
+
+      <div class="example">
+        ﴿وَالْفَجْرِ﴾
+        <br>
+        <span class="label">المقسم به:</span>
+        الفجر.
+      </div>
+
+      <div class="example">
+        ﴿وَالشَّمْسِ وَضُحَاهَا﴾
+        <br>
+        <span class="label">المقسم به:</span>
+        الشمس.
+      </div>
+
+      <div class="example">
+        ﴿وَالْعَصْرِ﴾
+        <br>
+        <span class="label">المقسم به:</span>
+        العصر.
+      </div>
+
+      <div class="example">
+        ﴿وَالتِّينِ وَالزَّيْتُونِ﴾
+        <br>
+        <span class="label">المقسم به:</span>
+        التين والزيتون.
+      </div>
+
+    </div>
+
+    <h2 class="title">
+      مواقف من الحياة
+    </h2>
+
+    <div class="card">
+
+      <div class="example">
+        قالت طالبة:
+        «واللهِ لأحافظنَّ على صلاتي».
+        <br>
+        هذا قسم بالله على عمل صالح.
+      </div>
+
+      <div class="warning">
+        قال شخص:
+        «وحياتي لن أتأخر».
+        <br>
+        الخطأ أنه حلف بحياته،
+        والصواب أن يحلف بالله وحده.
+      </div>
+
+      <div class="warning">
+        يكرر شخص:
+        «والله، والله»
+        في كل حديث.
+        <br>
+        الأفضل أن يصون اسم الله
+        وألا يجعل الحلف عادة.
+      </div>
+
+      <div class="value">
+        من حلف على أمر،
+        فعليه أن يصدق ويحفظ يمينه،
+        وألا يتهاون بكلامه.
+      </div>
+
+    </div>
+
+    <h2 class="title">
+      ميثاق لساني
+    </h2>
+
+    <div class="card">
+
+      <div class="pledge">
+        أعاهد نفسي أن أصدق في كلامي،
+        وألا أحلف إلا بالله،
+        وألا أحلف كاذبة،
+        وألا أجعل القسم عادة في كل حديث.
+      </div>
+
+    </div>
+
+    <div class="value">
+      ⭐ روعة أسلوب القسم ليست في قوته اللغوية فقط،
+      بل في الصدق والمسؤولية والقيمة التي يحملها.
+    </div>
+
+    <a class="back" href="oath-style.html">
+      العودة إلى درس أسلوب القسم
+    </a>
 
   </div>
-
-  <script>
-    const tasks = [
-      {
-        badge: "اكتشفي العناصر",
-        title: "حددي أداة القسم",
-        instruction:
-          "في الجملة الآتية اختاري أداة القسم:",
-        content:
-          '<div class="example">واللهِ لأحافظنَّ على الأمانة.</div>',
-        answers: ["الله", "الواو", "لأحافظنّ"],
-        correct: "الواو",
-        feedback:
-          "الواو هي أداة القسم، ولفظ الجلالة هو المُقسم به."
-      },
-      {
-        badge: "حللي الجملة",
-        title: "حددي جواب القسم",
-        instruction:
-          "ما جواب القسم في الجملة التالية؟",
-        content:
-          '<div class="example">تاللهِ لأساعدنَّ المحتاج.</div>',
-        answers: ["تالله", "لأساعدنّ المحتاج", "المحتاج"],
-        correct: "لأساعدنّ المحتاج",
-        feedback:
-          "جواب القسم هو الجملة التي توضح الأمر الذي أقسم عليه المتكلم."
-      },
-      {
-        badge: "ركّبي الأسلوب",
-        title: "اختاري الجملة الصحيحة",
-        instruction:
-          "أي الجمل الآتية تمثل أسلوب قسم مكتملًا؟",
-        content: "",
-        answers: [
-          "واللهِ الصدق جميل.",
-          "واللهِ لأقولنَّ الصدق.",
-          "أقول الصدق دائمًا."
-        ],
-        correct: "واللهِ لأقولنَّ الصدق.",
-        feedback:
-          "الجملة مكتملة؛ فيها أداة قسم، ومُقسم به، وجواب قسم."
-      },
-      {
-        badge: "صححي الخلل",
-        title: "اكتشفي الخطأ",
-        instruction:
-          "أي صياغة هي الأصح؟",
-        content:
-          '<div class="example">والله سوف أجتهد في دراستي.</div>',
-        answers: [
-          "واللهِ لأجتهدنَّ في دراستي.",
-          "والله أجتهد في دراستي.",
-          "الله سوف أجتهد."
-        ],
-        correct: "واللهِ لأجتهدنَّ في دراستي.",
-        feedback:
-          "جواب القسم المثبت يأتي غالبًا مؤكدًا باللام ونون التوكيد."
-      },
-      {
-        badge: "اختاري للموقف",
-        title: "موقف حياتي",
-        instruction:
-          "طالبة تريد تأكيد التزامها بالمحافظة على الوقت. ما التعبير الأنسب؟",
-        content: "",
-        answers: [
-          "الوقت مهم.",
-          "واللهِ لأحافظنَّ على وقتي.",
-          "هل أحافظ على وقتي؟"
-        ],
-        correct: "واللهِ لأحافظنَّ على وقتي.",
-        feedback:
-          "أسلوب القسم مناسب عندما نريد توكيد الالتزام أو الخبر."
-      },
-      {
-        badge: "تحدي المعنى",
-        title: "ما أثر أسلوب القسم؟",
-        instruction:
-          "لماذا نقول: واللهِ لأوفينَّ بوعدي؟",
-        content: "",
-        answers: [
-          "للتعبير عن السؤال.",
-          "لتوكيد الوفاء بالوعد.",
-          "للتعبير عن التعجب."
-        ],
-        correct: "لتوكيد الوفاء بالوعد.",
-        feedback:
-          "الغرض الأساسي من أسلوب القسم هو التوكيد وتقوية المعنى."
-      }
-    ];
-
-    let current = 0;
-    let points = 0;
-    let answered = false;
-
-    const badge = document.getElementById("badge");
-    const taskTitle = document.getElementById("taskTitle");
-    const instruction = document.getElementById("instruction");
-    const content = document.getElementById("content");
-    const answers = document.getElementById("answers");
-    const feedback = document.getElementById("feedback");
-    const nextButton = document.getElementById("nextButton");
-    const stepText = document.getElementById("stepText");
-    const pointsText = document.getElementById("pointsText");
-    const bar = document.getElementById("bar");
-    const labCard = document.getElementById("labCard");
-    const result = document.getElementById("result");
-    const restartButton = document.getElementById("restartButton");
-
-    function loadTask() {
-      answered = false;
-
-      const task = tasks[current];
-
-      badge.textContent = task.badge;
-      taskTitle.textContent = task.title;
-      instruction.textContent = task.instruction;
-      content.innerHTML = task.content;
-      answers.innerHTML = "";
-
-      feedback.className = "feedback";
-      feedback.textContent = "";
-      nextButton.style.display = "none";
-
-      stepText.textContent =
-        `المهمة ${current + 1} من ${tasks.length}`;
-
-      pointsText.textContent = `النقاط: ${points}`;
-
-      bar.style.width =
-        `${(current / tasks.length) * 100}%`;
-
-      task.answers.forEach(choice => {
-        const button = document.createElement("button");
-
-        button.className = "answer";
-        button.textContent = choice;
-
-        button.addEventListener("click", () => {
-          checkAnswer(button, choice);
-        });
-
-        answers.appendChild(button);
-      });
-    }
-
-    function checkAnswer(button, choice) {
-      if (answered) {
-        return;
-      }
-
-      answered = true;
-
-      const task = tasks[current];
-      const buttons = document.querySelectorAll(".answer");
-
-      buttons.forEach(item => {
-        item.disabled = true;
-
-        if (item.textContent === task.correct) {
-          item.classList.add("correct");
-        }
-      });
-
-      if (choice === task.correct) {
-        points++;
-        button.classList.add("correct");
-
-        feedback.className = "feedback success";
-        feedback.innerHTML =
-          `أحسنتِ 🌟<br>${task.feedback}`;
-
-        pointsText.textContent = `النقاط: ${points}`;
-        celebrate(45);
-      } else {
-        button.classList.add("wrong");
-
-        feedback.className = "feedback error";
-        feedback.innerHTML =
-          `محاولة جيدة 🌷<br>${task.feedback}`;
-      }
-
-      nextButton.style.display = "block";
-
-      if (current === tasks.length - 1) {
-        nextButton.textContent = "عرض النتيجة 🎯";
-      } else {
-        nextButton.textContent = "المهمة التالية ←";
-      }
-    }
-
-    nextButton.addEventListener("click", () => {
-      current++;
-
-      if (current < tasks.length) {
-        loadTask();
-      } else {
-        showResult();
-      }
-    });
-
-    function showResult() {
-      labCard.style.display = "none";
-      result.style.display = "block";
-
-      bar.style.width = "100%";
-      stepText.textContent = "اكتمل المختبر";
-      pointsText.textContent = `النقاط: ${points}`;
-
-      document.getElementById("finalScore").textContent =
-        `${points}/${tasks.length}`;
-
-      const message = document.getElementById("message");
-
-      if (points === tasks.length) {
-        message.textContent =
-          "ممتازة! أتقنتِ أسلوب القسم وعناصره 🏆";
-        celebrate(110);
-      } else if (points >= 4) {
-        message.textContent =
-          "نتيجة رائعة، بقيت لمسات بسيطة 🌟";
-        celebrate(75);
-      } else {
-        message.textContent =
-          "بداية جميلة، أعيدي المختبر وستتحسن النتيجة 🌷";
-        celebrate(40);
-      }
-
-      restartButton.style.display = "block";
-    }
-
-    restartButton.addEventListener("click", () => {
-      current = 0;
-      points = 0;
-      answered = false;
-
-      result.style.display = "none";
-      labCard.style.display = "block";
-
-      loadTask();
-    });
-
-    function celebrate(amount) {
-      const colors = [
-        "#ff4f81",
-        "#ffd23f",
-        "#3ec6e0",
-        "#6edb75",
-        "#875cff",
-        "#ff7c43"
-      ];
-
-      for (let i = 0; i < amount; i++) {
-        const piece = document.createElement("span");
-
-        piece.className = "confetti";
-        piece.style.left = `${Math.random() * 100}vw`;
-        piece.style.background =
-          colors[Math.floor(Math.random() * colors.length)];
-        piece.style.animationDuration =
-          `${2.3 + Math.random() * 2}s`;
-        piece.style.animationDelay =
-          `${Math.random() * 0.3}s`;
-
-        document.body.appendChild(piece);
-
-        setTimeout(() => {
-          piece.remove();
-        }, 5000);
-      }
-    }
-
-    loadTask();
-  </script>
 
 </body>
 
