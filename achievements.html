@@ -1,29 +1,40 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>قصص نجاح | منصة آفاق اللغة</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+  <title>حكايات صنعت النجاح | منصة آفاق اللغة</title>
 
   <style>
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
     :root {
-      --purple-dark: #4f3b72;
-      --purple: #705596;
-      --purple-soft: #eee8f6;
-      --purple-light: #faf7fd;
-      --gold: #b79a5b;
-      --gold-light: #eadcb9;
-      --text: #30283a;
+      --purple-dark: #60358b;
+      --purple: #8651ad;
+      --purple-light: #f1e7fa;
+      --gold: #efa83f;
+      --gold-light: #fff4d9;
+      --green: #3b9b78;
+      --green-light: #eaf8f2;
+      --blue: #4f86b9;
+      --blue-light: #eaf3fb;
+      --rose: #c96c86;
+      --rose-light: #fff0f4;
+      --text: #57495f;
       --white: #ffffff;
-      --green: #4d8b68;
-      --red-soft: #f7e8ec;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -31,402 +42,375 @@
       font-family: Tahoma, Arial, sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at top right, #eee5f8 0, transparent 34%),
-        radial-gradient(circle at bottom left, #f5ead5 0, transparent 30%),
-        linear-gradient(135deg, #faf8fd, #f5f0fa);
-      line-height: 1.9;
-      overflow-x: hidden;
+        radial-gradient(circle at top right, #fff1cf, transparent 33%),
+        radial-gradient(circle at bottom left, #eadcff, transparent 42%),
+        linear-gradient(135deg, #fffdf8, #f8f1ff);
     }
 
-    .top-bar {
-      background: linear-gradient(135deg, var(--purple-dark), var(--purple));
-      color: var(--white);
-      text-align: center;
-      padding: 32px 18px 42px;
-      border-bottom: 5px solid var(--gold);
-      position: relative;
-      overflow: hidden;
+    /* الشريط العلوي */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 17px 6%;
+      color: white;
+      background: linear-gradient(135deg, #60358b, #9b61c4);
+      box-shadow: 0 5px 20px rgba(75, 38, 105, 0.2);
     }
 
-    .top-bar::before,
-    .top-bar::after {
-      content: "✦";
-      position: absolute;
-      color: rgba(255, 255, 255, 0.18);
-      font-size: 70px;
-    }
-
-    .top-bar::before {
-      right: 7%;
-      top: 6px;
-    }
-
-    .top-bar::after {
-      left: 7%;
-      bottom: -12px;
-    }
-
-    .top-bar h1 {
-      font-size: clamp(28px, 7vw, 46px);
-      margin-bottom: 8px;
-    }
-
-    .top-bar p {
-      max-width: 720px;
-      margin: auto;
-      font-size: 17px;
-      color: #f6f0ff;
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
     }
 
     .home-link {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 9px 20px;
-      border: 1px solid var(--gold-light);
-      border-radius: 30px;
-      color: var(--white);
+      padding: 9px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.42);
+      border-radius: 25px;
+      color: white;
       text-decoration: none;
-      background: rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.14);
       transition: 0.3s;
     }
 
     .home-link:hover {
-      background: var(--gold);
-      transform: translateY(-2px);
+      color: var(--purple-dark);
+      background: white;
     }
+
+    /* محتوى الصفحة */
 
     main {
-      width: min(920px, 92%);
-      margin: -22px auto 45px;
-      position: relative;
-      z-index: 2;
+      width: min(980px, 92%);
+      margin: auto;
+      padding: 48px 0 65px;
     }
 
-    .intro-card {
-      background: var(--white);
-      border: 2px solid var(--gold-light);
-      border-radius: 24px;
-      padding: 24px;
+    .hero {
+      margin-bottom: 35px;
       text-align: center;
-      box-shadow: 0 12px 30px rgba(79, 59, 114, 0.12);
-      margin-bottom: 22px;
+    }
+
+    .hero-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 88px;
+      height: 88px;
+      margin: 0 auto 16px;
+      border-radius: 50%;
+      font-size: 44px;
+      background: linear-gradient(135deg, #ffd978, #ef9b42);
+      box-shadow: 0 10px 27px rgba(222, 139, 43, 0.27);
+      animation: floating 2.5s ease-in-out infinite;
+    }
+
+    @keyframes floating {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-7px);
+      }
+    }
+
+    .hero h1 {
+      margin-bottom: 13px;
+      font-size: 37px;
+      color: var(--purple-dark);
+    }
+
+    .hero p {
+      max-width: 730px;
+      margin: auto;
+      font-size: 17px;
+      line-height: 2;
+      color: #75667d;
+    }
+
+    /* مقدمة القصص */
+
+    .intro-card {
+      margin-bottom: 30px;
+      padding: 24px;
+      border-radius: 24px;
+      text-align: center;
+      background: linear-gradient(135deg, #75459f, #9d68c4);
+      color: white;
+      box-shadow: 0 12px 30px rgba(89, 48, 120, 0.19);
     }
 
     .intro-card h2 {
-      color: var(--purple-dark);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       font-size: 24px;
     }
 
     .intro-card p {
-      color: #655d6f;
+      line-height: 1.9;
+      color: #f7effc;
     }
 
-    .progress-area {
-      background: var(--white);
-      border-radius: 18px;
-      padding: 16px 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 8px 22px rgba(79, 59, 114, 0.09);
-    }
+    /* بطاقات القصص */
 
-    .progress-text {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 15px;
-      margin-bottom: 10px;
-      font-weight: bold;
-      color: var(--purple-dark);
-    }
-
-    .progress-track {
-      height: 13px;
-      background: var(--purple-soft);
-      border-radius: 20px;
-      overflow: hidden;
-    }
-
-    .progress-fill {
-      width: 25%;
-      height: 100%;
-      border-radius: 20px;
-      background: linear-gradient(90deg, var(--gold), #d5bd7c);
-      transition: width 0.6s ease;
+    .stories-list {
+      display: grid;
+      gap: 27px;
     }
 
     .story-card {
-      display: none;
-      background: var(--white);
-      border: 2px solid var(--gold-light);
-      border-radius: 27px;
-      padding: clamp(20px, 5vw, 38px);
-      box-shadow: 0 16px 38px rgba(79, 59, 114, 0.14);
-      animation: storyAppear 0.55s ease;
+      position: relative;
+      overflow: hidden;
+      padding: 31px;
+      border: 1px solid rgba(118, 74, 148, 0.1);
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.97);
+      box-shadow: 0 13px 35px rgba(76, 42, 101, 0.13);
+      transition: 0.35s;
     }
 
-    .story-card.active {
-      display: block;
-    }
-
-    @keyframes storyAppear {
-      from {
-        opacity: 0;
-        transform: translateY(20px) scale(0.98);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
+    .story-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 42px rgba(76, 42, 101, 0.18);
     }
 
     .story-number {
-      display: inline-block;
-      background: var(--purple-soft);
-      color: var(--purple-dark);
-      border-radius: 20px;
-      padding: 5px 14px;
-      font-size: 14px;
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      color: white;
       font-weight: bold;
-      margin-bottom: 12px;
+      background: linear-gradient(135deg, #71409c, #a068c7);
+      box-shadow: 0 6px 15px rgba(102, 56, 139, 0.22);
     }
 
-    .story-title {
+    .story-heading {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 21px;
+      padding-left: 50px;
+    }
+
+    .story-icon {
+      display: flex;
+      flex: 0 0 65px;
+      align-items: center;
+      justify-content: center;
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      font-size: 33px;
+      background: linear-gradient(135deg, #f0e5fb, #fff1d7);
+    }
+
+    .story-title small {
+      display: block;
+      margin-bottom: 5px;
+      color: #9474a7;
+      font-size: 13px;
+    }
+
+    .story-title h2 {
+      font-size: 26px;
       color: var(--purple-dark);
-      font-size: clamp(25px, 6vw, 35px);
-      margin-bottom: 20px;
-      border-bottom: 2px dashed var(--gold-light);
-      padding-bottom: 12px;
     }
 
-    .story-content p {
+    .story-text {
+      padding: 22px;
+      border-right: 5px solid #9b66bf;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #fffdf9, #fbf7ff);
+    }
+
+    .story-text p {
       margin-bottom: 15px;
       font-size: 17px;
+      line-height: 2.15;
+      color: #5f5268;
     }
 
-    .dialogue {
-      background: var(--purple-light);
-      border-right: 5px solid var(--gold);
-      border-radius: 14px;
-      padding: 14px 18px;
-      color: var(--purple-dark);
-      font-weight: bold;
-      margin: 18px 0;
+    .story-text p:last-child {
+      margin-bottom: 0;
     }
 
-    .lesson-box {
-      margin-top: 24px;
+    /* الفائدة */
+
+    .lesson {
+      margin-top: 21px;
       padding: 18px;
       border-radius: 18px;
-      background: linear-gradient(135deg, #faf5e9, #fffdf8);
-      border: 1px solid var(--gold-light);
+      line-height: 1.9;
     }
 
-    .lesson-box h3 {
-      color: #80652d;
-      margin-bottom: 6px;
-    }
-
-    .question-box {
-      margin-top: 20px;
-      background: var(--purple-light);
-      border-radius: 20px;
-      padding: 20px;
-    }
-
-    .question-box h3 {
-      color: var(--purple-dark);
-      text-align: center;
-      margin-bottom: 15px;
-    }
-
-    .choices {
-      display: grid;
-      gap: 11px;
-    }
-
-    .choice-btn {
-      width: 100%;
-      border: 2px solid #d8cae8;
-      background: var(--white);
-      color: var(--text);
-      padding: 14px 16px;
-      border-radius: 15px;
-      font-family: inherit;
-      font-size: 16px;
-      cursor: pointer;
-      transition: 0.25s;
-      text-align: right;
-    }
-
-    .choice-btn:hover {
-      border-color: var(--gold);
-      background: #fffcf4;
-      transform: translateY(-2px);
-    }
-
-    .choice-btn:disabled {
-      cursor: default;
-      opacity: 0.75;
-    }
-
-    .choice-btn.selected {
-      border-color: var(--green);
-      background: #edf8f1;
-      color: #285c3d;
-      font-weight: bold;
-    }
-
-    .feedback {
-      display: none;
-      margin-top: 17px;
-      padding: 17px;
-      border-radius: 16px;
-      text-align: center;
-      font-weight: bold;
-      animation: pop 0.4s ease;
-    }
-
-    .feedback.show {
+    .lesson strong {
       display: block;
-    }
-
-    .feedback.success {
-      background: #eaf7ef;
-      color: #296044;
-      border: 1px solid #b9dec8;
-    }
-
-    .feedback.encourage {
-      background: var(--red-soft);
-      color: #7e4452;
-      border: 1px solid #e7c5cf;
-    }
-
-    @keyframes pop {
-      0% {
-        transform: scale(0.9);
-        opacity: 0;
-      }
-
-      100% {
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
-
-    .next-btn {
-      display: none;
-      margin: 20px auto 0;
-      border: none;
-      border-radius: 30px;
-      padding: 13px 26px;
-      font-family: inherit;
-      font-size: 17px;
-      font-weight: bold;
-      cursor: pointer;
-      color: var(--white);
-      background: linear-gradient(135deg, var(--purple), var(--purple-dark));
-      box-shadow: 0 7px 18px rgba(79, 59, 114, 0.22);
-      transition: 0.25s;
-    }
-
-    .next-btn.show {
-      display: block;
-    }
-
-    .next-btn:hover {
-      transform: translateY(-3px);
-    }
-
-    .final-card {
-      display: none;
-      text-align: center;
-      background: var(--white);
-      border: 3px solid var(--gold);
-      border-radius: 28px;
-      padding: 42px 22px;
-      box-shadow: 0 16px 38px rgba(79, 59, 114, 0.15);
-      animation: storyAppear 0.6s ease;
-    }
-
-    .final-card.show {
-      display: block;
-    }
-
-    .final-icon {
-      font-size: 65px;
       margin-bottom: 5px;
-    }
-
-    .final-card h2 {
-      color: var(--purple-dark);
-      font-size: 31px;
-      margin-bottom: 10px;
-    }
-
-    .final-card p {
-      font-size: 18px;
-      max-width: 650px;
-      margin: auto;
-    }
-
-    .restart-btn {
-      margin-top: 22px;
-      border: none;
-      background: var(--gold);
-      color: var(--white);
-      font-family: inherit;
-      font-weight: bold;
       font-size: 17px;
-      padding: 12px 25px;
-      border-radius: 28px;
-      cursor: pointer;
     }
 
-    .celebration-piece {
-      position: fixed;
-      top: -50px;
-      z-index: 9999;
-      pointer-events: none;
-      animation: fall linear forwards;
+    .lesson-purple {
+      color: #604079;
+      border-right: 5px solid #8f5cb1;
+      background: var(--purple-light);
     }
 
-    @keyframes fall {
-      0% {
-        transform: translateY(-10vh) rotate(0deg);
-        opacity: 1;
-      }
+    .lesson-gold {
+      color: #6c4d22;
+      border-right: 5px solid var(--gold);
+      background: var(--gold-light);
+    }
 
-      100% {
-        transform: translateY(115vh) rotate(720deg);
-        opacity: 0.9;
-      }
+    .lesson-green {
+      color: #24684f;
+      border-right: 5px solid var(--green);
+      background: var(--green-light);
+    }
+
+    .lesson-blue {
+      color: #315f85;
+      border-right: 5px solid var(--blue);
+      background: var(--blue-light);
+    }
+
+    .lesson-rose {
+      color: #7c4052;
+      border-right: 5px solid var(--rose);
+      background: var(--rose-light);
+    }
+
+    /* الخاتمة */
+
+    .closing-card {
+      margin-top: 35px;
+      padding: 30px 24px;
+      border-radius: 26px;
+      text-align: center;
+      color: white;
+      background: linear-gradient(135deg, #71419c, #a46bc8);
+      box-shadow: 0 13px 32px rgba(88, 47, 119, 0.2);
+    }
+
+    .closing-card .closing-icon {
+      margin-bottom: 11px;
+      font-size: 50px;
+    }
+
+    .closing-card h2 {
+      margin-bottom: 10px;
+      font-size: 25px;
+    }
+
+    .closing-card p {
+      max-width: 700px;
+      margin: auto;
+      font-size: 16px;
+      line-height: 1.9;
+      color: #f9f1fd;
     }
 
     footer {
+      padding: 23px;
       text-align: center;
-      padding: 23px 15px;
-      color: #6a6075;
+      color: #796a82;
       font-size: 14px;
     }
 
-    @media (max-width: 600px) {
-      .top-bar {
-        padding-top: 25px;
+    /* الجوال */
+
+    @media (max-width: 700px) {
+      header {
+        padding: 14px 5%;
       }
 
-      .story-content p {
-        font-size: 16px;
+      .logo {
+        font-size: 18px;
       }
 
-      .choice-btn {
+      .home-link {
+        padding: 8px 12px;
+        font-size: 13px;
+      }
+
+      main {
+        width: 94%;
+        padding-top: 33px;
+      }
+
+      .hero h1 {
+        font-size: 29px;
+      }
+
+      .hero p {
         font-size: 15px;
       }
 
-      .progress-text {
+      .intro-card {
+        padding: 21px 17px;
+      }
+
+      .intro-card h2 {
+        font-size: 21px;
+      }
+
+      .story-card {
+        padding: 24px 17px;
+        border-radius: 23px;
+      }
+
+      .story-number {
+        top: 13px;
+        left: 13px;
+        width: 37px;
+        height: 37px;
         font-size: 14px;
+      }
+
+      .story-heading {
+        align-items: flex-start;
+        padding-left: 38px;
+      }
+
+      .story-icon {
+        flex-basis: 56px;
+        width: 56px;
+        height: 56px;
+        font-size: 29px;
+      }
+
+      .story-title h2 {
+        font-size: 22px;
+        line-height: 1.5;
+      }
+
+      .story-text {
+        padding: 18px 15px;
+      }
+
+      .story-text p {
+        font-size: 16px;
+        line-height: 2;
+      }
+
+      .lesson {
+        padding: 16px 14px;
+        font-size: 15px;
+      }
+
+      .closing-card {
+        padding: 25px 17px;
       }
     }
   </style>
@@ -434,411 +418,415 @@
 
 <body>
 
-  <header class="top-bar">
-    <h1>🏆 حكايات صنعت النجاح</h1>
+  <header>
+    <div class="logo">منصة آفاق اللغة</div>
 
-    <p>
-      قصص ملهمة تثبت أن البداية الصغيرة، مع الاستمرار والثقة،
-      قد تصنع إنجازًا كبيرًا.
-    </p>
-
-    <a class="home-link" href="index.html">
-      العودة إلى الصفحة الرئيسية
+    <a href="index.html" class="home-link">
+      العودة للرئيسة
     </a>
   </header>
 
   <main>
 
+    <section class="hero">
+
+      <div class="hero-icon">🏆</div>
+
+      <h1>حكايات صنعت النجاح</h1>
+
+      <p>
+        خمس حكايات قريبة من حياة الطالبة، بدأت كل واحدة منها
+        بمشكلة صغيرة، ثم تحولت بالصبر والمحاولة وطلب المعرفة
+        إلى خطوة حقيقية نحو النجاح.
+      </p>
+
+    </section>
+
     <section class="intro-card">
-      <h2>هل أنتِ مستعدة لاكتشاف أسرار النجاح؟</h2>
+
+      <h2>كل مشكلة تحمل في داخلها بداية الحل</h2>
 
       <p>
-        اقرئي كل قصة بهدوء، ثم اختاري الخطوة التي ستبدئين بها.
-        قد تجدين في إحدى الحكايات بداية قصتك أنتِ.
+        اقرئي كل حكاية بهدوء، وتأملي كيف تغيّرت بطلتها عندما قررت
+        أن تبدأ بخطوة بسيطة بدل أن تنتظر أن تختفي الصعوبة وحدها.
       </p>
+
     </section>
 
-    <section class="progress-area" id="progressArea">
-      <div class="progress-text">
-        <span id="progressLabel">القصة الأولى</span>
-        <span id="progressCount">1 من 4</span>
-      </div>
+    <section class="stories-list">
 
-      <div class="progress-track">
-        <div class="progress-fill" id="progressFill"></div>
-      </div>
+      <!-- القصة الأولى -->
+
+      <article class="story-card">
+
+        <span class="story-number">١</span>
+
+        <div class="story-heading">
+
+          <div class="story-icon">📖</div>
+
+          <div class="story-title">
+            <small>قصة عن القراءة</small>
+            <h2>حين صارت الكلمات واضحة</h2>
+          </div>
+
+        </div>
+
+        <div class="story-text">
+
+          <p>
+            كانت ريم تشعر بالقلق كلما طلبت المعلمة من الطالبات قراءة
+            نص طويل. تبدأ السطور أمامها واضحة، ثم تتداخل الكلمات بسرعة،
+            فتصل إلى نهاية الصفحة دون أن تعرف ما الفكرة التي قرأتها.
+          </p>
+
+          <p>
+            كانت تنظر إلى زميلاتها وهن يرفعن أيديهن للإجابة، وتقول في
+            نفسها: «ربما أنا بطيئة، وربما القراءة ليست لي». لذلك أصبحت
+            تتجنب المشاركة، وتختار دائمًا أقصر الأسئلة حتى لا تضطر إلى
+            العودة للنص.
+          </p>
+
+          <p>
+            لاحظت معلمتها ذلك، فأعطتها نصًا صغيرًا، وطلبت منها ألا تقرأه
+            كاملًا. قالت لها: «اقرئي الفقرة الأولى فقط، ثم اكتبي كلمة واحدة
+            تعبّر عن فكرتها». استغربت ريم من بساطة المطلوب، لكنها قرأت
+            بتركيز وكتبت: «الأمل».
+          </p>
+
+          <p>
+            في اليوم التالي قرأت فقرتين، ووضعت خطًا تحت الكلمات المهمة.
+            وبعد أيام بدأت تتوقف بعد كل فقرة وتسأل نفسها: من؟ ماذا حدث؟
+            ولماذا؟ شيئًا فشيئًا لم تعد الصفحة الطويلة تبدو مخيفة، بل
+            أصبحت مجموعة أفكار صغيرة تستطيع فهمها واحدة بعد الأخرى.
+          </p>
+
+          <p>
+            وفي إحدى الحصص سألت المعلمة عن الفكرة الرئيسة لنص جديد.
+            رفعت ريم يدها قبل أن يسبقها الخوف، وأجابت بثقة. ابتسمت
+            المعلمة وقالت: «لم تتغير الكلمات يا ريم، الذي تغيّر هو طريقتك
+            في الاقتراب منها».
+          </p>
+
+        </div>
+
+        <div class="lesson lesson-purple">
+
+          <strong>الفائدة من القصة:</strong>
+
+          القراءة لا تحتاج إلى سرعة بقدر ما تحتاج إلى هدوء وتركيز.
+          تقسيم النص إلى فقرات، وتحديد الكلمات المهمة، وطرح أسئلة بسيطة
+          يجعل الفهم أسهل وأعمق.
+
+        </div>
+
+      </article>
+
+      <!-- القصة الثانية -->
+
+      <article class="story-card">
+
+        <span class="story-number">٢</span>
+
+        <div class="story-heading">
+
+          <div class="story-icon">✍️</div>
+
+          <div class="story-title">
+            <small>قصة عن الكتابة</small>
+            <h2>الرسالة التي لم تكتمل</h2>
+          </div>
+
+        </div>
+
+        <div class="story-text">
+
+          <p>
+            كانت جنى تحب الأفكار الجميلة، لكنها حين تمسك القلم تشعر أن
+            جميع الكلمات تختفي. تبدأ بكتابة سطر، ثم تمسحه، وتكتب جملة
+            أخرى، ثم تقرر أنها ضعيفة ولا تصلح لتكون بداية.
+          </p>
+
+          <p>
+            طلبت المعلمة من الطالبات كتابة رسالة بعنوان «إلى نفسي في
+            المستقبل». عادت جنى إلى المنزل، وفتحت دفترها، ثم ظلت تنظر
+            إلى الصفحة البيضاء وقتًا طويلًا. كتبت: «أتمنى أن أكون ناجحة»،
+            لكنها شعرت أن العبارة عادية، فأغلقت الدفتر.
+          </p>
+
+          <p>
+            في اليوم التالي سألتها زميلتها: «لماذا تحاولين كتابة الرسالة
+            كاملة من أول مرة؟ اكتبي أفكارك أولًا ولو كانت غير مرتبة».
+            أخذت جنى ورقة صغيرة، وكتبت كلمات متفرقة: الجامعة، الثقة،
+            أمي، القراءة، الخوف، الحلم.
+          </p>
+
+          <p>
+            عندما رأت الكلمات أمامها، بدأت تربط بينها. كتبت مقدمة قصيرة،
+            ثم تحدثت عن خوفها، ثم عن الحلم الذي تريد الوصول إليه.
+            لم تكن الرسالة مثالية، لكنها أصبحت موجودة. بعد ذلك قرأتها
+            مرة أخرى، وحذفت التكرار، واستبدلت بعض الكلمات، وأضافت خاتمة
+            صادقة.
+          </p>
+
+          <p>
+            حين قرأت المعلمة الرسالة قالت: «أجمل ما فيها أنها تشبهك».
+            فهمت جنى يومها أن الكتابة لا تولد كاملة، بل تبدأ بفكرة صغيرة،
+            ثم تنمو بالمراجعة والصبر.
+          </p>
+
+        </div>
+
+        <div class="lesson lesson-gold">
+
+          <strong>الفائدة من القصة:</strong>
+
+          لا تنتظري الجملة المثالية. اكتبي الأفكار أولًا، ثم رتبيها،
+          وبعد ذلك راجعي أسلوبك. الكتابة الجيدة لا تأتي من المحاولة
+          الأولى، بل من التعديل والتطوير.
+
+        </div>
+
+      </article>
+
+      <!-- القصة الثالثة -->
+
+      <article class="story-card">
+
+        <span class="story-number">٣</span>
+
+        <div class="story-heading">
+
+          <div class="story-icon">🔍</div>
+
+          <div class="story-title">
+            <small>قصة عن الإعراب</small>
+            <h2>الكلمة التي غيّرت موقعها</h2>
+          </div>
+
+        </div>
+
+        <div class="story-text">
+
+          <p>
+            كانت هدى تحفظ علامات الإعراب، لكنها حين ترى جملة جديدة
+            تشعر أن القواعد كلها تختلط. تعرف أن الفاعل مرفوع، والمفعول
+            به منصوب، لكنها لا تعرف كيف تميز بينهما داخل الجملة.
+          </p>
+
+          <p>
+            كتبت المعلمة على السبورة: «قرأَتِ الطالبةُ القصةَ».
+            طلبت من هدى إعراب كلمة «الطالبة»، فترددت ثم قالت:
+            «مفعول به». لم تضحك المعلمة، بل سألتها: «من التي قرأت؟».
+            أجابت هدى بسرعة: «الطالبة».
+          </p>
+
+          <p>
+            قالت المعلمة: «إذن نحن لا نبحث أولًا عن الحركة، بل نبحث
+            عن وظيفة الكلمة. من قام بالفعل فهو الفاعل، وما وقع عليه
+            الفعل فهو المفعول به».
+          </p>
+
+          <p>
+            ثم غيّرت المعلمة الجملة إلى: «كرّمتِ المدرسةُ الطالبةَ».
+            لاحظت هدى أن كلمة «الطالبة» بقيت نفسها، لكن موقعها ومعناها
+            تغيّرا. في الجملة الأولى قامت بالفعل، وفي الثانية وقع عليها
+            الفعل.
+          </p>
+
+          <p>
+            بدأت هدى منذ ذلك اليوم تسأل قبل كل إعراب: ما الفعل؟
+            من قام به؟ على من وقع؟ ومع التدريب، لم تعد الحركات رموزًا
+            منفصلة، بل أصبحت إشارات تكشف علاقة الكلمات بعضها ببعض.
+          </p>
+
+          <p>
+            وفي الاختبار التالي كتبت الإعراب بثبات، ثم ابتسمت عندما
+            تذكرت عبارتها القديمة: «الإعراب صعب». لقد اكتشفت أنه يشبه
+            حل لغز، وكل كلمة فيه تحمل دليلًا على موقعها.
+          </p>
+
+        </div>
+
+        <div class="lesson lesson-green">
+
+          <strong>الفائدة من القصة:</strong>
+
+          الإعراب لا يعتمد على حفظ الحركة فقط، بل على فهم معنى الجملة
+          ووظيفة كل كلمة. اسألي: من فعل؟ وماذا وقع عليه الفعل؟
+          ثم اختاري العلامة الإعرابية المناسبة.
+
+        </div>
+
+      </article>
+
+      <!-- القصة الرابعة -->
+
+      <article class="story-card">
+
+        <span class="story-number">٤</span>
+
+        <div class="story-heading">
+
+          <div class="story-icon">⏰</div>
+
+          <div class="story-title">
+            <small>قصة عن الملل والاستذكار</small>
+            <h2>خمسة عشر دقيقة صنعت الفرق</h2>
+          </div>
+
+        </div>
+
+        <div class="story-text">
+
+          <p>
+            كانت دانة تؤجل مذاكرتها كل يوم. حين تعود إلى المنزل تقول:
+            «سأرتاح قليلًا»، ثم تمسك هاتفها، ويمر الوقت سريعًا.
+            وعندما تتذكر واجباتها تكون متعبة، فتقرر أن تبدأ غدًا.
+          </p>
+
+          <p>
+            قبل الاختبارات بأسبوع فتحت كتبها، فشعرت أن الدروس كثيرة
+            وأن الوقت قصير. قرأت صفحتين، ثم أصابها الملل، فأغلقت الكتاب
+            وقالت: «لا أستطيع التركيز».
+          </p>
+
+          <p>
+            في ذلك المساء جلست بجوار أختها الكبرى، وأخبرتها بما تشعر.
+            لم تطلب منها أختها أن تدرس ساعات طويلة، بل قالت:
+            «اضبطي المؤقت على خمس عشرة دقيقة فقط. اختاري مهمة واحدة،
+            وبعدها خذي استراحة قصيرة».
+          </p>
+
+          <p>
+            اختارت دانة مراجعة قاعدة واحدة. انتهت الدقائق الخمس عشرة،
+            فاكتشفت أنها فهمت أكثر مما توقعت. استراحت خمس دقائق،
+            ثم بدأت جلسة أخرى وحلت ثلاثة أسئلة.
+          </p>
+
+          <p>
+            خلال الأيام التالية كتبت خطة صغيرة: قراءة، تلخيص، حل،
+            ثم مراجعة. كانت تضع علامة بجانب كل مهمة تنتهي منها،
+            وأصبحت تلك العلامات تمنحها شعورًا بالإنجاز.
+          </p>
+
+          <p>
+            في يوم الاختبار لم تكن قد درست طوال الليل، ولم تشعر
+            بالفوضى المعتادة. دخلت بهدوء؛ لأن الدقائق الصغيرة التي
+            كانت تستهين بها اجتمعت وصنعت فرقًا كبيرًا.
+          </p>
+
+        </div>
+
+        <div class="lesson lesson-blue">
+
+          <strong>الفائدة من القصة:</strong>
+
+          الملل والتسويف يقلان عندما نقسم المهمة الكبيرة إلى خطوات
+          قصيرة وواضحة. ابدئي بخمس عشرة دقيقة ومهمة واحدة، فالاستمرار
+          القليل أفضل من انتظار حماس قد لا يأتي.
+
+        </div>
+
+      </article>
+
+      <!-- القصة الخامسة -->
+
+      <article class="story-card">
+
+        <span class="story-number">٥</span>
+
+        <div class="story-heading">
+
+          <div class="story-icon">🔑</div>
+
+          <div class="story-title">
+            <small>قصة عن طلب العلم والمعرفة</small>
+            <h2>الباب الذي لم تطرقه</h2>
+          </div>
+
+        </div>
+
+        <div class="story-text">
+
+          <p>
+            كانت لمى تظن أن الطالبة الذكية تعرف الإجابة من أول مرة،
+            لذلك كانت تخجل من السؤال. إذا لم تفهم كلمة أو فكرة،
+            تهز رأسها كأنها فهمت، ثم تعود إلى المنزل وفي ذهنها
+            أسئلة كثيرة.
+          </p>
+
+          <p>
+            في أحد الأيام طلبت المعلمة مشروعًا عن أثر اللغة في حياة
+            الإنسان. بحثت لمى في أول موقع ظهر أمامها، ونسخت بعض العبارات
+            دون أن تفهمها. وحين بدأت تعرض مشروعها، سألتها المعلمة:
+            «ماذا تعني هذه العبارة؟».
+          </p>
+
+          <p>
+            سكتت لمى، وشعرت بالإحراج. وبعد الحصة قالت لها المعلمة:
+            «الجهل بالسؤال ليس عيبًا، لكن ترك السؤال هو الذي يغلق باب
+            المعرفة. الباحثة الحقيقية لا تكتفي بأول إجابة».
+          </p>
+
+          <p>
+            عادت لمى إلى مشروعها، وبدأت من جديد. سألت معلمتها عن الكتب
+            المناسبة، واستعارت كتابًا من المكتبة، ثم قارنت بين أكثر
+            من مصدر. كتبت الكلمات التي لم تفهمها، وبحثت عن معانيها،
+            وسألت زميلة تجيد تنظيم العروض.
+          </p>
+
+          <p>
+            هذه المرة لم يكن مشروعها مليئًا بالكلمات المعقدة،
+            لكنه كان واضحًا وصادقًا. وحين قدمته أمام الصف، أجابت
+            عن الأسئلة بثقة؛ لأنها لم تحفظ المعلومات فقط، بل بحثت
+            عنها وفهمتها.
+          </p>
+
+          <p>
+            أدركت لمى أن المعرفة ليست بابًا يفتح وحده، وأن السؤال
+            والمطالعة والبحث مفاتيح نحملها معنا. ومنذ ذلك اليوم
+            أصبحت تكتب في دفتر صغير عنوانًا ثابتًا:
+            «ما الذي أريد أن أعرفه اليوم؟».
+          </p>
+
+        </div>
+
+        <div class="lesson lesson-rose">
+
+          <strong>الفائدة من القصة:</strong>
+
+          طلب العلم يبدأ بالسؤال، ثم البحث في المصادر الموثوقة،
+          والقراءة والمقارنة. لا تخجلي من قول «لا أعرف»، فهي ليست
+          نهاية المعرفة، بل بدايتها.
+
+        </div>
+
+      </article>
+
     </section>
 
+    <section class="closing-card">
 
-    <!-- القصة الأولى -->
-    <article class="story-card active">
+      <div class="closing-icon">✨</div>
 
-      <span class="story-number">القصة الأولى</span>
-
-      <h2 class="story-title">🌱 بدأت من الصفر</h2>
-
-      <div class="story-content">
-
-        <p>
-          كانت سارة تجلس في آخر الصف، وكلما كتبت المعلمة سؤالًا في
-          الإعراب على السبورة، خفضت رأسها وانشغلت بترتيب أقلامها.
-          لم تكن تكره اللغة العربية، لكنها كانت تشعر أن الجمل
-          تتحول أمامها إلى لغز لا تعرف بدايته.
-        </p>
-
-        <p>
-          وفي أحد الأيام، طلبت المعلمة من سارة أن تقرأ جملة قصيرة
-          ثم تحدد الفعل والفاعل. ارتبكت سارة، وشعرت أن جميع
-          زميلاتها ينتظرن إجابتها. حاولت أن تتكلم، لكن الكلمات
-          اختفت من ذاكرتها.
-        </p>
-
-        <div class="dialogue">
-          ابتسمت المعلمة وقالت:
-          لا تبحثي عن الإجابة كلها مرة واحدة، ابدئي بخطوة واحدة فقط.
-          اسألي نفسك: هل الجملة اسمية أم فعلية؟
-        </div>
-
-        <p>
-          نظرت سارة إلى الجملة مرة أخرى، ثم قالت بصوت متردد:
-          فعلية. سألتها المعلمة عن الفعل، فوجدته. ثم سألتها:
-          من الذي قام بالفعل؟ أشارت سارة إلى الفاعل، وفجأة لم تعد
-          الجملة مخيفة كما كانت.
-        </p>
-
-        <p>
-          في ذلك المساء، وضعت سارة خطة صغيرة. لم تقل إنها ستتقن
-          الإعراب في يوم واحد، بل قررت أن تعرب جملة واحدة كل يوم.
-          كانت تخطئ أحيانًا، فتكتب الخطأ وسببه في ورقة خاصة.
-        </p>
-
-        <p>
-          بعد أسابيع، ظهرت في الاختبار جملة تشبه الجمل التي تدربت
-          عليها. بدأت بالسؤال نفسه: اسمية أم فعلية؟ ثم حددت الفعل
-          والفاعل وأكملت الإعراب بثقة. وحين ظهرت درجتها، ابتسمت؛
-          لأنها أدركت أن النجاح بدأ بجملة واحدة فقط.
-        </p>
-
-      </div>
-
-      <div class="lesson-box">
-        <h3>💡 الفائدة من القصة</h3>
-        <p>
-          لا تنتظري أن تتقني المهارة كلها من المحاولة الأولى.
-          قسّميها إلى خطوات صغيرة، وكرريها حتى تصبح سهلة.
-        </p>
-      </div>
-
-      <div class="question-box">
-        <h3>ما الخطوة التي ستبدئين بها اليوم؟</h3>
-
-        <div class="choices">
-          <button class="choice-btn" data-positive="true">
-            سأبدأ بتدريب صغير واحد اليوم.
-          </button>
-
-          <button class="choice-btn">
-            سأنتظر حتى أشعر أن الدرس أصبح سهلًا.
-          </button>
-
-          <button class="choice-btn">
-            سأترك السؤال عندما أخطئ من المحاولة الأولى.
-          </button>
-        </div>
-
-        <div class="feedback"></div>
-
-        <button class="next-btn">
-          اكتشفي القصة التالية ←
-        </button>
-      </div>
-
-    </article>
-
-
-    <!-- القصة الثانية -->
-    <article class="story-card">
-
-      <span class="story-number">القصة الثانية</span>
-
-      <h2 class="story-title">⏰ الدقائق التي صنعت الفرق</h2>
-
-      <div class="story-content">
-
-        <p>
-          كانت نورة تعود من المدرسة وهي تردد دائمًا:
-          سأبدأ المذاكرة بعد قليل. تضع حقيبتها جانبًا، وتمسك هاتفها
-          لدقائق، ثم تكتشف أن الوقت مر سريعًا وأن المساء أوشك
-          على الانتهاء.
-        </p>
-
-        <p>
-          قبل أحد الاختبارات بيوم، فتحت كتابها متأخرة، فرأت الدروس
-          كثيرة والأسئلة متشابهة. بدأت تنتقل من صفحة إلى أخرى،
-          ولم تعرف ماذا تراجع أولًا. شعرت بالتوتر، وحصلت في اليوم
-          التالي على درجة أقل مما كانت تتمنى.
-        </p>
-
-        <p>
-          لم تلُم نورة صعوبة المادة هذه المرة. جلست مع نفسها
-          وسألت: أين يضيع وقتي؟ اكتشفت أن المشكلة لم تكن في عدد
-          الساعات، بل في انتظار اللحظة المثالية للمذاكرة.
-        </p>
-
-        <div class="dialogue">
-          كتبت في أعلى ورقة صغيرة:
-          لن أنتظر وقتًا طويلًا؛ سأبدأ بعشرين دقيقة فقط.
-        </div>
-
-        <p>
-          في اليوم التالي، ضبطت مؤقتًا لعشرين دقيقة، وأغلقت كل ما
-          يشتت انتباهها. راجعت قاعدة واحدة، ثم حلت ثلاثة أسئلة.
-          وحين انتهى الوقت، شعرت أنها أنجزت شيئًا حقيقيًا.
-        </p>
-
-        <p>
-          كررت الأمر كل يوم. أحيانًا كانت تكتفي بعشرين دقيقة،
-          وأحيانًا تتحمس فتواصل أكثر. وبعد فترة، أصبحت تدخل
-          الاختبار وهي مطمئنة؛ لأن المراجعة لم تعد مهمة ضخمة
-          تؤجلها، بل عادة صغيرة تعرف موعدها.
-        </p>
-
-      </div>
-
-      <div class="lesson-box">
-        <h3>💡 الفائدة من القصة</h3>
-        <p>
-          البداية القصيرة أفضل من التسويف الطويل.
-          عشرون دقيقة بتركيز قد تصنع فرقًا أكبر من ساعات مشتتة.
-        </p>
-      </div>
-
-      <div class="question-box">
-        <h3>كيف ستتغلبين على التأجيل؟</h3>
-
-        <div class="choices">
-          <button class="choice-btn" data-positive="true">
-            سأحدد وقتًا قصيرًا وواضحًا للمذاكرة اليوم.
-          </button>
-
-          <button class="choice-btn">
-            سأنتظر حتى أشعر بحماس كبير للمذاكرة.
-          </button>
-
-          <button class="choice-btn">
-            سأفتح أكثر من مهمة في الوقت نفسه.
-          </button>
-        </div>
-
-        <div class="feedback"></div>
-
-        <button class="next-btn">
-          اكتشفي القصة التالية ←
-        </button>
-      </div>
-
-    </article>
-
-
-    <!-- القصة الثالثة -->
-    <article class="story-card">
-
-      <span class="story-number">القصة الثالثة</span>
-
-      <h2 class="story-title">✍️ الخطأ الذي لم تهرب منه</h2>
-
-      <div class="story-content">
-
-        <p>
-          كانت ريم تحب المشاركة، لكنها تغيّرت بعد أن أخطأت مرة
-          في قراءة كلمة أمام الصف. سمعت ضحكة خافتة من آخر الفصل،
-          فشعرت بحرارة في وجهها، وجلست وهي تتمنى ألا تسألها
-          المعلمة مرة أخرى.
-        </p>
-
-        <p>
-          في الأيام التالية، كانت تعرف بعض الإجابات، لكنها ترفع
-          يدها قليلًا ثم تعيدها بسرعة. كانت تخاف أن يتكرر الموقف،
-          حتى أصبحت تراقب زميلاتها وهن يشاركن، بينما بقي صوتها
-          محبوسًا داخلها.
-        </p>
-
-        <p>
-          لاحظت المعلمة ذلك، فطلبت من ريم بعد الحصة أن تقرأ معها
-          فقرة قصيرة. أخطأت ريم في الكلمة نفسها تقريبًا، فتوقفت
-          خائفة، لكن المعلمة لم تبدُ منزعجة.
-        </p>
-
-        <div class="dialogue">
-          قالت المعلمة:
-          الخطأ ليس دليلًا على أنك لا تستطيعين،
-          بل هو المكان الذي يخبرك أين تحتاجين إلى التدريب.
-        </div>
-
-        <p>
-          بدأت ريم تسجل الكلمات التي تتعثر في قراءتها، ثم تقرؤها
-          بصوت واضح في المنزل. كانت تسمع نطقها، وتعيد الكلمة حتى
-          تطمئن إليها. وبعد أيام، قرأت فقرة كاملة أمام المرآة.
-        </p>
-
-        <p>
-          وفي حصة جديدة، سألت المعلمة سؤالًا تعرف ريم إجابته.
-          ترددت للحظة، ثم رفعت يدها. أجابت، وأخطأت في كلمة صغيرة،
-          لكنها صححتها وأكملت. لم تسمع ضحكًا هذه المرة؛ بل سمعت
-          تشجيع المعلمة، وشعرت أن خوفها أصبح أصغر من شجاعتها.
-        </p>
-
-      </div>
-
-      <div class="lesson-box">
-        <h3>💡 الفائدة من القصة</h3>
-        <p>
-          الخطأ لا ينتقص من قدراتك، بل يكشف لك الخطوة التالية
-          التي تحتاج إلى تدريب.
-        </p>
-      </div>
-
-      <div class="question-box">
-        <h3>ماذا ستفعلين عندما تخطئين؟</h3>
-
-        <div class="choices">
-          <button class="choice-btn" data-positive="true">
-            سأصحح الخطأ وأحاول مرة أخرى بثقة.
-          </button>
-
-          <button class="choice-btn">
-            سأتوقف عن المشاركة حتى لا أخطئ.
-          </button>
-
-          <button class="choice-btn">
-            سأتجاهل سبب الخطأ تمامًا.
-          </button>
-        </div>
-
-        <div class="feedback"></div>
-
-        <button class="next-btn">
-          اكتشفي القصة التالية ←
-        </button>
-      </div>
-
-    </article>
-
-
-    <!-- القصة الرابعة -->
-    <article class="story-card">
-
-      <span class="story-number">القصة الرابعة</span>
-
-      <h2 class="story-title">🌟 السر الذي اكتشفته ليان</h2>
-
-      <div class="story-content">
-
-        <p>
-          كانت ليان تحفظ التعريفات بسرعة، لكنها تنساها بعد أيام.
-          كانت تقرأ القاعدة عدة مرات، وتغلق الكتاب وهي تظن أنها
-          فهمتها، ثم تتفاجأ في الاختبار بأنها لا تعرف كيف تطبقها.
-        </p>
-
-        <p>
-          قبل اختبار مهم، قررت أن تغيّر طريقتها. أخذت قاعدة
-          المبتدأ والخبر، وبدلًا من تكرارها فقط، كتبت جملًا من
-          حياتها: السماء صافية، الفصل هادئ، الطالبة مجتهدة.
-        </p>
-
-        <p>
-          ثم استخدمت أوراقًا صغيرة. كتبت الجملة في جهة،
-          وفي الجهة الأخرى كتبت المبتدأ والخبر وعلامة الرفع.
-          كانت تختبر نفسها، وكلما أخطأت وضعت الورقة جانبًا
-          لتراجعها مرة أخرى.
-        </p>
-
-        <div class="dialogue">
-          قالت ليان لنفسها:
-          أنا لا أريد أن أحفظ الإجابة فقط؛
-          أريد أن أفهم لماذا كانت هذه هي الإجابة.
-        </div>
-
-        <p>
-          بعد ذلك شرحت القاعدة لزميلتها بكلمات بسيطة.
-          وحين حاولت شرحها، اكتشفت نقطة لم تكن واضحة لها،
-          فعادت إلى الكتاب وسألت المعلمة عنها.
-        </p>
-
-        <p>
-          في الاختبار، لم تكن الأسئلة مطابقة لما حفظته،
-          لكنها استطاعت تطبيق الفكرة على جمل جديدة.
-          عندها عرفت أن التفوق ليس في تكرار الكلمات،
-          بل في الفهم والتدريب والقدرة على الشرح.
-        </p>
-
-      </div>
-
-      <div class="lesson-box">
-        <h3>💡 الفائدة من القصة</h3>
-        <p>
-          يصبح التعلم أقوى عندما تطبقين القاعدة،
-          وتختبرين نفسك، وتحاولين شرحها بأسلوبك.
-        </p>
-      </div>
-
-      <div class="question-box">
-        <h3>كيف ستتأكدين أنك فهمت الدرس؟</h3>
-
-        <div class="choices">
-          <button class="choice-btn" data-positive="true">
-            سأطبقه على مثال جديد وأشرحه بكلماتي.
-          </button>
-
-          <button class="choice-btn">
-            سأقرأه بسرعة دون أن أختبر نفسي.
-          </button>
-
-          <button class="choice-btn">
-            سأحفظ المثال نفسه فقط.
-          </button>
-        </div>
-
-        <div class="feedback"></div>
-
-        <button class="next-btn">
-          أكملي رحلة النجاح ←
-        </button>
-      </div>
-
-    </article>
-
-
-    <section class="final-card" id="finalCard">
-
-      <div class="final-icon">🎓✨</div>
-
-      <h2>أحسنتِ يا صانعة النجاح!</h2>
+      <h2>نجاحكِ يبدأ بخطوة منكِ</h2>
 
       <p>
-        قرأتِ الحكايات واكتشفتِ أن النجاح لا يبدأ بخطوة ضخمة،
-        بل بقرار صادق، ومحاولة صغيرة، واستمرار لا يتوقف عند الخطأ.
+        قد تكون خطوتكِ قراءة فقرة بتركيز، أو كتابة فكرة بسيطة،
+        أو سؤالًا شجاعًا، أو خمس عشرة دقيقة من الاستذكار.
+        لا تستهيني بالبدايات الصغيرة؛ فكثير من النجاحات الكبيرة
+        بدأت بخطوة لم يلاحظها أحد.
       </p>
-
-      <p>
-        <strong>
-          والآن حان دورك لتكتبي بداية حكايتك.
-        </strong>
-      </p>
-
-      <button class="restart-btn" id="restartBtn">
-        قراءة القصص من جديد
-      </button>
 
     </section>
 
   </main>
 
   <footer>
-    منصة آفاق اللغة — إعداد المعلمة إيناس محمد يحيى مدخلي
+    جميع الحقوق محفوظة © منصة آفاق اللغة
   </footer>
 
+</body>
 
-  <script>
-    const stories = document.querySelectorAll(".story-card");
-    const progressLabel = document.getElementById
+</html>
