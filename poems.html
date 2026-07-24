@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+  <title>روائع الضاد | منصة آفاق اللغة</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --purple-dark: #60368a;
+      --purple: #8652ad;
+      --purple-light: #f1e8f9;
+      --gold: #efa83e;
+      --gold-light: #fff3d7;
+      --text: #55475e;
+      --white: #ffffff;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Tahoma, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top right, #fff0ce, transparent 34%),
+        radial-gradient(circle at bottom left, #eadcff, transparent 40%),
+        linear-gradient(135deg, #fffdf8, #f8f1ff);
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    /* الشريط العلوي */
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 17px 6%;
+      color: white;
+      background: linear-gradient(135deg, #61358c, #9b61c4);
+      box-shadow: 0 5px 20px rgba(75, 38, 105, 0.2);
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .home-link {
+      padding: 9px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 24px;
+      color: white;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.14);
+      transition: 0.3s;
+    }
+
+    .home-link:hover {
+      color: var(--purple-dark);
+      background: white;
+    }
+
+    /* العنوان */
+
+    main {
+      width: min(1050px, 92%);
+      margin: auto;
+      padding: 45px 0 65px;
+    }
+
+    .hero {
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .hero-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 84px;
+      height: 84px;
+      margin: 0 auto 16px;
+      border-radius: 50%;
+      font-size: 42px;
+      background: linear-gradient(135deg, #ffd878, #ee9940);
+      box-shadow: 0 10px 25px rgba(222, 139, 43, 0.27);
+      animation: floating 2.5s ease-in-out infinite;
+    }
+
+    @keyframes floating {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-7px);
+      }
+    }
+
+    .hero h1 {
+      margin-bottom: 12px;
+      font-size: 36px;
+      color: var(--purple-dark);
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: auto;
+      font-size: 17px;
+      line-height: 1.9;
+      color: #74657c;
+    }
+
+    /* بطاقة الشاعر */
+
+    .poet-card {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      margin-bottom: 28px;
+      padding: 24px;
+      border-radius: 25px;
+      background: linear-gradient(135deg, #70419a, #9e68c4);
+      color: white;
+      box-shadow: 0 12px 30px rgba(92, 49, 124, 0.2);
+    }
+
+    .poet-symbol {
+      display: flex;
+      flex: 0 0 75px;
+      align-items: center;
+      justify-content: center;
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+      font-size: 39px;
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .poet-card h2 {
+      margin-bottom: 7px;
+      font-size: 24px;
+    }
+
+    .poet-card p {
+      font-size: 15px;
+      line-height: 1.8;
+      color: #f7eefe;
+    }
+
+    /* بطاقات الشعر */
+
+    .poems-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .poem-card {
+      position: relative;
+      overflow: hidden;
+      padding: 28px 23px;
+      border: 1px solid rgba(120, 73, 151, 0.1);
+      border-radius: 25px;
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 0 11px 30px rgba(76, 42, 101, 0.12);
+      transition: 0.35s;
+    }
+
+    .poem-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 35px rgba(76, 42, 101, 0.18);
+    }
+
+    .poem-number {
+      position: absolute;
+      top: 15px;
+      left: 17px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 37px;
+      height: 37px;
+      border-radius: 50%;
+      color: white;
+      font-weight: bold;
+      background: linear-gradient(135deg, #7445a0, #a46ac8);
+    }
+
+    .poem-icon {
+      margin-bottom: 12px;
+      font-size: 38px;
+    }
+
+    .poem-card h3 {
+      margin-bottom: 17px;
+      font-size: 21px;
+      color: var(--purple-dark);
+    }
+
+    .verses {
+      margin-bottom: 19px;
+      padding: 18px;
+      border-right: 5px solid var(--gold);
+      border-radius: 17px;
+      text-align: center;
+      background: linear-gradient(135deg, #fff8e9, #fffdf8);
+    }
+
+    .verses p {
+      margin: 7px 0;
+      font-size: 18px;
+      font-weight: bold;
+      line-height: 2;
+      color: #694c2d;
+    }
+
+    .meaning {
+      padding: 15px;
+      border-radius: 16px;
+      font-size: 15px;
+      line-height: 1.9;
+      background: var(--purple-light);
+    }
+
+    .meaning strong {
+      color: var(--purple-dark);
+    }
+
+    /* السؤال */
+
+    .activity {
+      margin-top: 32px;
+      padding: 27px;
+      border-radius: 25px;
+      text-align: center;
+      background: white;
+      box-shadow: 0 12px 32px rgba(76, 42, 101, 0.13);
+    }
+
+    .activity h2 {
+      margin-bottom: 10px;
+      color: var(--purple-dark);
+    }
+
+    .activity > p {
+      margin-bottom: 19px;
+      line-height: 1.8;
+    }
+
+    .answers {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .answer {
+      padding: 13px;
+      border: 2px solid #dfd0e9;
+      border-radius: 17px;
+      color: #5c4c66;
+      cursor: pointer;
+      background: #fdfbff;
+      transition: 0.25s;
+    }
+
+    .answer:hover {
+      border-color: #9060b0;
+      transform: translateY(-2px);
+    }
+
+    .answer.correct {
+      border-color: #48a986;
+      color: #17664d;
+      background: #e8f8f2;
+    }
+
+    .answer.wrong {
+      border-color: #df7282;
+      color: #9d3748;
+      background: #fff0f2;
+    }
+
+    .feedback {
+      display: none;
+      margin-top: 17px;
+      padding: 14px;
+      border-radius: 15px;
+      line-height: 1.7;
+      font-weight: bold;
+    }
+
+    .feedback.show {
+      display: block;
+    }
+
+    .feedback.success {
+      color: #17644c;
+      background: #e7f8f1;
+    }
+
+    .feedback.error {
+      color: #9d3849;
+      background: #fff0f2;
+    }
+
+    footer {
+      padding: 23px;
+      text-align: center;
+      font-size: 14px;
+      color: #796a82;
+    }
+
+    /* الجوال */
+
+    @media (max-width: 750px) {
+      header {
+        padding: 14px 5%;
+      }
+
+      .logo {
+        font-size: 18px;
+      }
+
+      .home-link {
+        padding: 8px 12px;
+        font-size: 13px;
+      }
+
+      main {
+        width: 94%;
+        padding-top: 32px;
+      }
+
+      .hero h1 {
+        font-size: 29px;
+      }
+
+      .hero p {
+        font-size: 15px;
+      }
+
+      .poet-card {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .poems-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .poem-card {
+        padding: 25px 18px;
+      }
+
+      .verses p {
+        font-size: 16px;
+      }
+
+      .answers {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">منصة آفاق اللغة</div>
+
+    <a href="index.html" class="home-link">
+      العودة للرئيسة
+    </a>
+  </header>
+
+  <main>
+
+    <section class="hero">
+
+      <div class="hero-icon">🪶</div>
+
+      <h1>روائع الضاد</h1>
+
+      <p>
+        جولة شعرية نكتشف فيها جمال اللغة العربية وقوتها،
+        ونستمتع بكلمات شاعر النيل حافظ إبراهيم في قصيدته الشهيرة
+        «اللغة العربية تنعى حظها».
+      </p>
+
+    </section>
+
+    <section class="poet-card">
+
+      <div class="poet-symbol">👤</div>
+
+      <div>
+        <h2>حافظ إبراهيم</h2>
+
+        <p>
+          شاعر مصري عُرف بلقب شاعر النيل. صوّر في هذه القصيدة
+          اللغة العربية وهي تتحدث عن مكانتها وجمالها، وتدعو أبناءها
+          إلى الاعتزاز بها والمحافظة عليها.
+        </p>
+      </div>
+
+    </section>
+
+    <section class="poems-grid">
+
+      <!-- اللوحة الأولى -->
+
+      <article class="poem-card">
+
+        <span class="poem-number">١</span>
+
+        <div class="poem-icon">📖</div>
+
+        <h3>لغة القرآن الكريم</h3>
+
+        <div class="verses">
+          <p>وَسِعْتُ كتابَ اللهِ لفظًا وغايةً</p>
+          <p>وما ضِقْتُ عن آيٍ به وعِظاتِ</p>
+        </div>
+
+        <div class="meaning">
+          <strong>المعنى:</strong>
+          تفتخر اللغة العربية بأنها حملت ألفاظ القرآن الكريم
+          ومعانيه العظيمة ومواعظه.
+        </div>
+
+      </article>
+
+      <!-- اللوحة الثانية -->
+
+      <article class="poem-card">
+
+        <span class="poem-number">٢</span>
+
+        <div class="poem-icon">⚙️</div>
+
+        <h3>لغة قادرة على التطور</h3>
+
+        <div class="verses">
+          <p>فكيف أضيقُ اليومَ عن وصفِ آلةٍ</p>
+          <p>وتنسيقِ أسماءٍ لمخترعاتِ</p>
+        </div>
+
+        <div class="meaning">
+          <strong>المعنى:</strong>
+          تؤكد العربية أنها قادرة على تسمية المخترعات الحديثة
+          والتعبير عن العلوم الجديدة.
+        </div>
+
+      </article>
+
+      <!-- اللوحة الثالثة -->
+
+      <article class="poem-card">
+
+        <span class="poem-number">٣</span>
+
+        <div class="poem-icon">🌊</div>
+
+        <h3>بحر من الكنوز</h3>
+
+        <div class="verses">
+          <p>أنا البحرُ في أحشائِهِ الدُّرُّ كامنٌ</p>
+          <p>فهل سألوا الغوّاصَ عن صدفاتي؟</p>
+        </div>
+
+        <div class="meaning">
+          <strong>المعنى:</strong>
+          يشبه الشاعر اللغة العربية بالبحر الممتلئ باللآلئ،
+          ولا يكتشف كنوزها إلا من يتعمق فيها.
+        </div>
+
+      </article>
+
+      <!-- اللوحة الرابعة -->
+
+      <article class="poem-card">
+
+        <span class="poem-number">٤</span>
+
+        <div class="poem-icon">💎</div>
+
+        <h3>جمال لا يَبلى</h3>
+
+        <div class="verses">
+          <p>فيا ويحَكم أبلى وتبلى محاسني</p>
+          <p>ومنكم وإن عزَّ الدواءُ أُساتي</p>
+        </div>
+
+        <div class="meaning">
+          <strong>المعنى:</strong>
+          تحزن العربية لأن جمالها قد يضعف بسبب إهمال أهلها،
+          وهم في الوقت نفسه القادرون على حمايتها.
+        </div>
+
+      </article>
+
+      <!-- اللوحة الخامسة -->
+
+      <article class="poem-card">
+
+        <span class="poem-number">٥</span>
+
+        <div class="poem-icon">✍️</div>
+
+        <h3>نداء إلى الكتّاب</h3>
+
+        <div class="verses">
+          <p>إلى معشرِ الكُتّابِ والجمعُ حافلٌ</p>
+          <p>بسطتُ رجائي بعد بسطِ شكاتي</p>
+        </div>
+
+        <div class="meaning">
+          <strong>المعنى:</strong>
+          توجه اللغة العربية نداءها إلى الكتّاب والمثقفين،
+          وتطلب منهم أن يعتنوا بها بعد أن عرضت شكواها.
+        </div>
+
+      </article>
+
+      <!-- اللوحة السادسة -->
+
+      <article class="poem-card">
+
+        <span class="poem-number">٦</span>
+
+        <div class="poem-icon">🌟</div>
+
+        <h3>الأمل في أبنائها</h3>
+
+        <div class="verses">
+          <p>فإمّا حياةٌ تبعثُ الميتَ في البِلى</p>
+          <p>وتُنبتُ في تلك الرُّموسِ رُفاتي</p>
+        </div>
+
+        <div class="meaning">
+          <strong>المعنى:</strong>
+          تأمل العربية أن يعيد أبناؤها إليها النشاط والحياة،
+          وأن يحافظوا على مكانتها بين اللغات.
+        </div>
+
+      </article>
+
+    </section>
+
+    <!-- نشاط بسيط -->
+
+    <section class="activity">
+
+      <h2>اختبري كنزكِ الشعري ✨</h2>
+
+      <p>
+        بماذا شبّه حافظ إبراهيم اللغة العربية في أشهر أبيات القصيدة؟
+      </p>
+
+      <div class="answers">
+
+        <button
+          type="button"
+          class="answer"
+          data-correct="false">
+          بحديقة واسعة
+        </button>
+
+        <button
+          type="button"
+          class="answer"
+          data-correct="true">
+          ببحر تخفي أعماقه اللآلئ
+        </button>
+
+        <button
+          type="button"
+          class="answer"
+          data-correct="false">
+          بطائر يحلّق في السماء
+        </button>
+
+      </div>
+
+      <div class="feedback" id="feedback"></div>
+
+    </section>
+
+  </main>
+
+  <footer>
+    جميع الحقوق محفوظة © منصة آفاق اللغة
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+      const answers = document.querySelectorAll(".answer");
+      const feedback = document.getElementById("feedback");
+
+      answers.forEach(function (answer) {
+
+        answer.addEventListener("click", function () {
+
+          const correct =
+            answer.dataset.correct === "true";
+
+          answers.forEach(function (button) {
+            button.classList.remove("correct", "wrong");
+          });
+
+          if (correct) {
+            answer.classList.add("correct");
+
+            feedback.className =
+              "feedback show success";
+
+            feedback.textContent =
+              "إجابة رائعة 🌟 شبّه حافظ إبراهيم العربية بالبحر المملوء بالدرر والكنوز.";
+
+          } else {
+            answer.classList.add("wrong");
+
+            feedback.className =
+              "feedback show error";
+
+            feedback.textContent =
+              "محاولة جميلة، عودي إلى لوحة «بحر من الكنوز» ثم اختاري من جديد.";
+          }
+
+        });
+
+      });
+
+    });
+  </script>
+
+</body>
+
+</html>
