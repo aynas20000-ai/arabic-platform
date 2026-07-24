@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>الاختبار التجريبي لأسلوب القسم</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      margin: 0;
+      padding: 12px;
+      min-height: 100vh;
+      font-family: Tahoma, Arial, sans-serif;
+      background: linear-gradient(180deg, #eef6ff, #fff4fa);
+      color: #28384c;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 760px;
+      margin: auto;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #6554d9, #2798bd);
+      color: white;
+      text-align: center;
+      padding: 24px 15px;
+      border-radius: 24px;
+      margin-bottom: 16px;
+      box-shadow: 0 8px 20px rgba(70, 80, 190, 0.22);
+    }
+
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: 27px;
+    }
+
+    .hero p {
+      margin: 0;
+      font-size: 17px;
+    }
+
+    .progress-card {
+      background: white;
+      padding: 14px;
+      border-radius: 18px;
+      margin-bottom: 15px;
+      box-shadow: 0 5px 14px rgba(0, 0, 0, 0.07);
+    }
+
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 9px;
+      font-weight: bold;
+    }
+
+    .track {
+      height: 13px;
+      background: #e8edf4;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .bar {
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, #42b978, #8addad);
+      border-radius: 20px;
+      transition: width 0.4s ease;
+    }
+
+    .quiz-card {
+      position: relative;
+      border-radius: 24px;
+      padding: 20px 15px;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.09);
+      overflow: hidden;
+      transition: background 0.4s ease;
+    }
+
+    .theme-1 {
+      background: linear-gradient(145deg, #ffffff, #f0ebff);
+    }
+
+    .theme-2 {
+      background: linear-gradient(145deg, #ffffff, #e7f8ff);
+    }
+
+    .theme-3 {
+      background: linear-gradient(145deg, #ffffff, #fff1e4);
+    }
+
+    .theme-4 {
+      background: linear-gradient(145deg, #ffffff, #eafbea);
+    }
+
+    .theme-5 {
+      background: linear-gradient(145deg, #ffffff, #ffeef5);
+    }
+
+    .question-number {
+      display: inline-block;
+      background: #ede9ff;
+      color: #634db9;
+      padding: 7px 13px;
+      border-radius: 20px;
+      font-weight: bold;
+      margin-bottom: 13px;
+    }
+
+    .question {
+      font-size: 22px;
+      line-height: 1.7;
+      font-weight: bold;
+      text-align: center;
+      margin: 8px 0 18px;
+    }
+
+    .sentence {
+      background: rgba(255, 255, 255, 0.88);
+      border: 2px dashed #9ebbd3;
+      border-radius: 15px;
+      padding: 13px;
+      margin-bottom: 16px;
+      text-align: center;
+      font-size: 19px;
+      font-weight: bold;
+    }
+
+    .answers {
+      display: grid;
+      gap: 11px;
+    }
+
+    .answer {
+      width: 100%;
+      border: 2px solid #d8e3ee;
+      background: rgba(255, 255, 255, 0.94);
+      color: #28384c;
+      border-radius: 16px;
+      padding: 14px 11px;
+      font-family: inherit;
+      font-size: 18px;
+      cursor: pointer;
+      transition: transform 0.18s ease;
+    }
+
+    .answer:active {
+      transform: scale(0.98);
+    }
+
+    .answer.correct {
+      background: #e7faee;
+      border-color: #38ae6d;
+      color: #187342;
+      animation: pop 0.45s ease;
+    }
+
+    .answer.wrong {
+      background: #fff0f1;
+      border-color: #e05e69;
+      color: #b32d3a;
+      animation: shake 0.4s ease;
+    }
+
+    .feedback {
+      display: none;
+      margin-top: 15px;
+      padding: 13px;
+      border-radius: 15px;
+      text-align: center;
+      font-weight: bold;
+      line-height: 1.7;
+    }
+
+    .feedback.success {
+      display: block;
+      background: #e7faee;
+      color: #187342;
+      border: 2px solid #9eddb9;
+    }
+
+    .feedback.error {
+      display: block;
+      background: #fff0f1;
+      color: #b32d3a;
+      border: 2px solid #efacb2;
+    }
+
+    .next-button {
+      display: none;
+      width: 100%;
+      margin-top: 13px;
+      border: 0;
+      border-radius: 16px;
+      padding: 14px;
+      background: linear-gradient(135deg, #6554d9, #2798bd);
+      color: white;
+      font-family: inherit;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .result {
+      display: none;
+      background: white;
+      border-radius: 24px;
+      padding: 24px 16px;
+      text-align: center;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.09);
+    }
+
+    .result h2 {
+      color: #6554d9;
+      margin-top: 0;
+      font-size: 27px;
+    }
+
+    .score-circle {
+      width: 145px;
+      height: 145px;
+      margin: 18px auto;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ffd363, #ff8f94);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 18px rgba(255, 140, 145, 0.25);
+    }
+
+    .score-circle strong {
+      font-size: 38px;
+    }
+
+    .restart,
+    .back {
+      display: block;
+      width: 100%;
+      margin-top: 12px;
+      padding: 13px;
+      border-radius: 15px;
+      text-align: center;
+      font-family: inherit;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .restart {
+      border: 0;
+      background: #6554d9;
+      color: white;
+    }
+
+    .back {
+      background: #edf7ff;
+      color: #27799b;
+      border: 2px solid #b9deed;
+      text-decoration: none;
+    }
+
+    .confetti {
+      position: fixed;
+      top: -25px;
+      width: 10px;
+      height: 18px;
+      border-radius: 3px;
+      pointer-events: none;
+      z-index: 9999;
+      animation: fall linear forwards;
+    }
+
+    @keyframes pop {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.05);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes shake {
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      25% {
+        transform: translateX(-8px);
+      }
+
+      50% {
+        transform: translateX(8px);
+      }
+
+      75% {
+        transform: translateX(-5px);
+      }
+    }
+
+    @keyframes fall {
+      from {
+        transform: translateY(-30px) rotate(0deg);
+        opacity: 1;
+      }
+
+      to {
+        transform: translateY(110vh) rotate(760deg);
+        opacity: 0.8;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 23px;
+      }
+
+      .question {
+        font-size: 20px;
+      }
+
+      .answer {
+        font-size: 17px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="hero">
+      <h1>✅ الاختبار التجريبي</h1>
+      <p>أسلوب القسم</p>
+    </div>
+
+    <div class="progress-card">
+
+      <div class="progress-info">
+        <span id="progressText">السؤال 1 من 10</span>
+        <span id="scoreText">النقاط: 0</span>
+      </div>
+
+      <div class="track">
+        <div class="bar" id="progressBar"></div>
+      </div>
+
+    </div>
+
+    <div class="quiz-card theme-1" id="quizCard">
+
+      <div class="question-number" id="questionNumber">
+        السؤال 1
+      </div>
+
+      <div class="question" id="question">
+        جاري تحميل السؤال...
+      </div>
+
+      <div class="sentence" id="sentence"></div>
+
+      <div class="answers" id="answers"></div>
+
+      <div class="feedback" id="feedback"></div>
+
+      <button class="next-button" id="nextButton">
+        السؤال التالي ←
+      </button>
+
+    </div>
+
+    <div class="result" id="result">
+
+      <h2>🎉 أنهيتِ الاختبار</h2>
+
+      <div class="score-circle">
+        <strong id="finalScore">0/10</strong>
+        <span>درجتك</span>
+      </div>
+
+      <p id="resultMessage"></p>
+
+      <button class="restart" onclick="restartQuiz()">
+        إعادة الاختبار
+      </button>
+
+      <a class="back" href="oath-style.html">
+        العودة إلى درس أسلوب القسم
+      </a>
+
+    </div>
+
+  </div>
+
+  <script>
+    const questions = [
+      {
+        question: "ما الغرض الأساسي من أسلوب القسم؟",
+        sentence: "",
+        answers: [
+          "التوكيد وتقوية المعنى",
+          "الاستفهام",
+          "النداء"
+        ],
+        correct: "التوكيد وتقوية المعنى",
+        explanation:
+          "يُستخدم أسلوب القسم لتأكيد الخبر وتقوية معناه."
+      },
+      {
+        question: "ما أداة القسم في الجملة؟",
+        sentence: "واللهِ لأحافظنَّ على الأمانة.",
+        answers: [
+          "الله",
+          "الواو",
+          "لأحافظنَّ"
+        ],
+        correct: "الواو",
+        explanation:
+          "الواو أداة القسم، ولفظ الجلالة هو المقسم به."
+      },
+      {
+        question: "ما المقسم به في الجملة؟",
+        sentence: "باللهِ لن أكذب.",
+        answers: [
+          "الباء",
+          "الله",
+          "لن أكذب"
+        ],
+        correct: "الله",
+        explanation:
+          "المقسم به في الجملة هو لفظ الجلالة «الله»."
+      },
+      {
+        question: "حددي جواب القسم:",
+        sentence: "تاللهِ لأساعدنَّ المحتاج.",
+        answers: [
+          "التاء",
+          "الله",
+          "لأساعدنَّ المحتاج"
+        ],
+        correct: "لأساعدنَّ المحتاج",
+        explanation:
+          "جواب القسم هو الجملة التي توضّح الأمر الذي أقسم عليه المتكلم."
+      },
+      {
+        question: "أي الكلمات الآتية فعل قسم؟",
+        sentence: "",
+        answers: [
+          "أقسم",
+          "لعلَّ",
+          "ليت"
+        ],
+        correct: "أقسم",
+        explanation:
+          "من أفعال القسم: أقسم، وأحلف."
+      },
+      {
+        question: "أي الجمل الآتية أسلوب قسم صحيح؟",
+        sentence: "",
+        answers: [
+          "واللهِ لأقولنَّ الحق.",
+          "يا طالبُ قل الحق.",
+          "لعلّي أقول الحق."
+        ],
+        correct: "واللهِ لأقولنَّ الحق.",
+        explanation:
+          "هذه الجملة تحتوي على أداة قسم ومقسم به وجواب قسم."
+      },
+      {
+        question: "أي الصيغ الآتية من صيغ القسم؟",
+        sentence: "",
+        answers: [
+          "يمينُ الله",
+          "هل تفعل؟",
+          "ما أجمل الصدق!"
+        ],
+        correct: "يمينُ الله",
+        explanation:
+          "«يمينُ الله» من صيغ القسم."
+      },
+      {
+        question: "اختاري الصياغة الأقوى في التوكيد:",
+        sentence: "",
+        answers: [
+          "سأجتهد.",
+          "واللهِ لأجتهدنَّ.",
+          "ربما أجتهد."
+        ],
+        correct: "واللهِ لأجتهدنَّ.",
+        explanation:
+          "لام القسم ونون التوكيد تزيدان الجملة قوة وتوكيدًا."
+      },
+      {
+        question: "ما حكم الحلف بغير الله؟",
+        sentence: "وحياتي لأصدقنَّ.",
+        answers: [
+          "صحيح",
+          "غير صحيح",
+          "أسلوب تعجب"
+        ],
+        correct: "غير صحيح",
+        explanation:
+          "الإنسان لا يحلف إلا بالله، أو باسم من أسمائه، أو صفة من صفاته."
+      },
+      {
+        question: "اختاري الجملة الصحيحة:",
+        sentence: "",
+        answers: [
+          "والأمانة لن أكذب.",
+          "واللهِ لن أكذب.",
+          "وحياة أمي لن أكذب."
+        ],
+        correct: "واللهِ لن أكذب.",
+        explanation:
+          "الصحيح أن يكون الحلف بالله وحده."
+      }
+    ];
+
+    const encouragements = [
+      "رائعة! إجابة صحيحة 🌟",
+      "أحسنتِ يا بطلة 👏",
+      "ممتازة جدًا 🎉",
+      "إجابة موفقة 💫",
+      "استمري، أداؤك جميل ✅"
+    ];
+
+    const themes = [
+      "theme-1",
+      "theme-2",
+      "theme-3",
+      "theme-4",
+      "theme-5"
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+    let answered = false;
+
+    const questionElement =
+      document.getElementById("question");
+
+    const sentenceElement =
+      document.getElementById("sentence");
+
+    const answersElement =
+      document.getElementById("answers");
+
+    const feedbackElement =
+      document.getElementById("feedback");
+
+    const nextButton =
+      document.getElementById("nextButton");
+
+    const progressText =
+      document.getElementById("progressText");
+
+    const scoreText =
+      document.getElementById("scoreText");
+
+    const progressBar =
+      document.getElementById("progressBar");
+
+    const questionNumber =
+      document.getElementById("questionNumber");
+
+    const quizCard =
+      document.getElementById("quizCard");
+
+    const result =
+      document.getElementById("result");
+
+    function loadQuestion() {
+      answered = false;
+
+      const item = questions[currentQuestion];
+
+      questionElement.textContent = item.question;
+      sentenceElement.textContent = item.sentence;
+      answersElement.innerHTML = "";
+
+      if (item.sentence === "") {
+        sentenceElement.style.display = "none";
+      } else {
+        sentenceElement.style.display = "block";
+      }
+
+      feedbackElement.className = "feedback";
+      feedbackElement.textContent = "";
+      nextButton.style.display = "none";
+
+      progressText.textContent =
+        `السؤال ${currentQuestion + 1} من ${questions.length}`;
+
+      questionNumber.textContent =
+        `السؤال ${currentQuestion + 1}`;
+
+      scoreText.textContent =
+        `النقاط: ${score}`;
+
+      progressBar.style.width =
+        `${(currentQuestion / questions.length) * 100}%`;
+
+      themes.forEach(theme => {
+        quizCard.classList.remove(theme);
+      });
+
+      quizCard.classList.add(
+        themes[currentQuestion % themes.length]
+      );
+
+      item.answers.forEach(answer => {
+        const button =
+          document.createElement("button");
+
+        button.className = "answer";
+        button.textContent = answer;
+
+        button.addEventListener("click", () => {
+          checkAnswer(button, answer);
+        });
+
+        answersElement.appendChild(button);
+      });
+    }
+
+    function checkAnswer(button, selectedAnswer) {
+      if (answered) {
+        return;
+      }
+
+      answered = true;
+
+      const item = questions[currentQuestion];
+      const buttons =
+        document.querySelectorAll(".answer");
+
+      buttons.forEach(btn => {
+        btn.disabled = true;
+
+        if (btn.textContent === item.correct) {
+          btn.classList.add("correct");
+        }
+      });
+
+      if (selectedAnswer === item.correct) {
+        score++;
+        button.classList.add("correct");
+
+        const message =
+          encouragements[
+            Math.floor(
+              Math.random() * encouragements.length
+            )
+          ];
+
+        feedbackElement.className =
+          "feedback success";
+
+        feedbackElement.innerHTML =
+          `${message}<br>${item.explanation}`;
+
+        scoreText.textContent =
+          `النقاط: ${score}`;
+
+        celebrate(55);
+        playSuccessSound();
+      } else {
+        button.classList.add("wrong");
+
+        feedbackElement.className =
+          "feedback error";
+
+        feedbackElement.innerHTML =
+          `محاولة جميلة 🌷<br>${item.explanation}`;
+
+        playWrongSound();
+      }
+
+      nextButton.style.display = "block";
+
+      if (
+        currentQuestion ===
+        questions.length - 1
+      ) {
+        nextButton.textContent =
+          "عرض النتيجة 🎯";
+      } else {
+        nextButton.textContent =
+          "السؤال التالي ←";
+      }
+    }
+
+    nextButton.addEventListener("click", () => {
+      currentQuestion++;
+
+      if (currentQuestion < questions.length) {
+        loadQuestion();
+      } else {
+        showResult();
+      }
+    });
+
+    function showResult() {
+      quizCard.style.display = "none";
+      result.style.display = "block";
+
+      progressBar.style.width = "100%";
+      progressText.textContent = "اكتمل الاختبار";
+      scoreText.textContent = `النقاط: ${score}`;
+
+      document.getElementById(
+        "finalScore"
+      ).textContent =
+        `${score}/${questions.length}`;
+
+      const resultMessage =
+        document.getElementById("resultMessage");
+
+      if (score === questions.length) {
+        resultMessage.textContent =
+          "مذهلة! أتقنتِ أسلوب القسم بالكامل 🏆";
+
+        celebrate(130);
+        playSuccessSound();
+      } else if (score >= 8) {
+        resultMessage.textContent =
+          "نتيجة رائعة جدًا، بقيت لمسات بسيطة 🌟";
+
+        celebrate(95);
+      } else if (score >= 6) {
+        resultMessage.textContent =
+          "أداء جميل، راجعي الأسئلة التي أخطأتِ فيها 💛";
+
+        celebrate(65);
+      } else {
+        resultMessage.textContent =
+          "بداية طيبة، أعيدي المحاولة وستتحسن النتيجة 🌷";
+
+        celebrate(40);
+      }
+    }
+
+    function restartQuiz() {
+      currentQuestion = 0;
+      score = 0;
+      answered = false;
+
+      result.style.display = "none";
+      quizCard.style.display = "block";
+
+      loadQuestion();
+    }
+
+    function celebrate(amount) {
+      const colors = [
+        "#ff4f81",
+        "#ffd23f",
+        "#3ec6e0",
+        "#6edb75",
+        "#875cff",
+        "#ff7c43"
+      ];
+
+      for (let i = 0; i < amount; i++) {
+        const piece =
+          document.createElement("span");
+
+        piece.className = "confetti";
+
+        piece.style.left =
+          `${Math.random() * 100}vw`;
+
+        piece.style.background =
+          colors[
+            Math.floor(
+              Math.random() * colors.length
+            )
+          ];
+
+        piece.style.animationDuration =
+          `${2.2 + Math.random() * 2.2}s`;
+
+        piece.style.animationDelay =
+          `${Math.random() * 0.35}s`;
+
+        document.body.appendChild(piece);
+
+        setTimeout(() => {
+          piece.remove();
+        }, 5000);
+      }
+    }
+
+    function playSuccessSound() {
+      playTone(620, 0.12);
+
+      setTimeout(() => {
+        playTone(820, 0.16);
+      }, 130);
+    }
+
+    function playWrongSound() {
+      playTone(220, 0.18);
+    }
+
+    function playTone(frequency, duration) {
+      try {
+        const AudioContextClass =
+          window.AudioContext ||
+          window.webkitAudioContext;
+
+        if (!AudioContextClass) {
+          return;
+        }
+
+        const audioContext =
+          new AudioContextClass();
+
+        const oscillator =
+          audioContext.createOscillator();
+
+        const gain =
+          audioContext.createGain();
+
+        oscillator.connect(gain);
+        gain.connect(audioContext.destination);
+
+        oscillator.frequency.value = frequency;
+        oscillator.type = "sine";
+
+        gain.gain.setValueAtTime(
+          0.08,
+          audioContext.currentTime
+        );
+
+        gain.gain.exponentialRampToValueAtTime(
+          0.001,
+          audioContext.currentTime + duration
+        );
+
+        oscillator.start();
+
+        oscillator.stop(
+          audioContext.currentTime + duration
+        );
+      } catch (error) {
+        console.log("تعذر تشغيل الصوت.");
+      }
+    }
+
+    loadQuestion();
+  </script>
+
+</body>
+
+</html>
