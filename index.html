@@ -9,7 +9,7 @@
     content="width=device-width, initial-scale=1.0"
   >
 
-  <title>منصة آفاق</title>
+  <title>منصة آفاق اللغة</title>
 
   <style>
     * {
@@ -19,6 +19,7 @@
     html,
     body {
       width: 100%;
+      max-width: 100%;
       min-height: 100%;
       margin: 0;
       overflow-x: hidden;
@@ -26,333 +27,432 @@
 
     body {
       font-family: Tahoma, Arial, sans-serif;
-      background: #f8f6fb;
-      color: #393444;
-    }
-
-    /* أعلى الصفحة */
-
-    .top-header {
-      width: 100%;
-      padding: 25px 15px;
-      text-align: center;
-      background:
-        linear-gradient(
-          135deg,
-          #776ba2,
-          #9b8cbd
-        );
-      color: white;
-      border-bottom: 4px solid #d8bb72;
-      box-shadow: 0 5px 16px rgba(70, 55, 95, 0.18);
-    }
-
-    .top-header h1 {
-      margin: 0;
-      font-size: 34px;
-    }
-
-    .top-header p {
-      margin: 9px 0 0;
-      font-size: 17px;
-      color: #faf7ff;
-    }
-
-    /* تقسيم الصفحة */
-
-    .page-layout {
-      display: grid;
-      grid-template-columns: 42% 58%;
-      min-height: calc(100vh - 135px);
-      direction: rtl;
-    }
-
-    /* القائمة اليمنى */
-
-    .sidebar {
+      color: #332b43;
       background:
         linear-gradient(
           180deg,
-          #756a98,
-          #9487b5
+          #f5f0fa 0%,
+          #fbf9fd 46%,
+          #f1ebf7 100%
         );
-      padding: 25px 15px 35px;
-      border-left: 4px solid #d8bb72;
-      box-shadow: -5px 0 18px rgba(70, 55, 95, 0.14);
     }
 
-    .sidebar-title {
+    /* الواجهة العلوية */
+
+    .hero {
+      position: relative;
+      min-height: 420px;
+      padding: 35px 18px 45px;
+      overflow: hidden;
       text-align: center;
-      color: #fff7df;
-      font-size: 24px;
-      font-weight: bold;
-      padding-bottom: 17px;
-      margin-bottom: 18px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.32);
-    }
-
-    .main-link,
-    .sub-link {
-      display: block;
-      text-decoration: none;
-      transition: 0.2s;
-    }
-
-    .main-link {
-      background: rgba(255, 255, 255, 0.12);
       color: white;
-      padding: 13px 12px;
-      margin: 9px 0;
-      border: 1px solid rgba(255, 255, 255, 0.20);
-      border-radius: 13px;
-      font-size: 17px;
-      font-weight: bold;
-    }
-
-    .main-link:hover,
-    .main-link:active {
-      background: rgba(255, 255, 255, 0.22);
-      transform: translateX(-2px);
-    }
-
-    .semester {
-      margin: 17px 0 8px;
-      padding: 11px 12px;
-      background: #d8bb72;
-      color: #473d60;
-      border-radius: 12px;
-      font-size: 18px;
-      font-weight: bold;
-      box-shadow: 0 4px 10px rgba(60, 45, 80, 0.14);
-    }
-
-    .sub-menu {
-      padding: 2px 8px 7px;
-    }
-
-    .sub-link {
-      color: #ffffff;
-      padding: 9px 13px;
-      margin: 5px 0;
-      border-right: 3px solid #ead9a7;
-      background: rgba(255, 255, 255, 0.07);
-      border-radius: 9px;
-      font-size: 15px;
-    }
-
-    .sub-link:hover,
-    .sub-link:active {
-      background: rgba(255, 255, 255, 0.18);
-    }
-
-    /* المحتوى في الجهة اليسرى */
-
-    .main-content {
-      padding: 35px 22px;
       background:
         linear-gradient(
-          180deg,
-          #faf9fc,
-          #f3eff8
+          145deg,
+          #44345f 0%,
+          #665181 42%,
+          #8170a2 72%,
+          #5e4b7c 100%
         );
+      border-bottom: 8px solid #c7aa68;
+      box-shadow: 0 10px 26px rgba(66, 46, 88, 0.22);
     }
 
-    .welcome-card {
-      width: 100%;
-      max-width: 720px;
-      margin: 0 auto 24px;
-      padding: 35px 22px;
-      background: white;
-      border-radius: 24px;
-      border-top: 5px solid #d8bb72;
-      box-shadow: 0 8px 22px rgba(78, 63, 100, 0.13);
-      text-align: center;
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.06);
     }
 
-    .welcome-card h2 {
-      margin: 0 0 20px;
-      color: #62557f;
-      font-size: 29px;
-      line-height: 1.7;
+    .hero::before {
+      width: 280px;
+      height: 280px;
+      top: -130px;
+      right: -90px;
     }
 
-    .welcome-card p {
-      margin: 0;
-      color: #4e4857;
-      font-size: 19px;
-      line-height: 2;
+    .hero::after {
+      width: 220px;
+      height: 220px;
+      bottom: -110px;
+      left: -80px;
     }
 
-    .quick-title {
-      width: fit-content;
-      max-width: 100%;
-      margin: 30px auto 18px;
-      padding: 10px 22px;
-      border-radius: 30px;
-      background: #776a99;
-      color: white;
-      font-size: 20px;
-    }
-
-    .quick-cards {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
-      max-width: 720px;
+    .brand {
+      position: relative;
+      z-index: 2;
+      max-width: 850px;
       margin: auto;
     }
 
-    .quick-card {
-      display: block;
-      padding: 22px 12px;
-      background: white;
-      color: #554a70;
-      text-decoration: none;
-      text-align: center;
-      font-weight: bold;
-      font-size: 18px;
-      border-radius: 18px;
-      border-bottom: 4px solid #d8bb72;
-      box-shadow: 0 6px 15px rgba(78, 63, 100, 0.11);
+    .brand-mark {
+      width: 92px;
+      height: 92px;
+      margin: 0 auto 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 26px;
+      font-size: 48px;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,0.22),
+          rgba(255,255,255,0.08)
+        );
+      border: 2px solid rgba(224, 201, 142, 0.75);
+      box-shadow: 0 10px 24px rgba(33, 21, 48, 0.22);
     }
 
-    .quick-card:hover,
-    .quick-card:active {
-      transform: translateY(-2px);
-    }
-
-    .contact-card {
-      max-width: 720px;
-      margin: 25px auto 0;
-      padding: 20px;
-      text-align: center;
-      background: #eee9f5;
-      border: 2px solid #d8cfea;
-      border-radius: 18px;
-    }
-
-    .contact-card h3 {
-      margin: 0 0 8px;
-      color: #62557f;
-    }
-
-    .contact-card p {
+    .hero h1 {
       margin: 0;
+      color: #fffdf7;
+      font-size: 43px;
+      line-height: 1.5;
+      text-shadow: 0 3px 8px rgba(34, 22, 48, 0.25);
+    }
+
+    .gold {
+      color: #e2c986;
+    }
+
+    .teacher {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 9px 20px;
+      border-radius: 30px;
+      color: #fff8e9;
+      font-size: 18px;
+      background: rgba(255, 255, 255, 0.10);
+      border: 1px solid rgba(228, 207, 154, 0.48);
+    }
+
+    .welcome {
+      margin: 31px auto 0;
+      max-width: 720px;
+      color: #fffdf8;
+      font-size: 26px;
+      font-weight: bold;
       line-height: 1.8;
+    }
+
+    .hero-message {
+      max-width: 660px;
+      margin: 10px auto 0;
+      color: #eee7f5;
+      font-size: 17px;
+      line-height: 1.9;
+    }
+
+    /* شريط ذهبي */
+
+    .gold-pattern {
+      height: 15px;
+      background:
+        repeating-linear-gradient(
+          -45deg,
+          #b99954 0,
+          #b99954 9px,
+          #e4d3a5 9px,
+          #e4d3a5 18px
+        );
+    }
+
+    /* المحتوى */
+
+    .content {
+      width: 100%;
+      max-width: 1050px;
+      margin: auto;
+      padding: 35px 18px 50px;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 27px;
+    }
+
+    .section-heading span {
+      display: inline-block;
+      margin-bottom: 8px;
+      color: #b3934e;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      color: #4c3b65;
+      font-size: 29px;
+    }
+
+    .section-heading p {
+      margin: 10px auto 0;
+      max-width: 600px;
+      color: #756c7f;
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    /* البطاقات */
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 19px;
+    }
+
+    .card {
+      position: relative;
+      min-height: 190px;
+      padding: 25px 16px 22px;
+      overflow: hidden;
+      text-align: center;
+      text-decoration: none;
+      color: #382e48;
+      background:
+        linear-gradient(
+          150deg,
+          #ffffff 0%,
+          #fbf9fd 55%,
+          #f2edf7 100%
+        );
+      border: 1px solid #e2d9eb;
+      border-radius: 25px;
+      box-shadow: 0 9px 22px rgba(77, 58, 98, 0.12);
+      transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 5px;
+      background:
+        linear-gradient(
+          90deg,
+          #b59755,
+          #e1cf9a,
+          #b59755
+        );
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      width: 95px;
+      height: 95px;
+      left: -38px;
+      bottom: -42px;
+      border-radius: 50%;
+      background: rgba(116, 91, 146, 0.06);
+    }
+
+    .card:hover,
+    .card:active {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 28px rgba(77, 58, 98, 0.18);
+    }
+
+    .icon-box {
+      width: 76px;
+      height: 76px;
+      margin: 0 auto 17px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 22px;
+      font-size: 40px;
+      background:
+        linear-gradient(
+          145deg,
+          #eee8f5,
+          #faf7fd
+        );
+      border: 1px solid #ded3e8;
+      box-shadow: 0 6px 13px rgba(80, 60, 105, 0.10);
+    }
+
+    .card h3 {
+      margin: 0 0 9px;
+      color: #463758;
+      font-size: 22px;
+    }
+
+    .card p {
+      margin: 0;
+      color: #7a7182;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    /* بطاقة كنوز آفاق */
+
+    .treasures {
+      background:
+        linear-gradient(
+          145deg,
+          #fffdf8,
+          #f6f0df
+        );
+      border-color: #d9c180;
+    }
+
+    .treasures .icon-box {
+      background:
+        linear-gradient(
+          145deg,
+          #fff6d8,
+          #f3e4b8
+        );
+      border-color: #ddc680;
+    }
+
+    .treasures h3 {
+      color: #806424;
+    }
+
+    /* رسالة أسفل البطاقات */
+
+    .closing-card {
+      margin-top: 32px;
+      padding: 27px 20px;
+      text-align: center;
+      border-radius: 25px;
+      background:
+        linear-gradient(
+          135deg,
+          #514069,
+          #78628f
+        );
+      border-bottom: 5px solid #c7aa68;
+      box-shadow: 0 9px 22px rgba(68, 50, 89, 0.18);
+    }
+
+    .closing-card h2 {
+      margin: 0 0 10px;
+      color: #f1dc9d;
+      font-size: 24px;
+    }
+
+    .closing-card p {
+      max-width: 720px;
+      margin: auto;
+      color: #fff;
+      font-size: 17px;
+      line-height: 1.9;
+    }
+
+    /* التذييل */
+
+    footer {
+      padding: 21px 12px;
+      text-align: center;
+      color: #eee9f3;
+      background: #3c304d;
+      border-top: 2px solid #b99b59;
+      font-size: 14px;
     }
 
     /* الجوال */
 
-    @media (max-width: 700px) {
-      .top-header {
-        padding: 22px 10px;
-      }
-
-      .top-header h1 {
-        font-size: 28px;
-      }
-
-      .top-header p {
-        font-size: 15px;
-      }
-
-      .page-layout {
-        grid-template-columns: 43% 57%;
-      }
-
-      .sidebar {
-        padding: 18px 8px 28px;
-      }
-
-      .sidebar-title {
-        font-size: 19px;
-      }
-
-      .main-link {
-        padding: 11px 7px;
-        font-size: 14px;
-      }
-
-      .semester {
-        padding: 9px 7px;
-        font-size: 15px;
-      }
-
-      .sub-menu {
-        padding: 2px 3px 6px;
-      }
-
-      .sub-link {
-        padding: 8px 6px;
-        font-size: 13px;
-      }
-
-      .main-content {
-        padding: 20px 9px;
-      }
-
-      .welcome-card {
-        padding: 24px 12px;
-        border-radius: 18px;
-      }
-
-      .welcome-card h2 {
-        font-size: 22px;
-      }
-
-      .welcome-card p {
-        font-size: 16px;
-        line-height: 1.9;
-      }
-
-      .quick-title {
-        font-size: 17px;
-        padding: 9px 13px;
-      }
-
-      .quick-cards {
-        grid-template-columns: 1fr;
-        gap: 11px;
-      }
-
-      .quick-card {
-        padding: 16px 7px;
-        font-size: 15px;
-      }
-
-      .contact-card {
-        padding: 15px 9px;
-        font-size: 14px;
+    @media (max-width: 850px) {
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
 
-    @media (max-width: 390px) {
-      .page-layout {
-        grid-template-columns: 45% 55%;
+    @media (max-width: 600px) {
+      .hero {
+        min-height: 390px;
+        padding: 29px 13px 37px;
       }
 
-      .sidebar-title {
-        font-size: 17px;
+      .brand-mark {
+        width: 80px;
+        height: 80px;
+        font-size: 42px;
       }
 
-      .main-link {
-        font-size: 13px;
+      .hero h1 {
+        font-size: 34px;
       }
 
-      .semester {
-        font-size: 14px;
+      .teacher {
+        font-size: 15px;
+        padding: 8px 13px;
       }
 
-      .sub-link {
+      .welcome {
+        margin-top: 27px;
+        font-size: 22px;
+      }
+
+      .hero-message {
+        font-size: 15px;
+      }
+
+      .content {
+        padding: 29px 13px 40px;
+      }
+
+      .section-heading h2 {
+        font-size: 25px;
+      }
+
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 13px;
+      }
+
+      .card {
+        min-height: 175px;
+        padding: 21px 9px 17px;
+        border-radius: 20px;
+      }
+
+      .icon-box {
+        width: 65px;
+        height: 65px;
+        margin-bottom: 13px;
+        font-size: 34px;
+        border-radius: 18px;
+      }
+
+      .card h3 {
+        font-size: 18px;
+      }
+
+      .card p {
         font-size: 12px;
       }
 
-      .welcome-card h2 {
-        font-size: 19px;
+      .closing-card h2 {
+        font-size: 21px;
       }
 
-      .welcome-card p {
-        font-size: 14px;
+      .closing-card p {
+        font-size: 15px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .hero h1 {
+        font-size: 29px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        min-height: 165px;
       }
     }
   </style>
@@ -360,159 +460,167 @@
 
 <body>
 
-  <header class="top-header">
-    <h1>📚 منصة آفاق</h1>
-    <p>إعداد المعلمة إيناس محمد مدخلي</p>
+  <header class="hero">
+
+    <div class="brand">
+
+      <div class="brand-mark">
+        📚
+      </div>
+
+      <h1>
+        منصة
+        <span class="gold">آفاق اللغة</span>
+      </h1>
+
+      <div class="teacher">
+        إعداد المعلمة إيناس محمد يحيى مدخلي
+      </div>
+
+      <div class="welcome">
+        🌸 أهلًا بطالبات الصف الثالث
+      </div>
+
+      <p class="hero-message">
+        هنا تبدأ خطواتكنّ نحو الإبداع والتميّز،
+        فثقن بأنفسكنّ واصنعن نجاحكنّ بكل حب.
+      </p>
+
+    </div>
+
   </header>
 
-  <div class="page-layout">
+  <div class="gold-pattern"></div>
 
-    <!-- القائمة الظاهرة دائمًا على اليمين -->
+  <main class="content">
 
-    <aside class="sidebar">
+    <div class="section-heading">
 
-      <div class="sidebar-title">
-        ✦ أقسام المنصة
-      </div>
+      <span>✦ أقسام المنصة</span>
 
-      <a class="main-link" href="index.html">
-        🏠 الصفحة الرئيسة
-      </a>
-
-      <a class="main-link" href="lessons.html">
-        📖 الدروس
-      </a>
-
-      <div class="semester">
-        📘 الفصل الأول
-      </div>
-
-      <div class="sub-menu">
-
-        <a class="sub-link" href="lessons.html">
-          الوظيفة النحوية
-        </a>
-
-        <a class="sub-link" href="lessons.html">
-          الصنف اللغوي
-        </a>
-
-        <a class="sub-link" href="lessons.html">
-          الأسلوب اللغوي
-        </a>
-
-        <a class="sub-link" href="lessons.html">
-          الرسم الإملائي
-        </a>
-
-        <a class="sub-link" href="lessons.html">
-          الرسم الكتابي
-        </a>
-
-      </div>
-
-      <div class="semester">
-        📙 الفصل الثاني
-      </div>
-
-      <div class="sub-menu">
-
-        <a class="sub-link" href="lessons.html">
-          الوظيفة النحوية
-        </a>
-
-        <a class="sub-link" href="lessons.html">
-          الصنف اللغوي
-        </a>
-
-        <a class="sub-link" href="lessons.html">
-          الأسلوب اللغوي
-        </a>
-
-        <a class="sub-link" href="lessons.html">
-          الرسم الإملائي
-        </a>
-
-        <a class="sub-link" href="lessons.html">
-          الرسم الكتابي
-        </a>
-
-      </div>
-
-      <a class="main-link" href="tests.html">
-        ✅ الاختبارات
-      </a>
-
-      <a class="main-link" href="surveys.html">
-        📊 استمارات استطلاع الرأي
-      </a>
-
-      <a class="main-link" href="achievements.html">
-        🏆 إنجاز الطالبات
-      </a>
-
-      <a class="main-link" href="#contact">
-        💌 تواصل معنا
-      </a>
-
-    </aside>
-
-    <!-- المحتوى الظاهر على اليسار -->
-
-    <main class="main-content">
-
-      <section class="welcome-card">
-
-        <h2>
-          🌸 أهلًا بطالبات الصف الثالث
-        </h2>
-
-        <p>
-          أهلًا بكنّ في منصة آفاق للغة العربية،
-          هنا تبدأ خطواتكنّ نحو الإبداع والتميّز،
-          فثقن بأنفسكنّ واصنعن نجاحكنّ بكل حب.
-        </p>
-
-      </section>
-
-      <h2 class="quick-title">
-        ✨ وصول سريع
+      <h2>
+        اختاري وجهتك التعليمية
       </h2>
 
-      <div class="quick-cards">
+      <p>
+        دروس وأنشطة واختبارات مصممة
+        لتجعل تعلم اللغة العربية أكثر متعة وفائدة.
+      </p>
 
-        <a class="quick-card" href="lessons.html">
-          📖 تصفح الدروس
-        </a>
+    </div>
 
-        <a class="quick-card" href="tests.html">
-          ✅ الاختبارات
-        </a>
+    <div class="cards">
 
-        <a class="quick-card" href="achievements.html">
-          🏆 إنجاز الطالبات
-        </a>
+      <a class="card" href="lessons.html">
 
-        <a class="quick-card" href="surveys.html">
-          📊 استطلاع الرأي
-        </a>
+        <div class="icon-box">
+          📖
+        </div>
 
-      </div>
-
-      <section class="contact-card" id="contact">
-
-        <h3>💌 تواصل معنا</h3>
+        <h3>الدروس</h3>
 
         <p>
-          يسعدنا استقبال آرائكنّ ومقترحاتكنّ
-          لتطوير منصة آفاق.
+          تعلّمي القواعد والمهارات
+          بطريقة مرتبة وواضحة.
         </p>
 
-      </section>
+      </a>
 
-    </main>
+      <a class="card" href="tests.html">
 
-  </div>
+        <div class="icon-box">
+          ✅
+        </div>
+
+        <h3>الاختبارات</h3>
+
+        <p>
+          اختبري معلوماتك وتابعي
+          تقدمك خطوة بخطوة.
+        </p>
+
+      </a>
+
+      <a class="card" href="nafes.html">
+
+        <div class="icon-box">
+          🎯
+        </div>
+
+        <h3>نافس</h3>
+
+        <p>
+          استعدي للتحدي وارفعي
+          مستوى مهاراتك اللغوية.
+        </p>
+
+      </a>
+
+      <a class="card" href="achievements.html">
+
+        <div class="icon-box">
+          🏆
+        </div>
+
+        <h3>إنجاز الطالبات</h3>
+
+        <p>
+          مساحة للاحتفاء بالإبداع
+          والتميز والنجاحات الجميلة.
+        </p>
+
+      </a>
+
+      <a class="card" href="surveys.html">
+
+        <div class="icon-box">
+          📊
+        </div>
+
+        <h3>استطلاع الرأي</h3>
+
+        <p>
+          شاركي برأيك ومقترحاتك
+          لتطوير المنصة.
+        </p>
+
+      </a>
+
+      <a class="card treasures" href="enrichment.html">
+
+        <div class="icon-box">
+          ✨
+        </div>
+
+        <h3>كنوز آفاق</h3>
+
+        <p>
+          اكتشفي أنشطة ومعلومات
+          تثري معرفتك وتوقظ فضولك.
+        </p>
+
+      </a>
+
+    </div>
+
+    <section class="closing-card">
+
+      <h2>
+        💫 اصنعي أفقك الجميل
+      </h2>
+
+      <p>
+        كل مهارة تتعلمينها اليوم
+        هي خطوة جديدة نحو مستقبل مشرق.
+      </p>
+
+    </section>
+
+  </main>
+
+  <footer>
+    منصة آفاق اللغة — إعداد المعلمة إيناس محمد يحيى مدخلي
+  </footer>
 
 </body>
 
