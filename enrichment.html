@@ -1,140 +1,536 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>الإثراء التعليمي</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>كنوز آفاق</title>
 
   <style>
-    body{
-      margin:0;
-      font-family:Tahoma,Arial,sans-serif;
-      background:#f5f5f5;
-      text-align:center;
+    * {
+      box-sizing: border-box;
     }
 
-    header{
-      background:#1565c0;
-      color:white;
-      padding:35px 20px;
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Tahoma, Arial, sans-serif;
+      color: #463753;
+
+      background:
+        linear-gradient(
+          180deg,
+          #f6f1fa 0%,
+          #fffdf9 50%,
+          #f0e9f6 100%
+        );
     }
 
-    section{
-      background:white;
-      margin:30px auto;
-      padding:25px;
-      width:85%;
-      max-width:750px;
-      border-radius:18px;
-      box-shadow:0 4px 15px rgba(0,0,0,0.12);
+    header {
+      position: relative;
+      padding: 55px 20px 60px;
+      overflow: hidden;
+      text-align: center;
+      color: white;
+
+      background:
+        linear-gradient(
+          145deg,
+          #755b91 0%,
+          #59436f 55%,
+          #3f304f 100%
+        );
     }
 
-    .box{
-      background:#eaf3ff;
-      margin:18px 0;
-      padding:22px;
-      border-radius:14px;
-      font-size:21px;
-      line-height:1.9;
+    header::before,
+    header::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.07);
     }
 
-    h2{
-      color:#1565c0;
+    header::before {
+      width: 230px;
+      height: 230px;
+      top: -100px;
+      right: -70px;
     }
 
-    .back{
-      display:inline-block;
-      margin-top:20px;
-      color:#1565c0;
-      font-weight:bold;
-      text-decoration:none;
+    header::after {
+      width: 280px;
+      height: 280px;
+      left: -120px;
+      bottom: -170px;
     }
 
-    footer{
-      background:#222;
-      color:white;
-      padding:20px;
-      margin-top:30px;
+    .treasure-icon {
+      position: relative;
+      z-index: 1;
+      width: 105px;
+      height: 105px;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #d9bf7c;
+      border-radius: 30px;
+      font-size: 55px;
+      background: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 15px 35px rgba(30, 20, 45, 0.25);
+    }
+
+    header h1 {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      font-size: 43px;
+      color: #fff7dd;
+    }
+
+    header p {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      margin: 18px auto 0;
+      font-size: 20px;
+      line-height: 1.9;
+      color: #f5eef9;
+    }
+
+    .gold-line {
+      height: 12px;
+
+      background:
+        repeating-linear-gradient(
+          -45deg,
+          #b79750 0,
+          #b79750 9px,
+          #e4d3a2 9px,
+          #e4d3a2 18px
+        );
+    }
+
+    main {
+      width: 100%;
+      max-width: 1100px;
+      margin: auto;
+      padding: 38px 18px 55px;
+    }
+
+    .intro {
+      max-width: 820px;
+      margin: 0 auto 35px;
+      padding: 27px 20px;
+      text-align: center;
+      border: 1px solid #d4bd82;
+      border-radius: 27px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #fffdf9,
+          #f4edf8
+        );
+
+      box-shadow: 0 11px 26px rgba(74, 54, 92, 0.12);
+    }
+
+    .intro h2 {
+      margin: 0 0 12px;
+      font-size: 29px;
+      color: #533f68;
+    }
+
+    .intro p {
+      margin: 0;
+      font-size: 17px;
+      line-height: 2;
+      color: #75697c;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      position: relative;
+      min-height: 235px;
+      padding: 27px 18px 24px;
+      overflow: hidden;
+      text-align: center;
+      text-decoration: none;
+      color: #463753;
+      border: 1px solid #dac58f;
+      border-radius: 27px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #fffdf9 0%,
+          #f8f3fb 55%,
+          #eee6f4 100%
+        );
+
+      box-shadow: 0 10px 24px rgba(74, 54, 92, 0.12);
+
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 6px;
+
+      background:
+        linear-gradient(
+          90deg,
+          #b5964d,
+          #eadcae,
+          #b5964d
+        );
+    }
+
+    .card:hover,
+    .card:active {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 30px rgba(74, 54, 92, 0.18);
+    }
+
+    .icon {
+      width: 82px;
+      height: 82px;
+      margin: 0 auto 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #ddd1e5;
+      border-radius: 24px;
+      font-size: 43px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #eee6f5,
+          #fffdfd
+        );
+    }
+
+    .card h3 {
+      margin: 0 0 11px;
+      font-size: 22px;
+      color: #4d3a61;
+    }
+
+    .card p {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.9;
+      color: #786e7e;
+    }
+
+    .back-box {
+      margin-top: 38px;
+      text-align: center;
+    }
+
+    .back-button {
+      display: inline-block;
+      padding: 14px 28px;
+      text-decoration: none;
+      font-size: 17px;
+      font-weight: bold;
+      color: white;
+      border: 1px solid #cbb06c;
+      border-radius: 18px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #6c5485,
+          #49375c
+        );
+
+      box-shadow: 0 8px 18px rgba(70, 50, 85, 0.2);
+    }
+
+    footer {
+      padding: 22px 15px;
+      text-align: center;
+      font-size: 14px;
+      color: #eee8f3;
+      background: #3d304d;
+      border-top: 2px solid #b99b59;
+    }
+
+    @media (max-width: 850px) {
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding: 42px 15px 48px;
+      }
+
+      .treasure-icon {
+        width: 90px;
+        height: 90px;
+        font-size: 47px;
+      }
+
+      header h1 {
+        font-size: 37px;
+      }
+
+      header p {
+        font-size: 18px;
+      }
+
+      main {
+        padding: 30px 14px 45px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        min-height: 215px;
+      }
     }
   </style>
 </head>
 
 <body>
 
-<header>
-  <h1>💡 الإثراء التعليمي</h1>
-  <p>معلومات ونصائح وتحديات لتنمية المهارات اللغوية</p>
-</header>
+  <header>
 
-<section>
+    <div class="treasure-icon">
+      ✨
+    </div>
 
-  <h2>📚 معلومة لغوية</h2>
-  <div class="box">
-    القراءة اليومية تساعد على زيادة الثروة اللغوية،
-    وتحسين التعبير والكتابة والإملاء.
-  </div>
+    <h1>
+      كنوز آفاق
+    </h1>
 
-  <h2>✍️ نصيحة تعليمية</h2>
-  <div class="box">
-    خصصي وقتًا قصيرًا كل يوم لمراجعة قاعدة لغوية واحدة،
-    ثم طبقي عليها بمثال من إنشائك.
-  </div>
+    <p>
+      رحلة ممتعة بين كنوز اللغة العربية،
+      نكتشف فيها جمالها وأسرارها،
+      وننطلق بثقة نحو الإبداع والتميّز.
+    </p>
 
-  <h2>⚠️ خطأ شائع</h2>
-  <div class="box">
-    انتبهي إلى الفرق بين التاء المربوطة والهاء في نهاية الكلمة،
-    ويمكن التحقق من ذلك عند وصل الكلمة بما بعدها.
-  </div>
-<h2>📖 العربية لغة القرآن</h2>
+  </header>
 
-<div class="box">
-<strong>قال الله تعالى:</strong><br><br>
+  <div class="gold-line"></div>
 
-﴿إِنَّا أَنْزَلْنَاهُ قُرْآنًا عَرَبِيًّا لَعَلَّكُمْ تَعْقِلُونَ﴾
-<br>
-سورة يوسف: 2
-<br><br>
+  <main>
 
-إن تعلُّم اللغة العربية يساعدنا على قراءة القرآن الكريم قراءة صحيحة، وفهم معانيه، والتأمل في جمال ألفاظه وأساليبه.
-<br><br>
+    <section class="intro">
 
-فكلما تعلّمنا النحو والمفردات والأساليب اللغوية، اقتربنا أكثر من فهم كتاب الله، وازددنا حبًّا للغتنا العربية.
-<br><br>
+      <h2>
+        اختاري كنزكِ
+      </h2>
 
-ومن خلال تلاوتنا للقرآن الكريم، نلحظ أن كثيرًا من موضوعات اللغة العربية التي نتعلمها حاضرة في آياته؛ مثل الوظائف النحوية، والأصناف اللغوية، والأساليب، والقواعد الإملائية.
-<br><br>
+      <p>
+        خلف كل بوابة معرفة جديدة،
+        ومهارة تساعدكِ على التعلّم والفهم والتفوّق.
+      </p>
 
-وهذا يجعل تعلُّم العربية أكثر معنى ومتعة؛ لأننا نكتشف من خلاله دقة التعبير القرآني، وجمال الأسلوب، وروعة اختيار الألفاظ.
-</div>
-  <h2>📘 قواعد نحوية مهمة</h2>
-<div class="box">
-علامات الإعراب الأصلية: الضمة للرفع، والفتحة للنصب، والكسرة للجر، والسكون للجزم.
-</div>
-  <h2>🌷 توجيه سلوكي</h2>
-<div class="box">
-<strong>سلوك حسن:</strong> التعاون مع الزميلات واحترام دور كل طالبة.<br><br>
+    </section>
 
-<strong>سلوك يحتاج إلى علاج:</strong> مقاطعة الآخرين أثناء الحديث.<br><br>
+    <div class="cards">
 
-<strong>العلاج:</strong> أستمع حتى تنتهي المتحدثة، ثم أطلب الإذن قبل المشاركة.
-</div>
-  
-    
-  
+      <a class="card" href="quran-language.html">
 
-  <h2>🌟 عبارة تحفيزية</h2>
-  <div class="box">
-    كل تدريب صغير اليوم يصنع تقدمًا كبيرًا غدًا.
-  </div>
+        <div class="icon">
+          📖
+        </div>
 
-  <a class="back" href="index.html">العودة إلى الصفحة الرئيسية</a>
+        <h3>
+          بوابة لغة القرآن
+        </h3>
 
-</section>
+        <p>
+          تأمّلي جمال الكلمات والتراكيب
+          في آيات القرآن الكريم.
+        </p>
 
-<footer>
-  جميع الحقوق محفوظة © 2026
-</footer>
+      </a>
+
+
+      <a class="card" href="golden-rules.html">
+
+        <div class="icon">
+          🗝️
+        </div>
+
+        <h3>
+          خزانة القواعد الذهبية
+        </h3>
+
+        <p>
+          قواعد مختصرة ومفيدة
+          تساعدكِ على تثبيت المعلومات.
+        </p>
+
+      </a>
+
+
+      <a class="card" href="parsing.html">
+
+        <div class="icon">
+          ✍️
+        </div>
+
+        <h3>
+          الإعراب بثقة
+        </h3>
+
+        <p>
+          خطوات واضحة وتدريبات ممتعة
+          لتتقني الإعراب بثقة.
+        </p>
+
+      </a>
+
+
+      <a class="card" href="poems.html">
+
+        <div class="icon">
+          📜
+        </div>
+
+        <h3>
+          روائع الضاد
+        </h3>
+
+        <p>
+          مختارات جميلة من الشعر
+          والنصوص الأدبية الراقية.
+        </p>
+
+      </a>
+
+
+      <a class="card" href="geniuses.html">
+
+        <div class="icon">
+          🧠
+        </div>
+
+        <h3>
+          عباقرة العربية
+        </h3>
+
+        <p>
+          تعرّفي إلى علماء وأدباء
+          تركوا أثرًا خالدًا في لغتنا.
+        </p>
+
+      </a>
+
+
+      <a class="card" href="success-secrets.html">
+
+        <div class="icon">
+          🏆
+        </div>
+
+        <h3>
+          أسرار التفوق
+        </h3>
+
+        <p>
+          عادات ونصائح عملية
+          تساعدكِ على النجاح والتميّز.
+        </p>
+
+      </a>
+
+
+      <a class="card" href="heart-whispers.html">
+
+        <div class="icon">
+          🤍
+        </div>
+
+        <h3>
+          همسات من القلب
+        </h3>
+
+        <p>
+          كلمات محفزة تمنحكِ الأمل
+          وتذكّركِ بقيمتكِ وقدرتكِ.
+        </p>
+
+      </a>
+
+
+      <a class="card" href="elegant-behavior.html">
+
+        <div class="icon">
+          🌷
+        </div>
+
+        <h3>
+          أناقة السلوك
+        </h3>
+
+        <p>
+          مواقف وقيم جميلة
+          تصنع شخصية راقية ومميزة.
+        </p>
+
+      </a>
+
+
+      <a class="card" href="achievements.html">
+
+        <div class="icon">
+          🌟
+        </div>
+
+        <h3>
+          حكايات صنعت النجاح
+        </h3>
+
+        <p>
+          قصص ملهمة لطالبات
+          بدأن بخطوات صغيرة وحققن النجاح.
+        </p>
+
+      </a>
+
+    </div>
+
+    <div class="back-box">
+
+      <a class="back-button" href="index.html">
+        العودة إلى الصفحة الرئيسة
+      </a>
+
+    </div>
+
+  </main>
+
+  <footer>
+    منصة آفاق اللغة
+  </footer>
 
 </body>
+
 </html>
