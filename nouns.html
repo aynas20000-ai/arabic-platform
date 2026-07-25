@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>الاسم وأقسامه | منصة آفاق اللغة</title>
+
+  <style>
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0
+    }
+
+    :root{
+      --purple-dark:#60358b;
+      --purple:#8c58b0;
+      --gold:#dfa03d;
+      --gold-light:#fff4d9;
+      --green:#34785f;
+      --green-light:#eaf8f2;
+      --blue:#3d7199;
+      --blue-light:#edf6fd;
+      --rose:#a34f68;
+      --rose-light:#fff0f4;
+      --text:#574a60
+    }
+
+    html{
+      scroll-behavior:smooth
+    }
+
+    body{
+      min-height:100vh;
+      font-family:Tahoma,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top right,#fff1cd,transparent 30%),
+        radial-gradient(circle at bottom left,#eadcff,transparent 40%),
+        linear-gradient(135deg,#fffdf8,#f8f1ff)
+    }
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:20;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:16px 6%;
+      color:white;
+      background:linear-gradient(135deg,#60358b,#9c61c4);
+      box-shadow:0 5px 20px rgba(75,38,105,.2)
+    }
+
+    .logo{
+      font-size:21px;
+      font-weight:bold
+    }
+
+    .back-link{
+      padding:9px 14px;
+      border:1px solid rgba(255,255,255,.45);
+      border-radius:24px;
+      color:white;
+      text-decoration:none;
+      font-size:14px;
+      background:rgba(255,255,255,.13)
+    }
+
+    main{
+      width:min(1040px,93%);
+      margin:auto;
+      padding:42px 0 65px
+    }
+
+    .hero{
+      margin-bottom:28px;
+      text-align:center
+    }
+
+    .hero-icon{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:90px;
+      height:90px;
+      margin:0 auto 15px;
+      border-radius:50%;
+      font-size:46px;
+      background:linear-gradient(135deg,#ffdd82,#e99c3d);
+      box-shadow:0 10px 26px rgba(219,143,49,.27);
+      animation:floatIcon 2.7s ease-in-out infinite
+    }
+
+    @keyframes floatIcon{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-7px)}
+    }
+
+    .hero h1{
+      margin-bottom:10px;
+      color:var(--purple-dark);
+      font-size:36px
+    }
+
+    .hero p{
+      max-width:790px;
+      margin:auto;
+      color:#75677e;
+      font-size:17px;
+      line-height:2
+    }
+
+    .intro{
+      margin-bottom:25px;
+      padding:24px;
+      border-radius:24px;
+      text-align:center;
+      color:white;
+      background:linear-gradient(135deg,#70419a,#9e68c4);
+      box-shadow:0 12px 30px rgba(89,48,120,.18)
+    }
+
+    .intro h2{
+      margin-bottom:9px;
+      font-size:23px
+    }
+
+    .intro p{
+      line-height:1.9;
+      color:#faf2fd
+    }
+
+    .instruction{
+      width:fit-content;
+      max-width:100%;
+      margin:0 auto 22px;
+      padding:11px 18px;
+      border-radius:24px;
+      color:#68427d;
+      text-align:center;
+      background:#f1e7f8
+    }
+
+    .topics{
+      display:grid;
+      gap:19px
+    }
+
+    .topic{
+      overflow:hidden;
+      border:1px solid rgba(113,71,143,.13);
+      border-radius:23px;
+      background:rgba(255,255,255,.97);
+      box-shadow:0 10px 28px rgba(75,42,99,.11)
+    }
+
+    .topic[open]{
+      border-color:rgba(136,81,174,.3);
+      background:linear-gradient(135deg,#fbf7ff,#fffaf0);
+      box-shadow:0 15px 36px rgba(78,43,104,.17)
+    }
+
+    .topic-summary{
+      position:relative;
+      display:flex;
+      align-items:center;
+      gap:15px;
+      min-height:92px;
+      padding:18px 65px 18px 20px;
+      cursor:pointer;
+      list-style:none;
+      user-select:none;
+      -webkit-tap-highlight-color:transparent
+    }
+
+    .topic-summary::-webkit-details-marker{
+      display:none
+    }
+
+    .topic-summary::after{
+      content:"＋";
+      position:absolute;
+      right:19px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:34px;
+      height:34px;
+      border-radius:50%;
+      color:white;
+      font-size:22px;
+      background:linear-gradient(135deg,#75439f,#9c64c1)
+    }
+
+    .topic[open] .topic-summary::after{
+      content:"−"
+    }
+
+    .topic-icon{
+      display:flex;
+      flex:0 0 58px;
+      align-items:center;
+      justify-content:center;
+      width:58px;
+      height:58px;
+      border-radius:50%;
+      font-size:30px;
+      background:linear-gradient(135deg,#f1e7fb,#fff1d6)
+    }
+
+    .topic-title small{
+      display:block;
+      margin-bottom:4px;
+      color:#987bac;
+      font-size:13px
+    }
+
+    .topic-title h2{
+      color:var(--purple-dark);
+      font-size:21px;
+      line-height:1.5
+    }
+
+    .topic-content{
+      padding:0 24px 26px;
+      animation:reveal .35s ease
+    }
+
+    @keyframes reveal{
+      from{opacity:0;transform:translateY(-7px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:16px
+    }
+
+    .card{
+      padding:18px;
+      border:1px solid rgba(113,71,143,.1);
+      border-radius:18px;
+      background:white;
+      box-shadow:0 7px 19px rgba(75,42,99,.08)
+    }
+
+    .card h3{
+      margin-bottom:12px;
+      color:var(--purple-dark);
+      font-size:18px
+    }
+
+    .card p,
+    .card li{
+      font-size:15px;
+      line-height:1.95
+    }
+
+    .card p{
+      margin-bottom:10px
+    }
+
+    .card p:last-child{
+      margin-bottom:0
+    }
+
+    .card ul{
+      margin:6px 0 11px;
+      padding-right:22px
+    }
+
+    .definition,
+    .rule,
+    .signs,
+    .example,
+    .warning{
+      padding:11px 13px;
+      border-radius:13px
+    }
+
+    .definition{
+      color:#604678;
+      background:#f4ebfa
+    }
+
+    .rule{
+      color:#735022;
+      background:var(--gold-light)
+    }
+
+    .signs{
+      color:#315f82;
+      background:var(--blue-light)
+    }
+
+    .example{
+      color:#285f4d;
+      background:var(--green-light)
+    }
+
+    .warning{
+      color:#8a3d50;
+      background:var(--rose-light)
+    }
+
+    .closing{
+      margin-top:31px;
+      padding:28px 22px;
+      border-radius:24px;
+      text-align:center;
+      color:white;
+      background:linear-gradient(135deg,#70409a,#a26ac6);
+      box-shadow:0 12px 30px rgba(88,47,119,.19)
+    }
+
+    .closing div{
+      margin-bottom:8px;
+      font-size:46px
+    }
+
+    .closing h2{
+      margin-bottom:9px;
+      font-size:23px
+    }
+
+    .closing p{
+      max-width:730px;
+      margin:auto;
+      color:#faf2fd;
+      line-height:1.9
+    }
+
+    footer{
+      padding:22px;
+      color:#796a82;
+      text-align:center;
+      font-size:14px
+    }
+
+    @media(max-width:750px){
+      header{
+        padding:13px 4%
+      }
+
+      .logo{
+        font-size:17px
+      }
+
+      .back-link{
+        padding:8px 10px;
+        font-size:12px
+      }
+
+      main{
+        width:94%;
+        padding-top:31px
+      }
+
+      .hero h1{
+        font-size:28px
+      }
+
+      .hero p{
+        font-size:15px
+      }
+
+      .intro{
+        padding:20px 15px
+      }
+
+      .topic-summary{
+        gap:11px;
+        min-height:86px;
+        padding:16px 52px 16px 13px
+      }
+
+      .topic-summary::after{
+        right:12px;
+        width:30px;
+        height:30px;
+        font-size:19px
+      }
+
+      .topic-icon{
+        flex-basis:50px;
+        width:50px;
+        height:50px;
+        font-size:26px
+      }
+
+      .topic-title h2{
+        font-size:18px
+      }
+
+      .topic-content{
+        padding:0 13px 19px
+      }
+
+      .cards{
+        grid-template-columns:1fr
+      }
+
+      .card{
+        padding:16px 14px
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">منصة آفاق اللغة</div>
+
+  <a href="golden-rules.html" class="back-link">
+    العودة إلى خزانة القواعد
+  </a>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="hero-icon">🔤</div>
+
+    <h1>الاسم وأقسامه</h1>
+
+    <p>
+      شرح منظم للاسم وأقسامه من حيث العدد والجنس
+      والتعريف والتنكير، مع القواعد والعلامات والأمثلة.
+    </p>
+  </section>
+
+  <section class="intro">
+    <h2>صنّفي الاسم خطوة خطوة</h2>
+
+    <p>
+      حددي أولًا نوع الكلمة، ثم عدد الاسم وجنسه،
+      وبعد ذلك حددي هل هو نكرة أم معرفة.
+    </p>
+  </section>
+
+  <div class="instruction">
+    👆 اضغطي على كل موضوع لفتح شرحه
+  </div>
+
+  <section class="topics">
+
+    <details class="topic">
+      <summary class="topic-summary">
+        <div class="topic-icon">🧩</div>
+
+        <div class="topic-title">
+          <small>الموضوع الأول</small>
+          <h2>الاسم والفعل والحرف</h2>
+        </div>
+      </summary>
+
+      <div class="topic-content">
+        <div class="cards">
+
+          <article class="card">
+            <h3>الاسم</h3>
+
+            <p class="definition">
+              كلمة تدل على إنسان أو حيوان أو نبات أو جماد
+              أو مكان أو صفة أو معنى، ولا ترتبط بزمن.
+            </p>
+
+            <p class="example">
+              طالبة، أسد، شجرة، كتاب، مدرسة، جميل، أمانة.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>علامات الاسم</h3>
+
+            <p class="signs">
+              دخول «أل»، والتنوين، والجر، والنداء،
+              وقبول التاء المربوطة في كثير من الأسماء.
+            </p>
+
+            <p class="example">
+              الكتاب، كتابٌ، في المدرسةِ، يا طالبُ.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>الفعل</h3>
+
+            <p class="definition">
+              كلمة تدل على حدث مرتبط بزمن.
+            </p>
+
+            <p class="example">
+              كتبَ، يكتبُ، اكتبْ.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>الحرف</h3>
+
+            <p class="definition">
+              كلمة لا يظهر معناها كاملًا إلا مع غيرها.
+            </p>
+
+            <p class="example">
+              من، إلى، في، عن، هل، لم.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>تنبيه مختصر</h3>
+
+            <p class="warning">
+              لا نحكم على نوع الكلمة من معناها فقط،
+              بل نلاحظ علاماتها وموقعها في الجملة.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </details>
+
+    <details class="topic">
+      <summary class="topic-summary">
+        <div class="topic-icon">🔢</div>
+
+        <div class="topic-title">
+          <small>الموضوع الثاني</small>
+          <h2>الاسم من حيث العدد</h2>
+        </div>
+      </summary>
+
+      <div class="topic-content">
+        <div class="cards">
+
+          <article class="card">
+            <h3>التعريف</h3>
+
+            <p class="definition">
+              يُقسم الاسم بحسب عدد ما يدل عليه
+              إلى مفرد ومثنى وجمع.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>القاعدة</h3>
+
+            <p class="rule">
+              المفرد يدل على واحد أو واحدة،
+              والمثنى يدل على اثنين أو اثنتين،
+              والجمع يدل على أكثر من اثنين أو اثنتين.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>أمثلة</h3>
+
+            <p class="example">
+              طالبة ← طالبتان ← طالبات.<br>
+              معلم ← معلمان ← معلمون.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>تنبيه مختصر</h3>
+
+            <p class="warning">
+              لا يكفي عد الحروف؛
+              بل ننظر إلى عدد الأشخاص أو الأشياء
+              التي يدل عليها الاسم.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </details>
+
+    <details class="topic">
+      <summary class="topic-summary">
+        <div class="topic-icon">1️⃣</div>
+
+        <div class="topic-title">
+          <small>الموضوع الثالث</small>
+          <h2>المفرد</h2>
+        </div>
+      </summary>
+
+      <div class="topic-content">
+        <div class="cards">
+
+          <article class="card">
+            <h3>التعريف</h3>
+
+            <p class="definition">
+              اسم يدل على واحد أو واحدة.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>القاعدة</h3>
+
+            <p class="rule">
+              قد يكون المفرد مذكرًا أو مؤنثًا،
+              عاقلًا أو غير عاقل.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>أمثلة</h3>
+
+            <p class="example">
+              طالب، طالبة، كتاب، شجرة، باب، مدينة.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>تنبيه مختصر</h3>
+
+            <p class="warning">
+              الاسم المفرد قد يدل على معنى لا يُعد،
+              مثل: علم، صدق، أمانة.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </details>
+
+    <details class="topic">
+      <summary class="topic-summary">
+        <div class="topic-icon">2️⃣</div>
+
+        <div class="topic-title">
+          <small>الموضوع الرابع</small>
+          <h2>المثنى</h2>
+        </div>
+      </summary>
+
+      <div class="topic-content">
+        <div class="cards">
+
+          <article class="card">
+            <h3>التعريف</h3>
+
+            <p class="definition">
+              اسم يدل على اثنين أو اثنتين،
+              بزيادة ألف ونون أو ياء ونون على المفرد.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>القاعدة</h3>
+
+            <p class="rule">
+              يُرفع المثنى بالألف،
+              ويُنصب ويُجر بالياء.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>علاماته</h3>
+
+            <p class="signs">
+              الرفع: انِ.<br>
+              النصب والجر: ينِ.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>أمثلة</h3>
+
+            <p class="example">
+              حضر الطالبانِ.<br>
+              رأيت الطالبينِ.<br>
+              سلمت على الطالبينِ.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>عند الإضافة</h3>
+
+            <p class="rule">
+              تُحذف نون المثنى عند الإضافة.
+            </p>
+
+            <p class="example">
+              حضر طالبا الصف.<br>
+              كرمت طالبَي الصف.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>تنبيه مختصر</h3>
+
+            <p class="warning">
+              ليست كل كلمة تنتهي بألف ونون مثنى،
+              مثل: عطشان، رمضان.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </details>
+
+    <details class="topic">
+      <summary class="topic-summary">
+        <div class="topic-icon">👥</div>
+
+        <div class="topic-title">
+          <small>الموضوع الخامس</small>
+          <h2>الجمع</h2>
+        </div>
+      </summary>
+
+      <div class="topic-content">
+        <div class="cards">
+
+          <article class="card">
+            <h3>التعريف</h3>
+
+            <p class="definition">
+              اسم يدل على أكثر من اثنين أو اثنتين.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>أنواع الجمع</h3>
+
+            <p class="rule">
+              جمع المذكر السالم،
+              وجمع المؤنث السالم،
+              وجمع التكسير.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>أمثلة</h3>
+
+            <p class="example">
+              معلمون، معلمات، كتب، أقلام، مدن.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>تنبيه مختصر</h3>
+
+            <p class="warning">
+              نحدد نوع الجمع بمقارنته بالمفرد،
+              وهل بقي بناء المفرد سالمًا أم تغير.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </details>
+
+    <details class="topic">
+      <summary class="topic-summary">
+        <div class="topic-icon">👨‍🏫</div>
+
+        <div class="topic-title">
+          <small>الموضوع السادس</small>
+          <h2>جمع المذكر السالم</h2>
+        </div>
+      </summary>
+
+      <div class="topic-content">
+        <div class="cards">
+
+          <article class="card">
+            <h3>التعريف</h3>
+
+            <p class="definition">
+              ما دل على أكثر من اثنين،
+              بزيادة واو ونون أو ياء ونون على المفرد،
+              مع سلامة بناء المفرد.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>القاعدة</h3>
+
+            <p class="rule">
+              يُرفع بالواو،
+              ويُنصب ويُجر بالياء.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>علاماته</h3>
+
+            <p class="signs">
+              الرفع: ونَ.<br>
+              النصب والجر: ينَ.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>أمثلة</h3>
+
+            <p class="example">
+              حضر المعلمونَ.<br>
+              كرّمت المعلمينَ.<br>
+              سلمت على المعلمينَ.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>عند الإضافة</h3>
+
+            <p class="rule">
+              تُحذف النون عند الإضافة.
+            </p>
+
+            <p class="example">
+              حضر معلمو المدرسة.<br>
+              كرمت معلمي المدرسة.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>تنبيه مختصر</h3>
+
+            <p class="warning">
+              ليست كل كلمة تنتهي بواو ونون جمع مذكر سالمًا،
+              مثل: زيتون.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </details>
+
+    <details class="topic">
+      <summary class="topic-summary">
+        <div class="topic-icon">👩‍🏫</div>
+
+        <div class="topic-title">
+          <small>الموضوع السابع</small>
+          <h2>جمع المؤنث السالم</h2>
+        </div>
+      </summary>
+
+      <div class="topic-content">
+        <div class="cards">
+
+          <article class="card">
+            <h3>التعريف</h3>
+
+            <p class="definition">
+              ما دل على أكثر من اثنتين،
+              بزيادة ألف وتاء على المفرد،
+              مع بقاء بناء المفرد غالبًا.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>القاعدة</h3>
+
+            <p class="rule">
+              يُرفع بالضمة،
+              ويُنصب ويُجر بالكسرة نيابة عن الفتحة.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>أمثلة التحويل</h3>
+
+            <p class="example">
+              طالبة ← طالبات.<br>
+              معلمة ← معلمات.<br>
+              مجتهدة ← مجتهدات.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>أمثلة الإعراب</h3>
+
+            <p class="example">
+              حضرت الطالباتُ.<br>
+              كرّمت الطالباتِ.<br>
+              سلمت على الطالباتِ.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>تنبيه مختصر</h3>
+
+            <p class="warning">
+              كلمة «أبيات» ليست جمع مؤنث سالمًا،
+              بل جمع تكسير لكلمة «بيت».
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </details>
+
+    <details class="topic">
+      <summary class="topic-summary">
+        <div class="topic-icon">📚</div>
+
+        <div class="topic-title">
+          <small>الموضوع الثامن</small>
+          <h2>جمع التكسير</h2>
+        </div>
+      </summary>
+
+      <div class="topic-content">
+        <div class="cards">
+
+          <article class="card">
+            <h3>التعريف</h3>
+
+            <p class="definition">
+              ما دل على أكثر من اثنين أو اثنتين،
+              مع تغير صورة المفرد عند الجمع.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>القاعدة</h3>
+
+            <p class="rule">
+              قد يزيد في الكلمة حرف،
+              أو ينقص حرف،
+              أو تتغير حركاتها عند الجمع.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>أمثلة</h3>
+
+            <p class="example">
+              كتاب ← كتب.<br>
+              قلم ← أقلام.<br>
+              رجل ← رجال.<br>
+              مدينة ← مدن.<br>
+              بيت ← أبيات.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>تنبيه مختصر</h3>
+
+            <p class="warning">
+              ا يملك نهاية ثابتة،
+لذلك نعرفه بمقارنة الجمع بمفرده.
+</p>
+</article>
+
+</div>
+</div>
+</details>
+
+<details class="topic">
+  <summary class="topic-summary">
+    <div class="topic-icon">♂️</div>
+
+    <div class="topic-title">
+      <small>الموضوع التاسع</small>
+      <h2>المذكر الحقيقي والمجازي</h2>
+    </div>
+  </summary>
+
+  <div class="topic-content">
+    <div class="cards">
+
+      <article class="card">
+        <h3>المذكر الحقيقي</h3>
+
+        <p class="definition">
+          اسم يدل على ذكر من الإنسان أو الحيوان.
+        </p>
+
+        <p class="example">
+          طالب، أب، رجل، أسد، حصان.
+        </p>
+      </article>
+
+      <article class="card">
+        <h3>المذكر المجازي</h3>
+
+        <p class="definition">
+          اسم لغير العاقل يعامل في اللغة معاملة المذكر.
+        </p>
+
+        <p class="example">
+          كتاب، باب، قلم، قمر، طريق.
+        </p>
+      </article>
+
+      <article class="card">
+        <h3>القاعدة</h3>
+
+        <p class="rule">
+          يتبع الوصف والضمير جنس الاسم.
+        </p>
+
+        <p class="example">
+          هذا كتابٌ مفيدٌ.<br>
+          القمرُ جميلٌ.
+        </p>
+      </article>
+
+      <article class="card">
+        <h3>تنبيه مختصر</h3>
+
+        <p class="warning">
+          المذكر المجازي لا يدل على ذكر حقيقي،
+          لكنه يعامل نحويًا معاملة المذكر.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</details>
+
+<details class="topic">
+  <summary class="topic-summary">
+    <div class="topic-icon">♀️</div>
+
+    <div class="topic-title">
+      <small>الموضوع العاشر</small>
+      <h2>المؤنث الحقيقي والمجازي</h2>
+    </div>
+  </summary>
+
+  <div class="topic-content">
+    <div class="cards">
+
+      <article class="card">
+        <h3>المؤنث الحقيقي</h3>
+
+        <p class="definition">
+          اسم يدل على أنثى من الإنسان أو الحيوان.
+        </p>
+
+        <p class="example">
+          طالبة، أم، امرأة، لبؤة، فرس.
+        </p>
+      </article>
+
+      <article class="card">
+        <h3>المؤنث المجازي</h3>
+
+        <p class="definition">
+          اسم لغير العاقل يعامل في اللغة معاملة المؤنث.
+        </p>
+
+        <p class="example">
+          شمس، دار، نار، أرض، حرب.
+        </p>
+      </article>
+
+      <article class="card">
+        <h3>القاعدة</h3>
+
+        <p class="rule">
+          يتبع الوصف والضمير جنس الاسم.
+        </p>
+
+        <p class="example">
+          هذه شمسٌ ساطعةٌ.<br>
+          الأرضُ واسعةٌ.
+        </p>
+      </article>
+
+      <article class="card">
+        <h3>تنبيه مختصر</h3>
+
+        <p class="warning">
+          بعض الأسماء المؤنثة لا تحمل علامة تأنيث ظاهرة،
+          مثل: شمس ودار.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</details>
+
+<details class="topic">
+  <summary class="topic-summary">
+    <div class="topic-icon">ة</div>
+
+    <div class="topic-title">
+      <small>الموضوع الحادي عشر</small>
+      <h2>علامات التأنيث</h2>
+    </div>
+  </summary>
+
+  <div class="topic-content">
+    <div class="cards">
+
+      <article class="card">
+        <h3>التاء المربوطة</h3>
+
+        <p class="signs">
+          من أشهر علامات التأنيث.
+        </p>
+
+        <p class="example">
+          فاطمة، طالبة، شجرة، جميلة.
+        </p>
+      </article>
+
+      <article class="card">
+        <h3>الألف المقصورة</h3>
+
+        <p class="signs">
+          ألف لينة تُكتب في آخر الاسم على صورة «ى».
+        </p>
+
+        <p class="example">
+          سلمى، ليلى، ذكرى، بشرى.
+        </p>
+      </article>
+
+      <article class="card">
+        <h3>الألف الممدودة</h3>
+
+        <p class="signs">
+          ألف بعدها همزة في آخر الاسم.
+        </p>
+
+        <p class="example">
+          صحراء، حمراء، حسناء، خضراء.
+        </p>
+      </article>
+
+      <article class="card">
+        <h3>مؤنث بلا علامة</h3>
+
+        <p class="example">
+          شمس، دار، نار، أرض، نفس.
+        </p>
+      </article>
+
+      <article class="card">
+        <h3>تنبيه مختصر</h3>
+
+        <p class="warning">
+          وجود التاء المربوطة لا يعني دائمًا أن الاسم مؤنث،
+          فهناك أسماء مذكرة مثل: حمزة ومعاوية.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</details>
+
+<details class="topic">
+  <summary class="topic-summary">
+    <div class="topic-icon">🔍</div>
+
+    <div class="topic-title">
+      <small>الموضوع الثاني عشر</small>
+      <h2>النكرة والمعرفة</h2>
+    </div>
+  </summary>
+
+  <div class="topic-content">
+    <div class="cards">
+
+      <article class="card">
+        <h3>النكرة</h3>
+
+        <p class="definition">
+          اسم يدل على شخص أو شيء غير محدد.
+        </p>
+
+        <p class="example">
+          كتاب، طالبة، مدرسة، مدينة.
+        </p>
+      </article>
+
+      <article class="card">
+        <h3>علامات النكرة</h3>
+
+        <p class="signs">
+          تقبل غالبًا التنوين،
+          ويمكن دخول «أل» عليها.
+        </p>
+
+        <p class="example">
+          كتابٌ ← الكتاب.<br>
+          طالبةٌ ← الطالبة.
+        </p>
+      </article>
+
+      <article class="card">
+        <h3>المعرفة</h3>
+
+        <p class="definition">
+          اسم يدل على شخص أو شيء محدد ومعروف.
+        </p>
+
+        <p class="example">
+          سارة، الكتاب، هذه الطالبة، مدرستي.
+        </p>
+      </article>
+
+      <article class="card">
+        <h3>القاعدة</h3>
+
+        <p class="rule">
+          يتحول الاسم النكرة إلى معرفة
+          بإدخال «أل» عليه أو إضافته إلى معرفة.
+        </p>
+
+        <p class="example">
+          كتاب ← الكتاب.<br>
+          كتاب ← كتاب الطالبة.
+        </p>
+      </article>
+
+      <article class="card">
+        <h3>تنبيه مختصر</h3>
+
+        <p class="warning">
+          التنوين علامة شائعة للنكرة،
+          لكن ليست كل نكرة منونة في جميع المواقع.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</details>
+
+<details class="topic">
+  <summary class="topic-summary">
+    <div class="topic-icon">🏷️</div>
+
+    <div class="topic-title">
+      <small>الموضوع الثالث عشر</small>
+      <h2>أنواع المعارف</h2>
+    </div>
+  </summary>
+
+  <div class="topic-content">
+    <div class="cards">
+
+      <article class="card">
+        <h3>العلم</h3>
+
+        <p class="definition">
+          اسم يدل على شخص أو مكان أو شيء معين بذاته.
+        </p>
+
+        <p class="example">
+          سارة، محمد، مكة، الرياض.
+        </p>
+      </article>
+
+      <article class="card">
+        <h3>الضمير</h3>
+
+        <p class="definition">
+          اسم معرفة يحل محل الاسم الظاهر.
+        </p>
+
+        <p class="example">
+          أنا، نحن، أنتِ، هو، هي، هم.
+        </p>
+      </article>
+
+      <article class="card">
+        <h3>اسم الإشارة</h3>
+
+        <p class="definition">
+          اسم معرفة يدل على شيء معين بالإشارة إليه.
+        </p>
+
+        <p class="example">
+          هذا، هذه، هذان، هاتان، هؤلاء، أولئك.
+        </p>
+      </article>
+
+      <article class="card">
+        <h3>الاسم الموصول</h3>
+
+        <p class="definition">
+          اسم معرفة يحتاج إلى جملة بعده تكمل معناه.
+        </p>
+
+        <p class="example">
+          الذي، التي، اللذان، اللتان، الذين، اللاتي.
+        </p>
+
+        <p class="example">
+          نجحت الطالبة التي اجتهدت.
+        </p>
+      </article>
+
+      <article class="card">
+        <h3>المعرّف بـ«أل»</h3>
+
+        <p class="definition">
+          اسم نكرة دخلت عليه «أل» فأصبح معرفة.
+        </p>
+
+        <p class="example">
+          كتاب ← الكتاب.<br>
+          مدرسة ← المدرسة.
+        </p>
+      </article>
+
+      <article class="card">
+        <h3>المضاف إلى معرفة</h3>
+
+        <p class="definition">
+          اسم نكرة يصبح معرفة عندما يضاف إلى اسم معرفة.
+        </p>
+
+        <p class="example">
+          كتاب الطالبة.<br>
+          باب المدرسة.<br>
+          قلم سارة.
+        </p>
+      </article>
+
+      <article class="card">
+        <h3>القاعدة الجامعة</h3>
+
+        <p class="rule">
+          أنواع المعارف:
+          العلم، والضمير، واسم الإشارة،
+          والاسم الموصول، والمعرّف بـ«أل»،
+          والمضاف إلى معرفة.
+        </p>
+      </article>
+
+      <article class="card">
+        <h3>تنبيه مختصر</h3>
+
+        <p class="warning">
+          المضاف يكتسب التعريف من المضاف إليه،
+          لذلك يجب أن يكون المضاف إليه معرفة.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</details>
+
+</section>
+
+<section class="closing">
+  <div>✨</div>
+
+  <h2>اسألي عن الاسم ثلاث مرات</h2>
+
+  <p>
+    كم يدل عليه؟ أهو مذكر أم مؤنث؟
+    وهل هو نكرة أم معرفة؟
+    بهذه الخطوات يصبح تصنيف الاسم أسهل.
+  </p>
+</section>
+
+</main>
+
+<footer>
+  جميع الحقوق محفوظة © منصة آفاق اللغة
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const topics = document.querySelectorAll(".topic");
+
+  function playSound() {
+    try {
+      const AudioContext =
+        window.AudioContext ||
+        window.webkitAudioContext;
+
+      const audioContext = new AudioContext();
+      const oscillator = audioContext.createOscillator();
+      const gain = audioContext.createGain();
+
+      oscillator.type = "sine";
+      oscillator.frequency.value = 620;
+
+      gain.gain.setValueAtTime(
+        0.001,
+        audioContext.currentTime
+      );
+
+      gain.gain.exponentialRampToValueAtTime(
+        0.08,
+        audioContext.currentTime + 0.02
+      );
+
+      gain.gain.exponentialRampToValueAtTime(
+        0.001,
+        audioContext.currentTime + 0.17
+      );
+
+      oscillator.connect(gain);
+      gain.connect(audioContext.destination);
+
+      oscillator.start();
+      oscillator.stop(audioContext.currentTime + 0.18);
+
+    } catch (error) {
+      console.log("تعذر تشغيل الصوت");
+    }
+  }
+
+  topics.forEach(function (topic) {
+    topic.addEventListener("toggle", function () {
+      if (topic.open) {
+        playSound();
+      }
+    });
+  });
+});
+</script>
+
+</body>
+</html>
