@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>اختبار اسم التفضيل | منصة آفاق</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Tahoma, Arial, sans-serif;
+      line-height: 1.8;
+      color: #44384f;
+      overflow-x: hidden;
+
+      background:
+        radial-gradient(
+          circle at top right,
+          rgba(255, 222, 122, 0.35),
+          transparent 28%
+        ),
+        linear-gradient(
+          180deg,
+          #f7f1fb 0%,
+          #fffaf1 52%,
+          #f1eaf8 100%
+        );
+    }
+
+    .star-background {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .star-background span {
+      position: absolute;
+      color: rgba(230, 174, 48, 0.22);
+      font-size: 25px;
+      animation: floatStar 8s linear infinite;
+    }
+
+    @keyframes floatStar {
+      0% {
+        transform: translateY(105vh) rotate(0deg);
+        opacity: 0;
+      }
+
+      15% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(-20vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    header {
+      padding: 42px 18px 48px;
+      text-align: center;
+      color: white;
+      border-radius: 0 0 42px 42px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #765991,
+          #5b4376,
+          #433252
+        );
+
+      box-shadow:
+        0 12px 28px rgba(63, 45, 78, 0.23);
+    }
+
+    .header-icon {
+      width: 95px;
+      height: 95px;
+      margin: 0 auto 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #e4ca7d;
+      border-radius: 29px;
+      background: rgba(255, 255, 255, 0.13);
+      font-size: 53px;
+      animation: pulseStar 2s ease-in-out infinite;
+    }
+
+    @keyframes pulseStar {
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.07);
+      }
+    }
+
+    header h1 {
+      margin: 0;
+      color: #fff3d3;
+      font-size: 36px;
+    }
+
+    header p {
+      margin: 12px auto 0;
+      max-width: 720px;
+      color: #f5eef8;
+      font-size: 18px;
+    }
+
+    main {
+      width: 94%;
+      max-width: 880px;
+      margin: 32px auto 45px;
+    }
+
+    .top-panel {
+      padding: 21px;
+      margin-bottom: 24px;
+      border: 1px solid #dfcb91;
+      border-radius: 27px;
+      background: white;
+
+      box-shadow:
+        0 10px 25px rgba(73, 53, 91, 0.11);
+    }
+
+    .score-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+      font-weight: bold;
+    }
+
+    .score-box,
+    .question-counter {
+      padding: 10px 16px;
+      border-radius: 16px;
+      background: #f2ecff;
+      color: #624681;
+    }
+
+    .stars-score {
+      color: #d39a16;
+      font-size: 20px;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 17px;
+      border-radius: 20px;
+      overflow: hidden;
+      background: #eee8f4;
+    }
+
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      border-radius: 20px;
+
+      background:
+        linear-gradient(
+          90deg,
+          #e58b36,
+          #f6c657
+        );
+
+      transition: width 0.4s ease;
+    }
+
+    .quiz-card {
+      padding: 26px;
+      border: 1px solid #dec98d;
+      border-radius: 31px;
+      background: white;
+
+      box-shadow:
+        0 12px 29px rgba(73, 53, 91, 0.13);
+    }
+
+    .question-number {
+      width: fit-content;
+      margin: 0 auto 17px;
+      padding: 9px 17px;
+      border-radius: 15px;
+      color: white;
+      font-weight: bold;
+
+      background:
+        linear-gradient(
+          135deg,
+          #ed7c38,
+          #f6aa4e
+        );
+    }
+
+    .question-text {
+      margin: 0 0 23px;
+      padding: 20px;
+      text-align: center;
+      border-radius: 21px;
+      background: #f5effd;
+      color: #583f72;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .options {
+      display: grid;
+      gap: 14px;
+    }
+
+    .option {
+      width: 100%;
+      padding: 16px 18px;
+      border: 2px solid transparent;
+      border-radius: 19px;
+      background: #eef6ff;
+      color: #3d4050;
+      font-family: inherit;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      text-align: right;
+
+      transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease;
+    }
+
+    .option:nth-child(2) {
+      background: #fff2df;
+    }
+
+    .option:nth-child(3) {
+      background: #eef9f1;
+    }
+
+    .option:nth-child(4) {
+      background: #f3edff;
+    }
+
+    .option:hover {
+      transform: translateY(-2px);
+      border-color: #9d7abb;
+    }
+
+    .option:disabled {
+      cursor: default;
+    }
+
+    .option.correct {
+      color: #176642;
+      background: #dff7e8;
+      border-color: #47ab72;
+      animation: correctPop 0.45s ease;
+    }
+
+    .option.wrong {
+      color: #983a4a;
+      background: #ffe3e8;
+      border-color: #dc6377;
+      animation: wrongShake 0.42s ease;
+    }
+
+    @keyframes correctPop {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.04);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes wrongShake {
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      25% {
+        transform: translateX(7px);
+      }
+
+      50% {
+        transform: translateX(-7px);
+      }
+
+      75% {
+        transform: translateX(5px);
+      }
+    }
+
+    .feedback {
+      display: none;
+      margin-top: 20px;
+      padding: 16px;
+      text-align: center;
+      border-radius: 18px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .feedback.correct-feedback {
+      display: block;
+      color: #176642;
+      background: #e3f8eb;
+      border-right: 7px solid #4caf75;
+    }
+
+    .feedback.wrong-feedback {
+      display: block;
+      color: #96394a;
+      background: #ffe8ec;
+      border-right: 7px solid #dc6679;
+    }
+
+    .next-button {
+      display: none;
+      width: 100%;
+      margin-top: 19px;
+      padding: 15px;
+      border: 0;
+      border-radius: 19px;
+      color: white;
+      font-family: inherit;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+
+      background:
+        linear-gradient(
+          135deg,
+          #6c5089,
+          #4d3a60
+        );
+
+      box-shadow:
+        0 8px 18px rgba(72, 53, 88, 0.2);
+    }
+
+    .next-button.show {
+      display: block;
+    }
+
+    .result-card {
+      display: none;
+      padding: 30px 24px;
+      text-align: center;
+      border: 1px solid #dec98d;
+      border-radius: 32px;
+      background: white;
+
+      box-shadow:
+        0 12px 30px rgba(73, 53, 91, 0.14);
+    }
+
+    .result-card.show {
+      display: block;
+      animation: resultAppear 0.7s ease;
+    }
+
+    @keyframes resultAppear {
+      from {
+        transform: scale(0.85);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .result-icon {
+      font-size: 74px;
+      margin-bottom: 10px;
+    }
+
+    .result-card h2 {
+      margin: 0 0 13px;
+      color: #624681;
+      font-size: 29px;
+    }
+
+    .final-score {
+      margin: 18px 0;
+      padding: 18px;
+      border-radius: 20px;
+      background: #fff5d9;
+      color: #755317;
+      font-size: 23px;
+      font-weight: bold;
+    }
+
+    .final-stars {
+      min-height: 55px;
+      margin: 13px 0;
+      color: #dda51d;
+      font-size: 38px;
+      letter-spacing: 5px;
+    }
+
+    .result-message {
+      padding: 17px;
+      border-radius: 19px;
+      background: #f2ecff;
+      color: #5b4275;
+      font-size: 19px;
+      font-weight: bold;
+    }
+
+    .restart-button,
+    .back-button {
+      display: inline-block;
+      margin: 18px 6px 0;
+      padding: 14px 24px;
+      border: 0;
+      border-radius: 18px;
+      color: white;
+      font-family: inherit;
+      font-size: 17px;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+
+      background:
+        linear-gradient(
+          135deg,
+          #ed7c38,
+          #f5aa4d
+        );
+    }
+
+    .back-button {
+      background:
+        linear-gradient(
+          135deg,
+          #6c5089,
+          #4d3a60
+        );
+    }
+
+    .flying-star {
+      position: fixed;
+      z-index: 9999;
+      pointer-events: none;
+      font-size: 32px;
+      animation: flyStar 1.2s ease-out forwards;
+    }
+
+    @keyframes flyStar {
+      0% {
+        transform: translateY(0) scale(0.4) rotate(0deg);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(-180px) scale(1.5) rotate(300deg);
+        opacity: 0;
+      }
+    }
+
+    .celebration-star {
+      position: fixed;
+      top: -50px;
+      z-index: 9998;
+      pointer-events: none;
+      font-size: 28px;
+      animation: starFall 3.2s linear forwards;
+    }
+
+    @keyframes starFall {
+      0% {
+        transform: translateY(-50px) rotate(0deg);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    footer {
+      padding: 22px 15px;
+      text-align: center;
+      color: white;
+      background: #3d304d;
+    }
+
+    @media (max-width: 650px) {
+      header h1 {
+        font-size: 29px;
+      }
+
+      header p {
+        font-size: 16px;
+      }
+
+      .quiz-card {
+        padding: 18px;
+      }
+
+      .question-text {
+        font-size: 19px;
+      }
+
+      .option {
+        font-size: 16px;
+      }
+
+      .final-stars {
+        font-size: 29px;
+        letter-spacing: 2px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="star-background" id="starBackground"></div>
+
+  <header>
+
+    <div class="header-icon">
+      ⭐
+    </div>
+
+    <h1>
+      اختبار اسم التفضيل
+    </h1>
+
+    <p>
+      اختاري الإجابة الصحيحة، واجمعي أكبر عدد من النجوم.
+    </p>
+
+  </header>
+
+  <main>
+
+    <div class="top-panel" id="topPanel">
+
+      <div class="score-row">
+
+        <div class="question-counter" id="questionCounter">
+          السؤال ١ من ١٥
+        </div>
+
+        <div class="score-box">
+          الدرجة:
+          <span id="score">٠</span>
+          من ١٥
+        </div>
+
+        <div class="stars-score">
+          ⭐
+          <span id="starScore">٠</span>
+        </div>
+
+      </div>
+
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+
+    </div>
+
+
+    <section class="quiz-card" id="quizCard">
+
+      <div class="question-number" id="questionNumber">
+        السؤال الأول
+      </div>
+
+      <div class="question-text" id="questionText"></div>
+
+      <div class="options" id="options"></div>
+
+      <div class="feedback" id="feedback"></div>
+
+      <button
+        class="next-button"
+        id="nextButton"
+        type="button"
+      >
+        السؤال التالي ⭐
+      </button>
+
+    </section>
+
+
+    <section class="result-card" id="resultCard">
+
+      <div class="result-icon" id="resultIcon">
+        🌟
+      </div>
+
+      <h2>
+        انتهى الاختبار
+      </h2>
+
+      <div class="final-score" id="finalScore"></div>
+
+      <div class="final-stars" id="finalStars"></div>
+
+      <div class="result-message" id="resultMessage"></div>
+
+      <button
+        class="restart-button"
+        id="restartButton"
+        type="button"
+      >
+        إعادة الاختبار 🔄
+      </button>
+
+      <a
+        class="back-button"
+        href="detail-style.html"
+      >
+        العودة إلى درس اسم التفضيل
+      </a>
+
+    </section>
+
+  </main>
+
+  <footer>
+    منصة آفاق اللغة — إعداد المعلمة إيناس محمد يحيى مدخلي
+  </footer>
+
+
+  <script>
+    const questions = [
+      {
+        question:
+          "ما اسم التفضيل في الجملة: «العلم أنفع من المال»؟",
+        options: [
+          "العلم",
+          "أنفع",
+          "المال",
+          "من"
+        ],
+        answer: 1,
+        explanation:
+          "«أنفع» اسم تفضيل؛ لأنه يدل على زيادة العلم في صفة النفع."
+      },
+
+      {
+        question:
+          "ما المفضَّل في الجملة: «المسجد الحرام أطهر بقاع الأرض»؟",
+        options: [
+          "أطهر",
+          "بقاع",
+          "الأرض",
+          "المسجد الحرام"
+        ],
+        answer: 3,
+        explanation:
+          "المسجد الحرام هو الذي زاد في صفة الطهارة، ولذلك هو المفضَّل."
+      },
+
+      {
+        question:
+          "ما المفضَّل عليه في الجملة: «الصدق أفضل من الكذب»؟",
+        options: [
+          "الصدق",
+          "أفضل",
+          "الكذب",
+          "من"
+        ],
+        answer: 2,
+        explanation:
+          "الكذب هو الطرف الذي فُضِّل عليه الصدق."
+      },
+
+      {
+        question:
+          "أي الكلمات الآتية اسم تفضيل؟",
+        options: [
+          "أحمر",
+          "أفضل",
+          "أعرج",
+          "أعور"
+        ],
+        answer: 1,
+        explanation:
+          "«أفضل» يدل على المقارنة وزيادة أحد الطرفين في صفة مشتركة."
+      },
+
+      {
+        question:
+          "أي جملة تشتمل على أسلوب تفضيل؟",
+        options: [
+          "السماء صافية",
+          "الحديقة جميلة",
+          "الرياض أكبر من القرية",
+          "حضر الطالب مبكرًا"
+        ],
+        answer: 2,
+        explanation:
+          "في الجملة مقارنة بين الرياض والقرية في صفة الكِبَر."
+      },
+
+      {
+        question:
+          "ما وزن اسم التفضيل غالبًا؟",
+        options: [
+          "فاعل",
+          "مفعول",
+          "أفعل",
+          "فعيل"
+        ],
+        answer: 2,
+        explanation:
+          "يُصاغ اسم التفضيل غالبًا على وزن «أفعل»."
+      },
+
+      {
+        question:
+          "أي الكلمات الآتية تدل على التفضيل مع أنها ليست على وزن «أفعل»؟",
+        options: [
+          "خير",
+          "أكبر",
+          "أجمل",
+          "أوسع"
+        ],
+        answer: 0,
+        explanation:
+          "«خير» اسم تفضيل سماعي، وكذلك كلمة «شر»."
+      },
+
+      {
+        question:
+          "في الجملة: «الأمن أعظم النعم»، ما اسم التفضيل؟",
+        options: [
+          "الأمن",
+          "أعظم",
+          "النعم",
+          "الجملة لا تشتمل على تفضيل"
+        ],
+        answer: 1,
+        explanation:
+          "«أعظم» اسم التفضيل، والأمن هو المفضَّل."
+      },
+
+      {
+        question:
+          "ما الأركان الصحيحة لأسلوب التفضيل؟",
+        options: [
+          "فعل وفاعل ومفعول به",
+          "مبتدأ وخبر فقط",
+          "المفضَّل واسم التفضيل والمفضَّل عليه",
+          "أداة شرط وفعل شرط وجواب شرط"
+        ],
+        answer: 2,
+        explanation:
+          "يتكون أسلوب التفضيل من المفضَّل، واسم التفضيل، والمفضَّل عليه."
+      },
+
+      {
+        question:
+          "أي عبارة صحيحة؟",
+        options: [
+          "كل كلمة على وزن أفعل اسم تفضيل",
+          "ليس كل اسم على وزن أفعل اسم تفضيل",
+          "اسم التفضيل لا يدل على مقارنة",
+          "اسم التفضيل فعل مضارع"
+        ],
+        answer: 1,
+        explanation:
+          "قد تأتي كلمات على وزن «أفعل» ولا تدل على التفضيل، مثل: أحمر وأعور."
+      },
+
+      {
+        question:
+          "في الجملة: «مسجد الرسول ﷺ أوسع مسجد في المدينة»، ما المفضَّل عليه؟",
+        options: [
+          "مسجد الرسول ﷺ",
+          "أوسع",
+          "مساجد المدينة",
+          "المدينة فقط"
+        ],
+        answer: 2,
+        explanation:
+          "المفضَّل عليه هو بقية مساجد المدينة."
+      },
+
+      {
+        question:
+          "أي جملة لا تشتمل على اسم تفضيل؟",
+        options: [
+          "القراءة أنفع من اللهو",
+          "الزهرة حمراء",
+          "العلم أفضل من الجهل",
+          "الآخرة خير وأبقى"
+        ],
+        answer: 1,
+        explanation:
+          "«حمراء» تدل على لون، ولا تدل على مقارنة أو تفضيل."
+      },
+
+      {
+        question:
+          "ما الصفة المشتركة في الجملة: «الطائرة أسرع من السيارة»؟",
+        options: [
+          "السرعة",
+          "الحجم",
+          "الجمال",
+          "اللون"
+        ],
+        answer: 0,
+        explanation:
+          "اشتركت الطائرة والسيارة في صفة السرعة، وزادت الطائرة فيها."
+      },
+
+      {
+        question:
+          "في الجملة: «وطني أغلى من كل الأوطان»، ما المفضَّل؟",
+        options: [
+          "أغلى",
+          "كل الأوطان",
+          "وطني",
+          "من"
+        ],
+        answer: 2,
+        explanation:
+          "وطني هو المفضَّل؛ لأنه زاد في صفة الغلاء والمحبة."
+      },
+
+      {
+        question:
+          "كيف نتأكد أن الكلمة اسم تفضيل؟",
+        options: [
+          "من شكل الكلمة فقط",
+          "من وجود حرف الألف",
+          "من المقارنة والصفة المشتركة وزيادة أحد الطرفين",
+          "من طول الجملة"
+        ],
+        answer: 2,
+        explanation:
+          "السياق هو الأساس: مقارنة، وصفة مشتركة، وزيادة أحد الطرفين فيها."
+      }
+    ];
+
+
+    const arabicNumbers = [
+      "الأول",
+      "الثاني",
+      "الثالث",
+      "الرابع",
+      "الخامس",
+      "السادس",
+      "السابع",
+      "الثامن",
+      "التاسع",
+      "العاشر",
+      "الحادي عشر",
+      "الثاني عشر",
+      "الثالث عشر",
+      "الرابع عشر",
+      "الخامس عشر"
+    ];
+
+
+    const arabicDigits = [
+      "٠",
+      "١",
+      "٢",
+      "٣",
+      "٤",
+      "٥",
+      "٦",
+      "٧",
+      "٨",
+      "٩",
+      "١٠",
+      "١١",
+      "١٢",
+      "١٣",
+      "١٤",
+      "١٥"
+    ];
+
+
+    let currentQuestion = 0;
+    let score = 0;
+    let answered = false;
+
+
+    const questionCounter =
+      document.getElementById("questionCounter");
+
+    const scoreElement =
+      document.getElementById("score");
+
+    const starScore =
+      document.getElementById("starScore");
+
+    const progressFill =
+      document.getElementById("progressFill");
+
+    const questionNumber =
+      document.getElementById("questionNumber");
+
+    const questionText =
+      document.getElementById("questionText");
+
+    const optionsContainer =
+      document.getElementById("options");
+
+    const feedback =
+      document.getElementById("feedback");
+
+    const nextButton =
+      document.getElementById("nextButton");
+
+    const quizCard =
+      document.getElementById("quizCard");
+
+    const resultCard =
+      document.getElementById("resultCard");
+
+    const topPanel =
+      document.getElementById("topPanel");
+
+    const finalScore =
+      document.getElementById("finalScore");
+
+    const finalStars =
+      document.getElementById("finalStars");
+
+    const resultMessage =
+      document.getElementById("resultMessage");
+
+    const resultIcon =
+      document.getElementById("resultIcon");
+
+    const restartButton =
+      document.getElementById("restartButton");
+
+
+    function createBackgroundStars() {
+      const background =
+        document.getElementById("starBackground");
+
+      background.innerHTML = "";
+
+      for (let i = 0; i < 18; i++) {
+        const star = document.createElement("span");
+
+        star.textContent = "★";
+        star.style.left =
+          Math.random() * 100 + "%";
+
+        star.style.animationDelay =
+          Math.random() * 8 + "s";
+
+        star.style.animationDuration =
+          6 + Math.random() * 6 + "s";
+
+        star.style.fontSize =
+          15 + Math.random() * 25 + "px";
+
+        background.appendChild(star);
+      }
+    }
+
+
+    function playCorrectSound() {
+      const AudioContext =
+        window.AudioContext ||
+        window.webkitAudioContext;
+
+      const audio = new AudioContext();
+
+      const notes = [
+        523.25,
+        659.25,
+        783.99
+      ];
+
+      notes.forEach((frequency, index) => {
+        const oscillator =
+          audio.createOscillator();
+
+        const gain =
+          audio.createGain();
+
+        oscillator.type = "sine";
+        oscillator.frequency.value = frequency;
+
+        gain.gain.setValueAtTime(
+          0.15,
+          audio.currentTime + index * 0.11
+        );
+
+        gain.gain.exponentialRampToValueAtTime(
+          0.01,
+          audio.currentTime + index * 0.11 + 0.25
+        );
+
+        oscillator.connect(gain);
+        gain.connect(audio.destination);
+
+        oscillator.start(
+          audio.currentTime + index * 0.11
+        );
+
+        oscillator.stop(
+                  audio.currentTime + index * 0.11 + 0.27
+      );
+    });
+  }
+
+
+  function playWrongSound() {
+    const AudioContext =
+      window.AudioContext ||
+      window.webkitAudioContext;
+
+    const audio = new AudioContext();
+
+    const oscillator =
+      audio.createOscillator();
+
+    const gain =
+      audio.createGain();
+
+    oscillator.type = "triangle";
+
+    oscillator.frequency.setValueAtTime(
+      220,
+      audio.currentTime
+    );
+
+    oscillator.frequency.exponentialRampToValueAtTime(
+      130,
+      audio.currentTime + 0.35
+    );
+
+    gain.gain.setValueAtTime(
+      0.16,
+      audio.currentTime
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+      0.01,
+      audio.currentTime + 0.38
+    );
+
+    oscillator.connect(gain);
+    gain.connect(audio.destination);
+
+    oscillator.start();
+
+    oscillator.stop(
+      audio.currentTime + 0.4
+    );
+  }
+
+
+  function playCelebrationSound() {
+    const AudioContext =
+      window.AudioContext ||
+      window.webkitAudioContext;
+
+    const audio = new AudioContext();
+
+    const notes = [
+      523.25,
+      659.25,
+      783.99,
+      1046.5
+    ];
+
+    notes.forEach((frequency, index) => {
+      const oscillator =
+        audio.createOscillator();
+
+      const gain =
+        audio.createGain();
+
+      oscillator.type = "sine";
+      oscillator.frequency.value = frequency;
+
+      gain.gain.setValueAtTime(
+        0.14,
+        audio.currentTime + index * 0.14
+      );
+
+      gain.gain.exponentialRampToValueAtTime(
+        0.01,
+        audio.currentTime + index * 0.14 + 0.35
+      );
+
+      oscillator.connect(gain);
+      gain.connect(audio.destination);
+
+      oscillator.start(
+        audio.currentTime + index * 0.14
+      );
+
+      oscillator.stop(
+        audio.currentTime + index * 0.14 + 0.36
+      );
+    });
+  }
+
+
+  function showFlyingStars(x, y) {
+    for (let i = 0; i < 7; i++) {
+      const star =
+        document.createElement("div");
+
+      star.className = "flying-star";
+
+      star.textContent =
+        i % 2 === 0 ? "⭐" : "✨";
+
+      star.style.left =
+        x + (Math.random() * 100 - 50) + "px";
+
+      star.style.top =
+        y + (Math.random() * 40 - 20) + "px";
+
+      star.style.animationDelay =
+        Math.random() * 0.15 + "s";
+
+      document.body.appendChild(star);
+
+      setTimeout(() => {
+        star.remove();
+      }, 1400);
+    }
+  }
+
+
+  function celebrationStars() {
+    for (let i = 0; i < 55; i++) {
+      setTimeout(() => {
+        const star =
+          document.createElement("div");
+
+        star.className = "celebration-star";
+
+        const shapes = [
+          "⭐",
+          "✨",
+          "🌟",
+          "💫"
+        ];
+
+        star.textContent =
+          shapes[
+            Math.floor(
+              Math.random() * shapes.length
+            )
+          ];
+
+        star.style.left =
+          Math.random() * 100 + "vw";
+
+        star.style.fontSize =
+          20 + Math.random() * 25 + "px";
+
+        star.style.animationDuration =
+          2.2 + Math.random() * 2 + "s";
+
+        document.body.appendChild(star);
+
+        setTimeout(() => {
+          star.remove();
+        }, 4500);
+      }, i * 55);
+    }
+  }
+
+
+  function loadQuestion() {
+    answered = false;
+
+    const current =
+      questions[currentQuestion];
+
+    questionCounter.textContent =
+      "السؤال " +
+      arabicDigits[currentQuestion + 1] +
+      " من ١٥";
+
+    scoreElement.textContent =
+      arabicDigits[score];
+
+    starScore.textContent =
+      arabicDigits[score];
+
+    progressFill.style.width =
+      (currentQuestion / questions.length) *
+      100 +
+      "%";
+
+    questionNumber.textContent =
+      "السؤال " +
+      arabicNumbers[currentQuestion];
+
+    questionText.textContent =
+      current.question;
+
+    optionsContainer.innerHTML = "";
+
+    feedback.className = "feedback";
+    feedback.textContent = "";
+
+    nextButton.classList.remove("show");
+
+    current.options.forEach(
+      (option, index) => {
+        const button =
+          document.createElement("button");
+
+        button.type = "button";
+        button.className = "option";
+        button.textContent = option;
+
+        button.addEventListener(
+          "click",
+          (event) => {
+            chooseAnswer(
+              index,
+              button,
+              event
+            );
+          }
+        );
+
+        optionsContainer.appendChild(button);
+      }
+    );
+  }
+
+
+  function chooseAnswer(
+    selectedIndex,
+    selectedButton,
+    event
+  ) {
+    if (answered) {
+      return;
+    }
+
+    answered = true;
+
+    const current =
+      questions[currentQuestion];
+
+    const buttons =
+      document.querySelectorAll(".option");
+
+    buttons.forEach(button => {
+      button.disabled = true;
+    });
+
+    if (selectedIndex === current.answer) {
+      score++;
+
+      selectedButton.classList.add("correct");
+
+      feedback.className =
+        "feedback correct-feedback";
+
+      feedback.innerHTML =
+        "⭐ إجابة صحيحة!<br>" +
+        current.explanation;
+
+      playCorrectSound();
+
+      showFlyingStars(
+        event.clientX,
+        event.clientY
+      );
+
+    } else {
+      selectedButton.classList.add("wrong");
+
+      buttons[
+        current.answer
+      ].classList.add("correct");
+
+      feedback.className =
+        "feedback wrong-feedback";
+
+      feedback.innerHTML =
+        "الإجابة غير صحيحة.<br>" +
+        current.explanation;
+
+      playWrongSound();
+    }
+
+    scoreElement.textContent =
+      arabicDigits[score];
+
+    starScore.textContent =
+      arabicDigits[score];
+
+    nextButton.textContent =
+      currentQuestion === questions.length - 1
+        ? "عرض النتيجة 🌟"
+        : "السؤال التالي ⭐";
+
+    nextButton.classList.add("show");
+  }
+
+
+  nextButton.addEventListener(
+    "click",
+    () => {
+      currentQuestion++;
+
+      if (currentQuestion < questions.length) {
+        loadQuestion();
+
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+
+      } else {
+        showResult();
+      }
+    }
+  );
+
+
+  function showResult() {
+    quizCard.style.display = "none";
+    topPanel.style.display = "none";
+
+    resultCard.classList.add("show");
+
+    finalScore.textContent =
+      "حصلتِ على " +
+      arabicDigits[score] +
+      " من ١٥ نجمة";
+
+    let starsCount = 0;
+    let message = "";
+
+    if (score === 15) {
+      starsCount = 5;
+      resultIcon.textContent = "🏆";
+
+      message =
+        "مذهلة! أتقنتِ اسم التفضيل إتقانًا كاملًا.";
+
+    } else if (score >= 12) {
+      starsCount = 4;
+      resultIcon.textContent = "🌟";
+
+      message =
+        "رائعة جدًا! فهمكِ للدرس ممتاز.";
+
+    } else if (score >= 9) {
+      starsCount = 3;
+      resultIcon.textContent = "⭐";
+
+      message =
+        "أداء جميل! راجعي بعض النقاط وستصلين إلى الإتقان.";
+
+    } else if (score >= 6) {
+      starsCount = 2;
+      resultIcon.textContent = "✨";
+
+      message =
+        "بداية طيبة، أعيدي مراجعة ملف الدرس ثم حاولي مرة أخرى.";
+
+    } else {
+      starsCount = 1;
+      resultIcon.textContent = "💫";
+
+      message =
+        "لا بأس، التعلم يحتاج إلى المحاولة. راجعي الدرس وأعيدي الاختبار.";
+    }
+
+    finalStars.textContent =
+      "⭐".repeat(starsCount);
+
+    resultMessage.textContent = message;
+
+    playCelebrationSound();
+    celebrationStars();
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+
+
+  restartButton.addEventListener(
+    "click",
+    () => {
+      currentQuestion = 0;
+      score = 0;
+      answered = false;
+
+      resultCard.classList.remove("show");
+
+      quizCard.style.display = "block";
+      topPanel.style.display = "block";
+
+      loadQuestion();
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+  );
+
+
+  createBackgroundStars();
+  loadQuestion();
+
+</script>
+
+</body>
+</html>
+          
