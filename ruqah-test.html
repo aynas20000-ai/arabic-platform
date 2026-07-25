@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>اختبار الرسم الكتابي</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Tahoma, Arial, sans-serif;
+      color: #3b245f;
+      background: linear-gradient(135deg, #f4ebff, #fff9fe);
+    }
+
+    header {
+      padding: 28px 15px;
+      color: white;
+      text-align: center;
+      background: linear-gradient(135deg, #6936a8, #a14fc3);
+      border-radius: 0 0 28px 28px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    header h1 {
+      margin: 0 0 8px;
+      font-size: 29px;
+    }
+
+    header p {
+      margin: 0;
+      font-size: 17px;
+      line-height: 1.8;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 760px;
+      margin: 25px auto;
+      padding: 15px;
+    }
+
+    .card {
+      padding: 24px;
+      background: white;
+      border: 2px solid #ead9f7;
+      border-radius: 22px;
+      box-shadow: 0 7px 22px rgba(0, 0, 0, 0.12);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .name-box,
+    .result {
+      text-align: center;
+    }
+
+    .name-box h2,
+    .result h2 {
+      margin-top: 0;
+      color: #6936a8;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      margin: 15px 0;
+      padding: 14px;
+      font-family: inherit;
+      font-size: 18px;
+      text-align: center;
+      border: 2px solid #d8b8ec;
+      border-radius: 14px;
+      outline: none;
+    }
+
+    input[type="text"]:focus {
+      border-color: #6936a8;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 13px 26px;
+      color: white;
+      font-family: inherit;
+      font-size: 18px;
+      text-decoration: none;
+      background: linear-gradient(135deg, #6936a8, #a14fc3);
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+    }
+
+    .btn:disabled {
+      background: #b9abbf;
+      cursor: not-allowed;
+    }
+
+    .progress-text {
+      margin-bottom: 10px;
+      color: #6936a8;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .progress {
+      height: 13px;
+      margin-bottom: 22px;
+      overflow: hidden;
+      background: #f0e7f7;
+      border-radius: 20px;
+    }
+
+    .progress-bar {
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, #a14fc3, #6936a8);
+      transition: width 0.3s;
+    }
+
+    .question-category {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 7px 13px;
+      color: #6936a8;
+      font-weight: bold;
+      background: #f3e9fa;
+      border-radius: 20px;
+    }
+
+    .question {
+      margin-bottom: 20px;
+      color: #3b245f;
+      font-size: 21px;
+      font-weight: bold;
+      line-height: 1.8;
+    }
+
+    .choices {
+      display: grid;
+      gap: 12px;
+    }
+
+    .choice {
+      width: 100%;
+      padding: 15px;
+      color: #3b245f;
+      font-family: inherit;
+      font-size: 18px;
+      text-align: right;
+      background: #fcf8ff;
+      border: 2px solid #e1c9f0;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .choice:hover {
+      background: #f5ebfb;
+    }
+
+    .choice.selected {
+      font-weight: bold;
+      background: #ead9f7;
+      border-color: #6936a8;
+    }
+
+    .actions {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .score {
+      margin: 18px 0;
+      color: #198754;
+      font-size: 38px;
+      font-weight: bold;
+    }
+
+    .message {
+      font-size: 19px;
+      line-height: 1.8;
+    }
+
+    .back-link {
+      display: block;
+      margin-top: 20px;
+      color: #6936a8;
+      font-weight: bold;
+      text-decoration: none;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>اختبار الرسم الكتابي</h1>
+
+    <p>
+      خط الرقعة<br>
+      الحروف على السطر وتحت السطر<br>
+      طمس الحروف وآداب الكتابة
+    </p>
+  </header>
+
+  <main class="container">
+
+    <section id="startScreen" class="card name-box">
+      <h2>بيانات الطالبة</h2>
+
+      <p>اكتبي اسمكِ ثم ابدئي الاختبار.</p>
+
+      <input
+        id="studentName"
+        type="text"
+        placeholder="اكتبي اسم الطالبة"
+      >
+
+      <button class="btn" type="button" onclick="startTest()">
+        ابدئي الاختبار
+      </button>
+
+      <a class="back-link" href="semester1-tests.html">
+        العودة إلى اختبارات الفصل الأول
+      </a>
+    </section>
+
+    <section id="testScreen" class="card hidden">
+
+      <div id="progressText" class="progress-text"></div>
+
+      <div class="progress">
+        <div id="progressBar" class="progress-bar"></div>
+      </div>
+
+      <div class="question-category">
+        الرسم الكتابي – خط الرقعة
+      </div>
+
+      <div id="questionText" class="question"></div>
+
+      <div id="choicesBox" class="choices"></div>
+
+      <div class="actions">
+        <button
+          id="nextButton"
+          class="btn"
+          type="button"
+          onclick="nextQuestion()"
+          disabled
+        >
+          السؤال التالي
+        </button>
+      </div>
+
+    </section>
+
+    <section id="resultScreen" class="card result hidden">
+
+      <h2>
+        أحسنتِ يا <span id="resultName"></span>
+      </h2>
+
+      <div class="score">
+        <span id="finalScore"></span> من 10
+      </div>
+
+      <p id="resultMessage" class="message"></p>
+
+      <a class="btn" href="semester1-tests.html">
+        العودة إلى صفحة الاختبارات
+      </a>
+
+    </section>
+
+  </main>
+
+  <script>
+    const questions = [
+      {
+        question: "من مميزات خط الرقعة:",
+        choices: [
+          "كثرة الزخرفة",
+          "السرعة وسهولة الكتابة",
+          "كثرة التشكيل",
+          "تباعد الحروف"
+        ],
+        answer: 1
+      },
+      {
+        question: "جميع حروف خط الرقعة تستقر:",
+        choices: [
+          "فوق السطر",
+          "تحت السطر",
+          "على السطر",
+          "خارج السطر"
+        ],
+        answer: 2
+      },
+      {
+        question: "أي الحروف الآتية ينزل جزء منها أسفل السطر؟",
+        choices: [
+          "أ",
+          "د",
+          "م",
+          "و"
+        ],
+        answer: 2
+      },
+      {
+        question: "يُكتب حرف الكاف في آخر الكلمة في خط الرقعة:",
+        choices: [
+          "فوق السطر",
+          "تحت السطر",
+          "مستقرًا على السطر",
+          "منفصلًا دائمًا"
+        ],
+        answer: 2
+      },
+      {
+        question: "ينزل حرف الهاء تحت السطر إذا كُتب:",
+        choices: [
+          "في أول الكلمة",
+          "في وسط الكلمة",
+          "منفصلًا",
+          "في أول السطر"
+        ],
+        answer: 1
+      },
+      {
+        question: "من الحروف التي تُطمس في خط الرقعة حرف:",
+        choices: [
+          "الألف",
+          "الميم",
+          "الدال",
+          "الراء"
+        ],
+        answer: 1
+      },
+      {
+        question: "الجلسة الصحيحة أثناء الكتابة تكون:",
+        choices: [
+          "منحنية",
+          "معتدلة والظهر مستقيم",
+          "بالنوم على الطاولة",
+          "بالميل الشديد"
+        ],
+        answer: 1
+      },
+      {
+        question: "تكون طريقة مسك القلم:",
+        choices: [
+          "قوية جدًا",
+          "مريحة ومتزنة",
+          "من آخره",
+          "بكل الأصابع"
+        ],
+        answer: 1
+      },
+      {
+        question: "الهدف من خط الرقعة هو:",
+        choices: [
+          "الزخرفة",
+          "السرعة والوضوح في الكتابة",
+          "الرسم",
+          "كتابة العناوين فقط"
+        ],
+        answer: 1
+      },
+      {
+        question: "الحروف التي ينزل جزء منها عن السطر تُجمع في كلمة:",
+        choices: [
+          "سألوني",
+          "جمعة",
+          "اليوم",
+          "كتبت"
+        ],
+        answer: 1
+      }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+    let selectedAnswer = null;
+
+    const startScreen = document.getElementById("startScreen");
+    const testScreen = document.getElementById("testScreen");
+    const resultScreen = document.getElementById("resultScreen");
+    const questionText = document.getElementById("questionText");
+    const choicesBox = document.getElementById("choicesBox");
+    const nextButton = document.getElementById("nextButton");
+    const progressText = document.getElementById("progressText");
+    const progressBar = document.getElementById("progressBar");
+
+    window.addEventListener("load", function () {
+      const savedName =
+        localStorage.getItem("semester1StudentName") || "";
+
+      document.getElementById("studentName").value = savedName;
+    });
+
+    function startTest() {
+      const name =
+        document.getElementById("studentName").value.trim();
+
+      if (name === "") {
+        alert("فضلاً اكتبي اسم الطالبة أولًا.");
+        return;
+      }
+
+      localStorage.setItem("semester1StudentName", name);
+
+      currentQuestion = 0;
+      score = 0;
+      selectedAnswer = null;
+
+      startScreen.classList.add("hidden");
+      resultScreen.classList.add("hidden");
+      testScreen.classList.remove("hidden");
+
+      showQuestion();
+    }
+
+    function showQuestion() {
+      selectedAnswer = null;
+      nextButton.disabled = true;
+
+      const current = questions[currentQuestion];
+
+      progressText.textContent =
+        "السؤال " +
+        (currentQuestion + 1) +
+        " من " +
+        questions.length;
+
+      progressBar.style.width =
+        ((currentQuestion + 1) / questions.length * 100) + "%";
+
+      questionText.textContent = current.question;
+      choicesBox.innerHTML = "";
+
+      current.choices.forEach(function (choice, index) {
+        const button = document.createElement("button");
+
+        button.type = "button";
+        button.className = "choice";
+        button.textContent = choice;
+
+        button.onclick = function () {
+          selectAnswer(index, button);
+        };
+
+        choicesBox.appendChild(button);
+      });
+
+      if (currentQuestion === questions.length - 1) {
+        nextButton.textContent = "إنهاء الاختبار";
+      } else {
+        nextButton.textContent = "السؤال التالي";
+      }
+    }
+
+    function selectAnswer(index, button) {
+      selectedAnswer = index;
+
+      document.querySelectorAll(".choice").forEach(function (choice) {
+        choice.classList.remove("selected");
+      });
+
+      button.classList.add("selected");
+      nextButton.disabled = false;
+    }
+
+    function nextQuestion() {
+      if (selectedAnswer === null) {
+        return;
+      }
+
+      if (selectedAnswer === questions[currentQuestion].answer) {
+        score++;
+      }
+
+      currentQuestion++;
+
+      if (currentQuestion < questions.length) {
+        showQuestion();
+      } else {
+        finishTest();
+      }
+    }
+
+    function finishTest() {
+      const studentName =
+        localStorage.getItem("semester1StudentName") || "الطالبة";
+
+      localStorage.setItem("ruqahScore", String(score));
+      localStorage.setItem("ruqahCompleted", "true");
+
+      testScreen.classList.add("hidden");
+      resultScreen.classList.remove("hidden");
+
+      document.getElementById("resultName").textContent = studentName;
+      document.getElementById("finalScore").textContent = score;
+
+      let message;
+
+      if (score === 10) {
+        message =
+          "ممتاز جدًا، أتقنتِ قواعد الرسم الكتابي وخط الرقعة.";
+      } else if (score >= 8) {
+        message =
+          "أحسنتِ، لديكِ فهم جيد جدًا لقواعد خط الرقعة.";
+      } else if (score >= 5) {
+        message =
+          "نتيجة جيدة، راجعي الحروف التي تنزل عن السطر والحروف المطموسة.";
+      } else {
+        message =
+          "تحتاجين إلى مراجعة قواعد خط الرقعة وآداب الكتابة.";
+      }
+
+      document.getElementById("resultMessage").textContent = message;
+    }
+  </script>
+
+</body>
+</html>
