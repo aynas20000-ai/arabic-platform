@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>الإعراب بثقة | منصة آفاق اللغة</title>
+
+  <style>
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0
+    }
+
+    :root{
+      --purple-dark:#60358b;
+      --purple:#8c58b0;
+      --gold:#dfa03d;
+      --gold-light:#fff4d9;
+      --green:#34785f;
+      --green-light:#eaf8f2;
+      --blue:#3d7199;
+      --blue-light:#edf6fd;
+      --rose:#a34f68;
+      --rose-light:#fff0f4;
+      --text:#574a60
+    }
+
+    html{
+      scroll-behavior:smooth
+    }
+
+    body{
+      min-height:100vh;
+      font-family:Tahoma,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top right,#fff1cd,transparent 30%),
+        radial-gradient(circle at bottom left,#eadcff,transparent 40%),
+        linear-gradient(135deg,#fffdf8,#f8f1ff)
+    }
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:20;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:16px 6%;
+      color:white;
+      background:linear-gradient(135deg,#60358b,#9c61c4);
+      box-shadow:0 5px 20px rgba(75,38,105,.2)
+    }
+
+    .logo{
+      font-size:21px;
+      font-weight:bold
+    }
+
+    .back-link{
+      padding:9px 14px;
+      border:1px solid rgba(255,255,255,.45);
+      border-radius:24px;
+      color:white;
+      text-decoration:none;
+      font-size:14px;
+      background:rgba(255,255,255,.13)
+    }
+
+    main{
+      width:min(1040px,93%);
+      margin:auto;
+      padding:42px 0 65px
+    }
+
+    .hero{
+      margin-bottom:28px;
+      text-align:center
+    }
+
+    .hero-icon{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:90px;
+      height:90px;
+      margin:0 auto 15px;
+      border-radius:50%;
+      font-size:46px;
+      background:linear-gradient(135deg,#ffdd82,#e99c3d);
+      box-shadow:0 10px 26px rgba(219,143,49,.27)
+    }
+
+    .hero h1{
+      margin-bottom:10px;
+      color:var(--purple-dark);
+      font-size:36px
+    }
+
+    .hero p{
+      max-width:790px;
+      margin:auto;
+      color:#75677e;
+      font-size:17px;
+      line-height:2
+    }
+
+    .intro{
+      margin-bottom:25px;
+      padding:24px;
+      border-radius:24px;
+      text-align:center;
+      color:white;
+      background:linear-gradient(135deg,#70419a,#9e68c4);
+      box-shadow:0 12px 30px rgba(89,48,120,.18)
+    }
+
+    .intro h2{
+      margin-bottom:9px;
+      font-size:23px
+    }
+
+    .intro p{
+      color:#faf2fd;
+      line-height:1.9
+    }
+
+    .instruction{
+      width:fit-content;
+      max-width:100%;
+      margin:0 auto 22px;
+      padding:11px 18px;
+      border-radius:24px;
+      color:#68427d;
+      text-align:center;
+      background:#f1e7f8
+    }
+
+    .topics{
+      display:grid;
+      gap:19px
+    }
+
+    .topic{
+      overflow:hidden;
+      border:1px solid rgba(113,71,143,.13);
+      border-radius:23px;
+      background:rgba(255,255,255,.97);
+      box-shadow:0 10px 28px rgba(75,42,99,.11)
+    }
+
+    .topic[open]{
+      border-color:rgba(136,81,174,.3);
+      background:linear-gradient(135deg,#fbf7ff,#fffaf0)
+    }
+
+    .topic-summary{
+      position:relative;
+      display:flex;
+      align-items:center;
+      gap:15px;
+      min-height:92px;
+      padding:18px 65px 18px 20px;
+      cursor:pointer;
+      list-style:none
+    }
+
+    .topic-summary::-webkit-details-marker{
+      display:none
+    }
+
+    .topic-summary::after{
+      content:"＋";
+      position:absolute;
+      right:19px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:34px;
+      height:34px;
+      border-radius:50%;
+      color:white;
+      font-size:22px;
+      background:linear-gradient(135deg,#75439f,#9c64c1)
+    }
+
+    .topic[open] .topic-summary::after{
+      content:"−"
+    }
+
+    .topic-icon{
+      display:flex;
+      flex:0 0 58px;
+      align-items:center;
+      justify-content:center;
+      width:58px;
+      height:58px;
+      border-radius:50%;
+      font-size:30px;
+      background:linear-gradient(135deg,#f1e7fb,#fff1d6)
+    }
+
+    .topic-title small{
+      display:block;
+      margin-bottom:4px;
+      color:#987bac;
+      font-size:13px
+    }
+
+    .topic-title h2{
+      color:var(--purple-dark);
+      font-size:21px;
+      line-height:1.5
+    }
+
+    .topic-content{
+      padding:0 24px 26px
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:16px
+    }
+
+    .card{
+      padding:18px;
+      border:1px solid rgba(113,71,143,.1);
+      border-radius:18px;
+      background:white;
+      box-shadow:0 7px 19px rgba(75,42,99,.08)
+    }
+
+    .card h3{
+      margin-bottom:12px;
+      color:var(--purple-dark);
+      font-size:18px
+    }
+
+    .card p,
+    .card li{
+      font-size:15px;
+      line-height:1.95
+    }
+
+    .card p{
+      margin-bottom:10px
+    }
+
+    .card p:last-child{
+      margin-bottom:0
+    }
+
+    .card ul{
+      margin:6px 0 11px;
+      padding-right:22px
+    }
+
+    .definition,
+    .rule,
+    .signs,
+    .example,
+    .warning{
+      padding:11px 13px;
+      border-radius:13px
+    }
+
+    .definition{
+      color:#604678;
+      background:#f4ebfa
+    }
+
+    .rule{
+      color:#735022;
+      background:var(--gold-light)
+    }
+
+    .signs{
+      color:#315f82;
+      background:var(--blue-light)
+    }
+
+    .example{
+      color:#285f4d;
+      background:var(--green-light)
+    }
+
+    .warning{
+      color:#8a3d50;
+      background:var(--rose-light)
+    }
+
+    .table-wrap{
+      overflow-x:auto;
+      border-radius:18px;
+      box-shadow:0 7px 19px rgba(75,42,99,.08)
+    }
+
+    table{
+      width:100%;
+      min-width:650px;
+      border-collapse:collapse;
+      background:white
+    }
+
+    th,
+    td{
+      padding:13px;
+      border:1px solid #eadff1;
+      text-align:center;
+      line-height:1.8
+    }
+
+    th{
+      color:white;
+      background:linear-gradient(135deg,#70419a,#9e68c4)
+    }
+
+    tr:nth-child(even) td{
+      background:#fbf8fd
+    }
+
+    .closing{
+      margin-top:31px;
+      padding:28px 22px;
+      border-radius:24px;
+      text-align:center;
+      color:white;
+      background:linear-gradient(135deg,#70409a,#a26ac6);
+      box-shadow:0 12px 30px rgba(88,47,119,.19)
+    }
+
+    .closing div{
+      margin-bottom:8px;
+      font-size:46px
+    }
+
+    .closing h2{
+      margin-bottom:9px;
+      font-size:23px
+    }
+
+    .closing p{
+      max-width:730px;
+      margin:auto;
+      color:#faf2fd;
+      line-height:1.9
+    }
+
+    footer{
+      padding:22px;
+      color:#796a82;
+      text-align:center;
+      font-size:14px
+    }
+
+    @media(max-width:750px){
+      header{
+        padding:13px 4%
+      }
+
+      .logo{
+        font-size:17px
+      }
+
+      .back-link{
+        padding:8px 10px;
+        font-size:12px
+      }
+
+      main{
+        width:94%;
+        padding-top:31px
+      }
+
+      .hero h1{
+        font-size:28px
+      }
+
+      .hero p{
+        font-size:15px
+      }
+
+      .intro{
+        padding:20px 15px
+      }
+
+      .topic-summary{
+        gap:11px;
+        min-height:86px;
+        padding:16px 52px 16px 13px
+      }
+
+      .topic-summary::after{
+        right:12px;
+        width:30px;
+        height:30px;
+        font-size:19px
+      }
+
+      .topic-icon{
+        flex-basis:50px;
+        width:50px;
+        height:50px;
+        font-size:26px
+      }
+
+      .topic-title h2{
+        font-size:18px
+      }
+
+      .topic-content{
+        padding:0 13px 19px
+      }
+
+      .cards{
+        grid-template-columns:1fr
+      }
+
+      .card{
+        padding:16px 14px
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">منصة آفاق اللغة</div>
+
+  <a href="golden-rules.html" class="back-link">
+    العودة إلى خزانة القواعد
+  </a>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="hero-icon">🔎</div>
+
+    <h1>الإعراب بثقة</h1>
+
+    <p>
+      شرح مختصر يساعد على معرفة موقع الكلمة
+      وعلامة إعرابها بطريقة سهلة.
+    </p>
+  </section>
+
+  <section class="intro">
+    <h2>افهمي الموقع ثم اختاري العلامة</h2>
+
+    <p>
+      لا تبدئي بالحركة مباشرة؛
+      حددي وظيفة الكلمة في الجملة أولًا.
+    </p>
+  </section>
+
+  <div class="instruction">
+    👆 اضغطي على كل موضوع لفتح شرحه
+  </div>
+
+  <section class="topics">
+
+    <details class="topic">
+      <summary class="topic-summary">
+        <div class="topic-icon">❔</div>
+
+        <div class="topic-title">
+          <small>الموضوع الأول</small>
+          <h2>ما الإعراب؟</h2>
+        </div>
+      </summary>
+
+      <div class="topic-content">
+        <div class="cards">
+
+          <article class="card">
+            <h3>التعريف</h3>
+
+            <p class="definition">
+              تغيّر حركة آخر الكلمة بسبب موقعها في الجملة.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>مثال</h3>
+
+            <p class="example">
+              حضر الطالبُ.<br>
+              رأيت الطالبَ.<br>
+              سلمت على الطالبِ.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>تنبيه</h3>
+
+            <p class="warning">
+              الكلمة نفسها تتغير علامتها
+              عندما يتغير موقعها الإعرابي.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </details>
+
+    <details class="topic">
+      <summary class="topic-summary">
+        <div class="topic-icon">🔵</div>
+
+        <div class="topic-title">
+          <small>الموضوع الثاني</small>
+          <h2>علامات الإعراب الأصلية</h2>
+        </div>
+      </summary>
+
+      <div class="topic-content">
+        <div class="cards">
+
+          <article class="card">
+            <h3>العلامات</h3>
+
+            <p class="signs">
+              الضمة للرفع، والفتحة للنصب،
+              والكسرة للجر، والسكون للجزم.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>مثال واحد لكل علامة</h3>
+
+            <p class="example">
+              الرفع: حضر الطالبُ.<br>
+              النصب: رأيت الطالبَ.<br>
+              الجر: سلمت على الطالبِ.<br>
+              الجزم: لم يكتبْ.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>تنبيه</h3>
+
+            <p class="warning">
+              الجر خاص بالأسماء،
+              والجزم خاص بالفعل المضارع.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </details>
+
+    <details class="topic">
+      <summary class="topic-summary">
+        <div class="topic-icon">🟣</div>
+
+        <div class="topic-title">
+          <small>الموضوع الثالث</small>
+          <h2>علامات الإعراب الفرعية</h2>
+        </div>
+      </summary>
+
+      <div class="topic-content">
+        <div class="cards">
+
+          <article class="card">
+            <h3>العلامات</h3>
+
+            <p class="signs">
+              الألف، والواو، والياء،
+              وثبوت النون، وحذف النون.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>أمثلة مختصرة</h3>
+
+            <p class="example">
+              الألف: حضر الطالبانِ.<br>
+              الواو: حضر المعلمونَ.<br>
+              الياء: رأيت المعلمينَ.<br>
+              ثبوت النون: أنتم تكتبونَ.<br>
+              حذف النون: لن تكتبوا.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>تنبيه</h3>
+
+            <p class="warning">
+              العلامة الفرعية تظهر في أنواع محددة،
+              مثل المثنى والجمع والأفعال الخمسة.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </details>
+
+    <details class="topic">
+      <summary class="topic-summary">
+        <div class="topic-icon">⬆️</div>
+
+        <div class="topic-title">
+          <small>الموضوع الرابع</small>
+          <h2>المرفوعات</h2>
+        </div>
+      </summary>
+
+      <div class="topic-content">
+        <div class="cards">
+
+          <article class="card">
+            <h3>أشهر المرفوعات</h3>
+
+            <p class="rule">
+              المبتدأ، والخبر، والفاعل،
+              ونائب الفاعل، واسم كان، وخبر إن.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>مثال</h3>
+
+            <p class="example">
+              نجح الطالبُ.
+            </p>
+
+            <p>
+              الطالبُ: فاعل مرفوع،
+              وعلامة رفعه الضمة.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>تنبيه</h3>
+
+            <p class="warning">
+              لا يعني وجود الضمة أن الكلمة فاعل؛
+              فقد تكون مبتدأ أو خبرًا أو نائب فاعل.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </details>
+
+    <details class="topic">
+      <summary class="topic-summary">
+        <div class="topic-icon">⬇️</div>
+
+        <div class="topic-title">
+          <small>الموضوع الخامس</small>
+          <h2>المنصوبات</h2>
+        </div>
+      </summary>
+
+      <div class="topic-content">
+        <div class="cards">
+
+          <article class="card">
+            <h3>أشهر المنصوبات</h3>
+
+            <p class="rule">
+              المفعول به، واسم إن،
+              وخبر كان، والمفاعيل.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>مثال</h3>
+
+            <p class="example">
+              قرأت الطالبةُ الكتابَ.
+            </p>
+
+            <p>
+              الكتابَ: مفعول به منصوب،
+              وعلامة نصبه الفتحة.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>تنبيه</h3>
+
+            <p class="warning">
+              نحدد نوع المنصوب من وظيفته ومعناه،
+              وليس من الفتحة وحدها.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </details>
+
+    <details class="topic">
+      <summary class="topic-summary">
+        <div class="topic-icon">🔗</div>
+
+        <div class="topic-title">
+          <small>الموضوع السادس</small>
+          <h2>المجرورات</h2>
+        </div>
+      </summary>
+
+      <div class="topic-content">
+        <div class="cards">
+
+          <article class="card">
+            <h3>أنواعها</h3>
+
+            <p class="rule">
+              الاسم المجرور بحرف الجر،
+              والمضاف إليه.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>مثال بحرف الجر</h3>
+
+            <p class="example">
+              ذهبت إلى المدرسةِ.
+            </p>
+
+            <p>
+              المدرسةِ: اسم مجرور بإلى،
+              وعلامة جره الكسرة.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>مثال بالإضافة</h3>
+
+            <p class="example">
+              كتابُ الطالبةِ مفيدٌ.
+            </p>
+
+            <p>
+              الطالبةِ: مضاف إليه مجرور.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </details>
+
+    <details class="topic">
+      <summary class="topic-summary">
+        <div class="topic-icon">⛔</div>
+
+        <div class="topic-title">
+          <small>الموضوع السابع</small>
+          <h2>المجزومات</h2>
+        </div>
+      </summary>
+
+      <div class="topic-content">
+        <div class="cards">
+
+          <article class="card">
+            <h3>التعريف</h3>
+
+            <p class="definition">
+              الفعل المضارع يُجزم
+              إذا سبقته أداة جزم.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>أدوات مشهورة</h3>
+
+            <p class="signs">
+              لم، لا الناهية، لام الأمر.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>مثال</h3>
+
+            <p class="example">
+              لم يكتبْ الطالبُ.
+            </p>
+
+            <p>
+              يكتبْ: فعل مضارع مجزوم بلم،
+              وعلامة جزمه السكون.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>تنبيه</h3>
+
+            <p class="warning">
+              قد تكون علامة الجزم حذف حرف العلة
+              أو حذف النون، وليست السكون دائمًا.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </details>
+
+    <details class="topic">
+      <summary class="topic-summary">
+        <div class="topic-icon">🪜</div>
+
+        <div class="topic-title">
+          <small>الموضوع الثامن</small>
+          <h2>خطوات الإعراب</h2>
+        </div>
+      </summary>
+
+      <div class="topic-content">
+        <div class="cards">
+
+          <article class="card">
+            <h3>الخطوات</h3>
+
+            <ul class="rule">
+              <li>حددي نوع الجملة.</li>
+              <li>حددي نوع الكلمة.</li>
+              <li>حددي وظيفتها في الجملة.</li>
+              <li>حددي حالتها الإعرابية.</li>
+              <li>اختاري العلامة المناسبة.</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>مثال محلول</h3>
+
+            <p class="example">
+              كتبَ الطالبُ الدرسَ.
+            </p>
+
+            <p>
+              الطالبُ: فاعل مرفوع بالضمة.<br>
+              الدرسَ: مفعول به منصوب بالفتحة.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>تنبيه</h3>
+
+            <p class="warning">
+              لا تبدئي بقول: مرفوع أو منصوب،
+              قبل معرفة وظيفة الكلمة.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </details>
+
+    <details class="topic">
+      <summary class="topic-summary">
+        <div class="topic-icon">📊</div>
+
+        <div class="topic-title">
+          <small>الموضوع التاسع</small>
+          <h2>جدول علامات الإعراب</h2>
+        </div>
+      </summary>
+
+      <div class="topic-content">
+
+        <div class="table-wrap">
+          <table>
+
+            <thead>
+              <tr>
+                <th>الحالة</th>
+                <th>العلامة الأصلية</th>
+                <th>مثال</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>الرفع</td>
+                <td>الضمة</td>
+                <td>حضر الطالبُ</td>
+              </tr>
+
+              <tr>
+                <td>النصب</td>
+                <td>الفتحة</td>
+                <td>رأيت الطالبَ</td>
+              </tr>
+
+              <tr>
+                <td>الجر</td>
+                <td>الكسرة</td>
+                <td>سلمت على الطالبِ</td>
+              </tr>
+
+              <tr>
+                <td>الجزم</td>
+                <td>السكون</td>
+                <td>لم يكتبْ</td>
+              </tr>
+            </tbody>
+
+          </table>
+        </div>
+
+      </div>
+    </details>
+
+  </section>
+
+  <section class="closing">
+    <div>✨</div>
+
+    <h2>الموقع أولًا والعلامة ثانيًا</h2>
+
+    <p>
+      عندما تعرفين وظيفة الكلمة،
+      يصبح اختيار علامة الإعراب أسهل وأوضح.
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  جميع الحقوق محفوظة © منصة آفاق اللغة
+</footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const topics = document.querySelectorAll(".topic");
+
+    function playSound() {
+      try {
+        const AudioContext =
+          window.AudioContext ||
+          window.webkitAudioContext;
+
+        const audioContext = new AudioContext();
+        const oscillator = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+
+        oscillator.type = "sine";
+        oscillator.frequency.value = 620;
+
+        gain.gain.setValueAtTime(
+          0.001,
+          audioContext.currentTime
+        );
+
+        gain.gain.exponentialRampToValueAtTime(
+          0.08,
+          audioContext.currentTime + 0.02
+        );
+
+        gain.gain.exponentialRampToValueAtTime(
+          0.001,
+          audioContext.currentTime + 0.17
+        );
+
+        oscillator.connect(gain);
+        gain.connect(audioContext.destination);
+
+        oscillator.start();
+        oscillator.stop(audioContext.currentTime + 0.18);
+
+      } catch (error) {
+        console.log("تعذر تشغيل الصوت");
+      }
+    }
+
+    topics.forEach(function (topic) {
+      topic.addEventListener("toggle", function () {
+        if (topic.open) {
+          playSound();
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
