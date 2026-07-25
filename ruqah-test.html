@@ -2,7 +2,11 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>اختبار الرسم الكتابي</title>
 
@@ -14,18 +18,20 @@
     body {
       margin: 0;
       min-height: 100vh;
+      overflow-x: hidden;
       font-family: Tahoma, Arial, sans-serif;
       color: #3b245f;
-      background: linear-gradient(135deg, #f4ebff, #fff9fe);
+      background:
+        radial-gradient(circle at top, #fffaff, #f6effb);
     }
 
     header {
       padding: 28px 15px;
       color: white;
       text-align: center;
-      background: linear-gradient(135deg, #6936a8, #a14fc3);
-      border-radius: 0 0 28px 28px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      background: linear-gradient(135deg, #7435b5, #ad4dcc);
+      border-radius: 0 0 35px 35px;
+      box-shadow: 0 5px 18px rgba(98, 41, 141, 0.25);
     }
 
     header h1 {
@@ -42,20 +48,22 @@
     .container {
       width: 100%;
       max-width: 760px;
-      margin: 25px auto;
+      margin: 24px auto;
       padding: 15px;
     }
 
     .card {
+      position: relative;
       padding: 24px;
+      overflow: hidden;
       background: white;
-      border: 2px solid #ead9f7;
-      border-radius: 22px;
-      box-shadow: 0 7px 22px rgba(0, 0, 0, 0.12);
+      border: 2px solid #ead8f7;
+      border-radius: 25px;
+      box-shadow: 0 8px 25px rgba(65, 30, 88, 0.13);
     }
 
     .hidden {
-      display: none;
+      display: none !important;
     }
 
     .name-box,
@@ -66,111 +74,177 @@
     .name-box h2,
     .result h2 {
       margin-top: 0;
-      color: #6936a8;
+      color: #7135a8;
     }
 
     input[type="text"] {
       width: 100%;
-      margin: 15px 0;
-      padding: 14px;
+      margin: 16px 0;
+      padding: 15px;
       font-family: inherit;
       font-size: 18px;
       text-align: center;
-      border: 2px solid #d8b8ec;
-      border-radius: 14px;
+      border: 2px solid #d9bdea;
+      border-radius: 15px;
       outline: none;
     }
 
     input[type="text"]:focus {
-      border-color: #6936a8;
+      border-color: #7435b5;
+      box-shadow: 0 0 0 4px rgba(116, 53, 181, 0.1);
     }
 
     .btn {
       display: inline-block;
-      margin-top: 15px;
-      padding: 13px 26px;
+      min-width: 180px;
+      margin-top: 16px;
+      padding: 14px 25px;
       color: white;
       font-family: inherit;
       font-size: 18px;
       text-decoration: none;
-      background: linear-gradient(135deg, #6936a8, #a14fc3);
+      background: linear-gradient(135deg, #7435b5, #ad4dcc);
       border: none;
-      border-radius: 14px;
+      border-radius: 15px;
+      box-shadow: 0 5px 13px rgba(116, 53, 181, 0.25);
       cursor: pointer;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    .btn:active {
+      transform: scale(0.97);
     }
 
     .btn:disabled {
+      color: white;
       background: #b9abbf;
+      box-shadow: none;
       cursor: not-allowed;
+      opacity: 0.8;
     }
 
     .progress-text {
-      margin-bottom: 10px;
-      color: #6936a8;
+      margin-bottom: 11px;
+      color: #7135a8;
+      font-size: 19px;
       font-weight: bold;
       text-align: center;
     }
 
     .progress {
-      height: 13px;
-      margin-bottom: 22px;
+      height: 14px;
+      margin-bottom: 23px;
       overflow: hidden;
-      background: #f0e7f7;
+      background: #eee5f5;
       border-radius: 20px;
     }
 
     .progress-bar {
       width: 0;
       height: 100%;
-      background: linear-gradient(90deg, #a14fc3, #6936a8);
-      transition: width 0.3s;
+      background: linear-gradient(90deg, #ad4dcc, #7135a8);
+      border-radius: 20px;
+      transition: width 0.4s ease;
     }
 
     .question-category {
       display: inline-block;
-      margin-bottom: 12px;
-      padding: 7px 13px;
-      color: #6936a8;
+      margin-bottom: 16px;
+      padding: 8px 14px;
+      color: #7135a8;
       font-weight: bold;
-      background: #f3e9fa;
-      border-radius: 20px;
+      background: #f3e8fa;
+      border-radius: 22px;
     }
 
     .question {
-      margin-bottom: 20px;
-      color: #3b245f;
-      font-size: 21px;
+      margin-bottom: 22px;
+      color: #38214f;
+      font-size: 22px;
       font-weight: bold;
       line-height: 1.8;
     }
 
     .choices {
       display: grid;
-      gap: 12px;
+      gap: 13px;
     }
 
     .choice {
       width: 100%;
-      padding: 15px;
+      padding: 16px;
       color: #3b245f;
       font-family: inherit;
       font-size: 18px;
+      line-height: 1.7;
       text-align: right;
-      background: #fcf8ff;
-      border: 2px solid #e1c9f0;
-      border-radius: 15px;
+      background: #fdfaff;
+      border: 3px solid #e0c9ef;
+      border-radius: 17px;
       cursor: pointer;
-      transition: 0.2s;
+      transition:
+        transform 0.2s,
+        background 0.2s,
+        border-color 0.2s;
     }
 
     .choice:hover {
-      background: #f5ebfb;
+      background: #f6edfb;
+      transform: translateY(-1px);
     }
 
-    .choice.selected {
+    .choice.correct {
+      color: #075e35;
       font-weight: bold;
-      background: #ead9f7;
-      border-color: #6936a8;
+      background: #d9f8e7;
+      border-color: #28a865;
+      animation: correctPulse 0.5s;
+    }
+
+    .choice.wrong {
+      color: #8f1625;
+      font-weight: bold;
+      background: #ffe0e4;
+      border-color: #dc4457;
+      animation: wrongShake 0.4s;
+    }
+
+    .choice.locked {
+      cursor: default;
+    }
+
+    .feedback {
+      margin-top: 18px;
+      padding: 16px;
+      font-size: 18px;
+      line-height: 1.8;
+      border-radius: 16px;
+      animation: feedbackAppear 0.4s;
+    }
+
+    .feedback.correct-feedback {
+      color: #075e35;
+      background: #e2f9ec;
+      border: 2px solid #49b879;
+    }
+
+    .feedback.wrong-feedback {
+      color: #7a1422;
+      background: #ffe7ea;
+      border: 2px solid #e66a78;
+    }
+
+    .feedback-title {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .correct-answer {
+      display: block;
+      margin-top: 7px;
+      font-weight: bold;
     }
 
     .actions {
@@ -180,76 +254,218 @@
 
     .score {
       margin: 18px 0;
-      color: #198754;
-      font-size: 38px;
+      color: #17844d;
+      font-size: 42px;
       font-weight: bold;
+    }
+
+    .result-icon {
+      margin-bottom: 10px;
+      font-size: 64px;
+      animation: resultBounce 1s infinite alternate;
     }
 
     .message {
       font-size: 19px;
-      line-height: 1.8;
+      line-height: 1.9;
     }
 
     .back-link {
       display: block;
-      margin-top: 20px;
-      color: #6936a8;
+      margin-top: 22px;
+      color: #7135a8;
+      font-size: 17px;
       font-weight: bold;
       text-decoration: none;
       text-align: center;
+    }
+
+    .stars-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .star {
+      position: absolute;
+      top: 45%;
+      font-size: 28px;
+      animation: flyStar 1.2s ease-out forwards;
+    }
+
+    @keyframes correctPulse {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.035);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes wrongShake {
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      25% {
+        transform: translateX(7px);
+      }
+
+      50% {
+        transform: translateX(-7px);
+      }
+
+      75% {
+        transform: translateX(5px);
+      }
+    }
+
+    @keyframes feedbackAppear {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes flyStar {
+      0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(0.7) rotate(0);
+      }
+
+      100% {
+        opacity: 0;
+        transform:
+          translate(var(--move-x), var(--move-y))
+          scale(1.5)
+          rotate(250deg);
+      }
+    }
+
+    @keyframes resultBounce {
+      from {
+        transform: translateY(0);
+      }
+
+      to {
+        transform: translateY(-9px);
+      }
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 25px;
+      }
+
+      .container {
+        padding: 12px;
+      }
+
+      .card {
+        padding: 20px 17px;
+      }
+
+      .question {
+        font-size: 20px;
+      }
+
+      .choice {
+        padding: 15px;
+        font-size: 17px;
+      }
     }
   </style>
 </head>
 
 <body>
 
+  <div id="starsLayer" class="stars-layer"></div>
+
   <header>
-    <h1>اختبار الرسم الكتابي</h1>
+    <h1>✍️ اختبار الرسم الكتابي</h1>
 
     <p>
-      خط الرقعة<br>
-      الحروف على السطر وتحت السطر<br>
-      طمس الحروف وآداب الكتابة
+      خط الرقعة وقواعد الكتابة الصحيحة
     </p>
   </header>
 
   <main class="container">
 
     <section id="startScreen" class="card name-box">
-      <h2>بيانات الطالبة</h2>
+      <h2>🌟 أهلاً بكِ</h2>
 
-      <p>اكتبي اسمكِ ثم ابدئي الاختبار.</p>
+      <p>
+        اكتبي اسمكِ ثم ابدئي الاختبار.
+      </p>
 
       <input
         id="studentName"
         type="text"
         placeholder="اكتبي اسم الطالبة"
+        autocomplete="name"
       >
 
-      <button class="btn" type="button" onclick="startTest()">
+      <button
+        class="btn"
+        type="button"
+        onclick="startTest()"
+      >
         ابدئي الاختبار
       </button>
 
-      <a class="back-link" href="semester1-tests.html">
+      <a
+        class="back-link"
+        href="semester1-tests.html"
+      >
         العودة إلى اختبارات الفصل الأول
       </a>
     </section>
 
     <section id="testScreen" class="card hidden">
 
-      <div id="progressText" class="progress-text"></div>
+      <div
+        id="progressText"
+        class="progress-text"
+      ></div>
 
       <div class="progress">
-        <div id="progressBar" class="progress-bar"></div>
+        <div
+          id="progressBar"
+          class="progress-bar"
+        ></div>
       </div>
 
       <div class="question-category">
         الرسم الكتابي – خط الرقعة
       </div>
 
-      <div id="questionText" class="question"></div>
+      <div
+        id="questionText"
+        class="question"
+      ></div>
 
-      <div id="choicesBox" class="choices"></div>
+      <div
+        id="choicesBox"
+        class="choices"
+      ></div>
+
+      <div
+        id="feedbackBox"
+        class="feedback hidden"
+      ></div>
 
       <div class="actions">
         <button
@@ -265,19 +481,37 @@
 
     </section>
 
-    <section id="resultScreen" class="card result hidden">
+    <section
+      id="resultScreen"
+      class="card result hidden"
+    >
+
+      <div
+        id="resultIcon"
+        class="result-icon"
+      >
+        🏆
+      </div>
 
       <h2>
-        أحسنتِ يا <span id="resultName"></span>
+        أحسنتِ يا
+        <span id="resultName"></span>
       </h2>
 
       <div class="score">
-        <span id="finalScore"></span> من 10
+        <span id="finalScore"></span>
+        من 10
       </div>
 
-      <p id="resultMessage" class="message"></p>
+      <p
+        id="resultMessage"
+        class="message"
+      ></p>
 
-      <a class="btn" href="semester1-tests.html">
+      <a
+        class="btn"
+        href="semester1-tests.html"
+      >
         العودة إلى صفحة الاختبارات
       </a>
 
@@ -295,8 +529,11 @@
           "كثرة التشكيل",
           "تباعد الحروف"
         ],
-        answer: 1
+        answer: 1,
+        explanation:
+          "يتميز خط الرقعة بالسرعة والسهولة والوضوح في الكتابة."
       },
+
       {
         question: "جميع حروف خط الرقعة تستقر:",
         choices: [
@@ -305,124 +542,185 @@
           "على السطر",
           "خارج السطر"
         ],
-        answer: 2
+        answer: 2,
+        explanation:
+          "الأصل أن تستقر حروف خط الرقعة على السطر، ما عدا حروف محددة ينزل جزء منها."
       },
+
       {
-        question: "أي الحروف الآتية ينزل جزء منها أسفل السطر؟",
+        question:
+          "أي الحروف الآتية ينزل جزء منها أسفل السطر؟",
         choices: [
           "أ",
           "د",
           "م",
           "و"
         ],
-        answer: 2
+        answer: 2,
+        explanation:
+          "ينزل جزء من حرف الميم عن السطر في بعض مواضعه في خط الرقعة."
       },
+
       {
-        question: "يُكتب حرف الكاف في آخر الكلمة في خط الرقعة:",
+        question:
+          "يُكتب حرف الكاف في آخر الكلمة في خط الرقعة:",
         choices: [
           "فوق السطر",
           "تحت السطر",
           "مستقرًا على السطر",
           "منفصلًا دائمًا"
         ],
-        answer: 2
+        answer: 2,
+        explanation:
+          "يستقر حرف الكاف في آخر الكلمة على السطر ولا ينزل تحته."
       },
+
       {
-        question: "ينزل حرف الهاء تحت السطر إذا كُتب:",
+        question:
+          "ينزل حرف الهاء تحت السطر إذا كُتب:",
         choices: [
           "في أول الكلمة",
           "في وسط الكلمة",
           "منفصلًا",
           "في أول السطر"
         ],
-        answer: 1
+        answer: 1,
+        explanation:
+          "ينزل جزء من حرف الهاء تحت السطر عندما يُكتب في وسط الكلمة."
       },
+
       {
-        question: "من الحروف التي تُطمس في خط الرقعة حرف:",
+        question:
+          "من الحروف التي تُطمس في خط الرقعة حرف:",
         choices: [
           "الألف",
           "الميم",
           "الدال",
           "الراء"
         ],
-        answer: 1
+        answer: 1,
+        explanation:
+          "من قواعد خط الرقعة طمس حرف الميم، أي إغلاق عينه."
       },
+
       {
-        question: "الجلسة الصحيحة أثناء الكتابة تكون:",
+        question:
+          "الجلسة الصحيحة أثناء الكتابة تكون:",
         choices: [
           "منحنية",
           "معتدلة والظهر مستقيم",
           "بالنوم على الطاولة",
           "بالميل الشديد"
         ],
-        answer: 1
+        answer: 1,
+        explanation:
+          "الجلسة المعتدلة واستقامة الظهر تساعدان على الكتابة براحة ووضوح."
       },
+
       {
-        question: "تكون طريقة مسك القلم:",
+        question:
+          "تكون طريقة مسك القلم:",
         choices: [
           "قوية جدًا",
           "مريحة ومتزنة",
           "من آخره",
           "بكل الأصابع"
         ],
-        answer: 1
+        answer: 1,
+        explanation:
+          "يُمسك القلم بطريقة مريحة ومتزنة دون ضغط شديد."
       },
+
       {
-        question: "الهدف من خط الرقعة هو:",
+        question:
+          "من آداب الكتابة الصحيحة:",
         choices: [
-          "الزخرفة",
-          "السرعة والوضوح في الكتابة",
-          "الرسم",
-          "كتابة العناوين فقط"
+          "الاقتراب الشديد من الورقة",
+          "وضع الورقة بطريقة مناسبة أمام الكاتب",
+          "الضغط القوي على القلم",
+          "إمالة الظهر بشدة"
         ],
-        answer: 1
+        answer: 1,
+        explanation:
+          "يساعد وضع الورقة بطريقة مناسبة على راحة اليد ووضوح الكتابة."
       },
+
       {
-        question: "الحروف التي ينزل جزء منها عن السطر تُجمع في كلمة:",
+        question:
+          "الحروف التي ينزل جزء منها عن السطر تُجمع في كلمة:",
         choices: [
           "سألوني",
           "جمعة",
           "اليوم",
           "كتبت"
         ],
-        answer: 1
+        answer: 1,
+        explanation:
+          "تُجمع الحروف التي ينزل جزء منها عن السطر في كلمة «جمعة»."
       }
     ];
 
     let currentQuestion = 0;
     let score = 0;
     let selectedAnswer = null;
+    let answerChecked = false;
 
-    const startScreen = document.getElementById("startScreen");
-    const testScreen = document.getElementById("testScreen");
-    const resultScreen = document.getElementById("resultScreen");
-    const questionText = document.getElementById("questionText");
-    const choicesBox = document.getElementById("choicesBox");
-    const nextButton = document.getElementById("nextButton");
-    const progressText = document.getElementById("progressText");
-    const progressBar = document.getElementById("progressBar");
+    const startScreen =
+      document.getElementById("startScreen");
+
+    const testScreen =
+      document.getElementById("testScreen");
+
+    const resultScreen =
+      document.getElementById("resultScreen");
+
+    const questionText =
+      document.getElementById("questionText");
+
+    const choicesBox =
+      document.getElementById("choicesBox");
+
+    const feedbackBox =
+      document.getElementById("feedbackBox");
+
+    const nextButton =
+      document.getElementById("nextButton");
+
+    const progressText =
+      document.getElementById("progressText");
+
+    const progressBar =
+      document.getElementById("progressBar");
 
     window.addEventListener("load", function () {
       const savedName =
         localStorage.getItem("semester1StudentName") || "";
 
-      document.getElementById("studentName").value = savedName;
+      document.getElementById("studentName").value =
+        savedName;
     });
 
     function startTest() {
       const name =
-        document.getElementById("studentName").value.trim();
+        document
+          .getElementById("studentName")
+          .value
+          .trim();
 
       if (name === "") {
         alert("فضلاً اكتبي اسم الطالبة أولًا.");
         return;
       }
 
-      localStorage.setItem("semester1StudentName", name);
+      localStorage.setItem(
+        "semester1StudentName",
+        name
+      );
 
       currentQuestion = 0;
       score = 0;
       selectedAnswer = null;
+      answerChecked = false;
 
       startScreen.classList.add("hidden");
       resultScreen.classList.add("hidden");
@@ -433,7 +731,12 @@
 
     function showQuestion() {
       selectedAnswer = null;
+      answerChecked = false;
+
       nextButton.disabled = true;
+
+      feedbackBox.className = "feedback hidden";
+      feedbackBox.innerHTML = "";
 
       const current = questions[currentQuestion];
 
@@ -444,56 +747,114 @@
         questions.length;
 
       progressBar.style.width =
-        ((currentQuestion + 1) / questions.length * 100) + "%";
+        (
+          (currentQuestion + 1) /
+          questions.length *
+          100
+        ) + "%";
 
       questionText.textContent = current.question;
       choicesBox.innerHTML = "";
 
       current.choices.forEach(function (choice, index) {
-        const button = document.createElement("button");
+        const button =
+          document.createElement("button");
 
         button.type = "button";
         button.className = "choice";
         button.textContent = choice;
 
-        button.onclick = function () {
-          selectAnswer(index, button);
-        };
+        button.addEventListener("click", function () {
+          checkAnswer(index);
+        });
 
         choicesBox.appendChild(button);
       });
 
       if (currentQuestion === questions.length - 1) {
-        nextButton.textContent = "إنهاء الاختبار";
+        nextButton.textContent = "عرض النتيجة";
       } else {
         nextButton.textContent = "السؤال التالي";
       }
     }
 
-    function selectAnswer(index, button) {
+    function checkAnswer(index) {
+      if (answerChecked) {
+        return;
+      }
+
+      answerChecked = true;
       selectedAnswer = index;
 
-      document.querySelectorAll(".choice").forEach(function (choice) {
-        choice.classList.remove("selected");
+      const current = questions[currentQuestion];
+
+      const buttons =
+        choicesBox.querySelectorAll(".choice");
+
+      buttons.forEach(function (button, buttonIndex) {
+        button.classList.add("locked");
+        button.disabled = true;
+
+        if (buttonIndex === current.answer) {
+          button.classList.add("correct");
+          button.textContent =
+            "✓ " + button.textContent;
+        }
       });
 
-      button.classList.add("selected");
+      if (index === current.answer) {
+        score++;
+
+        feedbackBox.className =
+          "feedback correct-feedback";
+
+        feedbackBox.innerHTML =
+          '<span class="feedback-title">' +
+          "أحسنتِ! إجابة صحيحة ⭐" +
+          "</span>" +
+          current.explanation;
+
+        playSuccessSound();
+        createStars();
+      } else {
+        buttons[index].classList.add("wrong");
+
+        buttons[index].textContent =
+          "✕ " + buttons[index].textContent;
+
+        feedbackBox.className =
+          "feedback wrong-feedback";
+
+        feedbackBox.innerHTML =
+          '<span class="feedback-title">' +
+          "ليست الإجابة الصحيحة، لا بأس 🌷" +
+          "</span>" +
+          '<span class="correct-answer">' +
+          "الإجابة الصحيحة: " +
+          current.choices[current.answer] +
+          "</span>" +
+          current.explanation;
+
+        playWrongSound();
+      }
+
       nextButton.disabled = false;
     }
 
     function nextQuestion() {
-      if (selectedAnswer === null) {
+      if (!answerChecked) {
         return;
-      }
-
-      if (selectedAnswer === questions[currentQuestion].answer) {
-        score++;
       }
 
       currentQuestion++;
 
       if (currentQuestion < questions.length) {
         showQuestion();
+
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
       } else {
         finishTest();
       }
@@ -501,36 +862,195 @@
 
     function finishTest() {
       const studentName =
-        localStorage.getItem("semester1StudentName") || "الطالبة";
+        localStorage.getItem(
+          "semester1StudentName"
+        ) || "الطالبة";
 
-      localStorage.setItem("ruqahScore", String(score));
-      localStorage.setItem("ruqahCompleted", "true");
+      localStorage.setItem(
+        "ruqahScore",
+        String(score)
+      );
+
+      localStorage.setItem(
+        "ruqahCompleted",
+        "true"
+      );
+
+      localStorage.setItem(
+        "writingScore",
+        String(score)
+      );
+
+      localStorage.setItem(
+        "writingCompleted",
+        "true"
+      );
 
       testScreen.classList.add("hidden");
       resultScreen.classList.remove("hidden");
 
-      document.getElementById("resultName").textContent = studentName;
-      document.getElementById("finalScore").textContent = score;
+      document.getElementById(
+        "resultName"
+      ).textContent = studentName;
 
-      let message;
+      document.getElementById(
+        "finalScore"
+      ).textContent = score;
+
+      const resultIcon =
+        document.getElementById("resultIcon");
+
+      let message = "";
 
       if (score === 10) {
+        resultIcon.textContent = "🏆";
+
         message =
-          "ممتاز جدًا، أتقنتِ قواعد الرسم الكتابي وخط الرقعة.";
+          "رائعة جدًا! أتقنتِ قواعد الرسم الكتابي وخط الرقعة.";
+
+        createStars();
+        playSuccessSound();
       } else if (score >= 8) {
+        resultIcon.textContent = "🌟";
+
         message =
-          "أحسنتِ، لديكِ فهم جيد جدًا لقواعد خط الرقعة.";
+          "أحسنتِ! لديكِ فهم ممتاز لقواعد خط الرقعة.";
       } else if (score >= 5) {
+        resultIcon.textContent = "👏";
+
         message =
           "نتيجة جيدة، راجعي الحروف التي تنزل عن السطر والحروف المطموسة.";
       } else {
+        resultIcon.textContent = "📚";
+
         message =
-          "تحتاجين إلى مراجعة قواعد خط الرقعة وآداب الكتابة.";
+          "محاولة جيدة، راجعي قواعد خط الرقعة ثم حاولي مرة أخرى.";
       }
 
-      document.getElementById("resultMessage").textContent = message;
+      document.getElementById(
+        "resultMessage"
+      ).textContent = message;
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
     }
+
+    function createStars() {
+      const layer =
+        document.getElementById("starsLayer");
+
+      const icons = ["⭐", "✨", "🌟", "💫"];
+
+      for (let i = 0; i < 18; i++) {
+        const star =
+          document.createElement("span");
+
+        star.className = "star";
+
+        star.textContent =
+          icons[
+            Math.floor(Math.random() * icons.length)
+          ];
+
+        star.style.left =
+          (15 + Math.random() * 70) + "%";
+
+        star.style.setProperty(
+          "--move-x",
+          ((Math.random() - 0.5) * 320) + "px"
+        );
+
+        star.style.setProperty(
+          "--move-y",
+          (-150 - Math.random() * 350) + "px"
+        );
+
+        star.style.animationDelay =
+          (Math.random() * 0.15) + "s";
+
+        layer.appendChild(star);
+
+        setTimeout(function () {
+          star.remove();
+        }, 1500);
+      }
+    }
+
+    function playSuccessSound() {
+      playTone(520, 0.12, 0);
+      playTone(660, 0.14, 0.12);
+      playTone(790, 0.18, 0.25);
+    }
+
+    function playWrongSound() {
+      playTone(280, 0.15, 0);
+      playTone(210, 0.2, 0.15);
+    }
+
+    function playTone(
+      frequency,
+      duration,
+      delay
+    ) {
+      try {
+        const AudioContext =
+     window.AudioContext ||
+window.webkitAudioContext;
+
+const audioContext =
+  new AudioContext();
+
+const oscillator =
+  audioContext.createOscillator();
+
+const gain =
+  audioContext.createGain();
+
+oscillator.type = "sine";
+oscillator.frequency.value = frequency;
+
+gain.gain.setValueAtTime(
+  0.0001,
+  audioContext.currentTime + delay
+);
+
+gain.gain.exponentialRampToValueAtTime(
+  0.16,
+  audioContext.currentTime + delay + 0.02
+);
+
+gain.gain.exponentialRampToValueAtTime(
+  0.0001,
+  audioContext.currentTime + delay + duration
+);
+
+oscillator.connect(gain);
+gain.connect(audioContext.destination);
+
+oscillator.start(
+  audioContext.currentTime + delay
+);
+
+oscillator.stop(
+  audioContext.currentTime +
+  delay +
+  duration +
+  0.05
+);
+
+oscillator.onended = function () {
+  audioContext.close();
+};
+
+} catch (error) {
+  console.log(
+    "الصوت غير متاح في هذا المتصفح."
+  );
+}
+}
   </script>
 
 </body>
-</html>
+</html>     
