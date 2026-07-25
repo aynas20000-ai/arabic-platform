@@ -7,7 +7,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>إرشادات الكتابة بخط الرقعة</title>
+    <title>إرشادات كتابة حرفي اللام ولا بخط الرقعة</title>
 
     <style>
         * {
@@ -23,52 +23,59 @@
         }
 
         .hero {
-            background: linear-gradient(135deg, #1565c0, #42a5f5);
+            background: linear-gradient(
+                135deg,
+                #6f4ca5,
+                #9871c5
+            );
             color: white;
             text-align: center;
-            padding: 45px 20px;
-            border-radius: 0 0 35px 35px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.18);
+            padding: 28px 15px;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 6px 16px
+                rgba(76, 52, 110, 0.25);
         }
 
         .hero h1 {
             margin: 0;
-            font-size: 34px;
+            font-size: 27px;
         }
 
         .hero p {
-            margin: 12px 0 0;
-            font-size: 19px;
+            margin: 8px 0 0;
+            font-size: 18px;
         }
 
         .cards {
-            width: 92%;
+            width: 94%;
             max-width: 750px;
-            margin: 30px auto;
+            margin: 25px auto;
         }
 
         .card {
-            padding: 24px;
-            margin-bottom: 22px;
-            border-radius: 25px;
-            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.10);
+            margin-bottom: 20px;
+            padding: 22px;
+            border-radius: 24px;
+            box-shadow: 0 6px 14px
+                rgba(0, 0, 0, 0.12);
             transition: transform 0.2s;
-            cursor: pointer;
         }
 
         .card:active {
-            transform: scale(0.97);
+            transform: scale(0.98);
         }
 
         .card h2 {
             margin-top: 0;
             text-align: center;
-            font-size: 26px;
+            font-size: 25px;
         }
 
         .card h3 {
-            font-size: 23px;
-            margin-bottom: 5px;
+            margin-bottom: 7px;
+            text-align: center;
+            font-size: 22px;
+            color: #5d438b;
         }
 
         .card ul {
@@ -81,282 +88,455 @@
             font-size: 18px;
         }
 
-        .card p {
-            font-size: 19px;
-        }
-
         .yellow {
-            background: #fff8d5;
-            border-right: 8px solid #fbc02d;
+            background: #fff2b9;
         }
 
         .green {
-            background: #e8f5e9;
-            border-right: 8px solid #43a047;
+            background: #dff6e8;
+        }
+
+        .pink {
+            background: #ffe3ee;
         }
 
         .blue {
-            background: #e3f2fd;
-            border-right: 8px solid #1e88e5;
-        }
-
-        .purple {
-            background: #f3e5f5;
-            border-right: 8px solid #8e24aa;
+            background: #deedff;
         }
 
         .orange {
-            background: #fff3e0;
-            border-right: 8px solid #fb8c00;
+            background: #ffe4c2;
         }
 
         .letter-box {
-            background: white;
-            border-radius: 20px;
-            padding: 20px;
-            margin: 15px 0;
-            text-align: center;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-        }
-
-        .letter {
-            font-size: 65px;
-            font-weight: bold;
-            margin-bottom: -20px;
-        }
-
-        .writing-line {
-            height: 4px;
-            background: #455a64;
-            width: 75%;
-            margin: 0 auto 15px;
-            border-radius: 10px;
+            margin-top: 15px;
+            padding: 17px;
+            background: rgba(255, 255, 255, 0.82);
+            border: 2px dashed #8062ad;
+            border-radius: 18px;
         }
 
         .rule {
+            padding: 12px;
+            background: white;
+            border-right: 6px solid #8062ad;
+            border-radius: 12px;
+            font-size: 18px;
             font-weight: bold;
-            color: #5e35b1;
         }
 
         .listen-button {
-            display: block;
             width: 100%;
-            border: none;
+            margin-top: 17px;
             padding: 13px;
-            margin-top: 16px;
-            border-radius: 16px;
+            border: none;
+            border-radius: 15px;
+            background: #654791;
+            color: white;
+            font-family: inherit;
             font-size: 18px;
-            font-weight: bold;
-            background: white;
-            color: #1565c0;
             cursor: pointer;
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
         }
 
         .listen-button:active {
-            transform: scale(0.97);
+            transform: scale(0.98);
         }
 
-        .message {
-            width: 92%;
-            max-width: 750px;
-            margin: 20px auto;
-            padding: 20px;
-            text-align: center;
-            background: white;
-            border: 3px dashed #42a5f5;
-            border-radius: 22px;
-            font-size: 20px;
-            font-weight: bold;
+        .stop-button {
+            width: 100%;
+            margin-top: 5px;
+            padding: 13px;
+            border: none;
+            border-radius: 15px;
+            background: #f1d5df;
+            color: #68394a;
+            font-family: inherit;
+            font-size: 18px;
+            cursor: pointer;
         }
 
-        .back {
+        .back-button {
             display: block;
-            width: 90%;
-            max-width: 500px;
-            margin: 25px auto 40px;
-            padding: 16px;
+            width: 94%;
+            max-width: 750px;
+            margin: 20px auto 35px;
+            padding: 15px;
             border-radius: 18px;
-            background: #1565c0;
+            background: #654791;
             color: white;
             text-align: center;
             text-decoration: none;
-            font-size: 20px;
-            font-weight: bold;
-            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.18);
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #607d8b;
+            font-size: 19px;
+            box-shadow: 0 5px 12px
+                rgba(67, 42, 102, 0.25);
         }
     </style>
 </head>
 
 <body>
 
-    <header class="hero">
-        <h1>💡 إرشادات الكتابة بخط الرقعة</h1>
-        <p>تعلّم كيف تكتب بخط جميل وواضح ومنظم</p>
-    </header>
+<header class="hero">
+    <h1>💡 إرشادات كتابة حرفي اللام و«لا»</h1>
+    <p>تعلّم الكتابة الصحيحة بخط الرقعة</p>
+</header>
 
-    <main class="cards">
 
-        <section class="card yellow" onclick="playClick()">
-            <h2>⭐ مميزات خط الرقعة</h2>
+<main class="cards">
+
+    <!-- مميزات خط الرقعة -->
+    <section class="card yellow">
+
+        <h2>⭐ مميزات خط الرقعة</h2>
+
+        <ul>
+            <li>
+                خط سريع وسهل في الكتابة.
+            </li>
+
+            <li>
+                حروفه واضحة وقليلة الزخرفة.
+            </li>
+
+            <li>
+                يُستخدم كثيرًا في الكتابة اليومية.
+            </li>
+
+            <li>
+                يعتمد على البساطة والاختصار.
+            </li>
+
+            <li>
+                تُكتب معظم حروفه على السطر.
+            </li>
+        </ul>
+
+        <button
+            class="listen-button"
+            type="button"
+            onclick="readText(
+                event,
+                'مميزات خط الرقعة. خط الرقعة سريع وسهل في الكتابة. حروفه واضحة وقليلة الزخرفة. يُستخدم كثيرًا في الكتابة اليومية. يعتمد على البساطة والاختصار. وتُكتب معظم حروفه على السطر.'
+            )">
+
+            🎧 استمع إلى جميع النقاط
+        </button>
+
+    </section>
+
+
+    <!-- مسكة القلم -->
+    <section class="card green">
+
+        <h2>✍️ مسكة القلم</h2>
+
+        <ul>
+            <li>
+                أمسك القلم بين الإبهام والسبابة.
+            </li>
+
+            <li>
+                ضع الإصبع الوسطى أسفل القلم
+                لتثبيته.
+            </li>
+
+            <li>
+                لا تضغط على القلم بقوة
+                أثناء الكتابة.
+            </li>
+
+            <li>
+                اجعل القلم مائلًا قليلًا
+                نحو الكتف.
+            </li>
+
+            <li>
+                حرّك اليد بهدوء ومرونة.
+            </li>
+        </ul>
+
+        <button
+            class="listen-button"
+            type="button"
+            onclick="readText(
+                event,
+                'مسكة القلم. أمسك القلم بين الإبهام والسبابة. ضع الإصبع الوسطى أسفل القلم لتثبيته. لا تضغط على القلم بقوة أثناء الكتابة. اجعل القلم مائلًا قليلًا نحو الكتف. وحرّك اليد بهدوء ومرونة.'
+            )">
+
+            🎧 استمع إلى جميع النقاط
+        </button>
+
+    </section>
+
+
+    <!-- الجلسة الصحيحة -->
+    <section class="card pink">
+
+        <h2>🪑 الجلسة الصحيحة</h2>
+
+        <ul>
+            <li>
+                اجلس وظهرك مستقيم.
+            </li>
+
+            <li>
+                ضع القدمين على الأرض
+                بصورة مريحة.
+            </li>
+
+            <li>
+                اجعل الدفتر أمامك
+                ومائلًا قليلًا.
+            </li>
+
+            <li>
+                اترك مسافة مناسبة بين
+                العينين والدفتر.
+            </li>
+
+            <li>
+                ثبّت الورقة باليد الأخرى.
+            </li>
+        </ul>
+
+        <button
+            class="listen-button"
+            type="button"
+            onclick="readText(
+                event,
+                'الجلسة الصحيحة. اجلس وظهرك مستقيم. ضع القدمين على الأرض بصورة مريحة. اجعل الدفتر أمامك ومائلًا قليلًا. اترك مسافة مناسبة بين العينين والدفتر. وثبّت الورقة باليد الأخرى.'
+            )">
+
+            🎧 استمع إلى جميع النقاط
+        </button>
+
+    </section>
+
+
+    <!-- قواعد الحروف -->
+    <section class="card blue">
+
+        <h2>🔤 قواعد حرفي اللام و«لا»</h2>
+
+
+        <div class="letter-box">
+
+            <h3>حرف اللام</h3>
+
+            <p class="rule">
+                يُكتب حرف اللام من أعلى إلى أسفل،
+                ثم يستقر على السطر بانسياب.
+            </p>
 
             <ul>
-                <li>سريع وسهل في الكتابة.</li>
-                <li>حروفه واضحة وبسيطة.</li>
-                <li>قليل الزخرفة والتعقيد.</li>
-                <li>يُستخدم كثيرًا في الكتابة اليومية.</li>
+                <li>
+                    يبدأ الحرف من الأعلى.
+                </li>
+
+                <li>
+                    ينزل القلم بحركة هادئة.
+                </li>
+
+                <li>
+                    يكون جسم اللام مستقيمًا.
+                </li>
+
+                <li>
+                    لا نبالغ في طول الحرف.
+                </li>
+
+                <li>
+                    نراعي اتصال اللام بالحرف
+                    الذي بعدها.
+                </li>
             </ul>
 
-            <button class="listen-button"
-                    onclick="readText(event, 'خط الرقعة سريع وسهل في الكتابة، وحروفه واضحة وبسيطة، ويستخدم كثيرًا في الكتابة اليومية.')">
-                🔊 استمع
-            </button>
-        </section>
+        </div>
 
-        <section class="card green" onclick="playClick()">
-            <h2>✍️ مسكة القلم الصحيحة</h2>
+
+        <div class="letter-box">
+
+            <h3>تركيب «لا»</h3>
+
+            <p class="rule">
+                يتكوّن تركيب «لا» من اتصال
+                حرف اللام بحرف الألف بصورة
+                متوازنة وواضحة.
+            </p>
 
             <ul>
-                <li>أمسك القلم بين الإبهام والسبابة.</li>
-                <li>اجعل القلم مستندًا على الإصبع الوسطى.</li>
-                <li>لا تضغط على القلم بقوة.</li>
-                <li>اترك مسافة مناسبة بين أصابعك ورأس القلم.</li>
+                <li>
+                    نبدأ بكتابة اللام من أعلى.
+                </li>
+
+                <li>
+                    نصل اللام بالألف بانسياب.
+                </li>
+
+                <li>
+                    يكون الألف مائلًا قليلًا.
+                </li>
+
+                <li>
+                    نحافظ على تناسق الحرفين.
+                </li>
+
+                <li>
+                    لا نترك مسافة بين اللام
+                    والألف.
+                </li>
             </ul>
 
-            <button class="listen-button"
-                    onclick="readText(event, 'أمسك القلم بين الإبهام والسبابة، واجعله مستندًا على الإصبع الوسطى، ولا تضغط عليه بقوة.')">
-                🔊 استمع
-            </button>
-        </section>
+        </div>
 
-        <section class="card blue" onclick="playClick()">
-            <h2>🪑 الجلسة الصحيحة للكتابة</h2>
 
-            <ul>
-                <li>اجلس باستقامة وراحة.</li>
-                <li>ضع قدميك على الأرض.</li>
-                <li>اجعل الدفتر أمامك ومائلًا قليلًا.</li>
-                <li>اترك مسافة مناسبة بين عينيك والدفتر.</li>
-                <li>ثبّت الورقة باليد الأخرى.</li>
-            </ul>
+        <button
+            class="listen-button"
+            type="button"
+            onclick="readText(
+                event,
+                'قواعد حرفي اللام ولا. أولًا، حرف اللام. يُكتب حرف اللام من أعلى إلى أسفل، ثم يستقر على السطر بانسياب. يبدأ الحرف من الأعلى. ينزل القلم بحركة هادئة. يكون جسم اللام مستقيمًا. لا نبالغ في طول الحرف. ونراعي اتصال اللام بالحرف الذي بعدها. ثانيًا، تركيب لا. يتكوّن تركيب لا من اتصال حرف اللام بحرف الألف بصورة متوازنة وواضحة. نبدأ بكتابة اللام من أعلى. نصل اللام بالألف بانسياب. يكون الألف مائلًا قليلًا. نحافظ على تناسق الحرفين. ولا نترك مسافة بين اللام والألف.'
+            )">
 
-            <button class="listen-button"
-                    onclick="readText(event, 'اجلس باستقامة، وضع قدميك على الأرض، واجعل الدفتر أمامك، واترك مسافة مناسبة بين عينيك والدفتر.')">
-                🔊 استمع
-            </button>
-        </section>
+            🎧 استمع إلى جميع القواعد
+        </button>
 
-        <section class="card purple" onclick="playClick()">
-            <h2>🔤 قواعد رسم ل و لا</h2>
+    </section>
 
-            <div class="letter-box">
-                <h3>حرف اللام</h3>
 
-                <div class="letter">ل</div>
-                <div class="writing-line"></div>
+    <!-- النصائح -->
+    <section class="card orange">
 
-                <p class="rule">يستقر حرف اللام على السطر.</p>
-                <p>له صورة منفردة وصورة متصلة.</p>
-            </div>
+        <h2>🌟 نصائح لتحسين الخط</h2>
 
-            <div class="letter-box">
-                <h3>تركيب لا</h3>
+        <ul>
+            <li>
+                تدرب على كتابة الحرف ببطء
+                في البداية.
+            </li>
 
-                <div class="letter">لا</div>
-                <div class="writing-line"></div>
+            <li>
+                راقب حجم الحروف والمسافات بينها.
+            </li>
 
-                <p class="rule">يستقر تركيب لا على السطر.</p>
-                <p>له صورة منفردة وصورة متصلة.</p>
-            </div>
+            <li>
+                التزم بالسطر أثناء الكتابة.
+            </li>
 
-            <button class="listen-button"
-                    onclick="readText(event, 'يستقر حرف اللام على السطر، ويستقر تركيب لا على السطر، ولكل منهما صورة منفردة وصورة متصلة.')">
-                🔊 استمع إلى القاعدة
-            </button>
-        </section>
+            <li>
+                كرر كتابة اللام و«لا»
+                عدة مرات.
+            </li>
 
-        <section class="card orange" onclick="playClick()">
-            <h2>🌟 نصائح لتحسين الخط</h2>
+            <li>
+                قارن كتابتك بالنموذج الصحيح.
+            </li>
 
-            <ul>
-                <li>ابدأ الكتابة ببطء وهدوء.</li>
-                <li>حافظ على تساوي حجم الحروف.</li>
-                <li>اتبع السطر أثناء الكتابة.</li>
-                <li>لا تضغط بالقلم على الورقة.</li>
-                <li>تدرّب يوميًا ولو لوقت قصير.</li>
-            </ul>
+            <li>
+                استخدم قلمًا مريحًا وسهل الحركة.
+            </li>
 
-            <button class="listen-button"
-                    onclick="readText(event, 'اكتب ببطء وهدوء، وحافظ على تساوي حجم الحروف، واتبع السطر، وتدرب كل يوم.')">
-                🔊 استمع
-            </button>
-        </section>
+            <li>
+                لا تستعجل؛ فجمال الخط يحتاج
+                إلى تدريب.
+            </li>
+        </ul>
 
-    </main>
+        <button
+            class="listen-button"
+            type="button"
+            onclick="readText(
+                event,
+                'نصائح لتحسين الخط. تدرب على كتابة الحرف ببطء في البداية. راقب حجم الحروف والمسافات بينها. التزم بالسطر أثناء الكتابة. كرر كتابة اللام ولا عدة مرات. قارن كتابتك بالنموذج الصحيح. استخدم قلمًا مريحًا وسهل الحركة. ولا تستعجل، فجمال الخط يحتاج إلى تدريب.'
+            )">
 
-    <div class="message">
-        ✨ الكتابة الجميلة تحتاج إلى جلسة صحيحة،
-        ومسكة قلم مريحة، وتدريب مستمر.
-    </div>
+            🎧 استمع إلى جميع النصائح
+        </button>
 
-    <a class="back" href="ruqah-l-la.html">
-        ⬅️ العودة إلى الدرس
-    </a>
+    </section>
 
-    <footer>
-        جميع الحقوق محفوظة © 2026
-    </footer>
 
-    <script>
-        function playClick() {
-            const audioContext =
-                new (window.AudioContext || window.webkitAudioContext)();
+    <button
+        class="stop-button"
+        type="button"
+        onclick="stopReading(event)">
 
-            const oscillator = audioContext.createOscillator();
-            const gainNode = audioContext.createGain();
+        ⏹️ إيقاف الصوت
+    </button>
 
-            oscillator.connect(gainNode);
-            gainNode.connect(audioContext.destination);
+</main>
 
-            oscillator.frequency.value = 520;
-            gainNode.gain.value = 0.05;
 
-            oscillator.start();
+<a class="back-button"
+   href="ruqah-l-la.html">
 
-            setTimeout(function () {
-                oscillator.stop();
-                audioContext.close();
-            }, 80);
+    ↩️ العودة إلى درس اللام و«لا»
+</a>
+
+
+<script>
+    function readText(event, text) {
+        event.stopPropagation();
+
+        if (!("speechSynthesis" in window)) {
+            alert(
+                "ميزة القراءة الصوتية غير متاحة في هذا المتصفح."
+            );
+
+            return;
         }
 
-        function readText(event, text) {
+        window.speechSynthesis.cancel();
+
+        const speech =
+            new SpeechSynthesisUtterance(text);
+
+        speech.lang = "ar-SA";
+        speech.rate = 0.85;
+        speech.pitch = 1;
+        speech.volume = 1;
+
+        const voices =
+            window.speechSynthesis.getVoices();
+
+        const arabicVoice =
+            voices.find(function (voice) {
+                return voice.lang === "ar-SA";
+            }) ||
+
+            voices.find(function (voice) {
+                return voice.lang.startsWith("ar");
+            });
+
+        if (arabicVoice) {
+            speech.voice = arabicVoice;
+        }
+
+        window.speechSynthesis.speak(speech);
+    }
+
+
+    function stopReading(event) {
+        if (event) {
             event.stopPropagation();
-
-            playClick();
-
-            if (!("speechSynthesis" in window)) {
-                alert("ميزة القراءة الصوتية غير متاحة في هذا المتصفح.");
-                return;
-            }
-
-            window.speechSynthesis.cancel();
-
-            const speech = new SpeechSynthesisUtterance(text);
-
-            speech.lang = "ar-SA";
-            speech.rate = 0.85;
-            speech.pitch = 1;
-
-            window.speechSynthesis.speak(speech);
         }
-    </script>
+
+        window.speechSynthesis.cancel();
+    }
+
+
+    window.speechSynthesis.onvoiceschanged =
+        function () {
+            window.speechSynthesis.getVoices();
+        };
+
+
+    window.addEventListener(
+        "beforeunload",
+        function () {
+            window.speechSynthesis.cancel();
+        }
+    );
+</script>
 
 </body>
-
 </html>
