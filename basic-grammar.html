@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>القواعد النحوية الأساسية | منصة آفاق اللغة</title>
+
+  <style>
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0
+    }
+
+    :root{
+      --purple-dark:#60358b;
+      --purple:#8c58b0;
+      --gold:#dfa03d;
+      --gold-light:#fff4d9;
+      --green:#34785f;
+      --green-light:#eaf8f2;
+      --blue:#3d7199;
+      --blue-light:#edf6fd;
+      --rose:#a34f68;
+      --rose-light:#fff0f4;
+      --text:#574a60;
+      --white:#fff
+    }
+
+    html{
+      scroll-behavior:smooth
+    }
+
+    body{
+      min-height:100vh;
+      font-family:Tahoma,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top right,#fff1cd,transparent 30%),
+        radial-gradient(circle at bottom left,#eadcff,transparent 40%),
+        linear-gradient(135deg,#fffdf8,#f8f1ff)
+    }
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:20;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:16px 6%;
+      color:white;
+      background:linear-gradient(135deg,#60358b,#9c61c4);
+      box-shadow:0 5px 20px rgba(75,38,105,.2)
+    }
+
+    .logo{
+      font-size:21px;
+      font-weight:bold
+    }
+
+    .back-link{
+      padding:9px 14px;
+      border:1px solid rgba(255,255,255,.45);
+      border-radius:24px;
+      color:white;
+      text-decoration:none;
+      font-size:14px;
+      background:rgba(255,255,255,.13)
+    }
+
+    main{
+      width:min(1080px,93%);
+      margin:auto;
+      padding:42px 0 65px
+    }
+
+    .hero{
+      text-align:center;
+      margin-bottom:28px
+    }
+
+    .hero-icon{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:90px;
+      height:90px;
+      margin:0 auto 15px;
+      border-radius:50%;
+      font-size:46px;
+      background:linear-gradient(135deg,#ffdd82,#e99c3d);
+      box-shadow:0 10px 26px rgba(219,143,49,.27)
+    }
+
+    .hero h1{
+      margin-bottom:10px;
+      color:var(--purple-dark);
+      font-size:36px
+    }
+
+    .hero p{
+      max-width:820px;
+      margin:auto;
+      color:#75677e;
+      font-size:17px;
+      line-height:2
+    }
+
+    .intro{
+      margin-bottom:25px;
+      padding:24px;
+      border-radius:24px;
+      text-align:center;
+      color:white;
+      background:linear-gradient(135deg,#70419a,#9e68c4);
+      box-shadow:0 12px 30px rgba(89,48,120,.18)
+    }
+
+    .intro h2{
+      margin-bottom:9px;
+      font-size:23px
+    }
+
+    .intro p{
+      line-height:1.9;
+      color:#faf2fd
+    }
+
+    .instruction{
+      width:fit-content;
+      max-width:100%;
+      margin:0 auto 22px;
+      padding:11px 18px;
+      border-radius:24px;
+      color:#68427d;
+      text-align:center;
+      background:#f1e7f8
+    }
+
+    .topics{
+      display:grid;
+      gap:19px
+    }
+
+    .topic{
+      overflow:hidden;
+      border:1px solid rgba(113,71,143,.13);
+      border-radius:23px;
+      background:rgba(255,255,255,.97);
+      box-shadow:0 10px 28px rgba(75,42,99,.11)
+    }
+
+    .topic[open]{
+      border-color:rgba(136,81,174,.3);
+      background:linear-gradient(135deg,#fbf7ff,#fffaf0)
+    }
+
+    .topic-summary{
+      position:relative;
+      display:flex;
+      align-items:center;
+      gap:15px;
+      min-height:92px;
+      padding:18px 65px 18px 20px;
+      cursor:pointer;
+      list-style:none
+    }
+
+    .topic-summary::-webkit-details-marker{
+      display:none
+    }
+
+    .topic-summary::after{
+      content:"＋";
+      position:absolute;
+      right:19px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:34px;
+      height:34px;
+      border-radius:50%;
+      color:white;
+      font-size:22px;
+      background:linear-gradient(135deg,#75439f,#9c64c1)
+    }
+
+    .topic[open] .topic-summary::after{
+      content:"−"
+    }
+
+    .topic-icon{
+      display:flex;
+      flex:0 0 58px;
+      align-items:center;
+      justify-content:center;
+      width:58px;
+      height:58px;
+      border-radius:50%;
+      font-size:30px;
+      background:linear-gradient(135deg,#f1e7fb,#fff1d6)
+    }
+
+    .topic-title small{
+      display:block;
+      margin-bottom:4px;
+      color:#987bac;
+      font-size:13px
+    }
+
+    .topic-title h2{
+      color:var(--purple-dark);
+      font-size:21px;
+      line-height:1.5
+    }    .topic-content{
+      padding:0 24px 26px;
+      animation:reveal .35s ease
+    }
+
+    @keyframes reveal{
+      from{opacity:0;transform:translateY(-7px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:16px
+    }
+
+    .card{
+      padding:18px;
+      border:1px solid rgba(113,71,143,.1);
+      border-radius:18px;
+      background:white;
+      box-shadow:0 7px 19px rgba(75,42,99,.08)
+    }
+
+    .card h3{
+      margin-bottom:12px;
+      color:var(--purple-dark);
+      font-size:18px
+    }
+
+    .card p,.card li{
+      font-size:15px;
+      line-height:1.95
+    }
+
+    .card p{margin-bottom:10px}
+    .card p:last-child{margin-bottom:0}
+
+    .card ul{
+      margin:6px 0 11px;
+      padding-right:22px
+    }
+
+    .definition,.rule,.signs,.example,.warning{
+      padding:11px 13px;
+      border-radius:13px
+    }
+
+    .definition{color:#604678;background:#f4ebfa}
+    .rule{color:#735022;background:var(--gold-light)}
+    .signs{color:#315f82;background:var(--blue-light)}
+    .example{color:#285f4d;background:var(--green-light)}
+    .warning{color:#8a3d50;background:var(--rose-light)}
+
+    .table-wrap{
+      overflow-x:auto;
+      border-radius:18px;
+      box-shadow:0 7px 19px rgba(75,42,99,.08)
+    }
+
+    table{
+      width:100%;
+      min-width:820px;
+      border-collapse:collapse;
+      background:white
+    }
+
+    th,td{
+      padding:14px;
+      border:1px solid #eadff1;
+      text-align:center;
+      line-height:1.8
+    }
+
+    th{
+      color:white;
+      background:linear-gradient(135deg,#70419a,#9e68c4)
+    }
+
+    tr:nth-child(even) td{background:#fbf8fd}
+
+    .closing{
+      margin-top:31px;
+      padding:28px 22px;
+      border-radius:24px;
+      text-align:center;
+      color:white;
+      background:linear-gradient(135deg,#70409a,#a26ac6);
+      box-shadow:0 12px 30px rgba(88,47,119,.19)
+    }
+
+    .closing div{margin-bottom:8px;font-size:46px}
+    .closing h2{margin-bottom:9px;font-size:23px}
+
+    .closing p{
+      max-width:760px;
+      margin:auto;
+      color:#faf2fd;
+      line-height:1.9
+    }
+
+    footer{
+      padding:22px;
+      color:#796a82;
+      text-align:center;
+      font-size:14px
+    }
+
+    @media(max-width:750px){
+      header{padding:13px 4%}
+      .logo{font-size:17px}
+      .back-link{padding:8px 10px;font-size:12px}
+      main{width:94%;padding-top:31px}
+      .hero h1{font-size:28px}
+      .hero p{font-size:15px}
+      .intro{padding:20px 15px}
+
+      .topic-summary{
+        gap:11px;
+        min-height:86px;
+        padding:16px 52px 16px 13px
+      }
+
+      .topic-summary::after{
+        right:12px;
+        width:30px;
+        height:30px;
+        font-size:19px
+      }
+
+      .topic-icon{
+        flex-basis:50px;
+        width:50px;
+        height:50px;
+        font-size:26px
+      }
+
+      .topic-title h2{font-size:18px}
+      .topic-content{padding:0 13px 19px}
+      .cards{grid-template-columns:1fr}
+      .card{padding:16px 14px}
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">منصة آفاق اللغة</div>
+  <a href="golden-rules.html" class="back-link">
+    العودة إلى خزانة القواعد
+  </a>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="hero-icon">📘</div>
+    <h1>القواعد النحوية الأساسية</h1>
+
+    <p>
+      شرح منظم لأهم القواعد النحوية، مع أمثلة واضحة،
+      وعلامات إعرابية، وجدول مقارنة سريع يثبت الفروق.
+    </p>
+  </section>
+
+  <section class="intro">
+    <h2>ابدئي بنوع الجملة ثم حددي وظيفة الكلمات</h2>
+
+    <p>
+      افتحي كل موضوع واقرئي تعريفه وقاعدته وأمثلته،
+      ثم قارني بين الموضوعات في الجدول الأخير.
+    </p>
+  </section>
+
+  <div class="instruction">
+    👆 اضغطي على كل موضوع لفتح شرحه
+  </div>
+
+  <section class="topics">
+
+    <details class="topic">
+      <summary class="topic-summary">
+        <div class="topic-icon">🏃</div>
+
+        <div class="topic-title">
+          <small>الموضوع الأول</small>
+          <h2>الجملة الفعلية</h2>
+        </div>
+      </summary>
+
+      <div class="topic-content">
+        <div class="cards">
+
+          <article class="card">
+            <h3>التعريف</h3>
+
+            <p class="definition">
+              جملة تبدأ بفعل، وتتكون غالبًا من فعل وفاعل،
+              وقد يأتي بعدها مفعول به.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>القاعدة</h3>
+
+            <p class="rule">
+              الفعل يوضح الحدث، والفاعل يبين من قام به،
+              والمفعول به يبين من وقع عليه الفعل.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>أمثلة</h3>
+
+            <p class="example">
+              نجحَ الطالبُ.<br>
+              قرأتِ الطالبةُ الكتابَ.<br>
+              يحفظُ الطفلُ القصيدةَ.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>تنبيه</h3>
+
+            <p class="warning">
+              قد يتقدم المفعول به أو يتأخر الفاعل،
+              لذلك نعتمد على المعنى والعلامة الإعرابية،
+              لا على الترتيب وحده.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </details>
+        <details class="topic">
+      <summary class="topic-summary">
+        <div class="topic-icon">🏠</div>
+
+        <div class="topic-title">
+          <small>الموضوع الثاني</small>
+          <h2>الجملة الاسمية</h2>
+        </div>
+      </summary>
+
+      <div class="topic-content">
+        <div class="cards">
+
+          <article class="card">
+            <h3>التعريف</h3>
+
+            <p class="definition">
+              جملة تبدأ باسم، وتتكون في أصلها من مبتدأ وخبر.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>القاعدة</h3>
+
+            <p class="rule">
+              المبتدأ والخبر مرفوعان في الأصل.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>أمثلة</h3>
+
+            <p class="example">
+              العلمُ نورٌ.<br>
+              السماءُ صافيةٌ.<br>
+              الطالباتُ مجتهداتٌ.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>تنبيه</h3>
+
+            <p class="warning">
+              قد يتقدم الخبر على المبتدأ،
+              مثل: في الفصلِ طالباتٌ.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </details>
+
+    <details class="topic">
+      <summary class="topic-summary">
+        <div class="topic-icon">إنّ</div>
+
+        <div class="topic-title">
+          <small>الموضوع الثالث</small>
+          <h2>إنَّ وأخواتها</h2>
+        </div>
+      </summary>
+
+      <div class="topic-content">
+        <div class="cards">
+
+          <article class="card">
+            <h3>التعريف</h3>
+
+            <p class="definition">
+              حروف ناسخة تدخل على الجملة الاسمية.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>الأخوات</h3>
+
+            <p class="signs">
+              إنَّ، أنَّ، كأنَّ، لكنَّ، ليت، لعل.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>القاعدة</h3>
+
+            <p class="rule">
+              تنصب المبتدأ ويسمى اسمها،
+              وترفع الخبر ويسمى خبرها.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>أمثلة</h3>
+
+            <p class="example">
+              إنَّ العلمَ نورٌ.<br>
+              ليتَ النجاحَ قريبٌ.<br>
+              لعلَّ المريضَ معافى.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>تنبيه</h3>
+
+            <p class="warning">
+              لا نقول: إنَّ العلمُ؛
+              لأن اسم إنَّ منصوب.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </details>
+
+    <details class="topic">
+      <summary class="topic-summary">
+        <div class="topic-icon">كان</div>
+
+        <div class="topic-title">
+          <small>الموضوع الرابع</small>
+          <h2>كان وأخواتها</h2>
+        </div>
+      </summary>
+
+      <div class="topic-content">
+        <div class="cards">
+
+          <article class="card">
+            <h3>التعريف</h3>
+
+            <p class="definition">
+              أفعال ناسخة تدخل على الجملة الاسمية.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>الأخوات</h3>
+
+            <p class="signs">
+              كان، أصبح، أمسى، أضحى، ظل، بات،
+              صار، ليس، ما زال.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>القاعدة</h3>
+
+            <p class="rule">
+              ترفع المبتدأ ويسمى اسمها،
+              وتنصب الخبر ويسمى خبرها.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>أمثلة</h3>
+
+            <p class="example">
+              كان الجوُّ جميلًا.<br>
+              أصبح الطالبُ نشيطًا.<br>
+              ليس الكسلُ محمودًا.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>تنبيه</h3>
+
+            <p class="warning">
+              الفرق الأساسي:
+              إنَّ تنصب الاسم، أما كان فترفعه.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </details>
+
+    <details class="topic">
+      <summary class="topic-summary">
+        <div class="topic-icon">✓</div>
+
+        <div class="topic-title">
+          <small>الموضوع الخامس</small>
+          <h2>الفعل الصحيح والفعل المعتل</h2>
+        </div>
+      </summary>
+
+      <div class="topic-content">
+        <div class="cards">
+
+          <article class="card">
+            <h3>الفعل الصحيح</h3>
+
+            <p class="definition">
+              ما خلت حروفه الأصلية من حروف العلة.
+            </p>
+
+            <p class="example">
+              كتب، جلس، فهم، سأل، شدَّ.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>أنواع الصحيح</h3>
+
+            <p class="signs">
+              سالم، مهموز، مضعف.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>الفعل المعتل</h3>
+
+            <p class="definition">
+              ما كان أحد حروفه الأصلية حرف علة:
+              الألف أو الواو أو الياء.
+            </p>
+
+            <p class="example">
+              وعد، قال، سعى، روى.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>أنواع المعتل</h3>
+
+            <p class="signs">
+              مثال، أجوف، ناقص، لفيف.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>تنبيه</h3>
+
+            <p class="warning">
+              ننظر إلى الحروف الأصلية للفعل،
+              لا إلى الحروف الزائدة.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </details>
+        <details class="topic">
+      <summary class="topic-summary">
+        <div class="topic-icon">➡️</div>
+
+        <div class="topic-title">
+          <small>الموضوع السادس</small>
+          <h2>الفعل اللازم والفعل المتعدي</h2>
+        </div>
+      </summary>
+
+      <div class="topic-content">
+        <div class="cards">
+
+          <article class="card">
+            <h3>الفعل اللازم</h3>
+
+            <p class="definition">
+              يكتفي بفاعله ولا يحتاج إلى مفعول به.
+            </p>
+
+            <p class="example">
+              نام الطفلُ.<br>
+              جلس الطالبُ.<br>
+              وصل المسافرُ.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>الفعل المتعدي</h3>
+
+            <p class="definition">
+              لا يكتمل معناه إلا بمفعول به أو أكثر.
+            </p>
+
+            <p class="example">
+              قرأ الطالبُ الكتابَ.<br>
+              منح المعلمُ المتفوقَ جائزةً.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>طريقة التمييز</h3>
+
+            <p class="rule">
+              اسألي بعد الفعل: ماذا؟ أو مَن؟
+              فإن وجدتِ جوابًا مناسبًا،
+              كان الفعل غالبًا متعديًا.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>تنبيه</h3>
+
+            <p class="warning">
+              قد يكون الفعل لازمًا في سياق،
+              ومتعديًا في سياق آخر بحسب المعنى.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </details>
+
+    <details class="topic">
+      <summary class="topic-summary">
+        <div class="topic-icon">👁️</div>
+
+        <div class="topic-title">
+          <small>الموضوع السابع</small>
+          <h2>المبني للمعلوم والمبني للمجهول</h2>
+        </div>
+      </summary>
+
+      <div class="topic-content">
+        <div class="cards">
+
+          <article class="card">
+            <h3>المبني للمعلوم</h3>
+
+            <p class="definition">
+              فعل ذُكر فاعله في الجملة.
+            </p>
+
+            <p class="example">
+              كتبَ الطالبُ الدرسَ.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>المبني للمجهول</h3>
+
+            <p class="definition">
+              فعل حُذف فاعله،
+              وناب عنه المفعول به.
+            </p>
+
+            <p class="example">
+              كُتبَ الدرسُ.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>القاعدة</h3>
+
+            <p class="rule">
+              في الماضي يُضم أوله ويُكسر ما قبل آخره،
+              وفي المضارع يُضم أوله ويُفتح ما قبل آخره.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>أمثلة</h3>
+
+            <p class="example">
+              حفظَ الطالبُ القصيدةَ ← حُفظتِ القصيدةُ.<br>
+              يكتبُ الطالبُ الواجبَ ← يُكتبُ الواجبُ.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>تنبيه</h3>
+
+            <p class="warning">
+              نائب الفاعل مرفوع دائمًا.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </details>
+
+    <details class="topic">
+      <summary class="topic-summary">
+        <div class="topic-icon">5</div>
+
+        <div class="topic-title">
+          <small>الموضوع الثامن</small>
+          <h2>الأفعال الخمسة</h2>
+        </div>
+      </summary>
+
+      <div class="topic-content">
+        <div class="cards">
+
+          <article class="card">
+            <h3>التعريف</h3>
+
+            <p class="definition">
+              كل فعل مضارع اتصل بألف الاثنين،
+              أو واو الجماعة، أو ياء المخاطبة.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>الصور</h3>
+
+            <p class="example">
+              يفعلان، تفعلان، يفعلون،
+              تفعلون، تفعلين.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>علامات الإعراب</h3>
+
+            <p class="signs">
+              تُرفع بثبوت النون،
+              وتُنصب وتُجزم بحذف النون.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>أمثلة</h3>
+
+            <p class="example">
+              الطالبان يكتبانِ.<br>
+              لن يهملوا.<br>
+              لم تتأخري.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>تنبيه</h3>
+
+            <p class="warning">
+              الفعل المتصل بنون النسوة ليس من الأفعال الخمسة،
+              مثل: الطالبات يكتبنَ.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </details>
+
+    <details class="topic">
+      <summary class="topic-summary">
+        <div class="topic-icon">أب</div>
+
+        <div class="topic-title">
+          <small>الموضوع التاسع</small>
+          <h2>الأسماء الخمسة</h2>
+        </div>
+      </summary>
+
+      <div class="topic-content">
+        <div class="cards">
+
+          <article class="card">
+            <h3>الأسماء</h3>
+
+            <p class="definition">
+              أب، أخ، حم، فو، ذو بمعنى صاحب.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>علامات الإعراب</h3>
+
+            <p class="signs">
+              تُرفع بالواو،
+              وتُنصب بالألف،
+              وتُجر بالياء.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>أمثلة</h3>
+
+            <p class="example">
+              جاء أبوكِ.<br>
+              رأيت أباكِ.<br>
+              سلمت على أبيكِ.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>الشروط</h3>
+
+            <p class="rule">
+              أن تكون مفردة، ومضافة،
+              وغير مضافة إلى ياء المتكلم،
+              وأن تكون «ذو» بمعنى صاحب،
+              و«فو» خالية من الميم.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>تنبيه</h3>
+
+            <p class="warning">
+              إذا لم تتحقق الشروط،
+              فلا تُعرب بالحروف، مثل: هذا أبي.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </details>
+        <details class="topic">
+      <summary class="topic-summary">
+        <div class="topic-icon">👤</div>
+
+        <div class="topic-title">
+          <small>الموضوع العاشر</small>
+          <h2>الفاعل ونائب الفاعل</h2>
+        </div>
+      </summary>
+
+      <div class="topic-content">
+        <div class="cards">
+
+          <article class="card">
+            <h3>الفاعل</h3>
+
+            <p class="definition">
+              اسم مرفوع يدل على من قام بالفعل.
+            </p>
+
+            <p class="example">
+              نجحَ الطالبُ.<br>
+              كتبتِ الطالبةُ الواجبَ.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>نائب الفاعل</h3>
+
+            <p class="definition">
+              اسم مرفوع يأتي بعد فعل مبني للمجهول،
+              ويحل محل الفاعل المحذوف.
+            </p>
+
+            <p class="example">
+              كُتبتِ الرسالةُ.<br>
+              حُفظتِ القصيدةُ.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>القاعدة</h3>
+
+            <p class="rule">
+              الفاعل يأتي مع الفعل المبني للمعلوم،
+              ونائب الفاعل يأتي مع الفعل المبني للمجهول،
+              وكلاهما مرفوع.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>تنبيه</h3>
+
+            <p class="warning">
+              لا يجتمع الفاعل ونائب الفاعل
+              في جملة واحدة للفعل نفسه.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </details>
+
+    <details class="topic">
+      <summary class="topic-summary">
+        <div class="topic-icon">🎯</div>
+
+        <div class="topic-title">
+          <small>الموضوع الحادي عشر</small>
+          <h2>المفاعيل</h2>
+        </div>
+      </summary>
+
+      <div class="topic-content">
+        <div class="cards">
+
+          <article class="card">
+            <h3>المفعول به</h3>
+
+            <p class="definition">
+              اسم منصوب وقع عليه فعل الفاعل.
+            </p>
+
+            <p class="example">
+              قرأتُ الكتابَ.<br>
+              حفظتِ الطالبةُ القصيدةَ.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>المفعول المطلق</h3>
+
+            <p class="definition">
+              مصدر منصوب من لفظ الفعل،
+              يأتي لتوكيده أو بيان نوعه أو عدده.
+            </p>
+
+            <p class="example">
+              شكرتُ المعلمةَ شكرًا.<br>
+              قفز اللاعبُ قفزتين.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>المفعول لأجله</h3>
+
+            <p class="definition">
+              مصدر منصوب يبين سبب حدوث الفعل.
+            </p>
+
+            <p class="example">
+              اجتهدتُ طلبًا للنجاح.<br>
+              وقفتُ احترامًا للمعلمة.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>المفعول فيه</h3>
+
+            <p class="definition">
+              اسم منصوب يدل على زمان الفعل أو مكانه.
+            </p>
+
+            <p class="example">
+              سافرتُ صباحًا.<br>
+              جلستُ أمامَ المعلمة.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>المفعول معه</h3>
+
+            <p class="definition">
+              اسم منصوب يأتي بعد واو بمعنى «مع».
+            </p>
+
+            <p class="example">
+              سرتُ والنهرَ.<br>
+              مشيتُ والطريقَ.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>تنبيه</h3>
+
+            <p class="warning">
+              لا نحدد نوع المفعول من النصب وحده،
+              بل من معناه وعلاقته بالفعل.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </details>
+
+    <details class="topic">
+      <summary class="topic-summary">
+        <div class="topic-icon">📊</div>
+
+        <div class="topic-title">
+          <small>الموضوع الثاني عشر</small>
+          <h2>جدول مقارنة سريع</h2>
+        </div>
+      </summary>
+
+      <div class="topic-content">
+
+        <div class="table-wrap">
+          <table>
+
+            <thead>
+              <tr>
+                <th>الموضوع</th>
+                <th>التعريف المختصر</th>
+                <th>العلامة أو الأثر</th>
+                <th>مثال</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr>
+                <td>الجملة الاسمية</td>
+                <td>تبدأ باسم</td>
+                <td>مبتدأ وخبر مرفوعان في الأصل</td>
+                <td>العلمُ نورٌ</td>
+              </tr>
+
+              <tr>
+                <td>الجملة الفعلية</td>
+                <td>تبدأ بفعل</td>
+                <td>فعل وفاعل وقد يأتي مفعول به</td>
+                <td>قرأ الطالبُ الكتابَ</td>
+              </tr>
+
+              <tr>
+                <td>إنَّ وأخواتها</td>
+                <td>حروف ناسخة</td>
+                <td>تنصب الاسم وترفع الخبر</td>
+                <td>إنَّ العلمَ نورٌ</td>
+              </tr>
+
+              <tr>
+                <td>كان وأخواتها</td>
+                <td>أفعال ناسخة</td>
+                <td>ترفع الاسم وتنصب الخبر</td>
+                <td>كان الجوُّ جميلًا</td>
+              </tr>
+
+              <tr>
+                <td>الفعل الصحيح</td>
+                <td>لا يوجد حرف علة في أصوله</td>
+                <td>مثل: كتب، جلس</td>
+                <td>كتب الطالبُ</td>
+              </tr>
+
+              <tr>
+                <td>الفعل المعتل</td>
+                <td>في أصوله حرف علة</td>
+                <td>مثل: وعد، قال، سعى</td>
+                <td>سعى الطالبُ</td>
+              </tr>
+
+              <tr>
+                <td>الفعل اللازم</td>
+                <td>يكتفي بالفاعل</td>
+                <td>لا يحتاج إلى مفعول به</td>
+                <td>نام الطفلُ</td>
+              </tr>
+
+              <tr>
+                <td>الفعل المتعدي</td>
+                <td>يتجاوز الفاعل إلى المفعول</td>
+                <td>يحتاج إلى مفعول به</td>
+                <td>قرأ الطالبُ الكتابَ</td>
+              </tr>
+
+              <tr>
+                <td>المبني للمعلوم</td>
+                <td>ذُكر فاعله</td>
+                <td>يأتي بعده فاعل</td>
+                <td>كتب الطالبُ الدرسَ</td>
+              </tr>
+
+              <tr>
+                <td>المبني للمجهول</td>
+                <td>حُذف فاعله</td>
+                <td>يأتي بعده نائب فاعل</td>
+                <td>كُتب الدرسُ</td>
+              </tr>
+
+              <tr>
+                <td>الأفعال الخمسة</td>
+                <td>مضارع اتصل بألف الاثنين أو واو الجماعة أو ياء المخاطبة</td>
+                <td>ثبوت النون رفعًا وحذفها نصبًا وجزمًا</td>
+                <td>يكتبون، لن يكتبوا</td>
+              </tr>
+
+              <tr>
+                <td>الأسماء الخمسة</td>
+                <td>أب، أخ، حم، فو، ذو</td>
+                <td>الواو رفعًا، والألف نصبًا، والياء جرًا</td>
+                <td>أبوك، أباك، أبيك</td>
+              </tr>
+
+              <tr>
+                <td>الفاعل</td>
+                <td>من قام بالفعل</td>
+                <td>مرفوع</td>
+                <td>نجح الطالبُ</td>
+              </tr>
+
+              <tr>
+                <td>نائب الفاعل</td>
+                <td>يحل محل الفاعل المحذوف</td>
+                <td>مرفوع</td>
+                <td>كُتبت الرسالةُ</td>
+              </tr>
+
+              <tr>
+                <td>المفاعيل</td>
+                <td>أسماء منصوبة مرتبطة بالفعل</td>
+                <td>تختلف بحسب المعنى</td>
+                <td>الكتابَ، شكرًا، صباحًا</td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </details>
+
+  </section>
+
+  <section class="closing">
+    <div>✨</div>
+
+    <h2>ابدئي بالسؤال الصحيح</h2>
+
+    <p>
+      هل الجملة اسمية أم فعلية؟
+      من قام بالفعل؟
+      هل الفعل معلوم أم مجهول؟
+      وهل يحتاج إلى مفعول؟
+      بهذه الأسئلة تتضح القاعدة بسرعة.
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  جميع الحقوق محفوظة © منصة آفاق اللغة
+</footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const topics = document.querySelectorAll(".topic");
+
+    function playSound() {
+      try {
+        const AudioContext =
+          window.AudioContext ||
+          window.webkitAudioContext;
+
+        const audioContext = new AudioContext();
+        const oscillator = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+
+        oscillator.type = "sine";
+        oscillator.frequency.value = 620;
+
+        gain.gain.setValueAtTime(
+          0.001,
+          audioContext.currentTime
+        );
+
+        gain.gain.exponentialRampToValueAtTime(
+          0.08,
+          audioContext.currentTime + 0.02
+        );
+
+        gain.gain.exponentialRampToValueAtTime(
+          0.001,
+          audioContext.currentTime + 0.17
+        );
+
+        oscillator.connect(gain);
+        gain.connect(audioContext.destination);
+
+        oscillator.start();
+        oscillator.stop(audioContext.currentTime + 0.18);
+
+      } catch (error) {
+        console.log("تعذر تشغيل الصوت");
+      }
+    }
+
+    topics.forEach(function (topic) {
+      topic.addEventListener("toggle", function () {
+        if (topic.open) {
+          playSound();
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
