@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>اختبار الوظيفة النحوية</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Tahoma, Arial, sans-serif;
+      background: linear-gradient(135deg, #eef6ff, #fff4fb);
+      color: #263238;
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1565c0, #7b1fa2);
+      color: white;
+      text-align: center;
+      padding: 30px 15px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 32px;
+    }
+
+    header p {
+      margin: 12px 0 0;
+      font-size: 18px;
+      line-height: 1.8;
+    }
+
+    .container {
+      width: min(92%, 760px);
+      margin: 25px auto;
+    }
+
+    .card {
+      background: white;
+      padding: 24px;
+      border-radius: 22px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    label {
+      display: block;
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 14px;
+      border: 2px solid #bbdefb;
+      border-radius: 12px;
+      font-size: 18px;
+      outline: none;
+    }
+
+    input[type="text"]:focus {
+      border-color: #1565c0;
+    }
+
+    .warning {
+      background: #fff3cd;
+      color: #7a5200;
+      padding: 12px;
+      border-radius: 10px;
+      margin-top: 12px;
+      font-weight: bold;
+    }
+
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-weight: bold;
+      color: #1565c0;
+    }
+
+    .progress {
+      height: 13px;
+      background: #e3f2fd;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 25px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, #1565c0, #ab47bc);
+      transition: width 0.3s;
+    }
+
+    .lesson-name {
+      color: #7b1fa2;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .question {
+      font-size: 22px;
+      line-height: 1.8;
+      margin-bottom: 18px;
+    }
+
+    .answers {
+      display: grid;
+      gap: 12px;
+    }
+
+    .answer {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 14px;
+      border: 2px solid #d9e8fa;
+      border-radius: 14px;
+      cursor: pointer;
+      font-size: 18px;
+      line-height: 1.7;
+      background: white;
+    }
+
+    .answer:hover {
+      background: #f3f8ff;
+    }
+
+    .answer.selected {
+      border-color: #7b1fa2;
+      background: #f5eafa;
+    }
+
+    .answer input {
+      margin-top: 7px;
+      transform: scale(1.25);
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    button,
+    .button-link {
+      border: none;
+      padding: 13px 22px;
+      border-radius: 12px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    button:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .primary {
+      background: linear-gradient(135deg, #1565c0, #7b1fa2);
+      color: white;
+    }
+
+    .secondary {
+      background: #e3f2fd;
+      color: #0d47a1;
+    }
+
+    .result {
+      text-align: center;
+    }
+
+    .score {
+      font-size: 55px;
+      font-weight: bold;
+      color: #7b1fa2;
+      margin: 15px 0;
+    }
+
+    .result-boxes {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin: 20px 0;
+    }
+
+    .result-box {
+      background: #f3e5f5;
+      padding: 16px;
+      border-radius: 14px;
+    }
+
+    .result-box strong {
+      display: block;
+      margin-top: 6px;
+      font-size: 26px;
+      color: #6a1b9a;
+    }
+
+    .message {
+      font-size: 21px;
+      font-weight: bold;
+      line-height: 1.8;
+      color: #1565c0;
+    }
+
+    @media (max-width: 520px) {
+      header h1 {
+        font-size: 27px;
+      }
+
+      .card {
+        padding: 18px;
+      }
+
+      .question {
+        font-size: 20px;
+      }
+
+      .buttons button,
+      .buttons a {
+        flex: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>📖 اختبار الوظيفة النحوية</h1>
+    <p>الحال والمستثنى والتمييز — الدرجة 20</p>
+  </header>
+
+  <main class="container">
+
+    <!-- شاشة البداية -->
+    <section id="startScreen" class="card">
+      <h2>بيانات الطالبة</h2>
+
+      <label for="studentName">اكتبي اسمك الرباعي:</label>
+
+      <input
+        type="text"
+        id="studentName"
+        maxlength="80"
+        placeholder="مثال: سارة محمد أحمد علي"
+      >
+
+      <div id="nameWarning" class="warning hidden">
+        يرجى كتابة الاسم الرباعي قبل بدء الاختبار.
+      </div>
+
+      <div class="buttons">
+        <a href="semester1-tests.html" class="button-link secondary">
+          العودة
+        </a>
+
+        <button id="startButton" class="primary">
+          ابدئي الاختبار 🚀
+        </button>
+      </div>
+    </section>
+
+    <!-- شاشة الأسئلة -->
+    <section id="quizScreen" class="card hidden">
+
+      <div class="progress-info">
+        <span id="questionCounter"></span>
+        <span>الدرجة: 20</span>
+      </div>
+
+      <div class="progress">
+        <div id="progressBar" class="progress-bar"></div>
+      </div>
+
+      <div id="lessonName" class="lesson-name"></div>
+
+      <div id="questionText" class="question"></div>
+
+      <div id="answersContainer" class="answers"></div>
+
+      <div id="answerWarning" class="warning hidden">
+        اختاري إجابة قبل الانتقال إلى السؤال التالي.
+      </div>
+
+      <div class="buttons">
+        <button id="previousButton" class="secondary">
+          السابق
+        </button>
+
+        <button id="nextButton" class="primary" disabled>
+          التالي
+        </button>
+      </div>
+
+    </section>
+
+    <!-- شاشة النتيجة -->
+    <section id="resultScreen" class="card result hidden">
+
+      <h2>🎉 انتهى اختبار الوظيفة النحوية</h2>
+
+      <p id="studentResultName"></p>
+
+      <div id="scoreText" class="score"></div>
+
+      <div class="result-boxes">
+        <div class="result-box">
+          الإجابات الصحيحة
+          <strong id="correctAnswers"></strong>
+        </div>
+
+        <div class="result-box">
+          الإجابات الخاطئة
+          <strong id="wrongAnswers"></strong>
+        </div>
+      </div>
+
+      <div id="resultMessage" class="message"></div>
+
+      <div class="buttons">
+        <button id="retryButton" class="secondary">
+          إعادة الاختبار
+        </button>
+
+        <a href="semester1-tests.html" class="button-link primary">
+          العودة إلى مكونات الاختبار
+        </a>
+      </div>
+
+    </section>
+
+  </main>
+
+  <script>
+    const questions = [
+
+      {
+        lesson: "الحال",
+        question: "ما الوظيفة التي يؤديها الحال في الجملة؟",
+        answers: [
+          "يبين زمن وقوع الفعل",
+          "يبين هيئة صاحبه وقت وقوع الفعل",
+          "يبين مكان وقوع الفعل",
+          "يبين عدد أفراد الفاعل"
+        ],
+        correct: 1
+      },
+
+      {
+        lesson: "الحال",
+        question: "حددي الحال في الجملة: عادت الطالبة مسرورةً.",
+        answers: [
+          "عادت",
+          "الطالبة",
+          "مسرورةً",
+          "التاء"
+        ],
+        correct: 2
+      },
+
+      {
+        lesson: "الحال",
+        question: "من صاحب الحال في الجملة: دخل اللاعب الملعب متحمسًا؟",
+        answers: [
+          "دخل",
+          "اللاعب",
+          "الملعب",
+          "متحمسًا"
+        ],
+        correct: 1
+      },
+
+      {
+        lesson: "الحال",
+        question: "ما علامة نصب الحال في الجملة: عاد المسافران سالمَيْن؟",
+        answers: [
+          "الفتحة",
+          "الكسرة",
+          "الألف",
+          "الياء"
+        ],
+        correct: 3
+      },
+
+      {
+        lesson: "الحال",
+        question: "أي جملة اشتملت على حال جملة اسمية؟",
+        answers: [
+          "وصل الطفل ضاحكًا.",
+          "وصل الطفل وهو ضاحك.",
+          "وصل الطفل سريعًا.",
+          "وصل الطفل إلى البيت."
+        ],
+        correct: 1
+      },
+
+      {
+        lesson: "الحال",
+        question: "اختاري الجملة التي استُعملت فيها الحال استعمالًا صحيحًا.",
+        answers: [
+          "شاهدت الطيور محلقةٌ.",
+          "شاهدت الطيور محلقاتٌ.",
+          "شاهدت الطيور محلقةً.",
+          "شاهدت الطيور التحليق."
+        ],
+        correct: 2
+      },
+
+      {
+        lesson: "الحال",
+        question: "أي عبارة تصف الحال المفرد وصفًا صحيحًا؟",
+        answers: [
+          "اسم معرفة مرفوع",
+          "اسم نكرة منصوب",
+          "فعل مضارع مجزوم",
+          "اسم معرفة مجرور"
+        ],
+        correct: 1
+      },
+
+      {
+        lesson: "المستثنى",
+        question: "ما أداة الاستثناء في الجملة: حضر الطلاب إلا خالدًا؟",
+        answers: [
+          "حضر",
+          "الطلاب",
+          "إلا",
+          "خالدًا"
+        ],
+        correct: 2
+      },
+
+      {
+        lesson: "المستثنى",
+        question: "حددي المستثنى منه في الجملة: قرأت الكتب إلا كتابًا.",
+        answers: [
+          "قرأت",
+          "الكتب",
+          "إلا",
+          "كتابًا"
+        ],
+        correct: 1
+      },
+
+      {
+        lesson: "المستثنى",
+        question: "ما حكم المستثنى بإلا في الاستثناء التام المثبت؟",
+        answers: [
+          "يجب نصبه",
+          "يجب رفعه",
+          "يجب جره",
+          "يجب جزمه"
+        ],
+        correct: 0
+      },
+
+      {
+        lesson: "المستثنى",
+        question: "أي جملة تمثل استثناءً تامًا مثبتًا؟",
+        answers: [
+          "ما حضر إلا طالب.",
+          "حضر الطلاب إلا طالبًا.",
+          "لم يحضر الطلاب إلا طالب.",
+          "ما حضر الطلاب."
+        ],
+        correct: 1
+      },
+
+      {
+        lesson: "المستثنى",
+        question: "في الاستثناء التام المنفي يجوز في المستثنى...",
+        answers: [
+          "النصب فقط",
+          "الجر فقط",
+          "النصب أو اتباع المستثنى منه",
+          "الجزم أو الرفع"
+        ],
+        correct: 2
+      },
+
+      {
+        lesson: "المستثنى",
+        question: "ما نوع الاستثناء في الجملة: ما فاز إلا المجتهد؟",
+        answers: [
+          "تام مثبت",
+          "تام منفي",
+          "ناقص منفي",
+          "منقطع مثبت"
+        ],
+        correct: 2
+      },
+
+      {
+        lesson: "المستثنى",
+        question: "ما إعراب الاسم الواقع بعد كلمتي غير وسوى؟",
+        answers: [
+          "فاعل مرفوع",
+          "مفعول به منصوب",
+          "مضاف إليه مجرور",
+          "مبتدأ مرفوع"
+        ],
+        correct: 2
+      },
+
+      {
+        lesson: "المستثنى",
+        question: "اختاري الضبط الصحيح: حضر الضيوف غيرَ ...",
+        answers: [
+          "خالدٌ",
+          "خالدًا",
+          "خالدٍ",
+          "خالدْ"
+        ],
+        correct: 2
+      },
+
+      {
+        lesson: "التمييز",
+        question: "ما وظيفة التمييز في الجملة؟",
+        answers: [
+          "يوضح اسمًا أو نسبة مبهمة قبله",
+          "يبين هيئة الفاعل",
+          "يدل على زمن الفعل",
+          "يستثني اسمًا من حكم ما قبله"
+        ],
+        correct: 0
+      },
+
+      {
+        lesson: "التمييز",
+        question: "حددي التمييز في الجملة: اشتريت لترًا حليبًا.",
+        answers: [
+          "اشتريت",
+          "لترًا",
+          "حليبًا",
+          "التاء"
+        ],
+        correct: 2
+      },
+
+      {
+        lesson: "التمييز",
+        question: "ما نوع التمييز في الجملة: اشتريت كيلو تفاحًا؟",
+        answers: [
+          "تمييز ذات",
+          "تمييز نسبة",
+          "حال",
+          "مستثنى"
+        ],
+        correct: 0
+      },
+
+      {
+        lesson: "التمييز",
+        question: "ما نوع التمييز في الجملة: ازداد الطالب علمًا؟",
+        answers: [
+          "تمييز عدد",
+          "تمييز ذات",
+          "تمييز نسبة",
+          "حال مفردة"
+        ],
+        correct: 2
+      },
+
+      {
+        lesson: "التمييز",
+        question: "اختاري الكلمة الصحيحة لإكمال الجملة: امتلأ الإناء ...",
+        answers: [
+          "ماءٌ",
+          "ماءً",
+          "ماءٍ",
+          "الماءُ"
+        ],
+        correct: 1
+      },
+
+      {
+        lesson: "التمييز",
+        question: "ما الصورة الصحيحة لتمييز العدد في الجملة: قرأت عشرين ...؟",
+        answers: [
+          "كتابٌ",
+          "كتبٍ",
+          "كتابًا",
+          "كتابان"
+        ],
+        correct: 2
+      }
+
+    ];
+
+    const startScreen = document.getElementById("startScreen");
+    const quizScreen = document.getElementById("quizScreen");
+    const resultScreen = document.getElementById("resultScreen");
+
+    const studentNameInput = document.getElementById("studentName");
+    const nameWarning = document.getElementById("nameWarning");
+
+    const lessonName = document.getElementById("lessonName");
+    const questionText = document.getElementById("questionText");
+    const answersContainer = document.getElementById("answersContainer");
+    const questionCounter = document.getElementById("questionCounter");
+    const progressBar = document.getElementById("progressBar");
+
+    const answerWarning = document.getElementById("answerWarning");
+    const previousButton = document.getElementById("previousButton");
+    const nextButton = document.getElementById("nextButton");
+
+    let currentQuestion = 0;
+    let studentAnswers = new Array(questions.length).fill(null);
+    let studentName = "";
+
+    const savedName = localStorage.getItem("semester1StudentName");
+
+    if (savedName) {
+      studentNameInput.value = savedName;
+    }
+
+    document.getElementById("startButton").addEventListener("click", function () {
+      const enteredName = studentNameInput.value.trim();
+      const nameParts = enteredName.split(/\s+/).filter(Boolean);
+
+      if (nameParts.length < 4) {
+        nameWarning.classList.remove("hidden");
+        return;
+      }
+
+      nameWarning.classList.add("hidden");
+
+      studentName = enteredName;
+      localStorage.setItem("semester1StudentName", studentName);
+
+      startScreen.classList.add("hidden");
+      quizScreen.classList.remove("hidden");
+
+      showQuestion();
+      window.scrollTo(0, 0);
+    });
+
+    function showQuestion() {
+      const current = questions[currentQuestion];
+
+      lessonName.textContent = "الدرس: " + current.lesson;
+      questionText.textContent = current.question;
+
+      questionCounter.textContent =
+        "السؤال " + (currentQuestion + 1) + " من " + questions.length;
+
+      progressBar.style.width =
+        ((currentQuestion + 1) / questions.length * 100) + "%";
+
+      answersContainer.innerHTML = "";
+      answerWarning.classList.add("hidden");
+
+      current.answers.forEach(function (answer, index) {
+        const label = document.createElement("label");
+        label.className = "answer";
+
+        if (studentAnswers[currentQuestion] === index) {
+          label.classList.add("selected");
+        }
+
+        const radio = document.createElement("input");
+        radio.type = "radio";
+        radio.name = "answer";
+        radio.value = index;
+
+        if (studentAnswers[currentQuestion] === index) {
+          radio.checked = true;
+        }
+
+        const text = document.createElement("span");
+        text.textContent = answer;
+
+        label.appendChild(radio);
+        label.appendChild(text);
+
+        label.addEventListener("click", function () {
+          studentAnswers[currentQuestion] = index;
+
+          document.querySelectorAll(".answer").forEach(function (item) {
+            item.classList.remove("selected");
+          });
+
+          label.classList.add("selected");
+          radio.checked = true;
+
+          nextButton.disabled = false;
+          answerWarning.classList.add("hidden");
+
+          playSound();
+        });
+
+        answersContainer.appendChild(label);
+      });
+
+      previousButton.disabled = currentQuestion === 0;
+
+      nextButton.disabled =
+        studentAnswers[currentQuestion] === null;
+
+      if (currentQuestion === questions.length - 1) {
+        nextButton.textContent = "إنهاء الاختبار ✅";
+      } else {
+        nextButton.textContent = "التالي";
+      }
+    }
+
+    previousButton.addEventListener("click", function () {
+      if (currentQuestion > 0) {
+        currentQuestion--;
+        showQuestion();
+        window.scrollTo(0, 0);
+      }
+    });
+
+    nextButton.addEventListener("click", function () {
+      if (studentAnswers[currentQuestion] === null) {
+        answerWarning.classList.remove("hidden");
+        return;
+      }
+
+      if (currentQuestion < questions.length - 1) {
+        currentQuestion++;
+        showQuestion();
+        window.scrollTo(0, 0);
+      } else {
+        finishQuiz();
+      }
+    });
+
+    function finishQuiz() {
+      let score = 0;
+
+      questions.forEach(function (question, index) {
+        if (studentAnswers[index] === question.correct) {
+          score++;
+        }
+      });
+
+      const wrong = questions.length - score;
+
+      localStorage.setItem("grammarScore", score);
+      localStorage.setItem("grammarCompleted", "true");
+
+      document.getElementById("studentResultName").textContent =
+        "الطالبة: " + studentName;
+
+      document.getElementById("scoreText").textContent =
+        score + " / 20";
+
+      document.getElementById("correctAnswers").textContent = score;
+      document.getElementById("wrongAnswers").textContent = wrong;
+
+      let message = "";
+
+      if (score >= 18) {
+        message = "أداء رائع جدًا! أتقنتِ الوظيفة النحوية 🌟";
+      } else if (score >= 15) {
+        message = "أداء متميز، واصلي تقدمك الجميل 👏";
+      } else if (score >= 12) {
+        message = "أداء جيد، راجعي بعض القواعد لتحققي نتيجة أعلى.";
+      } else {
+        message = "تحتاجين إلى مراجعة الحال والمستثنى والتمييز ثم إعادة الاختبار.";
+      }
+
+      document.getElementById("resultMessage").textContent = message;
+
+      quizScreen.classList.add("hidden");
+      resultScreen.classList.remove("hidden");
+
+      playFinishSound();
+      window.scrollTo(0, 0);
+    }
+
+    document.getElementById("retryButton").addEventListener("click", function () {
+      currentQuestion = 0;
+      studentAnswers = new Array(questions.length).fill(null);
+
+      resultScreen.classList.add("hidden");
+      quizScreen.classList.remove("hidden");
+
+      showQuestion();
+      window.scrollTo(0, 0);
+    });
+
+    function playSound() {
+      try {
+        const AudioContext =
+          window.AudioContext || window.webkitAudioContext;
+
+        const audio = new AudioContext();
+        const oscillator = audio.createOscillator();
+        const gain = audio.createGain();
+
+        oscillator.connect(gain);
+        gain.connect(audio.destination);
+
+        oscillator.frequency.value = 620;
+        gain.gain.value = 0.08;
+
+        oscillator.start();
+
+        gain.gain.exponentialRampToValueAtTime(
+          0.001,
+          audio.currentTime + 0.12
+        );
+
+        oscillator.stop(audio.currentTime + 0.12);
+      } catch (error) {
+        console.log("الصوت غير مدعوم.");
+      }
+    }
+
+    function playFinishSound() {
+      try {
+        const AudioContext =
+          window.AudioContext || window.webkitAudioContext;
+
+        const audio = new AudioContext();
+
+        [523, 659, 784].forEach(function (frequency, index) {
+          const oscillator = audio.createOscillator();
+          const gain = audio.createGain();
+
+          oscillator.connect(gain);
+          gain.connect(audio.destination);
+
+          oscillator.frequency.value = frequency;
+          gain.gain.value = 0.1;
+
+          const startTime = audio.currentTime + index * 0.18;
+
+          oscillator.start(startTime);
+
+          gain.gain.exponentialRampToValueAtTime(
+            0.001,
+            startTime + 0.3
+          );
+
+          oscillator.stop(startTime + 0.3);
+        });
+      } catch (error) {
+        console.log("الصوت غير مدعوم.");
+      }
+    }
+  </script>
+
+</body>
+</html>
