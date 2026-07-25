@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>ملف درس اسم التفضيل | منصة آفاق</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Tahoma, Arial, sans-serif;
+      line-height: 1.9;
+      color: #44384f;
+
+      background:
+        linear-gradient(
+          180deg,
+          #f7f1fb 0%,
+          #fffaf1 50%,
+          #f2ebf8 100%
+        );
+    }
+
+    header {
+      padding: 48px 18px 55px;
+      text-align: center;
+      color: white;
+      border-radius: 0 0 42px 42px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #765991,
+          #5b4376,
+          #433252
+        );
+
+      box-shadow:
+        0 12px 28px rgba(63, 45, 78, 0.22);
+    }
+
+    .header-icon {
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #dfc77c;
+      border-radius: 27px;
+      font-size: 48px;
+      background: rgba(255, 255, 255, 0.13);
+    }
+
+    header h1 {
+      margin: 0;
+      color: #fff3d3;
+      font-size: 37px;
+    }
+
+    header p {
+      max-width: 730px;
+      margin: 14px auto 0;
+      color: #f5eef8;
+      font-size: 18px;
+    }
+
+    main {
+      width: 94%;
+      max-width: 930px;
+      margin: 36px auto;
+    }
+
+    .lesson-card {
+      margin-bottom: 32px;
+      padding: 26px;
+      border: 1px solid #ddc98d;
+      border-radius: 31px;
+      background: white;
+
+      box-shadow:
+        0 11px 27px rgba(73, 53, 91, 0.11);
+    }
+
+    .lesson-card h2 {
+      margin: 0 0 22px;
+      padding: 15px 18px;
+      text-align: center;
+      color: white;
+      font-size: 27px;
+      border-radius: 20px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #ed7c38,
+          #f5aa4d
+        );
+    }
+
+    .question-box {
+      padding: 22px;
+      border-radius: 23px;
+      background: #f2ecff;
+      border-right: 8px solid #8057b4;
+    }
+
+    .question-box h3 {
+      margin: 0 0 18px;
+      text-align: center;
+      color: #604383;
+      font-size: 23px;
+    }
+
+    .question {
+      margin: 13px 0;
+      padding: 14px 17px;
+      border-radius: 16px;
+      background: white;
+      border-right: 6px solid #dfa938;
+      font-weight: bold;
+    }
+
+    .result-box {
+      margin-top: 18px;
+      padding: 18px;
+      text-align: center;
+      border-radius: 18px;
+      color: #176747;
+      background: #e7f8ef;
+      border: 2px dashed #56ad7d;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .step {
+      padding: 18px;
+      text-align: center;
+      border-radius: 20px;
+      background: #edf7ff;
+      border-bottom: 5px solid #4099c8;
+      font-weight: bold;
+    }
+
+    .step:nth-child(2) {
+      background: #fff2db;
+      border-bottom-color: #e99b3f;
+    }
+
+    .step:nth-child(3) {
+      background: #eaf9ef;
+      border-bottom-color: #54af76;
+    }
+
+    .step:nth-child(4) {
+      background: #f4ecff;
+      border-bottom-color: #8b65b8;
+    }
+
+    .definition {
+      padding: 21px;
+      text-align: center;
+      border-radius: 22px;
+      background: #fff6d9;
+      border-right: 8px solid #d7ae35;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .definition strong {
+      color: #75498e;
+    }
+
+    .example-sentence {
+      margin-top: 22px;
+      padding: 22px 15px;
+      text-align: center;
+      border-radius: 20px;
+      background: #f6f1ff;
+      font-size: 23px;
+      font-weight: bold;
+    }
+
+    .preferred {
+      color: #2a82b8;
+    }
+
+    .preference-name {
+      color: #d55243;
+    }
+
+    .preferred-over {
+      color: #32955b;
+    }
+
+    .parts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 19px;
+    }
+
+    .part {
+      padding: 18px 10px;
+      text-align: center;
+      border-radius: 19px;
+      font-weight: bold;
+    }
+
+    .part:nth-child(1) {
+      background: #e9f6ff;
+      border: 2px solid #69a9ce;
+    }
+
+    .part:nth-child(2) {
+      background: #fff0e5;
+      border: 2px solid #e88e52;
+    }
+
+    .part:nth-child(3) {
+      background: #eaf9ef;
+      border: 2px solid #63b783;
+    }
+
+    .part-title {
+      display: block;
+      margin-bottom: 7px;
+      color: #65477f;
+      font-size: 19px;
+    }
+
+    .margin-note {
+      padding: 22px;
+      border-radius: 23px;
+      color: #5c4675;
+      background: #f1eaff;
+      border-right: 8px solid #8058af;
+    }
+
+    .margin-note h3 {
+      margin: 0 0 13px;
+      color: #6a478f;
+      font-size: 23px;
+    }
+
+    .weight-box {
+      margin-top: 17px;
+      padding: 17px;
+      text-align: center;
+      border-radius: 18px;
+      color: #8e4a21;
+      background: #fff0dd;
+      border: 2px dashed #e59945;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .conditions-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 13px;
+      margin-top: 19px;
+    }
+
+    .condition {
+      padding: 15px;
+      text-align: center;
+      border-radius: 17px;
+      background: white;
+      border: 1px solid #d8c8ea;
+      font-weight: bold;
+    }
+
+    .important-alert {
+      margin-top: 20px;
+      padding: 18px;
+      text-align: center;
+      border-radius: 19px;
+      color: #95404c;
+      background: #ffe9ed;
+      border-right: 8px solid #dc6878;
+      font-weight: bold;
+    }
+
+    .examples-grid {
+      display: grid;
+      gap: 17px;
+    }
+
+    .example-item {
+      padding: 20px;
+      border-radius: 22px;
+      background: #fbf9ff;
+      border-right: 7px solid #8660b1;
+    }
+
+    .sentence {
+      margin-bottom: 13px;
+      padding: 14px;
+      text-align: center;
+      border-radius: 16px;
+      background: white;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .analysis {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 9px;
+    }
+
+    .analysis div {
+      padding: 11px 7px;
+      text-align: center;
+      border-radius: 13px;
+      background: #f0eaff;
+      font-size: 15px;
+    }
+
+    .words-box {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .word {
+      min-width: 100px;
+      padding: 13px 18px;
+      text-align: center;
+      color: white;
+      border-radius: 17px;
+      font-size: 19px;
+      font-weight: bold;
+
+      background:
+        linear-gradient(
+          135deg,
+          #74538f,
+          #9670b3
+        );
+    }
+
+    .golden-summary {
+      padding: 21px;
+      border-radius: 22px;
+      background: #fff8de;
+      border: 2px dashed #d8af3e;
+    }
+
+    .golden-summary p {
+      margin: 11px 0;
+      font-weight: bold;
+    }
+
+    .back-box {
+      margin: 40px 0;
+      text-align: center;
+    }
+
+    .back-button {
+      display: inline-block;
+      padding: 15px 29px;
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 20px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #694f86,
+          #4b395e
+        );
+
+      box-shadow:
+        0 8px 19px rgba(72, 53, 88, 0.2);
+    }
+
+    footer {
+      padding: 23px 15px;
+      text-align: center;
+      color: white;
+      background: #3d304d;
+    }
+
+    @media (max-width: 650px) {
+      header h1 {
+        font-size: 30px;
+      }
+
+      header p {
+        font-size: 17px;
+      }
+
+      .lesson-card {
+        padding: 18px;
+      }
+
+      .lesson-card h2 {
+        font-size: 23px;
+      }
+
+      .steps-grid,
+      .parts-grid,
+      .conditions-grid,
+      .analysis {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+
+    <div class="header-icon">
+      ⭐
+    </div>
+
+    <h1>
+      ملف درس اسم التفضيل
+    </h1>
+
+    <p>
+      تعلّمي كيف تكتشفين أسلوب التفضيل،
+      وتحددين أركانه بسهولة.
+    </p>
+
+  </header>
+
+  <main>
+
+    <!-- البطاقة الأولى -->
+
+    <section class="lesson-card">
+
+      <h2>
+        كيف أتعرف أسلوب التفضيل؟
+      </h2>
+
+      <div class="question-box">
+
+        <h3>
+          💡 قبل أن تحددي اسم التفضيل اسألي نفسك:
+        </h3>
+
+        <div class="question">
+          ١- هل توجد مقارنة بين شيئين؟
+        </div>
+
+        <div class="question">
+          ٢- هل اشترك الشيئان في صفة واحدة؟
+        </div>
+
+        <div class="question">
+          ٣- هل زاد أحدهما على الآخر في هذه الصفة؟
+        </div>
+
+        <div class="result-box">
+          إذا كانت الإجابة «نعم»،
+          فأنتِ أمام أسلوب تفضيل.
+        </div>
+
+      </div>
+
+      <div class="steps-grid">
+
+        <div class="step">
+          🔍 ابحثي عن شيئين تجري المقارنة بينهما.
+        </div>
+
+        <div class="step">
+          🔗 حددي الصفة المشتركة بينهما.
+        </div>
+
+        <div class="step">
+          ⬆️ لاحظي أيهما زاد في هذه الصفة.
+        </div>
+
+        <div class="step">
+          ⭐ استخرجي الكلمة الدالة على التفضيل.
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- البطاقة الثانية -->
+
+    <section class="lesson-card">
+
+      <h2>
+        تعريف اسم التفضيل وأركانه
+      </h2>
+
+      <div class="definition">
+        <strong>اسم التفضيل:</strong>
+        صيغة مشتقة تدل على أن شيئين اشتركا
+        في صفة، وتقدّم أحدهما على الآخر فيها.
+      </div>
+
+      <div class="example-sentence">
+        <span class="preferred">بيت الله</span>
+        <span class="preference-name">أقدس</span>
+        <span class="preferred-over">البيوت</span>.
+      </div>
+
+      <div class="parts-grid">
+
+        <div class="part">
+          <span class="part-title">
+            المفضَّل
+          </span>
+          بيت الله
+        </div>
+
+        <div class="part">
+          <span class="part-title">
+            اسم التفضيل
+          </span>
+          أقدس
+        </div>
+
+        <div class="part">
+          <span class="part-title">
+            المفضَّل عليه
+          </span>
+          البيوت
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- البطاقة الثالثة -->
+
+    <section class="lesson-card">
+
+      <h2>
+        معلومة مهمة من هامش الدرس
+      </h2>
+
+      <div class="margin-note">
+
+        <h3>
+          🧠 أعلم أن:
+        </h3>
+
+        يُصاغ اسم التفضيل على وزن
+        <strong>«أفعل»</strong>
+        من الفعل مباشرة إذا كان مستوفيًا
+        لشروط الصياغة.
+
+        <div class="weight-box">
+          وزن اسم التفضيل: أَفْعَل
+        </div>
+
+        <div class="conditions-grid">
+
+          <div class="condition">
+            أن يكون الفعل ثلاثيًّا.
+          </div>
+
+          <div class="condition">
+            أن يكون الفعل مثبتًا.
+          </div>
+
+          <div class="condition">
+            أن يكون الفعل مبنيًّا للمعلوم.
+          </div>
+
+          <div class="condition">
+            أن يكون قابلًا للتفاوت.
+          </div>
+
+          <div class="condition">
+            أن يكون الفعل تامًّا.
+          </div>
+
+          <div class="condition">
+            ألا يدل على لون أو عيب أو حِلْية.
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="important-alert">
+        ⚠️ ليس كل اسم على وزن «أفعل» اسم تفضيل؛
+        فلا بد أن يدل على المقارنة وزيادة أحد
+        الشيئين على الآخر في صفة مشتركة.
+      </div>
+
+    </section>
+
+
+    <!-- البطاقة الرابعة -->
+
+    <section class="lesson-card">
+
+      <h2>
+        تطبيقات محلولة
+      </h2>
+
+      <div class="examples-grid">
+
+        <div class="example-item">
+
+          <div class="sentence">
+            المسجد الحرام
+            <span class="preference-name">أطهر</span>
+            بقاع الأرض.
+          </div>
+
+          <div class="analysis">
+            <div>
+              المفضَّل: المسجد الحرام
+            </div>
+
+            <div>
+              اسم التفضيل: أطهر
+            </div>
+
+            <div>
+              المفضَّل عليه: بقاع الأرض
+            </div>
+          </div>
+
+        </div>
+
+        <div class="example-item">
+
+          <div class="sentence">
+            المواطن الصالح
+            <span class="preference-name">أفضل</span>
+            مواطن.
+          </div>
+
+          <div class="analysis">
+            <div>
+              المفضَّل: المواطن الصالح
+            </div>
+
+            <div>
+              اسم التفضيل: أفضل
+            </div>
+
+            <div>
+              المفضَّل عليه: مواطن
+            </div>
+          </div>
+
+        </div>
+
+        <div class="example-item">
+
+          <div class="sentence">
+            مسجد الرسول ﷺ
+            <span class="preference-name">أوسع</span>
+            مسجد في المدينة.
+          </div>
+
+          <div class="analysis">
+            <div>
+              المفضَّل: مسجد الرسول ﷺ
+            </div>
+
+            <div>
+              اسم التفضيل: أوسع
+            </div>
+
+            <div>
+              المفضَّل عليه: مساجد المدينة
+            </div>
+          </div>
+
+        </div>
+
+        <div class="example-item">
+
+          <div class="sentence">
+            الأمن
+            <span class="preference-name">أعظم</span>
+            النعم.
+          </div>
+
+          <div class="analysis">
+            <div>
+              المفضَّل: الأمن
+            </div>
+
+            <div>
+              اسم التفضيل: أعظم
+            </div>
+
+            <div>
+              المفضَّل عليه: النعم
+            </div>
+          </div>
+
+        </div>
+
+        <div class="example-item">
+
+          <div class="sentence">
+            نعمة الأمن من
+            <span class="preference-name">أهم</span>
+            النعم.
+          </div>
+
+          <div class="analysis">
+            <div>
+              المفضَّل: نعمة الأمن
+            </div>
+
+            <div>
+              اسم التفضيل: أهم
+            </div>
+
+            <div>
+              المفضَّل عليه: النعم
+            </div>
+          </div>
+
+        </div>
+
+        <div class="example-item">
+
+          <div class="sentence">
+            التوسط والاعتدال
+            <span class="preference-name">خير</span>
+            من التطرف والإرهاب.
+          </div>
+
+          <div class="analysis">
+            <div>
+              المفضَّل: التوسط والاعتدال
+            </div>
+
+            <div>
+              اسم التفضيل: خير
+            </div>
+
+            <div>
+              المفضَّل عليه: التطرف والإرهاب
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- البطاقة الخامسة -->
+
+    <section class="lesson-card">
+
+      <h2>
+        ألفاظ شائعة تدل على التفضيل
+      </h2>
+
+      <div class="words-box">
+
+        <div class="word">أفضل</div>
+        <div class="word">أكبر</div>
+        <div class="word">أعظم</div>
+        <div class="word">أكثر</div>
+        <div class="word">أوسع</div>
+        <div class="word">أقدس</div>
+        <div class="word">أحب</div>
+        <div class="word">أغلى</div>
+        <div class="word">أولى</div>
+        <div class="word">أهم</div>
+        <div class="word">خير</div>
+        <div class="word">شر</div>
+
+      </div>
+
+      <div class="important-alert">
+        💡 كلمتا «خير» و«شر» تدلان على التفضيل،
+        مع أنهما ليستا على وزن «أفعل».
+      </div>
+
+    </section>
+
+
+    <!-- البطاقة السادسة -->
+
+    <section class="lesson-card">
+
+      <h2>
+        الخلاصة الذهبية
+      </h2>
+
+      <div class="golden-summary">
+
+        <p>
+          ⭐ اسم التفضيل يدل على اشتراك شيئين
+          في صفة، وزيادة أحدهما على الآخر فيها.
+        </p>
+
+        <p>
+          ⭐ أركان أسلوب التفضيل:
+          المفضَّل، واسم التفضيل، والمفضَّل عليه.
+        </p>
+
+        <p>
+          ⭐ يُصاغ اسم التفضيل غالبًا
+          على وزن «أفعل» إذا استوفى الفعل شروط الصياغة.
+        </p>
+
+        <p>
+          ⭐ لا يكفي أن تكون الكلمة على وزن «أفعل»،
+          بل يجب أن تدل على مقارنة وتفضيل.
+        </p>
+
+        <p>
+          ⭐ قبل تحديد الأسلوب، ابحثي عن المقارنة،
+          والصفة المشتركة، وزيادة أحد الطرفين فيها.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <div class="back-box">
+
+      <a
+        class="back-button"
+        href="detail-style.html"
+      >
+        العودة إلى درس اسم التفضيل
+      </a>
+
+    </div>
+
+  </main>
+
+  <footer>
+    منصة آفاق اللغة — إعداد المعلمة إيناس محمد يحيى مدخلي
+  </footer>
+
+</body>
+
+</html>
