@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>الأساليب اللغوية | منصة آفاق اللغة</title>
+
+  <style>
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0
+    }
+
+    :root{
+      --purple-dark:#60358b;
+      --purple:#8c58b0;
+      --gold:#dfa03d;
+      --gold-light:#fff4d9;
+      --green:#34785f;
+      --green-light:#eaf8f2;
+      --blue:#3d7199;
+      --blue-light:#edf6fd;
+      --rose:#a34f68;
+      --rose-light:#fff0f4;
+      --text:#574a60
+    }
+
+    html{
+      scroll-behavior:smooth
+    }
+
+    body{
+      min-height:100vh;
+      font-family:Tahoma,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top right,#fff1cd,transparent 30%),
+        radial-gradient(circle at bottom left,#eadcff,transparent 40%),
+        linear-gradient(135deg,#fffdf8,#f8f1ff)
+    }
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:20;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:16px 6%;
+      color:white;
+      background:linear-gradient(135deg,#60358b,#9c61c4);
+      box-shadow:0 5px 20px rgba(75,38,105,.2)
+    }
+
+    .logo{
+      font-size:21px;
+      font-weight:bold
+    }
+
+    .back-link{
+      padding:9px 14px;
+      border:1px solid rgba(255,255,255,.45);
+      border-radius:24px;
+      color:white;
+      text-decoration:none;
+      font-size:14px;
+      background:rgba(255,255,255,.13)
+    }
+
+    main{
+      width:min(1040px,93%);
+      margin:auto;
+      padding:42px 0 65px
+    }
+
+    .hero{
+      margin-bottom:28px;
+      text-align:center
+    }
+
+    .hero-icon{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:90px;
+      height:90px;
+      margin:0 auto 15px;
+      border-radius:50%;
+      font-size:46px;
+      background:linear-gradient(135deg,#ffdd82,#e99c3d);
+      box-shadow:0 10px 26px rgba(219,143,49,.27);
+      animation:floatIcon 2.7s ease-in-out infinite
+    }
+
+    @keyframes floatIcon{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-7px)}
+    }
+
+    .hero h1{
+      margin-bottom:10px;
+      color:var(--purple-dark);
+      font-size:36px
+    }
+
+    .hero p{
+      max-width:790px;
+      margin:auto;
+      color:#75677e;
+      font-size:17px;
+      line-height:2
+    }
+
+    .intro{
+      margin-bottom:25px;
+      padding:24px;
+      border-radius:24px;
+      text-align:center;
+      color:white;
+      background:linear-gradient(135deg,#70419a,#9e68c4);
+      box-shadow:0 12px 30px rgba(89,48,120,.18)
+    }
+
+    .intro h2{
+      margin-bottom:9px;
+      font-size:23px
+    }
+
+    .intro p{
+      line-height:1.9;
+      color:#faf2fd
+    }
+
+    .instruction{
+      width:fit-content;
+      max-width:100%;
+      margin:0 auto 22px;
+      padding:11px 18px;
+      border-radius:24px;
+      color:#68427d;
+      text-align:center;
+      background:#f1e7f8
+    }
+
+    .topics{
+      display:grid;
+      gap:19px
+    }
+
+    .topic{
+      overflow:hidden;
+      border:1px solid rgba(113,71,143,.13);
+      border-radius:23px;
+      background:rgba(255,255,255,.97);
+      box-shadow:0 10px 28px rgba(75,42,99,.11)
+    }
+
+    .topic[open]{
+      border-color:rgba(136,81,174,.3);
+      background:linear-gradient(135deg,#fbf7ff,#fffaf0);
+      box-shadow:0 15px 36px rgba(78,43,104,.17)
+    }
+
+    .topic-summary{
+      position:relative;
+      display:flex;
+      align-items:center;
+      gap:15px;
+      min-height:92px;
+      padding:18px 65px 18px 20px;
+      cursor:pointer;
+      list-style:none;
+      user-select:none;
+      -webkit-tap-highlight-color:transparent
+    }
+
+    .topic-summary::-webkit-details-marker{
+      display:none
+    }
+
+    .topic-summary::after{
+      content:"＋";
+      position:absolute;
+      right:19px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:34px;
+      height:34px;
+      border-radius:50%;
+      color:white;
+      font-size:22px;
+      background:linear-gradient(135deg,#75439f,#9c64c1)
+    }
+
+    .topic[open] .topic-summary::after{
+      content:"−"
+    }
+
+    .topic-icon{
+      display:flex;
+      flex:0 0 58px;
+      align-items:center;
+      justify-content:center;
+      width:58px;
+      height:58px;
+      border-radius:50%;
+      font-size:30px;
+      background:linear-gradient(135deg,#f1e7fb,#fff1d6)
+    }
+
+    .topic-title small{
+      display:block;
+      margin-bottom:4px;
+      color:#987bac;
+      font-size:13px
+    }
+
+    .topic-title h2{
+      color:var(--purple-dark);
+      font-size:21px;
+      line-height:1.5
+    }
+
+    .topic-content{
+      padding:0 24px 26px;
+      animation:reveal .35s ease
+    }
+
+    @keyframes reveal{
+      from{opacity:0;transform:translateY(-7px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:16px
+    }
+
+    .card{
+      padding:18px;
+      border:1px solid rgba(113,71,143,.1);
+      border-radius:18px;
+      background:white;
+      box-shadow:0 7px 19px rgba(75,42,99,.08)
+    }
+
+    .card h3{
+      margin-bottom:12px;
+      color:var(--purple-dark);
+      font-size:18px
+    }
+
+    .card p,
+    .card li{
+      font-size:15px;
+      line-height:1.95
+    }
+
+    .card p{
+      margin-bottom:10px
+    }
+
+    .card p:last-child{
+      margin-bottom:0
+    }
+
+    .card ul{
+      margin:6px 0 11px;
+      padding-right:22px
+    }
+
+    .definition,
+    .tools,
+    .rule,
+    .example,
+    .warning{
+      padding:11px 13px;
+      border-radius:13px
+    }
+
+    .definition{
+      color:#604678;
+      background:#f4ebfa
+    }
+
+    .tools{
+      color:#315f82;
+      background:var(--blue-light)
+    }
+
+    .rule{
+      color:#735022;
+      background:var(--gold-light)
+    }
+
+    .example{
+      color:#285f4d;
+      background:var(--green-light)
+    }
+
+    .warning{
+      color:#8a3d50;
+      background:var(--rose-light)
+    }
+
+    .closing{
+      margin-top:31px;
+      padding:28px 22px;
+      border-radius:24px;
+      text-align:center;
+      color:white;
+      background:linear-gradient(135deg,#70409a,#a26ac6);
+      box-shadow:0 12px 30px rgba(88,47,119,.19)
+    }
+
+    .closing div{
+      margin-bottom:8px;
+      font-size:46px
+    }
+
+    .closing h2{
+      margin-bottom:9px;
+      font-size:23px
+    }
+
+    .closing p{
+      max-width:730px;
+      margin:auto;
+      color:#faf2fd;
+      line-height:1.9
+    }
+
+    footer{
+      padding:22px;
+      color:#796a82;
+      text-align:center;
+      font-size:14px
+    }
+
+    @media(max-width:750px){
+      header{
+        padding:13px 4%
+      }
+
+      .logo{
+        font-size:17px
+      }
+
+      .back-link{
+        padding:8px 10px;
+        font-size:12px
+      }
+
+      main{
+        width:94%;
+        padding-top:31px
+      }
+
+      .hero h1{
+        font-size:28px
+      }
+
+      .hero p{
+        font-size:15px
+      }
+
+      .intro{
+        padding:20px 15px
+      }
+
+      .topic-summary{
+        gap:11px;
+        min-height:86px;
+        padding:16px 52px 16px 13px
+      }
+
+      .topic-summary::after{
+        right:12px;
+        width:30px;
+        height:30px;
+        font-size:19px
+      }
+
+      .topic-icon{
+        flex-basis:50px;
+        width:50px;
+        height:50px;
+        font-size:26px
+      }
+
+      .topic-title h2{
+        font-size:18px
+      }
+
+      .topic-content{
+        padding:0 13px 19px
+      }
+
+      .cards{
+        grid-template-columns:1fr
+      }
+
+      .card{
+        padding:16px 14px
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">منصة آفاق اللغة</div>
+
+  <a href="golden-rules.html" class="back-link">
+    العودة إلى خزانة القواعد
+  </a>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="hero-icon">💬</div>
+
+    <h1>الأساليب اللغوية</h1>
+
+    <p>
+      شرح واضح لأهم الأساليب اللغوية،
+      مع الأدوات والقواعد والأمثلة والتنبيهات.
+    </p>
+  </section>
+
+  <section class="intro">
+    <h2>افهمي الغرض من الجملة</h2>
+
+    <p>
+      معرفة الأسلوب تساعدكِ على فهم المعنى،
+      واختيار الأداة المناسبة، وكتابة جمل سليمة.
+    </p>
+  </section>
+
+  <div class="instruction">
+    👆 اضغطي على كل أسلوب لفتح شرحه
+  </div>
+
+  <section class="topics">
+
+    <details class="topic">
+      <summary class="topic-summary">
+        <div class="topic-icon">❓</div>
+
+        <div class="topic-title">
+          <small>الأسلوب الأول</small>
+          <h2>أسلوب الاستفهام</h2>
+        </div>
+      </summary>
+
+      <div class="topic-content">
+        <div class="cards">
+
+          <article class="card">
+            <h3>التعريف</h3>
+
+            <p class="definition">
+              أسلوب يُستخدم لطلب معرفة شيء مجهول
+              أو السؤال عن معلومة.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>أدوات الاستفهام</h3>
+
+            <p class="tools">
+              الهمزة، هل، من، ما، ماذا، متى،
+              أين، كيف، لماذا، كم، أيّ.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>القاعدة</h3>
+
+            <p class="rule">
+              تبدأ الجملة الاستفهامية غالبًا بأداة استفهام،
+              وتنتهي بعلامة الاستفهام «؟».
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>أمثلة</h3>
+
+            <p class="example">
+              هل قرأتِ القصة؟<br>
+              أين تقع المدرسة؟<br>
+              متى يبدأ الاختبار؟<br>
+              من كتب القصيدة؟<br>
+              كيف وصلتِ إلى الحل؟
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>تنبيه مختصر</h3>
+
+            <p class="warning">
+              اختاري أداة الاستفهام المناسبة للمطلوب:
+              «من» للعاقل، و«أين» للمكان،
+              و«متى» للزمان، و«كم» للعدد.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </details>
+
+    <details class="topic">
+      <summary class="topic-summary">
+        <div class="topic-icon">👉</div>
+
+        <div class="topic-title">
+          <small>الأسلوب الثاني</small>
+          <h2>أسلوب الأمر</h2>
+        </div>
+      </summary>
+
+      <div class="topic-content">
+        <div class="cards">
+
+          <article class="card">
+            <h3>التعريف</h3>
+
+            <p class="definition">
+              أسلوب يُستخدم لطلب القيام بفعل.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>أدوات وصور الأمر</h3>
+
+            <p class="tools">
+              فعل الأمر، والمضارع المسبوق بلام الأمر،
+              واسم فعل الأمر.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>القاعدة</h3>
+
+            <p class="rule">
+              فعل الأمر مبني،
+              ويدل على طلب حدوث الفعل بعد زمن الكلام.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>أمثلة</h3>
+
+            <p class="example">
+              اقرئي النص بعناية.<br>
+              احفظي القصيدة.<br>
+              اجتهدي في دراستكِ.<br>
+              ليكتبْ الطالبُ الإجابة.<br>
+              صهْ عن الكلام.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>تنبيه مختصر</h3>
+
+            <p class="warning">
+              الأمر لا يعني دائمًا الشدة؛
+              فقد يأتي للنصح أو الدعاء أو الإرشاد
+              بحسب سياق الجملة.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </details>
+
+    <details class="topic">
+      <summary class="topic-summary">
+        <div class="topic-icon">🚫</div>
+
+        <div class="topic-title">
+          <small>الأسلوب الثالث</small>
+          <h2>أسلوب النهي</h2>
+        </div>
+      </summary>
+
+      <div class="topic-content">
+        <div class="cards">
+
+          <article class="card">
+            <h3>التعريف</h3>
+
+            <p class="definition">
+              أسلوب يُستخدم لطلب الامتناع عن القيام بفعل.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>أداة النهي</h3>
+
+            <p class="tools">
+              الأداة الأساسية هي:
+              «لا الناهية».
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>القاعدة</h3>
+
+            <p class="rule">
+              تتكون جملة النهي من:
+              لا الناهية + فعل مضارع مجزوم.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>أمثلة</h3>
+
+            <p class="example">
+              لا تهملي واجبكِ.<br>
+              لا تتأخري عن الحصة.<br>
+              لا تكذبْ.<br>
+              لا ترفعوا أصواتكم.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>تنبيه مختصر</h3>
+
+            <p class="warning">
+              لا تخلطي بين «لا الناهية» و«لا النافية».
+              الناهية تطلب ترك الفعل،
+              أما النافية فتخبر عن عدم حدوثه.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </details>
+
+    <details class="topic">
+      <summary class="topic-summary">
+        <div class="topic-icon">✖️</div>
+
+        <div class="topic-title">
+          <small>الأسلوب الرابع</small>
+          <h2>أسلوب النفي</h2>
+        </div>
+      </summary>
+
+      <div class="topic-content">
+        <div class="cards">
+
+          <article class="card">
+            <h3>التعريف</h3>
+
+            <p class="definition">
+              أسلوب يُستخدم لإنكار وقوع الفعل
+              أو نفي ثبوت صفة أو معنى.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>أدوات النفي</h3>
+
+            <p class="tools">
+              ما، لا، لم، لن، ليس.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>القاعدة</h3>
+
+            <p class="rule">
+              تختلف أداة النفي باختلاف الزمن:
+              «لم» للماضي، و«لن» للمستقبل،
+              و«لا» للحال أو العادة،
+              و«ليس» لنفي الجملة الاسمية.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>أمثلة</h3>
+
+            <p class="example">
+              ما أهملتُ واجبي.<br>
+              لم تتأخر الطالبة.<br>
+              لن أهمل دروسي.<br>
+              لا يكذب المؤمن.<br>
+              ليس الكسل محمودًا.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>تنبيه مختصر</h3>
+
+            <p class="warning">
+              «لم» تجزم الفعل المضارع،
+              و«لن» تنصبه،
+              أما «ليس» فتدخل على الجملة الاسمية.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </details>
+
+    <details class="topic">
+      <summary class="topic-summary">
+        <div class="topic-icon">📣</div>
+
+        <div class="topic-title">
+          <small>الأسلوب الخامس</small>
+          <h2>أسلوب النداء</h2>
+        </div>
+      </summary>
+
+      <div class="topic-content">
+        <div class="cards">
+
+          <article class="card">
+            <h3>التعريف</h3>
+
+            <p class="definition">
+              أسلوب يُستخدم لتنبيه المنادى
+              أو طلب إقباله.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>أدوات النداء</h3>
+
+            <p class="tools">
+              يا، أيا، هيا، الهمزة.
+              وأكثرها استعمالًا «يا».
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>القاعدة</h3>
+
+            <p class="rule">
+              تتكون جملة النداء من:
+              أداة نداء + منادى.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>أمثلة</h3>
+
+            <p class="example">
+              يا طالبةَ العلم، اجتهدي.<br>
+              يا محمدُ، أقبل.<br>
+              يا أمي، شكرًا لكِ.<br>
+              أيا مسافرًا، تمهّل.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>تنبيه مختصر</h3>
+
+            <p class="warning">
+              تختلف حركة المنادى بحسب نوعه،
+              لذلك لا توضع له حركة واحدة في جميع الجمل.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </details>
+
+    <details class="topic">
+      <summary class="topic-summary">
+        <div class="topic-icon">🌙</div>
+
+        <div class="topic-title">
+          <small>الأسلوب السادس</small>
+          <h2>أسلوب التمني</h2>
+        </div>
+      </summary>
+
+      <div class="topic-content">
+        <div class="cards">
+
+          <article class="card">
+            <h3>التعريف</h3>
+
+            <p class="definition">
+              أسلوب يُستخدم لطلب أمر محبوب
+              يصعب وقوعه أو يستحيل.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>أداة التمني</h3>
+
+            <p class="tools">
+              أشهر أدوات التمني:
+              «ليت».
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>القاعدة</h3>
+
+            <p class="rule">
+              تدخل «ليت» على الجملة الاسمية،
+              فتنصب المبتدأ ويسمى اسمها،
+              وترفع الخبر ويسمى خبرها.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>أمثلة</h3>
+
+            <p class="example">
+              ليت الشبابَ يعود يومًا.<br>
+              ليت السلامَ يسود العالم.<br>
+              ليت العطلةَ طويلةٌ.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>تنبيه مختصر</h3>
+
+            <p class="warning">
+              التمني يكون غالبًا في أمر بعيد أو متعذر،
+              بخلاف الترجي الذي يكون في أمر ممكن.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </details>
+
+    <details class="topic">
+      <summary class="topic-summary">
+        <div class="topic-icon">🌱</div>
+
+        <div class="topic-title">
+          <small>الأسلوب السابع</small>
+          <h2>أسلوب الترجي</h2>
+        </div>
+      </summary>
+
+      <div class="topic-content">
+        <div class="cards">
+
+          <article class="card">
+            <h3>التعريف</h3>
+
+            <p class="definition">
+              أسلوب يُستخدم لطلب أمر محبوب
+              يُتوقع أو يمكن وقوعه.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>أدوات الترجي</h3>
+
+            <p class="tools">
+              لعل، عسى.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>القاعدة</h3>
+
+            <p class="rule">
+              تدخل «لعل» على الجملة الاسمية،
+              فتنصب اسمها وترفع خبرها.
+              أما «عسى» فهي فعل ماضٍ جامد للرجاء.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>أمثلة</h3>
+
+            <p class="example">
+              لعل النجاحَ قريبٌ.<br>
+              لعل المريضَ معافى.<br>
+              عسى المريض أن يشفى.<br>
+              عسى الغائب أن يعود.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>تنبيه مختصر</h3>
+
+            <p class="warning">
+              الترجي يتعلق بأمر ممكن الوقوع،
+              أما التمني فقد يتعلق بأمر بعيد أو مستحيل.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </details>
+
+    <details class="topic">
+      <summary class="topic-summary">
+        <div class="topic-icon">⭐</div>
+
+        <div class="topic-title">
+          <small>الأسلوب الثامن</small>
+          <h2>أسلوب المدح والذم</h2>
+        </div>
+      </summary>
+
+      <div class="topic-content">
+        <div class="cards">
+
+          <article class="card">
+            <h3>التعريف</h3>
+
+            <p class="definition">
+              أسلوب يُستخدم لإظهار الاستحسان والمدح،
+              أو إظهار الاستقباح والذم.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>أدوات المدح والذم</h3>
+
+            <p class="tools">
+              نعم وحبذا للمدح،
+              وبئس ولا حبذا للذم.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>القاعدة</h3>
+
+            <p class="rule">
+              يتكون الأسلوب غالبًا من:
+              فعل المدح أو الذم،
+              ثم الفاعل،
+        ثم المخصوص بالمدح أو الذم.
+</p>
+</article>
+
+<article class="card">
+  <h3>أمثلة</h3>
+
+  <p class="example">
+    نعم الخلقُ الصدقُ.<br>
+    حبذا التعاونُ.<br>
+    بئس الخلقُ الكذبُ.<br>
+    لا حبذا الكسلُ.
+  </p>
+</article>
+
+<article class="card">
+  <h3>تنبيه مختصر</h3>
+
+  <p class="warning">
+    «نعم» للمدح و«بئس» للذم،
+    ويأتي بعدهما ما يوضح الشيء الممدوح أو المذموم.
+  </p>
+</article>
+
+</div>
+</div>
+</details>
+
+</section>
+
+<section class="closing">
+  <div>✨</div>
+
+  <h2>الأسلوب يوضح مقصد الجملة</h2>
+
+  <p>
+    حددي الأداة أولًا، ثم اسألي:
+    هل الجملة سؤال، أو طلب، أو نهي،
+    أو نفي، أو نداء، أو تمني، أو ترجي، أو مدح وذم؟
+  </p>
+</section>
+
+</main>
+
+<footer>
+  جميع الحقوق محفوظة © منصة آفاق اللغة
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const topics = document.querySelectorAll(".topic");
+
+  function playSound() {
+    try {
+      const AudioContext =
+        window.AudioContext ||
+        window.webkitAudioContext;
+
+      const audioContext = new AudioContext();
+      const oscillator = audioContext.createOscillator();
+      const gain = audioContext.createGain();
+
+      oscillator.type = "sine";
+      oscillator.frequency.value = 620;
+
+      gain.gain.setValueAtTime(
+        0.001,
+        audioContext.currentTime
+      );
+
+      gain.gain.exponentialRampToValueAtTime(
+        0.08,
+        audioContext.currentTime + 0.02
+      );
+
+      gain.gain.exponentialRampToValueAtTime(
+        0.001,
+        audioContext.currentTime + 0.17
+      );
+
+      oscillator.connect(gain);
+      gain.connect(audioContext.destination);
+
+      oscillator.start();
+      oscillator.stop(audioContext.currentTime + 0.18);
+
+    } catch (error) {
+      console.log("تعذر تشغيل الصوت");
+    }
+  }
+
+  topics.forEach(function (topic) {
+    topic.addEventListener("toggle", function () {
+      if (topic.open) {
+        playSound();
+      }
+    });
+  });
+});
+</script>
+
+</body>
+</html>
