@@ -2,9 +2,13 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>اختبار الأسلوب اللغوي</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>اختبار الأساليب اللغوية</title>
 
   <style>
     * {
@@ -14,18 +18,22 @@
     body {
       margin: 0;
       min-height: 100vh;
+      overflow-x: hidden;
       font-family: Tahoma, Arial, sans-serif;
-      color: #3b245f;
-      background: linear-gradient(135deg, #f4ebff, #fff9fe);
+      color: #26345f;
+      background:
+        radial-gradient(circle at top, #f9fbff, #edf3ff);
     }
 
     header {
       padding: 28px 15px;
       color: white;
       text-align: center;
-      background: linear-gradient(135deg, #6936a8, #a14fc3);
-      border-radius: 0 0 28px 28px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      background:
+        linear-gradient(135deg, #185eb0, #6844c9);
+      border-radius: 0 0 35px 35px;
+      box-shadow:
+        0 6px 20px rgba(34, 66, 150, 0.25);
     }
 
     header h1 {
@@ -41,21 +49,24 @@
 
     .container {
       width: 100%;
-      max-width: 760px;
-      margin: 25px auto;
+      max-width: 780px;
+      margin: 24px auto;
       padding: 15px;
     }
 
     .card {
+      position: relative;
       padding: 24px;
+      overflow: hidden;
       background: white;
-      border: 2px solid #ead9f7;
-      border-radius: 22px;
-      box-shadow: 0 7px 22px rgba(0, 0, 0, 0.12);
+      border: 2px solid #dce5ff;
+      border-radius: 25px;
+      box-shadow:
+        0 8px 25px rgba(32, 57, 118, 0.13);
     }
 
     .hidden {
-      display: none;
+      display: none !important;
     }
 
     .name-box,
@@ -66,110 +77,185 @@
     .name-box h2,
     .result h2 {
       margin-top: 0;
-      color: #6936a8;
+      color: #274fa3;
     }
 
     input[type="text"] {
       width: 100%;
-      margin: 15px 0;
-      padding: 14px;
+      margin: 16px 0;
+      padding: 15px;
+      font-family: inherit;
       font-size: 18px;
       text-align: center;
-      border: 2px solid #d8b8ec;
-      border-radius: 14px;
+      border: 2px solid #bdcdf5;
+      border-radius: 15px;
       outline: none;
     }
 
     input[type="text"]:focus {
-      border-color: #6936a8;
+      border-color: #3159b8;
+      box-shadow:
+        0 0 0 4px rgba(49, 89, 184, 0.11);
     }
 
     .btn {
       display: inline-block;
-      margin-top: 15px;
-      padding: 13px 26px;
+      min-width: 180px;
+      margin-top: 16px;
+      padding: 14px 25px;
       color: white;
       font-family: inherit;
       font-size: 18px;
       text-decoration: none;
-      background: linear-gradient(135deg, #6936a8, #a14fc3);
+      background:
+        linear-gradient(135deg, #185eb0, #6844c9);
       border: none;
-      border-radius: 14px;
+      border-radius: 15px;
+      box-shadow:
+        0 5px 14px rgba(38, 76, 170, 0.25);
       cursor: pointer;
+      transition:
+        transform 0.2s,
+        opacity 0.2s;
+    }
+
+    .btn:active {
+      transform: scale(0.97);
     }
 
     .btn:disabled {
-      background: #b9abbf;
+      background: #aeb5c8;
+      box-shadow: none;
       cursor: not-allowed;
+      opacity: 0.8;
     }
 
     .progress-text {
-      margin-bottom: 10px;
-      color: #6936a8;
+      margin-bottom: 11px;
+      color: #3153aa;
+      font-size: 19px;
       font-weight: bold;
       text-align: center;
     }
 
     .progress {
-      height: 13px;
-      margin-bottom: 22px;
+      height: 14px;
+      margin-bottom: 23px;
       overflow: hidden;
-      background: #f0e7f7;
+      background: #e8edfa;
       border-radius: 20px;
     }
 
     .progress-bar {
       width: 0;
       height: 100%;
-      background: linear-gradient(90deg, #a14fc3, #6936a8);
-      transition: width 0.3s;
+      background:
+        linear-gradient(90deg, #33a8e8, #6943c9);
+      border-radius: 20px;
+      transition: width 0.4s ease;
     }
 
     .question-category {
       display: inline-block;
-      margin-bottom: 12px;
-      padding: 7px 13px;
-      color: #6936a8;
+      margin-bottom: 16px;
+      padding: 8px 15px;
+      color: #284ea5;
       font-weight: bold;
-      background: #f3e9fa;
-      border-radius: 20px;
+      background: #eaf0ff;
+      border-radius: 22px;
     }
 
     .question {
-      margin-bottom: 20px;
-      color: #3b245f;
-      font-size: 21px;
+      margin-bottom: 22px;
+      color: #26345f;
+      font-size: 22px;
       font-weight: bold;
       line-height: 1.8;
     }
 
     .choices {
       display: grid;
-      gap: 12px;
+      gap: 13px;
     }
 
     .choice {
       width: 100%;
-      padding: 15px;
-      color: #3b245f;
+      padding: 16px;
+      color: #26345f;
       font-family: inherit;
       font-size: 18px;
+      line-height: 1.7;
       text-align: right;
-      background: #fcf8ff;
-      border: 2px solid #e1c9f0;
-      border-radius: 15px;
+      background: #fbfcff;
+      border: 3px solid #d5dff7;
+      border-radius: 17px;
       cursor: pointer;
-      transition: 0.2s;
+      transition:
+        transform 0.2s,
+        background 0.2s,
+        border-color 0.2s,
+        box-shadow 0.2s;
     }
 
     .choice:hover {
-      background: #f5ebfb;
+      background: #f0f4ff;
+      transform: translateY(-1px);
     }
 
-    .choice.selected {
+    .choice.correct {
+      color: #075e35;
       font-weight: bold;
-      background: #ead9f7;
-      border-color: #6936a8;
+      background: #d9f8e7;
+      border-color: #28a865;
+      box-shadow:
+        0 0 18px rgba(40, 168, 101, 0.28);
+      animation: correctPulse 0.5s;
+    }
+
+    .choice.wrong {
+      color: #8f1625;
+      font-weight: bold;
+      background: #ffe0e4;
+      border-color: #dc4457;
+      animation: wrongShake 0.4s;
+    }
+
+    .choice.locked {
+      cursor: default;
+    }
+
+    .feedback {
+      margin-top: 18px;
+      padding: 16px;
+      font-size: 18px;
+      line-height: 1.9;
+      border-radius: 16px;
+      animation: feedbackAppear 0.4s;
+    }
+
+    .feedback.correct-feedback {
+      color: #075e35;
+      background: #e2f9ec;
+      border: 2px solid #49b879;
+    }
+
+    .feedback.wrong-feedback {
+      color: #7a1422;
+      background: #ffe7ea;
+      border: 2px solid #e66a78;
+    }
+
+    .feedback-title {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .correct-answer {
+      display: block;
+      margin: 7px 0;
+      font-weight: bold;
     }
 
     .actions {
@@ -179,74 +265,235 @@
 
     .score {
       margin: 18px 0;
-      color: #198754;
-      font-size: 38px;
+      color: #17844d;
+      font-size: 42px;
       font-weight: bold;
+    }
+
+    .result-icon {
+      margin-bottom: 10px;
+      font-size: 65px;
+      animation: resultBounce 1s infinite alternate;
     }
 
     .message {
       font-size: 19px;
-      line-height: 1.8;
+      line-height: 1.9;
     }
 
     .back-link {
       display: block;
-      margin-top: 20px;
-      color: #6936a8;
+      margin-top: 22px;
+      color: #3153aa;
+      font-size: 17px;
       font-weight: bold;
       text-decoration: none;
       text-align: center;
+    }
+
+    .stars-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .star {
+      position: absolute;
+      top: 48%;
+      font-size: 29px;
+      animation: flyStar 1.2s ease-out forwards;
+    }
+
+    @keyframes correctPulse {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.035);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes wrongShake {
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      25% {
+        transform: translateX(7px);
+      }
+
+      50% {
+        transform: translateX(-7px);
+      }
+
+      75% {
+        transform: translateX(5px);
+      }
+    }
+
+    @keyframes feedbackAppear {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes flyStar {
+      0% {
+        opacity: 1;
+        transform:
+          translate(0, 0)
+          scale(0.7)
+          rotate(0);
+      }
+
+      100% {
+        opacity: 0;
+        transform:
+          translate(
+            var(--move-x),
+            var(--move-y)
+          )
+          scale(1.5)
+          rotate(250deg);
+      }
+    }
+
+    @keyframes resultBounce {
+      from {
+        transform: translateY(0);
+      }
+
+      to {
+        transform: translateY(-9px);
+      }
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 25px;
+      }
+
+      .container {
+        padding: 12px;
+      }
+
+      .card {
+        padding: 20px 17px;
+      }
+
+      .question {
+        font-size: 20px;
+      }
+
+      .choice {
+        padding: 15px;
+        font-size: 17px;
+      }
     }
   </style>
 </head>
 
 <body>
 
+  <div
+    id="starsLayer"
+    class="stars-layer"
+  ></div>
+
   <header>
-    <h1>اختبار الأسلوب اللغوي</h1>
+    <h1>🧠 اختبار الأساليب اللغوية</h1>
 
     <p>
-      أسلوب القسم<br>
-      أسلوب الشرط<br>
-      أسلوب التفضيل
+      أسلوب القسم – أسلوب الشرط – أسلوب التفضيل
     </p>
   </header>
 
   <main class="container">
 
-    <section id="startScreen" class="card name-box">
-      <h2>بيانات الطالبة</h2>
+    <section
+      id="startScreen"
+      class="card name-box"
+    >
+      <h2>🌟 أهلاً بكِ</h2>
 
-      <p>اكتبي اسمكِ ثم ابدئي الاختبار.</p>
+      <p>
+        الاختبار من 25 درجة.<br>
+        اقرئي السؤال جيدًا ثم اختاري الإجابة.
+      </p>
 
       <input
         id="studentName"
         type="text"
         placeholder="اكتبي اسم الطالبة"
+        autocomplete="name"
       >
 
-      <button class="btn" type="button" onclick="startTest()">
+      <button
+        class="btn"
+        type="button"
+        onclick="startTest()"
+      >
         ابدئي الاختبار
       </button>
 
-      <a class="back-link" href="semester1-tests.html">
+      <a
+        class="back-link"
+        href="semester1-tests.html"
+      >
         العودة إلى اختبارات الفصل الأول
       </a>
     </section>
 
-    <section id="testScreen" class="card hidden">
+    <section
+      id="testScreen"
+      class="card hidden"
+    >
 
-      <div id="progressText" class="progress-text"></div>
+      <div
+        id="progressText"
+        class="progress-text"
+      ></div>
 
       <div class="progress">
-        <div id="progressBar" class="progress-bar"></div>
+        <div
+          id="progressBar"
+          class="progress-bar"
+        ></div>
       </div>
 
-      <div id="questionCategory" class="question-category"></div>
+      <div
+        id="questionCategory"
+        class="question-category"
+      ></div>
 
-      <div id="questionText" class="question"></div>
+      <div
+        id="questionText"
+        class="question"
+      ></div>
 
-      <div id="choicesBox" class="choices"></div>
+      <div
+        id="choicesBox"
+        class="choices"
+      ></div>
+
+      <div
+        id="feedbackBox"
+        class="feedback hidden"
+      ></div>
 
       <div class="actions">
         <button
@@ -262,19 +509,37 @@
 
     </section>
 
-    <section id="resultScreen" class="card result hidden">
+    <section
+      id="resultScreen"
+      class="card result hidden"
+    >
+
+      <div
+        id="resultIcon"
+        class="result-icon"
+      >
+        🏆
+      </div>
 
       <h2>
-        أحسنتِ يا <span id="resultName"></span>
+        أحسنتِ يا
+        <span id="resultName"></span>
       </h2>
 
       <div class="score">
-        <span id="finalScore"></span> من 25
+        <span id="finalScore"></span>
+        من 25
       </div>
 
-      <p id="resultMessage" class="message"></p>
+      <p
+        id="resultMessage"
+        class="message"
+      ></p>
 
-      <a class="btn" href="semester1-tests.html">
+      <a
+        class="btn"
+        href="semester1-tests.html"
+      >
         العودة إلى صفحة الاختبارات
       </a>
 
@@ -284,342 +549,669 @@
 
   <script>
     const questions = [
-      {
-        category: "أسلوب القسم",
-        question: "أي الجمل الآتية تشتمل على أسلوب قسم؟",
-        choices: [
-          "اجتهد الطالب في دراسته.",
-          "والله لأقولنَّ الصدق.",
-          "إن تجتهد تنجح.",
-          "العلم أنفع من المال."
-        ],
-        answer: 1
-      },
-      {
-        category: "أسلوب القسم",
-        question: "حددي أداة القسم في الجملة: «والله لأحافظنَّ على وطني».",
-        choices: ["الله", "الواو", "اللام", "النون"],
-        answer: 1
-      },
-      {
-        category: "أسلوب القسم",
-        question: "المقسم به في الجملة «بالله لأساعدنَّ المحتاج» هو:",
-        choices: ["الباء", "الله", "لأساعدنَّ", "المحتاج"],
-        answer: 1
-      },
-      {
-        category: "أسلوب القسم",
-        question: "جواب القسم في الجملة «تالله لأحافظنَّ على الأمانة» هو:",
-        choices: ["تالله", "الله", "لأحافظنَّ على الأمانة", "الأمانة"],
-        answer: 2
-      },
-      {
-        category: "أسلوب القسم",
-        question: "أي الأدوات الآتية تُستعمل للقسم؟",
-        choices: ["الواو", "هل", "لن", "إذا"],
-        answer: 0
-      },
-      {
-        category: "أسلوب القسم",
-        question: "اختاري الجملة الصحيحة في أسلوب القسم:",
-        choices: [
-          "والله أحترم والدي.",
-          "والله لأحترمنَّ والدي.",
-          "هل أحترم والدي؟",
-          "إن أحترم والدي."
-        ],
-        answer: 1
-      },
-      {
-        category: "أسلوب القسم",
-        question: "في الجملة «والله لينتصرنَّ الحق» دخلت لام جواب القسم على:",
-        choices: ["والله", "الحق", "لينتصرنَّ", "الواو"],
-        answer: 2
-      },
-      {
-        category: "أسلوب القسم",
-        question: "أي الجمل الآتية بدأت بتاء القسم؟",
-        choices: [
-          "بالله لأصدقنَّ.",
-          "والله لأصدقنَّ.",
-          "تالله لأصدقنَّ.",
-          "لله الأمر."
-        ],
-        answer: 2
-      },
+  {
+    category: "أسلوب القسم",
+    question: "أي الجمل الآتية اشتملت على أسلوب قسم؟",
+    choices: [
+      "إن تجتهدي تنجحي.",
+      "واللهِ لأحافظنَّ على صلاتي.",
+      "العلم أنفع من المال.",
+      "ما أجمل الصدق!"
+    ],
+    answer: 1,
+    explanation:
+      "هذه جملة قسم؛ لأنها بدأت بواو القسم، ثم جاء بعدها جواب القسم."
+  },
 
-      {
-        category: "أسلوب الشرط",
-        question: "أي الجمل الآتية تشتمل على أسلوب شرط؟",
-        choices: [
-          "الصدق منجاة.",
-          "إن تصدق تُحترم.",
-          "ما أجمل الصدق!",
-          "والله لأصدقنَّ."
-        ],
-        answer: 1
-      },
-      {
-        category: "أسلوب الشرط",
-        question: "حددي أداة الشرط في الجملة «من يجتهد ينجح».",
-        choices: ["يجتهد", "ينجح", "من", "الطالب"],
-        answer: 2
-      },
-      {
-        category: "أسلوب الشرط",
-        question: "فعل الشرط في الجملة «إن تحافظي على وقتك تنجحي» هو:",
-        choices: ["إن", "تحافظي", "وقتك", "تنجحي"],
-        answer: 1
-      },
-      {
-        category: "أسلوب الشرط",
-        question: "جواب الشرط في الجملة «متى تسافر أرافقك» هو:",
-        choices: ["متى", "تسافر", "أرافقك", "السفر"],
-        answer: 2
-      },
-      {
-        category: "أسلوب الشرط",
-        question: "اختاري الأداة المناسبة: «... تحسن إلى الناس يحبونك».",
-        choices: ["هل", "من", "لن", "قد"],
-        answer: 1
-      },
-      {
-        category: "أسلوب الشرط",
-        question: "أي الكلمات الآتية اسم شرط؟",
-        choices: ["من", "إلى", "على", "لكن"],
-        answer: 0
-      },
-      {
-        category: "أسلوب الشرط",
-        question: "اختاري الجملة الصحيحة:",
-        choices: [
-          "إن تجتهدين تنجحين.",
-          "إن تجتهدي تنجحي.",
-          "إن تجتهدي تنجحين.",
-          "إن اجتهدتِ النجاح."
-        ],
-        answer: 1
-      },
-      {
-        category: "أسلوب الشرط",
-        question: "في الجملة «أينما تذهب أذهب معك» أداة الشرط هي:",
-        choices: ["أينما", "تذهب", "أذهب", "معك"],
-        answer: 0
-      },
-      {
-        category: "أسلوب الشرط",
-        question: "أي الجمل الآتية تدل على ارتباط حدوث أمر بحدوث أمر آخر؟",
-        choices: [
-          "السماء صافية.",
-          "إن تزرع تحصد.",
-          "والله لأعملنَّ.",
-          "العلم أفضل من الجهل."
-        ],
-        answer: 1
-      },
+  {
+    category: "أسلوب القسم",
+    question: "أداة القسم في جملة «واللهِ لأقولنَّ الحقَّ» هي:",
+    choices: [
+      "الواو",
+      "اللام",
+      "النون",
+      "أل"
+    ],
+    answer: 0,
+    explanation:
+      "الواو في كلمة «واللهِ» هي أداة القسم."
+  },
 
-      {
-        category: "أسلوب التفضيل",
-        question: "أي الجمل الآتية تشتمل على أسلوب تفضيل؟",
-        choices: [
-          "خالد مجتهد.",
-          "خالد أكثر اجتهادًا من سالم.",
-          "اجتهد خالد.",
-          "هل خالد مجتهد؟"
-        ],
-        answer: 1
-      },
-      {
-        category: "أسلوب التفضيل",
-        question: "اسم التفضيل في الجملة «العلم أنفع من المال» هو:",
-        choices: ["العلم", "أنفع", "المال", "من"],
-        answer: 1
-      },
-      {
-        category: "أسلوب التفضيل",
-        question: "المفضَّل في الجملة «الصدق أفضل من الكذب» هو:",
-        choices: ["الصدق", "أفضل", "من", "الكذب"],
-        answer: 0
-      },
-      {
-        category: "أسلوب التفضيل",
-        question: "المفضَّل عليه في الجملة «القراءة أنفع من اللهو» هو:",
-        choices: ["القراءة", "أنفع", "من", "اللهو"],
-        answer: 3
-      },
-      {
-        category: "أسلوب التفضيل",
-        question: "اختاري اسم التفضيل المناسب: «الطائرة ... من السيارة».",
-        choices: ["سريعة", "أسرع", "سرعة", "تسرع"],
-        answer: 1
-      },
-      {
-        category: "أسلوب التفضيل",
-        question: "أي الكلمات الآتية اسم تفضيل؟",
-        choices: ["كبير", "أكبر", "يكبر", "كبيرة"],
-        answer: 1
-      },
-      {
-        category: "أسلوب التفضيل",
-        question: "اختاري الجملة الصحيحة في أسلوب التفضيل:",
-        choices: [
-          "الربيع جميل.",
-          "الربيع أجمل من الصيف.",
-          "جَمُل الربيع.",
-          "ما أجمل الربيع!"
-        ],
-        answer: 1
-      },
-      {
-        category: "أسلوب التفضيل",
-        question: "في الجملة «مكة أشرف بقاع الأرض» اسم التفضيل هو:",
-        choices: ["مكة", "أشرف", "بقاع", "الأرض"],
-        answer: 1
-      }
-    ];
+  {
+    category: "أسلوب القسم",
+    question: "المقسَم به في جملة «تاللهِ لأجتهدنَّ» هو:",
+    choices: [
+      "التاء",
+      "الله",
+      "لأجتهدنَّ",
+      "الاجتهاد"
+    ],
+    answer: 1,
+    explanation:
+      "المقسَم به هو الاسم الواقع بعد أداة القسم، وهو هنا لفظ الجلالة «الله»."
+  },
 
+  {
+    category: "أسلوب القسم",
+    question: "جواب القسم في جملة «باللهِ لأساعدنَّ المحتاج» هو:",
+    choices: [
+      "باللهِ",
+      "الباء",
+      "لأساعدنَّ المحتاج",
+      "المحتاج"
+    ],
+    answer: 2,
+    explanation:
+      "جواب القسم هو الكلام الذي يوضح الأمر الذي أقسم عليه المتكلم."
+  },
+
+  {
+    category: "أسلوب القسم",
+    question: "أي الكلمات الآتية تُعد من أدوات القسم؟",
+    choices: [
+      "من",
+      "الباء",
+      "إلى",
+      "على"
+    ],
+    answer: 1,
+    explanation:
+      "من أدوات القسم: الواو، والباء، والتاء."
+  },
+
+  {
+    category: "أسلوب القسم",
+    question: "اختر الجملة المصوغة بأسلوب قسم صحيح:",
+    choices: [
+      "واللهِ أحافظ على الأمانة.",
+      "واللهِ لأحافظنَّ على الأمانة.",
+      "واللهِ إن أحافظ على الأمانة.",
+      "واللهِ من يحافظ على الأمانة."
+    ],
+    answer: 1,
+    explanation:
+      "الجملة صحيحة؛ لأنها تضمنت أداة القسم وجواب القسم المؤكد."
+  },
+
+  {
+    category: "أسلوب القسم",
+    question: "الغرض من أسلوب القسم هو:",
+    choices: [
+      "الاستفهام",
+      "التوكيد",
+      "التعجب",
+      "النداء"
+    ],
+    answer: 1,
+    explanation:
+      "يُستخدم أسلوب القسم لتوكيد الكلام وتقويته."
+  },
+
+  {
+    category: "أسلوب القسم",
+    question: "أي الجمل الآتية لا تحتوي على قسم؟",
+    choices: [
+      "واللهِ لأصدقنَّ.",
+      "باللهِ لأساعدنَّك.",
+      "تاللهِ لأفوزنَّ.",
+      "إن تصدقْ يحبك الناس."
+    ],
+    answer: 3,
+    explanation:
+      "الجملة الأخيرة أسلوب شرط، وليست أسلوب قسم."
+  },
+  {
+    category: "أسلوب الشرط",
+    question: "أي الجمل الآتية اشتملت على أسلوب شرط؟",
+    choices: [
+      "واللهِ لأجتهدنَّ.",
+      "من يجتهدْ ينجحْ.",
+      "العلم نور.",
+      "ما أجمل الصدق!"
+    ],
+    answer: 1,
+    explanation:
+      "أسلوب الشرط يتكون من أداة شرط، وفعل شرط، وجواب شرط."
+  },
+
+  {
+    category: "أسلوب الشرط",
+    question: "أداة الشرط في جملة «إن تحافظْ على وقتك تنجحْ» هي:",
+    choices: [
+      "تحافظ",
+      "وقتك",
+      "إن",
+      "تنجح"
+    ],
+    answer: 2,
+    explanation:
+      "«إن» هي أداة الشرط التي تربط بين الشرط والنتيجة."
+  },
+
+  {
+    category: "أسلوب الشرط",
+    question: "فعل الشرط في جملة «من يزرعْ خيرًا يحصدْ خيرًا» هو:",
+    choices: [
+      "من",
+      "يزرعْ",
+      "خيرًا",
+      "يحصدْ"
+    ],
+    answer: 1,
+    explanation:
+      "الفعل الذي يأتي بعد أداة الشرط يسمى فعل الشرط."
+  },
+
+  {
+    category: "أسلوب الشرط",
+    question: "جواب الشرط في جملة «من يزرعْ خيرًا يحصدْ خيرًا» هو:",
+    choices: [
+      "من",
+      "يزرعْ",
+      "يحصدْ خيرًا",
+      "خيرًا"
+    ],
+    answer: 2,
+    explanation:
+      "جواب الشرط هو النتيجة المترتبة على تحقق الشرط."
+  },
+
+  {
+    category: "أسلوب الشرط",
+    question: "الغرض من أسلوب الشرط هو:",
+    choices: [
+      "الربط بين السبب والنتيجة",
+      "القسم",
+      "التعجب",
+      "النداء"
+    ],
+    answer: 0,
+    explanation:
+      "أسلوب الشرط يربط بين أمر يحدث ونتيجته."
+  },
+      {
+    category: "أسلوب الشرط",
+    question: "أي أدوات الشرط الآتية تدل على العاقل؟",
+    choices: [
+      "من",
+      "متى",
+      "أين",
+      "مهما"
+    ],
+    answer: 0,
+    explanation:
+      "تُستخدم «من» للعاقل، مثل: من يجتهدْ ينجحْ."
+  },
+
+  {
+    category: "أسلوب الشرط",
+    question: "أي أدوات الشرط الآتية تدل على الزمان؟",
+    choices: [
+      "من",
+      "متى",
+      "أين",
+      "مهما"
+    ],
+    answer: 1,
+    explanation:
+      "«متى» تدل على الزمان."
+  },
+
+  {
+    category: "أسلوب الشرط",
+    question: "أي أدوات الشرط الآتية تدل على المكان؟",
+    choices: [
+      "أين",
+      "من",
+      "إن",
+      "مهما"
+    ],
+    answer: 0,
+    explanation:
+      "«أين» تدل على المكان."
+  },
+
+  {
+    category: "أسلوب الشرط",
+    question: "أكمل: «إن تجتهدْ ....»",
+    choices: [
+      "لأجتهدنَّ",
+      "تنجحْ",
+      "أفضل",
+      "والله"
+    ],
+    answer: 1,
+    explanation:
+      "جواب الشرط المناسب هو «تنجحْ»."
+  },
+
+  {
+    category: "أسلوب الشرط",
+    question: "أي الجمل الآتية كُتبت بأسلوب شرط صحيح؟",
+    choices: [
+      "إن تجتهدُ تنجحُ.",
+      "إن تجتهدْ تنجحْ.",
+      "إن اجتهادك النجاح.",
+      "إن والله تجتهد."
+    ],
+    answer: 1,
+    explanation:
+      "الجملة الصحيحة هي «إن تجتهدْ تنجحْ»."
+  },
+        {
+    category: "أسلوب التفضيل",
+    question: "ما اسم الأسلوب في جملة «العلم أنفع من المال»؟",
+    choices: [
+      "أسلوب قسم",
+      "أسلوب شرط",
+      "أسلوب تفضيل",
+      "أسلوب نداء"
+    ],
+    answer: 2,
+    explanation:
+      "لأن الجملة تقارن بين شيئين باستعمال اسم التفضيل «أنفع»."
+  },
+
+  {
+    category: "أسلوب التفضيل",
+    question: "اسم التفضيل في جملة «الصدق أفضل من الكذب» هو:",
+    choices: [
+      "الصدق",
+      "أفضل",
+      "من",
+      "الكذب"
+    ],
+    answer: 1,
+    explanation:
+      "«أفضل» هو اسم التفضيل الذي يدل على المفاضلة."
+  },
+
+  {
+    category: "أسلوب التفضيل",
+    question: "أي الكلمات الآتية اسم تفضيل؟",
+    choices: [
+      "كاتب",
+      "جميل",
+      "أسرع",
+      "قراءة"
+    ],
+    answer: 2,
+    explanation:
+      "«أسرع» اسم تفضيل يدل على المقارنة."
+  },
+
+  {
+    category: "أسلوب التفضيل",
+    question: "يدل أسلوب التفضيل على:",
+    choices: [
+      "القسم",
+      "التعجب",
+      "المفاضلة بين شيئين",
+      "النداء"
+    ],
+    answer: 2,
+    explanation:
+      "أسلوب التفضيل يُستخدم للمقارنة بين شيئين أو أكثر."
+  },
+
+  {
+    category: "أسلوب التفضيل",
+    question: "أكمل: «المؤمن ..... عند الله من الكاذب»",
+    choices: [
+      "أفضل",
+      "إن",
+      "والله",
+      "من"
+    ],
+    answer: 0,
+    explanation:
+      "الكلمة المناسبة هي «أفضل» لأنها اسم تفضيل."
+  },
+        {
+    category: "أسلوب التفضيل",
+    question: "أي الجمل الآتية لا تحتوي على أسلوب تفضيل؟",
+    choices: [
+      "الطائرة أسرع من السيارة.",
+      "الصدق أفضل من الكذب.",
+      "من يجتهدْ ينجحْ.",
+      "العلم أنفع من المال."
+    ],
+    answer: 2,
+    explanation:
+      "«من يجتهدْ ينجحْ» أسلوب شرط، وليس أسلوب تفضيل."
+  },
+
+  {
+    category: "أسلوب التفضيل",
+    question: "اسم التفضيل في جملة «الطائرة أسرع من السيارة» هو:",
+    choices: [
+      "الطائرة",
+      "أسرع",
+      "من",
+      "السيارة"
+    ],
+    answer: 1,
+    explanation:
+      "«أسرع» هو اسم التفضيل في الجملة."
+  },
+
+  {
+    category: "أسلوب التفضيل",
+    question: "المفضَّل في جملة «الكتاب أنفع من الهاتف» هو:",
+    choices: [
+      "الكتاب",
+      "أنفع",
+      "الهاتف",
+      "من"
+    ],
+    answer: 0,
+    explanation:
+      "المفضَّل هو الشيء الذي زادت فيه الصفة، وهو هنا «الكتاب»."
+  },
+
+  {
+    category: "أسلوب التفضيل",
+    question: "المفضَّل عليه في جملة «الكتاب أنفع من الهاتف» هو:",
+    choices: [
+      "الكتاب",
+      "أنفع",
+      "الهاتف",
+      "النفع"
+    ],
+    answer: 2,
+    explanation:
+      "المفضَّل عليه يأتي غالبًا بعد «من»، وهو هنا «الهاتف»."
+  },
+
+  {
+    category: "أسلوب التفضيل",
+    question: "أي الجمل الآتية صيغت بأسلوب تفضيل صحيح؟",
+    choices: [
+      "النخلة طويلة من الشجرة.",
+      "النخلة أطول من الشجرة.",
+      "النخلة طولها الشجرة.",
+      "النخلة من الشجرة."
+    ],
+    answer: 1,
+    explanation:
+      "الجملة الصحيحة هي «النخلة أطول من الشجرة»."
+  },
+];
     let currentQuestion = 0;
-    let score = 0;
-    let selectedAnswer = null;
+let score = 0;
+let answerChecked = false;
 
-    const startScreen = document.getElementById("startScreen");
-    const testScreen = document.getElementById("testScreen");
-    const resultScreen = document.getElementById("resultScreen");
-    const questionCategory = document.getElementById("questionCategory");
-    const questionText = document.getElementById("questionText");
-    const choicesBox = document.getElementById("choicesBox");
-    const nextButton = document.getElementById("nextButton");
-    const progressText = document.getElementById("progressText");
-    const progressBar = document.getElementById("progressBar");
+const startScreen =
+  document.getElementById("startScreen");
 
-    window.addEventListener("load", function () {
-      const savedName =
-        localStorage.getItem("semester1StudentName") || "";
+const testScreen =
+  document.getElementById("testScreen");
 
-      document.getElementById("studentName").value = savedName;
+const resultScreen =
+  document.getElementById("resultScreen");
+
+const questionCategory =
+  document.getElementById("questionCategory");
+
+const questionText =
+  document.getElementById("questionText");
+
+const choicesBox =
+  document.getElementById("choicesBox");
+
+const feedbackBox =
+  document.getElementById("feedbackBox");
+
+const nextButton =
+  document.getElementById("nextButton");
+
+const progressText =
+  document.getElementById("progressText");
+
+const progressBar =
+  document.getElementById("progressBar");
+
+window.addEventListener("load", function () {
+  const savedName =
+    localStorage.getItem("semester1StudentName") || "";
+
+  document.getElementById("studentName").value =
+    savedName;
+});
+
+function startTest() {
+  const name =
+    document
+      .getElementById("studentName")
+      .value
+      .trim();
+
+  if (name === "") {
+    alert("فضلاً اكتبي اسم الطالبة أولًا.");
+    return;
+  }
+
+  localStorage.setItem(
+    "semester1StudentName",
+    name
+  );
+
+  currentQuestion = 0;
+  score = 0;
+  answerChecked = false;
+
+  startScreen.classList.add("hidden");
+  resultScreen.classList.add("hidden");
+  testScreen.classList.remove("hidden");
+
+  showQuestion();
+}
+
+function showQuestion() {
+  answerChecked = false;
+  nextButton.disabled = true;
+
+  feedbackBox.className = "feedback hidden";
+  feedbackBox.innerHTML = "";
+
+  const current = questions[currentQuestion];
+
+  progressText.textContent =
+    "السؤال " +
+    (currentQuestion + 1) +
+    " من " +
+    questions.length;
+
+  progressBar.style.width =
+    (
+      (currentQuestion + 1) /
+      questions.length *
+      100
+    ) + "%";
+
+  questionCategory.textContent =
+    current.category;
+
+  questionText.textContent =
+    current.question;
+
+  choicesBox.innerHTML = "";
+
+  current.choices.forEach(function (choice, index) {
+    const button =
+      document.createElement("button");
+
+    button.type = "button";
+    button.className = "choice";
+    button.textContent = choice;
+
+    button.addEventListener("click", function () {
+      checkAnswer(index);
     });
 
-    function startTest() {
-      const name =
-        document.getElementById("studentName").value.trim();
+    choicesBox.appendChild(button);
+  });
 
-      if (name === "") {
-        alert("فضلاً اكتبي اسم الطالبة أولًا.");
-        return;
-      }
+  if (currentQuestion === questions.length - 1) {
+    nextButton.textContent = "عرض النتيجة";
+  } else {
+    nextButton.textContent = "السؤال التالي";
+  }
+}
 
-      localStorage.setItem("semester1StudentName", name);
+function checkAnswer(index) {
+  if (answerChecked) {
+    return;
+  }
 
-      currentQuestion = 0;
-      score = 0;
-      selectedAnswer = null;
+  answerChecked = true;
 
-      startScreen.classList.add("hidden");
-      resultScreen.classList.add("hidden");
-      testScreen.classList.remove("hidden");
+  const current = questions[currentQuestion];
 
-      showQuestion();
+  const buttons =
+    choicesBox.querySelectorAll(".choice");
+
+  buttons.forEach(function (button, buttonIndex) {
+    button.classList.add("locked");
+    button.disabled = true;
+
+    if (buttonIndex === current.answer) {
+      button.classList.add("correct");
+      button.textContent =
+        "✓ " + button.textContent;
     }
+  });
 
-    function showQuestion() {
-      selectedAnswer = null;
-      nextButton.disabled = true;
+  if (index === current.answer) {
+    score++;
 
-      const current = questions[currentQuestion];
+    feedbackBox.className =
+      "feedback correct-feedback";
 
-      progressText.textContent =
-        "السؤال " +
-        (currentQuestion + 1) +
-        " من " +
-        questions.length;
+    feedbackBox.innerHTML =
+      '<span class="feedback-title">' +
+      "أحسنتِ! إجابة صحيحة ⭐" +
+      "</span>" +
+      current.explanation;
 
-      progressBar.style.width =
-        ((currentQuestion + 1) / questions.length * 100) + "%";
+    playSuccessSound();
+    createStars();
+  } else {
+    buttons[index].classList.add("wrong");
 
-      questionCategory.textContent = current.category;
-      questionText.textContent = current.question;
-      choicesBox.innerHTML = "";
+    buttons[index].textContent =
+      "✕ " + buttons[index].textContent;
 
-      current.choices.forEach(function (choice, index) {
-        const button = document.createElement("button");
+    feedbackBox.className =
+      "feedback wrong-feedback";
 
-        button.type = "button";
-        button.className = "choice";
-        button.textContent = choice;
+    feedbackBox.innerHTML =
+      '<span class="feedback-title">' +
+      "ليست الإجابة الصحيحة، لا بأس 🌷" +
+      "</span>" +
+      '<span class="correct-answer">' +
+      "الإجابة الصحيحة: " +
+      current.choices[current.answer] +
+      "</span>" +
+      current.explanation;
 
-        button.onclick = function () {
-          selectAnswer(index, button);
-        };
+    playWrongSound();
+  }
 
-        choicesBox.appendChild(button);
-      });
+  nextButton.disabled = false;
+}
 
-      if (currentQuestion === questions.length - 1) {
-        nextButton.textContent = "إنهاء الاختبار";
-      } else {
-        nextButton.textContent = "السؤال التالي";
-      }
+function nextQuestion() {
+  if (!answerChecked) {
+    return;
+  }
+
+  currentQuestion++;
+
+  if (currentQuestion < questions.length) {
+    showQuestion();
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  } else {
+    finishTest();
     }
+}
 
-    function selectAnswer(index, button) {
-      selectedAnswer = index;
+function finishTest() {
+  if (currentQuestion < questions.length) {
+  showQuestion();
 
-      document.querySelectorAll(".choice").forEach(function (choice) {
-        choice.classList.remove("selected");
-      });
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+} else {
+  finishTest();
+}
+}
 
-      button.classList.add("selected");
-      nextButton.disabled = false;
-    }
+function finishTest() {
+  const studentName =
+    localStorage.getItem("semester1StudentName") || "الطالبة";
 
-    function nextQuestion() {
-      if (selectedAnswer === null) {
-        return;
-      }
+  localStorage.setItem(
+    "stylesScore",
+    String(score)
+  );
 
-      if (selectedAnswer === questions[currentQuestion].answer) {
-        score++;
-      }
+  localStorage.setItem(
+    "stylesCompleted",
+    "true"
+  );
 
-      currentQuestion++;
+  testScreen.classList.add("hidden");
+  resultScreen.classList.remove("hidden");
 
-      if (currentQuestion < questions.length) {
-        showQuestion();
-      } else {
-        finishTest();
-      }
-    }
+  document.getElementById(
+    "resultName"
+  ).textContent = studentName;
 
-    function finishTest() {
-      const studentName =
-        localStorage.getItem("semester1StudentName") || "الطالبة";
+  document.getElementById(
+    "finalScore"
+  ).textContent = score;
 
-      localStorage.setItem("stylesScore", String(score));
-      localStorage.setItem("stylesCompleted", "true");
+  const resultIcon =
+    document.getElementById("resultIcon");
 
-      testScreen.classList.add("hidden");
-      resultScreen.classList.remove("hidden");
+  let message = "";
 
-      document.getElementById("resultName").textContent = studentName;
-      document.getElementById("finalScore").textContent = score;
+  if (score === 25) {
+    resultIcon.textContent = "🏆";
+    message =
+      "ممتازة جدًا! أتقنتِ أساليب القسم والشرط والتفضيل.";
+    createStars();
+    playSuccessSound();
+  } else if (score >= 20) {
+    resultIcon.textContent = "🌟";
+    message =
+      "أحسنتِ! لديكِ فهم ممتاز للأساليب اللغوية.";
+  } else if (score >= 13) {
+    resultIcon.textContent = "👏";
+    message =
+      "نتيجة جيدة، راجعي أركان القسم والشرط والتفضيل.";
+  } else {
+    resultIcon.textContent = "📚";
+    message =
+      "محاولة جيدة، راجعي القواعد ثم حاولي مرة أخرى.";
+  }
 
-      let message;
+  document.getElementById(
+    "resultMessage"
+  ).textContent = message;
 
-      if (score >= 23) {
-        message =
-          "ممتاز جدًا، لديكِ إتقان رائع للأساليب اللغوية.";
-      } else if (score >= 19) {
-        message =
-          "أحسنتِ، نتيجتكِ جيدة جدًا في الأسلوب اللغوي.";
-      } else if (score >= 13) {
-        message =
-          "نتيجة جيدة، راجعي بعض عناصر القسم والشرط والتفضيل.";
-      } else {
-        message =
-          "تحتاجين إلى مراجعة أسلوب القسم والشرط والتفضيل.";
-      }
-
-      document.getElementById("resultMessage").textContent = message;
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
     }
   </script>
 
