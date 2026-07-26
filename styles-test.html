@@ -1212,8 +1212,124 @@ function finishTest() {
     behavior: "smooth"
   });
 }
-    }
-  </script>
+    function createStars() {
+  const layer =
+    document.getElementById("starsLayer");
+
+  const icons = ["⭐", "✨", "🌟", "💫"];
+
+  for (let i = 0; i < 18; i++) {
+    const star =
+      document.createElement("span");
+
+    star.className = "star";
+
+    star.textContent =
+      icons[
+        Math.floor(Math.random() * icons.length)
+      ];
+
+    star.style.left =
+      (15 + Math.random() * 70) + "%";
+
+    star.style.setProperty(
+      "--move-x",
+      ((Math.random() - 0.5) * 320) + "px"
+    );
+
+    star.style.setProperty(
+      "--move-y",
+      (-150 - Math.random() * 350) + "px"
+    );
+
+    star.style.animationDelay =
+      (Math.random() * 0.15) + "s";
+
+    layer.appendChild(star);
+
+    setTimeout(function () {
+      star.remove();
+    }, 1500);
+  }
+}
+
+function playSuccessSound() {
+  playTone(520, 0.12, 0);
+  playTone(660, 0.14, 0.12);
+  playTone(790, 0.18, 0.25);
+}
+
+function playWrongSound() {
+  playTone(280, 0.15, 0);
+  playTone(210, 0.2, 0.15);
+}
+function playTone(
+  frequency,
+  duration,
+  delay
+) {
+  try {
+    const AudioContext =
+      window.AudioContext ||
+      window.webkitAudioContext;
+
+    const audioContext =
+      new AudioContext();
+
+    const oscillator =
+      audioContext.createOscillator();
+
+    const gain =
+      audioContext.createGain();
+
+    oscillator.type = "sine";
+    oscillator.frequency.value = frequency;
+
+    gain.gain.setValueAtTime(
+      0.0001,
+      audioContext.currentTime + delay
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+      0.16,
+      audioContext.currentTime + delay + 0.02
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+      0.0001,
+      audioContext.currentTime + delay + duration
+    );
+
+    oscillator.connect(gain);
+    gain.connect(audioContext.destination);
+
+    oscillator.start(
+      audioContext.currentTime + delay
+    );
+
+    oscillator.stop(
+      audioContext.currentTime +
+      delay +
+      duration +
+      0.05
+    );
+
+    oscillator.onended = function () {
+      audioContext.close();
+    };
+
+  } catch (error) {
+    console.log(
+      "الصوت غير متاح في هذا المتصفح."
+    );
+  }
+}
+    </script>
 
 </body>
 </html>
+
+
+
+
+
