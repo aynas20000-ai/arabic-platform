@@ -2,21 +2,51 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>الوظيفة النحوية | منصة آفاق اللغة</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>اختبار الوظيفة النحوية | منصة آفاق اللغة</title>
 
   <style>
     *{
       box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    :root{
+      --purple-dark:#552777;
+      --purple:#8242aa;
+      --gold:#e7ab3d;
+      --green:#26705a;
+      --green-light:#e6f7f0;
+      --red:#b3261e;
+      --red-light:#fdecea;
+      --text:#34263e;
+      --muted:#776f7d;
+      --border:#e2d9e8;
+      --white:#ffffff;
+      --bg:#f8f4fb;
     }
 
     body{
-      margin:0;
       min-height:100vh;
       font-family:Tahoma,Arial,sans-serif;
-      color:#30263b;
-      background:#f8f4fb;
+      color:var(--text);
+      background:
+        radial-gradient(
+          circle at top right,
+          rgba(130,66,170,.15),
+          transparent 34%
+        ),
+        linear-gradient(
+          180deg,
+          #fcf9fe 0%,
+          var(--bg) 100%
+        );
     }
 
     button,
@@ -29,34 +59,43 @@
     }
 
     header{
-      padding:22px 15px;
+      padding:28px 15px;
       text-align:center;
-      color:#ffffff;
-      background:linear-gradient(135deg,#60358b,#432260);
+      color:#fff;
+      background:
+        linear-gradient(
+          135deg,
+          var(--purple-dark),
+          #3e1858
+        );
+      box-shadow:
+        0 8px 24px rgba(62,24,88,.23);
     }
 
     header h1{
-      margin:0 0 8px;
-      font-size:clamp(26px,6vw,40px);
+      margin-bottom:10px;
+      font-size:clamp(27px,7vw,42px);
+      line-height:1.6;
     }
 
     header p{
-      margin:0;
-      color:#f8edcf;
+      color:#f5e8cb;
+      font-size:18px;
       line-height:1.8;
     }
 
     main{
       width:min(920px,calc(100% - 24px));
-      margin:24px auto 45px;
+      margin:28px auto 50px;
     }
 
     .card{
-      padding:20px;
-      background:#ffffff;
-      border:1px solid #e4dbea;
-      border-radius:22px;
-      box-shadow:0 12px 32px rgba(69,43,91,.10);
+      padding:22px;
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:24px;
+      box-shadow:
+        0 12px 32px rgba(69,43,91,.10);
     }
 
     .center{
@@ -66,44 +105,47 @@
     }
 
     .icon{
-      font-size:55px;
+      margin-bottom:10px;
+      font-size:60px;
     }
 
     h2{
-      color:#60358b;
+      color:var(--purple-dark);
       line-height:1.7;
     }
 
     p{
-      color:#766d7d;
+      color:var(--muted);
       line-height:1.9;
     }
 
     .label{
       display:block;
-      margin:18px 0 8px;
+      margin:20px 0 9px;
+      color:var(--purple-dark);
       text-align:right;
-      color:#60358b;
       font-weight:bold;
     }
 
     #studentName{
       width:100%;
-      padding:14px;
-      border:2px solid #e4dbea;
-      border-radius:14px;
+      padding:16px;
+      border:2px solid var(--border);
+      border-radius:16px;
       outline:none;
+      background:#fff;
     }
 
     #studentName:focus{
-      border-color:#8c58b0;
-      box-shadow:0 0 0 4px rgba(140,88,176,.12);
+      border-color:var(--purple);
+      box-shadow:
+        0 0 0 4px rgba(130,66,170,.12);
     }
 
     .error{
       min-height:26px;
-      margin-top:8px;
-      color:#b3261e;
+      margin-top:9px;
+      color:var(--red);
       font-weight:bold;
     }
 
@@ -112,76 +154,107 @@
       justify-content:center;
       gap:12px;
       flex-wrap:wrap;
-      margin-top:18px;
+      margin-top:20px;
     }
 
     .btn{
       display:inline-block;
-      padding:13px 20px;
-      border:0;
-      border-radius:14px;
-      font-weight:bold;
+      padding:14px 23px;
+      border:none;
+      border-radius:16px;
       cursor:pointer;
       text-decoration:none;
+      font-weight:bold;
     }
 
     .primary{
-      color:#ffffff;
-      background:linear-gradient(135deg,#8c58b0,#60358b);
+      color:#fff;
+      background:
+        linear-gradient(
+          135deg,
+          var(--purple),
+          var(--purple-dark)
+        );
     }
 
     .secondary{
-      color:#60358b;
-      background:#f1e9f7;
+      color:var(--purple-dark);
+      background:#f1e8f7;
     }
 
-    .row{
+    .student-row,
+    .question-meta{
       display:flex;
       justify-content:space-between;
       gap:10px;
       flex-wrap:wrap;
-      color:#60358b;
       font-weight:bold;
     }
 
-    .progress{
+    .student-row{
+      margin-bottom:14px;
+      color:var(--purple-dark);
+    }
+
+    .question-meta{
+      margin-top:13px;
+      color:var(--muted);
+    }
+
+    .progress-shell{
+      width:100%;
       height:14px;
-      margin-top:12px;
       overflow:hidden;
       border-radius:999px;
-      background:#ece6f1;
+      background:#ece5f1;
     }
 
-    #bar{
+    .progress-bar{
       width:0;
       height:100%;
-      background:linear-gradient(90deg,#dfa03d,#f1cf7c);
-      transition:width .3s ease;
+      background:
+        linear-gradient(
+          90deg,
+          var(--gold),
+          #f1d17d
+        );
+      transition:width .35s ease;
     }
 
-    .meta{
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      margin-top:12px;
-      color:#766d7d;
-      font-weight:bold;
-    }
-
-    .question{
+    .question-card{
+      position:relative;
+      overflow:hidden;
       margin-top:18px;
     }
 
-    .badge{
+    .question-card::before{
+      content:"";
+      position:absolute;
+      top:0;
+      right:0;
+      left:0;
+      height:6px;
+      background:
+        linear-gradient(
+          90deg,
+          var(--gold),
+          #f4dda2,
+          var(--gold)
+        );
+    }
+
+    .lesson-badge{
       display:inline-block;
-      padding:7px 13px;
+      margin-top:10px;
+      padding:10px 17px;
+      color:var(--purple-dark);
+      background:#f1e8f7;
       border-radius:999px;
-      color:#60358b;
-      background:#f3ecf8;
       font-weight:bold;
     }
 
     #questionText{
+      margin:19px 0;
       color:#39254b;
       font-size:clamp(22px,5vw,30px);
       line-height:1.8;
@@ -189,19 +262,27 @@
 
     .choices{
       display:grid;
-      gap:12px;
+      gap:13px;
     }
 
     .choice{
       width:100%;
-      padding:14px 16px;
+      padding:15px 17px;
+      color:var(--text);
       text-align:right;
-      color:#30263b;
-      background:#ffffff;
-      border:2px solid #e4dbea;
-      border-radius:15px;
-      font-size:18px;
+      background:#fff;
+      border:2px solid var(--border);
+      border-radius:17px;
       cursor:pointer;
+      font-size:18px;
+      line-height:1.8;
+      transition:.18s;
+    }
+
+    .choice:hover:not(:disabled){
+      transform:translateY(-1px);
+      border-color:#b493c9;
+      background:#fcf9fe;
     }
 
     .choice:disabled{
@@ -210,65 +291,81 @@
 
     .choice.correct{
       color:#14543d;
-      background:#eaf8f2;
-      border-color:#34785f;
+      background:var(--green-light);
+      border-color:var(--green);
       font-weight:bold;
     }
 
     .choice.wrong{
       color:#8d1f1a;
-      background:#fdecea;
-      border-color:#b3261e;
+      background:var(--red-light);
+      border-color:var(--red);
       font-weight:bold;
     }
 
     .feedback{
-      margin-top:18px;
-      padding:15px;
-      border-radius:15px;
-      line-height:1.9;
+      margin-top:19px;
+      padding:17px;
+      border-radius:17px;
       font-weight:bold;
+      line-height:1.9;
     }
 
-    .ok{
+    .feedback.ok{
       color:#14543d;
-      background:#eaf8f2;
+      background:var(--green-light);
+      border:1px solid #add8c8;
     }
 
-    .bad{
+    .feedback.bad{
       color:#8d1f1a;
-      background:#fdecea;
+      background:var(--red-light);
+      border:1px solid #efb5b0;
     }
 
-    .next{
+    .next-wrap{
       display:flex;
       justify-content:flex-end;
-      margin-top:18px;
+      margin-top:19px;
     }
 
-    .score{
-      width:150px;
-      height:150px;
-      margin:20px auto;
+    .score-circle{
+      width:155px;
+      height:155px;
+      margin:22px auto;
       display:flex;
       align-items:center;
       justify-content:center;
       flex-direction:column;
-      color:#ffffff;
-      background:linear-gradient(145deg,#60358b,#8c58b0);
+      color:#fff;
+      background:
+        linear-gradient(
+          145deg,
+          var(--purple-dark),
+          var(--purple)
+        );
       border:7px solid #ead69e;
       border-radius:50%;
+      box-shadow:
+        0 12px 28px rgba(96,53,139,.22);
     }
 
-    .score strong{
-      font-size:43px;
+    .score-circle strong{
+      font-size:45px;
+      line-height:1;
     }
 
-    .note{
-      padding:15px;
-      color:#60358b;
+    .score-circle span{
+      margin-top:8px;
+    }
+
+    .saved-note{
+      max-width:620px;
+      margin:19px auto;
+      padding:17px;
+      color:var(--purple-dark);
       background:#f3ecf8;
-      border-radius:16px;
+      border-radius:17px;
       font-weight:bold;
       line-height:1.9;
     }
@@ -281,10 +378,15 @@
       height:52px;
       border-radius:50%;
       pointer-events:none;
-      animation:fly 3.8s ease-in forwards;
+      animation:flyUp 3.8s ease-in forwards;
     }
 
-    @keyframes fly{
+    @keyframes flyUp{
+      from{
+        transform:translateY(0);
+        opacity:1;
+      }
+
       to{
         transform:translateY(-125vh);
         opacity:.1;
@@ -293,19 +395,21 @@
 
     @media(max-width:600px){
       .card{
-        padding:16px;
+        padding:17px;
+        border-radius:20px;
       }
 
       .choice{
+        padding:13px;
         font-size:17px;
       }
 
-      .next .btn{
+      .next-wrap .btn{
         width:100%;
       }
 
-      .row,
-      .meta{
+      .student-row,
+      .question-meta{
         font-size:14px;
       }
     }
@@ -316,13 +420,18 @@
 
   <header>
     <h1>📘 اختبار الوظيفة النحوية</h1>
-    <p>الحال والاستثناء والتمييز — ١٥ سؤالًا — ٣٠ درجة</p>
+
+    <p>
+      الحال والاستثناء والتمييز — ١٥ سؤالًا — ٣٠ درجة
+    </p>
   </header>
 
   <main>
 
-    <section id="startScreen" class="card center">
-
+    <section
+      id="startScreen"
+      class="card center"
+    >
       <div class="icon">🌷</div>
 
       <h2>مرحبًا بكِ يا مبدعة</h2>
@@ -333,7 +442,10 @@
         اكتبي اسم الطالبة الرباعي قبل البدء.
       </p>
 
-      <label class="label" for="studentName">
+      <label
+        class="label"
+        for="studentName"
+      >
         اسم الطالبة الرباعي:
       </label>
 
@@ -345,7 +457,11 @@
         placeholder="مثال: سارة محمد علي أحمد"
       >
 
-      <div id="nameError" class="error"></div>
+      <div
+        id="nameError"
+        class="error"
+        aria-live="polite"
+      ></div>
 
       <div class="actions">
 
@@ -353,7 +469,6 @@
           id="startBtn"
           class="btn primary"
           type="button"
-          onclick="startQuiz()"
         >
           ابدئي الاختبار
         </button>
@@ -366,15 +481,16 @@
         </a>
 
       </div>
-
     </section>
 
-    <section id="quizScreen" class="hidden">
+    <section
+      id="quizScreen"
+      class="hidden"
+    >
 
       <div class="card">
 
-        <div class="row">
-
+        <div class="student-row">
           <span>
             الطالبة:
             <strong id="shownName"></strong>
@@ -385,35 +501,43 @@
             <strong id="liveScore">٠</strong>
             / ٣٠
           </span>
-
         </div>
 
-        <div class="progress">
-          <div id="bar"></div>
+        <div class="progress-shell">
+          <div
+            id="progressBar"
+            class="progress-bar"
+          ></div>
         </div>
 
-        <div class="meta">
-          <span id="counter"></span>
+        <div class="question-meta">
+          <span id="questionCounter"></span>
           <span>لكل سؤال درجتان</span>
         </div>
 
       </div>
 
-      <section class="card question">
+      <section class="card question-card">
 
-        <div id="lesson" class="badge"></div>
+        <div
+          id="lessonBadge"
+          class="lesson-badge"
+        ></div>
 
         <h2 id="questionText"></h2>
 
-        <div id="choices" class="choices"></div>
+        <div
+          id="choices"
+          class="choices"
+        ></div>
 
         <div
           id="feedback"
           class="feedback hidden"
+          aria-live="polite"
         ></div>
 
-        <div class="next">
-
+        <div class="next-wrap">
           <button
             id="nextBtn"
             class="btn primary hidden"
@@ -421,29 +545,36 @@
           >
             السؤال التالي
           </button>
-
         </div>
 
       </section>
 
     </section>
 
-    <section id="resultScreen" class="card center hidden">
+    <section
+      id="resultScreen"
+      class="card center hidden"
+    >
 
-      <div id="resultEmoji" class="icon">🎉</div>
+      <div
+        id="resultEmoji"
+        class="icon"
+      >
+        🎉
+      </div>
 
       <h2 id="resultTitle">أحسنتِ</h2>
 
       <p id="resultName"></p>
 
-      <div class="score">
+      <div class="score-circle">
         <strong id="finalScore">٠</strong>
         <span>من ٣٠</span>
       </div>
 
       <p id="resultMessage"></p>
 
-      <div class="note">
+      <div class="saved-note">
         ✅ تم حفظ اسم الطالبة ودرجة الوظيفة النحوية،
         وستُضاف إلى المجموع النهائي من ١٠٠ درجة.
       </div>
@@ -475,315 +606,214 @@
     const questions = [
       {
         lesson: "الحال",
-
         question:
-          "عيّني الحال في الجملة: «عاد الجنودُ منتصرين من المعركة.»",
-
+          "ما الحال في الجملة: «عاد الجنودُ منتصرين من المعركة»؟",
         choices: [
           "الجنودُ",
           "منتصرين",
           "عاد",
           "المعركة"
         ],
-
         answer: 1,
-
         explanation:
-          "«منتصرين» حال منصوب، وعلامة نصبه الياء؛ لأنه جمع مذكر سالم، وهو يبيّن هيئة الجنود عند عودتهم."
+          "«منتصرين» حال منصوب، وعلامة نصبه الياء؛ لأنه جمع مذكر سالم."
       },
-
       {
         lesson: "الحال",
-
         question:
-          "ما نوع الحال في الجملة: «رأيتُ القمرَ ساطعًا.»",
-
+          "ما نوع الحال في الجملة: «رأيتُ القمرَ ساطعًا»؟",
         choices: [
           "حال جملة فعلية",
           "حال جملة اسمية",
-          "حال مفردة",
+          "حال مفرد",
           "حال شبه جملة"
         ],
-
         answer: 2,
-
         explanation:
-          "«ساطعًا» حال مفردة منصوبة، وصاحب الحال هو «القمرَ»."
+          "«ساطعًا» حال مفرد منصوب، وقد بيّن هيئة القمر وقت الرؤية."
       },
-
       {
         lesson: "الحال",
-
         question:
-          "ما نوع الحال في الجملة: «أقبل الطفلُ يبكي.»",
-
+          "ما نوع الحال في الجملة: «أقبل الطفلُ يبكي»؟",
         choices: [
-          "حال مفردة",
+          "حال مفرد",
           "حال جملة فعلية",
           "حال جملة اسمية",
           "حال شبه جملة"
         ],
-
         answer: 1,
-
         explanation:
-          "الجملة الفعلية «يبكي» في محل نصب حال، وصاحب الحال هو «الطفلُ»."
+          "الجملة الفعلية «يبكي» في محل نصب حال، وقد بيّنت هيئة الطفل عند إقباله."
       },
-
       {
         lesson: "الحال",
-
         question:
-          "ما نوع الحال في الجملة: «دخلتُ الصفَّ والمعلمُ غائبٌ.»",
-
+          "ما نوع الحال في الجملة: «دخلتُ الصفَّ والمعلمُ غائبٌ»؟",
         choices: [
-          "حال مفردة",
+          "حال مفرد",
           "حال جملة فعلية",
           "حال جملة اسمية",
           "حال شبه جملة"
         ],
-
         answer: 2,
-
         explanation:
-          "الجملة الاسمية «المعلمُ غائبٌ» في محل نصب حال، والواو واو الحال."
+          "الجملة الاسمية «المعلمُ غائبٌ» في محل نصب حال، وسبقتها واو الحال."
       },
-
       {
         lesson: "الحال",
-
         question:
-          "عيّني صاحب الحال في الجملة: «خرج الطلابُ من المدرسةِ مسرعين.»",
-
+          "ما صاحب الحال في الجملة: «خرج الطلابُ من المدرسةِ مسرعين»؟",
         choices: [
           "المدرسةِ",
           "الطلابُ",
           "مسرعين",
           "خرج"
         ],
-
         answer: 1,
-
         explanation:
-          "صاحب الحال هو «الطلابُ»، أما «مسرعين» فهي الحال."
+          "«الطلابُ» صاحب الحال؛ لأن «مسرعين» بيّنت هيئتهم عند الخروج."
       },
-
       {
         lesson: "الاستثناء",
-
         question:
-          "عيّني أداة الاستثناء في الجملة: «أكلتُ الفواكهَ إلا البرتقالَ.»",
-
+          "عيّني أداة الاستثناء في الجملة: «أكلتُ الفواكهَ إلا البرتقالَ»",
         choices: [
           "الفواكهَ",
           "إلا",
           "البرتقالَ",
           "أكلتُ"
         ],
-
         answer: 1,
-
         explanation:
-          "أداة الاستثناء هي «إلا»، و«البرتقالَ» مستثنى منصوب."
+          "«إلا» هي أداة الاستثناء في الجملة."
       },
-
       {
         lesson: "الاستثناء",
-
         question:
-          "ما إعراب كلمة «خالدًا» في الجملة: «حضر الطلابُ إلا خالدًا.»",
-
+          "ما إعراب «خالدًا» في الجملة: «حضر الطلابُ إلا خالدًا»؟",
         choices: [
           "فاعل مرفوع",
-          "مستثنى منصوب",
+          "مستثنى منصوب وجوبًا",
           "اسم مجرور",
           "مبني على الفتح"
         ],
-
         answer: 1,
-
         explanation:
-          "الاستثناء تام مثبت؛ لذلك تُعرب «خالدًا» مستثنى منصوبًا بالفتحة."
+          "الاستثناء تام مثبت؛ لذلك يُعرب «خالدًا» مستثنى منصوبًا وجوبًا."
       },
-
       {
         lesson: "الاستثناء",
-
         question:
-          "ما نوع الاستثناء في الجملة: «ما قرأتُ إلا قصيدةً.»",
-
+          "ما نوع الاستثناء في الجملة: «ما قرأتُ إلا قصيدةً»؟",
         choices: [
           "تام مثبت",
           "تام منفي",
           "ناقص مثبت",
-          "ناقص منفي (مفرغ)"
+          "ناقص منفي"
         ],
-
         answer: 3,
-
         explanation:
-          "الاستثناء ناقص منفي؛ لأن المستثنى منه غير مذكور، ولذلك يسمى استثناءً مفرغًا."
+          "الاستثناء ناقص منفي؛ لأن المستثنى منه غير مذكور، ويسمى أيضًا الاستثناء المفرغ."
       },
-
       {
         lesson: "الاستثناء",
-
         question:
-          "عيّني المستثنى منه في الجملة: «قرأتُ الكتبَ إلا كتابًا.»",
-
+          "ما المستثنى منه في الجملة: «قرأتُ الكتبَ إلا كتابًا»؟",
         choices: [
           "قرأتُ",
           "الكتبَ",
           "كتابًا",
           "إلا"
         ],
-
         answer: 1,
-
         explanation:
-          "المستثنى منه هو «الكتبَ»، و«كتابًا» هو المستثنى."
+          "«الكتبَ» هو المستثنى منه؛ لأنه الاسم العام الذي أُخرج منه «كتابًا»."
       },
-
       {
         lesson: "الاستثناء",
-
         question:
-          "ما نوع الاستثناء في الجملة: «ما نجح الطلابُ إلا طالبًا.»",
-
+          "ما المستثنى في الجملة: «ما نجح الطلابُ إلا طالبًا»؟",
         choices: [
-          "تام مثبت",
-          "تام منفي",
-          "ناقص منفي",
-          "مفرغ"
+          "طالبًا",
+          "ما",
+          "إلا",
+          "الطلابُ"
         ],
-
-        answer: 1,
-
+        answer: 0,
         explanation:
-          "الاستثناء تام منفي؛ لأن المستثنى منه «الطلابُ» مذكور، والجملة مسبوقة بالنفي «ما»."
+          "«طالبًا» هو المستثنى، و«الطلابُ» هو المستثنى منه."
       },
-
       {
         lesson: "التمييز",
-
         question:
-          "عيّني التمييز في الجملة: «اشتريتُ عشرين كتابًا.»",
-
+          "ما التمييز في الجملة: «اشتريتُ عشرين كتابًا»؟",
         choices: [
           "اشتريتُ",
           "عشرين",
           "كتابًا",
-          "التاء في اشتريتُ"
+          "التاء"
         ],
-
         answer: 2,
-
         explanation:
-          "«كتابًا» تمييز منصوب، وقد وضّح المقصود من العدد «عشرين»."
+          "«كتابًا» تمييز منصوب؛ لأنه وضّح المقصود من العدد «عشرين»."
       },
-
       {
         lesson: "التمييز",
-
         question:
-          "ما نوع التمييز في الجملة: «قرأتُ خمسين قصةً.»",
-
+          "ما نوع التمييز في الجملة: «قرأتُ خمسين قصةً»؟",
         choices: [
-  "تمييز ذات",
-  "تمييز جملة",
-  "تمييز ملحوظ",
-  "تمييز ملفوظ"
-],
-
-answer: 0,
-
-explanation:
-  "«قصةً» تمييز ذات؛ لأنها وضّحت اسمًا مبهمًا قبلها، وهو العدد «خمسين»، وتمييز الذات يُسمّى أيضًا التمييز الملفوظ."
-     },   
-        
-        
-          
-      
-
-        
-
-      
-    
-      
-
-      {
-        lesson: "التمييز",
-
-        question:
-          "ما نوع التمييز في الجملة: «طاب محمدٌ نفسًا.»",
-
-        choices: [
-          "تمييز ملفوظ",
-          "تمييز ملحوظ (تمييز نسبة)",
-          "حال",
-          "لا شيء مما ذُكر"
+          "تمييز ذات",
+          "تمييز جملة",
+          "تمييز ملحوظ",
+          "حال"
         ],
-
-        answer: 1,
-
+        answer: 0,
         explanation:
-          "«نفسًا» تمييز ملحوظ منصوب؛ لأنه يوضّح النسبة في الجملة."
+          "«قصةً» تمييز ذات؛ لأنها وضّحت العدد «خمسين»، وتمييز الذات يسمى أيضًا التمييز الملفوظ."
       },
-
       {
         lesson: "التمييز",
-
         question:
-          "ما إعراب كلمة «مساحةً» في الجملة: «الجزائرُ أكبرُ الدولِ العربيةِ مساحةً.»",
-
+          "ما نوع التمييز في الجملة: «طاب محمدٌ نفسًا»؟",
+        choices: [
+          "تمييز ذات",
+          "تمييز جملة",
+          "حال",
+          "مفعول به"
+        ],
+        answer: 1,
+        explanation:
+          "«نفسًا» تمييز جملة؛ لأنه وضّح النسبة في الجملة، ويسمى أيضًا التمييز الملحوظ."
+      },
+      {
+        lesson: "التمييز",
+        question:
+          "ما إعراب كلمة «مساحةً» في الجملة: «الجزائرُ أكبرُ الدولِ العربيةِ مساحةً»؟",
         choices: [
           "حال منصوب",
           "تمييز منصوب",
           "مستثنى منصوب",
           "مفعول به"
         ],
-
         answer: 1,
-
         explanation:
           "«مساحةً» تمييز منصوب؛ لأنه وضّح وجه التفضيل في كلمة «أكبر»."
       },
-{
-  lesson: "التمييز",
-
-  question:
-    "علام يدل المميَّز في الجملة: «بعتُ كيلًا سكرًا.»؟",
-
-  choices: [
-    "عدد",
-    "كيل",
-    "وزن",
-    "مساحة"
-  ],
-
-  answer: 1,
-
-  explanation:
-    "«كيلًا» هو المميَّز، ونوعه كيل، أما «سكرًا» فهو تمييز ملفوظ منصوب."
-},
-     ]; 
-      
-
-        
-          
-
-      
-          
-          
-        
-        
-        
-
-        
-
-        
-        
-      
+      {
+        lesson: "التمييز",
+        question:
+          "ما نوع المميَّز في الجملة: «بعتُ كيلًا سكرًا»؟",
+        choices: [
+          "عدد",
+          "كيل",
+          "وزن",
+          "مساحة"
+        ],
+        answer: 1,
+        explanation:
+          "نوع المميَّز هو الكيل؛ لأن «كيلًا» يدل على مقدار بالكيل، و«سكرًا» تمييز ملفوظ منصوب."
+      }
     ];
 
     const getElement = id =>
@@ -829,7 +859,10 @@ explanation:
           new AudioClass();
       }
 
-      if(audioContext.state === "suspended"){
+      if(
+        audioContext.state ===
+        "suspended"
+      ){
         audioContext.resume();
       }
     }
@@ -846,17 +879,19 @@ explanation:
           ? [523.25,659.25,783.99]
           : [250,185];
 
-      const currentTime =
+      const now =
         audioContext.currentTime;
 
       notes.forEach(
         (frequency,index) => {
-
           const oscillator =
             audioContext.createOscillator();
 
           const gain =
             audioContext.createGain();
+
+          const start =
+            now + index * .13;
 
           oscillator.type =
             isCorrect
@@ -867,35 +902,29 @@ explanation:
             frequency;
 
           oscillator.connect(gain);
-
           gain.connect(
             audioContext.destination
           );
 
-          const startTime =
-            currentTime +
-            index * .13;
-
           gain.gain.setValueAtTime(
             .0001,
-            startTime
+            start
           );
 
-          gain.gain.exponentialRampToValueAtTime(
-            .3,
-            startTime + .025
-          );
+          gain.gain
+            .exponentialRampToValueAtTime(
+              .3,
+              start + .025
+            );
 
-          gain.gain.exponentialRampToValueAtTime(
-            .0001,
-            startTime + .23
-          );
+          gain.gain
+            .exponentialRampToValueAtTime(
+              .0001,
+              start + .23
+            );
 
-          oscillator.start(startTime);
-
-          oscillator.stop(
-            startTime + .25
-          );
+          oscillator.start(start);
+          oscillator.stop(start + .25);
         }
       );
     }
@@ -909,8 +938,11 @@ explanation:
         "#55d6a5"
       ];
 
-      for(let index = 0; index < 8; index++){
-
+      for(
+        let index = 0;
+        index < 8;
+        index++
+      ){
         const balloon =
           document.createElement("div");
 
@@ -928,9 +960,11 @@ explanation:
             )
           ];
 
-        document.body.appendChild(
-          balloon
-        );
+        balloon.style.animationDelay =
+          Math.random() * .5 + "s";
+
+        document.body
+          .appendChild(balloon);
 
         setTimeout(
           () => balloon.remove(),
@@ -944,29 +978,39 @@ explanation:
 
       const name =
         normalizeName(
-          getElement("studentName").value
+          getElement("studentName")
+            .value
         );
 
       if(!name){
-        getElement("nameError").textContent =
+        getElement(
+          "nameError"
+        ).textContent =
           "اكتبي اسم الطالبة الرباعي أولًا.";
 
-        getElement("studentName").focus();
+        getElement(
+          "studentName"
+        ).focus();
 
         return;
       }
 
       if(!isFourPartName(name)){
-        getElement("nameError").textContent =
+        getElement(
+          "nameError"
+        ).textContent =
           "يرجى كتابة الاسم الرباعي كاملًا، أربعة أسماء على الأقل.";
 
-        getElement("studentName").focus();
+        getElement(
+          "studentName"
+        ).focus();
 
         return;
       }
 
-      getElement("nameError").textContent =
-        "";
+      getElement(
+        "nameError"
+      ).textContent = "";
 
       studentFullName = name;
 
@@ -976,7 +1020,7 @@ explanation:
       );
 
       localStorage.setItem(
-        "semester1_student_full_name",
+         "semester1_student_full_name",
         studentFullName
       );
 
@@ -984,20 +1028,12 @@ explanation:
       score = 0;
       answered = false;
 
-      getElement("shownName").textContent =
-        studentFullName;
+      getElement("shownName").textContent = studentFullName;
+      getElement("liveScore").textContent = "٠";
 
-      getElement("liveScore").textContent =
-        "٠";
-
-      getElement("startScreen")
-        .classList.add("hidden");
-
-      getElement("resultScreen")
-        .classList.add("hidden");
-
-      getElement("quizScreen")
-        .classList.remove("hidden");
+      getElement("startScreen").classList.add("hidden");
+      getElement("resultScreen").classList.add("hidden");
+      getElement("quizScreen").classList.remove("hidden");
 
       renderQuestion();
 
@@ -1010,109 +1046,67 @@ explanation:
     function renderQuestion(){
       answered = false;
 
-      const item =
-        questions[currentQuestion];
+      const item = questions[currentQuestion];
 
-      getElement("counter").textContent =
-        `السؤال ${toArabicNumber(
-          currentQuestion + 1
-        )} من ${toArabicNumber(
-          questions.length
-        )}`;
+      getElement("questionCounter").textContent =
+        `السؤال ${toArabicNumber(currentQuestion + 1)} من ${toArabicNumber(questions.length)}`;
 
-      getElement("bar").style.width =
-        `${
-          (
-            currentQuestion /
-            questions.length
-          ) * 100
-        }%`;
+      getElement("progressBar").style.width =
+        `${(currentQuestion / questions.length) * 100}%`;
 
-      getElement("lesson").textContent =
+      getElement("lessonBadge").textContent =
         `الدرس: ${item.lesson}`;
 
       getElement("questionText").textContent =
         item.question;
 
-      getElement("choices").innerHTML =
-        "";
+      getElement("choices").innerHTML = "";
 
       getElement("feedback").className =
         "feedback hidden";
 
-      getElement("feedback").textContent =
-        "";
+      getElement("feedback").textContent = "";
 
-      getElement("nextBtn")
-        .classList.add("hidden");
+      getElement("nextBtn").classList.add("hidden");
 
-      item.choices.forEach(
-        (choice,index) => {
+      item.choices.forEach((choice,index) => {
+        const button = document.createElement("button");
 
-          const button =
-            document.createElement("button");
+        button.type = "button";
+        button.className = "choice";
+        button.textContent =
+          `${["أ","ب","ج","د"][index]}) ${choice}`;
 
-          button.type =
-            "button";
+        button.addEventListener("click", () => {
+          selectAnswer(index,button);
+        });
 
-          button.className =
-            "choice";
-
-          button.textContent =
-            `${
-              ["أ","ب","ج","د"][index]
-            }) ${choice}`;
-
-          button.addEventListener(
-            "click",
-            () => {
-              selectAnswer(
-                index,
-                button
-              );
-            }
-          );
-
-          getElement("choices")
-            .appendChild(button);
-        }
-      );
+        getElement("choices").appendChild(button);
+      });
     }
 
-    function selectAnswer(
-      selectedIndex,
-      selectedButton
-    ){
+    function selectAnswer(selectedIndex,selectedButton){
       if(answered){
         return;
       }
 
       answered = true;
 
-      const item =
-        questions[currentQuestion];
+      const item = questions[currentQuestion];
+      const buttons = [
+        ...document.querySelectorAll(".choice")
+      ];
 
-      const buttons =
-        [
-          ...document.querySelectorAll(
-            ".choice"
-          )
-        ];
+      buttons.forEach(button => {
+        button.disabled = true;
+      });
 
-      buttons.forEach(
-        button => {
-          button.disabled = true;
-        }
-      );
+      buttons[item.answer].classList.add("correct");
 
-      buttons[item.answer]
-        .classList.add("correct");
       if(selectedIndex === item.answer){
-
         score += 2;
 
-        selectedButton
-          .classList.add("correct");
+        selectedButton.classList.add("correct");
 
         getElement("feedback").className =
           "feedback ok";
@@ -1121,13 +1115,9 @@ explanation:
           `✅ إجابة صحيحة.<br>${item.explanation}`;
 
         playSound(true);
-
         launchBalloons();
-
       }else{
-
-        selectedButton
-          .classList.add("wrong");
+        selectedButton.classList.add("wrong");
 
         getElement("feedback").className =
           "feedback bad";
@@ -1141,33 +1131,18 @@ explanation:
       getElement("liveScore").textContent =
         toArabicNumber(score);
 
-      getElement("bar").style.width =
-        `${
-          (
-            (
-              currentQuestion + 1
-            ) /
-            questions.length
-          ) * 100
-        }%`;
+      getElement("progressBar").style.width =
+        `${((currentQuestion + 1) / questions.length) * 100}%`;
 
-      if(
-        currentQuestion ===
-        questions.length - 1
-      ){
-        getElement("nextBtn").textContent =
-          "عرض النتيجة";
-      }else{
-        getElement("nextBtn").textContent =
-          "السؤال التالي";
-      }
+      getElement("nextBtn").textContent =
+        currentQuestion === questions.length - 1
+          ? "عرض النتيجة"
+          : "السؤال التالي";
 
-      getElement("nextBtn")
-        .classList.remove("hidden");
+      getElement("nextBtn").classList.remove("hidden");
     }
 
     function showResult(){
-
       localStorage.setItem(
         "grammarScore",
         String(score)
@@ -1188,11 +1163,8 @@ explanation:
         "true"
       );
 
-      getElement("quizScreen")
-        .classList.add("hidden");
-
-      getElement("resultScreen")
-        .classList.remove("hidden");
+      getElement("quizScreen").classList.add("hidden");
+      getElement("resultScreen").classList.remove("hidden");
 
       getElement("finalScore").textContent =
         toArabicNumber(score);
@@ -1200,53 +1172,35 @@ explanation:
       getElement("resultName").textContent =
         `الطالبة: ${studentFullName}`;
 
-      if(score >= 27){
-
-        getElement("resultEmoji").textContent =
-          "🎉";
-
-        getElement("resultTitle").textContent =
-          "تفوق رائع!";
-
+      if(score === 30){
+        getElement("resultEmoji").textContent = "🎉";
+        getElement("resultTitle").textContent = "درجة كاملة!";
         getElement("resultMessage").textContent =
-          "تم حفظ درجتكِ في الوظيفة النحوية. انتقلي إلى الاختبار التالي.";
+          "أداء متميز في الوظيفة النحوية، وتم حفظ درجتكِ بنجاح.";
 
         launchBalloons();
-
         playSound(true);
-
-      }else if(score >= 21){
-
-        getElement("resultEmoji").textContent =
-          "🌟";
-
-        getElement("resultTitle").textContent =
-          "أحسنتِ جدًا";
-
+      }else if(score >= 27){
+        getElement("resultEmoji").textContent = "🌟";
+        getElement("resultTitle").textContent = "تفوق رائع!";
         getElement("resultMessage").textContent =
-          "تم حفظ درجتكِ في الوظيفة النحوية. انتقلي إلى الاختبار التالي.";
-
+          "أداء متميز، واصلي تألقكِ.";
+      }else if(score >= 24){
+        getElement("resultEmoji").textContent = "👏";
+        getElement("resultTitle").textContent = "أحسنتِ جدًا";
+        getElement("resultMessage").textContent =
+          "أداء رائع، وبخطوات قليلة تبلغين القمة.";
       }else if(score >= 15){
-
-        getElement("resultEmoji").textContent =
-          "👍";
-
-        getElement("resultTitle").textContent =
-          "محاولة جيدة";
-
+        getElement("resultEmoji").textContent = "👍";
+        getElement("resultTitle").textContent = "محاولة جيدة";
         getElement("resultMessage").textContent =
-          "تم حفظ درجتكِ في الوظيفة النحوية.";
-
+          "تم حفظ درجتكِ، وراجعي ما أخطأتِ فيه لتحسين نتيجتكِ.";
       }else{
-
-        getElement("resultEmoji").textContent =
-          "📚";
-
+        getElement("resultEmoji").textContent = "📚";
         getElement("resultTitle").textContent =
           "تحتاجين إلى مراجعة";
-
         getElement("resultMessage").textContent =
-          "تم حفظ درجتكِ، ويمكنكِ إعادة الاختبار لتحسينها.";
+          "محاولة طيبة، راجعي الدروس وأعيدي الاختبار لتحسين درجتكِ.";
       }
 
       window.scrollTo({
@@ -1255,97 +1209,74 @@ explanation:
       });
     }
 
-    getElement("startBtn")
-      .addEventListener(
-        "click",
-        startQuiz
-      );
+    getElement("startBtn").addEventListener(
+      "click",
+      startQuiz
+    );
 
-    getElement("nextBtn")
-      .addEventListener(
-        "click",
-        () => {
-
-          if(!answered){
-            return;
-          }
-
-          if(
-            currentQuestion <
-            questions.length - 1
-          ){
-            currentQuestion++;
-
-            renderQuestion();
-
-            window.scrollTo({
-              top:0,
-              behavior:"smooth"
-            });
-
-          }else{
-
-            showResult();
-          }
+    getElement("nextBtn").addEventListener(
+      "click",
+      () => {
+        if(!answered){
+          return;
         }
-      );
 
-    getElement("retryBtn")
-      .addEventListener(
-        "click",
-        () => {
-
-          currentQuestion = 0;
-          score = 0;
-          answered = false;
-
-          getElement("resultScreen")
-            .classList.add("hidden");
-
-          getElement("quizScreen")
-            .classList.remove("hidden");
-
-          getElement("liveScore").textContent =
-            "٠";
-
+        if(currentQuestion < questions.length - 1){
+          currentQuestion++;
           renderQuestion();
 
           window.scrollTo({
             top:0,
             behavior:"smooth"
           });
+        }else{
+          showResult();
         }
-      );
+      }
+    );
 
-    getElement("studentName")
-      .addEventListener(
-        "keydown",
-        event => {
+    getElement("retryBtn").addEventListener(
+      "click",
+      () => {
+        currentQuestion = 0;
+        score = 0;
+        answered = false;
 
-          if(event.key === "Enter"){
-            startQuiz();
-          }
+        getElement("resultScreen").classList.add("hidden");
+        getElement("quizScreen").classList.remove("hidden");
+        getElement("liveScore").textContent = "٠";
+
+        renderQuestion();
+
+        window.scrollTo({
+          top:0,
+          behavior:"smooth"
+        });
+      }
+    );
+
+    getElement("studentName").addEventListener(
+      "keydown",
+      event => {
+        if(event.key === "Enter"){
+          startQuiz();
         }
-      );
+      }
+    );
 
     const savedName =
       localStorage.getItem(
         "semester1_student_full_name"
-      )
-      ||
+      ) ||
       localStorage.getItem(
         "studentFullName"
-      )
-      ||
+      ) ||
       "";
 
     if(savedName){
-      getElement("studentName").value =
-        savedName;
+      getElement("studentName").value = savedName;
     }
   </script>
 
 </body>
 </html>
-      
-         
