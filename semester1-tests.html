@@ -302,9 +302,21 @@
           وجمع الدرجات من ١٠٠.
         </p>
 
-        <div class="lock">
-          🔒 غير متاحة حاليًا
-        </div>
+      <div id="finalResult" class="lock"></div>
+
+<script>
+const total =
+(Number(localStorage.getItem("semester1_grammar_score")) || 0) +
+(Number(localStorage.getItem("semester1_spelling_score")) || 0) +
+(Number(localStorage.getItem("semester1_linguistic_score")) || 0) +
+(Number(localStorage.getItem("semester1_style_score")) || 0) +
+(Number(localStorage.getItem("semester1_writing_score")) || 0);
+
+document.getElementById("finalResult").innerHTML =
+"🏆 مجموع درجاتك: <b>" + total + " / 100</b>";
+</script>
+          
+        
       </section>
 
     </div>
