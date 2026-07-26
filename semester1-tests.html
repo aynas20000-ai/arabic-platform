@@ -305,16 +305,30 @@
       <div id="finalResult" class="lock"></div>
 
 <script>
+<script>
+function getScore(...keys){
+  for(const key of keys){
+    const value = localStorage.getItem(key);
+
+    if(value !== null && value !== ""){
+      return Number(value) || 0;
+    }
+  }
+
+  return 0;
+}
+
 const total =
-(Number(localStorage.getItem("semester1_grammar_score")) || 0) +
-(Number(localStorage.getItem("semester1_spelling_score")) || 0) +
-(Number(localStorage.getItem("semester1_linguistic_score")) || 0) +
-(Number(localStorage.getItem("semester1_style_score")) || 0) +
-(Number(localStorage.getItem("semester1_writing_score")) || 0);
+  getScore("semester1_grammar_score","grammarScore") +
+  getScore("semester1_spelling_score","spellingScore") +
+  getScore("semester1_linguistic_score","languageScore","linguisticScore") +
+  getScore("semester1_style_score","styleScore") +
+  getScore("semester1_writing_score","writingScore","ruqahScore");
 
 document.getElementById("finalResult").innerHTML =
-"🏆 مجموع درجاتك: <b>" + total + " / 100</b>";
+  "🏆 مجموع درجاتك: <b>" + total + " / 100</b>";
 </script>
+
           
         
       </section>
