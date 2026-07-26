@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>اختبار الصنف اللغوي | منصة آفاق اللغة</title>
+
+  <style>
+    *{
+      box-sizing:border-box;
+    }
+
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family:Tahoma,Arial,sans-serif;
+      color:#30263b;
+      background:
+        radial-gradient(
+          circle at top right,
+          rgba(140,88,176,.15),
+          transparent 35%
+        ),
+        linear-gradient(
+          180deg,
+          #fcf9fe,
+          #f8f4fb
+        );
+    }
+
+    button,
+    input{
+      font:inherit;
+    }
+
+    .hidden{
+      display:none !important;
+    }
+
+    header{
+      padding:22px 15px;
+      text-align:center;
+      color:#ffffff;
+      background:
+        linear-gradient(
+          135deg,
+          #60358b,
+          #432260
+        );
+      box-shadow:
+        0 8px 24px rgba(67,34,96,.22);
+    }
+
+    header h1{
+      margin:0 0 8px;
+      font-size:clamp(26px,6vw,40px);
+    }
+
+    header p{
+      margin:0;
+      color:#f8edcf;
+      font-size:17px;
+      line-height:1.8;
+    }
+
+    main{
+      width:min(920px,calc(100% - 24px));
+      margin:24px auto 45px;
+    }
+
+    .card{
+      padding:20px;
+      background:#ffffff;
+      border:1px solid #e4dbea;
+      border-radius:22px;
+      box-shadow:
+        0 12px 32px rgba(69,43,91,.10);
+    }
+
+    .center{
+      max-width:760px;
+      margin:35px auto;
+      text-align:center;
+    }
+
+    .icon{
+      font-size:55px;
+      margin-bottom:8px;
+    }
+
+    h2{
+      color:#60358b;
+      line-height:1.7;
+    }
+
+    p{
+      color:#766d7d;
+      line-height:1.9;
+    }
+
+    .label{
+      display:block;
+      margin:18px 0 8px;
+      text-align:right;
+      color:#60358b;
+      font-weight:bold;
+    }
+
+    #studentName{
+      width:100%;
+      padding:14px;
+      border:2px solid #e4dbea;
+      border-radius:14px;
+      outline:none;
+      background:#ffffff;
+    }
+
+    #studentName:focus{
+      border-color:#8c58b0;
+      box-shadow:
+        0 0 0 4px rgba(140,88,176,.12);
+    }
+
+    .error{
+      min-height:26px;
+      margin-top:8px;
+      color:#b3261e;
+      font-weight:bold;
+    }
+
+    .actions{
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:13px 20px;
+      border:0;
+      border-radius:14px;
+      font-weight:bold;
+      cursor:pointer;
+      text-decoration:none;
+    }
+
+    .primary{
+      color:#ffffff;
+      background:
+        linear-gradient(
+          135deg,
+          #8c58b0,
+          #60358b
+        );
+    }
+
+    .secondary{
+      color:#60358b;
+      background:#f1e9f7;
+    }
+
+    .row{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      color:#60358b;
+      font-weight:bold;
+    }
+
+    .progress{
+      height:14px;
+      margin-top:12px;
+      overflow:hidden;
+      border-radius:999px;
+      background:#ece6f1;
+    }
+
+    #progressBar{
+      width:0;
+      height:100%;
+      background:
+        linear-gradient(
+          90deg,
+          #dfa03d,
+          #f1cf7c
+        );
+      transition:width .35s ease;
+    }
+
+    .meta{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      margin-top:12px;
+      color:#766d7d;
+      font-weight:bold;
+    }
+
+    .question-card{
+      margin-top:18px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .question-card::before{
+      content:"";
+      position:absolute;
+      top:0;
+      right:0;
+      left:0;
+      height:6px;
+      background:
+        linear-gradient(
+          90deg,
+          #dfa03d,
+          #f4db9d,
+          #dfa03d
+        );
+    }
+
+    .lesson-badge{
+      display:inline-block;
+      margin:8px 0 4px;
+      padding:7px 13px;
+      border-radius:999px;
+      color:#60358b;
+      background:#f3ecf8;
+      font-weight:bold;
+    }
+
+    #questionText{
+      margin:12px 0 20px;
+      color:#39254b;
+      font-size:clamp(22px,5vw,30px);
+      line-height:1.8;
+    }
+
+    .choices{
+      display:grid;
+      gap:12px;
+    }
+
+    .choice{
+      width:100%;
+      padding:14px 16px;
+      text-align:right;
+      color:#30263b;
+      background:#ffffff;
+      border:2px solid #e4dbea;
+      border-radius:15px;
+      font-size:18px;
+      line-height:1.8;
+      cursor:pointer;
+      transition:.18s;
+    }
+
+    .choice:hover:not(:disabled){
+      border-color:#b394c9;
+      background:#fcf9fe;
+      transform:translateY(-1px);
+    }
+
+    .choice:disabled{
+      cursor:default;
+    }
+
+    .choice.correct{
+      color:#14543d;
+      background:#eaf8f2;
+      border-color:#34785f;
+      font-weight:bold;
+    }
+
+    .choice.wrong{
+      color:#8d1f1a;
+      background:#fdecea;
+      border-color:#b3261e;
+      font-weight:bold;
+    }
+
+    .feedback{
+      margin-top:18px;
+      padding:15px;
+      border-radius:15px;
+      line-height:1.9;
+      font-weight:bold;
+    }
+
+    .correct-feedback{
+      color:#14543d;
+      background:#eaf8f2;
+      border:1px solid #add8c8;
+    }
+
+    .wrong-feedback{
+      color:#8d1f1a;
+      background:#fdecea;
+      border:1px solid #efb5b0;
+    }
+
+    .next-wrap{
+      display:flex;
+      justify-content:flex-end;
+      margin-top:18px;
+    }
+
+    .score-circle{
+      width:150px;
+      height:150px;
+      margin:20px auto;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+      color:#ffffff;
+      background:
+        linear-gradient(
+          145deg,
+          #60358b,
+          #8c58b0
+        );
+      border:7px solid #ead69e;
+      border-radius:50%;
+      box-shadow:
+        0 12px 28px rgba(96,53,139,.22);
+    }
+
+    .score-circle strong{
+      font-size:43px;
+      line-height:1;
+    }
+
+    .score-circle span{
+      margin-top:7px;
+    }
+
+    .saved-note{
+      max-width:600px;
+      margin:18px auto;
+      padding:15px;
+      color:#60358b;
+      background:#f3ecf8;
+      border-radius:16px;
+      font-weight:bold;
+      line-height:1.9;
+    }
+
+    .balloon{
+      position:fixed;
+      bottom:-120px;
+      z-index:9999;
+      width:40px;
+      height:52px;
+      border-radius:50%;
+      pointer-events:none;
+      animation:flyUp 3.8s ease-in forwards;
+    }
+
+    @keyframes flyUp{
+      from{
+        transform:translateY(0);
+        opacity:1;
+      }
+
+      to{
+        transform:translateY(-125vh);
+        opacity:.1;
+      }
+    }
+
+    @media(max-width:600px){
+      .card{
+        padding:16px;
+      }
+
+      .choice{
+        font-size:17px;
+      }
+
+      .next-wrap .btn{
+        width:100%;
+      }
+
+      .row,
+      .meta{
+        font-size:14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>🔤 اختبار الصنف اللغوي</h1>
+    <p>
+      اسم الفاعل واسم المفعول وصيغ المبالغة
+      — ١٠ أسئلة — ٢٠ درجة
+    </p>
+  </header>
+
+  <main>
+
+    <section
+      id="startScreen"
+      class="card center"
+    >
+
+      <div class="icon">🌷</div>
+
+      <h2>مرحبًا بكِ يا مبدعة</h2>
+
+      <p>
+        يتكوّن الاختبار من عشرة أسئلة،
+        ولكل سؤال درجتان.
+        اكتبي اسم الطالبة الرباعي قبل البدء.
+      </p>
+
+      <label
+        class="label"
+        for="studentName"
+      >
+        اسم الطالبة الرباعي:
+      </label>
+
+      <input
+        id="studentName"
+        type="text"
+        maxlength="80"
+        autocomplete="name"
+        placeholder="مثال: سارة محمد علي أحمد"
+      >
+
+      <div
+        id="nameError"
+        class="error"
+        aria-live="polite"
+      ></div>
+
+      <div class="actions">
+
+        <button
+          id="startBtn"
+          class="btn primary"
+          type="button"
+        >
+          ابدئي الاختبار
+        </button>
+
+        <a
+          class="btn secondary"
+          href="semester1-tests.html"
+        >
+          العودة للاختبارات
+        </a>
+
+      </div>
+
+    </section>
+
+    <section
+      id="quizScreen"
+      class="hidden"
+    >
+
+      <div class="card">
+
+        <div class="row">
+
+          <span>
+            الطالبة:
+            <strong id="shownName"></strong>
+          </span>
+
+          <span>
+            الدرجة الحالية:
+            <strong id="liveScore">٠</strong>
+            / ٢٠
+          </span>
+
+        </div>
+
+        <div class="progress">
+          <div id="progressBar"></div>
+        </div>
+
+        <div class="meta">
+          <span id="questionCounter"></span>
+          <span>لكل سؤال درجتان</span>
+        </div>
+
+      </div>
+
+      <section class="card question-card">
+
+        <div
+          id="lessonBadge"
+          class="lesson-badge"
+        ></div>
+
+        <h2 id="questionText"></h2>
+
+        <div
+          id="choices"
+          class="choices"
+        ></div>
+
+        <div
+          id="feedback"
+          class="feedback hidden"
+          aria-live="polite"
+        ></div>
+
+        <div class="next-wrap">
+
+          <button
+            id="nextBtn"
+            class="btn primary hidden"
+            type="button"
+          >
+            السؤال التالي
+          </button>
+
+        </div>
+
+      </section>
+
+    </section>
+
+    <section
+      id="resultScreen"
+      class="card center hidden"
+    >
+
+      <div
+        id="resultEmoji"
+        class="icon"
+      >
+        🎉
+      </div>
+
+      <h2 id="resultTitle">
+        أحسنتِ
+      </h2>
+
+      <p id="resultName"></p>
+
+      <div class="score-circle">
+
+        <strong id="finalScore">
+          ٠
+        </strong>
+
+        <span>
+          من ٢٠
+        </span>
+
+      </div>
+
+      <p id="resultMessage"></p>
+
+      <div class="saved-note">
+        ✅ تم حفظ اسم الطالبة ودرجة الصنف اللغوي،
+        وستُضاف إلى المجموع النهائي من ١٠٠ درجة.
+      </div>
+
+      <div class="actions">
+
+        <button
+          id="retryBtn"
+          class="btn primary"
+          type="button"
+        >
+          إعادة الاختبار
+        </button>
+
+        <a
+          class="btn secondary"
+          href="semester1-tests.html"
+        >
+          العودة للاختبارات
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <script>
+    const questions = [
+      {
+        lesson: "اسم الفاعل",
+
+        question:
+          "ما اسم الفاعل من الفعل «كتبَ»؟",
+
+        choices: [
+          "مكتوب",
+          "كاتب",
+          "كتّاب",
+          "مكتب"
+        ],
+
+        answer: 1,
+
+        explanation:
+          "اسم الفاعل من الفعل الثلاثي يُصاغ غالبًا على وزن «فاعل»: كتبَ ← كاتب."
+      },
+
+      {
+        lesson: "اسم الفاعل",
+
+        question:
+          "ما اسم الفاعل من الفعل غير الثلاثي «سافرَ»؟",
+
+        choices: [
+          "مُسافِر",
+          "مُسافَر",
+          "سافور",
+          "مسفور"
+        ],
+
+        answer: 0,
+
+        explanation:
+          "يُصاغ اسم الفاعل من غير الثلاثي من مضارعه، بإبدال حرف المضارعة ميمًا مضمومة وكسر ما قبل الآخر: يسافرُ ← مُسافِر."
+      },
+
+      {
+        lesson: "اسم الفاعل",
+
+        question:
+          "ما اسم الفاعل من الفعل الأجوف «قالَ»؟",
+
+        choices: [
+          "قائل",
+          "مقول",
+          "قوّال",
+          "قيّال"
+        ],
+
+        answer: 0,
+
+        explanation:
+          "اسم الفاعل من «قالَ» هو «قائل»، وقد قُلبت ألف الفعل همزة عند صياغته على وزن «فاعل»."
+      },
+
+      {
+        lesson: "اسم الفاعل",
+
+        question:
+          "ما اسم الفاعل من الفعل الناقص «دعا»؟",
+
+        choices: [
+          "داعٍ",
+          "مدعوّ",
+          "دعّاء",
+          "دعوان"
+        ],
+
+        answer: 0,
+
+        explanation:
+          "اسم الفاعل من «دعا» هو «داعٍ»، وتحذف ياؤه عند التنكير في حالتي الرفع والجر."
+      },
+
+      {
+        lesson: "اسم المفعول",
+
+        question:
+          "ما اسم المفعول من الفعل غير الثلاثي «استخرجَ»؟",
+
+        choices: [
+          "مُستخرِج",
+          "مُستخرَج",
+          "خارج",
+          "مُخرَج"
+        ],
+
+        answer: 1,
+
+        explanation:
+          "يُصاغ اسم المفعول من غير الثلاثي من مضارعه، بإبدال حرف المضارعة ميمًا مضمومة وفتح ما قبل الآخر: يُستخرَج ← مُستخرَج."
+      },
+
+      {
+        lesson: "اسم المفعول",
+
+        question:
+          "ما اسم المفعول من الفعل الأجوف «قالَ»؟",
+
+        choices: [
+          "قائل",
+          "مقول",
+          "قوّال",
+          "مقيول"
+        ],
+
+        answer: 1,
+
+        explanation:
+          "اسم المفعول من الفعل «قالَ» هو «مقول»."
+      },
+
+      {
+        lesson: "اسم المفعول",
+
+        question:
+          "ما اسم المفعول من الفعل الناقص «دعا»؟",
+
+        choices: [
+          "داعٍ",
+          "مدعوّ",
+          "دعّاء",
+          "مدعيّ"
+        ],
+
+        answer: 1,
+
+        explanation:
+          "اسم المفعول من الفعل «دعا» هو «مدعوّ»."
+      },
+
+      {
+        lesson: "اسم المفعول",
+
+        question:
+          "ما اسم المفعول من الفعل «باعَ»؟",
+
+        choices: [
+          "بائع",
+          "مبيع",
+          "بيّاع",
+          "مبوع"
+        ],
+
+        answer: 1,
+
+        explanation:
+          "اسم المفعول من الفعل الأجوف «باعَ» هو «مبيع»."
+      },
+
+      {
+        lesson: "صيغة المبالغة",
+
+        question:
+          "ما صيغة المبالغة من الفعل «غفرَ» على وزن «فعّال»؟",
+
+        choices: [
+          "غافر",
+          "مغفور",
+          "غفّار",
+          "غفور"
+        ],
+
+        answer: 2,
+
+        explanation:
+          "«غفّار» صيغة مبالغة على وزن «فعّال»، أما «غفور» فهي على وزن «فعول»."
+      },
+
+      {
+        lesson: "صيغة المبالغة",
+
+        question:
+          "كلمة «علّام» في قولنا: «علّامُ الغيوبِ» صيغة مبالغة على وزن:",
+
+        choices: [
+          "فعيل",
+          "فعّال",
+          "مِفعال",
+          "فَعِل"
+        ],
+
+        answer: 1,
+
+        explanation:
+          "كلمة «علّام» على وزن «فعّال»، وهو أحد أوزان صيغ المبالغة."
+      }
+    ];
+
+    const getElement = id =>
+      document.getElementById(id);
+
+    let currentQuestion = 0;
+    let score = 0;
+    let answered = false;
+    let studentFullName = "";
+    let audioContext = null;
+
+    function toArabicNumber(value){
+      return String(value).replace(
+        /\d/g,
+        digit => "٠١٢٣٤٥٦٧٨٩"[digit]
+      );
+    }
+
+    function normalizeName(name){
+      return name
+        .trim()
+        .replace(/\s+/g," ");
+    }
+
+    function isFourPartName(name){
+      return normalizeName(name)
+        .split(" ")
+        .filter(Boolean)
+        .length >= 4;
+    }
+
+    function initializeAudio(){
+      const AudioClass =
+        window.AudioContext ||
+        window.webkitAudioContext;
+
+      if(!AudioClass){
+        return;
+      }
+
+      if(!audioContext){
+        audioContext =
+          new AudioClass();
+      }
+
+      if(audioContext.state === "suspended"){
+        audioContext.resume();
+      }
+    }
+
+    function playSound(isCorrect){
+      initializeAudio();
+
+      if(!audioContext){
+        return;
+      }
+
+      const notes =
+        isCorrect
+          ? [523.25,659.25,783.99]
+          : [250,185];
+
+      const currentTime =
+        audioContext.currentTime;
+
+      notes.forEach(
+        (frequency,index) => {
+
+          const oscillator =
+            audioContext.createOscillator();
+
+          const gain =
+            audioContext.createGain();
+
+          oscillator.type =
+            isCorrect
+              ? "sine"
+              : "triangle";
+
+          oscillator.frequency.value =
+            frequency;
+
+          oscillator.connect(gain);
+
+          gain.connect(
+            audioContext.destination
+          );
+
+          const startTime =
+            currentTime +
+            index * .13;
+
+          gain.gain.setValueAtTime(
+            .0001,
+            startTime
+          );
+
+          gain.gain.exponentialRampToValueAtTime(
+            .3,
+            startTime + .025
+          );
+
+          gain.gain.exponentialRampToValueAtTime(
+            .0001,
+            startTime + .23
+          );
+
+          oscillator.start(startTime);
+
+          oscillator.stop(
+            startTime + .25
+          );
+        }
+      );
+    }
+
+    function launchBalloons(){
+      const colors = [
+        "#ff6b81",
+        "#ffd166",
+        "#54c6eb",
+        "#8e7dff",
+        "#55d6a5"
+      ];
+
+      for(let index = 0; index < 8; index++){
+
+        const balloon =
+          document.createElement("div");
+
+        balloon.className =
+          "balloon";
+
+        balloon.style.left =
+          Math.random() * 92 + "vw";
+
+        balloon.style.background =
+          colors[
+            Math.floor(
+              Math.random() *
+              colors.length
+            )
+          ];
+
+        balloon.style.animationDelay =
+          Math.random() * .5 + "s";
+
+        document.body.appendChild(
+          balloon
+        );
+
+        setTimeout(
+          () => balloon.remove(),
+          4200
+        );
+      }
+    }
+
+    function startQuiz(){
+      initializeAudio();
+
+      const name =
+        normalizeName(
+          getElement("studentName").value
+        );
+
+      if(!name){
+        getElement("nameError").textContent =
+          "اكتبي اسم الطالبة الرباعي أولًا.";
+
+        getElement("studentName").focus();
+
+        return;
+      }
+
+      if(!isFourPartName(name)){
+        getElement("nameError").textContent =
+          "يرجى كتابة الاسم الرباعي كاملًا، أربعة أسماء على الأقل.";
+
+        getElement("studentName").focus();
+
+        return;
+      }
+
+      getElement("nameError").textContent =
+        "";
+
+      studentFullName = name;
+
+      localStorage.setItem(
+        "studentFullName",
+        studentFullName
+      );
+
+      localStorage.setItem(
+        "semester1_student_full_name",
+        studentFullName
+      );
+
+      currentQuestion = 0;
+      score = 0;
+      answered = false;
+
+      getElement("shownName").textContent =
+        studentFullName;
+
+      getElement("liveScore").textContent =
+        "٠";
+
+      getElement("startScreen")
+        .classList.add("hidden");
+
+      getElement("resultScreen")
+        .classList.add("hidden");
+
+      getElement("quizScreen")
+        .classList.remove("hidden");
+
+      renderQuestion();
+
+      window.scrollTo({
+        top:0,
+        behavior:"smooth"
+      });
+    }
+
+    function renderQuestion(){
+      answered = false;
+
+      const item =
+        questions[currentQuestion];
+
+      getElement("questionCounter").textContent =
+        `السؤال ${toArabicNumber(
+          currentQuestion + 1
+        )} من ${toArabicNumber(
+          questions.length
+        )}`;
+
+      getElement("progressBar").style.width =
+        `${
+          (
+            currentQuestion /
+            questions.length
+          ) * 100
+        }%`;
+
+      getElement("lessonBadge").textContent =
+        `الدرس: ${item.lesson}`;
+
+      getElement("questionText").textContent =
+        item.question;
+
+      getElement("choices").innerHTML =
+        "";
+
+      getElement("feedback").className =
+        "feedback hidden";
+
+      getElement("feedback").textContent =
+        "";
+
+      getElement("nextBtn")
+        .classList.add("hidden");
+
+      item.choices.forEach(
+        (choice,index) => {
+
+          const button =
+            document.createElement("button");
+
+          button.type =
+            "button";
+
+          button.className =
+            "choice";
+
+          button.textContent =
+            `${
+              ["أ","ب","ج","د"][index]
+            }) ${choice}`;
+
+          button.addEventListener(
+            "click",
+            () => {
+              selectAnswer(
+                index,
+                button
+              );
+            }
+          );
+
+          getElement("choices")
+            .appendChild(button);
+        }
+      );
+    }
+
+    function selectAnswer(
+      selectedIndex,
+      selectedButton
+    ){
+      if(answered){
+        return;
+      }
+
+      answered = true;
+
+      const item =
+        questions[currentQuestion];
+
+      const buttons =
+        [
+          ...document.querySelectorAll(
+            ".choice"
+          )
+        ];
+
+      buttons.forEach(
+        button => {
+          button.disabled = true;
+        }
+      );
+
+      buttons[item.answer]
+        .classList.add("correct");
+
+      if(selectedIndex === item.answer){
+
+        score += 2;
+        selectedButton
+          .classList.add("correct");
+
+        getElement("feedback").className =
+          "feedback correct-feedback";
+
+        getElement("feedback").innerHTML =
+          `✅ إجابة صحيحة.<br>${item.explanation}`;
+
+        playSound(true);
+
+        launchBalloons();
+
+      }else{
+
+        selectedButton
+          .classList.add("wrong");
+
+        getElement("feedback").className =
+          "feedback wrong-feedback";
+
+        getElement("feedback").innerHTML =
+          `❌ إجابة غير صحيحة.<br>${item.explanation}`;
+
+        playSound(false);
+      }
+
+      getElement("liveScore").textContent =
+        toArabicNumber(score);
+
+      getElement("progressBar").style.width =
+        `${
+          (
+            (
+              currentQuestion + 1
+            ) /
+            questions.length
+          ) * 100
+        }%`;
+
+      if(
+        currentQuestion ===
+        questions.length - 1
+      ){
+        getElement("nextBtn").textContent =
+          "عرض النتيجة";
+      }else{
+        getElement("nextBtn").textContent =
+          "السؤال التالي";
+      }
+
+      getElement("nextBtn")
+        .classList.remove("hidden");
+    }
+
+    function showResult(){
+
+      localStorage.setItem(
+        "languageClassScore",
+        String(score)
+      );
+
+      localStorage.setItem(
+        "semester1_language_class_score",
+        String(score)
+      );
+
+      localStorage.setItem(
+        "semester1_language_class_total",
+        "20"
+      );
+
+      localStorage.setItem(
+        "semester1_language_class_completed",
+        "true"
+      );
+
+      getElement("quizScreen")
+        .classList.add("hidden");
+
+      getElement("resultScreen")
+        .classList.remove("hidden");
+
+      getElement("finalScore").textContent =
+        toArabicNumber(score);
+
+      getElement("resultName").textContent =
+        `الطالبة: ${studentFullName}`;
+
+      if(score === 20){
+
+        getElement("resultEmoji").textContent =
+          "🎉";
+
+        getElement("resultTitle").textContent =
+          "درجة كاملة!";
+
+        getElement("resultMessage").textContent =
+          "أداء متميز في الصنف اللغوي، وتم حفظ درجتكِ بنجاح.";
+
+        launchBalloons();
+
+        playSound(true);
+
+      }else if(score >= 18){
+
+        getElement("resultEmoji").textContent =
+          "🌟";
+
+        getElement("resultTitle").textContent =
+          "تفوق رائع!";
+
+        getElement("resultMessage").textContent =
+          "أداء متميز، واصلي تألقكِ.";
+
+      }else if(score >= 16){
+
+        getElement("resultEmoji").textContent =
+          "👏";
+
+        getElement("resultTitle").textContent =
+          "أحسنتِ جدًا";
+
+        getElement("resultMessage").textContent =
+          "أداء رائع، وبخطوات قليلة تبلغين القمة.";
+
+      }else if(score >= 10){
+
+        getElement("resultEmoji").textContent =
+          "👍";
+
+        getElement("resultTitle").textContent =
+          "محاولة جيدة";
+
+        getElement("resultMessage").textContent =
+          "تم حفظ درجتكِ، وراجعي ما أخطأتِ فيه لتحسين نتيجتكِ.";
+
+      }else{
+
+        getElement("resultEmoji").textContent =
+          "📚";
+
+        getElement("resultTitle").textContent =
+          "تحتاجين إلى مراجعة";
+
+        getElement("resultMessage").textContent =
+          "محاولة طيبة، راجعي الدروس وأعيدي الاختبار لتحسين درجتكِ.";
+      }
+
+      window.scrollTo({
+        top:0,
+        behavior:"smooth"
+      });
+    }
+
+    getElement("startBtn")
+      .addEventListener(
+        "click",
+        startQuiz
+      );
+
+    getElement("nextBtn")
+      .addEventListener(
+        "click",
+        () => {
+
+          if(!answered){
+            return;
+          }
+
+          if(
+            currentQuestion <
+            questions.length - 1
+          ){
+            currentQuestion++;
+
+            renderQuestion();
+
+            window.scrollTo({
+              top:0,
+              behavior:"smooth"
+            });
+
+          }else{
+
+            showResult();
+          }
+        }
+      );
+
+    getElement("retryBtn")
+      .addEventListener(
+        "click",
+        () => {
+
+          currentQuestion = 0;
+          score = 0;
+          answered = false;
+
+          getElement("resultScreen")
+            .classList.add("hidden");
+
+          getElement("quizScreen")
+            .classList.remove("hidden");
+
+          getElement("liveScore").textContent =
+            "٠";
+
+          renderQuestion();
+
+          window.scrollTo({
+            top:0,
+            behavior:"smooth"
+          });
+        }
+      );
+
+    getElement("studentName")
+      .addEventListener(
+        "keydown",
+        event => {
+
+          if(event.key === "Enter"){
+            startQuiz();
+          }
+        }
+      );
+
+    const savedName =
+      localStorage.getItem(
+        "semester1_student_full_name"
+      )
+      ||
+      localStorage.getItem(
+        "studentFullName"
+      )
+      ||
+      "";
+
+    if(savedName){
+      getElement("studentName").value =
+        savedName;
+    }
+  </script>
+
+</body>
+</html>
+        
+        
