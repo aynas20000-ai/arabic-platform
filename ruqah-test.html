@@ -693,12 +693,22 @@
       document.getElementById("progressBar");
 
     window.addEventListener("load", function () {
-      const savedName =
-        localStorage.getItem("semester1StudentName") || "";
+  const savedName =
+    localStorage.getItem("semester1_student_full_name") ||
+    localStorage.getItem("studentFullName") ||
+    localStorage.getItem("semester1StudentName") ||
+    "";
 
-      document.getElementById("studentName").value =
-        savedName;
-    });
+  if (savedName) {
+    document.getElementById("studentName").value = savedName;
+  }
+});
+      
+      
+
+      
+        
+    
 
     function startTest() {
       const name =
