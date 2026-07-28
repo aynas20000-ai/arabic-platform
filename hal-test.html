@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,413 +8,646 @@
   <title>اختبار درس الحال</title>
 
   <style>
-    body{
-      margin:0;
-      font-family:Tahoma,Arial,sans-serif;
-      background:#f7f9ff;
-      color:#243247;
-      line-height:1.8;
+    * {
+      box-sizing: border-box;
     }
 
-    header{
-      color:white;
-      text-align:center;
-      padding:30px 15px;
-      border-bottom:3px solid #d7a84b;
+    html,
+    body {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      overflow-x: hidden;
     }
 
-    header h1{
-      margin:0;
-      font-size:30px;
+    body {
+      min-height: 100vh;
+      font-family: Tahoma, Arial, sans-serif;
+      color: #4b3a57;
+      line-height: 1.8;
+      background: linear-gradient(180deg, #fffaf2, #f8f0fb);
     }
 
-    .container{
-      width:90%;
-      max-width:800px;
-      margin:25px auto;
+    header {
+      padding: 38px 20px;
+      color: white;
+      text-align: center;
+      background: linear-gradient(135deg, #776094, #5b4677);
+      border-bottom: 4px solid #c9a85c;
     }
 
-    .name-box,
+    header h1 {
+      margin: 0 0 10px;
+      color: #fffdf8;
+      font-size: 32px;
+      line-height: 1.6;
+    }
+
+    header p {
+      margin: 0;
+      color: #f7effb;
+      font-size: 17px;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 800px;
+      margin: 25px auto;
+    }
+
     .question,
-    .result{
-      background:#0d223b;
-      border:1px solid #36506b;
-      border-radius:18px;
-      padding:22px;
-      margin-bottom:20px;
-      box-shadow:0 4px 12px rgba(0,0,0,0.25);
+    .result {
+      margin-bottom: 20px;
+      padding: 22px;
+      color: #4b3a57;
+      background: #fffdf8;
+      border: 2px solid #c9a85c;
+      border-radius: 18px;
+      box-shadow: 0 6px 16px rgba(91, 63, 111, 0.11);
     }
 
-    label{
-      display:block;
-      margin:10px 0;
-      cursor:pointer;
+    .question {
+      text-align: right;
     }
 
-    input[type="text"]{
-      width:90%;
-      padding:14px;
-      border-radius:12px;
-      border:1px solid #7f95aa;
-      font-size:18px;
-      text-align:right;
+    label {
+      display: block;
+      margin: 12px 0;
+      cursor: pointer;
     }
 
-    input[type="radio"]{
-      transform:scale(1.3);
-      margin-left:8px;
+    input[type="radio"] {
+      margin-left: 8px;
+      accent-color: #6f5288;
+      transform: scale(1.25);
     }
 
-    h2{
-      color:#f2c15c;
-      font-size:22px;
+    h2 {
+      margin-top: 0;
+      color: #5d4374;
+      font-size: 22px;
+      line-height: 1.7;
     }
 
-    .feedback{
-      margin-top:12px;
-      font-weight:bold;
-      min-height:30px;
+    .feedback {
+      min-height: 30px;
+      margin-top: 12px;
+      font-weight: bold;
     }
 
-    .correct{
-      color:#70e69a;
+    .correct {
+      color: #287a45;
     }
 
-    .wrong{
-      color:#ff9a9a;
+    .wrong {
+      color: #b34b59;
     }
 
-    button{
-      width:100%;
-      padding:16px;
-      border:none;
-      border-radius:14px;
-      background:#1f8f4a;
-      color:white;
-      font-size:20px;
-      font-weight:bold;
-      cursor:pointer;
-      margin-top:12px;
+    button {
+      width: 100%;
+      margin-top: 12px;
+      padding: 16px;
+      color: white;
+      font-family: Tahoma, Arial, sans-serif;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      background: #6f5288;
+      border: 2px solid #c9a85c;
+      border-radius: 14px;
     }
 
-    button:hover{
-      background:#18743d;
+    button:hover,
+    button:active {
+      background: #5b4677;
     }
 
-    .result{
-      display:none;
-      text-align:center;
-      font-size:22px;
+    .result {
+      display: none;
+      text-align: center;
+      font-size: 22px;
     }
 
-    .score{
-      font-size:34px;
-      color:#f2c15c;
-      font-weight:bold;
+    .score {
+      margin: 12px 0;
+      color: #8b6b25;
+      font-size: 34px;
+      font-weight: bold;
     }
 
-    .back{
-      display:block;
-      text-align:center;
-      color:#8ec5ff;
-      text-decoration:none;
-      font-weight:bold;
-      margin:25px 0;
+    .back {
+      display: block;
+      width: fit-content;
+      margin: 25px auto;
+      padding: 12px 22px;
+      color: white;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      background: #6f5288;
+      border: 2px solid #c9a85c;
+      border-radius: 22px;
     }
 
-    footer{
-      text-align:center;
-      padding:20px;
-      background:#061321;
-      margin-top:30px;
+    footer {
+      margin-top: 30px;
+      padding: 20px;
+      color: #fffdf8;
+      text-align: center;
+      background: #49385c;
+      border-top: 3px solid #c9a85c;
     }
-    body{
-  background:#fffaf4 !important;
-  color:#3f3a46 !important;
-}
 
-header{
-  background:linear-gradient(135deg,#f7d9e8,#dcecff) !important;
-  color:#5b4b68 !important;
-}
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 27px;
+      }
 
-header h1,
-header p{
-  color:#5b4b68 !important;
-}
+      .container {
+        width: 94%;
+      }
 
-.question{
-  background:#ffffff !important;
-  color:#3f3a46 !important;
-  border:2px solid #eadff0 !important;
-  box-shadow:0 6px 16px rgba(90,70,110,0.10);
-}
+      .question,
+      .result {
+        padding: 18px 14px;
+      }
 
-.question h2{
-  color:#b06b86 !important;
-}
+      h2 {
+        font-size: 19px;
+      }
 
-.question label{
-  color:#3f3a46 !important;
-}
+      label {
+        font-size: 16px;
+      }
 
-footer{
-  background:#f7d9e8 !important;
-  color:#5b4b68 !important;
-}
+      button {
+        font-size: 18px;
+      }
+
+      .score {
+        font-size: 28px;
+      }
+    }
   </style>
 </head>
 
 <body>
 
-<header>
-  <h1>✅ الاختبار التجريبي لدرس الحال</h1>
-  <p>أجيبي عن الأسئلة، ثم شاهدي نتيجتك ورسالتك التحفيزية</p>
-</header>
+  <header>
+    <h1>✅ الاختبار التجريبي لدرس الحال</h1>
+    <p>أجيبي عن الأسئلة، ثم شاهدي نتيجتك ورسالتك التحفيزية</p>
+  </header>
 
-<div class="container">
+  <div class="container">
 
+    <form id="quizForm">
 
-  
+      <div class="question" data-answer="b">
+        <h2>1- الحال هو:</h2>
 
+        <label>
+          <input type="radio" name="q1" value="a">
+          اسم معرفة مرفوع يصف اسمًا قبله
+        </label>
 
-    
-  
-  
+        <label>
+          <input type="radio" name="q1" value="b">
+          اسم نكرة منصوب يبين هيئة صاحبه وقت حدوث الفعل
+        </label>
 
-  <form id="quizForm">
+        <label>
+          <input type="radio" name="q1" value="c">
+          فعل مضارع يدل على الحاضر
+        </label>
 
-    <div class="question" data-answer="b">
-      <h2>1- الحال هو:</h2>
-      <label><input type="radio" name="q1" value="a"> اسم معرفة مرفوع يصف اسمًا قبله</label>
-      <label><input type="radio" name="q1" value="b"> اسم نكرة منصوب يبين هيئة صاحبه وقت حدوث الفعل</label>
-      <label><input type="radio" name="q1" value="c"> فعل مضارع يدل على الحاضر</label>
-      <div class="feedback"></div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question" data-answer="c">
+        <h2>2- صاحب الحال هو:</h2>
+
+        <label>
+          <input type="radio" name="q2" value="a">
+          الفعل الذي وقع في الجملة
+        </label>
+
+        <label>
+          <input type="radio" name="q2" value="b">
+          الحرف الذي يسبق الحال
+        </label>
+
+        <label>
+          <input type="radio" name="q2" value="c">
+          الاسم الذي تبين الحال هيئته
+        </label>
+
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question" data-answer="a">
+        <h2>3- في الجملة: «عاد الطالب مسرورًا»، الحال هي:</h2>
+
+        <label>
+          <input type="radio" name="q3" value="a">
+          مسرورًا
+        </label>
+
+        <label>
+          <input type="radio" name="q3" value="b">
+          الطالب
+        </label>
+
+        <label>
+          <input type="radio" name="q3" value="c">
+          عاد
+        </label>
+
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question" data-answer="b">
+        <h2>4- للتعرف على الحال نسأل:</h2>
+
+        <label>
+          <input type="radio" name="q4" value="a">
+          متى؟
+        </label>
+
+        <label>
+          <input type="radio" name="q4" value="b">
+          كيف؟
+        </label>
+
+        <label>
+          <input type="radio" name="q4" value="c">
+          أين؟
+        </label>
+
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question" data-answer="c">
+        <h2>5- نوع الحال في: «عاد المسافر سعيدًا» هو:</h2>
+
+        <label>
+          <input type="radio" name="q5" value="a">
+          جملة اسمية
+        </label>
+
+        <label>
+          <input type="radio" name="q5" value="b">
+          جملة فعلية
+        </label>
+
+        <label>
+          <input type="radio" name="q5" value="c">
+          حال مفردة
+        </label>
+
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question" data-answer="a">
+        <h2>6- نوع الحال في: «عاد المسافر وهو سعيد» هو:</h2>
+
+        <label>
+          <input type="radio" name="q6" value="a">
+          جملة اسمية
+        </label>
+
+        <label>
+          <input type="radio" name="q6" value="b">
+          حال مفردة
+        </label>
+
+        <label>
+          <input type="radio" name="q6" value="c">
+          شبه جملة
+        </label>
+
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question" data-answer="b">
+        <h2>7- نوع الحال في: «دخل الطالب يبتسم» هو:</h2>
+
+        <label>
+          <input type="radio" name="q7" value="a">
+          جملة اسمية
+        </label>
+
+        <label>
+          <input type="radio" name="q7" value="b">
+          جملة فعلية
+        </label>
+
+        <label>
+          <input type="radio" name="q7" value="c">
+          حال مفردة
+        </label>
+
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question" data-answer="c">
+        <h2>8- نوع الحال في: «شاهدت الطائر بين الأشجار» هو:</h2>
+
+        <label>
+          <input type="radio" name="q8" value="a">
+          حال مفردة
+        </label>
+
+        <label>
+          <input type="radio" name="q8" value="b">
+          جملة فعلية
+        </label>
+
+        <label>
+          <input type="radio" name="q8" value="c">
+          شبه جملة
+        </label>
+
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question" data-answer="a">
+        <h2>9- الحال المفردة تكون غالبًا:</h2>
+
+        <label>
+          <input type="radio" name="q9" value="a">
+          نكرة منصوبة مشتقة
+        </label>
+
+        <label>
+          <input type="radio" name="q9" value="b">
+          معرفة مرفوعة
+        </label>
+
+        <label>
+          <input type="radio" name="q9" value="c">
+          فعلًا ماضيًا
+        </label>
+
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question" data-answer="b">
+        <h2>10- صاحب الحال يكون غالبًا:</h2>
+
+        <label>
+          <input type="radio" name="q10" value="a">
+          نكرة
+        </label>
+
+        <label>
+          <input type="radio" name="q10" value="b">
+          معرفة
+        </label>
+
+        <label>
+          <input type="radio" name="q10" value="c">
+          حرفًا
+        </label>
+
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question" data-answer="c">
+        <h2>11- الرابط في جملة الحال قد يكون:</h2>
+
+        <label>
+          <input type="radio" name="q11" value="a">
+          حرف جر فقط
+        </label>
+
+        <label>
+          <input type="radio" name="q11" value="b">
+          أداة استفهام
+        </label>
+
+        <label>
+          <input type="radio" name="q11" value="c">
+          ضميرًا أو واو الحال أو كليهما
+        </label>
+
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question" data-answer="a">
+        <h2>12- في الجملة: «عاد المسافر وهو سعيد»، الرابط هو:</h2>
+
+        <label>
+          <input type="radio" name="q12" value="a">
+          واو الحال والضمير هو
+        </label>
+
+        <label>
+          <input type="radio" name="q12" value="b">
+          حرف الجر
+        </label>
+
+        <label>
+          <input type="radio" name="q12" value="c">
+          اسم الإشارة
+        </label>
+
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question" data-answer="b">
+        <h2>13- الجملة التي تحتوي حالًا هي:</h2>
+
+        <label>
+          <input type="radio" name="q13" value="a">
+          حضر الطالب المجتهد
+        </label>
+
+        <label>
+          <input type="radio" name="q13" value="b">
+          حضر الطالب مسرعًا
+        </label>
+
+        <label>
+          <input type="radio" name="q13" value="c">
+          قرأت الكتاب المفيد
+        </label>
+
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question" data-answer="c">
+        <h2>14- الفرق الصحيح بين الحال والنعت:</h2>
+
+        <label>
+          <input type="radio" name="q14" value="a">
+          الحال معرفة دائمًا
+        </label>
+
+        <label>
+          <input type="radio" name="q14" value="b">
+          النعت لا يتبع ما قبله
+        </label>
+
+        <label>
+          <input type="radio" name="q14" value="c">
+          الحال يبين الهيئة، والنعت يصف اسمًا قبله ويتبعه
+        </label>
+
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question" data-answer="a">
+        <h2>15- إعراب «مسرورًا» في: «عاد الطالب مسرورًا» هو:</h2>
+
+        <label>
+          <input type="radio" name="q15" value="a">
+          حال منصوبة وعلامة نصبها الفتحة
+        </label>
+
+        <label>
+          <input type="radio" name="q15" value="b">
+          فاعل مرفوع
+        </label>
+
+        <label>
+          <input type="radio" name="q15" value="c">
+          مفعول به منصوب
+        </label>
+
+        <div class="feedback"></div>
+      </div>
+
+      <button type="button" onclick="finishQuiz()">
+        إظهار النتيجة
+      </button>
+
+    </form>
+
+    <div class="result" id="resultBox">
+      <div>نتيجتك في الاختبار:</div>
+
+      <div class="score" id="scoreText"></div>
+
+      <div id="resultMessage"></div>
+
+      <button type="button" onclick="resetQuiz()">
+        إعادة الاختبار
+      </button>
     </div>
 
-    <div class="question" data-answer="c">
-      <h2>2- صاحب الحال هو:</h2>
-      <label><input type="radio" name="q2" value="a"> الفعل الذي وقع في الجملة</label>
-      <label><input type="radio" name="q2" value="b"> الحرف الذي يسبق الحال</label>
-      <label><input type="radio" name="q2" value="c"> الاسم الذي تبين الحال هيئته</label>
-      <div class="feedback"></div>
-    </div>
+    <a class="back" href="hal.html">
+      العودة إلى درس الحال
+    </a>
 
-    <div class="question" data-answer="a">
-      <h2>3- في الجملة: «عاد الطالب مسرورًا»، الحال هي:</h2>
-      <label><input type="radio" name="q3" value="a"> مسرورًا</label>
-      <label><input type="radio" name="q3" value="b"> الطالب</label>
-      <label><input type="radio" name="q3" value="c"> عاد</label>
-      <div class="feedback"></div>
-    </div>
-
-    <div class="question" data-answer="b">
-      <h2>4- للتعرف على الحال نسأل:</h2>
-      <label><input type="radio" name="q4" value="a"> متى؟</label>
-      <label><input type="radio" name="q4" value="b"> كيف؟</label>
-      <label><input type="radio" name="q4" value="c"> أين؟</label>
-      <div class="feedback"></div>
-    </div>
-
-    <div class="question" data-answer="c">
-      <h2>5- نوع الحال في: «عاد المسافر سعيدًا» هو:</h2>
-      <label><input type="radio" name="q5" value="a"> جملة اسمية</label>
-      <label><input type="radio" name="q5" value="b"> جملة فعلية</label>
-      <label><input type="radio" name="q5" value="c"> حال مفردة</label>
-      <div class="feedback"></div>
-    </div>
-
-    <div class="question" data-answer="a">
-      <h2>6- نوع الحال في: «عاد المسافر وهو سعيد» هو:</h2>
-      <label><input type="radio" name="q6" value="a"> جملة اسمية</label>
-      <label><input type="radio" name="q6" value="b"> حال مفردة</label>
-      <label><input type="radio" name="q6" value="c"> شبه جملة</label>
-      <div class="feedback"></div>
-    </div>
-
-    <div class="question" data-answer="b">
-      <h2>7- نوع الحال في: «دخل الطالب يبتسم» هو:</h2>
-      <label><input type="radio" name="q7" value="a"> جملة اسمية</label>
-      <label><input type="radio" name="q7" value="b"> جملة فعلية</label>
-      <label><input type="radio" name="q7" value="c"> حال مفردة</label>
-      <div class="feedback"></div>
-    </div>
-
-    <div class="question" data-answer="c">
-      <h2>8- نوع الحال في: «شاهدت الطائر بين الأشجار» هو:</h2>
-      <label><input type="radio" name="q8" value="a"> حال مفردة</label>
-      <label><input type="radio" name="q8" value="b"> جملة فعلية</label>
-      <label><input type="radio" name="q8" value="c"> شبه جملة</label>
-      <div class="feedback"></div>
-    </div>
-
-    <div class="question" data-answer="a">
-      <h2>9- الحال المفردة تكون غالبًا:</h2>
-      <label><input type="radio" name="q9" value="a"> نكرة منصوبة مشتقة</label>
-      <label><input type="radio" name="q9" value="b"> معرفة مرفوعة</label>
-      <label><input type="radio" name="q9" value="c"> فعلًا ماضيًا</label>
-      <div class="feedback"></div>
-    </div>
-
-    <div class="question" data-answer="b">
-      <h2>10- صاحب الحال يكون غالبًا:</h2>
-      <label><input type="radio" name="q10" value="a"> نكرة</label>
-      <label><input type="radio" name="q10" value="b"> معرفة</label>
-      <label><input type="radio" name="q10" value="c"> حرفًا</label>
-      <div class="feedback"></div>
-    </div>
-
-    <div class="question" data-answer="c">
-      <h2>11- الرابط في جملة الحال قد يكون:</h2>
-      <label><input type="radio" name="q11" value="a"> حرف جر فقط</label>
-      <label><input type="radio" name="q11" value="b"> أداة استفهام</label>
-      <label><input type="radio" name="q11" value="c"> ضميرًا أو واو الحال أو كليهما</label>
-      <div class="feedback"></div>
-    </div>
-
-    <div class="question" data-answer="a">
-      <h2>12- في الجملة: «عاد المسافر وهو سعيد»، الرابط هو:</h2>
-      <label><input type="radio" name="q12" value="a"> واو الحال والضمير هو</label>
-      <label><input type="radio" name="q12" value="b"> حرف الجر</label>
-      <label><input type="radio" name="q12" value="c"> اسم الإشارة</label>
-      <div class="feedback"></div>
-    </div>
-
-    <div class="question" data-answer="b">
-      <h2>13- الجملة التي تحتوي حالًا هي:</h2>
-      <label><input type="radio" name="q13" value="a"> حضر الطالب المجتهد</label>
-      <label><input type="radio" name="q13" value="b"> حضر الطالب مسرعًا</label>
-      <label><input type="radio" name="q13" value="c"> قرأت الكتاب المفيد</label>
-      <div class="feedback"></div>
-    </div>
-
-    <div class="question" data-answer="c">
-      <h2>14- الفرق الصحيح بين الحال والنعت:</h2>
-      <label><input type="radio" name="q14" value="a"> الحال معرفة دائمًا</label>
-      <label><input type="radio" name="q14" value="b"> النعت لا يتبع ما قبله</label>
-      <label><input type="radio" name="q14" value="c"> الحال يبين الهيئة، والنعت يصف اسمًا قبله ويتبعه</label>
-      <div class="feedback"></div>
-    </div>
-
-    <div class="question" data-answer="a">
-      <h2>15- إعراب «مسرورًا» في: «عاد الطالب مسرورًا» هو:</h2>
-      <label><input type="radio" name="q15" value="a"> حال منصوبة وعلامة نصبها الفتحة</label>
-      <label><input type="radio" name="q15" value="b"> فاعل مرفوع</label>
-      <label><input type="radio" name="q15" value="c"> مفعول به منصوب</label>
-      <div class="feedback"></div>
-    </div>
-
-    <button type="button" onclick="finishQuiz()">إظهار النتيجة</button>
-
-  </form>
-
-  <div class="result" id="resultBox">
-    <div id="studentResult"></div>
-    <div class="score" id="scoreText"></div>
-    <div id="resultMessage"></div>
-    <button type="button" onclick="resetQuiz()">إعادة الاختبار</button>
   </div>
 
-  <a class="back" href="hal.html">العودة إلى درس الحال</a>
+  <footer>
+    جميع الحقوق محفوظة © 2026
+  </footer>
 
-</div>
+  <script>
+    const questions = document.querySelectorAll(".question");
 
-<footer>
-  جميع الحقوق محفوظة © 2026
-</footer>
+    questions.forEach(question => {
+      const radios = question.querySelectorAll('input[type="radio"]');
 
-<script>
-  const questions = document.querySelectorAll(".question");
+      radios.forEach(radio => {
+        radio.addEventListener("change", function () {
+          const feedback = question.querySelector(".feedback");
+          const correctAnswer = question.dataset.answer;
 
-  questions.forEach((question, index) => {
-    const radios = question.querySelectorAll('input[type="radio"]');
+          if (this.value === correctAnswer) {
+            feedback.textContent = "أحسنتِ، إجابة صحيحة 🌟";
+            feedback.className = "feedback correct";
+          } else {
+            feedback.textContent =
+              "محاولة جيدة، راجعي الفكرة وحاولي المتابعة 💪";
 
-    radios.forEach(radio => {
-      radio.addEventListener("change", function(){
-        const feedback = question.querySelector(".feedback");
-        const correctAnswer = question.dataset.answer;
-
-        if(this.value === correctAnswer){
-          feedback.textContent = "أحسنتِ، إجابة صحيحة 🌟";
-          feedback.className = "feedback correct";
-        }else{
-          feedback.textContent = "محاولة جيدة، راجعي الفكرة وحاولي المتابعة 💪";
-          feedback.className = "feedback wrong";
-        }
+            feedback.className = "feedback wrong";
+          }
+        });
       });
     });
-  });
 
-  function finishQuiz(){
-    const name = document.getElementById("studentName").value.trim();
+    function finishQuiz() {
+      let score = 0;
+      let unanswered = 0;
 
-    if(name === ""){
-      alert("اكتبي اسمك أولًا.");
-      return;
-    }
+      questions.forEach(question => {
+        const selected = question.querySelector(
+          'input[type="radio"]:checked'
+        );
 
-    let score = 0;
-    let unanswered = 0;
+        if (!selected) {
+          unanswered++;
+        } else if (selected.value === question.dataset.answer) {
+          score++;
+        }
+      });
 
-    questions.forEach((question, index) => {
-      const selected = question.querySelector('input[type="radio"]:checked');
-
-      if(!selected){
-        unanswered++;
-      }else if(selected.value === question.dataset.answer){
-        score++;
+      if (unanswered > 0) {
+        alert("بقيت أسئلة لم تتم الإجابة عنها.");
+        return;
       }
-    });
 
-    if(unanswered > 0){
-      alert("بقيت أسئلة لم تتم الإجابة عنها.");
-      return;
+      const percentage = Math.round(
+        (score / questions.length) * 100
+      );
+
+      document.getElementById("scoreText").textContent =
+        score +
+        " من " +
+        questions.length +
+        " — " +
+        percentage +
+        "%";
+
+      let message = "";
+
+      if (percentage === 100) {
+        message =
+          "ممتازة جدًا! أتقنتِ درس الحال بإبداع 🌟";
+      } else if (percentage >= 80) {
+        message =
+          "رائعة! فهمك للدرس قوي، استمري في التميز 👏";
+      } else if (percentage >= 60) {
+        message =
+          "نتيجة جيدة، راجعي بعض الأفكار ثم حاولي مرة أخرى 💙";
+      } else {
+        message =
+          "بداية طيبة، راجعي ملف الدرس ثم أعيدي الاختبار، وستتحسن نتيجتك بإذن الله 🌷";
+      }
+
+      document.getElementById("resultMessage").textContent =
+        message;
+
+      document.getElementById("resultBox").style.display =
+        "block";
+
+      document.getElementById("resultBox").scrollIntoView({
+        behavior: "smooth"
+      });
     }
 
-    const percentage = Math.round((score / questions.length) * 100);
+    function resetQuiz() {
+      document.getElementById("quizForm").reset();
 
-    document.getElementById("studentResult").textContent =
-      "الطالبة: " + name;
+      document.querySelectorAll(".feedback").forEach(feedback => {
+        feedback.textContent = "";
+        feedback.className = "feedback";
+      });
 
-    document.getElementById("scoreText").textContent =
-      score + " من " + questions.length + " — " + percentage + "%";
+      document.getElementById("resultBox").style.display =
+        "none";
 
-    let message = "";
-
-    if(percentage === 100){
-      message = "ممتازة جدًا! أتقنتِ درس الحال بإبداع 🌟";
-    }else if(percentage >= 80){
-      message = "رائعة! فهمك للدرس قوي، استمري في التميز 👏";
-    }else if(percentage >= 60){
-      message = "نتيجة جيدة، راجعي بعض الأفكار ثم حاولي مرة أخرى 💙";
-    }else{
-      message = "بداية طيبة، راجعي ملف الدرس ثم أعيدي الاختبار، وستتحسن نتيجتك بإذن الله 🌷";
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
     }
-
-    document.getElementById("resultMessage").textContent = message;
-    document.getElementById("resultBox").style.display = "block";
-
-    document.getElementById("resultBox").scrollIntoView({
-      behavior:"smooth"
-    });
-  }
-
-  function resetQuiz(){
-    document.getElementById("quizForm").reset();
-
-    document.querySelectorAll(".feedback").forEach(feedback => {
-      feedback.textContent = "";
-      feedback.className = "feedback";
-    });
-
-    document.getElementById("resultBox").style.display = "none";
-
-    window.scrollTo({
-      top:0,
-      behavior:"smooth"
-    });
-  }
-</script>
+  </script>
 
 </body>
+
 </html>
+
