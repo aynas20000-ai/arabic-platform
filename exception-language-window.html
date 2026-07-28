@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,93 +8,140 @@
   <title>نافذة لغوية - الاستثناء</title>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
     body {
+      width: 100%;
+      max-width: 100%;
       margin: 0;
-      padding: 20px;
-      font-family: Arial, Tahoma, sans-serif;
-      background: #f5fbfa;
-      color: #244743;
+      overflow-x: hidden;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Tahoma, Arial, sans-serif;
+      color: #4b3a57;
       line-height: 1.9;
+      background: linear-gradient(180deg, #fffaf2, #f8f0fb);
+    }
+
+    header {
+      padding: 38px 20px;
+      color: white;
+      text-align: center;
+      background: linear-gradient(135deg, #776094, #5b4677);
+      border-bottom: 4px solid #c9a85c;
+    }
+
+    header h1 {
+      margin: 0 0 10px;
+      color: #fffdf8;
+      font-size: 34px;
+      line-height: 1.6;
+    }
+
+    header p {
+      margin: 0;
+      color: #f7effb;
+      font-size: 17px;
     }
 
     .container {
+      width: 90%;
       max-width: 850px;
-      margin: auto;
-    }
-
-    .main-title {
-      text-align: center;
-      color: #087f78;
-      margin-bottom: 10px;
+      margin: 30px auto;
     }
 
     .intro {
-      text-align: center;
-      background: #e2f7f3;
-      border-radius: 18px;
-      padding: 15px;
       margin-bottom: 25px;
+      padding: 18px;
+      color: #5d4374;
+      font-size: 18px;
+      text-align: center;
+      background: #fffdf8;
+      border: 2px solid #c9a85c;
+      border-radius: 18px;
+      box-shadow: 0 5px 14px rgba(91, 63, 111, 0.09);
     }
 
     .section-title {
-      background: linear-gradient(135deg, #0b8f87, #22b8a7);
-      color: white;
+      margin: 30px 0 18px;
       padding: 15px;
-      border-radius: 18px;
+      color: #fffdf8;
+      font-size: 25px;
       text-align: center;
-      margin-top: 30px;
+      background: linear-gradient(135deg, #776094, #5b4677);
+      border: 2px solid #c9a85c;
+      border-radius: 18px;
     }
 
     .card {
-      background: white;
-      border: 2px solid #bde9e2;
-      border-radius: 18px;
-      padding: 18px;
       margin: 18px 0;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      padding: 20px;
+      color: #4b3a57;
+      background: #fffdf8;
+      border: 2px solid #c9a85c;
+      border-radius: 18px;
+      box-shadow: 0 5px 14px rgba(91, 63, 111, 0.09);
     }
 
     .card h3 {
-      color: #087f78;
       margin-top: 0;
+      color: #5d4374;
+      font-size: 22px;
     }
 
     .example {
-      background: #f0fbf8;
-      border-right: 5px solid #28b7a7;
+      margin: 12px 0;
+      padding: 14px;
+      color: #4b3a57;
+      background: linear-gradient(135deg, #f5ecfb, #fffaf2);
+      border-right: 5px solid #c9a85c;
       border-radius: 12px;
-      padding: 12px;
-      margin: 10px 0;
     }
 
     .rule {
-      background: #fff8df;
-      border: 2px dashed #e9b949;
+      margin-top: 14px;
+      padding: 14px;
+      color: #4b3a57;
+      background: #fff7df;
+      border: 2px dashed #c9a85c;
       border-radius: 14px;
-      padding: 12px;
-      margin-top: 12px;
     }
 
     .smart-key {
-      background: #fff2f7;
-      border: 2px solid #efb4ca;
-      border-radius: 18px;
-      padding: 18px;
       margin: 25px 0;
+      padding: 20px;
+      color: #4b3a57;
+      background: #fff8fb;
+      border: 2px solid #c9a85c;
+      border-radius: 18px;
+      box-shadow: 0 5px 14px rgba(91, 63, 111, 0.09);
+    }
+
+    .smart-key h2 {
+      margin-top: 0;
+      color: #5d4374;
     }
 
     .verse {
-      font-size: 21px;
-      text-align: center;
-      color: #245a55;
-      background: #eef9f7;
-      border-radius: 14px;
-      padding: 15px;
       margin-bottom: 15px;
+      padding: 16px;
+      color: #5d4374;
+      font-size: 21px;
+      line-height: 2;
+      text-align: center;
+      background: linear-gradient(135deg, #f5ecfb, #fffaf2);
+      border: 2px solid #c9a85c;
+      border-radius: 14px;
     }
 
-    .label {
-      color: #087f78;
+    .label,
+    strong {
+      color: #5d4374;
       font-weight: bold;
     }
 
@@ -101,21 +149,68 @@
       display: block;
       width: fit-content;
       margin: 35px auto 10px;
-      padding: 13px 24px;
-      background: #087f78;
+      padding: 12px 24px;
       color: white;
-      text-decoration: none;
-      border-radius: 14px;
       font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      background: #6f5288;
+      border: 2px solid #c9a85c;
+      border-radius: 22px;
+    }
+
+    .back:hover,
+    .back:active {
+      background: #5b4677;
+    }
+
+    footer {
+      margin-top: 30px;
+      padding: 20px;
+      color: #fffdf8;
+      text-align: center;
+      background: #49385c;
+      border-top: 3px solid #c9a85c;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 27px;
+      }
+
+      .container {
+        width: 94%;
+      }
+
+      .intro,
+      .card,
+      .smart-key {
+        padding: 17px 14px;
+      }
+
+      .section-title {
+        font-size: 21px;
+      }
+
+      .card h3 {
+        font-size: 19px;
+      }
+
+      .verse {
+        font-size: 18px;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <div class="container">
+  <header>
+    <h1>🔬 نافذة لغوية</h1>
+    <p>أدوات الاستثناء وطريقة إعراب ما بعد «إلّا»</p>
+  </header>
 
-    <h1 class="main-title">🔬 نافذة لغوية</h1>
+  <div class="container">
 
     <div class="intro">
       تعرّفي إلى أدوات الاستثناء، واكتشفي طريقة سهلة لإعراب ما بعد «إلّا».
@@ -338,10 +433,15 @@
     </div>
 
     <a class="back" href="mustathna.html">
-      العودة إلى درس الاستثناء
+      العودة إلى درس المستثنى
     </a>
 
   </div>
 
+  <footer>
+    جميع الحقوق محفوظة © 2026
+  </footer>
+
 </body>
+
 </html>
