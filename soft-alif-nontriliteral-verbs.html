@@ -1,109 +1,412 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>الألف اللينة في الأفعال غير الثلاثية</title>
+  <meta charset="UTF-8">
 
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-body{
-font-family:Tahoma,Arial,sans-serif;
-background:linear-gradient(135deg,#FDF9F4,#F7F0FB);
-padding:20px;
-color:#000;
-}
+  <title>كتابة بلا أخطاء | الألف اللينة</title>
 
-.header{
-background:linear-gradient(135deg,#CBB4E3,#B69AD6);
-border:2px solid #C8A85A;
-border-radius:20px;
-padding:30px 20px;
-text-align:center;
-margin-bottom:25px;
-}
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
 
-.header h1{
-color:#5D4374;
-font-size:32px;
-margin-bottom:12px;
-}
+    body{
+      min-height:100vh;
+      padding:20px;
+      font-family:Tahoma,Arial,sans-serif;
+      color:#3e324b;
 
-.header p{
-font-size:19px;
-}
+      background:
+        linear-gradient(
+          135deg,
+          #fdf9f4,
+          #f7f0fb
+        );
+    }
 
-.card{
-display:block;
-text-decoration:none;
-background:linear-gradient(135deg,#FFFDF8,#F8EEF6);
-border:2px solid #C8A85A;
-border-radius:18px;
-padding:28px;
-margin-bottom:18px;
-text-align:center;
-color:#000;
-transition:.2s;
-}
+    .header{
+      margin-bottom:24px;
+      padding:30px 20px;
+      border:2px solid #c8a85a;
+      border-radius:22px;
+      text-align:center;
 
-.card:hover{
-transform:translateY(-2px);
-}
+      background:
+        linear-gradient(
+          135deg,
+          #cbb4e3,
+          #b69ad6
+        );
+    }
 
-.icon{
-font-size:42px;
-margin-bottom:12px;
-display:block;
-}
+    .header h1{
+      margin-bottom:12px;
+      color:#5d4374;
+      font-size:32px;
+      line-height:1.6;
+    }
 
-.title{
-font-size:24px;
-font-weight:bold;
-color:#5D4374;
-margin-bottom:8px;
-}
+    .header p{
+      color:#fffdf8;
+      font-size:18px;
+      line-height:1.8;
+    }
 
-.desc{
-font-size:17px;
-line-height:1.8;
-}
-</style>
+    .container{
+      width:min(850px,100%);
+      margin:auto;
+    }
 
+    .intro{
+      margin-bottom:20px;
+      padding:20px;
+      border-radius:18px;
+      text-align:center;
+      line-height:1.9;
+      background:#fff;
+      box-shadow:0 8px 22px #5d43741a;
+    }
+
+    details{
+      margin-bottom:16px;
+      overflow:hidden;
+      border:2px solid #d8c28a;
+      border-radius:18px;
+      background:#fffdf8;
+      box-shadow:0 8px 20px #5d437414;
+    }
+
+    summary{
+      position:relative;
+      padding:20px 58px 20px 18px;
+      color:#5d4374;
+      font-size:21px;
+      font-weight:bold;
+      cursor:pointer;
+      list-style:none;
+    }
+
+    summary::-webkit-details-marker{
+      display:none;
+    }
+
+    summary::after{
+      content:"＋";
+      position:absolute;
+      right:17px;
+      top:50%;
+      transform:translateY(-50%);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:32px;
+      height:32px;
+      border-radius:50%;
+      color:white;
+      background:#7a5b96;
+    }
+
+    details[open] summary::after{
+      content:"−";
+    }
+
+    details[open]{
+      background:
+        linear-gradient(
+          135deg,
+          #fffdf8,
+          #f8eef6
+        );
+    }
+
+    .content{
+      padding:0 18px 20px;
+      line-height:2;
+      font-size:17px;
+    }
+
+    .rule{
+      margin-bottom:13px;
+      padding:17px;
+      border-radius:15px;
+      background:#f1e7f8;
+    }
+
+    .examples{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
+    }
+
+    .example{
+      padding:15px;
+      border-radius:15px;
+      text-align:center;
+      line-height:1.8;
+    }
+
+    .green{
+      background:#eaf8f2;
+    }
+
+    .yellow{
+      background:#fff4d9;
+    }
+
+    .pink{
+      background:#fff0f4;
+    }
+
+    .blue{
+      background:#edf6fd;
+    }
+
+    .example strong{
+      display:block;
+      margin-bottom:5px;
+      color:#5d4374;
+    }
+
+    .tip{
+      margin-top:22px;
+      padding:21px;
+      border-radius:20px;
+      text-align:center;
+      color:white;
+      line-height:1.9;
+
+      background:
+        linear-gradient(
+          135deg,
+          #776094,
+          #4d3a62
+        );
+    }
+
+    .back{
+      display:block;
+      width:fit-content;
+      margin:24px auto 0;
+      padding:12px 20px;
+      border-radius:22px;
+      color:white;
+      text-decoration:none;
+      font-weight:bold;
+      background:#7a5b96;
+    }
+
+    @media(max-width:650px){
+      .header h1{
+        font-size:27px;
+      }
+
+      .examples{
+        grid-template-columns:1fr;
+      }
+
+      summary{
+        font-size:19px;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<div class="header">
-<h1>✏️ الألف اللينة في الأفعال غير الثلاثية</h1>
-<p>اختاري ما تريدين دراسته</p>
-</div>
+  <div class="container">
 
-<a class="card" href="#">
-<span class="icon">🎥</span>
-<div class="title">شرح فيديو</div>
-</a>
+    <header class="header">
+      <h1>✍️ كتابة بلا أخطاء</h1>
 
-<a class="card" href="soft-alif-nontriliteral-verbs-file.html">
-<span class="icon">📄</span>
-<div class="title">ملف الدرس</div>
-</a>
+      <p>
+        مراجعة الألف اللينة في الأفعال الثلاثية
+        وغير الثلاثية
+      </p>
+    </header>
 
-<a class="card" href="#">
-<span class="icon">✍️</span>
-<div class="title">كتابة بلا أخطاء</div>
-<div class="desc">
-مراجعة الألف اللينة في الأفعال الثلاثية وغير الثلاثية
-</div>
-</a>
+    <section class="intro">
+      اضغطي على كل قاعدة، ثم تأملي الأمثلة
+      حتى تثبت طريقة الكتابة الصحيحة.
+    </section>
 
-<a class="card" href="soft-alif-nontriliteral-verbs-test.html">
-<span class="icon">✅</span>
-<div class="title">اختبار تجريبي</div>
-</a>
+    <details>
+      <summary>
+        الألف اللينة في الأفعال الثلاثية
+      </summary>
+
+      <div class="content">
+
+        <div class="rule">
+          لمعرفة شكل الألف اللينة في آخر الفعل الثلاثي،
+          نرجع إلى أصل الألف.
+        </div>
+
+        <div class="examples">
+
+          <div class="example green">
+            <strong>تكتب ألفًا قائمة «ا»</strong>
+            إذا كان أصلها واوًا.
+            <br>
+            دعا ← يدعو
+            <br>
+            سما ← يسمو
+          </div>
+
+          <div class="example yellow">
+            <strong>تكتب ألفًا مقصورة «ى»</strong>
+            إذا كان أصلها ياءً.
+            <br>
+            رمى ← يرمي
+            <br>
+            سعى ← يسعى
+          </div>
+
+        </div>
+
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        كيف أعرف أصل الألف؟
+      </summary>
+
+      <div class="content">
+
+        <div class="rule">
+          نأتي بالفعل المضارع، أو نضيف تاء الفاعل،
+          ثم نلاحظ الحرف الذي ظهرت فيه الألف.
+        </div>
+
+        <div class="examples">
+
+          <div class="example blue">
+            <strong>باستخدام المضارع</strong>
+            دعا ← يدعو
+            <br>
+            رمى ← يرمي
+          </div>
+
+          <div class="example pink">
+            <strong>باستخدام تاء الفاعل</strong>
+            دعا ← دعوتُ
+            <br>
+            رمى ← رميتُ
+          </div>
+
+        </div>
+
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        الألف اللينة في الأفعال غير الثلاثية
+      </summary>
+
+      <div class="content">
+
+        <div class="rule">
+          تكتب الألف اللينة في آخر الفعل غير الثلاثي
+          على صورة ياء غير منقوطة «ى».
+        </div>
+
+        <div class="examples">
+
+          <div class="example green">
+            <strong>أمثلة</strong>
+            استدعى
+            <br>
+            اهتدى
+            <br>
+            أعطى
+          </div>
+
+          <div class="example yellow">
+            <strong>استثناء مهم</strong>
+            إذا سبقت الألف بياء،
+            فإنها تكتب ألفًا قائمة «ا».
+            <br>
+            أحيا
+            <br>
+            استحيا
+          </div>
+
+        </div>
+
+      </div>
+    </details>
+
+    <details>
+      <summary>
+        اختبري نفسك
+      </summary>
+
+      <div class="content">
+
+        <div class="rule">
+          اختاري الكتابة الصحيحة:
+        </div>
+
+        <div class="examples">
+
+          <div class="example blue">
+            <strong>رمى أم رما؟</strong>
+            الصحيح: رمى
+            <br>
+            لأن مضارعها: يرمي
+          </div>
+
+          <div class="example pink">
+            <strong>دعى أم دعا؟</strong>
+            الصحيح: دعا
+            <br>
+            لأن مضارعها: يدعو
+          </div>
+
+          <div class="example green">
+            <strong>استدعا أم استدعى؟</strong>
+            الصحيح: استدعى
+            <br>
+            لأنه فعل غير ثلاثي
+          </div>
+
+          <div class="example yellow">
+            <strong>أحيى أم أحيا؟</strong>
+            الصحيح: أحيا
+            <br>
+            لأن الألف سبقتها ياء
+          </div>
+
+        </div>
+
+      </div>
+    </details>
+
+    <section class="tip">
+      <strong>قاعدة سريعة:</strong>
+      <br>
+      الفعل الثلاثي نبحث عن أصل ألفه،
+      والفعل غير الثلاثي نكتبها «ى»،
+      إلا إذا سبقتها ياء فنكتبها «ا».
+    </section>
+
+    <a
+      class="back"
+      href="soft-alif-nontriliteral-verbs.html"
+    >
+      العودة إلى الدرس
+    </a>
+
+  </div>
 
 </body>
 </html>
