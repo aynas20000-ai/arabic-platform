@@ -1,82 +1,284 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>استطلاع رأي الطالبة</title>
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    استطلاع رأي الطالبة | منصة آفاق اللغة
+  </title>
 
   <style>
-    body{
-      margin:0;
-      font-family:Tahoma,Arial,sans-serif;
-      background:#f5f5f5;
-      text-align:center;
+    * {
+      box-sizing: border-box;
     }
 
-    header{
-      background:#1565c0;
-      color:white;
-      padding:35px 20px;
+    html,
+    body {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      overflow-x: hidden;
     }
 
-    section{
-      background:white;
-      margin:30px auto;
-      padding:25px;
-      width:85%;
-      max-width:700px;
-      border-radius:18px;
-      box-shadow:0 4px 15px rgba(0,0,0,0.12);
+    body {
+      min-height: 100vh;
+      font-family: Tahoma, Arial, sans-serif;
+      color: #4b3a57;
+      text-align: center;
+      background: linear-gradient(
+        145deg,
+        #fffaf2,
+        #f8f0fb
+      );
     }
 
-    .box{
-      background:#eaf3ff;
-      margin:18px 0;
-      padding:24px;
-      border-radius:14px;
-      font-size:21px;
+    header {
+      padding: 36px 16px 42px;
+      color: white;
+      border-radius: 0 0 34px 34px;
+      background: linear-gradient(
+        135deg,
+        #776094,
+        #5b4677
+      );
+      box-shadow: 0 12px 28px rgba(73, 56, 92, 0.22);
     }
 
-    a{
-      text-decoration:none;
+    .header-icon {
+      width: 82px;
+      height: 82px;
+      margin: 0 auto 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 24px;
+      font-size: 44px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 2px solid rgba(255, 255, 255, 0.42);
     }
 
-    .back{
-      color:#1565c0;
-      font-weight:bold;
+    header h1 {
+      margin: 0;
+      color: #fff8df;
+      font-size: 33px;
+      line-height: 1.7;
     }
 
-    footer{
-      background:#222;
-      color:white;
-      padding:20px;
-      margin-top:30px;
+    header p {
+      max-width: 680px;
+      margin: 10px auto 0;
+      color: #f7effb;
+      font-size: 17px;
+      line-height: 1.9;
+    }
+
+    main {
+      width: 94%;
+      max-width: 800px;
+      margin: 28px auto 45px;
+    }
+
+    .card {
+      padding: 25px;
+      border-radius: 28px;
+      background: #fffdf8;
+      border: 1px solid rgba(93, 67, 116, 0.15);
+      box-shadow: 0 13px 34px rgba(73, 56, 92, 0.13);
+    }
+
+    .intro {
+      margin-bottom: 22px;
+      padding: 17px;
+      border-radius: 18px;
+      color: #5d4374;
+      background: #f5ecfb;
+      border-right: 7px solid #c9a85c;
+      font-size: 17px;
+      line-height: 1.9;
+    }
+
+    .survey-box {
+      padding: 28px 20px;
+      border-radius: 22px;
+      color: #5d4374;
+      background: #fff8dc;
+      border: 2px dashed #c9a85c;
+      box-shadow: 0 7px 18px rgba(73, 56, 92, 0.08);
+    }
+
+    .survey-icon {
+      margin-bottom: 13px;
+      font-size: 48px;
+    }
+
+    .survey-box h2 {
+      margin: 0 0 10px;
+      color: #5d4374;
+      font-size: 24px;
+      line-height: 1.7;
+    }
+
+    .survey-box p {
+      margin: 0;
+      color: #6d6274;
+      font-size: 17px;
+      line-height: 2;
+    }
+
+    .status {
+      display: inline-block;
+      margin-top: 17px;
+      padding: 9px 18px;
+      border-radius: 25px;
+      color: #705217;
+      background: white;
+      border: 1px solid #d8bd73;
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    .back {
+      display: block;
+      width: 100%;
+      margin-top: 23px;
+      padding: 15px;
+      border-radius: 17px;
+      color: white;
+      background: #6f5288;
+      text-decoration: none;
+      font-size: 17px;
+      font-weight: bold;
+      transition:
+        opacity 0.2s,
+        transform 0.2s;
+    }
+
+    .back:hover {
+      opacity: 0.94;
+    }
+
+    .back:active {
+      transform: scale(0.98);
+    }
+
+    footer {
+      padding: 22px 12px;
+      color: white;
+      background: #49385c;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding: 29px 14px 36px;
+      }
+
+      header h1 {
+        font-size: 27px;
+      }
+
+      header p {
+        font-size: 15px;
+      }
+
+      main {
+        width: 93%;
+      }
+
+      .card {
+        padding: 18px;
+      }
+
+      .intro {
+        font-size: 16px;
+      }
+
+      .survey-box {
+        padding: 23px 16px;
+      }
+
+      .survey-box h2 {
+        font-size: 21px;
+      }
+
+      .survey-box p {
+        font-size: 16px;
+      }
     }
   </style>
 </head>
 
 <body>
 
-<header>
-  <h1>👩‍🎓 استطلاع رأي الطالبة</h1>
-  <p>رأيكِ يساعدنا على تطوير منصة آفاق اللغة العربية</p>
-</header>
+  <header>
 
-<section>
+    <div class="header-icon">
+      👩‍🎓
+    </div>
 
-  <div class="box">
-    📝 سيتم إضافة نموذج استطلاع رأي الطالبة هنا قريبًا
-  </div>
+    <h1>
+      استطلاع رأي الطالبة
+    </h1>
 
-  <p>
-    <a class="back" href="surveys.html">العودة إلى استطلاعات الرأي</a>
-  </p>
+    <p>
+      رأيكِ مهم، وملاحظاتكِ تساعدنا
+      على تطوير منصة آفاق اللغة وتحسين تجربتكِ التعليمية.
+    </p>
 
-</section>
+  </header>
 
-<footer>
-  جميع الحقوق محفوظة © 2026
-</footer>
+  <main>
+
+    <section class="card">
+
+      <div class="intro">
+        نشكركِ على اهتمامكِ ومشاركتكِ،
+        وسيتم توفير نموذج الاستطلاع في هذه الصفحة قريبًا.
+      </div>
+
+      <div class="survey-box">
+
+        <div class="survey-icon">
+          📝
+        </div>
+
+        <h2>
+          نموذج استطلاع رأي الطالبة
+        </h2>
+
+        <p>
+          سيتم إضافة أسئلة الاستطلاع هنا،
+          حتى تتمكني من مشاركة رأيكِ ومقترحاتكِ
+          بكل سهولة ووضوح.
+        </p>
+
+        <div class="status">
+          النموذج قيد الإعداد
+        </div>
+
+      </div>
+
+      <a
+        class="back"
+        href="surveys.html"
+      >
+        العودة إلى استطلاعات الرأي
+      </a>
+
+    </section>
+
+  </main>
+
+  <footer>
+    جميع الحقوق محفوظة © 2026
+  </footer>
 
 </body>
+
 </html>
