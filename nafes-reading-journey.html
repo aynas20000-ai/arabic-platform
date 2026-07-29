@@ -1,0 +1,1737 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    رحلة مهارات القراءة | مكتبة نافس
+  </title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --purple-dark: #49385c;
+      --purple: #6f5288;
+      --purple-soft: #776094;
+      --purple-light: #f5ecfb;
+      --gold: #c9a85c;
+      --gold-light: #fff6dc;
+      --cream: #fffdf8;
+      --text: #3e3048;
+      --muted: #625769;
+      --green: #3f896b;
+      --green-light: #eaf7f1;
+      --rose: #a94f6d;
+      --rose-light: #fff0f4;
+      --gray: #eae4ed;
+    }
+
+    html,
+    body {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      color: var(--text);
+      font-family: Tahoma, Arial, sans-serif;
+      font-weight: 600;
+      text-align: center;
+      background:
+        radial-gradient(
+          circle at top right,
+          rgba(255, 239, 200, 0.8),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at bottom left,
+          rgba(228, 210, 242, 0.85),
+          transparent 42%
+        ),
+        linear-gradient(
+          145deg,
+          #fffaf2,
+          #f8f0fb
+        );
+    }
+
+    button,
+    a {
+      font-family: inherit;
+    }
+
+    p,
+    li,
+    button {
+      font-size: 17px;
+      font-weight: 600;
+      line-height: 2;
+    }
+
+    h1,
+    h2,
+    h3,
+    strong {
+      font-weight: 800;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 5%;
+      color: white;
+      background: linear-gradient(
+        135deg,
+        #776094,
+        #5b4677
+      );
+      box-shadow: 0 6px 22px rgba(73, 56, 92, 0.22);
+    }
+
+    .brand {
+      color: #fff8df;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .back-link {
+      padding: 9px 13px;
+      border-radius: 22px;
+      color: white;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+    }
+
+    .hero {
+      padding: 46px 18px 52px;
+      color: white;
+      border-radius: 0 0 52px 52px;
+      background: linear-gradient(
+        145deg,
+        #776094,
+        #5b4677
+      );
+      box-shadow: 0 14px 34px rgba(73, 56, 92, 0.22);
+    }
+
+    .hero-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 104px;
+      height: 104px;
+      margin: 0 auto 17px;
+      border-radius: 32px;
+      font-size: 52px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 3px solid rgba(255, 255, 255, 0.34);
+    }
+
+    .hero h1 {
+      margin: 0 0 9px;
+      color: #fff8df;
+      font-size: 34px;
+      line-height: 1.7;
+    }
+
+    .hero p {
+      max-width: 730px;
+      margin: auto;
+      color: #f8f1fb;
+      line-height: 2;
+    }
+
+    main {
+      width: min(880px, 93%);
+      margin: 28px auto 52px;
+    }
+
+    .progress {
+      display: grid;
+      grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 22px;
+      padding: 15px;
+      border-radius: 22px;
+      background: var(--cream);
+      box-shadow: 0 10px 25px rgba(73, 56, 92, 0.1);
+    }
+
+    .progress-step {
+      min-height: 62px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7px 5px;
+      border-radius: 14px;
+      color: #7b6d83;
+      background: var(--gray);
+      font-size: 13px;
+      font-weight: 800;
+      line-height: 1.6;
+    }
+
+    .progress-step.active {
+      color: white;
+      background: var(--purple);
+    }
+
+    .progress-step.done {
+      color: #2e684f;
+      background: var(--green-light);
+      border: 1px solid rgba(63, 137, 107, 0.35);
+    }
+
+    .skill-section {
+      display: none;
+    }
+
+    .skill-section.active {
+      display: block;
+    }
+
+    .journey-card {
+      display: none;
+      padding: 24px 20px;
+      border-radius: 27px;
+      background: var(--cream);
+      border: 1px solid rgba(93, 67, 116, 0.14);
+      box-shadow: 0 13px 30px rgba(73, 56, 92, 0.12);
+    }
+
+    .journey-card.active {
+      display: block;
+      animation: enterCard 0.4s ease;
+    }
+
+    @keyframes enterCard {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card-label {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 8px 14px;
+      border-radius: 18px;
+      color: white;
+      background: var(--purple);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .journey-card h2,
+    .journey-card h3 {
+      margin: 0 0 15px;
+      color: var(--purple-dark);
+      line-height: 1.8;
+    }
+
+    .journey-card h2 {
+      font-size: 28px;
+    }
+
+    .journey-card h3 {
+      font-size: 23px;
+    }
+
+    .definition-box {
+      padding: 18px;
+      border-radius: 19px;
+      color: #554160;
+      background: var(--purple-light);
+      border-right: 7px solid var(--gold);
+      text-align: right;
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 2;
+    }
+
+    .reading-text {
+      margin-top: 16px;
+      padding: 21px;
+      border-radius: 21px;
+      color: #44384a;
+      background: #fffaf0;
+      border: 1px solid rgba(201, 168, 92, 0.35);
+      text-align: right;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 2.25;
+    }
+
+    .question-box {
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 20px;
+      background: var(--purple-light);
+      text-align: right;
+    }
+
+    .options {
+      display: grid;
+      gap: 10px;
+    }
+
+    .option-button {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid rgba(93, 67, 116, 0.2);
+      border-radius: 14px;
+      color: var(--text);
+      background: white;
+      text-align: right;
+      cursor: pointer;
+    }
+
+    .option-button.correct {
+      color: #28684f;
+      background: var(--green-light);
+      border-color: var(--green);
+    }
+
+    .option-button.wrong {
+      color: #8a405a;
+      background: var(--rose-light);
+      border-color: var(--rose);
+    }
+
+    .feedback,
+    .evidence-card {
+      display: none;
+      margin-top: 13px;
+      padding: 14px;
+      border-radius: 16px;
+      color: #554160;
+      background: white;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 2;
+    }
+
+    .feedback.show,
+    .evidence-card.show {
+      display: block;
+    }
+
+    .evidence-card {
+      border-right: 7px solid var(--gold);
+      text-align: right;
+    }
+
+    .evidence-quote {
+      margin-top: 11px;
+      padding: 13px;
+      border-radius: 14px;
+      color: #674d18;
+      background: var(--gold-light);
+    }
+
+    .action-button {
+      display: block;
+      width: 100%;
+      margin-top: 18px;
+      padding: 15px;
+      border: 0;
+      border-radius: 17px;
+      color: white;
+      background: var(--purple);
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .action-button:disabled {
+      color: #8c818f;
+      background: #e8e2ea;
+      cursor: not-allowed;
+    }
+
+    footer {
+      margin-top: 42px;
+      padding: 24px 16px;
+      color: white;
+      background: var(--purple-dark);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    @media (max-width: 700px) {
+      .progress {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+      }
+
+      .hero h1 {
+        font-size: 29px;
+      }
+
+      .reading-text {
+        font-size: 17px;
+      }
+
+      p,
+      li,
+      button {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+
+    <div class="brand">
+      منصة آفاق اللغة
+    </div>
+
+    <a
+      class="back-link"
+      href="nafes-skills.html"
+    >
+      العودة إلى مكتبة نافس
+    </a>
+
+  </header>
+
+  <section class="hero">
+
+    <div class="hero-icon">
+      🧠
+    </div>
+
+    <h1>
+      رحلة مهارات القراءة المتقدمة
+    </h1>
+
+    <p>
+      اقرئي، حلّلي، استنتجي، قيّمي،
+      ثم اختاري الإجابة الأدق
+      واربطيها بسببها وشاهدها من النص.
+    </p>
+
+  </section>
+
+  <main>
+
+    <section class="progress">
+
+      <div
+        class="progress-step active"
+        data-progress="0"
+      >
+        خريطة النص
+      </div>
+
+      <div
+        class="progress-step"
+        data-progress="1"
+      >
+        ما وراء السطور
+      </div>
+
+      <div
+        class="progress-step"
+        data-progress="2"
+      >
+        القراءة الناقدة
+      </div>
+
+      <div
+        class="progress-step"
+        data-progress="3"
+      >
+        الإجابة الأدق
+      </div>
+
+    </section>
+
+    <section
+      class="skill-section active"
+      data-skill="0"
+    >
+
+      <article
+        class="journey-card active"
+        data-card="0-0"
+      >
+
+        <span class="card-label">
+          المهارة الأولى
+        </span>
+
+        <h2>
+          خريطة النص
+        </h2>
+
+        <div class="definition-box">
+          تساعدكِ خريطة النص
+          على رؤية بنية القطعة كاملة:
+          الفكرة الرئيسة،
+          والتفاصيل الداعمة،
+          والعلاقات بين الأسباب والنتائج،
+          وتسلسل الأفكار.
+
+          لا تقرئي الجمل منفصلة،
+          بل اسألي:
+          ما الفكرة التي تجمعها؟
+          وما وظيفة كل تفصيل فيها؟
+        </div>
+
+        <button
+          class="action-button next-card"
+          data-next="0-1"
+          type="button"
+        >
+          فهمتِ المهارة، افتحي القطعة
+        </button>
+
+      </article>
+
+      <article
+        class="journey-card"
+        data-card="0-1"
+      >
+
+        <span class="card-label">
+          قطعة القراءة
+        </span>
+
+        <h2>
+          مراكز البيانات
+          والطاقة المستدامة
+        </h2>
+
+        <div class="reading-text">
+          أصبحت مراكز البيانات
+          جزءًا أساسيًا من البنية الرقمية الحديثة؛
+          فهي تستضيف المنصات السحابية،
+          وتعالج كميات هائلة من المعلومات،
+          وتدعم خدمات الذكاء الاصطناعي
+          والتجارة الإلكترونية
+          والأنظمة الحكومية.
+
+          غير أن توسع هذه المراكز
+          يرفع استهلاك الطاقة
+          بسبب الحاجة المستمرة
+          إلى تشغيل الخوادم
+          وأنظمة التبريد،
+          مما دفع الشركات
+          إلى البحث عن حلول
+          تقلل الأثر البيئي.
+
+          وتتجه بعض المنشآت
+          إلى استخدام الطاقة المتجددة،
+          وتصميم مبانٍ أكثر كفاءة،
+          والاستفادة من حرارة الخوادم
+          في تدفئة منشآت قريبة.
+
+          كما تساعد أنظمة الإدارة الذكية
+          على توزيع الأحمال
+          وإيقاف الوحدات غير المستخدمة،
+          مما يقلل الهدر
+          من غير أن يضعف أداء الخدمات.
+
+          ومع ذلك،
+          لا يكفي الاعتماد على تقنية واحدة؛
+          فخفض الأثر البيئي
+          يحتاج إلى تكامل
+          بين مصادر الطاقة النظيفة،
+          وكفاءة التبريد،
+          وإدارة الطلب،
+          ومراجعة دورة حياة الأجهزة.
+        </div>
+
+        <button
+          class="action-button next-card"
+          data-next="0-2"
+          type="button"
+        >
+          قرأتِ القطعة، افتحي السؤال
+        </button>
+
+      </article>
+
+      <article
+        class="journey-card"
+        data-card="0-2"
+      >
+
+        <span class="card-label">
+          سؤال خريطة النص
+        </span>
+
+        <div class="question-box">
+
+          <h3>
+            أي خريطة تمثل بناء القطعة
+            بصورة أدق؟
+          </h3>
+
+          <div class="options">
+
+            <button
+              class="option-button"
+              data-correct="false"
+              type="button"
+            >
+              عرض أهمية مراكز البيانات،
+              ثم رفض استخدامها
+              بسبب استهلاك الطاقة.
+            </button>
+
+            <button
+              class="option-button"
+              data-correct="true"
+              type="button"
+            >
+              بيان أهمية مراكز البيانات،
+              ثم عرض مشكلة استهلاك الطاقة،
+              ثم تقديم حلول متكاملة
+              للحد من أثرها البيئي.
+            </button>
+
+            <button
+              class="option-button"
+              data-correct="false"
+              type="button"
+            >
+              مقارنة بين التجارة الإلكترونية
+              والخدمات الحكومية
+              من حيث سرعة الأداء.
+            </button>
+
+          </div>
+
+          <div
+            class="feedback"
+            id="mapFeedback"
+          ></div>
+
+        </div>
+
+        <button
+          class="action-button"
+          id="openMapEvidence"
+          type="button"
+          disabled
+        >
+          اعرضي سبب صحة الإجابة والشواهد
+        </button>
+
+      </article>
+
+      <article
+        class="journey-card"
+        data-card="0-3"
+      >
+
+        <span class="card-label">
+          السبب والشواهد
+        </span>
+
+        <h2>
+          كيف رسمنا خريطة النص؟
+        </h2>
+
+        <div class="evidence-card show">
+
+          <p>
+            <strong>
+              السبب:
+            </strong>
+
+            لأن القطعة بدأت
+            بتوضيح أهمية مراكز البيانات،
+            ثم عرضت المشكلة الناتجة
+            عن استهلاك الطاقة،
+            ثم قدّمت مجموعة حلول،
+            وانتهت بالتأكيد
+            على ضرورة تكاملها.
+          </p>
+
+          <div class="evidence-quote">
+
+            <strong>
+              الشاهد الأول:
+            </strong>
+
+            «أصبحت مراكز البيانات
+            جزءًا أساسيًا
+            من البنية الرقمية الحديثة».
+          </div>
+
+          <div class="evidence-quote">
+
+            <strong>
+              الشاهد الثاني:
+            </strong>
+
+            «غير أن توسع هذه المراكز
+            يرفع استهلاك الطاقة».
+          </div>
+
+          <div class="evidence-quote">
+
+            <strong>
+              الشاهد الثالث:
+            </strong>
+
+            «خفض الأثر البيئي
+            يحتاج إلى تكامل
+            بين مصادر الطاقة النظيفة،
+            وكفاءة التبريد،
+            وإدارة الطلب».
+          </div>
+
+        </div>
+
+        <button
+          class="action-button"
+          id="finishMapSkill"
+          type="button"
+        >
+          انتقلي إلى ما وراء السطور
+        </button>
+
+      </article>
+
+    </section>
+        <section
+      class="skill-section"
+      data-skill="1"
+    >
+
+      <article
+        class="journey-card active"
+        data-card="1-0"
+      >
+
+        <span class="card-label">
+          المهارة الثانية
+        </span>
+
+        <h2>
+          ما وراء السطور
+        </h2>
+
+        <div class="definition-box">
+          تعتمد هذه المهارة على
+          استنتاج ما لم يذكر صراحة،
+          وفهم موقف الكاتب،
+          وغرضه من عرض الفكرة،
+          والدلالة التي تصنعها
+          القرائن مجتمعة.
+
+          لا تبحثي عن جملة مطابقة للإجابة،
+          بل اربطي بين أكثر من موضع
+          واسألي:
+          ماذا يريد الكاتب أن أفهم
+          من وراء هذه التفاصيل؟
+        </div>
+
+        <button
+          class="action-button next-card"
+          data-next="1-1"
+          type="button"
+        >
+          فهمتِ المهارة، افتحي القطعة
+        </button>
+
+      </article>
+
+      <article
+        class="journey-card"
+        data-card="1-1"
+      >
+
+        <span class="card-label">
+          قطعة القراءة
+        </span>
+
+        <h2>
+          التعليم في عصر المحاكاة الرقمية
+        </h2>
+
+        <div class="reading-text">
+          تتوسع المؤسسات التعليمية
+          في استخدام بيئات المحاكاة الرقمية
+          لتدريب المتعلمين
+          على مواقف يصعب تنفيذها
+          في الواقع بصورة متكررة.
+
+          ففي التخصصات الطبية،
+          تتيح المحاكاة تجربة إجراءات دقيقة
+          من غير تعريض المرضى للخطر،
+          كما تسمح في مجالات الهندسة
+          باختبار تصميمات متعددة
+          قبل الانتقال إلى مرحلة التنفيذ.
+
+          وتمنح هذه البيئات المتعلم
+          فرصة ارتكاب الخطأ
+          وتحليل نتائجه
+          ثم إعادة المحاولة،
+          وهو أمر يصعب تحقيقه
+          بالدرجة نفسها
+          في بعض المواقف الحقيقية.
+
+          غير أن الاعتماد الكامل
+          على المحاكاة
+          قد يصنع شعورًا زائفًا بالإتقان؛
+          لأن الواقع يتضمن متغيرات بشرية
+          وانفعالية وميدانية
+          لا تستطيع النماذج الرقمية
+          تمثيلها دائمًا بدقة.
+
+          لذلك ينظر المختصون
+          إلى المحاكاة بوصفها
+          مرحلة تدريبية قوية،
+          لا بديلًا نهائيًا
+          عن الخبرة الواقعية
+          والتفاعل المباشر
+          مع المواقف الحقيقية.
+        </div>
+
+        <button
+          class="action-button next-card"
+          data-next="1-2"
+          type="button"
+        >
+          قرأتِ القطعة، افتحي السؤال
+        </button>
+
+      </article>
+
+      <article
+        class="journey-card"
+        data-card="1-2"
+      >
+
+        <span class="card-label">
+          سؤال ما وراء السطور
+        </span>
+
+        <div class="question-box">
+
+          <h3>
+            ما الموقف الذي يمكن استنتاجه
+            من رؤية الكاتب للمحاكاة الرقمية؟
+          </h3>
+
+          <div class="options">
+
+            <button
+              class="option-button"
+              data-correct="false"
+              type="button"
+            >
+              المحاكاة الرقمية
+              قادرة على الاستغناء
+              عن الخبرة الواقعية تمامًا.
+            </button>
+
+            <button
+              class="option-button"
+              data-correct="true"
+              type="button"
+            >
+              المحاكاة أداة تدريب قوية،
+              لكنها تحتاج إلى التكامل
+              مع الخبرة الواقعية.
+            </button>
+
+            <button
+              class="option-button"
+              data-correct="false"
+              type="button"
+            >
+              التعلم الواقعي
+              أقل فائدة من التدريب الرقمي
+              في جميع المجالات.
+            </button>
+
+          </div>
+
+          <div
+            class="feedback"
+            id="inferenceFeedback"
+          ></div>
+
+        </div>
+
+        <button
+          class="action-button"
+          id="openInferenceEvidence"
+          type="button"
+          disabled
+        >
+          اعرضي سبب صحة الإجابة والشواهد
+        </button>
+
+      </article>
+
+      <article
+        class="journey-card"
+        data-card="1-3"
+      >
+
+        <span class="card-label">
+          السبب والشواهد
+        </span>
+
+        <h2>
+          كيف استنتجنا موقف الكاتب؟
+        </h2>
+
+        <div class="evidence-card show">
+
+          <p>
+            <strong>
+              السبب:
+            </strong>
+
+            لأن الكاتب عرض فوائد المحاكاة
+            بوضوح،
+            ثم بيّن حدودها،
+            وانتهى إلى موقف متوازن
+            يجمع بينها وبين الخبرة الواقعية.
+          </p>
+
+          <div class="evidence-quote">
+
+            <strong>
+              الشاهد الأول:
+            </strong>
+
+            «تمنح هذه البيئات المتعلم
+            فرصة ارتكاب الخطأ
+            وتحليل نتائجه
+            ثم إعادة المحاولة».
+          </div>
+
+          <div class="evidence-quote">
+
+            <strong>
+              الشاهد الثاني:
+            </strong>
+
+            «قد يصنع شعورًا زائفًا بالإتقان».
+          </div>
+
+          <div class="evidence-quote">
+
+            <strong>
+              الشاهد الثالث:
+            </strong>
+
+            «مرحلة تدريبية قوية،
+            لا بديلًا نهائيًا
+            عن الخبرة الواقعية».
+          </div>
+
+        </div>
+
+        <button
+          class="action-button"
+          id="finishInferenceSkill"
+          type="button"
+        >
+          انتقلي إلى القراءة الناقدة
+        </button>
+
+      </article>
+
+        </section>
+            <section
+      class="skill-section"
+      data-skill="2"
+    >
+
+      <article
+        class="journey-card active"
+        data-card="2-0"
+      >
+
+        <span class="card-label">
+          المهارة الثالثة
+        </span>
+
+        <h2>
+          القراءة الناقدة
+        </h2>
+
+        <div class="definition-box">
+          تساعدكِ القراءة الناقدة
+          على تقييم قوة الفكرة،
+          وفحص الأدلة التي تدعمها،
+          والتمييز بين الحقيقة والرأي،
+          والحكم على موثوقية المصدر.
+
+          لا يكفي أن تبدو العبارة مقنعة،
+          بل اسألي:
+          ما الدليل؟
+          وهل يرتبط بالادعاء مباشرة؟
+          وهل يمكن التحقق منه؟
+        </div>
+
+        <button
+          class="action-button next-card"
+          data-next="2-1"
+          type="button"
+        >
+          فهمتِ المهارة، افتحي القطعة
+        </button>
+
+      </article>
+
+      <article
+        class="journey-card"
+        data-card="2-1"
+      >
+
+        <span class="card-label">
+          قطعة القراءة
+        </span>
+
+        <h2>
+          المنصات الرقمية
+          وتشكيل الرأي العام
+        </h2>
+
+        <div class="reading-text">
+          أصبحت المنصات الرقمية
+          مصدرًا رئيسًا للأخبار
+          والنقاشات العامة،
+          إذ تتيح للمستخدمين
+          الوصول إلى المحتوى
+          ومشاركته بسرعة واسعة.
+
+          وتستخدم هذه المنصات
+          خوارزميات تقترح المواد
+          بناءً على التفاعلات السابقة،
+          مما يجعل تجربة كل مستخدم
+          مختلفة عن غيره.
+
+          ويرى بعضهم أن هذه الآلية
+          تسهّل الوصول إلى المحتوى
+          الأكثر صلة بالاهتمامات،
+          لكنها قد تحصر المستخدم
+          في دائرة من الآراء المتشابهة،
+          وتقلل تعرضه لوجهات نظر مختلفة.
+
+          كما أن ارتفاع عدد المشاركات
+          لا يثبت دقة المعلومة؛
+          فقد ينتشر محتوى مثير
+          قبل التحقق من مصدره،
+          بينما تحتاج المعلومات الموثوقة
+          أحيانًا إلى وقت أطول
+          لجمع الأدلة ومراجعتها.
+
+          لذلك تصبح مسؤولية القارئ
+          أكثر أهمية،
+          من خلال التحقق من الجهة الناشرة،
+          ومقارنة الخبر بمصادر مستقلة،
+          والتمييز بين العرض الموضوعي
+          والمحتوى المصمم
+          لإثارة الانفعال فقط.
+        </div>
+
+        <button
+          class="action-button next-card"
+          data-next="2-2"
+          type="button"
+        >
+          قرأتِ القطعة، افتحي السؤال
+        </button>
+
+      </article>
+
+      <article
+        class="journey-card"
+        data-card="2-2"
+      >
+
+        <span class="card-label">
+          سؤال القراءة الناقدة
+        </span>
+
+        <div class="question-box">
+
+          <h3>
+            أي الأدلة الآتية
+            هو الأقوى للتحقق
+            من خبر متداول على منصة رقمية؟
+          </h3>
+
+          <div class="options">
+
+            <button
+              class="option-button"
+              data-correct="false"
+              type="button"
+            >
+              ارتفاع عدد المشاركات
+              والتعليقات على الخبر.
+            </button>
+
+            <button
+              class="option-button"
+              data-correct="true"
+              type="button"
+            >
+              مقارنة الخبر
+              بمصادر مستقلة موثوقة
+              والتحقق من الجهة الناشرة.
+            </button>
+
+            <button
+              class="option-button"
+              data-correct="false"
+              type="button"
+            >
+              توافق الخبر
+              مع الرأي الذي يفضله القارئ.
+            </button>
+
+          </div>
+
+          <div
+            class="feedback"
+            id="criticalReadingFeedback"
+          ></div>
+
+        </div>
+
+        <button
+          class="action-button"
+          id="openCriticalReadingEvidence"
+          type="button"
+          disabled
+        >
+          اعرضي سبب صحة الإجابة والشواهد
+        </button>
+
+      </article>
+
+      <article
+        class="journey-card"
+        data-card="2-3"
+      >
+
+        <span class="card-label">
+          السبب والشواهد
+        </span>
+
+        <h2>
+          كيف قيّمنا قوة الدليل؟
+        </h2>
+
+        <div class="evidence-card show">
+
+          <p>
+            <strong>
+              السبب:
+            </strong>
+
+            لأن عدد المشاركات
+            لا يثبت صحة المعلومة،
+            بينما يسمح فحص المصدر
+            ومقارنة الخبر
+            بأكثر من جهة مستقلة
+            بالتحقق من دقته.
+          </p>
+
+          <div class="evidence-quote">
+
+            <strong>
+              الشاهد الأول:
+            </strong>
+
+            «ارتفاع عدد المشاركات
+            لا يثبت دقة المعلومة».
+          </div>
+
+          <div class="evidence-quote">
+
+            <strong>
+              الشاهد الثاني:
+            </strong>
+
+            «التحقق من الجهة الناشرة،
+            ومقارنة الخبر
+            بمصادر مستقلة».
+          </div>
+
+        </div>
+
+        <button
+          class="action-button"
+          id="finishCriticalReadingSkill"
+          type="button"
+        >
+          انتقلي إلى الإجابة الأدق
+        </button>
+
+      </article>
+
+            </section>
+                <section
+      class="skill-section"
+      data-skill="3"
+    >
+
+      <article
+        class="journey-card active"
+        data-card="3-0"
+      >
+
+        <span class="card-label">
+          المهارة الرابعة
+        </span>
+
+        <h2>
+          الإجابة الأدق
+        </h2>
+
+        <div class="definition-box">
+          لا تكون جميع البدائل الخاطئة
+          بعيدة عن النص؛
+          فقد تتضمن بعض المشتتات
+          فكرة وردت في القطعة،
+          لكنها لا تجيب عن المطلوب بدقة.
+
+          لذلك حددي كلمة السؤال،
+          ثم قارني بين البدائل،
+          واستبعدي كل خيار
+          يبالغ في الفكرة،
+          أو يقتطع جزءًا منها،
+          أو يضيف معنى
+          لا يثبته النص.
+        </div>
+
+        <button
+          class="action-button next-card"
+          data-next="3-1"
+          type="button"
+        >
+          فهمتِ المهارة، افتحي القطعة
+        </button>
+
+      </article>
+
+      <article
+        class="journey-card"
+        data-card="3-1"
+      >
+
+        <span class="card-label">
+          قطعة القراءة
+        </span>
+
+        <h2>
+          الأمن السيبراني
+          وبناء القدرة على التعافي
+        </h2>
+
+        <div class="reading-text">
+          لم يعد الأمن السيبراني
+          يقتصر على منع الاختراقات،
+          بل أصبح يشمل قدرة المؤسسات
+          على اكتشاف الهجوم سريعًا،
+          واحتواء أثره،
+          واستعادة الخدمات
+          من غير خسائر واسعة.
+
+          فقد تتمكن جهة ما
+          من بناء أنظمة حماية متقدمة،
+          ومع ذلك تظل عرضة
+          لهجوم غير متوقع
+          أو خطأ بشري
+          أو ثغرة لم تُكتشف من قبل.
+
+          ولهذا تتجه المؤسسات
+          إلى إعداد خطط استجابة،
+          وتوزيع الصلاحيات،
+          وإنشاء نسخ احتياطية مستقلة،
+          وتنفيذ تدريبات دورية
+          تحاكي الحوادث الرقمية.
+
+          وتساعد هذه الإجراءات
+          على تقليل زمن التعطل،
+          ومنع انتقال الضرر
+          إلى الأنظمة الأخرى،
+          وحماية البيانات الأساسية.
+
+          ومن ثم،
+          فإن قوة المؤسسة السيبرانية
+          لا تُقاس فقط
+          بعدد الهجمات التي منعتها،
+          بل أيضًا بقدرتها
+          على مواصلة العمل
+          والتعافي المنظم
+          عندما يقع الهجوم.
+        </div>
+
+        <button
+          class="action-button next-card"
+          data-next="3-2"
+          type="button"
+        >
+          قرأتِ القطعة، افتحي السؤال
+        </button>
+
+      </article>
+
+      <article
+        class="journey-card"
+        data-card="3-2"
+      >
+
+        <span class="card-label">
+          سؤال الإجابة الأدق
+        </span>
+
+        <div class="question-box">
+
+          <h3>
+            أي البدائل الآتية
+            يعبّر بدقة أكبر
+            عن الفكرة الرئيسة للقطعة؟
+          </h3>
+
+          <div class="options">
+
+            <button
+              class="option-button"
+              data-correct="false"
+              type="button"
+            >
+              تعتمد حماية المؤسسات
+              على منع جميع الهجمات
+              قبل وقوعها.
+            </button>
+
+            <button
+              class="option-button"
+              data-correct="true"
+              type="button"
+            >
+              يجمع الأمن السيبراني الفعّال
+              بين الوقاية
+              والاستجابة السريعة
+              والقدرة على التعافي.
+            </button>
+
+            <button
+              class="option-button"
+              data-correct="false"
+              type="button"
+            >
+              تكفي النسخ الاحتياطية وحدها
+              لضمان استمرار العمل
+              عند وقوع الهجمات.
+            </button>
+
+          </div>
+
+          <div
+            class="feedback"
+            id="bestAnswerFeedback"
+          ></div>
+
+        </div>
+
+        <button
+          class="action-button"
+          id="openBestAnswerEvidence"
+          type="button"
+          disabled
+        >
+          اعرضي سبب صحة الإجابة والشواهد
+        </button>
+
+      </article>
+
+      <article
+        class="journey-card"
+        data-card="3-3"
+      >
+
+        <span class="card-label">
+          السبب والشواهد
+        </span>
+
+        <h2>
+          لماذا كانت هذه الإجابة الأدق؟
+        </h2>
+
+        <div class="evidence-card show">
+
+          <p>
+            <strong>
+              السبب:
+            </strong>
+
+            لأنها جمعت العناصر الرئيسة
+            التي بنت عليها القطعة فكرتها:
+            الوقاية،
+            والاكتشاف،
+            واحتواء الضرر،
+            واستعادة الخدمات.
+
+            أما البدائل الأخرى
+            فركزت على عنصر واحد
+            أو بالغت في معنى
+            لا يثبته النص.
+          </p>
+
+          <div class="evidence-quote">
+
+            <strong>
+              الشاهد الأول:
+            </strong>
+
+            «أصبح يشمل قدرة المؤسسات
+            على اكتشاف الهجوم سريعًا،
+            واحتواء أثره،
+            واستعادة الخدمات».
+          </div>
+
+          <div class="evidence-quote">
+
+            <strong>
+              الشاهد الثاني:
+            </strong>
+
+            «لا تُقاس فقط
+            بعدد الهجمات التي منعتها،
+            بل أيضًا بقدرتها
+            على مواصلة العمل
+            والتعافي المنظم».
+          </div>
+
+        </div>
+
+        <button
+          class="action-button"
+          id="finishReadingJourney"
+          type="button"
+        >
+          افتحي وسام رحلة القراءة
+        </button>
+
+      </article>
+
+    </section>
+
+    <section
+      class="journey-card"
+      id="finalReadingReward"
+    >
+
+      <span class="card-label">
+        الإنجاز الكبير
+      </span>
+
+      <h2>
+        أكملتِ رحلة مهارات القراءة
+      </h2>
+
+      <div class="definition-box">
+        أصبحتِ قادرة على
+        بناء خريطة للنص،
+        واستنتاج ما وراء السطور،
+        وتقييم الأدلة نقديًا،
+        واختيار الإجابة الأدق
+        وربطها بالشاهد النصي.
+      </div>
+
+      <div class="evidence-card show">
+
+        <strong>
+          وسامكِ:
+        </strong>
+
+        🏆 قارئة نافس المتقدمة
+
+      </div>
+
+      <a
+        class="action-button"
+        href="nafes-skills.html"
+        style="text-decoration: none;"
+      >
+        العودة إلى مكتبة نافس
+      </a>
+
+    </section>
+
+  </main>
+
+  <footer>
+    جميع الحقوق محفوظة © 2026
+  </footer>
+    <script>
+    const skillSections =
+      document.querySelectorAll(".skill-section");
+
+    const progressSteps =
+      document.querySelectorAll(".progress-step");
+
+    const finalReadingReward =
+      document.getElementById("finalReadingReward");
+
+    function showCard(cardCode) {
+      const skillNumber =
+        cardCode.split("-")[0];
+
+      const section =
+        document.querySelector(
+          '[data-skill="' +
+          skillNumber +
+          '"]'
+        );
+
+      if (!section) {
+        return;
+      }
+
+      section
+        .querySelectorAll(".journey-card")
+        .forEach(function(card) {
+          card.classList.remove("active");
+        });
+
+      const targetCard =
+        section.querySelector(
+          '[data-card="' +
+          cardCode +
+          '"]'
+        );
+
+      if (targetCard) {
+        targetCard.classList.add("active");
+      }
+    }
+
+    function openSkill(skillNumber) {
+      skillSections.forEach(function(section) {
+        section.classList.remove("active");
+      });
+
+      finalReadingReward.classList.remove("active");
+
+      const targetSection =
+        document.querySelector(
+          '[data-skill="' +
+          skillNumber +
+          '"]'
+        );
+
+      if (targetSection) {
+        targetSection.classList.add("active");
+      }
+
+      progressSteps.forEach(function(step, index) {
+        step.classList.remove(
+          "active",
+          "done"
+        );
+
+        if (index < Number(skillNumber)) {
+          step.classList.add("done");
+        }
+
+        if (index === Number(skillNumber)) {
+          step.classList.add("active");
+        }
+      });
+
+      showCard(skillNumber + "-0");
+    }
+
+    document
+      .querySelectorAll(".next-card")
+      .forEach(function(button) {
+        button.addEventListener(
+          "click",
+          function() {
+            showCard(button.dataset.next);
+          }
+        );
+      });
+
+    function prepareQuestion(
+      feedbackId,
+      nextButtonId,
+      nextCardCode
+    ) {
+      const feedback =
+        document.getElementById(feedbackId);
+
+      const nextButton =
+        document.getElementById(nextButtonId);
+
+      const questionBox =
+        feedback.closest(".question-box");
+
+      const options =
+        questionBox.querySelectorAll(
+          ".option-button"
+        );
+
+      options.forEach(function(option) {
+        option.addEventListener(
+          "click",
+          function() {
+            options.forEach(function(item) {
+              item.classList.remove(
+                "correct",
+                "wrong"
+              );
+            });
+
+            if (
+              option.dataset.correct === "true"
+            ) {
+              option.classList.add("correct");
+
+              feedback.textContent =
+                "إجابة صحيحة. أحسنتِ تحليل النص وربط الإجابة بالدليل.";
+
+              feedback.classList.add("show");
+              nextButton.disabled = false;
+
+              nextButton.onclick =
+                function() {
+                  showCard(nextCardCode);
+                };
+            } else {
+              option.classList.add("wrong");
+
+              feedback.textContent =
+                "ليست الإجابة الأدق. حددي المطلوب أولًا، ثم قارني كل بديل بالشواهد الواردة في النص.";
+
+              feedback.classList.add("show");
+              nextButton.disabled = true;
+            }
+          }
+        );
+      });
+    }
+
+    prepareQuestion(
+      "mapFeedback",
+      "openMapEvidence",
+      "0-3"
+    );
+
+    prepareQuestion(
+      "inferenceFeedback",
+      "openInferenceEvidence",
+      "1-3"
+    );
+
+    prepareQuestion(
+      "criticalReadingFeedback",
+      "openCriticalReadingEvidence",
+      "2-3"
+    );
+
+    prepareQuestion(
+      "bestAnswerFeedback",
+      "openBestAnswerEvidence",
+      "3-3"
+    );
+
+    document
+      .getElementById("finishMapSkill")
+      .addEventListener(
+        "click",
+        function() {
+          openSkill(1);
+        }
+      );
+
+    document
+      .getElementById("finishInferenceSkill")
+      .addEventListener(
+        "click",
+        function() {
+          openSkill(2);
+        }
+      );
+
+    document
+      .getElementById(
+        "finishCriticalReadingSkill"
+      )
+      .addEventListener(
+        "click",
+        function() {
+          openSkill(3);
+        }
+      );
+
+    document
+      .getElementById(
+        "finishReadingJourney"
+      )
+      .addEventListener(
+        "click",
+        function() {
+          skillSections.forEach(function(section) {
+            section.classList.remove("active");
+          });
+
+          progressSteps.forEach(function(step) {
+            step.classList.remove("active");
+            step.classList.add("done");
+          });
+
+          finalReadingReward.classList.add(
+            "active"
+          );
+
+          localStorage.setItem(
+            "nafesReadingJourneyComplete",
+            "true"
+          );
+        }
+      );
+
+    openSkill(0);
+  </script>
+
+</body>
+</html>
