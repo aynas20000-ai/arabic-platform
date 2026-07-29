@@ -1059,7 +1059,14 @@
           class="promise-result"
           id="promiseResult"
         ></div>
-
+<button
+  class="start-btn"
+  id="restartJourneyBtn"
+  type="button"
+>
+  إعادة قراءة الحكايات
+  <span>🔄</span>
+</button>
       </div>
 
     </section>
@@ -2657,7 +2664,38 @@
         playTone("good");
       }
     );
+const restartJourneyBtn =
+  document.getElementById("restartJourneyBtn");
 
+restartJourneyBtn.addEventListener(
+  "click",
+  () => {
+    localStorage.removeItem(
+      "afaq_journey_completed"
+    );
+
+    localStorage.removeItem(
+      "afaq_current_story"
+    );
+
+    localStorage.removeItem(
+      "afaq_story_answers"
+    );
+
+    currentStory = 0;
+    selectedAnswers = {};
+
+    finalPanel.classList.remove(
+      "active"
+    );
+
+    journeyPanel.classList.add(
+      "active"
+    );
+
+    renderStory();
+  }
+);
     const journeyCompleted =
       localStorage.getItem(
         "afaq_journey_completed"
