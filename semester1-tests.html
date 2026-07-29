@@ -1,214 +1,199 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>اختبارات الفصل الدراسي الأول</title>
 
   <style>
-    *{
-      box-sizing:border-box;
-      margin:0;
-      padding:0;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    body{
-      min-height:100vh;
-      font-family:Tahoma,Arial,sans-serif;
-      color:#26364d;
-   background:
-  linear-gradient(
-    180deg,
-    #F8F3E7 0%,
-    #F2ECFF 100%
-  );
-  
-      
-          
-        
-          
-      
+    html,
+    body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
     }
 
-    header{
-      padding:35px 18px;
-      text-align:center;
-      color:#ffffff;
-      background:
-        linear-gradient(
-          135deg,
-          #8B6FA8,
-#6F568A
-
-        
-        );
-      box-shadow:
-        0 8px 24px rgba(14,79,145,.22);
+    body {
+      min-height: 100vh;
+      font-family: Tahoma, Arial, sans-serif;
+      color: #4b3a57;
+      background: linear-gradient(180deg, #fffaf2, #f8f0fb);
     }
 
-    header h1{
-      margin-bottom:12px;
-      font-size:clamp(28px,7vw,44px);
-      line-height:1.6;
+    header {
+      padding: 38px 18px;
+      color: #ffffff;
+      text-align: center;
+      background: linear-gradient(135deg, #776094, #5b4677);
+      border-bottom: 4px solid #c9a85c;
+      box-shadow: 0 8px 24px rgba(91, 70, 119, 0.18);
     }
 
-    header p{
-      color:#eaf4ff;
-      font-size:18px;
-      line-height:1.8;
+    header h1 {
+      margin-bottom: 12px;
+      color: #fffdf8;
+      font-size: clamp(28px, 7vw, 44px);
+      line-height: 1.6;
     }
 
-    .container{
-      width:min(850px,calc(100% - 28px));
-      margin:32px auto 50px;
+    header p {
+      color: #f7effb;
+      font-size: 18px;
+      line-height: 1.8;
     }
 
-    .intro{
-      margin-bottom:25px;
-      padding:22px;
-      text-align:center;
-      background:#ffffff;
-      border-radius:22px;
-      box-shadow:
-        0 10px 28px rgba(43,68,95,.10);
+    .container {
+      width: min(850px, calc(100% - 28px));
+      margin: 32px auto 50px;
     }
 
-    .intro h2{
-      margin-bottom:10px;
-      color:#5A3F72;
-      font-size:26px;
+    .intro {
+      margin-bottom: 25px;
+      padding: 22px;
+      text-align: center;
+      background: #fffdf8;
+      border: 2px solid #c9a85c;
+      border-radius: 22px;
+      box-shadow: 0 10px 28px rgba(91, 63, 111, 0.1);
     }
 
-    .intro p{
-      color:#667085;
-      font-size:17px;
-      line-height:1.9;
+    .intro h2 {
+      margin-bottom: 10px;
+      color: #5d4374;
+      font-size: 26px;
     }
 
-    .tests-grid{
-      display:grid;
-      gap:24px;
+    .intro p {
+      color: #6d6274;
+      font-size: 17px;
+      line-height: 1.9;
     }
 
-    .card{
-      padding:32px 20px;
-      text-align:center;
-      background:#ffffff;
-      border:1px solid #e2e8f0;
-      border-radius:25px;
-      box-shadow:
-        0 12px 30px rgba(43,68,95,.11);
+    .tests-grid {
+      display: grid;
+      gap: 24px;
     }
 
-    .card h2{
-      margin-bottom:18px;
-      color:#5A3F72;
-      font-size:clamp(25px,6vw,34px);
-      line-height:1.7;
+    .card {
+      padding: 32px 20px;
+      text-align: center;
+      background: #fffdf8;
+      border: 2px solid #c9a85c;
+      border-radius: 25px;
+      box-shadow: 0 12px 30px rgba(91, 63, 111, 0.11);
     }
 
-    .card p{
-      margin-bottom:25px;
-      color:#6b7280;
-      font-size:21px;
+    .card h2 {
+      margin-bottom: 18px;
+      color: #5d4374;
+      font-size: clamp(25px, 6vw, 34px);
+      line-height: 1.7;
     }
 
-    .btn{
-      display:inline-block;
-      min-width:230px;
-      padding:16px 26px;
-      color:#ffffff;
-      background:
-        linear-gradient(
-          135deg,
-          #8B6FA8,
-       #6F568A   
-        );
-      border-radius:16px;
-      text-decoration:none;
-      font-size:20px;
-      font-weight:bold;
-      box-shadow:
-        0 7px 16px rgba(23,105,176,.20);
+    .card p {
+      margin-bottom: 25px;
+      color: #6d6274;
+      font-size: 21px;
+    }
+
+    .btn {
+      display: inline-block;
+      min-width: 230px;
+      padding: 16px 26px;
+      color: #ffffff;
+      font-size: 20px;
+      font-weight: bold;
+      text-decoration: none;
+      background: linear-gradient(135deg, #776094, #5b4677);
+      border: 2px solid #c9a85c;
+      border-radius: 16px;
+      box-shadow: 0 7px 16px rgba(91, 63, 111, 0.2);
       transition:
-        transform .18s ease,
-        box-shadow .18s ease;
+        transform 0.18s ease,
+        box-shadow 0.18s ease;
     }
 
-    .btn:hover{
-      transform:translateY(-2px);
-      box-shadow:
-        0 10px 22px rgba(23,105,176,.27);
+    .btn:hover,
+    .btn:active {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px rgba(91, 63, 111, 0.27);
     }
 
-    .result-card{
-      border:2px solid #ead28b;
-      background:
-        linear-gradient(
-          180deg,
-          #fffef9,
-          #fff9e7
-        );
+    .result-card {
+      background: linear-gradient(180deg, #fffef9, #fff9e7);
+      border: 2px solid #c9a85c;
     }
 
-    .result-card h2{
-      color:#9b6a00;
+    .result-card h2 {
+      color: #8b650d;
     }
 
-    .lock{
-      display:inline-block;
-      min-width:230px;
-      padding:16px 26px;
-      color:#8a7440;
-      background:#f5edd6;
-      border-radius:16px;
-      font-size:19px;
-      font-weight:bold;
+    .lock {
+      display: inline-block;
+      width: 100%;
+      max-width: 620px;
+      padding: 18px;
+      color: #6b5420;
+      font-size: 18px;
+      font-weight: bold;
+      line-height: 2;
+      background: #f8efd5;
+      border: 1px solid #ddc57c;
+      border-radius: 16px;
     }
 
-    .footer{
-      margin-top:30px;
-      padding:20px;
-      text-align:center;
+    .footer {
+      margin-top: 30px;
+      padding: 20px;
+      text-align: center;
     }
 
-    .footer a{
-      color:#5A3F72;
-      font-size:18px;
-      font-weight:bold;
-      text-decoration:none;
+    .footer a {
+      display: inline-block;
+      padding: 12px 22px;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      text-decoration: none;
+      background: #6f5288;
+      border: 2px solid #c9a85c;
+      border-radius: 22px;
     }
 
-    @media(min-width:750px){
-      .tests-grid{
-        grid-template-columns:
-          repeat(2,1fr);
+    @media (min-width: 750px) {
+      .tests-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
 
-      .result-card{
-        grid-column:
-          1 / -1;
+      .result-card {
+        grid-column: 1 / -1;
       }
     }
 
-    @media(max-width:500px){
-      header{
-        padding:28px 14px;
+    @media (max-width: 500px) {
+      header {
+        padding: 28px 14px;
       }
 
-      .card{
-        padding:28px 16px;
+      .card {
+        padding: 28px 16px;
       }
 
-      .btn,
-      .lock{
-        width:100%;
-        min-width:0;
+      .btn {
+        width: 100%;
+        min-width: 0;
+      }
+
+      .lock {
+        font-size: 16px;
       }
     }
   </style>
@@ -239,65 +224,45 @@
 
       <section class="card">
         <h2>📖 الوظيفة النحوية</h2>
-
         <p>٣٠ درجة</p>
 
-        <a
-          class="btn"
-          href="grammar-test.html"
-        >
+        <a class="btn" href="grammar-test.html">
           ابدئي الاختبار
         </a>
       </section>
 
       <section class="card">
         <h2>📝 الصنف اللغوي</h2>
-
         <p>٢٠ درجة</p>
 
-        <a
-          class="btn"
-          href="language-test.html"
-        >
+        <a class="btn" href="language-test.html">
           ابدئي الاختبار
         </a>
       </section>
 
       <section class="card">
         <h2>✍️ الرسم الإملائي</h2>
-
         <p>٢٠ درجة</p>
 
-        <a
-          class="btn"
-          href="spelling.html"
-        >
+        <a class="btn" href="spelling-test.html">
           ابدئي الاختبار
         </a>
       </section>
 
       <section class="card">
         <h2>🖋️ الرسم الكتابي</h2>
-
         <p>١٠ درجات</p>
 
-        <a
-          class="btn"
-          href="ruqah-test.html"
-        >
+        <a class="btn" href="ruqah-test.html">
           ابدئي الاختبار
         </a>
       </section>
 
       <section class="card">
         <h2>📚 الأسلوب اللغوي</h2>
-
         <p>٢٠ درجة</p>
 
-        <a
-          class="btn"
-          href="styles.html"
-        >
+        <a class="btn" href="styles.html">
           ابدئي الاختبار
         </a>
       </section>
@@ -310,48 +275,84 @@
           وجمع الدرجات من ١٠٠.
         </p>
 
-      <div id="finalResult" class="lock"></div>
+        <div id="finalResult" class="lock"></div>
+      </section>
 
-
-<script>
-function getScore(...keys){
-  for(const key of keys){
-    const value = localStorage.getItem(key);
-
-    if(value !== null && value !== ""){
-      return Number(value) || 0;
-    }
-  }
-
-  return 0;
-}
-
-const grammar = getScore("semester1_grammar_score","grammarScore");
-const spelling = getScore("semester1_spelling_score","spellingScore");
-const linguistic = getScore("semester1_linguistic_score","linguisticScore");
-const style = getScore("semester1_style_score","stylesScore");
-const writing = getScore("semester1_writing_score","writingScore");
-
-const total = grammar + spelling + linguistic + style + writing;
-
-
-document.getElementById("finalResult").innerHTML =
-`الوظيفة: ${grammar} | الإملائي: ${spelling} | الصنف: ${linguistic} | الأسلوب: ${style} | الكتابي: ${writing}<br><b>المجموع: ${total} / 100</b>`;
-
-
-          
-        
-      
-
-    
+    </div>
 
     <div class="footer">
       <a href="tests.html">
-        ← العودة إلى صفحة الاختبارات
+        العودة إلى صفحة الاختبارات
       </a>
     </div>
 
   </main>
 
+  <script>
+    function getScore(...keys) {
+      for (const key of keys) {
+        const value = localStorage.getItem(key);
+
+        if (value !== null && value !== "") {
+          return Number(value) || 0;
+        }
+      }
+
+      return 0;
+    }
+
+    function toArabicNumber(number) {
+      return String(number).replace(
+        /\d/g,
+        digit => "٠١٢٣٤٥٦٧٨٩"[digit]
+      );
+    }
+
+    const grammar = getScore(
+      "semester1_grammar_score",
+      "grammarScore"
+    );
+
+    const spelling = getScore(
+      "semester1_spelling_score",
+      "spellingScore"
+    );
+
+    const linguistic = getScore(
+      "semester1_linguistic_score",
+      "linguisticScore"
+    );
+
+    const style = getScore(
+      "semester1_style_score",
+      "stylesScore"
+    );
+
+    const writing = getScore(
+      "semester1_writing_score",
+      "writingScore"
+    );
+
+    const total =
+      grammar +
+      spelling +
+      linguistic +
+      style +
+      writing;
+
+    document.getElementById("finalResult").innerHTML = `
+      الوظيفة النحوية: ${toArabicNumber(grammar)} من ٣٠<br>
+      الرسم الإملائي: ${toArabicNumber(spelling)} من ٢٠<br>
+      الصنف اللغوي: ${toArabicNumber(linguistic)} من ٢٠<br>
+      الأسلوب اللغوي: ${toArabicNumber(style)} من ٢٠<br>
+      الرسم الكتابي: ${toArabicNumber(writing)} من ١٠
+      <br><br>
+      <strong>
+        المجموع: ${toArabicNumber(total)} من ١٠٠
+      </strong>
+    `;
+  </script>
+
 </body>
+
 </html>
