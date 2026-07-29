@@ -10,7 +10,7 @@
   >
 
   <title>
-    أنواع الأسئلة | منصة آفاق اللغة
+    رحلة السؤال الحرفي | منصة آفاق اللغة
   </title>
 
   <style>
@@ -24,19 +24,17 @@
       --purple-soft: #776094;
       --purple-light: #f5ecfb;
       --gold: #c9a85c;
-      --gold-dark: #a9822f;
+      --gold-dark: #9b7528;
       --gold-light: #fff6dc;
       --cream: #fffdf8;
-      --text: #4b3a57;
-      --muted: #74687b;
+      --text: #3f304a;
+      --muted: #665b6d;
       --green: #3f896b;
       --green-light: #eaf7f1;
+      --rose: #a94f6d;
+      --rose-light: #fff0f4;
       --blue: #547fa5;
       --blue-light: #edf5fb;
-      --rose: #ad5f79;
-      --rose-light: #fff0f4;
-      --orange: #ad7132;
-      --orange-light: #fff3e3;
     }
 
     html,
@@ -53,31 +51,49 @@
 
     body {
       min-height: 100vh;
-      font-family: Tahoma, Arial, sans-serif;
       color: var(--text);
-      text-align: center;
       background:
         radial-gradient(
           circle at top right,
-          rgba(255, 239, 200, 0.78),
-          transparent 30%
+          rgba(255, 239, 200, 0.82),
+          transparent 31%
         ),
         radial-gradient(
           circle at bottom left,
-          rgba(228, 210, 242, 0.84),
-          transparent 42%
+          rgba(228, 210, 242, 0.88),
+          transparent 43%
         ),
         linear-gradient(
           145deg,
           #fffaf2,
           #f8f0fb
         );
+      font-family: Tahoma, Arial, sans-serif;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    button,
+    a {
+      font-family: inherit;
+    }
+
+    p,
+    li,
+    button {
+      font-size: 17px;
+      font-weight: 600;
+      line-height: 2;
+    }
+
+    h1,
+    h2,
+    h3,
+    strong {
+      font-weight: 800;
     }
 
     .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 50;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -95,19 +111,16 @@
     .brand {
       color: #fff8df;
       font-size: 18px;
-      font-weight: bold;
+      font-weight: 800;
     }
 
     .back-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
       padding: 9px 13px;
       border-radius: 22px;
       color: white;
       text-decoration: none;
       font-size: 13px;
-      font-weight: bold;
+      font-weight: 700;
       background: rgba(255, 255, 255, 0.14);
       border: 1px solid rgba(255, 255, 255, 0.36);
     }
@@ -115,9 +128,9 @@
     .hero {
       position: relative;
       overflow: hidden;
-      padding: 49px 18px 58px;
+      padding: 47px 18px 55px;
       color: white;
-      border-radius: 0 0 55px 55px;
+      border-radius: 0 0 52px 52px;
       background: linear-gradient(
         145deg,
         #776094,
@@ -135,17 +148,17 @@
     }
 
     .hero::before {
-      width: 220px;
-      height: 220px;
-      top: -120px;
-      right: -70px;
+      width: 210px;
+      height: 210px;
+      top: -110px;
+      right: -65px;
     }
 
     .hero::after {
-      width: 170px;
-      height: 170px;
-      bottom: -90px;
-      left: -50px;
+      width: 160px;
+      height: 160px;
+      bottom: -85px;
+      left: -45px;
     }
 
     .hero-icon {
@@ -154,11 +167,11 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 105px;
-      height: 105px;
+      width: 102px;
+      height: 102px;
       margin: 0 auto 18px;
-      border-radius: 32px;
-      font-size: 55px;
+      border-radius: 31px;
+      font-size: 53px;
       background: rgba(255, 255, 255, 0.14);
       border: 3px solid rgba(255, 255, 255, 0.34);
       animation: floatIcon 2.8s ease-in-out infinite;
@@ -180,453 +193,312 @@
       z-index: 2;
       margin: 0 0 8px;
       color: #fff8df;
-      font-size: 35px;
+      font-size: 34px;
       line-height: 1.7;
     }
 
     .hero p {
       position: relative;
       z-index: 2;
-      max-width: 760px;
+      max-width: 700px;
       margin: auto;
-      color: #f7effb;
-      font-size: 16px;
+      color: #f8f1fb;
+      font-size: 17px;
       line-height: 2;
     }
 
     main {
-      width: min(930px, 93%);
-      margin: 33px auto 55px;
+      width: min(760px, 93%);
+      margin: 30px auto 52px;
     }
 
-    .intro-card {
-      margin-bottom: 24px;
-      padding: 22px;
-      border-radius: 24px;
-      color: #5d4374;
+    .journey-map {
+      margin-bottom: 25px;
+      padding: 18px;
+      border-radius: 23px;
       background: var(--cream);
       border: 1px solid rgba(93, 67, 116, 0.14);
-      border-right: 7px solid var(--gold);
-      box-shadow: 0 12px 28px rgba(73, 56, 92, 0.11);
-      font-size: 16px;
-      line-height: 2;
+      box-shadow: 0 11px 27px rgba(73, 56, 92, 0.11);
     }
 
-    .intro-card strong {
-      display: block;
-      margin-bottom: 5px;
+    .journey-map h2 {
+      margin: 0 0 13px;
       color: var(--purple-dark);
       font-size: 21px;
     }
 
-    .interaction-bar {
-      position: sticky;
-      top: 70px;
-      z-index: 40;
+    .steps-line {
+      display: grid;
+      grid-template-columns:
+        repeat(6, minmax(0, 1fr));
+      gap: 7px;
+    }
+
+    .map-step {
+      min-height: 54px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 28px;
-      padding: 13px 15px;
-      border-radius: 20px;
-      background: rgba(255, 253, 248, 0.95);
-      border: 1px solid rgba(93, 67, 116, 0.15);
-      box-shadow: 0 10px 25px rgba(73, 56, 92, 0.12);
-      backdrop-filter: blur(8px);
+      justify-content: center;
+      padding: 7px 4px;
+      border-radius: 14px;
+      color: #7b6d83;
+      background: #eee8f1;
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.5;
+      transition: 0.3s;
     }
 
-    .progress-area {
-      flex: 1;
-      text-align: right;
-    }
-
-    .progress-text {
-      display: block;
-      margin-bottom: 7px;
-      color: var(--purple-dark);
-      font-size: 13px;
-      font-weight: bold;
-    }
-
-    .progress-track {
-      height: 10px;
-      overflow: hidden;
-      border-radius: 20px;
-      background: #eee6f2;
-    }
-
-    .progress-fill {
-      width: 0;
-      height: 100%;
-      border-radius: 20px;
-      background: linear-gradient(
-        90deg,
-        var(--gold),
-        var(--purple)
-      );
-      transition: width 0.45s ease;
-    }
-
-    .sound-button {
-      flex: 0 0 auto;
-      padding: 10px 13px;
-      border: 0;
-      border-radius: 15px;
+    .map-step.active {
       color: white;
       background: var(--purple);
-      font-family: inherit;
-      font-size: 13px;
-      font-weight: bold;
-      cursor: pointer;
+      box-shadow: 0 6px 14px rgba(73, 56, 92, 0.2);
     }
 
-    .sound-button.muted {
-      background: #847b89;
+    .map-step.done {
+      color: #2e684f;
+      background: var(--green-light);
+      border: 1px solid rgba(63, 137, 107, 0.35);
     }
 
-    .section-title {
-      margin: 36px 0 20px;
+    .stage-card {
+      display: none;
+      padding: 27px 22px;
+      border-radius: 28px;
+      background: var(--cream);
+      border: 1px solid rgba(93, 67, 116, 0.14);
+      box-shadow: 0 14px 32px rgba(73, 56, 92, 0.13);
+      animation: stageEnter 0.55s ease;
+    }
+
+    .stage-card.active {
+      display: block;
+    }
+
+    @keyframes stageEnter {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .stage-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 112px;
+      padding: 8px 13px;
+      margin-bottom: 16px;
+      border-radius: 18px;
+      color: white;
+      background: var(--purple);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .stage-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 92px;
+      height: 92px;
+      margin: 0 auto 16px;
+      border-radius: 28px;
+      font-size: 48px;
+      background: var(--purple-light);
+      box-shadow: 0 8px 20px rgba(73, 56, 92, 0.09);
+    }
+
+    .stage-card h2 {
+      margin: 0 0 13px;
       color: var(--purple-dark);
-      font-size: 29px;
+      font-size: 27px;
       line-height: 1.7;
     }
 
-    .types-grid {
-      display: grid;
-      grid-template-columns:
-        repeat(2, minmax(0, 1fr));
-      gap: 19px;
-    }
-
-    .type-card {
-      position: relative;
-      overflow: hidden;
-      padding: 25px 22px;
-      border-radius: 27px;
+    .stage-card p {
+      margin: 0;
+      color: var(--muted);
       text-align: right;
-      background: var(--cream);
-      border: 1px solid rgba(93, 67, 116, 0.13);
-      box-shadow: 0 12px 28px rgba(73, 56, 92, 0.1);
-      cursor: pointer;
-      transition:
-        transform 0.24s ease,
-        box-shadow 0.24s ease,
-        border-color 0.24s ease;
     }
 
-    .type-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 18px 34px rgba(73, 56, 92, 0.16);
+    .definition-box {
+      margin-top: 17px;
+      padding: 18px;
+      border-radius: 19px;
+      color: #5b4667;
+      background: var(--purple-light);
+      border-right: 7px solid var(--gold);
+      text-align: right;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 2;
     }
 
-    .type-card.active {
-      border-color: rgba(201, 168, 92, 0.72);
-      box-shadow:
-        0 0 0 4px rgba(201, 168, 92, 0.14),
-        0 18px 38px rgba(73, 56, 92, 0.17);
-      animation: cardGlow 1.3s ease;
+    .keywords {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 9px;
+      margin-top: 18px;
     }
 
-    .type-card.completed::after {
-      content: "✓ أتقنتِ النوع";
-      position: absolute;
-      top: 17px;
-      left: 15px;
-      padding: 6px 10px;
+    .keyword {
+      padding: 9px 13px;
       border-radius: 18px;
+      color: #71561f;
+      background: var(--gold-light);
+      border: 1px solid rgba(201, 168, 92, 0.4);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .action-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 23px;
+    }
+
+    .action-button {
+      flex: 1;
+      min-width: 140px;
+      padding: 14px 13px;
+      border: 0;
+      border-radius: 16px;
       color: white;
-      background: var(--green);
-      font-size: 11px;
-      font-weight: bold;
-    }
-
-    @keyframes cardGlow {
-      0% {
-        filter: brightness(1);
-      }
-
-      45% {
-        filter: brightness(1.08);
-      }
-
-      100% {
-        filter: brightness(1);
-      }
-    }
-
-    .type-card::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 100%;
-      height: 8px;
       background: var(--purple);
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 8px 17px rgba(73, 56, 92, 0.15);
     }
 
-    .type-card.gold::before {
-      background: var(--gold);
-    }
-
-    .type-card.green::before {
-      background: var(--green);
-    }
-
-    .type-card.blue::before {
+    .action-button.sound {
       background: var(--blue);
     }
 
-    .type-card.rose::before {
-      background: var(--rose);
+    .action-button:active {
+      transform: scale(0.98);
     }
 
-    .type-card.orange::before {
-      background: var(--orange);
+    .example-text {
+      margin-top: 18px;
+      padding: 19px;
+      border-radius: 20px;
+      color: #4d4053;
+      background: #fffaf0;
+      border: 1px dashed rgba(169, 130, 47, 0.5);
+      text-align: right;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 2;
     }
 
-    .type-head {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 14px;
+    .highlight {
+      padding: 2px 6px;
+      border-radius: 7px;
+      color: #6a4c10;
+      background: #ffe8a6;
+      font-weight: 800;
     }
 
-    .type-icon {
-      display: flex;
-      flex: 0 0 66px;
-      align-items: center;
-      justify-content: center;
-      width: 66px;
-      height: 66px;
+    .question-box {
+      margin-top: 18px;
+      padding: 19px;
       border-radius: 21px;
-      font-size: 35px;
-      background: var(--purple-light);
-    }
-
-    .type-card.gold .type-icon {
-      background: var(--gold-light);
-    }
-
-    .type-card.green .type-icon {
-      background: var(--green-light);
-    }
-
-    .type-card.blue .type-icon {
-      background: var(--blue-light);
-    }
-
-    .type-card.rose .type-icon {
-      background: var(--rose-light);
-    }
-
-    .type-card.orange .type-icon {
-      background: var(--orange-light);
-    }
-
-    .type-head h2 {
-      margin: 0;
-      color: var(--purple-dark);
-      font-size: 23px;
-      line-height: 1.6;
-    }
-
-    .type-card > p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.95;
-    }
-
-    .card-details {
-      max-height: 0;
-      overflow: hidden;
-      opacity: 0;
-      transition:
-        max-height 0.45s ease,
-        opacity 0.35s ease,
-        margin 0.35s ease;
-    }
-
-    .type-card.active .card-details {
-      max-height: 1100px;
-      margin-top: 14px;
-      opacity: 1;
-    }
-
-    .key-box {
-      margin-top: 13px;
-      padding: 13px;
-      border-radius: 16px;
-      color: #604c6d;
-      background: var(--purple-light);
-      font-size: 13px;
-      line-height: 1.9;
-    }
-
-    .example-box {
-      margin-top: 13px;
-      padding: 14px;
-      border-radius: 16px;
-      color: #5c4d63;
       background: #fffaf1;
-      border: 1px dashed rgba(169, 130, 47, 0.48);
-      font-size: 13px;
+      border: 1px solid rgba(201, 168, 92, 0.35);
+    }
+
+    .question-box h3 {
+      margin: 0 0 14px;
+      color: var(--purple-dark);
+      font-size: 21px;
       line-height: 1.9;
     }
 
-    .key-box strong,
-    .example-box strong {
-      color: var(--purple-dark);
-    }
-
-    .mini-question {
-      margin-top: 14px;
-      padding: 14px;
-      border-radius: 17px;
-      background: #fffaf1;
-      border: 1px dashed rgba(169, 130, 47, 0.45);
-    }
-
-    .mini-question strong {
-      display: block;
-      margin-bottom: 10px;
-      color: var(--purple-dark);
-      line-height: 1.9;
-    }
-
-    .mini-options {
+    .options {
       display: grid;
-      gap: 8px;
+      gap: 10px;
     }
 
-    .mini-option {
-      padding: 11px;
-      border: 1px solid rgba(93, 67, 116, 0.18);
-      border-radius: 12px;
+    .option-button {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid rgba(93, 67, 116, 0.2);
+      border-radius: 14px;
       color: var(--text);
       background: white;
-      font-family: inherit;
       text-align: right;
       cursor: pointer;
     }
 
-    .mini-option.correct {
+    .option-button.correct {
       color: #28684f;
       background: var(--green-light);
       border-color: var(--green);
     }
 
-    .mini-option.wrong {
+    .option-button.wrong {
       color: #8a405a;
       background: var(--rose-light);
       border-color: var(--rose);
     }
 
-    .feedback-message {
+    .feedback {
       display: none;
-      margin-top: 10px;
-      padding: 10px;
-      border-radius: 12px;
-      color: var(--purple-dark);
-      background: var(--purple-light);
-      font-size: 13px;
-      line-height: 1.8;
-    }
-
-    .feedback-message.show {
-      display: block;
-      animation: cardGlow 0.8s ease;
-    }
-
-    .card-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 9px;
-      margin-top: 15px;
-    }
-
-    .card-button {
-      flex: 1;
-      min-width: 120px;
-      padding: 11px 12px;
-      border: 0;
+      margin-top: 12px;
+      padding: 12px;
       border-radius: 14px;
-      color: white;
-      background: var(--purple);
-      font-family: inherit;
-      font-size: 13px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .card-button.read {
-      background: var(--blue);
-    }
-
-    .card-button.finish {
-      background: var(--green);
-    }
-
-    .tip-box {
-      margin: 27px 0;
-      padding: 20px;
-      border-radius: 24px;
-      color: #624d6f;
+      color: #5b4667;
       background: var(--purple-light);
-      border-right: 7px solid var(--gold);
-      text-align: right;
       font-size: 15px;
-      line-height: 2;
+      font-weight: 700;
+      line-height: 1.9;
     }
 
-    .home-button {
+    .feedback.show {
       display: block;
-      margin-top: 27px;
-      padding: 16px;
-      border-radius: 18px;
-      color: white;
-      background: var(--purple);
-      text-decoration: none;
-      font-size: 16px;
-      font-weight: bold;
-      box-shadow: 0 9px 20px rgba(73, 56, 92, 0.16);
+    }
+
+    .locked-note {
+      margin-top: 21px;
+      color: #877a8c;
+      font-size: 14px;
     }
 
     footer {
-      margin-top: 45px;
+      margin-top: 44px;
       padding: 23px 13px;
       color: white;
       background: var(--purple-dark);
       line-height: 1.8;
     }
 
-    @media (max-width: 760px) {
+    @media (max-width: 620px) {
       .hero h1 {
-        font-size: 30px;
+        font-size: 29px;
       }
 
-      .hero p {
-        font-size: 15px;
+      .steps-line {
+        grid-template-columns:
+          repeat(3, minmax(0, 1fr));
       }
 
-      .types-grid {
-        grid-template-columns: 1fr;
+      .stage-card {
+        padding: 24px 18px;
       }
 
-      .interaction-bar {
-        top: 67px;
-      }
-
-      .sound-button {
-        padding: 10px;
-        font-size: 12px;
-      }
-
-      .type-card.completed::after {
-        position: static;
-        display: inline-block;
-        margin: 0 0 12px;
+      p,
+      li,
+      button {
+        font-size: 16px;
       }
     }
   </style>
@@ -652,611 +524,519 @@
   <section class="hero">
 
     <div class="hero-icon">
-      🧭
+      📌
     </div>
 
     <h1>
-      أنواع الأسئلة
+      رحلة السؤال الحرفي
     </h1>
 
     <p>
-      اكتشفي المطلوب من صيغة السؤال،
-      ثم اختاري طريقة التفكير المناسبة
-      قبل العودة إلى النص.
+      ستكتشفين المهارة خطوة خطوة،
+      ولن تُفتح المرحلة التالية
+      حتى تنجزي المرحلة الحالية.
     </p>
 
   </section>
 
   <main>
 
-    <section class="intro-card">
+    <section class="journey-map">
 
-      <strong>
-        سر هذه الوحدة
-      </strong>
+      <h2>
+        مسار الرحلة
+      </h2>
 
-      السؤال لا يطلب منكِ القراءة بالطريقة نفسها كل مرة.
-      أحيانًا تبحثين عن معلومة واضحة،
-      وأحيانًا تجمعين القرائن،
-      وأحيانًا تحكمين على قوة الدليل.
+      <div class="steps-line">
 
-    </section>
-
-    <section class="interaction-bar">
-
-      <div class="progress-area">
-
-        <span
-          class="progress-text"
-          id="progressText"
+        <div
+          class="map-step active"
+          data-map="0"
         >
-          أتقنتِ 0 من 5 أنواع
-        </span>
+          الاكتشاف
+        </div>
 
-        <div class="progress-track">
+        <div
+          class="map-step"
+          data-map="1"
+        >
+          المثال
+        </div>
 
-          <div
-            class="progress-fill"
-            id="progressFill"
-          ></div>
+        <div
+          class="map-step"
+          data-map="2"
+        >
+          التحدي
+        </div>
 
+        <div
+          class="map-step"
+          data-map="3"
+        >
+          التفسير
+        </div>
+
+        <div
+          class="map-step"
+          data-map="4"
+        >
+          التقييم
+        </div>
+
+        <div
+          class="map-step"
+          data-map="5"
+        >
+          الجائزة
         </div>
 
       </div>
 
-      <button
-        class="sound-button"
-        id="soundToggle"
-        type="button"
-      >
-        🔊 الصوت يعمل
-      </button>
-
     </section>
 
-    <section class="tip-box">
-      اضغطي على البطاقة لتضيء وتفتح،
-      ثم استمعي إلى الشرح،
-      وأجيبي عن السؤال السريع،
-      وسجلي إتقانكِ للنوع.
-    </section>
-
-    <h2 class="section-title">
-      اكتشفي الأنواع الخمسة
-    </h2>
-
-    <section class="types-grid">
-
-      <article
-        class="type-card gold"
-        data-type="literal"
-      >
-
-        <div class="type-head">
-
-          <div class="type-icon">
-            📌
-          </div>
-
-          <h2>
-            السؤال الحرفي
-          </h2>
-
-        </div>
-
-        <p>
-          يبحث عن معلومة مذكورة بوضوح
-          في النص أو الجدول.
-        </p>
-
-        <div class="card-details">
-
-          <div class="key-box">
-            <strong>كلماته:</strong>
-            من؟ ماذا؟ متى؟ أين؟
-            بحسب النص، ورد في الفقرة.
-          </div>
-
-          <div class="example-box">
-            <strong>طريقة الحل:</strong>
-            حددي كلمة من السؤال،
-            ثم ابحثي عن معناها أو مرادفها
-            داخل النص.
-          </div>
-
-          <div class="mini-question">
-
-            <strong>
-              «متى بدأت الحملة؟»
-              ما نوع السؤال؟
-            </strong>
-
-            <div class="mini-options">
-
-              <button
-                class="mini-option"
-                data-correct="true"
-                type="button"
-              >
-                حرفي
-              </button>
-
-              <button
-                class="mini-option"
-                data-correct="false"
-                type="button"
-              >
-                نقدي
-              </button>
-
-              <button
-                class="mini-option"
-                data-correct="false"
-                type="button"
-              >
-                تطبيقي
-              </button>
-
-            </div>
-
-            <div class="feedback-message">
-              أحسنتِ، السؤال يطلب زمنًا
-              مذكورًا مباشرة في النص.
-            </div>
-
-          </div>
-
-          <div class="card-actions">
-
-            <button
-              class="card-button read"
-              type="button"
-            >
-              🔊 استمعي للشرح
-            </button>
-
-            <button
-              class="card-button finish"
-              type="button"
-            >
-              ✓ أتقنتُ النوع
-            </button>
-
-          </div>
-
-        </div>
-
-      </article>
-
-      <article
-        class="type-card green"
-        data-type="inference"
-      >
-
-        <div class="type-head">
-
-          <div class="type-icon">
-            🔎
-          </div>
-
-          <h2>
-            السؤال الاستنتاجي
-          </h2>
-
-        </div>
-
-        <p>
-          إجابته لا تظهر حرفيًا،
-          لكنها تُفهم من القرائن.
-        </p>
-
-        <div class="card-details">
-
-          <div class="key-box">
-            <strong>كلماته:</strong>
-            نستنتج، نفهم، يدل،
-            يوحي، يمكن أن نتوقع.
-          </div>
-
-          <div class="example-box">
-            <strong>طريقة الحل:</strong>
-            اجمعي دليلين أو أكثر،
-            ثم اختاري النتيجة المنطقية
-            التي لا تتجاوز النص.
-          </div>
-
-          <div class="mini-question">
-
-            <strong>
-              «حملت مظلة وارتدت معطفًا».
-              ماذا نستنتج؟
-            </strong>
-
-            <div class="mini-options">
-
-              <button
-                class="mini-option"
-                data-correct="false"
-                type="button"
-              >
-                الجو شديد الحرارة
-              </button>
-
-              <button
-                class="mini-option"
-                data-correct="true"
-                type="button"
-              >
-                الجو ممطر أو بارد
-              </button>
-
-              <button
-                class="mini-option"
-                data-correct="false"
-                type="button"
-              >
-                خرجت إلى البحر
-              </button>
-
-            </div>
-
-            <div class="feedback-message">
-              رائع، المظلة والمعطف قرينتان
-              تقودان إلى هذا الاستنتاج.
-            </div>
-
-          </div>
-
-          <div class="card-actions">
-
-            <button
-              class="card-button read"
-              type="button"
-            >
-              🔊 استمعي للشرح
-            </button>
-
-            <button
-              class="card-button finish"
-              type="button"
-            >
-              ✓ أتقنتُ النوع
-            </button>
-
-          </div>
-
-        </div>
-
-      </article>
-            <article
-        class="type-card blue"
-        data-type="analytical"
-      >
-
-        <div class="type-head">
-
-          <div class="type-icon">
-            🧩
-          </div>
-
-          <h2>
-            السؤال التحليلي
-          </h2>
-
-        </div>
-
-        <p>
-          يطلب تفسير العلاقة بين الأفكار،
-          أو بيان السبب والنتيجة،
-          أو المقارنة بين عنصرين.
-        </p>
-
-        <div class="card-details">
-
-          <div class="key-box">
-            <strong>كلماته:</strong>
-            ما العلاقة؟ لماذا؟
-            كيف أسهم؟ قارن بين،
-            ما السبب؟
-          </div>
-
-          <div class="example-box">
-            <strong>طريقة الحل:</strong>
-            حددي وظيفة كل فكرة،
-            ثم اشرحي الرابط بينهما
-            دون الاكتفاء بإعادة النص.
-          </div>
-
-          <div class="mini-question">
-
-            <strong>
-              «ازدادت الأمطار، فامتلأت الأودية».
-              ما العلاقة؟
-            </strong>
-
-            <div class="mini-options">
-
-              <button
-                class="mini-option"
-                data-correct="true"
-                type="button"
-              >
-                سبب ونتيجة
-              </button>
-
-              <button
-                class="mini-option"
-                data-correct="false"
-                type="button"
-              >
-                رأي وحقيقة
-              </button>
-
-              <button
-                class="mini-option"
-                data-correct="false"
-                type="button"
-              >
-                سؤال وجواب
-              </button>
-
-            </div>
-
-            <div class="feedback-message">
-              صحيح، زيادة الأمطار سبب،
-              وامتلاء الأودية نتيجة.
-            </div>
-
-          </div>
-
-          <div class="card-actions">
-
-            <button
-              class="card-button read"
-              type="button"
-            >
-              🔊 استمعي للشرح
-            </button>
-
-            <button
-              class="card-button finish"
-              type="button"
-            >
-              ✓ أتقنتُ النوع
-            </button>
-
-          </div>
-
-        </div>
-
-      </article>
-
-      <article
-        class="type-card rose"
-        data-type="critical"
-      >
-
-        <div class="type-head">
-
-          <div class="type-icon">
-            ⚖️
-          </div>
-
-          <h2>
-            السؤال النقدي
-          </h2>
-
-        </div>
-
-        <p>
-          يطلب الحكم على الفكرة،
-          أو قوة الدليل،
-          أو موثوقية المصدر.
-        </p>
-
-        <div class="card-details">
-
-          <div class="key-box">
-            <strong>كلماته:</strong>
-            الأقوى، الأوثق،
-            الأكثر إقناعًا،
-            الأفضل دعمًا.
-          </div>
-
-          <div class="example-box">
-            <strong>طريقة الحل:</strong>
-            اختاري الدليل المباشر،
-            المرتبط بالادعاء،
-            والقابل للتحقق.
-          </div>
-
-          <div class="mini-question">
-
-            <strong>
-              أي الأدلة أقوى لإثبات
-              زيادة الإقبال على القراءة؟
-            </strong>
-
-            <div class="mini-options">
-
-              <button
-                class="mini-option"
-                data-correct="false"
-                type="button"
-              >
-                أظن أن الناس يقرؤون أكثر
-              </button>
-
-              <button
-                class="mini-option"
-                data-correct="true"
-                type="button"
-              >
-                نتائج دراسة موثقة
-              </button>
-
-              <button
-                class="mini-option"
-                data-correct="false"
-                type="button"
-              >
-                أخبرني أحد الأصدقاء بذلك
-              </button>
-
-            </div>
-
-            <div class="feedback-message">
-              ممتاز، الدراسة الموثقة
-              أقوى لأنها قابلة للتحقق.
-            </div>
-
-          </div>
-
-          <div class="card-actions">
-
-            <button
-              class="card-button read"
-              type="button"
-            >
-              🔊 استمعي للشرح
-            </button>
-
-            <button
-              class="card-button finish"
-              type="button"
-            >
-              ✓ أتقنتُ النوع
-            </button>
-
-          </div>
-
-        </div>
-
-      </article>
-
-      <article
-        class="type-card orange"
-        data-type="applied"
-      >
-
-        <div class="type-head">
-
-          <div class="type-icon">
-            💡
-          </div>
-
-          <h2>
-            السؤال التطبيقي
-          </h2>
-
-        </div>
-
-        <p>
-          ينقل فكرة النص إلى موقف جديد،
-          ويطلب اختيار التصرف أو الحل الأنسب.
-        </p>
-
-        <div class="card-details">
-
-          <div class="key-box">
-            <strong>كلماته:</strong>
-            ماذا تفعل؟ كيف تطبق؟
-            أي موقف يشبه؟
-            ما الحل الأنسب؟
-          </div>
-
-          <div class="example-box">
-            <strong>طريقة الحل:</strong>
-            افهمي القاعدة في النص أولًا،
-            ثم طبقيها على الموقف الجديد.
-          </div>
-
-          <div class="mini-question">
-
-            <strong>
-              إذا أوصى النص بتقليل الهدر،
-              فما التطبيق الأنسب؟
-            </strong>
-
-            <div class="mini-options">
-
-              <button
-                class="mini-option"
-                data-correct="false"
-                type="button"
-              >
-                ترك الصنبور مفتوحًا
-              </button>
-
-              <button
-                class="mini-option"
-                data-correct="true"
-                type="button"
-              >
-                إصلاح التسربات
-              </button>
-
-              <button
-                class="mini-option"
-                data-correct="false"
-                type="button"
-              >
-                زيادة الاستهلاك
-              </button>
-
-            </div>
-
-            <div class="feedback-message">
-              أحسنتِ، إصلاح التسربات
-              تطبيق مباشر لفكرة تقليل الهدر.
-            </div>
-
-          </div>
-
-          <div class="card-actions">
-
-            <button
-              class="card-button read"
-              type="button"
-            >
-              🔊 استمعي للشرح
-            </button>
-
-            <button
-              class="card-button finish"
-              type="button"
-            >
-              ✓ أتقنتُ النوع
-            </button>
-
-          </div>
-
-        </div>
-
-      </article>
-
-    </section>
-
-    <section class="tip-box">
-
-      <strong>
-        🌟 قاعدة سريعة
-      </strong>
-
-      قبل قراءة النص كاملًا،
-      اقرئي السؤال وحددي نوعه.
-      عندما تعرفين نوع السؤال،
-      تعرفين أين تبحثين
-      وكيف تفكرين.
-
-    </section>
-
-    <a
-      class="home-button"
-      href="nafes-skills.html"
+    <section
+      class="stage-card active"
+      data-stage="0"
     >
-      العودة إلى مكتبة مهارات نافس
-    </a>
+
+      <span class="stage-number">
+        المرحلة الأولى
+      </span>
+
+      <div class="stage-icon">
+        🔍
+      </div>
+
+      <h2>
+        اكتشفي السؤال الحرفي
+      </h2>
+
+      <p>
+        هذا النوع من الأسئلة لا يحتاج إلى تخمين،
+        بل يحتاج إلى العثور على معلومة
+        وردت بوضوح في النص.
+      </p>
+
+      <div class="definition-box">
+        السؤال الحرفي هو سؤال تكون إجابته
+        مذكورة صراحة في النص،
+        وقد ترد بالكلمات نفسها
+        أو بصياغة قريبة منها.
+      </div>
+
+      <div class="keywords">
+
+        <span class="keyword">
+          من؟
+        </span>
+
+        <span class="keyword">
+          متى؟
+        </span>
+
+        <span class="keyword">
+          أين؟
+        </span>
+
+        <span class="keyword">
+          ماذا؟
+        </span>
+
+        <span class="keyword">
+          بحسب النص
+        </span>
+
+      </div>
+
+      <div class="action-row">
+
+        <button
+          class="action-button sound"
+          id="readDiscovery"
+          type="button"
+        >
+          🔊 استمعي إلى الشرح
+        </button>
+
+        <button
+          class="action-button next-button"
+          data-next="1"
+          type="button"
+        >
+          فهمتُ، افتحي المثال
+        </button>
+
+      </div>
+
+    </section>
+        <section
+      class="stage-card"
+      data-stage="1"
+    >
+
+      <span class="stage-number">
+        المرحلة الثانية
+      </span>
+
+      <div class="stage-icon">
+        📖
+      </div>
+
+      <h2>
+        شاهدي المثال
+      </h2>
+
+      <div class="example-text">
+        بدأت حملة التشجير
+        <span class="highlight">
+          صباح يوم الأحد
+        </span>
+        بمشاركة طالبات المدرسة.
+      </div>
+
+      <div class="question-box">
+
+        <h3>
+          متى بدأت حملة التشجير؟
+        </h3>
+
+        <p>
+          الكلمة المفتاحية في السؤال هي:
+          <strong>متى</strong>.
+          لذلك نبحث عن الزمن المذكور صراحة في النص.
+        </p>
+
+        <div class="definition-box">
+          الإجابة:
+          بدأت الحملة صباح يوم الأحد.
+        </div>
+
+      </div>
+
+      <div class="action-row">
+
+        <button
+          class="action-button sound"
+          id="readExample"
+          type="button"
+        >
+          🔊 استمعي إلى المثال
+        </button>
+
+        <button
+          class="action-button next-button"
+          data-next="2"
+          type="button"
+        >
+          فهمتُ، ابدئي التحدي
+        </button>
+
+      </div>
+
+    </section>
+
+    <section
+      class="stage-card"
+      data-stage="2"
+    >
+
+      <span class="stage-number">
+        المرحلة الثالثة
+      </span>
+
+      <div class="stage-icon">
+        🎯
+      </div>
+
+      <h2>
+        تحدي السؤال الحرفي
+      </h2>
+
+      <div class="example-text">
+        زارت الطالبات المعرض العلمي
+        <span class="highlight">
+          يوم الثلاثاء
+        </span>
+        وشاهدن عددًا من التجارب.
+      </div>
+
+      <div class="question-box">
+
+        <h3>
+          في أي يوم زارت الطالبات المعرض؟
+        </h3>
+
+        <div class="options">
+
+          <button
+            class="option-button"
+            data-correct="false"
+            type="button"
+          >
+            يوم الأحد
+          </button>
+
+          <button
+            class="option-button"
+            data-correct="true"
+            type="button"
+          >
+            يوم الثلاثاء
+          </button>
+
+          <button
+            class="option-button"
+            data-correct="false"
+            type="button"
+          >
+            يوم الخميس
+          </button>
+
+        </div>
+
+        <div
+          class="feedback"
+          id="challengeFeedback"
+        ></div>
+
+      </div>
+
+      <div class="action-row">
+
+        <button
+          class="action-button next-button"
+          id="challengeNext"
+          data-next="3"
+          type="button"
+          disabled
+        >
+          افتحي مرحلة التفسير
+        </button>
+
+      </div>
+
+      <p class="locked-note">
+        تُفتح المرحلة التالية بعد اختيار الإجابة الصحيحة.
+      </p>
+
+    </section>
+
+    <section
+      class="stage-card"
+      data-stage="3"
+    >
+
+      <span class="stage-number">
+        المرحلة الرابعة
+      </span>
+
+      <div class="stage-icon">
+        💭
+      </div>
+
+      <h2>
+        فسّري اختياركِ
+      </h2>
+
+      <p>
+        لماذا كانت إجابة «يوم الثلاثاء» صحيحة؟
+      </p>
+
+      <div class="question-box">
+
+        <div class="options">
+
+          <button
+            class="option-button reason-option"
+            data-correct="true"
+            type="button"
+          >
+            لأن اليوم ورد صراحة في النص.
+          </button>
+
+          <button
+            class="option-button reason-option"
+            data-correct="false"
+            type="button"
+          >
+            لأنني خمنت الإجابة.
+          </button>
+
+          <button
+            class="option-button reason-option"
+            data-correct="false"
+            type="button"
+          >
+            لأن يوم الثلاثاء هو اليوم المفضل لدي.
+          </button>
+
+        </div>
+
+        <div
+          class="feedback"
+          id="reasonFeedback"
+        ></div>
+
+      </div>
+
+      <div class="action-row">
+
+        <button
+          class="action-button next-button"
+          id="reasonNext"
+          data-next="4"
+          type="button"
+          disabled
+        >
+          انتقلي إلى التقييم الذاتي
+        </button>
+
+      </div>
+
+    </section>
+
+    <section
+      class="stage-card"
+      data-stage="4"
+    >
+
+      <span class="stage-number">
+        المرحلة الخامسة
+      </span>
+
+      <div class="stage-icon">
+        🌱
+      </div>
+
+      <h2>
+        قيّمي فهمكِ
+      </h2>
+
+      <p>
+        اختاري العبارة التي تصف شعوركِ الآن.
+        لا توجد إجابة خاطئة هنا.
+      </p>
+
+      <div class="question-box">
+
+        <div class="options">
+
+          <button
+            class="option-button self-option"
+            data-level="strong"
+            type="button"
+          >
+            أفهم السؤال الحرفي وأستطيع شرحه.
+          </button>
+
+          <button
+            class="option-button self-option"
+            data-level="medium"
+            type="button"
+          >
+            أفهمه، لكنني أحتاج إلى مثال آخر.
+          </button>
+
+          <button
+            class="option-button self-option"
+            data-level="need-help"
+            type="button"
+          >
+            ما زلت محتارة وأحتاج إلى مساعدة.
+          </button>
+
+        </div>
+
+        <div
+          class="feedback"
+          id="selfFeedback"
+        ></div>
+
+        <div
+          class="example-text"
+          id="extraExample"
+          hidden
+        >
+          مثال إضافي:
+          وصلت الحافلة إلى المدرسة
+          <span class="highlight">
+            الساعة السابعة صباحًا
+          </span>.
+          السؤال: متى وصلت الحافلة؟
+          الإجابة مذكورة مباشرة:
+          الساعة السابعة صباحًا.
+        </div>
+
+      </div>
+
+      <div class="action-row">
+
+        <button
+          class="action-button next-button"
+          id="selfNext"
+          data-next="5"
+          type="button"
+          disabled
+        >
+          افتحي صندوق الجائزة
+        </button>
+
+      </div>
+
+    </section>
+
+    <section
+      class="stage-card"
+      data-stage="5"
+    >
+
+      <span class="stage-number">
+        المرحلة السادسة
+      </span>
+
+      <div class="stage-icon">
+        🎁
+      </div>
+
+      <h2>
+        صندوق الإنجاز
+      </h2>
+
+      <div class="definition-box">
+        🌟 جائزتكِ:
+        عندما ترين كلمات مثل
+        «متى؟» أو «أين؟» أو «بحسب النص»،
+        ابحثي أولًا عن المعلومة المذكورة بوضوح،
+        ولا تنتقلي إلى الاستنتاج قبل الحاجة إليه.
+      </div>
+
+      <div class="example-text">
+        حصلتِ على:
+        <strong>نجمة السؤال الحرفي ⭐</strong>
+      </div>
+
+      <div class="action-row">
+
+        <button
+          class="action-button sound"
+          id="readReward"
+          type="button"
+        >
+          🔊 استمعي إلى جائزتكِ
+        </button>
+
+        <a
+          class="action-button"
+          href="nafes-skills.html"
+          style="text-decoration: none;"
+        >
+          العودة إلى مكتبة نافس
+        </a>
+
+      </div>
+
+    </section>
 
   </main>
 
@@ -1265,45 +1045,148 @@
   </footer>
 
   <script>
-    const typeCards =
+    const stages =
       document.querySelectorAll(
-        ".type-card[data-type]"
+        ".stage-card"
       );
 
-    const progressText =
+    const mapSteps =
+      document.querySelectorAll(
+        ".map-step"
+      );
+
+    const nextButtons =
+      document.querySelectorAll(
+        ".next-button"
+      );
+
+    const challengeOptions =
+      document.querySelectorAll(
+        '[data-stage="2"] .option-button'
+      );
+
+    const reasonOptions =
+      document.querySelectorAll(
+        ".reason-option"
+      );
+
+    const selfOptions =
+      document.querySelectorAll(
+        ".self-option"
+      );
+
+    const challengeFeedback =
       document.getElementById(
-        "progressText"
+        "challengeFeedback"
       );
 
-    const progressFill =
+    const reasonFeedback =
       document.getElementById(
-        "progressFill"
+        "reasonFeedback"
       );
 
-    const soundToggle =
+    const selfFeedback =
       document.getElementById(
-        "soundToggle"
+        "selfFeedback"
       );
 
-    let soundEnabled = true;
-
-    const completedTypes =
-      new Set(
-        JSON.parse(
-          localStorage.getItem(
-            "afaq_nafes_question_types_completed"
-          ) || "[]"
-        )
+    const challengeNext =
+      document.getElementById(
+        "challengeNext"
       );
+
+    const reasonNext =
+      document.getElementById(
+        "reasonNext"
+      );
+
+    const selfNext =
+      document.getElementById(
+        "selfNext"
+      );
+
+    const extraExample =
+      document.getElementById(
+        "extraExample"
+      );
+
+    let currentStage = Number(
+      localStorage.getItem(
+        "afaq_literal_stage"
+      ) || 0
+    );
+
+    if (
+      currentStage < 0 ||
+      currentStage > 5
+    ) {
+      currentStage = 0;
+    }
+        function showStage(
+      stageNumber
+    ) {
+      stages.forEach(
+        (stage) => {
+          const number =
+            Number(
+              stage.dataset.stage
+            );
+
+          stage.classList.toggle(
+            "active",
+            number === stageNumber
+          );
+        }
+      );
+
+      mapSteps.forEach(
+        (step) => {
+          const number =
+            Number(
+              step.dataset.map
+            );
+
+          step.classList.remove(
+            "active",
+            "done"
+          );
+
+          if (
+            number < stageNumber
+          ) {
+            step.classList.add(
+              "done"
+            );
+          }
+
+          if (
+            number === stageNumber
+          ) {
+            step.classList.add(
+              "active"
+            );
+          }
+        }
+      );
+
+      currentStage =
+        stageNumber;
+
+      localStorage.setItem(
+        "afaq_literal_stage",
+        String(stageNumber)
+      );
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
 
     function playTone(
       frequency = 650,
       duration = 0.12
     ) {
-      if (!soundEnabled) {
-        return;
-      }
-
       try {
         const AudioContextClass =
           window.AudioContext ||
@@ -1318,7 +1201,8 @@
         const gain =
           audioContext.createGain();
 
-        oscillator.type = "sine";
+        oscillator.type =
+          "sine";
 
         oscillator.frequency.value =
           frequency;
@@ -1334,7 +1218,9 @@
             duration
         );
 
-        oscillator.connect(gain);
+        oscillator.connect(
+          gain
+        );
 
         gain.connect(
           audioContext.destination
@@ -1353,260 +1239,277 @@
       }
     }
 
-    function updateProgress() {
-      const total =
-        typeCards.length;
+    function readText(
+      text
+    ) {
+      window.speechSynthesis.cancel();
 
-      const completed =
-        completedTypes.size;
+      const speech =
+        new SpeechSynthesisUtterance(
+          text
+        );
 
-      const percentage =
-        total === 0
-          ? 0
-          : Math.round(
-              (completed / total) * 100
-            );
+      speech.lang =
+        "ar-SA";
 
-      progressText.textContent =
-        `أتقنتِ ${completed} من ${total} أنواع`;
+      speech.rate =
+        0.86;
 
-      progressFill.style.width =
-        `${percentage}%`;
+      speech.pitch =
+        1;
 
-      if (
-        completed === total &&
-        total > 0
-      ) {
-        progressText.textContent =
-          "أحسنتِ! أتقنتِ أنواع الأسئلة كلها 🌟";
-      }
+      window.speechSynthesis.speak(
+        speech
+      );
     }
-        typeCards.forEach(
-      (card) => {
-        const typeName =
-          card.dataset.type;
 
-        if (
-          completedTypes.has(
-            typeName
-          )
-        ) {
-          card.classList.add(
-            "completed"
-          );
-        }
-
-        card.addEventListener(
+    nextButtons.forEach(
+      (button) => {
+        button.addEventListener(
           "click",
-          (event) => {
+          () => {
             if (
-              event.target.closest(
-                "button"
-              )
+              button.disabled
             ) {
               return;
             }
 
-            const wasActive =
-              card.classList.contains(
-                "active"
+            const nextStage =
+              Number(
+                button.dataset.next
               );
 
-            typeCards.forEach(
-              (otherCard) => {
-                if (
-                  otherCard !== card
-                ) {
-                  otherCard.classList.remove(
-                    "active"
-                  );
-                }
-              }
+            playTone(
+              760,
+              0.15
             );
 
-            card.classList.toggle(
-              "active",
-              !wasActive
-            );
-
-            if (!wasActive) {
-              playTone(520, 0.1);
-            }
-          }
-        );
-
-        const readButton =
-          card.querySelector(
-            ".card-button.read"
-          );
-
-        const finishButton =
-          card.querySelector(
-            ".card-button.finish"
-          );
-
-        const options =
-          card.querySelectorAll(
-            ".mini-option"
-          );
-
-        const feedback =
-          card.querySelector(
-            ".feedback-message"
-          );
-
-        readButton.addEventListener(
-          "click",
-          (event) => {
-            event.stopPropagation();
-
-            if (!soundEnabled) {
-              soundToggle.textContent =
-                "🔇 فعّلي الصوت أولًا";
-
-              return;
-            }
-
-            window.speechSynthesis.cancel();
-
-            const textToRead =
-              card.innerText
-                .replace(
-                  "🔊 استمعي للشرح",
-                  ""
-                )
-                .replace(
-                  "✓ أتقنتُ النوع",
-                  ""
-                );
-
-            const speech =
-              new SpeechSynthesisUtterance(
-                textToRead
-              );
-
-            speech.lang = "ar-SA";
-            speech.rate = 0.88;
-            speech.pitch = 1;
-
-            window.speechSynthesis.speak(
-              speech
-            );
-          }
-        );
-
-        finishButton.addEventListener(
-          "click",
-          (event) => {
-            event.stopPropagation();
-
-            completedTypes.add(
-              typeName
-            );
-
-            card.classList.add(
-              "completed"
-            );
-
-            localStorage.setItem(
-              "afaq_nafes_question_types_completed",
-              JSON.stringify(
-                [...completedTypes]
-              )
-            );
-
-            playTone(820, 0.18);
-            updateProgress();
-          }
-        );
-
-        options.forEach(
-          (option) => {
-            option.addEventListener(
-              "click",
-              (event) => {
-                event.stopPropagation();
-
-                options.forEach(
-                  (item) => {
-                    item.classList.remove(
-                      "correct",
-                      "wrong"
-                    );
-                  }
-                );
-
-                if (
-                  option.dataset.correct ===
-                  "true"
-                ) {
-                  option.classList.add(
-                    "correct"
-                  );
-
-                  if (feedback) {
-                    feedback.textContent =
-                      feedback.dataset.success ||
-                      feedback.textContent;
-
-                    feedback.classList.add(
-                      "show"
-                    );
-                  }
-
-                  playTone(880, 0.18);
-                } else {
-                  option.classList.add(
-                    "wrong"
-                  );
-
-                  if (feedback) {
-                    feedback.textContent =
-                      "قريبة، أعيدي قراءة كلمات السؤال وطريقة الحل ثم حاولي مرة أخرى.";
-
-                    feedback.classList.add(
-                      "show"
-                    );
-                  }
-
-                  playTone(250, 0.12);
-                }
-              }
+            showStage(
+              nextStage
             );
           }
         );
       }
     );
 
-    soundToggle.addEventListener(
-      "click",
-      () => {
-        soundEnabled =
-          !soundEnabled;
+    challengeOptions.forEach(
+      (option) => {
+        option.addEventListener(
+          "click",
+          () => {
+            challengeOptions.forEach(
+              (item) => {
+                item.classList.remove(
+                  "correct",
+                  "wrong"
+                );
+              }
+            );
 
-        if (!soundEnabled) {
-          window.speechSynthesis.cancel();
+            if (
+              option.dataset.correct ===
+              "true"
+            ) {
+              option.classList.add(
+                "correct"
+              );
 
-          soundToggle.textContent =
-            "🔇 الصوت متوقف";
+              challengeFeedback.textContent =
+                "أحسنتِ. ورد اليوم صراحة في النص: يوم الثلاثاء.";
 
-          soundToggle.classList.add(
-            "muted"
+              challengeFeedback.classList.add(
+                "show"
+              );
+
+              challengeNext.disabled =
+                false;
+
+              playTone(
+                880,
+                0.18
+              );
+            } else {
+              option.classList.add(
+                "wrong"
+              );
+
+              challengeFeedback.textContent =
+                "حاولي مرة أخرى. ابحثي عن اليوم المذكور صراحة في الجملة.";
+
+              challengeFeedback.classList.add(
+                "show"
+              );
+
+              playTone(
+                250,
+                0.12
+              );
+            }
+          }
+        );
+      }
+    );
+
+    reasonOptions.forEach(
+      (option) => {
+        option.addEventListener(
+          "click",
+          () => {
+            reasonOptions.forEach(
+              (item) => {
+                item.classList.remove(
+                  "correct",
+                  "wrong"
+                );
+              }
+            );
+
+            if (
+              option.dataset.correct ===
+              "true"
+            ) {
+              option.classList.add(
+                "correct"
+              );
+
+              reasonFeedback.textContent =
+                "ممتاز. هذه هي علامة السؤال الحرفي: الإجابة وردت صراحة في النص.";
+
+              reasonFeedback.classList.add(
+                "show"
+              );
+
+              reasonNext.disabled =
+                false;
+
+              playTone(
+                880,
+                0.18
+              );
+            } else {
+              option.classList.add(
+                "wrong"
+              );
+
+              reasonFeedback.textContent =
+                "ليست هذه هي العلة الصحيحة. ارجعي إلى النص وحددي موضع الإجابة.";
+
+              reasonFeedback.classList.add(
+                "show"
+              );
+
+              playTone(
+                250,
+                0.12
+              );
+            }
+          }
+        );
+      }
+    );
+
+    selfOptions.forEach(
+      (option) => {
+        option.addEventListener(
+          "click",
+          () => {
+            selfOptions.forEach(
+              (item) => {
+                item.classList.remove(
+                  "correct"
+                );
+              }
+            );
+
+            option.classList.add(
+              "correct"
+            );
+
+            selfNext.disabled =
+              false;
+
+            const level =
+              option.dataset.level;
+
+            if (
+              level === "strong"
+            ) {
+              selfFeedback.textContent =
+                "رائع. أنتِ مستعدة للانتقال إلى نوع جديد من الأسئلة.";
+
+              extraExample.hidden =
+                true;
+            } else if (
+              level === "medium"
+            ) {
+              selfFeedback.textContent =
+                "جميل. اقرئي المثال الإضافي، ثم افتحي صندوق الجائزة.";
+
+              extraExample.hidden =
+                false;
+            } else {
+              selfFeedback.textContent =
+                "لا بأس. شاهدي المثال الإضافي بهدوء، ثم جربي صياغة سؤال يبدأ بكلمة: متى؟";
+
+              extraExample.hidden =
+                false;
+            }
+
+            selfFeedback.classList.add(
+              "show"
+            );
+
+            playTone(
+              700,
+              0.14
+            );
+          }
+        );
+      }
+    );
+
+    document
+      .getElementById(
+        "readDiscovery"
+      )
+      .addEventListener(
+        "click",
+        () => {
+          readText(
+            "السؤال الحرفي هو سؤال تكون إجابته مذكورة صراحة في النص، وقد ترد بالكلمات نفسها أو بصياغة قريبة منها."
           );
-        } else {
-          soundToggle.textContent =
-            "🔊 الصوت يعمل";
-
-          soundToggle.classList.remove(
-            "muted"
-          );
-
-          playTone(650, 0.12);
         }
-      }
-    );
+      );
 
-    updateProgress();
+    document
+      .getElementById(
+        "readExample"
+      )
+      .addEventListener(
+        "click",
+        () => {
+          readText(
+            "بدأت حملة التشجير صباح يوم الأحد بمشاركة طالبات المدرسة. متى بدأت حملة التشجير؟ الإجابة: صباح يوم الأحد."
+          );
+        }
+      );
+
+    document
+      .getElementById(
+        "readReward"
+      )
+      .addEventListener(
+        "click",
+        () => {
+          readText(
+            "جائزتك: عندما ترين كلمات مثل متى، أو أين، أو بحسب النص، ابحثي أولًا عن المعلومة المذكورة بوضوح."
+          );
+        }
+      );
+
+    showStage(
+      currentStage
+    );
   </script>
 
 </body>
