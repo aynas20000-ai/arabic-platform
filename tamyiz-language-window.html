@@ -12,158 +12,302 @@
   <title>نافذة لغوية - التمييز</title>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
     body {
+      width: 100%;
+      max-width: 100%;
       margin: 0;
-      padding: 20px;
+      overflow-x: hidden;
+    }
+
+    body {
+      min-height: 100vh;
       font-family: Tahoma, Arial, sans-serif;
-      background: #f4f8ff;
-      color: #173b63;
+      color: #4b3a57;
+      line-height: 1.9;
+      background:
+        linear-gradient(
+          180deg,
+          #fffaf2,
+          #f8f0fb
+        );
+    }
+
+    header {
+      padding: 38px 20px 32px;
+      color: white;
+      text-align: center;
+      background:
+        linear-gradient(
+          135deg,
+          #776094,
+          #5b4677
+        );
+      border-bottom: 4px solid #c9a85c;
+    }
+
+    header h1 {
+      margin: 0 0 10px;
+      color: #fffdf8;
+      font-size: 34px;
+      line-height: 1.6;
+    }
+
+    header p {
+      max-width: 760px;
+      margin: auto;
+      color: #f7effb;
+      font-size: 17px;
       line-height: 1.9;
     }
 
-    .container {
+    main {
+      width: 92%;
       max-width: 850px;
-      margin: auto;
-    }
-
-    .main-title {
-      text-align: center;
-      color: #1769aa;
-      margin-bottom: 10px;
-    }
-
-    .intro {
-      text-align: center;
-      background: #e4f0ff;
-      border-radius: 18px;
-      padding: 16px;
-      margin-bottom: 25px;
+      margin: 30px auto;
     }
 
     .section-title {
-      background: linear-gradient(135deg, #1769aa, #2f88d8);
-      color: white;
-      padding: 15px;
-      border-radius: 18px;
+      margin: 30px 0 20px;
+      padding: 16px;
+      color: #fffdf8;
+      font-size: 23px;
+      line-height: 1.8;
       text-align: center;
-      margin-top: 30px;
-    }
-
-    .card {
-      background: white;
-      border: 2px solid #c8dff5;
+      background:
+        linear-gradient(
+          135deg,
+          #776094,
+          #5b4677
+        );
+      border: 2px solid #c9a85c;
       border-radius: 18px;
-      padding: 18px;
+      box-shadow:
+        0 6px 15px
+        rgba(91, 63, 111, 0.12);
+    }
+
+    .card,
+    .smart-key,
+    .comparison {
       margin: 18px 0;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      padding: 22px;
+      background: #fffdf8;
+      border: 2px solid #c9a85c;
+      border-radius: 20px;
+      box-shadow:
+        0 7px 18px
+        rgba(91, 63, 111, 0.12);
     }
 
-    .card h3 {
-      color: #1769aa;
+    .card h3,
+    .smart-key h3,
+    .comparison h3 {
       margin-top: 0;
-    }
-
-    .example {
-      background: #edf6ff;
-      border-right: 5px solid #2f88d8;
-      border-radius: 12px;
-      padding: 13px;
-      margin: 12px 0;
+      color: #5d4374;
+      font-size: 21px;
+      line-height: 1.8;
     }
 
     .smart-key {
-      background: #fff7dc;
-      border: 2px dashed #e0ad25;
-      border-radius: 18px;
-      padding: 18px;
-      margin: 25px 0;
+      color: #5d4374;
+      background: #fff8df;
+      border-style: dashed;
     }
 
     .comparison {
-      background: #f3ecff;
-      border: 2px solid #cbb7ef;
-      border-radius: 18px;
-      padding: 18px;
-      margin: 25px 0;
+      background: #f5ecfb;
+    }
+
+    .example {
+      margin: 12px 0;
+      padding: 14px;
+      color: #4b3a57;
+      line-height: 2;
+      background: #f5ecfb;
+      border-right: 5px solid #776094;
+      border-radius: 14px;
+    }
+
+    .example strong {
+      color: #5d4374;
     }
 
     .verse {
+      margin-bottom: 17px;
+      padding: 17px;
+      color: #5d4374;
       font-size: 21px;
+      font-weight: bold;
+      line-height: 2;
       text-align: center;
-      color: #174f82;
-      background: #edf6ff;
-      border-radius: 14px;
-      padding: 15px;
-      margin-bottom: 15px;
+      background: #f5ecfb;
+      border: 1px solid #c9a85c;
+      border-radius: 15px;
     }
 
     .label {
-      color: #1769aa;
+      color: #5d4374;
       font-weight: bold;
     }
 
     .warning {
-      background: #fff0f0;
-      border-right: 5px solid #d94a4a;
-      border-radius: 12px;
-      padding: 13px;
-      margin: 12px 0;
+      margin: 14px 0;
+      padding: 14px;
+      color: #8f1f1f;
+      line-height: 2;
+      background: #fdecec;
+      border-right: 5px solid #c62828;
+      border-radius: 14px;
     }
 
-    .back {
-      display: block;
-      width: fit-content;
-      margin: 35px auto 10px;
-      padding: 13px 24px;
-      background: #1769aa;
+    .warning strong {
+      color: #8f1f1f;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin: 35px 0 15px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 25px;
       color: white;
-      text-decoration: none;
-      border-radius: 14px;
+      font-family: inherit;
+      font-size: 17px;
       font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      background: #6f5288;
+      border: 2px solid #c9a85c;
+      border-radius: 22px;
+    }
+
+    .btn:hover,
+    .btn:active {
+      background: #5b4677;
+    }
+
+    footer {
+      margin-top: 35px;
+      padding: 20px;
+      color: #fffdf8;
+      text-align: center;
+      background: #49385c;
+      border-top: 3px solid #c9a85c;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding: 30px 14px 25px;
+      }
+
+      header h1 {
+        font-size: 28px;
+      }
+
+      header p {
+        font-size: 16px;
+      }
+
+      main {
+        width: 94%;
+        margin-top: 20px;
+      }
+
+      .section-title {
+        padding: 14px 11px;
+        font-size: 20px;
+      }
+
+      .card,
+      .smart-key,
+      .comparison {
+        padding: 18px 14px;
+      }
+
+      .card h3,
+      .smart-key h3,
+      .comparison h3 {
+        font-size: 19px;
+      }
+
+      .verse {
+        padding: 14px 10px;
+        font-size: 18px;
+      }
+
+      .btn {
+        width: 100%;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <div class="container">
+  <header>
 
-    <h1 class="main-title">🔬 نافذة لغوية</h1>
+    <h1>🔬 نافذة لغوية</h1>
 
-    <div class="intro">
-      اكتشفي أسرار التمييز، وتعلّمي طريقة ذكية
+    <p>
+      اكتشفي أسرار التمييز،
+      وتعلّمي طريقة ذكية
       للتفريق بين التمييز والحال.
-    </div>
+    </p>
+
+  </header>
+
+  <main>
 
     <h2 class="section-title">
       💡 المفتاح الذكي
     </h2>
 
-    <div class="smart-key">
+    <section class="smart-key">
 
       <p>
-        التمييز اسم نكرة منصوب يأتي ليوضح
-        كلمة أو جملة قبله تحتمل أكثر من معنى.
+        التمييز اسم نكرة منصوب
+        يأتي ليوضح كلمة أو جملة قبله
+        تحتمل أكثر من معنى.
       </p>
 
       <div class="example">
-        اشتريت عشرين <strong>كتابًا</strong>.
+        اشتريت عشرين
+        <strong>كتابًا</strong>.
         <br>
+
         عشرين ماذا؟
         <br>
+
         الإجابة: كتابًا.
         <br>
-        إذن <strong>كتابًا تمييز</strong>.
+
+        إذن
+        <strong>كتابًا تمييز</strong>.
       </div>
 
       <div class="example">
-        ازداد الطالب <strong>علمًا</strong>.
+        ازداد الطالب
+        <strong>علمًا</strong>.
         <br>
+
         ازداد في ماذا؟
         <br>
+
         الإجابة: علمًا.
         <br>
-        إذن <strong>علمًا تمييز</strong>.
+
+        إذن
+        <strong>علمًا تمييز</strong>.
       </div>
 
       <p>
@@ -171,43 +315,50 @@
         ماذا؟ أو في ماذا؟
       </p>
 
-    </div>
+    </section>
 
     <h2 class="section-title">
       أنواع التمييز
     </h2>
 
-    <div class="card">
+    <section class="card">
 
       <h3>أولًا: تمييز المفرد</h3>
 
       <p>
-        يوضح اسمًا قبله، وغالبًا يأتي بعد:
+        يوضح اسمًا قبله،
+        وغالبًا يأتي بعد:
         الأعداد، والمقادير، والمساحات،
         والأوزان، والمكاييل.
       </p>
 
       <div class="example">
-        قرأت خمسة عشر <strong>كتابًا</strong>.
+        قرأت خمسة عشر
+        <strong>كتابًا</strong>.
         <br>
+
         كتابًا: تمييز منصوب.
       </div>
 
       <div class="example">
-        اشتريت لترًا <strong>حليبًا</strong>.
+        اشتريت لترًا
+        <strong>حليبًا</strong>.
         <br>
+
         حليبًا: تمييز منصوب.
       </div>
 
       <div class="example">
-        زرعت مترًا <strong>وردًا</strong>.
+        زرعت مترًا
+        <strong>وردًا</strong>.
         <br>
+
         وردًا: تمييز منصوب.
       </div>
 
-    </div>
+    </section>
 
-    <div class="card">
+    <section class="card">
 
       <h3>ثانيًا: تمييز النسبة</h3>
 
@@ -217,30 +368,36 @@
       </p>
 
       <div class="example">
-        امتلأ الإناء <strong>ماءً</strong>.
+        امتلأ الإناء
+        <strong>ماءً</strong>.
         <br>
+
         ماءً: تمييز منصوب.
       </div>
 
       <div class="example">
-        ازداد المؤمن <strong>يقينًا</strong>.
+        ازداد المؤمن
+        <strong>يقينًا</strong>.
         <br>
+
         يقينًا: تمييز منصوب.
       </div>
 
       <div class="example">
-        محمد أكثر الطلاب <strong>اجتهادًا</strong>.
+        محمد أكثر الطلاب
+        <strong>اجتهادًا</strong>.
         <br>
+
         اجتهادًا: تمييز منصوب.
       </div>
 
-    </div>
+    </section>
 
     <h2 class="section-title">
       🔎 التمييز المحوّل
     </h2>
 
-    <div class="card">
+    <section class="card">
 
       <p>
         قد يكون التمييز في أصل الجملة
@@ -249,73 +406,96 @@
       </p>
 
       <div class="example">
-        اشتعل الرأس <strong>شيبًا</strong>.
+        اشتعل الرأس
+        <strong>شيبًا</strong>.
         <br>
+
         الأصل: اشتعل شيبُ الرأس.
         <br>
-        شيبًا: تمييز محول عن فاعل.
+
+        شيبًا:
+        تمييز محول عن فاعل.
       </div>
 
       <div class="example">
-        وفجّرنا الأرض <strong>عيونًا</strong>.
+        وفجّرنا الأرض
+        <strong>عيونًا</strong>.
         <br>
+
         الأصل: وفجّرنا عيونَ الأرض.
         <br>
-        عيونًا: تمييز محول عن مفعول به.
+
+        عيونًا:
+        تمييز محول عن مفعول به.
       </div>
 
       <div class="example">
-        أنا أكثر منك <strong>مالًا</strong>.
+        أنا أكثر منك
+        <strong>مالًا</strong>.
         <br>
+
         الأصل: مالي أكثر من مالك.
         <br>
-        مالًا: تمييز محول عن مبتدأ.
+
+        مالًا:
+        تمييز محول عن مبتدأ.
       </div>
 
-    </div>
+    </section>
 
     <h2 class="section-title">
       التمييز والحال
     </h2>
 
-    <div class="comparison">
+    <section class="comparison">
 
       <h3>كيف أفرّق بينهما؟</h3>
 
       <div class="example">
-        عاد المسافر <strong>مسرورًا</strong>.
+        عاد المسافر
+        <strong>مسرورًا</strong>.
         <br>
+
         كيف عاد المسافر؟
         <br>
-        مسرورًا: <strong>حال</strong>.
+
+        مسرورًا:
+        <strong>حال</strong>.
       </div>
 
       <div class="example">
-        ازداد المسافر <strong>سرورًا</strong>.
+        ازداد المسافر
+        <strong>سرورًا</strong>.
         <br>
+
         ازداد في ماذا؟
         <br>
-        سرورًا: <strong>تمييز</strong>.
+
+        سرورًا:
+        <strong>تمييز</strong>.
       </div>
 
       <p>
-        <strong>الحال</strong> يبين هيئة صاحبه،
-        ويجيب عن سؤال: كيف؟
+        <strong>الحال</strong>
+        يبين هيئة صاحبه،
+        ويجيب عن سؤال:
+        كيف؟
       </p>
 
       <p>
-        <strong>التمييز</strong> يزيل الإبهام،
+        <strong>التمييز</strong>
+        يزيل الإبهام،
         ويجيب غالبًا عن سؤال:
         ماذا؟ أو في ماذا؟
       </p>
 
-    </div>
+    </section>
 
     <h2 class="section-title">
       📖 التمييز في القرآن الكريم
     </h2>
 
-    <div class="card">
+    <section class="card">
 
       <div class="verse">
         ﴿وَاشْتَعَلَ الرَّأْسُ شَيْبًا﴾
@@ -338,12 +518,13 @@
 
       <p>
         <span class="label">أثره في المعنى:</span>
-        أوضح الشيء الذي انتشر واشتعل في الرأس.
+        أوضح الشيء الذي انتشر
+        واشتعل في الرأس.
       </p>
 
-    </div>
+    </section>
 
-    <div class="card">
+    <section class="card">
 
       <div class="verse">
         ﴿وَفَجَّرْنَا الْأَرْضَ عُيُونًا﴾
@@ -369,21 +550,27 @@
         بيّن الشيء الذي تفجّر من الأرض.
       </p>
 
-    </div>
+    </section>
 
-    <div class="card">
+    <section class="card">
 
       <div class="verse">
         ﴿أَنَا أَكْثَرُ مِنْكَ مَالًا وَأَعَزُّ نَفَرًا﴾
       </div>
 
       <p>
-        <span class="label">التمييز الأول:</span>
+        <span class="label">
+          التمييز الأول:
+        </span>
+
         مالًا.
       </p>
 
       <p>
-        <span class="label">التمييز الثاني:</span>
+        <span class="label">
+          التمييز الثاني:
+        </span>
+
         نفرًا.
       </p>
 
@@ -397,50 +584,66 @@
         أوضحا جهة الكثرة وجهة العزة.
       </p>
 
-    </div>
+    </section>
 
     <h2 class="section-title">
       ⚠️ أخطاء شائعة
     </h2>
 
-    <div class="card">
+    <section class="card">
 
       <div class="warning">
         <strong>الخطأ:</strong>
         اشتريت عشرين كتابٌ.
         <br>
+
         <strong>الصواب:</strong>
         اشتريت عشرين كتابًا.
         <br>
+
         لأن تمييز العدد منصوب.
       </div>
 
       <div class="warning">
         <strong>الخطأ:</strong>
-        ازداد الطالب مجتهدًا، عند إرادة زيادة الاجتهاد.
+
+        ازداد الطالب مجتهدًا،
+        عند إرادة زيادة الاجتهاد.
         <br>
+
         <strong>الصواب:</strong>
         ازداد الطالب اجتهادًا.
         <br>
+
         لأن المقصود توضيح جهة الزيادة.
       </div>
 
       <div class="warning">
-        لا نحكم على كل اسم منصوب بأنه تمييز؛
+        لا نحكم على كل اسم منصوب
+        بأنه تمييز؛
         فقد يكون حالًا أو مفعولًا به.
-        لذلك نحدد وظيفته من معنى الجملة.
+
+        <br>
+
+        لذلك نحدد وظيفته
+        من معنى الجملة.
       </div>
+
+    </section>
+
+    <div class="actions">
+
+      <a class="btn" href="tamyiz.html">
+        العودة إلى درس التمييز
+      </a>
 
     </div>
 
-    <a
-      class="back"
-      href="tamyiz.html"
-    >
-      العودة إلى درس التمييز
-    </a>
+  </main>
 
-  </div>
+  <footer>
+    جميع الحقوق محفوظة © 2026
+  </footer>
 
 </body>
 
