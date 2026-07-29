@@ -187,7 +187,8 @@
       margin-bottom: 6px;
       color: var(--purple-dark);
       font-size: 22px;
-          .library-view {
+    }
+        .library-view {
       display: block;
     }
 
@@ -444,7 +445,7 @@
         </strong>
 
         افتحي بطاقة المهارة،
-        وستظهر رحلتك التعليمية
+        وستظهر رحلتها التعليمية
         داخل مكتبة نافس نفسها.
 
       </section>
@@ -985,7 +986,7 @@
             data-show-card="0-1"
             type="button"
           >
-            فهمتِ التعريف، افتحي القطعة
+            فهمتُ التعريف، افتحي القطعة
           </button>
 
         </article>
@@ -1043,7 +1044,7 @@
             data-show-card="0-2"
             type="button"
           >
-            قرأتِ القطعة، افتحي السؤال
+            قرأتُ القطعة، افتحي السؤال
           </button>
 
         </article>
@@ -1367,7 +1368,7 @@
             data-show-card="1-1"
             type="button"
           >
-            فهمتِ التعريف، افتحي القطعة
+            فهمتُ التعريف، افتحي القطعة
           </button>
 
         </article>
@@ -1427,7 +1428,7 @@
             data-show-card="1-2"
             type="button"
           >
-            قرأتِ القطعة، افتحي السؤال
+            قرأتُ القطعة، افتحي السؤال
           </button>
 
         </article>
@@ -1773,7 +1774,7 @@
             data-show-card="2-1"
             type="button"
           >
-            فهمتِ التعريف، افتحي القطعة
+            فهمتُ التعريف، افتحي القطعة
           </button>
 
         </article>
@@ -1834,7 +1835,7 @@
             data-show-card="2-2"
             type="button"
           >
-            قرأتِ القطعة، افتحي السؤال
+            قرأتُ القطعة، افتحي السؤال
           </button>
 
         </article>
@@ -2178,7 +2179,7 @@
             data-show-card="3-1"
             type="button"
           >
-            فهمتِ التعريف، افتحي القطعة
+            فهمتُ التعريف، افتحي القطعة
           </button>
 
         </article>
@@ -2245,7 +2246,7 @@
             data-show-card="3-2"
             type="button"
           >
-            قرأتِ القطعة، افتحي السؤال
+            قرأتُ القطعة، افتحي السؤال
           </button>
 
         </article>
@@ -2427,7 +2428,7 @@
           </button>
 
         </article>
-                      <article
+                <article
           class="journey-card"
           data-card="3-4"
         >
@@ -2589,7 +2590,7 @@
             data-show-card="4-1"
             type="button"
           >
-            فهمتِ التعريف، افتحي القطعة
+            فهمتُ التعريف، افتحي القطعة
           </button>
 
         </article>
@@ -2655,7 +2656,7 @@
             data-show-card="4-2"
             type="button"
           >
-            قرأتِ القطعة، افتحي السؤال
+            قرأتُ القطعة، افتحي السؤال
           </button>
 
         </article>
@@ -3022,275 +3023,242 @@
   <footer>
     جميع الحقوق محفوظة © 2026
   </footer>
-  
-    }  <style>
-    footer {
-      margin-top: 42px;
-      padding: 24px 16px;
-      color: white;
-      background: var(--purple-dark);
-      font-size: 14px;
-      font-weight: 700;
-    }
-  </style>
-
   <script>
-    const libraryView =
-      document.getElementById("libraryView");
+  const libraryView =
+    document.getElementById("libraryView");
 
-    const lessonView =
-      document.getElementById("questionTypesLesson");
+  const lessonView =
+    document.getElementById("questionTypesLesson");
 
-    const finalReward =
-      document.getElementById("finalReward");
+  const finalReward =
+    document.getElementById("finalReward");
 
-    const typeSections =
-      document.querySelectorAll(".type-section");
+  const typeSections =
+    document.querySelectorAll(".type-section");
 
-    const typeSteps =
-      document.querySelectorAll(".type-step");
+  const typeSteps =
+    document.querySelectorAll(".type-step");
 
-    function scrollToLesson() {
-      window.scrollTo({
-        top: lessonView.offsetTop - 15,
-        behavior: "smooth"
-      });
-    }
+  function showCard(cardCode) {
+    const typeNumber =
+      cardCode.split("-")[0];
 
-    function showCard(cardCode) {
-      const typeNumber =
-        cardCode.split("-")[0];
-
-      const section =
-        document.querySelector(
-          '[data-type-section="' +
-          typeNumber +
-          '"]'
-        );
-
-      if (!section) {
-        return;
-      }
-
-      section
-        .querySelectorAll(".journey-card")
-        .forEach(function(card) {
-          card.classList.remove("active");
-        });
-
-      const targetCard =
-        section.querySelector(
-          '[data-card="' +
-          cardCode +
-          '"]'
-        );
-
-      if (targetCard) {
-        targetCard.classList.add("active");
-
-        setTimeout(function() {
-          targetCard.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-          });
-        }, 100);
-      }
-    }
-
-    function openType(typeNumber) {
-      typeSections.forEach(function(section) {
-        section.classList.remove("active");
-      });
-
-      const targetSection =
-        document.querySelector(
-          '[data-type-section="' +
-          typeNumber +
-          '"]'
-        );
-
-      if (targetSection) {
-        targetSection.classList.add("active");
-      }
-
-      typeSteps.forEach(function(step, index) {
-        step.classList.remove("active");
-
-        if (index < typeNumber) {
-          step.classList.add("done");
-        }
-
-        if (index === Number(typeNumber)) {
-          step.classList.add("active");
-        }
-      });
-
-      showCard(typeNumber + "-0");
-      scrollToLesson();
-    }
-
-    document
-      .querySelectorAll("[data-open-unit]")
-      .forEach(function(button) {
-        button.addEventListener(
-          "click",
-          function() {
-            libraryView.classList.add("hidden");
-            lessonView.classList.add("active");
-            finalReward.classList.remove("active");
-            openType(0);
-          }
-        );
-      });
-
-    document
-      .querySelector(".return-library")
-      .addEventListener(
-        "click",
-        function() {
-          lessonView.classList.remove("active");
-          libraryView.classList.remove("hidden");
-
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-          });
-        }
+    const section =
+      document.querySelector(
+        '[data-type-section="' +
+        typeNumber +
+        '"]'
       );
 
-    document
-      .querySelectorAll(".show-card")
-      .forEach(function(button) {
-        button.addEventListener(
-          "click",
-          function() {
-            showCard(
-              button.dataset.showCard
-            );
-          }
-        );
-      });
-
-    function prepareQuestion(
-      feedbackId,
-      nextButtonId,
-      nextCardCode
-    ) {
-      const feedback =
-        document.getElementById(feedbackId);
-
-      const nextButton =
-        document.getElementById(nextButtonId);
-
-      const questionBox =
-        feedback.closest(".question-box");
-
-      const options =
-        questionBox.querySelectorAll(
-          ".option-button"
-        );
-
-      options.forEach(function(option) {
-        option.addEventListener(
-          "click",
-          function() {
-            options.forEach(function(item) {
-              item.classList.remove(
-                "correct",
-                "wrong"
-              );
-            });
-
-            if (
-              option.dataset.correct === "true"
-            ) {
-              option.classList.add("correct");
-
-              feedback.textContent =
-                "إجابة صحيحة. أحسنتِ قراءة المطلوب والعودة إلى الدليل المناسب.";
-
-              feedback.classList.add("show");
-              nextButton.disabled = false;
-
-              nextButton.onclick =
-                function() {
-                  showCard(nextCardCode);
-                };
-            } else {
-              option.classList.add("wrong");
-
-              feedback.textContent =
-                "ليست الإجابة الأدق. ارجعي إلى السؤال وحددي ما يطلبه، ثم ابحثي عن الدليل الذي يثبته.";
-
-              feedback.classList.add("show");
-              nextButton.disabled = true;
-            }
-          }
-        );
-      });
+    if (!section) {
+      return;
     }
 
-    prepareQuestion(
-      "literalFeedback",
-      "showLiteralEvidence",
-      "0-3"
+    section
+      .querySelectorAll(".journey-card")
+      .forEach(function(card) {
+        card.classList.remove("active");
+      });
+
+    const targetCard =
+      section.querySelector(
+        '[data-card="' +
+        cardCode +
+        '"]'
+      );
+
+    if (targetCard) {
+      targetCard.classList.add("active");
+    }
+  }
+
+  function openType(typeNumber) {
+    typeSections.forEach(function(section) {
+      section.classList.remove("active");
+    });
+
+    const targetSection =
+      document.querySelector(
+        '[data-type-section="' +
+        typeNumber +
+        '"]'
+      );
+
+    if (targetSection) {
+      targetSection.classList.add("active");
+    }
+
+    typeSteps.forEach(function(step, index) {
+      step.classList.remove("active");
+
+      if (index < typeNumber) {
+        step.classList.add("done");
+      }
+
+      if (index === Number(typeNumber)) {
+        step.classList.add("active");
+      }
+    });
+
+    showCard(typeNumber + "-0");
+  }
+
+  document
+    .querySelectorAll("[data-open-unit]")
+    .forEach(function(button) {
+      button.addEventListener(
+        "click",
+        function() {
+          libraryView.classList.add("hidden");
+          lessonView.classList.add("active");
+          finalReward.classList.remove("active");
+          openType(0);
+        }
+      );
+    });
+
+  document
+    .querySelector(".return-library")
+    .addEventListener(
+      "click",
+      function() {
+        lessonView.classList.remove("active");
+        libraryView.classList.remove("hidden");
+      }
     );
 
-    prepareQuestion(
-      "literalReasonFeedback",
-      "openLiteralAssessment",
-      "0-4"
-    );
+  document
+    .querySelectorAll(".show-card")
+    .forEach(function(button) {
+      button.addEventListener(
+        "click",
+        function() {
+          showCard(
+            button.dataset.showCard
+          );
+        }
+      );
+    });
 
-    prepareQuestion(
-      "inferentialFeedback",
-      "showInferentialEvidence",
-      "1-3"
-    );
+  function prepareQuestion(
+    feedbackId,
+    nextButtonId,
+    nextCardCode
+  ) {
+    const feedback =
+      document.getElementById(feedbackId);
 
-    prepareQuestion(
-      "inferentialReasonFeedback",
-      "openInferentialAssessment",
-      "1-4"
-    );
+    const nextButton =
+      document.getElementById(nextButtonId);
 
-    prepareQuestion(
-      "analyticalFeedback",
-      "showAnalyticalEvidence",
-      "2-3"
-    );
+    const questionBox =
+      feedback.closest(".question-box");
 
-    prepareQuestion(
-      "analyticalReasonFeedback",
-      "openAnalyticalAssessment",
-      "2-4"
-    );
+    const options =
+      questionBox.querySelectorAll(
+        ".option-button"
+      );
 
-    prepareQuestion(
-      "criticalFeedback",
-      "showCriticalEvidence",
-      "3-3"
-    );
+    options.forEach(function(option) {
+      option.addEventListener(
+        "click",
+        function() {
+          options.forEach(function(item) {
+            item.classList.remove(
+              "correct",
+              "wrong"
+            );
+          });
 
-    prepareQuestion(
-      "criticalReasonFeedback",
-      "openCriticalAssessment",
-      "3-4"
-    );
+          if (
+            option.dataset.correct === "true"
+          ) {
+            option.classList.add("correct");
 
-    prepareQuestion(
-      "appliedFeedback",
-      "showAppliedEvidence",
-      "4-3"
-    );
+            feedback.textContent =
+              "إجابة صحيحة. أحسنتِ قراءة المطلوب والعودة إلى الدليل المناسب.";
 
-    prepareQuestion(
-      "appliedReasonFeedback",
-      "openAppliedAssessment",
-      "4-4"
-      
-    );
-      function prepareSelfAssessment(
+            feedback.classList.add("show");
+            nextButton.disabled = false;
+
+            nextButton.onclick =
+              function() {
+                showCard(nextCardCode);
+              };
+          } else {
+            option.classList.add("wrong");
+
+            feedback.textContent =
+              "ليست الإجابة الأدق. ارجعي إلى السؤال وحددي ما يطلبه، ثم ابحثي عن الدليل الذي يثبته.";
+
+            feedback.classList.add("show");
+            nextButton.disabled = true;
+          }
+        }
+      );
+    });
+  }
+
+  prepareQuestion(
+    "literalFeedback",
+    "showLiteralEvidence",
+    "0-3"
+  );
+
+  prepareQuestion(
+    "literalReasonFeedback",
+    "openLiteralAssessment",
+    "0-4"
+  );
+
+  prepareQuestion(
+    "inferentialFeedback",
+    "showInferentialEvidence",
+    "1-3"
+  );
+
+  prepareQuestion(
+    "inferentialReasonFeedback",
+    "openInferentialAssessment",
+    "1-4"
+  );
+
+  prepareQuestion(
+    "analyticalFeedback",
+    "showAnalyticalEvidence",
+    "2-3"
+  );
+
+  prepareQuestion(
+    "analyticalReasonFeedback",
+    "openAnalyticalAssessment",
+    "2-4"
+  );
+
+  prepareQuestion(
+    "criticalFeedback",
+    "showCriticalEvidence",
+    "3-3"
+  );
+
+  prepareQuestion(
+    "criticalReasonFeedback",
+    "openCriticalAssessment",
+    "3-4"
+  );
+
+  prepareQuestion(
+    "appliedFeedback",
+    "showAppliedEvidence",
+    "4-3"
+  );
+
+  prepareQuestion(
+    "appliedReasonFeedback",
+    "openAppliedAssessment",
+    "4-4"
+  );
+        function prepareSelfAssessment(
       feedbackId,
       helpId,
       rewardButtonId,
