@@ -1,338 +1,632 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>نافذة لغوية - الحال</title>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
     body {
+      width: 100%;
+      max-width: 100%;
       margin: 0;
-      padding: 20px;
-      font-family: Arial, Tahoma, sans-serif;
-      background: #f5fbfa;
-      color: #244743;
+      overflow-x: hidden;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Tahoma, Arial, sans-serif;
+      color: #4b3a57;
+      line-height: 1.9;
+      background:
+        linear-gradient(
+          180deg,
+          #fffaf2,
+          #f8f0fb
+        );
+    }
+
+    header {
+      padding: 38px 20px 32px;
+      color: white;
+      text-align: center;
+      background:
+        linear-gradient(
+          135deg,
+          #776094,
+          #5b4677
+        );
+      border-bottom: 4px solid #c9a85c;
+    }
+
+    header h1 {
+      margin: 0 0 10px;
+      color: #fffdf8;
+      font-size: 34px;
+      line-height: 1.6;
+    }
+
+    header p {
+      max-width: 760px;
+      margin: auto;
+      color: #f7effb;
+      font-size: 17px;
       line-height: 1.9;
     }
 
-    .container {
+    main {
+      width: 92%;
       max-width: 850px;
-      margin: auto;
-    }
-
-    .main-title {
-      text-align: center;
-      color: #087f78;
-      margin-bottom: 10px;
-    }
-
-    .intro {
-      text-align: center;
-      background: #e2f7f3;
-      border-radius: 18px;
-      padding: 15px;
-      margin-bottom: 25px;
+      margin: 30px auto;
     }
 
     .section-title {
-      background: linear-gradient(135deg, #0b8f87, #22b8a7);
-      color: white;
-      padding: 15px;
-      border-radius: 18px;
+      margin: 30px 0 20px;
+      padding: 16px;
+      color: #fffdf8;
+      font-size: 23px;
+      line-height: 1.8;
       text-align: center;
-      margin-top: 30px;
+      background:
+        linear-gradient(
+          135deg,
+          #776094,
+          #5b4677
+        );
+      border: 2px solid #c9a85c;
+      border-radius: 18px;
+      box-shadow:
+        0 6px 15px
+        rgba(91, 63, 111, 0.12);
     }
 
     .card {
-      background: white;
-      border: 2px solid #bde9e2;
-      border-radius: 18px;
-      padding: 18px;
       margin: 18px 0;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      padding: 22px;
+      background: #fffdf8;
+      border: 2px solid #c9a85c;
+      border-radius: 20px;
+      box-shadow:
+        0 7px 18px
+        rgba(91, 63, 111, 0.12);
     }
 
     .card h3 {
-      color: #087f78;
       margin-top: 0;
+      color: #5d4374;
+      font-size: 21px;
+      line-height: 1.8;
     }
 
     .example {
-      background: #f0fbf8;
-      border-right: 5px solid #28b7a7;
-      border-radius: 12px;
-      padding: 12px;
-      margin: 10px 0;
+      margin: 12px 0;
+      padding: 14px;
+      color: #4b3a57;
+      line-height: 2;
+      background: #f5ecfb;
+      border-right: 5px solid #776094;
+      border-radius: 14px;
+    }
+
+    .example strong {
+      color: #5d4374;
     }
 
     .rule {
+      margin-top: 15px;
+      padding: 14px;
+      color: #5d4374;
+      line-height: 2;
       background: #fff8df;
-      border: 2px dashed #e9b949;
-      border-radius: 14px;
-      padding: 12px;
-      margin-top: 12px;
+      border: 2px dashed #c9a85c;
+      border-radius: 15px;
     }
 
     .note {
-      background: #fff2f7;
-      border: 2px solid #efb4ca;
-      border-radius: 18px;
-      padding: 18px;
-      margin: 25px 0;
+      margin: 26px 0;
+      padding: 22px;
+      color: #4b3a57;
+      background: #fff5f8;
+      border: 2px solid #d8a7bd;
+      border-radius: 20px;
+      box-shadow:
+        0 7px 18px
+        rgba(91, 63, 111, 0.1);
+    }
+
+    .note h3 {
+      margin-top: 0;
+      color: #5d4374;
+      line-height: 1.8;
     }
 
     .verse {
+      margin-bottom: 17px;
+      padding: 17px;
+      color: #5d4374;
       font-size: 21px;
+      font-weight: bold;
+      line-height: 2;
       text-align: center;
-      color: #245a55;
-      background: #eef9f7;
-      border-radius: 14px;
-      padding: 15px;
-      margin-bottom: 15px;
+      background: #f5ecfb;
+      border: 1px solid #c9a85c;
+      border-radius: 15px;
     }
 
     .label {
-      color: #087f78;
+      color: #5d4374;
       font-weight: bold;
     }
 
-    .back {
-      display: block;
-      width: fit-content;
-      margin: 35px auto 10px;
-      padding: 13px 24px;
-      background: #087f78;
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin: 35px 0 15px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 25px;
       color: white;
-      text-decoration: none;
-      border-radius: 14px;
+      font-family: inherit;
+      font-size: 17px;
       font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      background: #6f5288;
+      border: 2px solid #c9a85c;
+      border-radius: 22px;
+    }
+
+    .btn:hover,
+    .btn:active {
+      background: #5b4677;
+    }
+
+    footer {
+      margin-top: 35px;
+      padding: 20px;
+      color: #fffdf8;
+      text-align: center;
+      background: #49385c;
+      border-top: 3px solid #c9a85c;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding: 30px 14px 25px;
+      }
+
+      header h1 {
+        font-size: 28px;
+      }
+
+      header p {
+        font-size: 16px;
+      }
+
+      main {
+        width: 94%;
+        margin-top: 20px;
+      }
+
+      .section-title {
+        padding: 14px 11px;
+        font-size: 20px;
+      }
+
+      .card,
+      .note {
+        padding: 18px 14px;
+      }
+
+      .card h3 {
+        font-size: 19px;
+      }
+
+      .verse {
+        padding: 14px 10px;
+        font-size: 18px;
+      }
+
+      .btn {
+        width: 100%;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <div class="container">
+  <header>
+    <h1>🔬 نافذة لغوية</h1>
 
-    <h1 class="main-title">🔬 نافذة لغوية</h1>
+    <p>
+      وسّعي معرفتك، وتأمّلي الأمثلة،
+      واكتشفي أسرار الحال في اللغة العربية.
+    </p>
+  </header>
 
-    <div class="intro">
-      وسّعي معرفتك، وتأمّلي الأمثلة، واكتشفي أسرار الحال في اللغة العربية.
-    </div>
+  <main>
 
-    <h2 class="section-title">🔬 الجزء الأول: الحال تحت المجهر</h2>
+    <h2 class="section-title">
+      🔬 الجزء الأول: الحال تحت المجهر
+    </h2>
 
-    <div class="card">
-      <h3>1. الحال والصفة</h3>
+    <section class="card">
+
+      <h3>١. الحال والصفة</h3>
 
       <div class="example">
-        جاء الطالب <strong>مسرعًا</strong>.<br>
-        <strong>مسرعًا:</strong> حال؛ لأنها تبيّن هيئة الطالب وقت المجيء.
+        جاء الطالب
+        <strong>مسرعًا</strong>.
+        <br>
+
+        <strong>مسرعًا:</strong>
+        حال؛ لأنها تبيّن هيئة الطالب وقت المجيء.
       </div>
 
       <div class="example">
-        جاء الطالب <strong>المجتهد</strong>.<br>
-        <strong>المجتهد:</strong> صفة؛ لأنها تصف الطالب.
+        جاء الطالب
+        <strong>المجتهد</strong>.
+        <br>
+
+        <strong>المجتهد:</strong>
+        صفة؛ لأنها تصف الطالب.
       </div>
 
       <div class="rule">
-        <strong>القاعدة السهلة:</strong><br>
-        الحال يبيّن هيئة مؤقتة غالبًا، أما الصفة فتصف الاسم.
-      </div>
-    </div>
+        <strong>القاعدة السهلة:</strong>
+        <br>
 
-    <div class="card">
-      <h3>2. الحال والتمييز</h3>
-
-      <div class="example">
-        عاد المسافر <strong>مسرورًا</strong>.<br>
-        <strong>مسرورًا:</strong> حال؛ لأنها تبيّن هيئة المسافر.
+        الحال يبيّن هيئة مؤقتة غالبًا،
+        أما الصفة فتصف الاسم.
       </div>
 
+    </section>
+
+    <section class="card">
+
+      <h3>٢. الحال والتمييز</h3>
+
       <div class="example">
-        ازداد الطالب <strong>علمًا</strong>.<br>
-        <strong>علمًا:</strong> تمييز؛ لأنه يوضّح معنى الزيادة.
+        عاد المسافر
+        <strong>مسرورًا</strong>.
+        <br>
+
+        <strong>مسرورًا:</strong>
+        حال؛ لأنها تبيّن هيئة المسافر.
+      </div>
+
+      <div class="example">
+        ازداد الطالب
+        <strong>علمًا</strong>.
+        <br>
+
+        <strong>علمًا:</strong>
+        تمييز؛ لأنه يوضّح معنى الزيادة.
       </div>
 
       <div class="rule">
-        <strong>القاعدة السهلة:</strong><br>
-        الحال يجيب عن سؤال: <strong>كيف؟</strong><br>
+        <strong>القاعدة السهلة:</strong>
+        <br>
+
+        الحال يجيب عن سؤال:
+        <strong>كيف؟</strong>
+        <br>
+
         والتمييز يوضّح معنى مبهمًا.
       </div>
-    </div>
 
-    <div class="card">
-      <h3>3. الحال والمفعول به</h3>
+    </section>
+
+    <section class="card">
+
+      <h3>٣. الحال والمفعول به</h3>
 
       <div class="example">
-        شاهدتُ الطائر <strong>محلّقًا</strong>.<br>
-        <strong>محلّقًا:</strong> حال؛ لأنها تبيّن هيئة الطائر.
+        شاهدتُ الطائر
+        <strong>محلّقًا</strong>.
+        <br>
+
+        <strong>محلّقًا:</strong>
+        حال؛ لأنها تبيّن هيئة الطائر.
       </div>
 
       <div class="example">
-        شاهدتُ <strong>الطائرَ</strong>.<br>
-        <strong>الطائرَ:</strong> مفعول به؛ لأن فعل المشاهدة وقع عليه.
+        شاهدتُ
+        <strong>الطائرَ</strong>.
+        <br>
+
+        <strong>الطائرَ:</strong>
+        مفعول به؛ لأن فعل المشاهدة وقع عليه.
       </div>
 
       <div class="rule">
-        <strong>القاعدة السهلة:</strong><br>
-        الحال يبيّن الهيئة، والمفعول به يقع عليه الفعل.
-      </div>
-    </div>
+        <strong>القاعدة السهلة:</strong>
+        <br>
 
-    <div class="card">
-      <h3>4. الحال والمفعول المطلق</h3>
-
-      <div class="example">
-        سار الرجل <strong>مسرعًا</strong>.<br>
-        <strong>مسرعًا:</strong> حال؛ لأنها تبيّن هيئة الرجل.
+        الحال يبيّن الهيئة،
+        والمفعول به يقع عليه الفعل.
       </div>
 
+    </section>
+
+    <section class="card">
+
+      <h3>٤. الحال والمفعول المطلق</h3>
+
       <div class="example">
-        سار الرجل <strong>سيرًا</strong> سريعًا.<br>
-        <strong>سيرًا:</strong> مفعول مطلق؛ لأنه من لفظ الفعل «سار».
+        سار الرجل
+        <strong>مسرعًا</strong>.
+        <br>
+
+        <strong>مسرعًا:</strong>
+        حال؛ لأنها تبيّن هيئة الرجل.
+      </div>
+
+      <div class="example">
+        سار الرجل
+        <strong>سيرًا</strong>
+        سريعًا.
+        <br>
+
+        <strong>سيرًا:</strong>
+        مفعول مطلق؛ لأنه من لفظ الفعل «سار».
       </div>
 
       <div class="rule">
-        <strong>القاعدة السهلة:</strong><br>
-        الحال يبيّن الهيئة، والمفعول المطلق يؤكد الفعل أو يبيّن نوعه.
-      </div>
-    </div>
+        <strong>القاعدة السهلة:</strong>
+        <br>
 
-    <div class="card">
-      <h3>5. الحال والمفعول لأجله</h3>
-
-      <div class="example">
-        عاد الطالب <strong>مسرورًا</strong>.<br>
-        <strong>مسرورًا:</strong> حال؛ لأنها تبيّن هيئة الطالب.
+        الحال يبيّن الهيئة،
+        والمفعول المطلق يؤكد الفعل
+        أو يبيّن نوعه.
       </div>
 
+    </section>
+
+    <section class="card">
+
+      <h3>٥. الحال والمفعول لأجله</h3>
+
       <div class="example">
-        اجتهد الطالب <strong>رغبةً في النجاح</strong>.<br>
-        <strong>رغبةً:</strong> مفعول لأجله؛ لأنها تبيّن سبب الاجتهاد.
+        عاد الطالب
+        <strong>مسرورًا</strong>.
+        <br>
+
+        <strong>مسرورًا:</strong>
+        حال؛ لأنها تبيّن هيئة الطالب.
+      </div>
+
+      <div class="example">
+        اجتهد الطالب
+        <strong>رغبةً في النجاح</strong>.
+        <br>
+
+        <strong>رغبةً:</strong>
+        مفعول لأجله؛ لأنها تبيّن سبب الاجتهاد.
       </div>
 
       <div class="rule">
-        <strong>القاعدة السهلة:</strong><br>
-        الحال يجيب عن: <strong>كيف؟</strong><br>
-        والمفعول لأجله يجيب عن: <strong>لماذا؟</strong>
-      </div>
-    </div>
+        <strong>القاعدة السهلة:</strong>
+        <br>
 
-    <div class="card">
-      <h3>6. الحال والمفعول فيه</h3>
+        الحال يجيب عن:
+        <strong>كيف؟</strong>
+        <br>
 
-      <div class="example">
-        وقف الطالب <strong>هادئًا</strong>.<br>
-        <strong>هادئًا:</strong> حال؛ لأنها تبيّن هيئة الطالب.
+        والمفعول لأجله يجيب عن:
+        <strong>لماذا؟</strong>
       </div>
 
+    </section>
+
+    <section class="card">
+
+      <h3>٦. الحال والمفعول فيه</h3>
+
       <div class="example">
-        وقف الطالب <strong>صباحًا</strong>.<br>
-        <strong>صباحًا:</strong> مفعول فيه ظرف زمان؛ لأنه يبيّن زمن الوقوف.
+        وقف الطالب
+        <strong>هادئًا</strong>.
+        <br>
+
+        <strong>هادئًا:</strong>
+        حال؛ لأنها تبيّن هيئة الطالب.
+      </div>
+
+      <div class="example">
+        وقف الطالب
+        <strong>صباحًا</strong>.
+        <br>
+
+        <strong>صباحًا:</strong>
+        مفعول فيه ظرف زمان؛
+        لأنه يبيّن زمن الوقوف.
       </div>
 
       <div class="rule">
-        <strong>القاعدة السهلة:</strong><br>
-        الحال يجيب عن: <strong>كيف؟</strong><br>
-        والمفعول فيه يجيب عن: <strong>متى؟ أو أين؟</strong>
+        <strong>القاعدة السهلة:</strong>
+        <br>
+
+        الحال يجيب عن:
+        <strong>كيف؟</strong>
+        <br>
+
+        والمفعول فيه يجيب عن:
+        <strong>متى؟ أو أين؟</strong>
       </div>
-    </div>
 
-    <div class="note">
-      <h3>💡 ملاحظة لغوية: قد يأتي الحال للتشبيه</h3>
+    </section>
 
-      قد يأتي الحال اسمًا جامدًا يدل على التشبيه.
+    <section class="note">
+
+      <h3>
+        💡 ملاحظة لغوية:
+        قد يأتي الحال للتشبيه
+      </h3>
+
+      <p>
+        قد يأتي الحال اسمًا جامدًا
+        يدل على التشبيه.
+      </p>
 
       <div class="example">
-        انطلق العداء <strong>سهمًا</strong>.<br>
+        انطلق العداء
+        <strong>سهمًا</strong>.
+        <br>
+
         أي: انطلق سريعًا كالسهم.
       </div>
 
       <div class="example">
-        وقف الجندي <strong>أسدًا</strong>.<br>
+        وقف الجندي
+        <strong>أسدًا</strong>.
+        <br>
+
         أي: وقف شجاعًا كالأسد.
       </div>
-    </div>
 
-    <h2 class="section-title">📖 الجزء الثاني: الحال في آيات القرآن الكريم</h2>
+    </section>
 
-    <div class="card">
+    <h2 class="section-title">
+      📖 الجزء الثاني:
+      الحال في آيات القرآن الكريم
+    </h2>
+
+    <section class="card">
+
       <div class="verse">
         ﴿وَخُلِقَ الْإِنسَانُ ضَعِيفًا﴾
       </div>
 
-      <p><span class="label">الحال:</span> ضعيفًا.</p>
+      <p>
+        <span class="label">الحال:</span>
+        ضعيفًا.
+      </p>
 
       <p>
         <span class="label">إعرابه:</span>
-        حال منصوب، وعلامة نصبه الفتحة الظاهرة.
+
+        حال منصوب،
+        وعلامة نصبه الفتحة الظاهرة.
       </p>
 
       <p>
         <span class="label">صاحب الحال:</span>
         الإنسان.
       </p>
-    </div>
 
-    <div class="card">
+    </section>
+
+    <section class="card">
+
       <div class="verse">
         ﴿فَخَرَجَ مِنْهَا خَائِفًا يَتَرَقَّبُ﴾
       </div>
 
-      <p><span class="label">الحال:</span> خائفًا.</p>
+      <p>
+        <span class="label">الحال:</span>
+        خائفًا.
+      </p>
 
       <p>
         <span class="label">إعرابه:</span>
-        حال منصوب، وعلامة نصبه الفتحة الظاهرة.
+
+        حال منصوب،
+        وعلامة نصبه الفتحة الظاهرة.
       </p>
 
       <p>
         <span class="label">صاحب الحال:</span>
-        الضمير المستتر في «خرج»، العائد إلى موسى عليه السلام.
-      </p>
-    </div>
 
-    <div class="card">
+        الضمير المستتر في «خرج»،
+        العائد إلى موسى عليه السلام.
+      </p>
+
+    </section>
+
+    <section class="card">
+
       <div class="verse">
         ﴿ادْخُلُوهَا بِسَلَامٍ آمِنِينَ﴾
       </div>
 
-      <p><span class="label">الحال:</span> آمنين.</p>
+      <p>
+        <span class="label">الحال:</span>
+        آمنين.
+      </p>
 
       <p>
         <span class="label">إعرابه:</span>
-        حال منصوب، وعلامة نصبه الياء؛ لأنه جمع مذكر سالم.
+
+        حال منصوب،
+        وعلامة نصبه الياء؛
+        لأنه جمع مذكر سالم.
       </p>
 
       <p>
         <span class="label">صاحب الحال:</span>
         واو الجماعة في «ادخلوها».
       </p>
-    </div>
 
-    <div class="card">
+    </section>
+
+    <section class="card">
+
       <div class="verse">
         ﴿عَلَىٰ سُرُرٍ مُتَقَابِلِينَ﴾
       </div>
 
-      <p><span class="label">الحال:</span> متقابلين.</p>
+      <p>
+        <span class="label">الحال:</span>
+        متقابلين.
+      </p>
 
       <p>
         <span class="label">إعرابه:</span>
-        حال منصوب، وعلامة نصبه الياء؛ لأنه جمع مذكر سالم.
+
+        حال منصوب،
+        وعلامة نصبه الياء؛
+        لأنه جمع مذكر سالم.
       </p>
 
       <p>
         <span class="label">صاحب الحال:</span>
-        أهل الجنة المذكورون في سياق الآية.
+
+        أهل الجنة المذكورون
+        في سياق الآية.
       </p>
+
+    </section>
+
+    <div class="actions">
+
+      <a class="btn" href="hal.html">
+        العودة إلى درس الحال
+      </a>
+
     </div>
 
-    <a class="back" href="hal.html">العودة إلى درس الحال</a>
+  </main>
 
-  </div>
+  <footer>
+    جميع الحقوق محفوظة © 2026
+  </footer>
 
 </body>
+
 </html>
