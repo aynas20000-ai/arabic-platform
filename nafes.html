@@ -1,80 +1,388 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>نافس</title>
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    نافس | منصة آفاق اللغة
+  </title>
 
   <style>
-    body{
-      margin:0;
-      font-family:Tahoma,Arial,sans-serif;
-      background:#f5f5f5;
-      text-align:center;
+    * {
+      box-sizing: border-box;
     }
 
-    header{
-      background:#1565c0;
-      color:white;
-      padding:35px 20px;
+    html,
+    body {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      overflow-x: hidden;
     }
 
-    section{
-      background:white;
-      margin:30px auto;
-      padding:25px;
-      width:85%;
-      max-width:600px;
-      border-radius:18px;
-      box-shadow:0 4px 15px rgba(0,0,0,0.12);
+    body {
+      min-height: 100vh;
+      font-family: Tahoma, Arial, sans-serif;
+      color: #4b3a57;
+      text-align: center;
+      background: linear-gradient(
+        145deg,
+        #fffaf2,
+        #f8f0fb
+      );
     }
 
-    .card{
-      background:#eaf3ff;
-      margin:15px 0;
-      padding:18px;
-      border-radius:12px;
-      font-size:20px;
+    header {
+      position: relative;
+      overflow: hidden;
+      padding: 54px 18px 66px;
+      color: white;
+      border-radius: 0 0 62px 62px;
+      background: linear-gradient(
+        145deg,
+        #776094,
+        #5b4677
+      );
+      box-shadow: 0 14px 34px rgba(73, 56, 92, 0.23);
     }
 
-    a{
-      color:#1565c0;
-      text-decoration:none;
-      font-weight:bold;
+    header::before,
+    header::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.06);
     }
 
-    footer{
-      background:#222;
-      color:white;
-      padding:20px;
-      margin-top:30px;
+    header::before {
+      width: 210px;
+      height: 210px;
+      top: -105px;
+      right: -65px;
+    }
+
+    header::after {
+      width: 170px;
+      height: 170px;
+      bottom: -95px;
+      left: -55px;
+    }
+
+    .header-icon {
+      position: relative;
+      z-index: 2;
+      width: 112px;
+      height: 112px;
+      margin: 0 auto 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 34px;
+      font-size: 58px;
+      background: rgba(255, 255, 255, 0.13);
+      border: 3px solid rgba(255, 255, 255, 0.38);
+      box-shadow: 0 10px 24px rgba(44, 27, 58, 0.13);
+    }
+
+    header h1 {
+      position: relative;
+      z-index: 2;
+      margin: 0 auto 18px;
+      color: #fff8df;
+      font-size: 41px;
+      line-height: 1.7;
+    }
+
+    header p {
+      position: relative;
+      z-index: 2;
+      max-width: 720px;
+      margin: auto;
+      color: #f7effb;
+      font-size: 18px;
+      line-height: 2;
+    }
+
+    main {
+      width: 93%;
+      max-width: 760px;
+      margin: 48px auto 55px;
+    }
+
+    .intro {
+      margin-bottom: 30px;
+      padding: 21px;
+      border-radius: 23px;
+      color: #5d4374;
+      background: #fffdf8;
+      border: 1px solid rgba(93, 67, 116, 0.14);
+      border-right: 7px solid #c9a85c;
+      box-shadow: 0 10px 26px rgba(73, 56, 92, 0.11);
+      font-size: 16px;
+      line-height: 2;
+    }
+
+    .section-title {
+      margin: 0 0 28px;
+      color: #5d4374;
+      font-size: 32px;
+      line-height: 1.7;
+    }
+
+    .cards {
+      display: grid;
+      gap: 24px;
+    }
+
+    .card-link {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      min-height: 250px;
+      padding: 38px 24px 34px;
+      border-radius: 38px;
+      background: #fffdf8;
+      border: 1px solid rgba(93, 67, 116, 0.15);
+      border-top: 10px solid #776094;
+      box-shadow: 0 14px 30px rgba(73, 56, 92, 0.13);
+      transition:
+        transform 0.25s,
+        box-shadow 0.25s;
+    }
+
+    .card.gold {
+      border-top-color: #c9a85c;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 19px 36px rgba(73, 56, 92, 0.18);
+    }
+
+    .card:active {
+      transform: scale(0.985);
+    }
+
+    .card-icon {
+      width: 102px;
+      height: 102px;
+      margin: 0 auto 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 29px;
+      font-size: 54px;
+      background: #f5ecfb;
+      border: 1px solid rgba(111, 82, 136, 0.2);
+      box-shadow: 0 8px 20px rgba(73, 56, 92, 0.1);
+    }
+
+    .card.gold .card-icon {
+      background: #fff6dc;
+      border-color: rgba(201, 168, 92, 0.38);
+    }
+
+    .card h2 {
+      margin: 0 0 15px;
+      color: #5d4374;
+      font-size: 27px;
+      line-height: 1.7;
+    }
+
+    .card p {
+      margin: 0;
+      color: #74687b;
+      font-size: 17px;
+      line-height: 2;
+    }
+
+    .back {
+      display: block;
+      width: 100%;
+      margin-top: 30px;
+      padding: 16px 18px;
+      border-radius: 19px;
+      color: white;
+      background: #6f5288;
+      text-decoration: none;
+      font-size: 17px;
+      font-weight: bold;
+      box-shadow: 0 9px 20px rgba(73, 56, 92, 0.16);
+      transition:
+        opacity 0.2s,
+        transform 0.2s;
+    }
+
+    .back:hover {
+      opacity: 0.94;
+    }
+
+    .back:active {
+      transform: scale(0.98);
+    }
+
+    footer {
+      padding: 23px 14px;
+      color: white;
+      background: #49385c;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding: 48px 16px 58px;
+        border-radius: 0 0 54px 54px;
+      }
+
+      .header-icon {
+        width: 100px;
+        height: 100px;
+        font-size: 52px;
+      }
+
+      header h1 {
+        font-size: 34px;
+      }
+
+      header p {
+        font-size: 16px;
+      }
+
+      main {
+        width: 92%;
+        margin-top: 42px;
+      }
+
+      .section-title {
+        font-size: 28px;
+      }
+
+      .card {
+        min-height: 225px;
+        padding: 32px 20px;
+        border-radius: 34px;
+      }
+
+      .card-icon {
+        width: 94px;
+        height: 94px;
+        font-size: 50px;
+      }
+
+      .card h2 {
+        font-size: 25px;
+      }
+
+      .card p {
+        font-size: 16px;
+      }
     }
   </style>
 </head>
 
 <body>
 
-<header>
-  <h1>🏆 نافس</h1>
-  <p>تدريبات الفهم القرائي لطالبات المرحلة المتوسطة</p>
-</header>
+  <header>
 
-<section>
-  <h2>محتويات نافس</h2>
+    <div class="header-icon">
+      🏆
+    </div>
 
-<a href="nafes-skills.html"><div class="card">🎯 مهارات نافس</div></a>
-<a href="nafes-tests.html"><div class="card">✅ اختبارات تجريبية</div></a>
+    <h1>
+      نافس
+    </h1>
 
+    <p>
+      تدريبات ومهارات تساعدكِ على تنمية الفهم القرائي،
+      وتحليل النصوص، والاستعداد للاختبارات بثقة.
+    </p>
 
-  
-  
+  </header>
 
-  <p><a href="index.html">العودة إلى الصفحة الرئيسية</a></p>
-</section>
+  <main>
 
-<footer>
-  جميع الحقوق محفوظة © 2026
-</footer>
+    <div class="intro">
+      ابدئي بتعرّف المهارات الأساسية،
+      ثم انتقلي إلى الاختبارات التجريبية
+      لتطبقي ما تعلمتِه وتقيسي تقدمكِ.
+    </div>
+
+    <h2 class="section-title">
+      محتويات نافس
+    </h2>
+
+    <section class="cards">
+
+      <a
+        class="card-link"
+        href="nafes-skills.html"
+      >
+        <article class="card">
+
+          <div class="card-icon">
+            🎯
+          </div>
+
+          <h2>
+            مهارات نافس
+          </h2>
+
+          <p>
+            تعرّفي إلى مهارات الفهم القرائي،
+            واستراتيجيات تحليل النص والإجابة عن الأسئلة.
+          </p>
+
+        </article>
+      </a>
+
+      <a
+        class="card-link"
+        href="nafes-tests.html"
+      >
+        <article class="card gold">
+
+          <div class="card-icon">
+            ✅
+          </div>
+
+          <h2>
+            اختبارات تجريبية
+          </h2>
+
+          <p>
+            طبّقي مهاراتكِ من خلال تدريبات
+            واختبارات متنوعة تحاكي أسئلة نافس.
+          </p>
+
+        </article>
+      </a>
+
+    </section>
+
+    <a
+      class="back"
+      href="index.html"
+    >
+      العودة إلى الصفحة الرئيسية
+    </a>
+
+  </main>
+
+  <footer>
+    جميع الحقوق محفوظة © 2026
+  </footer>
 
 </body>
+
 </html>
