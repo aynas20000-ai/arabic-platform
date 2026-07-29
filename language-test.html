@@ -1,393 +1,384 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>اختبار الصنف اللغوي | منصة آفاق اللغة</title>
+  <title>اختبار الصنف اللغوي</title>
 
   <style>
-    *{
-      box-sizing:border-box;
+    * {
+      box-sizing: border-box;
     }
 
-    body{
-      margin:0;
-      min-height:100vh;
-      font-family:Tahoma,Arial,sans-serif;
-      color:#30263b;
-      background:
-        radial-gradient(
-          circle at top right,
-          rgba(140,88,176,.15),
-          transparent 35%
-        ),
-        linear-gradient(
-          180deg,
-          #fcf9fe,
-          #f8f4fb
-        );
+    html,
+    body {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Tahoma, Arial, sans-serif;
+      color: #4b3a57;
+      background: linear-gradient(180deg, #fffaf2, #f8f0fb);
+    }
+
+    header {
+      padding: 38px 20px;
+      color: white;
+      text-align: center;
+      background: linear-gradient(135deg, #776094, #5b4677);
+      border-bottom: 4px solid #c9a85c;
+    }
+
+    header h1 {
+      margin: 0 0 10px;
+      color: #fffdf8;
+      font-size: 34px;
+      line-height: 1.6;
+    }
+
+    header p {
+      margin: 0;
+      color: #f7effb;
+      font-size: 17px;
+      line-height: 1.8;
+    }
+
+    main {
+      width: 92%;
+      max-width: 820px;
+      margin: 30px auto;
+    }
+
+    .card {
+      margin-bottom: 20px;
+      padding: 25px;
+      background: #fffdf8;
+      border: 2px solid #c9a85c;
+      border-radius: 20px;
+      box-shadow: 0 7px 18px rgba(91, 63, 111, 0.12);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    .icon {
+      margin-bottom: 12px;
+      font-size: 52px;
+    }
+
+    h2 {
+      color: #5d4374;
+      line-height: 1.8;
+    }
+
+    p {
+      line-height: 1.9;
+    }
+
+    .name-label {
+      display: block;
+      margin: 18px 0 8px;
+      color: #5d4374;
+      font-weight: bold;
+      text-align: right;
+    }
+
+    #studentName {
+      width: 100%;
+      padding: 15px;
+      font-family: inherit;
+      font-size: 17px;
+      text-align: center;
+      background: #ffffff;
+      border: 2px solid #ddd2e5;
+      border-radius: 15px;
+      outline: none;
+    }
+
+    #studentName:focus {
+      border-color: #776094;
+      box-shadow: 0 0 0 4px rgba(119, 96, 148, 0.12);
+    }
+
+    .error-message {
+      min-height: 25px;
+      margin-top: 8px;
+      color: #a52222;
+      font-weight: bold;
+    }
+
+    .student-name {
+      margin-bottom: 16px;
+      padding: 12px;
+      color: #5d4374;
+      font-weight: bold;
+      background: #f5ecfb;
+      border: 1px solid #c9a85c;
+      border-radius: 14px;
+    }
+
+    .progress-info,
+    .question-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      font-weight: bold;
+    }
+
+    .progress-info {
+      color: #5d4374;
+    }
+
+    .question-meta {
+      margin-top: 12px;
+      color: #766d7d;
+    }
+
+    .progress-shell {
+      height: 14px;
+      margin: 15px 0;
+      overflow: hidden;
+      background: #ece5f1;
+      border-radius: 999px;
+    }
+
+    .progress-bar {
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, #c9a85c, #ead28b);
+      transition: width 0.3s ease;
+    }
+
+    .lesson-badge {
+      display: inline-block;
+      margin-bottom: 15px;
+      padding: 8px 15px;
+      color: #5d4374;
+      font-weight: bold;
+      background: #f5ecfb;
+      border: 1px solid #c9a85c;
+      border-radius: 22px;
+    }
+
+    .question {
+      margin: 10px 0 20px;
+      color: #4b3a57;
+      font-size: 23px;
+      line-height: 1.9;
+    }
+
+    .choices {
+      display: grid;
+      gap: 12px;
+    }
+
+    .choice {
+      width: 100%;
+      padding: 15px;
+      color: #4b3a57;
+      font-family: inherit;
+      font-size: 17px;
+      line-height: 1.8;
+      text-align: right;
+      cursor: pointer;
+      background: white;
+      border: 2px solid #ddd2e5;
+      border-radius: 15px;
+    }
+
+    .choice:hover,
+    .choice:active {
+      background: #f5ecfb;
+    }
+
+    .choice:disabled {
+      cursor: default;
+    }
+
+    .choice.correct {
+      color: #0d5b37;
+      font-weight: bold;
+      background: #e8f7ef;
+      border-color: #198754;
+    }
+
+    .choice.wrong {
+      color: #8f1f1f;
+      font-weight: bold;
+      background: #fdecec;
+      border-color: #c62828;
+    }
+
+    .feedback {
+      margin-top: 17px;
+      padding: 15px;
+      font-weight: bold;
+      line-height: 1.9;
+      border-radius: 15px;
+    }
+
+    .feedback.correct-feedback {
+      color: #0d5b37;
+      background: #e8f7ef;
+      border: 1px solid #acd9c2;
+    }
+
+    .feedback.wrong-feedback {
+      color: #8f1f1f;
+      background: #fdecec;
+      border: 1px solid #efb5b5;
+    }
+
+    .correct-answer {
+      display: block;
+      margin: 7px 0;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .next-wrap {
+      margin-top: 18px;
+      text-align: left;
     }
 
     button,
-    input{
-      font:inherit;
+    .btn {
+      display: inline-block;
+      padding: 13px 24px;
+      color: white;
+      font-family: inherit;
+      font-size: 17px;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+      background: #6f5288;
+      border: 2px solid #c9a85c;
+      border-radius: 22px;
     }
 
-    .hidden{
-      display:none !important;
+    button:hover,
+    button:active,
+    .btn:hover,
+    .btn:active {
+      background: #5b4677;
     }
 
-    header{
-      padding:22px 15px;
-      text-align:center;
-      color:#ffffff;
-      background:
-        linear-gradient(
-          135deg,
-          #60358b,
-          #432260
-        );
-      box-shadow:
-        0 8px 24px rgba(67,34,96,.22);
+    .secondary-btn {
+      color: #5d4374;
+      background: #f5ecfb;
     }
 
-    header h1{
-      margin:0 0 8px;
-      font-size:clamp(26px,6vw,40px);
+    .secondary-btn:hover,
+    .secondary-btn:active {
+      color: white;
+      background: #6f5288;
     }
 
-    header p{
-      margin:0;
-      color:#f8edcf;
-      font-size:17px;
-      line-height:1.8;
+    .score-circle {
+      width: 155px;
+      height: 155px;
+      margin: 22px auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      background: linear-gradient(145deg, #6f5288, #5b4677);
+      border: 7px solid #c9a85c;
+      border-radius: 50%;
     }
 
-    main{
-      width:min(920px,calc(100% - 24px));
-      margin:24px auto 45px;
+    .score-circle strong {
+      font-size: 45px;
     }
 
-    .card{
-      padding:20px;
-      background:#ffffff;
-      border:1px solid #e4dbea;
-      border-radius:22px;
-      box-shadow:
-        0 12px 32px rgba(69,43,91,.10);
+    .saved-note {
+      max-width: 620px;
+      margin: 18px auto;
+      padding: 16px;
+      color: #5d4374;
+      font-weight: bold;
+      line-height: 1.9;
+      background: #f5ecfb;
+      border: 1px solid #c9a85c;
+      border-radius: 17px;
     }
 
-    .center{
-      max-width:760px;
-      margin:35px auto;
-      text-align:center;
+    .balloon {
+      position: fixed;
+      bottom: -120px;
+      z-index: 9999;
+      width: 40px;
+      height: 52px;
+      border-radius: 50%;
+      pointer-events: none;
+      animation: flyUp 3.8s ease-in forwards;
     }
 
-    .icon{
-      font-size:55px;
-      margin-bottom:8px;
+    footer {
+      margin-top: 30px;
+      padding: 20px;
+      color: #fffdf8;
+      text-align: center;
+      background: #49385c;
+      border-top: 3px solid #c9a85c;
     }
 
-    h2{
-      color:#60358b;
-      line-height:1.7;
-    }
-
-    p{
-      color:#766d7d;
-      line-height:1.9;
-    }
-
-    .label{
-      display:block;
-      margin:18px 0 8px;
-      text-align:right;
-      color:#60358b;
-      font-weight:bold;
-    }
-
-    #studentName{
-      width:100%;
-      padding:14px;
-      border:2px solid #e4dbea;
-      border-radius:14px;
-      outline:none;
-      background:#ffffff;
-    }
-
-    #studentName:focus{
-      border-color:#8c58b0;
-      box-shadow:
-        0 0 0 4px rgba(140,88,176,.12);
-    }
-
-    .error{
-      min-height:26px;
-      margin-top:8px;
-      color:#b3261e;
-      font-weight:bold;
-    }
-
-    .actions{
-      display:flex;
-      justify-content:center;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-top:18px;
-    }
-
-    .btn{
-      display:inline-block;
-      padding:13px 20px;
-      border:0;
-      border-radius:14px;
-      font-weight:bold;
-      cursor:pointer;
-      text-decoration:none;
-    }
-
-    .primary{
-      color:#ffffff;
-      background:
-        linear-gradient(
-          135deg,
-          #8c58b0,
-          #60358b
-        );
-    }
-
-    .secondary{
-      color:#60358b;
-      background:#f1e9f7;
-    }
-
-    .row{
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      flex-wrap:wrap;
-      color:#60358b;
-      font-weight:bold;
-    }
-
-    .progress{
-      height:14px;
-      margin-top:12px;
-      overflow:hidden;
-      border-radius:999px;
-      background:#ece6f1;
-    }
-
-    #progressBar{
-      width:0;
-      height:100%;
-      background:
-        linear-gradient(
-          90deg,
-          #dfa03d,
-          #f1cf7c
-        );
-      transition:width .35s ease;
-    }
-
-    .meta{
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      margin-top:12px;
-      color:#766d7d;
-      font-weight:bold;
-    }
-
-    .question-card{
-      margin-top:18px;
-      position:relative;
-      overflow:hidden;
-    }
-
-    .question-card::before{
-      content:"";
-      position:absolute;
-      top:0;
-      right:0;
-      left:0;
-      height:6px;
-      background:
-        linear-gradient(
-          90deg,
-          #dfa03d,
-          #f4db9d,
-          #dfa03d
-        );
-    }
-
-    .lesson-badge{
-      display:inline-block;
-      margin:8px 0 4px;
-      padding:7px 13px;
-      border-radius:999px;
-      color:#60358b;
-      background:#f3ecf8;
-      font-weight:bold;
-    }
-
-    #questionText{
-      margin:12px 0 20px;
-      color:#39254b;
-      font-size:clamp(22px,5vw,30px);
-      line-height:1.8;
-    }
-
-    .choices{
-      display:grid;
-      gap:12px;
-    }
-
-    .choice{
-      width:100%;
-      padding:14px 16px;
-      text-align:right;
-      color:#30263b;
-      background:#ffffff;
-      border:2px solid #e4dbea;
-      border-radius:15px;
-      font-size:18px;
-      line-height:1.8;
-      cursor:pointer;
-      transition:.18s;
-    }
-
-    .choice:hover:not(:disabled){
-      border-color:#b394c9;
-      background:#fcf9fe;
-      transform:translateY(-1px);
-    }
-
-    .choice:disabled{
-      cursor:default;
-    }
-
-    .choice.correct{
-      color:#14543d;
-      background:#eaf8f2;
-      border-color:#34785f;
-      font-weight:bold;
-    }
-
-    .choice.wrong{
-      color:#8d1f1a;
-      background:#fdecea;
-      border-color:#b3261e;
-      font-weight:bold;
-    }
-
-    .feedback{
-      margin-top:18px;
-      padding:15px;
-      border-radius:15px;
-      line-height:1.9;
-      font-weight:bold;
-    }
-
-    .correct-feedback{
-      color:#14543d;
-      background:#eaf8f2;
-      border:1px solid #add8c8;
-    }
-
-    .wrong-feedback{
-      color:#8d1f1a;
-      background:#fdecea;
-      border:1px solid #efb5b0;
-    }
-
-    .next-wrap{
-      display:flex;
-      justify-content:flex-end;
-      margin-top:18px;
-    }
-
-    .score-circle{
-      width:150px;
-      height:150px;
-      margin:20px auto;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      flex-direction:column;
-      color:#ffffff;
-      background:
-        linear-gradient(
-          145deg,
-          #60358b,
-          #8c58b0
-        );
-      border:7px solid #ead69e;
-      border-radius:50%;
-      box-shadow:
-        0 12px 28px rgba(96,53,139,.22);
-    }
-
-    .score-circle strong{
-      font-size:43px;
-      line-height:1;
-    }
-
-    .score-circle span{
-      margin-top:7px;
-    }
-
-    .saved-note{
-      max-width:600px;
-      margin:18px auto;
-      padding:15px;
-      color:#60358b;
-      background:#f3ecf8;
-      border-radius:16px;
-      font-weight:bold;
-      line-height:1.9;
-    }
-
-    .balloon{
-      position:fixed;
-      bottom:-120px;
-      z-index:9999;
-      width:40px;
-      height:52px;
-      border-radius:50%;
-      pointer-events:none;
-      animation:flyUp 3.8s ease-in forwards;
-    }
-
-    @keyframes flyUp{
-      from{
-        transform:translateY(0);
-        opacity:1;
+    @keyframes flyUp {
+      from {
+        transform: translateY(0);
+        opacity: 1;
       }
 
-      to{
-        transform:translateY(-125vh);
-        opacity:.1;
+      to {
+        transform: translateY(-125vh);
+        opacity: 0.1;
       }
     }
 
-    @media(max-width:600px){
-      .card{
-        padding:16px;
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 27px;
       }
 
-      .choice{
-        font-size:17px;
+      .card {
+        padding: 18px 14px;
       }
 
-      .next-wrap .btn{
-        width:100%;
+      .question {
+        font-size: 20px;
       }
 
-      .row,
-      .meta{
-        font-size:14px;
+      .choice {
+        padding: 13px;
+        font-size: 16px;
+      }
+
+      .next-wrap button {
+        width: 100%;
+      }
+
+      .progress-info,
+      .question-meta {
+        font-size: 14px;
       }
     }
   </style>
@@ -397,6 +388,7 @@
 
   <header>
     <h1>🔤 اختبار الصنف اللغوي</h1>
+
     <p>
       اسم الفاعل واسم المفعول وصيغ المبالغة
       — ١٠ أسئلة — ٢٠ درجة
@@ -405,10 +397,7 @@
 
   <main>
 
-    <section
-      id="startScreen"
-      class="card center"
-    >
+    <section id="startScreen" class="card center">
 
       <div class="icon">🌷</div>
 
@@ -417,13 +406,9 @@
       <p>
         يتكوّن الاختبار من عشرة أسئلة،
         ولكل سؤال درجتان.
-        اكتبي اسم الطالبة الرباعي قبل البدء.
       </p>
 
-      <label
-        class="label"
-        for="studentName"
-      >
+      <label class="name-label" for="studentName">
         اسم الطالبة الرباعي:
       </label>
 
@@ -437,44 +422,36 @@
 
       <div
         id="nameError"
-        class="error"
+        class="error-message"
         aria-live="polite"
       ></div>
 
       <div class="actions">
 
-        <button
-          id="startBtn"
-          class="btn primary"
-          type="button"
-        >
+        <button id="startBtn" type="button">
           ابدئي الاختبار
         </button>
 
         <a
-          class="btn secondary"
+          class="btn secondary-btn"
           href="semester1-tests.html"
         >
-          العودة للاختبارات
+          العودة إلى الاختبارات
         </a>
 
       </div>
 
     </section>
 
-    <section
-      id="quizScreen"
-      class="hidden"
-    >
+    <section id="quizScreen" class="hidden">
 
       <div class="card">
 
-        <div class="row">
+        <div id="shownName" class="student-name"></div>
 
-          <span>
-            الطالبة:
-            <strong id="shownName"></strong>
-          </span>
+        <div class="progress-info">
+
+          <span id="questionCounter"></span>
 
           <span>
             الدرجة الحالية:
@@ -484,42 +461,32 @@
 
         </div>
 
-        <div class="progress">
-          <div id="progressBar"></div>
+        <div class="progress-shell">
+          <div id="progressBar" class="progress-bar"></div>
         </div>
 
-        <div class="meta">
-          <span id="questionCounter"></span>
+        <div class="question-meta">
+          <span>اختبار الصنف اللغوي</span>
           <span>لكل سؤال درجتان</span>
         </div>
 
       </div>
 
-      <section class="card question-card">
+      <section class="card">
 
-        <div
-          id="lessonBadge"
-          class="lesson-badge"
-        ></div>
+        <div id="lessonBadge" class="lesson-badge"></div>
 
-        <h2 id="questionText"></h2>
+        <h2 id="questionText" class="question"></h2>
 
-        <div
-          id="choices"
-          class="choices"
-        ></div>
+        <div id="choices" class="choices"></div>
 
-        <div
-          id="feedback"
-          class="feedback hidden"
-          aria-live="polite"
-        ></div>
+        <div id="feedback" class="feedback hidden"></div>
 
         <div class="next-wrap">
 
           <button
             id="nextBtn"
-            class="btn primary hidden"
+            class="hidden"
             type="button"
           >
             السؤال التالي
@@ -531,58 +498,37 @@
 
     </section>
 
-    <section
-      id="resultScreen"
-      class="card center hidden"
-    >
+    <section id="resultScreen" class="card center hidden">
 
-      <div
-        id="resultEmoji"
-        class="icon"
-      >
-        🎉
-      </div>
+      <div id="resultEmoji" class="icon">🎉</div>
 
-      <h2 id="resultTitle">
-        أحسنتِ
-      </h2>
+      <h2 id="resultTitle"></h2>
 
       <p id="resultName"></p>
 
       <div class="score-circle">
-
-        <strong id="finalScore">
-          ٠
-        </strong>
-
-        <span>
-          من ٢٠
-        </span>
-
+        <strong id="finalScore">٠</strong>
+        <span>من ٢٠</span>
       </div>
 
       <p id="resultMessage"></p>
 
       <div class="saved-note">
         ✅ تم حفظ اسم الطالبة ودرجة الصنف اللغوي،
-        وستُضاف إلى المجموع النهائي من ١٠٠ درجة.
+        وستُضاف الدرجة إلى المجموع النهائي من ١٠٠.
       </div>
 
       <div class="actions">
 
-        <button
-          id="retryBtn"
-          class="btn primary"
-          type="button"
-        >
+        <button id="retryBtn" type="button">
           إعادة الاختبار
         </button>
 
         <a
-          class="btn secondary"
+          class="btn secondary-btn"
           href="semester1-tests.html"
         >
-          العودة للاختبارات
+          العودة إلى الاختبارات
         </a>
 
       </div>
@@ -591,201 +537,191 @@
 
   </main>
 
+  <footer>
+    جميع الحقوق محفوظة © 2026
+  </footer>
+
   <script>
     const questions = [
       {
         lesson: "اسم الفاعل",
-
-        question:
-          "ما اسم الفاعل من الفعل «كتبَ»؟",
-
+        question: "ما اسم الفاعل من الفعل «كتبَ»؟",
         choices: [
           "مكتوب",
           "كاتب",
           "كتّاب",
           "مكتب"
         ],
-
         answer: 1,
-
         explanation:
           "اسم الفاعل من الفعل الثلاثي يُصاغ غالبًا على وزن «فاعل»: كتبَ ← كاتب."
       },
-
       {
         lesson: "اسم الفاعل",
-
-        question:
-          "ما اسم الفاعل من الفعل غير الثلاثي «سافرَ»؟",
-
+        question: "ما اسم الفاعل من الفعل غير الثلاثي «سافرَ»؟",
         choices: [
           "مُسافِر",
           "مُسافَر",
           "سافور",
           "مسفور"
         ],
-
         answer: 0,
-
         explanation:
           "يُصاغ اسم الفاعل من غير الثلاثي من مضارعه، بإبدال حرف المضارعة ميمًا مضمومة وكسر ما قبل الآخر: يسافرُ ← مُسافِر."
       },
-
       {
         lesson: "اسم الفاعل",
-
-        question:
-          "ما اسم الفاعل من الفعل الأجوف «قالَ»؟",
-
+        question: "ما اسم الفاعل من الفعل الأجوف «قالَ»؟",
         choices: [
           "قائل",
           "مقول",
           "قوّال",
           "قيّال"
         ],
-
         answer: 0,
-
         explanation:
           "اسم الفاعل من «قالَ» هو «قائل»، وقد قُلبت ألف الفعل همزة عند صياغته على وزن «فاعل»."
       },
-
       {
         lesson: "اسم الفاعل",
-
-        question:
-          "ما اسم الفاعل من الفعل الناقص «دعا»؟",
-
+        question: "ما اسم الفاعل من الفعل الناقص «دعا»؟",
         choices: [
           "داعٍ",
           "مدعوّ",
           "دعّاء",
           "دعوان"
         ],
-
         answer: 0,
-
         explanation:
           "اسم الفاعل من «دعا» هو «داعٍ»، وتحذف ياؤه عند التنكير في حالتي الرفع والجر."
       },
-
       {
         lesson: "اسم المفعول",
-
-        question:
-          "ما اسم المفعول من الفعل غير الثلاثي «استخرجَ»؟",
-
+        question: "ما اسم المفعول من الفعل غير الثلاثي «استخرجَ»؟",
         choices: [
           "مُستخرِج",
           "مُستخرَج",
           "خارج",
           "مُخرَج"
         ],
-
         answer: 1,
-
         explanation:
           "يُصاغ اسم المفعول من غير الثلاثي من مضارعه، بإبدال حرف المضارعة ميمًا مضمومة وفتح ما قبل الآخر: يُستخرَج ← مُستخرَج."
       },
-
       {
         lesson: "اسم المفعول",
-
-        question:
-          "ما اسم المفعول من الفعل الأجوف «قالَ»؟",
-
+        question: "ما اسم المفعول من الفعل الأجوف «قالَ»؟",
         choices: [
           "قائل",
           "مقول",
           "قوّال",
           "مقيول"
         ],
-
         answer: 1,
-
         explanation:
           "اسم المفعول من الفعل «قالَ» هو «مقول»."
       },
-
       {
         lesson: "اسم المفعول",
-
-        question:
-          "ما اسم المفعول من الفعل الناقص «دعا»؟",
-
+        question: "ما اسم المفعول من الفعل الناقص «دعا»؟",
         choices: [
           "داعٍ",
           "مدعوّ",
           "دعّاء",
           "مدعيّ"
         ],
-
         answer: 1,
-
         explanation:
           "اسم المفعول من الفعل «دعا» هو «مدعوّ»."
       },
-
       {
         lesson: "اسم المفعول",
-
-        question:
-          "ما اسم المفعول من الفعل «باعَ»؟",
-
+        question: "ما اسم المفعول من الفعل «باعَ»؟",
         choices: [
           "بائع",
           "مبيع",
           "بيّاع",
           "مبوع"
         ],
-
         answer: 1,
-
         explanation:
           "اسم المفعول من الفعل الأجوف «باعَ» هو «مبيع»."
       },
-
       {
         lesson: "صيغة المبالغة",
-
-        question:
-          "ما صيغة المبالغة من الفعل «غفرَ» على وزن «فعّال»؟",
-
+        question: "ما صيغة المبالغة من الفعل «غفرَ» على وزن «فعّال»؟",
         choices: [
           "غافر",
           "مغفور",
           "غفّار",
           "غفور"
         ],
-
         answer: 2,
-
         explanation:
           "«غفّار» صيغة مبالغة على وزن «فعّال»، أما «غفور» فهي على وزن «فعول»."
       },
-
       {
         lesson: "صيغة المبالغة",
-
-        question:
-          "كلمة «علّام» في قولنا: «علّامُ الغيوبِ» صيغة مبالغة على وزن:",
-
+        question: "كلمة «علّام» في قولنا: «علّامُ الغيوبِ» صيغة مبالغة على وزن:",
         choices: [
           "فعيل",
           "فعّال",
           "مِفعال",
           "فَعِل"
         ],
-
         answer: 1,
-
         explanation:
           "كلمة «علّام» على وزن «فعّال»، وهو أحد أوزان صيغ المبالغة."
       }
     ];
 
-    const getElement = id =>
-      document.getElementById(id);
+    const startScreen =
+      document.getElementById("startScreen");
+
+    const quizScreen =
+      document.getElementById("quizScreen");
+
+    const resultScreen =
+      document.getElementById("resultScreen");
+
+    const studentNameInput =
+      document.getElementById("studentName");
+
+    const nameError =
+      document.getElementById("nameError");
+
+    const shownName =
+      document.getElementById("shownName");
+
+    const startBtn =
+      document.getElementById("startBtn");
+
+    const nextBtn =
+      document.getElementById("nextBtn");
+
+    const retryBtn =
+      document.getElementById("retryBtn");
+
+    const questionCounter =
+      document.getElementById("questionCounter");
+
+    const progressBar =
+      document.getElementById("progressBar");
+
+    const liveScore =
+      document.getElementById("liveScore");
+
+    const lessonBadge =
+      document.getElementById("lessonBadge");
+
+    const questionText =
+      document.getElementById("questionText");
+
+    const choicesBox =
+      document.getElementById("choices");
+
+    const feedback =
+      document.getElementById("feedback");
 
     let currentQuestion = 0;
     let score = 0;
@@ -793,112 +729,90 @@
     let studentFullName = "";
     let audioContext = null;
 
-    function toArabicNumber(value){
+    function toArabicNumber(value) {
       return String(value).replace(
         /\d/g,
         digit => "٠١٢٣٤٥٦٧٨٩"[digit]
       );
     }
 
-    function normalizeName(name){
-      return name
-        .trim()
-        .replace(/\s+/g," ");
+    function normalizeName(name) {
+      return name.trim().replace(/\s+/g, " ");
     }
 
-    function isFourPartName(name){
+    function isFourPartName(name) {
       return normalizeName(name)
         .split(" ")
         .filter(Boolean)
         .length >= 4;
     }
 
-    function initializeAudio(){
-      const AudioClass =
+    function initializeAudio() {
+      const AudioContextClass =
         window.AudioContext ||
         window.webkitAudioContext;
 
-      if(!AudioClass){
+      if (!AudioContextClass) {
         return;
       }
 
-      if(!audioContext){
-        audioContext =
-          new AudioClass();
+      if (!audioContext) {
+        audioContext = new AudioContextClass();
       }
 
-      if(audioContext.state === "suspended"){
+      if (audioContext.state === "suspended") {
         audioContext.resume();
       }
     }
 
-    function playSound(isCorrect){
+    function playSound(isCorrect) {
       initializeAudio();
 
-      if(!audioContext){
+      if (!audioContext) {
         return;
       }
 
-      const notes =
-        isCorrect
-          ? [523.25,659.25,783.99]
-          : [250,185];
+      const notes = isCorrect
+        ? [523.25, 659.25, 783.99]
+        : [250, 185];
 
-      const currentTime =
-        audioContext.currentTime;
+      const now = audioContext.currentTime;
 
-      notes.forEach(
-        (frequency,index) => {
+      notes.forEach((frequency, index) => {
+        const oscillator =
+          audioContext.createOscillator();
 
-          const oscillator =
-            audioContext.createOscillator();
+        const gain =
+          audioContext.createGain();
 
-          const gain =
-            audioContext.createGain();
+        oscillator.type =
+          isCorrect ? "sine" : "triangle";
 
-          oscillator.type =
-            isCorrect
-              ? "sine"
-              : "triangle";
+        oscillator.frequency.value = frequency;
 
-          oscillator.frequency.value =
-            frequency;
+        oscillator.connect(gain);
+        gain.connect(audioContext.destination);
 
-          oscillator.connect(gain);
+        const start = now + index * 0.13;
 
-          gain.connect(
-            audioContext.destination
-          );
+        gain.gain.setValueAtTime(0.0001, start);
 
-          const startTime =
-            currentTime +
-            index * .13;
+        gain.gain.exponentialRampToValueAtTime(
+          0.18,
+          start + 0.02
+        );
 
-          gain.gain.setValueAtTime(
-            .0001,
-            startTime
-          );
+        gain.gain.exponentialRampToValueAtTime(
+          0.0001,
+          start + 0.23
+        );
 
-          gain.gain.exponentialRampToValueAtTime(
-            .3,
-            startTime + .025
-          );
-
-          gain.gain.exponentialRampToValueAtTime(
-            .0001,
-            startTime + .23
-          );
-
-          oscillator.start(startTime);
-
-          oscillator.stop(
-            startTime + .25
-          );
-        }
-      );
+        oscillator.start(start);
+        oscillator.stop(start + 0.25);
+      });
     }
 
-    function launchBalloons(){
+    function launchBalloons() {
       const colors = [
         "#ff6b81",
         "#ffd166",
@@ -907,77 +821,79 @@
         "#55d6a5"
       ];
 
-      for(let index = 0; index < 8; index++){
-
+      for (let index = 0; index < 8; index++) {
         const balloon =
           document.createElement("div");
 
-        balloon.className =
-          "balloon";
+        balloon.className = "balloon";
 
         balloon.style.left =
-          Math.random() * 92 + "vw";
+          `${Math.random() * 92}vw`;
 
         balloon.style.background =
           colors[
-            Math.floor(
-              Math.random() *
-              colors.length
-            )
+            Math.floor(Math.random() * colors.length)
           ];
 
         balloon.style.animationDelay =
-          Math.random() * .5 + "s";
+          `${Math.random() * 0.5}s`;
 
-        document.body.appendChild(
-          balloon
-        );
+        document.body.appendChild(balloon);
 
-        setTimeout(
-          () => balloon.remove(),
-          4200
-        );
+        setTimeout(() => {
+          balloon.remove();
+        }, 4200);
       }
     }
 
-    function startQuiz(){
-      initializeAudio();
-
-      const name =
-        normalizeName(
-          getElement("studentName").value
-        );
-
-      if(!name){
-        getElement("nameError").textContent =
-          "اكتبي اسم الطالبة الرباعي أولًا.";
-
-        getElement("studentName").focus();
-
-        return;
-      }
-
-      if(!isFourPartName(name)){
-        getElement("nameError").textContent =
-          "يرجى كتابة الاسم الرباعي كاملًا، أربعة أسماء على الأقل.";
-
-        getElement("studentName").focus();
-
-        return;
-      }
-
-      getElement("nameError").textContent =
+    function loadSavedName() {
+      const savedName =
+        localStorage.getItem(
+          "semester1_student_full_name"
+        ) ||
+        localStorage.getItem(
+          "studentFullName"
+        ) ||
         "";
 
-      studentFullName = name;
+      if (savedName) {
+        studentNameInput.value = savedName;
+      }
+    }
+
+    function startQuiz() {
+      initializeAudio();
+
+      const enteredName =
+        normalizeName(studentNameInput.value);
+
+      if (!enteredName) {
+        nameError.textContent =
+          "اكتبي اسم الطالبة الرباعي أولًا.";
+
+        studentNameInput.focus();
+        return;
+      }
+
+      if (!isFourPartName(enteredName)) {
+        nameError.textContent =
+          "يرجى كتابة الاسم الرباعي كاملًا، أربعة أسماء على الأقل.";
+
+        studentNameInput.focus();
+        return;
+      }
+
+      nameError.textContent = "";
+
+      studentFullName = enteredName;
 
       localStorage.setItem(
-        "studentFullName",
+        "semester1_student_full_name",
         studentFullName
       );
 
       localStorage.setItem(
-        "semester1_student_full_name",
+        "studentFullName",
         studentFullName
       );
 
@@ -985,106 +901,73 @@
       score = 0;
       answered = false;
 
-      getElement("shownName").textContent =
-        studentFullName;
+      shownName.textContent =
+        `الطالبة: ${studentFullName}`;
 
-      getElement("liveScore").textContent =
-        "٠";
+      liveScore.textContent = "٠";
 
-      getElement("startScreen")
-        .classList.add("hidden");
-
-      getElement("resultScreen")
-        .classList.add("hidden");
-
-      getElement("quizScreen")
-        .classList.remove("hidden");
+      startScreen.classList.add("hidden");
+      resultScreen.classList.add("hidden");
+      quizScreen.classList.remove("hidden");
 
       renderQuestion();
 
       window.scrollTo({
-        top:0,
-        behavior:"smooth"
+        top: 0,
+        behavior: "smooth"
       });
     }
 
-    function renderQuestion(){
+    function renderQuestion() {
       answered = false;
 
       const item =
         questions[currentQuestion];
 
-      getElement("questionCounter").textContent =
-        `السؤال ${toArabicNumber(
-          currentQuestion + 1
-        )} من ${toArabicNumber(
-          questions.length
-        )}`;
+      questionCounter.textContent =
+        `السؤال ${toArabicNumber(currentQuestion + 1)} من ${toArabicNumber(questions.length)}`;
 
-      getElement("progressBar").style.width =
-        `${
-          (
-            currentQuestion /
-            questions.length
-          ) * 100
-        }%`;
+      progressBar.style.width =
+        `${(currentQuestion / questions.length) * 100}%`;
 
-      getElement("lessonBadge").textContent =
+      lessonBadge.textContent =
         `الدرس: ${item.lesson}`;
 
-      getElement("questionText").textContent =
+      questionText.textContent =
         item.question;
 
-      getElement("choices").innerHTML =
-        "";
+      choicesBox.innerHTML = "";
 
-      getElement("feedback").className =
+      feedback.className =
         "feedback hidden";
 
-      getElement("feedback").textContent =
-        "";
+      feedback.innerHTML = "";
 
-      getElement("nextBtn")
-        .classList.add("hidden");
+      nextBtn.classList.add("hidden");
 
-      item.choices.forEach(
-        (choice,index) => {
+      item.choices.forEach((choice, index) => {
+        const button =
+          document.createElement("button");
 
-          const button =
-            document.createElement("button");
+        button.type = "button";
+        button.className = "choice";
 
-          button.type =
-            "button";
+        button.textContent =
+          `${["أ", "ب", "ج", "د"][index]}) ${choice}`;
 
-          button.className =
-            "choice";
+        button.addEventListener("click", () => {
+          selectAnswer(index, button);
+        });
 
-          button.textContent =
-            `${
-              ["أ","ب","ج","د"][index]
-            }) ${choice}`;
-
-          button.addEventListener(
-            "click",
-            () => {
-              selectAnswer(
-                index,
-                button
-              );
-            }
-          );
-
-          getElement("choices")
-            .appendChild(button);
-        }
-      );
+        choicesBox.appendChild(button);
+      });
     }
 
-    function selectAnswer(
+      function selectAnswer(
       selectedIndex,
       selectedButton
-    ){
-      if(answered){
+    ) {
+      if (answered) {
         return;
       }
 
@@ -1094,270 +977,213 @@
         questions[currentQuestion];
 
       const buttons =
-        [
-          ...document.querySelectorAll(
-            ".choice"
-          )
-        ];
+        choicesBox.querySelectorAll(".choice");
 
-      buttons.forEach(
-        button => {
-          button.disabled = true;
-        }
-      );
+      buttons.forEach(button => {
+        button.disabled = true;
+      });
 
       buttons[item.answer]
         .classList.add("correct");
 
-      if(selectedIndex === item.answer){
-
+      if (selectedIndex === item.answer) {
         score += 2;
-        selectedButton
-          .classList.add("correct");
 
-        getElement("feedback").className =
+        selectedButton.classList.add("correct");
+
+        feedback.className =
           "feedback correct-feedback";
 
-        getElement("feedback").innerHTML =
+        feedback.innerHTML =
           `✅ إجابة صحيحة.<br>${item.explanation}`;
 
         playSound(true);
-
         launchBalloons();
+      } else {
+        selectedButton.classList.add("wrong");
 
-      }else{
-
-        selectedButton
-          .classList.add("wrong");
-
-        getElement("feedback").className =
+        feedback.className =
           "feedback wrong-feedback";
 
-        getElement("feedback").innerHTML =
-          `❌ إجابة غير صحيحة.<br>${item.explanation}`;
+        feedback.innerHTML =
+          `❌ إجابة غير صحيحة.
+          <span class="correct-answer">
+            الإجابة الصحيحة:
+            ${item.choices[item.answer]}
+          </span>
+          ${item.explanation}`;
 
         playSound(false);
       }
 
-      getElement("liveScore").textContent =
+      liveScore.textContent =
         toArabicNumber(score);
 
-      getElement("progressBar").style.width =
-        `${
-          (
-            (
-              currentQuestion + 1
-            ) /
-            questions.length
-          ) * 100
-        }%`;
+      progressBar.style.width =
+        `${((currentQuestion + 1) / questions.length) * 100}%`;
 
-      if(
-        currentQuestion ===
-        questions.length - 1
-      ){
-        getElement("nextBtn").textContent =
-          "عرض النتيجة";
-      }else{
-        getElement("nextBtn").textContent =
-          "السؤال التالي";
-      }
+      nextBtn.textContent =
+        currentQuestion === questions.length - 1
+          ? "عرض النتيجة"
+          : "السؤال التالي";
 
-      getElement("nextBtn")
-        .classList.remove("hidden");
+      nextBtn.classList.remove("hidden");
     }
 
-    function showResult(){
+    function nextQuestion() {
+      if (!answered) {
+        return;
+      }
 
+      if (currentQuestion < questions.length - 1) {
+        currentQuestion++;
+
+        renderQuestion();
+
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      } else {
+        finishQuiz();
+      }
+    }
+
+    function finishQuiz() {
       localStorage.setItem(
-        "languageClassScore",
+        "languageScore",
         String(score)
       );
 
       localStorage.setItem(
-        "semester1_language_class_score",
+        "linguisticScore",
         String(score)
       );
 
       localStorage.setItem(
-        "semester1_language_class_total",
+        "semester1_linguistic_score",
+        String(score)
+      );
+
+      localStorage.setItem(
+        "semester1_linguistic_total",
         "20"
       );
 
       localStorage.setItem(
-        "semester1_language_class_completed",
+        "semester1_linguistic_completed",
         "true"
       );
 
-      getElement("quizScreen")
-        .classList.add("hidden");
+      localStorage.setItem(
+        "semester1_student_full_name",
+        studentFullName
+      );
 
-      getElement("resultScreen")
-        .classList.remove("hidden");
+      localStorage.setItem(
+        "studentFullName",
+        studentFullName
+      );
 
-      getElement("finalScore").textContent =
+      quizScreen.classList.add("hidden");
+      resultScreen.classList.remove("hidden");
+
+      document.getElementById(
+        "finalScore"
+      ).textContent =
         toArabicNumber(score);
 
-      getElement("resultName").textContent =
+      document.getElementById(
+        "resultName"
+      ).textContent =
         `الطالبة: ${studentFullName}`;
 
-      if(score === 20){
+      const resultEmoji =
+        document.getElementById("resultEmoji");
 
-        getElement("resultEmoji").textContent =
-          "🎉";
+      const resultTitle =
+        document.getElementById("resultTitle");
 
-        getElement("resultTitle").textContent =
-          "درجة كاملة!";
+      const resultMessage =
+        document.getElementById("resultMessage");
 
-        getElement("resultMessage").textContent =
-          "أداء متميز في الصنف اللغوي، وتم حفظ درجتكِ بنجاح.";
+      if (score === 20) {
+        resultEmoji.textContent = "🏆";
+        resultTitle.textContent = "تفوق رائع!";
+
+        resultMessage.textContent =
+          "أظهرتِ إتقانًا كاملًا للصنف اللغوي.";
 
         launchBalloons();
-
         playSound(true);
+      } else if (score >= 16) {
+        resultEmoji.textContent = "🌟";
+        resultTitle.textContent = "أحسنتِ جدًا";
 
-      }else if(score >= 18){
+        resultMessage.textContent =
+          "نتيجة جميلة، وبمراجعة بسيطة تصلين إلى الإتقان.";
+      } else if (score >= 10) {
+        resultEmoji.textContent = "👍";
+        resultTitle.textContent = "محاولة جيدة";
 
-        getElement("resultEmoji").textContent =
-          "🌟";
+        resultMessage.textContent =
+          "راجعي اسم الفاعل واسم المفعول وصيغ المبالغة.";
+      } else {
+        resultEmoji.textContent = "📘";
+        resultTitle.textContent = "تحتاجين إلى مراجعة";
 
-        getElement("resultTitle").textContent =
-          "تفوق رائع!";
-
-        getElement("resultMessage").textContent =
-          "أداء متميز، واصلي تألقكِ.";
-
-      }else if(score >= 16){
-
-        getElement("resultEmoji").textContent =
-          "👏";
-
-        getElement("resultTitle").textContent =
-          "أحسنتِ جدًا";
-
-        getElement("resultMessage").textContent =
-          "أداء رائع، وبخطوات قليلة تبلغين القمة.";
-
-      }else if(score >= 10){
-
-        getElement("resultEmoji").textContent =
-          "👍";
-
-        getElement("resultTitle").textContent =
-          "محاولة جيدة";
-
-        getElement("resultMessage").textContent =
-          "تم حفظ درجتكِ، وراجعي ما أخطأتِ فيه لتحسين نتيجتكِ.";
-
-      }else{
-
-        getElement("resultEmoji").textContent =
-          "📚";
-
-        getElement("resultTitle").textContent =
-          "تحتاجين إلى مراجعة";
-
-        getElement("resultMessage").textContent =
-          "محاولة طيبة، راجعي الدروس وأعيدي الاختبار لتحسين درجتكِ.";
+        resultMessage.textContent =
+          "راجعي دروس الصنف اللغوي ثم أعيدي الاختبار.";
       }
 
       window.scrollTo({
-        top:0,
-        behavior:"smooth"
+        top: 0,
+        behavior: "smooth"
       });
     }
 
-    getElement("startBtn")
-      .addEventListener(
-        "click",
-        startQuiz
-      );
+    startBtn.addEventListener(
+      "click",
+      startQuiz
+    );
 
-    getElement("nextBtn")
-      .addEventListener(
-        "click",
-        () => {
+    nextBtn.addEventListener(
+      "click",
+      nextQuestion
+    );
 
-          if(!answered){
-            return;
-          }
+    retryBtn.addEventListener(
+      "click",
+      startQuiz
+    );
 
-          if(
-            currentQuestion <
-            questions.length - 1
-          ){
-            currentQuestion++;
-
-            renderQuestion();
-
-            window.scrollTo({
-              top:0,
-              behavior:"smooth"
-            });
-
-          }else{
-
-            showResult();
-          }
-        }
-      );
-
-    getElement("retryBtn")
-      .addEventListener(
-        "click",
-        () => {
-
-          currentQuestion = 0;
-          score = 0;
-          answered = false;
-
-          getElement("resultScreen")
-            .classList.add("hidden");
-
-          getElement("quizScreen")
-            .classList.remove("hidden");
-
-          getElement("liveScore").textContent =
-            "٠";
-
-          renderQuestion();
-
-          window.scrollTo({
-            top:0,
-            behavior:"smooth"
-          });
-        }
-      );
-
-    getElement("studentName")
-      .addEventListener(
-        "keydown",
-        event => {
-
-          if(event.key === "Enter"){
-            startQuiz();
-          }
-        }
-      );
-
-    const savedName =
-      localStorage.getItem(
-        "semester1_student_full_name"
-      )
-      ||
-      localStorage.getItem(
-        "studentFullName"
-      )
-      ||
-      "";
-
-    if(savedName){
-      getElement("studentName").value =
-        savedName;
-    }
+    window.addEventListener(
+      "load",
+      loadSavedName
+    );
   </script>
 
 </body>
+
 </html>
+      
+      
+    
+      
+      
+    
+
+      
+
+    
         
+
+      
+      
+
+  
+      
+    
+
+    
         
