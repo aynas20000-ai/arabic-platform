@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,201 +12,118 @@
       box-sizing: border-box;
     }
 
-    :root {
-      --purple: #60358b;
-      --purple-light: #8c58b0;
-      --gold: #dfa03d;
-      --green: #198754;
-      --green-bg: #e8f7ef;
-      --red: #c62828;
-      --red-bg: #fdecec;
-      --text: #30263b;
-      --muted: #766d7d;
-      --border: #e2d8ea;
-      --background: #f7f2fb;
+    html,
+    body {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      overflow-x: hidden;
     }
 
     body {
-      margin: 0;
       min-height: 100vh;
       font-family: Tahoma, Arial, sans-serif;
-      color: var(--text);
-      background: linear-gradient(180deg, #fcf9fe, var(--background));
+      color: #4b3a57;
+      background: linear-gradient(180deg, #fffaf2, #f8f0fb);
     }
 
-    button,
-    input {
-      font: inherit;
+    header {
+      padding: 38px 20px;
+      color: white;
+      text-align: center;
+      background: linear-gradient(135deg, #776094, #5b4677);
+      border-bottom: 4px solid #c9a85c;
+    }
+
+    header h1 {
+      margin: 0 0 10px;
+      color: #fffdf8;
+      font-size: 34px;
+      line-height: 1.6;
+    }
+
+    header p {
+      margin: 0;
+      color: #f7effb;
+      font-size: 17px;
+      line-height: 1.8;
+    }
+
+    main {
+      width: 92%;
+      max-width: 800px;
+      margin: 30px auto;
+    }
+
+    .card {
+      margin-bottom: 20px;
+      padding: 25px;
+      background: #fffdf8;
+      border: 2px solid #c9a85c;
+      border-radius: 20px;
+      box-shadow: 0 7px 18px rgba(91, 63, 111, 0.12);
     }
 
     .hidden {
       display: none !important;
     }
 
-    header {
-      padding: 22px 15px;
-      text-align: center;
-      color: white;
-      background: linear-gradient(135deg, var(--purple), #432260);
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: clamp(26px, 6vw, 40px);
-    }
-
-    header p {
-      margin: 10px 0 0;
-      color: #f8edcf;
-      line-height: 1.8;
-    }
-
-    main {
-      width: min(920px, calc(100% - 24px));
-      margin: 25px auto 45px;
-    }
-
-    .card {
-      padding: 22px;
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      box-shadow: 0 12px 32px rgba(69, 43, 91, 0.1);
-    }
-
-    .center-card {
-      max-width: 750px;
-      margin: 35px auto;
+    .center {
       text-align: center;
     }
 
     .icon {
-      margin-bottom: 8px;
-      font-size: 58px;
+      margin-bottom: 12px;
+      font-size: 52px;
     }
 
     h2 {
-      color: var(--purple);
-      line-height: 1.7;
+      color: #5d4374;
+      line-height: 1.8;
     }
 
     p {
-      color: var(--muted);
       line-height: 1.9;
     }
 
-    .name-label {
-      display: block;
-      margin: 18px 0 8px;
-      text-align: right;
-      color: var(--purple);
-      font-weight: bold;
-    }
-
-    #studentName {
-      width: 100%;
-      padding: 15px;
-      border: 2px solid var(--border);
-      border-radius: 15px;
-      outline: none;
-    }
-
-    #studentName:focus {
-      border-color: var(--purple-light);
-      box-shadow: 0 0 0 4px rgba(140, 88, 176, 0.12);
-    }
-
-    .error-message {
-      min-height: 25px;
-      margin-top: 8px;
-      color: var(--red);
-      font-weight: bold;
-    }
-
-    .actions {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 18px;
-    }
-
-    .primary-btn,
-    .secondary-btn {
-      display: inline-block;
-      padding: 14px 22px;
-      border: 0;
-      border-radius: 15px;
-      font-weight: bold;
-      cursor: pointer;
-      text-decoration: none;
-    }
-
-    .primary-btn {
-      color: white;
-      background: linear-gradient(135deg, var(--purple-light), var(--purple));
-    }
-
-    .secondary-btn {
-      color: var(--purple);
-      background: #f1e9f7;
-    }
-
-    .student-row,
-    .question-meta {
+    .progress-info {
       display: flex;
       justify-content: space-between;
       gap: 10px;
       flex-wrap: wrap;
+      color: #5d4374;
       font-weight: bold;
     }
 
-    .student-row {
-      margin-bottom: 13px;
-      color: var(--purple);
-    }
-
-    .question-meta {
-      margin-top: 12px;
-      color: var(--muted);
-    }
-
     .progress-shell {
-      width: 100%;
       height: 14px;
+      margin: 15px 0;
       overflow: hidden;
+      background: #ece5f1;
       border-radius: 999px;
-      background: #ece6f1;
     }
 
     .progress-bar {
       width: 0;
       height: 100%;
-      background: linear-gradient(90deg, var(--gold), #f1cf7c);
-      transition: width 0.3s;
+      background: linear-gradient(90deg, #c9a85c, #ead28b);
+      transition: width 0.3s ease;
     }
 
-    .question-card {
-      position: relative;
-      margin-top: 18px;
-      overflow: hidden;
+    .question-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      color: #766d7d;
+      font-weight: bold;
     }
 
-    .question-card::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      right: 0;
-      left: 0;
-      height: 6px;
-      background: linear-gradient(90deg, var(--gold), #f4db9d, var(--gold));
-    }
-
-    #questionText {
-      margin: 12px 0 20px;
-      color: #39254b;
-      font-size: clamp(22px, 5vw, 30px);
-      line-height: 1.8;
+    .question {
+      margin: 10px 0 20px;
+      color: #4b3a57;
+      font-size: 23px;
+      line-height: 1.9;
     }
 
     .choices {
@@ -215,15 +133,21 @@
 
     .choice {
       width: 100%;
-      padding: 15px 17px;
-      text-align: right;
-      color: var(--text);
-      background: white;
-      border: 2px solid var(--border);
-      border-radius: 16px;
-      cursor: pointer;
-      font-size: 18px;
+      padding: 15px;
+      color: #4b3a57;
+      font-family: inherit;
+      font-size: 17px;
       line-height: 1.8;
+      text-align: right;
+      cursor: pointer;
+      background: white;
+      border: 2px solid #ddd2e5;
+      border-radius: 15px;
+    }
+
+    .choice:hover,
+    .choice:active {
+      background: #f5ecfb;
     }
 
     .choice:disabled {
@@ -232,42 +156,71 @@
 
     .choice.correct {
       color: #0d5b37;
-      background: var(--green-bg);
-      border-color: var(--green);
       font-weight: bold;
+      background: #e8f7ef;
+      border-color: #198754;
     }
 
     .choice.wrong {
       color: #8f1f1f;
-      background: var(--red-bg);
-      border-color: var(--red);
       font-weight: bold;
+      background: #fdecec;
+      border-color: #c62828;
     }
 
     .feedback {
-      margin-top: 18px;
-      padding: 16px;
-      border-radius: 16px;
+      margin-top: 17px;
+      padding: 15px;
       font-weight: bold;
       line-height: 1.9;
+      border-radius: 15px;
     }
 
     .correct-feedback {
       color: #0d5b37;
-      background: var(--green-bg);
+      background: #e8f7ef;
       border: 1px solid #acd9c2;
     }
 
     .wrong-feedback {
       color: #8f1f1f;
-      background: var(--red-bg);
+      background: #fdecec;
       border: 1px solid #efb5b5;
     }
 
-    .next-wrap {
+    .actions {
       display: flex;
-      justify-content: flex-end;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .next-wrap {
       margin-top: 18px;
+      text-align: left;
+    }
+
+    button,
+    .btn {
+      display: inline-block;
+      padding: 13px 24px;
+      color: white;
+      font-family: inherit;
+      font-size: 17px;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+      background: #6f5288;
+      border: 2px solid #c9a85c;
+      border-radius: 22px;
+    }
+
+    button:hover,
+    button:active,
+    .btn:hover,
+    .btn:active {
+      background: #5b4677;
     }
 
     .score-circle {
@@ -275,33 +228,29 @@
       height: 150px;
       margin: 20px auto;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      flex-direction: column;
       color: white;
-      background: linear-gradient(145deg, var(--purple), var(--purple-light));
-      border: 7px solid #ead69e;
+      background: linear-gradient(145deg, #6f5288, #5b4677);
+      border: 7px solid #c9a85c;
       border-radius: 50%;
     }
 
     .score-circle strong {
       font-size: 43px;
-      line-height: 1;
-    }
-
-    .score-circle span {
-      margin-top: 7px;
     }
 
     .saved-note {
-      max-width: 600px;
+      max-width: 620px;
       margin: 18px auto;
       padding: 16px;
-      color: var(--purple);
-      background: #f3ecf8;
-      border-radius: 17px;
+      color: #5d4374;
       font-weight: bold;
       line-height: 1.9;
+      background: #f5ecfb;
+      border: 1px solid #c9a85c;
+      border-radius: 17px;
     }
 
     .balloon {
@@ -313,6 +262,15 @@
       border-radius: 50%;
       pointer-events: none;
       animation: flyUp 3.8s ease-in forwards;
+    }
+
+    footer {
+      margin-top: 30px;
+      padding: 20px;
+      color: #fffdf8;
+      text-align: center;
+      background: #49385c;
+      border-top: 3px solid #c9a85c;
     }
 
     @keyframes flyUp {
@@ -328,21 +286,28 @@
     }
 
     @media (max-width: 600px) {
+      header h1 {
+        font-size: 27px;
+      }
+
       .card {
-        padding: 17px;
-        border-radius: 20px;
+        padding: 18px 14px;
+      }
+
+      .question {
+        font-size: 20px;
       }
 
       .choice {
         padding: 13px;
-        font-size: 17px;
+        font-size: 16px;
       }
 
-      .next-wrap .primary-btn {
+      .next-wrap button {
         width: 100%;
       }
 
-      .student-row,
+      .progress-info,
       .question-meta {
         font-size: 14px;
       }
@@ -359,8 +324,7 @@
 
   <main>
 
-    <section id="startScreen" class="card center-card">
-
+    <section id="startScreen" class="card center">
       <div class="icon">🌷</div>
 
       <h2>مرحبًا بكِ يا مبدعة</h2>
@@ -368,63 +332,31 @@
       <p>
         يتكوّن الاختبار من عشرة أسئلة،
         ولكل سؤال درجتان.
-        اكتبي اسم الطالبة الرباعي قبل البدء.
       </p>
 
-      <label class="name-label" for="studentName">
-        اسم الطالبة الرباعي:
-      </label>
-
-      <input
-        id="studentName"
-        type="text"
-        maxlength="80"
-        autocomplete="name"
-        placeholder="مثال: سارة محمد علي أحمد"
-      >
-
-      <div
-        id="nameError"
-        class="error-message"
-        aria-live="polite">
-      </div>
-
       <div class="actions">
-
-        <button
-          id="startBtn"
-          class="primary-btn"
-          type="button">
+        <button id="startBtn" type="button">
           ابدئي الاختبار
         </button>
 
-        <a
-          class="secondary-btn"
-          href="semester1-tests.html">
-          العودة للاختبارات
+        <a class="btn" href="semester1-tests.html">
+          العودة إلى الاختبارات
         </a>
-
       </div>
-
     </section>
 
     <section id="quizScreen" class="hidden">
 
       <div class="card">
 
-        <div class="student-row">
-
-          <span>
-            الطالبة:
-            <strong id="shownName"></strong>
-          </span>
+        <div class="progress-info">
+          <span id="questionCounter"></span>
 
           <span>
             الدرجة الحالية:
             <strong id="liveScore">٠</strong>
             / ٢٠
           </span>
-
         </div>
 
         <div class="progress-shell">
@@ -432,85 +364,65 @@
         </div>
 
         <div class="question-meta">
-
-          <span id="questionCounter"></span>
-
+          <span>اختبار الأساليب اللغوية</span>
           <span>لكل سؤال درجتان</span>
-
         </div>
 
       </div>
 
-      <section class="card question-card">
+      <section class="card">
 
-        <h2 id="questionText"></h2>
+        <h2 id="questionText" class="question"></h2>
 
         <div id="choices" class="choices"></div>
 
-        <div
-          id="feedback"
-          class="feedback hidden"
-          aria-live="polite">
-        </div>
+        <div id="feedback" class="feedback hidden"></div>
 
         <div class="next-wrap">
-
-          <button
-            id="nextBtn"
-            class="primary-btn hidden"
-            type="button">
+          <button id="nextBtn" class="hidden" type="button">
             السؤال التالي
           </button>
-
         </div>
 
       </section>
 
     </section>
 
-    <section id="resultScreen" class="card center-card hidden">
+    <section id="resultScreen" class="card center hidden">
 
       <div id="resultEmoji" class="icon">🎉</div>
 
-      <h2 id="resultTitle">أحسنتِ</h2>
-
-      <p id="resultName"></p>
+      <h2 id="resultTitle"></h2>
 
       <div class="score-circle">
-
         <strong id="finalScore">٠</strong>
-
         <span>من ٢٠</span>
-
       </div>
 
       <p id="resultMessage"></p>
 
       <div class="saved-note">
-        ✅ تم حفظ اسم الطالبة ودرجة الأساليب اللغوية،
+        ✅ تم حفظ درجة الأساليب اللغوية،
         وستُضاف إلى المجموع النهائي من ١٠٠ درجة.
       </div>
 
       <div class="actions">
-
-        <button
-          id="retryBtn"
-          class="primary-btn"
-          type="button">
+        <button id="retryBtn" type="button">
           إعادة الاختبار
         </button>
 
-        <a
-          class="secondary-btn"
-          href="semester1-tests.html">
-          العودة للاختبارات
+        <a class="btn" href="semester1-tests.html">
+          العودة إلى الاختبارات
         </a>
-
       </div>
 
     </section>
 
   </main>
+
+  <footer>
+    جميع الحقوق محفوظة © 2026
+  </footer>
 
   <script>
     const questions = [
@@ -526,7 +438,6 @@
         explanation:
           "لأن «استخرج» فعل زائد على ثلاثة أحرف، فيُتوصّل إلى التفضيل منه بـ«أكثر» مع المصدر: أكثر استخراجًا."
       },
-
       {
         question: "أداة القسم في الجملة: «واللهِ لأجتهدنّ» هي:",
         choices: [
@@ -539,10 +450,8 @@
         explanation:
           "الواو هي أداة القسم، و«اللهِ» اسم مجرور بواو القسم."
       },
-
       {
-        question:
-          "أي حرف من حروف القسم يختص غالبًا بلفظ الجلالة «الله» ولا يدخل على غيره؟",
+        question: "أي حرف من حروف القسم يختص غالبًا بلفظ الجلالة «الله» ولا يدخل على غيره؟",
         choices: [
           "الواو",
           "الباء",
@@ -553,10 +462,8 @@
         explanation:
           "تاء القسم تختص غالبًا بلفظ الجلالة، مثل: تاللهِ لأجتهدنّ."
       },
-
       {
-        question:
-          "جواب القسم في الجملة: «والله إنّ الحقَّ منتصرٌ» هو:",
+        question: "جواب القسم في الجملة: «والله إنّ الحقَّ منتصرٌ» هو:",
         choices: [
           "والله",
           "إنّ الحقَّ منتصرٌ",
@@ -567,10 +474,8 @@
         explanation:
           "جواب القسم هو الجملة التي تبيّن الأمر المقسَم عليه، وهي: «إنّ الحقَّ منتصرٌ»."
       },
-
       {
-        question:
-          "ما إعراب فعل الشرط وجوابه في: «إن تجتهدْ تنجحْ»؟",
+        question: "ما إعراب فعل الشرط وجوابه في: «إن تجتهدْ تنجحْ»؟",
         choices: [
           "مرفوعان",
           "مجزومان",
@@ -581,10 +486,8 @@
         explanation:
           "«إن» أداة شرط جازمة؛ لذلك تجزم فعل الشرط «تجتهدْ» وجواب الشرط «تنجحْ»."
       },
-
       {
-        question:
-          "أداة الشرط «مَن» تُستخدم غالبًا للدلالة على:",
+        question: "أداة الشرط «مَن» تُستخدم غالبًا للدلالة على:",
         choices: [
           "الزمان",
           "المكان",
@@ -595,10 +498,8 @@
         explanation:
           "«مَن» اسم شرط يُستخدم غالبًا للدلالة على العاقل."
       },
-
       {
-        question:
-          "فعل الشرط في الجملة: «من يزرعْ خيرًا يحصدْ خيرًا» هو:",
+        question: "فعل الشرط في الجملة: «من يزرعْ خيرًا يحصدْ خيرًا» هو:",
         choices: [
           "يحصدْ",
           "من",
@@ -609,10 +510,8 @@
         explanation:
           "فعل الشرط هو «يزرعْ»، أما «يحصدْ» فهو جواب الشرط."
       },
-
       {
-        question:
-          "اسم التفضيل في الجملة: «العلمُ أنفعُ من الجهلِ» هو:",
+        question: "اسم التفضيل في الجملة: «العلمُ أنفعُ من الجهلِ» هو:",
         choices: [
           "العلمُ",
           "أنفعُ",
@@ -623,10 +522,8 @@
         explanation:
           "«أنفعُ» اسم تفضيل على وزن «أفعل»."
       },
-
       {
-        question:
-          "إذا كان الفعل الذي يُصاغ منه اسم التفضيل زائدًا على ثلاثة أحرف، فإنه يُتوصّل إليه بـ:",
+        question: "إذا كان الفعل الذي يُصاغ منه اسم التفضيل زائدًا على ثلاثة أحرف، فإنه يُتوصّل إليه بـ:",
         choices: [
           "أفعل مباشرة",
           "أشد أو أكثر أو نحوهما مع المصدر",
@@ -637,10 +534,8 @@
         explanation:
           "يُتوصّل إلى التفضيل من الفعل غير الثلاثي بكلمة مناسبة مثل «أكثر» أو «أشد» ثم مصدر الفعل."
       },
-
       {
-        question:
-          "لا يُصاغ اسم التفضيل قياسيًّا من الأفعال التي لا تقبل التفاوت، مثل: «مات». العبارة:",
+        question: "لا يُصاغ اسم التفضيل قياسيًّا من الأفعال التي لا تقبل التفاوت، مثل: «مات». العبارة:",
         choices: [
           "صحيحة",
           "خاطئة"
@@ -651,13 +546,45 @@
       }
     ];
 
-    const getElement = id =>
-      document.getElementById(id);
+    const startScreen =
+      document.getElementById("startScreen");
+
+    const quizScreen =
+      document.getElementById("quizScreen");
+
+    const resultScreen =
+      document.getElementById("resultScreen");
+
+    const startBtn =
+      document.getElementById("startBtn");
+
+    const nextBtn =
+      document.getElementById("nextBtn");
+
+    const retryBtn =
+      document.getElementById("retryBtn");
+
+    const questionCounter =
+      document.getElementById("questionCounter");
+
+    const progressBar =
+      document.getElementById("progressBar");
+
+    const liveScore =
+      document.getElementById("liveScore");
+
+    const questionText =
+      document.getElementById("questionText");
+
+    const choicesBox =
+      document.getElementById("choices");
+
+    const feedback =
+      document.getElementById("feedback");
 
     let currentQuestion = 0;
     let score = 0;
     let answered = false;
-    let studentFullName = "";
     let audioContext = null;
 
     function toArabicNumber(value) {
@@ -665,18 +592,6 @@
         /\d/g,
         digit => "٠١٢٣٤٥٦٧٨٩"[digit]
       );
-    }
-
-    function normalizeName(name) {
-      return name.trim().replace(/\s+/g, " ");
-    }
-
-    function isFourPartName(name) {
-      const parts = normalizeName(name)
-        .split(" ")
-        .filter(Boolean);
-
-      return parts.length >= 4;
     }
 
     function initializeAudio() {
@@ -689,8 +604,7 @@
       }
 
       if (!audioContext) {
-        audioContext =
-          new AudioContextClass();
+        audioContext = new AudioContextClass();
       }
 
       if (audioContext.state === "suspended") {
@@ -721,26 +635,18 @@
         oscillator.type =
           isCorrect ? "sine" : "triangle";
 
-        oscillator.frequency.value =
-          frequency;
+        oscillator.frequency.value = frequency;
 
         oscillator.connect(gain);
+        gain.connect(audioContext.destination);
 
-        gain.connect(
-          audioContext.destination
-        );
+        const start = now + index * 0.13;
 
-        const start =
-          now + index * 0.13;
-
-        gain.gain.setValueAtTime(
-          0.0001,
-          start
-        );
+        gain.gain.setValueAtTime(0.0001, start);
 
         gain.gain.exponentialRampToValueAtTime(
-          0.3,
-          start + 0.025
+          0.18,
+          start + 0.02
         );
 
         gain.gain.exponentialRampToValueAtTime(
@@ -749,10 +655,7 @@
         );
 
         oscillator.start(start);
-
-        oscillator.stop(
-          start + 0.25
-        );
+        oscillator.stop(start + 0.25);
       });
     }
 
@@ -772,17 +675,15 @@
         balloon.className = "balloon";
 
         balloon.style.left =
-          Math.random() * 92 + "vw";
+          `${Math.random() * 92}vw`;
 
         balloon.style.background =
           colors[
-            Math.floor(
-              Math.random() * colors.length
-            )
+            Math.floor(Math.random() * colors.length)
           ];
 
         balloon.style.animationDelay =
-          Math.random() * 0.5 + "s";
+          `${Math.random() * 0.5}s`;
 
         document.body.appendChild(balloon);
 
@@ -795,68 +696,17 @@
     function startQuiz() {
       initializeAudio();
 
-      const enteredName =
-        normalizeName(
-          getElement("studentName").value
-        );
-
-      if (!enteredName) {
-        getElement("nameError").textContent =
-          "اكتبي اسم الطالبة الرباعي أولًا.";
-
-        getElement("studentName").focus();
-
-        return;
-      }
-
-      if (!isFourPartName(enteredName)) {
-        getElement("nameError").textContent =
-          "يرجى كتابة الاسم الرباعي كاملًا، أربعة أسماء على الأقل.";
-
-        getElement("studentName").focus();
-
-        return;
-      }
-
-      getElement("nameError").textContent = "";
-
-      studentFullName = enteredName;
-
-      localStorage.setItem(
-        "studentFullName",
-        studentFullName
-      );
-
-      localStorage.setItem(
-        "semester1_student_full_name",
-        studentFullName
-      );
-
       currentQuestion = 0;
       score = 0;
       answered = false;
 
-      getElement("shownName").textContent =
-        studentFullName;
+      startScreen.classList.add("hidden");
+      resultScreen.classList.add("hidden");
+      quizScreen.classList.remove("hidden");
 
-      getElement("liveScore").textContent =
-        "٠";
-
-      getElement("startScreen")
-        .classList.add("hidden");
-
-      getElement("resultScreen")
-        .classList.add("hidden");
-
-      getElement("quizScreen")
-        .classList.remove("hidden");
+      liveScore.textContent = "٠";
 
       renderQuestion();
-
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
     }
 
     function renderQuestion() {
@@ -865,33 +715,23 @@
       const currentItem =
         questions[currentQuestion];
 
-      getElement("questionCounter").textContent =
-        `السؤال ${toArabicNumber(
-          currentQuestion + 1
-        )} من ${toArabicNumber(
-          questions.length
-        )}`;
+      questionCounter.textContent =
+        `السؤال ${toArabicNumber(currentQuestion + 1)} من ${toArabicNumber(questions.length)}`;
 
-      getElement("progressBar").style.width =
-        `${
-          (
-            currentQuestion /
-            questions.length
-          ) * 100
-        }%`;
+      progressBar.style.width =
+        `${(currentQuestion / questions.length) * 100}%`;
 
-      getElement("questionText").textContent =
+      questionText.textContent =
         currentItem.question;
 
-      getElement("choices").innerHTML = "";
+      choicesBox.innerHTML = "";
 
-      getElement("feedback").className =
+      feedback.className =
         "feedback hidden";
 
-      getElement("feedback").textContent = "";
+      feedback.textContent = "";
 
-      getElement("nextBtn")
-        .classList.add("hidden");
+      nextBtn.classList.add("hidden");
 
       currentItem.choices.forEach(
         (choice, choiceIndex) => {
@@ -899,13 +739,10 @@
             document.createElement("button");
 
           choiceButton.type = "button";
-
           choiceButton.className = "choice";
 
           choiceButton.textContent =
-            `${
-              ["أ", "ب", "ج", "د"][choiceIndex]
-            }) ${choice}`;
+            `${["أ", "ب", "ج", "د"][choiceIndex]}) ${choice}`;
 
           choiceButton.addEventListener(
             "click",
@@ -917,8 +754,7 @@
             }
           );
 
-          getElement("choices")
-            .appendChild(choiceButton);
+          choicesBox.appendChild(choiceButton);
         }
       );
     }
@@ -937,9 +773,7 @@
         questions[currentQuestion];
 
       const choiceButtons = [
-        ...document.querySelectorAll(
-          ".choice"
-        )
+        ...document.querySelectorAll(".choice")
       ];
 
       choiceButtons.forEach(button => {
@@ -950,134 +784,121 @@
         currentItem.answer
       ].classList.add("correct");
 
-      if (
-        selectedIndex ===
-        currentItem.answer
-      ) {
+      if (selectedIndex === currentItem.answer) {
         score += 2;
 
-        selectedButton.classList.add(
-          "correct"
-        );
+        selectedButton.classList.add("correct");
 
-        getElement("feedback").className =
+        feedback.className =
           "feedback correct-feedback";
 
-        getElement("feedback").innerHTML =
+        feedback.innerHTML =
           `✅ إجابة صحيحة.<br>${currentItem.explanation}`;
 
         playSound(true);
-
         launchBalloons();
       } else {
-        selectedButton.classList.add(
-          "wrong"
-        );
+        selectedButton.classList.add("wrong");
 
-        getElement("feedback").className =
+        feedback.className =
           "feedback wrong-feedback";
 
-        getElement("feedback").innerHTML =
+        feedback.innerHTML =
           `❌ إجابة غير صحيحة.<br>${currentItem.explanation}`;
 
         playSound(false);
       }
 
-      getElement("liveScore").textContent =
+      liveScore.textContent =
         toArabicNumber(score);
-      getElement("progressBar").style.width =
+
+      progressBar.style.width =
         `${((currentQuestion + 1) / questions.length) * 100}%`;
 
-      if (currentQuestion === questions.length - 1) {
-        getElement("nextBtn").textContent =
-          "عرض النتيجة";
-      } else {
-        getElement("nextBtn").textContent =
-          "السؤال التالي";
-      }
+      nextBtn.textContent =
+        currentQuestion === questions.length - 1
+          ? "عرض النتيجة"
+          : "السؤال التالي";
 
-      getElement("nextBtn")
-        .classList.remove("hidden");
+      nextBtn.classList.remove("hidden");
     }
 
-    function showResult() {
+    function nextQuestion() {
+      if (!answered) {
+        return;
+      }
+
+      if (currentQuestion < questions.length - 1) {
+        currentQuestion++;
+        renderQuestion();
+
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      } else {
+        finishQuiz();
+      }
+    }
+
+    function finishQuiz() {
       localStorage.setItem(
         "stylesScore",
         String(score)
       );
 
       localStorage.setItem(
-        "semester1_styles_score",
+        "semester1_style_score",
         String(score)
       );
-localStorage.setItem(
-  "semester1_style_score",
-  String(score)
-);
+
       localStorage.setItem(
-        "semester1_styles_total",
+        "semester1_style_total",
         "20"
       );
 
       localStorage.setItem(
-        "semester1_styles_completed",
+        "semester1_style_completed",
         "true"
       );
 
-      getElement("quizScreen")
-        .classList.add("hidden");
+      quizScreen.classList.add("hidden");
+      resultScreen.classList.remove("hidden");
 
-      getElement("resultScreen")
-        .classList.remove("hidden");
-
-      getElement("finalScore").textContent =
+      document.getElementById("finalScore").textContent =
         toArabicNumber(score);
 
-      getElement("resultName").textContent =
-        `الطالبة: ${studentFullName}`;
+      const resultEmoji =
+        document.getElementById("resultEmoji");
+
+      const resultTitle =
+        document.getElementById("resultTitle");
+
+      const resultMessage =
+        document.getElementById("resultMessage");
 
       if (score >= 18) {
-        getElement("resultEmoji").textContent =
-          "🎉";
-
-        getElement("resultTitle").textContent =
-          "تفوق رائع!";
-
-        getElement("resultMessage").textContent =
-          "تم حفظ درجتكِ في الأساليب اللغوية. انتقلي إلى الاختبار التالي.";
-
+        resultEmoji.textContent = "🏆";
+        resultTitle.textContent = "تفوق رائع!";
+        resultMessage.textContent =
+          "أظهرتِ إتقانًا متميزًا للأساليب اللغوية.";
         launchBalloons();
         playSound(true);
-
       } else if (score >= 14) {
-        getElement("resultEmoji").textContent =
-          "🌟";
-
-        getElement("resultTitle").textContent =
-          "أحسنتِ جدًا";
-
-        getElement("resultMessage").textContent =
-          "تم حفظ درجتكِ في الأساليب اللغوية. انتقلي إلى الاختبار التالي.";
-
+        resultEmoji.textContent = "🌟";
+        resultTitle.textContent = "أحسنتِ جدًا";
+        resultMessage.textContent =
+          "نتيجة جميلة، وبمراجعة بسيطة تصلين إلى الإتقان.";
       } else if (score >= 10) {
-        getElement("resultEmoji").textContent =
-          "👍";
-
-        getElement("resultTitle").textContent =
-          "محاولة جيدة";
-
-        getElement("resultMessage").textContent =
-          "تم حفظ درجتكِ في الأساليب اللغوية.";
-
+        resultEmoji.textContent = "👍";
+        resultTitle.textContent = "محاولة جيدة";
+        resultMessage.textContent =
+          "راجعي قواعد القسم والشرط واسم التفضيل.";
       } else {
-        getElement("resultEmoji").textContent =
-          "📚";
-
-        getElement("resultTitle").textContent =
-          "تحتاجين إلى مراجعة";
-
-        getElement("resultMessage").textContent =
-          "تم حفظ درجتكِ، ويمكنكِ إعادة الاختبار لتحسينها.";
+        resultEmoji.textContent = "📘";
+        resultTitle.textContent = "تحتاجين إلى مراجعة";
+        resultMessage.textContent =
+          "راجعي دروس الأساليب اللغوية ثم أعيدي الاختبار.";
       }
 
       window.scrollTo({
@@ -1086,93 +907,11 @@ localStorage.setItem(
       });
     }
 
-    getElement("startBtn")
-      .addEventListener(
-        "click",
-        startQuiz
-      );
-
-    getElement("nextBtn")
-      .addEventListener(
-        "click",
-        () => {
-          if (!answered) {
-            return;
-          }
-
-          if (
-            currentQuestion <
-            questions.length - 1
-          ) {
-            currentQuestion++;
-
-            renderQuestion();
-
-            window.scrollTo({
-              top: 0,
-              behavior: "smooth"
-            });
-
-          } else {
-            showResult();
-          }
-        }
-      );
-
-    getElement("retryBtn")
-      .addEventListener(
-        "click",
-        () => {
-          initializeAudio();
-
-          currentQuestion = 0;
-          score = 0;
-          answered = false;
-
-          getElement("resultScreen")
-            .classList.add("hidden");
-
-          getElement("quizScreen")
-            .classList.remove("hidden");
-
-          getElement("liveScore").textContent =
-            "٠";
-
-          renderQuestion();
-
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-          });
-        }
-      );
-
-    getElement("studentName")
-      .addEventListener(
-        "keydown",
-        event => {
-          if (event.key === "Enter") {
-            startQuiz();
-          }
-        }
-      );
-
-    const savedName =
-      localStorage.getItem(
-        "semester1_student_full_name"
-      ) ||
-      localStorage.getItem(
-        "studentFullName"
-      ) ||
-      "";
-
-    if (savedName) {
-      getElement("studentName").value =
-        savedName;
-    }
+    startBtn.addEventListener("click", startQuiz);
+    nextBtn.addEventListener("click", nextQuestion);
+    retryBtn.addEventListener("click", startQuiz);
   </script>
 
 </body>
+
 </html>
-      
-        
