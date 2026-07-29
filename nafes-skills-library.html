@@ -1,0 +1,2825 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    مكتبتي في مهارات نافس | منصة آفاق اللغة
+  </title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --purple-dark: #49385c;
+      --purple: #6f5288;
+      --purple-soft: #776094;
+      --purple-light: #f5ecfb;
+      --gold: #c9a85c;
+      --gold-dark: #a9822f;
+      --gold-light: #fff6dc;
+      --cream: #fffdf8;
+      --text: #4b3a57;
+      --muted: #74687b;
+      --green: #3f896b;
+      --green-light: #eaf7f1;
+      --blue: #547fa5;
+      --blue-light: #edf5fb;
+      --rose: #ad5f79;
+      --rose-light: #fff0f4;
+      --orange: #ad7132;
+      --orange-light: #fff3e3;
+    }
+
+    html,
+    body {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Tahoma, Arial, sans-serif;
+      color: var(--text);
+      text-align: center;
+      background:
+        radial-gradient(
+          circle at top right,
+          rgba(255, 239, 200, 0.8),
+          transparent 31%
+        ),
+        radial-gradient(
+          circle at bottom left,
+          rgba(228, 210, 242, 0.85),
+          transparent 42%
+        ),
+        linear-gradient(
+          145deg,
+          #fffaf2,
+          #f8f0fb
+        );
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 5%;
+      color: white;
+      background: linear-gradient(
+        135deg,
+        #776094,
+        #5b4677
+      );
+      box-shadow: 0 6px 22px rgba(73, 56, 92, 0.22);
+    }
+
+    .brand {
+      color: #fff8df;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px 13px;
+      border-radius: 22px;
+      color: white;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: bold;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.36);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 50px 18px 58px;
+      color: white;
+      border-radius: 0 0 55px 55px;
+      background: linear-gradient(
+        145deg,
+        #776094,
+        #5b4677
+      );
+      box-shadow: 0 14px 34px rgba(73, 56, 92, 0.22);
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .hero::before {
+      width: 220px;
+      height: 220px;
+      top: -115px;
+      right: -70px;
+    }
+
+    .hero::after {
+      width: 170px;
+      height: 170px;
+      bottom: -90px;
+      left: -50px;
+    }
+
+    .hero-icon {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 105px;
+      height: 105px;
+      margin: 0 auto 19px;
+      border-radius: 32px;
+      font-size: 55px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 3px solid rgba(255, 255, 255, 0.34);
+    }
+
+    .hero h1 {
+      position: relative;
+      z-index: 2;
+      margin: 0 0 9px;
+      color: #fff8df;
+      font-size: 35px;
+      line-height: 1.7;
+    }
+
+    .hero p {
+      position: relative;
+      z-index: 2;
+      max-width: 760px;
+      margin: auto;
+      color: #f7effb;
+      font-size: 16px;
+      line-height: 2;
+    }
+
+    main {
+      width: min(940px, 93%);
+      margin: 33px auto 55px;
+    }
+
+    .intro-card {
+      margin-bottom: 25px;
+      padding: 23px;
+      border-radius: 25px;
+      color: #5d4374;
+      background: var(--cream);
+      border: 1px solid rgba(93, 67, 116, 0.14);
+      border-right: 7px solid var(--gold);
+      box-shadow: 0 12px 28px rgba(73, 56, 92, 0.11);
+      font-size: 16px;
+      line-height: 2;
+    }
+
+    .intro-card strong {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--purple-dark);
+      font-size: 21px;
+    }
+
+    .quick-nav {
+      display: grid;
+      grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 34px;
+    }
+
+    .quick-nav a {
+      display: flex;
+      min-height: 72px;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 8px;
+      border-radius: 18px;
+      color: var(--purple-dark);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: bold;
+      line-height: 1.6;
+      background: var(--cream);
+      border: 1px solid rgba(93, 67, 116, 0.13);
+      box-shadow: 0 8px 20px rgba(73, 56, 92, 0.09);
+    }
+
+    .quick-nav a:active {
+      transform: scale(0.97);
+    }
+
+    .section-title {
+      margin: 37px 0 20px;
+      color: var(--purple-dark);
+      font-size: 29px;
+      line-height: 1.7;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+      gap: 19px;
+    }
+
+    .skill-card {
+      position: relative;
+      overflow: hidden;
+      padding: 25px 22px;
+      border-radius: 27px;
+      text-align: right;
+      background: var(--cream);
+      border: 1px solid rgba(93, 67, 116, 0.13);
+      box-shadow: 0 12px 28px rgba(73, 56, 92, 0.1);
+    }
+
+    .skill-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 8px;
+      background: var(--purple);
+    }
+
+    .skill-card.gold::before {
+      background: var(--gold);
+    }
+
+    .skill-card.green::before {
+      background: var(--green);
+    }
+
+    .skill-card.blue::before {
+      background: var(--blue);
+    }
+
+    .skill-card.rose::before {
+      background: var(--rose);
+    }
+
+    .skill-card.orange::before {
+      background: var(--orange);
+    }
+
+    .skill-head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 15px;
+    }
+
+    .skill-icon {
+      display: flex;
+      flex: 0 0 65px;
+      align-items: center;
+      justify-content: center;
+      width: 65px;
+      height: 65px;
+      border-radius: 21px;
+      font-size: 35px;
+      background: var(--purple-light);
+    }
+
+    .skill-card.gold .skill-icon {
+      background: var(--gold-light);
+    }
+
+    .skill-card.green .skill-icon {
+      background: var(--green-light);
+    }
+
+    .skill-card.blue .skill-icon {
+      background: var(--blue-light);
+    }
+
+    .skill-card.rose .skill-icon {
+      background: var(--rose-light);
+    }
+
+    .skill-card.orange .skill-icon {
+      background: var(--orange-light);
+    }
+
+    .skill-head h2 {
+      margin: 0;
+      color: var(--purple-dark);
+      font-size: 23px;
+      line-height: 1.6;
+    }
+
+    .skill-card p {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.95;
+    }
+
+    .key-box {
+      margin-top: 13px;
+      padding: 13px;
+      border-radius: 16px;
+      color: #604c6d;
+      background: var(--purple-light);
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .skill-card.gold .key-box {
+      background: var(--gold-light);
+    }
+
+    .skill-card.green .key-box {
+      background: var(--green-light);
+    }
+
+    .skill-card.blue .key-box {
+      background: var(--blue-light);
+    }
+
+    .skill-card.rose .key-box {
+      background: var(--rose-light);
+    }
+
+    .skill-card.orange .key-box {
+      background: var(--orange-light);
+    }
+
+    .example-box {
+      margin-top: 13px;
+      padding: 14px;
+      border-radius: 16px;
+      color: #5c4d63;
+      background: #fffaf1;
+      border: 1px dashed rgba(169, 130, 47, 0.48);
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .example-box strong,
+    .key-box strong {
+      color: var(--purple-dark);
+    }
+
+    .golden-rule {
+      margin-top: 30px;
+      padding: 23px;
+      border-radius: 25px;
+      color: #6b5222;
+      background: var(--gold-light);
+      border-right: 7px solid var(--gold);
+      text-align: right;
+      font-size: 15px;
+      line-height: 2;
+    }
+
+    .golden-rule h2 {
+      margin: 0 0 8px;
+      color: #7b5a1d;
+      font-size: 22px;
+    }
+
+    .home-button {
+      display: block;
+      margin-top: 27px;
+      padding: 16px;
+      border-radius: 18px;
+      color: white;
+      background: var(--purple);
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: bold;
+      box-shadow: 0 9px 20px rgba(73, 56, 92, 0.16);
+    }
+
+    footer {
+      margin-top: 45px;
+      padding: 23px 13px;
+      color: white;
+      background: var(--purple-dark);
+      line-height: 1.8;
+    }
+
+    @media (max-width: 760px) {
+      .hero h1 {
+        font-size: 30px;
+      }
+
+      .hero p {
+        font-size: 15px;
+      }
+
+      .quick-nav {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="topbar">
+
+    <div class="brand">
+      منصة آفاق اللغة
+    </div>
+
+    <a
+      class="back-link"
+      href="nafes-skills.html"
+    >
+      العودة إلى المكتبة
+    </a>
+
+  </header>
+
+  <section class="hero">
+
+    <div class="hero-icon">
+      📚
+    </div>
+
+    <h1>
+      مكتبتي في مهارات نافس
+    </h1>
+
+    <p>
+      مرجع مكتوب وسريع يعرّفكِ بالمهارات،
+      ويمنحكِ مفاتيح الحل مع أمثلة قصيرة
+      تساعدكِ قبل الانتقال إلى التدريب التفصيلي.
+    </p>
+
+  </section>
+
+  <main>
+
+    <section class="intro-card">
+
+      <strong>
+        كيف تستخدمين هذه المكتبة؟
+      </strong>
+
+      لا تحفظي التعريف فقط.
+      اقرئي مفتاح المهارة،
+      ثم طبقيه على المثال،
+      وبعدها انتقلي إلى الوحدة التفصيلية
+      عندما تحتاجين إلى تدريب أعمق.
+
+    </section>
+
+    <nav class="quick-nav">
+
+      <a href="#question-types">
+        🧭 أنواع الأسئلة
+      </a>
+
+      <a href="#context">
+        🔤 معنى الكلمة
+      </a>
+
+      <a href="#main-idea">
+        🗺️ الفكرة الرئيسة
+      </a>
+
+      <a href="#inference">
+        👁️ الاستنتاج
+      </a>
+
+      <a href="#critical">
+        🛡️ القراءة الناقدة
+      </a>
+
+      <a href="#visual">
+        📊 النصوص البصرية
+      </a>
+
+      <a href="#best-answer">
+        🎯 الإجابة الأدق
+      </a>
+
+      <a href="#review">
+        ✅ قواعد المراجعة
+      </a>
+
+    </nav>
+
+    <h2
+      class="section-title"
+      id="question-types"
+    >
+      أولًا: افهمي نوع السؤال
+    </h2>
+
+    <section class="skills-grid">
+
+      <article class="skill-card gold">
+
+        <div class="skill-head">
+
+          <div class="skill-icon">
+            📌
+          </div>
+
+          <h2>
+            السؤال الحرفي
+          </h2>
+
+        </div>
+
+        <p>
+          إجابته مذكورة بوضوح في النص،
+          وتحتاجين إلى تحديد المعلومة
+          أو إعادة صياغتها.
+        </p>
+
+        <div class="key-box">
+          <strong>مفتاحه:</strong>
+          من؟ ماذا؟ متى؟ أين؟
+          بحسب النص، ورد في الفقرة.
+        </div>
+
+        <div class="example-box">
+          <strong>مثال:</strong>
+          متى بدأت الرحلة؟
+          ابحثي عن الزمن المذكور صراحة.
+        </div>
+
+      </article>
+
+      <article class="skill-card">
+
+        <div class="skill-head">
+
+          <div class="skill-icon">
+            🔎
+          </div>
+
+          <h2>
+            السؤال الاستنتاجي
+          </h2>
+
+        </div>
+
+        <p>
+          إجابته ليست مكتوبة حرفيًا،
+          لكنها تُفهم من القرائن
+          والأحداث والعلاقات.
+        </p>
+
+        <div class="key-box">
+          <strong>مفتاحه:</strong>
+          نستنتج، نفهم، يدل،
+          يوحي، يمكن أن نتوقع.
+        </div>
+
+        <div class="example-box">
+          <strong>مثال:</strong>
+          ماذا نستنتج من تصرف الشخصية؟
+          اجمعي فعلها مع نتيجة الموقف.
+        </div>
+
+      </article>
+
+      <article class="skill-card green">
+
+        <div class="skill-head">
+
+          <div class="skill-icon">
+            🧩
+          </div>
+
+          <h2>
+            السؤال التحليلي
+          </h2>
+
+        </div>
+
+        <p>
+          يطلب فهم العلاقة بين أجزاء النص،
+          أو تفسير سبب، أو مقارنة فكرتين.
+        </p>
+
+        <div class="key-box">
+          <strong>مفتاحه:</strong>
+          ما العلاقة؟ لماذا؟
+          كيف أسهم؟ قارن بين.
+        </div>
+
+        <div class="example-box">
+          <strong>مثال:</strong>
+          ما العلاقة بين الفقرتين؟
+          حددي وظيفة كل فقرة أولًا.
+        </div>
+
+      </article>
+
+      <article class="skill-card rose">
+
+        <div class="skill-head">
+
+          <div class="skill-icon">
+            ⚖️
+          </div>
+
+          <h2>
+            السؤال النقدي
+          </h2>
+
+        </div>
+
+        <p>
+          يطلب الحكم على الفكرة،
+          أو قوة الدليل،
+          أو موثوقية المصدر.
+        </p>
+
+        <div class="key-box">
+          <strong>مفتاحه:</strong>
+          الأقوى، الأكثر إقناعًا،
+          الأفضل دعمًا، الأوثق.
+        </div>
+
+        <div class="example-box">
+          <strong>مثال:</strong>
+          أي الأدلة أقوى؟
+          اختاري الدليل المباشر والقابل للتحقق.
+        </div>
+
+      </article>
+
+    </section>
+        <style>
+      .interaction-bar {
+        position: sticky;
+        top: 72px;
+        z-index: 40;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin: 28px 0;
+        padding: 13px 15px;
+        border-radius: 20px;
+        background: rgba(255, 253, 248, 0.94);
+        border: 1px solid rgba(93, 67, 116, 0.16);
+        box-shadow: 0 10px 25px rgba(73, 56, 92, 0.12);
+        backdrop-filter: blur(8px);
+      }
+
+      .progress-area {
+        flex: 1;
+        text-align: right;
+      }
+
+      .progress-text {
+        display: block;
+        margin-bottom: 7px;
+        color: var(--purple-dark);
+        font-size: 13px;
+        font-weight: bold;
+      }
+
+      .progress-track {
+        height: 10px;
+        overflow: hidden;
+        border-radius: 20px;
+        background: #eee6f2;
+      }
+
+      .progress-fill {
+        width: 0;
+        height: 100%;
+        border-radius: 20px;
+        background: linear-gradient(
+          90deg,
+          var(--gold),
+          var(--purple)
+        );
+        transition: width 0.45s ease;
+      }
+
+      .sound-button {
+        flex: 0 0 auto;
+        padding: 10px 13px;
+        border: 0;
+        border-radius: 15px;
+        color: white;
+        background: var(--purple);
+        font-family: inherit;
+        font-size: 13px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .sound-button.muted {
+        background: #847b89;
+      }
+
+      .skill-card {
+        cursor: pointer;
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease,
+          border-color 0.25s ease;
+      }
+
+      .skill-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 18px 34px rgba(73, 56, 92, 0.16);
+      }
+
+      .skill-card.active {
+        border-color: rgba(201, 168, 92, 0.7);
+        box-shadow:
+          0 0 0 4px rgba(201, 168, 92, 0.14),
+          0 18px 38px rgba(73, 56, 92, 0.17);
+        animation: cardGlow 1.4s ease;
+      }
+
+      .skill-card.completed::after {
+        content: "✓ تمت المراجعة";
+        position: absolute;
+        top: 17px;
+        left: 15px;
+        padding: 6px 10px;
+        border-radius: 18px;
+        color: white;
+        background: var(--green);
+        font-size: 11px;
+        font-weight: bold;
+      }
+
+      @keyframes cardGlow {
+        0% {
+          filter: brightness(1);
+        }
+
+        45% {
+          filter: brightness(1.08);
+        }
+
+        100% {
+          filter: brightness(1);
+        }
+      }
+
+      .card-details {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition:
+          max-height 0.45s ease,
+          opacity 0.35s ease,
+          margin 0.35s ease;
+      }
+
+      .skill-card.active .card-details {
+        max-height: 900px;
+        margin-top: 14px;
+        opacity: 1;
+      }
+
+      .card-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 9px;
+        margin-top: 15px;
+      }
+
+      .card-button {
+        flex: 1;
+        min-width: 120px;
+        padding: 11px 12px;
+        border: 0;
+        border-radius: 14px;
+        color: white;
+        background: var(--purple);
+        font-family: inherit;
+        font-size: 13px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .card-button.read {
+        background: var(--blue);
+      }
+
+      .card-button.finish {
+        background: var(--green);
+      }
+
+      .mini-question {
+        margin-top: 14px;
+        padding: 14px;
+        border-radius: 17px;
+        background: #fffaf1;
+        border: 1px dashed rgba(169, 130, 47, 0.45);
+      }
+
+      .mini-question strong {
+        display: block;
+        margin-bottom: 10px;
+        color: var(--purple-dark);
+      }
+
+      .mini-options {
+        display: grid;
+        gap: 8px;
+      }
+
+      .mini-option {
+        padding: 10px;
+        border: 1px solid rgba(93, 67, 116, 0.18);
+        border-radius: 12px;
+        color: var(--text);
+        background: white;
+        font-family: inherit;
+        text-align: right;
+        cursor: pointer;
+      }
+
+      .mini-option.correct {
+        color: #28684f;
+        background: var(--green-light);
+        border-color: var(--green);
+      }
+
+      .mini-option.wrong {
+        color: #8a405a;
+        background: var(--rose-light);
+        border-color: var(--rose);
+      }
+
+      .feedback-message {
+        display: none;
+        margin-top: 10px;
+        padding: 10px;
+        border-radius: 12px;
+        color: var(--purple-dark);
+        background: var(--purple-light);
+        font-size: 13px;
+        line-height: 1.8;
+      }
+
+      .feedback-message.show {
+        display: block;
+        animation: cardGlow 0.8s ease;
+      }
+
+      .reading-tip {
+        margin: 27px 0;
+        padding: 20px;
+        border-radius: 24px;
+        color: #624d6f;
+        background: var(--purple-light);
+        border-right: 7px solid var(--gold);
+        text-align: right;
+        font-size: 15px;
+        line-height: 2;
+      }
+
+      @media (max-width: 600px) {
+        .interaction-bar {
+          top: 67px;
+        }
+
+        .sound-button {
+          padding: 10px;
+          font-size: 12px;
+        }
+
+        .skill-card.completed::after {
+          position: static;
+          display: inline-block;
+          margin: 0 0 12px;
+        }
+      }
+    </style>
+
+    <section class="interaction-bar">
+
+      <div class="progress-area">
+
+        <span
+          class="progress-text"
+          id="progressText"
+        >
+          أنجزتِ 0 من 8 مهارات
+        </span>
+
+        <div class="progress-track">
+
+          <div
+            class="progress-fill"
+            id="progressFill"
+          ></div>
+
+        </div>
+
+      </div>
+
+      <button
+        class="sound-button"
+        id="soundToggle"
+        type="button"
+      >
+        🔊 الصوت يعمل
+      </button>
+
+    </section>
+
+    <section class="reading-tip">
+      اضغطي على أي بطاقة لتضيء وتفتح تفاصيلها،
+      ثم استخدمي زر القراءة الصوتية،
+      وأجيبي عن السؤال السريع،
+      وبعدها سجلي إتمام المهارة.
+    </section>
+
+    <h2
+      class="section-title"
+      id="context"
+    >
+      ثانيًا: افهمي معنى الكلمة من السياق
+    </h2>
+
+    <section class="skills-grid">
+
+      <article
+        class="skill-card green"
+        data-skill="context"
+      >
+
+        <div class="skill-head">
+
+          <div class="skill-icon">
+            🔤
+          </div>
+
+          <h2>
+            المعنى من السياق
+          </h2>
+
+        </div>
+
+        <p>
+          معنى الكلمة يتحدد من الجملة
+          والعبارات المحيطة بها،
+          وليس من معناها المشهور فقط.
+        </p>
+
+        <div class="card-details">
+
+          <div class="key-box">
+            <strong>مفتاح المهارة:</strong>
+            استبدلي الكلمة بكل خيار،
+            ثم اختاري المعنى الذي يحافظ
+            على معنى الجملة.
+          </div>
+
+          <div class="example-box">
+            <strong>مثال:</strong>
+            أثمرت الجهود نتائج مميزة.
+            كلمة «أثمرت» هنا تعني:
+            أدت إلى نتائج.
+          </div>
+
+          <div class="mini-question">
+
+            <strong>
+              في عبارة: «احتضنت المدينة المهرجان»،
+              ما معنى احتضنت؟
+            </strong>
+
+            <div class="mini-options">
+
+              <button
+                class="mini-option"
+                data-correct="false"
+                type="button"
+              >
+                أخفته
+              </button>
+
+              <button
+                class="mini-option"
+                data-correct="true"
+                type="button"
+              >
+                استضافته
+              </button>
+
+              <button
+                class="mini-option"
+                data-correct="false"
+                type="button"
+              >
+                أوقفته
+              </button>
+
+            </div>
+
+            <div class="feedback-message">
+              أحسنتِ، المعنى المناسب للسياق هو:
+              استضافت المدينة المهرجان.
+            </div>
+
+          </div>
+
+          <div class="card-actions">
+
+            <button
+              class="card-button read"
+              type="button"
+            >
+              🔊 استمعي للشرح
+            </button>
+
+            <button
+              class="card-button finish"
+              type="button"
+            >
+              ✓ تمت المراجعة
+            </button>
+
+          </div>
+
+        </div>
+
+      </article>
+
+      <article
+        class="skill-card gold"
+        data-skill="synonym"
+      >
+
+        <div class="skill-head">
+
+          <div class="skill-icon">
+            🔁
+          </div>
+
+          <h2>
+            الترادف والتضاد
+          </h2>
+
+        </div>
+
+        <p>
+          حددي هل السؤال يطلب كلمة قريبة
+          في المعنى أم كلمة مضادة لها.
+        </p>
+
+        <div class="card-details">
+
+          <div class="key-box">
+            <strong>انتبهي:</strong>
+            بعض الكلمات متقاربة،
+            لكن إحداها أنسب من غيرها
+            بحسب الجملة.
+          </div>
+
+          <div class="example-box">
+            <strong>مثال:</strong>
+            مرادف «ازدهر» هو «نما»،
+            وضدها «تراجع».
+          </div>
+
+          <div class="mini-question">
+
+            <strong>
+              ما ضد كلمة «نادر»؟
+            </strong>
+
+            <div class="mini-options">
+
+              <button
+                class="mini-option"
+                data-correct="false"
+                type="button"
+              >
+                قليل
+              </button>
+
+              <button
+                class="mini-option"
+                data-correct="true"
+                type="button"
+              >
+                شائع
+              </button>
+
+              <button
+                class="mini-option"
+                data-correct="false"
+                type="button"
+              >
+                مميز
+              </button>
+
+            </div>
+
+            <div class="feedback-message">
+              رائع، ضد «نادر» هو «شائع».
+            </div>
+
+          </div>
+
+          <div class="card-actions">
+
+            <button
+              class="card-button read"
+              type="button"
+            >
+              🔊 استمعي للشرح
+            </button>
+
+            <button
+              class="card-button finish"
+              type="button"
+            >
+              ✓ تمت المراجعة
+            </button>
+
+          </div>
+
+        </div>
+
+      </article>
+
+    </section>
+
+    <h2
+      class="section-title"
+      id="main-idea"
+    >
+      ثالثًا: ارسمي خريطة النص
+    </h2>
+
+    <section class="skills-grid">
+
+      <article
+        class="skill-card blue"
+        data-skill="main-idea"
+      >
+
+        <div class="skill-head">
+
+          <div class="skill-icon">
+            🗺️
+          </div>
+
+          <h2>
+            الفكرة الرئيسة
+          </h2>
+
+        </div>
+
+        <p>
+          هي المعنى العام الذي تدور حوله
+          معظم جمل الفقرة أو النص.
+        </p>
+
+        <div class="card-details">
+
+          <div class="key-box">
+            <strong>طريقة الوصول إليها:</strong>
+            اسألي نفسك:
+            ما الموضوع الذي تكررت أفكاره؟
+            وما الجملة التي تشمل بقية التفاصيل؟
+          </div>
+
+          <div class="example-box">
+            <strong>تذكري:</strong>
+            الفكرة الرئيسة ليست تفصيلًا صغيرًا،
+            ولا عنوانًا واسعًا جدًا.
+          </div>
+
+          <div class="mini-question">
+
+            <strong>
+              أي عبارة تمثل الفكرة الرئيسة؟
+            </strong>
+
+            <div class="mini-options">
+
+              <button
+                class="mini-option"
+                data-correct="false"
+                type="button"
+              >
+                معلومة صغيرة وردت مرة واحدة
+              </button>
+
+              <button
+                class="mini-option"
+                data-correct="true"
+                type="button"
+              >
+                عبارة تجمع معظم أفكار النص
+              </button>
+
+              <button
+                class="mini-option"
+                data-correct="false"
+                type="button"
+              >
+                رأي غير مذكور في النص
+              </button>
+
+            </div>
+
+            <div class="feedback-message">
+              ممتاز، الفكرة الرئيسة
+              تجمع معظم أفكار النص.
+            </div>
+
+          </div>
+
+          <div class="card-actions">
+
+            <button
+              class="card-button read"
+              type="button"
+            >
+              🔊 استمعي للشرح
+            </button>
+
+            <button
+              class="card-button finish"
+              type="button"
+            >
+              ✓ تمت المراجعة
+            </button>
+
+          </div>
+
+        </div>
+
+      </article>
+
+      <article
+        class="skill-card orange"
+        data-skill="relations"
+      >
+
+        <div class="skill-head">
+
+          <div class="skill-icon">
+            🔗
+          </div>
+
+          <h2>
+            العلاقات بين الأفكار
+          </h2>
+
+        </div>
+
+        <p>
+          قد ترتبط الأفكار بسبب ونتيجة،
+          أو مشكلة وحل، أو مقارنة.
+        </p>
+
+        <div class="card-details">
+
+          <div class="key-box">
+            <strong>كلمات دالة:</strong>
+            لأن، لذلك، نتيجة،
+            في المقابل، بينما،
+            من الحلول.
+          </div>
+
+          <div class="example-box">
+            <strong>مثال:</strong>
+            هطلت الأمطار بغزارة،
+            لذلك امتلأت الأودية.
+            العلاقة: سبب ونتيجة.
+          </div>
+
+          <div class="mini-question">
+
+            <strong>
+              «ازدادت القراءة، لذلك تحسن الفهم».
+              ما العلاقة؟
+            </strong>
+
+            <div class="mini-options">
+
+              <button
+                class="mini-option"
+                data-correct="true"
+                type="button"
+              >
+                سبب ونتيجة
+              </button>
+
+              <button
+                class="mini-option"
+                data-correct="false"
+                type="button"
+              >
+                مقارنة
+              </button>
+
+              <button
+                class="mini-option"
+                data-correct="false"
+                type="button"
+              >
+                ترتيب زمني
+              </button>
+
+            </div>
+
+            <div class="feedback-message">
+              صحيح، زيادة القراءة سبب،
+              وتحسن الفهم نتيجة.
+            </div>
+
+          </div>
+
+          <div class="card-actions">
+
+            <button
+              class="card-button read"
+              type="button"
+            >
+              🔊 استمعي للشرح
+            </button>
+
+            <button
+              class="card-button finish"
+              type="button"
+            >
+              ✓ تمت المراجعة
+            </button>
+
+          </div>
+
+        </div>
+
+      </article>
+
+    </section>
+
+    <h2
+      class="section-title"
+      id="inference"
+    >
+      رابعًا: اقرئي ما وراء السطور
+    </h2>
+
+    <section class="skills-grid">
+
+      <article
+        class="skill-card rose"
+        data-skill="inference"
+      >
+
+        <div class="skill-head">
+
+          <div class="skill-icon">
+            👁️
+          </div>
+
+          <h2>
+            الاستنتاج
+          </h2>
+
+        </div>
+
+        <p>
+          هو معنى لا يذكر صراحة،
+          لكنه يُبنى على دليل واضح في النص.
+        </p>
+
+        <div class="card-details">
+
+          <div class="key-box">
+            <strong>قاعدة الاستنتاج:</strong>
+            قرينة من النص
+            + تفكير منطقي
+            = استنتاج صحيح.
+          </div>
+
+          <div class="example-box">
+            <strong>مثال:</strong>
+            حملت الشخصية مظلة
+            وارتدت معطفًا.
+            نستنتج أن الجو ممطر أو بارد.
+          </div>
+
+          <div class="mini-question">
+
+            <strong>
+              أغلقت الطالبة كتابها مبتسمة
+              بعد ظهور النتيجة.
+              ماذا نستنتج؟
+            </strong>
+
+            <div class="mini-options">
+
+              <button
+                class="mini-option"
+                data-correct="false"
+                type="button"
+              >
+                لم تفهم الدرس
+              </button>
+
+              <button
+                class="mini-option"
+                data-correct="true"
+                type="button"
+              >
+                كانت راضية عن النتيجة
+              </button>
+
+              <button
+                class="mini-option"
+                data-correct="false"
+                type="button"
+              >
+                نسيت الكتاب
+              </button>
+
+            </div>
+
+            <div class="feedback-message">
+              أحسنتِ، الابتسامة بعد النتيجة
+              قرينة على رضاها.
+            </div>
+
+          </div>
+
+          <div class="card-actions">
+
+            <button
+              class="card-button read"
+              type="button"
+            >
+              🔊 استمعي للشرح
+            </button>
+
+            <button
+              class="card-button finish"
+              type="button"
+            >
+              ✓ تمت المراجعة
+            </button>
+
+          </div>
+
+        </div>
+
+      </article>
+
+      <article
+        class="skill-card"
+        data-skill="purpose"
+      >
+
+        <div class="skill-head">
+
+          <div class="skill-icon">
+            ✍️
+          </div>
+
+          <h2>
+            غرض الكاتب
+          </h2>
+
+        </div>
+
+        <p>
+          قد يكتب الكاتب ليخبر،
+          أو يقنع، أو يصف،
+          أو يرشد، أو يروي.
+        </p>
+
+        <div class="card-details">
+
+          <div class="key-box">
+            <strong>مفتاح الغرض:</strong>
+            راقبي نوع المعلومات،
+            وطريقة عرضها،
+            والكلمات التي يستخدمها الكاتب.
+          </div>
+
+          <div class="example-box">
+            <strong>مثال:</strong>
+            نص يذكر خطوات السلامة
+            غرضه الإرشاد والتوجيه.
+          </div>
+
+          <div class="mini-question">
+
+            <strong>
+              نص يعرض أدلة لإقناع القارئ
+              بأهمية التشجير.
+              ما غرضه؟
+            </strong>
+
+            <div class="mini-options">
+
+              <button
+                class="mini-option"
+                data-correct="false"
+                type="button"
+              >
+                التسلية
+              </button>
+
+              <button
+                class="mini-option"
+                data-correct="true"
+                type="button"
+              >
+                الإقناع
+              </button>
+
+              <button
+                class="mini-option"
+                data-correct="false"
+                type="button"
+              >
+                السرد
+              </button>
+
+            </div>
+
+            <div class="feedback-message">
+              صحيح، عرض الأدلة بهدف تغيير موقف القارئ
+              يدل على الإقناع.
+            </div>
+
+          </div>
+
+          <div class="card-actions">
+
+            <button
+              class="card-button read"
+              type="button"
+            >
+              🔊 استمعي للشرح
+            </button>
+
+            <button
+              class="card-button finish"
+              type="button"
+            >
+              ✓ تمت المراجعة
+            </button>
+
+          </div>
+
+        </div>
+
+      </article>
+
+    </section>
+        <h2
+      class="section-title"
+      id="critical"
+    >
+      خامسًا: كوني قارئة ناقدة
+    </h2>
+
+    <section class="skills-grid">
+
+      <article
+        class="skill-card gold"
+        data-skill="fact-opinion"
+      >
+
+        <div class="skill-head">
+
+          <div class="skill-icon">
+            ⚖️
+          </div>
+
+          <h2>
+            الحقيقة والرأي
+          </h2>
+
+        </div>
+
+        <p>
+          الحقيقة يمكن التحقق منها،
+          أما الرأي فيعبّر عن حكم أو تفضيل شخصي.
+        </p>
+
+        <div class="card-details">
+
+          <div class="key-box">
+            <strong>مفتاح المهارة:</strong>
+            اسألي: هل أستطيع إثبات العبارة
+            من مصدر موثوق، أم أنها تعبّر عن تفضيل؟
+          </div>
+
+          <div class="example-box">
+            <strong>مثال:</strong>
+            «تدور الأرض حول الشمس» حقيقة،
+            أما «الربيع أجمل الفصول» فرأي.
+          </div>
+
+          <div class="mini-question">
+
+            <strong>
+              أي العبارات الآتية رأي؟
+            </strong>
+
+            <div class="mini-options">
+
+              <button
+                class="mini-option"
+                data-correct="false"
+                type="button"
+              >
+                الماء يتجمد عند درجة محددة
+              </button>
+
+              <button
+                class="mini-option"
+                data-correct="true"
+                type="button"
+              >
+                القراءة أمتع الهوايات
+              </button>
+
+              <button
+                class="mini-option"
+                data-correct="false"
+                type="button"
+              >
+                الشمس نجم
+              </button>
+
+            </div>
+
+            <div class="feedback-message">
+              رائع، كلمة «أمتع» تعبّر عن تفضيل شخصي،
+              لذلك العبارة رأي.
+            </div>
+
+          </div>
+
+          <div class="card-actions">
+
+            <button
+              class="card-button read"
+              type="button"
+            >
+              🔊 استمعي للشرح
+            </button>
+
+            <button
+              class="card-button finish"
+              type="button"
+            >
+              ✓ تمت المراجعة
+            </button>
+
+          </div>
+
+        </div>
+
+      </article>
+
+      <article
+        class="skill-card rose"
+        data-skill="evidence"
+      >
+
+        <div class="skill-head">
+
+          <div class="skill-icon">
+            🛡️
+          </div>
+
+          <h2>
+            الحجة والدليل
+          </h2>
+
+        </div>
+
+        <p>
+          الحجة فكرة يريد الكاتب إقناعكِ بها،
+          والدليل هو ما يستخدمه لدعمها.
+        </p>
+
+        <div class="card-details">
+
+          <div class="key-box">
+            <strong>الدليل الأقوى:</strong>
+            مباشر، مرتبط بالادعاء،
+            قابل للتحقق، ومن مصدر موثوق.
+          </div>
+
+          <div class="example-box">
+            <strong>مثال:</strong>
+            الإحصائية الرسمية أقوى
+            من عبارة: «يقول كثير من الناس».
+          </div>
+
+          <div class="mini-question">
+
+            <strong>
+              أي دليل أقوى لإثبات زيادة القراءة؟
+            </strong>
+
+            <div class="mini-options">
+
+              <button
+                class="mini-option"
+                data-correct="false"
+                type="button"
+              >
+                أظن أن الجميع يقرأ أكثر
+              </button>
+
+              <button
+                class="mini-option"
+                data-correct="true"
+                type="button"
+              >
+                نتائج دراسة موثقة على عدد كبير
+              </button>
+
+              <button
+                class="mini-option"
+                data-correct="false"
+                type="button"
+              >
+                أخبرني أحد الأصدقاء بذلك
+              </button>
+
+            </div>
+
+            <div class="feedback-message">
+              ممتاز، الدراسة الموثقة
+              دليل يمكن التحقق منه.
+            </div>
+
+          </div>
+
+          <div class="card-actions">
+
+            <button
+              class="card-button read"
+              type="button"
+            >
+              🔊 استمعي للشرح
+            </button>
+
+            <button
+              class="card-button finish"
+              type="button"
+            >
+              ✓ تمت المراجعة
+            </button>
+
+          </div>
+
+        </div>
+
+      </article>
+
+    </section>
+
+    <h2
+      class="section-title"
+      id="visual"
+    >
+      سادسًا: اقرئي النصوص البصرية
+    </h2>
+
+    <section class="skills-grid">
+
+      <article
+        class="skill-card blue"
+        data-skill="visual-text"
+      >
+
+        <div class="skill-head">
+
+          <div class="skill-icon">
+            📊
+          </div>
+
+          <h2>
+            الجداول والرسوم
+          </h2>
+
+        </div>
+
+        <p>
+          العنوان والمفتاح والأرقام والمحاور
+          أجزاء أساسية من معنى النص البصري.
+        </p>
+
+        <div class="card-details">
+
+          <div class="key-box">
+            <strong>ترتيب القراءة:</strong>
+            العنوان، ثم الوحدات والمحاور،
+            ثم القيم، ثم المقارنة والاستنتاج.
+          </div>
+
+          <div class="example-box">
+            <strong>مثال:</strong>
+            لا تقارني رقمين قبل معرفة
+            الوحدة التي يمثلها كل منهما.
+          </div>
+
+          <div class="mini-question">
+
+            <strong>
+              ما أول ما تقرئينه في الرسم البياني؟
+            </strong>
+
+            <div class="mini-options">
+
+              <button
+                class="mini-option"
+                data-correct="true"
+                type="button"
+              >
+                العنوان
+              </button>
+
+              <button
+                class="mini-option"
+                data-correct="false"
+                type="button"
+              >
+                أكبر رقم فقط
+              </button>
+
+              <button
+                class="mini-option"
+                data-correct="false"
+                type="button"
+              >
+                اللون المفضل
+              </button>
+
+            </div>
+
+            <div class="feedback-message">
+              صحيح، العنوان يوضح موضوع الرسم
+              ويساعدكِ على تفسير القيم.
+            </div>
+
+          </div>
+
+          <div class="card-actions">
+
+            <button
+              class="card-button read"
+              type="button"
+            >
+              🔊 استمعي للشرح
+            </button>
+
+            <button
+              class="card-button finish"
+              type="button"
+            >
+              ✓ تمت المراجعة
+            </button>
+
+          </div>
+
+        </div>
+
+      </article>
+
+      <article
+        class="skill-card green"
+        data-skill="instructions"
+      >
+
+        <div class="skill-head">
+
+          <div class="skill-icon">
+            🧾
+          </div>
+
+          <h2>
+            التعليمات والإعلانات
+          </h2>
+
+        </div>
+
+        <p>
+          اقرئي الهدف والجمهور والخطوات
+          والشروط والرموز الموجودة في النص.
+        </p>
+
+        <div class="card-details">
+
+          <div class="key-box">
+            <strong>انتبهي:</strong>
+            قد تكون المعلومة المطلوبة
+            في رمز أو موعد أو هامش صغير.
+          </div>
+
+          <div class="example-box">
+            <strong>مثال:</strong>
+            في إعلان مسابقة،
+            راجعي العمر المطلوب وموعد التسجيل.
+          </div>
+
+          <div class="mini-question">
+
+            <strong>
+              لمعرفة آخر موعد للتسجيل،
+              أين تبحثين؟
+            </strong>
+
+            <div class="mini-options">
+
+              <button
+                class="mini-option"
+                data-correct="false"
+                type="button"
+              >
+                في الصورة فقط
+              </button>
+
+              <button
+                class="mini-option"
+                data-correct="true"
+                type="button"
+              >
+                في التاريخ والشروط المكتوبة
+              </button>
+
+              <button
+                class="mini-option"
+                data-correct="false"
+                type="button"
+              >
+                في لون الإعلان
+              </button>
+
+            </div>
+
+            <div class="feedback-message">
+              أحسنتِ، الموعد يوجد عادة
+              في التفاصيل والشروط المكتوبة.
+            </div>
+
+          </div>
+
+          <div class="card-actions">
+
+            <button
+              class="card-button read"
+              type="button"
+            >
+              🔊 استمعي للشرح
+            </button>
+
+            <button
+              class="card-button finish"
+              type="button"
+            >
+              ✓ تمت المراجعة
+            </button>
+
+          </div>
+
+        </div>
+
+      </article>
+
+    </section>
+
+    <h2
+      class="section-title"
+      id="best-answer"
+    >
+      سابعًا: اختاري الإجابة الأدق
+    </h2>
+
+    <section class="skills-grid">
+
+      <article
+        class="skill-card orange"
+        data-skill="distractors"
+      >
+
+        <div class="skill-head">
+
+          <div class="skill-icon">
+            🎯
+          </div>
+
+          <h2>
+            كشف المشتتات
+          </h2>
+
+        </div>
+
+        <p>
+          بعض البدائل تبدو صحيحة،
+          لكنها لا تجيب عن المطلوب بدقة.
+        </p>
+
+        <div class="card-details">
+
+          <div class="key-box">
+            <strong>أشهر المشتتات:</strong>
+            خيار صحيح عمومًا،
+            أو تفصيل صغير،
+            أو معلومة من خارج النص،
+            أو إجابة معكوسة.
+          </div>
+
+          <div class="example-box">
+            <strong>طريقة الحل:</strong>
+            قارني كل خيار بكلمات السؤال،
+            وليس بالنص كله بصورة عامة.
+          </div>
+
+          <div class="mini-question">
+
+            <strong>
+              الخيار يذكر حقيقة صحيحة،
+              لكنها لا تجيب عن السؤال.
+              ماذا يسمى؟
+            </strong>
+
+            <div class="mini-options">
+
+              <button
+                class="mini-option"
+                data-correct="true"
+                type="button"
+              >
+                مشتت صحيح عمومًا
+              </button>
+
+              <button
+                class="mini-option"
+                data-correct="false"
+                type="button"
+              >
+                الإجابة الأدق
+              </button>
+
+              <button
+                class="mini-option"
+                data-correct="false"
+                type="button"
+              >
+                دليل مباشر
+              </button>
+
+            </div>
+
+            <div class="feedback-message">
+              ممتاز، صحة العبارة وحدها لا تكفي؛
+              يجب أن تجيب عن المطلوب.
+            </div>
+
+          </div>
+
+          <div class="card-actions">
+
+            <button
+              class="card-button read"
+              type="button"
+            >
+              🔊 استمعي للشرح
+            </button>
+
+            <button
+              class="card-button finish"
+              type="button"
+            >
+              ✓ تمت المراجعة
+            </button>
+
+          </div>
+
+        </div>
+
+      </article>
+
+      <article
+        class="skill-card"
+        data-skill="best-answer"
+      >
+
+        <div class="skill-head">
+
+          <div class="skill-icon">
+            💎
+          </div>
+
+          <h2>
+            المقارنة بين البدائل
+          </h2>
+
+        </div>
+
+        <p>
+          عندما يتقارب خياران،
+          اختاري الأكثر دقة وارتباطًا بالدليل.
+        </p>
+
+        <div class="card-details">
+
+          <div class="key-box">
+            <strong>اسألي:</strong>
+            أي الخيارين يدعمه النص كاملًا؟
+            وأيهما يحتوي على مبالغة أو تعميم؟
+          </div>
+
+          <div class="example-box">
+            <strong>انتبهي:</strong>
+            كلمات مثل «دائمًا» و«جميع»
+            قد تجعل الخيار أوسع من النص.
+          </div>
+
+          <div class="mini-question">
+
+            <strong>
+              النص يقول: «بعض الطلاب يفضلون القراءة».
+              أي خيار أدق؟
+            </strong>
+
+            <div class="mini-options">
+
+              <button
+                class="mini-option"
+                data-correct="false"
+                type="button"
+              >
+                جميع الطلاب يحبون القراءة
+              </button>
+
+              <button
+                class="mini-option"
+                data-correct="true"
+                type="button"
+              >
+                هناك طلاب يفضلون القراءة
+              </button>
+
+              <button
+                class="mini-option"
+                data-correct="false"
+                type="button"
+              >
+                لا أحد يفضل القراءة
+              </button>
+
+            </div>
+
+            <div class="feedback-message">
+              رائع، الخيار الثاني يحافظ
+              على معنى كلمة «بعض».
+            </div>
+
+          </div>
+
+          <div class="card-actions">
+
+            <button
+              class="card-button read"
+              type="button"
+            >
+              🔊 استمعي للشرح
+            </button>
+
+            <button
+              class="card-button finish"
+              type="button"
+            >
+              ✓ تمت المراجعة
+            </button>
+
+          </div>
+
+        </div>
+
+      </article>
+
+    </section>
+
+    <h2
+      class="section-title"
+      id="review"
+    >
+      ثامنًا: راجعي بذكاء
+    </h2>
+
+    <section class="skills-grid">
+
+      <article
+        class="skill-card green"
+        data-skill="review-plan"
+      >
+
+        <div class="skill-head">
+
+          <div class="skill-icon">
+            ✅
+          </div>
+
+          <h2>
+            مراجعة الإجابات
+          </h2>
+
+        </div>
+
+        <p>
+          راجعي السؤال والاختيار والتظليل،
+          ولا تغيري الإجابة دون سبب واضح.
+        </p>
+
+        <div class="card-details">
+
+          <div class="key-box">
+            <strong>راجعي ثلاثة أشياء:</strong>
+            رقم السؤال، ودقة الاختيار،
+            ووضوح التظليل.
+          </div>
+
+          <div class="example-box">
+            <strong>قاعدة:</strong>
+            لا تستبدلي إجابة مبنية على دليل
+            بإجابة أخرى سببها التردد فقط.
+          </div>
+
+          <div class="mini-question">
+
+            <strong>
+              متى يكون تغيير الإجابة مناسبًا؟
+            </strong>
+
+            <div class="mini-options">
+
+              <button
+                class="mini-option"
+                data-correct="false"
+                type="button"
+              >
+                عند الشعور بالتردد فقط
+              </button>
+
+              <button
+                class="mini-option"
+                data-correct="true"
+                type="button"
+              >
+                عند اكتشاف دليل واضح على الخطأ
+              </button>
+
+              <button
+                class="mini-option"
+                data-correct="false"
+                type="button"
+              >
+                بعد النظر إلى إجابة زميلة
+              </button>
+
+            </div>
+
+            <div class="feedback-message">
+              صحيح، غيّري الإجابة عندما يظهر
+              دليل واضح، لا بسبب التردد وحده.
+            </div>
+
+          </div>
+
+          <div class="card-actions">
+
+            <button
+              class="card-button read"
+              type="button"
+            >
+              🔊 استمعي للشرح
+            </button>
+
+            <button
+              class="card-button finish"
+              type="button"
+            >
+              ✓ تمت المراجعة
+            </button>
+
+          </div>
+
+        </div>
+
+      </article>
+
+      <article
+        class="skill-card gold"
+        data-skill="time-plan"
+      >
+
+        <div class="skill-head">
+
+          <div class="skill-icon">
+            ⏱️
+          </div>
+
+          <h2>
+            إدارة الوقت
+          </h2>
+
+        </div>
+
+        <p>
+          ابدئي بالواضح،
+          ولا تسمحي لسؤال واحد
+          أن يستهلك وقت الاختبار.
+        </p>
+
+        <div class="card-details">
+
+          <div class="key-box">
+            <strong>الخطة:</strong>
+            حلي، ثم علّمي السؤال الصعب،
+            ثم عودي إليه بعد إكمال البقية.
+          </div>
+
+          <div class="example-box">
+            <strong>الهدف:</strong>
+            ضمان الإجابة عن الأسئلة السهلة
+            قبل استهلاك الوقت في سؤال صعب.
+          </div>
+
+          <div class="mini-question">
+
+            <strong>
+              ماذا تفعلين عندما يطول سؤال صعب؟
+            </strong>
+
+            <div class="mini-options">
+
+              <button
+                class="mini-option"
+                data-correct="false"
+                type="button"
+              >
+                أبقى عنده حتى ينتهي الوقت
+              </button>
+
+              <button
+                class="mini-option"
+                data-correct="true"
+                type="button"
+              >
+                أعلّمه وأعود إليه لاحقًا
+              </button>
+
+              <button
+                class="mini-option"
+                data-correct="false"
+                type="button"
+              >
+                أترك بقية الاختبار
+              </button>
+
+            </div>
+
+            <div class="feedback-message">
+              أحسنتِ، الانتقال المؤقت يحمي وقتكِ
+              ويمنحكِ فرصة للعودة بهدوء.
+            </div>
+
+          </div>
+
+          <div class="card-actions">
+
+            <button
+              class="card-button read"
+              type="button"
+            >
+              🔊 استمعي للشرح
+            </button>
+
+            <button
+              class="card-button finish"
+              type="button"
+            >
+              ✓ تمت المراجعة
+            </button>
+
+          </div>
+
+        </div>
+
+      </article>
+
+    </section>
+
+    <section class="golden-rule">
+
+      <h2>
+        🌟 القاعدة الذهبية
+      </h2>
+
+      افهمي المطلوب أولًا،
+      ثم عودي إلى الدليل المناسب في النص،
+      وبعدها قارني بين البدائل.
+      الإجابة الأدق ليست الأطول ولا الأجمل،
+      بل الأكثر ارتباطًا بالسؤال والنص.
+
+    </section>
+
+    <a
+      class="home-button"
+      href="nafes-skills.html"
+    >
+      العودة إلى مكتبة مهارات نافس
+    </a>
+
+  </main>
+
+  <footer>
+    جميع الحقوق محفوظة © 2026
+  </footer>
+
+  <script>
+    const skillCards =
+      document.querySelectorAll(
+        ".skill-card[data-skill]"
+      );
+
+    const progressText =
+      document.getElementById(
+        "progressText"
+      );
+
+    const progressFill =
+      document.getElementById(
+        "progressFill"
+      );
+
+    const soundToggle =
+      document.getElementById(
+        "soundToggle"
+      );
+
+    let soundEnabled = true;
+
+    const completedSkills =
+      new Set(
+        JSON.parse(
+          localStorage.getItem(
+            "afaq_nafes_library_completed"
+          ) || "[]"
+        )
+      );
+
+    function playTone(
+      frequency = 650,
+      duration = 0.12
+    ) {
+      if (!soundEnabled) {
+        return;
+      }
+
+      try {
+        const AudioContextClass =
+          window.AudioContext ||
+          window.webkitAudioContext;
+
+        const audioContext =
+          new AudioContextClass();
+
+        const oscillator =
+          audioContext.createOscillator();
+
+        const gain =
+          audioContext.createGain();
+
+        oscillator.type = "sine";
+        oscillator.frequency.value =
+          frequency;
+
+        gain.gain.setValueAtTime(
+          0.06,
+          audioContext.currentTime
+        );
+
+        gain.gain.exponentialRampToValueAtTime(
+          0.001,
+          audioContext.currentTime +
+            duration
+        );
+
+        oscillator.connect(gain);
+        gain.connect(
+          audioContext.destination
+        );
+
+        oscillator.start();
+
+        oscillator.stop(
+          audioContext.currentTime +
+            duration
+        );
+      } catch (error) {
+        console.log(
+          "تعذر تشغيل النغمة."
+        );
+      }
+    }
+function updateProgress() {
+  const total =
+    skillCards.length;
+
+  const completed =
+    completedSkills.size;
+
+  const percentage =
+    total === 0
+      ? 0
+      : Math.round(
+          (completed / total) * 100
+        );
+
+  progressText.textContent =
+    `أنجزتِ ${completed} من ${total} مهارات`;
+
+  progressFill.style.width =
+    `${percentage}%`;
+
+  if (
+    completed === total &&
+    total > 0
+  ) {
+    progressText.textContent =
+      "أحسنتِ! أتممتِ جميع مهارات المكتبة 🌟";
+  }
+}
+    skillCards.forEach(
+  (card) => {
+    const skillName =
+      card.dataset.skill;
+
+    if (
+      completedSkills.has(
+        skillName
+      )
+    ) {
+      card.classList.add(
+        "completed"
+      );
+    }
+
+    card.addEventListener(
+      "click",
+      (event) => {
+        if (
+          event.target.closest(
+            "button"
+          )
+        ) {
+          return;
+        }
+
+        const wasActive =
+          card.classList.contains(
+            "active"
+          );
+
+        skillCards.forEach(
+          (otherCard) => {
+            if (
+              otherCard !== card
+            ) {
+              otherCard.classList.remove(
+                "active"
+              );
+            }
+          }
+        );
+
+        card.classList.toggle(
+          "active",
+          !wasActive
+        );
+
+        if (!wasActive) {
+          playTone(520, 0.1);
+        }
+      }
+    );
+
+    const readButton =
+      card.querySelector(
+        ".card-button.read"
+      );
+
+    const finishButton =
+      card.querySelector(
+        ".card-button.finish"
+      );
+
+    const options =
+      card.querySelectorAll(
+        ".mini-option"
+      );
+
+    const feedback =
+      card.querySelector(
+        ".feedback-message"
+      );
+        readButton.addEventListener(
+      "click",
+      (event) => {
+        event.stopPropagation();
+
+        if (!soundEnabled) {
+          soundToggle.textContent =
+            "🔇 فعّلي الصوت أولًا";
+
+          return;
+        }
+
+        window.speechSynthesis.cancel();
+
+        const textToRead =
+          card.innerText
+            .replace(
+              "🔊 استمعي للشرح",
+              ""
+            )
+            .replace(
+              "✓ تمت المراجعة",
+              ""
+            );
+
+        const speech =
+          new SpeechSynthesisUtterance(
+            textToRead
+          );
+
+        speech.lang = "ar-SA";
+        speech.rate = 0.88;
+        speech.pitch = 1;
+
+        window.speechSynthesis.speak(
+          speech
+        );
+      }
+    );
+
+    finishButton.addEventListener(
+      "click",
+      (event) => {
+        event.stopPropagation();
+
+        completedSkills.add(
+          skillName
+        );
+
+        card.classList.add(
+          "completed"
+        );
+
+        localStorage.setItem(
+          "afaq_nafes_library_completed",
+          JSON.stringify(
+            [...completedSkills]
+          )
+        );
+
+        playTone(820, 0.18);
+        updateProgress();
+      }
+    );
+        options.forEach(
+      (option) => {
+        option.addEventListener(
+          "click",
+          (event) => {
+            event.stopPropagation();
+
+            options.forEach(
+              (item) => {
+                item.classList.remove(
+                  "correct",
+                  "wrong"
+                );
+
+                item.disabled = false;
+              }
+            );
+
+            if (
+              option.dataset.correct ===
+              "true"
+            ) {
+              option.classList.add(
+                "correct"
+              );
+
+              if (feedback) {
+                feedback.classList.add(
+                  "show"
+                );
+              }
+
+              playTone(880, 0.18);
+            } else {
+              option.classList.add(
+                "wrong"
+              );
+
+              if (feedback) {
+                feedback.textContent =
+                  "قريبة، أعيدي قراءة مفتاح المهارة ثم اختاري مرة أخرى.";
+
+                feedback.classList.add(
+                  "show"
+                );
+              }
+
+              playTone(250, 0.12);
+            }
+          }
+        );
+      }
+    );
+  }
+);
+    soundToggle.addEventListener(
+  "click",
+  () => {
+    soundEnabled =
+      !soundEnabled;
+
+    if (!soundEnabled) {
+      window.speechSynthesis.cancel();
+
+      soundToggle.textContent =
+        "🔇 الصوت متوقف";
+
+      soundToggle.classList.add(
+        "muted"
+      );
+    } else {
+      soundToggle.textContent =
+        "🔊 الصوت يعمل";
+
+      soundToggle.classList.remove(
+        "muted"
+      );
+
+      playTone(650, 0.12);
+    }
+  }
+);
+
+updateProgress();
+      </script>
+
+</body>
+
+</html>
+    
+        
