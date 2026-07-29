@@ -10,7 +10,7 @@
   >
 
   <title>
-    مكتبة مهارات نافس | منصة آفاق اللغة
+    مكتبة نافس | منصة آفاق اللغة
   </title>
 
   <style>
@@ -21,22 +21,21 @@
     :root {
       --purple-dark: #49385c;
       --purple: #6f5288;
-      --purple-soft: #776094;
       --purple-light: #f5ecfb;
       --gold: #c9a85c;
-      --gold-dark: #a9822f;
       --gold-light: #fff6dc;
       --cream: #fffdf8;
-      --text: #4b3a57;
-      --muted: #74687b;
+      --text: #3e3048;
+      --muted: #625769;
       --green: #3f896b;
       --green-light: #eaf7f1;
       --blue: #547fa5;
       --blue-light: #edf5fb;
-      --rose: #ad5f79;
+      --rose: #a94f6d;
       --rose-light: #fff0f4;
-      --orange: #ad7132;
+      --orange: #a96d2e;
       --orange-light: #fff3e3;
+      --gray: #ebe5ee;
     }
 
     html,
@@ -53,19 +52,20 @@
 
     body {
       min-height: 100vh;
-      font-family: Tahoma, Arial, sans-serif;
       color: var(--text);
+      font-family: Tahoma, Arial, sans-serif;
+      font-weight: 600;
       text-align: center;
       background:
         radial-gradient(
           circle at top right,
-          rgba(255, 239, 200, 0.78),
-          transparent 30%
+          rgba(255, 239, 200, 0.82),
+          transparent 31%
         ),
         radial-gradient(
           circle at bottom left,
-          rgba(228, 210, 242, 0.85),
-          transparent 41%
+          rgba(228, 210, 242, 0.88),
+          transparent 43%
         ),
         linear-gradient(
           145deg,
@@ -74,10 +74,27 @@
         );
     }
 
+    button,
+    a {
+      font-family: inherit;
+    }
+
+    p,
+    li,
+    button {
+      font-size: 17px;
+      font-weight: 600;
+      line-height: 2;
+    }
+
+    h1,
+    h2,
+    h3,
+    strong {
+      font-weight: 800;
+    }
+
     .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 50;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -89,46 +106,29 @@
         #776094,
         #5b4677
       );
-      box-shadow: 0 6px 22px rgba(73, 56, 92, 0.22);
     }
 
     .brand {
       color: #fff8df;
-      font-size: 19px;
-      font-weight: bold;
+      font-size: 18px;
+      font-weight: 800;
     }
 
     .back-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 9px 14px;
-      border-radius: 24px;
+      padding: 9px 13px;
+      border-radius: 22px;
       color: white;
       text-decoration: none;
       font-size: 13px;
-      font-weight: bold;
+      font-weight: 700;
       background: rgba(255, 255, 255, 0.14);
-      border: 1px solid rgba(255, 255, 255, 0.38);
-      transition:
-        transform 0.2s,
-        background 0.2s;
-    }
-
-    .back-link:hover {
-      background: rgba(255, 255, 255, 0.22);
-    }
-
-    .back-link:active {
-      transform: scale(0.97);
+      border: 1px solid rgba(255, 255, 255, 0.36);
     }
 
     .hero {
-      position: relative;
-      overflow: hidden;
-      padding: 52px 18px 62px;
+      padding: 46px 18px 54px;
       color: white;
-      border-radius: 0 0 58px 58px;
+      border-radius: 0 0 52px 52px;
       background: linear-gradient(
         145deg,
         #776094,
@@ -137,288 +137,87 @@
       box-shadow: 0 14px 34px rgba(73, 56, 92, 0.22);
     }
 
-    .hero::before,
-    .hero::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.07);
-    }
-
-    .hero::before {
-      width: 220px;
-      height: 220px;
-      top: -115px;
-      right: -65px;
-    }
-
-    .hero::after {
-      width: 170px;
-      height: 170px;
-      bottom: -90px;
-      left: -50px;
-    }
-
     .hero-icon {
-      position: relative;
-      z-index: 2;
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 108px;
-      height: 108px;
-      margin: 0 auto 20px;
-      border-radius: 33px;
-      font-size: 56px;
+      width: 104px;
+      height: 104px;
+      margin: 0 auto 18px;
+      border-radius: 32px;
+      font-size: 54px;
       background: rgba(255, 255, 255, 0.14);
-      border: 3px solid rgba(255, 255, 255, 0.36);
-      box-shadow: 0 10px 24px rgba(44, 27, 58, 0.13);
-      animation: floating 2.8s ease-in-out infinite;
-    }
-
-    @keyframes floating {
-      0%,
-      100% {
-        transform: translateY(0);
-      }
-
-      50% {
-        transform: translateY(-6px);
-      }
+      border: 3px solid rgba(255, 255, 255, 0.34);
     }
 
     .hero h1 {
-      position: relative;
-      z-index: 2;
-      margin: 0 auto 9px;
+      margin: 0 0 8px;
       color: #fff8df;
-      font-size: 38px;
+      font-size: 35px;
       line-height: 1.7;
     }
 
-    .hero h2 {
-      position: relative;
-      z-index: 2;
-      margin: 0 auto 13px;
-      color: white;
-      font-size: 21px;
-      font-weight: normal;
-      line-height: 1.8;
-    }
-
     .hero p {
-      position: relative;
-      z-index: 2;
-      max-width: 780px;
+      max-width: 730px;
       margin: auto;
-      color: #f7effb;
-      font-size: 16px;
+      color: #f8f1fb;
+      font-size: 17px;
       line-height: 2;
     }
 
     main {
-      width: min(920px, 94%);
-      margin: 34px auto 55px;
+      width: min(880px, 93%);
+      margin: 31px auto 55px;
     }
 
     .intro-card {
-      margin-bottom: 29px;
+      margin-bottom: 27px;
       padding: 23px;
       border-radius: 25px;
-      color: #5d4374;
+      color: #584563;
       background: var(--cream);
       border: 1px solid rgba(93, 67, 116, 0.14);
       border-right: 7px solid var(--gold);
-      box-shadow: 0 12px 29px rgba(73, 56, 92, 0.12);
-      font-size: 16px;
-      line-height: 2;
+      box-shadow: 0 12px 28px rgba(73, 56, 92, 0.11);
+      text-align: right;
     }
 
     .intro-card strong {
       display: block;
       margin-bottom: 6px;
       color: var(--purple-dark);
-      font-size: 21px;
-    }
-
-    .featured-grid {
-      display: grid;
-      grid-template-columns:
-        repeat(2, minmax(0, 1fr));
-      gap: 22px;
-      margin-bottom: 37px;
-    }
-
-    .featured-link,
-    .unit-link {
+      font-size: 22px;
+          .library-view {
       display: block;
-      color: inherit;
-      text-decoration: none;
     }
 
-    .featured-card {
-      position: relative;
-      overflow: hidden;
-      min-height: 315px;
-      padding: 30px 23px;
-      border-radius: 32px;
-      background: var(--cream);
-      border: 1px solid rgba(93, 67, 116, 0.14);
-      box-shadow: 0 14px 32px rgba(73, 56, 92, 0.13);
-      transition:
-        transform 0.23s,
-        box-shadow 0.23s;
+    .library-view.hidden {
+      display: none;
     }
 
-    .featured-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 19px 39px rgba(73, 56, 92, 0.18);
-    }
-
-    .featured-card:active {
-      transform: scale(0.985);
-    }
-
-    .featured-card.video {
-      border-top: 10px solid var(--gold);
-      background:
-        linear-gradient(
-          145deg,
-          #fffdf8,
-          #fff8e8
-        );
-    }
-
-    .featured-card.library {
-      border-top: 10px solid var(--purple);
-      background:
-        linear-gradient(
-          145deg,
-          #fffdf8,
-          #faf4fd
-        );
-    }
-
-    .featured-badge {
-      position: absolute;
-      top: 17px;
-      left: 17px;
-      padding: 7px 12px;
-      border-radius: 20px;
-      color: white;
-      font-size: 12px;
-      font-weight: bold;
-      background: var(--gold-dark);
-    }
-
-    .featured-card.library .featured-badge {
-      background: var(--purple);
-    }
-
-    .featured-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 105px;
-      height: 105px;
-      margin: 9px auto 22px;
-      border-radius: 31px;
-      font-size: 55px;
-      background: var(--gold-light);
-      border: 1px solid rgba(201, 168, 92, 0.34);
-      box-shadow: 0 9px 21px rgba(73, 56, 92, 0.1);
-    }
-
-    .featured-card.library .featured-icon {
-      background: var(--purple-light);
-      border-color: rgba(111, 82, 136, 0.2);
-    }
-
-    .featured-card h2 {
-      margin: 0 0 12px;
+    .section-title {
+      margin: 34px 0 19px;
       color: var(--purple-dark);
-      font-size: 26px;
+      font-size: 30px;
       line-height: 1.7;
-    }
-
-    .featured-card p {
-      margin: 0 0 17px;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.95;
-    }
-
-    .featured-list {
-      margin: 0;
-      padding: 0 20px 0 0;
-      color: #685b70;
-      text-align: right;
-      font-size: 14px;
-      line-height: 1.9;
-    }
-
-    .featured-action {
-      display: block;
-      margin-top: 20px;
-      padding: 13px 15px;
-      border-radius: 15px;
-      color: white;
-      background: var(--gold-dark);
-      font-size: 15px;
-      font-weight: bold;
-    }
-
-    .featured-card.library .featured-action {
-      background: var(--purple);
-    }
-
-    .section-heading {
-      margin: 0 0 23px;
-    }
-
-    .section-heading h2 {
-      margin: 0 0 7px;
-      color: var(--purple-dark);
-      font-size: 31px;
-      line-height: 1.7;
-    }
-
-    .section-heading p {
-      max-width: 730px;
-      margin: auto;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.9;
     }
 
     .units-grid {
       display: grid;
       grid-template-columns:
         repeat(2, minmax(0, 1fr));
-      gap: 20px;
+      gap: 19px;
     }
 
     .unit-card {
       position: relative;
       overflow: hidden;
-      min-height: 275px;
-      padding: 25px 22px 23px;
-      border-radius: 28px;
+      padding: 24px 21px;
+      border: 1px solid rgba(93, 67, 116, 0.13);
+      border-radius: 27px;
       background: var(--cream);
-      border: 1px solid rgba(93, 67, 116, 0.14);
-      box-shadow: 0 12px 28px rgba(73, 56, 92, 0.11);
-      transition:
-        transform 0.22s,
-        box-shadow 0.22s;
-    }
-
-    .unit-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 17px 34px rgba(73, 56, 92, 0.16);
-    }
-
-    .unit-card:active {
-      transform: scale(0.987);
+      box-shadow: 0 12px 28px rgba(73, 56, 92, 0.1);
+      text-align: right;
     }
 
     .unit-card::before {
@@ -451,23 +250,22 @@
       background: var(--orange);
     }
 
-    .unit-top {
+    .unit-head {
       display: flex;
       align-items: center;
       gap: 14px;
-      margin-bottom: 15px;
-      text-align: right;
+      margin-bottom: 14px;
     }
 
     .unit-icon {
       display: flex;
-      flex: 0 0 65px;
+      flex: 0 0 68px;
       align-items: center;
       justify-content: center;
-      width: 65px;
-      height: 65px;
-      border-radius: 21px;
-      font-size: 35px;
+      width: 68px;
+      height: 68px;
+      border-radius: 22px;
+      font-size: 37px;
       background: var(--purple-light);
     }
 
@@ -491,141 +289,106 @@
       background: var(--orange-light);
     }
 
-    .unit-title small {
-      display: block;
-      margin-bottom: 3px;
-      color: #9786a2;
-      font-size: 12px;
-      font-weight: bold;
-    }
-
-    .unit-title h3 {
+    .unit-head h2 {
       margin: 0;
       color: var(--purple-dark);
       font-size: 23px;
       line-height: 1.6;
     }
 
-    .unit-card > p {
+    .unit-card p {
       margin: 0 0 14px;
       color: var(--muted);
-      text-align: right;
-      font-size: 14px;
-      line-height: 1.95;
     }
 
     .unit-list {
       margin: 0;
-      padding: 0 20px 0 0;
-      color: #675a6e;
+      padding: 0 22px 0 0;
+      color: #5c4f63;
       text-align: right;
-      font-size: 13px;
-      line-height: 1.9;
     }
 
-    .unit-action {
+    .open-unit {
       display: block;
+      width: 100%;
       margin-top: 18px;
-      padding: 13px 14px;
+      padding: 14px;
+      border: 0;
+      border-radius: 16px;
+      color: white;
+      background: var(--purple);
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .open-unit:disabled {
+      color: #8c818f;
+      background: #e8e2ea;
+      cursor: not-allowed;
+    }
+
+    .lesson-view {
+      display: none;
+    }
+
+    .lesson-view.active {
+      display: block;
+      animation: enterLesson 0.5s ease;
+    }
+
+    @keyframes enterLesson {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .lesson-top {
+      margin-bottom: 22px;
+      padding: 18px;
+      border-radius: 23px;
+      background: var(--cream);
+      border: 1px solid rgba(93, 67, 116, 0.14);
+      box-shadow: 0 11px 27px rgba(73, 56, 92, 0.11);
+    }
+
+    .lesson-top h2 {
+      margin: 0 0 8px;
+      color: var(--purple-dark);
+      font-size: 27px;
+    }
+
+    .return-library {
+      width: 100%;
+      padding: 13px;
+      border: 0;
       border-radius: 15px;
       color: white;
       background: var(--purple);
-      font-size: 14px;
-      font-weight: bold;
-    }
-
-    .unit-card.gold .unit-action {
-      background: var(--gold-dark);
-    }
-
-    .unit-card.green .unit-action {
-      background: var(--green);
-    }
-
-    .unit-card.blue .unit-action {
-      background: var(--blue);
-    }
-
-    .unit-card.rose .unit-action {
-      background: var(--rose);
-    }
-
-    .unit-card.orange .unit-action {
-      background: var(--orange);
-    }
-
-    .coming-note {
-      margin-top: 30px;
-      padding: 20px;
-      border-radius: 22px;
-      color: #5d4374;
-      background: var(--purple-light);
-      border-right: 6px solid var(--gold);
       font-size: 15px;
-      line-height: 2;
+      font-weight: 800;
+      cursor: pointer;
     }
 
-    .home-button {
-      display: block;
-      width: 100%;
-      margin-top: 24px;
-      padding: 16px;
-      border-radius: 18px;
-      color: white;
-      background: var(--purple);
-      text-decoration: none;
-      font-size: 16px;
-      font-weight: bold;
-      box-shadow: 0 9px 20px rgba(73, 56, 92, 0.16);
-    }
-
-    footer {
-      margin-top: 45px;
-      padding: 23px 13px;
-      color: white;
-      background: var(--purple-dark);
-      line-height: 1.8;
-    }
-
-    @media (max-width: 760px) {
-      .hero {
-        padding: 46px 16px 56px;
-        border-radius: 0 0 50px 50px;
-      }
-
-      .hero-icon {
-        width: 99px;
-        height: 99px;
-        font-size: 51px;
-      }
-
+    @media (max-width: 700px) {
       .hero h1 {
-        font-size: 31px;
+        font-size: 30px;
       }
 
-      .hero h2 {
-        font-size: 18px;
-      }
-
-      .hero p {
-        font-size: 15px;
-      }
-
-      main {
-        width: 93%;
-      }
-
-      .featured-grid,
       .units-grid {
         grid-template-columns: 1fr;
       }
 
-      .featured-card {
-        min-height: auto;
-      }
-
-      .section-heading h2 {
-        font-size: 28px;
+      p,
+      li,
+      button {
+        font-size: 16px;
       }
     }
   </style>
@@ -641,9 +404,9 @@
 
     <a
       class="back-link"
-      href="nafes.html"
+      href="index.html"
     >
-      العودة إلى نافس
+      الصفحة الرئيسة
     </a>
 
   </header>
@@ -651,578 +414,3116 @@
   <section class="hero">
 
     <div class="hero-icon">
-      🧠
+      📚
     </div>
 
     <h1>
-      مكتبة مهارات نافس
+      مكتبة نافس
     </h1>
 
-    <h2>
-      افهمي السؤال، حلّلي النص، واختاري الإجابة الأدق
-    </h2>
-
     <p>
-      بوابتكِ إلى شرح المهارات،
-      والأمثلة المحلولة، والتدريبات التفاعلية،
-      واستراتيجيات التعامل مع النصوص والبدائل المتقاربة.
+      اختاري المهارة،
+      ثم اقرئي شرحها وطبقي عليها،
+      وحددي سبب الإجابة
+      والشاهد من القطعة.
     </p>
 
   </section>
 
   <main>
 
-    <section class="intro-card">
+    <section
+      class="library-view"
+      id="libraryView"
+    >
 
-      <strong>
-        من أين أبدأ؟
-      </strong>
+      <section class="intro-card">
 
-      ابدئي ببطاقة الفيديو لتتعرفي إلى نافس
-      وطريقة التظليل وإدارة الوقت،
-      ثم افتحي مكتبتكِ المكتوبة لمراجعة المهارات،
-      وبعدها انتقلي إلى الوحدات التفصيلية بالتدرج.
+        <strong>
+          كل شيء في مكان واحد
+        </strong>
 
-    </section>
+        افتحي بطاقة المهارة،
+        وستظهر رحلتها التعليمية
+        داخل مكتبة نافس نفسها.
 
-    <section class="featured-grid">
+      </section>
 
-      <a
-        class="featured-link"
-        href="nafes-intro-video.html"
-      >
-
-        <article class="featured-card video">
-
-          <span class="featured-badge">
-            ابدئي من هنا
-          </span>
-
-          <div class="featured-icon">
-            🎥
-          </div>
-
-          <h2>
-            نافس وطريقة التظليل
-          </h2>
-
-          <p>
-            شرح مرئي يساعدكِ على دخول الاختبار
-            بخطة واضحة وهادئة.
-          </p>
-
-          <ul class="featured-list">
-            <li>التعريف باختبار نافس.</li>
-            <li>التظليل الصحيح ومسح الإجابة.</li>
-            <li>مطابقة رقم السؤال برقم الاختيار.</li>
-            <li>إدارة الوقت والمراجعة.</li>
-          </ul>
-
-          <span class="featured-action">
-            مشاهدة الشرح
-          </span>
-
-        </article>
-
-      </a>
-
-      <a
-        class="featured-link"
-        href="nafes-skills-library.html"
-      >
-
-        <article class="featured-card library">
-
-          <span class="featured-badge">
-            مرجعكِ السريع
-          </span>
-
-          <div class="featured-icon">
-            📚
-          </div>
-
-          <h2>
-            مكتبتي في مهارات نافس
-          </h2>
-
-          <p>
-            ملزمة مكتوبة تجمع المهارات
-            وتعريفاتها وأهم مفاتيح حلها.
-          </p>
-
-          <ul class="featured-list">
-            <li>أنواع الفهم والأسئلة.</li>
-            <li>المفردات والمعنى من السياق.</li>
-            <li>الفكرة والاستنتاج والنقد.</li>
-            <li>المشتتات والإجابة الأدق.</li>
-          </ul>
-
-          <span class="featured-action">
-            افتحي المكتبة
-          </span>
-
-        </article>
-
-      </a>
-
-    </section>
-
-    <section class="section-heading">
-
-      <h2>
-        الوحدات التفصيلية
+      <h2 class="section-title">
+        اختاري مهارتكِ
       </h2>
 
-      <p>
-        كل بطاقة تفتح في صفحة مستقلة،
-        تحتوي على شرح مركز، وأمثلة محلولة،
-        وتحليل للخيارات، وتدريب تفاعلي.
-      </p>
+      <section class="units-grid">
+                <article class="unit-card gold">
 
-    </section>
-
-    <section class="units-grid">
-
-      <a
-        class="unit-link"
-        href="nafes-question-types.html"
-      >
-
-        <article class="unit-card gold">
-
-          <div class="unit-top">
+          <div class="unit-head">
 
             <div class="unit-icon">
               🧭
             </div>
 
-            <div class="unit-title">
-
-              <small>
-                الوحدة الأولى
-              </small>
-
-              <h3>
-                أنواع الأسئلة
-              </h3>
-
-            </div>
+            <h2>
+              أنواع الأسئلة
+            </h2>
 
           </div>
 
           <p>
-            فرّقي بين السؤال الحرفي والاستنتاجي
-            والتحليلي والنقدي والتطبيقي.
+            تعلّمي كيف يتغير أسلوب القراءة
+            بحسب نوع السؤال،
+            وكيف تنتقلين من فهم المطلوب
+            إلى اختيار الدليل الأدق.
           </p>
 
           <ul class="unit-list">
-            <li>كلمات تكشف نوع السؤال.</li>
-            <li>طريقة التفكير المناسبة.</li>
-            <li>أمثلة واقعية وعلمية.</li>
+            <li>السؤال الحرفي.</li>
+            <li>السؤال الاستنتاجي.</li>
+            <li>السؤال التحليلي.</li>
+            <li>السؤال النقدي.</li>
+            <li>السؤال التطبيقي.</li>
           </ul>
 
-          <span class="unit-action">
-            افتحي الوحدة
-          </span>
+          <button
+            class="open-unit"
+            data-open-unit="questionTypesLesson"
+            type="button"
+          >
+            افتحي رحلة أنواع الأسئلة
+          </button>
 
         </article>
 
-      </a>
-
-      <a
-        class="unit-link"
-        href="nafes-context-meaning.html"
-      >
-
         <article class="unit-card green">
 
-          <div class="unit-top">
+          <div class="unit-head">
 
             <div class="unit-icon">
               🔤
             </div>
 
-            <div class="unit-title">
-
-              <small>
-                الوحدة الثانية
-              </small>
-
-              <h3>
-                صيد المعنى
-              </h3>
-
-            </div>
+            <h2>
+              معنى الكلمة
+            </h2>
 
           </div>
 
           <p>
-            اكتشفي معنى الكلمة من السياق،
-            ولا تنخدعي بالمعنى المشهور وحده.
+            استخرجي معنى المفردة
+            من السياق،
+            وميّزي بين المعنى المباشر
+            والدلالة التي يصنعها النص.
           </p>
 
           <ul class="unit-list">
+            <li>المعنى من السياق.</li>
             <li>الترادف والتضاد.</li>
-            <li>القرائن السياقية.</li>
-            <li>الكلمة في سياقات مختلفة.</li>
+            <li>دلالة التعبير.</li>
           </ul>
 
-          <span class="unit-action">
-            افتحي الوحدة
-          </span>
+          <button
+            class="open-unit"
+            type="button"
+            disabled
+          >
+            تُفتح بعد إكمال الوحدة الأولى
+          </button>
 
         </article>
 
-      </a>
-
-      <a
-        class="unit-link"
-        href="nafes-text-map.html"
-      >
-
         <article class="unit-card blue">
 
-          <div class="unit-top">
+          <div class="unit-head">
 
             <div class="unit-icon">
               🗺️
             </div>
 
-            <div class="unit-title">
-
-              <small>
-                الوحدة الثالثة
-              </small>
-
-              <h3>
-                خريطة النص
-              </h3>
-
-            </div>
+            <h2>
+              خريطة النص
+            </h2>
 
           </div>
 
           <p>
-            تعرّفي إلى بناء النص،
-            والفكرة الرئيسة والتفاصيل والعلاقات.
+            حددي الفكرة الرئيسة،
+            وارصدي العلاقات
+            بين الأسباب والنتائج
+            والتفاصيل الداعمة.
           </p>
 
           <ul class="unit-list">
-            <li>الفكرة الرئيسة والفرعية.</li>
-            <li>السبب والنتيجة.</li>
-            <li>المشكلة والحل والتلخيص.</li>
+            <li>الفكرة الرئيسة.</li>
+            <li>التفاصيل الداعمة.</li>
+            <li>العلاقات بين الأفكار.</li>
           </ul>
 
-          <span class="unit-action">
-            افتحي الوحدة
-          </span>
+          <button
+            class="open-unit"
+            type="button"
+            disabled
+          >
+            تُفتح لاحقًا
+          </button>
 
         </article>
 
-      </a>
-            <a
-        class="unit-link"
-        href="nafes-inference.html"
-      >
-
         <article class="unit-card rose">
 
-          <div class="unit-top">
+          <div class="unit-head">
 
             <div class="unit-icon">
               👁️
             </div>
 
-            <div class="unit-title">
-
-              <small>
-                الوحدة الرابعة
-              </small>
-
-              <h3>
-                ما وراء السطور
-              </h3>
-
-            </div>
+            <h2>
+              ما وراء السطور
+            </h2>
 
           </div>
 
           <p>
-            تعلّمي الوصول إلى المعنى الضمني
-            والاستنتاج المبني على القرائن.
+            استنتجي ما لم يذكر صراحة،
+            وحددي غرض الكاتب
+            وموقفه من الفكرة.
           </p>
 
           <ul class="unit-list">
-            <li>الاستنتاج من الأفعال والمواقف.</li>
-            <li>غرض الكاتب ونبرته.</li>
-            <li>دلالة العبارة والضمائر.</li>
+            <li>الاستنتاج.</li>
+            <li>غرض الكاتب.</li>
+            <li>الدلالة الضمنية.</li>
           </ul>
 
-          <span class="unit-action">
-            افتحي الوحدة
-          </span>
+          <button
+            class="open-unit"
+            type="button"
+            disabled
+          >
+            تُفتح لاحقًا
+          </button>
 
         </article>
 
-      </a>
-
-      <a
-        class="unit-link"
-        href="nafes-critical-reading.html"
-      >
-
         <article class="unit-card orange">
 
-          <div class="unit-top">
+          <div class="unit-head">
 
             <div class="unit-icon">
-              🛡️
+              ⚖️
             </div>
 
-            <div class="unit-title">
-
-              <small>
-                الوحدة الخامسة
-              </small>
-
-              <h3>
-                القارئة الناقدة
-              </h3>
-
-            </div>
+            <h2>
+              القراءة الناقدة
+            </h2>
 
           </div>
 
           <p>
-            احكمي على الفكرة والدليل والمصدر،
-            وميّزي بين الحقيقة والرأي.
+            قيّمي الحجة،
+            وقارني بين الأدلة،
+            واختبري موثوقية المصدر.
           </p>
 
           <ul class="unit-list">
             <li>الحقيقة والرأي.</li>
-            <li>الادعاء والحجة والدليل.</li>
-            <li>المصدر الموثوق والتحيز.</li>
+            <li>قوة الدليل.</li>
+            <li>موثوقية المصدر.</li>
           </ul>
 
-          <span class="unit-action">
-            افتحي الوحدة
-          </span>
+          <button
+            class="open-unit"
+            type="button"
+            disabled
+          >
+            تُفتح لاحقًا
+          </button>
 
         </article>
-
-      </a>
-
-      <a
-        class="unit-link"
-        href="nafes-visual-texts.html"
-      >
 
         <article class="unit-card">
 
-          <div class="unit-top">
-
-            <div class="unit-icon">
-              📊
-            </div>
-
-            <div class="unit-title">
-
-              <small>
-                الوحدة السادسة
-              </small>
-
-              <h3>
-                النصوص والجداول
-              </h3>
-
-            </div>
-
-          </div>
-
-          <p>
-            اقرئي الجداول والرسوم والإعلانات
-            والتعليمات باعتبارها نصوصًا متكاملة.
-          </p>
-
-          <ul class="unit-list">
-            <li>قراءة الجداول والرسوم.</li>
-            <li>الإعلانات والتعليمات.</li>
-            <li>دمج النص مع الأرقام والصور.</li>
-          </ul>
-
-          <span class="unit-action">
-            افتحي الوحدة
-          </span>
-
-        </article>
-
-      </a>
-
-      <a
-        class="unit-link"
-        href="nafes-best-answer.html"
-      >
-
-        <article class="unit-card gold">
-
-          <div class="unit-top">
+          <div class="unit-head">
 
             <div class="unit-icon">
               🎯
             </div>
 
-            <div class="unit-title">
-
-              <small>
-                الوحدة السابعة
-              </small>
-
-              <h3>
-                الإجابة الأدق
-              </h3>
-
-            </div>
+            <h2>
+              الإجابة الأدق
+            </h2>
 
           </div>
 
           <p>
-            اكشفي الخيارات المضللة،
-            وقارني بين البدائل المتقاربة.
+            قارني بين البدائل المتقاربة،
+            واكشفي المشتتات
+            التي تبدو صحيحة
+            لكنها لا تجيب عن المطلوب.
           </p>
 
           <ul class="unit-list">
-            <li>الخيار الصحيح عمومًا.</li>
-            <li>الخيار الأوسع أو الأضيق.</li>
-            <li>الاستبعاد الذكي.</li>
+            <li>كشف المشتتات.</li>
+            <li>مقارنة البدائل.</li>
+            <li>الرجوع إلى الشاهد.</li>
           </ul>
 
-          <span class="unit-action">
-            افتحي الوحدة
-          </span>
+          <button
+            class="open-unit"
+            type="button"
+            disabled
+          >
+            تُفتح لاحقًا
+          </button>
 
         </article>
 
-      </a>
-
-      <a
-        class="unit-link"
-        href="nafes-challenges.html"
-      >
-
-        <article class="unit-card green">
-
-          <div class="unit-top">
-
-            <div class="unit-icon">
-              🧪
-            </div>
-
-            <div class="unit-title">
-
-              <small>
-                الوحدة الثامنة
-              </small>
-
-              <h3>
-                التحديات المرحلية
-              </h3>
-
-            </div>
-
-          </div>
-
-          <p>
-            ادمجي أكثر من مهارة
-            في نصوص علمية وأدبية وتاريخية.
-          </p>
-
-          <ul class="unit-list">
-            <li>أسئلة متعددة المستويات.</li>
-            <li>تحليل كل خيار.</li>
-            <li>تدرج من التمهيدي إلى المتقدم.</li>
-          </ul>
-
-          <span class="unit-action">
-            ابدئي التحدي
-          </span>
-
-        </article>
-
-      </a>
-
-      <a
-        class="unit-link"
-        href="nafes-simulation.html"
-      >
-
-        <article class="unit-card blue">
-
-          <div class="unit-top">
-
-            <div class="unit-icon">
-              🏆
-            </div>
-
-            <div class="unit-title">
-
-              <small>
-                الوحدة التاسعة
-              </small>
-
-              <h3>
-                محاكاة نافس
-              </h3>
-
-            </div>
-
-          </div>
-
-          <p>
-            تجربة شاملة تجمع مهارات القراءة
-            وتقيس تقدمكِ بصورة عملية.
-          </p>
-
-          <ul class="unit-list">
-            <li>نصوص وأسئلة متنوعة.</li>
-            <li>تفسير الإجابات.</li>
-            <li>تقرير بنقاط القوة والمراجعة.</li>
-          </ul>
-
-          <span class="unit-action">
-            ابدئي المحاكاة
-          </span>
-
-        </article>
-
-      </a>
+      </section>
 
     </section>
 
-    <div class="coming-note">
-
-      <strong>
-        ملاحظة مهمة:
-      </strong>
-
-      سننشئ صفحات الوحدات واحدة واحدة،
-      لذلك قد تظهر بعض الروابط مؤقتًا على صفحة غير موجودة
-      إلى أن ننتهي من بنائها.
-
-    </div>
-
-    <a
-      class="home-button"
-      href="nafes.html"
+    <section
+      class="lesson-view"
+      id="questionTypesLesson"
     >
-      العودة إلى صفحة نافس
-    </a>
+
+      <section class="lesson-top">
+
+        <h2>
+          رحلة أنواع الأسئلة
+        </h2>
+
+        <p>
+          ابدئي بالسؤال الحرفي،
+          ثم انتقلي تدريجيًا
+          إلى الاستنتاج والتحليل والنقد والتطبيق.
+        </p>
+
+        <button
+          class="return-library"
+          type="button"
+        >
+          العودة إلى بطاقات المكتبة
+        </button>
+
+      </section>
+            <style>
+        .type-progress {
+          display: grid;
+          grid-template-columns:
+            repeat(5, minmax(0, 1fr));
+          gap: 7px;
+          margin-bottom: 22px;
+          padding: 17px;
+          border-radius: 22px;
+          background: var(--cream);
+          box-shadow: 0 10px 25px rgba(73, 56, 92, 0.1);
+        }
+
+        .type-step {
+          min-height: 57px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 7px 4px;
+          border-radius: 14px;
+          color: #7b6d83;
+          background: var(--gray);
+          font-size: 12px;
+          font-weight: 800;
+          line-height: 1.5;
+        }
+
+        .type-step.active {
+          color: white;
+          background: var(--purple);
+        }
+
+        .type-step.done {
+          color: #2e684f;
+          background: var(--green-light);
+          border: 1px solid rgba(63, 137, 107, 0.35);
+        }
+
+        .type-section {
+          display: none;
+        }
+
+        .type-section.active {
+          display: block;
+          animation: enterLesson 0.5s ease;
+        }
+
+        .journey-card {
+          display: none;
+          padding: 25px 20px;
+          border-radius: 27px;
+          background: var(--cream);
+          border: 1px solid rgba(93, 67, 116, 0.14);
+          box-shadow: 0 13px 30px rgba(73, 56, 92, 0.12);
+        }
+
+        .journey-card.active {
+          display: block;
+          animation: enterLesson 0.5s ease;
+        }
+
+        .card-label {
+          display: inline-block;
+          margin-bottom: 15px;
+          padding: 8px 14px;
+          border-radius: 18px;
+          color: white;
+          background: var(--purple);
+          font-size: 14px;
+          font-weight: 800;
+        }
+
+        .journey-card h3 {
+          margin: 0 0 15px;
+          color: var(--purple-dark);
+          font-size: 25px;
+          line-height: 1.8;
+        }
+
+        .definition-box {
+          margin-top: 16px;
+          padding: 18px;
+          border-radius: 19px;
+          color: #554160;
+          background: var(--purple-light);
+          border-right: 7px solid var(--gold);
+          text-align: right;
+          font-size: 17px;
+          font-weight: 700;
+          line-height: 2;
+        }
+
+        .reading-text {
+          margin-top: 17px;
+          padding: 21px;
+          border-radius: 21px;
+          color: #44384a;
+          background: #fffaf0;
+          border: 1px solid rgba(201, 168, 92, 0.35);
+          text-align: right;
+          font-size: 18px;
+          font-weight: 700;
+          line-height: 2.25;
+        }
+
+        .question-box {
+          margin-top: 18px;
+          padding: 18px;
+          border-radius: 20px;
+          background: var(--purple-light);
+          text-align: right;
+        }
+
+        .question-box h3 {
+          font-size: 21px;
+        }
+
+        .options {
+          display: grid;
+          gap: 10px;
+        }
+
+        .option-button {
+          width: 100%;
+          padding: 14px;
+          border: 1px solid rgba(93, 67, 116, 0.2);
+          border-radius: 14px;
+          color: var(--text);
+          background: white;
+          text-align: right;
+          cursor: pointer;
+        }
+
+        .option-button.correct {
+          color: #28684f;
+          background: var(--green-light);
+          border-color: var(--green);
+        }
+
+        .option-button.wrong {
+          color: #8a405a;
+          background: var(--rose-light);
+          border-color: var(--rose);
+        }
+
+        .feedback,
+        .evidence-card {
+          display: none;
+          margin-top: 13px;
+          padding: 14px;
+          border-radius: 16px;
+          color: #554160;
+          background: white;
+          font-size: 15px;
+          font-weight: 700;
+          line-height: 2;
+        }
+
+        .feedback.show,
+        .evidence-card.show {
+          display: block;
+          animation: enterLesson 0.45s ease;
+        }
+
+        .evidence-card {
+          border-right: 7px solid var(--gold);
+        }
+
+        .evidence-quote {
+          margin-top: 11px;
+          padding: 13px;
+          border-radius: 14px;
+          color: #674d18;
+          background: var(--gold-light);
+        }
+
+        .action-button {
+          display: block;
+          width: 100%;
+          margin-top: 19px;
+          padding: 15px;
+          border: 0;
+          border-radius: 17px;
+          color: white;
+          background: var(--purple);
+          font-size: 16px;
+          font-weight: 800;
+          cursor: pointer;
+        }
+
+        .action-button:disabled {
+          color: #8c818f;
+          background: #e8e2ea;
+          cursor: not-allowed;
+        }
+
+        @media (max-width: 700px) {
+          .type-progress {
+            grid-template-columns:
+              repeat(2, minmax(0, 1fr));
+          }
+
+          .reading-text {
+            font-size: 17px;
+          }
+        }
+      </style>
+
+      <section class="type-progress">
+
+        <div
+          class="type-step active"
+          data-type-step="0"
+        >
+          الحرفي
+        </div>
+
+        <div
+          class="type-step"
+          data-type-step="1"
+        >
+          الاستنتاجي
+        </div>
+
+        <div
+          class="type-step"
+          data-type-step="2"
+        >
+          التحليلي
+        </div>
+
+        <div
+          class="type-step"
+          data-type-step="3"
+        >
+          النقدي
+        </div>
+
+        <div
+          class="type-step"
+          data-type-step="4"
+        >
+          التطبيقي
+        </div>
+
+      </section>
+
+      <section
+        class="type-section active"
+        data-type-section="0"
+      >
+
+        <article
+          class="journey-card active"
+          data-card="0-0"
+        >
+
+          <span class="card-label">
+            بوابة السؤال الحرفي
+          </span>
+
+          <h3>
+            كيف أتعرف إلى السؤال الحرفي؟
+          </h3>
+
+          <div class="definition-box">
+            يطلب السؤال الحرفي معلومة
+            وردت صراحة في النص،
+            وقد تأتي بصياغتها نفسها
+            أو بعبارة تؤدي المعنى ذاته.
+            والمطلوب هنا ليس التخمين،
+            بل تحديد كلمة السؤال
+            والعودة إلى موضع الدليل.
+          </div>
+
+          <button
+            class="action-button show-card"
+            data-show-card="0-1"
+            type="button"
+          >
+            فهمتُ التعريف، افتحي القطعة
+          </button>
+
+        </article>
+
+        <article
+          class="journey-card"
+          data-card="0-1"
+        >
+
+          <span class="card-label">
+            قطعة القراءة
+          </span>
+
+          <h3>
+            الذكاء الاصطناعي التوليدي
+            وإنتاج المعرفة
+          </h3>
+
+          <div class="reading-text">
+            لم يعد الذكاء الاصطناعي التوليدي
+            أداة تقتصر على إنتاج النصوص والصور،
+            بل أصبح جزءًا من منظومة أوسع
+            تعيد تشكيل طرائق البحث
+            والتعلم واتخاذ القرار.
+
+            وتستطيع هذه الأنظمة
+            معالجة كميات كبيرة من البيانات
+            في وقت قصير،
+            واقتراح مسارات متعددة
+            للوصول إلى المعلومات،
+            مما يمنح الباحث والمتعلم
+            قدرة أكبر على المقارنة والاستكشاف.
+
+            ومع ذلك،
+            فإن سرعة النظام
+            لا تضمن سلامة نتائجه؛
+            فقد يعيد إنتاج تحيزات
+            موجودة في بيانات التدريب،
+            أو يقدم إجابات مقنعة لغويًا
+            من غير أن تستند
+            إلى مصادر موثوقة.
+
+            ولهذا يؤكد المختصون
+            أن الاستخدام المسؤول
+            للذكاء الاصطناعي
+            يتطلب مراجعة بشرية واعية،
+            والتحقق من المصادر،
+            وفهم حدود الخوارزميات،
+            بدل التعامل مع المخرجات الآلية
+            بوصفها حقائق نهائية.
+          </div>
+
+          <button
+            class="action-button show-card"
+            data-show-card="0-2"
+            type="button"
+          >
+            قرأتُ القطعة، افتحي السؤال
+          </button>
+
+        </article>
+                <article
+          class="journey-card"
+          data-card="0-2"
+        >
+
+          <span class="card-label">
+            السؤال
+          </span>
+
+          <div class="question-box">
+
+            <h3>
+              ماذا تتطلب الاستفادة المسؤولة
+              من الذكاء الاصطناعي
+              بحسب القطعة؟
+            </h3>
+
+            <div class="options">
+
+              <button
+                class="option-button"
+                data-correct="false"
+                type="button"
+              >
+                التعامل مع المخرجات الآلية
+                بوصفها حقائق نهائية.
+              </button>
+
+              <button
+                class="option-button"
+                data-correct="true"
+                type="button"
+              >
+                مراجعة بشرية واعية،
+                والتحقق من المصادر،
+                وفهم حدود الخوارزميات.
+              </button>
+
+              <button
+                class="option-button"
+                data-correct="false"
+                type="button"
+              >
+                الاعتماد على سرعة النظام
+                للحكم على دقة نتائجه.
+              </button>
+
+            </div>
+
+            <div
+              class="feedback"
+              id="literalFeedback"
+            ></div>
+
+          </div>
+
+          <button
+            class="action-button"
+            id="showLiteralEvidence"
+            type="button"
+            disabled
+          >
+            اعرضي سبب صحة الإجابة والشاهد
+          </button>
+
+        </article>
+
+        <article
+          class="journey-card"
+          data-card="0-3"
+        >
+
+          <span class="card-label">
+            السبب والشاهد
+          </span>
+
+          <h3>
+            لماذا كانت الإجابة صحيحة؟
+          </h3>
+
+          <div
+            class="evidence-card show"
+          >
+
+            <p>
+              <strong>
+                السبب:
+              </strong>
+
+              لأن السؤال يطلب معلومة
+              وردت صراحة في خاتمة القطعة،
+              ولم يحتج الوصول إليها
+              إلى استنتاج معنى جديد.
+            </p>
+
+            <div class="evidence-quote">
+
+              <strong>
+                الشاهد من القطعة:
+              </strong>
+
+              «يتطلب مراجعة بشرية واعية،
+              والتحقق من المصادر،
+              وفهم حدود الخوارزميات».
+            </div>
+
+          </div>
+
+          <div class="question-box">
+
+            <h3>
+              ما الذي يجعل هذا السؤال حرفيًا؟
+            </h3>
+
+            <div class="options">
+
+              <button
+                class="option-button"
+                data-correct="true"
+                type="button"
+              >
+                لأن الإجابة مذكورة بوضوح
+                في القطعة.
+              </button>
+
+              <button
+                class="option-button"
+                data-correct="false"
+                type="button"
+              >
+                لأن الإجابة تحتاج
+                إلى تخمين رأي الكاتب.
+              </button>
+
+              <button
+                class="option-button"
+                data-correct="false"
+                type="button"
+              >
+                لأن الإجابة تعتمد
+                على معلومات من خارج النص.
+              </button>
+
+            </div>
+
+            <div
+              class="feedback"
+              id="literalReasonFeedback"
+            ></div>
+
+          </div>
+
+          <button
+            class="action-button"
+            id="openLiteralAssessment"
+            type="button"
+            disabled
+          >
+            انتقلي إلى التقييم الذاتي
+          </button>
+
+        </article>
+
+        <article
+          class="journey-card"
+          data-card="0-4"
+        >
+
+          <span class="card-label">
+            التقييم الذاتي
+          </span>
+
+          <h3>
+            كيف تصفين فهمكِ
+            للسؤال الحرفي الآن؟
+          </h3>
+
+          <div class="question-box">
+
+            <div class="options">
+
+              <button
+                class="option-button self-option"
+                data-level="strong"
+                type="button"
+              >
+                أستطيع تحديد المطلوب
+                والعثور على الشاهد مباشرة.
+              </button>
+
+              <button
+                class="option-button self-option"
+                data-level="medium"
+                type="button"
+              >
+                أفهمه،
+                لكنني أحتاج إلى تدريب
+                على الكلمات المفتاحية.
+              </button>
+
+              <button
+                class="option-button self-option"
+                data-level="need-help"
+                type="button"
+              >
+                ما زلت أخلط
+                بين السؤال الحرفي
+                والسؤال الاستنتاجي.
+              </button>
+
+            </div>
+
+            <div
+              class="feedback"
+              id="literalSelfFeedback"
+            ></div>
+
+            <div
+              class="evidence-card"
+              id="literalExtraHelp"
+            >
+
+              <strong>
+                تذكير:
+              </strong>
+
+              إذا استطعتِ وضع خط
+              تحت جملة واضحة في النص
+              تثبت الإجابة مباشرة،
+              فالسؤال غالبًا حرفي.
+
+            </div>
+
+          </div>
+
+          <button
+            class="action-button"
+            id="openLiteralReward"
+            type="button"
+            disabled
+          >
+            افتحي صندوق الإنجاز
+          </button>
+
+        </article>
+                <article
+          class="journey-card"
+          data-card="0-5"
+        >
+
+          <span class="card-label">
+            صندوق الإنجاز
+          </span>
+
+          <h3>
+            أتقنتِ السؤال الحرفي
+          </h3>
+
+          <div class="definition-box">
+            أصبحتِ الآن قادرة على:
+            تحديد الكلمة المفتاحية في السؤال،
+            والعودة إلى موضع المعلومة،
+            واختيار الإجابة التي يثبتها
+            شاهد صريح من النص.
+          </div>
+
+          <div class="evidence-card show">
+
+            <strong>
+              وسامكِ:
+            </strong>
+
+            🏅 باحثة الدليل الصريح
+
+          </div>
+
+          <button
+            class="action-button"
+            id="openInferentialType"
+            type="button"
+          >
+            انتقلي إلى السؤال الاستنتاجي
+          </button>
+
+        </article>
+
+      </section>
+
+      <section
+        class="type-section"
+        data-type-section="1"
+      >
+
+        <article
+          class="journey-card active"
+          data-card="1-0"
+        >
+
+          <span class="card-label">
+            بوابة السؤال الاستنتاجي
+          </span>
+
+          <h3>
+            كيف أتعرف إلى السؤال الاستنتاجي؟
+          </h3>
+
+          <div class="definition-box">
+            لا يقدم السؤال الاستنتاجي
+            إجابته في جملة واحدة صريحة،
+            بل يتطلب الجمع بين أكثر من قرينة،
+            وفهم العلاقة بين الأفكار،
+            ثم الوصول إلى معنى يؤيده النص
+            من غير أن يذكره حرفيًا.
+          </div>
+
+          <button
+            class="action-button show-card"
+            data-show-card="1-1"
+            type="button"
+          >
+            فهمتُ التعريف، افتحي القطعة
+          </button>
+
+        </article>
+
+        <article
+          class="journey-card"
+          data-card="1-1"
+        >
+
+          <span class="card-label">
+            قطعة القراءة
+          </span>
+
+          <h3>
+            المدن المعرفية
+            وإعادة تشكيل الحياة الحضرية
+          </h3>
+
+          <div class="reading-text">
+            لم تعد المدن المستقبلية
+            تُقاس بارتفاع مبانيها
+            أو اتساع طرقها فحسب،
+            بل بقدرتها على تحويل البيانات
+            إلى قرارات تحسن جودة الحياة.
+
+            ففي المدن المعرفية،
+            ترتبط شبكات النقل والطاقة
+            والخدمات الصحية والتعليمية
+            بمنصات رقمية تستقبل المعلومات
+            بصورة مستمرة،
+            ثم تحللها للتنبؤ بالاحتياجات
+            قبل تحولها إلى أزمات.
+
+            غير أن هذا النموذج
+            لا ينجح بمجرد تركيب أجهزة ذكية؛
+            إذ يحتاج إلى أنظمة موثوقة
+            لحماية البيانات،
+            وتشريعات واضحة
+            تحدد حدود استخدامها،
+            ومشاركة مجتمعية تمنع
+            تحول التقنية إلى سلطة
+            بعيدة عن احتياجات السكان.
+
+            ولهذا يرى بعض المخططين
+            أن المدينة الذكية الحقيقية
+            ليست المدينة التي تجمع
+            أكبر قدر من المعلومات،
+            بل التي تستخدم المعلومات
+            بشفافية وعدالة،
+            وتمنح الإنسان دورًا
+            في توجيه القرارات
+            التي تؤثر في حياته اليومية.
+          </div>
+
+          <button
+            class="action-button show-card"
+            data-show-card="1-2"
+            type="button"
+          >
+            قرأتُ القطعة، افتحي السؤال
+          </button>
+
+        </article>
+
+        <article
+          class="journey-card"
+          data-card="1-2"
+        >
+
+          <span class="card-label">
+            السؤال الاستنتاجي
+          </span>
+
+          <div class="question-box">
+
+            <h3>
+              ما الفكرة التي يمكن استنتاجها
+              من موقف الكاتب
+              تجاه المدن الذكية؟
+            </h3>
+
+            <div class="options">
+
+              <button
+                class="option-button"
+                data-correct="false"
+                type="button"
+              >
+                نجاح المدينة الذكية
+                يعتمد على كثرة الأجهزة
+                مهما كانت طريقة استخدامها.
+              </button>
+
+              <button
+                class="option-button"
+                data-correct="true"
+                type="button"
+              >
+                قيمة التقنية الحضرية
+                ترتبط بخدمتها للإنسان
+                وخضوعها للشفافية والعدالة.
+              </button>
+
+              <button
+                class="option-button"
+                data-correct="false"
+                type="button"
+              >
+                مشاركة السكان
+                تعيق سرعة اتخاذ القرار
+                في المدن الحديثة.
+              </button>
+
+            </div>
+
+            <div
+              class="feedback"
+              id="inferentialFeedback"
+            ></div>
+
+          </div>
+
+          <button
+            class="action-button"
+            id="showInferentialEvidence"
+            type="button"
+            disabled
+          >
+            اعرضي سبب صحة الإجابة والشواهد
+          </button>
+
+        </article>
+                <article
+          class="journey-card"
+          data-card="1-3"
+        >
+
+          <span class="card-label">
+            السبب والشواهد
+          </span>
+
+          <h3>
+            لماذا كانت الإجابة صحيحة؟
+          </h3>
+
+          <div class="evidence-card show">
+
+            <p>
+              <strong>
+                السبب:
+              </strong>
+
+              لأن الكاتب لا يرفض التقنية،
+              لكنه يربط نجاحها
+              بخدمة الإنسان،
+              وحماية البيانات،
+              والشفافية،
+              والمشاركة المجتمعية.
+            </p>
+
+            <div class="evidence-quote">
+
+              <strong>
+                الشاهد الأول:
+              </strong>
+
+              «لا ينجح بمجرد تركيب
+              أجهزة ذكية».
+            </div>
+
+            <div class="evidence-quote">
+
+              <strong>
+                الشاهد الثاني:
+              </strong>
+
+              «تستخدم المعلومات
+              بشفافية وعدالة،
+              وتمنح الإنسان دورًا
+              في توجيه القرارات».
+            </div>
+
+          </div>
+
+          <div class="question-box">
+
+            <h3>
+              لماذا يُعد هذا السؤال
+              استنتاجيًا؟
+            </h3>
+
+            <div class="options">
+
+              <button
+                class="option-button"
+                data-correct="false"
+                type="button"
+              >
+                لأن الإجابة وردت
+                في جملة واحدة
+                بالنص نفسه.
+              </button>
+
+              <button
+                class="option-button"
+                data-correct="true"
+                type="button"
+              >
+                لأن الإجابة نتجت
+                من الربط بين عدة قرائن
+                في القطعة.
+              </button>
+
+              <button
+                class="option-button"
+                data-correct="false"
+                type="button"
+              >
+                لأن الإجابة تعتمد
+                على معرفة خارجية
+                بالمدن المستقبلية.
+              </button>
+
+            </div>
+
+            <div
+              class="feedback"
+              id="inferentialReasonFeedback"
+            ></div>
+
+          </div>
+
+          <button
+            class="action-button"
+            id="openInferentialAssessment"
+            type="button"
+            disabled
+          >
+            انتقلي إلى التقييم الذاتي
+          </button>
+
+        </article>
+
+        <article
+          class="journey-card"
+          data-card="1-4"
+        >
+
+          <span class="card-label">
+            التقييم الذاتي
+          </span>
+
+          <h3>
+            كيف تصفين قدرتكِ
+            على الاستنتاج؟
+          </h3>
+
+          <div class="question-box">
+
+            <div class="options">
+
+              <button
+                class="option-button self-option"
+                data-level="strong"
+                type="button"
+              >
+                أربط بين القرائن
+                وأصل إلى معنى
+                يؤيده النص.
+              </button>
+
+              <button
+                class="option-button self-option"
+                data-level="medium"
+                type="button"
+              >
+                أستنتج الفكرة،
+                لكنني أحتاج إلى وقت
+                لتحديد الشواهد.
+              </button>
+
+              <button
+                class="option-button self-option"
+                data-level="need-help"
+                type="button"
+              >
+                أميل إلى اختيار
+                العبارة القريبة من النص
+                حتى لو لم تعبّر
+                عن الفكرة المستنتجة.
+              </button>
+
+            </div>
+
+            <div
+              class="feedback"
+              id="inferentialSelfFeedback"
+            ></div>
+
+            <div
+              class="evidence-card"
+              id="inferentialExtraHelp"
+            >
+
+              <strong>
+                استراتيجية مساعدة:
+              </strong>
+
+              اجمعي قرينتين أو أكثر،
+              ثم اسألي:
+              ما الفكرة المشتركة
+              التي تؤديان إليها؟
+
+            </div>
+
+          </div>
+
+          <button
+            class="action-button"
+            id="openInferentialReward"
+            type="button"
+            disabled
+          >
+            افتحي صندوق الإنجاز
+          </button>
+
+        </article>
+
+        <article
+          class="journey-card"
+          data-card="1-5"
+        >
+
+          <span class="card-label">
+            صندوق الإنجاز
+          </span>
+
+          <h3>
+            أتقنتِ السؤال الاستنتاجي
+          </h3>
+
+          <div class="definition-box">
+            أصبحتِ قادرة على
+            جمع القرائن،
+            وربط الأفكار،
+            واستنتاج معنى
+            لا يذكره النص حرفيًا
+            لكنه يؤيده بوضوح.
+          </div>
+
+          <div class="evidence-card show">
+
+            <strong>
+              وسامكِ:
+            </strong>
+
+            🏅 قارئة ما وراء السطور
+
+          </div>
+
+          <button
+            class="action-button"
+            id="openAnalyticalType"
+            type="button"
+          >
+            انتقلي إلى السؤال التحليلي
+          </button>
+
+        </article>
+
+      </section>
+
+      <section
+        class="type-section"
+        data-type-section="2"
+      >
+
+        <article
+          class="journey-card active"
+          data-card="2-0"
+        >
+
+          <span class="card-label">
+            بوابة السؤال التحليلي
+          </span>
+
+          <h3>
+            كيف أتعرف إلى السؤال التحليلي؟
+          </h3>
+
+          <div class="definition-box">
+            يطلب السؤال التحليلي
+            تفكيك النص إلى عناصره،
+            والكشف عن العلاقات
+            بين الأسباب والنتائج،
+            أو مقارنة موقفين،
+            أو تفسير أثر تفصيل
+            في بناء الفكرة الكلية.
+          </div>
+
+          <button
+            class="action-button show-card"
+            data-show-card="2-1"
+            type="button"
+          >
+            فهمتُ التعريف، افتحي القطعة
+          </button>
+
+        </article>
+
+        <article
+          class="journey-card"
+          data-card="2-1"
+        >
+
+          <span class="card-label">
+            قطعة القراءة
+          </span>
+
+          <h3>
+            الاقتصاد الإبداعي
+            وصناعة التجربة
+          </h3>
+
+          <div class="reading-text">
+            لم تعد المشروعات الثقافية
+            والترفيهية الكبرى
+            تعتمد على تقديم فعالية منفردة،
+            بل تتجه إلى بناء تجربة متكاملة
+            تجمع بين الفن والتقنية
+            والتصميم والسرد القصصي.
+
+            فعندما يدخل الزائر
+            إلى مساحة ترفيهية حديثة،
+            لا يتفاعل مع المبنى وحده،
+            بل مع أنظمة إضاءة وصوت،
+            وواجهات رقمية،
+            ومسارات مصممة
+            لتكوين استجابة شعورية
+            متدرجة.
+
+            ويسهم هذا التكامل
+            في رفع قيمة المشروع؛
+            لأن الزائر لا يشتري تذكرة فقط،
+            بل يشارك في تجربة
+            يمكن تذكرها ومشاركتها،
+            مما يدعم قطاعات أخرى
+            مثل السياحة والنقل
+            والضيافة والإنتاج الإعلامي.
+
+            غير أن نجاح هذه المشروعات
+            يحتاج إلى موازنة دقيقة
+            بين الإبهار التقني
+            والمضمون الثقافي؛
+            فالتقنية التي لا تخدم فكرة واضحة
+            قد تتحول إلى عرض مؤقت،
+            بينما يمنحها المحتوى المتماسك
+            قدرة على بناء هوية
+            واستمرار الأثر.
+          </div>
+
+          <button
+            class="action-button show-card"
+            data-show-card="2-2"
+            type="button"
+          >
+            قرأتُ القطعة، افتحي السؤال
+          </button>
+
+        </article>
+                <article
+          class="journey-card"
+          data-card="2-2"
+        >
+
+          <span class="card-label">
+            السؤال التحليلي
+          </span>
+
+          <div class="question-box">
+
+            <h3>
+              ما العلاقة بين
+              التكامل التقني والثقافي
+              وارتفاع قيمة المشروع
+              كما عرضتها القطعة؟
+            </h3>
+
+            <div class="options">
+
+              <button
+                class="option-button"
+                data-correct="false"
+                type="button"
+              >
+                يعتمد ارتفاع قيمة المشروع
+                على كثرة المؤثرات التقنية
+                بصرف النظر عن مضمونها.
+              </button>
+
+              <button
+                class="option-button"
+                data-correct="true"
+                type="button"
+              >
+                يرفع التكامل بين التقنية
+                والمضمون الثقافي
+                قيمة التجربة ويمنحها
+                هوية وأثرًا مستمرًا.
+              </button>
+
+              <button
+                class="option-button"
+                data-correct="false"
+                type="button"
+              >
+                تقل قيمة المشروع
+                كلما ارتبط بقطاعات
+                مثل السياحة والإعلام.
+              </button>
+
+            </div>
+
+            <div
+              class="feedback"
+              id="analyticalFeedback"
+            ></div>
+
+          </div>
+
+          <button
+            class="action-button"
+            id="showAnalyticalEvidence"
+            type="button"
+            disabled
+          >
+            اعرضي سبب صحة الإجابة والشواهد
+          </button>
+
+        </article>
+
+        <article
+          class="journey-card"
+          data-card="2-3"
+        >
+
+          <span class="card-label">
+            السبب والشواهد
+          </span>
+
+          <h3>
+            كيف حللنا العلاقة؟
+          </h3>
+
+          <div class="evidence-card show">
+
+            <p>
+              <strong>
+                السبب:
+              </strong>
+
+              لأن القطعة عرضت
+              أثر التكامل بوصفه سببًا
+              في صناعة تجربة متماسكة،
+              ثم بيّنت أن التقنية وحدها
+              لا تكفي من دون مضمون
+              يمنح المشروع هويته.
+            </p>
+
+            <div class="evidence-quote">
+
+              <strong>
+                الشاهد الأول:
+              </strong>
+
+              «ويسهم هذا التكامل
+              في رفع قيمة المشروع».
+            </div>
+
+            <div class="evidence-quote">
+
+              <strong>
+                الشاهد الثاني:
+              </strong>
+
+              «يمنحها المحتوى المتماسك
+              قدرة على بناء هوية
+              واستمرار الأثر».
+            </div>
+
+          </div>
+
+          <div class="question-box">
+
+            <h3>
+              ما المهارة التي استخدمناها
+              للوصول إلى الإجابة؟
+            </h3>
+
+            <div class="options">
+
+              <button
+                class="option-button"
+                data-correct="false"
+                type="button"
+              >
+                نقل جملة واحدة
+                من النص دون ربطها
+                بسائر الأفكار.
+              </button>
+
+              <button
+                class="option-button"
+                data-correct="true"
+                type="button"
+              >
+                ربط السبب بالنتيجة
+                وتحليل أثر كل عنصر
+                في الفكرة الكلية.
+              </button>
+
+              <button
+                class="option-button"
+                data-correct="false"
+                type="button"
+              >
+                الاعتماد على معلومات
+                خارجية عن المشروعات
+                الترفيهية.
+              </button>
+
+            </div>
+
+            <div
+              class="feedback"
+              id="analyticalReasonFeedback"
+            ></div>
+
+          </div>
+
+          <button
+            class="action-button"
+            id="openAnalyticalAssessment"
+            type="button"
+            disabled
+          >
+            انتقلي إلى التقييم الذاتي
+          </button>
+
+        </article>
+
+        <article
+          class="journey-card"
+          data-card="2-4"
+        >
+
+          <span class="card-label">
+            التقييم الذاتي
+          </span>
+
+          <h3>
+            كيف تصفين قدرتكِ
+            على تحليل النص؟
+          </h3>
+
+          <div class="question-box">
+
+            <div class="options">
+
+              <button
+                class="option-button self-option"
+                data-level="strong"
+                type="button"
+              >
+                أحدد العلاقات
+                بين الأسباب والنتائج،
+                وأفسر دور التفاصيل.
+              </button>
+
+              <button
+                class="option-button self-option"
+                data-level="medium"
+                type="button"
+              >
+                أفهم الفكرة العامة،
+                لكنني أحتاج إلى تدريب
+                على ربط عناصرها.
+              </button>
+
+              <button
+                class="option-button self-option"
+                data-level="need-help"
+                type="button"
+              >
+                أتعامل مع كل جملة منفصلة
+                ولا أرى العلاقة
+                بينها وبين بقية النص.
+              </button>
+
+            </div>
+
+            <div
+              class="feedback"
+              id="analyticalSelfFeedback"
+            ></div>
+
+            <div
+              class="evidence-card"
+              id="analyticalExtraHelp"
+            >
+
+              <strong>
+                استراتيجية مساعدة:
+              </strong>
+
+              ابحثي عن كلمات مثل:
+              لأن، لذلك، بينما، غير أن،
+              ويسهم، مما يؤدي إلى؛
+              فهي تكشف العلاقات
+              بين أفكار النص.
+
+            </div>
+
+          </div>
+
+          <button
+            class="action-button"
+            id="openAnalyticalReward"
+            type="button"
+            disabled
+          >
+            افتحي صندوق الإنجاز
+          </button>
+
+        </article>
+
+        <article
+          class="journey-card"
+          data-card="2-5"
+        >
+
+          <span class="card-label">
+            صندوق الإنجاز
+          </span>
+
+          <h3>
+            أتقنتِ السؤال التحليلي
+          </h3>
+
+          <div class="definition-box">
+            أصبحتِ قادرة على
+            تفكيك الفكرة،
+            وتحديد العلاقات بين عناصرها،
+            وتفسير أثر التفاصيل
+            في بناء المعنى الكلي.
+          </div>
+
+          <div class="evidence-card show">
+
+            <strong>
+              وسامكِ:
+            </strong>
+
+            🏅 محللة بنية النص
+
+          </div>
+
+          <button
+            class="action-button"
+            id="openCriticalType"
+            type="button"
+          >
+            انتقلي إلى السؤال النقدي
+          </button>
+
+        </article>
+
+      </section>
+            <section
+        class="type-section"
+        data-type-section="3"
+      >
+
+        <article
+          class="journey-card active"
+          data-card="3-0"
+        >
+
+          <span class="card-label">
+            بوابة السؤال النقدي
+          </span>
+
+          <h3>
+            كيف أتعرف إلى السؤال النقدي؟
+          </h3>
+
+          <div class="definition-box">
+            يطلب السؤال النقدي
+            تقييم قوة الفكرة أو الحجة،
+            وفحص نوع الأدلة،
+            والتمييز بين الرأي والمعلومة،
+            والحكم على مدى كفاية التبرير
+            واتساقه مع ما ورد في النص.
+          </div>
+
+          <button
+            class="action-button show-card"
+            data-show-card="3-1"
+            type="button"
+          >
+            فهمتُ التعريف، افتحي القطعة
+          </button>
+
+        </article>
+
+        <article
+          class="journey-card"
+          data-card="3-1"
+        >
+
+          <span class="card-label">
+            قطعة القراءة
+          </span>
+
+          <h3>
+            الروبوتات المستقلة
+            وحدود اتخاذ القرار
+          </h3>
+
+          <div class="reading-text">
+            تتوسع تطبيقات الروبوتات المستقلة
+            في مجالات متعددة،
+            من المصانع والمستودعات
+            إلى الرعاية الصحية
+            واستكشاف البيئات الخطرة.
+
+            وتعتمد هذه الروبوتات
+            على مستشعرات وخوارزميات
+            تساعدها على قراءة محيطها،
+            ومقارنة البدائل،
+            واتخاذ قرارات سريعة
+            في مواقف لا تسمح دائمًا
+            بالرجوع الفوري إلى الإنسان.
+
+            ويرى مؤيدو هذا التوسع
+            أن الآلة قد تكون أكثر دقة
+            في بعض البيئات؛
+            لأنها لا تتأثر بالإرهاق
+            أو الانفعال،
+            ويمكنها تحليل كم كبير
+            من البيانات في وقت قصير.
+
+            إلا أن هذا الرأي
+            لا يحسم المشكلة الأخلاقية؛
+            فالقرار الآلي قد يعتمد
+            على بيانات ناقصة،
+            أو يواجه موقفًا
+            لم يُصمم له مسبقًا،
+            كما أن تحميل الروبوت
+            مسؤولية النتيجة
+            لا يوضح من يتحمل الخطأ:
+            المصمم، أم الجهة المشغلة،
+            أم النظام نفسه.
+
+            لذلك لا يكفي إثبات
+            أن الروبوت أسرع من الإنسان،
+            بل يجب تحديد القرارات
+            التي يجوز تفويضها إليه،
+            ووضع آليات للمراجعة
+            والمساءلة والتدخل البشري.
+          </div>
+
+          <button
+            class="action-button show-card"
+            data-show-card="3-2"
+            type="button"
+          >
+            قرأتُ القطعة، افتحي السؤال
+          </button>
+
+        </article>
+
+        <article
+          class="journey-card"
+          data-card="3-2"
+        >
+
+          <span class="card-label">
+            السؤال النقدي
+          </span>
+
+          <div class="question-box">
+
+            <h3>
+              أي الأحكام الآتية
+              أكثر اتساقًا مع موقف الكاتب؟
+            </h3>
+
+            <div class="options">
+
+              <button
+                class="option-button"
+                data-correct="false"
+                type="button"
+              >
+                يجب منح الروبوتات
+                حرية اتخاذ جميع القرارات
+                ما دامت أسرع من الإنسان.
+              </button>
+
+              <button
+                class="option-button"
+                data-correct="true"
+                type="button"
+              >
+                لا بد من تقييد القرارات الآلية
+                بضوابط للمراجعة
+                والمساءلة والتدخل البشري.
+              </button>
+
+              <button
+                class="option-button"
+                data-correct="false"
+                type="button"
+              >
+                المشكلات الأخلاقية
+                لا ترتبط بطريقة تصميم
+                الأنظمة المستقلة.
+              </button>
+
+            </div>
+
+            <div
+              class="feedback"
+              id="criticalFeedback"
+            ></div>
+
+          </div>
+
+          <button
+            class="action-button"
+            id="showCriticalEvidence"
+            type="button"
+            disabled
+          >
+            اعرضي سبب صحة الإجابة والشواهد
+          </button>
+
+        </article>
+
+        <article
+          class="journey-card"
+          data-card="3-3"
+        >
+
+          <span class="card-label">
+            السبب والشواهد
+          </span>
+
+          <h3>
+            كيف قيّمنا موقف الكاتب؟
+          </h3>
+
+          <div class="evidence-card show">
+
+            <p>
+              <strong>
+                السبب:
+              </strong>
+
+              لأن الكاتب اعترف
+              بمزايا السرعة والدقة،
+              لكنه رفض اعتبارهما
+              مبررًا كافيًا
+              لتفويض القرارات كلها،
+              وطالب بضوابط واضحة
+              للمساءلة والرقابة.
+            </p>
+
+            <div class="evidence-quote">
+
+              <strong>
+                الشاهد الأول:
+              </strong>
+
+              «لا يحسم المشكلة الأخلاقية».
+            </div>
+
+            <div class="evidence-quote">
+
+              <strong>
+                الشاهد الثاني:
+              </strong>
+
+              «يجب تحديد القرارات
+              التي يجوز تفويضها إليه،
+              ووضع آليات للمراجعة
+              والمساءلة والتدخل البشري».
+            </div>
+
+          </div>
+
+          <div class="question-box">
+
+            <h3>
+              أي دليل كان أكثر قوة
+              في دعم موقف الكاتب؟
+            </h3>
+
+            <div class="options">
+
+              <button
+                class="option-button"
+                data-correct="false"
+                type="button"
+              >
+                أن الروبوتات
+                تبدو أكثر تطورًا
+                من الآلات التقليدية.
+              </button>
+
+              <button
+                class="option-button"
+                data-correct="true"
+                type="button"
+              >
+                أن القرار الآلي
+                قد يقوم على بيانات ناقصة،
+                مع غموض المسؤولية عن الخطأ.
+              </button>
+
+              <button
+                class="option-button"
+                data-correct="false"
+                type="button"
+              >
+                أن المستودعات الحديثة
+                تستخدم الروبوتات بكثرة.
+              </button>
+
+            </div>
+
+            <div
+              class="feedback"
+              id="criticalReasonFeedback"
+            ></div>
+
+          </div>
+
+          <button
+            class="action-button"
+            id="openCriticalAssessment"
+            type="button"
+            disabled
+          >
+            انتقلي إلى التقييم الذاتي
+          </button>
+
+        </article>
+                      <article
+          class="journey-card"
+          data-card="3-4"
+        >
+
+          <span class="card-label">
+            التقييم الذاتي
+          </span>
+
+          <h3>
+            كيف تصفين قدرتكِ
+            على القراءة الناقدة؟
+          </h3>
+
+          <div class="question-box">
+
+            <div class="options">
+
+              <button
+                class="option-button self-option"
+                data-level="strong"
+                type="button"
+              >
+                أقيّم قوة الدليل،
+                وأميّز بين المعلومة
+                والادعاء غير المدعوم.
+              </button>
+
+              <button
+                class="option-button self-option"
+                data-level="medium"
+                type="button"
+              >
+                أفهم موقف الكاتب،
+                لكنني أحتاج إلى تدريب
+                على مقارنة الأدلة.
+              </button>
+
+              <button
+                class="option-button self-option"
+                data-level="need-help"
+                type="button"
+              >
+                أختار الرأي الذي يعجبني
+                قبل فحص الشواهد
+                التي تدعمه.
+              </button>
+
+            </div>
+
+            <div
+              class="feedback"
+              id="criticalSelfFeedback"
+            ></div>
+
+            <div
+              class="evidence-card"
+              id="criticalExtraHelp"
+            >
+
+              <strong>
+                استراتيجية مساعدة:
+              </strong>
+
+              لا تسألي فقط:
+              هل أوافق الكاتب؟
+              بل اسألي:
+              ما دليله؟
+              وهل يكفي لإثبات حكمه؟
+              وهل تجاهل احتمالًا مهمًا؟
+
+            </div>
+
+          </div>
+
+          <button
+            class="action-button"
+            id="openCriticalReward"
+            type="button"
+            disabled
+          >
+            افتحي صندوق الإنجاز
+          </button>
+
+        </article>
+
+        <article
+          class="journey-card"
+          data-card="3-5"
+        >
+
+          <span class="card-label">
+            صندوق الإنجاز
+          </span>
+
+          <h3>
+            أتقنتِ السؤال النقدي
+          </h3>
+
+          <div class="definition-box">
+            أصبحتِ قادرة على
+            فحص الحجة،
+            وقياس قوة الدليل،
+            والتمييز بين الرأي
+            والمعلومة،
+            وإصدار حكم يستند إلى النص.
+          </div>
+
+          <div class="evidence-card show">
+
+            <strong>
+              وسامكِ:
+            </strong>
+
+            🏅 ناقدة الحجة والدليل
+
+          </div>
+
+          <button
+            class="action-button"
+            id="openAppliedType"
+            type="button"
+          >
+            انتقلي إلى السؤال التطبيقي
+          </button>
+
+        </article>
+
+      </section>
+
+      <section
+        class="type-section"
+        data-type-section="4"
+      >
+
+        <article
+          class="journey-card active"
+          data-card="4-0"
+        >
+
+          <span class="card-label">
+            بوابة السؤال التطبيقي
+          </span>
+
+          <h3>
+            كيف أتعرف إلى السؤال التطبيقي؟
+          </h3>
+
+          <div class="definition-box">
+            يطلب السؤال التطبيقي
+            نقل الفكرة أو المبدأ
+            من النص إلى موقف جديد،
+            ثم اختيار التصرف
+            الذي ينسجم مع ما تعلّمناه،
+            لا مجرد تكرار ألفاظ القطعة.
+          </div>
+
+          <button
+            class="action-button show-card"
+            data-show-card="4-1"
+            type="button"
+          >
+            فهمتُ التعريف، افتحي القطعة
+          </button>
+
+        </article>
+
+        <article
+          class="journey-card"
+          data-card="4-1"
+        >
+
+          <span class="card-label">
+            قطعة القراءة
+          </span>
+
+          <h3>
+            التوأم الرقمي
+            وإدارة المدن المستدامة
+          </h3>
+
+          <div class="reading-text">
+            تستخدم بعض المدن الحديثة
+            ما يعرف بالتوأم الرقمي،
+            وهو نموذج افتراضي
+            يتغير باستمرار
+            وفق البيانات القادمة
+            من المدينة الحقيقية.
+
+            ويستطيع هذا النموذج
+            محاكاة حركة المرور،
+            واستهلاك الطاقة،
+            وتدفق المياه،
+            وأثر المشروعات الجديدة
+            قبل تنفيذها على أرض الواقع.
+
+            وتكمن أهميته
+            في إتاحة تجربة السيناريوهات
+            من غير تعريض المدينة
+            لتكاليف أو مخاطر مباشرة؛
+            إذ يمكن للمخططين
+            اختبار أثر إغلاق طريق،
+            أو زيادة المساحات الخضراء،
+            أو تغيير توزيع وسائل النقل،
+            ثم مقارنة النتائج
+            قبل اتخاذ القرار النهائي.
+
+            غير أن دقة المحاكاة
+            تعتمد على جودة البيانات
+            وتحديثها باستمرار؛
+            فإذا كانت المعلومات ناقصة
+            أو قديمة،
+            فقد يقود النموذج
+            إلى قرارات تبدو علمية
+            لكنها لا تمثل الواقع بدقة.
+
+            ولهذا ينبغي التعامل
+            مع التوأم الرقمي
+            بوصفه أداة لدعم القرار،
+            لا بديلًا عن الخبرة الميدانية
+            ومراجعة احتياجات السكان.
+          </div>
+
+          <button
+            class="action-button show-card"
+            data-show-card="4-2"
+            type="button"
+          >
+            قرأتُ القطعة، افتحي السؤال
+          </button>
+
+        </article>
+
+        <article
+          class="journey-card"
+          data-card="4-2"
+        >
+
+          <span class="card-label">
+            السؤال التطبيقي
+          </span>
+
+          <div class="question-box">
+
+            <h3>
+              تخطط مدينة لإنشاء مسار نقل جديد.
+              أي إجراء يطبق فكرة القطعة
+              بصورة أدق؟
+            </h3>
+
+            <div class="options">
+
+              <button
+                class="option-button"
+                data-correct="false"
+                type="button"
+              >
+                تنفيذ المسار فورًا
+                اعتمادًا على تصميمه
+                دون دراسة أثره.
+              </button>
+
+              <button
+                class="option-button"
+                data-correct="true"
+                type="button"
+              >
+                محاكاة أثر المسار
+                على الازدحام والطاقة،
+                ثم مراجعة النتائج
+                مع البيانات الميدانية
+                وآراء السكان.
+              </button>
+
+              <button
+                class="option-button"
+                data-correct="false"
+                type="button"
+              >
+                الاعتماد على نموذج رقمي قديم
+                لأنه أقل تكلفة
+                من تحديث البيانات.
+              </button>
+
+            </div>
+
+            <div
+              class="feedback"
+              id="appliedFeedback"
+            ></div>
+
+          </div>
+
+          <button
+            class="action-button"
+            id="showAppliedEvidence"
+            type="button"
+            disabled
+          >
+            اعرضي سبب صحة الإجابة والشواهد
+          </button>
+
+        </article>
+                <article
+          class="journey-card"
+          data-card="4-3"
+        >
+
+          <span class="card-label">
+            السبب والشواهد
+          </span>
+
+          <h3>
+            كيف طبقنا فكرة القطعة؟
+          </h3>
+
+          <div class="evidence-card show">
+
+            <p>
+              <strong>
+                السبب:
+              </strong>
+
+              لأن الإجراء الصحيح
+              لم يكتفِ بالمحاكاة الرقمية،
+              بل جمع بين نتائج النموذج
+              والبيانات الميدانية
+              واحتياجات السكان،
+              وهو ما ينسجم مع الفكرة
+              المركزية في القطعة.
+            </p>
+
+            <div class="evidence-quote">
+
+              <strong>
+                الشاهد الأول:
+              </strong>
+
+              «يمكن للمخططين
+              اختبار أثر إغلاق طريق،
+              أو تغيير توزيع وسائل النقل،
+              ثم مقارنة النتائج
+              قبل اتخاذ القرار النهائي».
+            </div>
+
+            <div class="evidence-quote">
+
+              <strong>
+                الشاهد الثاني:
+              </strong>
+
+              «أداة لدعم القرار،
+              لا بديلًا عن الخبرة الميدانية
+              ومراجعة احتياجات السكان».
+            </div>
+
+          </div>
+
+          <div class="question-box">
+
+            <h3>
+              لماذا يُعد هذا السؤال
+              تطبيقيًا؟
+            </h3>
+
+            <div class="options">
+
+              <button
+                class="option-button"
+                data-correct="false"
+                type="button"
+              >
+                لأنه يطلب نقل جملة
+                من القطعة حرفيًا.
+              </button>
+
+              <button
+                class="option-button"
+                data-correct="true"
+                type="button"
+              >
+                لأنه ينقل مبدأ النص
+                إلى موقف جديد
+                لاختيار التصرف الأنسب.
+              </button>
+
+              <button
+                class="option-button"
+                data-correct="false"
+                type="button"
+              >
+                لأنه يعتمد على رأي شخصي
+                لا علاقة له بالنص.
+              </button>
+
+            </div>
+
+            <div
+              class="feedback"
+              id="appliedReasonFeedback"
+            ></div>
+
+          </div>
+
+          <button
+            class="action-button"
+            id="openAppliedAssessment"
+            type="button"
+            disabled
+          >
+            انتقلي إلى التقييم الذاتي
+          </button>
+
+        </article>
+
+        <article
+          class="journey-card"
+          data-card="4-4"
+        >
+
+          <span class="card-label">
+            التقييم الذاتي
+          </span>
+
+          <h3>
+            كيف تصفين قدرتكِ
+            على تطبيق أفكار النص؟
+          </h3>
+
+          <div class="question-box">
+
+            <div class="options">
+
+              <button
+                class="option-button self-option"
+                data-level="strong"
+                type="button"
+              >
+                أنقل المبدأ
+                إلى موقف جديد،
+                وأختار التصرف
+                الأكثر انسجامًا معه.
+              </button>
+
+              <button
+                class="option-button self-option"
+                data-level="medium"
+                type="button"
+              >
+                أفهم المبدأ،
+                لكنني أحتاج إلى تدريب
+                على تطبيقه في سياقات جديدة.
+              </button>
+
+              <button
+                class="option-button self-option"
+                data-level="need-help"
+                type="button"
+              >
+                أبحث عن عبارة مطابقة للنص
+                بدل فهم المبدأ
+                الذي يمكن تطبيقه.
+              </button>
+
+            </div>
+
+            <div
+              class="feedback"
+              id="appliedSelfFeedback"
+            ></div>
+
+            <div
+              class="evidence-card"
+              id="appliedExtraHelp"
+            >
+
+              <strong>
+                استراتيجية مساعدة:
+              </strong>
+
+              اسألي:
+              ما القاعدة التي تعلمتها
+              من القطعة؟
+              ثم طبقيها على الموقف الجديد
+              من غير التقيد بألفاظ النص.
+
+            </div>
+
+          </div>
+
+          <button
+            class="action-button"
+            id="openAppliedReward"
+            type="button"
+            disabled
+          >
+            افتحي صندوق الإنجاز
+          </button>
+
+        </article>
+
+        <article
+          class="journey-card"
+          data-card="4-5"
+        >
+
+          <span class="card-label">
+            صندوق الإنجاز
+          </span>
+
+          <h3>
+            أتقنتِ السؤال التطبيقي
+          </h3>
+
+          <div class="definition-box">
+            أصبحتِ قادرة على
+            استخراج المبدأ من النص،
+            ونقله إلى موقف جديد،
+            واختيار الإجراء
+            الذي ينسجم معه.
+          </div>
+
+          <div class="evidence-card show">
+
+            <strong>
+              وسامكِ:
+            </strong>
+
+            🏅 صانعة الحلول الذكية
+
+          </div>
+
+          <button
+            class="action-button"
+            id="finishJourney"
+            type="button"
+          >
+            إنهاء رحلة أنواع الأسئلة
+          </button>
+
+        </article>
+
+      </section>
+
+      <section
+        class="journey-card"
+        id="finalReward"
+      >
+
+        <span class="card-label">
+          الإنجاز الكبير
+        </span>
+
+        <h3>
+          أكملتِ رحلة أنواع الأسئلة
+        </h3>
+
+        <div class="definition-box">
+          أتقنتِ التمييز بين
+          السؤال الحرفي،
+          والاستنتاجي،
+          والتحليلي،
+          والنقدي،
+          والتطبيقي،
+          وأصبحتِ تربطين الإجابة
+          بسببها وشاهدها من النص.
+        </div>
+
+        <div class="evidence-card show">
+
+          <strong>
+            وسام المكتبة:
+          </strong>
+
+          🏆 قارئة نافس المتقدمة
+
+        </div>
+
+        <button
+          class="action-button"
+          id="restartJourney"
+          type="button"
+        >
+          إعادة الرحلة من البداية
+        </button>
+
+      </section>
+
+    </section>
 
   </main>
 
   <footer>
     جميع الحقوق محفوظة © 2026
   </footer>
+  
+    }  <style>
+    footer {
+      margin-top: 42px;
+      padding: 24px 16px;
+      color: white;
+      background: var(--purple-dark);
+      font-size: 14px;
+      font-weight: 700;
+    }
+  </style>
+
+  <script>
+    const libraryView =
+      document.getElementById("libraryView");
+
+    const lessonView =
+      document.getElementById("questionTypesLesson");
+
+    const finalReward =
+      document.getElementById("finalReward");
+
+    const typeSections =
+      document.querySelectorAll(".type-section");
+
+    const typeSteps =
+      document.querySelectorAll(".type-step");
+
+    function scrollToLesson() {
+      window.scrollTo({
+        top: lessonView.offsetTop - 15,
+        behavior: "smooth"
+      });
+    }
+
+    function showCard(cardCode) {
+      const typeNumber =
+        cardCode.split("-")[0];
+
+      const section =
+        document.querySelector(
+          '[data-type-section="' +
+          typeNumber +
+          '"]'
+        );
+
+      if (!section) {
+        return;
+      }
+
+      section
+        .querySelectorAll(".journey-card")
+        .forEach(function(card) {
+          card.classList.remove("active");
+        });
+
+      const targetCard =
+        section.querySelector(
+          '[data-card="' +
+          cardCode +
+          '"]'
+        );
+
+      if (targetCard) {
+        targetCard.classList.add("active");
+
+        setTimeout(function() {
+          targetCard.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+        }, 100);
+      }
+    }
+
+    function openType(typeNumber) {
+      typeSections.forEach(function(section) {
+        section.classList.remove("active");
+      });
+
+      const targetSection =
+        document.querySelector(
+          '[data-type-section="' +
+          typeNumber +
+          '"]'
+        );
+
+      if (targetSection) {
+        targetSection.classList.add("active");
+      }
+
+      typeSteps.forEach(function(step, index) {
+        step.classList.remove("active");
+
+        if (index < typeNumber) {
+          step.classList.add("done");
+        }
+
+        if (index === Number(typeNumber)) {
+          step.classList.add("active");
+        }
+      });
+
+      showCard(typeNumber + "-0");
+      scrollToLesson();
+    }
+
+    document
+      .querySelectorAll("[data-open-unit]")
+      .forEach(function(button) {
+        button.addEventListener(
+          "click",
+          function() {
+            libraryView.classList.add("hidden");
+            lessonView.classList.add("active");
+            finalReward.classList.remove("active");
+            openType(0);
+          }
+        );
+      });
+
+    document
+      .querySelector(".return-library")
+      .addEventListener(
+        "click",
+        function() {
+          lessonView.classList.remove("active");
+          libraryView.classList.remove("hidden");
+
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+          });
+        }
+      );
+
+    document
+      .querySelectorAll(".show-card")
+      .forEach(function(button) {
+        button.addEventListener(
+          "click",
+          function() {
+            showCard(
+              button.dataset.showCard
+            );
+          }
+        );
+      });
+
+    function prepareQuestion(
+      feedbackId,
+      nextButtonId,
+      nextCardCode
+    ) {
+      const feedback =
+        document.getElementById(feedbackId);
+
+      const nextButton =
+        document.getElementById(nextButtonId);
+
+      const questionBox =
+        feedback.closest(".question-box");
+
+      const options =
+        questionBox.querySelectorAll(
+          ".option-button"
+        );
+
+      options.forEach(function(option) {
+        option.addEventListener(
+          "click",
+          function() {
+            options.forEach(function(item) {
+              item.classList.remove(
+                "correct",
+                "wrong"
+              );
+            });
+
+            if (
+              option.dataset.correct === "true"
+            ) {
+              option.classList.add("correct");
+
+              feedback.textContent =
+                "إجابة صحيحة. أحسنتِ قراءة المطلوب والعودة إلى الدليل المناسب.";
+
+              feedback.classList.add("show");
+              nextButton.disabled = false;
+
+              nextButton.onclick =
+                function() {
+                  showCard(nextCardCode);
+                };
+            } else {
+              option.classList.add("wrong");
+
+              feedback.textContent =
+                "ليست الإجابة الأدق. ارجعي إلى السؤال وحددي ما يطلبه، ثم ابحثي عن الدليل الذي يثبته.";
+
+              feedback.classList.add("show");
+              nextButton.disabled = true;
+            }
+          }
+        );
+      });
+    }
+
+    prepareQuestion(
+      "literalFeedback",
+      "showLiteralEvidence",
+      "0-3"
+    );
+
+    prepareQuestion(
+      "literalReasonFeedback",
+      "openLiteralAssessment",
+      "0-4"
+    );
+
+    prepareQuestion(
+      "inferentialFeedback",
+      "showInferentialEvidence",
+      "1-3"
+    );
+
+    prepareQuestion(
+      "inferentialReasonFeedback",
+      "openInferentialAssessment",
+      "1-4"
+    );
+
+    prepareQuestion(
+      "analyticalFeedback",
+      "showAnalyticalEvidence",
+      "2-3"
+    );
+
+    prepareQuestion(
+      "analyticalReasonFeedback",
+      "openAnalyticalAssessment",
+      "2-4"
+    );
+
+    prepareQuestion(
+      "criticalFeedback",
+      "showCriticalEvidence",
+      "3-3"
+    );
+
+    prepareQuestion(
+      "criticalReasonFeedback",
+      "openCriticalAssessment",
+      "3-4"
+    );
+
+    prepareQuestion(
+      "appliedFeedback",
+      "showAppliedEvidence",
+      "4-3"
+    );
+
+    prepareQuestion(
+      "appliedReasonFeedback",
+      "openAppliedAssessment",
+      "4-4"
+      
+    );
+      function prepareSelfAssessment(
+      feedbackId,
+      helpId,
+      rewardButtonId,
+      rewardCardCode
+    ) {
+      const feedback =
+        document.getElementById(feedbackId);
+
+      const helpBox =
+        document.getElementById(helpId);
+
+      const rewardButton =
+        document.getElementById(rewardButtonId);
+
+      const questionBox =
+        feedback.closest(".question-box");
+
+      const options =
+        questionBox.querySelectorAll(
+          ".self-option"
+        );
+
+      options.forEach(function(option) {
+        option.addEventListener(
+          "click",
+          function() {
+            options.forEach(function(item) {
+              item.classList.remove(
+                "correct",
+                "wrong"
+              );
+            });
+
+            option.classList.add("correct");
+
+            if (
+              option.dataset.level === "strong"
+            ) {
+              feedback.textContent =
+                "ممتاز. يظهر أنكِ تتحكمين في المهارة وتستطيعين تفسير طريقة تفكيركِ.";
+              helpBox.classList.remove("show");
+            }
+
+            if (
+              option.dataset.level === "medium"
+            ) {
+              feedback.textContent =
+                "جيد جدًا. فهمكِ واضح، ومع تدريب إضافي ستصبح الاستجابة أسرع وأدق.";
+              helpBox.classList.add("show");
+            }
+
+            if (
+              option.dataset.level === "need-help"
+            ) {
+              feedback.textContent =
+                "اختيار صادق ومفيد. اقرئي الاستراتيجية المساعدة، ثم أعيدي تطبيقها على السؤال السابق.";
+              helpBox.classList.add("show");
+            }
+
+            feedback.classList.add("show");
+            rewardButton.disabled = false;
+
+            rewardButton.onclick =
+              function() {
+                showCard(rewardCardCode);
+              };
+          }
+        );
+      });
+    }
+
+    prepareSelfAssessment(
+      "literalSelfFeedback",
+      "literalExtraHelp",
+      "openLiteralReward",
+      "0-5"
+    );
+
+    prepareSelfAssessment(
+      "inferentialSelfFeedback",
+      "inferentialExtraHelp",
+      "openInferentialReward",
+      "1-5"
+    );
+
+    prepareSelfAssessment(
+      "analyticalSelfFeedback",
+      "analyticalExtraHelp",
+      "openAnalyticalReward",
+      "2-5"
+    );
+
+    prepareSelfAssessment(
+      "criticalSelfFeedback",
+      "criticalExtraHelp",
+      "openCriticalReward",
+      "3-5"
+    );
+
+    prepareSelfAssessment(
+      "appliedSelfFeedback",
+      "appliedExtraHelp",
+      "openAppliedReward",
+      "4-5"
+    );
+
+    document
+      .getElementById("openInferentialType")
+      .addEventListener(
+        "click",
+        function() {
+          openType(1);
+        }
+      );
+
+    document
+      .getElementById("openAnalyticalType")
+      .addEventListener(
+        "click",
+        function() {
+          openType(2);
+        }
+      );
+
+    document
+      .getElementById("openCriticalType")
+      .addEventListener(
+        "click",
+        function() {
+          openType(3);
+        }
+      );
+
+    document
+      .getElementById("openAppliedType")
+      .addEventListener(
+        "click",
+        function() {
+          openType(4);
+        }
+      );
+
+    document
+      .getElementById("finishJourney")
+      .addEventListener(
+        "click",
+        function() {
+          typeSections.forEach(function(section) {
+            section.classList.remove("active");
+          });
+
+          typeSteps.forEach(function(step) {
+            step.classList.remove("active");
+            step.classList.add("done");
+          });
+
+          finalReward.classList.add("active");
+
+          finalReward.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+
+          localStorage.setItem(
+            "nafesQuestionTypesComplete",
+            "true"
+          );
+        }
+      );
+
+    document
+      .getElementById("restartJourney")
+      .addEventListener(
+        "click",
+        function() {
+          finalReward.classList.remove("active");
+
+          document
+            .querySelectorAll(".option-button")
+            .forEach(function(option) {
+              option.classList.remove(
+                "correct",
+                "wrong"
+              );
+            });
+
+          document
+            .querySelectorAll(".feedback")
+            .forEach(function(box) {
+              box.classList.remove("show");
+              box.textContent = "";
+            });
+
+          document
+            .querySelectorAll(
+              ".evidence-card:not(.show)"
+            )
+            .forEach(function(box) {
+              box.classList.remove("show");
+            });
+
+          document
+            .querySelectorAll(
+              ".action-button:disabled"
+            )
+            .forEach(function(button) {
+              button.disabled = true;
+            });
+
+          localStorage.removeItem(
+            "nafesQuestionTypesComplete"
+          );
+
+          openType(0);
+        }
+      );
+
+    if (
+      localStorage.getItem(
+        "nafesQuestionTypesComplete"
+      ) === "true"
+    ) {
+      const firstLockedButton =
+        document.querySelector(
+          ".unit-card.green .open-unit"
+        );
+
+      if (firstLockedButton) {
+        firstLockedButton.textContent =
+          "أُنجزت وحدة أنواع الأسئلة";
+      }
+    }
+  </script>
 
 </body>
-
 </html>
