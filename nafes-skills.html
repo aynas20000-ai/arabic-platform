@@ -1,83 +1,3744 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>مهارات نافس</title>
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    دليل نافس للفهم العميق | منصة آفاق اللغة
+  </title>
 
   <style>
-    body{
-      margin:0;
-      font-family:Tahoma,Arial,sans-serif;
-      background:#f5f5f5;
-      text-align:center;
+    * {
+      box-sizing: border-box;
     }
 
-    header{
-      background:#1565c0;
-      color:white;
-      padding:35px 20px;
+    :root {
+      --purple-dark: #49385c;
+      --purple: #6f5288;
+      --purple-soft: #776094;
+      --purple-light: #f5ecfb;
+      --gold: #c9a85c;
+      --gold-light: #fff6dc;
+      --cream: #fffdf8;
+      --text: #4b3a57;
+      --muted: #74687b;
+      --green: #3f896b;
+      --green-light: #eaf7f1;
+      --blue: #547fa5;
+      --blue-light: #edf5fb;
+      --rose: #bd6a83;
+      --rose-light: #fff0f4;
+      --orange: #bb7a35;
+      --orange-light: #fff3e3;
     }
 
-    section{
-      background:white;
-      margin:30px auto;
-      padding:25px;
-      width:85%;
-      max-width:650px;
-      border-radius:18px;
-      box-shadow:0 4px 15px rgba(0,0,0,0.12);
+    html {
+      width: 100%;
+      max-width: 100%;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
     }
 
-    .card{
-      background:#eaf3ff;
-      margin:15px 0;
-      padding:18px;
-      border-radius:12px;
-      font-size:20px;
+    body {
+      width: 100%;
+      max-width: 100%;
+      min-height: 100vh;
+      margin: 0;
+      overflow-x: hidden;
+      font-family: Tahoma, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(
+          circle at top right,
+          rgba(255, 239, 200, 0.76),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at bottom left,
+          rgba(228, 210, 242, 0.82),
+          transparent 40%
+        ),
+        linear-gradient(
+          145deg,
+          #fffaf2,
+          #f8f0fb
+        );
     }
 
-    a{
-      color:#1565c0;
-      text-decoration:none;
-      font-weight:bold;
+    button {
+      font-family: inherit;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    footer{
-      background:#222;
-      color:white;
-      padding:20px;
-      margin-top:30px;
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 70;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 5%;
+      color: white;
+      background: linear-gradient(
+        135deg,
+        #776094,
+        #5b4677
+      );
+      box-shadow: 0 6px 22px rgba(73, 56, 92, 0.22);
+    }
+
+    .brand {
+      color: #fff8df;
+      font-size: 19px;
+      font-weight: bold;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px 14px;
+      border-radius: 24px;
+      color: white;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: bold;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.38);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 52px 18px 62px;
+      color: white;
+      text-align: center;
+      border-radius: 0 0 58px 58px;
+      background: linear-gradient(
+        145deg,
+        #776094,
+        #5b4677
+      );
+      box-shadow: 0 14px 34px rgba(73, 56, 92, 0.22);
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .hero::before {
+      width: 220px;
+      height: 220px;
+      top: -115px;
+      right: -65px;
+    }
+
+    .hero::after {
+      width: 165px;
+      height: 165px;
+      bottom: -85px;
+      left: -50px;
+    }
+
+    .hero-icon {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 105px;
+      height: 105px;
+      margin: 0 auto 20px;
+      border-radius: 32px;
+      font-size: 55px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 3px solid rgba(255, 255, 255, 0.36);
+      box-shadow: 0 10px 24px rgba(44, 27, 58, 0.13);
+    }
+
+    .hero h1 {
+      position: relative;
+      z-index: 2;
+      max-width: 820px;
+      margin: 0 auto 8px;
+      color: #fff8df;
+      font-size: 38px;
+      line-height: 1.7;
+    }
+
+    .hero h2 {
+      position: relative;
+      z-index: 2;
+      margin: 0 auto 13px;
+      color: white;
+      font-size: 21px;
+      font-weight: normal;
+      line-height: 1.8;
+    }
+
+    .hero p {
+      position: relative;
+      z-index: 2;
+      max-width: 780px;
+      margin: auto;
+      color: #f7effb;
+      font-size: 16px;
+      line-height: 2;
+    }
+
+    main {
+      width: min(980px, 94%);
+      margin: 34px auto 55px;
+    }
+
+    .welcome-card {
+      margin-bottom: 25px;
+      padding: 24px;
+      border-radius: 26px;
+      text-align: center;
+      background: var(--cream);
+      border: 1px solid rgba(93, 67, 116, 0.14);
+      border-right: 7px solid var(--gold);
+      box-shadow: 0 12px 30px rgba(73, 56, 92, 0.12);
+    }
+
+    .welcome-card h3 {
+      margin: 0 0 9px;
+      color: var(--purple);
+      font-size: 24px;
+      line-height: 1.7;
+    }
+
+    .welcome-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 2;
+    }
+
+    .progress-card {
+      margin-bottom: 28px;
+      padding: 20px;
+      border-radius: 23px;
+      background: var(--cream);
+      border: 1px solid rgba(93, 67, 116, 0.14);
+      box-shadow: 0 10px 27px rgba(73, 56, 92, 0.11);
+    }
+
+    .progress-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 13px;
+    }
+
+    .progress-title {
+      color: var(--purple-dark);
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .progress-number {
+      padding: 7px 12px;
+      border-radius: 20px;
+      color: var(--purple);
+      background: var(--purple-light);
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 12px;
+      overflow: hidden;
+      border-radius: 30px;
+      background: #ece4f1;
+    }
+
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      border-radius: 30px;
+      background: linear-gradient(
+        90deg,
+        #c9a85c,
+        #8a69a3
+      );
+      transition: width 0.4s ease;
+    }
+
+    .section-heading {
+      margin: 34px 0 20px;
+      text-align: center;
+    }
+
+    .section-heading h2 {
+      margin: 0 0 8px;
+      color: var(--purple-dark);
+      font-size: 29px;
+      line-height: 1.7;
+    }
+
+    .section-heading p {
+      max-width: 730px;
+      margin: auto;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.9;
+    }
+
+    .levels-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+
+    .level-card {
+      padding: 20px 15px;
+      border-radius: 22px;
+      text-align: center;
+      background: var(--cream);
+      border: 1px solid rgba(93, 67, 116, 0.14);
+      box-shadow: 0 9px 22px rgba(73, 56, 92, 0.09);
+    }
+
+    .level-card:nth-child(1) {
+      border-top: 6px solid var(--blue);
+    }
+
+    .level-card:nth-child(2) {
+      border-top: 6px solid var(--green);
+    }
+
+    .level-card:nth-child(3) {
+      border-top: 6px solid var(--rose);
+    }
+
+    .level-card:nth-child(4) {
+      border-top: 6px solid var(--gold);
+    }
+
+    .level-icon {
+      margin-bottom: 9px;
+      font-size: 34px;
+    }
+
+    .level-card h3 {
+      margin: 0 0 7px;
+      color: var(--purple-dark);
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .level-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .units-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .unit-card {
+      position: relative;
+      overflow: hidden;
+      padding: 23px;
+      border-radius: 26px;
+      background: var(--cream);
+      border: 1px solid rgba(93, 67, 116, 0.14);
+      box-shadow: 0 12px 28px rgba(73, 56, 92, 0.11);
+      transition:
+        transform 0.22s,
+        box-shadow 0.22s;
+    }
+
+    .unit-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 17px 34px rgba(73, 56, 92, 0.16);
+    }
+
+    .unit-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 7px;
+      background: var(--purple);
+    }
+
+    .unit-card.gold::before {
+      background: var(--gold);
+    }
+
+    .unit-card.green::before {
+      background: var(--green);
+    }
+
+    .unit-card.blue::before {
+      background: var(--blue);
+    }
+
+    .unit-card.rose::before {
+      background: var(--rose);
+    }
+
+    .unit-card.orange::before {
+      background: var(--orange);
+    }
+
+    .unit-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .unit-icon {
+      display: flex;
+      flex: 0 0 58px;
+      align-items: center;
+      justify-content: center;
+      width: 58px;
+      height: 58px;
+      border-radius: 19px;
+      font-size: 31px;
+      background: var(--purple-light);
+    }
+
+    .unit-card.gold .unit-icon {
+      background: var(--gold-light);
+    }
+
+    .unit-card.green .unit-icon {
+      background: var(--green-light);
+    }
+
+    .unit-card.blue .unit-icon {
+      background: var(--blue-light);
+    }
+
+    .unit-card.rose .unit-icon {
+      background: var(--rose-light);
+    }
+
+    .unit-card.orange .unit-icon {
+      background: var(--orange-light);
+    }
+
+    .unit-title small {
+      display: block;
+      margin-bottom: 3px;
+      color: #9684a1;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .unit-title h3 {
+      margin: 0;
+      color: var(--purple-dark);
+      font-size: 21px;
+      line-height: 1.6;
+    }
+
+    .unit-card p {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .unit-list {
+      margin: 0 0 17px;
+      padding: 0 18px 0 0;
+      color: #65586d;
+      font-size: 13px;
+      line-height: 1.9;
+      text-align: right;
+    }
+
+    .open-unit-btn {
+      width: 100%;
+      padding: 13px 15px;
+      border: 0;
+      border-radius: 15px;
+      color: white;
+      background: #6f5288;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .unit-card.gold .open-unit-btn {
+      background: #a27e31;
+    }
+
+    .unit-card.green .open-unit-btn {
+      background: #3f896b;
+    }
+
+    .unit-card.blue .open-unit-btn {
+      background: #547fa5;
+    }
+
+    .unit-card.rose .open-unit-btn {
+      background: #a65570;
+    }
+
+    .unit-card.orange .open-unit-btn {
+      background: #a86c2c;
+    }
+
+    .lesson-panel {
+      display: none;
+      margin-top: 26px;
+      padding: 24px;
+      border-radius: 28px;
+      background: var(--cream);
+      border: 1px solid rgba(93, 67, 116, 0.14);
+      box-shadow: 0 15px 35px rgba(73, 56, 92, 0.14);
+    }
+
+    .lesson-panel.active {
+      display: block;
+      animation: appear 0.4s ease;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .lesson-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .lesson-head h2 {
+      margin: 0 0 5px;
+      color: var(--purple-dark);
+      font-size: 27px;
+      line-height: 1.6;
+    }
+
+    .lesson-head p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .close-btn {
+      flex: 0 0 auto;
+      padding: 9px 13px;
+      border: 0;
+      border-radius: 14px;
+      color: var(--purple);
+      background: var(--purple-light);
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .lesson-content {
+      text-align: right;
+    }
+
+    .content-box {
+      margin-bottom: 17px;
+      padding: 18px;
+      border-radius: 19px;
+      line-height: 2;
+      background: #fbf7ff;
+      border-right: 5px solid var(--purple);
+    }
+
+    .content-box.gold {
+      background: var(--gold-light);
+      border-right-color: var(--gold);
+    }
+
+    .content-box.green {
+      background: var(--green-light);
+      border-right-color: var(--green);
+    }
+
+    .content-box.blue {
+      background: var(--blue-light);
+      border-right-color: var(--blue);
+    }
+
+    .content-box.rose {
+      background: var(--rose-light);
+      border-right-color: var(--rose);
+    }
+
+    .content-box h3 {
+      margin: 0 0 7px;
+      color: var(--purple-dark);
+      font-size: 19px;
+    }
+
+    .content-box p {
+      margin: 0;
+      color: #62566a;
+      font-size: 15px;
+      line-height: 2;
+    }
+
+    .example {
+      margin-top: 12px;
+      padding: 15px;
+      border-radius: 16px;
+      color: #55465e;
+      background: white;
+      border: 1px solid rgba(93, 67, 116, 0.15);
+      line-height: 2;
+    }
+
+    .question-box {
+      margin-top: 19px;
+      padding: 20px;
+      border-radius: 21px;
+      background: var(--gold-light);
+      border: 1px solid rgba(201, 168, 92, 0.42);
+    }
+
+    .question-box h3 {
+      margin: 0 0 8px;
+      color: #6d5222;
+      font-size: 19px;
+      line-height: 1.7;
+    }
+
+    .question-box p {
+      margin: 0 0 14px;
+      color: #76613a;
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .choices {
+      display: grid;
+      gap: 10px;
+    }
+
+    .choice-btn {
+      width: 100%;
+      padding: 13px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(111, 82, 136, 0.2);
+      color: var(--text);
+      text-align: right;
+      background: white;
+      cursor: pointer;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .choice-btn.selected {
+      color: white;
+      border-color: var(--purple);
+      background: linear-gradient(
+        135deg,
+        #776094,
+        #5b4677
+      );
+    }
+
+    .feedback {
+      display: none;
+      margin-top: 14px;
+      padding: 15px;
+      border-radius: 16px;
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .feedback.show {
+      display: block;
+    }
+
+    .feedback.good {
+      color: #2d624d;
+      background: var(--green-light);
+      border-right: 5px solid var(--green);
+    }
+
+    .feedback.guide {
+      color: #71485a;
+      background: var(--rose-light);
+      border-right: 5px solid var(--rose);
+    }
+
+    .lesson-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .lesson-nav button {
+      flex: 1;
+      min-height: 46px;
+      padding: 12px 15px;
+      border: 0;
+      border-radius: 15px;
+      color: white;
+      background: #6f5288;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .lesson-nav button.secondary {
+      color: var(--purple);
+      background: var(--purple-light);
+    }
+
+    footer {
+      margin-top: 45px;
+      padding: 22px 13px;
+      color: white;
+      text-align: center;
+      background: #49385c;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 760px) {
+      .hero {
+        padding: 46px 16px 56px;
+        border-radius: 0 0 50px 50px;
+      }
+
+      .hero h1 {
+        font-size: 31px;
+      }
+
+      .hero h2 {
+        font-size: 18px;
+      }
+
+      .hero p {
+        font-size: 15px;
+      }
+
+      .levels-grid,
+      .units-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .lesson-head {
+        flex-direction: column;
+      }
+
+      .close-btn {
+        width: 100%;
+      }
+
+      .lesson-nav {
+        flex-direction: column-reverse;
+      }
+
+      .lesson-nav button {
+        width: 100%;
+      }
     }
   </style>
 </head>
 
 <body>
 
-<header>
-  <h1>🎯 مهارات نافس</h1>
-  <p>مهارات الفهم القرائي لطالبات المرحلة المتوسطة</p>
-</header>
+  <header class="topbar">
 
-<section>
-  <h2>محتويات مهارات نافس</h2>
+    <div class="brand">
+      منصة آفاق اللغة
+    </div>
 
-  <div class="card">🔤 المفردات في السياق</div>
-  <div class="card">💡 الفكرة الرئيسة</div>
-  <div class="card">📝 الأفكار الفرعية</div>
-  <div class="card">🔍 الاستنتاج</div>
-  <div class="card">🔮 التوقع</div>
-  <div class="card">⚖️ الحقيقة والرأي</div>
-  <div class="card">🔗 المقارنة بين نصين</div>
-  <div class="card">🛡️ الحجج والأدلة</div>
-  <div class="card">📋 التلخيص</div>
+    <a
+      class="back-link"
+      href="nafes.html"
+    >
+      العودة إلى نافس
+    </a>
 
-  <p><a href="nafes.html">العودة إلى صفحة نافس</a></p>
-</section>
+  </header>
 
-<footer>
-  جميع الحقوق محفوظة © 2026
-</footer>
+  <section class="hero">
+
+    <div class="hero-icon">
+      🧠
+    </div>
+
+    <h1>
+      دليل نافس للفهم العميق
+    </h1>
+
+    <h2>
+      من قراءة النص إلى اختيار الإجابة الأدق
+    </h2>
+
+    <p>
+      ملزمة تفاعلية تساعدكِ على فهم أنواع الأسئلة،
+      وتحليل النصوص، وكشف البدائل المضللة،
+      وبناء طريقة تفكير ناضجة تستفيدين منها
+      في نافس والقدرات والتحصيلي والمرحلة الثانوية.
+    </p>
+
+  </section>
+
+  <main>
+
+    <section class="welcome-card">
+
+      <h3>
+        هنا لا نحفظ الإجابة… بل نتعلم كيف نصل إليها
+      </h3>
+
+      <p>
+        كل وحدة تشرح المهارة، وتعرض مثالًا محلولًا،
+        وتكشف الخطأ الشائع، ثم تمنحكِ تدريبًا تفاعليًا
+        يوضح لماذا كان خيار ما أدق من غيره.
+      </p>
+
+    </section>
+
+    <section class="progress-card">
+
+      <div class="progress-top">
+
+        <div class="progress-title">
+          تقدمكِ في الملزمة
+        </div>
+
+        <div
+          class="progress-number"
+          id="progressNumber"
+        >
+          ٠ من ١٠
+        </div>
+
+      </div>
+
+      <div class="progress-track">
+
+        <div
+          class="progress-fill"
+          id="progressFill"
+        ></div>
+
+      </div>
+
+    </section>
+
+    <section class="section-heading">
+
+      <h2>
+        مستويات الفهم القرائي
+      </h2>
+
+      <p>
+        قبل حل أي سؤال، حددي مستوى التفكير المطلوب؛
+        لأن كلمة واحدة في صياغة السؤال قد تغيّر طريقة الحل كاملة.
+      </p>
+
+    </section>
+
+    <section class="levels-grid">
+
+      <article class="level-card">
+
+        <div class="level-icon">
+          📌
+        </div>
+
+        <h3>
+          الفهم الحرفي
+        </h3>
+
+        <p>
+          معلومات وردت صراحة في النص:
+          من، أين، متى، ماذا، وكم.
+        </p>
+
+      </article>
+
+      <article class="level-card">
+
+        <div class="level-icon">
+          🔍
+        </div>
+
+        <h3>
+          الفهم الاستنتاجي
+        </h3>
+
+        <p>
+          معنى يُفهم من القرائن،
+          لكنه لا يرد بالنص حرفيًا.
+        </p>
+
+      </article>
+
+      <article class="level-card">
+
+        <div class="level-icon">
+          ⚖️
+        </div>
+
+        <h3>
+          الفهم النقدي
+        </h3>
+
+        <p>
+          الحكم على الرأي والدليل
+          والمصدر وقوة الحجة.
+        </p>
+
+      </article>
+
+      <article class="level-card">
+
+        <div class="level-icon">
+          💡
+        </div>
+
+        <h3>
+          الفهم التطبيقي
+        </h3>
+
+        <p>
+          نقل الفكرة إلى موقف جديد،
+          واقتراح حل أو نتيجة.
+        </p>
+
+      </article>
+
+    </section>
+
+    <section class="section-heading">
+
+      <h2>
+        وحدات الملزمة
+      </h2>
+
+      <p>
+        ابدئي من الوحدة الأولى، ثم انتقلي بالتدرج؛
+        فكل وحدة تمهّد لما بعدها.
+      </p>
+
+    </section>
+
+    <section
+      class="units-grid"
+      id="unitsGrid"
+    >
+
+      <article class="unit-card">
+
+        <div class="unit-top">
+
+          <div class="unit-icon">
+            🚪
+          </div>
+
+          <div class="unit-title">
+
+            <small>
+              الوحدة الأولى
+            </small>
+
+            <h3>
+              بوابة نافس
+            </h3>
+
+          </div>
+
+        </div>
+
+        <p>
+          تعرّفي إلى طبيعة الاختبار،
+          وكيفية قراءة التعليمات والتظليل وإدارة الوقت.
+        </p>
+
+        <ul class="unit-list">
+          <li>لماذا نافس مهم؟</li>
+          <li>طريقة التظليل الصحيحة.</li>
+          <li>إدارة الوقت والمراجعة.</li>
+        </ul>
+
+        <button
+          class="open-unit-btn"
+          type="button"
+          data-unit="0"
+        >
+          افتحي الوحدة
+        </button>
+
+      </article>
+
+      <article class="unit-card gold">
+
+        <div class="unit-top">
+
+          <div class="unit-icon">
+            🧭
+          </div>
+
+          <div class="unit-title">
+
+            <small>
+              الوحدة الثانية
+            </small>
+
+            <h3>
+              أنواع الأسئلة
+            </h3>
+
+          </div>
+
+        </div>
+
+        <p>
+          فرّقي بين السؤال الحرفي والاستنتاجي
+          والتحليلي والنقدي والتطبيقي.
+        </p>
+
+        <ul class="unit-list">
+          <li>كلمات تكشف نوع السؤال.</li>
+          <li>طريقة التفكير المناسبة.</li>
+          <li>أمثلة من نصوص متنوعة.</li>
+        </ul>
+
+        <button
+          class="open-unit-btn"
+          type="button"
+          data-unit="1"
+        >
+          افتحي الوحدة
+        </button>
+
+      </article>
+
+      <article class="unit-card green">
+
+        <div class="unit-top">
+
+          <div class="unit-icon">
+            🔤
+          </div>
+
+          <div class="unit-title">
+
+            <small>
+              الوحدة الثالثة
+            </small>
+
+            <h3>
+              صيد المعنى
+            </h3>
+
+              <footer>
+    جميع الحقوق محفوظة © 2026
+  </footer>
+
+  <script>
+    const units = [
+      {
+        title: "بوابة نافس",
+        subtitle:
+          "ابدئي بفهم طبيعة التحدي، ثم ادخلي الاختبار بخطة هادئة وواضحة.",
+
+        content: `
+          <div class="content-box">
+
+            <h3>
+              ما اختبار نافس؟
+            </h3>
+
+            <p>
+              نافس اختبار وطني يقيس ما اكتسبته الطالبة
+              من معارف ومهارات، ولا يعتمد على حفظ درس واحد
+              أو استرجاع عبارة محددة من الكتاب.
+              في القراءة، يقيس قدرتكِ على فهم النص،
+              واستخراج المعلومات، وربط الأفكار،
+              والاستنتاج، والحكم على الأدلة والآراء.
+            </p>
+
+          </div>
+
+          <div class="content-box gold">
+
+            <h3>
+              لماذا يفيدكِ هذا التدريب؟
+            </h3>
+
+            <p>
+              لأن المهارات التي تستخدمينها في نافس
+              سترافقكِ بعد المرحلة المتوسطة:
+              قراءة السؤال بدقة، وفهم المطلوب،
+              واستبعاد الإجابات غير المناسبة،
+              واختيار الدليل الأقوى.
+              وهذه مهارات نافعة في المرحلة الثانوية
+              واختبارات القدرات والتحصيلي والحياة الدراسية كلها.
+            </p>
+
+          </div>
+
+          <div class="content-box blue">
+
+            <h3>
+              خطة التعامل مع ورقة الاختبار
+            </h3>
+
+            <p>
+              اقرئي التعليمات قبل البدء،
+              وتأكدي من مطابقة رقم السؤال
+              مع رقم الإجابة في ورقة التظليل.
+              ظللي الدائرة المطلوبة بوضوح،
+              ولا تضعي أكثر من اختيار للسؤال نفسه.
+              وعند تعديل الإجابة، امسحي الاختيار السابق جيدًا
+              قبل تظليل الاختيار الجديد.
+            </p>
+
+            <div class="example">
+              <strong>
+                انتبهي:
+              </strong>
+
+              قد تعرفين الإجابة الصحيحة،
+              لكن تظليلها في رقم سؤال مختلف
+              يجعلها تُحسب خطأ؛ لذلك راجعي أرقام الأسئلة
+              على فترات، ولا تنتظري نهاية الاختبار فقط.
+            </div>
+
+          </div>
+
+          <div class="content-box green">
+
+            <h3>
+              إدارة الوقت بطريقة ذكية
+            </h3>
+
+            <p>
+              لا تمنحي سؤالًا واحدًا معظم وقتكِ.
+              ابدئي بما يمكنكِ حله،
+              وضعي علامة ذهنية على السؤال الذي يحتاج عودة.
+              عند التردد بين خيارين، حددي سبب ترددكِ:
+              هل نسيتِ معلومة؟ أم أن الخيارين متقاربان؟
+              ثم عودي إلى النص وابحثي عن الدليل.
+            </p>
+
+            <div class="example">
+              <strong>
+                قاعدة عملية:
+              </strong>
+
+              اقرأِي، حددي المطلوب، ابحثي عن الدليل،
+              استبعدي، ثم اختاري.
+              لا تغيّري إجابتكِ لمجرد شعور عابر؛
+              غيّريها عندما تجدين دليلًا أوضح.
+            </div>
+
+          </div>
+
+          <div class="content-box rose">
+
+            <h3>
+              قبل أن تبدئي الحل
+            </h3>
+
+            <p>
+              خذي نفسًا هادئًا،
+              واقرئي عنوان النص ومصدره إن وُجد.
+              لاحظي هل النص قصة، أم مقال علمي،
+              أم إعلان، أم جدول.
+              تحديد نوع النص يساعدكِ على توقع
+              طريقة تنظيم المعلومات داخله.
+            </p>
+
+          </div>
+
+          <div class="question-box">
+
+            <h3>
+              تدريب الوحدة
+            </h3>
+
+            <p>
+              واجهت طالبة سؤالًا صعبًا،
+              فبقيت عليه وقتًا طويلًا
+              وتركت عددًا من الأسئلة دون إجابة.
+              ما التصرف الأدق؟
+            </p>
+
+            <div class="choices">
+
+              <button
+                class="choice-btn"
+                type="button"
+                data-type="guide"
+                data-feedback="الإصرار على سؤال واحد قد يستهلك وقت الأسئلة التي تستطيعين حلها. الأفضل العودة إليه بعد إنجاز بقية الأسئلة."
+              >
+                أبقى عنده حتى أصل إلى إجابة،
+                مهما استغرق من الوقت.
+              </button>
+
+              <button
+                class="choice-btn"
+                type="button"
+                data-type="good"
+                data-feedback="صحيح؛ ترك السؤال مؤقتًا يحفظ وقتكِ، ثم تعودين إليه بعقل أهدأ وبعد إكمال الأسئلة الأخرى."
+              >
+                أحدد السؤال للعودة إليه،
+                وأنتقل مؤقتًا إلى ما بعده.
+              </button>
+
+              <button
+                class="choice-btn"
+                type="button"
+                data-type="guide"
+                data-feedback="اختيار إجابة عشوائية مباشرة لا يستفيد من وقت المراجعة. اتركيه مؤقتًا ثم عودي إلى النص والدليل."
+              >
+                أختار أول إجابة تظهر أمامي
+                ولا أعود إلى السؤال.
+              </button>
+
+            </div>
+
+            <div class="feedback"></div>
+
+          </div>
+        `
+      },
+
+      {
+        title: "أنواع الأسئلة",
+        subtitle:
+          "صياغة السؤال تكشف مستوى الفهم والطريقة المناسبة للوصول إلى الإجابة.",
+
+        content: `
+          <div class="content-box">
+
+            <h3>
+              أولًا: الأسئلة الحرفية
+            </h3>
+
+            <p>
+              إجابتها مذكورة صراحة في النص.
+              تسأل عادة عن شخص أو مكان أو زمن
+              أو عدد أو حدث أو سبب ورد بوضوح.
+              ومن كلماتها:
+              ورد في النص، ذكر الكاتب، حدث،
+              بلغ عدد، وقع في، أو بحسب الفقرة.
+            </p>
+
+            <div class="example">
+              <strong>
+                مثال:
+              </strong>
+
+              «انطلقت الحملة صباح الأحد
+              بمشاركة خمسين متطوعة».
+
+              <br>
+
+              السؤال:
+              متى انطلقت الحملة؟
+
+              <br>
+
+              الإجابة:
+              صباح الأحد؛ لأنها معلومة وردت حرفيًا.
+            </div>
+
+          </div>
+
+          <div class="content-box green">
+
+            <h3>
+              ثانيًا: الأسئلة الاستنتاجية
+            </h3>
+
+            <p>
+              لا تجدين الإجابة مكتوبة بالنص
+              بالكلمات نفسها، لكنكِ تصلين إليها
+              من قرينة أو أكثر.
+              ومن صيغها:
+              يُفهم من، نستنتج، تدل العبارة،
+              توحي الفقرة، أو ما الصفة التي تتصف بها الشخصية؟
+            </p>
+
+            <div class="example">
+              <strong>
+                مثال:
+              </strong>
+
+              «أعاد سالم المحفظة إلى صاحبها،
+              ورفض أخذ المكافأة».
+
+              <br>
+
+              نستنتج أن سالم:
+              أمين ولا يجعل عمله الصالح وسيلة للحصول على المال.
+
+              <br>
+
+              الدليل:
+              أعاد المحفظة ورفض المكافأة.
+            </div>
+
+          </div>
+
+          <div class="content-box blue">
+
+            <h3>
+              ثالثًا: الأسئلة التحليلية والتفسيرية
+            </h3>
+
+            <p>
+              تبحث في بناء النص والعلاقات بين أجزائه:
+              السبب والنتيجة، المشكلة والحل،
+              التسلسل، المقارنة، الفكرة الرئيسة،
+              أثر العنوان، أو العلاقة بين فقرتين.
+            </p>
+
+            <div class="example">
+              <strong>
+                مثال:
+              </strong>
+
+              إذا عرض النص نقص المياه،
+              ثم ذكر وسائل الترشيد،
+              فالعلاقة بين الجزأين:
+              مشكلة وحلول مقترحة.
+            </div>
+
+          </div>
+
+          <div class="content-box rose">
+
+            <h3>
+              رابعًا: الأسئلة النقدية
+            </h3>
+
+            <p>
+              تطلب الحكم على صدق الفكرة،
+              أو قوة الدليل، أو موثوقية المصدر،
+              أو التمييز بين الحقيقة والرأي،
+              أو اكتشاف التحيز والمبالغة.
+            </p>
+
+            <div class="example">
+              <strong>
+                مثال:
+              </strong>
+
+              أي دليل أقوى على أثر النوم في التركيز؟
+
+              <br>
+
+              دراسة علمية منشورة على عينة واضحة
+              أقوى من تجربة شخص واحد يقول:
+              «شعرت أنني أفضل».
+            </div>
+
+          </div>
+
+          <div class="content-box gold">
+
+            <h3>
+              خامسًا: الأسئلة التطبيقية والإبداعية
+            </h3>
+
+            <p>
+              تنقل فكرة النص إلى موقف جديد،
+              مثل اختيار تصرف مناسب،
+              أو توقع نتيجة عند تغير أحد العناصر،
+              أو اقتراح عنوان أو حل بديل.
+            </p>
+
+            <div class="example">
+              <strong>
+                مثال:
+              </strong>
+
+              إذا أوصى النص بتقليل هدر الطعام،
+              فأي موقف يطبق فكرته؟
+
+              <br>
+
+              أخذ الكمية التي يحتاجها الشخص فقط،
+              وحفظ الباقي بطريقة مناسبة.
+            </div>
+
+          </div>
+
+          <div class="content-box">
+
+            <h3>
+              كلمات صغيرة تغيّر المطلوب
+            </h3>
+
+            <p>
+              <strong>ورد في النص:</strong>
+              ابحثي عن معلومة صريحة.
+
+              <br>
+
+              <strong>يُفهم من النص:</strong>
+              اجمعي القرائن واستنتجي.
+
+              <br>
+
+              <strong>الأدق:</strong>
+              قارني بين بدائل متقاربة.
+
+              <br>
+
+              <strong>ما عدا أو ليس:</strong>
+              حددي المطلوب العكسي قبل قراءة الخيارات.
+
+              <br>
+
+              <strong>أفضل عنوان:</strong>
+              اختاري عنوانًا يشمل الفكرة الكبرى،
+              لا تفصيلًا صغيرًا.
+            </p>
+
+          </div>
+
+          <div class="question-box">
+
+            <h3>
+              تدريب الوحدة
+            </h3>
+
+            <p>
+              قرأتِ السؤال:
+              «يُفهم من تصرف الشخصية في الفقرة الثالثة أنها…»
+              فما نوع السؤال؟
+            </p>
+
+            <div class="choices">
+
+              <button
+                class="choice-btn"
+                type="button"
+                data-type="guide"
+                data-feedback="السؤال لا يطلب معلومة مكتوبة حرفيًا، بل صفة تُفهم من التصرف."
+              >
+                سؤال حرفي مباشر.
+              </button>
+
+              <button
+                class="choice-btn"
+                type="button"
+                data-type="good"
+                data-feedback="صحيح؛ عبارة «يُفهم من» تدل على أن المطلوب استنتاج مبني على قرائن النص."
+              >
+                سؤال استنتاجي.
+              </button>
+
+              <button
+                class="choice-btn"
+                type="button"
+                data-type="guide"
+                data-feedback="السؤال لا يطلب الحكم على دليل أو مصدر؛ بل استنتاج صفة من موقف."
+              >
+                سؤال نقدي.
+              </button>
+
+            </div>
+
+            <div class="feedback"></div>
+
+          </div>
+        `
+      },
+
+      {
+        title: "صيد المعنى",
+        subtitle:
+          "لا تعزلي الكلمة عن الجملة؛ فالسياق هو المفتاح الذي يحدد دلالتها.",
+
+        content: `
+          <div class="content-box green">
+
+            <h3>
+              معنى الكلمة من السياق
+            </h3>
+
+            <p>
+              بعض الكلمات تحمل أكثر من معنى،
+              ولا يكفي أن تتذكري معناها المشهور.
+              اقرئي الجملة التي وردت فيها،
+              ثم الجملة السابقة واللاحقة،
+              وابحثي عن قرينة تشرح المعنى
+              أو تضاده أو نتيجته أو تقدم مثالًا عليه.
+            </p>
+
+            <div class="example">
+              <strong>
+                مثال:
+              </strong>
+
+              «أقبل الباحث على عمله بنَهَم،
+              فقرأ عشرات المراجع
+              وظل يدوّن ملاحظاته حتى المساء».
+
+              <br>
+
+              معنى «بنهم»:
+              بشغف ورغبة شديدة.
+
+              <br>
+
+              القرينة:
+              قرأ عشرات المراجع واستمر حتى المساء.
+            </div>
+
+          </div>
+
+          <div class="content-box gold">
+
+            <h3>
+              الترادف
+            </h3>
+
+            <p>
+              الترادف هو تقارب كلمتين في المعنى،
+              لكنه لا يعني دائمًا أنهما متطابقتان
+              في كل سياق.
+              اختاري المرادف الذي يحافظ
+              على معنى الجملة ونبرتها.
+            </p>
+
+            <div class="example">
+              «أبدى العالم حرصًا على دقة النتائج».
+
+              <br>
+
+              مرادف «أبدى» هنا:
+              أظهر.
+
+              <br>
+
+              أما «بدأ» فهي قريبة في الشكل فقط،
+              وليست مرادفة لها.
+            </div>
+
+          </div>
+
+          <div class="content-box rose">
+
+            <h3>
+              التضاد
+            </h3>
+
+            <p>
+              الضد هو الكلمة التي تحمل معنى معاكسًا،
+              وقد يكشفه السياق باستخدام:
+              لكن، بينما، على العكس، لم، أو بدلًا من.
+            </p>
+
+            <div class="example">
+              «لم يكن الطريق وعرًا،
+              بل كان ممهدًا وسهلًا».
+
+              <br>
+
+              ضد «وعر»:
+              ممهد أو سهل.
+            </div>
+
+          </div>
+
+          <div class="content-box blue">
+
+            <h3>
+              الكلمة في سياقات مختلفة
+            </h3>
+
+            <p>
+              قد تتكرر الكلمة نفسها
+              ويختلف معناها بحسب السياق.
+              لذلك لا تختاري المعنى قبل قراءة الجملة كاملة.
+            </p>
+
+            <div class="example">
+              «جلست الأسرة حول المائدة».
+
+              <br>
+
+              المائدة:
+              ما يوضع عليه الطعام.
+
+              <br><br>
+
+              «كانت مائدة العلم مفتوحة للجميع».
+
+              <br>
+
+              المقصود:
+              مجال العلم الواسع وما يقدمه من معرفة،
+              وهو استعمال مجازي.
+            </div>
+
+          </div>
+
+          <div class="content-box">
+
+            <h3>
+              طرق كشف المعنى
+            </h3>
+
+            <p>
+              <strong>التعريف:</strong>
+              يشرح الكاتب الكلمة بعدها مباشرة.
+
+              <br>
+
+              <strong>المثال:</strong>
+              يقدم صورًا أو حالات توضحها.
+
+              <br>
+
+              <strong>التضاد:</strong>
+              يذكر معنى معاكسًا لها.
+
+              <br>
+
+              <strong>السبب والنتيجة:</strong>
+              تكشف نتيجة الفعل عن معناه.
+
+              <br>
+
+              <strong>الاشتقاق:</strong>
+              يساعد جذر الكلمة وبنيتها في تقريب معناها.
+            </p>
+
+          </div>
+
+          <div class="content-box orange">
+
+            <h3>
+              خطأ شائع
+            </h3>
+
+            <p>
+              قد يكون أحد الخيارات معنى صحيحًا للكلمة
+              في القاموس، لكنه لا يناسب السياق.
+              السؤال لا يسأل دائمًا:
+              «ماذا تعني الكلمة عمومًا؟»
+              بل يسأل:
+              «ماذا تعني هنا؟».
+            </p>
+
+          </div>
+
+          <div class="question-box">
+
+            <h3>
+              تدريب الوحدة
+            </h3>
+
+            <p>
+              «استقبلت المديرة الاقتراح بصدر رحب،
+              وطلبت من الطالبات البدء في تنفيذه».
+
+              <br>
+
+              ما معنى «بصدر رحب» في السياق؟
+            </p>
+
+            <div class="choices">
+
+              <button
+                class="choice-btn"
+                type="button"
+                data-type="guide"
+                data-feedback="هذا تفسير حرفي لكلمة «صدر»، لكنه لا يناسب التعبير في الجملة."
+              >
+                في مكان واسع.
+              </button>
+
+              <button
+                class="choice-btn"
+                type="button"
+                data-type="good"
+                data-feedback="صحيح؛ قبول المديرة للاقتراح وطلبها تنفيذه قرينة على تقبلها له بسرور وانفتاح."
+              >
+                بتقبّل وسرور.
+              </button>
+
+              <button
+                class="choice-btn"
+                type="button"
+                data-type="guide"
+                data-feedback="طلب التنفيذ يدل على الموافقة لا على التردد أو الانزعاج."
+              >
+                بتردد وانزعاج.
+              </button>
+
+            </div>
+
+            <div class="feedback"></div>
+
+          </div>
+        `
+      },
+            {
+        title: "خريطة النص",
+        subtitle:
+          "افهمي كيف بُني النص، وما الفكرة التي تجمع تفاصيله وعلاقاته.",
+
+        content: `
+          <div class="content-box blue">
+
+            <h3>
+              الفكرة الرئيسة
+            </h3>
+
+            <p>
+              الفكرة الرئيسة هي المعنى الأكبر
+              الذي تدور حوله معظم جمل النص.
+              لا تكون تفصيلًا صغيرًا،
+              ولا عنوانًا واسعًا يمكن أن يصلح
+              لعشرات النصوص المختلفة.
+            </p>
+
+            <div class="example">
+              <strong>
+                مثال:
+              </strong>
+
+              يتحدث النص عن فوائد الأشجار،
+              ودورها في تنقية الهواء،
+              وتلطيف الحرارة،
+              وتوفير موطن للكائنات.
+
+              <br><br>
+
+              الفكرة الرئيسة الأدق:
+
+              <br>
+
+              أهمية الأشجار للإنسان والبيئة.
+
+              <br><br>
+
+              أما «تنقية الهواء» فهي فكرة فرعية؛
+              لأنها فائدة واحدة فقط.
+            </div>
+
+          </div>
+
+          <div class="content-box gold">
+
+            <h3>
+              كيف أختار الفكرة الرئيسة؟
+            </h3>
+
+            <p>
+              اقرئي العنوان،
+              وبداية النص ونهايته،
+              ثم لاحظي الكلمات والأفكار المتكررة.
+              اسألي نفسكِ:
+              ما الموضوع الذي تجتمع حوله أغلب الفقرات؟
+            </p>
+
+            <div class="example">
+              <strong>
+                استبعدي:
+              </strong>
+
+              الخيار الذي يعبّر عن مثال واحد،
+              أو رقم واحد،
+              أو شخصية جانبية،
+              أو معلومة لم يركز عليها النص.
+            </div>
+
+          </div>
+
+          <div class="content-box green">
+
+            <h3>
+              الأفكار الفرعية والتفاصيل
+            </h3>
+
+            <p>
+              الفكرة الفرعية تشرح جانبًا من الفكرة الرئيسة،
+              أما التفاصيل فهي أمثلة أو أرقام
+              أو أوصاف تدعم تلك الفكرة.
+            </p>
+
+            <div class="example">
+              إذا كانت الفكرة الرئيسة:
+              «أهمية القراءة في بناء الإنسان»،
+
+              <br>
+
+              فقد تكون الأفكار الفرعية:
+              تنمية المفردات،
+              وتوسيع المعرفة،
+              وتحسين القدرة على التعبير.
+
+              <br>
+
+              أما عدد الكتب التي قرأتها شخصية في النص
+              فهو تفصيل داعم.
+            </div>
+
+          </div>
+
+          <div class="content-box rose">
+
+            <h3>
+              السبب والنتيجة
+            </h3>
+
+            <p>
+              السبب يجيب عن:
+              لماذا حدث الأمر؟
+
+              <br>
+
+              والنتيجة تجيب عن:
+              ماذا حدث بسبب ذلك؟
+            </p>
+
+            <div class="example">
+              «هطلت أمطار غزيرة،
+              فامتلأت السدود بالمياه».
+
+              <br>
+
+              السبب:
+              هطول الأمطار الغزيرة.
+
+              <br>
+
+              النتيجة:
+              امتلاء السدود.
+            </div>
+
+          </div>
+
+          <div class="content-box">
+
+            <h3>
+              أدوات تكشف العلاقات
+            </h3>
+
+            <p>
+              <strong>لأن، بسبب:</strong>
+              سبب.
+
+              <br>
+
+              <strong>لذلك، لذا، فـ:</strong>
+              نتيجة.
+
+              <br>
+
+              <strong>لكن، بينما:</strong>
+              مخالفة أو مقارنة.
+
+              <br>
+
+              <strong>أولًا، ثم، أخيرًا:</strong>
+              تسلسل.
+
+              <br>
+
+              <strong>المشكلة، الحل:</strong>
+              عرض موقف ثم طريقة معالجته.
+            </p>
+
+          </div>
+
+          <div class="content-box orange">
+
+            <h3>
+              المشكلة والحل
+            </h3>
+
+            <p>
+              قد يعرض النص مشكلة،
+              ثم يذكر أسبابها أو آثارها،
+              وبعد ذلك يقترح حلًا أو أكثر.
+              لا تخلطي بين سبب المشكلة
+              وبين الحل المقترح لها.
+            </p>
+
+            <div class="example">
+              المشكلة:
+              زيادة النفايات البلاستيكية.
+
+              <br>
+
+              السبب:
+              كثرة استخدام المنتجات ذات الاستعمال الواحد.
+
+              <br>
+
+              الحل:
+              استخدام البدائل القابلة لإعادة الاستعمال.
+            </div>
+
+          </div>
+
+          <div class="content-box blue">
+
+            <h3>
+              التلخيص
+            </h3>
+
+            <p>
+              التلخيص الجيد يحافظ على الفكرة الرئيسة
+              وأهم الأفكار الفرعية،
+              ويحذف الأمثلة والتكرار والتفاصيل الصغيرة.
+            </p>
+
+            <div class="example">
+              لا تختاري تلخيصًا يذكر معلومة واحدة فقط،
+              ولا تلخيصًا يضيف رأيًا أو معلومة
+              لم ترد في النص.
+            </div>
+
+          </div>
+
+          <div class="question-box">
+
+            <h3>
+              تدريب الوحدة
+            </h3>
+
+            <p>
+              عرض النص مشكلة قلة النشاط البدني،
+              ثم ذكر أثرها في الصحة،
+              واقترح المشي اليومي وتقليل الجلوس الطويل.
+
+              <br><br>
+
+              ما التنظيم الغالب على النص؟
+            </p>
+
+            <div class="choices">
+
+              <button
+                class="choice-btn"
+                type="button"
+                data-type="guide"
+                data-feedback="النص لا يصف شخصين أو شيئين ليقارن بينهما."
+              >
+                المقارنة والمقابلة.
+              </button>
+
+              <button
+                class="choice-btn"
+                type="button"
+                data-type="good"
+                data-feedback="صحيح؛ عرض النص مشكلة وآثارها، ثم قدّم حلولًا عملية لمعالجتها."
+              >
+                المشكلة والحل.
+              </button>
+
+              <button
+                class="choice-btn"
+                type="button"
+                data-type="guide"
+                data-feedback="لا يروي النص أحداثًا مرتبة زمنيًا، بل يناقش مشكلة ويقترح حلولًا."
+              >
+                التسلسل الزمني.
+              </button>
+
+            </div>
+
+            <div class="feedback"></div>
+
+          </div>
+        `
+      },
+
+      {
+        title: "ما وراء السطور",
+        subtitle:
+          "ابحثي عن المعنى الذي تدعمه القرائن، حتى إن لم يُذكر بالكلمات نفسها.",
+
+        content: `
+          <div class="content-box rose">
+
+            <h3>
+              الاستنتاج ليس تخمينًا
+            </h3>
+
+            <p>
+              الاستنتاج الصحيح فكرة لا يذكرها النص مباشرة،
+              لكنها تقوم على دليل واضح أو أكثر.
+              لا تختاري إجابة لأنها تبدو جميلة أو ممكنة؛
+              اختاري ما تؤيده القرائن.
+            </p>
+
+            <div class="example">
+              «وصلت هدى قبل بداية اللقاء،
+              ورتبت الأوراق،
+              وتأكدت من عمل جهاز العرض».
+
+              <br><br>
+
+              نستنتج أنها:
+              منظمة ومستعدة.
+
+              <br>
+
+              الدليل:
+              حضرت مبكرًا وراجعت حاجات اللقاء.
+            </div>
+
+          </div>
+
+          <div class="content-box green">
+
+            <h3>
+              صفات الشخصية من أفعالها
+            </h3>
+
+            <p>
+              لا تبحثي عن الصفة مكتوبة دائمًا.
+              راقبي قرارات الشخصية،
+              وطريقة تعاملها،
+              وما تفعله عند الصعوبة.
+            </p>
+
+            <div class="example">
+              «أعاد الطالب التجربة ثلاث مرات
+              حتى تأكد من النتيجة».
+
+              <br>
+
+              الصفة الأقرب:
+              الدقة والمثابرة.
+
+              <br>
+
+              وليست السرعة؛
+              لأن التكرار يدل على التحقق لا الاستعجال.
+            </div>
+
+          </div>
+
+          <div class="content-box gold">
+
+            <h3>
+              غرض الكاتب
+            </h3>
+
+            <p>
+              اسألي:
+              ماذا يريد الكاتب من القارئ؟
+
+              <br><br>
+
+              <strong>الإعلام:</strong>
+              تقديم حقائق ومعلومات.
+
+              <br>
+
+              <strong>الإقناع:</strong>
+              التأثير في رأي القارئ باستخدام حجج.
+
+              <br>
+
+              <strong>التوجيه:</strong>
+              تقديم إرشادات وخطوات.
+
+              <br>
+
+              <strong>الوصف:</strong>
+              رسم صورة لمكان أو شخص أو شعور.
+
+              <br>
+
+              <strong>الترفيه:</strong>
+              سرد قصة أو موقف ممتع.
+            </p>
+          </div>
+
+          <div class="content-box blue">
+
+            <h3>
+              نبرة الكاتب
+            </h3>
+
+            <p>
+              النبرة هي الشعور أو الموقف
+              الذي يظهر في اختيار الكلمات.
+              قد تكون:
+              معتزة، متفائلة، محذرة،
+              ناقدة، ساخرة، حزينة، أو مشجعة.
+            </p>
+
+            <div class="example">
+              «إن استمرار هدر الماء
+              يهدد موردًا لا يمكن الاستغناء عنه».
+
+              <br>
+
+              النبرة:
+              تحذيرية؛
+              بسبب كلمات: يهدد، لا يمكن الاستغناء.
+            </div>
+
+          </div>
+
+          <div class="content-box">
+
+            <h3>
+              دلالة العبارة
+            </h3>
+
+            <p>
+              قد يسألكِ الاختبار:
+              على ماذا تدل العبارة؟
+              وهنا لا تشرحين معناها الحرفي فقط،
+              بل تبحثين عن الفكرة التي توحي بها
+              داخل الموقف.
+            </p>
+
+            <div class="example">
+              «فتح الكتاب له نافذة على العالم».
+
+              <br>
+
+              لا يقصد نافذة حقيقية،
+              بل يدل على أن القراءة
+              وسعت معرفته وأطلعته على تجارب جديدة.
+            </div>
+
+          </div>
+
+          <div class="content-box orange">
+
+            <h3>
+              التوقع
+            </h3>
+
+            <p>
+              التوقع هو نتيجة محتملة
+              تعتمد على أحداث النص واتجاهها.
+              لا تختاري حدثًا مفاجئًا لا تمهد له القرائن.
+            </p>
+
+            <div class="example">
+              إذا تدربت الشخصية يوميًا،
+              وصححت أخطاءها،
+              واستمرت مدة طويلة،
+
+              <br>
+
+              فالنتيجة المتوقعة:
+              تحسن أدائها.
+
+              <br>
+
+              وليس توقفها المفاجئ،
+              ما لم يذكر النص ما يدل على ذلك.
+            </div>
+
+          </div>
+
+          <div class="content-box rose">
+
+            <h3>
+              الضمير وما يعود عليه
+            </h3>
+
+            <p>
+              عند السؤال عن مرجع الضمير،
+              ارجعي إلى الكلمات السابقة،
+              وابحثي عن الاسم الذي يوافقه
+              في التذكير والتأنيث والإفراد والجمع،
+              ثم اختبري المعنى داخل الجملة.
+            </p>
+
+            <div class="example">
+              «زرعت الطالبات الأشجار،
+              ثم اعتنين بها».
+
+              <br>
+
+              الضمير في «بها» يعود على:
+              الأشجار.
+            </div>
+
+          </div>
+
+          <div class="question-box">
+
+            <h3>
+              تدريب الوحدة
+            </h3>
+
+            <p>
+              «كان فهد يحمل كيسًا صغيرًا
+              في كل مرة يذهب فيها إلى الشاطئ،
+              ويجمع ما يجده من مخلفات قبل عودته».
+
+              <br><br>
+
+              ما الصفة التي يدل عليها تصرفه؟
+            </p>
+
+            <div class="choices">
+
+              <button
+                class="choice-btn"
+                type="button"
+                data-type="guide"
+                data-feedback="النص لا يقدم ما يدل على رغبة فهد في الظهور أو الحصول على الشهرة."
+              >
+                الرغبة في الشهرة.
+              </button>
+
+              <button
+                class="choice-btn"
+                type="button"
+                data-type="good"
+                data-feedback="صحيح؛ تكرار جمع المخلفات يدل على شعوره بالمسؤولية واهتمامه بنظافة البيئة."
+              >
+                المسؤولية والاهتمام بالبيئة.
+              </button>
+
+              <button
+                class="choice-btn"
+                type="button"
+                data-type="guide"
+                data-feedback="الذهاب إلى الشاطئ لا يدل وحده على حب السفر، بينما جمع المخلفات هو القرينة الأساسية."
+              >
+                حب السفر والتنقل.
+              </button>
+
+            </div>
+
+            <div class="feedback"></div>
+
+          </div>
+        `
+      },
+
+      {
+        title: "القارئة الناقدة",
+        subtitle:
+          "لا تكتفي بفهم ما يقوله النص؛ اسألي عن قوة الفكرة والدليل والمصدر.",
+
+        content: `
+          <div class="content-box orange">
+
+            <h3>
+              الحقيقة والرأي
+            </h3>
+
+            <p>
+              الحقيقة عبارة يمكن التحقق منها
+              بالأدلة أو القياس أو المصادر.
+
+              <br>
+
+              أما الرأي فهو حكم شخصي
+              قد يختلف فيه الناس.
+            </p>
+
+            <div class="example">
+              <strong>
+                حقيقة:
+              </strong>
+
+              تدور الأرض حول الشمس.
+
+              <br><br>
+
+              <strong>
+                رأي:
+              </strong>
+
+              فصل الشتاء أجمل فصول السنة.
+            </div>
+
+          </div>
+
+          <div class="content-box gold">
+
+            <h3>
+              انتبهي إلى كلمات الرأي
+            </h3>
+
+            <p>
+              قد تظهر في الرأي كلمات مثل:
+              أرى، أعتقد، أجمل، أفضل،
+              رائع، ممل، ينبغي.
+
+              <br>
+
+              لكن وجودها ليس الشرط الوحيد؛
+              فقد يكتب الكاتب رأيًا دون أن يقول:
+              «أرى».
+            </p>
+
+            <div class="example">
+              «هذا المشروع أعظم مشروع في المدينة».
+
+              <br>
+
+              رأي؛
+              لأن كلمة «أعظم» حكم يحتاج إلى معيار
+              ولا يمكن قبوله دون دليل.
+            </div>
+
+          </div>
+
+          <div class="content-box green">
+
+            <h3>
+              الادعاء والحجة والدليل
+            </h3>
+
+            <p>
+              <strong>الادعاء:</strong>
+              فكرة يريد الكاتب إقناعكِ بها.
+
+              <br>
+
+              <strong>الحجة:</strong>
+              سبب يدعم الادعاء.
+
+              <br>
+
+              <strong>الدليل:</strong>
+              حقيقة أو دراسة أو رقم أو مثال موثوق
+              يثبت الحجة.
+            </p>
+
+            <div class="example">
+              الادعاء:
+              يجب زيادة المساحات الخضراء في المدن.
+
+              <br>
+
+              الحجة:
+              لأنها تساعد على تلطيف الحرارة.
+
+              <br>
+
+              الدليل:
+              قياسات تقارن درجات الحرارة
+              بين الأحياء كثيرة الأشجار وقليلتها.
+            </div>
+
+          </div>
+
+          <div class="content-box blue">
+
+            <h3>
+              ما الدليل الأقوى؟
+            </h3>
+
+            <p>
+              يكون الدليل قويًا عندما يكون:
+              مرتبطًا بالادعاء،
+              صادرًا عن مصدر موثوق،
+              حديثًا عند الحاجة،
+              قائمًا على عينة أو بيانات واضحة،
+              وليس تجربة فردية فقط.
+            </p>
+
+            <div class="example">
+              الادعاء:
+              القراءة اليومية تحسن الحصيلة اللغوية.
+
+              <br><br>
+
+              دليل ضعيف:
+              «صديقتي تقرأ وتشعر أنها أفضل».
+
+              <br>
+
+              دليل أقوى:
+              دراسة تقيس حصيلة مجموعة من الطالبات
+              قبل برنامج قراءة وبعده.
+            </div>
+
+          </div>
+
+          <div class="content-box rose">
+
+            <h3>
+              موثوقية المصدر
+            </h3>
+
+            <p>
+              اسألي:
+              من نشر المعلومة؟
+              هل هو متخصص؟
+              هل ذكر مصدر البيانات؟
+              هل يمكن التحقق منها؟
+              هل يهدف إلى تقديم معرفة،
+              أم إلى بيع منتج أو التأثير في القارئ؟
+            </p>
+
+            <div class="example">
+              عند البحث عن معلومات صحية،
+              يكون موقع جهة صحية رسمية
+              أو بحث علمي محكّم
+              أقوى من منشور مجهول في وسائل التواصل.
+            </div>
+
+          </div>
+
+          <div class="content-box">
+
+            <h3>
+              التحيز والمبالغة
+            </h3>
+
+            <p>
+              العبارة المتحيزة تعرض جانبًا واحدًا
+              وتتجاهل بقية الجوانب،
+              أو تستخدم ألفاظًا عاطفية
+              بدل الأدلة.
+
+              <br>
+
+              ومن علامات المبالغة:
+              دائمًا، أبدًا، كل الناس،
+              لا يوجد أي، أفضل شيء في العالم.
+            </p>
+
+            <div class="example">
+              «كل من يستخدم التقنية
+              يهمل حياته الاجتماعية».
+
+              <br>
+
+              عبارة مبالغ فيها؛
+              لأنها تعمم الحكم على الجميع.
+            </div>
+
+          </div>
+
+          <div class="content-box orange">
+
+            <h3>
+              التفريق بين الارتباط والسبب
+            </h3>
+
+            <p>
+              حدوث أمرين معًا
+              لا يعني بالضرورة أن أحدهما سبب الآخر.
+              قد توجد عوامل أخرى لم يذكرها النص.
+            </p>
+
+            <div class="example">
+              إذا ارتفعت مبيعات المظلات
+              في أيام المطر،
+              فهذا لا يعني أن المظلات سببت المطر؛
+              بل المطر أدى إلى زيادة المبيعات.
+            </div>
+
+          </div>
+
+          <div class="question-box">
+
+            <h3>
+              تدريب الوحدة
+            </h3>
+
+            <p>
+              أي الأدلة التالية أقوى
+              لدعم القول بأن النوم الكافي
+              يساعد على التركيز؟
+            </p>
+
+            <div class="choices">
+
+              <button
+                class="choice-btn"
+                type="button"
+                data-type="guide"
+                data-feedback="تجربة شخص واحد قد تكون صادقة، لكنها لا تكفي لإثبات أثر عام."
+              >
+                قالت طالبة:
+                أشعر أنني أركز أكثر بعد النوم.
+              </button>
+
+              <button
+                class="choice-btn"
+                type="button"
+                data-type="good"
+                data-feedback="صحيح؛ الدراسة المنظمة على عينة واضحة، مع مقارنة النتائج، تقدم دليلًا أقوى وأكثر قابلية للتحقق."
+              >
+                دراسة تقارن أداء مجموعة من الطالبات
+                بحسب ساعات النوم خلال مدة محددة.
+              </button>
+
+              <button
+                class="choice-btn"
+                type="button"
+                data-type="guide"
+                data-feedback="العبارة رأي عام بلا بيانات أو مصدر يمكن التحقق منه."
+              >
+                النوم أفضل عادة عرفها الإنسان.
+              </button>
+
+            </div>
+
+            <div class="feedback"></div>
+
+          </div>
+        `
+      },
+            {
+        title: "النصوص غير المتصلة",
+        subtitle:
+          "اقرئي الجداول والرسوم والإعلانات والتعليمات باعتبارها نصوصًا تحمل معلومات مترابطة.",
+
+        content: `
+          <div class="content-box">
+
+            <h3>
+              ما النص غير المتصل؟
+            </h3>
+
+            <p>
+              هو نص لا يُقرأ في فقرات متتابعة فقط،
+              بل تُوزع معلوماته في جدول،
+              أو رسم بياني،
+              أو إعلان،
+              أو خريطة،
+              أو تعليمات،
+              أو مخطط زمني.
+            </p>
+
+            <div class="example">
+              لا تبدئي بقراءة كل رقم منفصلًا.
+              اقرئي أولًا العنوان،
+              ثم أسماء الأعمدة أو المحاور،
+              ثم الوحدة المستخدمة،
+              وبعدها قارني القيم.
+            </div>
+
+          </div>
+
+          <div class="content-box blue">
+
+            <h3>
+              قراءة الجداول
+            </h3>
+
+            <p>
+              حددي عنوان الجدول،
+              ثم الصف والعمود اللذين يلتقيان
+              عند المعلومة المطلوبة.
+              انتبهي إلى الوحدة:
+              هل الأرقام تمثل طالبات،
+              أم دقائق،
+              أم نسبًا مئوية؟
+            </p>
+
+            <div class="example">
+              <strong>
+                مثال:
+              </strong>
+
+              إذا أظهر جدول أن عدد الكتب المقروءة
+              في يناير ٢٠،
+              وفي فبراير ٣٥،
+              وفي مارس ٣٠،
+
+              <br><br>
+
+              فأعلى عدد كان في فبراير،
+              والزيادة بين يناير وفبراير تساوي ١٥ كتابًا.
+            </div>
+
+          </div>
+
+          <div class="content-box green">
+
+            <h3>
+              قراءة الرسوم البيانية
+            </h3>
+
+            <p>
+              اقرئي عنوان الرسم،
+              ثم المحور الأفقي والرأسي،
+              ولاحظي أعلى قيمة وأقل قيمة،
+              واتجاه الارتفاع أو الانخفاض،
+              والفروق بين البيانات.
+            </p>
+
+            <div class="example">
+              إذا ارتفعت الأعمدة تدريجيًا
+              خلال أربعة أشهر،
+              فالاستنتاج الأدق:
+              وجود نمو مستمر خلال المدة المعروضة.
+
+              <br><br>
+
+              ولا يصح القول:
+              سيستمر النمو دائمًا؛
+              لأن الرسم يعرض مدة محددة فقط.
+            </div>
+
+          </div>
+
+          <div class="content-box gold">
+
+            <h3>
+              الإعلانات والملصقات
+            </h3>
+
+            <p>
+              ابحثي عن:
+              الجهة المعلنة،
+              والجمهور المستهدف،
+              والهدف،
+              والتاريخ،
+              والمكان،
+              والتعليمات،
+              والعبارة التي تحفز القارئ على الفعل.
+            </p>
+
+            <div class="example">
+              في إعلان بعنوان:
+              «شاركي في يوم التشجير»،
+
+              <br>
+
+              العبارة:
+              «أحضري قفازاتكِ يوم الخميس الساعة السابعة»
+
+              <br>
+
+              تقدم تعليمات عملية،
+              وليست مجرد وصف للمبادرة.
+            </div>
+
+          </div>
+
+          <div class="content-box rose">
+
+            <h3>
+              التعليمات والخطوات
+            </h3>
+
+            <p>
+              انتبهي إلى ترتيب الأفعال،
+              وما يجب فعله قبل غيره،
+              والتحذيرات،
+              والشروط التي قد تغير النتيجة.
+            </p>
+
+            <div class="example">
+              إذا ورد:
+              «اغسلي يديكِ،
+              ثم جففيهما،
+              وبعد ذلك استخدمي القفازات»،
+
+              <br>
+
+              فلا يجوز تقديم استخدام القفازات
+              على التجفيف؛
+              لأن النص حدد ترتيبًا واضحًا.
+            </div>
+
+          </div>
+
+          <div class="content-box orange">
+
+            <h3>
+              دمج النص مع الشكل
+            </h3>
+
+            <p>
+              قد يعطي النص تفسيرًا،
+              ويعرض الرسم أرقامًا تدعمه.
+              الإجابة الأدق تجمع بين المصدرين،
+              ولا تعتمد على أحدهما مع تجاهل الآخر.
+            </p>
+
+            <div class="example">
+              إذا ذكر النص أن القراءة زادت
+              بعد إطلاق مبادرة مدرسية،
+              وأظهر الرسم ارتفاع الاستعارة بعدها،
+              فالرسم يدعم ما ورد في النص.
+            </div>
+
+          </div>
+
+          <div class="question-box">
+
+            <h3>
+              تدريب الوحدة
+            </h3>
+
+            <p>
+              أظهر رسم بياني أن نسبة المشاركة
+              كانت ٤٠٪ في الأسبوع الأول،
+              و٦٠٪ في الثاني،
+              و٦٥٪ في الثالث.
+
+              <br><br>
+
+              ما الاستنتاج الأدق؟
+            </p>
+
+            <div class="choices">
+
+              <button
+                class="choice-btn"
+                type="button"
+                data-type="guide"
+                data-feedback="البيانات لا تظهر انخفاضًا، بل ارتفاعًا من أسبوع إلى آخر."
+              >
+                انخفضت المشاركة تدريجيًا.
+              </button>
+
+              <button
+                class="choice-btn"
+                type="button"
+                data-type="good"
+                data-feedback="صحيح؛ القيم ارتفعت من ٤٠٪ إلى ٦٠٪ ثم ٦٥٪، وهذا يدل على زيادة خلال الأسابيع الثلاثة."
+              >
+                زادت المشاركة خلال الأسابيع الثلاثة.
+              </button>
+
+              <button
+                class="choice-btn"
+                type="button"
+                data-type="guide"
+                data-feedback="الرسم يعرض ثلاثة أسابيع فقط، ولا يثبت أن الزيادة ستستمر دائمًا."
+              >
+                ستستمر المشاركة في الارتفاع دائمًا.
+              </button>
+
+            </div>
+
+            <div class="feedback"></div>
+
+          </div>
+        `
+      },
+
+      {
+        title: "الإجابة الأدق",
+        subtitle:
+          "ليست كل إجابة صحيحة عمومًا مناسبة للسؤال؛ اختاري ما يدعمه النص ويطابق المطلوب.",
+
+        content: `
+          <div class="content-box gold">
+
+            <h3>
+              اقرئي السؤال قبل الخيارات
+            </h3>
+
+            <p>
+              حددي الكلمة المفتاحية:
+              هل المطلوب معنى،
+              أم سبب،
+              أم استنتاج،
+              أم دليل،
+              أم عنوان،
+              أم تلخيص؟
+            </p>
+
+            <div class="example">
+              إذا كان السؤال:
+              «ما السبب الرئيس؟»
+
+              <br>
+
+              فلا تختاري نتيجة،
+              ولا تفصيلًا جانبيًا،
+              ولا سببًا محتملًا لم يذكره النص.
+            </div>
+
+          </div>
+
+          <div class="content-box rose">
+
+            <h3>
+              الخيار الصحيح عمومًا
+            </h3>
+
+            <p>
+              قد يكون الخيار حقيقة صحيحة في الحياة،
+              لكنه غير مذكور في النص
+              ولا يجيب عن السؤال.
+            </p>
+
+            <div class="example">
+              النص يتحدث عن أثر الرياضة في الصحة،
+              والسؤال عن سبب ممارسة الشخصية للمشي.
+
+              <br><br>
+
+              الخيار:
+              «الرياضة مفيدة للإنسان»
+
+              <br>
+
+              صحيح عمومًا،
+              لكنه لا يحدد سبب الشخصية
+              ما لم يذكره النص.
+            </div>
+
+          </div>
+
+          <div class="content-box blue">
+
+            <h3>
+              الخيار الأوسع من النص
+            </h3>
+
+            <p>
+              يضيف حكمًا عامًا
+              أكبر مما تسمح به المعلومات.
+            </p>
+
+            <div class="example">
+              النص يوضح نجاح تجربة
+              في مدرسة واحدة.
+
+              <br>
+
+              الخيار المضلل:
+              «نجحت التجربة في جميع مدارس العالم».
+
+              <br>
+
+              هذا تعميم لا يدعمه النص.
+            </div>
+
+          </div>
+
+          <div class="content-box green">
+
+            <h3>
+              الخيار الأضيق من الفكرة
+            </h3>
+
+            <p>
+              يذكر تفصيلًا واحدًا،
+              بينما السؤال يطلب فكرة تشمل النص كله.
+            </p>
+
+            <div class="example">
+              إذا تناول النص فوائد المكتبات
+              في التعلم والتواصل وحفظ المعرفة،
+
+              <br>
+
+              فالعنوان:
+              «هدوء قاعة القراءة»
+
+              <br>
+
+              أضيق من موضوع النص.
+            </div>
+
+          </div>
+
+          <div class="content-box orange">
+
+            <h3>
+              خيار ورد في النص لكنه لا يجيب
+            </h3>
+
+            <p>
+              وجود العبارة في النص
+              لا يجعلها الإجابة الصحيحة تلقائيًا.
+              اسألي:
+              هل تجيب عن المطلوب فعلًا؟
+            </p>
+
+            <div class="example">
+              السؤال:
+              لماذا أطلقت المدرسة المبادرة؟
+
+              <br>
+
+              الخيار:
+              «أقيمت المبادرة يوم الاثنين».
+
+              <br>
+
+              هذه معلومة صحيحة،
+              لكنها تجيب عن متى،
+              لا عن لماذا.
+            </div>
+
+          </div>
+
+          <div class="content-box">
+
+            <h3>
+              خيار نصفه صحيح
+            </h3>
+
+            <p>
+              قد يبدأ الخيار بفكرة صحيحة،
+              ثم يضيف جزءًا خاطئًا.
+              والخيار يُحكم عليه كاملًا،
+              لا على بدايته فقط.
+            </p>
+
+            <div class="example">
+              «أسهمت المبادرة في زيادة القراءة،
+              وألغت الحاجة إلى المكتبات».
+
+              <br>
+
+              الجزء الأول قد يكون صحيحًا،
+              لكن الجزء الثاني خاطئ،
+              لذلك يُستبعد الخيار كله.
+            </div>
+
+          </div>
+
+          <div class="content-box rose">
+
+            <h3>
+              الكلمات المطلقة
+            </h3>
+
+            <p>
+              انتبهي إلى:
+              دائمًا،
+              أبدًا،
+              جميع،
+              مستحيل،
+              الوحيد.
+
+              <br>
+
+              قد تكون صحيحة أحيانًا،
+              لكنها تحتاج دليلًا قويًا
+              يشمل كل الحالات.
+            </p>
+
+          </div>
+
+          <div class="content-box green">
+
+            <h3>
+              طريقة الاستبعاد الذكي
+            </h3>
+
+            <p>
+              ١. احذفي ما يخالف النص.
+
+              <br>
+
+              ٢. احذفي ما لا يجيب عن السؤال.
+
+              <br>
+
+              ٣. احذفي ما يضيف مبالغة أو تعميمًا.
+
+              <br>
+
+              ٤. قارني بين الخيارين المتبقيين.
+
+              <br>
+
+              ٥. اختاري ما تدعمه العبارة أو الفقرة كاملة.
+            </p>
+          </div>
+
+          <div class="question-box">
+
+            <h3>
+              تدريب الوحدة
+            </h3>
+
+            <p>
+              تحدث النص عن مبادرة
+              نجحت في تقليل هدر الورق
+              داخل مدرسة واحدة.
+
+              <br><br>
+
+              أي الخيارات أدق؟
+            </p>
+
+            <div class="choices">
+
+              <button
+                class="choice-btn"
+                type="button"
+                data-type="guide"
+                data-feedback="الخيار يعمم النتيجة على جميع المدارس، بينما النص يتحدث عن مدرسة واحدة فقط."
+              >
+                أثبتت المبادرة نجاحها
+                في جميع مدارس العالم.
+              </button>
+
+              <button
+                class="choice-btn"
+                type="button"
+                data-type="good"
+                data-feedback="صحيح؛ هذا الخيار يلتزم بحدود النص، ويصف النتيجة في المدرسة التي طبقت المبادرة."
+              >
+                ساعدت المبادرة المدرسة
+                على تقليل هدر الورق.
+              </button>
+
+              <button
+                class="choice-btn"
+                type="button"
+                data-type="guide"
+                data-feedback="النص يتحدث عن تقليل الورق، ولا يثبت إلغاء استخدامه تمامًا."
+              >
+                ألغت المبادرة استخدام الورق نهائيًا.
+              </button>
+
+            </div>
+
+            <div class="feedback"></div>
+
+          </div>
+        `
+      },
+
+      {
+        title: "التحديات المرحلية",
+        subtitle:
+          "ادمجي أكثر من مهارة في نص واحد، وانتقلي من السؤال المباشر إلى التفكير الأعمق.",
+
+        content: `
+          <div class="content-box green">
+
+            <h3>
+              نص التحدي
+            </h3>
+
+            <div class="example">
+              لاحظت إحدى المدارس
+              أن كثيرًا من الطالبات يشترين
+              عبوات ماء جديدة كل يوم،
+              فتزداد المخلفات البلاستيكية.
+
+              <br><br>
+
+              أطلقت المدرسة مبادرة
+              لتشجيع استخدام العبوات القابلة لإعادة التعبئة،
+              ووفرت نقاطًا للماء في الممرات.
+
+              <br><br>
+
+              وبعد شهرين،
+              انخفض عدد العبوات المستخدمة يوميًا
+              بنسبة واضحة،
+              وذكرت الطالبات أن حمل عبوة خاصة
+              أصبح عادة سهلة.
+            </div>
+
+          </div>
+
+          <div class="content-box blue">
+
+            <h3>
+              تحليل النص
+            </h3>
+
+            <p>
+              <strong>المشكلة:</strong>
+              زيادة المخلفات البلاستيكية.
+
+              <br>
+
+              <strong>الحل:</strong>
+              تشجيع العبوات القابلة لإعادة التعبئة.
+
+              <br>
+
+              <strong>الدليل على النجاح:</strong>
+              انخفاض عدد العبوات المستخدمة.
+
+              <br>
+
+              <strong>الاستنتاج:</strong>
+              تهيئة البديل المناسب تساعد على تغيير العادة.
+            </p>
+
+          </div>
+
+          <div class="content-box gold">
+
+            <h3>
+              فكري بصوت القارئة الخبيرة
+            </h3>
+
+            <p>
+              السؤال يطلب الفكرة الرئيسة،
+              إذن لن أختار تفصيلًا مثل:
+              «وضعت المدرسة نقاط ماء».
+
+              <br><br>
+
+              ولن أختار فكرة واسعة جدًا مثل:
+              «حل جميع مشكلات البيئة».
+
+              <br><br>
+
+              سأختار فكرة تشمل المشكلة والحل والنتيجة:
+              نجاح مبادرة مدرسية في تقليل العبوات البلاستيكية.
+            </p>
+
+          </div>
+
+          <div class="question-box">
+
+            <h3>
+              السؤال الأول
+            </h3>
+
+            <p>
+              ما الفكرة الرئيسة للنص؟
+            </p>
+
+            <div class="choices">
+
+              <button
+                class="choice-btn"
+                type="button"
+                data-type="guide"
+                data-feedback="هذا تفصيل من إجراءات المبادرة، وليس الفكرة التي تشمل النص كله."
+              >
+                وفرت المدرسة نقاطًا للماء.
+              </button>
+
+              <button
+                class="choice-btn"
+                type="button"
+                data-type="good"
+                data-feedback="صحيح؛ هذا الخيار يجمع المشكلة والحل والنتيجة دون مبالغة."
+              >
+                أسهمت مبادرة مدرسية
+                في تقليل استخدام العبوات البلاستيكية.
+              </button>
+
+              <button
+                class="choice-btn"
+                type="button"
+                data-type="guide"
+                data-feedback="الخيار أوسع من النص؛ المبادرة عالجت جانبًا محددًا ولم تحل جميع المشكلات البيئية."
+              >
+                استطاعت المدرسة حل جميع المشكلات البيئية.
+              </button>
+
+            </div>
+
+            <div class="feedback"></div>
+
+          </div>
+
+          <div class="question-box">
+
+            <h3>
+              السؤال الثاني
+            </h3>
+
+            <p>
+              يُفهم من قول الطالبات
+              إن حمل العبوة أصبح عادة سهلة أن:
+            </p>
+
+            <div class="choices">
+
+              <button
+                class="choice-btn"
+                type="button"
+                data-type="good"
+                data-feedback="صحيح؛ الاستمرار ووجود البديل المناسب جعلا السلوك الجديد أسهل مع الوقت."
+              >
+                السلوك الجديد أصبح مألوفًا مع الاستمرار.
+              </button>
+
+              <button
+                class="choice-btn"
+                type="button"
+                data-type="guide"
+                data-feedback="النص لم يذكر إلغاء نقاط الماء، بل كانت جزءًا من دعم المبادرة."
+              >
+                المدرسة ألغت نقاط الماء.
+              </button>
+
+              <button
+                class="choice-btn"
+                type="button"
+                data-type="guide"
+                data-feedback="انخفاض العبوات يدل على نجاح المبادرة لا على رفض الطالبات لها."
+              >
+                الطالبات رفضن المبادرة.
+              </button>
+
+            </div>
+
+            <div class="feedback"></div>
+
+          </div>
+
+          <div class="content-box rose">
+
+            <h3>
+              ماذا تعلمتِ من التحدي؟
+            </h3>
+
+            <p>
+              النص الواحد قد يجمع:
+              فكرة رئيسة،
+              ومشكلة وحلًا،
+              واستنتاجًا،
+              ودليلًا،
+              وسؤالًا عن الإجابة الأدق.
+
+              <br><br>
+
+              لذلك لا تعزلي المهارات عن بعضها؛
+              القارئة الناضجة تستخدمها معًا.
+            </p>
+
+          </div>
+        `
+      },
+
+      {
+        title: "محاكاة نافس",
+        subtitle:
+          "تجربة شاملة تجمع المهارات وتساعدكِ على التعرف إلى نقاط قوتكِ.",
+
+        content: `
+          <div class="content-box blue">
+
+            <h3>
+              قبل المحاكاة
+            </h3>
+
+            <p>
+              جهزي مكانًا هادئًا،
+              وحددي وقتًا مناسبًا،
+              واقرئي التعليمات كاملة.
+              حاولي الإجابة دون الرجوع إلى الشرح،
+              ثم راجعي تفسير الخيارات بعد الانتهاء.
+            </p>
+
+          </div>
+
+          <div class="content-box gold">
+
+            <h3>
+              نص المحاكاة
+            </h3>
+
+            <div class="example">
+              لا تقتصر المكتبات الحديثة
+              على إعارة الكتب،
+              بل أصبحت مساحات للتعلم والعمل الجماعي،
+              وتقدم ورشًا رقمية
+              وبرامج للقراءة والبحث.
+
+              <br><br>
+
+              وقد ساعد هذا التحول
+              على جذب فئات جديدة من الزوار،
+              إلا أن نجاح المكتبة
+              لا يعتمد على كثرة الأنشطة وحدها،
+              بل على جودة المحتوى
+              واستجابته لحاجات المجتمع.
+
+              <br><br>
+
+              لذلك بدأت بعض المكتبات
+              في استطلاع آراء المستفيدين،
+              وتحليل أكثر البرامج حضورًا،
+              وتطوير خدماتها بناءً على النتائج.
+            </div>
+
+          </div>
+
+          <div class="question-box">
+
+            <h3>
+              السؤال الأول
+            </h3>
+
+            <p>
+              ما الفكرة الرئيسة للنص؟
+            </p>
+
+            <div class="choices">
+
+              <button
+                class="choice-btn"
+                type="button"
+                data-type="guide"
+                data-feedback="إعارة الكتب جزء من عمل المكتبات، لكن النص يركز على تطورها وتنوع خدماتها."
+              >
+                المكتبات أماكن لإعارة الكتب فقط.
+              </button>
+
+              <button
+                class="choice-btn"
+                type="button"
+                data-type="good"
+                data-feedback="صحيح؛ النص يوضح تطور دور المكتبات وارتباط نجاحها بجودة الخدمات وحاجات المجتمع."
+              >
+                تطور دور المكتبات
+                وضرورة ملاءمة خدماتها للمجتمع.
+              </button>
+
+              <button
+                class="choice-btn"
+                type="button"
+                data-type="guide"
+                data-feedback="الورش الرقمية تفصيل واحد، وليست الفكرة التي تشمل النص كله."
+              >
+                أهمية الورش الرقمية وحدها.
+              </button>
+
+            </div>
+
+            <div class="feedback"></div>
+
+          </div>
+
+          <div class="question-box">
+
+            <h3>
+              السؤال الثاني
+            </h3>
+
+            <p>
+              ما الدليل على أن بعض المكتبات
+              أصبحت تعتمد على البيانات
+              في تطوير خدماتها؟
+            </p>
+
+            <div class="choices">
+
+              <button
+                class="choice-btn"
+                type="button"
+                data-type="guide"
+                data-feedback="تقديم الورش يوضح تنوع الخدمات، لكنه لا يثبت الاعتماد على البيانات."
+              >
+                تقديمها ورشًا رقمية.
+              </button>
+
+              <button
+                class="choice-btn"
+                type="button"
+                data-type="good"
+                data-feedback="صحيح؛ الاستطلاع وتحليل الحضور ثم التطوي
+                    const lessonPanel =
+      document.getElementById("lessonPanel");
+
+    const lessonTitle =
+      document.getElementById("lessonTitle");
+
+    const lessonSubtitle =
+      document.getElementById("lessonSubtitle");
+
+    const lessonContent =
+      document.getElementById("lessonContent");
+
+    const closeLessonBtn =
+      document.getElementById("closeLessonBtn");
+
+    const previousUnitBtn =
+      document.getElementById("previousUnitBtn");
+
+    const nextUnitBtn =
+      document.getElementById("nextUnitBtn");
+
+    const progressNumber =
+      document.getElementById("progressNumber");
+
+    const progressFill =
+      document.getElementById("progressFill");
+
+    const openUnitButtons =
+      document.querySelectorAll(".open-unit-btn");
+
+    const arabicNumbers = [
+      "٠",
+      "١",
+      "٢",
+      "٣",
+      "٤",
+      "٥",
+      "٦",
+      "٧",
+      "٨",
+      "٩",
+      "١٠"
+    ];
+
+    let currentUnit = 0;
+
+    let completedUnits =
+      JSON.parse(
+        localStorage.getItem(
+          "nafes_completed_units"
+        )
+      ) || [];
+
+    if (!Array.isArray(completedUnits)) {
+      completedUnits = [];
+    }
+
+    completedUnits =
+      completedUnits.filter(
+        (unitIndex) =>
+          Number.isInteger(unitIndex) &&
+          unitIndex >= 0 &&
+          unitIndex < units.length
+      );
+
+    function playTone(type) {
+      try {
+        const AudioContextClass =
+          window.AudioContext ||
+          window.webkitAudioContext;
+
+        const audioContext =
+          new AudioContextClass();
+
+        const oscillator =
+          audioContext.createOscillator();
+
+        const gain =
+          audioContext.createGain();
+
+        oscillator.connect(gain);
+        gain.connect(audioContext.destination);
+
+        oscillator.type = "sine";
+
+        if (type === "good") {
+          oscillator.frequency.setValueAtTime(
+            520,
+            audioContext.currentTime
+          );
+
+          oscillator.frequency.exponentialRampToValueAtTime(
+            760,
+            audioContext.currentTime + 0.22
+          );
+        } else {
+          oscillator.frequency.setValueAtTime(
+            320,
+            audioContext.currentTime
+          );
+
+          oscillator.frequency.exponentialRampToValueAtTime(
+            275,
+            audioContext.currentTime + 0.2
+          );
+        }
+
+        gain.gain.setValueAtTime(
+          0.1,
+          audioContext.currentTime
+        );
+
+        gain.gain.exponentialRampToValueAtTime(
+          0.001,
+          audioContext.currentTime + 0.34
+        );
+
+        oscillator.start();
+
+        oscillator.stop(
+          audioContext.currentTime + 0.35
+        );
+      } catch (error) {
+        console.log(
+          "تعذر تشغيل الصوت."
+        );
+      }
+    }
+
+    function saveCompletedUnits() {
+      localStorage.setItem(
+        "nafes_completed_units",
+        JSON.stringify(completedUnits)
+      );
+    }
+
+    function updateProgress() {
+      const completedCount =
+        completedUnits.length;
+
+      const percentage =
+        (completedCount / units.length) *
+        100;
+
+      progressNumber.textContent =
+        arabicNumbers[completedCount] +
+        " من ١٠";
+
+      progressFill.style.width =
+        percentage + "%";
+
+      openUnitButtons.forEach(
+        (button, index) => {
+          if (
+            completedUnits.includes(index)
+          ) {
+            button.textContent =
+              "راجعي الوحدة ✓";
+          } else {
+            button.textContent =
+              "افتحي الوحدة";
+          }
+        }
+      );
+    }
+
+    function markUnitCompleted(unitIndex) {
+      if (
+        !completedUnits.includes(unitIndex)
+      ) {
+        completedUnits.push(unitIndex);
+
+        completedUnits.sort(
+          (a, b) => a - b
+        );
+
+        saveCompletedUnits();
+        updateProgress();
+      }
+    }
+
+    function renderUnit(unitIndex) {
+      currentUnit = unitIndex;
+
+      const unit =
+        units[currentUnit];
+
+      lessonTitle.textContent =
+        unit.title;
+
+      lessonSubtitle.textContent =
+        unit.subtitle;
+
+      lessonContent.innerHTML =
+        unit.content;
+
+      previousUnitBtn.disabled =
+        currentUnit === 0;
+
+      nextUnitBtn.disabled =
+        currentUnit ===
+        units.length - 1;
+
+      if (
+        currentUnit ===
+        units.length - 1
+      ) {
+        nextUnitBtn.textContent =
+          "هذه آخر وحدة";
+      } else {
+        nextUnitBtn.textContent =
+          "الوحدة التالية";
+      }
+
+      activateQuestions();
+
+      lessonPanel.classList.add(
+        "active"
+      );
+
+      window.scrollTo({
+        top:
+          lessonPanel.offsetTop -
+          75,
+        behavior: "smooth"
+      });
+
+      localStorage.setItem(
+        "nafes_last_unit",
+        String(currentUnit)
+      );
+    }
+
+    function activateQuestions() {
+      const questionBoxes =
+        lessonContent.querySelectorAll(
+          ".question-box"
+        );
+
+      questionBoxes.forEach(
+        (questionBox) => {
+          const buttons =
+            questionBox.querySelectorAll(
+              ".choice-btn"
+            );
+
+          const feedback =
+            questionBox.querySelector(
+              ".feedback"
+            );
+
+          buttons.forEach((button) => {
+            button.addEventListener(
+              "click",
+              () => {
+                buttons.forEach(
+                  (item) => {
+                    item.classList.remove(
+                      "selected"
+                    );
+                  }
+                );
+
+                button.classList.add(
+                  "selected"
+                );
+
+                const answerType =
+                  button.dataset.type;
+
+                const answerFeedback =
+                  button.dataset.feedback;
+
+                feedback.className =
+                  "feedback show " +
+                  answerType;
+
+                feedback.textContent =
+                  answerFeedback;
+
+                playTone(answerType);
+
+                markUnitCompleted(
+                  currentUnit
+                );
+              }
+            );
+          });
+        }
+      );
+    }
+
+    openUnitButtons.forEach(
+      (button) => {
+        button.addEventListener(
+          "click",
+          () => {
+            const unitIndex =
+              Number(
+                button.dataset.unit
+              );
+
+            renderUnit(unitIndex);
+          }
+        );
+      }
+    );
+
+    closeLessonBtn.addEventListener(
+      "click",
+      () => {
+        lessonPanel.classList.remove(
+          "active"
+        );
+
+        window.scrollTo({
+          top:
+            document.getElementById(
+              "unitsGrid"
+            ).offsetTop -
+            80,
+          behavior: "smooth"
+        });
+      }
+    );
+
+    previousUnitBtn.addEventListener(
+      "click",
+      () => {
+        if (currentUnit > 0) {
+          renderUnit(
+            currentUnit - 1
+          );
+        }
+      }
+    );
+
+    nextUnitBtn.addEventListener(
+      "click",
+      () => {
+        if (
+          currentUnit <
+          units.length - 1
+        ) {
+          renderUnit(
+            currentUnit + 1
+          );
+        }
+      }
+    );
+
+    updateProgress();
+
+    const savedUnit =
+      Number(
+        localStorage.getItem(
+          "nafes_last_unit"
+        )
+      );
+
+    if (
+      Number.isInteger(savedUnit) &&
+      savedUnit >= 0 &&
+      savedUnit < units.length
+    ) {
+      currentUnit = savedUnit;
+    }
+  </script>
 
 </body>
+
 </html>
