@@ -86,6 +86,48 @@
       line-height: 1.9;
     }
 
+    .name-label {
+      display: block;
+      margin: 18px 0 8px;
+      color: #5d4374;
+      font-weight: bold;
+      text-align: right;
+    }
+
+    #studentName {
+      width: 100%;
+      padding: 15px;
+      font-family: inherit;
+      font-size: 17px;
+      text-align: center;
+      background: white;
+      border: 2px solid #ddd2e5;
+      border-radius: 15px;
+      outline: none;
+    }
+
+    #studentName:focus {
+      border-color: #776094;
+      box-shadow: 0 0 0 4px rgba(119, 96, 148, 0.12);
+    }
+
+    .error-message {
+      min-height: 25px;
+      margin-top: 8px;
+      color: #a52222;
+      font-weight: bold;
+    }
+
+    .student-name {
+      margin-bottom: 16px;
+      padding: 12px;
+      color: #5d4374;
+      font-weight: bold;
+      background: #f5ecfb;
+      border: 1px solid #c9a85c;
+      border-radius: 14px;
+    }
+
     .progress-info {
       display: flex;
       justify-content: space-between;
@@ -188,6 +230,11 @@
       border: 1px solid #efb5b5;
     }
 
+    .correct-answer {
+      display: block;
+      margin: 7px 0;
+    }
+
     .actions {
       display: flex;
       justify-content: center;
@@ -221,6 +268,17 @@
     .btn:hover,
     .btn:active {
       background: #5b4677;
+    }
+
+    .secondary-btn {
+      color: #5d4374;
+      background: #f5ecfb;
+    }
+
+    .secondary-btn:hover,
+    .secondary-btn:active {
+      color: white;
+      background: #6f5288;
     }
 
     .score-circle {
@@ -325,6 +383,7 @@
   <main>
 
     <section id="startScreen" class="card center">
+
       <div class="icon">🌷</div>
 
       <h2>مرحبًا بكِ يا مبدعة</h2>
@@ -334,22 +393,49 @@
         ولكل سؤال درجتان.
       </p>
 
+      <label class="name-label" for="studentName">
+        اسم الطالبة الرباعي:
+      </label>
+
+      <input
+        id="studentName"
+        type="text"
+        maxlength="80"
+        autocomplete="name"
+        placeholder="مثال: سارة محمد علي أحمد"
+      >
+
+      <div
+        id="nameError"
+        class="error-message"
+        aria-live="polite"
+      ></div>
+
       <div class="actions">
+
         <button id="startBtn" type="button">
           ابدئي الاختبار
         </button>
 
-        <a class="btn" href="semester1-tests.html">
+        <a
+          class="btn secondary-btn"
+          href="semester1-tests.html"
+        >
           العودة إلى الاختبارات
         </a>
+
       </div>
+
     </section>
 
     <section id="quizScreen" class="hidden">
 
       <div class="card">
 
+        <div id="shownName" class="student-name"></div>
+
         <div class="progress-info">
+
           <span id="questionCounter"></span>
 
           <span>
@@ -357,6 +443,7 @@
             <strong id="liveScore">٠</strong>
             / ٢٠
           </span>
+
         </div>
 
         <div class="progress-shell">
@@ -379,9 +466,15 @@
         <div id="feedback" class="feedback hidden"></div>
 
         <div class="next-wrap">
-          <button id="nextBtn" class="hidden" type="button">
+
+          <button
+            id="nextBtn"
+            class="hidden"
+            type="button"
+          >
             السؤال التالي
           </button>
+
         </div>
 
       </section>
@@ -394,6 +487,8 @@
 
       <h2 id="resultTitle"></h2>
 
+      <p id="resultName"></p>
+
       <div class="score-circle">
         <strong id="finalScore">٠</strong>
         <span>من ٢٠</span>
@@ -402,18 +497,23 @@
       <p id="resultMessage"></p>
 
       <div class="saved-note">
-        ✅ تم حفظ درجة الأساليب اللغوية،
+        ✅ تم حفظ اسم الطالبة ودرجة الأساليب اللغوية،
         وستُضاف إلى المجموع النهائي من ١٠٠ درجة.
       </div>
 
       <div class="actions">
+
         <button id="retryBtn" type="button">
           إعادة الاختبار
         </button>
 
-        <a class="btn" href="semester1-tests.html">
+        <a
+          class="btn secondary-btn"
+          href="semester1-tests.html"
+        >
           العودة إلى الاختبارات
         </a>
+
       </div>
 
     </section>
@@ -425,7 +525,7 @@
   </footer>
 
   <script>
-    const questions = [
+        const questions = [
       {
         question: "اسم التفضيل من الفعل «استخرجَ» يُصاغ بـ:",
         choices: [
@@ -451,7 +551,7 @@
           "الواو هي أداة القسم، و«اللهِ» اسم مجرور بواو القسم."
       },
       {
-        question: "أي حرف من حروف القسم يختص غالبًا بلفظ الجلالة «الله» ولا يدخل على غيره؟",
+        question: "أي حرف من حروف القسم يختص غالبًا بلفظ الجلالة «الله»؟",
         choices: [
           "الواو",
           "الباء",
@@ -555,6 +655,15 @@
     const resultScreen =
       document.getElementById("resultScreen");
 
+    const studentNameInput =
+      document.getElementById("studentName");
+
+    const nameError =
+      document.getElementById("nameError");
+
+    const shownName =
+      document.getElementById("shownName");
+
     const startBtn =
       document.getElementById("startBtn");
 
@@ -585,6 +694,7 @@
     let currentQuestion = 0;
     let score = 0;
     let answered = false;
+    let studentFullName = "";
     let audioContext = null;
 
     function toArabicNumber(value) {
@@ -592,6 +702,32 @@
         /\d/g,
         digit => "٠١٢٣٤٥٦٧٨٩"[digit]
       );
+    }
+
+    function normalizeName(name) {
+      return name.trim().replace(/\s+/g, " ");
+    }
+
+    function isFourPartName(name) {
+      return normalizeName(name)
+        .split(" ")
+        .filter(Boolean)
+        .length >= 4;
+    }
+
+    function loadSavedName() {
+      const savedName =
+        localStorage.getItem(
+          "semester1_student_full_name"
+        ) ||
+        localStorage.getItem(
+          "studentFullName"
+        ) ||
+        "";
+
+      if (savedName) {
+        studentNameInput.value = savedName;
+      }
     }
 
     function initializeAudio() {
@@ -640,9 +776,13 @@
         oscillator.connect(gain);
         gain.connect(audioContext.destination);
 
-        const start = now + index * 0.13;
+        const start =
+          now + index * 0.13;
 
-        gain.gain.setValueAtTime(0.0001, start);
+        gain.gain.setValueAtTime(
+          0.0001,
+          start
+        );
 
         gain.gain.exponentialRampToValueAtTime(
           0.18,
@@ -679,7 +819,9 @@
 
         balloon.style.background =
           colors[
-            Math.floor(Math.random() * colors.length)
+            Math.floor(
+              Math.random() * colors.length
+            )
           ];
 
         balloon.style.animationDelay =
@@ -696,17 +838,58 @@
     function startQuiz() {
       initializeAudio();
 
+      const enteredName =
+        normalizeName(studentNameInput.value);
+
+      if (!enteredName) {
+        nameError.textContent =
+          "اكتبي اسم الطالبة الرباعي أولًا.";
+
+        studentNameInput.focus();
+        return;
+      }
+
+      if (!isFourPartName(enteredName)) {
+        nameError.textContent =
+          "يرجى كتابة الاسم الرباعي كاملًا، أربعة أسماء على الأقل.";
+
+        studentNameInput.focus();
+        return;
+      }
+
+      nameError.textContent = "";
+
+      studentFullName = enteredName;
+
+      localStorage.setItem(
+        "semester1_student_full_name",
+        studentFullName
+      );
+
+      localStorage.setItem(
+        "studentFullName",
+        studentFullName
+      );
+
       currentQuestion = 0;
       score = 0;
       answered = false;
+
+      shownName.textContent =
+        `الطالبة: ${studentFullName}`;
+
+      liveScore.textContent = "٠";
 
       startScreen.classList.add("hidden");
       resultScreen.classList.add("hidden");
       quizScreen.classList.remove("hidden");
 
-      liveScore.textContent = "٠";
-
       renderQuestion();
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
     }
 
     function renderQuestion() {
@@ -729,7 +912,7 @@
       feedback.className =
         "feedback hidden";
 
-      feedback.textContent = "";
+      feedback.innerHTML = "";
 
       nextBtn.classList.add("hidden");
 
@@ -772,17 +955,15 @@
       const currentItem =
         questions[currentQuestion];
 
-      const choiceButtons = [
-        ...document.querySelectorAll(".choice")
-      ];
+      const choiceButtons =
+        choicesBox.querySelectorAll(".choice");
 
       choiceButtons.forEach(button => {
         button.disabled = true;
       });
 
-      choiceButtons[
-        currentItem.answer
-      ].classList.add("correct");
+      choiceButtons[currentItem.answer]
+        .classList.add("correct");
 
       if (selectedIndex === currentItem.answer) {
         score += 2;
@@ -804,7 +985,12 @@
           "feedback wrong-feedback";
 
         feedback.innerHTML =
-          `❌ إجابة غير صحيحة.<br>${currentItem.explanation}`;
+          `❌ إجابة غير صحيحة.
+          <span class="correct-answer">
+            الإجابة الصحيحة:
+            ${currentItem.choices[currentItem.answer]}
+          </span>
+          ${currentItem.explanation}`;
 
         playSound(false);
       }
@@ -830,6 +1016,7 @@
 
       if (currentQuestion < questions.length - 1) {
         currentQuestion++;
+
         renderQuestion();
 
         window.scrollTo({
@@ -862,11 +1049,28 @@
         "true"
       );
 
+      localStorage.setItem(
+        "semester1_student_full_name",
+        studentFullName
+      );
+
+      localStorage.setItem(
+        "studentFullName",
+        studentFullName
+      );
+
       quizScreen.classList.add("hidden");
       resultScreen.classList.remove("hidden");
 
-      document.getElementById("finalScore").textContent =
+      document.getElementById(
+        "finalScore"
+      ).textContent =
         toArabicNumber(score);
+
+      document.getElementById(
+        "resultName"
+      ).textContent =
+        `الطالبة: ${studentFullName}`;
 
       const resultEmoji =
         document.getElementById("resultEmoji");
@@ -877,26 +1081,31 @@
       const resultMessage =
         document.getElementById("resultMessage");
 
-      if (score >= 18) {
+      if (score === 20) {
         resultEmoji.textContent = "🏆";
         resultTitle.textContent = "تفوق رائع!";
+
         resultMessage.textContent =
-          "أظهرتِ إتقانًا متميزًا للأساليب اللغوية.";
+          "أظهرتِ إتقانًا كاملًا للأساليب اللغوية.";
+
         launchBalloons();
         playSound(true);
-      } else if (score >= 14) {
+      } else if (score >= 16) {
         resultEmoji.textContent = "🌟";
         resultTitle.textContent = "أحسنتِ جدًا";
+
         resultMessage.textContent =
           "نتيجة جميلة، وبمراجعة بسيطة تصلين إلى الإتقان.";
       } else if (score >= 10) {
         resultEmoji.textContent = "👍";
         resultTitle.textContent = "محاولة جيدة";
+
         resultMessage.textContent =
           "راجعي قواعد القسم والشرط واسم التفضيل.";
       } else {
         resultEmoji.textContent = "📘";
         resultTitle.textContent = "تحتاجين إلى مراجعة";
+
         resultMessage.textContent =
           "راجعي دروس الأساليب اللغوية ثم أعيدي الاختبار.";
       }
@@ -907,9 +1116,25 @@
       });
     }
 
-    startBtn.addEventListener("click", startQuiz);
-    nextBtn.addEventListener("click", nextQuestion);
-    retryBtn.addEventListener("click", startQuiz);
+    startBtn.addEventListener(
+      "click",
+      startQuiz
+    );
+
+    nextBtn.addEventListener(
+      "click",
+      nextQuestion
+    );
+
+    retryBtn.addEventListener(
+      "click",
+      startQuiz
+    );
+
+    window.addEventListener(
+      "load",
+      loadSavedName
+    );
   </script>
 
 </body>
