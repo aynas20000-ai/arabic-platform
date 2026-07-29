@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>اختبار الرسم الكتابي</title>
 
@@ -15,269 +12,250 @@
       box-sizing: border-box;
     }
 
+    html,
     body {
+      width: 100%;
+      max-width: 100%;
       margin: 0;
-      min-height: 100vh;
       overflow-x: hidden;
+    }
+
+    body {
+      min-height: 100vh;
       font-family: Tahoma, Arial, sans-serif;
-      color: #3b245f;
-      background:
-        radial-gradient(circle at top, #fffaff, #f6effb);
+      color: #4b3a57;
+      background: linear-gradient(180deg, #fffaf2, #f8f0fb);
     }
 
     header {
-      padding: 28px 15px;
+      padding: 38px 20px;
       color: white;
       text-align: center;
-      background: linear-gradient(135deg, #7435b5, #ad4dcc);
-      border-radius: 0 0 35px 35px;
-      box-shadow: 0 5px 18px rgba(98, 41, 141, 0.25);
+      background: linear-gradient(135deg, #776094, #5b4677);
+      border-bottom: 4px solid #c9a85c;
     }
 
     header h1 {
-      margin: 0 0 8px;
-      font-size: 29px;
+      margin: 0 0 10px;
+      color: #fffdf8;
+      font-size: 34px;
+      line-height: 1.6;
     }
 
     header p {
       margin: 0;
+      color: #f7effb;
       font-size: 17px;
       line-height: 1.8;
     }
 
     .container {
-      width: 100%;
+      width: 92%;
       max-width: 760px;
-      margin: 24px auto;
-      padding: 15px;
+      margin: 30px auto;
     }
 
     .card {
-      position: relative;
-      padding: 24px;
-      overflow: hidden;
-      background: white;
-      border: 2px solid #ead8f7;
-      border-radius: 25px;
-      box-shadow: 0 8px 25px rgba(65, 30, 88, 0.13);
+      margin-bottom: 20px;
+      padding: 25px;
+      background: #fffdf8;
+      border: 2px solid #c9a85c;
+      border-radius: 20px;
+      box-shadow: 0 7px 18px rgba(91, 63, 111, 0.12);
     }
 
     .hidden {
       display: none !important;
     }
 
-    .name-box,
+    .center,
     .result {
       text-align: center;
     }
 
-    .name-box h2,
-    .result h2 {
-      margin-top: 0;
-      color: #7135a8;
+    .icon,
+    .result-icon {
+      margin-bottom: 12px;
+      font-size: 52px;
     }
 
-    input[type="text"] {
-      width: 100%;
-      margin: 16px 0;
-      padding: 15px;
-      font-family: inherit;
-      font-size: 18px;
-      text-align: center;
-      border: 2px solid #d9bdea;
-      border-radius: 15px;
-      outline: none;
+    h2 {
+      color: #5d4374;
+      line-height: 1.8;
     }
 
-    input[type="text"]:focus {
-      border-color: #7435b5;
-      box-shadow: 0 0 0 4px rgba(116, 53, 181, 0.1);
+    p {
+      line-height: 1.9;
     }
 
-    .btn {
-      display: inline-block;
-      min-width: 180px;
-      margin-top: 16px;
-      padding: 14px 25px;
-      color: white;
-      font-family: inherit;
-      font-size: 18px;
-      text-decoration: none;
-      background: linear-gradient(135deg, #7435b5, #ad4dcc);
-      border: none;
-      border-radius: 15px;
-      box-shadow: 0 5px 13px rgba(116, 53, 181, 0.25);
-      cursor: pointer;
-      transition: transform 0.2s, opacity 0.2s;
-    }
-
-    .btn:active {
-      transform: scale(0.97);
-    }
-
-    .btn:disabled {
-      color: white;
-      background: #b9abbf;
-      box-shadow: none;
-      cursor: not-allowed;
-      opacity: 0.8;
-    }
-
-    .progress-text {
-      margin-bottom: 11px;
-      color: #7135a8;
-      font-size: 19px;
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      color: #5d4374;
       font-weight: bold;
-      text-align: center;
     }
 
     .progress {
       height: 14px;
-      margin-bottom: 23px;
+      margin: 15px 0 22px;
       overflow: hidden;
-      background: #eee5f5;
-      border-radius: 20px;
+      background: #ece5f1;
+      border-radius: 999px;
     }
 
     .progress-bar {
       width: 0;
       height: 100%;
-      background: linear-gradient(90deg, #ad4dcc, #7135a8);
-      border-radius: 20px;
-      transition: width 0.4s ease;
+      background: linear-gradient(90deg, #c9a85c, #ead28b);
+      transition: width 0.3s ease;
     }
 
     .question-category {
       display: inline-block;
       margin-bottom: 16px;
       padding: 8px 14px;
-      color: #7135a8;
+      color: #5d4374;
       font-weight: bold;
-      background: #f3e8fa;
+      background: #f5ecfb;
+      border: 1px solid #c9a85c;
       border-radius: 22px;
     }
 
     .question {
       margin-bottom: 22px;
-      color: #38214f;
+      color: #4b3a57;
       font-size: 22px;
       font-weight: bold;
-      line-height: 1.8;
+      line-height: 1.9;
     }
 
     .choices {
       display: grid;
-      gap: 13px;
+      gap: 12px;
     }
 
     .choice {
       width: 100%;
-      padding: 16px;
-      color: #3b245f;
+      padding: 15px;
+      color: #4b3a57;
       font-family: inherit;
-      font-size: 18px;
-      line-height: 1.7;
+      font-size: 17px;
+      line-height: 1.8;
       text-align: right;
-      background: #fdfaff;
-      border: 3px solid #e0c9ef;
-      border-radius: 17px;
       cursor: pointer;
-      transition:
-        transform 0.2s,
-        background 0.2s,
-        border-color 0.2s;
+      background: #fff;
+      border: 2px solid #ddd2e5;
+      border-radius: 15px;
     }
 
-    .choice:hover {
-      background: #f6edfb;
-      transform: translateY(-1px);
+    .choice:hover,
+    .choice:active {
+      background: #f5ecfb;
     }
 
     .choice.correct {
-      color: #075e35;
+      color: #0d5b37;
       font-weight: bold;
-      background: #d9f8e7;
-      border-color: #28a865;
-      animation: correctPulse 0.5s;
+      background: #e8f7ef;
+      border-color: #198754;
     }
 
     .choice.wrong {
-      color: #8f1625;
+      color: #8f1f1f;
       font-weight: bold;
-      background: #ffe0e4;
-      border-color: #dc4457;
-      animation: wrongShake 0.4s;
+      background: #fdecec;
+      border-color: #c62828;
     }
 
-    .choice.locked {
+    .choice:disabled {
       cursor: default;
     }
 
     .feedback {
-      margin-top: 18px;
-      padding: 16px;
-      font-size: 18px;
-      line-height: 1.8;
-      border-radius: 16px;
-      animation: feedbackAppear 0.4s;
-    }
-
-    .feedback.correct-feedback {
-      color: #075e35;
-      background: #e2f9ec;
-      border: 2px solid #49b879;
-    }
-
-    .feedback.wrong-feedback {
-      color: #7a1422;
-      background: #ffe7ea;
-      border: 2px solid #e66a78;
-    }
-
-    .feedback-title {
-      display: block;
-      margin-bottom: 5px;
-      font-size: 20px;
+      margin-top: 17px;
+      padding: 15px;
       font-weight: bold;
+      line-height: 1.9;
+      border-radius: 15px;
     }
 
+    .correct-feedback {
+      color: #0d5b37;
+      background: #e8f7ef;
+      border: 1px solid #acd9c2;
+    }
+
+    .wrong-feedback {
+      color: #8f1f1f;
+      background: #fdecec;
+      border: 1px solid #efb5b5;
+    }
+
+    .feedback-title,
     .correct-answer {
       display: block;
-      margin-top: 7px;
-      font-weight: bold;
+      margin-bottom: 6px;
     }
 
     .actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
       margin-top: 20px;
-      text-align: center;
     }
 
-    .score {
-      margin: 18px 0;
-      color: #17844d;
-      font-size: 42px;
-      font-weight: bold;
+    .next-wrap {
+      margin-top: 18px;
+      text-align: left;
     }
 
-    .result-icon {
-      margin-bottom: 10px;
-      font-size: 64px;
-      animation: resultBounce 1s infinite alternate;
-    }
-
-    .message {
-      font-size: 19px;
-      line-height: 1.9;
-    }
-
-    .back-link {
-      display: block;
-      margin-top: 22px;
-      color: #7135a8;
+    button,
+    .btn {
+      display: inline-block;
+      padding: 13px 24px;
+      color: white;
+      font-family: inherit;
       font-size: 17px;
       font-weight: bold;
       text-decoration: none;
-      text-align: center;
+      cursor: pointer;
+      background: #6f5288;
+      border: 2px solid #c9a85c;
+      border-radius: 22px;
+    }
+
+    button:hover,
+    button:active,
+    .btn:hover,
+    .btn:active {
+      background: #5b4677;
+    }
+
+    button:disabled {
+      background: #b8acbf;
+      border-color: #d5cadb;
+      cursor: not-allowed;
+    }
+
+    .score {
+      width: 150px;
+      height: 150px;
+      margin: 20px auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      background: linear-gradient(145deg, #6f5288, #5b4677);
+      border: 7px solid #c9a85c;
+      border-radius: 50%;
+    }
+
+    .score strong {
+      font-size: 43px;
     }
 
     .stars-layer {
@@ -295,58 +273,22 @@
       animation: flyStar 1.2s ease-out forwards;
     }
 
-    @keyframes correctPulse {
-      0% {
-        transform: scale(1);
-      }
-
-      50% {
-        transform: scale(1.035);
-      }
-
-      100% {
-        transform: scale(1);
-      }
-    }
-
-    @keyframes wrongShake {
-      0%,
-      100% {
-        transform: translateX(0);
-      }
-
-      25% {
-        transform: translateX(7px);
-      }
-
-      50% {
-        transform: translateX(-7px);
-      }
-
-      75% {
-        transform: translateX(5px);
-      }
-    }
-
-    @keyframes feedbackAppear {
-      from {
-        opacity: 0;
-        transform: translateY(8px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    footer {
+      margin-top: 30px;
+      padding: 20px;
+      color: #fffdf8;
+      text-align: center;
+      background: #49385c;
+      border-top: 3px solid #c9a85c;
     }
 
     @keyframes flyStar {
-      0% {
+      from {
         opacity: 1;
-        transform: translate(0, 0) scale(0.7) rotate(0);
+        transform: translate(0, 0) scale(0.7);
       }
 
-      100% {
+      to {
         opacity: 0;
         transform:
           translate(var(--move-x), var(--move-y))
@@ -355,27 +297,13 @@
       }
     }
 
-    @keyframes resultBounce {
-      from {
-        transform: translateY(0);
-      }
-
-      to {
-        transform: translateY(-9px);
-      }
-    }
-
     @media (max-width: 600px) {
       header h1 {
-        font-size: 25px;
-      }
-
-      .container {
-        padding: 12px;
+        font-size: 27px;
       }
 
       .card {
-        padding: 20px 17px;
+        padding: 19px 14px;
       }
 
       .question {
@@ -383,8 +311,12 @@
       }
 
       .choice {
-        padding: 15px;
-        font-size: 17px;
+        padding: 13px;
+        font-size: 16px;
+      }
+
+      .next-wrap button {
+        width: 100%;
       }
     }
   </style>
@@ -396,128 +328,96 @@
 
   <header>
     <h1>✍️ اختبار الرسم الكتابي</h1>
-
-    <p>
-      خط الرقعة وقواعد الكتابة الصحيحة
-    </p>
+    <p>خط الرقعة وقواعد الكتابة الصحيحة</p>
   </header>
 
   <main class="container">
 
-    <section id="startScreen" class="card name-box">
-      <h2>🌟 أهلاً بكِ</h2>
+    <section id="startScreen" class="card center">
+      <div class="icon">🌟</div>
+
+      <h2>مرحبًا بكِ يا مبدعة</h2>
 
       <p>
-        اكتبي اسمكِ ثم ابدئي الاختبار.
+        يتكوّن الاختبار من عشرة أسئلة،
+        ولكل سؤال درجة واحدة.
       </p>
 
-      <input
-        id="studentName"
-        type="text"
-        placeholder="اكتبي اسم الطالبة"
-        autocomplete="name"
-      >
+      <div class="actions">
+        <button id="startButton" type="button">
+          ابدئي الاختبار
+        </button>
 
-      <button
-        class="btn"
-        type="button"
-        onclick="startTest()"
-      >
-        ابدئي الاختبار
-      </button>
-
-      <a
-        class="back-link"
-        href="semester1-tests.html"
-      >
-        العودة إلى اختبارات الفصل الأول
-      </a>
+        <a class="btn" href="semester1-tests.html">
+          العودة إلى الاختبارات
+        </a>
+      </div>
     </section>
 
     <section id="testScreen" class="card hidden">
 
-      <div
-        id="progressText"
-        class="progress-text"
-      ></div>
+      <div class="progress-info">
+        <span id="progressText"></span>
+
+        <span>
+          الدرجة الحالية:
+          <strong id="liveScore">٠</strong>
+          / ١٠
+        </span>
+      </div>
 
       <div class="progress">
-        <div
-          id="progressBar"
-          class="progress-bar"
-        ></div>
+        <div id="progressBar" class="progress-bar"></div>
       </div>
 
       <div class="question-category">
         الرسم الكتابي – خط الرقعة
       </div>
 
-      <div
-        id="questionText"
-        class="question"
-      ></div>
+      <div id="questionText" class="question"></div>
 
-      <div
-        id="choicesBox"
-        class="choices"
-      ></div>
+      <div id="choicesBox" class="choices"></div>
 
-      <div
-        id="feedbackBox"
-        class="feedback hidden"
-      ></div>
+      <div id="feedbackBox" class="feedback hidden"></div>
 
-      <div class="actions">
-        <button
-          id="nextButton"
-          class="btn"
-          type="button"
-          onclick="nextQuestion()"
-          disabled
-        >
+      <div class="next-wrap">
+        <button id="nextButton" type="button" disabled>
           السؤال التالي
         </button>
       </div>
 
     </section>
 
-    <section
-      id="resultScreen"
-      class="card result hidden"
-    >
+    <section id="resultScreen" class="card result hidden">
 
-      <div
-        id="resultIcon"
-        class="result-icon"
-      >
-        🏆
-      </div>
+      <div id="resultIcon" class="result-icon">🏆</div>
 
-      <h2>
-        أحسنتِ يا
-        <span id="resultName"></span>
-      </h2>
+      <h2 id="resultTitle"></h2>
 
       <div class="score">
-        <span id="finalScore"></span>
-        من 10
+        <strong id="finalScore">٠</strong>
+        <span>من ١٠</span>
       </div>
 
-      <p
-        id="resultMessage"
-        class="message"
-      ></p>
+      <p id="resultMessage"></p>
 
-      <a
-        class="btn"
-        href="semester1-tests.html"
-      >
-        العودة إلى صفحة الاختبارات
-      </a>
+      <div class="actions">
+        <button id="retryButton" type="button">
+          إعادة الاختبار
+        </button>
+
+        <a class="btn" href="semester1-tests.html">
+          العودة إلى الاختبارات
+        </a>
+      </div>
 
     </section>
 
   </main>
+
+  <footer>
+    جميع الحقوق محفوظة © 2026
+  </footer>
 
   <script>
     const questions = [
@@ -533,7 +433,6 @@
         explanation:
           "يتميز خط الرقعة بالسرعة والسهولة والوضوح في الكتابة."
       },
-
       {
         question: "جميع حروف خط الرقعة تستقر:",
         choices: [
@@ -546,10 +445,8 @@
         explanation:
           "الأصل أن تستقر حروف خط الرقعة على السطر، ما عدا حروف محددة ينزل جزء منها."
       },
-
       {
-        question:
-          "أي الحروف الآتية ينزل جزء منها أسفل السطر؟",
+        question: "أي الحروف الآتية ينزل جزء منها أسفل السطر؟",
         choices: [
           "أ",
           "د",
@@ -560,10 +457,8 @@
         explanation:
           "ينزل جزء من حرف الميم عن السطر في بعض مواضعه في خط الرقعة."
       },
-
       {
-        question:
-          "يُكتب حرف الكاف في آخر الكلمة في خط الرقعة:",
+        question: "يُكتب حرف الكاف في آخر الكلمة في خط الرقعة:",
         choices: [
           "فوق السطر",
           "تحت السطر",
@@ -574,10 +469,8 @@
         explanation:
           "يستقر حرف الكاف في آخر الكلمة على السطر ولا ينزل تحته."
       },
-
       {
-        question:
-          "ينزل حرف الهاء تحت السطر إذا كُتب:",
+        question: "ينزل حرف الهاء تحت السطر إذا كُتب:",
         choices: [
           "في أول الكلمة",
           "في وسط الكلمة",
@@ -588,10 +481,8 @@
         explanation:
           "ينزل جزء من حرف الهاء تحت السطر عندما يُكتب في وسط الكلمة."
       },
-
       {
-        question:
-          "من الحروف التي تُطمس في خط الرقعة حرف:",
+        question: "من الحروف التي تُطمس في خط الرقعة حرف:",
         choices: [
           "الألف",
           "الميم",
@@ -602,10 +493,8 @@
         explanation:
           "من قواعد خط الرقعة طمس حرف الميم، أي إغلاق عينه."
       },
-
       {
-        question:
-          "الجلسة الصحيحة أثناء الكتابة تكون:",
+        question: "الجلسة الصحيحة أثناء الكتابة تكون:",
         choices: [
           "منحنية",
           "معتدلة والظهر مستقيم",
@@ -616,10 +505,8 @@
         explanation:
           "الجلسة المعتدلة واستقامة الظهر تساعدان على الكتابة براحة ووضوح."
       },
-
       {
-        question:
-          "تكون طريقة مسك القلم:",
+        question: "تكون طريقة مسك القلم:",
         choices: [
           "قوية جدًا",
           "مريحة ومتزنة",
@@ -630,10 +517,8 @@
         explanation:
           "يُمسك القلم بطريقة مريحة ومتزنة دون ضغط شديد."
       },
-
       {
-        question:
-          "من آداب الكتابة الصحيحة:",
+        question: "من آداب الكتابة الصحيحة:",
         choices: [
           "الاقتراب الشديد من الورقة",
           "وضع الورقة بطريقة مناسبة أمام الكاتب",
@@ -644,10 +529,8 @@
         explanation:
           "يساعد وضع الورقة بطريقة مناسبة على راحة اليد ووضوح الكتابة."
       },
-
       {
-        question:
-          "الحروف التي ينزل جزء منها عن السطر تُجمع في كلمة:",
+        question: "الحروف التي ينزل جزء منها عن السطر تُجمع في كلمة:",
         choices: [
           "سألوني",
           "جمعة",
@@ -660,11 +543,6 @@
       }
     ];
 
-    let currentQuestion = 0;
-    let score = 0;
-    let selectedAnswer = null;
-    let answerChecked = false;
-
     const startScreen =
       document.getElementById("startScreen");
 
@@ -673,6 +551,24 @@
 
     const resultScreen =
       document.getElementById("resultScreen");
+
+    const startButton =
+      document.getElementById("startButton");
+
+    const nextButton =
+      document.getElementById("nextButton");
+
+    const retryButton =
+      document.getElementById("retryButton");
+
+    const progressText =
+      document.getElementById("progressText");
+
+    const progressBar =
+      document.getElementById("progressBar");
+
+    const liveScore =
+      document.getElementById("liveScore");
 
     const questionText =
       document.getElementById("questionText");
@@ -683,66 +579,33 @@
     const feedbackBox =
       document.getElementById("feedbackBox");
 
-    const nextButton =
-      document.getElementById("nextButton");
+    let currentQuestion = 0;
+    let score = 0;
+    let answerChecked = false;
 
-    const progressText =
-      document.getElementById("progressText");
-
-    const progressBar =
-      document.getElementById("progressBar");
-
-    window.addEventListener("load", function () {
-  const savedName =
-    localStorage.getItem("semester1_student_full_name") ||
-    localStorage.getItem("studentFullName") ||
-    localStorage.getItem("semester1StudentName") ||
-    "";
-
-  if (savedName) {
-    document.getElementById("studentName").value = savedName;
-  }
-});
-      
-      
-
-      
-        
-    
+    function toArabicNumber(number) {
+      return String(number).replace(
+        /\d/g,
+        digit => "٠١٢٣٤٥٦٧٨٩"[digit]
+      );
+    }
 
     function startTest() {
-      const name =
-        document
-          .getElementById("studentName")
-          .value
-          .trim();
-
-      if (name === "") {
-        alert("فضلاً اكتبي اسم الطالبة أولًا.");
-        return;
-      }
-
-      localStorage.setItem(
-        "semester1StudentName",
-        name
-      );
-
       currentQuestion = 0;
       score = 0;
-      selectedAnswer = null;
       answerChecked = false;
 
       startScreen.classList.add("hidden");
       resultScreen.classList.add("hidden");
       testScreen.classList.remove("hidden");
 
+      liveScore.textContent = "٠";
+
       showQuestion();
     }
 
     function showQuestion() {
-      selectedAnswer = null;
       answerChecked = false;
-
       nextButton.disabled = true;
 
       feedbackBox.className = "feedback hidden";
@@ -751,102 +614,91 @@
       const current = questions[currentQuestion];
 
       progressText.textContent =
-        "السؤال " +
-        (currentQuestion + 1) +
-        " من " +
-        questions.length;
+        `السؤال ${toArabicNumber(currentQuestion + 1)} من ${toArabicNumber(questions.length)}`;
 
       progressBar.style.width =
-        (
-          (currentQuestion + 1) /
-          questions.length *
-          100
-        ) + "%";
+        `${(currentQuestion / questions.length) * 100}%`;
 
       questionText.textContent = current.question;
       choicesBox.innerHTML = "";
 
-      current.choices.forEach(function (choice, index) {
-        const button =
-          document.createElement("button");
+      current.choices.forEach((choice, index) => {
+        const button = document.createElement("button");
 
         button.type = "button";
         button.className = "choice";
-        button.textContent = choice;
+        button.textContent =
+          `${["أ", "ب", "ج", "د"][index]}) ${choice}`;
 
-        button.addEventListener("click", function () {
-          checkAnswer(index);
+        button.addEventListener("click", () => {
+          checkAnswer(index, button);
         });
 
         choicesBox.appendChild(button);
       });
 
-      if (currentQuestion === questions.length - 1) {
-        nextButton.textContent = "عرض النتيجة";
-      } else {
-        nextButton.textContent = "السؤال التالي";
-      }
+      nextButton.textContent =
+        currentQuestion === questions.length - 1
+          ? "عرض النتيجة"
+          : "السؤال التالي";
     }
 
-    function checkAnswer(index) {
+    function checkAnswer(selectedIndex, selectedButton) {
       if (answerChecked) {
         return;
       }
 
       answerChecked = true;
-      selectedAnswer = index;
 
       const current = questions[currentQuestion];
-
       const buttons =
         choicesBox.querySelectorAll(".choice");
 
-      buttons.forEach(function (button, buttonIndex) {
-        button.classList.add("locked");
+      buttons.forEach(button => {
         button.disabled = true;
-
-        if (buttonIndex === current.answer) {
-          button.classList.add("correct");
-          button.textContent =
-            "✓ " + button.textContent;
-        }
       });
 
-      if (index === current.answer) {
+      buttons[current.answer].classList.add("correct");
+
+      if (selectedIndex === current.answer) {
         score++;
+
+        selectedButton.classList.add("correct");
 
         feedbackBox.className =
           "feedback correct-feedback";
 
         feedbackBox.innerHTML =
-          '<span class="feedback-title">' +
-          "أحسنتِ! إجابة صحيحة ⭐" +
-          "</span>" +
-          current.explanation;
+          `<span class="feedback-title">
+            ✅ أحسنتِ! إجابة صحيحة
+          </span>
+          ${current.explanation}`;
 
         playSuccessSound();
         createStars();
       } else {
-        buttons[index].classList.add("wrong");
-
-        buttons[index].textContent =
-          "✕ " + buttons[index].textContent;
+        selectedButton.classList.add("wrong");
 
         feedbackBox.className =
           "feedback wrong-feedback";
 
         feedbackBox.innerHTML =
-          '<span class="feedback-title">' +
-          "ليست الإجابة الصحيحة، لا بأس 🌷" +
-          "</span>" +
-          '<span class="correct-answer">' +
-          "الإجابة الصحيحة: " +
-          current.choices[current.answer] +
-          "</span>" +
-          current.explanation;
+          `<span class="feedback-title">
+            ❌ ليست الإجابة الصحيحة
+          </span>
+          <span class="correct-answer">
+            الإجابة الصحيحة:
+            ${current.choices[current.answer]}
+          </span>
+          ${current.explanation}`;
 
         playWrongSound();
       }
+
+      liveScore.textContent = toArabicNumber(score);
+
+      progressBar.style.width =
+        `${((currentQuestion + 1) / questions.length) * 100}%`;
 
       nextButton.disabled = false;
     }
@@ -856,9 +708,8 @@
         return;
       }
 
-      currentQuestion++;
-
-      if (currentQuestion < questions.length) {
+      if (currentQuestion < questions.length - 1) {
+        currentQuestion++;
         showQuestion();
 
         window.scrollTo({
@@ -871,78 +722,60 @@
     }
 
     function finishTest() {
-      const studentName =
-        localStorage.getItem(
-          "semester1StudentName"
-        ) || "الطالبة";
-
+      localStorage.setItem("ruqahScore", String(score));
+      localStorage.setItem("ruqahCompleted", "true");
+      localStorage.setItem("writingScore", String(score));
       localStorage.setItem(
-        "ruqahScore",
+        "semester1_writing_score",
         String(score)
       );
-
       localStorage.setItem(
-        "ruqahCompleted",
-        "true"
+        "semester1_writing_total",
+        "10"
       );
-
       localStorage.setItem(
-        "writingScore",
-        String(score)
-      );
-localStorage.setItem(
-  "semester1_writing_score",
-  String(score)
-);
-      localStorage.setItem(
-        "writingCompleted",
+        "semester1_writing_completed",
         "true"
       );
 
       testScreen.classList.add("hidden");
       resultScreen.classList.remove("hidden");
 
-      document.getElementById(
-        "resultName"
-      ).textContent = studentName;
-
-      document.getElementById(
-        "finalScore"
-      ).textContent = score;
+      document.getElementById("finalScore").textContent =
+        toArabicNumber(score);
 
       const resultIcon =
         document.getElementById("resultIcon");
 
-      let message = "";
+      const resultTitle =
+        document.getElementById("resultTitle");
+
+      const resultMessage =
+        document.getElementById("resultMessage");
 
       if (score === 10) {
         resultIcon.textContent = "🏆";
-
-        message =
-          "رائعة جدًا! أتقنتِ قواعد الرسم الكتابي وخط الرقعة.";
-
+        resultTitle.textContent = "تفوق رائع!";
+        resultMessage.textContent =
+          "أتقنتِ قواعد الرسم الكتابي وخط الرقعة.";
         createStars();
         playSuccessSound();
       } else if (score >= 8) {
         resultIcon.textContent = "🌟";
-
-        message =
-          "أحسنتِ! لديكِ فهم ممتاز لقواعد خط الرقعة.";
+        resultTitle.textContent = "أحسنتِ جدًا";
+        resultMessage.textContent =
+          "لديكِ فهم ممتاز لقواعد خط الرقعة.";
       } else if (score >= 5) {
         resultIcon.textContent = "👏";
-
-        message =
-          "نتيجة جيدة، راجعي الحروف التي تنزل عن السطر والحروف المطموسة.";
+        resultTitle.textContent = "نتيجة جيدة";
+        resultMessage.textContent =
+          "راجعي الحروف التي تنزل عن السطر والحروف المطموسة.";
       } else {
         resultIcon.textContent = "📚";
-
-        message =
-          "محاولة جيدة، راجعي قواعد خط الرقعة ثم حاولي مرة أخرى.";
+        resultTitle.textContent = "تحتاجين إلى مراجعة";
+        resultMessage.textContent =
+          "راجعي قواعد خط الرقعة ثم أعيدي الاختبار.";
       }
-
-      document.getElementById(
-        "resultMessage"
-      ).textContent = message;
 
       window.scrollTo({
         top: 0,
@@ -963,107 +796,101 @@ localStorage.setItem(
         star.className = "star";
 
         star.textContent =
-          icons[
-            Math.floor(Math.random() * icons.length)
-          ];
+          icons[Math.floor(Math.random() * icons.length)];
 
         star.style.left =
-          (15 + Math.random() * 70) + "%";
+          `${15 + Math.random() * 70}%`;
 
         star.style.setProperty(
           "--move-x",
-          ((Math.random() - 0.5) * 320) + "px"
+          `${(Math.random() - 0.5) * 320}px`
         );
 
         star.style.setProperty(
           "--move-y",
-          (-150 - Math.random() * 350) + "px"
+          `${-150 - Math.random() * 350}px`
         );
 
         star.style.animationDelay =
-          (Math.random() * 0.15) + "s";
+          `${Math.random() * 0.15}s`;
 
         layer.appendChild(star);
 
-        setTimeout(function () {
+        setTimeout(() => {
           star.remove();
         }, 1500);
       }
     }
 
-    function playSuccessSound() {
-      playTone(520, 0.12, 0);
-      playTone(660, 0.14, 0.12);
-      playTone(790, 0.18, 0.25);
-    }
-
-    function playWrongSound() {
-      playTone(280, 0.15, 0);
-      playTone(210, 0.2, 0.15);
-    }
-
     function playTone(
       frequency,
       duration,
-      delay
+      delay = 0,
+      type = "sine"
     ) {
       try {
-        const AudioContext =
-     window.AudioContext ||
-window.webkitAudioContext;
+        const AudioContextClass =
+          window.AudioContext ||
+          window.webkitAudioContext;
 
-const audioContext =
-  new AudioContext();
+        const audioContext =
+          new AudioContextClass();
 
-const oscillator =
-  audioContext.createOscillator();
+        const oscillator =
+          audioContext.createOscillator();
 
-const gain =
-  audioContext.createGain();
+        const gain =
+          audioContext.createGain();
 
-oscillator.type = "sine";
-oscillator.frequency.value = frequency;
+        oscillator.type = type;
+        oscillator.frequency.value = frequency;
 
-gain.gain.setValueAtTime(
-  0.0001,
-  audioContext.currentTime + delay
-);
+        gain.gain.setValueAtTime(
+          0.0001,
+          audioContext.currentTime + delay
+        );
 
-gain.gain.exponentialRampToValueAtTime(
-  0.16,
-  audioContext.currentTime + delay + 0.02
-);
+        gain.gain.exponentialRampToValueAtTime(
+          0.18,
+          audioContext.currentTime + delay + 0.01
+        );
 
-gain.gain.exponentialRampToValueAtTime(
-  0.0001,
-  audioContext.currentTime + delay + duration
-);
+        gain.gain.exponentialRampToValueAtTime(
+          0.0001,
+          audioContext.currentTime + delay + duration
+        );
 
-oscillator.connect(gain);
-gain.connect(audioContext.destination);
+        oscillator.connect(gain);
+        gain.connect(audioContext.destination);
 
-oscillator.start(
-  audioContext.currentTime + delay
-);
+        oscillator.start(
+          audioContext.currentTime + delay
+        );
 
-oscillator.stop(
-  audioContext.currentTime +
-  delay +
-  duration +
-  0.05
-);
+        oscillator.stop(
+          audioContext.currentTime + delay + duration
+        );
+      } catch (error) {
+        console.log("تعذر تشغيل الصوت.");
+      }
+    }
 
-oscillator.onended = function () {
-  audioContext.close();
-};
+    function playSuccessSound() {
+      playTone(520, 0.14, 0);
+      playTone(660, 0.16, 0.13);
+      playTone(790, 0.2, 0.28);
+    }
 
-} catch (error) {
-  console.log(
-    "الصوت غير متاح في هذا المتصفح."
-  );
-}
-}
+    function playWrongSound() {
+      playTone(260, 0.18, 0, "triangle");
+      playTone(190, 0.24, 0.17, "triangle");
+    }
+
+    startButton.addEventListener("click", startTest);
+    nextButton.addEventListener("click", nextQuestion);
+    retryButton.addEventListener("click", startTest);
   </script>
 
 </body>
-</html>     
+
+</html>
