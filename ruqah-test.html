@@ -88,6 +88,48 @@
       line-height: 1.9;
     }
 
+    .name-label {
+      display: block;
+      margin: 18px 0 8px;
+      color: #5d4374;
+      font-weight: bold;
+      text-align: right;
+    }
+
+    #studentName {
+      width: 100%;
+      padding: 15px;
+      font-family: inherit;
+      font-size: 17px;
+      text-align: center;
+      background: white;
+      border: 2px solid #ddd2e5;
+      border-radius: 15px;
+      outline: none;
+    }
+
+    #studentName:focus {
+      border-color: #776094;
+      box-shadow: 0 0 0 4px rgba(119, 96, 148, 0.12);
+    }
+
+    .error-message {
+      min-height: 25px;
+      margin-top: 8px;
+      color: #a52222;
+      font-weight: bold;
+    }
+
+    .student-name {
+      margin-bottom: 16px;
+      padding: 12px;
+      color: #5d4374;
+      font-weight: bold;
+      background: #f5ecfb;
+      border: 1px solid #c9a85c;
+      border-radius: 14px;
+    }
+
     .progress-info {
       display: flex;
       justify-content: space-between;
@@ -145,7 +187,7 @@
       line-height: 1.8;
       text-align: right;
       cursor: pointer;
-      background: #fff;
+      background: white;
       border: 2px solid #ddd2e5;
       border-radius: 15px;
     }
@@ -153,6 +195,10 @@
     .choice:hover,
     .choice:active {
       background: #f5ecfb;
+    }
+
+    .choice:disabled {
+      cursor: default;
     }
 
     .choice.correct {
@@ -167,10 +213,6 @@
       font-weight: bold;
       background: #fdecec;
       border-color: #c62828;
-    }
-
-    .choice:disabled {
-      cursor: default;
     }
 
     .feedback {
@@ -240,6 +282,17 @@
       cursor: not-allowed;
     }
 
+    .secondary-btn {
+      color: #5d4374;
+      background: #f5ecfb;
+    }
+
+    .secondary-btn:hover,
+    .secondary-btn:active {
+      color: white;
+      background: #6f5288;
+    }
+
     .score {
       width: 150px;
       height: 150px;
@@ -256,6 +309,18 @@
 
     .score strong {
       font-size: 43px;
+    }
+
+    .saved-note {
+      max-width: 620px;
+      margin: 18px auto;
+      padding: 16px;
+      color: #5d4374;
+      font-weight: bold;
+      line-height: 1.9;
+      background: #f5ecfb;
+      border: 1px solid #c9a85c;
+      border-radius: 17px;
     }
 
     .stars-layer {
@@ -318,6 +383,10 @@
       .next-wrap button {
         width: 100%;
       }
+
+      .progress-info {
+        font-size: 14px;
+      }
     }
   </style>
 </head>
@@ -328,12 +397,13 @@
 
   <header>
     <h1>✍️ اختبار الرسم الكتابي</h1>
-    <p>خط الرقعة وقواعد الكتابة الصحيحة</p>
+    <p>خط الرقعة — ١٠ أسئلة — ١٠ درجات</p>
   </header>
 
   <main class="container">
 
     <section id="startScreen" class="card center">
+
       <div class="icon">🌟</div>
 
       <h2>مرحبًا بكِ يا مبدعة</h2>
@@ -343,20 +413,47 @@
         ولكل سؤال درجة واحدة.
       </p>
 
+      <label class="name-label" for="studentName">
+        اسم الطالبة الرباعي:
+      </label>
+
+      <input
+        id="studentName"
+        type="text"
+        maxlength="80"
+        autocomplete="name"
+        placeholder="مثال: سارة محمد علي أحمد"
+      >
+
+      <div
+        id="nameError"
+        class="error-message"
+        aria-live="polite"
+      ></div>
+
       <div class="actions">
+
         <button id="startButton" type="button">
           ابدئي الاختبار
         </button>
 
-        <a class="btn" href="semester1-tests.html">
+        <a
+          class="btn secondary-btn"
+          href="semester1-tests.html"
+        >
           العودة إلى الاختبارات
         </a>
+
       </div>
+
     </section>
 
     <section id="testScreen" class="card hidden">
 
+      <div id="shownName" class="student-name"></div>
+
       <div class="progress-info">
+
         <span id="progressText"></span>
 
         <span>
@@ -364,6 +461,7 @@
           <strong id="liveScore">٠</strong>
           / ١٠
         </span>
+
       </div>
 
       <div class="progress">
@@ -381,9 +479,15 @@
       <div id="feedbackBox" class="feedback hidden"></div>
 
       <div class="next-wrap">
-        <button id="nextButton" type="button" disabled>
+
+        <button
+          id="nextButton"
+          type="button"
+          disabled
+        >
           السؤال التالي
         </button>
+
       </div>
 
     </section>
@@ -394,6 +498,8 @@
 
       <h2 id="resultTitle"></h2>
 
+      <p id="resultName"></p>
+
       <div class="score">
         <strong id="finalScore">٠</strong>
         <span>من ١٠</span>
@@ -401,14 +507,24 @@
 
       <p id="resultMessage"></p>
 
+      <div class="saved-note">
+        ✅ تم حفظ اسم الطالبة ودرجة الرسم الكتابي،
+        وستُضاف الدرجة إلى المجموع النهائي من ١٠٠.
+      </div>
+
       <div class="actions">
+
         <button id="retryButton" type="button">
           إعادة الاختبار
         </button>
 
-        <a class="btn" href="semester1-tests.html">
+        <a
+          class="btn secondary-btn"
+          href="semester1-tests.html"
+        >
           العودة إلى الاختبارات
         </a>
+
       </div>
 
     </section>
@@ -420,7 +536,7 @@
   </footer>
 
   <script>
-    const questions = [
+        const questions = [
       {
         question: "من مميزات خط الرقعة:",
         choices: [
@@ -552,6 +668,15 @@
     const resultScreen =
       document.getElementById("resultScreen");
 
+    const studentNameInput =
+      document.getElementById("studentName");
+
+    const nameError =
+      document.getElementById("nameError");
+
+    const shownName =
+      document.getElementById("shownName");
+
     const startButton =
       document.getElementById("startButton");
 
@@ -582,6 +707,8 @@
     let currentQuestion = 0;
     let score = 0;
     let answerChecked = false;
+    let studentFullName = "";
+    let audioContext = null;
 
     function toArabicNumber(number) {
       return String(number).replace(
@@ -590,196 +717,98 @@
       );
     }
 
-    function startTest() {
-      currentQuestion = 0;
-      score = 0;
-      answerChecked = false;
-
-      startScreen.classList.add("hidden");
-      resultScreen.classList.add("hidden");
-      testScreen.classList.remove("hidden");
-
-      liveScore.textContent = "٠";
-
-      showQuestion();
+    function normalizeName(name) {
+      return name.trim().replace(/\s+/g, " ");
     }
 
-    function showQuestion() {
-      answerChecked = false;
-      nextButton.disabled = true;
-
-      feedbackBox.className = "feedback hidden";
-      feedbackBox.innerHTML = "";
-
-      const current = questions[currentQuestion];
-
-      progressText.textContent =
-        `السؤال ${toArabicNumber(currentQuestion + 1)} من ${toArabicNumber(questions.length)}`;
-
-      progressBar.style.width =
-        `${(currentQuestion / questions.length) * 100}%`;
-
-      questionText.textContent = current.question;
-      choicesBox.innerHTML = "";
-
-      current.choices.forEach((choice, index) => {
-        const button = document.createElement("button");
-
-        button.type = "button";
-        button.className = "choice";
-        button.textContent =
-          `${["أ", "ب", "ج", "د"][index]}) ${choice}`;
-
-        button.addEventListener("click", () => {
-          checkAnswer(index, button);
-        });
-
-        choicesBox.appendChild(button);
-      });
-
-      nextButton.textContent =
-        currentQuestion === questions.length - 1
-          ? "عرض النتيجة"
-          : "السؤال التالي";
+    function isFourPartName(name) {
+      return normalizeName(name)
+        .split(" ")
+        .filter(Boolean)
+        .length >= 4;
     }
 
-    function checkAnswer(selectedIndex, selectedButton) {
-      if (answerChecked) {
+    function loadSavedName() {
+      const savedName =
+        localStorage.getItem(
+          "semester1_student_full_name"
+        ) ||
+        localStorage.getItem(
+          "studentFullName"
+        ) ||
+        "";
+
+      if (savedName) {
+        studentNameInput.value = savedName;
+      }
+    }
+
+    function initializeAudio() {
+      const AudioContextClass =
+        window.AudioContext ||
+        window.webkitAudioContext;
+
+      if (!AudioContextClass) {
         return;
       }
 
-      answerChecked = true;
-
-      const current = questions[currentQuestion];
-      const buttons =
-        choicesBox.querySelectorAll(".choice");
-
-      buttons.forEach(button => {
-        button.disabled = true;
-      });
-
-      buttons[current.answer].classList.add("correct");
-
-      if (selectedIndex === current.answer) {
-        score++;
-
-        selectedButton.classList.add("correct");
-
-        feedbackBox.className =
-          "feedback correct-feedback";
-
-        feedbackBox.innerHTML =
-          `<span class="feedback-title">
-            ✅ أحسنتِ! إجابة صحيحة
-          </span>
-          ${current.explanation}`;
-
-        playSuccessSound();
-        createStars();
-      } else {
-        selectedButton.classList.add("wrong");
-
-        feedbackBox.className =
-          "feedback wrong-feedback";
-
-        feedbackBox.innerHTML =
-          `<span class="feedback-title">
-            ❌ ليست الإجابة الصحيحة
-          </span>
-          <span class="correct-answer">
-            الإجابة الصحيحة:
-            ${current.choices[current.answer]}
-          </span>
-          ${current.explanation}`;
-
-        playWrongSound();
+      if (!audioContext) {
+        audioContext = new AudioContextClass();
       }
 
-      liveScore.textContent = toArabicNumber(score);
-
-      progressBar.style.width =
-        `${((currentQuestion + 1) / questions.length) * 100}%`;
-
-      nextButton.disabled = false;
+      if (audioContext.state === "suspended") {
+        audioContext.resume();
+      }
     }
 
-    function nextQuestion() {
-      if (!answerChecked) {
+    function playSound(isCorrect) {
+      initializeAudio();
+
+      if (!audioContext) {
         return;
       }
 
-      if (currentQuestion < questions.length - 1) {
-        currentQuestion++;
-        showQuestion();
+      const notes = isCorrect
+        ? [523.25, 659.25, 783.99]
+        : [250, 185];
 
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth"
-        });
-      } else {
-        finishTest();
-      }
-    }
+      const now = audioContext.currentTime;
 
-    function finishTest() {
-      localStorage.setItem("ruqahScore", String(score));
-      localStorage.setItem("ruqahCompleted", "true");
-      localStorage.setItem("writingScore", String(score));
-      localStorage.setItem(
-        "semester1_writing_score",
-        String(score)
-      );
-      localStorage.setItem(
-        "semester1_writing_total",
-        "10"
-      );
-      localStorage.setItem(
-        "semester1_writing_completed",
-        "true"
-      );
+      notes.forEach((frequency, index) => {
+        const oscillator =
+          audioContext.createOscillator();
 
-      testScreen.classList.add("hidden");
-      resultScreen.classList.remove("hidden");
+        const gain =
+          audioContext.createGain();
 
-      document.getElementById("finalScore").textContent =
-        toArabicNumber(score);
+        oscillator.type =
+          isCorrect ? "sine" : "triangle";
 
-      const resultIcon =
-        document.getElementById("resultIcon");
+        oscillator.frequency.value = frequency;
 
-      const resultTitle =
-        document.getElementById("resultTitle");
+        oscillator.connect(gain);
+        gain.connect(audioContext.destination);
 
-      const resultMessage =
-        document.getElementById("resultMessage");
+        const start =
+          now + index * 0.13;
 
-      if (score === 10) {
-        resultIcon.textContent = "🏆";
-        resultTitle.textContent = "تفوق رائع!";
-        resultMessage.textContent =
-          "أتقنتِ قواعد الرسم الكتابي وخط الرقعة.";
-        createStars();
-        playSuccessSound();
-      } else if (score >= 8) {
-        resultIcon.textContent = "🌟";
-        resultTitle.textContent = "أحسنتِ جدًا";
-        resultMessage.textContent =
-          "لديكِ فهم ممتاز لقواعد خط الرقعة.";
-      } else if (score >= 5) {
-        resultIcon.textContent = "👏";
-        resultTitle.textContent = "نتيجة جيدة";
-        resultMessage.textContent =
-          "راجعي الحروف التي تنزل عن السطر والحروف المطموسة.";
-      } else {
-        resultIcon.textContent = "📚";
-        resultTitle.textContent = "تحتاجين إلى مراجعة";
-        resultMessage.textContent =
-          "راجعي قواعد خط الرقعة ثم أعيدي الاختبار.";
-      }
+        gain.gain.setValueAtTime(
+          0.0001,
+          start
+        );
 
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
+        gain.gain.exponentialRampToValueAtTime(
+          0.18,
+          start + 0.02
+        );
+
+        gain.gain.exponentialRampToValueAtTime(
+          0.0001,
+          start + 0.23
+        );
+
+        oscillator.start(start);
+        oscillator.stop(start + 0.25);
       });
     }
 
@@ -789,14 +818,16 @@
 
       const icons = ["⭐", "✨", "🌟", "💫"];
 
-      for (let i = 0; i < 18; i++) {
+      for (let index = 0; index < 18; index++) {
         const star =
           document.createElement("span");
 
         star.className = "star";
 
         star.textContent =
-          icons[Math.floor(Math.random() * icons.length)];
+          icons[
+            Math.floor(Math.random() * icons.length)
+          ];
 
         star.style.left =
           `${15 + Math.random() * 70}%`;
@@ -822,73 +853,307 @@
       }
     }
 
-    function playTone(
-      frequency,
-      duration,
-      delay = 0,
-      type = "sine"
+    function startTest() {
+      initializeAudio();
+
+      const enteredName =
+        normalizeName(studentNameInput.value);
+
+      if (!enteredName) {
+        nameError.textContent =
+          "اكتبي اسم الطالبة الرباعي أولًا.";
+
+        studentNameInput.focus();
+        return;
+      }
+
+      if (!isFourPartName(enteredName)) {
+        nameError.textContent =
+          "يرجى كتابة الاسم الرباعي كاملًا، أربعة أسماء على الأقل.";
+
+        studentNameInput.focus();
+        return;
+      }
+
+      nameError.textContent = "";
+
+      studentFullName = enteredName;
+
+      localStorage.setItem(
+        "semester1_student_full_name",
+        studentFullName
+      );
+
+      localStorage.setItem(
+        "studentFullName",
+        studentFullName
+      );
+
+      currentQuestion = 0;
+      score = 0;
+      answerChecked = false;
+
+      shownName.textContent =
+        `الطالبة: ${studentFullName}`;
+
+      liveScore.textContent = "٠";
+
+      startScreen.classList.add("hidden");
+      resultScreen.classList.add("hidden");
+      testScreen.classList.remove("hidden");
+
+      showQuestion();
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+
+    function showQuestion() {
+      answerChecked = false;
+      nextButton.disabled = true;
+
+      feedbackBox.className =
+        "feedback hidden";
+
+      feedbackBox.innerHTML = "";
+
+      const current =
+        questions[currentQuestion];
+
+      progressText.textContent =
+        `السؤال ${toArabicNumber(currentQuestion + 1)} من ${toArabicNumber(questions.length)}`;
+
+      progressBar.style.width =
+        `${(currentQuestion / questions.length) * 100}%`;
+
+      questionText.textContent =
+        current.question;
+
+      choicesBox.innerHTML = "";
+
+      current.choices.forEach((choice, index) => {
+        const button =
+          document.createElement("button");
+
+        button.type = "button";
+        button.className = "choice";
+
+        button.textContent =
+          `${["أ", "ب", "ج", "د"][index]}) ${choice}`;
+
+        button.addEventListener("click", () => {
+          checkAnswer(index, button);
+        });
+
+        choicesBox.appendChild(button);
+      });
+
+      nextButton.textContent =
+        currentQuestion === questions.length - 1
+          ? "عرض النتيجة"
+          : "السؤال التالي";
+    }
+
+    function checkAnswer(
+      selectedIndex,
+      selectedButton
     ) {
-      try {
-        const AudioContextClass =
-          window.AudioContext ||
-          window.webkitAudioContext;
+      if (answerChecked) {
+        return;
+      }
 
-        const audioContext =
-          new AudioContextClass();
+      answerChecked = true;
 
-        const oscillator =
-          audioContext.createOscillator();
+      const current =
+        questions[currentQuestion];
 
-        const gain =
-          audioContext.createGain();
+      const buttons =
+        choicesBox.querySelectorAll(".choice");
 
-        oscillator.type = type;
-        oscillator.frequency.value = frequency;
+      buttons.forEach(button => {
+        button.disabled = true;
+      });
 
-        gain.gain.setValueAtTime(
-          0.0001,
-          audioContext.currentTime + delay
-        );
+      buttons[current.answer]
+        .classList.add("correct");
 
-        gain.gain.exponentialRampToValueAtTime(
-          0.18,
-          audioContext.currentTime + delay + 0.01
-        );
+      if (selectedIndex === current.answer) {
+        score++;
 
-        gain.gain.exponentialRampToValueAtTime(
-          0.0001,
-          audioContext.currentTime + delay + duration
-        );
+        selectedButton.classList.add("correct");
 
-        oscillator.connect(gain);
-        gain.connect(audioContext.destination);
+        feedbackBox.className =
+          "feedback correct-feedback";
 
-        oscillator.start(
-          audioContext.currentTime + delay
-        );
+        feedbackBox.innerHTML =
+          `<span class="feedback-title">
+            ✅ أحسنتِ! إجابة صحيحة
+          </span>
+          ${current.explanation}`;
 
-        oscillator.stop(
-          audioContext.currentTime + delay + duration
-        );
-      } catch (error) {
-        console.log("تعذر تشغيل الصوت.");
+        playSound(true);
+        createStars();
+      } else {
+        selectedButton.classList.add("wrong");
+
+        feedbackBox.className =
+          "feedback wrong-feedback";
+
+        feedbackBox.innerHTML =
+          `<span class="feedback-title">
+            ❌ ليست الإجابة الصحيحة
+          </span>
+          <span class="correct-answer">
+            الإجابة الصحيحة:
+            ${current.choices[current.answer]}
+          </span>
+          ${current.explanation}`;
+
+        playSound(false);
+      }
+
+      liveScore.textContent =
+        toArabicNumber(score);
+
+      progressBar.style.width =
+        `${((currentQuestion + 1) / questions.length) * 100}%`;
+
+      nextButton.disabled = false;
+    }
+
+    function nextQuestion() {
+      if (!answerChecked) {
+        return;
+      }
+
+      if (currentQuestion < questions.length - 1) {
+        currentQuestion++;
+
+        showQuestion();
+
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      } else {
+        finishTest();
       }
     }
 
-    function playSuccessSound() {
-      playTone(520, 0.14, 0);
-      playTone(660, 0.16, 0.13);
-      playTone(790, 0.2, 0.28);
+    function finishTest() {
+      localStorage.setItem(
+        "ruqahScore",
+        String(score)
+      );
+
+      localStorage.setItem(
+        "writingScore",
+        String(score)
+      );
+
+      localStorage.setItem(
+        "semester1_writing_score",
+        String(score)
+      );
+
+      localStorage.setItem(
+        "semester1_writing_total",
+        "10"
+      );
+
+      localStorage.setItem(
+        "semester1_writing_completed",
+        "true"
+      );
+
+      localStorage.setItem(
+        "semester1_student_full_name",
+        studentFullName
+      );
+
+      localStorage.setItem(
+        "studentFullName",
+        studentFullName
+      );
+
+      testScreen.classList.add("hidden");
+      resultScreen.classList.remove("hidden");
+
+      document.getElementById(
+        "finalScore"
+      ).textContent =
+        toArabicNumber(score);
+
+      document.getElementById(
+        "resultName"
+      ).textContent =
+        `الطالبة: ${studentFullName}`;
+
+      const resultIcon =
+        document.getElementById("resultIcon");
+
+      const resultTitle =
+        document.getElementById("resultTitle");
+
+      const resultMessage =
+        document.getElementById("resultMessage");
+
+      if (score === 10) {
+        resultIcon.textContent = "🏆";
+        resultTitle.textContent = "تفوق رائع!";
+
+        resultMessage.textContent =
+          "أتقنتِ قواعد الرسم الكتابي وخط الرقعة.";
+
+        createStars();
+        playSound(true);
+      } else if (score >= 8) {
+        resultIcon.textContent = "🌟";
+        resultTitle.textContent = "أحسنتِ جدًا";
+
+        resultMessage.textContent =
+          "لديكِ فهم ممتاز لقواعد خط الرقعة.";
+      } else if (score >= 5) {
+        resultIcon.textContent = "👏";
+        resultTitle.textContent = "نتيجة جيدة";
+
+        resultMessage.textContent =
+          "راجعي الحروف التي تنزل عن السطر والحروف المطموسة.";
+      } else {
+        resultIcon.textContent = "📚";
+        resultTitle.textContent = "تحتاجين إلى مراجعة";
+
+        resultMessage.textContent =
+          "راجعي قواعد خط الرقعة ثم أعيدي الاختبار.";
+      }
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
     }
 
-    function playWrongSound() {
-      playTone(260, 0.18, 0, "triangle");
-      playTone(190, 0.24, 0.17, "triangle");
-    }
+    startButton.addEventListener(
+      "click",
+      startTest
+    );
 
-    startButton.addEventListener("click", startTest);
-    nextButton.addEventListener("click", nextQuestion);
-    retryButton.addEventListener("click", startTest);
+    nextButton.addEventListener(
+      "click",
+      nextQuestion
+    );
+
+    retryButton.addEventListener(
+      "click",
+      startTest
+    );
+
+    window.addEventListener(
+      "load",
+      loadSavedName
+    );
   </script>
 
 </body>
