@@ -1,0 +1,1614 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    أنواع الأسئلة | منصة آفاق اللغة
+  </title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --purple-dark: #49385c;
+      --purple: #6f5288;
+      --purple-soft: #776094;
+      --purple-light: #f5ecfb;
+      --gold: #c9a85c;
+      --gold-dark: #a9822f;
+      --gold-light: #fff6dc;
+      --cream: #fffdf8;
+      --text: #4b3a57;
+      --muted: #74687b;
+      --green: #3f896b;
+      --green-light: #eaf7f1;
+      --blue: #547fa5;
+      --blue-light: #edf5fb;
+      --rose: #ad5f79;
+      --rose-light: #fff0f4;
+      --orange: #ad7132;
+      --orange-light: #fff3e3;
+    }
+
+    html,
+    body {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Tahoma, Arial, sans-serif;
+      color: var(--text);
+      text-align: center;
+      background:
+        radial-gradient(
+          circle at top right,
+          rgba(255, 239, 200, 0.78),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at bottom left,
+          rgba(228, 210, 242, 0.84),
+          transparent 42%
+        ),
+        linear-gradient(
+          145deg,
+          #fffaf2,
+          #f8f0fb
+        );
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 5%;
+      color: white;
+      background: linear-gradient(
+        135deg,
+        #776094,
+        #5b4677
+      );
+      box-shadow: 0 6px 22px rgba(73, 56, 92, 0.22);
+    }
+
+    .brand {
+      color: #fff8df;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px 13px;
+      border-radius: 22px;
+      color: white;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: bold;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.36);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 49px 18px 58px;
+      color: white;
+      border-radius: 0 0 55px 55px;
+      background: linear-gradient(
+        145deg,
+        #776094,
+        #5b4677
+      );
+      box-shadow: 0 14px 34px rgba(73, 56, 92, 0.22);
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .hero::before {
+      width: 220px;
+      height: 220px;
+      top: -120px;
+      right: -70px;
+    }
+
+    .hero::after {
+      width: 170px;
+      height: 170px;
+      bottom: -90px;
+      left: -50px;
+    }
+
+    .hero-icon {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 105px;
+      height: 105px;
+      margin: 0 auto 18px;
+      border-radius: 32px;
+      font-size: 55px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 3px solid rgba(255, 255, 255, 0.34);
+      animation: floatIcon 2.8s ease-in-out infinite;
+    }
+
+    @keyframes floatIcon {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-6px);
+      }
+    }
+
+    .hero h1 {
+      position: relative;
+      z-index: 2;
+      margin: 0 0 8px;
+      color: #fff8df;
+      font-size: 35px;
+      line-height: 1.7;
+    }
+
+    .hero p {
+      position: relative;
+      z-index: 2;
+      max-width: 760px;
+      margin: auto;
+      color: #f7effb;
+      font-size: 16px;
+      line-height: 2;
+    }
+
+    main {
+      width: min(930px, 93%);
+      margin: 33px auto 55px;
+    }
+
+    .intro-card {
+      margin-bottom: 24px;
+      padding: 22px;
+      border-radius: 24px;
+      color: #5d4374;
+      background: var(--cream);
+      border: 1px solid rgba(93, 67, 116, 0.14);
+      border-right: 7px solid var(--gold);
+      box-shadow: 0 12px 28px rgba(73, 56, 92, 0.11);
+      font-size: 16px;
+      line-height: 2;
+    }
+
+    .intro-card strong {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--purple-dark);
+      font-size: 21px;
+    }
+
+    .interaction-bar {
+      position: sticky;
+      top: 70px;
+      z-index: 40;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 28px;
+      padding: 13px 15px;
+      border-radius: 20px;
+      background: rgba(255, 253, 248, 0.95);
+      border: 1px solid rgba(93, 67, 116, 0.15);
+      box-shadow: 0 10px 25px rgba(73, 56, 92, 0.12);
+      backdrop-filter: blur(8px);
+    }
+
+    .progress-area {
+      flex: 1;
+      text-align: right;
+    }
+
+    .progress-text {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--purple-dark);
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .progress-track {
+      height: 10px;
+      overflow: hidden;
+      border-radius: 20px;
+      background: #eee6f2;
+    }
+
+    .progress-fill {
+      width: 0;
+      height: 100%;
+      border-radius: 20px;
+      background: linear-gradient(
+        90deg,
+        var(--gold),
+        var(--purple)
+      );
+      transition: width 0.45s ease;
+    }
+
+    .sound-button {
+      flex: 0 0 auto;
+      padding: 10px 13px;
+      border: 0;
+      border-radius: 15px;
+      color: white;
+      background: var(--purple);
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .sound-button.muted {
+      background: #847b89;
+    }
+
+    .section-title {
+      margin: 36px 0 20px;
+      color: var(--purple-dark);
+      font-size: 29px;
+      line-height: 1.7;
+    }
+
+    .types-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+      gap: 19px;
+    }
+
+    .type-card {
+      position: relative;
+      overflow: hidden;
+      padding: 25px 22px;
+      border-radius: 27px;
+      text-align: right;
+      background: var(--cream);
+      border: 1px solid rgba(93, 67, 116, 0.13);
+      box-shadow: 0 12px 28px rgba(73, 56, 92, 0.1);
+      cursor: pointer;
+      transition:
+        transform 0.24s ease,
+        box-shadow 0.24s ease,
+        border-color 0.24s ease;
+    }
+
+    .type-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 34px rgba(73, 56, 92, 0.16);
+    }
+
+    .type-card.active {
+      border-color: rgba(201, 168, 92, 0.72);
+      box-shadow:
+        0 0 0 4px rgba(201, 168, 92, 0.14),
+        0 18px 38px rgba(73, 56, 92, 0.17);
+      animation: cardGlow 1.3s ease;
+    }
+
+    .type-card.completed::after {
+      content: "✓ أتقنتِ النوع";
+      position: absolute;
+      top: 17px;
+      left: 15px;
+      padding: 6px 10px;
+      border-radius: 18px;
+      color: white;
+      background: var(--green);
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    @keyframes cardGlow {
+      0% {
+        filter: brightness(1);
+      }
+
+      45% {
+        filter: brightness(1.08);
+      }
+
+      100% {
+        filter: brightness(1);
+      }
+    }
+
+    .type-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 8px;
+      background: var(--purple);
+    }
+
+    .type-card.gold::before {
+      background: var(--gold);
+    }
+
+    .type-card.green::before {
+      background: var(--green);
+    }
+
+    .type-card.blue::before {
+      background: var(--blue);
+    }
+
+    .type-card.rose::before {
+      background: var(--rose);
+    }
+
+    .type-card.orange::before {
+      background: var(--orange);
+    }
+
+    .type-head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .type-icon {
+      display: flex;
+      flex: 0 0 66px;
+      align-items: center;
+      justify-content: center;
+      width: 66px;
+      height: 66px;
+      border-radius: 21px;
+      font-size: 35px;
+      background: var(--purple-light);
+    }
+
+    .type-card.gold .type-icon {
+      background: var(--gold-light);
+    }
+
+    .type-card.green .type-icon {
+      background: var(--green-light);
+    }
+
+    .type-card.blue .type-icon {
+      background: var(--blue-light);
+    }
+
+    .type-card.rose .type-icon {
+      background: var(--rose-light);
+    }
+
+    .type-card.orange .type-icon {
+      background: var(--orange-light);
+    }
+
+    .type-head h2 {
+      margin: 0;
+      color: var(--purple-dark);
+      font-size: 23px;
+      line-height: 1.6;
+    }
+
+    .type-card > p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.95;
+    }
+
+    .card-details {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition:
+        max-height 0.45s ease,
+        opacity 0.35s ease,
+        margin 0.35s ease;
+    }
+
+    .type-card.active .card-details {
+      max-height: 1100px;
+      margin-top: 14px;
+      opacity: 1;
+    }
+
+    .key-box {
+      margin-top: 13px;
+      padding: 13px;
+      border-radius: 16px;
+      color: #604c6d;
+      background: var(--purple-light);
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .example-box {
+      margin-top: 13px;
+      padding: 14px;
+      border-radius: 16px;
+      color: #5c4d63;
+      background: #fffaf1;
+      border: 1px dashed rgba(169, 130, 47, 0.48);
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .key-box strong,
+    .example-box strong {
+      color: var(--purple-dark);
+    }
+
+    .mini-question {
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 17px;
+      background: #fffaf1;
+      border: 1px dashed rgba(169, 130, 47, 0.45);
+    }
+
+    .mini-question strong {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--purple-dark);
+      line-height: 1.9;
+    }
+
+    .mini-options {
+      display: grid;
+      gap: 8px;
+    }
+
+    .mini-option {
+      padding: 11px;
+      border: 1px solid rgba(93, 67, 116, 0.18);
+      border-radius: 12px;
+      color: var(--text);
+      background: white;
+      font-family: inherit;
+      text-align: right;
+      cursor: pointer;
+    }
+
+    .mini-option.correct {
+      color: #28684f;
+      background: var(--green-light);
+      border-color: var(--green);
+    }
+
+    .mini-option.wrong {
+      color: #8a405a;
+      background: var(--rose-light);
+      border-color: var(--rose);
+    }
+
+    .feedback-message {
+      display: none;
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 12px;
+      color: var(--purple-dark);
+      background: var(--purple-light);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .feedback-message.show {
+      display: block;
+      animation: cardGlow 0.8s ease;
+    }
+
+    .card-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 15px;
+    }
+
+    .card-button {
+      flex: 1;
+      min-width: 120px;
+      padding: 11px 12px;
+      border: 0;
+      border-radius: 14px;
+      color: white;
+      background: var(--purple);
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .card-button.read {
+      background: var(--blue);
+    }
+
+    .card-button.finish {
+      background: var(--green);
+    }
+
+    .tip-box {
+      margin: 27px 0;
+      padding: 20px;
+      border-radius: 24px;
+      color: #624d6f;
+      background: var(--purple-light);
+      border-right: 7px solid var(--gold);
+      text-align: right;
+      font-size: 15px;
+      line-height: 2;
+    }
+
+    .home-button {
+      display: block;
+      margin-top: 27px;
+      padding: 16px;
+      border-radius: 18px;
+      color: white;
+      background: var(--purple);
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: bold;
+      box-shadow: 0 9px 20px rgba(73, 56, 92, 0.16);
+    }
+
+    footer {
+      margin-top: 45px;
+      padding: 23px 13px;
+      color: white;
+      background: var(--purple-dark);
+      line-height: 1.8;
+    }
+
+    @media (max-width: 760px) {
+      .hero h1 {
+        font-size: 30px;
+      }
+
+      .hero p {
+        font-size: 15px;
+      }
+
+      .types-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .interaction-bar {
+        top: 67px;
+      }
+
+      .sound-button {
+        padding: 10px;
+        font-size: 12px;
+      }
+
+      .type-card.completed::after {
+        position: static;
+        display: inline-block;
+        margin: 0 0 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="topbar">
+
+    <div class="brand">
+      منصة آفاق اللغة
+    </div>
+
+    <a
+      class="back-link"
+      href="nafes-skills.html"
+    >
+      العودة إلى المكتبة
+    </a>
+
+  </header>
+
+  <section class="hero">
+
+    <div class="hero-icon">
+      🧭
+    </div>
+
+    <h1>
+      أنواع الأسئلة
+    </h1>
+
+    <p>
+      اكتشفي المطلوب من صيغة السؤال،
+      ثم اختاري طريقة التفكير المناسبة
+      قبل العودة إلى النص.
+    </p>
+
+  </section>
+
+  <main>
+
+    <section class="intro-card">
+
+      <strong>
+        سر هذه الوحدة
+      </strong>
+
+      السؤال لا يطلب منكِ القراءة بالطريقة نفسها كل مرة.
+      أحيانًا تبحثين عن معلومة واضحة،
+      وأحيانًا تجمعين القرائن،
+      وأحيانًا تحكمين على قوة الدليل.
+
+    </section>
+
+    <section class="interaction-bar">
+
+      <div class="progress-area">
+
+        <span
+          class="progress-text"
+          id="progressText"
+        >
+          أتقنتِ 0 من 5 أنواع
+        </span>
+
+        <div class="progress-track">
+
+          <div
+            class="progress-fill"
+            id="progressFill"
+          ></div>
+
+        </div>
+
+      </div>
+
+      <button
+        class="sound-button"
+        id="soundToggle"
+        type="button"
+      >
+        🔊 الصوت يعمل
+      </button>
+
+    </section>
+
+    <section class="tip-box">
+      اضغطي على البطاقة لتضيء وتفتح،
+      ثم استمعي إلى الشرح،
+      وأجيبي عن السؤال السريع،
+      وسجلي إتقانكِ للنوع.
+    </section>
+
+    <h2 class="section-title">
+      اكتشفي الأنواع الخمسة
+    </h2>
+
+    <section class="types-grid">
+
+      <article
+        class="type-card gold"
+        data-type="literal"
+      >
+
+        <div class="type-head">
+
+          <div class="type-icon">
+            📌
+          </div>
+
+          <h2>
+            السؤال الحرفي
+          </h2>
+
+        </div>
+
+        <p>
+          يبحث عن معلومة مذكورة بوضوح
+          في النص أو الجدول.
+        </p>
+
+        <div class="card-details">
+
+          <div class="key-box">
+            <strong>كلماته:</strong>
+            من؟ ماذا؟ متى؟ أين؟
+            بحسب النص، ورد في الفقرة.
+          </div>
+
+          <div class="example-box">
+            <strong>طريقة الحل:</strong>
+            حددي كلمة من السؤال،
+            ثم ابحثي عن معناها أو مرادفها
+            داخل النص.
+          </div>
+
+          <div class="mini-question">
+
+            <strong>
+              «متى بدأت الحملة؟»
+              ما نوع السؤال؟
+            </strong>
+
+            <div class="mini-options">
+
+              <button
+                class="mini-option"
+                data-correct="true"
+                type="button"
+              >
+                حرفي
+              </button>
+
+              <button
+                class="mini-option"
+                data-correct="false"
+                type="button"
+              >
+                نقدي
+              </button>
+
+              <button
+                class="mini-option"
+                data-correct="false"
+                type="button"
+              >
+                تطبيقي
+              </button>
+
+            </div>
+
+            <div class="feedback-message">
+              أحسنتِ، السؤال يطلب زمنًا
+              مذكورًا مباشرة في النص.
+            </div>
+
+          </div>
+
+          <div class="card-actions">
+
+            <button
+              class="card-button read"
+              type="button"
+            >
+              🔊 استمعي للشرح
+            </button>
+
+            <button
+              class="card-button finish"
+              type="button"
+            >
+              ✓ أتقنتُ النوع
+            </button>
+
+          </div>
+
+        </div>
+
+      </article>
+
+      <article
+        class="type-card green"
+        data-type="inference"
+      >
+
+        <div class="type-head">
+
+          <div class="type-icon">
+            🔎
+          </div>
+
+          <h2>
+            السؤال الاستنتاجي
+          </h2>
+
+        </div>
+
+        <p>
+          إجابته لا تظهر حرفيًا،
+          لكنها تُفهم من القرائن.
+        </p>
+
+        <div class="card-details">
+
+          <div class="key-box">
+            <strong>كلماته:</strong>
+            نستنتج، نفهم، يدل،
+            يوحي، يمكن أن نتوقع.
+          </div>
+
+          <div class="example-box">
+            <strong>طريقة الحل:</strong>
+            اجمعي دليلين أو أكثر،
+            ثم اختاري النتيجة المنطقية
+            التي لا تتجاوز النص.
+          </div>
+
+          <div class="mini-question">
+
+            <strong>
+              «حملت مظلة وارتدت معطفًا».
+              ماذا نستنتج؟
+            </strong>
+
+            <div class="mini-options">
+
+              <button
+                class="mini-option"
+                data-correct="false"
+                type="button"
+              >
+                الجو شديد الحرارة
+              </button>
+
+              <button
+                class="mini-option"
+                data-correct="true"
+                type="button"
+              >
+                الجو ممطر أو بارد
+              </button>
+
+              <button
+                class="mini-option"
+                data-correct="false"
+                type="button"
+              >
+                خرجت إلى البحر
+              </button>
+
+            </div>
+
+            <div class="feedback-message">
+              رائع، المظلة والمعطف قرينتان
+              تقودان إلى هذا الاستنتاج.
+            </div>
+
+          </div>
+
+          <div class="card-actions">
+
+            <button
+              class="card-button read"
+              type="button"
+            >
+              🔊 استمعي للشرح
+            </button>
+
+            <button
+              class="card-button finish"
+              type="button"
+            >
+              ✓ أتقنتُ النوع
+            </button>
+
+          </div>
+
+        </div>
+
+      </article>
+            <article
+        class="type-card blue"
+        data-type="analytical"
+      >
+
+        <div class="type-head">
+
+          <div class="type-icon">
+            🧩
+          </div>
+
+          <h2>
+            السؤال التحليلي
+          </h2>
+
+        </div>
+
+        <p>
+          يطلب تفسير العلاقة بين الأفكار،
+          أو بيان السبب والنتيجة،
+          أو المقارنة بين عنصرين.
+        </p>
+
+        <div class="card-details">
+
+          <div class="key-box">
+            <strong>كلماته:</strong>
+            ما العلاقة؟ لماذا؟
+            كيف أسهم؟ قارن بين،
+            ما السبب؟
+          </div>
+
+          <div class="example-box">
+            <strong>طريقة الحل:</strong>
+            حددي وظيفة كل فكرة،
+            ثم اشرحي الرابط بينهما
+            دون الاكتفاء بإعادة النص.
+          </div>
+
+          <div class="mini-question">
+
+            <strong>
+              «ازدادت الأمطار، فامتلأت الأودية».
+              ما العلاقة؟
+            </strong>
+
+            <div class="mini-options">
+
+              <button
+                class="mini-option"
+                data-correct="true"
+                type="button"
+              >
+                سبب ونتيجة
+              </button>
+
+              <button
+                class="mini-option"
+                data-correct="false"
+                type="button"
+              >
+                رأي وحقيقة
+              </button>
+
+              <button
+                class="mini-option"
+                data-correct="false"
+                type="button"
+              >
+                سؤال وجواب
+              </button>
+
+            </div>
+
+            <div class="feedback-message">
+              صحيح، زيادة الأمطار سبب،
+              وامتلاء الأودية نتيجة.
+            </div>
+
+          </div>
+
+          <div class="card-actions">
+
+            <button
+              class="card-button read"
+              type="button"
+            >
+              🔊 استمعي للشرح
+            </button>
+
+            <button
+              class="card-button finish"
+              type="button"
+            >
+              ✓ أتقنتُ النوع
+            </button>
+
+          </div>
+
+        </div>
+
+      </article>
+
+      <article
+        class="type-card rose"
+        data-type="critical"
+      >
+
+        <div class="type-head">
+
+          <div class="type-icon">
+            ⚖️
+          </div>
+
+          <h2>
+            السؤال النقدي
+          </h2>
+
+        </div>
+
+        <p>
+          يطلب الحكم على الفكرة،
+          أو قوة الدليل،
+          أو موثوقية المصدر.
+        </p>
+
+        <div class="card-details">
+
+          <div class="key-box">
+            <strong>كلماته:</strong>
+            الأقوى، الأوثق،
+            الأكثر إقناعًا،
+            الأفضل دعمًا.
+          </div>
+
+          <div class="example-box">
+            <strong>طريقة الحل:</strong>
+            اختاري الدليل المباشر،
+            المرتبط بالادعاء،
+            والقابل للتحقق.
+          </div>
+
+          <div class="mini-question">
+
+            <strong>
+              أي الأدلة أقوى لإثبات
+              زيادة الإقبال على القراءة؟
+            </strong>
+
+            <div class="mini-options">
+
+              <button
+                class="mini-option"
+                data-correct="false"
+                type="button"
+              >
+                أظن أن الناس يقرؤون أكثر
+              </button>
+
+              <button
+                class="mini-option"
+                data-correct="true"
+                type="button"
+              >
+                نتائج دراسة موثقة
+              </button>
+
+              <button
+                class="mini-option"
+                data-correct="false"
+                type="button"
+              >
+                أخبرني أحد الأصدقاء بذلك
+              </button>
+
+            </div>
+
+            <div class="feedback-message">
+              ممتاز، الدراسة الموثقة
+              أقوى لأنها قابلة للتحقق.
+            </div>
+
+          </div>
+
+          <div class="card-actions">
+
+            <button
+              class="card-button read"
+              type="button"
+            >
+              🔊 استمعي للشرح
+            </button>
+
+            <button
+              class="card-button finish"
+              type="button"
+            >
+              ✓ أتقنتُ النوع
+            </button>
+
+          </div>
+
+        </div>
+
+      </article>
+
+      <article
+        class="type-card orange"
+        data-type="applied"
+      >
+
+        <div class="type-head">
+
+          <div class="type-icon">
+            💡
+          </div>
+
+          <h2>
+            السؤال التطبيقي
+          </h2>
+
+        </div>
+
+        <p>
+          ينقل فكرة النص إلى موقف جديد،
+          ويطلب اختيار التصرف أو الحل الأنسب.
+        </p>
+
+        <div class="card-details">
+
+          <div class="key-box">
+            <strong>كلماته:</strong>
+            ماذا تفعل؟ كيف تطبق؟
+            أي موقف يشبه؟
+            ما الحل الأنسب؟
+          </div>
+
+          <div class="example-box">
+            <strong>طريقة الحل:</strong>
+            افهمي القاعدة في النص أولًا،
+            ثم طبقيها على الموقف الجديد.
+          </div>
+
+          <div class="mini-question">
+
+            <strong>
+              إذا أوصى النص بتقليل الهدر،
+              فما التطبيق الأنسب؟
+            </strong>
+
+            <div class="mini-options">
+
+              <button
+                class="mini-option"
+                data-correct="false"
+                type="button"
+              >
+                ترك الصنبور مفتوحًا
+              </button>
+
+              <button
+                class="mini-option"
+                data-correct="true"
+                type="button"
+              >
+                إصلاح التسربات
+              </button>
+
+              <button
+                class="mini-option"
+                data-correct="false"
+                type="button"
+              >
+                زيادة الاستهلاك
+              </button>
+
+            </div>
+
+            <div class="feedback-message">
+              أحسنتِ، إصلاح التسربات
+              تطبيق مباشر لفكرة تقليل الهدر.
+            </div>
+
+          </div>
+
+          <div class="card-actions">
+
+            <button
+              class="card-button read"
+              type="button"
+            >
+              🔊 استمعي للشرح
+            </button>
+
+            <button
+              class="card-button finish"
+              type="button"
+            >
+              ✓ أتقنتُ النوع
+            </button>
+
+          </div>
+
+        </div>
+
+      </article>
+
+    </section>
+
+    <section class="tip-box">
+
+      <strong>
+        🌟 قاعدة سريعة
+      </strong>
+
+      قبل قراءة النص كاملًا،
+      اقرئي السؤال وحددي نوعه.
+      عندما تعرفين نوع السؤال،
+      تعرفين أين تبحثين
+      وكيف تفكرين.
+
+    </section>
+
+    <a
+      class="home-button"
+      href="nafes-skills.html"
+    >
+      العودة إلى مكتبة مهارات نافس
+    </a>
+
+  </main>
+
+  <footer>
+    جميع الحقوق محفوظة © 2026
+  </footer>
+
+  <script>
+    const typeCards =
+      document.querySelectorAll(
+        ".type-card[data-type]"
+      );
+
+    const progressText =
+      document.getElementById(
+        "progressText"
+      );
+
+    const progressFill =
+      document.getElementById(
+        "progressFill"
+      );
+
+    const soundToggle =
+      document.getElementById(
+        "soundToggle"
+      );
+
+    let soundEnabled = true;
+
+    const completedTypes =
+      new Set(
+        JSON.parse(
+          localStorage.getItem(
+            "afaq_nafes_question_types_completed"
+          ) || "[]"
+        )
+      );
+
+    function playTone(
+      frequency = 650,
+      duration = 0.12
+    ) {
+      if (!soundEnabled) {
+        return;
+      }
+
+      try {
+        const AudioContextClass =
+          window.AudioContext ||
+          window.webkitAudioContext;
+
+        const audioContext =
+          new AudioContextClass();
+
+        const oscillator =
+          audioContext.createOscillator();
+
+        const gain =
+          audioContext.createGain();
+
+        oscillator.type = "sine";
+
+        oscillator.frequency.value =
+          frequency;
+
+        gain.gain.setValueAtTime(
+          0.06,
+          audioContext.currentTime
+        );
+
+        gain.gain.exponentialRampToValueAtTime(
+          0.001,
+          audioContext.currentTime +
+            duration
+        );
+
+        oscillator.connect(gain);
+
+        gain.connect(
+          audioContext.destination
+        );
+
+        oscillator.start();
+
+        oscillator.stop(
+          audioContext.currentTime +
+            duration
+        );
+      } catch (error) {
+        console.log(
+          "تعذر تشغيل النغمة."
+        );
+      }
+    }
+
+    function updateProgress() {
+      const total =
+        typeCards.length;
+
+      const completed =
+        completedTypes.size;
+
+      const percentage =
+        total === 0
+          ? 0
+          : Math.round(
+              (completed / total) * 100
+            );
+
+      progressText.textContent =
+        `أتقنتِ ${completed} من ${total} أنواع`;
+
+      progressFill.style.width =
+        `${percentage}%`;
+
+      if (
+        completed === total &&
+        total > 0
+      ) {
+        progressText.textContent =
+          "أحسنتِ! أتقنتِ أنواع الأسئلة كلها 🌟";
+      }
+    }
+        typeCards.forEach(
+      (card) => {
+        const typeName =
+          card.dataset.type;
+
+        if (
+          completedTypes.has(
+            typeName
+          )
+        ) {
+          card.classList.add(
+            "completed"
+          );
+        }
+
+        card.addEventListener(
+          "click",
+          (event) => {
+            if (
+              event.target.closest(
+                "button"
+              )
+            ) {
+              return;
+            }
+
+            const wasActive =
+              card.classList.contains(
+                "active"
+              );
+
+            typeCards.forEach(
+              (otherCard) => {
+                if (
+                  otherCard !== card
+                ) {
+                  otherCard.classList.remove(
+                    "active"
+                  );
+                }
+              }
+            );
+
+            card.classList.toggle(
+              "active",
+              !wasActive
+            );
+
+            if (!wasActive) {
+              playTone(520, 0.1);
+            }
+          }
+        );
+
+        const readButton =
+          card.querySelector(
+            ".card-button.read"
+          );
+
+        const finishButton =
+          card.querySelector(
+            ".card-button.finish"
+          );
+
+        const options =
+          card.querySelectorAll(
+            ".mini-option"
+          );
+
+        const feedback =
+          card.querySelector(
+            ".feedback-message"
+          );
+
+        readButton.addEventListener(
+          "click",
+          (event) => {
+            event.stopPropagation();
+
+            if (!soundEnabled) {
+              soundToggle.textContent =
+                "🔇 فعّلي الصوت أولًا";
+
+              return;
+            }
+
+            window.speechSynthesis.cancel();
+
+            const textToRead =
+              card.innerText
+                .replace(
+                  "🔊 استمعي للشرح",
+                  ""
+                )
+                .replace(
+                  "✓ أتقنتُ النوع",
+                  ""
+                );
+
+            const speech =
+              new SpeechSynthesisUtterance(
+                textToRead
+              );
+
+            speech.lang = "ar-SA";
+            speech.rate = 0.88;
+            speech.pitch = 1;
+
+            window.speechSynthesis.speak(
+              speech
+            );
+          }
+        );
+
+        finishButton.addEventListener(
+          "click",
+          (event) => {
+            event.stopPropagation();
+
+            completedTypes.add(
+              typeName
+            );
+
+            card.classList.add(
+              "completed"
+            );
+
+            localStorage.setItem(
+              "afaq_nafes_question_types_completed",
+              JSON.stringify(
+                [...completedTypes]
+              )
+            );
+
+            playTone(820, 0.18);
+            updateProgress();
+          }
+        );
+
+        options.forEach(
+          (option) => {
+            option.addEventListener(
+              "click",
+              (event) => {
+                event.stopPropagation();
+
+                options.forEach(
+                  (item) => {
+                    item.classList.remove(
+                      "correct",
+                      "wrong"
+                    );
+                  }
+                );
+
+                if (
+                  option.dataset.correct ===
+                  "true"
+                ) {
+                  option.classList.add(
+                    "correct"
+                  );
+
+                  if (feedback) {
+                    feedback.textContent =
+                      feedback.dataset.success ||
+                      feedback.textContent;
+
+                    feedback.classList.add(
+                      "show"
+                    );
+                  }
+
+                  playTone(880, 0.18);
+                } else {
+                  option.classList.add(
+                    "wrong"
+                  );
+
+                  if (feedback) {
+                    feedback.textContent =
+                      "قريبة، أعيدي قراءة كلمات السؤال وطريقة الحل ثم حاولي مرة أخرى.";
+
+                    feedback.classList.add(
+                      "show"
+                    );
+                  }
+
+                  playTone(250, 0.12);
+                }
+              }
+            );
+          }
+        );
+      }
+    );
+
+    soundToggle.addEventListener(
+      "click",
+      () => {
+        soundEnabled =
+          !soundEnabled;
+
+        if (!soundEnabled) {
+          window.speechSynthesis.cancel();
+
+          soundToggle.textContent =
+            "🔇 الصوت متوقف";
+
+          soundToggle.classList.add(
+            "muted"
+          );
+        } else {
+          soundToggle.textContent =
+            "🔊 الصوت يعمل";
+
+          soundToggle.classList.remove(
+            "muted"
+          );
+
+          playTone(650, 0.12);
+        }
+      }
+    );
+
+    updateProgress();
+  </script>
+
+</body>
+
+</html>
