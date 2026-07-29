@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>اختبار الرسم الإملائي</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Tahoma, Arial, sans-serif;
+      color: #4b3a57;
+      background: linear-gradient(180deg, #fffaf2, #f8f0fb);
+    }
+
+    header {
+      padding: 35px 18px;
+      color: white;
+      text-align: center;
+      background: linear-gradient(135deg, #776094, #5b4677);
+      border-bottom: 4px solid #c9a85c;
+    }
+
+    header h1 {
+      margin: 0 0 10px;
+      color: #fffdf8;
+      font-size: 34px;
+      line-height: 1.6;
+    }
+
+    header p {
+      margin: 0;
+      color: #f7effb;
+      font-size: 17px;
+      line-height: 1.8;
+    }
+
+    main {
+      width: 92%;
+      max-width: 760px;
+      margin: 30px auto;
+    }
+
+    .card {
+      margin-bottom: 20px;
+      padding: 24px;
+      background: #fffdf8;
+      border: 2px solid #c9a85c;
+      border-radius: 20px;
+      box-shadow: 0 7px 18px rgba(91, 63, 111, 0.12);
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .icon {
+      margin-bottom: 12px;
+      font-size: 48px;
+    }
+
+    h2 {
+      color: #5d4374;
+      line-height: 1.8;
+    }
+
+    p {
+      line-height: 1.9;
+    }
+
+    .info {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      color: #5d4374;
+      font-weight: bold;
+    }
+
+    .bar-box {
+      height: 14px;
+      margin: 15px 0;
+      overflow: hidden;
+      background: #ece5f1;
+      border-radius: 999px;
+    }
+
+    .bar {
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, #c9a85c, #ead28b);
+      transition: width 0.3s ease;
+    }
+
+    .question {
+      margin: 8px 0 20px;
+      color: #4b3a57;
+      font-size: 23px;
+      line-height: 1.9;
+    }
+
+    .choices {
+      display: grid;
+      gap: 12px;
+    }
+
+    .choice {
+      width: 100%;
+      padding: 15px;
+      color: #4b3a57;
+      text-align: right;
+      font-family: inherit;
+      font-size: 17px;
+      line-height: 1.8;
+      cursor: pointer;
+      background: #fff;
+      border: 2px solid #ddd2e5;
+      border-radius: 15px;
+    }
+
+    .choice:hover,
+    .choice:active {
+      background: #f5ecfb;
+    }
+
+    .choice.correct {
+      color: #0d5b37;
+      font-weight: bold;
+      background: #e8f7ef;
+      border-color: #198754;
+    }
+
+    .choice.wrong {
+      color: #8f1f1f;
+      font-weight: bold;
+      background: #fdecec;
+      border-color: #c62828;
+    }
+
+    .feedback {
+      margin-top: 16px;
+      padding: 15px;
+      font-weight: bold;
+      line-height: 1.9;
+      border-radius: 15px;
+    }
+
+    .feedback.good {
+      color: #0d5b37;
+      background: #e8f7ef;
+    }
+
+    .feedback.bad {
+      color: #8f1f1f;
+      background: #fdecec;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    button,
+    .btn {
+      display: inline-block;
+      padding: 13px 24px;
+      color: white;
+      font-family: inherit;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      background: #6f5288;
+      border: 2px solid #c9a85c;
+      border-radius: 22px;
+      text-decoration: none;
+    }
+
+    button:hover,
+    button:active,
+    .btn:hover,
+    .btn:active {
+      background: #5b4677;
+    }
+
+    .next-wrap {
+      margin-top: 18px;
+      text-align: left;
+    }
+
+    .score {
+      width: 150px;
+      height: 150px;
+      margin: 20px auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      background: linear-gradient(145deg, #6f5288, #5b4677);
+      border: 7px solid #c9a85c;
+      border-radius: 50%;
+    }
+
+    .score strong {
+      font-size: 43px;
+    }
+
+    footer {
+      margin-top: 30px;
+      padding: 20px;
+      color: #fffdf8;
+      text-align: center;
+      background: #49385c;
+      border-top: 3px solid #c9a85c;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 28px;
+      }
+
+      .card {
+        padding: 18px 14px;
+      }
+
+      .question {
+        font-size: 20px;
+      }
+
+      .choice {
+        padding: 13px;
+        font-size: 16px;
+      }
+
+      .next-wrap button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>✍️ اختبار الرسم الإملائي</h1>
+    <p>١٠ أسئلة — الدرجة النهائية ٢٠ درجة</p>
+  </header>
+
+  <main>
+
+    <section id="start" class="card center">
+      <div class="icon">🌷</div>
+
+      <h2>مرحبًا بكِ يا مبدعة</h2>
+
+      <p>
+        يتكوّن الاختبار من عشرة أسئلة،
+        ولكل سؤال درجتان.
+      </p>
+
+      <div class="actions">
+        <button id="begin">ابدئي الاختبار</button>
+
+        <a class="btn" href="semester1-tests.html">
+          العودة إلى الاختبارات
+        </a>
+      </div>
+    </section>
+
+    <section id="quiz" class="hidden">
+
+      <div class="card">
+        <div class="info">
+          <span id="counter"></span>
+
+          <span>
+            الدرجة الحالية:
+            <strong id="live">٠</strong>
+            / ٢٠
+          </span>
+        </div>
+
+        <div class="bar-box">
+          <div id="bar" class="bar"></div>
+        </div>
+      </div>
+
+      <div class="card">
+
+        <h2 id="question" class="question"></h2>
+
+        <div id="choices" class="choices"></div>
+
+        <div id="feedback" class="feedback hidden"></div>
+
+        <div class="next-wrap">
+          <button id="next" class="hidden">
+            السؤال التالي
+          </button>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section id="result" class="card center hidden">
+
+      <div id="resultIcon" class="icon">🎉</div>
+
+      <h2 id="resultTitle"></h2>
+
+      <div class="score">
+        <strong id="finalScore">٠</strong>
+        <span>من ٢٠</span>
+      </div>
+
+      <p id="resultMessage"></p>
+
+      <div class="actions">
+        <button id="retry">إعادة الاختبار</button>
+
+        <a class="btn" href="semester1-tests.html">
+          العودة إلى الاختبارات
+        </a>
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer>
+    جميع الحقوق محفوظة © 2026
+  </footer>
+
+  <script>
+    const questions = [
+      {
+        question: "كيف تُكتب الألف اللينة في آخر الفعل الثلاثي إذا كان أصلها واوًا؟",
+        choices: [
+          "ألفًا قائمة (ا)",
+          "ألفًا مقصورة (ى)",
+          "همزة",
+          "واوًا"
+        ],
+        answer: 0,
+        explanation:
+          "تُكتب ألفًا قائمة إذا كان أصلها واوًا، مثل: دعا؛ لأن مضارعه يدعو."
+      },
+      {
+        question: "كيف تُكتب الألف اللينة في آخر الفعل الثلاثي إذا كان أصلها ياءً؟",
+        choices: [
+          "ألفًا قائمة (ا)",
+          "ألفًا مقصورة (ى)",
+          "واوًا",
+          "همزة"
+        ],
+        answer: 1,
+        explanation:
+          "تُكتب ألفًا مقصورة إذا كان أصلها ياءً، مثل: رمى؛ لأن مضارعه يرمي."
+      },
+      {
+        question: "ما أصل الألف اللينة في الفعل «دعا»؟",
+        choices: [
+          "الواو؛ لأن مضارعه يدعو",
+          "الياء؛ لأن مضارعه يدعي",
+          "الهمزة",
+          "لا يمكن معرفته"
+        ],
+        answer: 0,
+        explanation:
+          "أصل الألف واو؛ لأن الواو ظهرت في المضارع: يدعو."
+      },
+      {
+        question: "كيف تُكتب الألف اللينة غالبًا في آخر الفعل غير الثلاثي؟",
+        choices: [
+          "مقصورة، إلا إذا سبقتها ياء فتُكتب قائمة",
+          "قائمة دائمًا",
+          "همزة دائمًا",
+          "واوًا دائمًا"
+        ],
+        answer: 0,
+        explanation:
+          "تُكتب مقصورة مثل: أعطى واستدعى، إلا إذا سبقتها ياء مثل: استحيا."
+      },
+      {
+        question: "كُتبت الألف في «أعطى» ألفًا مقصورة؛ لأنه:",
+        choices: [
+          "فعل ثلاثي أصل ألفه واو",
+          "فعل ثلاثي أصل ألفه ياء",
+          "فعل غير ثلاثي سبقت ألفه ياء",
+          "فعل غير ثلاثي ولم تسبق ألفه ياء"
+        ],
+        answer: 3,
+        explanation:
+          "«أعطى» فعل غير ثلاثي، ولم تسبق ألفه ياء؛ لذلك كُتبت مقصورة."
+      },
+      {
+        question: "لماذا كُتبت الألف اللينة في كلمة «استحيا» ألفًا قائمة؟",
+        choices: [
+          "لأنها فعل ثلاثي أصل ألفه واو",
+          "لأنها فعل غير ثلاثي وسبقت ألفه ياء",
+          "لأنها اسم غير ثلاثي",
+          "لأن الألف جاءت في وسط الكلمة"
+        ],
+        answer: 1,
+        explanation:
+          "كُتبت ألفًا قائمة؛ لأن «استحيا» فعل غير ثلاثي وقد سبقت ألفه ياء."
+      },
+      {
+        question: "أي الكلمات الآتية مكتوبة كتابة خاطئة؟",
+        choices: [
+          "دعا",
+          "رمى",
+          "استدعا",
+          "أعطى"
+        ],
+        answer: 2,
+        explanation:
+          "الصواب «استدعى»؛ لأنه فعل غير ثلاثي ولم تسبق ألفه ياء."
+      },
+      {
+        question: "في الجملة: «تحدثنا فيما يخص الموضوع»، تتكوّن كلمة «فيما» من:",
+        choices: [
+          "في + ما الاستفهامية",
+          "في + ما الموصولة",
+          "في + من",
+          "فاء + ياء + ما"
+        ],
+        answer: 1,
+        explanation:
+          "تتكوّن «فيما» هنا من حرف الجر «في» و«ما الموصولة»، وتُكتب متصلة."
+      },
+      {
+        question: "أي كتابة صحيحة للكلمة التي تعني «في ذلك الوقت»؟",
+        choices: [
+          "وقت إذ",
+          "وقتئذ",
+          "وقتأذ",
+          "وقت يذ"
+        ],
+        answer: 1,
+        explanation:
+          "تُكتب «وقتئذ» متصلة، ومعناها: في ذلك الوقت."
+      },
+      {
+        question: "عند وصل «عن + من»، كيف تُكتب الكلمة؟",
+        choices: [
+          "عن من",
+          "عنمن",
+          "عَمَّن",
+          "من عن"
+        ],
+        answer: 2,
+        explanation:
+          "تُدغم نون «عن» في ميم «من»، وتُكتب: «عَمَّن»."
+      }
+    ];
+
+    const startSection = document.getElementById("start");
+    const quizSection = document.getElementById("quiz");
+    const resultSection = document.getElementById("result");
+
+    const beginButton = document.getElementById("begin");
+    const nextButton = document.getElementById("next");
+    const retryButton = document.getElementById("retry");
+
+    const counter = document.getElementById("counter");
+    const liveScore = document.getElementById("live");
+    const bar = document.getElementById("bar");
+    const questionElement = document.getElementById("question");
+    const choicesElement = document.getElementById("choices");
+    const feedback = document.getElementById("feedback");
+
+    let currentQuestion = 0;
+    let score = 0;
+    let answered = false;
+
+    function toArabicNumber(number) {
+      return String(number).replace(/\d/g, digit => "٠١٢٣٤٥٦٧٨٩"[digit]);
+    }
+
+    function startQuiz() {
+      currentQuestion = 0;
+      score = 0;
+      answered = false;
+
+      startSection.classList.add("hidden");
+      resultSection.classList.add("hidden");
+      quizSection.classList.remove("hidden");
+
+      liveScore.textContent = "٠";
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      answered = false;
+
+      const item = questions[currentQuestion];
+
+      counter.textContent =
+        `السؤال ${toArabicNumber(currentQuestion + 1)} من ${toArabicNumber(questions.length)}`;
+
+      bar.style.width =
+        `${(currentQuestion / questions.length) * 100}%`;
+
+      questionElement.textContent = item.question;
+      choicesElement.innerHTML = "";
+
+      feedback.className = "feedback hidden";
+      feedback.textContent = "";
+
+      nextButton.classList.add("hidden");
+
+      item.choices.forEach((choice, index) => {
+        const button = document.createElement("button");
+
+        button.className = "choice";
+        button.textContent =
+          `${["أ", "ب", "ج", "د"][index]}) ${choice}`;
+
+        button.addEventListener("click", () => {
+          selectAnswer(index, button);
+        });
+
+        choicesElement.appendChild(button);
+      });
+    }
+
+    function selectAnswer(selectedIndex, selectedButton) {
+      if (answered) {
+        return;
+      }
+
+      answered = true;
+
+      const item = questions[currentQuestion];
+      const buttons = document.querySelectorAll(".choice");
+
+      buttons.forEach(button => {
+        button.disabled = true;
+      });
+
+      buttons[item.answer].classList.add("correct");
+
+      if (selectedIndex === item.answer) {
+        score += 2;
+        selectedButton.classList.add("correct");
+
+        feedback.className = "feedback good";
+        feedback.innerHTML =
+          `✅ إجابة صحيحة.<br>${item.explanation}`;
+      } else {
+        selectedButton.classList.add("wrong");
+
+        feedback.className = "feedback bad";
+        feedback.innerHTML =
+          `❌ إجابة غير صحيحة.<br>${item.explanation}`;
+      }
+
+      liveScore.textContent = toArabicNumber(score);
+
+      bar.style.width =
+        `${((currentQuestion + 1) / questions.length) * 100}%`;
+
+      nextButton.textContent =
+        currentQuestion === questions.length - 1
+          ? "عرض النتيجة"
+          : "السؤال التالي";
+
+      nextButton.classList.remove("hidden");
+    }
+
+    function showResult() {
+      localStorage.setItem("spellingScore", score);
+      localStorage.setItem("semester1_spelling_score", score);
+      localStorage.setItem("semester1_spelling_total", "20");
+      localStorage.setItem("semester1_spelling_completed", "true");
+
+      quizSection.classList.add("hidden");
+      resultSection.classList.remove("hidden");
+
+      document.getElementById("finalScore").textContent =
+        toArabicNumber(score);
+
+      const resultIcon = document.getElementById("resultIcon");
+      const resultTitle = document.getElementById("resultTitle");
+      const resultMessage = document.getElementById("resultMessage");
+
+      if (score >= 18) {
+        resultIcon.textContent = "🏆";
+        resultTitle.textContent = "تفوق رائع!";
+        resultMessage.textContent =
+          "أظهرتِ إتقانًا متميزًا لمهارات الرسم الإملائي.";
+      } else if (score >= 14) {
+        resultIcon.textContent = "🌟";
+        resultTitle.textContent = "أحسنتِ جدًا";
+        resultMessage.textContent =
+          "نتيجة جميلة، وبمراجعة بسيطة تصلين إلى الإتقان.";
+      } else if (score >= 10) {
+        resultIcon.textContent = "👍";
+        resultTitle.textContent = "محاولة جيدة";
+        resultMessage.textContent =
+          "راجعي القواعد ثم أعيدي المحاولة بثقة.";
+      } else {
+        resultIcon.textContent = "📘";
+        resultTitle.textContent = "تحتاجين إلى مراجعة";
+        resultMessage.textContent =
+          "راجعي دروس الرسم الإملائي، ثم أعيدي الاختبار.";
+      }
+    }
+
+    beginButton.addEventListener("click", startQuiz);
+
+    nextButton.addEventListener("click", () => {
+      if (currentQuestion < questions.length - 1) {
+        currentQuestion++;
+        renderQuestion();
+      } else {
+        showResult();
+      }
+    });
+
+    retryButton.addEventListener("click", startQuiz);
+  </script>
+
+</body>
+
+</html>
