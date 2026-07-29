@@ -9,72 +9,73 @@
     content="width=device-width, initial-scale=1.0"
   >
 
-  <title>اختبار أسلوب الشرط | منصة آفاق</title>
+  <title>اختبار أسلوب الشرط | منصة آفاق اللغة</title>
 
   <style>
     * {
       box-sizing: border-box;
     }
 
+    html,
     body {
       margin: 0;
-      min-height: 100vh;
+      min-height: 100%;
       overflow-x: hidden;
-      font-family: Tahoma, Arial, sans-serif;
-      color: #473653;
-
-      background:
-        radial-gradient(circle at top right, #ffe3ef, transparent 32%),
-        radial-gradient(circle at bottom left, #dff7ff, transparent 35%),
-        linear-gradient(145deg, #fff8dc, #f3e9ff, #e5f8ff);
     }
 
-    button {
+    body {
+      font-family: Tahoma, Arial, sans-serif;
+      color: #4b3a57;
+      background: linear-gradient(
+        145deg,
+        #fffaf2,
+        #f8f0fb
+      );
+    }
+
+    button,
+    input {
       font-family: inherit;
     }
 
     .page-header {
-      padding: 32px 16px 42px;
+      padding: 34px 16px 42px;
       text-align: center;
       color: white;
-      border-radius: 0 0 38px 38px;
-
-      background:
-        linear-gradient(
-          135deg,
-          #72509b,
-          #b05eb5,
-          #ef7b7d
-        );
-
-      box-shadow:
-        0 12px 28px rgba(80, 48, 103, 0.22);
+      border-radius: 0 0 34px 34px;
+      background: linear-gradient(
+        135deg,
+        #776094,
+        #5b4677
+      );
+      box-shadow: 0 12px 28px rgba(73, 56, 92, 0.22);
     }
 
     .page-header .icon {
       width: 82px;
       height: 82px;
-      margin: 0 auto 12px;
+      margin: 0 auto 13px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 25px;
-      font-size: 46px;
-      background: rgba(255, 255, 255, 0.2);
-      border: 2px solid rgba(255, 255, 255, 0.6);
+      border-radius: 24px;
+      font-size: 45px;
+      color: #fff8df;
+      background: rgba(255, 255, 255, 0.15);
+      border: 2px solid rgba(255, 255, 255, 0.42);
     }
 
     .page-header h1 {
       margin: 0;
+      color: #fff8df;
       font-size: 34px;
-      color: #fff9dc;
     }
 
     .page-header p {
+      max-width: 670px;
       margin: 10px auto 0;
-      max-width: 650px;
       font-size: 17px;
-      line-height: 1.8;
+      line-height: 1.9;
     }
 
     main {
@@ -84,14 +85,11 @@
     }
 
     .card {
-      padding: 25px;
-      border-radius: 30px;
-      background: rgba(255, 255, 255, 0.96);
-
-      box-shadow:
-        0 13px 35px rgba(78, 50, 96, 0.14);
-
-      border: 1px solid rgba(130, 91, 164, 0.18);
+      padding: 26px;
+      border-radius: 28px;
+      background: #fffdf8;
+      border: 1px solid rgba(93, 67, 116, 0.15);
+      box-shadow: 0 13px 34px rgba(73, 56, 92, 0.13);
     }
 
     .start-screen,
@@ -105,28 +103,68 @@
     }
 
     .start-title {
-      margin: 0 0 15px;
+      margin: 0 0 16px;
       text-align: center;
+      color: #5d4374;
       font-size: 29px;
-      color: #704f91;
     }
 
     .start-message {
       padding: 18px;
       text-align: center;
-      line-height: 2;
-      border-radius: 20px;
-      background: #fff5cf;
-      border-right: 7px solid #edbd3f;
+      border-radius: 19px;
+      border-right: 7px solid #c9a85c;
+      background: #fff7dc;
       font-size: 18px;
+      line-height: 2;
+    }
+
+    .name-box {
+      margin: 19px 0;
+      padding: 18px;
+      border-radius: 19px;
+      background: #f5ecfb;
+      border: 1px solid #dccbe8;
+    }
+
+    .name-box label {
+      display: block;
+      margin-bottom: 9px;
+      color: #5d4374;
+      font-weight: bold;
+      font-size: 17px;
+    }
+
+    .name-box input {
+      width: 100%;
+      padding: 14px 15px;
+      border: 2px solid #d7c5e4;
+      border-radius: 15px;
+      outline: none;
+      color: #4b3a57;
+      background: white;
+      font-size: 17px;
+    }
+
+    .name-box input:focus {
+      border-color: #776094;
+      box-shadow: 0 0 0 3px rgba(119, 96, 148, 0.12);
+    }
+
+    .name-error {
+      display: none;
+      margin-top: 9px;
+      color: #a23e4d;
+      font-weight: bold;
+      line-height: 1.7;
     }
 
     .instructions {
-      margin: 20px 0;
+      margin: 19px 0;
       padding: 18px;
-      border-radius: 20px;
-      background: #eef8ff;
-      border-right: 7px solid #4aa6d5;
+      border-radius: 19px;
+      border-right: 7px solid #776094;
+      background: #f5ecfb;
       line-height: 2;
     }
 
@@ -134,35 +172,41 @@
       width: 100%;
       padding: 16px;
       border: none;
-      border-radius: 19px;
+      border-radius: 18px;
       color: white;
+      background: #6f5288;
+      box-shadow: 0 8px 19px rgba(93, 67, 116, 0.24);
       font-size: 19px;
       font-weight: bold;
       cursor: pointer;
-
-      background:
-        linear-gradient(
-          135deg,
-          #714f96,
-          #b15faf,
-          #ef7b7d
-        );
-
-      box-shadow:
-        0 8px 19px rgba(105, 70, 137, 0.25);
-
-      transition: transform 0.2s;
+      transition: transform 0.2s, opacity 0.2s;
     }
 
     .main-button:active {
       transform: scale(0.98);
     }
 
+    .main-button:hover {
+      opacity: 0.94;
+    }
+
+    .student-banner {
+      margin-bottom: 15px;
+      padding: 12px 15px;
+      text-align: center;
+      border-radius: 16px;
+      color: #5d4374;
+      background: #fff4d4;
+      border: 1px solid #ead194;
+      font-weight: bold;
+      line-height: 1.8;
+    }
+
     .top-info {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      gap: 12px;
+      justify-content: space-between;
+      gap: 11px;
       margin-bottom: 15px;
       font-weight: bold;
     }
@@ -174,58 +218,55 @@
     }
 
     .counter {
-      color: #68458a;
-      background: #f1e7ff;
+      color: #5d4374;
+      background: #f5ecfb;
     }
 
     .score-box {
-      color: #18704a;
+      color: #176744;
       background: #e4f8ed;
     }
 
     .progress-wrap {
-      height: 15px;
-      margin-bottom: 22px;
+      height: 14px;
+      margin-bottom: 21px;
       overflow: hidden;
       border-radius: 20px;
-      background: #eee5f4;
+      background: #eee5f2;
     }
 
     .progress-bar {
       width: 0;
       height: 100%;
       border-radius: 20px;
-
-      background:
-        linear-gradient(
-          90deg,
-          #67c8dd,
-          #8d73d1,
-          #ef7d9a
-        );
-
+      background: linear-gradient(
+        90deg,
+        #c9a85c,
+        #776094
+      );
       transition: width 0.4s ease;
     }
 
     .motivation {
       min-height: 45px;
       margin-bottom: 15px;
-      padding: 10px 15px;
+      padding: 11px 15px;
       text-align: center;
       border-radius: 15px;
-      background: #fff4ce;
-      color: #775d17;
+      color: #6e5519;
+      background: #fff4cf;
       font-weight: bold;
+      line-height: 1.7;
     }
 
     .question {
-      margin: 0 0 23px;
+      margin: 0 0 22px;
       padding: 20px;
       text-align: center;
-      border-radius: 22px;
-      color: #4f3a60;
-      background: #f8f3ff;
-      border: 2px dashed #c4a7dc;
+      border-radius: 21px;
+      color: #4b3a57;
+      background: #f5ecfb;
+      border: 2px dashed #c9a85c;
       font-size: 21px;
       line-height: 1.9;
     }
@@ -239,20 +280,20 @@
       width: 100%;
       padding: 15px 17px;
       text-align: right;
-      border: 2px solid #e1d3ea;
-      border-radius: 18px;
-      color: #493854;
+      border: 2px solid #e1d6e7;
+      border-radius: 17px;
+      color: #4b3a57;
       background: white;
       font-size: 17px;
-      line-height: 1.7;
+      line-height: 1.8;
       cursor: pointer;
       transition: all 0.2s ease;
     }
 
     .answer-button:hover {
       transform: translateY(-2px);
-      border-color: #9d76bd;
-      background: #fbf8ff;
+      border-color: #9d82b5;
+      background: #fcf9ff;
     }
 
     .answer-button.correct {
@@ -276,9 +317,9 @@
       margin-top: 18px;
       padding: 16px;
       text-align: center;
-      border-radius: 18px;
+      border-radius: 17px;
       font-weight: bold;
-      line-height: 1.8;
+      line-height: 1.9;
     }
 
     .feedback.correct-feedback {
@@ -301,18 +342,12 @@
       margin-top: 17px;
       padding: 15px;
       border: none;
-      border-radius: 18px;
+      border-radius: 17px;
       color: white;
+      background: #6f5288;
       font-size: 18px;
       font-weight: bold;
       cursor: pointer;
-
-      background:
-        linear-gradient(
-          135deg,
-          #3ca3c5,
-          #725bc2
-        );
     }
 
     .result-screen {
@@ -326,8 +361,18 @@
 
     .result-screen h2 {
       margin: 8px 0;
-      color: #704f91;
+      color: #5d4374;
       font-size: 31px;
+    }
+
+    .result-name {
+      margin: 12px auto;
+      padding: 12px 16px;
+      border-radius: 16px;
+      color: #5d4374;
+      background: #f5ecfb;
+      font-weight: bold;
+      line-height: 1.8;
     }
 
     .final-score {
@@ -340,17 +385,13 @@
       justify-content: center;
       border-radius: 50%;
       color: white;
-
-      background:
-        linear-gradient(
-          145deg,
-          #6d54b5,
-          #df6d9f,
-          #f5aa50
-        );
-
-      box-shadow:
-        0 12px 28px rgba(112, 69, 142, 0.28);
+      background: linear-gradient(
+        145deg,
+        #776094,
+        #5b4677
+      );
+      border: 7px solid #ead69e;
+      box-shadow: 0 12px 28px rgba(73, 56, 92, 0.25);
     }
 
     .final-score strong {
@@ -364,9 +405,10 @@
     .result-message {
       margin: 19px 0;
       padding: 18px;
-      border-radius: 20px;
-      background: #fff5ce;
-      border: 2px dashed #e4b439;
+      border-radius: 19px;
+      color: #4b3a57;
+      background: #fff5d7;
+      border: 2px dashed #c9a85c;
       font-size: 19px;
       line-height: 1.9;
       font-weight: bold;
@@ -383,22 +425,22 @@
       display: block;
       padding: 15px;
       border: none;
-      border-radius: 18px;
+      border-radius: 17px;
       text-decoration: none;
       color: white;
+      background: #6f5288;
       font-size: 17px;
       font-weight: bold;
       cursor: pointer;
-      background: #4d94bb;
     }
 
     .restart {
-      background: #7955a0;
+      background: #5d4374;
     }
 
     .confetti {
       position: fixed;
-      top: -20px;
+      top: -25px;
       z-index: 999;
       pointer-events: none;
       animation: fall linear forwards;
@@ -408,7 +450,8 @@
       padding: 22px 12px;
       text-align: center;
       color: white;
-      background: #463553;
+      background: #49385c;
+      line-height: 1.8;
     }
 
     @keyframes bounce {
@@ -430,17 +473,25 @@
 
       100% {
         transform: translateY(110vh) rotate(720deg);
-        opacity: 0.2;
+        opacity: 0.15;
       }
     }
 
     @media (max-width: 600px) {
+      .page-header {
+        padding: 28px 14px 36px;
+      }
+
       .page-header h1 {
-        font-size: 28px;
+        font-size: 27px;
       }
 
       .page-header p {
-        font-size: 16px;
+        font-size: 15px;
+      }
+
+      main {
+        width: 93%;
       }
 
       .card {
@@ -448,7 +499,12 @@
       }
 
       .question {
-        font-size: 19px;
+        padding: 17px;
+        font-size: 18px;
+      }
+
+      .answer-button {
+        font-size: 16px;
       }
 
       .buttons-row {
@@ -457,6 +513,11 @@
 
       .top-info {
         font-size: 14px;
+      }
+
+      .final-score {
+        width: 165px;
+        height: 165px;
       }
     }
   </style>
@@ -470,8 +531,8 @@
     <h1>تحدّي أسلوب الشرط</h1>
 
     <p>
-      خمسة عشر سؤالًا ممتعًا تقيس فهمكِ،
-      وفي نهاية التحدي ينتظركِ تقييم تحفيزي مميز.
+      خمسة عشر سؤالًا تقيس فهمكِ لأسلوب الشرط،
+      مع تغذية راجعة مباشرة ونتيجة تحفيزية في النهاية.
     </p>
   </header>
 
@@ -488,14 +549,35 @@
 
       <div class="start-message">
         اقرئي كل سؤال بهدوء، ثم اختاري الإجابة الصحيحة.
-        ستحصلين على تغذية راجعة مباشرة بعد كل إجابة.
+        ستظهر لكِ المعلومة الصحيحة بعد كل إجابة.
+      </div>
+
+      <div class="name-box">
+        <label for="studentName">
+          اكتبي اسمكِ الرباعي:
+        </label>
+
+        <input
+          id="studentName"
+          type="text"
+          maxlength="80"
+          autocomplete="name"
+          placeholder="الاسم الأول واسم الأب والجد والعائلة"
+        >
+
+        <div
+          id="nameError"
+          class="name-error"
+        >
+          يرجى كتابة الاسم الرباعي كاملًا قبل بدء الاختبار.
+        </div>
       </div>
 
       <div class="instructions">
         📌 عدد الأسئلة: ١٥ سؤالًا.<br>
         📌 لكل سؤال درجة واحدة.<br>
         📌 لا يمكن تغيير الإجابة بعد اختيارها.<br>
-        📌 شغّلي صوت جهازكِ للاستمتاع بالمؤثرات.
+        📌 شغّلي صوت الجهاز للاستمتاع بالمؤثرات.
       </div>
 
       <button
@@ -512,6 +594,11 @@
       id="quizScreen"
       class="card quiz-screen"
     >
+
+      <div
+        id="studentBanner"
+        class="student-banner"
+      ></div>
 
       <div class="top-info">
 
@@ -569,9 +656,7 @@
       </button>
 
     </section>
-
-
-    <section
+        <section
       id="resultScreen"
       class="card result-screen"
     >
@@ -584,6 +669,11 @@
       </div>
 
       <h2>اكتمل التحدي!</h2>
+
+      <div
+        id="resultName"
+        class="result-name"
+      ></div>
 
       <div class="final-score">
         <strong id="finalScore">٠ / ١٥</strong>
@@ -618,13 +708,11 @@
   </main>
 
   <footer>
-    منصة آفاق اللغة — إعداد المعلمة إيناس محمد يحيى مدخلي
+    جميع الحقوق محفوظة © 2026
   </footer>
-
 
   <script>
     const questions = [
-
       {
         question:
           "أيُّ الجمل الآتية اشتملت على أسلوب شرط؟",
@@ -879,9 +967,7 @@
         explanation:
           "أداة الشرط «مَن» تجزم فعلين، وعلامة جزم الفعلين هنا السكون."
       }
-
     ];
-
 
     const encouragements = [
       "بداية رائعة يا نجمة آفاق 🌟",
@@ -896,11 +982,10 @@
       "السؤال الأخير… أظهري براعتكِ 🎯"
     ];
 
-
     let currentQuestion = 0;
     let score = 0;
     let answered = false;
-
+    let studentFullName = "";
 
     function toArabicNumber(number) {
       const arabicNumbers = [
@@ -914,8 +999,49 @@
       );
     }
 
+    function normalizeName(name) {
+      return name
+        .trim()
+        .replace(/\s+/g, " ");
+    }
+
+    function isFourPartName(name) {
+      return normalizeName(name).split(" ").length >= 4;
+    }
 
     function startQuiz() {
+      const nameInput =
+        document.getElementById("studentName");
+
+      const nameError =
+        document.getElementById("nameError");
+
+      const enteredName =
+        normalizeName(nameInput.value);
+
+      if (!isFourPartName(enteredName)) {
+        nameError.style.display = "block";
+        nameInput.focus();
+        return;
+      }
+
+      studentFullName = enteredName;
+
+      localStorage.setItem(
+        "semester1_student_full_name",
+        studentFullName
+      );
+
+      localStorage.setItem(
+        "studentFullName",
+        studentFullName
+      );
+
+      nameError.style.display = "none";
+
+      document.getElementById("studentBanner").textContent =
+        "الطالبة: " + studentFullName;
+
       document
         .getElementById("startScreen")
         .classList.remove("active");
@@ -926,11 +1052,11 @@
 
       currentQuestion = 0;
       score = 0;
+      answered = false;
 
       playStartSound();
       showQuestion();
     }
-
 
     function showQuestion() {
       answered = false;
@@ -986,10 +1112,7 @@
 
         answersBox.appendChild(button);
       });
-    }
-
-
-    function selectAnswer(selectedIndex, selectedButton) {
+    }    function selectAnswer(selectedIndex, selectedButton) {
       if (answered) {
         return;
       }
@@ -1048,11 +1171,10 @@
         nextButton.textContent =
           "شاهدي نتيجتكِ 🏆";
       } else {
-              nextButton.textContent =
+        nextButton.textContent =
           "السؤال التالي ←";
       }
     }
-
 
     function nextQuestion() {
       currentQuestion++;
@@ -1063,7 +1185,6 @@
         showResult();
       }
     }
-
 
     function updateMotivation() {
       let text = encouragements[0];
@@ -1100,7 +1221,6 @@
         text;
     }
 
-
     function showResult() {
       document
         .getElementById("quizScreen")
@@ -1110,10 +1230,16 @@
         .getElementById("resultScreen")
         .classList.add("active");
 
+      document.getElementById("progressBar").style.width =
+        "100%";
+
       document.getElementById("finalScore").textContent =
         toArabicNumber(score) +
         " / " +
         toArabicNumber(questions.length);
+
+      document.getElementById("resultName").textContent =
+        "الطالبة: " + studentFullName;
 
       const resultMessage =
         document.getElementById("resultMessage");
@@ -1121,61 +1247,54 @@
       const resultIcon =
         document.getElementById("resultIcon");
 
-      if (score === 15) {
+      if (score === questions.length) {
         resultIcon.textContent = "👑";
 
         resultMessage.innerHTML =
-          "إتقان كامل! أنتِ ملكة أسلوب الشرط، " +
-          "وقد أجبتِ عن جميع الأسئلة إجابة صحيحة.";
+          "إتقان كامل يا " +
+          studentFullName +
+          "!<br>أجبتِ عن جميع الأسئلة إجابة صحيحة.";
 
-        createCelebration(100);
+        createCelebration(70);
         playVictorySound();
-
       } else if (score >= 12) {
         resultIcon.textContent = "🏆";
 
         resultMessage.innerHTML =
-          "ممتازة جدًا! لديكِ فهم قوي لأسلوب الشرط، " +
-          "وبقيت خطوات قليلة نحو الإتقان الكامل.";
+          "نتيجة رائعة يا " +
+          studentFullName +
+          "!<br>فهمكِ لأسلوب الشرط مميز جدًا.";
 
-        createCelebration(75);
+        createCelebration(50);
         playVictorySound();
-
       } else if (score >= 9) {
         resultIcon.textContent = "🌟";
 
         resultMessage.innerHTML =
-          "نتيجة جميلة! فهمكِ جيد، ومع مراجعة علامات الجزم " +
-          "ستصلين إلى مستوى أعلى.";
+          "أداء جميل يا " +
+          studentFullName +
+          "!<br>راجعي النقاط التي أخطأتِ فيها وستصلين إلى الإتقان.";
 
-        createCelebration(45);
-        playCorrectSound();
-
+        createCelebration(35);
+        playVictorySound();
       } else if (score >= 6) {
         resultIcon.textContent = "🌷";
 
         resultMessage.innerHTML =
-          "محاولة طيبة يا بطلة. راجعي أركان الشرط " +
-          "وأنواع «ما» وعلامات الجزم، ثم أعيدي التحدي.";
+          "خطوة طيبة يا " +
+          studentFullName +
+          ".<br>أعيدي مراجعة الدرس ثم جرّبي مرة أخرى.";
 
-        playStartSound();
-
+        createCelebration(20);
       } else {
-        resultIcon.textContent = "💪";
+        resultIcon.textContent = "📚";
 
         resultMessage.innerHTML =
-          "لا تتوقفي عند هذه النتيجة؛ فكل محاولة تقرّبكِ " +
-          "من الإتقان. راجعي الدرس ثم عودي بثقة.";
-
-        playStartSound();
+          "لا بأس يا " +
+          studentFullName +
+          ".<br>راجعي درس أسلوب الشرط بهدوء ثم أعيدي المحاولة.";
       }
-
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
     }
-
 
     function restartQuiz() {
       currentQuestion = 0;
@@ -1190,14 +1309,20 @@
         .getElementById("quizScreen")
         .classList.add("active");
 
+      document.getElementById("studentBanner").textContent =
+        "الطالبة: " + studentFullName;
+
+      document.getElementById("nextButton").textContent =
+        "السؤال التالي ←";
+
       showQuestion();
+      playStartSound();
 
       window.scrollTo({
         top: 0,
         behavior: "smooth"
       });
     }
-
 
     function createCelebration(amount) {
       const symbols = [
@@ -1240,14 +1365,17 @@
       }
     }
 
-
     function createAudioContext() {
-      return new (
+      const AudioContextClass =
         window.AudioContext ||
-        window.webkitAudioContext
-      )();
-    }
+        window.webkitAudioContext;
 
+      if (!AudioContextClass) {
+        return null;
+      }
+
+      return new AudioContextClass();
+    }
 
     function playTone(
       frequency,
@@ -1256,40 +1384,47 @@
       volume = 0.13,
       delay = 0
     ) {
-      const audioContext =
-        createAudioContext();
+      try {
+        const audioContext =
+          createAudioContext();
 
-      const oscillator =
-        audioContext.createOscillator();
+        if (!audioContext) {
+          return;
+        }
 
-      const gain =
-        audioContext.createGain();
+        const oscillator =
+          audioContext.createOscillator();
 
-      oscillator.type = type;
-      oscillator.frequency.value = frequency;
+        const gain =
+          audioContext.createGain();
 
-      gain.gain.setValueAtTime(
-        volume,
-        audioContext.currentTime + delay
-      );
+        oscillator.type = type;
+        oscillator.frequency.value = frequency;
 
-      gain.gain.exponentialRampToValueAtTime(
-        0.001,
-        audioContext.currentTime + delay + duration
-      );
+        gain.gain.setValueAtTime(
+          volume,
+          audioContext.currentTime + delay
+        );
 
-      oscillator.connect(gain);
-      gain.connect(audioContext.destination);
+        gain.gain.exponentialRampToValueAtTime(
+          0.001,
+          audioContext.currentTime + delay + duration
+        );
 
-      oscillator.start(
-        audioContext.currentTime + delay
-      );
+        oscillator.connect(gain);
+        gain.connect(audioContext.destination);
 
-      oscillator.stop(
-        audioContext.currentTime + delay + duration
-      );
+        oscillator.start(
+          audioContext.currentTime + delay
+        );
+
+        oscillator.stop(
+          audioContext.currentTime + delay + duration
+        );
+      } catch (error) {
+        console.log("تعذر تشغيل الصوت.");
+      }
     }
-
 
     function playCorrectSound() {
       playTone(523, 0.22, "sine", 0.12, 0);
@@ -1297,18 +1432,15 @@
       playTone(784, 0.3, "sine", 0.12, 0.32);
     }
 
-
     function playWrongSound() {
       playTone(280, 0.24, "triangle", 0.09, 0);
       playTone(220, 0.3, "triangle", 0.08, 0.18);
     }
 
-
     function playStartSound() {
       playTone(392, 0.2, "sine", 0.09, 0);
       playTone(523, 0.25, "sine", 0.1, 0.18);
     }
-
 
     function playVictorySound() {
       playTone(523, 0.25, "sine", 0.12, 0);
@@ -1317,8 +1449,20 @@
       playTone(1046, 0.45, "sine", 0.13, 0.6);
     }
 
+    window.addEventListener("DOMContentLoaded", () => {
+      const savedName =
+        localStorage.getItem(
+          "semester1_student_full_name"
+        ) ||
+        localStorage.getItem("studentFullName");
+
+      if (savedName) {
+        document.getElementById("studentName").value =
+          savedName;
+      }
+    });
   </script>
 
 </body>
-
 </html>
+    
