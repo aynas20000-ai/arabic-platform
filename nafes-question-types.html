@@ -1574,19 +1574,17 @@
           return;
         }
 
-        if (
-          currentTypeIndex <
-          questionTypes.length - 1
-        ) {
-          currentTypeIndex++;
-          currentStage = 0;
-          renderStage();
-          return;
-        }
+        if (completed.size === questionTypes.length) {
+  workspace.hidden = true;
+  libraryView.hidden = true;
+  finalCard.classList.add("show");
+  return;
+}
 
-        workspace.hidden = true;
-        finalCard.classList.add("show");
-      });
+workspace.hidden = true;
+finalCard.classList.remove("show");
+libraryView.hidden = false;
+updateProgress();
 
       backTypes.addEventListener("click", () => {
         workspace.hidden = true;
