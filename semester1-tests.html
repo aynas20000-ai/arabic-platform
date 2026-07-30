@@ -202,61 +202,16 @@
 
     .landscape-certificate-wrapper {
       width: 100%;
-      overflow-x: auto;
       padding: 8px 0;
-      -webkit-overflow-scrolling: touch;
     }
 
-    .landscape-certificate {
-      position: relative;
+    .certificate-canvas {
+      display: block;
       width: 100%;
-      max-width: 1100px;
-      aspect-ratio: 1456 / 1024;
+      height: auto;
       margin: auto;
-      overflow: hidden;
-      background-image: url("77.png");
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: 100% 100%;
+      background: white;
       box-shadow: 0 14px 35px rgba(73, 56, 92, 0.22);
-    }
-
-    .certificate-student-overlay {
-      position: absolute;
-      top: 28.7%;
-      right: 30%;
-      width: 44%;
-      padding: 0 6px;
-      color: #b71c1c;
-      text-align: center;
-      font-family: "Cairo", Tahoma, Arial, sans-serif;
-      font-size: clamp(11px, 1.75vw, 23px);
-      font-weight: 800;
-      line-height: 1.15;
-      white-space: nowrap;
-      text-shadow: 0 1px 0 #fff;
-    }
-
-    .certificate-score-overlay {
-      position: absolute;
-      top: 38.6%;
-      right: 38%;
-      width: 24%;
-      padding: 2px 8px;
-      color: #b71c1c;
-      text-align: center;
-      font-family: "Cairo", Tahoma, Arial, sans-serif;
-      font-size: clamp(10px, 1.55vw, 20px);
-      font-weight: 800;
-      line-height: 1.2;
-      white-space: nowrap;
-      background: rgba(255,255,255,.82);
-      border: 1px solid rgba(183,28,28,.35);
-      border-radius: 999px;
-    }
-
-    .certificate-date-overlay {
-      display: none;
     }
 
     .print-button {
@@ -303,9 +258,8 @@
     }
 
     @media (max-width: 700px) {
-      .landscape-certificate {
+      .certificate-canvas {
         width: 100%;
-        max-width: 100%;
       }
     }
 
@@ -346,18 +300,15 @@
       .landscape-certificate-wrapper {
         width: 100%;
         padding: 0;
-        overflow: visible;
       }
 
-      .landscape-certificate {
-        width: 100vw;
-        max-width: none;
+      .certificate-canvas {
+        display: block;
+        width: 100%;
         height: auto;
         margin: 0;
         box-shadow: none;
         page-break-inside: avoid;
-        print-color-adjust: exact;
-        -webkit-print-color-adjust: exact;
       }
     }
   </style>
@@ -468,36 +419,13 @@
 
       <div class="landscape-certificate-wrapper">
 
-        <section
-          id="certificate"
-          class="landscape-certificate"
-        >
-
-          <div
-            id="certificateStudentName"
-            class="certificate-student-overlay"
-          >
-            اسم الطالبة
-          </div>
-
-          <div
-            id="certificateTotal"
-            class="certificate-score-overlay"
-          >
-            الدرجة: ٠ من ١٠٠
-          </div>
-
-          <div
-            id="certificateDate"
-            class="certificate-date-overlay"
-          ></div>
-
-          <div
-            id="certificateMedal"
-            hidden
-          ></div>
-
-        </section>
+        <canvas
+          id="certificateCanvas"
+          class="certificate-canvas"
+          width="1456"
+          height="1024"
+          aria-label="شهادة الطالبة"
+        ></canvas>
 
       </div>
 
@@ -551,6 +479,61 @@
         /\d/g,
         digit => "٠١٢٣٤٥٦٧٨٩"[digit]
       );
+    }
+
+
+    async function renderCertificate(studentName, totalScore) {
+      const canvas = document.getElementById("certificateCanvas");
+      const context = canvas.getContext("2d");
+      const image = new Image();
+
+      image.src = "77.png";
+      await image.decode();
+
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+      if (document.fonts && document.fonts.ready) {
+        await document.fonts.ready;
+      }
+
+      context.save();
+      context.direction = "rtl";
+      context.textAlign = "center";
+      context.textBaseline = "middle";
+
+      context.fillStyle = "#b71c1c";
+      context.font = '800 34px "Cairo", Tahoma, Arial, sans-serif';
+      context.fillText(studentName, 725, 320, 620);
+
+      context.fillStyle = "rgba(255,255,255,0.94)";
+      context.strokeStyle = "rgba(183,28,28,0.55)";
+      context.lineWidth = 2;
+      roundRect(context, 570, 392, 315, 58, 22);
+      context.fill();
+      context.stroke();
+
+      context.fillStyle = "#b71c1c";
+      context.font = '800 28px "Cairo", Tahoma, Arial, sans-serif';
+      context.fillText(
+        "الدرجة: " + toArabicNumber(totalScore) + " من ١٠٠",
+        727,
+        421,
+        285
+      );
+
+      context.restore();
+    }
+
+    function roundRect(context, x, y, width, height, radius) {
+      const r = Math.min(radius, width / 2, height / 2);
+      context.beginPath();
+      context.moveTo(x + r, y);
+      context.arcTo(x + width, y, x + width, y + height, r);
+      context.arcTo(x + width, y + height, x, y + height, r);
+      context.arcTo(x, y + height, x, y, r);
+      context.arcTo(x, y, x + width, y, r);
+      context.closePath();
     }
 
     function getStudentName() {
@@ -674,22 +657,10 @@
 
       certificateSection.classList.add("show");
 
-      document.getElementById(
-        "certificateStudentName"
-      ).textContent = getStudentName();
-
-      document.getElementById(
-        "certificateTotal"
-      ).textContent =
-        "الدرجة: " +
-        toArabicNumber(total) +
-        " من ١٠٠";
-
-      document.getElementById(
-        "certificateDate"
-      ).textContent =
-        "تاريخ الإنجاز: " +
-        getCertificateDate();
+      renderCertificate(
+        getStudentName(),
+        total
+      );
 
     } else {
       const remaining = [];
