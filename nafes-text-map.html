@@ -1,0 +1,1770 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    خريطة النص | مكتبة نافس
+  </title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --purple-dark: #49385c;
+      --purple: #6f5288;
+      --purple-soft: #776094;
+      --purple-light: #f5ecfb;
+      --gold: #c9a85c;
+      --gold-light: #fff6dc;
+      --cream: #fffdf8;
+      --text: #3e3048;
+      --muted: #625769;
+      --green: #3f896b;
+      --green-light: #eaf7f1;
+      --rose: #a94f6d;
+      --rose-light: #fff0f4;
+      --gray: #eae4ed;
+    }
+
+    html,
+    body {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    body {
+      min-height: 100vh;
+      color: var(--text);
+      font-family: Tahoma, Arial, sans-serif;
+      font-weight: 600;
+      text-align: center;
+      background:
+        radial-gradient(
+          circle at top right,
+          rgba(255, 239, 200, 0.8),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at bottom left,
+          rgba(228, 210, 242, 0.85),
+          transparent 42%
+        ),
+        linear-gradient(
+          145deg,
+          #fffaf2,
+          #f8f0fb
+        );
+    }
+
+    button,
+    a {
+      font-family: inherit;
+    }
+
+    p,
+    li,
+    button {
+      font-size: 17px;
+      font-weight: 600;
+      line-height: 2;
+    }
+
+    h1,
+    h2,
+    h3,
+    strong {
+      font-weight: 800;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 5%;
+      color: white;
+      background: linear-gradient(
+        135deg,
+        #776094,
+        #5b4677
+      );
+      box-shadow: 0 6px 22px rgba(73, 56, 92, 0.22);
+    }
+
+    .brand {
+      color: #fff8df;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .back-link {
+      padding: 9px 13px;
+      border-radius: 22px;
+      color: white;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+    }
+
+    .hero {
+      padding: 44px 18px 50px;
+      color: white;
+      border-radius: 0 0 52px 52px;
+      background: linear-gradient(
+        145deg,
+        #776094,
+        #5b4677
+      );
+      box-shadow: 0 14px 34px rgba(73, 56, 92, 0.22);
+    }
+
+    .hero-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 104px;
+      height: 104px;
+      margin: 0 auto 17px;
+      border-radius: 32px;
+      font-size: 52px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 3px solid rgba(255, 255, 255, 0.34);
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      color: #fff8df;
+      font-size: 34px;
+      line-height: 1.7;
+    }
+
+    .hero p {
+      max-width: 730px;
+      margin: auto;
+      color: #f8f1fb;
+      line-height: 2;
+    }
+
+    main {
+      width: min(880px, 93%);
+      margin: 28px auto 52px;
+    }
+
+    .progress {
+      display: grid;
+      grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 22px;
+      padding: 15px;
+      border-radius: 22px;
+      background: var(--cream);
+      box-shadow: 0 10px 25px rgba(73, 56, 92, 0.1);
+    }
+
+    .progress-step {
+      min-height: 62px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7px 5px;
+      border-radius: 14px;
+      color: #7b6d83;
+      background: var(--gray);
+      font-size: 13px;
+      font-weight: 800;
+      line-height: 1.6;
+    }
+
+    .progress-step.active {
+      color: white;
+      background: var(--purple);
+    }
+
+    .progress-step.done {
+      color: #2e684f;
+      background: var(--green-light);
+      border: 1px solid rgba(63, 137, 107, 0.35);
+    }
+
+    .journey-card {
+      display: none;
+      padding: 24px 20px;
+      border-radius: 27px;
+      background: var(--cream);
+      border: 1px solid rgba(93, 67, 116, 0.14);
+      box-shadow: 0 13px 30px rgba(73, 56, 92, 0.12);
+    }
+
+    .journey-card.active {
+      display: block;
+      animation: enterCard 0.4s ease;
+    }
+
+    @keyframes enterCard {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card-label {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 8px 14px;
+      border-radius: 18px;
+      color: white;
+      background: var(--purple);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .journey-card h2,
+    .journey-card h3 {
+      margin: 0 0 15px;
+      color: var(--purple-dark);
+      line-height: 1.8;
+    }
+
+    .journey-card h2 {
+      font-size: 28px;
+    }
+
+    .journey-card h3 {
+      font-size: 23px;
+    }
+
+    .definition-box,
+    .example-box,
+    .reading-text,
+    .question-box,
+    .evidence-card {
+      text-align: right;
+    }
+
+    .definition-box {
+      padding: 18px;
+      border-radius: 19px;
+      color: #554160;
+      background: var(--purple-light);
+      border-right: 7px solid var(--gold);
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 2;
+    }
+
+    .example-box {
+      margin-top: 16px;
+      padding: 18px;
+      border-radius: 18px;
+      background: #fffaf0;
+      border: 1px solid rgba(201, 168, 92, 0.35);
+      line-height: 2;
+    }
+
+    .reading-text {
+      margin-top: 16px;
+      padding: 21px;
+      border-radius: 21px;
+      color: #44384a;
+      background: #fffaf0;
+      border: 1px solid rgba(201, 168, 92, 0.35);
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 2.25;
+    }
+
+    .question-box {
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 20px;
+      background: var(--purple-light);
+    }
+
+    .options {
+      display: grid;
+      gap: 10px;
+    }
+
+    .option-button {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid rgba(93, 67, 116, 0.2);
+      border-radius: 14px;
+      color: var(--text);
+      background: white;
+      text-align: right;
+      cursor: pointer;
+    }
+
+    .option-button.correct {
+      color: #28684f;
+      background: var(--green-light);
+      border-color: var(--green);
+    }
+
+    .option-button.wrong {
+      color: #8a405a;
+      background: var(--rose-light);
+      border-color: var(--rose);
+    }
+
+    .feedback,
+    .evidence-card {
+      display: none;
+      margin-top: 13px;
+      padding: 14px;
+      border-radius: 16px;
+      color: #554160;
+      background: white;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 2;
+    }
+
+    .feedback.show,
+    .evidence-card.show {
+      display: block;
+    }
+
+    .evidence-card {
+      border-right: 7px solid var(--gold);
+    }
+
+    .evidence-quote {
+      margin-top: 11px;
+      padding: 13px;
+      border-radius: 14px;
+      color: #674d18;
+      background: var(--gold-light);
+    }
+
+    .action-button {
+      display: block;
+      width: 100%;
+      margin-top: 18px;
+      padding: 15px;
+      border: 0;
+      border-radius: 17px;
+      color: white;
+      background: var(--purple);
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .action-button:disabled {
+      color: #8c818f;
+      background: #e8e2ea;
+      cursor: not-allowed;
+    }
+
+    footer {
+      margin-top: 42px;
+      padding: 24px 16px;
+      color: white;
+      background: var(--purple-dark);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    @media (max-width: 700px) {
+      .progress {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+      }
+
+      .hero h1 {
+        font-size: 29px;
+      }
+
+      .reading-text {
+        font-size: 17px;
+      }
+
+      p,
+      li,
+      button {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+
+    <div class="brand">
+      منصة آفاق اللغة
+    </div>
+
+    <a
+      class="back-link"
+      href="nafes-skills.html"
+    >
+      العودة إلى مكتبة نافس
+    </a>
+
+  </header>
+
+  <section class="hero">
+
+    <div class="hero-icon">
+      🗺️
+    </div>
+
+    <h1>
+      خريطة النص
+    </h1>
+
+    <p>
+      تعلّمي كيف تكشفين بناء النص،
+      وتربطين أفكاره،
+      وتحددين وظيفة كل تفصيل فيه.
+    </p>
+
+  </section>
+
+  <main>
+
+    <section class="progress">
+
+      <div
+        class="progress-step active"
+        data-progress="0"
+      >
+        الشرح
+      </div>
+
+      <div
+        class="progress-step"
+        data-progress="1"
+      >
+        الأمثلة
+      </div>
+
+      <div
+        class="progress-step"
+        data-progress="2"
+      >
+        التدريب
+      </div>
+
+      <div
+        class="progress-step"
+        data-progress="3"
+      >
+        الخريطة النهائية
+      </div>
+
+    </section>
+
+    <article
+      class="journey-card active"
+      data-card="0"
+    >
+
+      <span class="card-label">
+        المرحلة الأولى
+      </span>
+
+      <h2>
+        ما خريطة النص؟
+      </h2>
+
+      <div class="definition-box">
+        خريطة النص هي تمثيل منظم
+        يوضح كيف بُنيت القطعة،
+        وما الفكرة الرئيسة فيها،
+        وما الأفكار الفرعية
+        والتفاصيل التي تدعمها،
+        وما العلاقات التي تربط
+        أجزاء النص بعضها ببعض.
+
+        وهي تساعدكِ على الانتقال
+        من قراءة الجمل منفصلة
+        إلى رؤية النص بوصفه بناءً متكاملًا.
+      </div>
+
+      <div class="example-box">
+
+        <strong>
+          أهم عناصر خريطة النص:
+        </strong>
+
+        <ul>
+          <li>
+            الفكرة الرئيسة:
+            المعنى الأكبر الذي يجمع النص.
+          </li>
+
+          <li>
+            الأفكار الفرعية:
+            الجوانب التي شرح بها الكاتب فكرته.
+          </li>
+
+          <li>
+            التفاصيل الداعمة:
+            الأمثلة والحقائق والتفسيرات.
+          </li>
+
+          <li>
+            العلاقات:
+            السبب والنتيجة،
+            والمشكلة والحل،
+            والمقارنة،
+            والتسلسل.
+          </li>
+
+          <li>
+            نمط التنظيم:
+            الطريقة التي رتّب بها الكاتب أفكاره.
+          </li>
+        </ul>
+
+      </div>
+
+      <button
+        class="action-button next-card"
+        data-next="1"
+        type="button"
+      >
+        فهمتِ الشرح، انتقلي إلى الأمثلة
+      </button>
+
+    </article>
+
+    <article
+      class="journey-card"
+      data-card="1"
+    >
+
+      <span class="card-label">
+        المرحلة الثانية
+      </span>
+
+      <h2>
+        أمثلة على أنماط تنظيم النص
+      </h2>
+
+      <div class="example-box">
+
+        <strong>
+          السبب والنتيجة:
+        </strong>
+
+        ارتفع استهلاك الطاقة
+        بسبب زيادة عدد الأجهزة المتصلة،
+        فبدأت المدن في تطوير
+        شبكات أكثر كفاءة.
+
+      </div>
+
+      <div class="example-box">
+
+        <strong>
+          المشكلة والحل:
+        </strong>
+
+        واجهت المؤسسات خطر فقد البيانات،
+        فأنشأت نسخًا احتياطية
+        وخططًا لاستعادة الأنظمة.
+
+      </div>
+
+      <div class="example-box">
+
+        <strong>
+          المقارنة:
+        </strong>
+
+        تتميز الطاقة الشمسية
+        بانخفاض الانبعاثات،
+        بينما تتميز الطاقة التقليدية
+        بثبات الإنتاج.
+
+      </div>
+
+      <div class="example-box">
+
+        <strong>
+          التسلسل:
+        </strong>
+
+        تبدأ عملية تطوير المنتج
+        بتحليل الحاجة،
+        ثم تصميم النموذج،
+        ثم اختباره،
+        وأخيرًا إطلاقه.
+
+      </div>
+
+      <button
+        class="action-button next-card"
+        data-next="2"
+        type="button"
+      >
+        فهمتِ الأمثلة، افتحي التدريب القصير
+      </button>
+
+    </article>
+
+    <article
+      class="journey-card"
+      data-card="2"
+    >
+
+      <span class="card-label">
+        تدريب قصير
+      </span>
+
+      <div class="question-box">
+
+        <h3>
+          أي تنظيم يظهر في العبارة الآتية؟
+        </h3>
+
+        <p>
+          ازدادت النفايات الإلكترونية،
+          لذلك بدأت الشركات
+          برامج لإعادة تدوير الأجهزة.
+        </p>
+
+        <div class="options">
+
+          <button
+            class="option-button"
+            data-correct="false"
+            type="button"
+          >
+            مقارنة.
+          </button>
+
+          <button
+            class="option-button"
+            data-correct="true"
+            type="button"
+          >
+            سبب ونتيجة.
+          </button>
+
+          <button
+            class="option-button"
+            data-correct="false"
+            type="button"
+          >
+            تسلسل زمني.
+          </button>
+
+        </div>
+
+        <div
+          class="feedback"
+          id="patternFeedback"
+        ></div>
+
+      </div>
+
+      <button
+        class="action-button"
+        id="openMainText"
+        type="button"
+        disabled
+      >
+        انتقلي إلى القطعة الرئيسة
+      </button>
+
+    </article>
+        <article
+      class="journey-card"
+      data-card="3"
+    >
+
+      <span class="card-label">
+        القطعة الرئيسة
+      </span>
+
+      <h2>
+        الاقتصاد الدائري
+        وإعادة تصميم دورة الإنتاج
+      </h2>
+
+      <div class="reading-text">
+        اعتمدت أنظمة الإنتاج التقليدية
+        طويلًا على نموذج يبدأ
+        باستخراج الموارد،
+        ثم تصنيع المنتجات،
+        ثم التخلص منها
+        بعد انتهاء استخدامها.
+
+        وقد أسهم هذا النموذج
+        في تسريع النمو الصناعي،
+        لكنه أدى كذلك
+        إلى زيادة استهلاك المواد الخام
+        وتراكم النفايات
+        وارتفاع الأثر البيئي.
+
+        لذلك ظهر مفهوم الاقتصاد الدائري،
+        الذي لا ينظر إلى المنتج
+        بوصفه مادة تنتهي قيمتها
+        بعد الاستخدام،
+        بل جزءًا من دورة
+        يمكن أن تستمر
+        من خلال الإصلاح،
+        وإعادة الاستخدام،
+        وإعادة التصنيع،
+        والتدوير.
+
+        وتبدأ هذه الدورة
+        منذ مرحلة التصميم؛
+        إذ ينبغي أن يُصنع المنتج
+        بطريقة تسمح بفك أجزائه،
+        واستبدال القطع التالفة،
+        واستعادة المواد
+        بدل التخلص من المنتج كاملًا.
+
+        كما تحتاج المؤسسات
+        إلى تطوير سلاسل توريد
+        تجمع المنتجات المستعملة،
+        وتعيد فرزها،
+        وتحدد ما يمكن إصلاحه
+        أو إعادة تصنيعه
+        أو تحويله إلى مواد جديدة.
+
+        ومع ذلك،
+        لا ينجح الاقتصاد الدائري
+        بمجرد إنشاء مرافق للتدوير؛
+        بل يحتاج إلى تصميم واعٍ،
+        ونماذج أعمال جديدة،
+        وتشريعات داعمة،
+        وسلوك استهلاكي
+        يفضّل المنتجات الأطول عمرًا.
+
+        ومن ثم،
+        فإن التحول الحقيقي
+        لا يتم في نهاية دورة المنتج فقط،
+        بل يبدأ من طريقة تصميمه
+        وتصنيعه واستخدامه
+        وإعادته إلى الدورة الاقتصادية.
+      </div>
+
+      <button
+        class="action-button next-card"
+        data-next="4"
+        type="button"
+      >
+        قرأتِ القطعة، حددي موضوعها
+      </button>
+
+    </article>
+
+    <article
+      class="journey-card"
+      data-card="4"
+    >
+
+      <span class="card-label">
+        التدريب الأول
+      </span>
+
+      <div class="question-box">
+
+        <h3>
+          ما الموضوع العام للقطعة؟
+        </h3>
+
+        <div class="options">
+
+          <button
+            class="option-button"
+            data-correct="false"
+            type="button"
+          >
+            طرق استخراج المواد الخام
+            في المصانع الحديثة.
+          </button>
+
+          <button
+            class="option-button"
+            data-correct="true"
+            type="button"
+          >
+            التحول من الإنتاج الخطي
+            إلى الاقتصاد الدائري
+            وإطالة دورة حياة المنتجات.
+          </button>
+
+          <button
+            class="option-button"
+            data-correct="false"
+            type="button"
+          >
+            مقارنة أسعار المنتجات
+            الجديدة والمستعملة.
+          </button>
+
+        </div>
+
+        <div
+          class="feedback"
+          id="topicFeedback"
+        ></div>
+
+      </div>
+
+      <button
+        class="action-button"
+        id="openMainIdea"
+        type="button"
+        disabled
+      >
+        انتقلي إلى الفكرة الرئيسة
+      </button>
+
+    </article>
+
+    <article
+      class="journey-card"
+      data-card="5"
+    >
+
+      <span class="card-label">
+        التدريب الثاني
+      </span>
+
+      <div class="question-box">
+
+        <h3>
+          ما الفكرة الرئيسة للقطعة؟
+        </h3>
+
+        <div class="options">
+
+          <button
+            class="option-button"
+            data-correct="false"
+            type="button"
+          >
+            تعتمد استدامة الإنتاج
+            على زيادة مرافق التدوير فقط.
+          </button>
+
+          <button
+            class="option-button"
+            data-correct="true"
+            type="button"
+          >
+            يتطلب الاقتصاد الدائري
+            إعادة تصميم دورة المنتج كاملة
+            من التصنيع حتى عودته
+            إلى الاستخدام أو الإنتاج.
+          </button>
+
+          <button
+            class="option-button"
+            data-correct="false"
+            type="button"
+          >
+            المنتجات المستعملة
+            أقل جودة دائمًا
+            من المنتجات الجديدة.
+          </button>
+
+        </div>
+
+        <div
+          class="feedback"
+          id="mainIdeaFeedback"
+        ></div>
+
+      </div>
+
+      <button
+        class="action-button"
+        id="openSupportingIdeas"
+        type="button"
+        disabled
+      >
+        انتقلي إلى الأفكار الداعمة
+      </button>
+
+    </article>
+
+    <article
+      class="journey-card"
+      data-card="6"
+    >
+
+      <span class="card-label">
+        التدريب الثالث
+      </span>
+
+      <div class="question-box">
+
+        <h3>
+          أي مجموعة تمثل
+          الأفكار الفرعية الداعمة
+          للفكرة الرئيسة؟
+        </h3>
+
+        <div class="options">
+
+          <button
+            class="option-button"
+            data-correct="true"
+            type="button"
+          >
+            التصميم القابل للإصلاح،
+            واستعادة المنتجات المستعملة،
+            وتطوير التشريعات
+            والسلوك الاستهلاكي.
+          </button>
+
+          <button
+            class="option-button"
+            data-correct="false"
+            type="button"
+          >
+            استخراج الموارد،
+            وزيادة النفايات،
+            وارتفاع أسعار المنتجات.
+          </button>
+
+          <button
+            class="option-button"
+            data-correct="false"
+            type="button"
+          >
+            التسويق الرقمي،
+            وتسريع الشحن،
+            وتوسيع المتاجر الإلكترونية.
+          </button>
+
+        </div>
+
+        <div
+          class="feedback"
+          id="supportingIdeasFeedback"
+        ></div>
+
+      </div>
+
+      <button
+        class="action-button"
+        id="openRelationQuestion"
+        type="button"
+        disabled
+      >
+        انتقلي إلى العلاقة بين الأفكار
+      </button>
+
+    </article>
+        <article
+      class="journey-card"
+      data-card="7"
+    >
+
+      <span class="card-label">
+        التدريب الرابع
+      </span>
+
+      <div class="question-box">
+
+        <h3>
+          ما العلاقة بين
+          النموذج التقليدي للإنتاج
+          وظهور الاقتصاد الدائري؟
+        </h3>
+
+        <div class="options">
+
+          <button
+            class="option-button"
+            data-correct="false"
+            type="button"
+          >
+            مقارنة بين نموذجين
+            لا يختلفان في أثرهما البيئي.
+          </button>
+
+          <button
+            class="option-button"
+            data-correct="true"
+            type="button"
+          >
+            مشكلة نتجت عن النموذج التقليدي،
+            ثم ظهر الاقتصاد الدائري
+            بوصفه استجابة لها.
+          </button>
+
+          <button
+            class="option-button"
+            data-correct="false"
+            type="button"
+          >
+            تسلسل زمني لا يتضمن
+            سببًا أو نتيجة.
+          </button>
+
+        </div>
+
+        <div
+          class="feedback"
+          id="relationFeedback"
+        ></div>
+
+      </div>
+
+      <button
+        class="action-button"
+        id="openOrganizationQuestion"
+        type="button"
+        disabled
+      >
+        انتقلي إلى نمط تنظيم النص
+      </button>
+
+    </article>
+
+    <article
+      class="journey-card"
+      data-card="8"
+    >
+
+      <span class="card-label">
+        التدريب الخامس
+      </span>
+
+      <div class="question-box">
+
+        <h3>
+          ما نمط التنظيم الأبرز
+          في بناء القطعة؟
+        </h3>
+
+        <div class="options">
+
+          <button
+            class="option-button"
+            data-correct="false"
+            type="button"
+          >
+            وصف مكان وتفاصيله.
+          </button>
+
+          <button
+            class="option-button"
+            data-correct="true"
+            type="button"
+          >
+            عرض مشكلة،
+            ثم تفسير مفهوم يعالجها،
+            ثم بيان متطلبات نجاحه.
+          </button>
+
+          <button
+            class="option-button"
+            data-correct="false"
+            type="button"
+          >
+            سرد أحداث شخصية
+            بترتيب زمني.
+          </button>
+
+        </div>
+
+        <div
+          class="feedback"
+          id="organizationFeedback"
+        ></div>
+
+      </div>
+
+      <button
+        class="action-button"
+        id="openSequenceQuestion"
+        type="button"
+        disabled
+      >
+        انتقلي إلى ترتيب أجزاء النص
+      </button>
+
+    </article>
+
+    <article
+      class="journey-card"
+      data-card="9"
+    >
+
+      <span class="card-label">
+        التدريب السادس
+      </span>
+
+      <div class="question-box">
+
+        <h3>
+          أي ترتيب يمثل
+          انتقال أفكار القطعة؟
+        </h3>
+
+        <div class="options">
+
+          <button
+            class="option-button"
+            data-correct="true"
+            type="button"
+          >
+            النموذج التقليدي وآثاره
+            ← تعريف الاقتصاد الدائري
+            ← التصميم واستعادة المنتجات
+            ← شروط نجاح التحول.
+          </button>
+
+          <button
+            class="option-button"
+            data-correct="false"
+            type="button"
+          >
+            شروط النجاح
+            ← تعريف الاقتصاد الدائري
+            ← النموذج التقليدي
+            ← استخراج الموارد.
+          </button>
+
+          <button
+            class="option-button"
+            data-correct="false"
+            type="button"
+          >
+            إعادة التدوير
+            ← التسويق
+            ← النقل
+            ← مقارنة الأسعار.
+          </button>
+
+        </div>
+
+        <div
+          class="feedback"
+          id="sequenceFeedback"
+        ></div>
+
+      </div>
+
+      <button
+        class="action-button"
+        id="openFinalMap"
+        type="button"
+        disabled
+      >
+        ابنِي الخريطة النهائية
+      </button>
+
+    </article>
+
+    <article
+      class="journey-card"
+      data-card="10"
+    >
+
+      <span class="card-label">
+        الخريطة النهائية
+      </span>
+
+      <h2>
+        خريطة قطعة الاقتصاد الدائري
+      </h2>
+
+      <div class="evidence-card show">
+
+        <p>
+          <strong>
+            الموضوع:
+          </strong>
+
+          التحول إلى الاقتصاد الدائري.
+        </p>
+
+        <p>
+          <strong>
+            الفكرة الرئيسة:
+          </strong>
+
+          نجاح الاقتصاد الدائري
+          يتطلب إعادة تصميم دورة المنتج كاملة،
+          لا الاكتفاء بالتدوير في نهايتها.
+        </p>
+
+        <div class="evidence-quote">
+
+          <strong>
+            البداية:
+          </strong>
+
+          عرض نموذج الإنتاج التقليدي
+          وآثاره في الموارد والنفايات.
+        </div>
+
+        <div class="evidence-quote">
+
+          <strong>
+            الوسط:
+          </strong>
+
+          شرح مفهوم الاقتصاد الدائري،
+          ثم بيان دور التصميم
+          واستعادة المنتجات المستعملة.
+        </div>
+
+        <div class="evidence-quote">
+
+          <strong>
+            النهاية:
+          </strong>
+
+          توضيح أن نجاح التحول
+          يحتاج إلى تصميم واعٍ،
+          وتشريعات،
+          ونماذج أعمال،
+          وسلوك استهلاكي داعم.
+        </div>
+
+        <div class="evidence-quote">
+
+          <strong>
+            نمط التنظيم:
+          </strong>
+
+          مشكلة وحل،
+          مع توظيف السبب والنتيجة
+          والتسلسل التفسيري.
+        </div>
+
+      </div>
+
+      <button
+        class="action-button"
+        id="openTransferTraining"
+        type="button"
+      >
+        انتقلي إلى تدريب جديد
+      </button>
+
+    </article>
+        <article
+      class="journey-card"
+      data-card="11"
+    >
+
+      <span class="card-label">
+        تدريب نقل المهارة
+      </span>
+
+      <h2>
+        شبكة النقل ذاتية القيادة
+      </h2>
+
+      <div class="reading-text">
+        تتجه بعض المدن إلى تطوير
+        شبكات نقل ذاتية القيادة
+        بهدف تقليل الحوادث،
+        وتحسين تدفق المركبات،
+        وخفض الوقت المهدور
+        في الازدحام.
+
+        وتعتمد هذه الشبكات
+        على مركبات متصلة
+        تتبادل المعلومات
+        مع الطرق والإشارات
+        ومراكز التحكم.
+
+        غير أن نجاحها
+        لا يتوقف على دقة المركبات وحدها؛
+        إذ تحتاج إلى بنية رقمية مستقرة،
+        وأنظمة أمن سيبراني،
+        وتشريعات تحدد المسؤولية
+        عند وقوع الخطأ.
+
+        كما يتطلب تطبيقها
+        تدريب المستخدمين،
+        وتهيئة الطرق،
+        واختبار النظام تدريجيًا
+        قبل تشغيله على نطاق واسع.
+
+        لذلك فإن الانتقال
+        إلى النقل الذاتي
+        ليس استبدال السائق بالآلة فقط،
+        بل إعادة بناء
+        منظومة النقل كاملة
+        بما يضمن السلامة والثقة والاستمرارية.
+      </div>
+
+      <div class="question-box">
+
+        <h3>
+          أي خريطة تمثل بناء النص
+          بصورة أدق؟
+        </h3>
+
+        <div class="options">
+
+          <button
+            class="option-button"
+            data-correct="false"
+            type="button"
+          >
+            وصف المركبات ذاتية القيادة
+            ثم المقارنة بين أسعارها.
+          </button>
+
+          <button
+            class="option-button"
+            data-correct="true"
+            type="button"
+          >
+            عرض أهداف النقل الذاتي،
+            ثم توضيح متطلباته التقنية
+            والتشريعية والمجتمعية،
+            ثم تأكيد أنه تحول شامل
+            في منظومة النقل.
+          </button>
+
+          <button
+            class="option-button"
+            data-correct="false"
+            type="button"
+          >
+            سرد مراحل صناعة المركبة
+            داخل المصنع.
+          </button>
+
+        </div>
+
+        <div
+          class="feedback"
+          id="transferFeedback"
+        ></div>
+
+      </div>
+
+      <button
+        class="action-button"
+        id="openSelfAssessment"
+        type="button"
+        disabled
+      >
+        انتقلي إلى التقييم الذاتي
+      </button>
+
+    </article>
+
+    <article
+      class="journey-card"
+      data-card="12"
+    >
+
+      <span class="card-label">
+        التقييم الذاتي
+      </span>
+
+      <h2>
+        كيف تصفين إتقانكِ لخريطة النص؟
+      </h2>
+
+      <div class="question-box">
+
+        <div class="options">
+
+          <button
+            class="option-button self-option"
+            data-level="strong"
+            type="button"
+          >
+            أستطيع تحديد الفكرة الرئيسة،
+            وربط التفاصيل بها،
+            وتحديد نمط تنظيم النص.
+          </button>
+
+          <button
+            class="option-button self-option"
+            data-level="medium"
+            type="button"
+          >
+            أفهم عناصر الخريطة،
+            لكنني أحتاج إلى تدريب
+            على العلاقات بين الأفكار.
+          </button>
+
+          <button
+            class="option-button self-option"
+            data-level="need-help"
+            type="button"
+          >
+            ما زلت أتعامل
+            مع كل جملة منفصلة
+            ولا أرى بناء النص كاملًا.
+          </button>
+
+        </div>
+
+        <div
+          class="feedback"
+          id="selfFeedback"
+        ></div>
+
+        <div
+          class="evidence-card"
+          id="selfHelp"
+        >
+
+          <strong>
+            استراتيجية مساعدة:
+          </strong>
+
+          اكتبي بعد كل فقرة
+          كلمة أو عبارة تلخص وظيفتها،
+          ثم اربطي العبارات
+          لتظهر خريطة النص كاملة.
+
+        </div>
+
+      </div>
+
+      <button
+        class="action-button"
+        id="openReward"
+        type="button"
+        disabled
+      >
+        افتحي صندوق الإنجاز
+      </button>
+
+    </article>
+
+    <article
+      class="journey-card"
+      data-card="13"
+    >
+
+      <span class="card-label">
+        صندوق الإنجاز
+      </span>
+
+      <h2>
+        أتقنتِ خريطة النص
+      </h2>
+
+      <div class="definition-box">
+        أصبحتِ قادرة على
+        تحديد موضوع النص،
+        وفكرته الرئيسة،
+        وأفكاره الفرعية،
+        وتفاصيله الداعمة،
+        والعلاقات التي تربط بينها،
+        ونمط تنظيمه،
+        وتسلسل بنائه.
+      </div>
+
+      <div class="evidence-card show">
+
+        <strong>
+          وسامكِ:
+        </strong>
+
+        🏅 مهندسة خريطة النص
+
+      </div>
+
+      <a
+        class="action-button"
+        href="nafes-skills.html"
+        style="text-decoration: none; text-align: center;"
+      >
+        إنهاء الرحلة والعودة إلى مكتبة نافس
+      </a>
+
+    </article>
+
+  </main>
+
+  <footer>
+    جميع الحقوق محفوظة © 2026
+  </footer>
+    <script>
+    const cards =
+      document.querySelectorAll(".journey-card");
+
+    const progressSteps =
+      document.querySelectorAll(".progress-step");
+
+    function showCard(cardNumber) {
+      cards.forEach(function(card) {
+        card.classList.remove("active");
+      });
+
+      const targetCard =
+        document.querySelector(
+          '[data-card="' +
+          cardNumber +
+          '"]'
+        );
+
+      if (targetCard) {
+        targetCard.classList.add("active");
+      }
+
+      updateProgress(Number(cardNumber));
+    }
+
+    function updateProgress(cardNumber) {
+      let stage = 0;
+
+      if (cardNumber >= 1 && cardNumber <= 2) {
+        stage = 1;
+      }
+
+      if (cardNumber >= 3 && cardNumber <= 9) {
+        stage = 2;
+      }
+
+      if (cardNumber >= 10) {
+        stage = 3;
+      }
+
+      progressSteps.forEach(function(step, index) {
+        step.classList.remove(
+          "active",
+          "done"
+        );
+
+        if (index < stage) {
+          step.classList.add("done");
+        }
+
+        if (index === stage) {
+          step.classList.add("active");
+        }
+      });
+    }
+
+    document
+      .querySelectorAll(".next-card")
+      .forEach(function(button) {
+        button.addEventListener(
+          "click",
+          function() {
+            showCard(button.dataset.next);
+          }
+        );
+      });
+
+    function prepareQuestion(
+      feedbackId,
+      nextButtonId,
+      nextCardNumber
+    ) {
+      const feedback =
+        document.getElementById(feedbackId);
+
+      const nextButton =
+        document.getElementById(nextButtonId);
+
+      const questionBox =
+        feedback.closest(".question-box");
+
+      const options =
+        questionBox.querySelectorAll(
+          ".option-button:not(.self-option)"
+        );
+
+      options.forEach(function(option) {
+        option.addEventListener(
+          "click",
+          function() {
+            options.forEach(function(item) {
+              item.classList.remove(
+                "correct",
+                "wrong"
+              );
+            });
+
+            if (
+              option.dataset.correct === "true"
+            ) {
+              option.classList.add("correct");
+
+              feedback.textContent =
+                "إجابة صحيحة. أحسنتِ ربط الفكرة ببنية النص.";
+
+              feedback.classList.add("show");
+              nextButton.disabled = false;
+
+              nextButton.onclick =
+                function() {
+                  showCard(nextCardNumber);
+                };
+            } else {
+              option.classList.add("wrong");
+
+              feedback.textContent =
+                "ليست الإجابة الأدق. راجعي وظيفة كل فقرة والعلاقة التي تربطها ببقية النص.";
+
+              feedback.classList.add("show");
+              nextButton.disabled = true;
+            }
+          }
+        );
+      });
+    }
+
+    prepareQuestion(
+      "patternFeedback",
+      "openMainText",
+      3
+    );
+
+    prepareQuestion(
+      "topicFeedback",
+      "openMainIdea",
+      5
+    );
+
+    prepareQuestion(
+      "mainIdeaFeedback",
+      "openSupportingIdeas",
+      6
+    );
+
+    prepareQuestion(
+      "supportingIdeasFeedback",
+      "openRelationQuestion",
+      7
+    );
+
+    prepareQuestion(
+      "relationFeedback",
+      "openOrganizationQuestion",
+      8
+    );
+
+    prepareQuestion(
+      "organizationFeedback",
+      "openSequenceQuestion",
+      9
+    );
+
+    prepareQuestion(
+      "sequenceFeedback",
+      "openFinalMap",
+      10
+    );
+
+    prepareQuestion(
+      "transferFeedback",
+      "openSelfAssessment",
+      12
+    );
+
+    document
+      .getElementById("openTransferTraining")
+      .addEventListener(
+        "click",
+        function() {
+          showCard(11);
+        }
+      );
+
+    const selfFeedback =
+      document.getElementById("selfFeedback");
+
+    const selfHelp =
+      document.getElementById("selfHelp");
+
+    const openReward =
+      document.getElementById("openReward");
+
+    document
+      .querySelectorAll(".self-option")
+      .forEach(function(option) {
+        option.addEventListener(
+          "click",
+          function() {
+            document
+              .querySelectorAll(".self-option")
+              .forEach(function(item) {
+                item.classList.remove(
+                  "correct",
+                  "wrong"
+                );
+              });
+
+            option.classList.add("correct");
+
+            if (
+              option.dataset.level === "strong"
+            ) {
+              selfFeedback.textContent =
+                "ممتاز. أصبحتِ ترين النص بوصفه بناءً مترابطًا.";
+
+              selfHelp.classList.remove("show");
+            }
+
+            if (
+              option.dataset.level === "medium"
+            ) {
+              selfFeedback.textContent =
+                "جيد جدًا. ركزي أكثر على كلمات الربط التي تكشف العلاقات.";
+
+              selfHelp.classList.add("show");
+            }
+
+            if (
+              option.dataset.level === "need-help"
+            ) {
+              selfFeedback.textContent =
+                "اختيار صادق. استخدمي استراتيجية تلخيص وظيفة كل فقرة.";
+
+              selfHelp.classList.add("show");
+            }
+
+            selfFeedback.classList.add("show");
+            openReward.disabled = false;
+          }
+        );
+      });
+
+    openReward.addEventListener(
+      "click",
+      function() {
+        showCard(13);
+
+        localStorage.setItem(
+          "nafesTextMapComplete",
+          "true"
+        );
+      }
+    );
+
+    showCard(0);
+  </script>
+
+</body>
+</html>
