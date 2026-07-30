@@ -153,17 +153,22 @@
       color: var(--dark-purple);
     }
 
-    .gates {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 13px;
+    .journey-path {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 4px;
+      overflow-x: auto;
+      scrollbar-width: thin;
     }
 
     .gate {
-      min-height: 100px;
-      padding: 12px;
+      flex: 0 0 auto;
+      min-width: 112px;
+      padding: 12px 10px;
       font-family: inherit;
-      font-size: 18px;
+      font-size: 15px;
       font-weight: bold;
       color: #75697d;
       background: linear-gradient(
@@ -172,45 +177,74 @@
         #ece3ef
       );
       border: 2px solid transparent;
-      border-radius: 20px;
+      border-radius: 18px;
       cursor: pointer;
-      transition: 0.2s ease;
+      transition: 0.25s ease;
     }
 
-    .gate:last-child {
-      grid-column: 1 / -1;
-      width: 50%;
-      justify-self: center;
+    .step-number {
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      margin: 0 auto 5px;
+      color: white;
+      background: #9b87aa;
+      border-radius: 50%;
+    }
+
+    .path-arrow {
+      flex: 0 0 auto;
+      font-size: 27px;
+      font-weight: bold;
+      color: var(--gold);
     }
 
     .gate.active {
       color: white;
       background: var(--purple);
       border-color: var(--gold);
-      transform: translateY(-3px);
+      transform: translateY(-4px);
       box-shadow: 0 7px 15px rgba(73, 56, 92, 0.17);
+    }
+
+    .gate.active .step-number {
+      color: var(--dark-purple);
+      background: var(--gold);
+    }
+
+    .gate.completed {
+      color: var(--dark-purple);
+      background: #fff7dc;
+      border-color: var(--gold);
+    }
+
+    .gate.completed .step-number {
+      color: white;
+      background: var(--green);
     }
 
     .journey {
       display: none;
-      animation: appear 0.3s ease;
+      animation: journeyMove 0.35s ease;
     }
 
     .journey.active {
       display: block;
     }
 
-    @keyframes appear {
+    @keyframes journeyMove {
       from {
-        opacity: 0.2;
-        transform: translateY(8px);
+        opacity: 0;
+        transform: translateX(28px);
       }
 
       to {
         opacity: 1;
-        transform: none;
+        transform: translateX(0);
       }
-    }    .journey-head {
+    }
+        .journey-head {
       text-align: center;
       margin-bottom: 18px;
     }
@@ -472,7 +506,270 @@
     .next-type-btn.show {
       display: block;
     }
-        .stars {
+        .journey-head {
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .journey-icon {
+      display: inline-grid;
+      place-items: center;
+      width: 96px;
+      height: 96px;
+      margin-bottom: 10px;
+      font-size: 46px;
+      background: #fff7dc;
+      border-radius: 28px;
+      box-shadow: 0 8px 18px rgba(73, 56, 92, 0.10);
+    }
+
+    .journey-title {
+      margin: 0;
+      font-size: 31px;
+      color: var(--dark-purple);
+    }
+
+    .journey-definition {
+      max-width: 760px;
+      margin: 10px auto 0;
+      font-size: 18px;
+      font-weight: bold;
+      color: #675a6d;
+    }
+
+    .strategy-box,
+    .text-box,
+    .question-box,
+    .answer-analysis,
+    .self-check {
+      padding: 18px;
+      margin-top: 16px;
+      border-radius: 18px;
+    }
+
+    .strategy-box {
+      background: var(--light-purple);
+      border-right: 6px solid var(--gold);
+    }
+
+    .strategy-box h3,
+    .text-box h3,
+    .question-box h3,
+    .answer-analysis h3,
+    .self-check h3 {
+      margin-top: 0;
+      color: var(--purple);
+    }
+
+    .clue-tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 9px;
+      margin-top: 14px;
+    }
+
+    .clue-tag {
+      padding: 8px 13px;
+      font-weight: bold;
+      color: var(--dark-purple);
+      background: #fff7dc;
+      border: 1px solid #dfc978;
+      border-radius: 999px;
+    }
+
+    .text-box {
+      background: #fff;
+      border: 2px solid #e2d8e7;
+    }
+
+    .reading-text {
+      margin: 0;
+      text-align: justify;
+      font-size: 18px;
+      line-height: 2.1;
+    }
+
+    .text-type {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 6px 12px;
+      font-size: 14px;
+      font-weight: bold;
+      color: white;
+      background: var(--purple);
+      border-radius: 999px;
+    }
+
+    .question-box {
+      background: #fffaf0;
+      border: 2px dashed var(--gold);
+    }
+
+    .options {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .option {
+      padding: 13px;
+      text-align: right;
+      font-family: inherit;
+      font-size: 16px;
+      color: var(--text);
+      background: #f7f1fa;
+      border: 2px solid transparent;
+      border-radius: 13px;
+      cursor: pointer;
+    }
+
+    .option.correct {
+      color: var(--green);
+      background: #e9f7ee;
+      border-color: #74af89;
+    }
+
+    .option.wrong {
+      color: var(--red);
+      background: #fdecec;
+      border-color: #dd9696;
+      animation: shake 0.35s ease;
+    }
+
+    @keyframes shake {
+      0%, 100% {
+        transform: translateX(0);
+      }
+
+      25% {
+        transform: translateX(7px);
+      }
+
+      50% {
+        transform: translateX(-7px);
+      }
+
+      75% {
+        transform: translateX(4px);
+      }
+    }
+
+    .feedback {
+      display: none;
+      margin-top: 12px;
+      padding: 13px;
+      font-weight: bold;
+      border-radius: 12px;
+    }
+
+    .feedback.show {
+      display: block;
+    }
+
+    .feedback.good {
+      color: var(--green);
+      background: #e9f7ee;
+    }
+
+    .feedback.bad {
+      color: var(--red);
+      background: #fdecec;
+    }
+
+    .answer-analysis {
+      display: none;
+      background: #f8f2fb;
+      border: 2px solid #d8c7e4;
+    }
+
+    .answer-analysis.show {
+      display: block;
+    }
+
+    .analysis-item {
+      padding: 12px;
+      margin-top: 10px;
+      background: white;
+      border-radius: 12px;
+      border-right: 5px solid var(--gold);
+    }
+
+    .evidence {
+      padding: 12px;
+      margin-top: 10px;
+      font-weight: bold;
+      background: #fff7dc;
+      border-radius: 12px;
+    }
+
+    .self-check {
+      display: none;
+      text-align: center;
+      background: #fff;
+      border: 2px solid #dfd3e5;
+    }
+
+    .self-check.show {
+      display: block;
+    }
+
+    .self-options {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .self-btn {
+      min-height: 74px;
+      padding: 10px;
+      font-family: inherit;
+      font-weight: bold;
+      color: var(--dark-purple);
+      background: linear-gradient(
+        135deg,
+        #fffdf8,
+        #f3ebf8
+      );
+      border: 2px solid var(--gold);
+      border-radius: 15px;
+      cursor: pointer;
+    }
+
+    .self-message {
+      display: none;
+      margin-top: 12px;
+      padding: 13px;
+      font-weight: bold;
+      border-radius: 12px;
+    }
+
+    .self-message.show {
+      display: block;
+      background: var(--light-purple);
+    }
+
+    .next-type-btn {
+      display: none;
+      width: 100%;
+      margin-top: 16px;
+      padding: 14px;
+      font-family: inherit;
+      font-size: 18px;
+      font-weight: bold;
+      color: white;
+      background: var(--purple);
+      border: 0;
+      border-radius: 14px;
+      cursor: pointer;
+    }
+
+    .next-type-btn.show {
+      display: block;
+    }
+
+    .stars {
       margin-top: 14px;
       text-align: center;
       font-size: 31px;
@@ -525,17 +822,12 @@
         font-size: 29px;
       }
 
-      .gates {
-        grid-template-columns: 1fr 1fr;
+      .journey-path {
+        justify-content: flex-start;
       }
 
       .gate {
-        min-height: 82px;
-        font-size: 16px;
-      }
-
-      .gate:last-child {
-        width: 100%;
+        min-width: 105px;
       }
 
       .journey-card,
@@ -597,46 +889,61 @@
     </div>
 
     <section class="gate-card">
-      <h2>بوابات أنواع الأسئلة</h2>
 
-      <div class="gates">
+      <h2>رحلة أنواع الأسئلة</h2>
+
+      <div class="journey-path">
 
         <button
           class="gate active"
           data-target="literal"
           type="button">
-          🔎 السؤال الحرفي
+          <span class="step-number">1</span>
+          <span>الحرفي</span>
         </button>
+
+        <span class="path-arrow">←</span>
 
         <button
           class="gate"
           data-target="inferential"
           type="button">
-          🧩 السؤال الاستنتاجي
+          <span class="step-number">2</span>
+          <span>الاستنتاجي</span>
         </button>
+
+        <span class="path-arrow">←</span>
 
         <button
           class="gate"
           data-target="analytical"
           type="button">
-          🧠 السؤال التحليلي
+          <span class="step-number">3</span>
+          <span>التحليلي</span>
         </button>
+
+        <span class="path-arrow">←</span>
 
         <button
           class="gate"
           data-target="critical"
           type="button">
-          ⚖️ السؤال النقدي
+          <span class="step-number">4</span>
+          <span>النقدي</span>
         </button>
+
+        <span class="path-arrow">←</span>
 
         <button
           class="gate"
           data-target="applied"
           type="button">
-          💡 السؤال التطبيقي
+          <span class="step-number">5</span>
+          <span>التطبيقي</span>
         </button>
 
       </div>
+
     </section>
         <section
       class="journey journey-card active"
@@ -818,7 +1125,7 @@
 
       <div class="stars">☆ ☆ ☆</div>
         </section>
-        <section
+            <section
       class="journey journey-card"
       id="inferential"
       data-number="2">
@@ -1005,8 +1312,8 @@
       </div>
 
       <div class="stars">☆ ☆ ☆</div>
-        </section>
-        <section
+            </section>
+                <section
       class="journey journey-card"
       id="analytical"
       data-number="3">
@@ -1196,8 +1503,8 @@
       </div>
 
       <div class="stars">☆ ☆ ☆</div>
-        </section>
-        <section
+                </section>
+                    <section
       class="journey journey-card"
       id="critical"
       data-number="4">
@@ -1386,8 +1693,8 @@
       </div>
 
       <div class="stars">☆ ☆ ☆</div>
-        </section>
-        <section
+                    </section>
+                        <section
       class="journey journey-card"
       id="applied"
       data-number="5">
@@ -1639,10 +1946,15 @@
 
     function showJourney(targetId) {
       journeys.forEach(journey => {
+        const isCurrent =
+          journey.id === targetId;
+
         journey.classList.toggle(
           "active",
-          journey.id === targetId
+          isCurrent
         );
+
+        journey.hidden = !isCurrent;
       });
 
       gates.forEach(gate => {
@@ -1652,11 +1964,11 @@
         );
       });
 
-      const target =
+      const activeJourney =
         document.getElementById(targetId);
 
-      if (target) {
-        target.scrollIntoView({
+      if (activeJourney) {
+        activeJourney.scrollIntoView({
           behavior: "smooth",
           block: "start"
         });
@@ -1692,9 +2004,12 @@
             context.createGain();
 
           const start =
-            context.currentTime + index * 0.09;
+            context.currentTime +
+            index * 0.09;
 
-          oscillator.frequency.value = frequency;
+          oscillator.frequency.value =
+            frequency;
+
           oscillator.type = "sine";
 
           gain.gain.setValueAtTime(
@@ -1737,9 +2052,12 @@
             context.createGain();
 
           const start =
-            context.currentTime + index * 0.14;
+            context.currentTime +
+            index * 0.14;
 
-          oscillator.frequency.value = frequency;
+          oscillator.frequency.value =
+            frequency;
+
           oscillator.type = "square";
 
           gain.gain.setValueAtTime(
@@ -1773,14 +2091,20 @@
 
       const context = createAudioContext();
 
-      for (let index = 0; index < 16; index++) {
-        const buffer = context.createBuffer(
-          1,
-          context.sampleRate * 0.07,
-          context.sampleRate
-        );
+      for (
+        let index = 0;
+        index < 16;
+        index++
+      ) {
+        const buffer =
+          context.createBuffer(
+            1,
+            context.sampleRate * 0.07,
+            context.sampleRate
+          );
 
-        const data = buffer.getChannelData(0);
+        const data =
+          buffer.getChannelData(0);
 
         for (
           let sample = 0;
@@ -1802,6 +2126,7 @@
           context.createBiquadFilter();
 
         source.buffer = buffer;
+
         filter.type = "bandpass";
 
         filter.frequency.value =
@@ -1845,170 +2170,259 @@
             : "☆ ☆ ☆";
       });
 
+      gates.forEach(gate => {
+        gate.classList.toggle(
+          "completed",
+          completed.has(
+            gate.dataset.target
+          )
+        );
+      });
+
       if (count === 5) {
         finalCard.classList.add("show");
-
-        setTimeout(() => {
-          finalCard.scrollIntoView({
-            behavior: "smooth"
-          });
-        }, 300);
       }
     }
 
-    journeys.forEach((journey, journeyIndex) => {
-      const options =
-        [...journey.querySelectorAll(".option")];
+    journeys.forEach(
+      (journey, journeyIndex) => {
+        const options =
+          [...journey.querySelectorAll(
+            ".option"
+          )];
 
-      const feedback =
-        journey.querySelector(".feedback");
+        const feedback =
+          journey.querySelector(
+            ".feedback"
+          );
 
-      const analysis =
-        journey.querySelector(".answer-analysis");
+        const analysis =
+          journey.querySelector(
+            ".answer-analysis"
+          );
 
-      const selfCheck =
-        journey.querySelector(".self-check");
+        const selfCheck =
+          journey.querySelector(
+            ".self-check"
+          );
 
-      const nextButton =
-        journey.querySelector(".next-type-btn");
+        const nextButton =
+          journey.querySelector(
+            ".next-type-btn"
+          );
 
-      options.forEach(option => {
-        option.addEventListener("click", () => {
-          if (
-            option.dataset.correct === "true"
-          ) {
-            options.forEach(button => {
-              button.disabled = true;
-            });
+        options.forEach(option => {
+          option.addEventListener(
+            "click",
+            () => {
+              if (
+                option.dataset.correct ===
+                "true"
+              ) {
+                options.forEach(button => {
+                  button.disabled = true;
+                });
 
-            option.classList.add("correct");
+                option.classList.add(
+                  "correct"
+                );
 
-            feedback.className =
-              "feedback show good";
+                feedback.className =
+                  "feedback show good";
 
-            feedback.textContent =
-              "👏 إجابة صحيحة. الآن اقرئي سبب الاختيار والشاهد من القطعة.";
+                feedback.textContent =
+                  "👏 إجابة صحيحة. اقرئي سبب الاختيار والشاهد من القطعة.";
 
-            analysis.classList.add("show");
-            selfCheck.classList.add("show");
+                analysis.classList.add(
+                  "show"
+                );
 
-            completed.add(journey.id);
+                selfCheck.classList.add(
+                  "show"
+                );
 
-            playCorrectSound();
-            updateProgress();
+                completed.add(journey.id);
 
-          } else {
-            option.classList.add("wrong");
+                playCorrectSound();
+                updateProgress();
 
-            feedback.className =
-              "feedback show bad";
+              } else {
+                option.classList.add(
+                  "wrong"
+                );
 
-            feedback.textContent =
-              "⚠️ ليست الإجابة الأدق. عودي إلى السؤال، وحددي المطلوب، ثم ابحثي عن الدليل في النص.";
+                feedback.className =
+                  "feedback show bad";
 
-            playWrongSound();
+                feedback.textContent =
+                  "⚠️ ليست الإجابة الأدق. حددي نوع السؤال، ثم قارني البدائل بالشاهد.";
 
-            if (navigator.vibrate) {
-              navigator.vibrate(
-                [120, 70, 120]
+                playWrongSound();
+
+                if (navigator.vibrate) {
+                  navigator.vibrate(
+                    [120, 70, 120]
+                  );
+                }
+
+                setTimeout(() => {
+                  option.classList.remove(
+                    "wrong"
+                  );
+                }, 700);
+              }
+            }
+          );
+        });
+
+        const selfButtons =
+          [...journey.querySelectorAll(
+            ".self-btn"
+          )];
+
+        const selfMessage =
+          journey.querySelector(
+            ".self-message"
+          );
+
+        selfButtons.forEach(button => {
+          button.addEventListener(
+            "click",
+            () => {
+              const level =
+                button.dataset.level;
+
+              selfRatings[journey.id] =
+                level;
+
+              localStorage.setItem(
+                "nafesQuestionTypesRatings",
+                JSON.stringify(
+                  selfRatings
+                )
+              );
+
+              selfButtons.forEach(btn => {
+                btn.style.opacity =
+                  "0.55";
+              });
+
+              button.style.opacity =
+                "1";
+
+              if (
+                level === "mastered"
+              ) {
+                selfMessage.textContent =
+                  "⭐ رائع. أتقنتِ تحديد نوع السؤال والعودة إلى الدليل والشاهد.";
+
+                playCorrectSound();
+              }
+
+              if (
+                level === "practice"
+              ) {
+                selfMessage.textContent =
+                  "🔁 اختيار صادق. راجعي كلمات السؤال والشاهد قبل الانتقال.";
+              }
+
+              if (
+                level === "help"
+              ) {
+                selfMessage.textContent =
+                  "🪜 حددي المطلوب، ثم الكلمة المفتاحية، ثم قارني كل بديل بالشاهد.";
+              }
+
+              selfMessage.classList.add(
+                "show"
+              );
+
+              nextButton.classList.add(
+                "show"
               );
             }
-
-            setTimeout(() => {
-              option.classList.remove("wrong");
-            }, 700);
-          }
-        });
-      });
-
-      const selfButtons =
-        [...journey.querySelectorAll(".self-btn")];
-
-      const selfMessage =
-        journey.querySelector(".self-message");
-
-      selfButtons.forEach(button => {
-        button.addEventListener("click", () => {
-          const level =
-            button.dataset.level;
-
-          selfRatings[journey.id] = level;
-
-          localStorage.setItem(
-            "nafesQuestionTypesRatings",
-            JSON.stringify(selfRatings)
           );
-
-          selfButtons.forEach(btn => {
-            btn.style.opacity = "0.55";
-          });
-
-          button.style.opacity = "1";
-
-          if (level === "mastered") {
-            selfMessage.textContent =
-              "⭐ رائع. أتقنتِ تحديد نوع السؤال والعودة إلى الدليل والشاهد.";
-
-            playCorrectSound();
-          }
-
-          if (level === "practice") {
-            selfMessage.textContent =
-              "🔁 اختيار صادق. راجعي كلمات السؤال، ثم أعيدي قراءة الشاهد قبل الانتقال.";
-          }
-
-          if (level === "help") {
-            selfMessage.textContent =
-              "🪜 ابدئي بثلاث خطوات: حددي المطلوب، ابحثي عن الكلمة المفتاحية، ثم قارني البدائل بالشاهد.";
-          }
-
-          selfMessage.classList.add("show");
-          nextButton.classList.add("show");
         });
-      });
 
-      nextButton.addEventListener("click", () => {
-        if (
-          journeyIndex <
-          journeys.length - 1
-        ) {
-          showJourney(
-            journeys[journeyIndex + 1].id
-          );
-        } else {
-          finalCard.classList.add("show");
+        nextButton.addEventListener(
+          "click",
+          () => {
+            if (
+              journeyIndex <
+              journeys.length - 1
+            ) {
+              const nextJourney =
+                journeys[
+                  journeyIndex + 1
+                ];
 
-          playApplause();
+              showJourney(
+                nextJourney.id
+              );
 
-          finalCard.scrollIntoView({
-            behavior: "smooth"
-          });
-        }
-      });
-    });
+            } else {
+              journeys.forEach(
+                journeyItem => {
+                  journeyItem.hidden =
+                    true;
 
-    soundBtn.addEventListener("click", () => {
-      soundOn = !soundOn;
+                  journeyItem.classList
+                    .remove("active");
+                }
+              );
 
-      localStorage.setItem(
-        "nafesSound",
-        soundOn ? "on" : "off"
-      );
+              gates.forEach(gate => {
+                gate.classList.remove(
+                  "active"
+                );
+              });
 
-      soundBtn.textContent =
-        soundOn
-          ? "🔊 الصوت مفعّل"
-          : "🔇 الصوت مكتوم";
+              finalCard.classList.add(
+                "show"
+              );
 
-      if (soundOn) {
-        playCorrectSound();
+              playApplause();
+
+              finalCard.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+              });
+            }
+          }
+        );
       }
-    });
+    );
+
+    soundBtn.addEventListener(
+      "click",
+      () => {
+        soundOn = !soundOn;
+
+        localStorage.setItem(
+          "nafesSound",
+          soundOn ? "on" : "off"
+        );
+
+        soundBtn.textContent =
+          soundOn
+            ? "🔊 الصوت مفعّل"
+            : "🔇 الصوت مكتوم";
+
+        if (soundOn) {
+          playCorrectSound();
+        }
+      }
+    );
 
     soundBtn.textContent =
       soundOn
         ? "🔊 الصوت مفعّل"
         : "🔇 الصوت مكتوم";
+
+    journeys.forEach(journey => {
+      journey.hidden = true;
+      journey.classList.remove("active");
+    });
 
     updateProgress();
     showJourney("literal");
@@ -2016,4 +2430,3 @@
 
 </body>
 </html>
-    
