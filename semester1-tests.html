@@ -1,1005 +1,184 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <title>
-    اختبارات الفصل الدراسي الأول | منصة آفاق اللغة
-  </title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>اختبارات الفصل الدراسي الأول | منصة آفاق اللغة</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-
-  <link
-    rel="preconnect"
-    href="https://fonts.gstatic.com"
-    crossorigin
-  >
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@400;600;700;800&display=swap"
-    rel="stylesheet"
-  >
-
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html,
-    body {
-      width: 100%;
-      max-width: 100%;
-      overflow-x: hidden;
-    }
-
-    body {
-      min-height: 100vh;
-      font-family: "Cairo", Tahoma, Arial, sans-serif;
-      color: #4b3a57;
-      background: linear-gradient(
-        180deg,
-        #fffaf2,
-        #f8f0fb
-      );
-    }
-
-    header {
-      padding: 38px 18px;
-      color: white;
-      text-align: center;
-      background: linear-gradient(
-        135deg,
-        #776094,
-        #5b4677
-      );
-      border-bottom: 4px solid #c9a85c;
-      box-shadow: 0 8px 24px rgba(91, 70, 119, 0.18);
-    }
-
-    header h1 {
-      margin-bottom: 12px;
-      color: #fffdf8;
-      font-size: clamp(28px, 7vw, 44px);
-      line-height: 1.6;
-    }
-
-    header p {
-      color: #f7effb;
-      font-size: 18px;
-      line-height: 1.8;
-    }
-
-    .container {
-      width: min(920px, calc(100% - 28px));
-      margin: 32px auto 50px;
-    }
-
-    .intro {
-      margin-bottom: 25px;
-      padding: 22px;
-      text-align: center;
-      background: #fffdf8;
-      border: 2px solid #c9a85c;
-      border-radius: 22px;
-      box-shadow: 0 10px 28px rgba(91, 63, 111, 0.1);
-    }
-
-    .intro h2 {
-      margin-bottom: 10px;
-      color: #5d4374;
-      font-size: 26px;
-    }
-
-    .intro p {
-      color: #6d6274;
-      font-size: 17px;
-      line-height: 1.9;
-    }
-
-    .tests-grid {
-      display: grid;
-      gap: 24px;
-    }
-
-    .card {
-      padding: 32px 20px;
-      text-align: center;
-      background: #fffdf8;
-      border: 2px solid #c9a85c;
-      border-radius: 25px;
-      box-shadow: 0 12px 30px rgba(91, 63, 111, 0.11);
-    }
-
-    .card h2 {
-      margin-bottom: 18px;
-      color: #5d4374;
-      font-size: clamp(25px, 6vw, 34px);
-      line-height: 1.7;
-    }
-
-    .card p {
-      margin-bottom: 25px;
-      color: #6d6274;
-      font-size: 20px;
-    }
-
-    .btn {
-      display: inline-block;
-      min-width: 230px;
-      padding: 16px 26px;
-      color: white;
-      font-size: 19px;
-      font-weight: bold;
-      text-decoration: none;
-      background: linear-gradient(
-        135deg,
-        #776094,
-        #5b4677
-      );
-      border: 2px solid #c9a85c;
-      border-radius: 16px;
-      box-shadow: 0 7px 16px rgba(91, 63, 111, 0.2);
-      transition:
-        transform 0.18s ease,
-        box-shadow 0.18s ease;
-    }
-
-    .btn:hover,
-    .btn:active {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 22px rgba(91, 63, 111, 0.27);
-    }
-
-    .result-card {
-      background: linear-gradient(
-        180deg,
-        #fffef9,
-        #fff9e7
-      );
-    }
-
-    .result-card h2 {
-      color: #8b650d;
-    }
-
-    .lock {
-      width: 100%;
-      max-width: 660px;
-      margin: auto;
-      padding: 20px;
-      color: #6b5420;
-      font-size: 18px;
-      font-weight: bold;
-      line-height: 2;
-      background: #f8efd5;
-      border: 1px solid #ddc57c;
-      border-radius: 16px;
-    }
-
-    .certificate-section {
-      display: none;
-      margin-top: 38px;
-    }
-
-    .certificate-section.show {
-      display: block;
-    }
-
-    .certificate-heading-outside {
-      margin-bottom: 18px;
-      text-align: center;
-      color: #5d4374;
-      font-size: 28px;
-    }
-
-    .certificate {
-      position: relative;
-      width: 100%;
-      min-height: 700px;
-      padding: 34px 38px;
-      overflow: hidden;
-      color: #44364f;
-      background:
-        radial-gradient(
-          circle at center,
-          rgba(255, 248, 219, 0.7),
-          transparent 58%
-        ),
-        #fffefb;
-      border: 11px double #c9a85c;
-      box-shadow: 0 16px 40px rgba(73, 56, 92, 0.18);
-    }
-
-    .certificate::before,
-    .certificate::after {
-      content: "";
-      position: absolute;
-      width: 250px;
-      height: 120px;
-      bottom: -50px;
-      border-radius: 50%;
-      background: rgba(201, 168, 92, 0.18);
-    }
-
-    .certificate::before {
-      right: -55px;
-    }
-
-    .certificate::after {
-      left: -55px;
-      background: rgba(119, 96, 148, 0.14);
-    }
-
-    .certificate-content {
-      position: relative;
-      z-index: 2;
-    }
-
-    .certificate-top {
-      display: grid;
-      grid-template-columns: 170px 1fr;
-      gap: 25px;
-      align-items: start;
-    }
-
-    .logo-box {
-      min-height: 140px;
-      padding: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 2px dashed #c9a85c;
-      border-radius: 18px;
-      background: #fffaf0;
-    }
-
-    .logo-box img {
-      display: block;
-      width: 145px;
-      max-width: 100%;
-      height: auto;
-      object-fit: contain;
-    }
-
-    .school-info {
-      padding: 16px 18px;
-      text-align: right;
-      color: #403844;
-      border: 2px solid #d9c27c;
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.85);
-      font-size: 15px;
-      font-weight: bold;
-      line-height: 1.9;
-    }
-
-    .certificate-title {
-      margin: 30px 0 12px;
-      text-align: center;
-      color: #8b650d;
-      font-family: "Aref Ruqaa", serif;
-      font-size: clamp(42px, 8vw, 64px);
-      line-height: 1.5;
-    }
-
-    .platform-name {
-      width: fit-content;
-      margin: 0 auto 16px;
-      padding: 8px 22px;
-      color: white;
-      background: linear-gradient(
-        135deg,
-        #776094,
-        #a77e3f
-      );
-      border-radius: 30px;
-      font-size: 17px;
-      font-weight: bold;
-    }
-
-    .certificate-intro {
-      max-width: 820px;
-      margin: auto;
-      text-align: center;
-      color: #5d4374;
-      font-size: 19px;
-      line-height: 2.1;
-    }
-
-    .student-name-label {
-      margin-top: 15px;
-      text-align: center;
-      color: #8b650d;
-      font-size: 18px;
-      font-weight: bold;
-    }
-
-    .student-certificate-name {
-      display: block;
-      width: fit-content;
-      min-width: 330px;
-      max-width: 95%;
-      margin: 8px auto 18px;
-      padding: 8px 28px;
-      text-align: center;
-      color: #693c8b;
-      border-bottom: 3px solid #c9a85c;
-      font-family: "Aref Ruqaa", serif;
-      font-size: clamp(36px, 7vw, 56px);
-      font-weight: bold;
-      line-height: 1.5;
-    }
-
-    .certificate-message {
-      max-width: 850px;
-      margin: auto;
-      text-align: center;
-      color: #4b3a57;
-      font-size: 19px;
-      line-height: 2.2;
-    }
-
-    .certificate-score {
-      width: fit-content;
-      margin: 20px auto;
-      padding: 12px 28px;
-      color: #705217;
-      background: #fff6d7;
-      border: 2px solid #c9a85c;
-      border-radius: 30px;
-      font-size: 25px;
-      font-weight: bold;
-    }
-
-    .medal {
-      display: none;
-      width: fit-content;
-      margin: 14px auto;
-      padding: 12px 22px;
-      color: #704e06;
-      background: linear-gradient(
-        135deg,
-        #fff2a7,
-        #e5bd49
-      );
-      border: 2px solid #b58b19;
-      border-radius: 24px;
-      font-size: 18px;
-      font-weight: bold;
-    }
-
-    .medal.show {
-      display: block;
-    }
-
-    .signatures {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 22px;
-      margin-top: 28px;
-    }
-
-    .signature {
-      min-height: 125px;
-      padding: 16px;
-      text-align: center;
-      border: 2px solid #d9c27c;
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.88);
-    }
-
-    .signature strong {
-      display: block;
-      margin-bottom: 8px;
-      color: #8b650d;
-      font-size: 18px;
-    }
-
-    .signature span {
-      color: #5d4374;
-      font-size: 19px;
-      font-weight: bold;
-      line-height: 1.8;
-    }
-
-    .signature small {
-      display: block;
-      margin-top: 12px;
-      color: #806b40;
-      font-size: 14px;
-    }
-
-    .print-button {
-      display: block;
-      width: min(420px, 100%);
-      margin: 22px auto 0;
-      padding: 15px;
-      color: white;
-      background: #6f5288;
-      border: 2px solid #c9a85c;
-      border-radius: 16px;
-      font-family: inherit;
-      font-size: 18px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .footer {
-      margin-top: 30px;
-      padding: 20px;
-      text-align: center;
-    }
-
-    .footer a {
-      display: inline-block;
-      padding: 12px 22px;
-      color: white;
-      font-size: 18px;
-      font-weight: bold;
-      text-decoration: none;
-      background: #6f5288;
-      border: 2px solid #c9a85c;
-      border-radius: 22px;
-    }
-
-    @media (min-width: 750px) {
-      .tests-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .result-card {
-        grid-column: 1 / -1;
-      }
-    }
-
-    @media (max-width: 700px) {
-      .certificate {
-        padding: 22px 16px;
-      }
-
-      .certificate-top,
-      .signatures {
-        grid-template-columns: 1fr;
-      }
-
-      .logo-box {
-        min-height: auto;
-      }
-
-      .student-certificate-name {
-        min-width: 0;
-        width: 100%;
-      }
-
-      .certificate-message {
-        font-size: 17px;
-      }
-    }
-
-    @media print {
-      body {
-        background: white;
-      }
-
-      header,
-      .intro,
-      .tests-grid,
-      .footer,
-      .certificate-heading-outside,
-      .print-button {
-        display: none !important;
-      }
-
-      .container {
-        width: 100%;
-        margin: 0;
-      }
-
-      .certificate-section {
-        display: block !important;
-        margin: 0;
-      }
-
-      .certificate {
-        width: 100%;
-        min-height: 100vh;
-        margin: 0;
-        box-shadow: none;
-        page-break-inside: avoid;
-      }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{width:100%;max-width:100%;overflow-x:hidden}
+    body{min-height:100vh;font-family:"Cairo",Tahoma,Arial,sans-serif;color:#4b3a57;background:linear-gradient(180deg,#fffaf2,#f8f0fb)}
+    header{padding:38px 18px;color:white;text-align:center;background:linear-gradient(135deg,#776094,#5b4677);border-bottom:4px solid #c9a85c;box-shadow:0 8px 24px rgba(91,70,119,.18)}
+    header h1{margin-bottom:12px;color:#fffdf8;font-size:clamp(28px,7vw,44px);line-height:1.6}
+    header p{color:#f7effb;font-size:18px;line-height:1.8}
+    .container{width:min(920px,calc(100% - 28px));margin:32px auto 50px}
+    .intro{margin-bottom:25px;padding:22px;text-align:center;background:#fffdf8;border:2px solid #c9a85c;border-radius:22px;box-shadow:0 10px 28px rgba(91,63,111,.1)}
+    .intro h2{margin-bottom:10px;color:#5d4374;font-size:26px}
+    .intro p{color:#6d6274;font-size:17px;line-height:1.9}
+    .tests-grid{display:grid;gap:24px}
+    .card{padding:32px 20px;text-align:center;background:#fffdf8;border:2px solid #c9a85c;border-radius:25px;box-shadow:0 12px 30px rgba(91,63,111,.11)}
+    .card h2{margin-bottom:18px;color:#5d4374;font-size:clamp(25px,6vw,34px);line-height:1.7}
+    .card p{margin-bottom:25px;color:#6d6274;font-size:20px}
+    .btn{display:inline-block;min-width:230px;padding:16px 26px;color:white;font-size:19px;font-weight:bold;text-decoration:none;background:linear-gradient(135deg,#776094,#5b4677);border:2px solid #c9a85c;border-radius:16px;box-shadow:0 7px 16px rgba(91,63,111,.2);transition:transform .18s ease,box-shadow .18s ease}
+    .btn:hover,.btn:active{transform:translateY(-2px);box-shadow:0 10px 22px rgba(91,63,111,.27)}
+    .result-card{background:linear-gradient(180deg,#fffef9,#fff9e7)}
+    .result-card h2{color:#8b650d}
+    .lock{width:100%;max-width:660px;margin:auto;padding:20px;color:#6b5420;font-size:18px;font-weight:bold;line-height:2;background:#f8efd5;border:1px solid #ddc57c;border-radius:16px}
+    .certificate-section{display:none;margin-top:38px}
+    .certificate-section.show{display:block}
+    .certificate-heading-outside{margin-bottom:18px;text-align:center;color:#5d4374;font-size:28px}
+    .landscape-certificate-wrapper{width:100%;overflow-x:auto;padding:8px 0;-webkit-overflow-scrolling:touch}
+    .landscape-certificate{position:relative;width:100%;max-width:1100px;aspect-ratio:1456/1024;margin:auto;overflow:hidden;background-image:url("77.png");background-repeat:no-repeat;background-position:center;background-size:100% 100%;box-shadow:0 14px 35px rgba(73,56,92,.22)}
+    .certificate-student-overlay{position:absolute;top:24.7%;right:18%;width:64%;padding:2px 10px;color:#6d4c8b;text-align:center;font-family:"Aref Ruqaa",serif;font-size:clamp(21px,4vw,48px);font-weight:700;line-height:1.25;text-shadow:0 1px 0 #fff,0 0 6px rgba(255,255,255,.95)}
+    .certificate-score-overlay{position:absolute;top:39.1%;right:43.4%;width:13%;color:#111;text-align:center;font-size:clamp(17px,3vw,38px);font-weight:800;line-height:1}
+    .certificate-date-overlay{position:absolute;bottom:3.5%;right:39%;width:24%;color:#5b4b5d;text-align:center;font-size:clamp(9px,1.4vw,16px);font-weight:700}
+    .print-button{display:block;width:min(420px,100%);margin:22px auto 0;padding:15px;color:white;background:#6f5288;border:2px solid #c9a85c;border-radius:16px;font-family:inherit;font-size:18px;font-weight:bold;cursor:pointer}
+    .footer{margin-top:30px;padding:20px;text-align:center}
+    .footer a{display:inline-block;padding:12px 22px;color:white;font-size:18px;font-weight:bold;text-decoration:none;background:#6f5288;border:2px solid #c9a85c;border-radius:22px}
+    @media(min-width:750px){.tests-grid{grid-template-columns:repeat(2,1fr)}.result-card{grid-column:1/-1}}
+    @media(max-width:700px){.landscape-certificate{width:900px;max-width:none}}
+    @page{size:A4 landscape;margin:0}
+    @media print{
+      html,body{width:100%;height:100%;margin:0;background:white}
+      header,.intro,.tests-grid,.footer,.certificate-heading-outside,.print-button{display:none!important}
+      .container{width:100%;max-width:none;margin:0}
+      .certificate-section{display:block!important;margin:0}
+      .landscape-certificate-wrapper{width:100%;padding:0;overflow:visible}
+      .landscape-certificate{width:100vw;max-width:none;height:auto;margin:0;box-shadow:none;page-break-inside:avoid;print-color-adjust:exact;-webkit-print-color-adjust:exact}
     }
   </style>
 </head>
-
 <body>
-
   <header>
-
-    <h1>
-      📚 اختبارات الفصل الدراسي الأول
-    </h1>
-
-    <p>
-      أكملي جميع الاختبارات لتظهر نتيجتكِ النهائية
-      وشهادة التقدير.
-    </p>
-
+    <h1>📚 اختبارات الفصل الدراسي الأول</h1>
+    <p>أكملي جميع الاختبارات لتظهر نتيجتكِ النهائية وشهادة التقدير.</p>
   </header>
 
   <main class="container">
-
     <section class="intro">
-
-      <h2>
-        اختاري الاختبار
-      </h2>
-
-      <p>
-        يتكوّن التقييم من خمسة أقسام،
-        وتُحفظ درجة كل قسم حتى يتم جمع الدرجات
-        وإظهار الشهادة.
-      </p>
-
+      <h2>اختاري الاختبار</h2>
+      <p>يتكوّن التقييم من خمسة أقسام، وتُحفظ درجة كل قسم حتى يتم جمع الدرجات وإظهار الشهادة.</p>
     </section>
 
     <div class="tests-grid">
-            <section class="card">
-        <h2>📖 الوظيفة النحوية</h2>
-        <p>٣٠ درجة</p>
-
-        <a class="btn" href="grammar-test.html">
-          ابدئي الاختبار
-        </a>
-      </section>
-
       <section class="card">
-        <h2>📝 الصنف اللغوي</h2>
-        <p>٢٠ درجة</p>
-
-        <a class="btn" href="language-test.html">
-          ابدئي الاختبار
-        </a>
+        <h2>📖 الوظيفة النحوية</h2><p>٣٠ درجة</p>
+        <a class="btn" href="grammar-test.html">ابدئي الاختبار</a>
       </section>
-
       <section class="card">
-        <h2>✍️ الرسم الإملائي</h2>
-        <p>٢٠ درجة</p>
-
-        <a class="btn" href="spelling-test.html">
-          ابدئي الاختبار
-        </a>
+        <h2>📝 الصنف اللغوي</h2><p>٢٠ درجة</p>
+        <a class="btn" href="language-test.html">ابدئي الاختبار</a>
       </section>
-
       <section class="card">
-        <h2>🖋️ الرسم الكتابي</h2>
-        <p>١٠ درجات</p>
-
-        <a class="btn" href="ruqah-test.html">
-          ابدئي الاختبار
-        </a>
+        <h2>✍️ الرسم الإملائي</h2><p>٢٠ درجة</p>
+        <a class="btn" href="spelling-test.html">ابدئي الاختبار</a>
       </section>
-
       <section class="card">
-        <h2>📚 الأسلوب اللغوي</h2>
-        <p>٢٠ درجة</p>
-
-        <a class="btn" href="styles.html">
-          ابدئي الاختبار
-        </a>
+        <h2>🖋️ الرسم الكتابي</h2><p>١٠ درجات</p>
+        <a class="btn" href="ruqah-test.html">ابدئي الاختبار</a>
       </section>
-
+      <section class="card">
+        <h2>📚 الأسلوب اللغوي</h2><p>٢٠ درجة</p>
+        <a class="btn" href="styles.html">ابدئي الاختبار</a>
+      </section>
       <section class="card result-card">
         <h2>🏆 النتيجة النهائية</h2>
-
-        <p>
-          تظهر بعد إكمال الاختبارات الخمسة
-          وجمع الدرجات من ١٠٠.
-        </p>
-
-        <div
-          id="finalResult"
-          class="lock"
-        ></div>
+        <p>تظهر بعد إكمال الاختبارات الخمسة وجمع الدرجات من ١٠٠.</p>
+        <div id="finalResult" class="lock"></div>
       </section>
-
     </div>
 
-
-    <section
-      id="certificateSection"
-      class="certificate-section"
-    >
-
-      <h2 class="certificate-heading-outside">
-        🎓 شهادة الطالبة
-      </h2>
-
-      <section
-        id="certificate"
-        class="certificate"
-      >
-
-        <div class="certificate-content">
-
-          <div class="certificate-top">
-
-            <div class="logo-box">
-
-              <img
-                src="77.jpg"
-                alt="شعار وزارة التعليم"
-              >
-
-            </div>
-
-            <div class="school-info">
-
-              <div>
-                المملكة العربية السعودية
-              </div>
-
-              <div>
-                وزارة التعليم
-              </div>
-
-              <div>
-                الإدارة العامة للتعليم بجازان
-              </div>
-
-              <div>
-                المتوسطة الرابعة ومتوسطة الفكرية
-                ومتوسطة وابتدائية خلفة وعلان بصامطة
-              </div>
-
-            </div>
-
-          </div>
-
-
-          <h1 class="certificate-title">
-            شهادة تقدير
-          </h1>
-
-          <div class="platform-name">
-            منصة آفاق للغة العربية
-          </div>
-
-
-          <p class="certificate-intro">
-            تقديرًا لتميّز الطالبة:
-          </p>
-
-
-          <div
-            id="certificateStudentName"
-            class="student-certificate-name"
-          >
-            اسم الطالبة
-          </div>
-
-
-          <p class="certificate-message">
-
-            ولاجتهادها، ولما أظهرته من حرصٍ جميل،
-            وعطاءٍ مشرّف، ومثابرةٍ تستحق الإشادة،
-            في إنجاز اختبارات
-            <strong>منصة آفاق للغة العربية</strong>،
-            حيث حصلت على:
-
-          </p>
-
-
-          <div class="certificate-score">
-
-            <span id="certificateTotal">
-              ٠
-            </span>
-
-            من ١٠٠
-
-          </div>
-
-
-          <div
-            id="certificateMedal"
-            class="medal"
-          >
-            🏅 وسام التميّز والإتقان —
-            الدرجة الكاملة ١٠٠ من ١٠٠
-          </div>
-
-
-          <p class="certificate-message">
-
-            وقد أثبتت بإنجازها أن النجاح ليس صدفة،
-            بل ثمرةُ عزيمةٍ صادقة،
-            وإرادةٍ تعرف طريق التميّز؛
-            فكانت مثالًا للطالبة الواعية،
-            الطموحة، المشرقة بأخلاقها وعلمها.
-
-            <br><br>
-
-            <strong>
-              مبارك لكِ هذا الإنجاز،
-            </strong>
-
-            <br>
-
-            ونسأل الله أن يبارك خطواتكِ،
-            ويزيدكِ رفعةً وتألقًا،
-            ويجعل هذا التميّز بدايةً
-            لنجاحاتٍ أكبر وأجمل.
-
-          </p>
-
-
-          <div class="signatures">
-
-            <div class="signature">
-
-              <strong>
-                معلمة اللغة العربية
-              </strong>
-
-              <span>
-                إيناس محمد يحيى مدخلي
-              </span>
-
-              <small>
-                التوقيع
-              </small>
-
-            </div>
-
-            <div class="signature">
-
-              <strong>
-                مديرة المدرسة
-              </strong>
-
-              <span>
-                عائشة يحيى نايف حمدي
-              </span>
-
-              <small>
-                الختم والتوقيع
-              </small>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <button
-        class="print-button"
-        onclick="window.print()"
-      >
-        🖨️ طباعة الشهادة أو حفظها PDF
-      </button>
-
+    <section id="certificateSection" class="certificate-section">
+      <h2 class="certificate-heading-outside">🎓 شهادة الطالبة</h2>
+      <div class="landscape-certificate-wrapper">
+        <section id="certificate" class="landscape-certificate">
+          <div id="certificateStudentName" class="certificate-student-overlay">اسم الطالبة</div>
+          <div id="certificateTotal" class="certificate-score-overlay">٠</div>
+          <div id="certificateDate" class="certificate-date-overlay"></div>
+          <div id="certificateMedal" hidden></div>
+        </section>
+      </div>
+      <button class="print-button" type="button" onclick="window.print()">🖨️ طباعة الشهادة أو حفظها PDF</button>
     </section>
 
-
-    <div class="footer">
-
-      <a href="tests.html">
-        العودة إلى صفحة الاختبارات
-      </a>
-
-    </div>
-
+    <div class="footer"><a href="tests.html">العودة إلى صفحة الاختبارات</a></div>
   </main>
 
-
   <script>
-    function getScore(...keys) {
-      for (const key of keys) {
-        const value = localStorage.getItem(key);
-
-        if (value !== null && value !== "") {
-          return Number(value) || 0;
-        }
+    function getScore(...keys){
+      for(const key of keys){
+        const value=localStorage.getItem(key);
+        if(value!==null&&value!=="") return Number(value)||0;
       }
-
       return 0;
     }
 
-    function getCompleted(...keys) {
-      for (const key of keys) {
-        const value = localStorage.getItem(key);
-
-        if (value === "true") {
-          return true;
-        }
+    function getCompleted(...keys){
+      for(const key of keys){
+        if(localStorage.getItem(key)==="true") return true;
       }
-
       return false;
     }
 
-    function toArabicNumber(number) {
-      return String(number).replace(
-        /\d/g,
-        digit => "٠١٢٣٤٥٦٧٨٩"[digit]
-      );
+    function toArabicNumber(number){
+      return String(number).replace(/\d/g,digit=>"٠١٢٣٤٥٦٧٨٩"[digit]);
     }
 
-    function getStudentName() {
-      return (
-        localStorage.getItem(
-          "semester1_student_full_name"
-        ) ||
-        localStorage.getItem(
-          "studentFullName"
-        ) ||
-        "اسم الطالبة"
-      );
+    function getStudentName(){
+      return localStorage.getItem("semester1_student_full_name")||localStorage.getItem("studentFullName")||"اسم الطالبة";
     }
 
-    const grammar = getScore(
-      "semester1_grammar_score",
-      "grammarScore"
-    );
+    function getCertificateDate(){
+      return new Date().toLocaleDateString("ar-SA-u-ca-islamic-umalqura",{year:"numeric",month:"long",day:"numeric"});
+    }
 
-    const spelling = getScore(
-      "semester1_spelling_score",
-      "spellingScore"
-    );
+    const grammar=getScore("semester1_grammar_score","grammarScore");
+    const spelling=getScore("semester1_spelling_score","spellingScore");
+    const linguistic=getScore("semester1_linguistic_score","linguisticScore");
+    const style=getScore("semester1_style_score","stylesScore");
+    const writing=getScore("semester1_writing_score","writingScore");
 
-    const linguistic = getScore(
-      "semester1_linguistic_score",
-      "linguisticScore"
-    );
+    const grammarCompleted=getCompleted("semester1_grammar_completed");
+    const spellingCompleted=getCompleted("semester1_spelling_completed");
+    const linguisticCompleted=getCompleted("semester1_linguistic_completed");
+    const styleCompleted=getCompleted("semester1_style_completed");
+    const writingCompleted=getCompleted("semester1_writing_completed");
 
-    const style = getScore(
-      "semester1_style_score",
-      "stylesScore"
-    );
+    const allCompleted=grammarCompleted&&spellingCompleted&&linguisticCompleted&&styleCompleted&&writingCompleted;
+    const total=grammar+spelling+linguistic+style+writing;
+    const finalResult=document.getElementById("finalResult");
+    const certificateSection=document.getElementById("certificateSection");
 
-    const writing = getScore(
-      "semester1_writing_score",
-      "writingScore"
-    );
-
-    const grammarCompleted = getCompleted(
-      "semester1_grammar_completed"
-    );
-
-    const spellingCompleted = getCompleted(
-      "semester1_spelling_completed"
-    );
-
-    const linguisticCompleted = getCompleted(
-      "semester1_linguistic_completed"
-    );
-
-    const styleCompleted = getCompleted(
-      "semester1_style_completed"
-    );
-
-    const writingCompleted = getCompleted(
-      "semester1_writing_completed"
-    );
-
-    const allCompleted =
-      grammarCompleted &&
-      spellingCompleted &&
-      linguisticCompleted &&
-      styleCompleted &&
-      writingCompleted;
-
-    const total =
-      grammar +
-      spelling +
-      linguistic +
-      style +
-      writing;
-
-    const finalResult =
-      document.getElementById("finalResult");
-
-    const certificateSection =
-      document.getElementById(
-        "certificateSection"
-      );
-        if (allCompleted) {
-      finalResult.innerHTML = `
-        الوظيفة النحوية:
-        ${toArabicNumber(grammar)} من ٣٠
-        <br>
-
-        الرسم الإملائي:
-        ${toArabicNumber(spelling)} من ٢٠
-        <br>
-
-        الصنف اللغوي:
-        ${toArabicNumber(linguistic)} من ٢٠
-        <br>
-
-        الأسلوب اللغوي:
-        ${toArabicNumber(style)} من ٢٠
-        <br>
-
-        الرسم الكتابي:
-        ${toArabicNumber(writing)} من ١٠
-
-        <br><br>
-
-        <strong>
-          المجموع:
-          ${toArabicNumber(total)} من ١٠٠
-        </strong>
+    if(allCompleted){
+      finalResult.innerHTML=`
+        الوظيفة النحوية: ${toArabicNumber(grammar)} من ٣٠<br>
+        الرسم الإملائي: ${toArabicNumber(spelling)} من ٢٠<br>
+        الصنف اللغوي: ${toArabicNumber(linguistic)} من ٢٠<br>
+        الأسلوب اللغوي: ${toArabicNumber(style)} من ٢٠<br>
+        الرسم الكتابي: ${toArabicNumber(writing)} من ١٠<br><br>
+        <strong>المجموع: ${toArabicNumber(total)} من ١٠٠</strong>
       `;
-
       certificateSection.classList.add("show");
-
-      document.getElementById(
-        "certificateStudentName"
-      ).textContent = getStudentName();
-
-      document.getElementById(
-        "certificateTotal"
-      ).textContent = toArabicNumber(total);
-
-      if (total === 100) {
-        document.getElementById(
-          "certificateMedal"
-        ).classList.add("show");
-      }
-
-    } else {
-      const remaining = [];
-
-      if (!grammarCompleted) {
-        remaining.push("الوظيفة النحوية");
-      }
-
-      if (!linguisticCompleted) {
-        remaining.push("الصنف اللغوي");
-      }
-
-      if (!spellingCompleted) {
-        remaining.push("الرسم الإملائي");
-      }
-
-      if (!writingCompleted) {
-        remaining.push("الرسم الكتابي");
-      }
-
-      if (!styleCompleted) {
-        remaining.push("الأسلوب اللغوي");
-      }
-
-      finalResult.innerHTML = `
-        🔒 لم تكتمل الاختبارات الخمسة بعد.
-
-        <br><br>
-
-        الاختبارات المتبقية:
-
-        <br>
-
-        ${remaining.join("<br>")}
-
-        <br><br>
-
-        بعد إكمالها ستظهر النتيجة النهائية
-        وشهادة التقدير تلقائيًا.
+      document.getElementById("certificateStudentName").textContent=getStudentName();
+      document.getElementById("certificateTotal").textContent=toArabicNumber(total);
+      document.getElementById("certificateDate").textContent="تاريخ الإنجاز: "+getCertificateDate();
+    }else{
+      const remaining=[];
+      if(!grammarCompleted) remaining.push("الوظيفة النحوية");
+      if(!linguisticCompleted) remaining.push("الصنف اللغوي");
+      if(!spellingCompleted) remaining.push("الرسم الإملائي");
+      if(!writingCompleted) remaining.push("الرسم الكتابي");
+      if(!styleCompleted) remaining.push("الأسلوب اللغوي");
+      finalResult.innerHTML=`
+        🔒 لم تكتمل الاختبارات الخمسة بعد.<br><br>
+        الاختبارات المتبقية:<br>
+        ${remaining.join("<br>")}<br><br>
+        بعد إكمالها ستظهر النتيجة النهائية وشهادة التقدير تلقائيًا.
       `;
     }
   </script>
-
 </body>
-
 </html>
