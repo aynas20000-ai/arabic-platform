@@ -13,42 +13,56 @@
 
   <style>
     :root {
-      --purple: #6f5288;
-      --dark-purple: #49385c;
-      --light-purple: #f5ecfb;
+      --purple: #75558d;
+      --purple-dark: #4b385b;
       --gold: #c9a85c;
-      --cream: #fffaf2;
-      --card: #fffdf8;
-      --text: #3e3048;
+      --cream: #fffaf1;
+      --paper: #fffdf8;
+      --text: #403347;
       --green: #2f7d4a;
-      --red: #b64242;
+      --red: #b64040;
     }
 
     * {
       box-sizing: border-box;
     }
 
+    [hidden] {
+      display: none !important;
+    }
+
     body {
       margin: 0;
-      font-family: Tahoma, Arial, sans-serif;
-      color: var(--text);
-      background: linear-gradient(
-        180deg,
-        var(--cream),
-        #f8f0fb
-      );
-      line-height: 1.9;
       overflow-x: hidden;
+      font-family: Tahoma, Arial, sans-serif;
+      line-height: 1.9;
+      color: var(--text);
+      background:
+        radial-gradient(
+          circle at top,
+          #f2e8f7 0,
+          transparent 38%
+        ),
+        linear-gradient(
+          180deg,
+          var(--cream),
+          #f7f0f8
+        );
+    }
+
+    button,
+    a {
+      font-family: inherit;
     }
 
     header {
-      padding: 34px 18px 30px;
+      padding: 32px 16px 28px;
       text-align: center;
       color: white;
       background: linear-gradient(
         135deg,
-        #776094,
-        #5b4677
+        #786094,
+        #594474
       );
       border-bottom: 5px solid var(--gold);
     }
@@ -60,13 +74,13 @@
 
     header p {
       max-width: 760px;
-      margin: 10px auto 0;
+      margin: 8px auto 0;
       font-size: 17px;
     }
 
     main {
-      width: min(94%, 900px);
-      margin: 24px auto 40px;
+      width: min(94%, 950px);
+      margin: 22px auto 38px;
     }
 
     .top-bar {
@@ -74,18 +88,17 @@
       flex-wrap: wrap;
       align-items: center;
       gap: 10px;
-      margin-bottom: 16px;
       padding: 12px;
-      background: var(--card);
-      border: 2px solid #d9c8e7;
-      border-radius: 16px;
-      box-shadow: 0 6px 15px rgba(73, 56, 92, 0.09);
+      margin-bottom: 20px;
+      background: var(--paper);
+      border: 2px solid #dfd3e5;
+      border-radius: 17px;
+      box-shadow: 0 7px 18px rgba(73, 56, 92, 0.09);
     }
 
     .home-btn,
     .sound-btn {
-      padding: 10px 14px;
-      font-family: inherit;
+      padding: 10px 13px;
       font-weight: bold;
       text-decoration: none;
       border: 0;
@@ -94,7 +107,7 @@
     }
 
     .home-btn {
-      color: #33263d;
+      color: #35263d;
       background: var(--gold);
     }
 
@@ -105,10 +118,10 @@
 
     .progress-area {
       flex: 1;
-      min-width: 210px;
+      min-width: 190px;
     }
 
-    .progress-text {
+    .progress-label {
       display: flex;
       justify-content: space-between;
       font-size: 14px;
@@ -116,10 +129,10 @@
     }
 
     .progress-track {
-      height: 12px;
-      margin-top: 6px;
+      height: 11px;
+      margin-top: 5px;
       overflow: hidden;
-      background: #eee5f2;
+      background: #eee4f2;
       border-radius: 999px;
     }
 
@@ -131,189 +144,302 @@
         var(--gold),
         var(--purple)
       );
-      transition: width 0.4s ease;
+      transition: width 0.35s ease;
     }
 
-    .intro-card,
-    .lesson-card,
+    .library-view,
+    .workspace,
     .final-card {
       padding: 20px;
-      margin-bottom: 18px;
-      background: var(--card);
-      border: 2px solid #d9c8e7;
-      border-radius: 20px;
-      box-shadow: 0 7px 18px rgba(73, 56, 92, 0.09);
+      background: var(--paper);
+      border: 2px solid #dfd3e5;
+      border-radius: 24px;
+      box-shadow: 0 8px 22px rgba(73, 56, 92, 0.10);
     }
 
-    .intro-card h2,
-    .lesson-card h2,
+    .library-view h2,
     .final-card h2 {
       margin-top: 0;
-      color: var(--purple);
+      text-align: center;
+      color: var(--purple-dark);
     }
 
-    .scientific-rule {
-      padding: 14px;
-      font-weight: bold;
-      background: var(--light-purple);
-      border-right: 5px solid var(--gold);
-      border-radius: 14px;
+    .intro-note {
+      max-width: 730px;
+      margin: 0 auto 22px;
+      text-align: center;
+      color: #685b6e;
     }
-        .type-tabs {
+
+    .bookshelf {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      margin: 16px 0;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
     }
 
-    .type-tab {
-      min-height: 66px;
-      padding: 10px;
-      font-family: inherit;
-      font-size: 15px;
+    .book-card {
+      position: relative;
+      min-height: 190px;
+      padding: 28px 18px 24px 34px;
+      overflow: hidden;
+      text-align: center;
+      color: #352d38;
+      border: 0;
+      border-radius: 9px 18px 18px 9px;
+      box-shadow:
+        7px 8px 0 rgba(75, 56, 91, 0.11),
+        0 11px 22px rgba(73, 56, 92, 0.13);
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .book-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 16px;
+      height: 100%;
+      background: rgba(71, 52, 79, 0.19);
+      border-left: 2px solid rgba(255, 255, 255, 0.35);
+    }
+
+    .book-card::after {
+      content: "";
+      position: absolute;
+      left: 12px;
+      top: 12px;
+      bottom: 12px;
+      width: 5px;
+      background: rgba(255, 255, 255, 0.45);
+      border-radius: 999px;
+    }
+
+    .book-card:hover,
+    .book-card:focus {
+      transform: translateY(-4px);
+      outline: 3px solid rgba(201, 168, 92, 0.55);
+    }
+
+    .book-card.completed {
+      box-shadow:
+        7px 8px 0 rgba(47, 125, 74, 0.19),
+        0 11px 22px rgba(73, 56, 92, 0.13);
+    }
+
+    .book-card.completed .book-check {
+      display: grid;
+    }
+
+    .book-icon {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 42px;
+    }
+
+    .book-title {
+      display: block;
+      font-size: 22px;
       font-weight: bold;
-      color: var(--dark-purple);
-      background: linear-gradient(
-        135deg,
-        #fffdf8,
-        #f5ecfb
-      );
-      border: 2px solid var(--gold);
-      border-radius: 14px;
+      color: #3f3343;
+    }
+
+    .book-summary {
+      display: block;
+      margin-top: 7px;
+      font-size: 14px;
+      color: #594f5d;
+    }
+
+    .book-check {
+      position: absolute;
+      left: 12px;
+      bottom: 12px;
+      display: none;
+      place-items: center;
+      width: 31px;
+      height: 31px;
+      color: white;
+      font-weight: bold;
+      background: var(--green);
+      border-radius: 50%;
+    }
+
+    .workspace {
+      min-height: 660px;
+    }
+
+    .workspace-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 15px;
+    }
+
+    .back-books {
+      flex: 0 0 auto;
+      padding: 10px 13px;
+      font-weight: bold;
+      color: var(--purple-dark);
+      background: #efe6f4;
+      border: 2px solid #d2c1dc;
+      border-radius: 12px;
       cursor: pointer;
     }
 
-    .type-tab.active {
-      color: white;
-      background: var(--purple);
-      transform: translateY(-2px);
+    .workspace-heading {
+      flex: 1;
+      margin: 0;
+      text-align: center;
+      color: var(--purple-dark);
+      font-size: 28px;
     }
 
-    .lesson {
-      display: none;
-      animation: fade 0.25s ease;
+    .stage-status {
+      display: flex;
+      justify-content: center;
+      gap: 7px;
+      margin-bottom: 12px;
     }
 
-    .lesson.active {
-      display: block;
+    .stage-dot {
+      width: 11px;
+      height: 11px;
+      background: #cabdd1;
+      border-radius: 50%;
+      transition: 0.2s ease;
     }
 
-    @keyframes fade {
+    .stage-dot.active {
+      background: var(--gold);
+      transform: scale(1.35);
+    }
+
+    .stage-label {
+      margin-bottom: 12px;
+      text-align: center;
+      font-weight: bold;
+      color: var(--purple);
+    }
+
+    .stage-window {
+      min-height: 465px;
+    }
+
+    .stage-content {
+      min-height: 465px;
+      padding: 20px;
+      background: linear-gradient(
+        145deg,
+        #fffefb,
+        #faf5fc
+      );
+      border: 2px solid #e1d5e7;
+      border-radius: 19px;
+      animation: fadeStage 0.22s ease;
+    }
+
+    @keyframes fadeStage {
       from {
-        opacity: 0.2;
-        transform: translateY(8px);
+        opacity: 0;
       }
 
       to {
         opacity: 1;
-        transform: none;
       }
     }
 
-    .lesson-head {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 14px;
-    }
-
-    .lesson-icon {
-      display: grid;
-      place-items: center;
-      width: 58px;
-      height: 58px;
-      flex-shrink: 0;
-      font-size: 30px;
-      background: var(--light-purple);
-      border: 2px solid #d9c8e7;
-      border-radius: 17px;
-    }
-
-    .lesson-head h2 {
-      margin: 0;
-    }
-
-    .lesson-head p {
-      margin: 2px 0 0;
-    }
-
-    .facts-grid {
-      display: grid;
-      grid-template-columns: repeat(
-        auto-fit,
-        minmax(190px, 1fr)
-      );
-      gap: 10px;
-      margin: 14px 0;
-    }
-
-    .fact-box {
-      padding: 12px;
-      background: white;
-      border: 1px solid #e2d7e8;
-      border-radius: 12px;
-    }
-
-    .fact-box strong {
-      color: var(--purple);
-    }
-
-    .example-box {
-      padding: 15px;
-      margin: 14px 0;
-      background: #fffaf0;
-      border: 2px dashed var(--gold);
-      border-radius: 14px;
-    }
-
-    .identify-box {
-      padding: 14px;
-      margin-top: 12px;
-      background: var(--light-purple);
-      border-right: 5px solid var(--purple);
-      border-radius: 13px;
-    }
-
-    .question {
-      padding: 16px;
-      margin-top: 16px;
-      background: white;
-      border: 2px solid #ded3e5;
-      border-radius: 15px;
-    }
-
-    .question h3 {
+    .stage-content h3 {
       margin-top: 0;
+      color: var(--purple);
+      font-size: 23px;
+    }
+
+    .definition-box,
+    .features-box,
+    .reading-box,
+    .question-box,
+    .analysis-box,
+    .self-box {
+      padding: 17px;
+      border-radius: 16px;
+    }
+
+    .definition-box {
+      font-size: 19px;
+      background: #f3eaf8;
+      border-right: 6px solid var(--gold);
+    }
+
+    .features-box {
+      margin-top: 14px;
+      background: #fff6dc;
+    }
+
+    .feature-list {
+      margin: 10px 0 0;
+      padding-right: 22px;
+    }
+
+    .feature-list li {
+      margin: 7px 0;
+    }
+
+    .text-badge {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 5px 11px;
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
+      background: var(--purple);
+      border-radius: 999px;
+    }
+
+    .reading-box {
+      background: white;
+      border: 2px solid #e1d5e7;
+    }
+
+    .reading-text {
+      margin: 0;
+      text-align: justify;
       font-size: 18px;
+      line-height: 2.15;
+    }
+
+    .question-box {
+      background: #fff9e9;
+      border: 2px dashed var(--gold);
     }
 
     .options {
       display: grid;
-      gap: 9px;
+      gap: 10px;
+      margin-top: 13px;
     }
 
     .option {
-      padding: 12px;
+      padding: 13px;
       text-align: right;
-      font-family: inherit;
-      font-size: 16px;
       color: var(--text);
-      background: #f7f1fa;
+      font-size: 16px;
+      background: #f6eff9;
       border: 2px solid transparent;
-      border-radius: 12px;
+      border-radius: 13px;
       cursor: pointer;
     }
 
     .option.correct {
       color: var(--green);
-      background: #e9f7ee;
-      border-color: #73af88;
+      background: #e8f6ed;
+      border-color: #72ae87;
     }
 
     .option.wrong {
       color: var(--red);
-      background: #fdecec;
-      border-color: #dd9696;
+      background: #fdeaea;
+      border-color: #dd9292;
       animation: shake 0.35s ease;
     }
 
@@ -337,10 +463,10 @@
 
     .feedback {
       display: none;
-      margin-top: 10px;
+      margin-top: 12px;
       padding: 12px;
       font-weight: bold;
-      border-radius: 11px;
+      border-radius: 12px;
     }
 
     .feedback.show {
@@ -349,43 +475,95 @@
 
     .feedback.good {
       color: var(--green);
-      background: #e9f7ee;
+      background: #e8f6ed;
     }
 
     .feedback.bad {
       color: var(--red);
-      background: #fdecec;
+      background: #fdeaea;
+    }
+
+    .analysis-box {
+      background: #f8f1fb;
+      border: 2px solid #d7c6e2;
+    }
+
+    .analysis-item,
+    .evidence {
+      padding: 12px;
+      margin-top: 10px;
+      background: white;
+      border-radius: 12px;
+    }
+
+    .analysis-item {
+      border-right: 5px solid var(--gold);
     }
 
     .evidence {
-      display: block;
-      margin-top: 6px;
-      font-weight: normal;
-      color: var(--text);
-    }
-        .stars {
-      margin-top: 12px;
-      text-align: center;
-      font-size: 30px;
-      letter-spacing: 6px;
-      color: #c9a85c;
+      font-weight: bold;
+      background: #fff6d9;
     }
 
-    .nav-row {
+    .self-box {
+      text-align: center;
+      background: white;
+      border: 2px solid #ddd0e4;
+    }
+
+    .self-options {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .self-btn {
+      min-height: 77px;
+      padding: 10px;
+      font-weight: bold;
+      color: var(--purple-dark);
+      background: linear-gradient(
+        135deg,
+        #fffdf8,
+        #f2eaf7
+      );
+      border: 2px solid var(--gold);
+      border-radius: 14px;
+      cursor: pointer;
+    }
+
+    .self-btn.selected {
+      color: white;
+      background: var(--purple);
+    }
+
+    .self-message {
+      display: none;
+      margin-top: 12px;
+      padding: 12px;
+      font-weight: bold;
+      background: #f3eaf8;
+      border-radius: 12px;
+    }
+
+    .self-message.show {
+      display: block;
+    }
+
+    .navigation {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 10px;
       margin-top: 16px;
     }
 
     .nav-btn {
       flex: 1;
-      min-height: 48px;
-      padding: 10px;
-      font-family: inherit;
-      font-weight: bold;
+      padding: 13px;
       color: white;
+      font-size: 17px;
+      font-weight: bold;
       background: var(--purple);
       border: 0;
       border-radius: 13px;
@@ -393,19 +571,19 @@
     }
 
     .nav-btn.secondary {
-      color: var(--dark-purple);
-      background: #e9dff0;
+      color: var(--purple-dark);
+      background: #eee5f2;
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
     }
 
     .final-card {
       display: none;
       text-align: center;
       border: 3px solid var(--gold);
-      background: linear-gradient(
-        135deg,
-        #fffdf8,
-        #f5ecfb
-      );
     }
 
     .final-card.show {
@@ -415,26 +593,29 @@
     .badge {
       display: inline-grid;
       place-items: center;
-      width: 125px;
-      height: 125px;
-      margin-bottom: 10px;
-      font-size: 50px;
-      color: var(--dark-purple);
+      width: 120px;
+      height: 120px;
+      font-size: 49px;
       background: linear-gradient(
         135deg,
         var(--gold),
-        #f2d68d
+        #f0d588
       );
-      border: 6px solid #fff7db;
+      border: 6px solid #fff5cf;
       border-radius: 50%;
-      box-shadow: 0 8px 22px rgba(73, 56, 92, 0.18);
+    }
+
+    .final-stars {
+      color: var(--gold);
+      font-size: 32px;
+      letter-spacing: 7px;
     }
 
     footer {
       padding: 18px;
       text-align: center;
       color: white;
-      background: var(--dark-purple);
+      background: var(--purple-dark);
       border-top: 4px solid var(--gold);
     }
 
@@ -443,19 +624,30 @@
         font-size: 29px;
       }
 
-      .type-tabs {
-        grid-template-columns: 1fr 1fr;
+      .bookshelf {
+        grid-template-columns: 1fr;
       }
 
-      .type-tab {
-        min-height: 60px;
-        font-size: 14px;
+      .workspace {
+        min-height: 710px;
+        padding: 14px;
       }
 
-      .lesson-card,
-      .intro-card,
-      .final-card {
-        padding: 15px;
+      .stage-content,
+      .stage-window {
+        min-height: 530px;
+      }
+
+      .workspace-heading {
+        font-size: 23px;
+      }
+
+      .self-options {
+        grid-template-columns: 1fr;
+      }
+
+      .reading-text {
+        font-size: 17px;
       }
     }
   </style>
@@ -467,8 +659,8 @@
     <h1>أنواع النصوص</h1>
 
     <p>
-      تعرّفي نوع النص من غرضه وبنيته ولغته،
-      ثم طبّقي معرفتكِ في تدريبات تفاعلية قصيرة.
+      اختاري الكتاب، ثم تعرّفي إلى نوع النص
+      وسماته واقرئي المثال وطبّقي عليه.
     </p>
   </header>
 
@@ -481,14 +673,19 @@
       </a>
 
       <div class="progress-area">
-        <div class="progress-text">
+
+        <div class="progress-label">
           <span>تقدّمكِ</span>
-          <span id="progressText">0 من 8</span>
+          <span id="progressText">0 من 10</span>
         </div>
 
         <div class="progress-track">
-          <div class="progress-bar" id="progressBar"></div>
+          <div
+            class="progress-bar"
+            id="progressBar">
+          </div>
         </div>
+
       </div>
 
       <button
@@ -500,1180 +697,1106 @@
 
     </div>
 
-    <section class="intro-card">
-      <h2>كيف تميّزين نوع النص علميًّا؟</h2>
+    <section class="library-view" id="libraryView">
 
-      <p>
-        لا يكفي أن تنظري إلى موضوع النص؛
-        بل حددي غرض الكاتب، وطريقة تنظيم الأفكار،
-        ونوع اللغة، والعلامات البارزة في النص.
+      <h2>رفّ أنواع النصوص</h2>
+
+      <p class="intro-note">
+        اضغطي على الكتاب لفتحه.
+        بعد إنهاء النوع تعودين إلى الرف
+        وتختارين الكتاب التالي بنفسكِ.
       </p>
 
-      <div class="scientific-rule">
-        اسألي نفسكِ:
-        هل يريد الكاتب أن يخبر، أم يروي، أم يصف،
-        أم يشرح، أم يوجّه، أم يقنع،
-        أم ينجز غرضًا عمليًّا؟
-      </div>
+      <div class="bookshelf" id="bookshelf"></div>
 
-      <div class="type-tabs">
+    </section>
+
+    <section class="workspace" id="workspace" hidden>
+
+      <div class="workspace-top">
 
         <button
-          class="type-tab active"
-          data-target="informational"
+          class="back-books"
+          id="backBooks"
           type="button">
-          📘 المعلوماتي
+          رجوع إلى الكتب
+        </button>
+
+        <h2
+          class="workspace-heading"
+          id="workspaceHeading">
+        </h2>
+
+      </div>
+
+      <div class="stage-status">
+        <span class="stage-dot active"></span>
+        <span class="stage-dot"></span>
+        <span class="stage-dot"></span>
+        <span class="stage-dot"></span>
+        <span class="stage-dot"></span>
+        <span class="stage-dot"></span>
+      </div>
+
+      <div class="stage-label" id="stageLabel">
+        التعريف
+      </div>
+
+      <div class="stage-window">
+        <div
+          class="stage-content"
+          id="stageContent">
+        </div>
+      </div>
+
+      <div class="navigation">
+
+        <button
+          class="nav-btn secondary"
+          id="prevBtn"
+          type="button">
+          السابق
         </button>
 
         <button
-          class="type-tab"
-          data-target="narrative"
+          class="nav-btn"
+          id="nextBtn"
           type="button">
-          📖 السردي
-        </button>
-
-        <button
-          class="type-tab"
-          data-target="descriptive"
-          type="button">
-          🎨 الوصفي
-        </button>
-
-        <button
-          class="type-tab"
-          data-target="instructional"
-          type="button">
-          🧭 الإرشادي
-        </button>
-
-        <button
-          class="type-tab"
-          data-target="explanatory"
-          type="button">
-          ⚙️ التفسيري
-        </button>
-
-        <button
-          class="type-tab"
-          data-target="argumentative"
-          type="button">
-          ⚖️ الحجاجي
-        </button>
-
-        <button
-          class="type-tab"
-          data-target="functional"
-          type="button">
-          📄 الوظيفي
-        </button>
-
-        <button
-          class="type-tab"
-          data-target="digital"
-          type="button">
-          💻 الرقمي
+          التالي
         </button>
 
       </div>
-    </section>
-        <section
-      class="lesson-card lesson active"
-      id="informational"
-      data-lesson="1">
 
-      <div class="lesson-head">
-        <div class="lesson-icon">📘</div>
-
-        <div>
-          <h2>النص المعلوماتي</h2>
-
-          <p>
-            يقدّم حقائق وبيانات ومعارف
-            حول موضوع محدد.
-          </p>
-        </div>
-      </div>
-
-      <div class="facts-grid">
-
-        <div class="fact-box">
-          <strong>غرضه:</strong>
-          الإخبار والتعريف وتقديم المعرفة.
-        </div>
-
-        <div class="fact-box">
-          <strong>علاماته:</strong>
-          حقائق، أرقام، مصطلحات، عناوين فرعية.
-        </div>
-
-        <div class="fact-box">
-          <strong>تنظيمه:</strong>
-          فكرة رئيسة تتبعها تفاصيل داعمة.
-        </div>
-
-      </div>
-
-      <div class="example-box">
-        <strong>مثال:</strong>
-
-        تستخدم المدن الذكية حساسات رقمية
-        لقياس جودة الهواء وتنظيم استهلاك الطاقة،
-        ثم تُحلّل البيانات لاتخاذ قرارات أسرع.
-      </div>
-
-      <div class="identify-box">
-        <strong>كيف تميّزينه؟</strong>
-
-        اسألي: هل يعرض النص معلومات واقعية
-        يمكن التحقق منها؟ وهل يهدف إلى
-        زيادة معرفة القارئ بالموضوع؟
-      </div>
-
-      <div class="question">
-        <h3>
-          ما الدليل الأقوى على أن المثال
-          نص معلوماتي؟
-        </h3>
-
-        <div class="options">
-
-          <button
-            class="option"
-            data-correct="true"
-            type="button">
-            يقدّم معلومات واقعية عن
-            استخدام الحساسات والبيانات.
-          </button>
-
-          <button class="option" type="button">
-            يصف مشاعر شخصية تجاه المدينة.
-          </button>
-
-          <button class="option" type="button">
-            يروي أحداثًا متتابعة لشخصية.
-          </button>
-
-        </div>
-
-        <div class="feedback"></div>
-      </div>
-
-      <div class="stars">☆ ☆ ☆</div>
     </section>
 
-    <section
-      class="lesson-card lesson"
-      id="narrative"
-      data-lesson="2">
+    <section class="final-card" id="finalCard">
 
-      <div class="lesson-head">
-        <div class="lesson-icon">📖</div>
+      <div class="badge">📚</div>
 
-        <div>
-          <h2>النص السردي</h2>
+      <h2>أتممتِ رحلة أنواع النصوص</h2>
 
-          <p>
-            يروي أحداثًا تقع لشخصيات
-            في زمان ومكان محددين.
-          </p>
-        </div>
+      <p>
+        أصبحتِ أكثر قدرة على التمييز بين النصوص
+        من خلال غرضها ولغتها وسماتها.
+      </p>
+
+      <div class="final-stars">
+        ★ ★ ★
       </div>
-
-      <div class="facts-grid">
-
-        <div class="fact-box">
-          <strong>غرضه:</strong>
-          رواية حدث أو تجربة.
-        </div>
-
-        <div class="fact-box">
-          <strong>علاماته:</strong>
-          شخصيات، زمان، مكان، أحداث.
-        </div>
-
-        <div class="fact-box">
-          <strong>لغته:</strong>
-          أفعال وحوار وروابط زمنية.
-        </div>
-
-      </div>
-
-      <div class="example-box">
-        <strong>مثال:</strong>
-
-        عندما دخلت ليان مختبر الابتكار،
-        توقفت أمام الروبوت الصغير.
-        ضغطت زر التشغيل، فتحرك نحوها،
-        ثم عرض على شاشته رسالة ترحيب.
-      </div>
-
-      <div class="identify-box">
-        <strong>كيف تميّزينه؟</strong>
-
-        ابحثي عن شخصية تفعل شيئًا،
-        وأحداث تتتابع، وزمان أو مكان
-        تجري فيه القصة.
-      </div>
-
-      <div class="question">
-        <h3>
-          أي عنصر يجعل المثال سرديًّا بوضوح؟
-        </h3>
-
-        <div class="options">
-
-          <button class="option" type="button">
-            وجود تعريف علمي للروبوت.
-          </button>
-
-          <button
-            class="option"
-            data-correct="true"
-            type="button">
-            وجود شخصية وأحداث متتابعة
-            في مكان محدد.
-          </button>
-
-          <button class="option" type="button">
-            وجود تعليمات تشغيل مرقمة.
-          </button>
-
-        </div>
-
-        <div class="feedback"></div>
-      </div>
-
-      <div class="stars">☆ ☆ ☆</div>
-    </section>
-        <section
-      class="lesson-card lesson"
-      id="descriptive"
-      data-lesson="3">
-
-      <div class="lesson-head">
-        <div class="lesson-icon">🎨</div>
-
-        <div>
-          <h2>النص الوصفي</h2>
-
-          <p>
-            يرسم صورة ذهنية لمكان أو شخص
-            أو مشهد باستخدام الصفات والحواس.
-          </p>
-        </div>
-      </div>
-
-      <div class="facts-grid">
-
-        <div class="fact-box">
-          <strong>غرضه:</strong>
-          تصوير المشهد وإبرازه للقارئ.
-        </div>
-
-        <div class="fact-box">
-          <strong>علاماته:</strong>
-          صفات، ألوان، أصوات، روائح، تشبيهات.
-        </div>
-
-        <div class="fact-box">
-          <strong>تركيزه:</strong>
-          التفاصيل الحسية والانطباع.
-        </div>
-
-      </div>
-
-      <div class="example-box">
-        <strong>مثال:</strong>
-
-        امتد الممر الزجاجي هادئًا،
-        وانعكست عليه أضواء زرقاء باردة،
-        بينما كان صوت الأجهزة الخافت
-        يشبه همسًا متواصلًا.
-      </div>
-
-      <div class="identify-box">
-        <strong>كيف تميّزينه؟</strong>
-
-        لاحظي كثرة الصفات والتفاصيل التي
-        تساعدكِ على رؤية المشهد أو سماعه
-        أو تخيله.
-      </div>
-
-      <div class="question">
-        <h3>
-          ما السمة الأبرز في المثال؟
-        </h3>
-
-        <div class="options">
-
-          <button
-            class="option"
-            data-correct="true"
-            type="button">
-            استخدام الألوان والأصوات
-            لتكوين صورة حسية.
-          </button>
-
-          <button class="option" type="button">
-            تقديم حجج لإقناع القارئ.
-          </button>
-
-          <button class="option" type="button">
-            عرض خطوات لتنفيذ مهمة.
-          </button>
-
-        </div>
-
-        <div class="feedback"></div>
-      </div>
-
-      <div class="stars">☆ ☆ ☆</div>
-    </section>
-
-    <section
-      class="lesson-card lesson"
-      id="instructional"
-      data-lesson="4">
-
-      <div class="lesson-head">
-        <div class="lesson-icon">🧭</div>
-
-        <div>
-          <h2>النص الإرشادي</h2>
-
-          <p>
-            يوجّه القارئ إلى تنفيذ خطوات
-            أو اتباع تعليمات محددة.
-          </p>
-        </div>
-      </div>
-
-      <div class="facts-grid">
-
-        <div class="fact-box">
-          <strong>غرضه:</strong>
-          التوجيه والتنفيذ.
-        </div>
-
-        <div class="fact-box">
-          <strong>علاماته:</strong>
-          أفعال أمر، ترقيم، ترتيب واضح.
-        </div>
-
-        <div class="fact-box">
-          <strong>روابطه:</strong>
-          أولًا، ثم، بعد ذلك، أخيرًا.
-        </div>
-
-      </div>
-
-      <div class="example-box">
-        <strong>مثال:</strong>
-
-        أولًا تحققي من مصدر الرابط،
-        ثم افحصي عنوان الموقع،
-        ولا تدخلي بياناتكِ قبل التأكد
-        من رمز الحماية.
-      </div>
-
-      <div class="identify-box">
-        <strong>كيف تميّزينه؟</strong>
-
-        ابحثي عن أوامر وخطوات مرتبة
-        تقود القارئ إلى تنفيذ عمل محدد.
-      </div>
-
-      <div class="question">
-        <h3>
-          لماذا يعد المثال نصًّا إرشاديًّا؟
-        </h3>
-
-        <div class="options">
-
-          <button class="option" type="button">
-            لأنه يصف شكل موقع إلكتروني.
-          </button>
-
-          <button class="option" type="button">
-            لأنه يروي حادثة اختراق.
-          </button>
-
-          <button
-            class="option"
-            data-correct="true"
-            type="button">
-            لأنه يقدم خطوات وتعليمات مباشرة.
-          </button>
-
-        </div>
-
-        <div class="feedback"></div>
-      </div>
-
-      <div class="stars">☆ ☆ ☆</div>
-    </section>
-        <section
-      class="lesson-card lesson"
-      id="explanatory"
-      data-lesson="5">
-
-      <div class="lesson-head">
-        <div class="lesson-icon">⚙️</div>
-
-        <div>
-          <h2>النص التفسيري</h2>
-
-          <p>
-            يشرح كيف تحدث ظاهرة،
-            أو لماذا تحدث.
-          </p>
-        </div>
-      </div>
-
-      <div class="facts-grid">
-
-        <div class="fact-box">
-          <strong>غرضه:</strong>
-          تفسير الظواهر والعمليات.
-        </div>
-
-        <div class="fact-box">
-          <strong>علاماته:</strong>
-          السبب والنتيجة والمراحل.
-        </div>
-
-        <div class="fact-box">
-          <strong>روابطه:</strong>
-          لأن، لذلك، ينتج عن، يؤدي إلى.
-        </div>
-
-      </div>
-
-      <div class="example-box">
-        <strong>مثال:</strong>
-
-        تتكوّن السحب عندما يرتفع الهواء الدافئ
-        المحمّل ببخار الماء، ثم يبرد،
-        فيتكثف البخار إلى قطرات دقيقة.
-      </div>
-
-      <div class="identify-box">
-        <strong>كيف تميّزينه؟</strong>
-
-        اسألي: هل يشرح النص آلية حدوث شيء،
-        أو يربط الأسباب بالنتائج؟
-      </div>
-
-      <div class="question">
-        <h3>
-          ما السمة التي تؤكد أن المثال تفسيري؟
-        </h3>
-
-        <div class="options">
-
-          <button
-            class="option"
-            data-correct="true"
-            type="button">
-            يشرح مراحل تكوّن السحب
-            وعلاقة السبب بالنتيجة.
-          </button>
-
-          <button class="option" type="button">
-            يصف جمال السحب وألوانها.
-          </button>
-
-          <button class="option" type="button">
-            يقدّم تعليمات لصنع السحب.
-          </button>
-
-        </div>
-
-        <div class="feedback"></div>
-      </div>
-
-      <div class="stars">☆ ☆ ☆</div>
-    </section>
-
-    <section
-      class="lesson-card lesson"
-      id="argumentative"
-      data-lesson="6">
-
-      <div class="lesson-head">
-        <div class="lesson-icon">⚖️</div>
-
-        <div>
-          <h2>النص الحجاجي</h2>
-
-          <p>
-            يعرض رأيًا أو قضية،
-            ويدعمها بحجج وأدلة.
-          </p>
-        </div>
-      </div>
-
-      <div class="facts-grid">
-
-        <div class="fact-box">
-          <strong>غرضه:</strong>
-          الإقناع والتأثير.
-        </div>
-
-        <div class="fact-box">
-          <strong>علاماته:</strong>
-          رأي، ادعاء، حجة، دليل.
-        </div>
-
-        <div class="fact-box">
-          <strong>سؤاله الرئيس:</strong>
-          هل الأدلة كافية وموثوقة؟
-        </div>
-
-      </div>
-
-      <div class="example-box">
-        <strong>مثال:</strong>
-
-        ينبغي تخصيص وقت يومي للقراءة الحرة؛
-        لأنها توسّع المفردات،
-        وتزيد القدرة على فهم النصوص المعقدة،
-        وتدعم التحصيل الدراسي.
-      </div>
-
-      <div class="identify-box">
-        <strong>كيف تميّزينه؟</strong>
-
-        ابحثي عن رأي يريد الكاتب إقناعكِ به،
-        ثم حددي الحجج والأدلة
-        التي استخدمها لدعمه.
-      </div>
-
-      <div class="question">
-        <h3>
-          أي عبارة تمثل الحجة الداعمة للرأي؟
-        </h3>
-
-        <div class="options">
-
-          <button class="option" type="button">
-            ينبغي تخصيص وقت يومي للقراءة الحرة.
-          </button>
-
-          <button
-            class="option"
-            data-correct="true"
-            type="button">
-            لأنها توسّع المفردات،
-            وتزيد الفهم، وتدعم التحصيل.
-          </button>
-
-          <button class="option" type="button">
-            القراءة نشاط معروف منذ زمن طويل.
-          </button>
-
-        </div>
-
-        <div class="feedback"></div>
-      </div>
-
-      <div class="stars">☆ ☆ ☆</div>
-    </section>
-        <section
-      class="lesson-card lesson"
-      id="functional"
-      data-lesson="7">
-
-      <div class="lesson-head">
-        <div class="lesson-icon">📄</div>
-
-        <div>
-          <h2>النص الوظيفي</h2>
-
-          <p>
-            ينجز غرضًا عمليًّا مباشرًا
-            في الحياة اليومية أو الدراسة والعمل.
-          </p>
-        </div>
-      </div>
-
-      <div class="facts-grid">
-
-        <div class="fact-box">
-          <strong>أمثلة عليه:</strong>
-          إعلان، رسالة، تقرير، نموذج، جدول.
-        </div>
-
-        <div class="fact-box">
-          <strong>غرضه:</strong>
-          نقل معلومات عملية بوضوح.
-        </div>
-
-        <div class="fact-box">
-          <strong>شكله:</strong>
-          عناوين، حقول، تواريخ، بيانات.
-        </div>
-
-      </div>
-
-      <div class="example-box">
-        <strong>مثال:</strong>
-
-        تنبيه: يبدأ التسجيل في مسابقة الابتكار
-        يوم الأحد 12 أكتوبر،
-        ويغلق يوم الخميس الساعة الثانية ظهرًا.
-        ترسل المشاركات عبر المنصة المدرسية.
-      </div>
-
-      <div class="identify-box">
-        <strong>كيف تميّزينه؟</strong>
-
-        اسألي: هل يساعد النص القارئ
-        على إنجاز مهمة عملية،
-        أو معرفة موعد، أو اتباع إجراء محدد؟
-      </div>
-
-      <div class="question">
-        <h3>
-          ما الغرض العملي المباشر من المثال؟
-        </h3>
-
-        <div class="options">
-
-          <button class="option" type="button">
-            وصف أجواء المسابقة.
-          </button>
-
-          <button
-            class="option"
-            data-correct="true"
-            type="button">
-            إبلاغ الطالبات بموعد التسجيل
-            وطريقة إرسال المشاركات.
-          </button>
-
-          <button class="option" type="button">
-            إقناع القارئ بأهمية الابتكار.
-          </button>
-
-        </div>
-
-        <div class="feedback"></div>
-      </div>
-
-      <div class="stars">☆ ☆ ☆</div>
-    </section>
-
-    <section
-      class="lesson-card lesson"
-      id="digital"
-      data-lesson="8">
-
-      <div class="lesson-head">
-        <div class="lesson-icon">💻</div>
-
-        <div>
-          <h2>النص الرقمي أو المتعدد الوسائط</h2>
-
-          <p>
-            يجمع بين الكلمات والصور والرسوم
-            والروابط أو الصوت والفيديو.
-          </p>
-        </div>
-      </div>
-
-      <div class="facts-grid">
-
-        <div class="fact-box">
-          <strong>عناصره:</strong>
-          نص، صورة، رسم بياني، رابط، أيقونة.
-        </div>
-
-        <div class="fact-box">
-          <strong>مهارته:</strong>
-          دمج المعلومات من أكثر من عنصر.
-        </div>
-
-        <div class="fact-box">
-          <strong>تنبيه:</strong>
-          لا تهملي العنوان أو مفتاح الرسم.
-        </div>
-
-      </div>
-
-      <div class="example-box">
-        <strong>مثال:</strong>
-
-        صفحة إلكترونية تعرض فقرة عن استهلاك الماء،
-        وبجوارها رسم بياني يقارن الاستهلاك
-        خلال أربعة أشهر،
-        مع رابط لنصائح الترشيد.
-      </div>
-
-      <div class="identify-box">
-        <strong>كيف تميّزينه؟</strong>
-
-        لاحظي أن المعنى لا يأتي من الكلمات وحدها،
-        بل من دمج النص مع الصورة أو الرسم
-        أو الرابط أو الصوت.
-      </div>
-
-      <div class="question">
-        <h3>
-          كيف تُقرأ هذه الصفحة قراءة صحيحة؟
-        </h3>
-
-        <div class="options">
-
-          <button class="option" type="button">
-            بقراءة الفقرة وحدها وتجاهل الرسم.
-          </button>
-
-          <button class="option" type="button">
-            بمشاهدة الصورة دون النص.
-          </button>
-
-          <button
-            class="option"
-            data-correct="true"
-            type="button">
-            بدمج معلومات الفقرة والرسم
-            والعنوان والرابط.
-          </button>
-
-        </div>
-
-        <div class="feedback"></div>
-      </div>
-
-      <div class="stars">☆ ☆ ☆</div>
-    </section>
-
-    <div class="nav-row">
-      <button
-        class="nav-btn secondary"
-        id="prevLesson"
-        type="button">
-        السابق
-      </button>
 
       <button
         class="nav-btn"
-        id="nextLesson"
+        id="returnLibrary"
         type="button">
-        التالي
+        العودة إلى رف الكتب
       </button>
-    </div>
 
-    <section class="final-card" id="finalCard">
-      <div class="badge">🏅</div>
-
-      <h2>
-        أحسنتِ! حصلتِ على وسام
-        خبيرة أنواع النصوص
-      </h2>
-
-      <div class="stars">★ ★ ★</div>
-
-      <p>
-        أصبحتِ تميّزين نوع النص
-        من غرضه وبنيته ولغته،
-        لا من موضوعه فقط.
-      </p>
     </section>
-      <script>
-    const tabs =
-      [...document.querySelectorAll(".type-tab")];
+        <script>
+      const textTypes = [
+        {
+          id: "informational",
+          icon: "🌍",
+          name: "النص المعلوماتي",
+          color: "#c9d8cf",
+          summary: "يقدّم حقائق ومعلومات عن موضوع محدد.",
+          definition:
+            "نص يهدف إلى تزويد القارئ بمعلومات وحقائق منظمة عن موضوع أو ظاهرة، بلغة واضحة يغلب عليها الحياد.",
+          features: [
+            "يعرض حقائق ومعلومات قابلة للتحقق.",
+            "يستخدم لغة واضحة ومباشرة.",
+            "قد يتضمن أرقامًا وتعريفات وأمثلة.",
+            "ينظم الأفكار بحسب الموضوع أو الأهمية."
+          ],
+          title: "المدن الذكية",
+          text:
+            `تعتمد المدن الذكية على استخدام التقنيات الرقمية لتحسين الخدمات اليومية ورفع كفاءة الموارد. فقد تربط أجهزة الاستشعار بين إشارات المرور ومراكز التحكم، فتتغير مدة الإشارة وفق كثافة المركبات بدل بقائها على وقت ثابت. كما يمكن لحاويات النفايات الذكية إرسال تنبيه عند امتلائها، مما يساعد على تنظيم مسارات سيارات الجمع وتقليل استهلاك الوقود. وفي شبكات المياه، تسهم الحساسات في اكتشاف التسرب مبكرًا قبل أن يتحول إلى هدر كبير. ومع ذلك، لا يقتصر نجاح المدينة الذكية على امتلاك الأجهزة الحديثة؛ إذ تحتاج إلى حماية بيانات السكان، وتدريب الموظفين، وضمان وصول الخدمات الرقمية إلى مختلف الفئات.`,
+          question:
+            "ما الفكرة الرئيسة للنص؟",
+          options: [
+            "المدن الذكية تستخدم التقنية لتحسين الخدمات، لكن نجاحها يحتاج إلى ضوابط.",
+            "إشارات المرور هي أهم خدمة في المدن.",
+            "التقنية تلغي الحاجة إلى الموظفين تمامًا.",
+            "جميع المدن تستخدم الأنظمة الذكية بالطريقة نفسها."
+          ],
+          answer: 0,
+          reason:
+            "لأنها تجمع بين الفكرة العامة للنص وفوائده وشروط نجاحه.",
+          evidence:
+            "«تعتمد المدن الذكية على استخدام التقنيات الرقمية لتحسين الخدمات اليومية»، و«لا يقتصر نجاح المدينة الذكية على امتلاك الأجهزة الحديثة».",
+          distractors:
+            "النص لم يحصر التقنية في المرور، ولم يقل إنها تلغي الموظفين، ولم يذكر أن جميع المدن متشابهة.",
+          selfQuestion:
+            "هل ميّزتِ الحقيقة العامة من التفاصيل والأمثلة؟"
+        },
 
-    const lessons =
-      [...document.querySelectorAll(".lesson")];
+        {
+          id: "narrative",
+          icon: "🧭",
+          name: "النص السردي",
+          color: "#d8c9d9",
+          summary: "يروي أحداثًا وشخصيات في زمن ومكان.",
+          definition:
+            "نص يقوم على رواية أحداث مترابطة تقع لشخصيات في زمن ومكان محددين، ويتضمن بداية وتطورًا ونتيجة.",
+          features: [
+            "وجود شخصيات وأحداث.",
+            "تتابع زمني أو سببي.",
+            "مكان وزمان واضحان أو مفهومـان.",
+            "مشكلة أو موقف يتطور حتى النهاية."
+          ],
+          title: "الممر القديم",
+          text:
+            `في صباح يوم ممطر، وصلت نورة إلى المدرسة قبل بدء الاصطفاف بقليل. وبينما كانت تتجه إلى فصلها، لاحظت أن الممر القديم المؤدي إلى المختبر قد امتلأ بالماء بسبب نافذة تُركت مفتوحة. كان بعض الطالبات يعبرن بسرعة من غير انتباه، فخشيت أن تنزلق إحداهن. وضعت حقيبتها قرب الباب، وأحضرت لوحة التحذير من غرفة الحارسة، ثم طلبت من زميلتها إبلاغ الإدارة. لم تنتظر نورة حتى يأتي أحد، بل بدأت بإبعاد المقاعد الخفيفة عن الماء حتى لا تتلف. وبعد دقائق وصلت العاملة وأغلقت النافذة وجففت الأرض. في الحصة الأولى شكرتها المديرة، لكن نورة قالت إن الأهم هو أن الممر أصبح آمنًا قبل ازدحامه.`,
+          question:
+            "ما الحدث الذي مثّل بداية المشكلة؟",
+          options: [
+            "شكر المديرة لنورة.",
+            "وصول العاملة إلى الممر.",
+            "امتلاء الممر بالماء بسبب النافذة المفتوحة.",
+            "وضع نورة حقيبتها قرب الباب."
+          ],
+          answer: 2,
+          reason:
+            "لأنه الحدث الذي بدأ منه الخطر وتحركت بسببه بقية الأحداث.",
+          evidence:
+            "«لاحظت أن الممر القديم المؤدي إلى المختبر قد امتلأ بالماء بسبب نافذة تُركت مفتوحة».",
+          distractors:
+            "شكر المديرة جاء في النهاية، ووصول العاملة جزء من الحل، ووضع الحقيبة تصرف لاحق للمشكلة.",
+          selfQuestion:
+            "هل استطعتِ تتبع الحدث الأول الذي حرّك القصة؟"
+        },
 
-    const progressBar =
-      document.getElementById("progressBar");
+        {
+          id: "descriptive",
+          icon: "🏡",
+          name: "النص الوصفي",
+          color: "#d9cfbf",
+          summary: "يرسم صورة بالكلمات للمكان أو الشخص.",
+          definition:
+            "نص يصوّر شخصًا أو مكانًا أو مشهدًا أو شيئًا من خلال الصفات والتفاصيل الحسية.",
+          features: [
+            "كثرة الصفات والتفاصيل.",
+            "الاعتماد على الحواس.",
+            "استخدام التشبيه والصور أحيانًا.",
+            "التركيز على الهيئة واللون والصوت والرائحة."
+          ],
+          title: "بيت الجدة",
+          text:
+            `يقف بيت الجدة في طرف القرية هادئًا كأنه يحرس الطريق القديم. بابه الخشبي عريض، وقد غيّرت الشمس لونه حتى صار أقرب إلى لون العسل الداكن. عند المدخل تتدلى عناقيد الياسمين من سور قصير، وتنتشر رائحتها في المساء قبل أن يصل الزائر إلى الفناء. أما المجلس، فتغطي أرضه سجادة حمراء تتكرر على أطرافها نقوش هندسية صغيرة، وتستند إلى الجدار وسائد مطرزة بخيوط خضراء وذهبية. وفي آخر الفناء شجرة ليمون، أوراقها لامعة، وتبقى قطرات الماء عالقة بها بعد السقي كحبات زجاج دقيقة.`,
+          question:
+            "أي حاسة حضرت بوضوح في وصف الياسمين؟",
+          options: [
+            "السمع.",
+            "الشم.",
+            "التذوق.",
+            "اللمس."
+          ],
+          answer: 1,
+          reason:
+            "لأن الكاتب وصف انتشار رائحة الياسمين في المساء.",
+          evidence:
+            "«وتنتشر رائحتها في المساء».",
+          distractors:
+            "لم يصف صوت الياسمين أو طعمه أو ملمسه في هذه الجملة.",
+          selfQuestion:
+            "هل انتبهتِ إلى الحواس المستخدمة في رسم المشهد؟"
+        },
 
-    const progressText =
-      document.getElementById("progressText");
+        {
+          id: "instructional",
+          icon: "🧭",
+          name: "النص الإرشادي",
+          color: "#c8d7dc",
+          summary: "يوجه القارئ إلى خطوات أو تعليمات.",
+          definition:
+            "نص يقدّم إرشادات وخطوات تساعد القارئ على تنفيذ عمل أو التصرف بطريقة صحيحة.",
+          features: [
+            "استخدام أفعال الأمر أو النهي.",
+            "ترتيب الخطوات بوضوح.",
+            "لغة مباشرة ومحددة.",
+            "قد يتضمن تنبيهات وتحذيرات."
+          ],
+          title: "الاستعداد لعرض شفهي",
+          text:
+            `ابدئي بتحديد الفكرة الرئيسة التي تريدين إيصالها، ثم اجمعي المعلومات المرتبطة بها من مصادر موثوقة. رتبي العرض إلى مقدمة قصيرة، وأفكار أساسية، وخاتمة تلخص النتيجة. لا تضعي نصًا طويلًا في الشرائح؛ اكتبي كلمات مفتاحية تساعدك على التذكر. تدرّبي بصوت مسموع، وسجلي الزمن حتى تتأكدي من الالتزام بالمدة المحددة. أثناء العرض، انظري إلى الحاضرات، وتحدثي بسرعة معتدلة، ولا تجعلي قراءة الشاشة بديلًا عن الشرح. وإذا نسيتِ فكرة، توقفي لحظة، وخذي نفسًا، ثم عودي إلى النقطة التالية بهدوء.`,
+          question:
+            "ما الخطوة التي تساعد على الالتزام بمدة العرض؟",
+          options: [
+            "وضع فقرات طويلة في الشرائح.",
+            "تسجيل زمن التدريب قبل العرض.",
+            "قراءة الشاشة طوال الوقت.",
+            "زيادة سرعة الحديث قدر الإمكان."
+          ],
+          answer: 1,
+          reason:
+            "لأن قياس زمن التدريب يكشف هل العرض مناسب للمدة المحددة.",
+          evidence:
+            "«وسجلي الزمن حتى تتأكدي من الالتزام بالمدة المحددة».",
+          distractors:
+            "النص نهى عن إطالة الشرائح والقراءة المستمرة، ودعا إلى سرعة معتدلة.",
+          selfQuestion:
+            "هل عرفتِ الخطوة العملية المرتبطة مباشرة بالهدف؟"
+        },
 
-    const soundBtn =
-      document.getElementById("soundBtn");
+        {
+          id: "explanatory",
+          icon: "⚙️",
+          name: "النص التفسيري",
+          color: "#d6d3bd",
+          summary: "يفسّر كيف تحدث ظاهرة أو لماذا.",
+          definition:
+            "نص يشرح ظاهرة أو عملية، ويبيّن أسبابها أو مراحلها أو نتائجها بطريقة منظمة.",
+          features: [
+            "وجود سؤال ضمني: كيف أو لماذا؟",
+            "استخدام السبب والنتيجة.",
+            "شرح المراحل أو الآلية.",
+            "الاستعانة بالأمثلة والتوضيح."
+          ],
+          title: "كيف يتكوّن الضباب؟",
+          text:
+            `يتكوّن الضباب عندما يبرد الهواء القريب من سطح الأرض إلى درجة لا يستطيع عندها الاحتفاظ بكل بخار الماء الموجود فيه. عندئذ يتحول جزء من البخار إلى قطرات ماء دقيقة تبقى معلقة في الهواء، فتقل الرؤية. ويكثر الضباب في الليالي الهادئة؛ لأن سطح الأرض يفقد حرارته تدريجيًا، فيبرد الهواء الملامس له. كما قد يتشكل قرب السواحل عندما يمر هواء دافئ رطب فوق مياه أبرد منه. ولا يُعد الضباب سحابة مختلفة تمامًا، بل هو سحابة منخفضة تلامس سطح الأرض أو تقترب منه بدرجة كبيرة.`,
+          question:
+            "لماذا يكثر الضباب في الليالي الهادئة؟",
+          options: [
+            "لأن سطح الأرض يفقد حرارته فيبرد الهواء القريب منه.",
+            "لأن الرياح القوية ترفع الماء إلى السماء.",
+            "لأن السحب المرتفعة تهبط فجأة.",
+            "لأن بخار الماء يختفي من الهواء."
+          ],
+          answer: 0,
+          reason:
+            "لأن النص ربط هدوء الليل بفقدان سطح الأرض للحرارة ثم برودة الهواء القريب.",
+          evidence:
+            "«لأن سطح الأرض يفقد حرارته تدريجيًا، فيبرد الهواء الملامس له».",
+          distractors:
+            "النص لم يذكر رياحًا قوية أو هبوط السحب، وبخار الماء لا يختفي بل يتكثف.",
+          selfQuestion:
+            "هل فهمتِ علاقة السبب بالنتيجة في تفسير الظاهرة؟"
+        },
 
-    const prevLesson =
-      document.getElementById("prevLesson");
+        {
+          id: "argumentative",
+          icon: "⚖️",
+          name: "النص الحجاجي",
+          color: "#d7c6c1",
+          summary: "يعرض رأيًا ويدعمه بالحجج والأدلة.",
+          definition:
+            "نص يهدف إلى إقناع القارئ برأي أو موقف من خلال حجج وأدلة وتعليلات.",
+          features: [
+            "وجود رأي أو ادعاء واضح.",
+            "استخدام الأدلة والأسباب.",
+            "الرد على رأي مخالف أحيانًا.",
+            "لغة إقناعية وروابط تعليل."
+          ],
+          title: "وقت يومي للقراءة الحرة",
+          text:
+            `ينبغي للمدارس أن تخصص وقتًا أسبوعيًا للقراءة الحرة؛ لأن بناء عادة القراءة لا يتحقق بالمطالبة وحدها، بل يحتاج إلى وقت فعلي يمارس فيه الطالب القراءة باختياره. وقد يرى بعضهم أن الحصص الدراسية مزدحمة ولا تحتمل إضافة نشاط جديد، غير أن عشرين دقيقة منظمة يمكن أن تقلل الوقت الضائع في الانتقال بين الأنشطة، وتمنح الطالب فرصة للهدوء والتركيز. كما أن القراءة الحرة توسّع المفردات، وتعرّف الطالب إلى موضوعات خارج المقرر، وتزيد قدرته على فهم النصوص الطويلة. لذلك فإن إدراجها في الجدول ليس ترفًا، بل استثمار في مهارة تؤثر في جميع المواد.`,
+          question:
+            "أي عبارة تمثّل رأي الكاتب الرئيس؟",
+          options: [
+            "الحصص الدراسية مزدحمة.",
+            "ينبغي للمدارس تخصيص وقت أسبوعي للقراءة الحرة.",
+            "القراءة تعرّف الطالب إلى موضوعات جديدة.",
+            "عشرون دقيقة مدة قصيرة."
+          ],
+          answer: 1,
+          reason:
+            "لأنها الادعاء الذي حاول الكاتب إثباته بالحجج اللاحقة.",
+          evidence:
+            "«ينبغي للمدارس أن تخصص وقتًا أسبوعيًا للقراءة الحرة».",
+          distractors:
+            "العبارات الأخرى حجج أو تفاصيل أو رأي مخالف وليست الفكرة التي يدافع عنها الكاتب.",
+          selfQuestion:
+            "هل فرّقتِ بين الرأي الرئيس والحجج التي تدعمه؟"
+        },
 
-    const nextLesson =
-      document.getElementById("nextLesson");
+        {
+          id: "functional",
+          icon: "📋",
+          name: "النص الوظيفي",
+          color: "#c9d3c2",
+          summary: "يحقق غرضًا عمليًا مباشرًا.",
+          definition:
+            "نص يستخدم في الحياة اليومية أو الدراسة لإنجاز غرض عملي، مثل الإعلان والرسالة والتقرير والنموذج.",
+          features: [
+            "غرض مباشر وواضح.",
+            "معلومات محددة مثل التاريخ والوقت.",
+            "لغة موجزة.",
+            "تنظيم يسهل الوصول إلى المعلومة."
+          ],
+          title: "إعلان مسابقة الابتكار",
+          text:
+            `تعلن لجنة النشاط عن بدء التسجيل في مسابقة الابتكار المدرسي يوم الأحد 12 ربيع الأول. تستقبل المشاركات حتى يوم الخميس الساعة الثانية ظهرًا عبر المنصة التعليمية. يشترط أن تعالج الفكرة مشكلة واقعية في المدرسة أو المجتمع، وأن ترفق الطالبة وصفًا لا يزيد على ثلاثمئة كلمة، وصورة أولية للنموذج إن وجدت. ستعلن أسماء المشاريع المتأهلة يوم الاثنين التالي، وتعرض النماذج النهائية في معرض المدرسة نهاية الشهر. للاستفسار، يمكن مراجعة معلمة النشاط خلال الفسحة الأولى.`,
+          question:
+            "ما الغرض المباشر من النص؟",
+          options: [
+            "وصف أجواء معرض الابتكار.",
+            "إبلاغ الطالبات بموعد المسابقة وشروط المشاركة.",
+            "إقناع الطالبات بأن الابتكار أهم من الدراسة.",
+            "سرد قصة مشروع فائز."
+          ],
+          answer: 1,
+          reason:
+            "لأن النص يقدّم موعد التسجيل والشروط وطريقة الإرسال والاستفسار.",
+          evidence:
+            "«تستقبل المشاركات حتى يوم الخميس»، و«يشترط أن تعالج الفكرة مشكلة واقعية».",
+          distractors:
+            "النص إعلان عملي، وليس وصفًا أو قصة أو مقارنة بين الابتكار والدراسة.",
+          selfQuestion:
+            "هل حددتِ الوظيفة العملية التي يؤديها النص؟"
+        },
 
-    const finalCard =
-      document.getElementById("finalCard");
+        {
+          id: "digital",
+          icon: "💻",
+          name: "النص الرقمي المتعدد",
+          color: "#c6d2da",
+          summary: "يجمع النص مع صورة أو رسم أو رابط.",
+          definition:
+            "نص رقمي تُفهم رسالته من خلال دمج أكثر من عنصر، مثل الكلمات والصور والرسوم والروابط والصوت.",
+          features: [
+            "وجود أكثر من وسيلة لعرض المعلومة.",
+            "ترابط العنوان والنص والرسم.",
+            "إمكان وجود روابط أو مقاطع.",
+            "الحاجة إلى قراءة العناصر مجتمعة."
+          ],
+          title: "صفحة عن استهلاك الماء",
+          text:
+            `تعرض صفحة إلكترونية عنوانًا هو «ماؤنا مسؤوليتنا»، وتحته فقرة قصيرة تشرح أن تسربًا صغيرًا قد يهدر كمية كبيرة من الماء خلال شهر. وإلى جانب الفقرة رسم بياني يقارن استهلاك منزل واحد في أربعة أشهر، ويظهر انخفاضًا واضحًا بعد إصلاح الصنابير. وفي أسفل الصفحة رمز قابل للمسح يقود إلى مقطع يشرح طريقة اكتشاف التسرب، ورابط إلى نموذج لحساب الاستهلاك اليومي.`,
+          question:
+            "كيف تُقرأ الصفحة قراءة صحيحة؟",
+          options: [
+            "قراءة الفقرة وحدها وإهمال الرسم.",
+            "مشاهدة الرسم فقط.",
+            "دمج العنوان والفقرة والرسم والرابط لفهم الرسالة.",
+            "فتح الرابط من غير قراءة الصفحة."
+          ],
+          answer: 2,
+          reason:
+            "لأن معنى النص الرقمي يتكوّن من تكامل عناصره المختلفة.",
+          evidence:
+            "الفقرة تشرح المشكلة، والرسم يوضح أثر الإصلاح، والرابط يقدم تطبيقًا عمليًا.",
+          distractors:
+            "الاعتماد على عنصر واحد يحذف جزءًا من الرسالة التي بنيت من عدة وسائل.",
+          selfQuestion:
+            "هل جمعتِ المعلومات من جميع عناصر الصفحة؟"
+        },
 
-    let currentIndex = 0;
+        {
+          id: "literary",
+          icon: "🪶",
+          name: "النص الأدبي",
+          color: "#d9c5cf",
+          summary: "يعبّر عن تجربة بلغة موحية وجمالية.",
+          definition:
+            "نص يعبّر عن تجربة إنسانية أو شعور أو فكرة بلغة فنية تعتمد على الخيال والصور والإيحاء.",
+          features: [
+            "لغة موحية وليست تقريرية فقط.",
+            "صور وتشبيهات واستعارات.",
+            "حضور المشاعر والتجربة الإنسانية.",
+            "إيقاع وجمال في اختيار الألفاظ."
+          ],
+          title: "نافذة الصباح",
+          text:
+            `فتحتُ نافذتي، فدخل الصباح بخطوات خفيفة، ونثر على الغرفة خيوطًا من ذهب. كانت الأشجار تغسل أوراقها بندى الليل، والعصافير تجرّب ألحانها الأولى فوق الأسطح. في الطريق البعيد، مرّت سيارة وحيدة ثم ابتلعها السكون، فعاد الحي كأنه صفحة لم تُكتب بعد. شعرت أن اليوم لا يصل إلينا جاهزًا، بل يمنح كل واحد منا مساحة صغيرة ليكتب فيها ما يستطيع. أغلقتُ النافذة، لكن الضوء بقي في الغرفة، وبقيت فكرته في داخلي.`,
+          question:
+            "ما الصورة الجمالية في قول الكاتب: «دخل الصباح بخطوات خفيفة»؟",
+          options: [
+            "تشبيه الصباح بإنسان يمشي.",
+            "وصف سرعة سيارة.",
+            "حقيقة علمية عن ضوء الشمس.",
+            "تحديد زمن فتح النافذة."
+          ],
+          answer: 0,
+          reason:
+            "لأن الكاتب منح الصباح صفة إنسانية وهي الدخول بخطوات.",
+          evidence:
+            "«دخل الصباح بخطوات خفيفة».",
+          distractors:
+            "العبارة ليست حقيقة علمية أو تحديدًا زمنيًا، ولا تتعلق بحركة السيارة.",
+          selfQuestion:
+            "هل انتبهتِ إلى اللغة الخيالية والإيحاء الشعوري؟"
+        },
 
-    let soundOn =
-      localStorage.getItem("nafesSound") !== "off";
-
-    const completed = new Set(
-      JSON.parse(
-        localStorage.getItem(
-          "nafesTextTypesCompleted"
-        ) || "[]"
-      )
-    );
-
-    function showLesson(index) {
-      currentIndex =
-        (index + lessons.length) % lessons.length;
-
-      lessons.forEach((lesson, lessonIndex) => {
-        lesson.classList.toggle(
-          "active",
-          lessonIndex === currentIndex
-        );
-      });
-
-      tabs.forEach((tab, tabIndex) => {
-        tab.classList.toggle(
-          "active",
-          tabIndex === currentIndex
-        );
-      });
-
-      finalCard.classList.remove("show");
-
-      lessons[currentIndex].scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-    }
-
-    tabs.forEach((tab, index) => {
-      tab.addEventListener("click", () => {
-        showLesson(index);
-      });
-    });
-
-    prevLesson.addEventListener("click", () => {
-      showLesson(currentIndex - 1);
-    });
-
-    nextLesson.addEventListener("click", () => {
-      showLesson(currentIndex + 1);
-    });
-
-    function createAudioContext() {
-      return new (
-        window.AudioContext ||
-        window.webkitAudioContext
-      )();
-    }
-
-    function playCorrectSound() {
-      if (!soundOn) {
-        return;
-      }
-
-      const context = createAudioContext();
-
-      [523, 659, 784].forEach(
-        (frequency, index) => {
-          const oscillator =
-            context.createOscillator();
-
-          const gain =
-            context.createGain();
-
-          const start =
-            context.currentTime + index * 0.09;
-
-          oscillator.frequency.value = frequency;
-          oscillator.type = "sine";
-
-          gain.gain.setValueAtTime(
-            0.0001,
-            start
-          );
-
-          gain.gain.exponentialRampToValueAtTime(
-            0.18,
-            start + 0.02
-          );
-
-          gain.gain.exponentialRampToValueAtTime(
-            0.0001,
-            start + 0.24
-          );
-
-          oscillator.connect(gain);
-          gain.connect(context.destination);
-
-          oscillator.start(start);
-          oscillator.stop(start + 0.26);
+        {
+          id: "scientific-descriptive",
+          icon: "🔬",
+          name: "النص الوصفي العلمي",
+          color: "#bfd2cf",
+          summary: "يصف كائنًا أو ظاهرة بدقة وموضوعية.",
+          definition:
+            "نص يصف خصائص كائن أو ظاهرة أو جهاز بلغة دقيقة وموضوعية، مستخدمًا مصطلحات وملاحظات علمية.",
+          features: [
+            "وصف دقيق قابل للملاحظة.",
+            "لغة موضوعية قليلة العاطفة.",
+            "استخدام مصطلحات علمية.",
+            "التركيز على الشكل والتركيب والوظيفة."
+          ],
+          title: "ورقة نبات الصبار",
+          text:
+            `تتميز أوراق كثير من أنواع الصبار بأنها تحورت إلى أشواك رفيعة، بينما يقوم الساق الأخضر السميك بمعظم عملية البناء الضوئي. ويغطي سطح الساق غلاف شمعي يقلل فقد الماء بالتبخر، كما تحتوي أنسجته الداخلية على خلايا قادرة على تخزين كميات من الماء. تنتشر الجذور قريبًا من سطح التربة وعلى مساحة واسعة، مما يساعد النبات على امتصاص مياه الأمطار القليلة بسرعة قبل أن تتسرب إلى أعماق الأرض. وتعد هذه الخصائص تكيفات تساعد الصبار على البقاء في البيئات الجافة ذات الحرارة المرتفعة وقلة الأمطار.`,
+          question:
+            "ما وظيفة الغلاف الشمعي الذي يغطي ساق الصبار؟",
+          options: [
+            "زيادة فقد الماء.",
+            "تقليل فقد الماء بالتبخر.",
+            "تحويل الساق إلى أشواك.",
+            "جذب الحشرات إلى النبات."
+          ],
+          answer: 1,
+          reason:
+            "لأن النص ذكر الوظيفة العلمية للغلاف بوضوح.",
+          evidence:
+            "«غلاف شمعي يقلل فقد الماء بالتبخر».",
+          distractors:
+            "الغلاف لا يزيد الفقد ولا يحول الساق إلى أشواك، ولم يربطه النص بجذب الحشرات.",
+          selfQuestion:
+            "هل فرّقتِ بين الوصف العلمي الدقيق والوصف الأدبي الشعوري؟"
         }
+      ];
+                const stageNames = [
+        "التعريف",
+        "السمات",
+        "النص",
+        "السؤال",
+        "السبب والشاهد",
+        "التقييم الذاتي"
+      ];
+
+      const bookshelf =
+        document.getElementById("bookshelf");
+
+      const libraryView =
+        document.getElementById("libraryView");
+
+      const workspace =
+        document.getElementById("workspace");
+
+      const workspaceHeading =
+        document.getElementById("workspaceHeading");
+
+      const stageLabel =
+        document.getElementById("stageLabel");
+
+      const stageContent =
+        document.getElementById("stageContent");
+
+      const stageDots =
+        [...document.querySelectorAll(".stage-dot")];
+
+      const prevBtn =
+        document.getElementById("prevBtn");
+
+      const nextBtn =
+        document.getElementById("nextBtn");
+
+      const backBooks =
+        document.getElementById("backBooks");
+
+      const progressText =
+        document.getElementById("progressText");
+
+      const progressBar =
+        document.getElementById("progressBar");
+
+      const soundBtn =
+        document.getElementById("soundBtn");
+
+      const finalCard =
+        document.getElementById("finalCard");
+
+      const returnLibrary =
+        document.getElementById("returnLibrary");
+
+      let currentTypeIndex = 0;
+      let currentStage = 0;
+
+      let soundOn =
+        localStorage.getItem("nafesSound") !== "off";
+
+      const solved = {};
+
+      const completed = new Set(
+        JSON.parse(
+          localStorage.getItem(
+            "nafesTextBooksCompleted"
+          ) || "[]"
+        )
       );
-    }
 
-    function playWrongSound() {
-      if (!soundOn) {
-        return;
-      }
-
-      const context = createAudioContext();
-
-      [230, 175].forEach(
-        (frequency, index) => {
-          const oscillator =
-            context.createOscillator();
-
-          const gain =
-            context.createGain();
-
-          const start =
-            context.currentTime + index * 0.15;
-
-          oscillator.frequency.value = frequency;
-          oscillator.type = "square";
-
-          gain.gain.setValueAtTime(
-            0.0001,
-            start
-          );
-
-          gain.gain.exponentialRampToValueAtTime(
-            0.08,
-            start + 0.02
-          );
-
-          gain.gain.exponentialRampToValueAtTime(
-            0.0001,
-            start + 0.13
-          );
-
-          oscillator.connect(gain);
-          gain.connect(context.destination);
-
-          oscillator.start(start);
-          oscillator.stop(start + 0.15);
-        }
-      );
-    }
-
-    function playApplause() {
-      if (!soundOn) {
-        return;
-      }
-
-      const context = createAudioContext();
-
-      for (let index = 0; index < 14; index++) {
-        const buffer = context.createBuffer(
-          1,
-          context.sampleRate * 0.07,
-          context.sampleRate
+      const ratings =
+        JSON.parse(
+          localStorage.getItem(
+            "nafesTextBooksRatings"
+          ) || "{}"
         );
 
-        const data = buffer.getChannelData(0);
+      function createAudioContext() {
+        return new (
+          window.AudioContext ||
+          window.webkitAudioContext
+        )();
+      }
 
-        for (
-          let sample = 0;
-          sample < data.length;
-          sample++
-        ) {
-          data[sample] =
-            (Math.random() * 2 - 1) *
-            (1 - sample / data.length);
-        }
+      function playCorrectSound() {
+        if (!soundOn) return;
 
-        const source =
-          context.createBufferSource();
+        const context = createAudioContext();
 
-        const gain =
-          context.createGain();
+        [523, 659, 784].forEach(
+          (frequency, index) => {
+            const oscillator =
+              context.createOscillator();
 
-        const filter =
-          context.createBiquadFilter();
+            const gain =
+              context.createGain();
 
-        source.buffer = buffer;
+            const start =
+              context.currentTime + index * 0.09;
 
-        filter.type = "bandpass";
+            oscillator.frequency.value = frequency;
+            oscillator.type = "sine";
 
-        filter.frequency.value =
-          1200 + Math.random() * 900;
+            gain.gain.setValueAtTime(
+              0.0001,
+              start
+            );
 
-        gain.gain.value = 0.16;
+            gain.gain.exponentialRampToValueAtTime(
+              0.18,
+              start + 0.02
+            );
 
-        source.connect(filter);
-        filter.connect(gain);
-        gain.connect(context.destination);
+            gain.gain.exponentialRampToValueAtTime(
+              0.0001,
+              start + 0.24
+            );
 
-        source.start(
-          context.currentTime +
-          index * 0.075 +
-          Math.random() * 0.03
+            oscillator.connect(gain);
+            gain.connect(context.destination);
+
+            oscillator.start(start);
+            oscillator.stop(start + 0.26);
+          }
         );
       }
-    }
 
-    function updateProgress() {
-      const completedCount = completed.size;
+      function playWrongSound() {
+        if (!soundOn) return;
 
-      progressText.textContent =
-        completedCount + " من 8";
+        const context = createAudioContext();
 
-      progressBar.style.width =
-        completedCount / 8 * 100 + "%";
+        [230, 175].forEach(
+          (frequency, index) => {
+            const oscillator =
+              context.createOscillator();
 
-      localStorage.setItem(
-        "nafesTextTypesCompleted",
-        JSON.stringify([...completed])
-      );
+            const gain =
+              context.createGain();
 
-      lessons.forEach(lesson => {
-        const lessonNumber =
-          lesson.dataset.lesson;
+            const start =
+              context.currentTime + index * 0.14;
 
-        const stars =
-          lesson.querySelector(".stars");
+            oscillator.frequency.value = frequency;
+            oscillator.type = "square";
 
-        stars.textContent =
-          completed.has(lessonNumber)
-            ? "★ ★ ★"
-            : "☆ ☆ ☆";
-      });
+            gain.gain.setValueAtTime(
+              0.0001,
+              start
+            );
 
-      if (completedCount === 8) {
-        finalCard.classList.add("show");
+            gain.gain.exponentialRampToValueAtTime(
+              0.08,
+              start + 0.02
+            );
+
+            gain.gain.exponentialRampToValueAtTime(
+              0.0001,
+              start + 0.13
+            );
+
+            oscillator.connect(gain);
+            gain.connect(context.destination);
+
+            oscillator.start(start);
+            oscillator.stop(start + 0.15);
+          }
+        );
+      }
+
+      function updateProgress() {
+        const count = completed.size;
+
+        progressText.textContent =
+          count + " من " + textTypes.length;
+
+        progressBar.style.width =
+          count / textTypes.length * 100 + "%";
 
         localStorage.setItem(
-          "nafesTextTypesComplete",
-          "true"
+          "nafesTextBooksCompleted",
+          JSON.stringify([...completed])
         );
 
-        playApplause();
-
-        setTimeout(() => {
-          finalCard.scrollIntoView({
-            behavior: "smooth"
-          });
-        }, 300);
-      }
-    }
-
-    document
-      .querySelectorAll(".question")
-      .forEach(question => {
-        const lesson =
-          question.closest(".lesson");
-
-        const lessonNumber =
-          lesson.dataset.lesson;
-
-        const feedback =
-          question.querySelector(".feedback");
-
-        question
-          .querySelectorAll(".option")
-          .forEach(option => {
-            option.addEventListener(
-              "click",
-              () => {
-                if (
-                  option.dataset.correct === "true"
-                ) {
-                  question
-                    .querySelectorAll(".option")
-                    .forEach(button => {
-                      button.disabled = true;
-                    });
-
-                  option.classList.add("correct");
-
-                  feedback.className =
-                    "feedback show good";
-
-                  feedback.innerHTML =
-                    "👏 إجابة صحيحة! أحسنتِ." +
-                    '<span class="evidence">' +
-                    "الدليل هو غرض النص وبنيته " +
-                    "والعلامات اللغوية الظاهرة فيه." +
-                    "</span>";
-
-                  completed.add(lessonNumber);
-
-                  playCorrectSound();
-                  updateProgress();
-
-                  if (
-                    currentIndex <
-                    lessons.length - 1
-                  ) {
-                    setTimeout(() => {
-                      showLesson(currentIndex + 1);
-                    }, 900);
-                  }
-                } else {
-                  option.classList.add("wrong");
-
-                  feedback.className =
-                    "feedback show bad";
-
-                  feedback.innerHTML =
-                    "⚠️ ليست الإجابة الأدق." +
-                    '<span class="evidence">' +
-                    "راجعي غرض الكاتب، وطريقة " +
-                    "تنظيم النص، وعلاماته اللغوية، " +
-                    "ثم حاولي مرة أخرى." +
-                    "</span>";
-
-                  playWrongSound();
-
-                  if (
-                    navigator.vibrate
-                  ) {
-                    navigator.vibrate(
-                      [120, 70, 120]
-                    );
-                  }
-
-                  setTimeout(() => {
-                    option.classList.remove("wrong");
-                  }, 700);
-                }
-              }
+        document
+          .querySelectorAll(".book-card")
+          .forEach(card => {
+            card.classList.toggle(
+              "completed",
+              completed.has(card.dataset.type)
             );
           });
+      }
+
+      function buildBooks() {
+        bookshelf.innerHTML = "";
+
+        textTypes.forEach((type, index) => {
+          const button =
+            document.createElement("button");
+
+          button.type = "button";
+          button.className = "book-card";
+          button.dataset.type = type.id;
+          button.style.background =
+            `linear-gradient(
+              145deg,
+              ${type.color},
+              #fffdf8
+            )`;
+
+          button.innerHTML = `
+            <span class="book-icon">
+              ${type.icon}
+            </span>
+
+            <span class="book-title">
+              ${type.name}
+            </span>
+
+            <span class="book-summary">
+              ${type.summary}
+            </span>
+
+            <span class="book-check">
+              ✓
+            </span>
+          `;
+
+          button.addEventListener("click", () => {
+            openBook(index);
+          });
+
+          bookshelf.appendChild(button);
+        });
+
+        updateProgress();
+      }
+
+      function openBook(index) {
+        currentTypeIndex = index;
+        currentStage = 0;
+
+        libraryView.hidden = true;
+        finalCard.classList.remove("show");
+        workspace.hidden = false;
+
+        renderStage();
+      }
+
+      function renderStage() {
+        const type =
+          textTypes[currentTypeIndex];
+
+        workspaceHeading.textContent =
+          type.icon + " " + type.name;
+
+        stageLabel.textContent =
+          stageNames[currentStage];
+
+        stageDots.forEach((dot, index) => {
+          dot.classList.toggle(
+            "active",
+            index === currentStage
+          );
+        });
+
+        prevBtn.disabled =
+          currentStage === 0;
+
+        nextBtn.disabled = false;
+        nextBtn.textContent = "التالي";
+
+        if (currentStage === 0) {
+          stageContent.innerHTML = `
+            <h3>ما ${type.name}؟</h3>
+
+            <div class="definition-box">
+              ${type.definition}
+            </div>
+          `;
+        }
+
+        if (currentStage === 1) {
+          stageContent.innerHTML = `
+            <h3>سمات ${type.name}</h3>
+
+            <div class="features-box">
+              <ul class="feature-list">
+                ${type.features
+                  .map(
+                    feature =>
+                      `<li>${feature}</li>`
+                  )
+                  .join("")}
+              </ul>
+            </div>
+          `;
+        }
+
+        if (currentStage === 2) {
+          stageContent.innerHTML = `
+            <span class="text-badge">
+              مثال تطبيقي
+            </span>
+
+            <h3>${type.title}</h3>
+
+            <div class="reading-box">
+              <p class="reading-text">
+                ${type.text}
+              </p>
+            </div>
+          `;
+        }
+
+        if (currentStage === 3) {
+          stageContent.innerHTML = `
+            <div class="question-box">
+
+              <h3>${type.question}</h3>
+
+              <div class="options">
+                ${type.options
+                  .map(
+                    (option, index) => `
+                      <button
+                        class="option"
+                        data-option="${index}"
+                        type="button">
+                        ${option}
+                      </button>
+                    `
+                  )
+                  .join("")}
+              </div>
+
+              <div class="feedback"></div>
+
+            </div>
+          `;
+
+          nextBtn.disabled =
+            !solved[type.id];
+
+          attachQuestionEvents(type);
+        }
+
+        if (currentStage === 4) {
+          stageContent.innerHTML = `
+            <div class="analysis-box">
+
+              <h3>سبب الاختيار والشاهد</h3>
+
+              <div class="analysis-item">
+                <strong>سبب صحة الاختيار:</strong>
+                ${type.reason}
+              </div>
+
+              <div class="evidence">
+                <strong>الشاهد من النص:</strong>
+                ${type.evidence}
+              </div>
+
+              <div class="analysis-item">
+                <strong>تحليل البدائل الأخرى:</strong>
+                ${type.distractors}
+              </div>
+
+            </div>
+          `;
+        }
+
+        if (currentStage === 5) {
+          const savedRating =
+            ratings[type.id] || "";
+
+          stageContent.innerHTML = `
+            <div class="self-box">
+
+              <h3>قيّمي إتقانكِ</h3>
+
+              <p>${type.selfQuestion}</p>
+
+              <div class="self-options">
+
+                <button
+                  class="self-btn ${
+                    savedRating === "mastered"
+                      ? "selected"
+                      : ""
+                  }"
+                  data-rating="mastered"
+                  type="button">
+                  ⭐ أتقنتُ النوع
+                </button>
+
+                <button
+                  class="self-btn ${
+                    savedRating === "practice"
+                      ? "selected"
+                      : ""
+                  }"
+                  data-rating="practice"
+                  type="button">
+                  🔁 أحتاج إلى تدريب إضافي
+                </button>
+
+                <button
+                  class="self-btn ${
+                    savedRating === "help"
+                      ? "selected"
+                      : ""
+                  }"
+                  data-rating="help"
+                  type="button">
+                  🪜 أحتاج إلى مساعدة
+                </button>
+
+              </div>
+
+              <div
+                class="self-message ${
+                  savedRating ? "show" : ""
+                }">
+                ${
+                  savedRating
+                    ? ratingMessage(savedRating)
+                    : ""
+                }
+              </div>
+
+            </div>
+          `;
+
+          nextBtn.textContent =
+            completed.size === textTypes.length
+              ? "عرض النتيجة النهائية"
+              : "العودة إلى رف الكتب";
+
+          nextBtn.disabled =
+            !savedRating;
+
+          attachRatingEvents(type);
+        }
+      }
+
+      function attachQuestionEvents(type) {
+        const options =
+          [...stageContent.querySelectorAll(
+            ".option"
+          )];
+
+        const feedback =
+          stageContent.querySelector(
+            ".feedback"
+          );
+
+        options.forEach(option => {
+          option.addEventListener("click", () => {
+            const selected =
+              Number(option.dataset.option);
+
+            if (selected === type.answer) {
+              options.forEach(item => {
+                item.disabled = true;
+              });
+
+              option.classList.add("correct");
+
+              feedback.className =
+                "feedback show good";
+
+              feedback.textContent =
+                "👏 إجابة صحيحة. أصبح السبب والشاهد متاحين.";
+
+              solved[type.id] = true;
+              nextBtn.disabled = false;
+
+              playCorrectSound();
+            } else {
+              option.classList.add("wrong");
+
+              feedback.className =
+                "feedback show bad";
+
+              feedback.textContent =
+                "ليست الإجابة الأدق. عودي إلى النص، ثم قارني البدائل بالدليل.";
+
+              playWrongSound();
+
+              if (navigator.vibrate) {
+                navigator.vibrate(
+                  [110, 60, 110]
+                );
+              }
+
+              setTimeout(() => {
+                option.classList.remove("wrong");
+              }, 650);
+            }
+          });
+        });
+      }
+
+      function ratingMessage(rating) {
+        if (rating === "mastered") {
+          return "⭐ رائع. أتقنتِ التمييز بين هذا النوع وسماته.";
+        }
+
+        if (rating === "practice") {
+          return "🔁 راجعي التعريف والسمات، ثم أعيدي قراءة المثال لاحقًا.";
+        }
+
+        return "🪜 ابدئي بالغرض من النص، ثم لغته وسماته قبل اختيار النوع.";
+      }
+
+      function attachRatingEvents(type) {
+        const ratingButtons =
+          [...stageContent.querySelectorAll(
+            ".self-btn"
+          )];
+
+        const message =
+          stageContent.querySelector(
+            ".self-message"
+          );
+
+        ratingButtons.forEach(button => {
+          button.addEventListener("click", () => {
+            ratingButtons.forEach(item => {
+              item.classList.remove("selected");
+            });
+
+            button.classList.add("selected");
+
+            const rating =
+              button.dataset.rating;
+
+            ratings[type.id] = rating;
+
+            localStorage.setItem(
+              "nafesTextBooksRatings",
+              JSON.stringify(ratings)
+            );
+
+            completed.add(type.id);
+            updateProgress();
+
+            message.textContent =
+              ratingMessage(rating);
+
+            message.classList.add("show");
+
+            nextBtn.disabled = false;
+
+            nextBtn.textContent =
+              completed.size === textTypes.length
+                ? "عرض النتيجة النهائية"
+                : "العودة إلى رف الكتب";
+
+            if (rating === "mastered") {
+              playCorrectSound();
+            }
+          });
+        });
+      }
+
+      prevBtn.addEventListener("click", () => {
+        if (currentStage > 0) {
+          currentStage--;
+          renderStage();
+        }
       });
 
-    soundBtn.addEventListener("click", () => {
-      soundOn = !soundOn;
+      nextBtn.addEventListener("click", () => {
+        if (currentStage < 5) {
+          currentStage++;
+          renderStage();
+          return;
+        }
 
-      localStorage.setItem(
-        "nafesSound",
-        soundOn ? "on" : "off"
+        if (completed.size === textTypes.length) {
+          workspace.hidden = true;
+          libraryView.hidden = true;
+          finalCard.classList.add("show");
+          return;
+        }
+
+        workspace.hidden = true;
+        finalCard.classList.remove("show");
+        libraryView.hidden = false;
+        updateProgress();
+      });
+
+      backBooks.addEventListener("click", () => {
+        workspace.hidden = true;
+        finalCard.classList.remove("show");
+        libraryView.hidden = false;
+        updateProgress();
+      });
+
+      returnLibrary.addEventListener(
+        "click",
+        () => {
+          finalCard.classList.remove("show");
+          workspace.hidden = true;
+          libraryView.hidden = false;
+          updateProgress();
+        }
       );
+
+      soundBtn.addEventListener("click", () => {
+        soundOn = !soundOn;
+
+        localStorage.setItem(
+          "nafesSound",
+          soundOn ? "on" : "off"
+        );
+
+        soundBtn.textContent =
+          soundOn
+            ? "🔊 الصوت مفعّل"
+            : "🔇 الصوت مكتوم";
+
+        if (soundOn) {
+          playCorrectSound();
+        }
+      });
 
       soundBtn.textContent =
         soundOn
           ? "🔊 الصوت مفعّل"
           : "🔇 الصوت مكتوم";
 
-      if (soundOn) {
-        playCorrectSound();
-      }
-    });
+      buildBooks();
+    </script>
 
-    soundBtn.textContent =
-      soundOn
-        ? "🔊 الصوت مفعّل"
-        : "🔇 الصوت مكتوم";
-
-    updateProgress();
-    showLesson(0);
-  </script>
-
-</body>
-</html>
   </main>
 
   <footer>
     جميع الحقوق محفوظة © 2026
   </footer>
-  
+
+</body>
+</html>
