@@ -1,0 +1,1691 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>المفردات والدلالات اللفظية | مكتبة نافس</title>
+
+  <style>
+    :root{
+      --purple:#75558d;
+      --purple-dark:#4b385b;
+      --gold:#c9a85c;
+      --cream:#fffaf1;
+      --paper:#fffdf8;
+      --text:#403347;
+      --green:#2f7d4a;
+      --red:#b64040;
+    }
+
+    *{box-sizing:border-box}
+
+    [hidden]{display:none!important}
+
+    body{
+      margin:0;
+      overflow-x:hidden;
+      font-family:Tahoma,Arial,sans-serif;
+      line-height:1.9;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top,#f2e8f7 0,transparent 38%),
+        linear-gradient(180deg,var(--cream),#f7f0f8);
+    }
+
+    button,a{font-family:inherit}
+
+    header{
+      padding:32px 16px 28px;
+      text-align:center;
+      color:#fff;
+      background:linear-gradient(135deg,#786094,#594474);
+      border-bottom:5px solid var(--gold);
+    }
+
+    header h1{
+      margin:0;
+      font-size:34px;
+    }
+
+    header p{
+      max-width:760px;
+      margin:8px auto 0;
+      font-size:17px;
+    }
+
+    main{
+      width:min(94%,950px);
+      margin:22px auto 38px;
+    }
+
+    .top-bar{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      gap:10px;
+      padding:12px;
+      margin-bottom:20px;
+      background:var(--paper);
+      border:2px solid #dfd3e5;
+      border-radius:17px;
+      box-shadow:0 7px 18px rgba(73,56,92,.09);
+    }
+
+    .home-btn,.sound-btn{
+      padding:10px 13px;
+      font-weight:bold;
+      text-decoration:none;
+      border:0;
+      border-radius:12px;
+      cursor:pointer;
+    }
+
+    .home-btn{
+      color:#35263d;
+      background:var(--gold);
+    }
+
+    .sound-btn{
+      color:#fff;
+      background:var(--purple);
+    }
+
+    .progress-area{
+      flex:1;
+      min-width:190px;
+    }
+
+    .progress-label{
+      display:flex;
+      justify-content:space-between;
+      font-size:14px;
+      font-weight:bold;
+    }
+
+    .progress-track{
+      height:11px;
+      margin-top:5px;
+      overflow:hidden;
+      background:#eee4f2;
+      border-radius:999px;
+    }
+
+    .progress-bar{
+      width:0;
+      height:100%;
+      background:linear-gradient(90deg,var(--gold),var(--purple));
+      transition:width .35s ease;
+    }
+
+    .dictionary-view,
+    .workspace,
+    .final-card{
+      padding:20px;
+      background:var(--paper);
+      border:2px solid #dfd3e5;
+      border-radius:24px;
+      box-shadow:0 8px 22px rgba(73,56,92,.10);
+    }
+
+    .dictionary-view h2,
+    .final-card h2{
+      margin-top:0;
+      text-align:center;
+      color:var(--purple-dark);
+    }
+
+    .intro-note{
+      max-width:760px;
+      margin:0 auto 22px;
+      text-align:center;
+      color:#685b6e;
+    }
+
+    .card-index{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:18px;
+    }
+
+    .word-card{
+      position:relative;
+      min-height:176px;
+      padding:29px 18px 20px;
+      overflow:hidden;
+      text-align:center;
+      color:#3d3241;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          rgba(255,255,255,.86) 0,
+          rgba(255,255,255,.86) 30px,
+          rgba(117,85,141,.08) 31px
+        );
+      border:2px solid var(--card-color);
+      border-radius:12px;
+      box-shadow:
+        0 8px 0 color-mix(in srgb,var(--card-color) 25%,transparent),
+        0 12px 22px rgba(73,56,92,.10);
+      cursor:pointer;
+      transition:.2s ease;
+    }
+
+    .word-card::before{
+      content:"";
+      position:absolute;
+      top:0;
+      right:0;
+      width:100%;
+      height:17px;
+      background:var(--card-color);
+    }
+
+    .word-card:hover,
+    .word-card:focus{
+      transform:translateY(-4px);
+      outline:3px solid rgba(201,168,92,.45);
+    }
+
+    .word-card.completed::after{
+      content:"✓";
+      position:absolute;
+      left:11px;
+      bottom:10px;
+      display:grid;
+      place-items:center;
+      width:31px;
+      height:31px;
+      color:#fff;
+      font-weight:bold;
+      background:var(--green);
+      border-radius:50%;
+    }
+
+    .card-symbol{
+      display:block;
+      margin-bottom:7px;
+      font-size:39px;
+    }
+
+    .card-title{
+      display:block;
+      color:var(--purple-dark);
+      font-size:21px;
+      font-weight:bold;
+    }
+
+    .card-summary{
+      display:block;
+      margin-top:6px;
+      color:#665a69;
+      font-size:14px;
+    }
+
+    .workspace{
+      min-height:680px;
+    }
+
+    .workspace-top{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-bottom:15px;
+    }
+
+    .back-cards{
+      flex:0 0 auto;
+      padding:10px 13px;
+      font-weight:bold;
+      color:var(--purple-dark);
+      background:#efe6f4;
+      border:2px solid #d2c1dc;
+      border-radius:12px;
+      cursor:pointer;
+    }
+
+    .workspace-heading{
+      flex:1;
+      margin:0;
+      text-align:center;
+      color:var(--purple-dark);
+      font-size:27px;
+    }
+
+    .stage-status{
+      display:flex;
+      justify-content:center;
+      gap:7px;
+      margin-bottom:12px;
+    }
+
+    .stage-dot{
+      width:11px;
+      height:11px;
+      background:#cabdd1;
+      border-radius:50%;
+    }
+
+    .stage-dot.active{
+      background:var(--gold);
+      transform:scale(1.35);
+    }
+
+    .stage-label{
+      margin-bottom:12px;
+      text-align:center;
+      font-weight:bold;
+      color:var(--purple);
+    }
+
+    .stage-window,
+    .stage-content{
+      min-height:490px;
+    }
+
+    .stage-content{
+      padding:20px;
+      background:linear-gradient(145deg,#fffefb,#faf5fc);
+      border:2px solid #e1d5e7;
+      border-radius:19px;
+      animation:fadeStage .22s ease;
+    }
+
+    @keyframes fadeStage{
+      from{opacity:0}
+      to{opacity:1}
+    }
+
+    .stage-content h3{
+      margin-top:0;
+      color:var(--purple);
+      font-size:23px;
+    }
+
+    .definition-box,
+    .method-box,
+    .example-box,
+    .question-box,
+    .analysis-box,
+    .self-box{
+      padding:17px;
+      border-radius:16px;
+    }
+
+    .definition-box{
+      font-size:18px;
+      background:#f3eaf8;
+      border-right:6px solid var(--gold);
+    }
+
+    .method-box{
+      margin-top:14px;
+      background:#fff6dc;
+    }
+
+    .method-list{
+      margin:8px 0 0;
+      padding-right:23px;
+    }
+
+    .method-list li{
+      margin:7px 0;
+    }
+
+    .word-focus{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      margin:15px 0;
+    }
+
+    .focus-word{
+      min-width:120px;
+      padding:13px 17px;
+      text-align:center;
+      color:var(--purple-dark);
+      font-size:21px;
+      font-weight:bold;
+      background:#fff;
+      border:2px solid var(--gold);
+      border-radius:14px;
+    }
+
+    .relation-arrow{
+      color:var(--purple);
+      font-size:27px;
+      font-weight:bold;
+    }
+
+    .relation-sentence{
+      padding:12px;
+      text-align:center;
+      font-weight:bold;
+      background:#f3eaf8;
+      border-radius:12px;
+    }
+
+    .relations-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:10px;
+      margin-top:13px;
+    }
+
+    .relation-chip{
+      padding:11px;
+      background:#fff;
+      border:1px solid #dbcbe3;
+      border-radius:12px;
+    }
+
+    .relation-chip strong{
+      color:var(--purple);
+    }
+
+    .example-box{
+      background:#fff;
+      border:2px solid #e1d5e7;
+    }
+
+    .example-text{
+      margin:0;
+      font-size:18px;
+      line-height:2.1;
+    }
+
+    .highlight{
+      padding:2px 6px;
+      color:var(--purple-dark);
+      font-weight:bold;
+      background:#fff0b9;
+      border-radius:6px;
+    }
+
+    .question-box{
+      background:#fff9e9;
+      border:2px dashed var(--gold);
+    }
+
+    .options{
+      display:grid;
+      gap:10px;
+      margin-top:13px;
+    }
+
+    .option{
+      padding:13px;
+      text-align:right;
+      color:var(--text);
+      font-size:16px;
+      background:#f6eff9;
+      border:2px solid transparent;
+      border-radius:13px;
+      cursor:pointer;
+    }
+
+    .option.correct{
+      color:var(--green);
+      background:#e8f6ed;
+      border-color:#72ae87;
+    }
+
+    .option.wrong{
+      color:var(--red);
+      background:#fdeaea;
+      border-color:#dd9292;
+      animation:shake .35s ease;
+    }
+
+    @keyframes shake{
+      0%,100%{transform:translateX(0)}
+      25%{transform:translateX(7px)}
+      50%{transform:translateX(-7px)}
+      75%{transform:translateX(4px)}
+    }
+
+    .feedback{
+      display:none;
+      margin-top:12px;
+      padding:12px;
+      font-weight:bold;
+      border-radius:12px;
+    }
+
+    .feedback.show{display:block}
+
+    .feedback.good{
+      color:var(--green);
+      background:#e8f6ed;
+    }
+
+    .feedback.bad{
+      color:var(--red);
+      background:#fdeaea;
+    }
+
+    .analysis-box{
+      background:#f8f1fb;
+      border:2px solid #d7c6e2;
+    }
+
+    .analysis-item,
+    .evidence{
+      padding:12px;
+      margin-top:10px;
+      background:#fff;
+      border-radius:12px;
+    }
+
+    .analysis-item{
+      border-right:5px solid var(--gold);
+    }
+
+    .evidence{
+      font-weight:bold;
+      background:#fff6d9;
+    }
+
+    .self-box{
+      text-align:center;
+      background:#fff;
+      border:2px solid #ddd0e4;
+    }
+
+    .self-options{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+      margin-top:14px;
+    }
+
+    .self-btn{
+      min-height:77px;
+      padding:10px;
+      font-weight:bold;
+      color:var(--purple-dark);
+      background:linear-gradient(135deg,#fffdf8,#f2eaf7);
+      border:2px solid var(--gold);
+      border-radius:14px;
+      cursor:pointer;
+    }
+
+    .self-btn.selected{
+      color:#fff;
+      background:var(--purple);
+    }
+
+    .self-message{
+      display:none;
+      margin-top:12px;
+      padding:12px;
+      font-weight:bold;
+      background:#f3eaf8;
+      border-radius:12px;
+    }
+
+    .self-message.show{display:block}
+
+    .navigation{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      margin-top:16px;
+    }
+
+    .nav-btn{
+      flex:1;
+      padding:13px;
+      color:#fff;
+      font-size:17px;
+      font-weight:bold;
+      background:var(--purple);
+      border:0;
+      border-radius:13px;
+      cursor:pointer;
+    }
+
+    .nav-btn.secondary{
+      color:var(--purple-dark);
+      background:#eee5f2;
+    }
+
+    .nav-btn:disabled{
+      opacity:.4;
+      cursor:not-allowed;
+    }
+
+    .final-card{
+      display:none;
+      text-align:center;
+      border:3px solid var(--gold);
+    }
+
+    .final-card.show{display:block}
+
+    .badge{
+      display:inline-grid;
+      place-items:center;
+      width:120px;
+      height:120px;
+      font-size:49px;
+      background:linear-gradient(135deg,var(--gold),#f0d588);
+      border:6px solid #fff5cf;
+      border-radius:50%;
+    }
+
+    .final-stars{
+      color:var(--gold);
+      font-size:32px;
+      letter-spacing:7px;
+    }
+
+    footer{
+      padding:18px;
+      text-align:center;
+      color:#fff;
+      background:var(--purple-dark);
+      border-top:4px solid var(--gold);
+    }
+
+    @media(max-width:700px){
+      header h1{font-size:28px}
+
+      .card-index{grid-template-columns:1fr}
+
+      .workspace{
+        min-height:730px;
+        padding:14px;
+      }
+
+      .stage-window,
+      .stage-content{
+        min-height:550px;
+      }
+
+      .workspace-heading{font-size:22px}
+
+      .relations-grid,
+      .self-options{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>المعجم التفاعلي</h1>
+
+    <p>
+      المفردات والدلالات اللفظية:
+      نفهم الكلمة من سياقها ونكتشف الروابط الدقيقة بين الكلمات.
+    </p>
+  </header>
+
+  <main>
+
+    <div class="top-bar">
+
+      <a class="home-btn" href="nafes.html">
+        العودة إلى مكتبة نافس
+      </a>
+
+      <div class="progress-area">
+
+        <div class="progress-label">
+          <span>تقدّمكِ</span>
+          <span id="progressText">0 من 7</span>
+        </div>
+
+        <div class="progress-track">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+      </div>
+
+      <button class="sound-btn" id="soundBtn" type="button">
+        🔊 الصوت مفعّل
+      </button>
+
+    </div>
+
+    <section class="dictionary-view" id="dictionaryView">
+
+      <h2>بطاقات المعجم</h2>
+
+      <p class="intro-note">
+        اضغطي على البطاقة لفتح المهارة.
+        بعد إنهائها تعودين إلى البطاقات وتختارين المهارة التالية.
+      </p>
+
+      <div class="card-index" id="cardIndex"></div>
+
+    </section>
+
+    <section class="workspace" id="workspace" hidden>
+
+      <div class="workspace-top">
+
+        <button class="back-cards" id="backCards" type="button">
+          رجوع إلى البطاقات
+        </button>
+
+        <h2 class="workspace-heading" id="workspaceHeading"></h2>
+
+      </div>
+
+      <div class="stage-status">
+        <span class="stage-dot active"></span>
+        <span class="stage-dot"></span>
+        <span class="stage-dot"></span>
+        <span class="stage-dot"></span>
+        <span class="stage-dot"></span>
+        <span class="stage-dot"></span>
+      </div>
+
+      <div class="stage-label" id="stageLabel">شرح المهارة</div>
+
+      <div class="stage-window">
+        <div class="stage-content" id="stageContent"></div>
+      </div>
+
+      <div class="navigation">
+
+        <button class="nav-btn secondary" id="prevBtn" type="button">
+          السابق
+        </button>
+
+        <button class="nav-btn" id="nextBtn" type="button">
+          التالي
+        </button>
+
+      </div>
+
+    </section>
+
+    <section class="final-card" id="finalCard">
+
+      <div class="badge">📖</div>
+
+      <h2>أتممتِ المعجم التفاعلي</h2>
+
+      <p>
+        أصبحتِ أكثر قدرة على فهم المفردات
+        وتحليل العلاقات بين الكلمات بدقة.
+      </p>
+
+      <div class="final-stars">★ ★ ★</div>
+
+      <button class="nav-btn" id="returnDictionary" type="button">
+        العودة إلى بطاقات المعجم
+      </button>
+
+    </section>
+
+    <script>
+      const skills = [
+        {
+          id:"context",
+          symbol:"🔍",
+          color:"#c9d8cf",
+          name:"معنى الكلمة من السياق",
+          summary:"نستدل على المعنى من الجملة والقرائن.",
+          definition:
+            "فهم معنى الكلمة من السياق يعني تحديد دلالتها داخل الجملة، لا الاعتماد على معناها المشهور وحده؛ لأن الكلمة قد يتغير معناها بحسب الموضع.",
+          method:[
+            "اقرئي الجملة كاملة، لا الكلمة وحدها.",
+            "حددي القرائن قبل الكلمة وبعدها.",
+            "استبدلي الكلمة بمعنى محتمل.",
+            "تأكدي أن الجملة بقيت صحيحة منطقيًا ولغويًا."
+          ],
+          example:
+            "في العبارة: «واجهت الباحثة المشكلة بعقلٍ <span class='highlight'>متّقد</span>، فاقترحت حلولًا مبتكرة» تدل كلمتا «حلول» و«مبتكرة» على أن متّقد تعني: شديد الذكاء والنشاط.",
+          question:
+            "ما معنى كلمة «نضبت» في جملة: «نضبت مياه البئر بعد سنوات من قلة الأمطار»؟",
+          options:[
+            "ارتفعت.",
+            "نفدت أو قلّت.",
+            "تلوثت.",
+            "تحركت بسرعة."
+          ],
+          answer:1,
+          reason:
+            "لأن قلة الأمطار تؤدي إلى تناقص الماء وانتهائه، وهذا ينسجم مع معنى نضبت.",
+          evidence:
+            "القرينة: «بعد سنوات من قلة الأمطار».",
+          distractors:
+            "الارتفاع والتلوث والحركة لا تدل عليها القرينة السببية في الجملة.",
+          selfQuestion:
+            "هل استخدمتِ القرائن المحيطة بالكلمة قبل اختيار المعنى؟"
+        },
+
+        {
+          id:"synonym",
+          symbol:"🤝",
+          color:"#d8c9d9",
+          name:"الترادف",
+          summary:"كلمتان متقاربتان في المعنى.",
+          definition:
+            "الترادف هو تقارب كلمتين في المعنى، لكن الترادف لا يعني دائمًا تطابقهما الكامل في جميع السياقات.",
+          method:[
+            "حددي معنى الكلمة في الجملة.",
+            "استبدليها بالكلمة المقترحة.",
+            "قارني درجة المعنى والأسلوب.",
+            "اختاري الأقرب الذي لا يغيّر المقصود."
+          ],
+          example:
+            "في قولنا: «قدّمت الطالبة تفسيرًا <span class='highlight'>وجيزًا</span>»، أقرب مرادف لكلمة وجيز هو «مختصر»، لا «ناقص»؛ لأن الاختصار لا يعني نقص الفكرة.",
+          question:
+            "ما أقرب مرادف لكلمة «راسخ» في جملة: «لديها فهم راسخ للمفهوم»؟",
+          options:[
+            "ثابت.",
+            "سريع.",
+            "غامض.",
+            "مؤقت."
+          ],
+          answer:0,
+          reason:
+            "لأن الفهم الراسخ هو الفهم الثابت القوي.",
+          evidence:
+            "يمكن استبدالها فنقول: «لديها فهم ثابت للمفهوم».",
+          distractors:
+            "سريع وغامض ومؤقت لا تحمل معنى الثبات والقوة.",
+          selfQuestion:
+            "هل اختبرتِ المرادف داخل الجملة قبل اختياره؟"
+        },
+
+        {
+          id:"antonym",
+          symbol:"↔️",
+          color:"#d9cfbf",
+          name:"التضاد",
+          summary:"كلمتان تختلفان في المعنى.",
+          definition:
+            "التضاد هو وجود معنى مقابل أو معاكس لمعنى كلمة أخرى، ويحدده السياق ودرجة المعنى.",
+          method:[
+            "حددي معنى الكلمة أولًا.",
+            "اسألي: ما المعنى المقابل لها؟",
+            "اختبري الكلمة المضادة في السياق.",
+            "انتبهي إلى النفي؛ فليس كل نفي تضادًا دقيقًا."
+          ],
+          example:
+            "ضد كلمة <span class='highlight'>غامض</span> هو «واضح». أما «غير غامض» فهو نفي، لكنه ليس دائمًا الكلمة المضادة المطلوبة.",
+          question:
+            "ما ضد كلمة «مؤقت»؟",
+          options:[
+            "سريع.",
+            "دائم.",
+            "قريب.",
+            "محدود."
+          ],
+          answer:1,
+          reason:
+            "لأن المؤقت يستمر مدة محدودة، أما الدائم فيستمر ولا ينتهي سريعًا.",
+          evidence:
+            "العلاقة: مؤقت ↔ دائم.",
+          distractors:
+            "سريع وقريب ومحدود ليست مقابلات دقيقة لمعنى الاستمرار.",
+          selfQuestion:
+            "هل بحثتِ عن المقابل الحقيقي للمعنى لا مجرد كلمة مختلفة؟"
+        },
+
+        {
+          id:"word-form",
+          symbol:"🌱",
+          color:"#c8d7dc",
+          name:"الجذر والاشتقاق",
+          summary:"نربط الكلمات بأصل لغوي واحد.",
+          definition:
+            "الاشتقاق هو تكوّن كلمات متعددة من جذر واحد، مع اشتراكها في أصل المعنى واختلاف صيغها ووظائفها.",
+          method:[
+            "احذفي حروف الزيادة إن أمكن.",
+            "ابحثي عن الحروف الأصلية المشتركة.",
+            "قارني المعنى المشترك بين الكلمات.",
+            "لا تعتمدي على تشابه الحروف وحده."
+          ],
+          example:
+            "الكلمات: «كاتب، مكتوب، مكتبة، كتابة» ترتبط بالجذر <span class='highlight'>ك ت ب</span> وتشترك في معنى الكتابة.",
+          question:
+            "أي مجموعة تنتمي إلى جذر واحد؟",
+          options:[
+            "علم، معلّم، تعليم.",
+            "سفر، سفينة، سفح.",
+            "جلس، جبل، جميل.",
+            "نور، نار، نهر."
+          ],
+          answer:0,
+          reason:
+            "لأن الكلمات الثلاث مشتقة من الجذر «ع ل م» وتشترك في معنى المعرفة.",
+          evidence:
+            "علم ← معلّم ← تعليم.",
+          distractors:
+            "المجموعات الأخرى تتشابه في بعض الحروف لكنها لا تعود إلى جذر واحد.",
+          selfQuestion:
+            "هل قارنتِ الحروف الأصلية والمعنى معًا؟"
+        },
+
+        {
+          id:"singular-plural",
+          symbol:"👤👥",
+          color:"#d6d3bd",
+          name:"المفرد والجمع",
+          summary:"نميز الواحد من الدال على أكثر من اثنين.",
+          definition:
+            "المفرد يدل على واحد أو واحدة، والجمع يدل على أكثر من اثنين أو اثنتين، وقد يكون جمع مذكر سالمًا أو جمع مؤنث سالمًا أو جمع تكسير.",
+          method:[
+            "حددي الكلمة المفردة.",
+            "لاحظي شكل الجمع وتغير بنية الكلمة.",
+            "قارني المعنى داخل الجملة.",
+            "انتبهي إلى الكلمات التي لها جموع غير شائعة."
+          ],
+          example:
+            "مفرد «مصابيح» هو <span class='highlight'>مصباح</span>، وهو جمع تكسير لأن صورة المفرد تغيرت.",
+          question:
+            "ما مفرد كلمة «نتائج»؟",
+          options:[
+            "ناتج.",
+            "نتيجة.",
+            "إنتاج.",
+            "منتج."
+          ],
+                 answer:1,
+          reason:
+            "لأن «نتائج» جمع تكسير لكلمة «نتيجة».",
+          evidence:
+            "نتيجة ← نتائج.",
+          distractors:
+            "ناتج وإنتاج ومنتج كلمات مرتبطة بالجذر، لكنها ليست مفرد كلمة «نتائج».",
+          selfQuestion:
+            "هل فرّقتِ بين المفرد والكلمة المشتقة من الجذر نفسه؟"
+        },
+
+        {
+          id:"relations",
+          symbol:"🕸️",
+          color:"#d9c5cf",
+          name:"العلاقات بين الكلمات",
+          summary:"نحدد الرابط والاتجاه بين زوجين.",
+          definition:
+            "العلاقة اللفظية رابط معنوي يجمع كلمتين. نقرأ الزوج من الكلمة الأولى إلى الثانية، ونصوغ جملة تصف العلاقة، ثم نبحث عن زوج يحقق الجملة نفسها وبالاتجاه نفسه.",
+          method:[
+            "حددي الكلمة الأولى والكلمة الثانية.",
+            "اقرئي العلاقة: الكلمة الأولى ⟶ الكلمة الثانية.",
+            "صوغي جملة دقيقة تصف الرابط بينهما.",
+            "طبقي الجملة نفسها على كل بديل.",
+            "استبعدي البديل إذا كانت العلاقة معكوسة.",
+            "اختاري العلاقة الأكثر تحديدًا."
+          ],
+          relationMode:true,
+          example:
+            "في الزوج «مفتاح ⟶ فتح»، المفتاح <span class='highlight'>أداة تستخدم للفتح</span>. والزوج المطابق هو «قلم ⟶ كتابة»؛ لأن القلم أداة تستخدم للكتابة.",
+          question:
+            "بذرة ⟶ نبات، ما الزوج الذي يحمل العلاقة نفسها وبالاتجاه نفسه؟",
+          options:[
+            "شجرة ⟶ ثمرة.",
+            "تعلّم ⟶ معرفة.",
+            "نبات ⟶ بذرة.",
+            "ماء ⟶ كوب."
+          ],
+          answer:1,
+          reason:
+            "البذرة سبب في نمو النبات، والتعلّم سبب في اكتساب المعرفة.",
+          evidence:
+            "بذرة ⟶ نبات: سبب ⟶ نتيجة، وتعلّم ⟶ معرفة: سبب ⟶ نتيجة.",
+          distractors:
+            "شجرة وثمرة علاقة منتِج ومنتَج، ونبات وبذرة علاقة معكوسة، وماء وكوب علاقة محتوى ووعاء.",
+          selfQuestion:
+            "هل حافظتِ على نوع العلاقة واتجاهها معًا؟"
+        },
+
+        {
+          id:"new-context",
+          symbol:"✍️",
+          color:"#bfd2cf",
+          name:"توظيف الكلمة",
+          summary:"نستخدم الكلمة في سياق جديد صحيح.",
+          definition:
+            "توظيف الكلمة يعني استخدامها في جملة جديدة تحافظ على معناها الصحيح، وتنسجم نحويًا ودلاليًا مع السياق.",
+          method:[
+            "حددي معنى الكلمة المطلوب.",
+            "حددي نوعها: اسم أم فعل أم صفة.",
+            "اكتبي جملة يظهر منها المعنى.",
+            "راجعي توافق الكلمة مع بقية الجملة."
+          ],
+          example:
+            "لتوظيف كلمة «يتقصّى» نقول: «يتقصّى الباحث مصدر المعلومة قبل نشرها»، أي يبحث عنها بدقة.",
+          question:
+            "أي جملة وظفت كلمة «ثمينة» توظيفًا صحيحًا؟",
+          options:[
+            "قدمت المعلمة نصيحة ثمينة أفادت الطالبات.",
+            "ركضت الطالبة ثمينة في الملعب.",
+            "ثمينة الكتاب بسرعة.",
+            "كان الطريق ثمينة بالسيارات."
+          ],
+          answer:0,
+          reason:
+            "لأن «ثمينة» صفة بمعنى عالية القيمة، وقد وصفت النصيحة وصفًا صحيحًا.",
+          evidence:
+            "«نصيحة ثمينة» تركيب صحيح يدل على نصيحة ذات قيمة.",
+          distractors:
+            "البدائل الأخرى استخدمت الكلمة في مواضع لا تناسب معناها أو تركيبها النحوي.",
+          selfQuestion:
+            "هل أظهرت الجملة معنى الكلمة بوضوح؟"
+        }
+      ];
+
+      const relationKinds = [
+        ["ترادف","فرح ⟶ سرور"],
+        ["تضاد","قوة ⟶ ضعف"],
+        ["سبب ونتيجة","اجتهاد ⟶ نجاح"],
+        ["نتيجة وسبب","نجاح ⟶ اجتهاد"],
+        ["جزء وكل","صفحة ⟶ كتاب"],
+        ["كل وجزء","شجرة ⟶ غصن"],
+        ["أداة ووظيفتها","مقص ⟶ قص"],
+        ["مكان وما يوجد فيه","مكتبة ⟶ كتب"],
+        ["شيء ومكانه","طائرة ⟶ مطار"],
+        ["مهنة وأداتها","طبيب ⟶ سماعة"],
+        ["مادة ومصنوع","خشب ⟶ أثاث"],
+        ["منتِج ومنتَج","نحلة ⟶ عسل"],
+        ["زمان وحدث","صباح ⟶ شروق"],
+        ["تتابع زمني","بذرة ⟶ نبتة"],
+        ["صفة وموصوف","ثلج ⟶ بارد"],
+        ["فئة وفرد","فاكهة ⟶ تفاح"],
+        ["تدرج","دافئ ⟶ حار"],
+        ["علاقة طردية","تدريب أكثر ⟶ إتقان أكبر"],
+        ["علاقة عكسية","سرعة أكبر ⟶ زمن أقل"],
+        ["تطابق","مثلث متساوي الأضلاع ⟶ ثلاثة أضلاع متساوية"]
+      ];
+
+      const stageNames = [
+        "شرح المهارة",
+        "طريقة الحل",
+        "المثال",
+        "السؤال",
+        "السبب والشاهد",
+        "التقييم الذاتي"
+      ];
+
+      const cardIndex =
+        document.getElementById("cardIndex");
+
+      const dictionaryView =
+        document.getElementById("dictionaryView");
+
+      const workspace =
+        document.getElementById("workspace");
+
+      const workspaceHeading =
+        document.getElementById("workspaceHeading");
+
+      const stageLabel =
+        document.getElementById("stageLabel");
+
+      const stageContent =
+        document.getElementById("stageContent");
+
+      const stageDots =
+        [...document.querySelectorAll(".stage-dot")];
+
+      const prevBtn =
+        document.getElementById("prevBtn");
+
+      const nextBtn =
+        document.getElementById("nextBtn");
+
+      const backCards =
+        document.getElementById("backCards");
+
+      const progressText =
+        document.getElementById("progressText");
+
+      const progressBar =
+        document.getElementById("progressBar");
+
+      const soundBtn =
+        document.getElementById("soundBtn");
+
+      const finalCard =
+        document.getElementById("finalCard");
+
+      const returnDictionary =
+        document.getElementById("returnDictionary");
+
+      let currentSkillIndex = 0;
+      let currentStage = 0;
+
+      let soundOn =
+        localStorage.getItem("nafesSound") !== "off";
+
+      const solved = {};
+
+      const completed = new Set(
+        JSON.parse(
+          localStorage.getItem(
+            "nafesVocabularyCompleted"
+          ) || "[]"
+        )
+      );
+
+      const ratings = JSON.parse(
+        localStorage.getItem(
+          "nafesVocabularyRatings"
+        ) || "{}"
+      );
+
+      function createAudioContext() {
+        return new (
+          window.AudioContext ||
+          window.webkitAudioContext
+        )();
+      }
+
+      function playCorrectSound() {
+        if (!soundOn) return;
+
+        const context = createAudioContext();
+
+        [523, 659, 784].forEach(
+          (frequency, index) => {
+            const oscillator =
+              context.createOscillator();
+
+            const gain =
+              context.createGain();
+
+            const start =
+              context.currentTime + index * 0.09;
+
+            oscillator.frequency.value =
+              frequency;
+
+            oscillator.type = "sine";
+
+            gain.gain.setValueAtTime(
+              0.0001,
+              start
+            );
+
+            gain.gain.exponentialRampToValueAtTime(
+              0.18,
+              start + 0.02
+            );
+
+            gain.gain.exponentialRampToValueAtTime(
+              0.0001,
+              start + 0.24
+            );
+
+            oscillator.connect(gain);
+            gain.connect(context.destination);
+
+            oscillator.start(start);
+            oscillator.stop(start + 0.26);
+          }
+        );
+      }
+
+      function playWrongSound() {
+        if (!soundOn) return;
+
+        const context = createAudioContext();
+
+        [230, 175].forEach(
+          (frequency, index) => {
+            const oscillator =
+              context.createOscillator();
+
+            const gain =
+              context.createGain();
+
+            const start =
+              context.currentTime + index * 0.14;
+
+            oscillator.frequency.value =
+              frequency;
+
+            oscillator.type = "square";
+
+            gain.gain.setValueAtTime(
+              0.0001,
+              start
+            );
+
+            gain.gain.exponentialRampToValueAtTime(
+              0.08,
+              start + 0.02
+            );
+
+            gain.gain.exponentialRampToValueAtTime(
+              0.0001,
+              start + 0.13
+            );
+
+            oscillator.connect(gain);
+            gain.connect(context.destination);
+
+            oscillator.start(start);
+            oscillator.stop(start + 0.15);
+          }
+        );
+      }
+
+      function updateProgress() {
+        progressText.textContent =
+          completed.size + " من " + skills.length;
+
+        progressBar.style.width =
+          completed.size / skills.length * 100 + "%";
+
+        localStorage.setItem(
+          "nafesVocabularyCompleted",
+          JSON.stringify([...completed])
+        );
+
+        document
+          .querySelectorAll(".word-card")
+          .forEach(card => {
+            card.classList.toggle(
+              "completed",
+              completed.has(card.dataset.skill)
+            );
+          });
+      }
+
+      function buildCards() {
+        cardIndex.innerHTML = "";
+
+        skills.forEach((skill, index) => {
+          const button =
+            document.createElement("button");
+
+          button.type = "button";
+          button.className = "word-card";
+          button.dataset.skill = skill.id;
+
+          button.style.setProperty(
+            "--card-color",
+            skill.color
+          );
+
+          button.innerHTML = `
+            <span class="card-symbol">
+              ${skill.symbol}
+            </span>
+
+            <span class="card-title">
+              ${skill.name}
+            </span>
+
+            <span class="card-summary">
+              ${skill.summary}
+            </span>
+          `;
+
+          button.addEventListener("click", () => {
+            openSkill(index);
+          });
+
+          cardIndex.appendChild(button);
+        });
+
+        updateProgress();
+      }
+
+      function openSkill(index) {
+        currentSkillIndex = index;
+        currentStage = 0;
+
+        dictionaryView.hidden = true;
+        finalCard.classList.remove("show");
+        workspace.hidden = false;
+
+        renderStage();
+      }
+
+      function renderStage() {
+        const skill = skills[currentSkillIndex];
+
+        workspaceHeading.textContent =
+          skill.symbol + " " + skill.name;
+
+        stageLabel.textContent =
+          stageNames[currentStage];
+
+        stageDots.forEach((dot, index) => {
+          dot.classList.toggle(
+            "active",
+            index === currentStage
+          );
+        });
+
+        prevBtn.disabled =
+          currentStage === 0;
+
+        nextBtn.disabled = false;
+        nextBtn.textContent = "التالي";
+
+        if (currentStage === 0) {
+          stageContent.innerHTML = `
+            <h3>ما ${skill.name}؟</h3>
+
+            <div class="definition-box">
+              ${skill.definition}
+            </div>
+          `;
+        }
+
+        if (currentStage === 1) {
+          let relations = "";
+
+          if (skill.relationMode) {
+            relations = `
+              <div class="word-focus">
+
+                <span class="focus-word">
+                  الكلمة الأولى
+                </span>
+
+                <span class="relation-arrow">
+                  ⟶
+                </span>
+
+                <span class="focus-word">
+                  الكلمة الثانية
+                </span>
+
+              </div>
+
+              <div class="relation-sentence">
+                لا نعتمد على اليمين واليسار فقط؛
+                نحدد نقطة البداية والنهاية،
+                ثم نحافظ على الاتجاه نفسه.
+              </div>
+
+              <div class="relations-grid">
+
+                ${relationKinds.map(item => `
+                  <div class="relation-chip">
+                    <strong>${item[0]}:</strong>
+                    ${item[1]}
+                  </div>
+                `).join("")}
+
+              </div>
+            `;
+          }
+
+          stageContent.innerHTML = `
+            <h3>طريقة الحل العلمية</h3>
+
+            <div class="method-box">
+
+              <ol class="method-list">
+
+                ${skill.method.map(step => `
+                  <li>${step}</li>
+                `).join("")}
+
+              </ol>
+
+            </div>
+
+            ${relations}
+          `;
+        }
+
+        if (currentStage === 2) {
+          stageContent.innerHTML = `
+            <h3>مثال محلول</h3>
+
+            <div class="example-box">
+
+              <p class="example-text">
+                ${skill.example}
+              </p>
+
+            </div>
+          `;
+        }
+
+        if (currentStage === 3) {
+          stageContent.innerHTML = `
+            <div class="question-box">
+
+              <h3>${skill.question}</h3>
+
+              <div class="options">
+
+                ${skill.options.map(
+                  (option, index) => `
+                    <button
+                      class="option"
+                      data-option="${index}"
+                      type="button">
+                      ${option}
+                    </button>
+                  `
+                ).join("")}
+
+              </div>
+
+              <div class="feedback"></div>
+
+            </div>
+          `;
+
+          nextBtn.disabled =
+            !solved[skill.id];
+
+          attachQuestionEvents(skill);
+        }
+
+        if (currentStage === 4) {
+          stageContent.innerHTML = `
+            <div class="analysis-box">
+
+              <h3>سبب الإجابة والشاهد</h3>
+
+              <div class="analysis-item">
+                <strong>سبب صحة الإجابة:</strong>
+                ${skill.reason}
+              </div>
+
+              <div class="evidence">
+                <strong>الشاهد أو الاختبار:</strong>
+                ${skill.evidence}
+              </div>
+
+              <div class="analysis-item">
+                <strong>تحليل البدائل:</strong>
+                ${skill.distractors}
+              </div>
+
+            </div>
+          `;
+        }
+
+        if (currentStage === 5) {
+          const savedRating =
+            ratings[skill.id] || "";
+
+          stageContent.innerHTML = `
+            <div class="self-box">
+
+              <h3>قيّمي إتقانكِ</h3>
+
+              <p>${skill.selfQuestion}</p>
+
+              <div class="self-options">
+
+                <button
+                  class="self-btn ${
+                    savedRating === "mastered"
+                      ? "selected"
+                      : ""
+                  }"
+                  data-rating="mastered"
+                  type="button">
+                  ⭐ أتقنتُ المهارة
+                </button>
+
+                <button
+                  class="self-btn ${
+                    savedRating === "practice"
+                      ? "selected"
+                      : ""
+                  }"
+                  data-rating="practice"
+                  type="button">
+                  🔁 أحتاج إلى تدريب
+                </button>
+
+                <button
+                  class="self-btn ${
+                    savedRating === "help"
+                      ? "selected"
+                      : ""
+                  }"
+                  data-rating="help"
+                  type="button">
+                  🪜 أحتاج إلى مساعدة
+                </button>
+
+              </div>
+
+              <div
+                class="self-message ${
+                  savedRating ? "show" : ""
+                }">
+                ${
+                  savedRating
+                    ? ratingMessage(savedRating)
+                    : ""
+                }
+              </div>
+
+            </div>
+          `;
+
+          nextBtn.textContent =
+            completed.size === skills.length
+              ? "عرض النتيجة النهائية"
+              : "العودة إلى بطاقات المعجم";
+
+          nextBtn.disabled =
+            !savedRating;
+
+          attachRatingEvents(skill);
+        }
+      }
+
+      function attachQuestionEvents(skill) {
+        const options = [
+          ...stageContent.querySelectorAll(
+            ".option"
+          )
+        ];
+
+        const feedback =
+          stageContent.querySelector(
+            ".feedback"
+          );
+
+        options.forEach(option => {
+          option.addEventListener("click", () => {
+            const selected =
+              Number(option.dataset.option);
+
+            if (selected === skill.answer) {
+              options.forEach(item => {
+                item.disabled = true;
+              });
+
+              option.classList.add("correct");
+
+              feedback.className =
+                "feedback show good";
+
+              feedback.textContent =
+                "👏 إجابة صحيحة. أصبح السبب والشاهد متاحين.";
+
+              solved[skill.id] = true;
+              nextBtn.disabled = false;
+
+              playCorrectSound();
+
+            } else {
+              option.classList.add("wrong");
+
+              feedback.className =
+                "feedback show bad";
+
+              feedback.textContent =
+                "ليست الإجابة الأدق. طبّقي خطوات المهارة، ثم قارني البدائل.";
+
+              playWrongSound();
+
+              if (navigator.vibrate) {
+                navigator.vibrate(
+                  [110, 60, 110]
+                );
+              }
+
+              setTimeout(() => {
+                option.classList.remove("wrong");
+              }, 650);
+            }
+          });
+        });
+      }
+
+      function ratingMessage(rating) {
+        if (rating === "mastered") {
+          return "⭐ رائع. أتقنتِ المهارة وطبقتها بدقة.";
+        }
+
+        if (rating === "practice") {
+          return "🔁 راجعي طريقة الحل، ثم أعيدي المثال في وقت لاحق.";
+        }
+
+        return "🪜 ابدئي بالمعنى والسياق، ثم قارني العلاقة والاتجاه خطوة خطوة.";
+      }
+
+      function attachRatingEvents(skill) {
+        const buttons = [
+          ...stageContent.querySelectorAll(
+            ".self-btn"
+          )
+        ];
+
+        const message =
+          stageContent.querySelector(
+            ".self-message"
+          );
+
+        buttons.forEach(button => {
+          button.addEventListener("click", () => {
+            buttons.forEach(item => {
+              item.classList.remove("selected");
+            });
+
+            button.classList.add("selected");
+
+            const rating =
+              button.dataset.rating;
+
+            ratings[skill.id] = rating;
+
+            localStorage.setItem(
+              "nafesVocabularyRatings",
+              JSON.stringify(ratings)
+            );
+
+            completed.add(skill.id);
+            updateProgress();
+
+            message.textContent =
+              ratingMessage(rating);
+
+            message.classList.add("show");
+
+            nextBtn.disabled = false;
+
+            nextBtn.textContent =
+              completed.size === skills.length
+                ? "عرض النتيجة النهائية"
+                : "العودة إلى بطاقات المعجم";
+
+            if (rating === "mastered") {
+              playCorrectSound();
+            }
+          });
+        });
+      }
+
+      prevBtn.addEventListener("click", () => {
+        if (currentStage > 0) {
+          currentStage--;
+          renderStage();
+        }
+      });
+
+      nextBtn.addEventListener("click", () => {
+        if (currentStage < 5) {
+          currentStage++;
+          renderStage();
+          return;
+        }
+
+        if (completed.size === skills.length) {
+          workspace.hidden = true;
+          dictionaryView.hidden = true;
+          finalCard.classList.add("show");
+          return;
+        }
+
+        workspace.hidden = true;
+        finalCard.classList.remove("show");
+        dictionaryView.hidden = false;
+        updateProgress();
+      });
+
+      backCards.addEventListener("click", () => {
+        workspace.hidden = true;
+        finalCard.classList.remove("show");
+        dictionaryView.hidden = false;
+        updateProgress();
+      });
+
+      returnDictionary.addEventListener(
+        "click",
+        () => {
+          finalCard.classList.remove("show");
+          workspace.hidden = true;
+          dictionaryView.hidden = false;
+          updateProgress();
+        }
+      );
+
+      soundBtn.addEventListener("click", () => {
+        soundOn = !soundOn;
+
+        localStorage.setItem(
+          "nafesSound",
+          soundOn ? "on" : "off"
+        );
+
+        soundBtn.textContent =
+          soundOn
+            ? "🔊 الصوت مفعّل"
+            : "🔇 الصوت مكتوم";
+
+        if (soundOn) {
+          playCorrectSound();
+        }
+      });
+
+      soundBtn.textContent =
+          soundOn
+          ? "🔊 الصوت مفعّل"
+          : "🔇 الصوت مكتوم";
+
+      buildCards();
+    </script>
+
+  </main>
+
+  <footer>
+    جميع الحقوق محفوظة © 2026
+  </footer>
+
+</body>
+</html>
