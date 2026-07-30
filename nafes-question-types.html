@@ -9,549 +9,543 @@
     content="width=device-width, initial-scale=1.0"
   >
 
-  <title>
-    رحلة أنواع الأسئلة | منصة آفاق اللغة
-  </title>
+  <title>أنواع الأسئلة | مكتبة نافس</title>
 
   <style>
+    :root {
+      --purple: #76558f;
+      --dark-purple: #4c385d;
+      --light-purple: #f3ebf8;
+      --gold: #c9a85c;
+      --cream: #fffaf2;
+      --card: #fffdf8;
+      --text: #413348;
+      --green: #2f7d4a;
+      --red: #b64242;
+    }
+
     * {
       box-sizing: border-box;
     }
 
-    :root {
-      --purple-dark: #49385c;
-      --purple: #6f5288;
-      --purple-soft: #776094;
-      --purple-light: #f5ecfb;
-      --gold: #c9a85c;
-      --gold-dark: #9d772b;
-      --gold-light: #fff6dc;
-      --cream: #fffdf8;
-      --text: #3e3048;
-      --muted: #625769;
-      --green: #3f896b;
-      --green-light: #eaf7f1;
-      --blue: #547fa5;
-      --blue-light: #edf5fb;
-      --rose: #a94f6d;
-      --rose-light: #fff0f4;
-      --orange: #a96d2e;
-      --orange-light: #fff3e3;
-      --gray: #ebe5ee;
-    }
-
-    html,
     body {
-      width: 100%;
-      max-width: 100%;
       margin: 0;
+      font-family: Tahoma, Arial, sans-serif;
+      color: var(--text);
+      background: linear-gradient(
+        180deg,
+        #fffaf2,
+        #f6eef9
+      );
+      line-height: 1.9;
       overflow-x: hidden;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      min-height: 100vh;
-      color: var(--text);
-      background:
-        radial-gradient(
-          circle at top right,
-          rgba(255, 239, 200, 0.82),
-          transparent 31%
-        ),
-        radial-gradient(
-          circle at bottom left,
-          rgba(228, 210, 242, 0.88),
-          transparent 43%
-        ),
-        linear-gradient(
-          145deg,
-          #fffaf2,
-          #f8f0fb
-        );
-      font-family: Tahoma, Arial, sans-serif;
-      font-weight: 600;
+    header {
+      padding: 34px 18px 30px;
       text-align: center;
-    }
-
-    button,
-    a {
-      font-family: inherit;
-    }
-
-    p,
-    li,
-    button {
-      font-size: 17px;
-      font-weight: 600;
-      line-height: 2;
-    }
-
-    h1,
-    h2,
-    h3,
-    strong {
-      font-weight: 800;
-    }
-
-    .topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 14px 5%;
       color: white;
       background: linear-gradient(
         135deg,
         #776094,
         #5b4677
       );
-      box-shadow: 0 6px 22px rgba(73, 56, 92, 0.22);
+      border-bottom: 5px solid var(--gold);
     }
 
-    .brand {
-      color: #fff8df;
-      font-size: 18px;
-      font-weight: 800;
-    }
-
-    .back-link {
-      padding: 9px 13px;
-      border-radius: 22px;
-      color: white;
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: 700;
-      background: rgba(255, 255, 255, 0.14);
-      border: 1px solid rgba(255, 255, 255, 0.36);
-    }
-
-    .hero {
-      position: relative;
-      overflow: hidden;
-      padding: 46px 18px 55px;
-      color: white;
-      border-radius: 0 0 52px 52px;
-      background: linear-gradient(
-        145deg,
-        #776094,
-        #5b4677
-      );
-      box-shadow: 0 14px 34px rgba(73, 56, 92, 0.22);
-    }
-
-    .hero::before,
-    .hero::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.07);
-    }
-
-    .hero::before {
-      width: 210px;
-      height: 210px;
-      top: -110px;
-      right: -65px;
-    }
-
-    .hero::after {
-      width: 160px;
-      height: 160px;
-      bottom: -85px;
-      left: -45px;
-    }
-
-    .hero-icon {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 102px;
-      height: 102px;
-      margin: 0 auto 18px;
-      border-radius: 31px;
-      font-size: 53px;
-      background: rgba(255, 255, 255, 0.14);
-      border: 3px solid rgba(255, 255, 255, 0.34);
-      animation: floating 2.8s ease-in-out infinite;
-    }
-
-    @keyframes floating {
-      0%,
-      100% {
-        transform: translateY(0);
-      }
-
-      50% {
-        transform: translateY(-6px);
-      }
-    }
-
-    .hero h1 {
-      position: relative;
-      z-index: 2;
-      margin: 0 0 8px;
-      color: #fff8df;
+    header h1 {
+      margin: 0;
       font-size: 34px;
-      line-height: 1.7;
     }
 
-    .hero p {
-      position: relative;
-      z-index: 2;
-      max-width: 720px;
-      margin: auto;
-      color: #f8f1fb;
+    header p {
+      max-width: 760px;
+      margin: 10px auto 0;
       font-size: 17px;
-      line-height: 2;
     }
 
     main {
-      width: min(820px, 93%);
-      margin: 30px auto 52px;
+      width: min(94%, 900px);
+      margin: 24px auto 40px;
     }
 
-    .intro-card {
-      margin-bottom: 24px;
-      padding: 22px;
-      border-radius: 24px;
-      color: #584563;
-      background: var(--cream);
-      border: 1px solid rgba(93, 67, 116, 0.14);
-      border-right: 7px solid var(--gold);
-      box-shadow: 0 12px 28px rgba(73, 56, 92, 0.11);
-      text-align: right;
-    }
-
-    .intro-card strong {
-      display: block;
-      margin-bottom: 6px;
-      color: var(--purple-dark);
-      font-size: 21px;
-    }
-
-    .journey-progress {
-      margin-bottom: 25px;
-      padding: 18px;
-      border-radius: 23px;
-      background: var(--cream);
-      border: 1px solid rgba(93, 67, 116, 0.14);
-      box-shadow: 0 11px 27px rgba(73, 56, 92, 0.11);
-    }
-
-    .journey-progress h2 {
-      margin: 0 0 13px;
-      color: var(--purple-dark);
-      font-size: 21px;
-    }
-
-    .progress-line {
-      display: grid;
-      grid-template-columns:
-        repeat(5, minmax(0, 1fr));
-      gap: 7px;
-    }
-
-    .progress-step {
-      min-height: 59px;
+    .top-bar {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
-      justify-content: center;
-      padding: 7px 4px;
-      border-radius: 14px;
-      color: #7b6d83;
-      background: var(--gray);
-      font-size: 12px;
-      font-weight: 800;
-      line-height: 1.5;
-      transition: 0.3s;
+      gap: 10px;
+      padding: 12px;
+      margin-bottom: 18px;
+      background: var(--card);
+      border: 2px solid #ded2e5;
+      border-radius: 17px;
+      box-shadow: 0 6px 16px rgba(73, 56, 92, 0.09);
     }
 
-    .progress-step.active {
+    .home-btn,
+    .sound-btn {
+      padding: 10px 14px;
+      font-family: inherit;
+      font-weight: bold;
+      text-decoration: none;
+      border: 0;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+    .home-btn {
+      color: #33263d;
+      background: var(--gold);
+    }
+
+    .sound-btn {
       color: white;
       background: var(--purple);
-      box-shadow: 0 6px 14px rgba(73, 56, 92, 0.2);
     }
 
-    .progress-step.done {
-      color: #2e684f;
-      background: var(--green-light);
-      border: 1px solid rgba(63, 137, 107, 0.35);
+    .progress-area {
+      flex: 1;
+      min-width: 210px;
     }
 
-    .type-section {
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .progress-track {
+      height: 12px;
+      margin-top: 6px;
+      overflow: hidden;
+      background: #eee5f2;
+      border-radius: 999px;
+    }
+
+    .progress-bar {
+      width: 0;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        var(--gold),
+        var(--purple)
+      );
+      transition: width 0.4s ease;
+    }
+
+    .gate-card,
+    .journey-card,
+    .final-card {
+      padding: 22px;
+      margin-bottom: 20px;
+      background: var(--card);
+      border: 2px solid #e0d6e5;
+      border-radius: 24px;
+      box-shadow: 0 8px 20px rgba(73, 56, 92, 0.09);
+    }
+
+    .gate-card h2,
+    .journey-card h2,
+    .final-card h2 {
+      margin-top: 0;
+      text-align: center;
+      color: var(--dark-purple);
+    }
+
+    .gates {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 13px;
+    }
+
+    .gate {
+      min-height: 100px;
+      padding: 12px;
+      font-family: inherit;
+      font-size: 18px;
+      font-weight: bold;
+      color: #75697d;
+      background: linear-gradient(
+        135deg,
+        #f6f0f8,
+        #ece3ef
+      );
+      border: 2px solid transparent;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .gate:last-child {
+      grid-column: 1 / -1;
+      width: 50%;
+      justify-self: center;
+    }
+
+    .gate.active {
+      color: white;
+      background: var(--purple);
+      border-color: var(--gold);
+      transform: translateY(-3px);
+      box-shadow: 0 7px 15px rgba(73, 56, 92, 0.17);
+    }
+
+    .journey {
       display: none;
-      animation: enterSection 0.55s ease;
+      animation: appear 0.3s ease;
     }
 
-    .type-section.active {
+    .journey.active {
       display: block;
     }
 
-    @keyframes enterSection {
+    @keyframes appear {
       from {
-        opacity: 0;
-        transform: translateY(15px);
+        opacity: 0.2;
+        transform: translateY(8px);
       }
 
       to {
         opacity: 1;
-        transform: translateY(0);
+        transform: none;
       }
+    }    .journey-head {
+      text-align: center;
+      margin-bottom: 18px;
     }
 
-    .type-gate {
-      margin-bottom: 22px;
-      padding: 24px 21px;
+    .journey-icon {
+      display: inline-grid;
+      place-items: center;
+      width: 96px;
+      height: 96px;
+      margin-bottom: 10px;
+      font-size: 46px;
+      background: #fff7dc;
       border-radius: 28px;
-      background: var(--cream);
-      border: 1px solid rgba(93, 67, 116, 0.14);
-      box-shadow: 0 14px 31px rgba(73, 56, 92, 0.12);
+      box-shadow: 0 8px 18px rgba(73, 56, 92, 0.10);
     }
 
-    .type-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 92px;
-      height: 92px;
-      margin: 0 auto 15px;
-      border-radius: 28px;
-      font-size: 48px;
-      background: var(--gold-light);
-      box-shadow: 0 8px 19px rgba(73, 56, 92, 0.09);
-    }
-
-    .type-gate h2 {
-      margin: 0 0 12px;
-      color: var(--purple-dark);
-      font-size: 28px;
-      line-height: 1.7;
-    }
-
-    .type-gate p {
+    .journey-title {
       margin: 0;
-      color: var(--muted);
-      text-align: right;
+      font-size: 31px;
+      color: var(--dark-purple);
     }
 
-    .definition-box {
-      margin-top: 17px;
-      padding: 18px;
-      border-radius: 19px;
-      color: #554160;
-      background: var(--purple-light);
-      border-right: 7px solid var(--gold);
-      text-align: right;
+    .journey-definition {
+      max-width: 760px;
+      margin: 10px auto 0;
       font-size: 18px;
-      font-weight: 700;
-      line-height: 2;
+      font-weight: bold;
+      color: #675a6d;
     }
 
-    .keywords {
+    .strategy-box,
+    .text-box,
+    .question-box,
+    .answer-analysis,
+    .self-check {
+      padding: 18px;
+      margin-top: 16px;
+      border-radius: 18px;
+    }
+
+    .strategy-box {
+      background: var(--light-purple);
+      border-right: 6px solid var(--gold);
+    }
+
+    .strategy-box h3,
+    .text-box h3,
+    .question-box h3,
+    .answer-analysis h3,
+    .self-check h3 {
+      margin-top: 0;
+      color: var(--purple);
+    }
+
+    .clue-tags {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 9px;
-      margin-top: 18px;
+      margin-top: 14px;
     }
 
-    .keyword {
-      padding: 9px 13px;
-      border-radius: 18px;
-      color: #71561f;
-      background: var(--gold-light);
-      border: 1px solid rgba(201, 168, 92, 0.4);
-      font-size: 14px;
-      font-weight: 800;
-    }
-
-    .journey-card {
-      display: none;
-      padding: 25px 21px;
-      border-radius: 28px;
-      background: var(--cream);
-      border: 1px solid rgba(93, 67, 116, 0.14);
-      box-shadow: 0 14px 31px rgba(73, 56, 92, 0.12);
-      animation: enterSection 0.5s ease;
-    }
-
-    .journey-card.active {
-      display: block;
-    }
-
-    .card-label {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 125px;
-      margin-bottom: 15px;
+    .clue-tag {
       padding: 8px 13px;
-      border-radius: 18px;
-      color: white;
-      background: var(--purple);
-      font-size: 14px;
-      font-weight: 800;
+      font-weight: bold;
+      color: var(--dark-purple);
+      background: #fff7dc;
+      border: 1px solid #dfc978;
+      border-radius: 999px;
     }
 
-    .journey-card h3 {
-      margin: 0 0 14px;
-      color: var(--purple-dark);
-      font-size: 25px;
-      line-height: 1.8;
+    .text-box {
+      background: #fff;
+      border: 2px solid #e2d8e7;
     }
 
     .reading-text {
-      margin-top: 16px;
-      padding: 20px;
-      border-radius: 21px;
-      color: #44384a;
-      background: #fffaf0;
-      border: 1px solid rgba(201, 168, 92, 0.34);
-      text-align: right;
+      margin: 0;
+      text-align: justify;
       font-size: 18px;
-      font-weight: 700;
-      line-height: 2.15;
+      line-height: 2.1;
+    }
+
+    .text-type {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 6px 12px;
+      font-size: 14px;
+      font-weight: bold;
+      color: white;
+      background: var(--purple);
+      border-radius: 999px;
     }
 
     .question-box {
-      margin-top: 18px;
-      padding: 18px;
-      border-radius: 20px;
-      background: var(--purple-light);
-      text-align: right;
-    }
-
-    .question-box h3 {
-      margin: 0 0 13px;
-      font-size: 21px;
+      background: #fffaf0;
+      border: 2px dashed var(--gold);
     }
 
     .options {
       display: grid;
       gap: 10px;
+      margin-top: 14px;
     }
 
-    .option-button {
-      width: 100%;
+    .option {
       padding: 13px;
-      border: 1px solid rgba(93, 67, 116, 0.2);
-      border-radius: 14px;
-      color: var(--text);
-      background: white;
       text-align: right;
+      font-family: inherit;
+      font-size: 16px;
+      color: var(--text);
+      background: #f7f1fa;
+      border: 2px solid transparent;
+      border-radius: 13px;
       cursor: pointer;
     }
 
-    .option-button.correct {
-      color: #28684f;
-      background: var(--green-light);
-      border-color: var(--green);
+    .option.correct {
+      color: var(--green);
+      background: #e9f7ee;
+      border-color: #74af89;
     }
 
-    .option-button.wrong {
-      color: #8a405a;
-      background: var(--rose-light);
-      border-color: var(--rose);
+    .option.wrong {
+      color: var(--red);
+      background: #fdecec;
+      border-color: #dd9696;
+      animation: shake 0.35s ease;
+    }
+
+    @keyframes shake {
+      0%, 100% {
+        transform: translateX(0);
+      }
+
+      25% {
+        transform: translateX(7px);
+      }
+
+      50% {
+        transform: translateX(-7px);
+      }
+
+      75% {
+        transform: translateX(4px);
+      }
     }
 
     .feedback {
       display: none;
       margin-top: 12px;
-      padding: 12px;
-      border-radius: 14px;
-      color: #554160;
-      background: white;
-      font-size: 15px;
-      font-weight: 700;
-      line-height: 1.9;
+      padding: 13px;
+      font-weight: bold;
+      border-radius: 12px;
     }
 
     .feedback.show {
       display: block;
     }
 
-    .action-button {
+    .feedback.good {
+      color: var(--green);
+      background: #e9f7ee;
+    }
+
+    .feedback.bad {
+      color: var(--red);
+      background: #fdecec;
+    }
+
+    .answer-analysis {
+      display: none;
+      background: #f8f2fb;
+      border: 2px solid #d8c7e4;
+    }
+
+    .answer-analysis.show {
       display: block;
+    }
+
+    .analysis-item {
+      padding: 12px;
+      margin-top: 10px;
+      background: white;
+      border-radius: 12px;
+      border-right: 5px solid var(--gold);
+    }
+
+    .evidence {
+      padding: 12px;
+      margin-top: 10px;
+      font-weight: bold;
+      background: #fff7dc;
+      border-radius: 12px;
+    }
+
+    .self-check {
+      display: none;
+      text-align: center;
+      background: #fff;
+      border: 2px solid #dfd3e5;
+    }
+
+    .self-check.show {
+      display: block;
+    }
+
+    .self-options {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .self-btn {
+      min-height: 74px;
+      padding: 10px;
+      font-family: inherit;
+      font-weight: bold;
+      color: var(--dark-purple);
+      background: linear-gradient(
+        135deg,
+        #fffdf8,
+        #f3ebf8
+      );
+      border: 2px solid var(--gold);
+      border-radius: 15px;
+      cursor: pointer;
+    }
+
+    .self-message {
+      display: none;
+      margin-top: 12px;
+      padding: 13px;
+      font-weight: bold;
+      border-radius: 12px;
+    }
+
+    .self-message.show {
+      display: block;
+      background: var(--light-purple);
+    }
+
+    .next-type-btn {
+      display: none;
       width: 100%;
-      margin-top: 20px;
-      padding: 15px 14px;
-      border: 0;
-      border-radius: 17px;
+      margin-top: 16px;
+      padding: 14px;
+      font-family: inherit;
+      font-size: 18px;
+      font-weight: bold;
       color: white;
       background: var(--purple);
-      font-size: 16px;
-      font-weight: 800;
+      border: 0;
+      border-radius: 14px;
       cursor: pointer;
-      box-shadow: 0 8px 18px rgba(73, 56, 92, 0.15);
     }
 
-    .action-button:disabled {
-      color: #8c818f;
-      background: #e8e2ea;
-      box-shadow: none;
-      cursor: not-allowed;
+    .next-type-btn.show {
+      display: block;
+    }
+        .stars {
+      margin-top: 14px;
+      text-align: center;
+      font-size: 31px;
+      letter-spacing: 6px;
+      color: var(--gold);
     }
 
-    .reward-box {
+    .final-card {
       display: none;
-      margin-top: 19px;
-      padding: 20px;
-      border-radius: 22px;
-      color: #6b5222;
-      background: var(--gold-light);
-      border: 2px dashed var(--gold);
-      text-align: right;
-      animation: rewardOpen 0.6s ease;
+      text-align: center;
+      border: 3px solid var(--gold);
+      background: linear-gradient(
+        135deg,
+        #fffdf8,
+        #f4ecf8
+      );
     }
 
-    .reward-box.show {
+    .final-card.show {
       display: block;
     }
 
-    @keyframes rewardOpen {
-      from {
-        opacity: 0;
-        transform: scale(0.93);
-      }
-
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
+    .badge {
+      display: inline-grid;
+      place-items: center;
+      width: 125px;
+      height: 125px;
+      margin-bottom: 10px;
+      font-size: 50px;
+      background: linear-gradient(
+        135deg,
+        var(--gold),
+        #f3d98c
+      );
+      border: 6px solid #fff7db;
+      border-radius: 50%;
+      box-shadow: 0 8px 22px rgba(73, 56, 92, 0.18);
     }
 
     footer {
-      margin-top: 44px;
-      padding: 23px 13px;
+      padding: 18px;
+      text-align: center;
       color: white;
-      background: var(--purple-dark);
-      line-height: 1.8;
+      background: var(--dark-purple);
+      border-top: 4px solid var(--gold);
     }
 
-    @media (max-width: 620px) {
-      .hero h1 {
+    @media (max-width: 700px) {
+      header h1 {
         font-size: 29px;
       }
 
-      .progress-line {
-        grid-template-columns:
-          repeat(2, minmax(0, 1fr));
+      .gates {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .gate {
+        min-height: 82px;
+        font-size: 16px;
+      }
+
+      .gate:last-child {
+        width: 100%;
       }
 
       .journey-card,
-      .type-gate {
-        padding: 23px 17px;
+      .gate-card,
+      .final-card {
+        padding: 15px;
       }
 
-      p,
-      li,
-      button {
-        font-size: 16px;
+      .self-options {
+        grid-template-columns: 1fr;
       }
 
       .reading-text {
@@ -563,1366 +557,1041 @@
 
 <body>
 
-  <header class="topbar">
-
-    <div class="brand">
-      منصة آفاق اللغة
-    </div>
-
-    <a
-      class="back-link"
-      href="nafes-skills.html"
-    >
-      العودة إلى المكتبة
-    </a>
-
-  </header>
-
-  <section class="hero">
-
-    <div class="hero-icon">
-      🧭
-    </div>
-
-    <h1>
-      رحلة أنواع الأسئلة
-    </h1>
+  <header>
+    <h1>أنواع الأسئلة</h1>
 
     <p>
-      خمس بوابات مترابطة،
-      وكل بوابة تكشف طريقة جديدة
-      لقراءة النص وفهم المطلوب واختيار الدليل.
+      تعرّفي طبيعة كل سؤال، واقرئي نصوصًا ذات قيمة،
+      ثم اختاري الإجابة بالدليل والشاهد.
     </p>
-
-  </section>
+  </header>
 
   <main>
 
-    <section class="intro-card">
+    <div class="top-bar">
 
-      <strong>
-        كيف تسير الرحلة؟
-      </strong>
+      <a class="home-btn" href="nafes.html">
+        العودة إلى مكتبة نافس
+      </a>
 
-      اقرئي تعريف النوع أولًا،
-      ثم افتحي القطعة،
-      وابحثي عن الدليل،
-      وأجيبي عن السؤال،
-      وفسري اختياركِ،
-      وبعدها يفتح صندوق الإنجاز
-      والبوابة التالية.
+      <div class="progress-area">
 
-    </section>
-
-    <section class="journey-progress">
-
-      <h2>
-        بوابات الوحدة
-      </h2>
-
-      <div class="progress-line">
-
-        <div
-          class="progress-step active"
-          data-progress="0"
-        >
-          الحرفي
+        <div class="progress-label">
+          <span>تقدّمكِ</span>
+          <span id="progressText">0 من 5</span>
         </div>
 
-        <div
-          class="progress-step"
-          data-progress="1"
-        >
-          الاستنتاجي
-        </div>
-
-        <div
-          class="progress-step"
-          data-progress="2"
-        >
-          التحليلي
-        </div>
-
-        <div
-          class="progress-step"
-          data-progress="3"
-        >
-          النقدي
-        </div>
-
-        <div
-          class="progress-step"
-          data-progress="4"
-        >
-          التطبيقي
+        <div class="progress-track">
+          <div class="progress-bar" id="progressBar"></div>
         </div>
 
       </div>
 
+      <button
+        class="sound-btn"
+        id="soundBtn"
+        type="button">
+        🔊 الصوت مفعّل
+      </button>
+
+    </div>
+
+    <section class="gate-card">
+      <h2>بوابات أنواع الأسئلة</h2>
+
+      <div class="gates">
+
+        <button
+          class="gate active"
+          data-target="literal"
+          type="button">
+          🔎 السؤال الحرفي
+        </button>
+
+        <button
+          class="gate"
+          data-target="inferential"
+          type="button">
+          🧩 السؤال الاستنتاجي
+        </button>
+
+        <button
+          class="gate"
+          data-target="analytical"
+          type="button">
+          🧠 السؤال التحليلي
+        </button>
+
+        <button
+          class="gate"
+          data-target="critical"
+          type="button">
+          ⚖️ السؤال النقدي
+        </button>
+
+        <button
+          class="gate"
+          data-target="applied"
+          type="button">
+          💡 السؤال التطبيقي
+        </button>
+
+      </div>
     </section>
+        <section
+      class="journey journey-card active"
+      id="literal"
+      data-number="1">
 
-    <section
-      class="type-section active"
-      data-type-section="0"
-    >
+      <div class="journey-head">
+        <div class="journey-icon">🔎</div>
 
-      <article class="type-gate">
-
-        <div class="type-icon">
-          📌
-        </div>
-
-        <h2>
+        <h2 class="journey-title">
           السؤال الحرفي
         </h2>
 
+        <p class="journey-definition">
+          يطلب معلومة وردت صراحة في النص،
+          وتكون الإجابة موجودة بلفظها
+          أو بمعنى قريب جدًا.
+        </p>
+      </div>
+
+      <div class="strategy-box">
+        <h3>كيف تتعرفين إليه؟</h3>
+
         <p>
-          يبحث عن معلومة وردت في النص بوضوح،
-          وقد تظهر بالكلمات نفسها
-          أو بصياغة قريبة منها.
+          ابحثي عن كلمة مفتاحية في السؤال،
+          ثم عودي إلى الموضع الذي وردت فيه
+          داخل النص، واقرئي الجملة كاملة.
         </p>
 
-        <div class="definition-box">
-          في السؤال الحرفي لا نحتاج إلى بناء معنى جديد،
-          بل نحدد كلمة السؤال،
-          ثم نعود إلى النص للعثور
-          على المعلومة المطابقة لها.
+        <div class="clue-tags">
+          <span class="clue-tag">من؟</span>
+          <span class="clue-tag">متى؟</span>
+          <span class="clue-tag">أين؟</span>
+          <span class="clue-tag">كم؟</span>
+          <span class="clue-tag">ماذا ذكر النص؟</span>
         </div>
+      </div>
 
-        <div class="keywords">
-
-          <span class="keyword">
-            من؟
-          </span>
-
-          <span class="keyword">
-            متى؟
-          </span>
-
-          <span class="keyword">
-            أين؟
-          </span>
-
-          <span class="keyword">
-            ماذا؟
-          </span>
-
-          <span class="keyword">
-            بحسب النص
-          </span>
-
-        </div>
-
-        <button
-          class="action-button start-type"
-          data-start-type="0"
-          type="button"
-        >
-          ابدئي رحلة السؤال الحرفي
-        </button>
-
-      </article>
-
-      <article
-        class="journey-card"
-        data-card="0-0"
-      >
-
-        <span class="card-label">
-          القطعة الأولى
+      <div class="text-box">
+        <span class="text-type">
+          نص معلوماتي
         </span>
 
         <h3>
-          الذكاء الاصطناعي في التعليم
+          الأقمار الصناعية ومراقبة الأرض
         </h3>
 
-        <div class="reading-text">
-          أصبح الذكاء الاصطناعي حاضرًا
-          في عدد متزايد من البيئات التعليمية،
-          إذ تستطيع بعض الأنظمة تحليل أداء المتعلمين
-          واقتراح أنشطة تناسب مستوياتهم المختلفة.
-          كما تساعد الأدوات الرقمية المعلم
-          على تنظيم البيانات ومتابعة التقدم،
-          لكنها لا تلغي دوره في التوجيه
-          وبناء الحوار وتنمية التفكير.
-          ويؤكد المختصون أن الاستخدام الواعي
-          لهذه التقنيات يتطلب حماية الخصوصية،
-          والتحقق من دقة المعلومات،
-          وعدم الاعتماد على الإجابات الآلية
-          دون مراجعة أو تحليل.
+        <p class="reading-text">
+          أصبحت الأقمار الصناعية من أهم الأدوات
+          التي يعتمد عليها العلماء لمراقبة الأرض
+          وفهم التغيرات التي تحدث فيها. فهي تلتقط
+          صورًا دقيقة لمساحات واسعة، وتساعد في
+          متابعة حركة السحب والعواصف، وقياس درجات
+          الحرارة، ورصد التغير في الغطاء النباتي.
+          كما تستخدم بعض الدول هذه البيانات
+          للكشف المبكر عن الحرائق والفيضانات،
+          وتحديد المناطق التي تحتاج إلى تدخل سريع.
+          ولا تقتصر فائدتها على مواجهة الكوارث،
+          بل تسهم أيضًا في تحسين الزراعة؛ إذ يستطيع
+          المختصون مقارنة صور الحقول خلال فترات
+          مختلفة، وملاحظة نقص المياه أو ضعف نمو
+          النباتات. ومع ذلك، فإن الصور وحدها لا
+          تكفي لاتخاذ القرار، بل يجب أن يفسرها
+          خبراء، وأن تقارن ببيانات مأخوذة من الأرض،
+          حتى تكون النتائج أكثر دقة وموثوقية.
+        </p>
+      </div>
+
+      <div class="question-box">
+
+        <h3>
+          وفقًا للنص، ما أحد استخدامات
+          بيانات الأقمار الصناعية في الزراعة؟
+        </h3>
+
+        <div class="options">
+
+          <button class="option" type="button">
+            الاستغناء الكامل عن زيارة الحقول.
+          </button>
+
+          <button
+            class="option"
+            data-correct="true"
+            type="button">
+            ملاحظة نقص المياه أو ضعف نمو النباتات.
+          </button>
+
+          <button class="option" type="button">
+            زيادة كمية الأمطار فوق الأراضي الزراعية.
+          </button>
+
+          <button class="option" type="button">
+            تحديد أسعار المنتجات في الأسواق.
+          </button>
+
         </div>
 
+        <div class="feedback"></div>
+      </div>
+
+      <div class="answer-analysis">
+
+        <h3>تحليل الإجابة</h3>
+
+        <div class="analysis-item">
+          <strong>سبب صحة الاختيار:</strong>
+          لأنه يذكر استخدامًا ورد صراحة
+          في الفقرة المتعلقة بالزراعة.
+        </div>
+
+        <div class="evidence">
+          <strong>الشاهد من النص:</strong>
+          «وملاحظة نقص المياه أو ضعف نمو النباتات».
+        </div>
+
+        <div class="analysis-item">
+          <strong>لماذا البديل الأول ضعيف؟</strong>
+          لأن النص أكد أن الصور لا تكفي وحدها،
+          بل يجب مقارنتها ببيانات من الأرض.
+        </div>
+
+        <div class="analysis-item">
+          <strong>لماذا البديل الثالث ضعيف؟</strong>
+          لأن الأقمار الصناعية تراقب الأمطار
+          والطقس، لكنها لا تزيد كمية الأمطار.
+        </div>
+
+        <div class="analysis-item">
+          <strong>لماذا البديل الرابع ضعيف؟</strong>
+          لأن النص لم يتحدث عن تحديد الأسعار.
+        </div>
+
+      </div>
+
+      <div class="self-check">
+
+        <h3>قيّمي إتقانكِ</h3>
+
+        <p>
+          هل استطعتِ الرجوع إلى النص
+          والعثور على المعلومة الصريحة؟
+        </p>
+
+        <div class="self-options">
+
+          <button
+            class="self-btn"
+            data-level="mastered"
+            type="button">
+            ⭐ أتقنتُ المهارة
+          </button>
+
+          <button
+            class="self-btn"
+            data-level="practice"
+            type="button">
+            🔁 أحتاج إلى تدريب إضافي
+          </button>
+
+          <button
+            class="self-btn"
+            data-level="help"
+            type="button">
+            🪜 أحتاج إلى مساعدة
+          </button>
+
+        </div>
+
+        <div class="self-message"></div>
+
         <button
-          class="action-button open-question"
-          data-open-question="0-1"
-          type="button"
-        >
-          قرأتُ القطعة، افتحي السؤال
+          class="next-type-btn"
+          type="button">
+          انتقلي إلى السؤال الاستنتاجي
         </button>
 
-      </article>
+      </div>
 
-      <article
-        class="journey-card"
-        data-card="0-1"
-      >
+      <div class="stars">☆ ☆ ☆</div>
+        </section>
+        <section
+      class="journey journey-card"
+      id="inferential"
+      data-number="2">
 
-        <span class="card-label">
-          ابحثي عن الدليل
+      <div class="journey-head">
+        <div class="journey-icon">🧩</div>
+
+        <h2 class="journey-title">
+          السؤال الاستنتاجي
+        </h2>
+
+        <p class="journey-definition">
+          يطلب معنى لا يذكره النص مباشرة،
+          لكن يمكن الوصول إليه
+          من خلال جمع القرائن وربطها.
+        </p>
+      </div>
+
+      <div class="strategy-box">
+        <h3>كيف تتعرفين إليه؟</h3>
+
+        <p>
+          اجمعي أكثر من قرينة، ثم اسألي:
+          ما الفكرة التي تدعمها هذه القرائن مجتمعة؟
+          لا تختاري إجابة تعتمد على التخمين
+          أو على معلومة من خارج النص.
+        </p>
+
+        <div class="clue-tags">
+          <span class="clue-tag">نستنتج</span>
+          <span class="clue-tag">يفهم من النص</span>
+          <span class="clue-tag">يدل على</span>
+          <span class="clue-tag">يرجح أن</span>
+          <span class="clue-tag">ما السبب المحتمل؟</span>
+        </div>
+      </div>
+
+      <div class="text-box">
+        <span class="text-type">
+          نص سردي معلوماتي
         </span>
 
-        <div class="question-box">
+        <h3>
+          تجربة في مختبر الابتكار
+        </h3>
 
-          <h3>
-            ماذا تستطيع بعض أنظمة
-            الذكاء الاصطناعي أن تقترح للمتعلمين؟
-          </h3>
+        <p class="reading-text">
+          دخلت مريم مختبر الابتكار في المدرسة
+          وهي تحمل نموذجًا صغيرًا لجهاز يساعد
+          كبار السن على تذكّر مواعيد الدواء.
+          كانت قد أمضت أسبوعين في تصميمه،
+          لكنها لاحظت أثناء التجربة الأولى
+          أن التنبيه يصدر في الوقت المحدد
+          من غير أن يتأكد الجهاز من تناول الجرعة.
+          اقترحت زميلتها إضافة زر يضغطه المستخدم
+          بعد تناول الدواء، إلا أن مريم رأت
+          أن بعض كبار السن قد ينسون الضغط عليه.
+          لذلك طلبت من معلمة التقنية مهلة إضافية،
+          وبدأت تبحث عن طريقة أكثر دقة،
+          مثل استخدام حساس بسيط يكتشف فتح علبة الدواء.
+          وفي اليوم التالي لم تعرض مريم جهازها
+          في المسابقة التجريبية، مع أن النموذج
+          كان يعمل أمام الحاضرات.
+          وعندما سألتها المعلمة عن سبب تأجيلها،
+          قالت: «نجاح الجهاز لا يعني أن فكرته
+          أصبحت آمنة بما يكفي لمن سيستخدمه».
+        </p>
+      </div>
 
-          <div class="options">
+      <div class="question-box">
 
-            <button
-              class="option-button"
-              data-correct="false"
-              type="button"
-            >
-              إلغاء دور المعلم نهائيًا
-            </button>
+        <h3>
+          نستنتج من موقف مريم أنها:
+        </h3>
 
-            <button
-              class="option-button"
-              data-correct="true"
-              type="button"
-            >
-              أنشطة تناسب مستوياتهم المختلفة
-            </button>
+        <div class="options">
 
-            <button
-              class="option-button"
-              data-correct="false"
-              type="button"
-            >
-              الاستغناء عن مراجعة المعلومات
-            </button>
+          <button class="option" type="button">
+            فقدت ثقتها في قدرتها على الابتكار.
+          </button>
 
-          </div>
+          <button
+            class="option"
+            data-correct="true"
+            type="button">
+            قدّمت سلامة المستخدم
+            على الرغبة في عرض مشروعها سريعًا.
+          </button>
 
-          <div class="feedback"></div>
+          <button class="option" type="button">
+            أرادت أن تنسب فكرة الجهاز
+            إلى معلمة التقنية.
+          </button>
+
+          <button class="option" type="button">
+            اعتقدت أن التنبيه الصوتي
+            لا يناسب أي مستخدم.
+          </button>
 
         </div>
+
+        <div class="feedback"></div>
+      </div>
+
+      <div class="answer-analysis">
+
+        <h3>تحليل الإجابة</h3>
+
+        <div class="analysis-item">
+          <strong>سبب صحة الاختيار:</strong>
+          لأن مريم أخّرت عرض نموذج يعمل بالفعل،
+          بعدما اكتشفت أن نجاحه التقني
+          لا يضمن سلامة استخدامه.
+        </div>
+
+        <div class="evidence">
+          <strong>الشاهد من النص:</strong>
+          «نجاح الجهاز لا يعني أن فكرته
+          أصبحت آمنة بما يكفي لمن سيستخدمه».
+        </div>
+
+        <div class="analysis-item">
+          <strong>لماذا البديل الأول ضعيف؟</strong>
+          لأنها لم تتوقف عن العمل،
+          بل بحثت عن حل أكثر دقة.
+        </div>
+
+        <div class="analysis-item">
+          <strong>لماذا البديل الثالث ضعيف؟</strong>
+          لأن النص يبين أنها طلبت المشورة فقط،
+          ولم تتخلَّ عن فكرتها.
+        </div>
+
+        <div class="analysis-item">
+          <strong>لماذا البديل الرابع ضعيف؟</strong>
+          لأن اعتراضها لم يكن على صوت التنبيه،
+          بل على عدم التأكد من تناول الجرعة.
+        </div>
+
+      </div>
+
+      <div class="self-check">
+
+        <h3>قيّمي إتقانكِ</h3>
+
+        <p>
+          هل ربطتِ بين تصرفات مريم
+          وعبارتها الأخيرة قبل اختيار الإجابة؟
+        </p>
+
+        <div class="self-options">
+
+          <button
+            class="self-btn"
+            data-level="mastered"
+            type="button">
+            ⭐ أتقنتُ المهارة
+          </button>
+
+          <button
+            class="self-btn"
+            data-level="practice"
+            type="button">
+            🔁 أحتاج إلى تدريب إضافي
+          </button>
+
+          <button
+            class="self-btn"
+            data-level="help"
+            type="button">
+            🪜 أحتاج إلى مساعدة
+          </button>
+
+        </div>
+
+        <div class="self-message"></div>
 
         <button
-          class="action-button next-card"
-          data-next-card="0-2"
-          type="button"
-          disabled
-        >
-          حددي سبب صحة الإجابة
+          class="next-type-btn"
+          type="button">
+          انتقلي إلى السؤال التحليلي
         </button>
 
-      </article>
-          <section
-      class="type-section"
-      data-type-section="2"
-    >
+      </div>
 
-      <article class="type-gate">
+      <div class="stars">☆ ☆ ☆</div>
+        </section>
+        <section
+      class="journey journey-card"
+      id="analytical"
+      data-number="3">
 
-        <div
-          class="type-icon"
-          style="background: var(--blue-light);"
-        >
-          🧩
-        </div>
+      <div class="journey-head">
+        <div class="journey-icon">🧠</div>
 
-        <h2>
+        <h2 class="journey-title">
           السؤال التحليلي
         </h2>
 
+        <p class="journey-definition">
+          يطلب فحص بناء النص والعلاقات بين أفكاره،
+          مثل السبب والنتيجة، والمقارنة،
+          وتسلسل الأحداث، ووظيفة كل تفصيل.
+        </p>
+      </div>
+
+      <div class="strategy-box">
+        <h3>كيف تتعرفين إليه؟</h3>
+
         <p>
-          يطلب فهم العلاقة بين الأفكار،
-          أو تفسير سبب ونتيجة،
-          أو مقارنة عناصر متعددة
-          داخل النص.
+          حددي العلاقة التي يسأل عنها السؤال،
+          ثم قارني بين الأفكار أو رتبيها،
+          ولا تكتفي بالتقاط معلومة واحدة من النص.
         </p>
 
-        <div class="definition-box">
-          في السؤال التحليلي
-          لا نكتفي بالعثور على المعلومة،
-          بل نفكك النص إلى أجزائه،
-          ثم نحدد كيف ترتبط هذه الأجزاء
-          بعضها ببعض.
+        <div class="clue-tags">
+          <span class="clue-tag">ما العلاقة؟</span>
+          <span class="clue-tag">ما السبب؟</span>
+          <span class="clue-tag">ما النتيجة؟</span>
+          <span class="clue-tag">كيف نُظمت الأفكار؟</span>
+          <span class="clue-tag">ما وظيفة التفصيل؟</span>
         </div>
+      </div>
 
-        <div class="keywords">
-
-          <span class="keyword">
-            ما العلاقة؟
-          </span>
-
-          <span class="keyword">
-            لماذا؟
-          </span>
-
-          <span class="keyword">
-            كيف أسهم؟
-          </span>
-
-          <span class="keyword">
-            قارن بين
-          </span>
-
-          <span class="keyword">
-            ما النتيجة؟
-          </span>
-
-        </div>
-
-        <button
-          class="action-button start-type"
-          data-start-type="2"
-          type="button"
-        >
-          ابدئي رحلة السؤال التحليلي
-        </button>
-
-      </article>
-
-      <article
-        class="journey-card"
-        data-card="2-0"
-      >
-
-        <span class="card-label">
-          القطعة الثالثة
+      <div class="text-box">
+        <span class="text-type">
+          نص تفسيري
         </span>
 
         <h3>
-          القدية وتجربة الزائر
+          لماذا تحتاج المدن إلى مساحات خضراء؟
         </h3>
 
-        <div class="reading-text">
-          تقوم المشروعات الترفيهية الحديثة
-          على أكثر من إنشاء مكان للزيارة،
-          فهي تسعى إلى تصميم تجربة متكاملة
-          تجمع بين الثقافة والرياضة
-          والفنون والتقنيات الرقمية.
+        <p class="reading-text">
+          تتعرض المدن الكبيرة لارتفاع في درجات الحرارة
+          مقارنة بالمناطق المحيطة بها، ويعود ذلك إلى
+          كثرة المباني والطرق الإسفلتية التي تمتص حرارة
+          الشمس خلال النهار، ثم تطلقها ببطء ليلًا.
+          وتسمى هذه الظاهرة «الجزيرة الحرارية الحضرية».
+          وتزداد المشكلة عندما تقل الأشجار والمساحات
+          المفتوحة؛ لأن الظل يصبح محدودًا،
+          كما يقل تبخر الماء من النباتات، وهو عامل
+          يساعد على تبريد الهواء. لذلك تتجه مدن كثيرة
+          إلى زراعة الأشجار فوق الأرصفة،
+          وإنشاء حدائق صغيرة بين الأحياء،
+          وتصميم أسطح خضراء فوق بعض المباني.
+          ولا تقتصر فائدة هذه الحلول على خفض الحرارة،
+          بل تسهم أيضًا في تحسين جودة الهواء،
+          وامتصاص جزء من مياه الأمطار،
+          وتوفير أماكن أكثر راحة للمشي والتواصل الاجتماعي.
+          غير أن نجاح هذه الخطط يحتاج إلى اختيار نباتات
+          مناسبة للمناخ، وتوفير مياه الري بطريقة مستدامة،
+          حتى لا تتحول المساحات الخضراء نفسها
+          إلى عبء بيئي جديد.
+        </p>
+      </div>
 
-          وفي مشروع القدية،
-          يبرز الاهتمام بتنوع الأنشطة
-          حتى يجد الزائر خيارات تناسب
-          اهتماماته وأعمار الفئات المختلفة.
-
-          كما تسهم المرافق المتعددة
-          في إطالة مدة الزيارة،
-          لأن الزائر يستطيع الانتقال
-          بين تجربة رياضية،
-          وعرض فني،
-          ونشاط ترفيهي
-          في موقع واحد.
-
-          ويؤدي هذا التنوع
-          إلى دعم قطاعات أخرى
-          مثل الضيافة والنقل والتجزئة،
-          لأن التجربة الترفيهية
-          ترتبط بخدمات كثيرة
-          تعمل حولها وتكملها.
-        </div>
-
-        <button
-          class="action-button open-question"
-          data-open-question="2-1"
-          type="button"
-        >
-          قرأتُ القطعة، افتحي السؤال
-        </button>
-
-      </article>
-
-      <article
-        class="journey-card"
-        data-card="2-1"
-      >
-
-        <span class="card-label">
-          حللي العلاقة
-        </span>
-
-        <div class="question-box">
-
-          <h3>
-            ما العلاقة بين تنوع الأنشطة
-            ودعم قطاعات الضيافة والنقل والتجزئة؟
-          </h3>
-
-          <div class="options">
-
-            <button
-              class="option-button"
-              data-correct="false"
-              type="button"
-            >
-              تنوع الأنشطة يقلل حاجة الزائر
-              إلى الخدمات الأخرى.
-            </button>
-
-            <button
-              class="option-button"
-              data-correct="true"
-              type="button"
-            >
-              تنوع الأنشطة يزيد حركة الزوار،
-              فتزداد الحاجة إلى الخدمات المكملة.
-            </button>
-
-            <button
-              class="option-button"
-              data-correct="false"
-              type="button"
-            >
-              قطاعات الضيافة والنقل
-              لا ترتبط بالتجربة الترفيهية.
-            </button>
-
-          </div>
-
-          <div class="feedback"></div>
-
-        </div>
-
-        <button
-          class="action-button next-card"
-          data-next-card="2-2"
-          type="button"
-          disabled
-        >
-          حددي سبب قوة التحليل
-        </button>
-
-      </article>
-
-      <article
-        class="journey-card"
-        data-card="2-2"
-      >
-
-        <span class="card-label">
-          فسّري العلاقة
-        </span>
-
-        <div class="question-box">
-
-          <h3>
-            لماذا يعد الخيار الصحيح
-            تحليلًا للعلاقة بين الأفكار؟
-          </h3>
-
-          <div class="options">
-
-            <button
-              class="option-button"
-              data-correct="false"
-              type="button"
-            >
-              لأنه يكرر جملة واحدة من القطعة
-              دون تفسير.
-            </button>
-
-            <button
-              class="option-button"
-              data-correct="true"
-              type="button"
-            >
-              لأنه يربط بين زيادة حركة الزوار
-              ونمو الحاجة إلى الخدمات المكملة.
-            </button>
-
-            <button
-              class="option-button"
-              data-correct="false"
-              type="button"
-            >
-              لأنه يضيف رأيًا شخصيًا
-              لا تدعمه القطعة.
-            </button>
-
-          </div>
-
-          <div class="feedback"></div>
-
-        </div>
-
-        <button
-          class="action-button next-card"
-          data-next-card="2-3"
-          type="button"
-          disabled
-        >
-          انتقلي إلى التقييم الذاتي
-        </button>
-
-      </article>
-
-      <article
-        class="journey-card"
-        data-card="2-3"
-      >
-
-        <span class="card-label">
-          قيّمي فهمكِ
-        </span>
+      <div class="question-box">
 
         <h3>
-          كيف تتعاملين مع السؤال التحليلي؟
+          ما العلاقة بين قلة الأشجار
+          وارتفاع حرارة المدن وفق النص؟
         </h3>
 
-        <div class="question-box">
+        <div class="options">
 
-          <div class="options self-options">
+          <button class="option" type="button">
+            علاقة مقارنة بين مدن كبيرة
+            ومدن صغيرة فقط.
+          </button>
 
-            <button
-              class="option-button self-option"
-              data-level="strong"
-              type="button"
-            >
-              أحدد الأفكار،
-              ثم أشرح العلاقة بينها بدقة.
-            </button>
+          <button
+            class="option"
+            data-correct="true"
+            type="button">
+            علاقة سبب ونتيجة؛ إذ تقل الظلال
+            وعمليات التبريد الطبيعية.
+          </button>
 
-            <button
-              class="option-button self-option"
-              data-level="medium"
-              type="button"
-            >
-              أفهم العلاقات،
-              لكنني أحتاج إلى تدريب
-              على صياغة السبب والنتيجة.
-            </button>
+          <button class="option" type="button">
+            علاقة زمنية؛ لأن الأشجار
+            تنمو بعد ارتفاع الحرارة.
+          </button>
 
-            <button
-              class="option-button self-option"
-              data-level="need-help"
-              type="button"
-            >
-              أخلط أحيانًا بين نقل المعلومة
-              وتحليل العلاقة.
-            </button>
-
-          </div>
-
-          <div class="feedback"></div>
-
-          <div
-            class="reward-box extra-help"
-          >
-            <strong>
-              تذكير سريع:
-            </strong>
-
-            نقل المعلومة يجيب:
-            ماذا ورد في النص؟
-
-            أمّا التحليل فيجيب:
-            كيف ترتبط الأفكار؟
-            ولماذا حدثت النتيجة؟
-          </div>
+          <button class="option" type="button">
+            علاقة تعارض؛ لأن الأشجار
+            تزيد امتصاص الطرق للحرارة.
+          </button>
 
         </div>
+
+        <div class="feedback"></div>
+      </div>
+
+      <div class="answer-analysis">
+
+        <h3>تحليل الإجابة</h3>
+
+        <div class="analysis-item">
+          <strong>سبب صحة الاختيار:</strong>
+          لأن النص يوضح أن قلة الأشجار
+          تقلل الظل وتبخر الماء،
+          فيضعف تبريد الهواء وترتفع الحرارة.
+        </div>
+
+        <div class="evidence">
+          <strong>الشاهد من النص:</strong>
+          «لأن الظل يصبح محدودًا،
+          كما يقل تبخر الماء من النباتات،
+          وهو عامل يساعد على تبريد الهواء».
+        </div>
+
+        <div class="analysis-item">
+          <strong>لماذا البديل الأول ضعيف؟</strong>
+          لأن السؤال لا يقارن بين مدن مختلفة،
+          بل يحلل أثر قلة الأشجار في الحرارة.
+        </div>
+
+        <div class="analysis-item">
+          <strong>لماذا البديل الثالث ضعيف؟</strong>
+          لأن النص لم يعرض ترتيبًا زمنيًّا،
+          بل عرض سببًا يؤدي إلى نتيجة.
+        </div>
+
+        <div class="analysis-item">
+          <strong>لماذا البديل الرابع ضعيف؟</strong>
+          لأن الأشجار لا تزيد امتصاص الطرق للحرارة،
+          بل تساعد على خفضها.
+        </div>
+
+      </div>
+
+      <div class="self-check">
+
+        <h3>قيّمي إتقانكِ</h3>
+
+        <p>
+          هل استطعتِ تحديد العلاقة بين الفكرة
+          ونتيجتها، لا مجرد العثور على معلومة؟
+        </p>
+
+        <div class="self-options">
+
+          <button
+            class="self-btn"
+            data-level="mastered"
+            type="button">
+            ⭐ أتقنتُ المهارة
+          </button>
+
+          <button
+            class="self-btn"
+            data-level="practice"
+            type="button">
+            🔁 أحتاج إلى تدريب إضافي
+          </button>
+
+          <button
+            class="self-btn"
+            data-level="help"
+            type="button">
+            🪜 أحتاج إلى مساعدة
+          </button>
+
+        </div>
+
+        <div class="self-message"></div>
 
         <button
-          class="action-button next-card"
-          data-next-card="2-4"
-          type="button"
-          disabled
-        >
-          افتحي صندوق الإنجاز
+          class="next-type-btn"
+          type="button">
+          انتقلي إلى السؤال النقدي
         </button>
 
-      </article>
+      </div>
 
-      <article
-        class="journey-card"
-        data-card="2-4"
-      >
+      <div class="stars">☆ ☆ ☆</div>
+        </section>
+        <section
+      class="journey journey-card"
+      id="critical"
+      data-number="4">
 
-        <span class="card-label">
-          صندوق الإنجاز
-        </span>
+      <div class="journey-head">
+        <div class="journey-icon">⚖️</div>
 
-        <div
-          class="reward-box show"
-        >
-
-          <h3>
-            🎁 نجمة محللة العلاقات
-          </h3>
-
-          <p>
-            أتقنتِ الانتقال
-            من المعلومة المفردة
-            إلى فهم الروابط
-            بين الأسباب والنتائج
-            والأفكار المتقابلة.
-          </p>
-
-          <div class="definition-box">
-            عبارتكِ الذهبية:
-            «أفكك الفكرة،
-            ثم أعيد ربط أجزائها
-            بعلاقة واضحة».
-          </div>
-
-        </div>
-
-        <button
-          class="action-button unlock-type"
-          data-unlock-type="3"
-          type="button"
-        >
-          افتحي بوابة السؤال النقدي
-        </button>
-
-      </article>
-
-    </section>
-
-    <section
-      class="type-section"
-      data-type-section="3"
-    >
-
-      <article class="type-gate">
-
-        <div
-          class="type-icon"
-          style="background: var(--rose-light);"
-        >
-          ⚖️
-        </div>
-
-        <h2>
+        <h2 class="journey-title">
           السؤال النقدي
         </h2>
 
+        <p class="journey-definition">
+          يطلب الحكم على قوة الفكرة أو الدليل،
+          وموثوقية المصدر، ومدى التوازن
+          أو التحيز في عرض القضية.
+        </p>
+      </div>
+
+      <div class="strategy-box">
+        <h3>كيف تتعرفين إليه؟</h3>
+
         <p>
-          يطلب الحكم على قوة الفكرة،
-          أو جودة الدليل،
-          أو موثوقية المصدر،
-          أو منطقية الحجة.
+          ميّزي بين الرأي والحقيقة، ثم افحصي:
+          هل الدليل كافٍ؟ هل المصدر موثوق؟
+          هل عرض الكاتب أكثر من جانب؟
         </p>
 
-        <div class="definition-box">
-          في السؤال النقدي
-          لا نوافق على العبارة
-          لمجرد أنها تبدو مقنعة،
-          بل نسأل:
-          ما الدليل؟
-          ومن مصدره؟
-          وهل يدعم الادعاء فعلًا؟
+        <div class="clue-tags">
+          <span class="clue-tag">ما أقوى دليل؟</span>
+          <span class="clue-tag">هل الحجة مقنعة؟</span>
+          <span class="clue-tag">ما مدى الموثوقية؟</span>
+          <span class="clue-tag">هل يوجد تحيز؟</span>
+          <span class="clue-tag">حقيقة أم رأي؟</span>
         </div>
+      </div>
 
-        <div class="keywords">
-
-          <span class="keyword">
-            الأقوى
-          </span>
-
-          <span class="keyword">
-            الأوثق
-          </span>
-
-          <span class="keyword">
-            الأكثر إقناعًا
-          </span>
-
-          <span class="keyword">
-            الأفضل دعمًا
-          </span>
-
-          <span class="keyword">
-            ما موثوقية؟
-          </span>
-
-        </div>
-
-        <button
-          class="action-button start-type"
-          data-start-type="3"
-          type="button"
-        >
-          ابدئي رحلة السؤال النقدي
-        </button>
-
-      </article>
-
-      <article
-        class="journey-card"
-        data-card="3-0"
-      >
-
-        <span class="card-label">
-          القطعة الرابعة
+      <div class="text-box">
+        <span class="text-type">
+          نص حجاجي
         </span>
 
         <h3>
-          الروبوتات واتخاذ القرار
+          هل يجب منع الهواتف الذكية في المدارس؟
         </h3>
 
-        <div class="reading-text">
-          تُستخدم الروبوتات اليوم
-          في مجالات متعددة،
-          من المصانع والمستودعات
-          إلى بعض البيئات الطبية
-          والخدمات اللوجستية.
+        <p class="reading-text">
+          يرى بعض التربويين أن منع الهواتف الذكية
+          داخل المدارس يساعد الطالبات على التركيز،
+          ويقلل التشتيت الناتج عن الإشعارات
+          ومواقع التواصل. ويستشهد مؤيدو المنع
+          بملاحظات معلمات لاحظن تحسن الانتباه
+          بعد جمع الهواتف أثناء الحصص.
+          في المقابل، يرى آخرون أن الهاتف يمكن
+          أن يكون أداة تعليمية مفيدة عند استخدامه
+          في البحث السريع، والتصوير العلمي،
+          والدخول إلى المنصات الرقمية.
+          ويشيرون إلى أن المشكلة لا تكمن في الجهاز
+          نفسه، بل في طريقة استخدامه.
+          لذلك تقترح بعض المدارس حلًّا وسطًا:
+          إبقاء الهاتف مغلقًا أثناء الشرح،
+          والسماح باستخدامه في أنشطة محددة
+          بإشراف المعلمة. ويبدو أن نجاح أي قرار
+          لا يعتمد على المنع وحده،
+          بل على وجود قواعد واضحة،
+          ومتابعة ثابتة، وتدريب الطالبات
+          على الاستخدام المسؤول للتقنية.
+        </p>
+      </div>
 
-          وتمتاز هذه الأنظمة
-          بسرعة تنفيذ المهام المتكررة
-          وقدرتها على العمل بدقة
-          في ظروف قد تكون خطرة على الإنسان.
-
-          ومع ذلك،
-          فإن منح الأنظمة الآلية
-          صلاحية اتخاذ قرارات حساسة
-          يثير أسئلة مهمة
-          حول المسؤولية والشفافية.
-
-          فإذا اعتمد النظام
-          على بيانات ناقصة أو متحيزة،
-          فقد ينتج قرارًا غير عادل
-          رغم سرعة معالجته للمعلومات.
-
-          لذلك يرى المختصون
-          أن استخدام الروبوتات
-          يجب أن يصاحبه إشراف بشري،
-          ومعايير واضحة،
-          ومراجعة مستمرة للنتائج.
-        </div>
-
-        <button
-          class="action-button open-question"
-          data-open-question="3-1"
-          type="button"
-        >
-          قرأتُ القطعة، افتحي السؤال
-        </button>
-
-      </article>
-
-      <article
-        class="journey-card"
-        data-card="3-1"
-      >
-
-        <span class="card-label">
-          احكمي على الدليل
-        </span>
-
-        <div class="question-box">
-
-          <h3>
-            أي الأدلة الآتية
-            يدعم بصورة أقوى
-            ضرورة الإشراف البشري
-            على القرارات الآلية؟
-          </h3>
-
-          <div class="options">
-
-            <button
-              class="option-button"
-              data-correct="false"
-              type="button"
-            >
-              الروبوتات تعمل بسرعة
-              في المهام المتكررة.
-            </button>
-
-            <button
-              class="option-button"
-              data-correct="true"
-              type="button"
-            >
-              البيانات الناقصة أو المتحيزة
-              قد تنتج قرارًا غير عادل.
-            </button>
-
-            <button
-              class="option-button"
-              data-correct="false"
-              type="button"
-            >
-              الروبوتات تستخدم
-              في المصانع والمستودعات.
-            </button>
-
-          </div>
-
-          <div class="feedback"></div>
-
-        </div>
-
-        <button
-          class="action-button next-card"
-          data-next-card="3-2"
-          type="button"
-          disabled
-        >
-          فسّري قوة الدليل
-        </button>
-
-      </article>
-
-      <article
-        class="journey-card"
-        data-card="3-2"
-      >
-
-        <span class="card-label">
-          فسّري حكمكِ
-        </span>
-
-        <div class="question-box">
-
-          <h3>
-            لماذا كان هذا الدليل
-            أقوى من بقية البدائل؟
-          </h3>
-
-          <div class="options">
-
-            <button
-              class="option-button"
-              data-correct="true"
-              type="button"
-            >
-              لأنه يوضح خطرًا مباشرًا
-              يبرر الحاجة إلى المراجعة البشرية.
-            </button>
-
-            <button
-              class="option-button"
-              data-correct="false"
-              type="button"
-            >
-              لأنه يصف سرعة الروبوتات فقط.
-            </button>
-
-            <button
-              class="option-button"
-              data-correct="false"
-              type="button"
-            >
-              لأنه أطول البدائل
-              وأكثرها كلمات.
-            </button>
-
-          </div>
-
-          <div class="feedback"></div>
-
-        </div>
-
-        <button
-          class="action-button next-card"
-          data-next-card="3-3"
-          type="button"
-          disabled
-        >
-          انتقلي إلى التقييم الذاتي
-        </button>
-
-      </article>
-
-      <article
-        class="journey-card"
-        data-card="3-3"
-      >
-
-        <span class="card-label">
-          قيّمي فهمكِ
-        </span>
+      <div class="question-box">
 
         <h3>
-          كيف تحكمين على قوة الدليل؟
+          أي تقييم هو الأدق لطريقة عرض القضية؟
         </h3>
 
-        <div class="question-box">
+        <div class="options">
 
-          <div class="options self-options">
+          <button class="option" type="button">
+            النص متحيز تمامًا للمنع،
+            لأنه بدأ بآراء المؤيدين.
+          </button>
 
-            <button
-              class="option-button self-option"
-              data-level="strong"
-              type="button"
-            >
-              أختار الدليل المباشر
-              المرتبط بالادعاء
-              والقابل للتحقق.
-            </button>
+          <button
+            class="option"
+            data-correct="true"
+            type="button">
+            النص متوازن نسبيًّا؛
+            لأنه عرض رأيين ثم اقترح حلًّا وسطًا.
+          </button>
 
-            <button
-              class="option-button self-option"
-              data-level="medium"
-              type="button"
-            >
-              أميز الدليل،
-              لكنني أحتاج إلى تدريب
-              على مقارنة قوته.
-            </button>
+          <button class="option" type="button">
+            النص غير موثوق،
+            لأنه لم يذكر أسماء مدارس محددة.
+          </button>
 
-            <button
-              class="option-button self-option"
-              data-level="need-help"
-              type="button"
-            >
-              أتأثر أحيانًا
-              بالعبارة الطويلة
-              حتى لو لم تكن دليلًا قويًا.
-            </button>
-
-          </div>
-
-          <div class="feedback"></div>
-
-          <div
-            class="reward-box extra-help"
-          >
-            <strong>
-              قاعدة الدليل القوي:
-            </strong>
-
-            مرتبط بالادعاء،
-            مباشر،
-            قابل للتحقق،
-            ومن مصدر موثوق.
-          </div>
+          <button class="option" type="button">
+            النص يثبت أن الهاتف
+            مفيد في جميع المواقف التعليمية.
+          </button>
 
         </div>
 
-        <button
-          class="action-button next-card"
-          data-next-card="3-4"
-          type="button"
-          disabled
-        >
-          افتحي صندوق الإنجاز
-        </button>
+        <div class="feedback"></div>
+      </div>
 
-      </article>
+      <div class="answer-analysis">
 
-      <article
-        class="journey-card"
-        data-card="3-4"
-      >
+        <h3>تحليل الإجابة</h3>
 
-        <span class="card-label">
-          صندوق الإنجاز
-        </span>
+        <div class="analysis-item">
+          <strong>سبب صحة الاختيار:</strong>
+          لأن الكاتب عرض فوائد المنع،
+          ثم فوائد الاستخدام المنظم،
+          وانتهى إلى حل يجمع بين الطرفين.
+        </div>
 
-        <div
-          class="reward-box show"
-        >
+        <div class="evidence">
+          <strong>الشاهد من النص:</strong>
+          «لذلك تقترح بعض المدارس حلًّا وسطًا:
+          إبقاء الهاتف مغلقًا أثناء الشرح،
+          والسماح باستخدامه في أنشطة محددة».
+        </div>
 
-          <h3>
-            🎁 نجمة القارئة الناقدة
-          </h3>
+        <div class="analysis-item">
+          <strong>لماذا البديل الأول ضعيف؟</strong>
+          لأن بدء النص برأي لا يعني التحيز،
+          ما دام الرأي الآخر عُرض بوضوح.
+        </div>
 
-          <p>
-            أصبحتِ تعرفين
-            أن قوة الدليل
-            لا تقاس بطوله،
-            بل بمدى صلته بالادعاء
-            وإمكان التحقق منه.
-          </p>
+        <div class="analysis-item">
+          <strong>لماذا البديل الثالث ضعيف؟</strong>
+          لأن غياب أسماء المدارس لا يكفي وحده
+          للحكم بأن النص كله غير موثوق.
+        </div>
 
-          <div class="definition-box">
-            عبارتكِ الذهبية:
-            «أسأل عن الدليل
-            قبل أن أصدق الادعاء».
-          </div>
+        <div class="analysis-item">
+          <strong>لماذا البديل الرابع ضعيف؟</strong>
+          لأن النص قيّد فائدة الهاتف
+          بالاستخدام المنظم وتحت الإشراف.
+        </div>
+
+      </div>
+
+      <div class="self-check">
+
+        <h3>قيّمي إتقانكِ</h3>
+
+        <p>
+          هل فحصتِ توازن النص وقوة عرضه،
+          بدل اختيار الرأي الذي تميلين إليه؟
+        </p>
+
+        <div class="self-options">
+
+          <button
+            class="self-btn"
+            data-level="mastered"
+            type="button">
+            ⭐ أتقنتُ المهارة
+          </button>
+
+          <button
+            class="self-btn"
+            data-level="practice"
+            type="button">
+            🔁 أحتاج إلى تدريب إضافي
+          </button>
+
+          <button
+            class="self-btn"
+            data-level="help"
+            type="button">
+            🪜 أحتاج إلى مساعدة
+          </button>
 
         </div>
 
+        <div class="self-message"></div>
+
         <button
-          class="action-button unlock-type"
-          data-unlock-type="4"
-          type="button"
-        >
-          افتحي بوابة السؤال التطبيقي
+          class="next-type-btn"
+          type="button">
+          انتقلي إلى السؤال التطبيقي
         </button>
 
-      </article>
+      </div>
 
-    </section>
+      <div class="stars">☆ ☆ ☆</div>
+        </section>
         <section
-      class="type-section"
-      data-type-section="4"
-    >
+      class="journey journey-card"
+      id="applied"
+      data-number="5">
 
-      <article class="type-gate">
+      <div class="journey-head">
+        <div class="journey-icon">💡</div>
 
-        <div
-          class="type-icon"
-          style="background: var(--orange-light);"
-        >
-          💡
-        </div>
-
-        <h2>
+        <h2 class="journey-title">
           السؤال التطبيقي
         </h2>
 
+        <p class="journey-definition">
+          يطلب نقل فكرة النص أو مبدئه
+          إلى موقف جديد، واتخاذ قرار
+          يتفق مع ما فهمتِه.
+        </p>
+      </div>
+
+      <div class="strategy-box">
+        <h3>كيف تتعرفين إليه؟</h3>
+
         <p>
-          ينقل فكرة النص أو قاعدته
-          إلى موقف جديد،
-          ويطلب اختيار التصرف
-          أو الحل الأكثر ملاءمة.
+          استخرجي المبدأ العام من النص أولًا،
+          ثم قارني المواقف الجديدة به.
+          اختاري الموقف الذي يطبق الفكرة،
+          لا الموقف الذي يكرر ألفاظ النص فقط.
         </p>
 
-        <div class="definition-box">
-          في السؤال التطبيقي
-          نفهم المبدأ أولًا،
-          ثم نبحث عن موقف جديد
-          يحقق المبدأ نفسه،
-          ولو اختلفت التفاصيل.
+        <div class="clue-tags">
+          <span class="clue-tag">أي موقف يطبق الفكرة؟</span>
+          <span class="clue-tag">ماذا تفعلين؟</span>
+          <span class="clue-tag">ما القرار الأنسب؟</span>
+          <span class="clue-tag">كيف نستفيد؟</span>
+          <span class="clue-tag">أي مثال مشابه؟</span>
         </div>
+      </div>
 
-        <div class="keywords">
-
-          <span class="keyword">
-            كيف نطبق؟
-          </span>
-
-          <span class="keyword">
-            ما الحل الأنسب؟
-          </span>
-
-          <span class="keyword">
-            أي موقف يشبه؟
-          </span>
-
-          <span class="keyword">
-            ماذا تفعل؟
-          </span>
-
-          <span class="keyword">
-            ما الإجراء المناسب؟
-          </span>
-
-        </div>
-
-        <button
-          class="action-button start-type"
-          data-start-type="4"
-          type="button"
-        >
-          ابدئي رحلة السؤال التطبيقي
-        </button>
-
-      </article>
-
-      <article
-        class="journey-card"
-        data-card="4-0"
-      >
-
-        <span class="card-label">
-          القطعة الخامسة
+      <div class="text-box">
+        <span class="text-type">
+          نص إرشادي معلوماتي
         </span>
 
         <h3>
-          المدن الذكية والاستدامة
+          التحقق من المعلومات الرقمية
         </h3>
 
-        <div class="reading-text">
-          تستخدم المدن الذكية
-          شبكات من المستشعرات
-          لجمع بيانات عن حركة المرور،
-          واستهلاك الطاقة،
-          ومستويات المياه،
-          وجودة الهواء.
+        <p class="reading-text">
+          تنتشر الأخبار والصور عبر المنصات الرقمية
+          بسرعة كبيرة، وقد يصل المحتوى إلى آلاف
+          الأشخاص قبل التحقق من صحته. لذلك لا يكفي
+          أن يكون المنشور مشهورًا أو أن يرسله شخص
+          نثق به حتى نعدّه صحيحًا. تبدأ عملية التحقق
+          بقراءة الخبر كاملًا بدل الاكتفاء بعنوانه،
+          ثم البحث عن المصدر الأصلي وتاريخ النشر.
+          كما يفيد مقارنة الخبر بمصادر موثوقة أخرى،
+          وفحص الصور؛ فقد تكون قديمة أو مأخوذة
+          من حدث مختلف. وينبغي الانتباه إلى العبارات
+          المثيرة التي تدفع القارئ إلى الخوف
+          أو الغضب أو المشاركة الفورية؛ لأن إثارة
+          المشاعر قد تستخدم لمنع التفكير الهادئ.
+          وإذا لم تتوافر أدلة كافية،
+          فالأفضل تأجيل نشر المحتوى،
+          فعدم مشاركة خبر غير مؤكد
+          أكثر مسؤولية من نشره ثم الاعتذار عنه.
+        </p>
+      </div>
 
-          وتساعد هذه البيانات
-          الجهات المسؤولة
-          على اكتشاف المشكلات مبكرًا،
-          واتخاذ قرارات أكثر دقة،
-          مثل تعديل توقيت الإشارات المرورية
-          أو اكتشاف تسرب المياه
-          قبل تفاقمه.
-
-          غير أن جمع البيانات وحده
-          لا يضمن نجاح المدينة الذكية؛
-          إذ ينبغي تحليلها بصورة صحيحة،
-          وحماية خصوصية الأفراد،
-          وتوجيه التقنية لخدمة الإنسان
-          لا لمراقبته بلا ضوابط.
-
-          وتنجح الحلول الذكية
-          عندما تجمع بين الكفاءة
-          والاستدامة والمسؤولية،
-          وتحوّل المعلومات
-          إلى إجراءات تقلل الهدر
-          وتحسن جودة الحياة.
-        </div>
-
-        <button
-          class="action-button open-question"
-          data-open-question="4-1"
-          type="button"
-        >
-          قرأتُ القطعة، افتحي السؤال
-        </button>
-
-      </article>
-
-      <article
-        class="journey-card"
-        data-card="4-1"
-      >
-
-        <span class="card-label">
-          طبقي الفكرة
-        </span>
-
-        <div class="question-box">
-
-          <h3>
-            لاحظت مدرسة ارتفاع استهلاك المياه.
-            أي إجراء يطبق فكرة القطعة
-            بصورة أدق؟
-          </h3>
-
-          <div class="options">
-
-            <button
-              class="option-button"
-              data-correct="false"
-              type="button"
-            >
-              إغلاق جميع مرافق المياه
-              دون معرفة سبب الارتفاع.
-            </button>
-
-            <button
-              class="option-button"
-              data-correct="true"
-              type="button"
-            >
-              استخدام حساسات لاكتشاف التسرب،
-              ثم معالجة موضع المشكلة.
-            </button>
-
-            <button
-              class="option-button"
-              data-correct="false"
-              type="button"
-            >
-              تجاهل البيانات
-              والاستمرار بالطريقة السابقة.
-            </button>
-
-          </div>
-
-          <div class="feedback"></div>
-
-        </div>
-
-        <button
-          class="action-button next-card"
-          data-next-card="4-2"
-          type="button"
-          disabled
-        >
-          فسّري سبب ملاءمة الحل
-        </button>
-
-      </article>
-
-      <article
-        class="journey-card"
-        data-card="4-2"
-      >
-
-        <span class="card-label">
-          فسّري التطبيق
-        </span>
-
-        <div class="question-box">
-
-          <h3>
-            لماذا يعد استخدام الحساسات
-            ومعالجة موضع التسرب
-            تطبيقًا صحيحًا لفكرة القطعة؟
-          </h3>
-
-          <div class="options">
-
-            <button
-              class="option-button"
-              data-correct="false"
-              type="button"
-            >
-              لأنه يستخدم التقنية
-              من غير حاجة إلى تحليل البيانات.
-            </button>
-
-            <button
-              class="option-button"
-              data-correct="true"
-              type="button"
-            >
-              لأنه يحول البيانات
-              إلى إجراء محدد يقلل الهدر.
-            </button>
-
-            <button
-              class="option-button"
-              data-correct="false"
-              type="button"
-            >
-              لأنه يمنع استخدام المياه
-              منعًا كاملًا.
-            </button>
-
-          </div>
-
-          <div class="feedback"></div>
-
-        </div>
-
-        <button
-          class="action-button next-card"
-          data-next-card="4-3"
-          type="button"
-          disabled
-        >
-          انتقلي إلى التقييم الذاتي
-        </button>
-
-      </article>
-
-      <article
-        class="journey-card"
-        data-card="4-3"
-      >
-
-        <span class="card-label">
-          قيّمي فهمكِ
-        </span>
+      <div class="question-box">
 
         <h3>
-          كيف تتعاملين مع السؤال التطبيقي؟
+          وصل إلى مجموعة الصف خبر عاجل
+          من حساب مجهول، فما التصرف
+          الذي يطبق مبدأ النص؟
         </h3>
 
-        <div class="question-box">
+        <div class="options">
 
-          <div class="options self-options">
+          <button class="option" type="button">
+            نشر الخبر سريعًا لأن عنوانه مهم.
+          </button>
 
-            <button
-              class="option-button self-option"
-              data-level="strong"
-              type="button"
-            >
-              أحدد المبدأ،
-              ثم أختار الموقف
-              الذي يطبقه بدقة.
-            </button>
+          <button class="option" type="button">
+            سؤال إحدى الصديقات
+            ثم نشره إذا صدقته.
+          </button>
 
-            <button
-              class="option-button self-option"
-              data-level="medium"
-              type="button"
-            >
-              أفهم المبدأ،
-              لكنني أحتاج إلى مقارنة
-              المواقف المتقاربة.
-            </button>
+          <button
+            class="option"
+            data-correct="true"
+            type="button">
+            البحث عن المصدر الأصلي،
+            ومقارنته بمصادر موثوقة،
+            وتأجيل النشر حتى التحقق.
+          </button>
 
-            <button
-              class="option-button self-option"
-              data-level="need-help"
-              type="button"
-            >
-              أختار أحيانًا موقفًا
-              مرتبطًا بالموضوع،
-              لكنه لا يطبق الفكرة.
-            </button>
-
-          </div>
-
-          <div class="feedback"></div>
-
-          <div
-            class="reward-box extra-help"
-          >
-            <strong>
-              تذكير سريع:
-            </strong>
-
-            لا يكفي أن يكون الموقف
-            من الموضوع نفسه؛
-            يجب أن يحقق القاعدة
-            أو المبدأ الذي عرضه النص.
-          </div>
+          <button class="option" type="button">
+            حذف الخبر فورًا
+            من غير قراءته أو فحصه.
+          </button>
 
         </div>
+
+        <div class="feedback"></div>
+      </div>
+
+      <div class="answer-analysis">
+
+        <h3>تحليل الإجابة</h3>
+
+        <div class="analysis-item">
+          <strong>سبب صحة الاختيار:</strong>
+          لأنه ينقل خطوات التحقق الواردة في النص
+          إلى موقف جديد قبل اتخاذ قرار النشر.
+        </div>
+
+        <div class="evidence">
+          <strong>الشاهد من النص:</strong>
+          «البحث عن المصدر الأصلي وتاريخ النشر»،
+          و«مقارنة الخبر بمصادر موثوقة أخرى».
+        </div>
+
+        <div class="analysis-item">
+          <strong>لماذا البديل الأول ضعيف؟</strong>
+          لأن أهمية العنوان أو إثارته
+          لا تثبت صحة الخبر.
+        </div>
+
+        <div class="analysis-item">
+          <strong>لماذا البديل الثاني ضعيف؟</strong>
+          لأن ثقة الصديقة ليست بديلًا
+          عن المصدر والدليل.
+        </div>
+
+        <div class="analysis-item">
+          <strong>لماذا البديل الرابع ضعيف؟</strong>
+          لأن التحقق يعني الفحص قبل الحكم،
+          لا الحذف المباشر دون قراءة.
+        </div>
+
+      </div>
+
+      <div class="self-check">
+
+        <h3>قيّمي إتقانكِ</h3>
+
+        <p>
+          هل استخرجتِ المبدأ العام،
+          ثم طبقتِه على موقف مختلف
+          عن المثال الوارد في النص؟
+        </p>
+
+        <div class="self-options">
+
+          <button
+            class="self-btn"
+            data-level="mastered"
+            type="button">
+            ⭐ أتقنتُ المهارة
+          </button>
+
+          <button
+            class="self-btn"
+            data-level="practice"
+            type="button">
+            🔁 أحتاج إلى تدريب إضافي
+          </button>
+
+          <button
+            class="self-btn"
+            data-level="help"
+            type="button">
+            🪜 أحتاج إلى مساعدة
+          </button>
+
+        </div>
+
+        <div class="self-message"></div>
 
         <button
-          class="action-button next-card"
-          data-next-card="4-4"
-          type="button"
-          disabled
-        >
-          افتحي صندوق الإنجاز
+          class="next-type-btn"
+          type="button">
+          شاهدي نتيجتكِ النهائية
         </button>
 
-      </article>
+      </div>
 
-      <article
-        class="journey-card"
-        data-card="4-4"
-      >
+      <div class="stars">☆ ☆ ☆</div>
+    </section>
 
-        <span class="card-label">
-          صندوق الإنجاز الختامي
-        </span>
+    <section class="final-card" id="finalCard">
 
-        <div
-          class="reward-box show"
-        >
+      <div class="badge">🏅</div>
 
-          <h3>
-            🏆 وسام قارئة نافس الواعية
-          </h3>
+      <h2>
+        أحسنتِ! أتممتِ رحلة أنواع الأسئلة
+      </h2>
 
-          <p>
-            أتممتِ بوابات أنواع الأسئلة:
-            الحرفي،
-            والاستنتاجي،
-            والتحليلي،
-            والنقدي،
-            والتطبيقي.
-          </p>
+      <p>
+        أصبحتِ أكثر قدرة على تحديد نوع السؤال،
+        والاختيار بالدليل، والعودة إلى الشاهد،
+        وتقويم مستوى إتقانكِ بصدق.
+      </p>
 
-          <div class="definition-box">
-            العبارة السرية المكتملة:
-
-            «القارئة الذكية
-            لا تبحث عن إجابة فقط،
-            بل تبحث عن الدليل
-            وطريقة التفكير المناسبة».
-          </div>
-
-        </div>
-
-        <a
-          class="action-button"
-          href="nafes-skills.html"
-          style="text-decoration: none;"
-        >
-          العودة إلى مكتبة مهارات نافس
-        </a>
-
-      </article>
+      <div class="stars">★ ★ ★</div>
 
     </section>
 
@@ -1931,376 +1600,420 @@
   <footer>
     جميع الحقوق محفوظة © 2026
   </footer>
+    <script>
+    const gates =
+      [...document.querySelectorAll(".gate")];
 
-  <script>
-    const typeSections =
-      document.querySelectorAll(
-        ".type-section"
-      );
+    const journeys =
+      [...document.querySelectorAll(".journey")];
 
-    const progressSteps =
-      document.querySelectorAll(
-        ".progress-step"
-      );
+    const progressBar =
+      document.getElementById("progressBar");
 
-    const startButtons =
-      document.querySelectorAll(
-        ".start-type"
-      );
+    const progressText =
+      document.getElementById("progressText");
 
-    const openQuestionButtons =
-      document.querySelectorAll(
-        ".open-question"
-      );
+    const soundBtn =
+      document.getElementById("soundBtn");
 
-    const nextCardButtons =
-      document.querySelectorAll(
-        ".next-card"
-      );
+    const finalCard =
+      document.getElementById("finalCard");
 
-    const unlockButtons =
-      document.querySelectorAll(
-        ".unlock-type"
-      );
+    let soundOn =
+      localStorage.getItem("nafesSound") !== "off";
 
-    let currentType = Number(
-      localStorage.getItem(
-        "afaq_question_type_current"
-      ) || 0
+    const completed = new Set(
+      JSON.parse(
+        localStorage.getItem(
+          "nafesQuestionTypesCompleted"
+        ) || "[]"
+      )
     );
 
-    if (
-      currentType < 0 ||
-      currentType > 4
-    ) {
-      currentType = 0;
-    }
-
-    function showType(
-      typeNumber
-    ) {
-      typeSections.forEach(
-        (section) => {
-          const number =
-            Number(
-              section.dataset.typeSection
-            );
-
-          section.classList.toggle(
-            "active",
-            number === typeNumber
-          );
-        }
+    const selfRatings =
+      JSON.parse(
+        localStorage.getItem(
+          "nafesQuestionTypesRatings"
+        ) || "{}"
       );
 
-      progressSteps.forEach(
-        (step) => {
-          const number =
-            Number(
-              step.dataset.progress
-            );
-
-          step.classList.remove(
-            "active",
-            "done"
-          );
-
-          if (
-            number < typeNumber
-          ) {
-            step.classList.add(
-              "done"
-            );
-          }
-
-          if (
-            number === typeNumber
-          ) {
-            step.classList.add(
-              "active"
-            );
-          }
-        }
-      );
-
-      currentType =
-        typeNumber;
-
-      localStorage.setItem(
-        "afaq_question_type_current",
-        String(typeNumber)
-      );
-
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-    }
-
-    function showCard(
-      cardId
-    ) {
-      const sectionNumber =
-        cardId.split("-")[0];
-
-      const section =
-        document.querySelector(
-          `[data-type-section="${sectionNumber}"]`
+    function showJourney(targetId) {
+      journeys.forEach(journey => {
+        journey.classList.toggle(
+          "active",
+          journey.id === targetId
         );
+      });
 
-      if (!section) {
+      gates.forEach(gate => {
+        gate.classList.toggle(
+          "active",
+          gate.dataset.target === targetId
+        );
+      });
+
+      const target =
+        document.getElementById(targetId);
+
+      if (target) {
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+    }
+
+    gates.forEach(gate => {
+      gate.addEventListener("click", () => {
+        showJourney(gate.dataset.target);
+      });
+    });
+
+    function createAudioContext() {
+      return new (
+        window.AudioContext ||
+        window.webkitAudioContext
+      )();
+    }
+
+    function playCorrectSound() {
+      if (!soundOn) {
         return;
       }
 
-      section
-        .querySelectorAll(
-          ".journey-card"
-        )
-        .forEach(
-          (card) => {
-            card.classList.remove(
-              "active"
-            );
-          }
+      const context = createAudioContext();
+
+      [523, 659, 784].forEach(
+        (frequency, index) => {
+          const oscillator =
+            context.createOscillator();
+
+          const gain =
+            context.createGain();
+
+          const start =
+            context.currentTime + index * 0.09;
+
+          oscillator.frequency.value = frequency;
+          oscillator.type = "sine";
+
+          gain.gain.setValueAtTime(
+            0.0001,
+            start
+          );
+
+          gain.gain.exponentialRampToValueAtTime(
+            0.18,
+            start + 0.02
+          );
+
+          gain.gain.exponentialRampToValueAtTime(
+            0.0001,
+            start + 0.24
+          );
+
+          oscillator.connect(gain);
+          gain.connect(context.destination);
+
+          oscillator.start(start);
+          oscillator.stop(start + 0.26);
+        }
+      );
+    }
+
+    function playWrongSound() {
+      if (!soundOn) {
+        return;
+      }
+
+      const context = createAudioContext();
+
+      [230, 175].forEach(
+        (frequency, index) => {
+          const oscillator =
+            context.createOscillator();
+
+          const gain =
+            context.createGain();
+
+          const start =
+            context.currentTime + index * 0.14;
+
+          oscillator.frequency.value = frequency;
+          oscillator.type = "square";
+
+          gain.gain.setValueAtTime(
+            0.0001,
+            start
+          );
+
+          gain.gain.exponentialRampToValueAtTime(
+            0.08,
+            start + 0.02
+          );
+
+          gain.gain.exponentialRampToValueAtTime(
+            0.0001,
+            start + 0.13
+          );
+
+          oscillator.connect(gain);
+          gain.connect(context.destination);
+
+          oscillator.start(start);
+          oscillator.stop(start + 0.15);
+        }
+      );
+    }
+
+    function playApplause() {
+      if (!soundOn) {
+        return;
+      }
+
+      const context = createAudioContext();
+
+      for (let index = 0; index < 16; index++) {
+        const buffer = context.createBuffer(
+          1,
+          context.sampleRate * 0.07,
+          context.sampleRate
         );
 
-      const target =
-        document.querySelector(
-          `[data-card="${cardId}"]`
-        );
+        const data = buffer.getChannelData(0);
 
-      if (target) {
-        target.classList.add(
-          "active"
-        );
+        for (
+          let sample = 0;
+          sample < data.length;
+          sample++
+        ) {
+          data[sample] =
+            (Math.random() * 2 - 1) *
+            (1 - sample / data.length);
+        }
 
-        setTimeout(
-          () => {
-            target.scrollIntoView({
-              behavior: "smooth",
-              block: "start"
-            });
-          },
-          100
+        const source =
+          context.createBufferSource();
+
+        const gain =
+          context.createGain();
+
+        const filter =
+          context.createBiquadFilter();
+
+        source.buffer = buffer;
+        filter.type = "bandpass";
+
+        filter.frequency.value =
+          1200 + Math.random() * 900;
+
+        gain.gain.value = 0.15;
+
+        source.connect(filter);
+        filter.connect(gain);
+        gain.connect(context.destination);
+
+        source.start(
+          context.currentTime +
+          index * 0.07 +
+          Math.random() * 0.03
         );
       }
     }
 
-    startButtons.forEach(
-      (button) => {
-        button.addEventListener(
-          "click",
-          () => {
-            const typeNumber =
-              button.dataset.startType;
+    function updateProgress() {
+      const count = completed.size;
 
-            showCard(
-              `${typeNumber}-0`
-            );
-          }
-        );
-      }
-    );
+      progressText.textContent =
+        count + " من 5";
 
-    openQuestionButtons.forEach(
-      (button) => {
-        button.addEventListener(
-          "click",
-          () => {
-            showCard(
-              button.dataset.openQuestion
-            );
-          }
-        );
-      }
-    );
+      progressBar.style.width =
+        count / 5 * 100 + "%";
 
-    nextCardButtons.forEach(
-      (button) => {
-        button.addEventListener(
-          "click",
-          () => {
-            if (
-              button.disabled
-            ) {
-              return;
-            }
-
-            showCard(
-              button.dataset.nextCard
-            );
-          }
-        );
-      }
-    );
-
-    document
-      .querySelectorAll(
-        ".journey-card"
-      )
-      .forEach(
-        (card) => {
-          const ordinaryOptions =
-            card.querySelectorAll(
-              ".option-button:not(.self-option)"
-            );
-
-          const selfOptions =
-            card.querySelectorAll(
-              ".self-option"
-            );
-
-          const feedback =
-            card.querySelector(
-              ".feedback"
-            );
-
-          const nextButton =
-            card.querySelector(
-              ".next-card"
-            );
-
-          ordinaryOptions.forEach(
-            (option) => {
-              option.addEventListener(
-                "click",
-                () => {
-                  ordinaryOptions.forEach(
-                    (item) => {
-                      item.classList.remove(
-                        "correct",
-                        "wrong"
-                      );
-                    }
-                  );
-
-                  if (
-                    option.dataset.correct ===
-                    "true"
-                  ) {
-                    option.classList.add(
-                      "correct"
-                    );
-
-                    if (feedback) {
-                      feedback.textContent =
-                        "إجابة دقيقة. عدتِ إلى النص، وحددتِ الدليل المناسب، وربطتِه بالمطلوب.";
-
-                      feedback.classList.add(
-                        "show"
-                      );
-                    }
-
-                    if (nextButton) {
-                      nextButton.disabled =
-                        false;
-                    }
-                  } else {
-                    option.classList.add(
-                      "wrong"
-                    );
-
-                    if (feedback) {
-                      feedback.textContent =
-                        "راجعي المطلوب مرة أخرى، ثم قارني كل بديل بالدليل الوارد في القطعة.";
-
-                      feedback.classList.add(
-                        "show"
-                      );
-                    }
-                  }
-                }
-              );
-            }
-          );
-
-          selfOptions.forEach(
-            (option) => {
-              option.addEventListener(
-                "click",
-                () => {
-                  selfOptions.forEach(
-                    (item) => {
-                      item.classList.remove(
-                        "correct"
-                      );
-                    }
-                  );
-
-                  option.classList.add(
-                    "correct"
-                  );
-
-                  const level =
-                    option.dataset.level;
-
-                  const extraHelp =
-                    card.querySelector(
-                      ".extra-help"
-                    );
-
-                  if (feedback) {
-                    if (
-                      level === "strong"
-                    ) {
-                      feedback.textContent =
-                        "رائع. تبدين مستعدة للانتقال إلى المرحلة التالية.";
-                    } else if (
-                      level === "medium"
-                    ) {
-                      feedback.textContent =
-                        "اختيار واعٍ. اقرئي التذكير، ثم واصلي الرحلة.";
-                    } else {
-                      feedback.textContent =
-                        "الاعتراف بالحاجة إلى التدريب بداية التقدم. اقرئي التذكير بهدوء.";
-                    }
-
-                    feedback.classList.add(
-                      "show"
-                    );
-                  }
-
-                  if (extraHelp) {
-                    extraHelp.classList.toggle(
-                      "show",
-                      level !== "strong"
-                    );
-                  }
-
-                  if (nextButton) {
-                    nextButton.disabled =
-                      false;
-                  }
-                }
-              );
-            }
-          );
-        }
+      localStorage.setItem(
+        "nafesQuestionTypesCompleted",
+        JSON.stringify([...completed])
       );
 
-    unlockButtons.forEach(
-      (button) => {
-        button.addEventListener(
-          "click",
-          () => {
-            const nextType =
-              Number(
-                button.dataset.unlockType
-              );
+      journeys.forEach(journey => {
+        const stars =
+          journey.querySelector(".stars");
 
-            showType(
-              nextType
-            );
-          }
-        );
+        stars.textContent =
+          completed.has(journey.id)
+            ? "★ ★ ★"
+            : "☆ ☆ ☆";
+      });
+
+      if (count === 5) {
+        finalCard.classList.add("show");
+
+        setTimeout(() => {
+          finalCard.scrollIntoView({
+            behavior: "smooth"
+          });
+        }, 300);
       }
-    );
+    }
 
-    showType(
-      currentType
-    );
+    journeys.forEach((journey, journeyIndex) => {
+      const options =
+        [...journey.querySelectorAll(".option")];
+
+      const feedback =
+        journey.querySelector(".feedback");
+
+      const analysis =
+        journey.querySelector(".answer-analysis");
+
+      const selfCheck =
+        journey.querySelector(".self-check");
+
+      const nextButton =
+        journey.querySelector(".next-type-btn");
+
+      options.forEach(option => {
+        option.addEventListener("click", () => {
+          if (
+            option.dataset.correct === "true"
+          ) {
+            options.forEach(button => {
+              button.disabled = true;
+            });
+
+            option.classList.add("correct");
+
+            feedback.className =
+              "feedback show good";
+
+            feedback.textContent =
+              "👏 إجابة صحيحة. الآن اقرئي سبب الاختيار والشاهد من القطعة.";
+
+            analysis.classList.add("show");
+            selfCheck.classList.add("show");
+
+            completed.add(journey.id);
+
+            playCorrectSound();
+            updateProgress();
+
+          } else {
+            option.classList.add("wrong");
+
+            feedback.className =
+              "feedback show bad";
+
+            feedback.textContent =
+              "⚠️ ليست الإجابة الأدق. عودي إلى السؤال، وحددي المطلوب، ثم ابحثي عن الدليل في النص.";
+
+            playWrongSound();
+
+            if (navigator.vibrate) {
+              navigator.vibrate(
+                [120, 70, 120]
+              );
+            }
+
+            setTimeout(() => {
+              option.classList.remove("wrong");
+            }, 700);
+          }
+        });
+      });
+
+      const selfButtons =
+        [...journey.querySelectorAll(".self-btn")];
+
+      const selfMessage =
+        journey.querySelector(".self-message");
+
+      selfButtons.forEach(button => {
+        button.addEventListener("click", () => {
+          const level =
+            button.dataset.level;
+
+          selfRatings[journey.id] = level;
+
+          localStorage.setItem(
+            "nafesQuestionTypesRatings",
+            JSON.stringify(selfRatings)
+          );
+
+          selfButtons.forEach(btn => {
+            btn.style.opacity = "0.55";
+          });
+
+          button.style.opacity = "1";
+
+          if (level === "mastered") {
+            selfMessage.textContent =
+              "⭐ رائع. أتقنتِ تحديد نوع السؤال والعودة إلى الدليل والشاهد.";
+
+            playCorrectSound();
+          }
+
+          if (level === "practice") {
+            selfMessage.textContent =
+              "🔁 اختيار صادق. راجعي كلمات السؤال، ثم أعيدي قراءة الشاهد قبل الانتقال.";
+          }
+
+          if (level === "help") {
+            selfMessage.textContent =
+              "🪜 ابدئي بثلاث خطوات: حددي المطلوب، ابحثي عن الكلمة المفتاحية، ثم قارني البدائل بالشاهد.";
+          }
+
+          selfMessage.classList.add("show");
+          nextButton.classList.add("show");
+        });
+      });
+
+      nextButton.addEventListener("click", () => {
+        if (
+          journeyIndex <
+          journeys.length - 1
+        ) {
+          showJourney(
+            journeys[journeyIndex + 1].id
+          );
+        } else {
+          finalCard.classList.add("show");
+
+          playApplause();
+
+          finalCard.scrollIntoView({
+            behavior: "smooth"
+          });
+        }
+      });
+    });
+
+    soundBtn.addEventListener("click", () => {
+      soundOn = !soundOn;
+
+      localStorage.setItem(
+        "nafesSound",
+        soundOn ? "on" : "off"
+      );
+
+      soundBtn.textContent =
+        soundOn
+          ? "🔊 الصوت مفعّل"
+          : "🔇 الصوت مكتوم";
+
+      if (soundOn) {
+        playCorrectSound();
+      }
+    });
+
+    soundBtn.textContent =
+      soundOn
+        ? "🔊 الصوت مفعّل"
+        : "🔇 الصوت مكتوم";
+
+    updateProgress();
+    showJourney("literal");
   </script>
 
 </body>
-
 </html>
+    
