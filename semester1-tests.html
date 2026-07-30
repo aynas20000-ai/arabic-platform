@@ -223,33 +223,36 @@
 
     .certificate-student-overlay {
       position: absolute;
-      top: 30.5%;
+      top: 28.7%;
       right: 30%;
-      width: 40%;
-      padding: 0;
-      color: #c62828;
+      width: 44%;
+      padding: 0 6px;
+      color: #b71c1c;
       text-align: center;
       font-family: "Cairo", Tahoma, Arial, sans-serif;
-      font-size: clamp(10px, 1.7vw, 21px);
+      font-size: clamp(11px, 1.75vw, 23px);
       font-weight: 800;
-      line-height: 1;
+      line-height: 1.15;
       white-space: nowrap;
-      text-shadow: none;
+      text-shadow: 0 1px 0 #fff;
     }
 
     .certificate-score-overlay {
       position: absolute;
-      top: 41.7%;
-      right: 45.5%;
-      width: 9%;
-      padding: 0;
-      color: #c62828;
+      top: 38.6%;
+      right: 38%;
+      width: 24%;
+      padding: 2px 8px;
+      color: #b71c1c;
       text-align: center;
       font-family: "Cairo", Tahoma, Arial, sans-serif;
-      font-size: clamp(10px, 1.7vw, 21px);
+      font-size: clamp(10px, 1.55vw, 20px);
       font-weight: 800;
-      line-height: 1;
+      line-height: 1.2;
       white-space: nowrap;
+      background: rgba(255,255,255,.82);
+      border: 1px solid rgba(183,28,28,.35);
+      border-radius: 999px;
     }
 
     .certificate-date-overlay {
@@ -481,7 +484,7 @@
             id="certificateTotal"
             class="certificate-score-overlay"
           >
-            ٠
+            الدرجة: ٠ من ١٠٠
           </div>
 
           <div
@@ -677,7 +680,10 @@
 
       document.getElementById(
         "certificateTotal"
-      ).textContent = toArabicNumber(total);
+      ).textContent =
+        "الدرجة: " +
+        toArabicNumber(total) +
+        " من ١٠٠";
 
       document.getElementById(
         "certificateDate"
