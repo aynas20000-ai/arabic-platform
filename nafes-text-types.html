@@ -1,0 +1,1679 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>أنواع النصوص | مكتبة نافس</title>
+
+  <style>
+    :root {
+      --purple: #6f5288;
+      --dark-purple: #49385c;
+      --light-purple: #f5ecfb;
+      --gold: #c9a85c;
+      --cream: #fffaf2;
+      --card: #fffdf8;
+      --text: #3e3048;
+      --green: #2f7d4a;
+      --red: #b64242;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Tahoma, Arial, sans-serif;
+      color: var(--text);
+      background: linear-gradient(
+        180deg,
+        var(--cream),
+        #f8f0fb
+      );
+      line-height: 1.9;
+      overflow-x: hidden;
+    }
+
+    header {
+      padding: 34px 18px 30px;
+      text-align: center;
+      color: white;
+      background: linear-gradient(
+        135deg,
+        #776094,
+        #5b4677
+      );
+      border-bottom: 5px solid var(--gold);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 34px;
+    }
+
+    header p {
+      max-width: 760px;
+      margin: 10px auto 0;
+      font-size: 17px;
+    }
+
+    main {
+      width: min(94%, 900px);
+      margin: 24px auto 40px;
+    }
+
+    .top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      padding: 12px;
+      background: var(--card);
+      border: 2px solid #d9c8e7;
+      border-radius: 16px;
+      box-shadow: 0 6px 15px rgba(73, 56, 92, 0.09);
+    }
+
+    .home-btn,
+    .sound-btn {
+      padding: 10px 14px;
+      font-family: inherit;
+      font-weight: bold;
+      text-decoration: none;
+      border: 0;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+    .home-btn {
+      color: #33263d;
+      background: var(--gold);
+    }
+
+    .sound-btn {
+      color: white;
+      background: var(--purple);
+    }
+
+    .progress-area {
+      flex: 1;
+      min-width: 210px;
+    }
+
+    .progress-text {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .progress-track {
+      height: 12px;
+      margin-top: 6px;
+      overflow: hidden;
+      background: #eee5f2;
+      border-radius: 999px;
+    }
+
+    .progress-bar {
+      width: 0;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        var(--gold),
+        var(--purple)
+      );
+      transition: width 0.4s ease;
+    }
+
+    .intro-card,
+    .lesson-card,
+    .final-card {
+      padding: 20px;
+      margin-bottom: 18px;
+      background: var(--card);
+      border: 2px solid #d9c8e7;
+      border-radius: 20px;
+      box-shadow: 0 7px 18px rgba(73, 56, 92, 0.09);
+    }
+
+    .intro-card h2,
+    .lesson-card h2,
+    .final-card h2 {
+      margin-top: 0;
+      color: var(--purple);
+    }
+
+    .scientific-rule {
+      padding: 14px;
+      font-weight: bold;
+      background: var(--light-purple);
+      border-right: 5px solid var(--gold);
+      border-radius: 14px;
+    }
+        .type-tabs {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin: 16px 0;
+    }
+
+    .type-tab {
+      min-height: 66px;
+      padding: 10px;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: bold;
+      color: var(--dark-purple);
+      background: linear-gradient(
+        135deg,
+        #fffdf8,
+        #f5ecfb
+      );
+      border: 2px solid var(--gold);
+      border-radius: 14px;
+      cursor: pointer;
+    }
+
+    .type-tab.active {
+      color: white;
+      background: var(--purple);
+      transform: translateY(-2px);
+    }
+
+    .lesson {
+      display: none;
+      animation: fade 0.25s ease;
+    }
+
+    .lesson.active {
+      display: block;
+    }
+
+    @keyframes fade {
+      from {
+        opacity: 0.2;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .lesson-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .lesson-icon {
+      display: grid;
+      place-items: center;
+      width: 58px;
+      height: 58px;
+      flex-shrink: 0;
+      font-size: 30px;
+      background: var(--light-purple);
+      border: 2px solid #d9c8e7;
+      border-radius: 17px;
+    }
+
+    .lesson-head h2 {
+      margin: 0;
+    }
+
+    .lesson-head p {
+      margin: 2px 0 0;
+    }
+
+    .facts-grid {
+      display: grid;
+      grid-template-columns: repeat(
+        auto-fit,
+        minmax(190px, 1fr)
+      );
+      gap: 10px;
+      margin: 14px 0;
+    }
+
+    .fact-box {
+      padding: 12px;
+      background: white;
+      border: 1px solid #e2d7e8;
+      border-radius: 12px;
+    }
+
+    .fact-box strong {
+      color: var(--purple);
+    }
+
+    .example-box {
+      padding: 15px;
+      margin: 14px 0;
+      background: #fffaf0;
+      border: 2px dashed var(--gold);
+      border-radius: 14px;
+    }
+
+    .identify-box {
+      padding: 14px;
+      margin-top: 12px;
+      background: var(--light-purple);
+      border-right: 5px solid var(--purple);
+      border-radius: 13px;
+    }
+
+    .question {
+      padding: 16px;
+      margin-top: 16px;
+      background: white;
+      border: 2px solid #ded3e5;
+      border-radius: 15px;
+    }
+
+    .question h3 {
+      margin-top: 0;
+      font-size: 18px;
+    }
+
+    .options {
+      display: grid;
+      gap: 9px;
+    }
+
+    .option {
+      padding: 12px;
+      text-align: right;
+      font-family: inherit;
+      font-size: 16px;
+      color: var(--text);
+      background: #f7f1fa;
+      border: 2px solid transparent;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+    .option.correct {
+      color: var(--green);
+      background: #e9f7ee;
+      border-color: #73af88;
+    }
+
+    .option.wrong {
+      color: var(--red);
+      background: #fdecec;
+      border-color: #dd9696;
+      animation: shake 0.35s ease;
+    }
+
+    @keyframes shake {
+      0%, 100% {
+        transform: translateX(0);
+      }
+
+      25% {
+        transform: translateX(7px);
+      }
+
+      50% {
+        transform: translateX(-7px);
+      }
+
+      75% {
+        transform: translateX(4px);
+      }
+    }
+
+    .feedback {
+      display: none;
+      margin-top: 10px;
+      padding: 12px;
+      font-weight: bold;
+      border-radius: 11px;
+    }
+
+    .feedback.show {
+      display: block;
+    }
+
+    .feedback.good {
+      color: var(--green);
+      background: #e9f7ee;
+    }
+
+    .feedback.bad {
+      color: var(--red);
+      background: #fdecec;
+    }
+
+    .evidence {
+      display: block;
+      margin-top: 6px;
+      font-weight: normal;
+      color: var(--text);
+    }
+        .stars {
+      margin-top: 12px;
+      text-align: center;
+      font-size: 30px;
+      letter-spacing: 6px;
+      color: #c9a85c;
+    }
+
+    .nav-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .nav-btn {
+      flex: 1;
+      min-height: 48px;
+      padding: 10px;
+      font-family: inherit;
+      font-weight: bold;
+      color: white;
+      background: var(--purple);
+      border: 0;
+      border-radius: 13px;
+      cursor: pointer;
+    }
+
+    .nav-btn.secondary {
+      color: var(--dark-purple);
+      background: #e9dff0;
+    }
+
+    .final-card {
+      display: none;
+      text-align: center;
+      border: 3px solid var(--gold);
+      background: linear-gradient(
+        135deg,
+        #fffdf8,
+        #f5ecfb
+      );
+    }
+
+    .final-card.show {
+      display: block;
+    }
+
+    .badge {
+      display: inline-grid;
+      place-items: center;
+      width: 125px;
+      height: 125px;
+      margin-bottom: 10px;
+      font-size: 50px;
+      color: var(--dark-purple);
+      background: linear-gradient(
+        135deg,
+        var(--gold),
+        #f2d68d
+      );
+      border: 6px solid #fff7db;
+      border-radius: 50%;
+      box-shadow: 0 8px 22px rgba(73, 56, 92, 0.18);
+    }
+
+    footer {
+      padding: 18px;
+      text-align: center;
+      color: white;
+      background: var(--dark-purple);
+      border-top: 4px solid var(--gold);
+    }
+
+    @media (max-width: 700px) {
+      header h1 {
+        font-size: 29px;
+      }
+
+      .type-tabs {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .type-tab {
+        min-height: 60px;
+        font-size: 14px;
+      }
+
+      .lesson-card,
+      .intro-card,
+      .final-card {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>أنواع النصوص</h1>
+
+    <p>
+      تعرّفي نوع النص من غرضه وبنيته ولغته،
+      ثم طبّقي معرفتكِ في تدريبات تفاعلية قصيرة.
+    </p>
+  </header>
+
+  <main>
+
+    <div class="top-bar">
+
+      <a class="home-btn" href="nafes.html">
+        العودة إلى مكتبة نافس
+      </a>
+
+      <div class="progress-area">
+        <div class="progress-text">
+          <span>تقدّمكِ</span>
+          <span id="progressText">0 من 8</span>
+        </div>
+
+        <div class="progress-track">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+      </div>
+
+      <button
+        class="sound-btn"
+        id="soundBtn"
+        type="button">
+        🔊 الصوت مفعّل
+      </button>
+
+    </div>
+
+    <section class="intro-card">
+      <h2>كيف تميّزين نوع النص علميًّا؟</h2>
+
+      <p>
+        لا يكفي أن تنظري إلى موضوع النص؛
+        بل حددي غرض الكاتب، وطريقة تنظيم الأفكار،
+        ونوع اللغة، والعلامات البارزة في النص.
+      </p>
+
+      <div class="scientific-rule">
+        اسألي نفسكِ:
+        هل يريد الكاتب أن يخبر، أم يروي، أم يصف،
+        أم يشرح، أم يوجّه، أم يقنع،
+        أم ينجز غرضًا عمليًّا؟
+      </div>
+
+      <div class="type-tabs">
+
+        <button
+          class="type-tab active"
+          data-target="informational"
+          type="button">
+          📘 المعلوماتي
+        </button>
+
+        <button
+          class="type-tab"
+          data-target="narrative"
+          type="button">
+          📖 السردي
+        </button>
+
+        <button
+          class="type-tab"
+          data-target="descriptive"
+          type="button">
+          🎨 الوصفي
+        </button>
+
+        <button
+          class="type-tab"
+          data-target="instructional"
+          type="button">
+          🧭 الإرشادي
+        </button>
+
+        <button
+          class="type-tab"
+          data-target="explanatory"
+          type="button">
+          ⚙️ التفسيري
+        </button>
+
+        <button
+          class="type-tab"
+          data-target="argumentative"
+          type="button">
+          ⚖️ الحجاجي
+        </button>
+
+        <button
+          class="type-tab"
+          data-target="functional"
+          type="button">
+          📄 الوظيفي
+        </button>
+
+        <button
+          class="type-tab"
+          data-target="digital"
+          type="button">
+          💻 الرقمي
+        </button>
+
+      </div>
+    </section>
+        <section
+      class="lesson-card lesson active"
+      id="informational"
+      data-lesson="1">
+
+      <div class="lesson-head">
+        <div class="lesson-icon">📘</div>
+
+        <div>
+          <h2>النص المعلوماتي</h2>
+
+          <p>
+            يقدّم حقائق وبيانات ومعارف
+            حول موضوع محدد.
+          </p>
+        </div>
+      </div>
+
+      <div class="facts-grid">
+
+        <div class="fact-box">
+          <strong>غرضه:</strong>
+          الإخبار والتعريف وتقديم المعرفة.
+        </div>
+
+        <div class="fact-box">
+          <strong>علاماته:</strong>
+          حقائق، أرقام، مصطلحات، عناوين فرعية.
+        </div>
+
+        <div class="fact-box">
+          <strong>تنظيمه:</strong>
+          فكرة رئيسة تتبعها تفاصيل داعمة.
+        </div>
+
+      </div>
+
+      <div class="example-box">
+        <strong>مثال:</strong>
+
+        تستخدم المدن الذكية حساسات رقمية
+        لقياس جودة الهواء وتنظيم استهلاك الطاقة،
+        ثم تُحلّل البيانات لاتخاذ قرارات أسرع.
+      </div>
+
+      <div class="identify-box">
+        <strong>كيف تميّزينه؟</strong>
+
+        اسألي: هل يعرض النص معلومات واقعية
+        يمكن التحقق منها؟ وهل يهدف إلى
+        زيادة معرفة القارئ بالموضوع؟
+      </div>
+
+      <div class="question">
+        <h3>
+          ما الدليل الأقوى على أن المثال
+          نص معلوماتي؟
+        </h3>
+
+        <div class="options">
+
+          <button
+            class="option"
+            data-correct="true"
+            type="button">
+            يقدّم معلومات واقعية عن
+            استخدام الحساسات والبيانات.
+          </button>
+
+          <button class="option" type="button">
+            يصف مشاعر شخصية تجاه المدينة.
+          </button>
+
+          <button class="option" type="button">
+            يروي أحداثًا متتابعة لشخصية.
+          </button>
+
+        </div>
+
+        <div class="feedback"></div>
+      </div>
+
+      <div class="stars">☆ ☆ ☆</div>
+    </section>
+
+    <section
+      class="lesson-card lesson"
+      id="narrative"
+      data-lesson="2">
+
+      <div class="lesson-head">
+        <div class="lesson-icon">📖</div>
+
+        <div>
+          <h2>النص السردي</h2>
+
+          <p>
+            يروي أحداثًا تقع لشخصيات
+            في زمان ومكان محددين.
+          </p>
+        </div>
+      </div>
+
+      <div class="facts-grid">
+
+        <div class="fact-box">
+          <strong>غرضه:</strong>
+          رواية حدث أو تجربة.
+        </div>
+
+        <div class="fact-box">
+          <strong>علاماته:</strong>
+          شخصيات، زمان، مكان، أحداث.
+        </div>
+
+        <div class="fact-box">
+          <strong>لغته:</strong>
+          أفعال وحوار وروابط زمنية.
+        </div>
+
+      </div>
+
+      <div class="example-box">
+        <strong>مثال:</strong>
+
+        عندما دخلت ليان مختبر الابتكار،
+        توقفت أمام الروبوت الصغير.
+        ضغطت زر التشغيل، فتحرك نحوها،
+        ثم عرض على شاشته رسالة ترحيب.
+      </div>
+
+      <div class="identify-box">
+        <strong>كيف تميّزينه؟</strong>
+
+        ابحثي عن شخصية تفعل شيئًا،
+        وأحداث تتتابع، وزمان أو مكان
+        تجري فيه القصة.
+      </div>
+
+      <div class="question">
+        <h3>
+          أي عنصر يجعل المثال سرديًّا بوضوح؟
+        </h3>
+
+        <div class="options">
+
+          <button class="option" type="button">
+            وجود تعريف علمي للروبوت.
+          </button>
+
+          <button
+            class="option"
+            data-correct="true"
+            type="button">
+            وجود شخصية وأحداث متتابعة
+            في مكان محدد.
+          </button>
+
+          <button class="option" type="button">
+            وجود تعليمات تشغيل مرقمة.
+          </button>
+
+        </div>
+
+        <div class="feedback"></div>
+      </div>
+
+      <div class="stars">☆ ☆ ☆</div>
+    </section>
+        <section
+      class="lesson-card lesson"
+      id="descriptive"
+      data-lesson="3">
+
+      <div class="lesson-head">
+        <div class="lesson-icon">🎨</div>
+
+        <div>
+          <h2>النص الوصفي</h2>
+
+          <p>
+            يرسم صورة ذهنية لمكان أو شخص
+            أو مشهد باستخدام الصفات والحواس.
+          </p>
+        </div>
+      </div>
+
+      <div class="facts-grid">
+
+        <div class="fact-box">
+          <strong>غرضه:</strong>
+          تصوير المشهد وإبرازه للقارئ.
+        </div>
+
+        <div class="fact-box">
+          <strong>علاماته:</strong>
+          صفات، ألوان، أصوات، روائح، تشبيهات.
+        </div>
+
+        <div class="fact-box">
+          <strong>تركيزه:</strong>
+          التفاصيل الحسية والانطباع.
+        </div>
+
+      </div>
+
+      <div class="example-box">
+        <strong>مثال:</strong>
+
+        امتد الممر الزجاجي هادئًا،
+        وانعكست عليه أضواء زرقاء باردة،
+        بينما كان صوت الأجهزة الخافت
+        يشبه همسًا متواصلًا.
+      </div>
+
+      <div class="identify-box">
+        <strong>كيف تميّزينه؟</strong>
+
+        لاحظي كثرة الصفات والتفاصيل التي
+        تساعدكِ على رؤية المشهد أو سماعه
+        أو تخيله.
+      </div>
+
+      <div class="question">
+        <h3>
+          ما السمة الأبرز في المثال؟
+        </h3>
+
+        <div class="options">
+
+          <button
+            class="option"
+            data-correct="true"
+            type="button">
+            استخدام الألوان والأصوات
+            لتكوين صورة حسية.
+          </button>
+
+          <button class="option" type="button">
+            تقديم حجج لإقناع القارئ.
+          </button>
+
+          <button class="option" type="button">
+            عرض خطوات لتنفيذ مهمة.
+          </button>
+
+        </div>
+
+        <div class="feedback"></div>
+      </div>
+
+      <div class="stars">☆ ☆ ☆</div>
+    </section>
+
+    <section
+      class="lesson-card lesson"
+      id="instructional"
+      data-lesson="4">
+
+      <div class="lesson-head">
+        <div class="lesson-icon">🧭</div>
+
+        <div>
+          <h2>النص الإرشادي</h2>
+
+          <p>
+            يوجّه القارئ إلى تنفيذ خطوات
+            أو اتباع تعليمات محددة.
+          </p>
+        </div>
+      </div>
+
+      <div class="facts-grid">
+
+        <div class="fact-box">
+          <strong>غرضه:</strong>
+          التوجيه والتنفيذ.
+        </div>
+
+        <div class="fact-box">
+          <strong>علاماته:</strong>
+          أفعال أمر، ترقيم، ترتيب واضح.
+        </div>
+
+        <div class="fact-box">
+          <strong>روابطه:</strong>
+          أولًا، ثم، بعد ذلك، أخيرًا.
+        </div>
+
+      </div>
+
+      <div class="example-box">
+        <strong>مثال:</strong>
+
+        أولًا تحققي من مصدر الرابط،
+        ثم افحصي عنوان الموقع،
+        ولا تدخلي بياناتكِ قبل التأكد
+        من رمز الحماية.
+      </div>
+
+      <div class="identify-box">
+        <strong>كيف تميّزينه؟</strong>
+
+        ابحثي عن أوامر وخطوات مرتبة
+        تقود القارئ إلى تنفيذ عمل محدد.
+      </div>
+
+      <div class="question">
+        <h3>
+          لماذا يعد المثال نصًّا إرشاديًّا؟
+        </h3>
+
+        <div class="options">
+
+          <button class="option" type="button">
+            لأنه يصف شكل موقع إلكتروني.
+          </button>
+
+          <button class="option" type="button">
+            لأنه يروي حادثة اختراق.
+          </button>
+
+          <button
+            class="option"
+            data-correct="true"
+            type="button">
+            لأنه يقدم خطوات وتعليمات مباشرة.
+          </button>
+
+        </div>
+
+        <div class="feedback"></div>
+      </div>
+
+      <div class="stars">☆ ☆ ☆</div>
+    </section>
+        <section
+      class="lesson-card lesson"
+      id="explanatory"
+      data-lesson="5">
+
+      <div class="lesson-head">
+        <div class="lesson-icon">⚙️</div>
+
+        <div>
+          <h2>النص التفسيري</h2>
+
+          <p>
+            يشرح كيف تحدث ظاهرة،
+            أو لماذا تحدث.
+          </p>
+        </div>
+      </div>
+
+      <div class="facts-grid">
+
+        <div class="fact-box">
+          <strong>غرضه:</strong>
+          تفسير الظواهر والعمليات.
+        </div>
+
+        <div class="fact-box">
+          <strong>علاماته:</strong>
+          السبب والنتيجة والمراحل.
+        </div>
+
+        <div class="fact-box">
+          <strong>روابطه:</strong>
+          لأن، لذلك، ينتج عن، يؤدي إلى.
+        </div>
+
+      </div>
+
+      <div class="example-box">
+        <strong>مثال:</strong>
+
+        تتكوّن السحب عندما يرتفع الهواء الدافئ
+        المحمّل ببخار الماء، ثم يبرد،
+        فيتكثف البخار إلى قطرات دقيقة.
+      </div>
+
+      <div class="identify-box">
+        <strong>كيف تميّزينه؟</strong>
+
+        اسألي: هل يشرح النص آلية حدوث شيء،
+        أو يربط الأسباب بالنتائج؟
+      </div>
+
+      <div class="question">
+        <h3>
+          ما السمة التي تؤكد أن المثال تفسيري؟
+        </h3>
+
+        <div class="options">
+
+          <button
+            class="option"
+            data-correct="true"
+            type="button">
+            يشرح مراحل تكوّن السحب
+            وعلاقة السبب بالنتيجة.
+          </button>
+
+          <button class="option" type="button">
+            يصف جمال السحب وألوانها.
+          </button>
+
+          <button class="option" type="button">
+            يقدّم تعليمات لصنع السحب.
+          </button>
+
+        </div>
+
+        <div class="feedback"></div>
+      </div>
+
+      <div class="stars">☆ ☆ ☆</div>
+    </section>
+
+    <section
+      class="lesson-card lesson"
+      id="argumentative"
+      data-lesson="6">
+
+      <div class="lesson-head">
+        <div class="lesson-icon">⚖️</div>
+
+        <div>
+          <h2>النص الحجاجي</h2>
+
+          <p>
+            يعرض رأيًا أو قضية،
+            ويدعمها بحجج وأدلة.
+          </p>
+        </div>
+      </div>
+
+      <div class="facts-grid">
+
+        <div class="fact-box">
+          <strong>غرضه:</strong>
+          الإقناع والتأثير.
+        </div>
+
+        <div class="fact-box">
+          <strong>علاماته:</strong>
+          رأي، ادعاء، حجة، دليل.
+        </div>
+
+        <div class="fact-box">
+          <strong>سؤاله الرئيس:</strong>
+          هل الأدلة كافية وموثوقة؟
+        </div>
+
+      </div>
+
+      <div class="example-box">
+        <strong>مثال:</strong>
+
+        ينبغي تخصيص وقت يومي للقراءة الحرة؛
+        لأنها توسّع المفردات،
+        وتزيد القدرة على فهم النصوص المعقدة،
+        وتدعم التحصيل الدراسي.
+      </div>
+
+      <div class="identify-box">
+        <strong>كيف تميّزينه؟</strong>
+
+        ابحثي عن رأي يريد الكاتب إقناعكِ به،
+        ثم حددي الحجج والأدلة
+        التي استخدمها لدعمه.
+      </div>
+
+      <div class="question">
+        <h3>
+          أي عبارة تمثل الحجة الداعمة للرأي؟
+        </h3>
+
+        <div class="options">
+
+          <button class="option" type="button">
+            ينبغي تخصيص وقت يومي للقراءة الحرة.
+          </button>
+
+          <button
+            class="option"
+            data-correct="true"
+            type="button">
+            لأنها توسّع المفردات،
+            وتزيد الفهم، وتدعم التحصيل.
+          </button>
+
+          <button class="option" type="button">
+            القراءة نشاط معروف منذ زمن طويل.
+          </button>
+
+        </div>
+
+        <div class="feedback"></div>
+      </div>
+
+      <div class="stars">☆ ☆ ☆</div>
+    </section>
+        <section
+      class="lesson-card lesson"
+      id="functional"
+      data-lesson="7">
+
+      <div class="lesson-head">
+        <div class="lesson-icon">📄</div>
+
+        <div>
+          <h2>النص الوظيفي</h2>
+
+          <p>
+            ينجز غرضًا عمليًّا مباشرًا
+            في الحياة اليومية أو الدراسة والعمل.
+          </p>
+        </div>
+      </div>
+
+      <div class="facts-grid">
+
+        <div class="fact-box">
+          <strong>أمثلة عليه:</strong>
+          إعلان، رسالة، تقرير، نموذج، جدول.
+        </div>
+
+        <div class="fact-box">
+          <strong>غرضه:</strong>
+          نقل معلومات عملية بوضوح.
+        </div>
+
+        <div class="fact-box">
+          <strong>شكله:</strong>
+          عناوين، حقول، تواريخ، بيانات.
+        </div>
+
+      </div>
+
+      <div class="example-box">
+        <strong>مثال:</strong>
+
+        تنبيه: يبدأ التسجيل في مسابقة الابتكار
+        يوم الأحد 12 أكتوبر،
+        ويغلق يوم الخميس الساعة الثانية ظهرًا.
+        ترسل المشاركات عبر المنصة المدرسية.
+      </div>
+
+      <div class="identify-box">
+        <strong>كيف تميّزينه؟</strong>
+
+        اسألي: هل يساعد النص القارئ
+        على إنجاز مهمة عملية،
+        أو معرفة موعد، أو اتباع إجراء محدد؟
+      </div>
+
+      <div class="question">
+        <h3>
+          ما الغرض العملي المباشر من المثال؟
+        </h3>
+
+        <div class="options">
+
+          <button class="option" type="button">
+            وصف أجواء المسابقة.
+          </button>
+
+          <button
+            class="option"
+            data-correct="true"
+            type="button">
+            إبلاغ الطالبات بموعد التسجيل
+            وطريقة إرسال المشاركات.
+          </button>
+
+          <button class="option" type="button">
+            إقناع القارئ بأهمية الابتكار.
+          </button>
+
+        </div>
+
+        <div class="feedback"></div>
+      </div>
+
+      <div class="stars">☆ ☆ ☆</div>
+    </section>
+
+    <section
+      class="lesson-card lesson"
+      id="digital"
+      data-lesson="8">
+
+      <div class="lesson-head">
+        <div class="lesson-icon">💻</div>
+
+        <div>
+          <h2>النص الرقمي أو المتعدد الوسائط</h2>
+
+          <p>
+            يجمع بين الكلمات والصور والرسوم
+            والروابط أو الصوت والفيديو.
+          </p>
+        </div>
+      </div>
+
+      <div class="facts-grid">
+
+        <div class="fact-box">
+          <strong>عناصره:</strong>
+          نص، صورة، رسم بياني، رابط، أيقونة.
+        </div>
+
+        <div class="fact-box">
+          <strong>مهارته:</strong>
+          دمج المعلومات من أكثر من عنصر.
+        </div>
+
+        <div class="fact-box">
+          <strong>تنبيه:</strong>
+          لا تهملي العنوان أو مفتاح الرسم.
+        </div>
+
+      </div>
+
+      <div class="example-box">
+        <strong>مثال:</strong>
+
+        صفحة إلكترونية تعرض فقرة عن استهلاك الماء،
+        وبجوارها رسم بياني يقارن الاستهلاك
+        خلال أربعة أشهر،
+        مع رابط لنصائح الترشيد.
+      </div>
+
+      <div class="identify-box">
+        <strong>كيف تميّزينه؟</strong>
+
+        لاحظي أن المعنى لا يأتي من الكلمات وحدها،
+        بل من دمج النص مع الصورة أو الرسم
+        أو الرابط أو الصوت.
+      </div>
+
+      <div class="question">
+        <h3>
+          كيف تُقرأ هذه الصفحة قراءة صحيحة؟
+        </h3>
+
+        <div class="options">
+
+          <button class="option" type="button">
+            بقراءة الفقرة وحدها وتجاهل الرسم.
+          </button>
+
+          <button class="option" type="button">
+            بمشاهدة الصورة دون النص.
+          </button>
+
+          <button
+            class="option"
+            data-correct="true"
+            type="button">
+            بدمج معلومات الفقرة والرسم
+            والعنوان والرابط.
+          </button>
+
+        </div>
+
+        <div class="feedback"></div>
+      </div>
+
+      <div class="stars">☆ ☆ ☆</div>
+    </section>
+
+    <div class="nav-row">
+      <button
+        class="nav-btn secondary"
+        id="prevLesson"
+        type="button">
+        السابق
+      </button>
+
+      <button
+        class="nav-btn"
+        id="nextLesson"
+        type="button">
+        التالي
+      </button>
+    </div>
+
+    <section class="final-card" id="finalCard">
+      <div class="badge">🏅</div>
+
+      <h2>
+        أحسنتِ! حصلتِ على وسام
+        خبيرة أنواع النصوص
+      </h2>
+
+      <div class="stars">★ ★ ★</div>
+
+      <p>
+        أصبحتِ تميّزين نوع النص
+        من غرضه وبنيته ولغته،
+        لا من موضوعه فقط.
+      </p>
+    </section>
+      <script>
+    const tabs =
+      [...document.querySelectorAll(".type-tab")];
+
+    const lessons =
+      [...document.querySelectorAll(".lesson")];
+
+    const progressBar =
+      document.getElementById("progressBar");
+
+    const progressText =
+      document.getElementById("progressText");
+
+    const soundBtn =
+      document.getElementById("soundBtn");
+
+    const prevLesson =
+      document.getElementById("prevLesson");
+
+    const nextLesson =
+      document.getElementById("nextLesson");
+
+    const finalCard =
+      document.getElementById("finalCard");
+
+    let currentIndex = 0;
+
+    let soundOn =
+      localStorage.getItem("nafesSound") !== "off";
+
+    const completed = new Set(
+      JSON.parse(
+        localStorage.getItem(
+          "nafesTextTypesCompleted"
+        ) || "[]"
+      )
+    );
+
+    function showLesson(index) {
+      currentIndex =
+        (index + lessons.length) % lessons.length;
+
+      lessons.forEach((lesson, lessonIndex) => {
+        lesson.classList.toggle(
+          "active",
+          lessonIndex === currentIndex
+        );
+      });
+
+      tabs.forEach((tab, tabIndex) => {
+        tab.classList.toggle(
+          "active",
+          tabIndex === currentIndex
+        );
+      });
+
+      finalCard.classList.remove("show");
+
+      lessons[currentIndex].scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener("click", () => {
+        showLesson(index);
+      });
+    });
+
+    prevLesson.addEventListener("click", () => {
+      showLesson(currentIndex - 1);
+    });
+
+    nextLesson.addEventListener("click", () => {
+      showLesson(currentIndex + 1);
+    });
+
+    function createAudioContext() {
+      return new (
+        window.AudioContext ||
+        window.webkitAudioContext
+      )();
+    }
+
+    function playCorrectSound() {
+      if (!soundOn) {
+        return;
+      }
+
+      const context = createAudioContext();
+
+      [523, 659, 784].forEach(
+        (frequency, index) => {
+          const oscillator =
+            context.createOscillator();
+
+          const gain =
+            context.createGain();
+
+          const start =
+            context.currentTime + index * 0.09;
+
+          oscillator.frequency.value = frequency;
+          oscillator.type = "sine";
+
+          gain.gain.setValueAtTime(
+            0.0001,
+            start
+          );
+
+          gain.gain.exponentialRampToValueAtTime(
+            0.18,
+            start + 0.02
+          );
+
+          gain.gain.exponentialRampToValueAtTime(
+            0.0001,
+            start + 0.24
+          );
+
+          oscillator.connect(gain);
+          gain.connect(context.destination);
+
+          oscillator.start(start);
+          oscillator.stop(start + 0.26);
+        }
+      );
+    }
+
+    function playWrongSound() {
+      if (!soundOn) {
+        return;
+      }
+
+      const context = createAudioContext();
+
+      [230, 175].forEach(
+        (frequency, index) => {
+          const oscillator =
+            context.createOscillator();
+
+          const gain =
+            context.createGain();
+
+          const start =
+            context.currentTime + index * 0.15;
+
+          oscillator.frequency.value = frequency;
+          oscillator.type = "square";
+
+          gain.gain.setValueAtTime(
+            0.0001,
+            start
+          );
+
+          gain.gain.exponentialRampToValueAtTime(
+            0.08,
+            start + 0.02
+          );
+
+          gain.gain.exponentialRampToValueAtTime(
+            0.0001,
+            start + 0.13
+          );
+
+          oscillator.connect(gain);
+          gain.connect(context.destination);
+
+          oscillator.start(start);
+          oscillator.stop(start + 0.15);
+        }
+      );
+    }
+
+    function playApplause() {
+      if (!soundOn) {
+        return;
+      }
+
+      const context = createAudioContext();
+
+      for (let index = 0; index < 14; index++) {
+        const buffer = context.createBuffer(
+          1,
+          context.sampleRate * 0.07,
+          context.sampleRate
+        );
+
+        const data = buffer.getChannelData(0);
+
+        for (
+          let sample = 0;
+          sample < data.length;
+          sample++
+        ) {
+          data[sample] =
+            (Math.random() * 2 - 1) *
+            (1 - sample / data.length);
+        }
+
+        const source =
+          context.createBufferSource();
+
+        const gain =
+          context.createGain();
+
+        const filter =
+          context.createBiquadFilter();
+
+        source.buffer = buffer;
+
+        filter.type = "bandpass";
+
+        filter.frequency.value =
+          1200 + Math.random() * 900;
+
+        gain.gain.value = 0.16;
+
+        source.connect(filter);
+        filter.connect(gain);
+        gain.connect(context.destination);
+
+        source.start(
+          context.currentTime +
+          index * 0.075 +
+          Math.random() * 0.03
+        );
+      }
+    }
+
+    function updateProgress() {
+      const completedCount = completed.size;
+
+      progressText.textContent =
+        completedCount + " من 8";
+
+      progressBar.style.width =
+        completedCount / 8 * 100 + "%";
+
+      localStorage.setItem(
+        "nafesTextTypesCompleted",
+        JSON.stringify([...completed])
+      );
+
+      lessons.forEach(lesson => {
+        const lessonNumber =
+          lesson.dataset.lesson;
+
+        const stars =
+          lesson.querySelector(".stars");
+
+        stars.textContent =
+          completed.has(lessonNumber)
+            ? "★ ★ ★"
+            : "☆ ☆ ☆";
+      });
+
+      if (completedCount === 8) {
+        finalCard.classList.add("show");
+
+        localStorage.setItem(
+          "nafesTextTypesComplete",
+          "true"
+        );
+
+        playApplause();
+
+        setTimeout(() => {
+          finalCard.scrollIntoView({
+            behavior: "smooth"
+          });
+        }, 300);
+      }
+    }
+
+    document
+      .querySelectorAll(".question")
+      .forEach(question => {
+        const lesson =
+          question.closest(".lesson");
+
+        const lessonNumber =
+          lesson.dataset.lesson;
+
+        const feedback =
+          question.querySelector(".feedback");
+
+        question
+          .querySelectorAll(".option")
+          .forEach(option => {
+            option.addEventListener(
+              "click",
+              () => {
+                if (
+                  option.dataset.correct === "true"
+                ) {
+                  question
+                    .querySelectorAll(".option")
+                    .forEach(button => {
+                      button.disabled = true;
+                    });
+
+                  option.classList.add("correct");
+
+                  feedback.className =
+                    "feedback show good";
+
+                  feedback.innerHTML =
+                    "👏 إجابة صحيحة! أحسنتِ." +
+                    '<span class="evidence">' +
+                    "الدليل هو غرض النص وبنيته " +
+                    "والعلامات اللغوية الظاهرة فيه." +
+                    "</span>";
+
+                  completed.add(lessonNumber);
+
+                  playCorrectSound();
+                  updateProgress();
+
+                  if (
+                    currentIndex <
+                    lessons.length - 1
+                  ) {
+                    setTimeout(() => {
+                      showLesson(currentIndex + 1);
+                    }, 900);
+                  }
+                } else {
+                  option.classList.add("wrong");
+
+                  feedback.className =
+                    "feedback show bad";
+
+                  feedback.innerHTML =
+                    "⚠️ ليست الإجابة الأدق." +
+                    '<span class="evidence">' +
+                    "راجعي غرض الكاتب، وطريقة " +
+                    "تنظيم النص، وعلاماته اللغوية، " +
+                    "ثم حاولي مرة أخرى." +
+                    "</span>";
+
+                  playWrongSound();
+
+                  if (
+                    navigator.vibrate
+                  ) {
+                    navigator.vibrate(
+                      [120, 70, 120]
+                    );
+                  }
+
+                  setTimeout(() => {
+                    option.classList.remove("wrong");
+                  }, 700);
+                }
+              }
+            );
+          });
+      });
+
+    soundBtn.addEventListener("click", () => {
+      soundOn = !soundOn;
+
+      localStorage.setItem(
+        "nafesSound",
+        soundOn ? "on" : "off"
+      );
+
+      soundBtn.textContent =
+        soundOn
+          ? "🔊 الصوت مفعّل"
+          : "🔇 الصوت مكتوم";
+
+      if (soundOn) {
+        playCorrectSound();
+      }
+    });
+
+    soundBtn.textContent =
+      soundOn
+        ? "🔊 الصوت مفعّل"
+        : "🔇 الصوت مكتوم";
+
+    updateProgress();
+    showLesson(0);
+  </script>
+
+</body>
+</html>
+  </main>
+
+  <footer>
+    جميع الحقوق محفوظة © 2026
+  </footer>
+  
