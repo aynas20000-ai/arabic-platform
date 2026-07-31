@@ -38,6 +38,8 @@ footer{padding:18px;text-align:center;color:#fff;background:var(--pd);border-top
 <main>
 <div class="top">
 <a class="home" href="nafes.html">العودة إلى مكتبة نافس</a>
+<button id="soundBtn" class="home" type="button" style="border:0;cursor:pointer;background:#75558d;color:#fff;">🔊 الصوت مفعّل</button>
+<button id="resetBtn" class="home" type="button" style="border:0;cursor:pointer;background:#b64040;color:#fff;">↻ البدء من جديد</button>
 <div class="progressArea">
 <div class="progressLabel"><span>تقدّمكِ</span><span id="progressText">0 من 8</span></div>
 <div class="track"><div id="bar" class="bar"></div></div>
@@ -54,6 +56,10 @@ footer{padding:18px;text-align:center;color:#fff;background:var(--pd);border-top
 <h2>بوابات المواقف</h2>
 <div class="rule">أفهم الفكرة ← أحدد حاجة الموقف الجديد ← أختار تطبيقًا مناسبًا ← أبرر النتيجة</div>
 <div id="grid" class="grid"></div>
+<div id="finishBox" style="display:none;margin-top:18px;padding:18px;text-align:center;background:#fff7d6;border:3px solid #c9a85c;border-radius:18px;">
+<h3 style="margin-top:0;color:#4b385b;">أحسنتِ، أنهيتِ جميع المواقف 🎉</h3>
+<button id="startAgainBtn" class="home" type="button" style="border:0;cursor:pointer;background:#75558d;color:#fff;">إعادة جميع البطاقات من البداية</button>
+</div>
 </section>
 
 <section id="work" class="panel">
@@ -65,6 +71,9 @@ footer{padding:18px;text-align:center;color:#fff;background:var(--pd);border-top
 <strong id="question"></strong>
 <div id="options" class="options"></div>
 <div id="feedback" class="feedback"></div>
+<button id="returnCards" class="home" type="button" style="display:none;width:100%;margin-top:14px;border:0;cursor:pointer;background:linear-gradient(135deg,#75558d,#4b385b);color:#fff;">
+العودة إلى بطاقات المواقف
+</button>
 </div>
 </section>
 </main>
@@ -72,6 +81,41 @@ footer{padding:18px;text-align:center;color:#fff;background:var(--pd);border-top
 <footer>جميع الحقوق محفوظة © 2026</footer>
 
 <script>
+let soundOn = true;
+let audioCtx = null;
+
+function tone(freq, duration, type="sine", volume=0.12){
+  if(!soundOn) return;
+  try{
+    audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = type;
+    osc.frequency.value = freq;
+    gain.gain.value = volume;
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start();
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+    osc.stop(audioCtx.currentTime + duration);
+  }catch(e){}
+}
+
+function successSound(){
+  tone(523.25,0.18,"sine",0.12);
+  setTimeout(()=>tone(659.25,0.18,"sine",0.12),120);
+  setTimeout(()=>tone(783.99,0.28,"sine",0.14),240);
+}
+
+function wrongSound(){
+  tone(180,0.22,"sawtooth",0.08);
+  setTimeout(()=>tone(140,0.28,"sawtooth",0.07),140);
+}
+
+function tapSound(){
+  tone(420,0.08,"sine",0.05);
+}
+
 const scenarios=[
 {title:"حماية الماء",icon:"💧",source:"الماء مورد ثمين، والمحافظة عليه مسؤولية مشتركة. ويبدأ الترشيد بسلوكيات بسيطة مثل إغلاق الصنبور وإصلاح التسربات.",situation:"لاحظتِ أن صنبورًا في المدرسة يسرّب الماء باستمرار.",question:"ما التصرف الذي يطبق فكرة النص بصورة صحيحة؟",options:["تجاهل التسرب لأنه بسيط.","إبلاغ المسؤولة والمساعدة في إغلاق الصنبور.","فتح الصنبور أكثر للتأكد.","الانتظار حتى نهاية الأسبوع."],answer:1,reason:"لأن تطبيق الفكرة يعني اتخاذ خطوة عملية تمنع هدر الماء."},
 {title:"تنظيم الوقت",icon:"⏰",source:"الوقت رأس مال الإنسان، ومن يحسن تنظيمه ينجز أكثر ويقل توتره. يبدأ التنظيم بتحديد الأولويات وتقسيم المهام.",situation:"لديكِ واجبان واختبار غدًا، وبقيت ساعتان فقط.",question:"ما القرار الأنسب؟",options:["البدء بالمهمة الأسهل فقط.","استخدام الهاتف ثم المذاكرة.","ترتيب المهام حسب الأهمية وتحديد وقت لكل مهمة.","ترك كل شيء للصباح."],answer:2,reason:"لأن الفكرة تدعو إلى ترتيب الأولويات وتقسيم الوقت."},
@@ -103,7 +147,7 @@ function render(){
    b.type="button";
    b.className="card"+(done.includes(i)?" done":"");
    b.innerHTML='<div class="icon">'+s.icon+'</div><div class="title">'+s.title+'</div><div class="small">'+(done.includes(i)?"تم الإنجاز ✅":"اضغطي لبدء الموقف")+'</div>';
-   b.onclick=()=>openScenario(i);
+   b.onclick=()=>{tapSound();openScenario(i);};
    grid.appendChild(b);
  });
  update();
@@ -121,6 +165,7 @@ function openScenario(i){
  options.innerHTML="";
  feedback.className="feedback";
  feedback.textContent="";
+ document.getElementById("returnCards").style.display="none";
  s.options.forEach((opt,n)=>{
    const btn=document.createElement("button");
    btn.type="button";
@@ -132,6 +177,8 @@ function openScenario(i){
        btn.classList.add("correct");
        feedback.className="feedback show good";
        feedback.textContent="إجابة صحيحة: "+s.reason;
+       successSound();
+       if(navigator.vibrate) navigator.vibrate([80,50,120]);
        if(!done.includes(i)){
          done.push(i);
          score+=10;
@@ -143,19 +190,47 @@ function openScenario(i){
        options.children[s.answer].classList.add("correct");
        feedback.className="feedback show bad";
        feedback.textContent="راجعي الفكرة: "+s.reason;
+       wrongSound();
+       if(navigator.vibrate) navigator.vibrate([180,70,180]);
      }
+     document.getElementById("returnCards").style.display="block";
      update();
    };
    options.appendChild(btn);
  });
- window.scrollTo({top:0,behavior:"smooth"});
 }
-document.getElementById("back").onclick=()=>{
+function returnToCards(){
+ tapSound();
  work.style.display="none";
  homeView.style.display="block";
  render();
- window.scrollTo({top:0,behavior:"smooth"});
+}
+
+document.getElementById("back").onclick=returnToCards;
+document.getElementById("returnCards").onclick=returnToCards;
+
+document.getElementById("soundBtn").onclick=()=>{
+ soundOn=!soundOn;
+ document.getElementById("soundBtn").textContent=soundOn?"🔊 الصوت مفعّل":"🔇 الصوت متوقف";
+ if(soundOn) tapSound();
 };
+
+function resetAll(){
+ const ok=confirm("هل تريدين مسح التقدم والبدء من جديد؟");
+ if(!ok) return;
+ localStorage.removeItem("nafesSituationsScore");
+ localStorage.removeItem("nafesSituationsDone");
+ score=0;
+ done=[];
+ work.style.display="none";
+ homeView.style.display="block";
+ render();
+ successSound();
+}
+
+document.getElementById("resetBtn").onclick=resetAll;
+document.getElementById("startAgainBtn").onclick=resetAll;
+
 render();
 </script>
 </body>
