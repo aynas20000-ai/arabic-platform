@@ -1,15 +1,9 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <title>التلخيص وتنظيمه | مكتبة نافس</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تلخيص النص وتنظيمه | مكتبة نافس</title>
 
   <style>
     :root{
@@ -20,107 +14,45 @@
       --paper:#fffdf8;
       --text:#403347;
       --green:#2f864b;
-      --green-light:#e7f7ec;
+      --green-light:#e8f6ed;
       --red:#b64040;
       --red-light:#fdeaea;
-      --blue:#5d89a6;
-      --blue-light:#ebf4f9;
-      --gray:#786f7d;
+      --blue:#5e89a8;
     }
 
-    *{
-      box-sizing:border-box;
-    }
-
-    [hidden]{
-      display:none!important;
-    }
+    *{box-sizing:border-box}
 
     body{
       margin:0;
-      overflow-x:hidden;
       font-family:Tahoma,Arial,sans-serif;
-      line-height:1.9;
+      line-height:1.8;
       color:var(--text);
-      background:
-        radial-gradient(
-          circle at top,
-          #eee5f5 0,
-          transparent 38%
-        ),
-        linear-gradient(
-          180deg,
-          var(--cream),
-          #f7eff8
-        );
+      background:linear-gradient(180deg,var(--cream),#f7eff8);
     }
 
-    button,
-    a{
-      font-family:inherit;
-    }
+    button,a{font-family:inherit}
 
     header{
-      position:relative;
-      overflow:hidden;
-      padding:34px 16px 29px;
+      padding:30px 16px;
       text-align:center;
       color:white;
-      background:linear-gradient(
-        135deg,
-        #786094,
-        #594474
-      );
+      background:linear-gradient(135deg,#786094,#594474);
       border-bottom:5px solid var(--gold);
-    }
-
-    header::before,
-    header::after{
-      content:"✦";
-      position:absolute;
-      color:#f3d98f;
-      font-size:40px;
-      opacity:.55;
-      animation:headerGlow 2s infinite alternate;
-    }
-
-    header::before{
-      top:14px;
-      right:8%;
-    }
-
-    header::after{
-      bottom:8px;
-      left:9%;
-      animation-delay:.7s;
-    }
-
-    @keyframes headerGlow{
-      from{
-        opacity:.25;
-        transform:scale(.8) rotate(0);
-      }
-
-      to{
-        opacity:.85;
-        transform:scale(1.15) rotate(18deg);
-      }
     }
 
     header h1{
       margin:0;
-      font-size:34px;
+      font-size:32px;
     }
 
     header p{
-      max-width:800px;
+      max-width:780px;
       margin:8px auto 0;
-      font-size:17px;
     }
 
     main{
       width:min(94%,960px);
-      margin:22px auto 38px;
+      margin:22px auto 35px;
     }
 
     .top-bar{
@@ -129,21 +61,18 @@
       align-items:center;
       gap:10px;
       padding:12px;
-      margin-bottom:18px;
       background:var(--paper);
       border:2px solid #dfd3e5;
       border-radius:17px;
-      box-shadow:0 7px 18px rgba(73,56,92,.09);
     }
 
-    .home-btn,
-    .sound-btn{
+    .top-btn{
       padding:10px 13px;
-      font-weight:bold;
-      text-decoration:none;
       border:0;
       border-radius:12px;
+      font-weight:bold;
       cursor:pointer;
+      text-decoration:none;
     }
 
     .home-btn{
@@ -154,6 +83,11 @@
     .sound-btn{
       color:white;
       background:var(--purple);
+    }
+
+    .reset-btn{
+      color:white;
+      background:var(--red);
     }
 
     .progress-area{
@@ -179,19 +113,15 @@
     .progress-bar{
       width:0;
       height:100%;
-      background:linear-gradient(
-        90deg,
-        var(--gold),
-        var(--purple)
-      );
-      transition:width .35s ease;
+      background:linear-gradient(90deg,var(--gold),var(--purple));
+      transition:width .3s ease;
     }
 
     .score-panel{
       display:grid;
       grid-template-columns:repeat(3,1fr);
       gap:10px;
-      margin-bottom:18px;
+      margin:18px 0;
     }
 
     .score-box{
@@ -200,375 +130,170 @@
       background:white;
       border:2px solid #dfd3e5;
       border-radius:14px;
-      box-shadow:0 5px 12px rgba(73,56,92,.07);
-    }
-
-    .score-box span{
-      display:block;
-      color:#6a5c70;
-      font-size:14px;
     }
 
     .score-box strong{
       display:block;
       color:var(--purple);
-      font-size:20px;
+      font-size:21px;
     }
 
-    .summary-view,
-    .workspace,
-    .final-card{
+    .panel{
       padding:20px;
       background:var(--paper);
       border:2px solid #dfd3e5;
-      border-radius:24px;
-      box-shadow:0 8px 22px rgba(73,56,92,.10);
+      border-radius:23px;
+      box-shadow:0 8px 22px rgba(0,0,0,.06);
     }
 
-    .summary-view h2,
-    .final-card h2{
+    .panel h2{
       margin-top:0;
       text-align:center;
       color:var(--purple-dark);
     }
 
-    .intro-note{
-      max-width:800px;
-      margin:0 auto 18px;
+    .rule{
+      margin-bottom:20px;
+      padding:14px;
       text-align:center;
-      color:#685b6e;
-    }
-
-    .summary-rule{
-      max-width:820px;
-      margin:0 auto 24px;
-      padding:15px;
-      text-align:center;
-      color:var(--purple-dark);
       font-weight:bold;
       background:#fff2c3;
       border:2px solid var(--gold);
       border-radius:15px;
     }
 
-    .summary-grid{
+    .lesson-grid{
       display:grid;
       grid-template-columns:repeat(2,1fr);
-      gap:22px;
+      gap:18px;
     }
 
-    .summary-card{
-      position:relative;
-      min-height:202px;
-      padding:28px 17px 20px;
-      overflow:hidden;
+    .lesson-card{
+      min-height:165px;
+      padding:20px;
       text-align:center;
-      color:#3f3443;
-      background:linear-gradient(
-        145deg,
-        var(--card-color),
-        #fffdf8
-      );
-      border:3px solid rgba(255,255,255,.78);
-      border-radius:24px;
-      box-shadow:
-        0 8px 0 rgba(73,56,92,.07),
-        0 13px 23px rgba(73,56,92,.13);
       cursor:pointer;
-      transition:.2s ease;
+      background:linear-gradient(145deg,#f8f2fb,#fff);
+      border:2px solid #d8c8e1;
+      border-radius:20px;
     }
 
-    .summary-card::before{
-      content:"";
-      position:absolute;
-      top:0;
-      right:0;
-      left:0;
-      height:8px;
-      background:linear-gradient(
-        90deg,
-        var(--gold),
-        var(--purple)
-      );
+    .lesson-card:active{
+      transform:scale(.98);
     }
 
-    .summary-card:hover,
-    .summary-card:focus{
-      transform:translateY(-4px);
-      outline:3px solid rgba(201,168,92,.45);
+    .lesson-card.done{
+      background:#eef8f1;
+      border-color:#76a887;
     }
 
-    .summary-card.completed{
-      box-shadow:
-        0 0 0 4px #dcebdd,
-        0 8px 0 rgba(73,56,92,.07),
-        0 13px 23px rgba(73,56,92,.13);
+    .lesson-icon{
+      font-size:42px;
     }
 
-    .complete-mark{
-      position:absolute;
-      left:11px;
-      bottom:10px;
-      display:none;
-      place-items:center;
-      width:32px;
-      height:32px;
-      color:white;
-      font-weight:bold;
-      background:var(--green);
-      border-radius:50%;
-    }
-
-    .summary-card.completed .complete-mark{
-      display:grid;
-    }
-
-    .summary-icon{
-      display:block;
-      margin-bottom:5px;
-      font-size:43px;
-    }
-
-    .summary-title{
-      display:block;
+    .lesson-title{
       color:var(--purple-dark);
       font-size:21px;
       font-weight:bold;
     }
 
-    .summary-description{
-      display:block;
-      margin-top:7px;
-      color:#665a69;
+    .lesson-small{
+      color:#6b6070;
       font-size:14px;
     }
 
-    .workspace{
-      position:relative;
-      min-height:860px;
-      overflow:hidden;
-    }
-
-    .workspace.success-flash{
-      animation:successFlash .8s ease;
-    }
-
-    @keyframes successFlash{
-      0%{
-        box-shadow:0 8px 22px rgba(73,56,92,.10);
-      }
-
-      35%{
-        box-shadow:
-          0 0 0 7px rgba(201,168,92,.35),
-          0 0 38px rgba(201,168,92,.65);
-      }
-
-      100%{
-        box-shadow:0 8px 22px rgba(73,56,92,.10);
-      }
+    #workspace{
+      display:none;
     }
 
     .workspace-top{
       display:flex;
       align-items:center;
-      gap:12px;
-      margin-bottom:15px;
+      gap:10px;
+      margin-bottom:12px;
     }
 
-    .back-summaries{
-      flex:0 0 auto;
+    .back-btn{
       padding:10px 13px;
-      font-weight:bold;
       color:var(--purple-dark);
-      background:#efe6f4;
-      border:2px solid #d2c1dc;
-      border-radius:12px;
+      font-weight:bold;
       cursor:pointer;
+      background:#eee5f2;
+      border:0;
+      border-radius:12px;
     }
 
-    .workspace-heading{
+    .workspace-title{
       flex:1;
       margin:0;
       text-align:center;
       color:var(--purple-dark);
-      font-size:27px;
     }
 
-    .stage-status{
-      display:flex;
-      justify-content:center;
-      gap:7px;
-      margin-bottom:12px;
-    }
-
-    .stage-dot{
-      width:11px;
-      height:11px;
-      background:#cabdd1;
-      border-radius:50%;
-    }
-
-    .stage-dot.active{
-      background:var(--gold);
-      transform:scale(1.35);
-    }
-
-    .stage-label{
-      margin-bottom:12px;
-      text-align:center;
-      font-weight:bold;
-      color:var(--purple);
-    }
-
-    .stage-window,
-    .stage-content{
-      min-height:660px;
-    }
-
-    .stage-content{
-      padding:20px;
-      background:linear-gradient(
-        145deg,
-        #fffefb,
-        #faf5fc
-      );
-      border:2px solid #e1d5e7;
-      border-radius:19px;
-      animation:fadeStage .22s ease;
-    }
-
-    @keyframes fadeStage{
-      from{opacity:0}
-      to{opacity:1}
-    }
-
-    .stage-content h3{
-      margin-top:0;
-      color:var(--purple);
-      font-size:23px;
-    }
-
-    .definition-box,
-    .rule-box,
-    .reading-box,
-    .machine-box,
-    .question-box,
-    .clean-summary,
-    .analysis-box,
-    .self-box{
-      padding:17px;
-      border-radius:16px;
-    }
-
-    .definition-box{
-      font-size:18px;
-      background:#f3eaf8;
-      border-right:6px solid var(--gold);
-    }
-
-    .rule-box{
-      margin-top:14px;
-      background:#fff6dc;
-    }
-
-    .rule-list{
-      margin:8px 0 0;
-      padding-right:23px;
-    }
-
-    .rule-list li{
-      margin:7px 0;
-    }
-
-    .reading-box{
+    .box{
+      margin:13px 0;
+      padding:16px;
       background:white;
       border:2px solid #e1d5e7;
+      border-radius:15px;
     }
 
-    .reading-text{
-      margin:0;
-      text-align:justify;
-      font-size:18px;
-      line-height:2.15;
+    .source-box{
+      background:#fff;
     }
 
-    .machine-box{
-      background:#f7f1fa;
-      border:2px solid #d9cae2;
-    }
-
-    .machine-flow{
+    .organizer{
       display:grid;
-      grid-template-columns:1fr auto 1fr auto 1fr;
-      align-items:center;
-      gap:8px;
-      margin-top:14px;
-      text-align:center;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
+      margin:14px 0;
     }
 
-    .machine-part{
-      padding:14px 10px;
-      font-weight:bold;
-      background:white;
-      border:2px solid #d8c9e0;
-      border-radius:13px;
+    .organizer-item{
+      padding:14px;
+      background:#f8f2fb;
+      border:2px solid #d7c6e2;
+      border-radius:14px;
     }
 
-    .machine-arrow{
-      color:var(--gold);
-      font-size:25px;
-      font-weight:bold;
+    .organizer-item strong{
+      display:block;
+      margin-bottom:6px;
+      color:var(--purple);
     }
 
     .question-box{
       background:#fff9e9;
-      border:2px dashed var(--gold);
+      border-style:dashed;
+      border-color:var(--gold);
     }
 
     .options{
       display:grid;
       gap:10px;
-      margin-top:13px;
+      margin-top:12px;
     }
 
     .option{
       padding:14px;
       text-align:right;
-      color:var(--text);
       font-size:16px;
+      cursor:pointer;
       background:#f6eff9;
       border:2px solid transparent;
       border-radius:13px;
-      cursor:pointer;
-      transition:.18s ease;
-    }
-
-    .option:hover{
-      transform:translateY(-2px);
-      border-color:#cbb8d6;
     }
 
     .option.correct{
       color:var(--green);
       background:var(--green-light);
       border-color:#72ae87;
-      box-shadow:0 0 22px rgba(47,134,75,.22);
     }
 
     .option.wrong{
       color:var(--red);
       background:var(--red-light);
       border-color:#dd9292;
-      animation:shake .4s ease;
-    }
-
-    @keyframes shake{
-      0%,100%{transform:translateX(0)}
-      20%{transform:translateX(9px)}
-      40%{transform:translateX(-9px)}
-      60%{transform:translateX(6px)}
-      80%{transform:translateX(-4px)}
     }
 
     .feedback{
@@ -593,285 +318,43 @@
       background:var(--red-light);
     }
 
-    .sorting-grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:10px;
-      margin-top:13px;
-    }
-
-    .sorting-box{
-      min-height:145px;
-      padding:12px;
-      text-align:center;
-      background:white;
-      border:2px solid #ded2e4;
-      border-radius:14px;
-    }
-
-    .sorting-box strong{
-      display:block;
-      margin-bottom:7px;
-      color:var(--purple);
-    }
-
-    .clean-summary{
-      background:linear-gradient(
-        145deg,
-        #f0faf3,
-        #ffffff
-      );
-      border:3px solid #92c2a0;
-      box-shadow:0 0 28px rgba(47,134,75,.14);
-    }
-
-    .clean-summary h3{
-      color:var(--green);
-      text-align:center;
-    }
-
-    .summary-paper{
-      padding:16px;
-      font-size:18px;
-      line-height:2.1;
-      background:white;
-      border-right:6px solid var(--gold);
-      border-radius:13px;
-    }
-
-    .analysis-box{
-      background:#f8f1fb;
-      border:2px solid #d7c6e2;
-    }
-
-    .analysis-item,
-    .evidence,
-    .summary-note{
-      padding:12px;
-      margin-top:10px;
-      background:white;
-      border-radius:12px;
-    }
-
-    .analysis-item{
-      border-right:5px solid var(--gold);
-    }
-
-    .evidence{
-      font-weight:bold;
-      background:#fff6d9;
-    }
-
-    .summary-note{
-      color:var(--purple-dark);
-      font-weight:bold;
-      background:#eaf2f7;
-      border:2px solid #abc4d3;
-    }
-
-    .reaction-layer{
-      position:fixed;
-      inset:0;
-      z-index:5000;
+    .return-cards{
       display:none;
-      align-items:center;
-      justify-content:center;
-      pointer-events:none;
-      background:rgba(255,255,255,.16);
-    }
-
-    .reaction-layer.show{
-      display:flex;
-    }
-
-    .reaction-icon{
-      display:grid;
-      place-items:center;
-      width:170px;
-      height:170px;
-      font-size:102px;
-      background:rgba(255,255,255,.96);
-      border-radius:50%;
-      box-shadow:0 0 45px rgba(201,168,92,.7);
-      animation:reactionPop .9s ease forwards;
-    }
-
-    .reaction-layer.wrong .reaction-icon{
-      box-shadow:0 0 45px rgba(182,64,64,.45);
-    }
-
-    @keyframes reactionPop{
-      0%{
-        opacity:0;
-        transform:scale(.25) rotate(-14deg);
-      }
-
-      55%{
-        opacity:1;
-        transform:scale(1.15) rotate(7deg);
-      }
-
-      100%{
-        opacity:0;
-        transform:scale(.92) rotate(0);
-      }
-    }
-
-    .spark{
-      position:fixed;
-      z-index:5100;
-      color:var(--gold);
-      font-size:24px;
-      pointer-events:none;
-      animation:sparkFly 1.1s ease-out forwards;
-    }
-
-    @keyframes sparkFly{
-      from{
-        opacity:1;
-        transform:translate(0,0) scale(.7);
-      }
-
-      to{
-        opacity:0;
-        transform:
-          translate(
-            var(--spark-x),
-            var(--spark-y)
-          )
-          scale(1.6)
-          rotate(180deg);
-      }
-    }
-
-    .self-box{
-      text-align:center;
-      background:white;
-      border:2px solid #ddd0e4;
-    }
-
-    .self-options{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:10px;
+      width:100%;
       margin-top:14px;
-    }
-
-    .self-btn{
-      min-height:77px;
-      padding:10px;
-      font-weight:bold;
-      color:var(--purple-dark);
-      background:linear-gradient(
-        135deg,
-        #fffdf8,
-        #f2eaf7
-      );
-      border:2px solid var(--gold);
-      border-radius:14px;
-      cursor:pointer;
-    }
-
-    .self-btn.selected{
-      color:white;
-      background:var(--purple);
-    }
-
-    .self-message{
-      display:none;
-      margin-top:12px;
-      padding:12px;
-      font-weight:bold;
-      background:#f3eaf8;
-      border-radius:12px;
-    }
-
-    .self-message.show{
-      display:block;
-    }
-
-    .navigation{
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      margin-top:16px;
-    }
-
-    .nav-btn{
-      flex:1;
       padding:13px;
       color:white;
       font-size:17px;
       font-weight:bold;
+      cursor:pointer;
+      background:linear-gradient(135deg,var(--purple),var(--purple-dark));
+      border:0;
+      border-radius:13px;
+    }
+
+    .completion-box{
+      display:none;
+      margin-top:18px;
+      padding:20px;
+      text-align:center;
+      background:#fff7d6;
+      border:3px solid var(--gold);
+      border-radius:18px;
+    }
+
+    .completion-box.show{
+      display:block;
+    }
+
+    .start-again{
+      padding:12px 18px;
+      color:white;
+      font-size:17px;
+      font-weight:bold;
+      cursor:pointer;
       background:var(--purple);
       border:0;
       border-radius:13px;
-      cursor:pointer;
-    }
-
-    .nav-btn.secondary{
-      color:var(--purple-dark);
-      background:#eee5f2;
-    }
-
-    .nav-btn:disabled{
-      opacity:.4;
-      cursor:not-allowed;
-    }
-
-    .final-card{
-      display:none;
-      text-align:center;
-      border:3px solid var(--gold);
-    }
-
-    .final-card.show{
-      display:block;
-      animation:finalGlow 1s ease;
-    }
-
-    @keyframes finalGlow{
-      from{
-        opacity:0;
-        transform:scale(.9);
-      }
-
-      to{
-        opacity:1;
-        transform:scale(1);
-      }
-    }
-
-    .badge{
-      display:inline-grid;
-      place-items:center;
-      width:125px;
-      height:125px;
-      font-size:55px;
-      background:linear-gradient(
-        135deg,
-        var(--gold),
-        #f0d588
-      );
-      border:6px solid #fff5cf;
-      border-radius:50%;
-      box-shadow:0 0 28px rgba(201,168,92,.45);
-    }
-
-    .final-rank{
-      display:inline-block;
-      padding:10px 18px;
-      margin:8px 0;
-      color:white;
-      font-weight:bold;
-      background:var(--purple);
-      border-radius:999px;
-    }
-
-    .final-stars{
-      color:var(--gold);
-      font-size:32px;
-      letter-spacing:7px;
     }
 
     footer{
@@ -883,50 +366,15 @@
     }
 
     @media(max-width:700px){
-      header h1{
-        font-size:28px;
-      }
-
-      .summary-grid,
-      .sorting-grid,
-      .self-options{
+      .lesson-grid,
+      .score-panel,
+      .organizer{
         grid-template-columns:1fr;
       }
 
-      .score-panel{
-        grid-template-columns:1fr 1fr;
-      }
-
-      .score-panel .score-box:last-child{
-        grid-column:1/-1;
-      }
-
-      .machine-flow{
-        grid-template-columns:1fr;
-      }
-
-      .machine-arrow{
-        transform:rotate(90deg);
-      }
-
-      .workspace{
-        min-height:920px;
-        padding:14px;
-      }
-
-      .stage-window,
-      .stage-content{
-        min-height:720px;
-      }
-
-      .workspace-heading{
-        font-size:22px;
-      }
-
-      .reaction-icon{
-        width:145px;
-        height:145px;
-        font-size:88px;
+      .workspace-top{
+        align-items:stretch;
+        flex-direction:column;
       }
     }
   </style>
@@ -935,11 +383,11 @@
 <body>
 
   <header>
-    <h1>التلخيص وتنظيمه</h1>
+    <h1>تلخيص النص وتنظيمه</h1>
 
     <p>
-      ننقّي النص من التكرار والتفاصيل الثانوية،
-      ثم نرتب أفكاره ونكتب ملخصًا واضحًا يحافظ على المعنى.
+      حددي الفكرة الرئيسة، رتبي الأفكار المهمة،
+      ثم اختاري الملخص الأقصر والأدق.
     </p>
   </header>
 
@@ -947,9 +395,17 @@
 
     <div class="top-bar">
 
-      <a class="home-btn" href="nafes.html">
+      <a class="top-btn home-btn" href="nafes.html">
         العودة إلى مكتبة نافس
       </a>
+
+      <button class="top-btn sound-btn" id="soundBtn" type="button">
+        🔊 الصوت مفعّل
+      </button>
+
+      <button class="top-btn reset-btn" id="resetBtn" type="button">
+        ↻ البدء من جديد
+      </button>
 
       <div class="progress-area">
 
@@ -959,1474 +415,110 @@
         </div>
 
         <div class="progress-track">
-          <div
-            class="progress-bar"
-            id="progressBar">
-          </div>
+          <div class="progress-bar" id="progressBar"></div>
         </div>
 
       </div>
-
-      <button
-        class="sound-btn"
-        id="soundBtn"
-        type="button">
-        🔊 الصوت مفعّل
-      </button>
 
     </div>
 
     <div class="score-panel">
 
       <div class="score-box">
-        <span>النقاط</span>
+        النقاط
         <strong id="scoreText">0</strong>
       </div>
 
       <div class="score-box">
-        <span>ملخصات ناجحة</span>
-        <strong id="successText">0</strong>
+        ملخصات صحيحة
+        <strong id="correctText">0</strong>
       </div>
 
       <div class="score-box">
-        <span>الرتبة</span>
-        <strong id="rankText">منقّحة مبتدئة</strong>
+        الرتبة
+        <strong id="rankText">منظمة الأفكار</strong>
       </div>
 
     </div>
 
-    <section
-      class="summary-view"
-      id="summaryView">
+    <section class="panel" id="lessonView">
 
-      <h2>آلة تنقية النص</h2>
+      <h2>بطاقات التلخيص</h2>
 
-      <p class="intro-note">
-        في كل بطاقة ستقرئين نصًا،
-        ثم تفرزين معلوماته وتختارين الملخص الأكثر دقة وتنظيمًا.
-      </p>
-
-      <div class="summary-rule">
-        أقرأ النص ← أحدد الأساسي ← أحذف التكرار والتفاصيل ←
-        أرتب الأفكار ← أعيد صياغتها باختصار.
+      <div class="rule">
+        أقرأ النص ← أحدد الفكرة الرئيسة ←
+        أختار التفاصيل المهمة ← أصوغ ملخصًا قصيرًا
       </div>
 
-      <div
-        class="summary-grid"
-        id="summaryGrid">
+      <div class="lesson-grid" id="lessonGrid"></div>
+
+      <div class="completion-box" id="completionBox">
+
+        <h3>أحسنتِ، أنهيتِ جميع بطاقات التلخيص 🎉</h3>
+
+        <p>
+          تستطيعين الآن إعادة النشاط كاملًا من البداية.
+        </p>
+
+        <button class="start-again" id="startAgainBtn" type="button">
+          إعادة جميع البطاقات من البداية
+        </button>
+
       </div>
 
     </section>
 
-    <section
-      class="workspace"
-      id="workspace"
-      hidden>
+    <section class="panel" id="workspace">
 
       <div class="workspace-top">
 
-        <button
-          class="back-summaries"
-          id="backSummaries"
-          type="button">
-          رجوع إلى البطاقات
+        <button class="back-btn" id="backBtn" type="button">
+          رجوع إلى بطاقات التلخيص
         </button>
 
-        <h2
-          class="workspace-heading"
-          id="workspaceHeading">
-        </h2>
+        <h2 class="workspace-title" id="workspaceTitle"></h2>
 
       </div>
 
-      <div class="stage-status">
-        <span class="stage-dot active"></span>
-        <span class="stage-dot"></span>
-        <span class="stage-dot"></span>
-        <span class="stage-dot"></span>
-        <span class="stage-dot"></span>
-        <span class="stage-dot"></span>
-        <span class="stage-dot"></span>
-        <span class="stage-dot"></span>
+      <div class="box source-box">
+
+        <strong>النص:</strong>
+
+        <p id="sourceText"></p>
+
       </div>
 
-      <div
-        class="stage-label"
-        id="stageLabel">
-        فهم المهارة
-      </div>
+      <div class="organizer">
 
-      <div class="stage-window">
-        <div
-          class="stage-content"
-          id="stageContent">
+        <div class="organizer-item">
+          <strong>الفكرة الرئيسة</strong>
+          <span id="mainIdeaText"></span>
         </div>
+
+        <div class="organizer-item">
+          <strong>الكلمات المفتاحية</strong>
+          <span id="keywordsText"></span>
+        </div>
+
       </div>
 
-      <div class="navigation">
+      <div class="box question-box">
 
-        <button
-          class="nav-btn secondary"
-          id="prevBtn"
-          type="button">
-          السابق
-        </button>
+        <strong id="questionText">
+          أي الملخصات الآتية أدق؟
+        </strong>
 
-        <button
-          class="nav-btn"
-          id="nextBtn"
-          type="button">
-          التالي
+        <div class="options" id="options"></div>
+
+        <div class="feedback" id="feedback"></div>
+
+        <button class="return-cards" id="returnCardsBtn" type="button">
+          العودة إلى بطاقات التلخيص
         </button>
 
       </div>
 
     </section>
-
-    <section
-      class="final-card"
-      id="finalCard">
-
-      <div class="badge">📝</div>
-
-      <h2>أتممتِ آلة ت
-            <script>
-      const summarySkills = [
-        {
-          id:"main-secondary",
-          icon:"🎯",
-          color:"#d8c9d9",
-          name:"الأساسي والثانوي",
-          description:"نميز الفكرة المهمة من المثال والتفصيل.",
-          definition:
-            "التلخيص يبدأ بالتمييز بين المعلومات الأساسية التي لا يكتمل المعنى من دونها، والتفاصيل الثانوية التي يمكن حذفها.",
-          rules:[
-            "حددي موضوع النص أولًا.",
-            "استخرجي الفكرة الرئيسة.",
-            "اسألي عن كل جملة: هل يتغير المعنى إذا حذفتها؟",
-            "احتفظي بالأسباب والنتائج الأساسية.",
-            "احذفي الأمثلة والأوصاف الصغيرة."
-          ],
-          text:
-            `تساعد ممارسة الرياضة بانتظام على تقوية الجسم وتحسين المزاج وزيادة النشاط. ويفضل بعض الناس المشي في الحدائق، بينما يختار آخرون السباحة أو ركوب الدراجة. والمهم هو اختيار نشاط مناسب والاستمرار عليه.`,
-          question:
-            "أي معلومة يجب الاحتفاظ بها في الملخص؟",
-          options:[
-            "يفضل بعض الناس المشي في الحدائق.",
-            "تساعد الرياضة المنتظمة على تحسين الصحة والنشاط.",
-            "يركب بعض الأشخاص الدراجة.",
-            "توجد حدائق للمشي."
-          ],
-          answer:1,
-          hint:
-            "ابحثي عن الجملة التي تجمع الفكرة العامة، لا مثالًا على نوع من الرياضة.",
-          clean:
-            "تساعد ممارسة الرياضة بانتظام على تحسين الصحة والمزاج والنشاط، ويُفضّل اختيار نشاط مناسب والاستمرار عليه.",
-          reason:
-            "لأنها تمثل الفكرة العامة التي تدور حولها أمثلة المشي والسباحة وركوب الدراجة.",
-          deleted:
-            "حُذفت أمثلة الأنشطة المفردة لأنها توضح الفكرة ولا تمثل جوهرها.",
-          organization:
-            "الفائدة العامة أولًا، ثم شرط الاستمرار.",
-          selfQuestion:
-            "هل استطعتِ حذف المثال مع الاحتفاظ بالمعنى؟"
-        },
-
-        {
-          id:"remove-repetition",
-          icon:"✂️",
-          color:"#c9d8cf",
-          name:"حذف التكرار",
-          description:"نحذف المعنى المكرر ونحتفظ بأوضح صياغة.",
-          definition:
-            "عندما تتكرر الفكرة نفسها بألفاظ مختلفة، نحتفظ بها مرة واحدة بصياغة واضحة ومختصرة.",
-          rules:[
-            "ابحثي عن الجمل المتشابهة في المعنى.",
-            "اجمعي المعنى المشترك.",
-            "احذفي إعادة الفكرة نفسها.",
-            "لا تحذفي معلومة جديدة لمجرد تشابه الكلمات."
-          ],
-          text:
-            `تتميز القراءة بأنها توسع معرفة الإنسان. وهي تزيد معلومات القارئ وتمنحه معرفة جديدة. كما تساعده على فهم أفكار الآخرين وتنمية قدرته على التعبير.`,
-          question:
-            "ما العبارة التي تزيل التكرار وتحافظ على المعنى؟",
-          options:[
-            "القراءة توسع المعرفة وتساعد على فهم الآخرين والتعبير.",
-            "القراءة تزيد المعرفة، والقراءة تزيد المعلومات، والقراءة تمنح معرفة.",
-            "القراءة تساعد على التعبير فقط.",
-            "القراءة نشاط يقوم به القارئ."
-          ],
-          answer:0,
-          hint:
-            "ادمجي العبارات الثلاث المتعلقة بالمعرفة في معنى واحد.",
-          clean:
-            "توسع القراءة معرفة الإنسان، وتساعده على فهم الآخرين وتنمية قدرته على التعبير.",
-          reason:
-            "لأن توسيع المعرفة وزيادة المعلومات ومنح معرفة جديدة معانٍ متقاربة يمكن دمجها.",
-          deleted:
-            "حُذف تكرار معنى زيادة المعرفة، مع الاحتفاظ بفهم الآخرين والتعبير.",
-          organization:
-            "المعرفة أولًا، ثم الفوائد الفكرية واللغوية.",
-          selfQuestion:
-            "هل دمجتِ المعنى المكرر من غير حذف فكرة جديدة؟"
-        },
-
-        {
-          id:"remove-examples",
-          icon:"🧹",
-          color:"#c8d7dc",
-          name:"حذف الأمثلة",
-          description:"نحذف المثال عندما تكون القاعدة واضحة بدونه.",
-          definition:
-            "الأمثلة توضح المعنى، لكنها غالبًا لا تدخل في الملخص إلا إذا كانت ضرورية لفهم الفكرة.",
-          rules:[
-            "حددي القاعدة أو الفكرة التي يشرحها المثال.",
-            "احتفظي بالفكرة العامة.",
-            "احذفي أسماء الأشخاص والأماكن غير المهمة.",
-            "أبقي المثال إذا كان النص يدور حوله أساسًا."
-          ],
-          text:
-            `يمكن إعادة استخدام بعض المواد بدل رميها، فمثلًا يمكن تحويل العلب الفارغة إلى أوعية للزراعة، واستخدام الأوراق القديمة في الأعمال الفنية. ويسهم ذلك في تقليل النفايات والاستفادة من الموارد.`,
-          question:
-            "ما الملخص الذي يحذف الأمثلة ويحافظ على الفكرة؟",
-          options:[
-            "يمكن استخدام العلب أوعية للزراعة.",
-            "يمكن استخدام الأوراق في الأعمال الفنية.",
-            "تساعد إعادة استخدام المواد على تقليل النفايات والاستفادة من الموارد.",
-            "العلب والأوراق مواد جميلة."
-          ],
-          answer:2,
-          hint:
-            "ابحثي عن الفكرة التي تشرحها أمثلة العلب والأوراق.",
-          clean:
-            "تسهم إعادة استخدام المواد في تقليل النفايات والاستفادة من الموارد.",
-          reason:
-            "لأن العلب والأوراق أمثلة على إعادة الاستخدام، وليستا الفكرة العامة.",
-          deleted:
-            "حُذفت أمثلة العلب والأوراق لأنها تطبيقات على الفكرة.",
-          organization:
-            "الفعل العام ثم نتيجته البيئية.",
-          selfQuestion:
-            "هل احتفظتِ بالقاعدة وحذفتِ أمثلتها؟"
-        },
-
-        {
-          id:"merge-sentences",
-          icon:"🔗",
-          color:"#d9cfbf",
-          name:"دمج الأفكار المتقاربة",
-          description:"نجمع أكثر من جملة في صياغة واحدة.",
-          definition:
-            "يمكن اختصار النص بدمج الجمل التي تتناول موضوعًا واحدًا أو علاقة واحدة، من غير فقد المعنى.",
-          rules:[
-            "حددي الجمل التي تتحدث عن الفكرة نفسها.",
-            "ابحثي عن كلمة تربط بينها.",
-            "اكتبي جملة جامعة.",
-            "تجنبي الجملة الطويلة المزدحمة."
-          ],
-          text:
-            `توفر المكتبة كتبًا متنوعة للطلاب. كما توفر مصادر رقمية يمكن الوصول إليها من الأجهزة. وتنظم لقاءات ثقافية تشجع على القراءة والتعلم.`,
-          question:
-            "أي صياغة تدمج الأفكار بصورة أفضل؟",
-          options:[
-            "توفر المكتبة الكتب فقط.",
-            "توفر المكتبة مصادر تعليمية متنوعة وتنظم أنشطة تشجع على القراءة.",
-            "تنظم المكتبة لقاءات كثيرة.",
-            "توجد أجهزة داخل المكتبة."
-          ],
-          answer:1,
-          hint:
-            "اجمعي الكتب والمصادر الرقمية في عبارة عامة، ثم أضيفي الأنشطة.",
-          clean:
-            "توفر المكتبة مصادر تعليمية متنوعة، وتنظم أنشطة ثقافية تشجع على القراءة والتعلم.",
-          reason:
-            "لأن عبارة المصادر التعليمية المتنوعة تجمع الكتب والمصادر الرقمية.",
-          deleted:
-            "لم تُحذف فكرة، بل دُمجت التفاصيل المتقاربة تحت معنى أوسع.",
-          organization:
-            "الخدمات التعليمية، ثم الأنشطة الثقافية.",
-          selfQuestion:
-            "هل استخدمتِ عبارة جامعة بدل تكرار التفاصيل؟"
-        },
-
-        {
-          id:"order-ideas",
-          icon:"🔢",
-          color:"#d9c5cf",
-          name:"ترتيب الأفكار",
-          description:"نرتب الملخص حسب تسلسل النص أو علاقاته.",
-          definition:
-            "الملخص المنظم لا يجمع الجمل عشوائيًا، بل يحافظ على ترتيب منطقي مثل السبب والنتيجة أو المشكلة والحل.",
-          rules:[
-            "حددي العلاقة بين الأفكار.",
-            "ابدئي بالسبب قبل النتيجة.",
-            "قدمي المشكلة قبل الحل.",
-            "حافظي على التسلسل الزمني إذا كان مهمًا."
-          ],
-          text:
-            `ازدادت المخلفات في ساحة المدرسة بسبب استخدام العبوات ذات الاستعمال الواحد. لذلك وضعت المدرسة حاويات للفرز وشجعت الطالبات على استخدام عبوات قابلة لإعادة الاستخدام، فانخفضت كمية المخلفات.`,
-          question:
-            "أي ترتيب هو الأنسب للملخص؟",
-          options:[
-            "النتيجة ثم المشكلة ثم الحل.",
-            "الحل ثم النتيجة ثم السبب.",
-            "المشكلة ثم الحل ثم النتيجة.",
-            "النتيجة ثم الحل فقط."
-          ],
-          answer:2,
-          hint:
-            "اتبعي حركة النص: ماذا حدث؟ ماذا فُعل؟ ماذا كانت النتيجة؟",
-          clean:
-            "واجهت المدرسة زيادة في المخلفات، فطبقت الفرز وشجعت إعادة الاستخدام، فانخفضت كمية النفايات.",
-          reason:
-            "لأن النص بدأ بالمشكلة، ثم عرض الإجراءات، ثم ذكر النتيجة.",
-          deleted:
-            "حُذفت التفاصيل الصغيرة مع الحفاظ على تسلسل المشكلة والحل والنتيجة.",
-          organization:
-            "مشكلة ← حل ← نتيجة.",
-          selfQuestion:
-            "هل حافظ ملخصكِ على العلاقة بين السبب والنتيجة؟"
-        },
-
-        {
-          id:"rewrite-style",
-          icon:"✍️",
-          color:"#bfd2cf",
-          name:"إعادة الصياغة",
-          description:"نكتب المعنى بأسلوبنا دون تغييره.",
-          definition:
-            "الملخص ليس نسخًا لجمل النص، بل إعادة صياغة للفكرة بلغة واضحة وأقصر مع الحفاظ على معناها.",
-          rules:[
-            "افهمي الفكرة قبل الكتابة.",
-            "استخدمي كلماتكِ الخاصة.",
-            "لا تغيري موقف الكاتب.",
-            "لا تضيفي رأيًا أو معلومة جديدة."
-          ],
-          text:
-            `لا يتحقق النجاح من المحاولة الأولى دائمًا، بل يحتاج الإنسان إلى التعلم من أخطائه وتعديل خطته والاستمرار في العمل.`,
-          question:
-            "أي إعادة صياغة تحافظ على المعنى؟",
-          options:[
-            "النجاح سهل ولا يحتاج إلى جهد.",
-            "يساعد التعلم من الأخطاء والاستمرار على الوصول إلى النجاح.",
-            "جميع المحاولات الأولى تفشل.",
-            "يجب ألا يغير الإنسان خطته."
-          ],
-          answer:1,
-          hint:
-            "ابحثي عن صياغة جديدة تحافظ على التعلم من الخطأ والاستمرار.",
-          clean:
-            "يصل الإنسان إلى النجاح عندما يتعلم من أخطائه ويعدل خطته ويستمر في المحاولة.",
-          reason:
-            "لأنها أعادت التعبير عن الفكرة من غير نسخ أو تغيير.",
-          deleted:
-            "لم تُحذف العناصر الأساسية: الخطأ، تعديل الخطة، الاستمرار، النجاح.",
-          organization:
-            "الوسائل أولًا ثم النتيجة.",
-          selfQuestion:
-            "هل استخدمتِ أسلوبكِ من غير إضافة رأي؟"
-        },
-
-        {
-          id:"best-summary",
-          icon:"🏆",
-          color:"#d7c6c1",
-          name:"اختيار الملخص الأدق",
-          description:"نوازن بين الاختصار والشمول والدقة.",
-          definition:
-            "أفضل ملخص يكون أقصر من النص، لكنه يشمل فكرته الأساسية وأهم معلوماته من غير مبالغة أو نقص.",
-          rules:[
-            "استبعدي الملخص الناقص.",
-            "استبعدي الملخص الذي يكرر التفاصيل.",
-            "استبعدي ما يضيف رأيًا.",
-            "اختاري الأقصر الذي يحفظ المعنى كاملًا."
-          ],
-          text:
-            `يساعد النوم الكافي على تحسين الانتباه والذاكرة والمزاج. كما أن النوم في وقت منتظم والابتعاد عن الأجهزة قبل النوم يسهمان في رفع جودة النوم.`,
-          question:
-            "ما الملخص الأدق؟",
-          options:[
-            "النوم مهم.",
-            "يساعد النوم الكافي والمنظم مع تقليل استخدام الأجهزة ليلًا على تحسين الانتباه والذاكرة والمزاج.",
-            "يجب منع جميع الأجهزة دائمًا.",
-            "الذاكرة هي الفائدة الوحيدة للنوم."
-          ],
-          answer:1,
-          hint:
-            "ابحثي عن الملخص الذي يشمل الفوائد وشروط جودة النوم بلا تعميم.",
-          clean:
-            "يساعد النوم الكافي والمنظم وتقليل استخدام الأجهزة قبل النوم على تحسين الانتباه والذاكرة والمزاج.",
-          reason:
-            "لأنه جمع الفوائد والعادات المؤثرة في جودة النوم.",
-          deleted:
-            "لم يكرر تفاصيل النص ولم يحذف عناصره الأساسية.",
-          organization:
-            "العادات المساعدة ثم نتائجها.",
-          selfQuestion:
-            "هل كان ملخصكِ مختصرًا وشاملًا في الوقت نفسه؟"
-        },
-
-        {
-          id:"organize-outline",
-          icon:"🗂️",
-          color:"#d6d3bd",
-          name:"تحويل النص إلى مخطط",
-          description:"ننظم النص في عنوان ونقاط مترابطة.",
-          definition:
-            "يمكن تنظيم الملخص في صورة عنوان وفكرة رئيسة ونقاط فرعية، مما يسهل فهم النص ومراجعته.",
-          rules:[
-            "اختاري عنوانًا دقيقًا.",
-            "اكتبي الفكرة الرئيسة.",
-            "رتبي تحتها النقاط الفرعية.",
-            "استخدمي كلمات قصيرة وواضحة."
-          ],
-          text:
-            `تسهم الأشجار في تنقية الهواء وتخفيف الحرارة، كما توفر الظل وتحد من انجراف التربة. ولهذا تحرص المدن على زيادة المساحات الخضراء والعناية بالأشجار.`,
-          question:
-            "أي مخطط ينظم النص بصورة صحيحة؟",
-          options:[
-            "العنوان: المدن — الفكرة: توجد مدن كثيرة.",
-            "العنوان: فوائد الأشجار — النقاط: تنقية الهواء، تخفيف الحرارة، توفير الظل، حماية التربة.",
-            "العنوان: الحرارة — النقطة: الأشجار خضراء.",
-            "العنوان: التربة — النقطة: المدن كبيرة."
-          ],
-          answer:1,
-          hint:
-            "اختاري عنوانًا يشمل جميع النقاط، ثم ضعي تحته الفوائد الأساسية.",
-          clean:
-            "فوائد الأشجار: تنقية الهواء، تخفيف الحرارة، توفير الظل، حماية التربة، ودعم المساحات الخضراء.",
-          reason:
-            "لأن عنوان فوائد الأشجار يشمل جميع المعلومات الفرعية في النص.",
-          deleted:
-            "حُذفت عبارة حرص المدن بوصفها نتيجة، وأمكن إبقاؤها عند الحاجة كنقطة أخيرة.",
-          organization:
-            "عنوان عام ثم فوائد فرعية مرتبة.",
-          selfQuestion:
-            "هل جمع عنوانكِ جميع النقاط تحته؟"
-        }
-      ];
-                    const stageNames = [
-        "فهم المهارة",
-        "قواعد التلخيص",
-        "النص الأصلي",
-        "آلة التنقية",
-        "التحدي",
-        "الملخص النقي",
-        "التحليل والتنظيم",
-        "التقييم الذاتي"
-      ];
-
-      const summaryGrid =
-        document.getElementById("summaryGrid");
-
-      const summaryView =
-        document.getElementById("summaryView");
-
-      const workspace =
-        document.getElementById("workspace");
-
-      const workspaceHeading =
-        document.getElementById("workspaceHeading");
-
-      const stageLabel =
-        document.getElementById("stageLabel");
-
-      const stageContent =
-        document.getElementById("stageContent");
-
-      const stageDots =
-        [...document.querySelectorAll(".stage-dot")];
-
-      const prevBtn =
-        document.getElementById("prevBtn");
-
-      const nextBtn =
-        document.getElementById("nextBtn");
-
-      const backSummaries =
-        document.getElementById("backSummaries");
-
-      const progressText =
-        document.getElementById("progressText");
-
-      const progressBar =
-        document.getElementById("progressBar");
-
-      const soundBtn =
-        document.getElementById("soundBtn");
-
-      const scoreText =
-        document.getElementById("scoreText");
-
-      const successText =
-        document.getElementById("successText");
-
-      const rankText =
-        document.getElementById("rankText");
-
-      const finalRank =
-        document.getElementById("finalRank");
-
-      const finalCard =
-        document.getElementById("finalCard");
-
-      const returnSummaries =
-        document.getElementById("returnSummaries");
-
-      const reactionLayer =
-        document.getElementById("reactionLayer");
-
-      const reactionIcon =
-        document.getElementById("reactionIcon");
-
-      let currentSkillIndex = 0;
-      let currentStage = 0;
-
-      let soundOn =
-        localStorage.getItem("nafesSound") !== "off";
-
-      let score =
-        Number(
-          localStorage.getItem(
-            "nafesSummaryScore"
-          ) || "0"
-        );
-
-      let successfulSummaries =
-        Number(
-          localStorage.getItem(
-            "nafesSummarySuccess"
-          ) || "0"
-        );
-
-      const solved = {};
-
-      const completed = new Set(
-        JSON.parse(
-          localStorage.getItem(
-            "nafesSummaryCompleted"
-          ) || "[]"
-        )
-      );
-
-      const ratings =
-        JSON.parse(
-          localStorage.getItem(
-            "nafesSummaryRatings"
-          ) || "{}"
-        );
-
-      function createAudioContext(){
-        const AudioContextClass =
-          window.AudioContext ||
-          window.webkitAudioContext;
-
-        if(!AudioContextClass){
-          return null;
-        }
-
-        return new AudioContextClass();
-      }
-
-      function playCorrectSound(){
-        if(!soundOn) return;
-
-        const context =
-          createAudioContext();
-
-        if(!context) return;
-
-        [523,659,784,1046].forEach(
-          (frequency,index) => {
-            const oscillator =
-              context.createOscillator();
-
-            const gain =
-              context.createGain();
-
-            const start =
-              context.currentTime +
-              index * .075;
-
-            oscillator.frequency.value =
-              frequency;
-
-            oscillator.type = "sine";
-
-            gain.gain.setValueAtTime(
-              .0001,
-              start
-            );
-
-            gain.gain.exponentialRampToValueAtTime(
-              .16,
-              start + .02
-            );
-
-            gain.gain.exponentialRampToValueAtTime(
-              .0001,
-              start + .25
-            );
-
-            oscillator.connect(gain);
-            gain.connect(context.destination);
-
-            oscillator.start(start);
-            oscillator.stop(start + .27);
-          }
-        );
-
-        setTimeout(
-          playClapSound,
-          300
-        );
-      }
-
-      function playClapSound(){
-        if(!soundOn) return;
-
-        const context =
-          createAudioContext();
-
-        if(!context) return;
-
-        for(let clap = 0; clap < 3; clap++){
-          const bufferSize =
-            context.sampleRate * .09;
-
-          const buffer =
-            context.createBuffer(
-              1,
-              bufferSize,
-              context.sampleRate
-            );
-
-          const data =
-            buffer.getChannelData(0);
-
-          for(let i = 0; i < bufferSize; i++){
-            data[i] =
-              (Math.random() * 2 - 1) *
-              Math.pow(
-                1 - i / bufferSize,
-                3
-              );
-          }
-
-          const source =
-            context.createBufferSource();
-
-          const gain =
-            context.createGain();
-
-          source.buffer = buffer;
-          gain.gain.value = .14;
-
-          source.connect(gain);
-          gain.connect(context.destination);
-
-          source.start(
-            context.currentTime +
-            clap * .12
-          );
-        }
-      }
-
-      function playWrongSound(){
-        if(!soundOn) return;
-
-        const context =
-          createAudioContext();
-
-        if(!context) return;
-
-        [220,165].forEach(
-          (frequency,index) => {
-            const oscillator =
-              context.createOscillator();
-
-            const gain =
-              context.createGain();
-
-            const start =
-              context.currentTime +
-              index * .14;
-
-            oscillator.frequency.value =
-              frequency;
-
-            oscillator.type = "square";
-
-            gain.gain.setValueAtTime(
-              .0001,
-              start
-            );
-
-            gain.gain.exponentialRampToValueAtTime(
-              .07,
-              start + .02
-            );
-
-            gain.gain.exponentialRampToValueAtTime(
-              .0001,
-              start + .14
-            );
-
-            oscillator.connect(gain);
-            gain.connect(context.destination);
-
-            oscillator.start(start);
-            oscillator.stop(start + .16);
-          }
-        );
-      }
-
-      function currentRank(){
-        if(score >= 130){
-          return "خبيرة التلخيص والتنظيم";
-        }
-
-        if(score >= 65){
-          return "منظّمة أفكار";
-        }
-
-        return "منقّحة مبتدئة";
-      }
-
-      function updateScorePanel(){
-        scoreText.textContent = score;
-
-        successText.textContent =
-          successfulSummaries;
-
-        rankText.textContent =
-          currentRank();
-
-        localStorage.setItem(
-          "nafesSummaryScore",
-          String(score)
-        );
-
-        localStorage.setItem(
-          "nafesSummarySuccess",
-          String(successfulSummaries)
-        );
-      }
-
-      function updateProgress(){
-        progressText.textContent =
-          completed.size +
-          " من " +
-          summarySkills.length;
-
-        progressBar.style.width =
-          completed.size /
-          summarySkills.length *
-          100 +
-          "%";
-
-        localStorage.setItem(
-          "nafesSummaryCompleted",
-          JSON.stringify([...completed])
-        );
-
-        document
-          .querySelectorAll(".summary-card")
-          .forEach(card => {
-            card.classList.toggle(
-              "completed",
-              completed.has(
-                card.dataset.skill
-              )
-            );
-          });
-      }
-
-      function buildSummaryCards(){
-        summaryGrid.innerHTML = "";
-
-        summarySkills.forEach(
-          (skill,index) => {
-            const button =
-              document.createElement("button");
-
-            button.type = "button";
-            button.className =
-              "summary-card";
-
-            button.dataset.skill =
-              skill.id;
-
-            button.style.setProperty(
-              "--card-color",
-              skill.color
-            );
-
-            button.innerHTML = `
-              <span class="summary-icon">
-                ${skill.icon}
-              </span>
-
-              <span class="summary-title">
-                ${skill.name}
-              </span>
-
-              <span class="summary-description">
-                ${skill.description}
-              </span>
-
-              <span class="complete-mark">
-                ✓
-              </span>
-            `;
-
-            button.addEventListener(
-              "click",
-              () => {
-                openSkill(index);
-              }
-            );
-
-            summaryGrid.appendChild(button);
-          }
-        );
-
-        updateProgress();
-        updateScorePanel();
-      }
-
-      function openSkill(index){
-        currentSkillIndex = index;
-        currentStage = 0;
-
-        summaryView.hidden = true;
-        finalCard.classList.remove("show");
-        workspace.hidden = false;
-
-        renderStage();
-      }
-
-      function renderStage(){
-        const skill =
-          summarySkills[currentSkillIndex];
-
-        workspaceHeading.textContent =
-          skill.icon +
-          " " +
-          skill.name;
-
-        stageLabel.textContent =
-          stageNames[currentStage];
-
-        stageDots.forEach((dot,index) => {
-          dot.classList.toggle(
-            "active",
-            index === currentStage
-          );
-        });
-
-        prevBtn.disabled =
-          currentStage === 0;
-
-        nextBtn.disabled = false;
-        nextBtn.textContent = "التالي";
-
-        if(currentStage === 0){
-          stageContent.innerHTML = `
-            <h3>ما ${skill.name}؟</h3>
-
-            <div class="definition-box">
-              ${skill.definition}
-            </div>
-
-            <div class="summary-rule">
-              الملخص الجيد:
-              مختصر، شامل، منظم، وأمين لمعنى النص.
-            </div>
-          `;
-        }
-
-        if(currentStage === 1){
-          stageContent.innerHTML = `
-            <h3>قواعد التلخيص</h3>
-
-            <div class="rule-box">
-
-              <ol class="rule-list">
-                ${skill.rules.map(rule => `
-                  <li>${rule}</li>
-                `).join("")}
-              </ol>
-
-            </div>
-          `;
-        }
-
-        if(currentStage === 2){
-          stageContent.innerHTML = `
-            <h3>النص الأصلي</h3>
-
-            <div class="reading-box">
-              <p class="reading-text">
-                ${skill.text}
-              </p>
-            </div>
-          `;
-        }
-
-        if(currentStage === 3){
-          stageContent.innerHTML = `
-            <h3>آلة تنقية النص</h3>
-
-            <div class="machine-box">
-
-              <div class="machine-flow">
-
-                <div class="machine-part">
-                  ✅ فكرة أساسية
-                </div>
-
-                <div class="machine-arrow">
-                  ←
-                </div>
-
-                <div class="machine-part">
-                  ✂️ تفصيل أو تكرار
-                </div>
-
-                <div class="machine-arrow">
-                  ←
-                </div>
-
-                <div class="machine-part">
-                  🚫 رأي أو إضافة
-                </div>
-
-              </div>
-
-              <div class="sorting-grid">
-
-                <div class="sorting-box">
-                  <strong>نحتفظ به</strong>
-                  الفكرة الرئيسة والأسباب والنتائج المهمة.
-                </div>
-
-                <div class="sorting-box">
-                  <strong>نحذفه</strong>
-                  الأمثلة والتكرار والوصف غير الضروري.
-                </div>
-
-                <div class="sorting-box">
-                  <strong>نرفضه</strong>
-                  أي معلومة أو رأي لم يرد في النص.
-                </div>
-
-              </div>
-
-            </div>
-          `;
-        }
-
-        if(currentStage === 4){
-          stageContent.innerHTML = `
-            <div class="question-box">
-
-              <h3>${skill.question}</h3>
-
-              <div class="options">
-
-                ${skill.options.map(
-                  (option,index) => `
-                    <button
-                      class="option"
-                      data-option="${index}"
-                      type="button">
-                      ${option}
-                    </button>
-                  `
-                ).join("")}
-
-              </div>
-
-              <div class="feedback"></div>
-
-            </div>
-          `;
-
-          nextBtn.disabled =
-            !solved[skill.id];
-
-          attachQuestionEvents(skill);
-        }
-
-        if(currentStage === 5){
-          stageContent.innerHTML = `
-            <div class="clean-summary">
-
-              <h3>✨ الملخص النقي</h3>
-
-              <div class="summary-paper">
-                ${skill.clean}
-              </div>
-
-            </div>
-          `;
-        }
-
-        if(currentStage === 6){
-          stageContent.innerHTML = `
-            <div class="analysis-box">
-
-              <h3>التحليل والتنظيم</h3>
-
-              <div class="analysis-item">
-                <strong>لماذا هذا الملخص صحيح؟</strong>
-                ${skill.reason}
-              </div>
-
-              <div class="evidence">
-                <strong>ما الذي حُذف أو دُمج؟</strong>
-                ${skill.deleted}
-              </div>
-
-              <div class="summary-note">
-                <strong>طريقة التنظيم:</strong>
-                ${skill.organization}
-              </div>
-
-            </div>
-          `;
-        }
-
-        if(currentStage === 7){
-          const savedRating =
-            ratings[skill.id] || "";
-
-          stageContent.innerHTML = `
-            <div class="self-box">
-
-              <h3>قيّمي إتقانكِ</h3>
-
-              <p>${skill.selfQuestion}</p>
-
-              <div class="self-options">
-
-                <button
-                  class="self-btn ${
-                    savedRating === "mastered"
-                      ? "selected"
-                      : ""
-                  }"
-                  data-rating="mastered"
-                  type="button">
-                  ⭐ أتقنتُ التلخيص
-                </button>
-
-                <button
-                  class="self-btn ${
-                    savedRating === "practice"
-                      ? "selected"
-                      : ""
-                  }"
-                  data-rating="practice"
-                  type="button">
-                  🔁 أحتاج إلى تدريب
-                </button>
-
-                <button
-                  class="self-btn ${
-                    savedRating === "help"
-                      ? "selected"
-                      : ""
-                  }"
-                  data-rating="help"
-                  type="button">
-                  🪜 أحتاج إلى مساعدة
-                </button>
-
-              </div>
-
-              <div
-                class="self-message ${
-                  savedRating ? "show" : ""
-                }">
-                ${
-                  savedRating
-                    ? ratingMessage(savedRating)
-                    : ""
-                }
-              </div>
-
-            </div>
-          `;
-
-          nextBtn.textContent =
-            completed.size ===
-            summarySkills.length
-              ? "عرض النتيجة النهائية"
-              : "العودة إلى البطاقات";
-
-          nextBtn.disabled =
-            !savedRating;
-
-          attachRatingEvents(skill);
-        }
-            }
-                    function showReaction(correct){
-        reactionLayer.className =
-          correct
-            ? "reaction-layer show"
-            : "reaction-layer show wrong";
-
-        reactionIcon.textContent =
-          correct ? "📝✅" : "✂️";
-
-        setTimeout(() => {
-          reactionLayer.className =
-            "reaction-layer";
-        },900);
-      }
-
-      function createSparks(){
-        const centerX =
-          window.innerWidth / 2;
-
-        const centerY =
-          window.innerHeight / 2;
-
-        for(let i = 0; i < 16; i++){
-          const spark =
-            document.createElement("span");
-
-          spark.className = "spark";
-
-          spark.textContent =
-            i % 3 === 0 ? "★" : "✦";
-
-          spark.style.left =
-            centerX + "px";
-
-          spark.style.top =
-            centerY + "px";
-
-          const angle =
-            Math.PI * 2 * i / 16;
-
-          const distance =
-            90 + Math.random() * 150;
-
-          spark.style.setProperty(
-            "--spark-x",
-            Math.cos(angle) *
-            distance +
-            "px"
-          );
-
-          spark.style.setProperty(
-            "--spark-y",
-            Math.sin(angle) *
-            distance +
-            "px"
-          );
-
-          document.body.appendChild(spark);
-
-          setTimeout(() => {
-            spark.remove();
-          },1150);
-        }
-      }
-
-      function correctVibration(){
-        if(!navigator.vibrate) return;
-
-        navigator.vibrate(
-          [60,35,60,35,90]
-        );
-      }
-
-      function wrongVibration(){
-        if(!navigator.vibrate) return;
-
-        navigator.vibrate(
-          [140,70,140]
-        );
-      }
-
-      function attachQuestionEvents(skill){
-        const options = [
-          ...stageContent.querySelectorAll(
-            ".option"
-          )
-        ];
-
-        const feedback =
-          stageContent.querySelector(
-            ".feedback"
-          );
-
-        options.forEach(option => {
-          option.addEventListener(
-            "click",
-            () => {
-              const selected =
-                Number(
-                  option.dataset.option
-                );
-
-              if(selected === skill.answer){
-                options.forEach(item => {
-                  item.disabled = true;
-                });
-
-                option.classList.add(
-                  "correct"
-                );
-
-                feedback.className =
-                  "feedback show good";
-
-                feedback.textContent =
-                  "👏 ممتاز! احتفظتِ بالمعنى الأساسي ونقّيتِ النص من الزوائد.";
-
-                if(!solved[skill.id]){
-                  score += 20;
-                  successfulSummaries++;
-                }
-
-                solved[skill.id] = true;
-                nextBtn.disabled = false;
-
-                updateScorePanel();
-
-                workspace.classList.remove(
-                  "success-flash"
-                );
-
-                void workspace.offsetWidth;
-
-                workspace.classList.add(
-                  "success-flash"
-                );
-
-                showReaction(true);
-                createSparks();
-                playCorrectSound();
-                correctVibration();
-
-              }else{
-                option.classList.add(
-                  "wrong"
-                );
-
-                feedback.className =
-                  "feedback show bad";
-
-                feedback.textContent =
-                  "هذا الاختيار لا يحافظ على الملخص كاملًا. " +
-                  skill.hint;
-
-                showReaction(false);
-                playWrongSound();
-                wrongVibration();
-
-                setTimeout(() => {
-                  option.classList.remove(
-                    "wrong"
-                  );
-                },700);
-              }
-            }
-          );
-        });
-      }
-
-      function ratingMessage(rating){
-        if(rating === "mastered"){
-          return "⭐ رائع. أصبحتِ تنقّين النص وتحافظين على فكرته الأساسية.";
-        }
-
-        if(rating === "practice"){
-          return "🔁 راجعي الفرق بين الفكرة الأساسية والتفصيل.";
-        }
-
-        return "🪜 ابدئي بالموضوع والفكرة الرئيسة، ثم احذفي الأمثلة والتكرار.";
-      }
-
-      function attachRatingEvents(skill){
-        const buttons = [
-          ...stageContent.querySelectorAll(
-            ".self-btn"
-          )
-        ];
-
-        const message =
-          stageContent.querySelector(
-            ".self-message"
-          );
-
-        buttons.forEach(button => {
-          button.addEventListener(
-            "click",
-            () => {
-              buttons.forEach(item => {
-                item.classList.remove(
-                  "selected"
-                );
-              });
-
-              button.classList.add(
-                "selected"
-              );
-
-              const rating =
-                button.dataset.rating;
-
-              ratings[skill.id] =
-                rating;
-
-              localStorage.setItem(
-                "nafesSummaryRatings",
-                JSON.stringify(ratings)
-              );
-
-              completed.add(skill.id);
-
-              updateProgress();
-
-              message.textContent =
-                ratingMessage(rating);
-
-              message.classList.add(
-                "show"
-              );
-
-              nextBtn.disabled = false;
-
-              nextBtn.textContent =
-                completed.size ===
-                summarySkills.length
-                  ? "عرض النتيجة النهائية"
-                  : "العودة إلى البطاقات";
-
-              if(rating === "mastered"){
-                score += 5;
-                updateScorePanel();
-                playCorrectSound();
-              }
-            }
-          );
-        });
-      }
-
-      prevBtn.addEventListener(
-        "click",
-        () => {
-          if(currentStage > 0){
-            currentStage--;
-            renderStage();
-          }
-        }
-      );
-
-      nextBtn.addEventListener(
-        "click",
-        () => {
-          if(currentStage < 7){
-            currentStage++;
-            renderStage();
-            return;
-          }
-
-          if(
-            completed.size ===
-            summarySkills.length
-          ){
-            workspace.hidden = true;
-            summaryView.hidden = true;
-
-            finalRank.textContent =
-              currentRank();
-
-            finalCard.classList.add(
-              "show"
-            );
-
-            createSparks();
-            playCorrectSound();
-
-            return;
-          }
-
-          workspace.hidden = true;
-
-          finalCard.classList.remove(
-            "show"
-          );
-
-          summaryView.hidden = false;
-
-          updateProgress();
-        }
-      );
-
-      backSummaries.addEventListener(
-        "click",
-        () => {
-          workspace.hidden = true;
-
-          finalCard.classList.remove(
-            "show"
-          );
-
-          summaryView.hidden = false;
-
-          updateProgress();
-        }
-      );
-
-      returnSummaries.addEventListener(
-        "click",
-        () => {
-          finalCard.classList.remove(
-            "show"
-          );
-
-          workspace.hidden = true;
-          summaryView.hidden = false;
-
-          updateProgress();
-        }
-      );
-
-      soundBtn.addEventListener(
-        "click",
-        () => {
-          soundOn = !soundOn;
-
-          localStorage.setItem(
-            "nafesSound",
-            soundOn ? "on" : "off"
-          );
-
-          soundBtn.textContent =
-            soundOn
-              ? "🔊 الصوت مفعّل"
-              : "🔇 الصوت مكتوم";
-
-          if(soundOn){
-            playCorrectSound();
-          }
-        }
-      );
-
-      soundBtn.textContent =
-        soundOn
-          ? "🔊 الصوت مفعّل"
-          : "🔇 الصوت مكتوم";
-
-      buildSummaryCards();
-    </script>
 
   </main>
 
@@ -2434,5 +526,311 @@
     جميع الحقوق محفوظة © 2026
   </footer>
 
-</body>
-</html>
+  <script>
+    const lessons = [
+      {
+        title:"الماء سر الحياة",
+        icon:"💧",
+        source:"الماء أساس حياة الإنسان والنبات والحيوان، ولذلك يجب المحافظة عليه وعدم الإسراف في استخدامه. ويمكن لكل فرد أن يساهم بإغلاق الصنبور وإصلاح التسربات.",
+        mainIdea:"أهمية الماء وضرورة المحافظة عليه.",
+        keywords:"الماء، الحياة، الترشيد، التسربات",
+        options:[
+          "الماء موجود في كل مكان، ويستخدمه الإنسان يوميًا.",
+          "الماء أساس الحياة، والمحافظة عليه تكون بترشيد استخدامه ومنع هدره.",
+          "إصلاح الصنابير عمل يحتاج إلى أدوات كثيرة.",
+          "النبات والحيوان يحتاجان إلى الماء فقط."
+        ],
+        answer:1,
+        reason:"لأنه جمع الفكرة الرئيسة وأهم التفاصيل دون إطالة."
+      },
+      {
+        title:"تنظيم الوقت",
+        icon:"⏰",
+        source:"يساعد تنظيم الوقت الطالب على إنجاز واجباته والشعور بالراحة. ويبدأ ذلك بتحديد الأولويات ووضع وقت مناسب لكل مهمة والابتعاد عن المشتتات.",
+        mainIdea:"تنظيم الوقت يساعد على الإنجاز والراحة.",
+        keywords:"الوقت، الأولويات، المهام، المشتتات",
+        options:[
+          "الطالب ينجز واجبات كثيرة في المدرسة.",
+          "تنظيم الوقت يكون بتحديد الأولويات وتوزيع الوقت والابتعاد عن المشتتات.",
+          "الراحة أهم من أداء الواجبات.",
+          "المشتتات جزء طبيعي من الدراسة."
+        ],
+        answer:1,
+        reason:"لأنه لخص وسائل تنظيم الوقت ونتيجته."
+      },
+      {
+        title:"القراءة غذاء العقل",
+        icon:"📚",
+        source:"توسع القراءة معرفة الإنسان، وتنمي لغته وخياله، وتساعده على فهم العالم من حوله. وكلما تنوعت الكتب التي يقرؤها زادت خبرته.",
+        mainIdea:"القراءة تنمي المعرفة واللغة والخيال.",
+        keywords:"القراءة، المعرفة، اللغة، الخيال",
+        options:[
+          "الكتب كثيرة ومتنوعة في المكتبات.",
+          "القراءة تنمي المعرفة واللغة والخيال، وتنويع الكتب يزيد الخبرة.",
+          "الخيال أهم فائدة للقراءة.",
+          "فهم العالم لا يحتاج إلى قراءة."
+        ],
+        answer:1,
+        reason:"لأنه شمل الفوائد الرئيسة للقراءة."
+      },
+      {
+        title:"التعاون قوة",
+        icon:"🤝",
+        source:"عندما يتعاون أفراد الفريق تتوزع المهام بينهم، ويستفيد كل فرد من مهارات الآخرين، فينجز العمل بصورة أسرع وأفضل.",
+        mainIdea:"التعاون يحسن الإنجاز من خلال توزيع المهام.",
+        keywords:"التعاون، الفريق، المهام، الإنجاز",
+        options:[
+          "العمل الجماعي يحتاج إلى عدد كبير من الأشخاص.",
+          "التعاون يوزع المهام ويجمع المهارات، فيحسن سرعة العمل وجودته.",
+          "كل فرد يعمل وحده أفضل.",
+          "الفريق ينجز العمل بسرعة فقط."
+        ],
+        answer:1,
+        reason:"لأنه جمع سبب التعاون ونتيجته."
+      },
+      {
+        title:"النظافة مسؤولية",
+        icon:"🧹",
+        source:"المحافظة على نظافة المدرسة مسؤولية مشتركة. وتتحقق بعدم رمي النفايات، واستخدام الحاويات، والمشاركة في ترتيب المكان.",
+        mainIdea:"نظافة المدرسة مسؤولية الجميع.",
+        keywords:"النظافة، المدرسة، النفايات، المسؤولية",
+        options:[
+          "العاملات مسؤولات وحدهن عن النظافة.",
+          "نظافة المدرسة مسؤولية مشتركة تتحقق بالسلوك الصحيح والمشاركة.",
+          "استخدام الحاويات هو الوسيلة الوحيدة للنظافة.",
+          "ترتيب المكان يحتاج إلى وقت طويل."
+        ],
+        answer:1,
+        reason:"لأنه لخص المسؤولية وطرق تحقيقها."
+      },
+      {
+        title:"الأمن الرقمي",
+        icon:"🔐",
+        source:"يحافظ المستخدم على أمانه الرقمي باستخدام كلمة مرور قوية، وعدم مشاركة بياناته الشخصية، وتجنب الروابط المجهولة.",
+        mainIdea:"حماية الأمان الرقمي باتباع سلوكيات صحيحة.",
+        keywords:"الأمان، كلمة المرور، البيانات، الروابط",
+        options:[
+          "كلمة المرور يجب أن تكون قصيرة.",
+          "الأمان الرقمي يتحقق بكلمة قوية وحماية البيانات وتجنب الروابط المجهولة.",
+          "الروابط المجهولة مفيدة أحيانًا.",
+          "مشاركة البيانات لا تسبب مشكلة."
+        ],
+        answer:1,
+        reason:"لأنه جمع قواعد الأمان الرقمي الأساسية."
+      },
+      {
+        title:"الرياضة والصحة",
+        icon:"🏃‍♀️",
+        source:"تساعد الرياضة المنتظمة على تقوية الجسم وتنشيط الدورة الدموية وتحسين المزاج. ويكفي البدء بوقت قصير ثم زيادة النشاط تدريجيًا.",
+        mainIdea:"الرياضة المنتظمة تفيد الجسم والمزاج.",
+        keywords:"الرياضة، الجسم، المزاج، التدرج",
+        options:[
+          "الرياضة تحتاج إلى ساعات طويلة كل يوم.",
+          "الرياضة المنتظمة تقوي الجسم وتحسن المزاج، ويمكن البدء بها تدريجيًا.",
+          "تحسين المزاج هو الفائدة الوحيدة للرياضة.",
+          "النشاط القصير لا يفيد الجسم."
+        ],
+        answer:1,
+        reason:"لأنه جمع فوائد الرياضة وطريقة البدء بها."
+      },
+      {
+        title:"الرفق بالحيوان",
+        icon:"🐾",
+        source:"الرفق بالحيوان خلق كريم، ويظهر في إطعامه وسقايته وعدم إيذائه وتوفير مكان آمن له.",
+        mainIdea:"الرفق بالحيوان يكون برعايته وعدم إيذائه.",
+        keywords:"الرفق، الحيوان، الطعام، الأمان",
+        options:[
+          "الحيوانات تحتاج إلى الطعام فقط.",
+          "الرفق بالحيوان خلق يظهر في رعايته وتوفير حاجاته وعدم إيذائه.",
+          "توفير مكان للحيوان أمر غير مهم.",
+          "الحيوان يستطيع حماية نفسه دائمًا."
+        ],
+        answer:1,
+        reason:"لأنه لخص معنى الرفق وصوره الأساسية."
+      }
+    ];
+
+    const lessonView = document.getElementById("lessonView");
+    const workspace = document.getElementById("workspace");
+    const lessonGrid = document.getElementById("lessonGrid");
+    const completionBox = document.getElementById("completionBox");
+
+    let score = Number(
+      localStorage.getItem("nafesSummaryScore") || 0
+    );
+
+    let completed = JSON.parse(
+      localStorage.getItem("nafesSummaryCompleted") || "[]"
+    );
+
+    let soundOn = true;
+    let audioContext = null;
+
+    function playTone(frequency,duration,type,volume){
+      if(!soundOn) return;
+
+      try{
+        audioContext =
+          audioContext ||
+          new (window.AudioContext || window.webkitAudioContext)();
+
+        const oscillator = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+
+        oscillator.type = type || "sine";
+        oscillator.frequency.value = frequency;
+        gain.gain.value = volume || 0.1;
+
+        oscillator.connect(gain);
+        gain.connect(audioContext.destination);
+
+        oscillator.start();
+
+        gain.gain.exponentialRampToValueAtTime(
+          0.001,
+          audioContext.currentTime + duration
+        );
+
+        oscillator.stop(
+          audioContext.currentTime + duration
+        );
+      }catch(error){}
+    }
+
+    function playTap(){
+      playTone(430,0.08,"sine",0.05);
+    }
+
+    function playSuccess(){
+      playTone(523,0.18,"sine",0.12);
+
+      setTimeout(function(){
+        playTone(659,0.18,"sine",0.12);
+      },120);
+
+      setTimeout(function(){
+        playTone(784,0.28,"sine",0.14);
+      },240);
+    }
+
+    function playWrong(){
+      playTone(180,0.22,"sawtooth",0.08);
+
+      setTimeout(function(){
+        playTone(140,0.28,"sawtooth",0.07);
+      },140);
+    }
+
+    function updateProgress(){
+      const count = completed.length;
+
+      document.getElementById("scoreText").textContent = score;
+
+      document.getElementById("correctText").textContent = count;
+
+      document.getElementById("progressText").textContent =
+        count + " من " + lessons.length;
+
+      document.getElementById("progressBar").style.width =
+        (count / lessons.length * 100) + "%";
+
+      if(count >= 8){
+        document.getElementById("rankText").textContent =
+          "خبيرة التلخيص";
+      }else if(count >= 5){
+        document.getElementById("rankText").textContent =
+          "ملخّصة ماهرة";
+      }else if(count >= 3){
+        document.getElementById("rankText").textContent =
+          "مرتبة الأفكار";
+      }else{
+        document.getElementById("rankText").textContent =
+          "منظمة الأفكار";
+      }
+
+      if(count === lessons.length){
+        completionBox.classList.add("show");
+      }else{
+        completionBox.classList.remove("show");
+      }
+    }
+
+    function renderCards(){
+      lessonGrid.innerHTML = "";
+
+      lessons.forEach(function(lesson,index){
+        const card = document.createElement("button");
+
+        card.type = "button";
+
+        card.className =
+          "lesson-card" +
+          (completed.includes(index) ? " done" : "");
+
+        card.innerHTML =
+          '<div class="lesson-icon">' +
+          lesson.icon +
+          '</div>' +
+          '<div class="lesson-title">' +
+          lesson.title +
+          '</div>' +
+          '<div class="lesson-small">' +
+          (completed.includes(index)
+            ? "تم الإنجاز ✅"
+            : "اضغطي لبدء التلخيص") +
+          '</div>';
+
+        card.addEventListener("click",function(){
+          playTap();
+          openLesson(index);
+        });
+
+        lessonGrid.appendChild(card);
+      });
+
+      updateProgress();
+    }
+
+    function openLesson(index){
+      const lesson = lessons[index];
+
+      lessonView.style.display = "none";
+      workspace.style.display = "block";
+
+      document.getElementById("workspaceTitle").textContent =
+        lesson.icon + " " + lesson.title;
+
+      document.getElementById("sourceText").textContent =
+        lesson.source;
+
+      document.getElementById("mainIdeaText").textContent =
+        lesson.mainIdea;
+
+      document.getElementById("keywordsText").textContent =
+        lesson.keywords;
+
+      const options = document.getElementById("options");
+      const feedback = document.getElementById("feedback");
+      const returnCardsBtn =
+        document.getElementById("returnCardsBtn");
+
+      options.innerHTML = "";
+      feedback.className = "feedback";
+      feedback.textContent = "";
+      returnCardsBtn.style.display = "none";
+
+      lesson.options.forEach(function(optionText,optionIndex){
+        const optionButton =
+          document.createElement("button");
+
+        optionButton.type = "button";
+        optionButton.className = "option";
+        optionButton.textContent = optionText;
+
+        optionButton.addEventListener("click",function(){
+
+          Array.from(options.children).forEach(function(button){
+            button.disabled = true;
+          });
+
+          if(optionIndexnafes-summary-organizer.html
