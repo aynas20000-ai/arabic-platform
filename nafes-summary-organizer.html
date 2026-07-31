@@ -1,1 +1,943 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تلخيص النص وتنظيمه | مكتبة نافس</title>
 
+  <style>
+    :root{
+      --purple:#75558d;
+      --purple-dark:#4b385b;
+      --gold:#c9a85c;
+      --cream:#fffaf1;
+      --paper:#fffdf8;
+      --text:#403347;
+      --green:#2f864b;
+      --green-light:#e8f6ed;
+      --red:#b64040;
+      --red-light:#fdeaea;
+      --blue:#5e89a8;
+    }
+
+    *{
+      box-sizing:border-box;
+    }
+
+    body{
+      margin:0;
+      font-family:Tahoma,Arial,sans-serif;
+      line-height:1.8;
+      color:var(--text);
+      background:linear-gradient(
+        180deg,
+        var(--cream),
+        #f7eff8
+      );
+    }
+
+    button,
+    a{
+      font-family:inherit;
+    }
+
+    header{
+      padding:30px 16px;
+      text-align:center;
+      color:white;
+      background:linear-gradient(
+        135deg,
+        #786094,
+        #594474
+      );
+      border-bottom:5px solid var(--gold);
+    }
+
+    header h1{
+      margin:0;
+      font-size:32px;
+    }
+
+    header p{
+      max-width:780px;
+      margin:8px auto 0;
+    }
+
+    main{
+      width:min(94%,960px);
+      margin:22px auto 35px;
+    }
+
+    .top-bar{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      gap:10px;
+      padding:12px;
+      background:var(--paper);
+      border:2px solid #dfd3e5;
+      border-radius:17px;
+    }
+
+    .top-btn{
+      padding:10px 13px;
+      border:0;
+      border-radius:12px;
+      font-weight:bold;
+      cursor:pointer;
+      text-decoration:none;
+    }
+
+    .home-btn{
+      color:#35263d;
+      background:var(--gold);
+    }
+
+    .sound-btn{
+      color:white;
+      background:var(--purple);
+    }
+
+    .reset-btn{
+      color:white;
+      background:var(--red);
+    }
+
+    .progress-area{
+      flex:1;
+      min-width:190px;
+    }
+
+    .progress-label{
+      display:flex;
+      justify-content:space-between;
+      font-size:14px;
+      font-weight:bold;
+    }
+
+    .progress-track{
+      height:11px;
+      margin-top:5px;
+      overflow:hidden;
+      background:#eee4f2;
+      border-radius:999px;
+    }
+
+    .progress-bar{
+      width:0;
+      height:100%;
+      background:linear-gradient(
+        90deg,
+        var(--gold),
+        var(--purple)
+      );
+      transition:width .3s ease;
+    }
+
+    .score-panel{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+      margin:18px 0;
+    }
+
+    .score-box{
+      padding:11px;
+      text-align:center;
+      background:white;
+      border:2px solid #dfd3e5;
+      border-radius:14px;
+    }
+
+    .score-box strong{
+      display:block;
+      color:var(--purple);
+      font-size:21px;
+    }
+
+    .panel{
+      padding:20px;
+      background:var(--paper);
+      border:2px solid #dfd3e5;
+      border-radius:23px;
+      box-shadow:0 8px 22px rgba(0,0,0,.06);
+    }
+
+    .panel h2{
+      margin-top:0;
+      text-align:center;
+      color:var(--purple-dark);
+    }
+
+    .rule{
+      margin-bottom:20px;
+      padding:14px;
+      text-align:center;
+      font-weight:bold;
+      background:#fff2c3;
+      border:2px solid var(--gold);
+      border-radius:15px;
+    }
+
+    .lesson-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:18px;
+    }
+
+    .lesson-card{
+      min-height:165px;
+      padding:20px;
+      text-align:center;
+      cursor:pointer;
+      background:linear-gradient(
+        145deg,
+        #f8f2fb,
+        #fff
+      );
+      border:2px solid #d8c8e1;
+      border-radius:20px;
+    }
+
+    .lesson-card:active{
+      transform:scale(.98);
+    }
+
+    .lesson-card.done{
+      background:#eef8f1;
+      border-color:#76a887;
+    }
+
+    .lesson-icon{
+      font-size:42px;
+    }
+
+    .lesson-title{
+      color:var(--purple-dark);
+      font-size:21px;
+      font-weight:bold;
+    }
+
+    .lesson-small{
+      color:#6b6070;
+      font-size:14px;
+    }
+
+    #workspace{
+      display:none;
+    }
+
+    .workspace-top{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:12px;
+    }
+
+    .back-btn{
+      padding:10px 13px;
+      color:var(--purple-dark);
+      font-weight:bold;
+      cursor:pointer;
+      background:#eee5f2;
+      border:0;
+      border-radius:12px;
+    }
+
+    .workspace-title{
+      flex:1;
+      margin:0;
+      text-align:center;
+      color:var(--purple-dark);
+    }
+
+    .box{
+      margin:13px 0;
+      padding:16px;
+      background:white;
+      border:2px solid #e1d5e7;
+      border-radius:15px;
+    }
+        .source-box{
+      background:#fff;
+    }
+
+    .organizer{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
+      margin:14px 0;
+    }
+
+    .organizer-item{
+      padding:14px;
+      background:#f8f2fb;
+      border:2px solid #d7c6e2;
+      border-radius:14px;
+    }
+
+    .organizer-item strong{
+      display:block;
+      margin-bottom:6px;
+      color:var(--purple);
+    }
+
+    .question-box{
+      background:#fff9e9;
+      border-style:dashed;
+      border-color:var(--gold);
+    }
+
+    .options{
+      display:grid;
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .option{
+      padding:14px;
+      text-align:right;
+      font-size:16px;
+      cursor:pointer;
+      background:#f6eff9;
+      border:2px solid transparent;
+      border-radius:13px;
+    }
+
+    .option.correct{
+      color:var(--green);
+      background:var(--green-light);
+      border-color:#72ae87;
+    }
+
+    .option.wrong{
+      color:var(--red);
+      background:var(--red-light);
+      border-color:#dd9292;
+    }
+
+    .feedback{
+      display:none;
+      margin-top:12px;
+      padding:12px;
+      font-weight:bold;
+      border-radius:12px;
+    }
+
+    .feedback.show{
+      display:block;
+    }
+
+    .feedback.good{
+      color:var(--green);
+      background:var(--green-light);
+    }
+
+    .feedback.bad{
+      color:var(--red);
+      background:var(--red-light);
+    }
+
+    .return-cards{
+      display:none;
+      width:100%;
+      margin-top:14px;
+      padding:13px;
+      color:white;
+      font-size:17px;
+      font-weight:bold;
+      cursor:pointer;
+      background:linear-gradient(
+        135deg,
+        var(--purple),
+        var(--purple-dark)
+      );
+      border:0;
+      border-radius:13px;
+    }
+
+    .completion-box{
+      display:none;
+      margin-top:18px;
+      padding:20px;
+      text-align:center;
+      background:#fff7d6;
+      border:3px solid var(--gold);
+      border-radius:18px;
+    }
+
+    .completion-box.show{
+      display:block;
+    }
+
+    .start-again{
+      padding:12px 18px;
+      color:white;
+      font-size:17px;
+      font-weight:bold;
+      cursor:pointer;
+      background:var(--purple);
+      border:0;
+      border-radius:13px;
+    }
+
+    footer{
+      padding:18px;
+      text-align:center;
+      color:white;
+      background:var(--purple-dark);
+      border-top:4px solid var(--gold);
+    }
+
+    @media(max-width:700px){
+      .lesson-grid,
+      .score-panel,
+      .organizer{
+        grid-template-columns:1fr;
+      }
+
+      .workspace-top{
+        align-items:stretch;
+        flex-direction:column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>تلخيص النص وتنظيمه</h1>
+
+    <p>
+      حددي الفكرة الرئيسة، رتبي الأفكار المهمة،
+      ثم اختاري الملخص الأقصر والأدق.
+    </p>
+  </header>
+
+  <main>
+
+    <div class="top-bar">
+
+      <a class="top-btn home-btn" href="nafes.html">
+        العودة إلى مكتبة نافس
+      </a>
+
+      <button
+        class="top-btn sound-btn"
+        id="soundBtn"
+        type="button">
+        🔊 الصوت مفعّل
+      </button>
+
+      <button
+        class="top-btn reset-btn"
+        id="resetBtn"
+        type="button">
+        ↻ البدء من جديد
+      </button>
+
+      <div class="progress-area">
+
+        <div class="progress-label">
+          <span>تقدّمكِ</span>
+          <span id="progressText">0 من 8</span>
+        </div>
+
+        <div class="progress-track">
+          <div
+            class="progress-bar"
+            id="progressBar">
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="score-panel">
+
+      <div class="score-box">
+        النقاط
+        <strong id="scoreText">0</strong>
+      </div>
+
+      <div class="score-box">
+        ملخصات صحيحة
+        <strong id="correctText">0</strong>
+      </div>
+
+      <div class="score-box">
+        الرتبة
+        <strong id="rankText">منظمة الأفكار</strong>
+      </div>
+
+    </div>
+
+    <section class="panel" id="lessonView">
+
+      <h2>بطاقات التلخيص</h2>
+
+      <div class="rule">
+        أقرأ النص ← أحدد الفكرة الرئيسة ←
+        أختار التفاصيل المهمة ← أصوغ ملخصًا قصيرًا
+      </div>
+
+      <div
+        class="lesson-grid"
+        id="lessonGrid">
+      </div>
+
+      <div
+        class="completion-box"
+        id="completionBox">
+
+        <h3>
+          أحسنتِ، أنهيتِ جميع بطاقات التلخيص 🎉
+        </h3>
+
+        <p>
+          تستطيعين الآن إعادة النشاط كاملًا من البداية.
+        </p>
+
+        <button
+          class="start-again"
+          id="startAgainBtn"
+          type="button">
+          إعادة جميع البطاقات من البداية
+        </button>
+
+      </div>
+
+    </section>
+
+    <section class="panel" id="workspace">
+
+      <div class="workspace-top">
+
+        <button
+          class="back-btn"
+          id="backBtn"
+          type="button">
+          رجوع إلى بطاقات التلخيص
+        </button>
+
+        <h2
+          class="workspace-title"
+          id="workspaceTitle">
+        </h2>
+
+      </div>
+
+      <div class="box source-box">
+
+        <strong>النص:</strong>
+
+        <p id="sourceText"></p>
+
+      </div>
+
+      <div class="organizer">
+
+        <div class="organizer-item">
+          <strong>الفكرة الرئيسة</strong>
+          <span id="mainIdeaText"></span>
+        </div>
+
+        <div class="organizer-item">
+          <strong>الكلمات المفتاحية</strong>
+          <span id="keywordsText"></span>
+        </div>
+
+      </div>
+
+      <div class="box question-box">
+
+        <strong id="questionText">
+          أي الملخصات الآتية أدق؟
+        </strong>
+
+        <div
+          class="options"
+          id="options">
+        </div>
+
+        <div
+          class="feedback"
+          id="feedback">
+        </div>
+
+        <button
+          class="return-cards"
+          id="returnCardsBtn"
+          type="button">
+          العودة إلى بطاقات التلخيص
+        </button>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer>
+    جميع الحقوق محفوظة © 2026
+  </footer>
+
+  <script>
+    const lessons = [
+            {
+        title:"الماء سر الحياة",
+        icon:"💧",
+        source:"الماء أساس حياة الإنسان والنبات والحيوان، ولذلك يجب المحافظة عليه وعدم الإسراف في استخدامه. ويمكن لكل فرد أن يساهم بإغلاق الصنبور وإصلاح التسربات.",
+        mainIdea:"أهمية الماء وضرورة المحافظة عليه.",
+        keywords:"الماء، الحياة، الترشيد، التسربات",
+        options:[
+          "الماء موجود في كل مكان، ويستخدمه الإنسان يوميًا.",
+          "الماء أساس الحياة، والمحافظة عليه تكون بترشيد استخدامه ومنع هدره.",
+          "إصلاح الصنابير عمل يحتاج إلى أدوات كثيرة.",
+          "النبات والحيوان يحتاجان إلى الماء فقط."
+        ],
+        answer:1,
+        reason:"لأنه جمع الفكرة الرئيسة وأهم التفاصيل دون إطالة."
+      },
+
+      {
+        title:"تنظيم الوقت",
+        icon:"⏰",
+        source:"يساعد تنظيم الوقت الطالب على إنجاز واجباته والشعور بالراحة. ويبدأ ذلك بتحديد الأولويات ووضع وقت مناسب لكل مهمة والابتعاد عن المشتتات.",
+        mainIdea:"تنظيم الوقت يساعد على الإنجاز والراحة.",
+        keywords:"الوقت، الأولويات، المهام، المشتتات",
+        options:[
+          "الطالب ينجز واجبات كثيرة في المدرسة.",
+          "تنظيم الوقت يكون بتحديد الأولويات وتوزيع الوقت والابتعاد عن المشتتات.",
+          "الراحة أهم من أداء الواجبات.",
+          "المشتتات جزء طبيعي من الدراسة."
+        ],
+        answer:1,
+        reason:"لأنه لخص وسائل تنظيم الوقت ونتيجته."
+      },
+
+      {
+        title:"القراءة غذاء العقل",
+        icon:"📚",
+               source:"توسع القراءة معرفة الإنسان، وتنمي لغته وخياله، وتساعده على فهم العالم من حوله. وكلما تنوعت الكتب التي يقرؤها زادت خبرته.",
+        mainIdea:"القراءة تنمي المعرفة واللغة والخيال.",
+        keywords:"القراءة، المعرفة، اللغة، الخيال",
+        options:[
+          "الكتب كثيرة ومتنوعة في المكتبات.",
+          "القراءة تنمي المعرفة واللغة والخيال، وتنويع الكتب يزيد الخبرة.",
+          "الخيال أهم فائدة للقراءة.",
+          "فهم العالم لا يحتاج إلى قراءة."
+        ],
+        answer:1,
+        reason:"لأنه شمل الفوائد الرئيسة للقراءة."
+      },
+          function renderCards(){
+      lessonGrid.innerHTML = "";
+
+      lessons.forEach(function(lesson,index){
+        const card =
+          document.createElement("button");
+
+        card.type = "button";
+
+        card.className =
+          "lesson-card" +
+          (
+            completed.includes(index)
+            ? " done"
+            : ""
+          );
+
+        card.innerHTML =
+          '<div class="lesson-icon">' +
+          lesson.icon +
+          '</div>' +
+
+          '<div class="lesson-title">' +
+          lesson.title +
+          '</div>' +
+
+          '<div class="lesson-small">' +
+          (
+            completed.includes(index)
+            ? "تم الإنجاز ✅"
+            : "اضغطي لبدء التلخيص"
+          ) +
+          '</div>';
+
+        card.addEventListener(
+          "click",
+          function(){
+            playTap();
+            openLesson(index);
+          }
+        );
+
+        lessonGrid.appendChild(card);
+      });
+
+      updateProgress();
+    }
+
+    function openLesson(index){
+      const lesson = lessons[index];
+
+      lessonView.style.display = "none";
+      workspace.style.display = "block";
+
+      document
+        .getElementById("workspaceTitle")
+        .textContent =
+          lesson.icon + " " + lesson.title;
+
+      document
+        .getElementById("sourceText")
+        .textContent =
+          lesson.source;
+
+      document
+        .getElementById("mainIdeaText")
+        .textContent =
+          lesson.mainIdea;
+
+      document
+        .getElementById("keywordsText")
+        .textContent =
+          lesson.keywords;
+
+      const options =
+        document.getElementById("options");
+
+      const feedback =
+        document.getElementById("feedback");
+
+      const returnCardsBtn =
+        document.getElementById(
+          "returnCardsBtn"
+        );
+
+      options.innerHTML = "";
+
+      feedback.className =
+        "feedback";
+
+      feedback.textContent = "";
+
+      returnCardsBtn.style.display =
+        "none";
+
+      lesson.options.forEach(
+        function(
+          optionText,
+          optionIndex
+        ){
+          const optionButton =
+            document.createElement(
+              "button"
+            );
+
+          optionButton.type =
+            "button";
+
+          optionButton.className =
+            "option";
+
+          optionButton.textContent =
+            optionText;
+
+          optionButton.addEventListener(
+            "click",
+            function(){
+
+              Array
+                .from(options.children)
+                .forEach(function(button){
+                  button.disabled = true;
+                });
+
+              if(
+                optionIndex ===
+                lesson.answer
+              ){
+
+                optionButton.classList.add(
+                  "correct"
+                );
+
+                feedback.className =
+                  "feedback show good";
+
+                feedback.textContent =
+                  "إجابة صحيحة: " +
+                  lesson.reason;
+
+                playSuccess();
+
+                if(navigator.vibrate){
+                  navigator.vibrate(
+                    [80,50,120]
+                  );
+                }
+
+                if(
+                  !completed.includes(index)
+                ){
+                  completed.push(index);
+
+                  score += 10;
+
+                  localStorage.setItem(
+                    "nafesSummaryCompleted",
+                    JSON.stringify(
+                      completed
+                    )
+                  );
+
+                  localStorage.setItem(
+                    "nafesSummaryScore",
+                    String(score)
+                  );
+                }
+
+              }else{
+
+                optionButton.classList.add(
+                  "wrong"
+                );
+
+                options.children[
+                  lesson.answer
+                ].classList.add(
+                  "correct"
+                );
+
+                feedback.className =
+                  "feedback show bad";
+
+                feedback.textContent =
+                  "راجعي الفكرة الرئيسة والكلمات المفتاحية: " +
+                  lesson.reason;
+
+                playWrong();
+
+                if(navigator.vibrate){
+                  navigator.vibrate(
+                    [180,70,180]
+                  );
+                }
+              }
+
+              returnCardsBtn.style.display =
+                "block";
+
+              updateProgress();
+            }
+          );
+
+          options.appendChild(
+            optionButton
+          );
+        }
+      );
+    }
+
+    function returnToCards(){
+      playTap();
+
+      workspace.style.display =
+        "none";
+
+      lessonView.style.display =
+        "block";
+
+      renderCards();
+    }
+
+    function resetAll(){
+      const confirmed = confirm(
+        "هل تريدين مسح التقدم والبدء من جديد؟"
+      );
+
+      if(!confirmed){
+        return;
+      }
+
+      localStorage.removeItem(
+        "nafesSummaryScore"
+      );
+
+      localStorage.removeItem(
+        "nafesSummaryCompleted"
+      );
+
+      score = 0;
+      completed = [];
+
+      workspace.style.display =
+        "none";
+
+      lessonView.style.display =
+        "block";
+
+      renderCards();
+      playSuccess();
+    }
+
+    document
+      .getElementById("backBtn")
+      .addEventListener(
+        "click",
+        returnToCards
+      );
+
+    document
+      .getElementById(
+        "returnCardsBtn"
+      )
+      .addEventListener(
+        "click",
+        returnToCards
+      );
+
+    document
+      .getElementById("resetBtn")
+      .addEventListener(
+        "click",
+        resetAll
+      );
+
+    document
+      .getElementById(
+        "startAgainBtn"
+      )
+      .addEventListener(
+        "click",
+        resetAll
+      );
+
+    document
+      .getElementById("soundBtn")
+      .addEventListener(
+        "click",
+        function(){
+
+          soundOn = !soundOn;
+
+          this.textContent =
+            soundOn
+            ? "🔊 الصوت مفعّل"
+            : "🔇 الصوت متوقف";
+
+          if(soundOn){
+            playTap();
+          }
+        }
+      );
+
+    renderCards();
+  </script>
+
+</body>
+</html>
