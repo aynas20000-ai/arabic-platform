@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>نموذج نافس ٤ | كنز الوقت</title>
+<style>
+:root{--p:#75558d;--d:#4b385b;--g:#c9a85c;--ok:#2f9f72;--bad:#c94b4b}
+*{box-sizing:border-box}body{margin:0;font-family:Tahoma,Arial,sans-serif;color:var(--d);background:linear-gradient(#fffaf2,#f7effb);min-height:100vh}
+header{padding:28px 15px;text-align:center;color:#fff;background:linear-gradient(135deg,var(--p),var(--d));border-bottom:4px solid var(--g)}
+header h1{margin:0;font-size:clamp(27px,7vw,43px)}header p{margin:8px 0 0}
+.wrap{width:min(900px,calc(100% - 24px));margin:24px auto 45px}
+.panel{padding:20px;background:#fffdf8;border:2px solid var(--g);border-radius:24px;box-shadow:0 12px 28px #4b385b20}.hidden{display:none!important}
+.start{text-align:center}.start h2{color:var(--p)}.start p{line-height:1.9}
+input{width:min(560px,100%);padding:15px;text-align:center;border:2px solid #cdb7dc;border-radius:15px;font:18px inherit}
+.btn{display:block;width:min(420px,100%);margin:17px auto 0;padding:15px;color:#fff;background:linear-gradient(135deg,var(--p),var(--d));border:2px solid var(--g);border-radius:15px;font:bold 18px inherit}
+.head{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}.pill{padding:10px 14px;border-radius:13px;background:#f1e8f7;font-weight:bold}
+.track{height:12px;margin:15px 0;background:#e8dfea;border-radius:99px;overflow:hidden}.fill{height:100%;width:0;background:linear-gradient(90deg,var(--g),var(--p));transition:.3s}
+.text{padding:18px;background:#fff9e9;border:2px solid #e1c97d;border-radius:18px;line-height:2;font-size:16px}.text h3{text-align:center;color:#8a650d;font-size:24px}
+.qbox{margin-top:16px;padding:18px;border:2px solid #cdb7dc;border-radius:19px;background:#fff}.q{font-size:20px;font-weight:bold;line-height:1.8}
+.answers{display:grid;gap:11px;margin-top:15px}.answer{padding:13px 15px;text-align:right;background:#fffaf2;border:2px solid #ddcfb7;border-radius:14px;font:16px/1.7 inherit}
+.answer.correct{background:#dff7ec;border-color:var(--ok);box-shadow:0 0 22px #2f9f7266}.answer.wrong{background:#ffe7e7;border-color:var(--bad)}
+.feedback{margin-top:13px;padding:11px;text-align:center;border-radius:13px;font-weight:bold;line-height:1.7}.good{background:#e0f7ed;color:#176141}.bad{background:#ffe8e8;color:#7c2929}
+.next{display:none;background:#3978b8}
+.result{text-align:center}.score{width:165px;height:165px;margin:18px auto;display:grid;place-items:center;border:7px double var(--g);border-radius:50%;background:#fff2b9;font-size:36px;font-weight:bold}
+canvas{display:block;width:100%;height:auto;background:#fff}.canvas{padding:7px;background:#eee8f1;border-radius:14px}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.flash{position:fixed;inset:0;pointer-events:none;z-index:99;opacity:0}.flash.ok{background:#57efaa66;animation:f .65s}.flash.no{background:#ff666655;animation:f .5s}@keyframes f{35%{opacity:1}100%{opacity:0}}
+.conf{position:fixed;top:-20px;width:9px;height:15px;z-index:120;animation:fall 1.7s linear forwards}@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:.15}}
+a.btn{text-decoration:none}
+@media(max-width:620px){.panel{padding:14px}.row{grid-template-columns:1fr}.q{font-size:18px}}
+@media print{@page{size:A4 landscape;margin:0}body{background:#fff}header,#start,#test,.result>h2,.score,#resultMsg,.result h3,.row,a.btn{display:none!important}.wrap,.panel,#result,.canvas{width:100%;margin:0;padding:0;border:0;box-shadow:none;background:#fff}canvas{width:100vw}}
+</style>
+</head>
+<body>
+<div id="flash" class="flash"></div>
+<header><h1>⏳ كنز الوقت</h1><p>النموذج الرابع من رحلة نافس</p></header>
+<main class="wrap">
+<section id="start" class="panel start">
+<h2>شهادة «سفيرة استثمار الوقت» تنتظركِ</h2>
+<p>اكتبي اسمكِ الرباعي ليظهر تلقائيًا في الشهادة.</p>
+<input id="name" placeholder="اسم الطالبة الرباعي">
+<button id="startBtn" class="btn">🚀 ابدئي التحدي</button>
+</section>
+
+<section id="test" class="panel hidden">
+<div class="head"><div id="progress" class="pill"></div><div id="scoreTop" class="pill"></div></div>
+<div class="track"><div id="fill" class="fill"></div></div>
+<article class="text">
+<h3>كنز الوقت</h3>
+<p>الوقت هو عمر الإنسان الحقيقي، وما يمضي منه لا يعود. وقد أقسم الله تعالى بالعصر تنبيهًا إلى عظم قيمة الزمن، وقال الحسن البصري: «يا ابن آدم، إنما أنت أيام؛ فإذا ذهب يومك ذهب بعضك».</p>
+<p>ومن أعظم النعم التي قد يغبن فيها الإنسان الصحة والفراغ؛ لأن كثيرًا من الناس لا يحسنون استثمارهما. فالوقت المنظم يفتح أبواب التعلم والإنجاز، أما الفراغ المهمل فقد يتحول إلى سبب للتأخر وضياع الفرص.</p>
+<p>وتسهم الأسرة والمدرسة في توجيه الناشئة إلى التخطيط، وترتيب الأولويات، والقراءة، وممارسة الأنشطة النافعة. ومن يجعل لكل مهمة وقتًا، ويراجع إنجازه، يستطيع أن يوازن بين العبادة والدراسة والراحة، ويصنع من أيامه طريقًا نحو النجاح.</p>
+</article>
+<div class="qbox">
+<div id="q" class="q"></div>
+<div id="answers" class="answers"></div>
+<div id="feedback" class="feedback"></div>
+<button id="next" class="btn next">السؤال التالي ←</button>
+</div>
+</section>
+
+<section id="result" class="panel result hidden">
+<h2>🎉 أنجزتِ النموذج الرابع!</h2>
+<div id="bigScore" class="score"></div>
+<p id="resultMsg"></p>
+<h3>🏅 شهادة سفيرة استثمار الوقت</h3>
+<div class="canvas"><canvas id="cert"></canvas></div>
+<div class="row">
+<button id="printBtn" class="btn">🖨️ طباعة أو حفظ PDF</button>
+<button id="retryBtn" class="btn">🔄 إعادة الاختبار</button>
+</div>
+<a class="btn" href="nafes.html">العودة إلى منصة نافس</a>
+</section>
+</main>
+
+<script>
+const qs=[
+{q:"ما الفكرة الرئيسة للنص؟",o:["الوقت مورد ثمين يجب استثماره بالتخطيط والعمل النافع.","الراحة أهم من الإنجاز.","الفراغ لا يؤثر في حياة الإنسان.","النجاح يعتمد على الحظ."],a:0,r:"يركز النص على قيمة الوقت وضرورة استثماره بالتنظيم والعمل."},
+{q:"ما نوع الأسلوب في قوله تعالى: «والعصر»؟",o:["استفهام.","قسم.","نداء.","أمر."],a:1,r:"الواو هنا واو القسم، وفي الآية تنبيه إلى أهمية الزمن."},
+{q:"ماذا تعني عبارة «إذا ذهب يومك ذهب بعضك»؟",o:["العمر يزداد بمرور الأيام.","مرور الزمن ينقص من عمر الإنسان.","الأيام متساوية في الإنجاز.","الوقت يمكن استعادته."],a:1,r:"كل يوم يمضي هو جزء انقضى من عمر الإنسان."},
+{q:"لماذا قد يُغبن الإنسان في الصحة والفراغ؟",o:["لأنهما لا يدومان.","لأنه قد يضيعهما دون استثمار نافع.","لأنهما يمنعان الدراسة.","لأنهما خاصان بالكبار."],a:1,r:"الغبن هنا هو الخسارة الناتجة عن عدم استثمار النعمتين."},
+{q:"ما القيمة التي يدعو إليها النص؟",o:["تأجيل الأعمال.","استثمار الوقت.","كثرة النوم.","الاعتماد على الآخرين."],a:1,r:"القيمة المركزية هي حسن استثمار الوقت."},
+{q:"ما دور الأسرة والمدرسة وفق النص؟",o:["زيادة وقت الفراغ.","توجيه الناشئة إلى التنظيم والأنشطة النافعة.","إلغاء وقت الراحة.","اختيار جميع قرارات الطالب."],a:1,r:"يسهمان في التوجيه إلى التخطيط وترتيب الأولويات."},
+{q:"ما العلاقة بين التخطيط والإنجاز؟",o:["التخطيط يعيق الإنجاز.","لا علاقة بينهما.","التخطيط يساعد على تنظيم الجهد وتحقيق الإنجاز.","الإنجاز يأتي قبل التخطيط دائمًا."],a:2,r:"التخطيط يجعل الوقت والجهد موجّهين نحو أهداف واضحة."},
+{q:"أي السلوكيات التالية يوافق النص؟",o:["تأجيل الواجبات إلى آخر الوقت.","تخصيص وقت لكل مهمة ومراجعة الإنجاز.","استخدام الهاتف طوال الفراغ.","إلغاء الراحة تمامًا."],a:1,r:"النص يدعو إلى توزيع الوقت ومراجعة ما تحقق."},
+{q:"ما المقصود بعبارة «يصنع من أيامه طريقًا نحو النجاح»؟",o:["ينتظر النجاح دون عمل.","يستثمر أيامه في خطوات متتابعة تحقق أهدافه.","يسافر كثيرًا.","يكرر الأعمال نفسها."],a:1,r:"التعبير يدل على تحويل الوقت إلى إنجازات تقود للنجاح."},
+{q:"ما أفضل تلخيص للنص؟",o:["الوقت يمضي، وتنظيمه واستثماره في النافع أساس النجاح.","الفراغ أفضل من العمل.","الصحة وحدها تصنع النجاح.","الدراسة يجب أن تأخذ اليوم كله."],a:0,r:"يجمع التلخيص بين قيمة الزمن والتنظيم والعمل النافع."}
+];
+
+const $=id=>document.getElementById(id);
+let i=0,score=0,locked=false,student="",ac;
+const arab=n=>String(n).replace(/\d/g,d=>"٠١٢٣٤٥٦٧٨٩"[d]);
+function audio(){if(!ac){const A=window.AudioContext||window.webkitAudioContext;if(A)ac=new A()}return ac}
+function tone(f,d,s=.0,v=.1,t="sine"){const a=audio();if(!a)return;const o=a.createOscillator(),g=a.createGain();o.type=t;o.frequency.value=f;g.gain.setValueAtTime(.0001,a.currentTime+s);g.gain.exponentialRampToValueAtTime(v,a.currentTime+s+.01);g.gain.exponentialRampToValueAtTime(.0001,a.currentTime+s+d);o.connect(g);g.connect(a.destination);o.start(a.currentTime+s);o.stop(a.currentTime+s+d+.03)}
+function soundOK(){tone(520,.12);tone(660,.12,.11);tone(820,.2,.22)}
+function soundNo(){tone(190,.22,0,.1,"sawtooth");tone(145,.25,.13,.08,"sawtooth")}
+function vibrate(p){if(navigator.vibrate)navigator.vibrate(p)}
+function flash(ok){$("flash").className="flash";void $("flash").offsetWidth;$("flash").classList.add(ok?"ok":"no")}
+function confetti(){let c=["#75558d","#c9a85c","#2f9f72","#e46f9b","#3978b8"];for(let n=0;n<34;n++){let x=document.createElement("span");x.className="conf";x.style.left=Math.random()*100+"vw";x.style.background=c[n%c.length];x.style.animationDelay=Math.random()*.3+"s";document.body.appendChild(x);setTimeout(()=>x.remove(),2100)}}
+function start(){student=$("name").value.trim().replace(/\s+/g," ");if(student.split(" ").length<4){alert("اكتبي اسم الطالبة الرباعي كاملًا.");return}localStorage.setItem("nafes_student_name",student);localStorage.setItem("studentFullName",student);$("start").classList.add("hidden");$("test").classList.remove("hidden");i=0;score=0;render()}
+function render(){locked=false;$("feedback").className="feedback";$("feedback").textContent="";$("next").style.display="none";$("progress").textContent=`السؤال ${arab(i+1)} من ${arab(qs.length)}`;$("scoreTop").textContent=`الدرجة: ${arab(score)}`;$("fill").style.width=(i/qs.length*100)+"%";$("q").textContent=qs[i].q;$("answers").innerHTML="";qs[i].o.forEach((t,n)=>{let b=document.createElement("button");b.className="answer";b.textContent=`${["أ","ب","ج","د"][n]} ـ ${t}`;b.onclick=()=>choose(n,b);$("answers").appendChild(b)})}
+function choose(n,b){if(locked)return;locked=true;let q=qs[i],bs=[...document.querySelectorAll(".answer")];bs.forEach(x=>x.disabled=true);bs[q.a].classList.add("correct");if(n===q.a){score+=10;b.classList.add("correct");$("feedback").className="feedback good";$("feedback").textContent="👏 إجابة دقيقة! "+q.r;soundOK();vibrate([80,40,80]);flash(true);confetti()}else{b.classList.add("wrong");$("feedback").className="feedback bad";$("feedback").textContent="راجعي الدليل: "+q.r;soundNo();vibrate([160,70,160]);flash(false)}$("scoreTop").textContent=`الدرجة: ${arab(score)}`;$("next").style.display="block";$("next").textContent=i===qs.length-1?"عرض النتيجة والشهادة 🏅":"السؤال التالي ←"}
+function next(){if(i<qs.length-1){i++;render()}else finish()}
+function finish(){$("test").classList.add("hidden");$("result").classList.remove("hidden");$("bigScore").textContent=arab(score)+"٪";$("resultMsg").textContent=`${student} — حصلتِ على ${arab(score)} من ١٠٠.`;localStorage.setItem("nafes_test_04_score",score);localStorage.setItem("nafes_test_04_completed","true");draw();soundOK();confetti();vibrate([100,50,100,50,180])}
+function fit(text,max,start,min){let s=start;while(s>min){ctx.font=`bold ${s}px Tahoma`;if(ctx.measureText(text).width<=max)return s;s-=2}return min}
+function wrap(text,x,y,max,lh){let words=text.split(" "),line="",lines=[];for(let w of words){let t=line?line+" "+w:w;if(ctx.measureText(t).width>max&&line){lines.push(line);line=w}else line=t}if(line)lines.push(line);lines.forEach((l,n)=>ctx.fillText(l,x,y+n*lh));return y+lines.length*lh}
+const canvas=$("cert"),ctx=canvas.getContext("2d");
+function date(){try{return new Date().toLocaleDateString("ar-SA-u-ca-islamic-umalqura",{year:"numeric",month:"long",day:"numeric"})}catch(e){return new Date().toLocaleDateString("ar-SA")}}
+function draw(){let img=new Image();img.src="data:image/png;base64,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gNiwNdPbsMMeA9z8aB0h27DDHgPc/GgdIDYsDXT27DDHgPc/GgdIduwwx4D3PxoHSA2LA109uwwx4D3PxoHSHbsMMeA9z8aB0gNiwNdPbsMMeA9z8aB0h27DDHgPc/GgdIDYsDXT27DDHgPc/GgdIduwwx4D3PxoHSA2LA109uwwx4D3PxoHSHbsMMeA9z8aB0gNiwNdPbsMMeA9z8aB0h27DDHgPc/GgdIDYsDXT27DDHgPc/GgdIduwwx4D3PxoHSA2LA109uwwx4D3PxoHSHbsMMeA9z8aB0gNiwNdPbsMMeA9z8aB0h27DDHgPc/GgdIDYsDXT27DDHgPc/GgdIduwwx4D3PxoHSA2LA109uwwx4D3PxoHSHbsMMeA9z8aB0gNiwNdPbsMMeA9z8aB0h27DDHgPc/GgdIDYsDXT27DDHgPc/GgdIduwwx4D3PxoHSA2LA109uwwx4D3PxoHSHbsMMeA9z8aB0gNiwNdPbsMMeA9z8aB0h27DDHgPc/GgdIDYsDXT27DDHgPc/GgdIduwwx4D3PxoHSA2LA109uwwx4D3PxoHSHbsMMeA9z8aB0gNiwNdPbsMMeA9z8aB0h27DDHgPc/GgdIDYsDXT27DDHgPc/GgdIduwwx4D3PxoHSA2LA109uwwx4D3PxoHSHbsMMeA9z8aB0gNiwNdPbsMMeA9z8aB0h27DDHgPc/GgdIDYsDXT27DDHgPc/GgdIduwwx4D3PxoHSA2LA109uwwx4D3PxoHSHbsMMeA9z8aB0gNiwNdPbsMMeA9z8aB0h27DDHgPc/GgdIDYsDXT27DDHgPc/GgdIduwwx4D3PxoHSA2LA109uwwx4D3PxoHSHbsMMeA9z8aB0gNiwNdPbsMMeA9z8aB0h27DDHgPc/GgdIDYsDXT27DDHgPc/GgdIduwwx4D3PxoHSA2LA109uwwx4D3PxoHSHbsMMeA9z8aB0gNiwNdPbsMMeA9z8aB0h27DDHgPc/GgdIDYsDXT27DDHgPc/GgdIduwwx4D3PxoHSA2LA109uwwx4D3PxoHSHbsMMeA9z8aB0gNiwNdPbsMMeA9z8aB0h27DDHgPc/GgdIDYsDXT27DDHgPc/GgdIduwwx4D3PxoHSA2LA109uwwx4D3PxoHSHbsMMeA9z8aB0gNiwNdPbsMMeA9z8aB0h27DDHgPc/GgdIDYs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4NTXHZ0h8faaWO41+asW5Fwm4J+cZv8ANG5Fwm4J+cZv80s72CL94NTXHZ0h2CL94NTXHZ0h8faaWO41+asW5Fwm4J+cZv8ANG5Fwm4J+cZv80s72CL94NTXHZ0h2CL94NTXHZ0h8faaWO41+asW5Fwm4J+cZv8ANG5Fwm4J+cZv80s72CL94NTXHZ0h2CL94NTXHZ0h8faaWO41+asW5Fwm4J+cZv8ANG5Fwm4J+cZv80s72CL94NTXHZ0h2CL94NTXHZ0h8faaWO41+asW5Fwm4J+cZv8ANG5Fwm4J+cZv80s72CL94NTXHZ0h2CL94NTXHZ0h8faaWO41+asW5Fwm4J+cZv8ANG5Fwm4J+cZv80s72CL94NTXHZ0h2CL94NTXHZ0h8faaWO41+asW5Fwm4J+cZv8ANG5Fwm4J+cZv80s72CL94NTXHZ0h2CL94NTXHZ0h8faaWO41+asW5Fwm4J+cZv8ANG5Fwm4J+cZv80s72CL94NTXHZ0h2CL94NTXHZ0h8faaWO41+asW5Fwm4J+cZv8ANG5Fwm4J+cZv80s72CL94NTXHZ0h2CL94NTXHZ0h8faaWO41+asW5Fwm4J+cZv8ANG5Fwm4J+cZv80s72CL94NTXHZ0h2CL94NTXHZ0h8faaWO41+asW5Fwm4J+cZv8ANG5Fwm4J+cZv80s72CL94NTXHZ0h2CL94NTXHZ0h8faaWO41+asW5Fwm4J+cZv8ANG5Fwm4J+cZv80s72CL94NTXHZ0h2CL94NTXHZ0h8faaWO41+asW5Fwm4J+cZv8ANG5Fwm4J+cZv80s72CL94NTXHZ0h2CL94NTXHZ0h8faaWO41+asW5Fwm4J+cZv8ANG5Fwm4J+cZv80s72CL94NTXHZ0h2CL94NTXHZ0h8faaWO41+asW5Fwm4J+cZv8ANG5Fwm4J+cZv80s72CL94NTXHZ0h2CL94NTXHZ0h8faaWO41+asW5Fwm4J+cZv8ANG5Fwm4J+cZv80s72CL94NTXHZ0h2CL94NTXHZ0h8faaWO41+asW5Fwm4J+cZv8ANG5Fwm4J+cZv80s72CL94NTXHZ0h2CL94NTXHZ0h8faaWO41+asW5Fwm4J+cZv8ANG5Fwm4J+cZv80s72CL94NTXHZ0h2CL94NTXHZ0h8faaWO41+asW5Fwm4J+cZv8ANG5Fwm4J+cZv80s72CL94NTXHZ0h2CL94NTXHZ0h8faaWO41+asW5Fwm4J+cZv8ANG5Fwm4J+cZv80s72CL94NTXHZ0h2CL94NTXHZ0h8faaWO41+asW5Fwm4J+cZv8ANG5Fwm4J+cZv80s72CL94NTXHZ0h2CL94NTXHZ0h8faaWO41+asW5Fwm4J+cZv8ANG5Fwm4J+cZv80s72CL94NTXHZ0h2CL94NTXHZ0h8faaWO41+asW5Fwm4J+cZv8ANG5Fwm4J+cZv80s72CL94NTXHZ0h2CL94NTXHZ0h8faaWO41+asW5Fwm4J+cZv8ANG5Fwm4J+cZv80s72CL94NTXHZ0h2CL94NTXHZ0h8faaWO41+asW5Fwm4J+cZv8ANG5Fwm4J+cZv80s72CL94NTXHZ0h2CL94NTXHZ0h8faaWO41+asW5Fwm4J+cZv8ANG5Fwm4J+cZv80s72CL94NTXHZ0h2CL94NTXHZ0h8faaWO41+asW5Fwm4J+cZv8ANG5Fwm4J+cZv80s72CL94NTXHZ0h2CL94NTXHZ0h8faaWO41+asW5Fwm4J+cZv8ANG5Fwm4J+cZv80s72CL94NTXHZ0h2CL94NTXHZ0h8faaWO41+asW5Fwm4J+cZv8ANG5Fwm4J+cZv80s72CL94NTXHZ0h2CL94NTXHZ0h8faaWO41+asW5Fwm4J+cZv8ANG5Fwm4J+cZv80s72CL94NTXHZ0h2CL94NTXHZ0h8faaWO41+asW5Fwm4J+cZv8ANG5Fwm4J+cZv80s72CL94NTXHZ0h2CL94NTXHZ0h8faaWO41+asW5Fwm4J+cZv8ANG5Fwm4J+cZv80s72CL94NTXHZ0h2CL94NTXHZ0h8faaWO41+asW5Fwm4J+cZv8ANG5Fwm4J+cZv80s72CL94NTXHZ0h2CL94NTXHZ0h8faaWO41+asW5Fwm4J+cZv8ANG5Fwm4J+cZv80s72CL94NTXHZ0h2CL94NTXHZ0h8faaWO41+asW5Fwm4J+cZv8ANG5F
