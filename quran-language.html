@@ -1,727 +1,306 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>بوابة لغة القرآن | منصة آفاق اللغة</title>
-
   <style>
     :root {
       --purple: #755b91;
       --purple-medium: #59436f;
       --purple-dark: #3f304f;
       --title: #5d4374;
-
       --gold: #c8a85a;
       --gold-dark: #b79750;
       --gold-light: #e4d3a2;
-
       --cream: #fdf9f4;
       --lavender-bg: #f7f0fb;
-
       --card-white: #fffdf8;
       --card-pink: #f8eef6;
-
       --green: #4f8068;
       --green-light: #edf7f1;
-
       --blue: #527b9d;
       --blue-light: #eef5fa;
-
       --text: #000000;
-      --muted: #625967;
       --shadow: rgba(74, 54, 92, 0.14);
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       min-height: 100vh;
       overflow-x: hidden;
       font-family: Tahoma, Arial, sans-serif;
       color: var(--text);
-
-      background:
-        linear-gradient(
-          135deg,
-          var(--cream),
-          var(--lavender-bg)
-        );
+      background: linear-gradient(135deg, var(--cream), var(--lavender-bg));
     }
-
-    a,
-    button,
-    summary {
-      font-family: inherit;
-      -webkit-tap-highlight-color: transparent;
-    }
+    a, button, summary { font-family: inherit; -webkit-tap-highlight-color: transparent; }
 
     header {
       position: sticky;
       top: 0;
       z-index: 20;
-
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 15px;
-
       padding: 16px 6%;
-
       color: white;
-
-      background:
-        linear-gradient(
-          145deg,
-          var(--purple) 0%,
-          var(--purple-medium) 55%,
-          var(--purple-dark) 100%
-        );
-
+      background: linear-gradient(145deg, var(--purple) 0%, var(--purple-medium) 55%, var(--purple-dark) 100%);
       border-bottom: 4px solid var(--gold);
       box-shadow: 0 5px 20px rgba(30, 20, 45, 0.24);
     }
-
-    .logo {
-      color: #fff7dd;
-      font-size: 22px;
-      font-weight: bold;
-    }
-
+    .logo { color: #fff7dd; font-size: 22px; font-weight: bold; }
     .back-link {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 7px;
-
       padding: 10px 16px;
-
       color: var(--title);
       font-size: 14px;
       font-weight: bold;
       text-decoration: none;
-
-      background:
-        linear-gradient(
-          135deg,
-          var(--card-white),
-          var(--card-pink)
-        );
-
+      background: linear-gradient(135deg, var(--card-white), var(--card-pink));
       border: 2px solid var(--gold);
       border-radius: 16px;
       box-shadow: 0 6px 15px rgba(30, 20, 45, 0.22);
-
-      transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-
-    .back-link:hover,
-    .back-link:focus-visible {
+    .back-link:hover, .back-link:focus-visible {
       transform: translateY(-2px);
       box-shadow: 0 10px 20px rgba(30, 20, 45, 0.28);
       outline: 3px solid rgba(228, 211, 162, 0.4);
     }
+    .back-link:active { transform: scale(0.98); }
 
-    .back-link:active {
-      transform: scale(0.98);
-    }
-
-    main {
-      width: min(94%, 960px);
-      margin: auto;
-      padding: 45px 0 65px;
-    }
-
+    main { width: min(94%, 960px); margin: auto; padding: 45px 0 65px; }
     .hero {
       position: relative;
       margin-bottom: 32px;
       padding: 35px 20px;
       overflow: hidden;
       text-align: center;
-
-      background:
-        linear-gradient(
-          145deg,
-          var(--purple) 0%,
-          var(--purple-medium) 55%,
-          var(--purple-dark) 100%
-        );
-
+      background: linear-gradient(145deg, var(--purple) 0%, var(--purple-medium) 55%, var(--purple-dark) 100%);
       border: 2px solid var(--gold);
       border-radius: 28px;
       box-shadow: 0 13px 30px rgba(63, 48, 79, 0.2);
     }
-
-    .hero::before,
-    .hero::after {
+    .hero::before, .hero::after {
       content: "";
       position: absolute;
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.06);
       pointer-events: none;
     }
-
-    .hero::before {
-      width: 190px;
-      height: 190px;
-      top: -90px;
-      right: -55px;
-    }
-
-    .hero::after {
-      width: 230px;
-      height: 230px;
-      left: -95px;
-      bottom: -145px;
-    }
-
+    .hero::before { width: 190px; height: 190px; top: -90px; right: -55px; }
+    .hero::after { width: 230px; height: 230px; left: -95px; bottom: -145px; }
     .hero-icon {
       position: relative;
       z-index: 1;
-
       display: flex;
       align-items: center;
       justify-content: center;
-
       width: 92px;
       height: 92px;
       margin: 0 auto 17px;
-
       font-size: 45px;
-
       background: rgba(255, 255, 255, 0.12);
       border: 2px solid var(--gold-light);
       border-radius: 27px;
       box-shadow: 0 10px 25px rgba(30, 20, 45, 0.25);
     }
-
-    .hero h1 {
-      position: relative;
-      z-index: 1;
-      margin-bottom: 12px;
-
-      color: #fff7dd;
-      font-size: 37px;
-    }
-
-    .hero p {
-      position: relative;
-      z-index: 1;
-
-      max-width: 740px;
-      margin: auto;
-
-      color: white;
-      font-size: 17px;
-      line-height: 2;
-    }
+    .hero h1 { position: relative; z-index: 1; margin-bottom: 12px; color: #fff7dd; font-size: 37px; }
+    .hero p { position: relative; z-index: 1; max-width: 740px; margin: auto; color: white; font-size: 17px; line-height: 2; }
 
     .intro-card {
       margin-bottom: 28px;
       padding: 25px 20px;
       text-align: center;
-
-      background:
-        linear-gradient(
-          135deg,
-          var(--card-white),
-          var(--card-pink)
-        );
-
+      background: linear-gradient(135deg, var(--card-white), var(--card-pink));
       border: 2px solid var(--gold);
       border-radius: 25px;
       box-shadow: 0 11px 27px var(--shadow);
     }
-
-    .intro-card h2 {
-      margin-bottom: 10px;
-      color: var(--title);
-      font-size: 25px;
-    }
-
-    .intro-card p {
-      color: var(--text);
-      font-size: 16px;
-      line-height: 1.9;
-    }
+    .intro-card h2 { margin-bottom: 10px; color: var(--title); font-size: 25px; }
+    .intro-card p { color: var(--text); font-size: 16px; line-height: 1.9; }
 
     .instruction {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 9px;
-
       width: fit-content;
       max-width: 100%;
-
       margin: 0 auto 24px;
       padding: 11px 18px;
-
       color: var(--title);
       font-weight: bold;
-
-      background:
-        linear-gradient(
-          135deg,
-          var(--card-white),
-          var(--card-pink)
-        );
-
+      background: linear-gradient(135deg, var(--card-white), var(--card-pink));
       border: 2px solid var(--gold);
       border-radius: 999px;
       box-shadow: 0 7px 16px rgba(74, 54, 92, 0.1);
     }
 
-    .cards-list {
-      display: grid;
-      gap: 20px;
-    }
-
+    .cards-list { display: grid; gap: 20px; }
     .knowledge-card {
       overflow: hidden;
-
-      background:
-        linear-gradient(
-          135deg,
-          var(--card-white),
-          var(--card-pink)
-        );
-
+      background: linear-gradient(135deg, var(--card-white), var(--card-pink));
       border: 2px solid var(--gold);
       border-radius: 24px;
       box-shadow: 0 10px 25px var(--shadow);
-
-      transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-
-    .knowledge-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 32px rgba(74, 54, 92, 0.
-                                   18);
-    }
-
-    .knowledge-card[open] {
-      box-shadow: 0 16px 35px rgba(74, 54, 92, 0.2);
-    }
+    .knowledge-card:hover { transform: translateY(-3px); box-shadow: 0 15px 32px rgba(74, 54, 92, 0.18); }
+    .knowledge-card[open] { box-shadow: 0 16px 35px rgba(74, 54, 92, 0.2); }
 
     .card-summary {
       position: relative;
-
       display: flex;
       align-items: center;
       gap: 17px;
-
       min-height: 98px;
       padding: 20px 67px 20px 21px;
-
       cursor: pointer;
       list-style: none;
       user-select: none;
     }
-
-    .card-summary::-webkit-details-marker {
-      display: none;
-    }
-
+    .card-summary::-webkit-details-marker { display: none; }
     .card-summary::after {
       content: "＋";
-
       position: absolute;
       right: 20px;
-
       display: flex;
       align-items: center;
       justify-content: center;
-
       width: 35px;
       height: 35px;
-
       color: white;
       font-size: 23px;
-
-      background:
-        linear-gradient(
-          145deg,
-          var(--purple),
-          var(--purple-dark)
-        );
-
+      background: linear-gradient(145deg, var(--purple), var(--purple-dark));
       border: 2px solid var(--gold);
       border-radius: 50%;
       box-shadow: 0 5px 12px rgba(63, 48, 79, 0.2);
-
       transition: transform 0.25s ease;
     }
-
-    .knowledge-card[open] .card-summary::after {
-      content: "−";
-      transform: rotate(180deg);
-    }
-
+    .knowledge-card[open] .card-summary::after { content: "−"; transform: rotate(180deg); }
     .card-icon {
       display: flex;
       flex: 0 0 62px;
       align-items: center;
       justify-content: center;
-
       width: 62px;
       height: 62px;
-
       font-size: 31px;
-
-      background:
-        linear-gradient(
-          135deg,
-          #fffdf8,
-          #f4e8f3
-        );
-
+      background: linear-gradient(135deg, #fffdf8, #f4e8f3);
       border: 2px solid var(--gold);
       border-radius: 20px;
     }
+    .card-title small { display: block; margin-bottom: 5px; color: #7e6c89; font-size: 13px; font-weight: bold; }
+    .card-title h2 { color: var(--title); font-size: 22px; line-height: 1.5; }
 
-    .card-title small {
-      display: block;
-      margin-bottom: 5px;
-
-      color: #7e6c89;
-      font-size: 13px;
-      font-weight: bold;
-    }
-
-    .card-title h2 {
-      color: var(--title);
-      font-size: 22px;
-      line-height: 1.5;
-    }
-
-    .card-content {
-      padding: 0 25px 26px;
-      animation: revealContent 0.35s ease;
-    }
-
+    .card-content { padding: 0 25px 26px; animation: revealContent 0.35s ease; }
     @keyframes revealContent {
-      from {
-        opacity: 0;
-        transform: translateY(-7px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(-7px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .verse-box {
       margin-bottom: 18px;
       padding: 19px;
-
       text-align: center;
       color: #4b3720;
-
-      background:
-        linear-gradient(
-          135deg,
-          #fffaf0,
-          #f9edcf
-        );
-
+      background: linear-gradient(135deg, #fffaf0, #f9edcf);
       border: 2px solid var(--gold);
       border-radius: 18px;
     }
+    .verse-label { display: block; margin-bottom: 9px; color: #715625; font-size: 14px; font-weight: bold; }
+    .verse-text { display: block; color: #2f261c; font-size: 19px; font-weight: bold; line-height: 2; }
+    .verse-source { display: block; margin-top: 8px; color: #6f5838; font-size: 13px; }
 
-    .verse-label {
-      display: block;
-      margin-bottom: 9px;
-
-      color: #715625;
-      font-size: 14px;
-      font-weight: bold;
-    }
-
-    .verse-text {
-      display: block;
-
-      color: #2f261c;
-      font-size: 19px;
-      font-weight: bold;
-      line-height: 2;
-    }
-
-    .verse-source {
-      display: block;
-      margin-top: 8px;
-
-      color: #6f5838;
-      font-size: 13px;
-    }
-
-    .explanation,
-    .benefit,
-    .reflection {
+    .explanation, .benefit, .reflection {
       margin-bottom: 16px;
       padding: 18px;
-
       color: var(--text);
       font-size: 16px;
       line-height: 2;
-
       border-radius: 18px;
     }
-
-    .explanation {
-      background:
-        linear-gradient(
-          135deg,
-          #fffdf8,
-          #f8eef6
-        );
-
-      border-right: 5px solid var(--purple);
-    }
-
-    .explanation strong {
-      color: var(--title);
-    }
-
-    .benefit {
-      background: var(--green-light);
-      border-right: 5px solid var(--green);
-    }
-
-    .benefit strong {
-      display: block;
-      margin-bottom: 4px;
-      color: #2f654e;
-    }
-
-    .reflection {
-      margin-bottom: 0;
-      background: var(--blue-light);
-      border-right: 5px solid var(--blue);
-    }
-
-    .reflection strong {
-      display: block;
-      margin-bottom: 4px;
-      color: #345f80;
-    }
+    .explanation { background: linear-gradient(135deg, #fffdf8, #f8eef6); border-right: 5px solid var(--purple); }
+    .explanation strong { color: var(--title); }
+    .benefit { background: var(--green-light); border-right: 5px solid var(--green); }
+    .benefit strong { display: block; margin-bottom: 4px; color: #2f654e; }
+    .reflection { margin-bottom: 0; background: var(--blue-light); border-right: 5px solid var(--blue); }
+    .reflection strong { display: block; margin-bottom: 4px; color: #345f80; }
 
     .closing-card {
       margin-top: 32px;
       padding: 30px 23px;
-
       text-align: center;
-
-      background:
-        linear-gradient(
-          145deg,
-          var(--purple) 0%,
-          var(--purple-medium) 55%,
-          var(--purple-dark) 100%
-        );
-
+      background: linear-gradient(145deg, var(--purple) 0%, var(--purple-medium) 55%, var(--purple-dark) 100%);
       border: 2px solid var(--gold);
       border-radius: 25px;
       box-shadow: 0 12px 30px rgba(63, 48, 79, 0.22);
     }
-
-    .closing-icon {
-      margin-bottom: 10px;
-      font-size: 48px;
-    }
-
-    .closing-card h2 {
-      margin-bottom: 9px;
-      color: #fff7dd;
-      font-size: 25px;
-    }
-
-    .closing-card p {
-      max-width: 700px;
-      margin: auto;
-
-      color: white;
-      font-size: 16px;
-      line-height: 1.9;
-    }
+    .closing-icon { margin-bottom: 10px; font-size: 48px; }
+    .closing-card h2 { margin-bottom: 9px; color: #fff7dd; font-size: 25px; }
+    .closing-card p { max-width: 700px; margin: auto; color: white; font-size: 16px; line-height: 1.9; }
 
     footer {
       padding: 23px;
       text-align: center;
-
       color: white;
       font-size: 14px;
-
-      background:
-        linear-gradient(
-          145deg,
-          var(--purple-medium),
-          var(--purple-dark)
-        );
-
+      background: linear-gradient(145deg, var(--purple-medium), var(--purple-dark));
       border-top: 4px solid var(--gold);
     }
 
     @media (max-width: 700px) {
-      header {
-        padding: 13px 4%;
-      }
-
-      .logo {
-        font-size: 17px;
-      }
-
-      .back-link {
-        padding: 8px 11px;
-        font-size: 12px;
-      }
-
-      main {
-        width: 94%;
-        padding-top: 30px;
-      }
-
-      .hero {
-        padding: 30px 15px;
-      }
-
-      .hero-icon {
-        width: 82px;
-        height: 82px;
-        font-size: 40px;
-      }
-
-      .hero h1 {
-        font-size: 29px;
-      }
-
-      .hero p {
-        font-size: 15px;
-      }
-
-      .intro-card {
-        padding: 21px 16px;
-      }
-
-      .intro-card h2 {
-        font-size: 21px;
-      }
-
-      .instruction {
-        width: 100%;
-        font-size: 14px;
-      }
-
-      .card-summary {
-        gap: 12px;
-        min-height: 90px;
-        padding: 17px 55px 17px 13px;
-      }
-
-      .card-summary::after {
-        right: 12px;
-        width: 32px;
-        height: 32px;
-        font-size: 20px;
-      }
-
-      .card-icon {
-        flex-basis: 52px;
-        width: 52px;
-        height: 52px;
-        font-size: 27px;
-      }
-
-      .card-title h2 {
-        font-size: 18px;
-      }
-
-      .card-content {
-        padding: 0 14px 20px;
-      }
-
-      .verse-box {
-        padding: 16px 13px;
-      }
-
-      .verse-text {
-        font-size: 16px;
-      }
-
-      .explanation,
-      .benefit,
-      .reflection {
-        padding: 15px 13px;
-        font-size: 15px;
-      }
+      header { padding: 13px 4%; }
+      .logo { font-size: 17px; }
+      .back-link { padding: 8px 11px; font-size: 12px; }
+      main { width: 94%; padding-top: 30px; }
+      .hero { padding: 30px 15px; }
+      .hero-icon { width: 82px; height: 82px; font-size: 40px; }
+      .hero h1 { font-size: 29px; }
+      .hero p { font-size: 15px; }
+      .intro-card { padding: 21px 16px; }
+      .intro-card h2 { font-size: 21px; }
+      .instruction { width: 100%; font-size: 14px; }
+      .card-summary { gap: 12px; min-height: 90px; padding: 17px 55px 17px 13px; }
+      .card-summary::after { right: 12px; width: 32px; height: 32px; font-size: 20px; }
+      .card-icon { flex-basis: 52px; width: 52px; height: 52px; font-size: 27px; }
+      .card-title h2 { font-size: 18px; }
+      .card-content { padding: 0 14px 20px; }
+      .verse-box { padding: 16px 13px; }
+      .verse-text { font-size: 16px; }
+      .explanation, .benefit, .reflection { padding: 15px 13px; font-size: 15px; }
     }
   </style>
 </head>
-
 <body>
-
   <header>
-
-    <div class="logo">
-      منصة آفاق اللغة
-    </div>
-
-    <a href="enrichment.html" class="back-link">
-      ✨ العودة إلى كنوز آفاق
-    </a>
-
+    <div class="logo">منصة آفاق اللغة</div>
+    <a href="enrichment.html" class="back-link">✨ العودة إلى كنوز آفاق</a>
   </header>
 
   <main>
-
     <section class="hero">
-
-      <div class="hero-icon">
-        📖
-      </div>
-
-      <h1>
-        بوابة لغة القرآن
-      </h1>
-
+      <div class="hero-icon">📖</div>
+      <h1>بوابة لغة القرآن</h1>
       <p>
         نقترب في هذه البوابة من مكانة اللغة العربية،
         ونتعرف إلى صلتها بالقرآن الكريم، وحاجتنا إليها
         في الفهم والتدبر والمحافظة على هويتنا.
       </p>
-
     </section>
 
     <section class="intro-card">
-
-      <h2>
-        لغة اختارها الله لكتابه الكريم
-      </h2>
-
+      <h2>لغة اختارها الله لكتابه الكريم</h2>
       <p>
         تعلم العربية ليس مادة دراسية فقط، بل هو طريق إلى فهم كلام الله،
         وتذوق جماله، والتعبير عن أفكارنا بوضوح واعتزاز.
       </p>
-
     </section>
 
     <div class="instruction">
@@ -730,374 +309,138 @@
     </div>
 
     <section class="cards-list">
-
       <details class="knowledge-card">
-
         <summary class="card-summary">
-
-          <div class="card-icon">
-            📜
-          </div>
-
-          <div class="card-title">
-            <small>الكنز الأول</small>
-
-            <h2>
-              العربية لغة القرآن الكريم
-            </h2>
-          </div>
-
+          <div class="card-icon">📜</div>
+          <div class="card-title"><small>الكنز الأول</small><h2>العربية لغة القرآن الكريم</h2></div>
         </summary>
-
         <div class="card-content">
-
           <div class="verse-box">
-
-            <span class="verse-label">
-              قال الله تعالى:
-            </span>
-
-            <span class="verse-text">
-              ﴿إِنَّا أَنْزَلْنَاهُ قُرْآنًا عَرَبِيًّا
-              لَعَلَّكُمْ تَعْقِلُونَ﴾
-            </span>
-
-            <span class="verse-source">
-              سورة يوسف، الآية ٢
-            </span>
-
+            <span class="verse-label">قال الله تعالى:</span>
+            <span class="verse-text">﴿إِنَّا أَنْزَلْنَاهُ قُرْآنًا عَرَبِيًّا لَعَلَّكُمْ تَعْقِلُونَ﴾</span>
+            <span class="verse-source">سورة يوسف، الآية ٢</span>
           </div>
-
-          <div class="explanation">
-
-            <strong>المعنى المبسط:</strong>
-
-            أنزل الله القرآن باللغة العربية حتى يفهمه المخاطبون به،
-            ويتدبروا معانيه، ويدركوا ما فيه من هداية وأحكام وقصص ومواعظ.
-
-          </div>
-
-          <div class="benefit">
-
-            <strong>الفائدة:</strong>
-
-            كلما ازدادت معرفتنا بالعربية، أصبحنا أقدر على فهم ألفاظ
-            القرآن ومعانيه، والتمييز بين الكلمات المتقاربة.
-
-          </div>
-
-          <div class="reflection">
-
-            <strong>فكري:</strong>
-
-            كيف يساعدكِ فهم معنى كلمة قرآنية جديدة
-            على تدبر الآية بصورة أعمق؟
-
-          </div>
-
+          <div class="explanation"><strong>المعنى المبسط:</strong> أنزل الله القرآن باللغة العربية حتى يفهمه المخاطبون به، ويتدبروا معانيه، ويدركوا ما فيه من هداية وأحكام وقصص ومواعظ.</div>
+          <div class="benefit"><strong>الفائدة:</strong> كلما ازدادت معرفتنا بالعربية، أصبحنا أقدر على فهم ألفاظ القرآن ومعانيه، والتمييز بين الكلمات المتقاربة.</div>
+          <div class="reflection"><strong>فكري:</strong> كيف يساعدكِ فهم معنى كلمة قرآنية جديدة على تدبر الآية بصورة أعمق؟</div>
         </div>
-
-      </details>
-            <details class="knowledge-card">
-
-        <summary class="card-summary">
-
-          <div class="card-icon">
-            💡
-          </div>
-
-          <div class="card-title">
-            <small>الكنز الثاني</small>
-
-            <h2>
-              لماذا نزل القرآن بلسان عربي مبين؟
-            </h2>
-          </div>
-
-        </summary>
-
-        <div class="card-content">
-
-          <div class="verse-box">
-
-            <span class="verse-label">
-              قال الله تعالى:
-            </span>
-
-            <span class="verse-text">
-              ﴿بِلِسَانٍ عَرَبِيٍّ مُبِينٍ﴾
-            </span>
-
-            <span class="verse-source">
-              سورة الشعراء، الآية ١٩٥
-            </span>
-
-          </div>
-
-          <div class="explanation">
-
-            <strong>المعنى المبسط:</strong>
-
-            كلمة «مبين»
-                  <details class="knowledge-card">
-
-        <summary class="card-summary">
-
-          <div class="card-icon">
-            🌟
-          </div>
-
-          <div class="card-title">
-            <small>الكنز الرابع</small>
-
-            <h2>
-              العربية طريق إلى الفهم والتدبر
-            </h2>
-          </div>
-
-        </summary>
-
-        <div class="card-content">
-
-          <div class="verse-box">
-
-            <span class="verse-label">
-              قال الله تعالى:
-            </span>
-
-            <span class="verse-text">
-              ﴿قُرْآنًا عَرَبِيًّا غَيْرَ ذِي عِوَجٍ
-              لَعَلَّهُمْ يَتَّقُونَ﴾
-            </span>
-
-            <span class="verse-source">
-              سورة الزمر، الآية ٢٨
-            </span>
-
-          </div>
-
-          <div class="explanation">
-
-            <strong>المعنى المبسط:</strong>
-
-            أنزل الله القرآن باللغة العربية الفصيحة؛ ليكون واضحًا مفهومًا،
-            فنقرأه ونتدبر معانيه، ونعمل بما فيه من هداية ورحمة.
-            فكلما ازددنا فهمًا للغة العربية ازددنا فهمًا لكلام الله تعالى.
-
-          </div>
-
-          <div class="benefit">
-
-            <strong>الفائدة:</strong>
-
-            تعلم المفردات والنحو والأساليب ليس غاية منفصلة؛ بل وسيلة
-            تساعدنا على قراءة النصوص وفهم مقاصدها بدقة.
-
-          </div>
-
-          <div class="reflection">
-
-            <strong>فكري:</strong>
-
-            لماذا قد يتغير فهم
-            الجملة عندما نخطئ
-            في تحديد الفاعل أو المفعول به؟
-
-          </div>
-
-        </div>
-
       </details>
 
       <details class="knowledge-card">
-
         <summary class="card-summary">
-
-          <div class="card-icon">
-            🤲
-          </div>
-
-          <div class="card-title">
-            <small>الكنز الخامس</small>
-
-            <h2>
-              مسؤوليتنا تجاه لغة القرآن
-            </h2>
-          </div>
-
+          <div class="card-icon">💡</div>
+          <div class="card-title"><small>الكنز الثاني</small><h2>لماذا نزل القرآن بلسان عربي مبين؟</h2></div>
         </summary>
-
         <div class="card-content">
-
           <div class="verse-box">
-
-            <span class="verse-label">
-              قال الله تعالى:
-            </span>
-
-            <span class="verse-text">
-              ﴿قُرْآنًا عَرَبِيًّا لَعَلَّكُمْ تَعْقِلُونَ﴾
-            </span>
-
-            <span class="verse-source">
-              سورة الزخرف، الآية ٣
-            </span>
-
+            <span class="verse-label">قال الله تعالى:</span>
+            <span class="verse-text">﴿بِلِسَانٍ عَرَبِيٍّ مُبِينٍ﴾</span>
+            <span class="verse-source">سورة الشعراء، الآية ١٩٥</span>
           </div>
-
-          <div class="explanation">
-
-            <strong>المعنى المبسط:</strong>
-
-            الاعتزاز بالعربية لا يكون بالكلام عنها فقط، بل بتعلمها،
-            والقراءة بها، والكتابة الصحيحة، واختيار الألفاظ الطيبة،
-            والابتعاد عن السخرية ممن يخطئ أثناء تعلمها.
-
-          </div>
-
-          <div class="benefit">
-
-            <strong>الفائدة:</strong>
-
-            نحافظ على العربية عندما نستخدمها بوعي، ونراجع أخطاءنا،
-            ونقرأ الكتب، ونتعلم معنى الكلمات الجديدة.
-
-          </div>
-
-          <div class="reflection">
-
-            <strong>تحدي اليوم:</strong>
-
-            اختاري كلمة عربية جديدة، واكتبي معناها،
-            ثم استخدميها في جملة من إنشائكِ.
-
-          </div>
-
+          <div class="explanation"><strong>المعنى المبسط:</strong> كلمة «مبين» تدل على الوضوح والبيان. والعربية لغة واسعة غنية بالمفردات والأساليب، تستطيع التعبير عن المعاني الدقيقة بألفاظ واضحة وجميلة.</div>
+          <div class="benefit"><strong>الفائدة:</strong> نزل القرآن بلغة القوم الذين بُعث فيهم الرسول ﷺ، ليقوم عليهم البيان والحجة، ثم حملوا رسالته إلى العالم.</div>
+          <div class="reflection"><strong>فكري:</strong> ما الصفة التي تفهمينها من كلمة «مبين» عند وصف اللسان العربي؟</div>
         </div>
-
       </details>
 
+      <details class="knowledge-card">
+        <summary class="card-summary">
+          <div class="card-icon">🔎</div>
+          <div class="card-title"><small>الكنز الثالث</small><h2>حاجتنا إلى اللغة العربية</h2></div>
+        </summary>
+        <div class="card-content">
+          <div class="verse-box">
+            <span class="verse-label">قال الله تعالى:</span>
+            <span class="verse-text">﴿كِتَابٌ فُصِّلَتْ آيَاتُهُ قُرْآنًا عَرَبِيًّا لِقَوْمٍ يَعْلَمُونَ﴾</span>
+            <span class="verse-source">سورة فصلت، الآية ٣</span>
+          </div>
+          <div class="explanation"><strong>المعنى المبسط:</strong> نحتاج إلى العربية لفهم القرآن والسنة، ولأداء كثير من العبادات، وللقراءة والكتابة والتواصل، وللاطلاع على تراث أمتنا وعلومها.</div>
+          <div class="benefit"><strong>الفائدة:</strong> العربية ليست مرتبطة بحصة دراسية فقط؛ فهي لغة نستخدمها في الصلاة والدعاء والتعلم والتعبير عن مشاعرنا وأفكارنا.</div>
+          <div class="reflection"><strong>فكري:</strong> في أي موقف يومي تشعرين أن إتقان العربية يساعدكِ على التعبير بوضوح؟</div>
+        </div>
+      </details>
+
+      <details class="knowledge-card">
+        <summary class="card-summary">
+          <div class="card-icon">🌟</div>
+          <div class="card-title"><small>الكنز الرابع</small><h2>العربية طريق إلى الفهم والتدبر</h2></div>
+        </summary>
+        <div class="card-content">
+          <div class="verse-box">
+            <span class="verse-label">قال الله تعالى:</span>
+            <span class="verse-text">﴿قُرْآنًا عَرَبِيًّا غَيْرَ ذِي عِوَجٍ لَعَلَّهُمْ يَتَّقُونَ﴾</span>
+            <span class="verse-source">سورة الزمر، الآية ٢٨</span>
+          </div>
+          <div class="explanation"><strong>المعنى المبسط:</strong> أنزل الله القرآن باللغة العربية الفصيحة؛ ليكون واضحًا مفهومًا، فنقرأه ونتدبر معانيه، ونعمل بما فيه من هداية ورحمة. فكلما ازددنا فهمًا للغة العربية ازددنا فهمًا لكلام الله تعالى.</div>
+          <div class="benefit"><strong>الفائدة:</strong> تعلم المفردات والنحو والأساليب ليس غاية منفصلة؛ بل وسيلة تساعدنا على قراءة النصوص وفهم مقاصدها بدقة.</div>
+          <div class="reflection"><strong>فكري:</strong> لماذا قد يتغير فهم الجملة عندما نخطئ في تحديد الفاعل أو المفعول به؟</div>
+        </div>
+      </details>
+
+      <details class="knowledge-card">
+        <summary class="card-summary">
+          <div class="card-icon">🤲</div>
+          <div class="card-title"><small>الكنز الخامس</small><h2>مسؤوليتنا تجاه لغة القرآن</h2></div>
+        </summary>
+        <div class="card-content">
+          <div class="verse-box">
+            <span class="verse-label">قال الله تعالى:</span>
+            <span class="verse-text">﴿قُرْآنًا عَرَبِيًّا لَعَلَّكُمْ تَعْقِلُونَ﴾</span>
+            <span class="verse-source">سورة الزخرف، الآية ٣</span>
+          </div>
+          <div class="explanation"><strong>المعنى المبسط:</strong> الاعتزاز بالعربية لا يكون بالكلام عنها فقط، بل بتعلمها، والقراءة بها، والكتابة الصحيحة، واختيار الألفاظ الطيبة، والابتعاد عن السخرية ممن يخطئ أثناء تعلمها.</div>
+          <div class="benefit"><strong>الفائدة:</strong> نحافظ على العربية عندما نستخدمها بوعي، ونراجع أخطاءنا، ونقرأ الكتب، ونتعلم معنى الكلمات الجديدة.</div>
+          <div class="reflection"><strong>تحدي اليوم:</strong> اختاري كلمة عربية جديدة، واكتبي معناها، ثم استخدميها في جملة من إنشائكِ.</div>
+        </div>
+      </details>
     </section>
 
     <section class="closing-card">
-
-      <div class="closing-icon">
-        ✨
-      </div>
-
-      <h2>
-        العربية مفتاح لفهم كنوز القرآن
-      </h2>
-
-      <p>
-        كل قاعدة تتعلمينها، وكل كلمة تفهمين معناها،
-        تقرّبك خطوة من قراءة أكثر وعيًا وتدبرًا.
-        ابدئي بالقليل، وواصلي؛ فكنوز العربية لا تنتهي.
-      </p>
-
+      <div class="closing-icon">✨</div>
+      <h2>العربية مفتاح لفهم كنوز القرآن</h2>
+      <p>كل قاعدة تتعلمينها، وكل كلمة تفهمين معناها، تقرّبك خطوة من قراءة أكثر وعيًا وتدبرًا. ابدئي بالقليل، وواصلي؛ فكنوز العربية لا تنتهي.</p>
     </section>
-
   </main>
 
-  <footer>
-    جميع الحقوق محفوظة © منصة آفاق اللغة
-  </footer>
+  <footer>جميع الحقوق محفوظة © منصة آفاق اللغة</footer>
 
   <script>
-    document.addEventListener(
-      "DOMContentLoaded",
-      function () {
+    document.addEventListener("DOMContentLoaded", function () {
+      const cards = document.querySelectorAll(".knowledge-card");
+      let audioContext;
 
-        const cards =
-          document.querySelectorAll(
-            ".knowledge-card"
-          );
+      function playOpenSound() {
+        try {
+          const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+          if (!AudioContextClass) return;
+          if (!audioContext) audioContext = new AudioContextClass();
 
-        let audioContext;
-
-        function playOpenSound() {
-          try {
-            const AudioContextClass =
-              window.AudioContext ||
-              window.webkitAudioContext;
-
-            if (!AudioContextClass) return;
-
-            if (!audioContext) {
-              audioContext =
-                new AudioContextClass();
-            }
-
-            const oscillator =
-              audioContext.createOscillator();
-
-            const gain =
-              audioContext.createGain();
-
-            oscillator.type = "sine";
-            oscillator.frequency.value = 620;
-
-            gain.gain.setValueAtTime(
-              0.001,
-              audioContext.currentTime
-            );
-
-            gain.gain.exponentialRampToValueAtTime(
-              0.11,
-              audioContext.currentTime + 0.02
-            );
-
-            gain.gain.exponentialRampToValueAtTime(
-              0.001,
-              audioContext.currentTime + 0.18
-            );
-
-            oscillator.connect(gain);
-            gain.connect(audioContext.destination);
-
-            oscillator.start();
-
-            oscillator.stop(
-              audioContext.currentTime + 0.2
-            );
-
-          } catch (error) {
-            console.log(
-              "تعذر تشغيل النغمة."
-            );
-          }
+          const oscillator = audioContext.createOscillator();
+          const gain = audioContext.createGain();
+          oscillator.type = "sine";
+          oscillator.frequency.value = 620;
+          gain.gain.setValueAtTime(0.001, audioContext.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.11, audioContext.currentTime + 0.02);
+          gain.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.18);
+          oscillator.connect(gain);
+          gain.connect(audioContext.destination);
+          oscillator.start();
+          oscillator.stop(audioContext.currentTime + 0.2);
+        } catch (error) {
+          console.log("تعذر تشغيل النغمة.");
         }
-
-        cards.forEach(function (card) {
-
-          card.addEventListener(
-            "toggle",
-            function () {
-
-              if (!card.open) return;
-
-              cards.forEach(
-                function (otherCard) {
-                  if (otherCard !== card) {
-                    otherCard.open = false;
-                  }
-                }
-              );
-
-              playOpenSound();
-
-            }
-          );
-
-        });
-
       }
-    );
+
+      cards.forEach(function (card) {
+        card.addEventListener("toggle", function () {
+          if (!card.open) return;
+          cards.forEach(function (otherCard) {
+            if (otherCard !== card) otherCard.open = false;
+          });
+          playOpenSound();
+        });
+      });
+    });
   </script>
-       </section>
-
-<section class="closing-card">     
-
 </body>
-
-          </html>
+</html>
