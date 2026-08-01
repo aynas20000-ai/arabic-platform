@@ -97,7 +97,8 @@
     }
 
     .home-btn,
-    .sound-btn {
+    .sound-btn,
+    .reset-btn {
       padding: 10px 13px;
       font-weight: bold;
       text-decoration: none;
@@ -114,6 +115,11 @@
     .sound-btn {
       color: white;
       background: var(--purple);
+    }
+
+    .reset-btn {
+      color: white;
+      background: var(--red);
     }
 
     .progress-area {
@@ -192,8 +198,7 @@
       cursor: pointer;
       transition: 0.2s ease;
     }
-
-    .book-card::before {
+        .book-card::before {
       content: "";
       position: absolute;
       top: 0;
@@ -407,8 +412,7 @@
       font-size: 18px;
       line-height: 2.15;
     }
-
-    .question-box {
+        .question-box {
       background: #fff9e9;
       border: 2px dashed var(--gold);
     }
@@ -444,7 +448,8 @@
     }
 
     @keyframes shake {
-      0%, 100% {
+      0%,
+      100% {
         transform: translateX(0);
       }
 
@@ -695,9 +700,18 @@
         🔊 الصوت مفعّل
       </button>
 
+      <button
+        class="reset-btn"
+        id="resetBtn"
+        type="button">
+        ↻ البدء من جديد
+      </button>
+
     </div>
 
-    <section class="library-view" id="libraryView">
+    <section
+      class="library-view"
+      id="libraryView">
 
       <h2>رفّ أنواع النصوص</h2>
 
@@ -707,11 +721,16 @@
         وتختارين الكتاب التالي بنفسكِ.
       </p>
 
-      <div class="bookshelf" id="bookshelf"></div>
+      <div
+        class="bookshelf"
+        id="bookshelf">
+      </div>
 
     </section>
-
-    <section class="workspace" id="workspace" hidden>
+        <section
+      class="workspace"
+      id="workspace"
+      hidden>
 
       <div class="workspace-top">
 
@@ -738,7 +757,9 @@
         <span class="stage-dot"></span>
       </div>
 
-      <div class="stage-label" id="stageLabel">
+      <div
+        class="stage-label"
+        id="stageLabel">
         التعريف
       </div>
 
@@ -769,7 +790,9 @@
 
     </section>
 
-    <section class="final-card" id="finalCard">
+    <section
+      class="final-card"
+      id="finalCard">
 
       <div class="badge">📚</div>
 
@@ -792,7 +815,8 @@
       </button>
 
     </section>
-        <script>
+
+    <script>
       const textTypes = [
         {
           id: "informational",
@@ -865,8 +889,7 @@
           selfQuestion:
             "هل استطعتِ تتبع الحدث الأول الذي حرّك القصة؟"
         },
-
-        {
+                {
           id: "descriptive",
           icon: "🏡",
           name: "النص الوصفي",
@@ -1154,7 +1177,8 @@
             "هل فرّقتِ بين الوصف العلمي الدقيق والوصف الأدبي الشعوري؟"
         }
       ];
-                const stageNames = [
+
+      const stageNames = [
         "التعريف",
         "السمات",
         "النص",
@@ -1201,6 +1225,9 @@
 
       const soundBtn =
         document.getElementById("soundBtn");
+
+      const resetBtn =
+        document.getElementById("resetBtn");
 
       const finalCard =
         document.getElementById("finalCard");
@@ -1358,6 +1385,7 @@
           button.type = "button";
           button.className = "book-card";
           button.dataset.type = type.id;
+
           button.style.background =
             `linear-gradient(
               145deg,
@@ -1427,7 +1455,7 @@
         nextBtn.disabled = false;
         nextBtn.textContent = "التالي";
 
-        if (currentStage === 0) {
+             if (currentStage === 0) {
           stageContent.innerHTML = `
             <h3>ما ${type.name}؟</h3>
 
@@ -1435,9 +1463,7 @@
               ${type.definition}
             </div>
           `;
-        }
-
-        if (currentStage === 1) {
+             }        if (currentStage === 1) {
           stageContent.innerHTML = `
             <h3>سمات ${type.name}</h3>
 
@@ -1599,9 +1625,9 @@
 
           attachRatingEvents(type);
         }
-      }
-
-      function attachQuestionEvents(type) {
+      
+      }   
+            function attachQuestionEvents(type) {
         const options =
           [...stageContent.querySelectorAll(
             ".option"
@@ -1634,6 +1660,7 @@
               nextBtn.disabled = false;
 
               playCorrectSound();
+
             } else {
               option.classList.add("wrong");
 
@@ -1765,6 +1792,45 @@
           updateProgress();
         }
       );
+            resetBtn.addEventListener("click", () => {
+        const confirmed = confirm(
+          "هل تريدين مسح تقدم أنواع النصوص والبدء من جديد؟"
+        );
+
+        if (!confirmed) return;
+
+        localStorage.removeItem(
+          "nafesTextBooksCompleted"
+        );
+
+        localStorage.removeItem(
+          "nafesTextBooksRatings"
+        );
+
+        completed.clear();
+
+        Object.keys(ratings).forEach(key => {
+          delete ratings[key];
+        });
+
+        Object.keys(solved).forEach(key => {
+          delete solved[key];
+        });
+
+        currentTypeIndex = 0;
+        currentStage = 0;
+
+        workspace.hidden = true;
+        finalCard.classList.remove("show");
+        libraryView.hidden = false;
+
+        buildBooks();
+
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      });
 
       soundBtn.addEventListener("click", () => {
         soundOn = !soundOn;
@@ -1800,3 +1866,7 @@
 
 </body>
 </html>
+      
+        
+          
+                     
