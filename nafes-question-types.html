@@ -1628,7 +1628,34 @@ updateProgress();
 
       buildPapers();
     </script>
+<div style="text-align:center; margin:20px 0 28px;">
+  <button
+    id="restartBtn"
+    style="
+      border:0;
+      border-radius:18px;
+      padding:14px 24px;
+      background:#bf4040;
+      color:white;
+      font-size:18px;
+      font-weight:bold;
+      cursor:pointer;
+    "
+  >
+    ↻ البدء من جديد
+  </button>
+</div>
 
+<script>
+  document
+    .getElementById("restartBtn")
+    .addEventListener("click", function(){
+
+      localStorage.removeItem("nafes_question_types_progress");
+      location.reload();
+
+    });
+</script>
   </main>
 
   <footer>
