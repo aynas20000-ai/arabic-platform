@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>اختبارات نافس الشاملة | منصة آفاق</title>
 
   <style>
@@ -18,9 +17,7 @@
       --red:#b83a4b;
     }
 
-    *{
-      box-sizing:border-box;
-    }
+    *{box-sizing:border-box}
 
     body{
       margin:0;
@@ -33,26 +30,14 @@
     header{
       padding:34px 18px;
       text-align:center;
-      color:white;
+      color:#fff;
       background:linear-gradient(135deg,#786094,#594474);
       border-bottom:5px solid var(--gold);
     }
 
-    header h1{
-      margin:0;
-      font-size:34px;
-    }
-
-    header p{
-      max-width:760px;
-      margin:10px auto 0;
-      font-size:17px;
-    }
-
-    main{
-      width:min(94%,980px);
-      margin:28px auto 40px;
-    }
+    header h1{margin:0;font-size:34px}
+    header p{max-width:760px;margin:10px auto 0;font-size:17px}
+    main{width:min(94%,980px);margin:28px auto 40px}
 
     .top-link{
       display:inline-block;
@@ -65,10 +50,7 @@
       border-radius:13px;
     }
 
-    .panel,
-    .name-box,
-    .quiz-box,
-    .result-box{
+    .panel,.name-box,.quiz-box,.result-box{
       padding:22px;
       background:var(--paper);
       border:2px solid #dfd3e5;
@@ -88,7 +70,7 @@
       padding:14px;
       text-align:center;
       font-weight:bold;
-      background:white;
+      background:#fff;
       border:2px solid var(--gold);
       border-radius:16px;
     }
@@ -115,41 +97,13 @@
       transition:.2s;
     }
 
-    .test-card:active{
-      transform:scale(.98);
-    }
-
-    .test-card.locked{
-      opacity:.58;
-      cursor:not-allowed;
-    }
-
-    .icon{
-      margin-bottom:8px;
-      font-size:44px;
-    }
-
-    .title{
-      color:var(--dark-purple);
-      font-size:21px;
-      font-weight:bold;
-    }
-
-    .subtitle{
-      margin-top:6px;
-      color:#6d6172;
-      font-size:14px;
-    }
-
-    .badge{
-      margin-top:9px;
-      color:#8d6b16;
-      font-size:13px;
-    }
-
-    .hidden{
-      display:none !important;
-    }
+    .test-card:active{transform:scale(.98)}
+    .test-card.locked{opacity:.58;cursor:not-allowed}
+    .icon{margin-bottom:8px;font-size:44px}
+    .title{color:var(--dark-purple);font-size:21px;font-weight:bold}
+    .subtitle{margin-top:6px;color:#6d6172;font-size:14px}
+    .badge{margin-top:9px;color:#8d6b16;font-size:13px}
+    .hidden{display:none!important}
 
     input[type="text"]{
       width:100%;
@@ -172,19 +126,9 @@
       transition:.2s;
     }
 
-    .btn:active{
-      transform:scale(.97);
-    }
-
-    .btn-primary{
-      color:white;
-      background:linear-gradient(135deg,#786094,#594474);
-    }
-
-    .btn-gold{
-      color:#35263d;
-      background:linear-gradient(135deg,#d6b764,#c9a85c);
-    }
+    .btn:active{transform:scale(.97)}
+    .btn-primary{color:#fff;background:linear-gradient(135deg,#786094,#594474)}
+    .btn-gold{color:#35263d;background:linear-gradient(135deg,#d6b764,#c9a85c)}
 
     .result-actions{
       display:flex;
@@ -194,10 +138,7 @@
       margin:16px 0 6px;
     }
 
-    .result-actions .btn{
-      min-width:150px;
-      margin:0;
-    }
+    .result-actions .btn{min-width:150px;margin:0}
 
     .question-head{
       display:flex;
@@ -233,16 +174,8 @@
       border-radius:14px;
     }
 
-    .question{
-      margin:18px 0;
-      font-size:21px;
-      font-weight:bold;
-    }
-
-    .answers{
-      display:grid;
-      gap:12px;
-    }
+    .question{margin:18px 0;font-size:21px;font-weight:bold}
+    .answers{display:grid;gap:12px}
 
     .answer{
       width:100%;
@@ -250,22 +183,13 @@
       text-align:right;
       font-size:17px;
       cursor:pointer;
-      background:white;
+      background:#fff;
       border:2px solid #d8c8df;
       border-radius:14px;
     }
 
-    .answer.correct{
-      color:#0b653a;
-      background:#ecfff4;
-      border-color:var(--green);
-    }
-
-    .answer.wrong{
-      color:#8f2433;
-      background:#fff0f2;
-      border-color:var(--red);
-    }
+    .answer.correct{color:#0b653a;background:#ecfff4;border-color:var(--green)}
+    .answer.wrong{color:#8f2433;background:#fff0f2;border-color:var(--red)}
 
     .feedback{
       margin-top:16px;
@@ -274,15 +198,8 @@
       border-radius:14px;
     }
 
-    .feedback.ok{
-      color:#0b653a;
-      background:#ecfff4;
-    }
-
-    .feedback.bad{
-      color:#8f2433;
-      background:#fff0f2;
-    }
+    .feedback.ok{color:#0b653a;background:#ecfff4}
+    .feedback.bad{color:#8f2433;background:#fff0f2}
 
     .answer-mark{
       position:fixed;
@@ -298,34 +215,16 @@
       animation:markPop .7s ease both;
     }
 
-    .correct-mark{
-      color:var(--green);
-    }
-
-    .wrong-mark{
-      color:var(--red);
-    }
+    .correct-mark{color:var(--green)}
+    .wrong-mark{color:var(--red)}
 
     @keyframes markPop{
-      0%{
-        opacity:0;
-        transform:scale(.25);
-      }
-
-      55%{
-        opacity:1;
-        transform:scale(1.12);
-      }
-
-      100%{
-        opacity:0;
-        transform:scale(.92);
-      }
+      0%{opacity:0;transform:scale(.25)}
+      55%{opacity:1;transform:scale(1.12)}
+      100%{opacity:0;transform:scale(.92)}
     }
 
-    .shake{
-      animation:shake .38s;
-    }
+    .shake{animation:shake .38s}
 
     @keyframes shake{
       0%,100%{transform:translateX(0)}
@@ -350,12 +249,8 @@
     }
 
     @keyframes fall{
-      to{
-        transform:translateY(110vh) rotate(720deg);
-      }
+      to{transform:translateY(110vh) rotate(720deg)}
     }
-
-    /* الشهادة */
 
     .certificate-shell{
       width:100%;
@@ -366,11 +261,11 @@
 
     .certificate{
       position:relative;
-      width:min(100%,700px);
-      aspect-ratio:1536 / 1191;
+      width:min(100%,760px);
+      aspect-ratio:1536 / 1148;
       margin:0 auto;
       overflow:hidden;
-      background:white;
+      background:#fff;
       border-radius:4px;
       box-shadow:0 10px 28px rgba(45,34,70,.16);
     }
@@ -381,12 +276,27 @@
       width:100%;
       height:100%;
       object-fit:fill;
+      display:block;
+    }
+
+    .certificate-error{
+      position:absolute;
+      inset:0;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:30px;
+      text-align:center;
+      color:var(--red);
+      background:#fff;
+      font-weight:bold;
+      z-index:3;
     }
 
     .cert-line{
       position:absolute;
-      right:13%;
-      left:13%;
+      right:15%;
+      left:15%;
       z-index:2;
       text-align:center;
       line-height:1.25;
@@ -395,78 +305,50 @@
     .cert-name{
       top:42%;
       color:#4f8d8d;
-      font-size:clamp(15px,2.15vw,26px);
+      font-size:clamp(17px,2.4vw,30px);
       font-weight:bold;
-    }
-
-    .cert-success{
-      top:52%;
-      color:#35263d;
-      font-size:clamp(9px,1.25vw,15px);
-      font-weight:bold;
-      white-space:nowrap;
     }
 
     .cert-score{
-      top:60%;
+      top:61%;
       right:31%;
       left:31%;
-      padding:4px 7px;
+      padding:5px 8px;
       color:#75558d;
-      background:rgba(255,255,255,.88);
-      border:1px solid rgba(201,168,92,.75);
-      border-radius:9px;
-      font-size:clamp(8px,1vw,12px);
+      background:rgba(255,255,255,.92);
+      border:1px solid rgba(201,168,92,.85);
+      border-radius:10px;
+      font-size:clamp(9px,1.15vw,14px);
       font-weight:bold;
     }
 
     .cert-phrase{
-      top:68%;
+      top:69%;
       color:#403347;
-      font-size:clamp(8px,1vw,12px);
+      font-size:clamp(9px,1.1vw,13px);
       font-weight:bold;
     }
 
-    .certificate-reveal{
-      animation:certificateReveal .7s ease both;
-    }
+    .certificate-reveal{animation:certificateReveal .7s ease both}
 
     @keyframes certificateReveal{
-      from{
-        opacity:0;
-        transform:scale(.92) translateY(18px);
-      }
-
-      to{
-        opacity:1;
-        transform:scale(1) translateY(0);
-      }
+      from{opacity:0;transform:scale(.92) translateY(18px)}
+      to{opacity:1;transform:scale(1) translateY(0)}
     }
 
     footer{
       padding:18px;
       text-align:center;
-      color:white;
+      color:#fff;
       background:var(--dark-purple);
       border-top:4px solid var(--gold);
     }
 
     @media(max-width:700px){
-      .tests-grid{
-        grid-template-columns:1fr;
-      }
-
-      header h1{
-        font-size:28px;
-      }
-
-      main{
-        width:96%;
-      }
-
-      .result-box{
-        padding:18px 12px;
-      }
+      .tests-grid{grid-template-columns:1fr}
+      header h1{font-size:28px}
+      main{width:96%}
+      .result-box{padding:18px 12px}
 
       .result-actions{
         display:grid;
@@ -482,19 +364,27 @@
         font-size:14px;
       }
 
-      .result-actions .wide{
-        grid-column:1 / -1;
-      }
+      .result-actions .wide{grid-column:1/-1}
 
-      .cert-success{
-        right:8%;
-        left:8%;
-        font-size:10px;
+      .cert-name{
+        top:42%;
+        right:13%;
+        left:13%;
+        font-size:clamp(16px,4.6vw,25px);
       }
 
       .cert-score{
-        right:27%;
-        left:27%;
+        top:61%;
+        right:24%;
+        left:24%;
+        font-size:clamp(8px,2.8vw,12px);
+      }
+
+      .cert-phrase{
+        top:69%;
+        right:12%;
+        left:12%;
+        font-size:clamp(8px,2.5vw,11px);
       }
     }
 
@@ -504,15 +394,13 @@
     }
 
     @media print{
-      body *{
-        visibility:hidden !important;
-      }
+      body *{visibility:hidden!important}
 
       #certificateShell,
       #certificateShell *,
       #certificate,
       #certificate *{
-        visibility:visible !important;
+        visibility:visible!important;
       }
 
       #certificateShell{
@@ -526,10 +414,10 @@
 
       #certificate{
         position:absolute;
-        left:18mm;
-        top:8mm;
-        width:261mm;
-        height:194mm;
+        left:8mm;
+        top:4mm;
+        width:281mm;
+        height:202mm;
         max-width:none;
         margin:0;
         box-shadow:none;
@@ -556,7 +444,6 @@
   </a>
 
   <section id="home" class="panel">
-
     <h2>تحديات نافس</h2>
 
     <div class="progress-summary" id="summary">
@@ -564,11 +451,9 @@
     </div>
 
     <div class="tests-grid" id="cards"></div>
-
   </section>
 
   <section id="nameScreen" class="name-box hidden">
-
     <h2 id="challengeTitle"></h2>
 
     <p>اكتبي اسمكِ الرباعي كما سيظهر في الشهادة:</p>
@@ -588,11 +473,9 @@
         رجوع
       </button>
     </div>
-
   </section>
 
   <section id="quizScreen" class="quiz-box hidden">
-
     <div class="question-head">
       <strong id="qCounter"></strong>
       <strong id="scoreLive">الدرجة: 0</strong>
@@ -603,11 +486,8 @@
     </div>
 
     <div id="passage" class="passage"></div>
-
     <div id="question" class="question"></div>
-
     <div id="answers" class="answers"></div>
-
     <div id="feedback" class="feedback hidden"></div>
 
     <button
@@ -617,17 +497,13 @@
     >
       السؤال التالي
     </button>
-
   </section>
 
   <section id="resultScreen" class="result-box hidden">
-
     <h2 id="resultTitle"></h2>
-
     <p id="resultText"></p>
 
     <div class="result-actions">
-
       <button class="btn btn-primary" onclick="showCertificate()">
         عرض الشهادة
       </button>
@@ -639,7 +515,6 @@
       <button class="btn btn-gold wide" onclick="goHome()">
         العودة للتحديات
       </button>
-
     </div>
 
     <div id="certificateShell" class="certificate-shell hidden">
@@ -651,36 +526,25 @@
       >
 
         <img
+          id="certificateBg"
           class="certificate-bg"
           src="./99.jpg"
           alt="شهادة اجتياز تحدي نافس"
+          onerror="showCertificateImageError()"
         >
 
-        <div
-          id="certName"
-          class="cert-line cert-name"
-        ></div>
-
-        <div class="cert-line cert-success">
-          لاجتيازها التحدي بنجاح: تحدي بوابة الجمال
+        <div id="certificateError" class="certificate-error">
+          لم تظهر صورة الشهادة. تأكدي أن الصورة مرفوعة في GitHub باسم 99.jpg
         </div>
 
-        <div
-          id="certScore"
-          class="cert-line cert-score"
-        ></div>
-
-        <div
-          id="certPhrase"
-          class="cert-line cert-phrase"
-        ></div>
+        <div id="certName" class="cert-line cert-name"></div>
+        <div id="certScore" class="cert-line cert-score"></div>
+        <div id="certPhrase" class="cert-line cert-phrase"></div>
 
       </div>
-
     </div>
 
     <div class="result-actions">
-
       <button
         id="printBtn"
         class="btn btn-primary wide hidden"
@@ -688,9 +552,7 @@
       >
         🖨️ طباعة الشهادة أو حفظها PDF
       </button>
-
     </div>
-
   </section>
 
 </main>
@@ -701,27 +563,28 @@
   جميع الحقوق محفوظة © 2026
 </footer>
 
-<script>const challenges = [
-  {id:1, icon:"🌸", title:"تحدي بوابة الجمال", subtitle:"الجمال والحياة", active:true},
-  {id:2, icon:"📖", title:"تحدي ربيع القلوب", subtitle:"ربيع القلوب"},
-  {id:3, icon:"🌿", title:"تحدي سفيرة الأرض", subtitle:"حماية البيئة"},
-  {id:4, icon:"⏳", title:"تحدي حارسة الدقائق", subtitle:"كنز الوقت"},
-  {id:5, icon:"🔍", title:"تحدي عين القارئة", subtitle:"ما وراء السطور"},
-  {id:6, icon:"⚖️", title:"تحدي الناقدة الواعية", subtitle:"القراءة الناقدة"},
-  {id:7, icon:"🎯", title:"تحدي الإجابة الأدق", subtitle:"اختيار الأصوب"},
-  {id:8, icon:"💡", title:"تحدي التطبيق الذكي", subtitle:"مواقف جديدة"},
-  {id:9, icon:"📝", title:"تحدي صانعة الملخص", subtitle:"تلخيص النص"},
-  {id:10, icon:"🏆", title:"تحدي الفهم الشامل", subtitle:"مهارات متنوعة"},
-  {id:11, icon:"🌟", title:"تحدي النجمة القارئة", subtitle:"فهم واستنتاج"},
-  {id:12, icon:"🧭", title:"تحدي بوصلة المعنى", subtitle:"السياق والدلالة"},
-  {id:13, icon:"🧠", title:"تحدي العقل المتأمل", subtitle:"الفكرة الضمنية"},
-  {id:14, icon:"🔗", title:"تحدي روابط النص", subtitle:"العلاقات بين الأفكار"},
-  {id:15, icon:"📚", title:"تحدي قارئة النصوص", subtitle:"أنواع النصوص"},
-  {id:16, icon:"🪄", title:"تحدي سحر المفردات", subtitle:"المفردات في السياق"},
-  {id:17, icon:"🕊️", title:"تحدي القيم الجميلة", subtitle:"القيم والمواقف"},
-  {id:18, icon:"🔮", title:"تحدي التوقع الذكي", subtitle:"التوقع والاستنتاج"},
-  {id:19, icon:"👑", title:"تحدي القارئة المتميزة", subtitle:"مستوى متقدم"},
-  {id:20, icon:"🥇", title:"التحدي الذهبي", subtitle:"الاختبار الختامي"}
+<script>
+  const challenges = [
+  {id:1,icon:"🌸",title:"تحدي بوابة الجمال",subtitle:"الجمال والحياة",active:true},
+  {id:2,icon:"📖",title:"تحدي ربيع القلوب",subtitle:"ربيع القلوب"},
+  {id:3,icon:"🌿",title:"تحدي سفيرة الأرض",subtitle:"حماية البيئة"},
+  {id:4,icon:"⏳",title:"تحدي حارسة الدقائق",subtitle:"كنز الوقت"},
+  {id:5,icon:"🔍",title:"تحدي عين القارئة",subtitle:"ما وراء السطور"},
+  {id:6,icon:"⚖️",title:"تحدي الناقدة الواعية",subtitle:"القراءة الناقدة"},
+  {id:7,icon:"🎯",title:"تحدي الإجابة الأدق",subtitle:"اختيار الأصوب"},
+  {id:8,icon:"💡",title:"تحدي التطبيق الذكي",subtitle:"مواقف جديدة"},
+  {id:9,icon:"📝",title:"تحدي صانعة الملخص",subtitle:"تلخيص النص"},
+  {id:10,icon:"🏆",title:"تحدي الفهم الشامل",subtitle:"مهارات متنوعة"},
+  {id:11,icon:"🌟",title:"تحدي النجمة القارئة",subtitle:"فهم واستنتاج"},
+  {id:12,icon:"🧭",title:"تحدي بوصلة المعنى",subtitle:"السياق والدلالة"},
+  {id:13,icon:"🧠",title:"تحدي العقل المتأمل",subtitle:"الفكرة الضمنية"},
+  {id:14,icon:"🔗",title:"تحدي روابط النص",subtitle:"العلاقات بين الأفكار"},
+  {id:15,icon:"📚",title:"تحدي قارئة النصوص",subtitle:"أنواع النصوص"},
+  {id:16,icon:"🪄",title:"تحدي سحر المفردات",subtitle:"المفردات في السياق"},
+  {id:17,icon:"🕊️",title:"تحدي القيم الجميلة",subtitle:"القيم والمواقف"},
+  {id:18,icon:"🔮",title:"تحدي التوقع الذكي",subtitle:"التوقع والاستنتاج"},
+  {id:19,icon:"👑",title:"تحدي القارئة المتميزة",subtitle:"مستوى متقدم"},
+  {id:20,icon:"🥇",title:"التحدي الذهبي",subtitle:"الاختبار الختامي"}
 ];
 
 const tests = {
@@ -736,7 +599,6 @@ const tests = {
       رأى من جمال العالم ما يبعث في نفسه السعادة والطمأنينة،
       ويقوده إلى التفكر في عظمة الخالق.
     `,
-
     questions:[
       {
         q:"مرادف كلمة «قِوام» في سياق النص:",
@@ -1015,6 +877,7 @@ function choose(index,button){
 
   }else{
     button.classList.add("wrong");
+
     buttons[item.c].classList.add("correct");
 
     const quizScreen=
@@ -1175,6 +1038,12 @@ function showCertificate(){
   celebrate();
 }
 
+function showCertificateImageError(){
+  document
+    .getElementById("certificateError")
+    .style.display="flex";
+}
+
 function restartQuiz(){
   currentQ=0;
   score=0;
@@ -1328,5 +1197,3 @@ renderCards();
 </script>
 </body>
 </html>
-
-  
