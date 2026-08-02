@@ -9,7 +9,7 @@
   <style>
     :root{
       --purple:#75558d;
-      --dark-purple:#4b385b;
+      --dark:#4b385b;
       --gold:#c9a85c;
       --cream:#fffaf1;
       --paper:#fffdf8;
@@ -18,9 +18,7 @@
       --red:#b83a4b;
     }
 
-    *{
-      box-sizing:border-box;
-    }
+    *{box-sizing:border-box}
 
     body{
       margin:0;
@@ -79,7 +77,7 @@
     .panel h2{
       margin:0 0 20px;
       text-align:center;
-      color:var(--dark-purple);
+      color:var(--dark);
       font-size:28px;
     }
 
@@ -112,7 +110,6 @@
       border:2px solid var(--gold);
       border-radius:22px;
       box-shadow:0 6px 16px rgba(73,56,92,.08);
-      transition:.2s;
     }
 
     .test-card:active{
@@ -130,7 +127,7 @@
     }
 
     .title{
-      color:var(--dark-purple);
+      color:var(--dark);
       font-size:21px;
       font-weight:bold;
     }
@@ -169,7 +166,6 @@
       font-weight:bold;
       cursor:pointer;
       box-shadow:0 5px 12px rgba(73,56,92,.12);
-      transition:.2s;
     }
 
     .btn:active{
@@ -228,6 +224,7 @@
       padding:18px;
       overflow:auto;
       text-align:right;
+      white-space:pre-line;
       background:#fffaf1;
       border-right:5px solid var(--gold);
       border-radius:14px;
@@ -298,29 +295,13 @@
       animation:markPop .7s ease both;
     }
 
-    .correct-mark{
-      color:var(--green);
-    }
-
-    .wrong-mark{
-      color:var(--red);
-    }
+    .correct-mark{color:var(--green)}
+    .wrong-mark{color:var(--red)}
 
     @keyframes markPop{
-      0%{
-        opacity:0;
-        transform:scale(.25);
-      }
-
-      55%{
-        opacity:1;
-        transform:scale(1.12);
-      }
-
-      100%{
-        opacity:0;
-        transform:scale(.92);
-      }
+      0%{opacity:0;transform:scale(.25)}
+      55%{opacity:1;transform:scale(1.12)}
+      100%{opacity:0;transform:scale(.92)}
     }
 
     .shake{
@@ -350,9 +331,7 @@
     }
 
     @keyframes fall{
-      to{
-        transform:translateY(110vh) rotate(720deg);
-      }
+      to{transform:translateY(110vh) rotate(720deg)}
     }
 
     .certificate-shell{
@@ -365,11 +344,10 @@
     .certificate{
       position:relative;
       width:min(100%,760px);
-      aspect-ratio:1536 / 1148;
+      aspect-ratio:1536/1148;
       margin:0 auto;
       overflow:hidden;
       background:#fff;
-      border-radius:4px;
       box-shadow:0 10px 28px rgba(45,34,70,.16);
     }
 
@@ -385,7 +363,7 @@
     .certificate-error{
       position:absolute;
       inset:0;
-      z-index:3;
+      z-index:4;
       display:none;
       align-items:center;
       justify-content:center;
@@ -398,8 +376,8 @@
 
     .cert-line{
       position:absolute;
-      right:14%;
-      left:14%;
+      right:12%;
+      left:12%;
       z-index:2;
       text-align:center;
       line-height:1.2;
@@ -412,25 +390,19 @@
       font-weight:bold;
     }
 
+    /* الدرجة بدون مستطيل ومرتفعة تحت الاسم */
+
     .cert-score{
-      top:47%;
-      right:30%;
-      left:30%;
-      padding:4px 7px;
+      top:48%;
       color:#75558d;
-      background:rgba(255,255,255,.94);
-      border:1px solid rgba(201,168,92,.90);
-      border-radius:10px;
-      font-size:clamp(8px,1vw,12px);
+      font-size:clamp(10px,1.25vw,15px);
       font-weight:bold;
     }
 
     .cert-phrase{
       top:53%;
-      right:18%;
-      left:18%;
       color:#403347;
-      font-size:clamp(7px,.9vw,11px);
+      font-size:clamp(8px,1vw,12px);
       font-weight:bold;
     }
 
@@ -439,22 +411,15 @@
     }
 
     @keyframes certificateReveal{
-      from{
-        opacity:0;
-        transform:scale(.92) translateY(18px);
-      }
-
-      to{
-        opacity:1;
-        transform:scale(1) translateY(0);
-      }
+      from{opacity:0;transform:scale(.92) translateY(18px)}
+      to{opacity:1;transform:scale(1) translateY(0)}
     }
 
     footer{
       padding:18px;
       text-align:center;
       color:#fff;
-      background:var(--dark-purple);
+      background:var(--dark);
       border-top:4px solid var(--gold);
     }
 
@@ -495,23 +460,21 @@
 
       .cert-name{
         top:41%;
-        right:12%;
-        left:12%;
+        right:10%;
+        left:10%;
         font-size:clamp(16px,4.6vw,25px);
       }
 
       .cert-score{
-        top:47%;
-        right:23%;
-        left:23%;
-        font-size:clamp(8px,2.8vw,12px);
+        top:48%;
+        font-size:clamp(9px,3vw,13px);
       }
 
       .cert-phrase{
         top:53%;
-        right:11%;
-        left:11%;
-        font-size:clamp(8px,2.5vw,11px);
+        right:8%;
+        left:8%;
+        font-size:clamp(8px,2.6vw,11px);
       }
     }
 
@@ -573,7 +536,6 @@
   </a>
 
   <section id="home" class="panel">
-
     <h2>تحديات نافس</h2>
 
     <div class="progress-summary" id="summary">
@@ -581,11 +543,9 @@
     </div>
 
     <div class="tests-grid" id="cards"></div>
-
   </section>
 
   <section id="nameScreen" class="name-box hidden">
-
     <h2 id="challengeTitle"></h2>
 
     <p>اكتبي اسمكِ الرباعي كما سيظهر في الشهادة:</p>
@@ -605,11 +565,9 @@
         رجوع
       </button>
     </div>
-
   </section>
 
   <section id="quizScreen" class="quiz-box hidden">
-
     <div class="question-head">
       <strong id="qCounter"></strong>
       <strong id="scoreLive">الدرجة: 0</strong>
@@ -631,16 +589,13 @@
     >
       السؤال التالي
     </button>
-
   </section>
 
   <section id="resultScreen" class="result-box hidden">
-
     <h2 id="resultTitle"></h2>
     <p id="resultText"></p>
 
     <div class="result-actions">
-
       <button class="btn btn-primary" onclick="showCertificate()">
         عرض الشهادة
       </button>
@@ -652,19 +607,12 @@
       <button class="btn btn-gold wide" onclick="goHome()">
         العودة للتحديات
       </button>
-
     </div>
 
     <div id="certificateShell" class="certificate-shell hidden">
-
-      <div
-        id="certificate"
-        class="certificate"
-        aria-label="شهادة اجتياز تحدي نافس"
-      >
+      <div id="certificate" class="certificate">
 
         <img
-          id="certificateBg"
           class="certificate-bg"
           src="./99.jpg"
           alt="شهادة اجتياز تحدي نافس"
@@ -675,27 +623,14 @@
           لم تظهر صورة الشهادة. تأكدي أن الصورة مرفوعة باسم 99.jpg
         </div>
 
-        <div
-          id="certName"
-          class="cert-line cert-name"
-        ></div>
-
-        <div
-          id="certScore"
-          class="cert-line cert-score"
-        ></div>
-
-        <div
-          id="certPhrase"
-          class="cert-line cert-phrase"
-        ></div>
+        <div id="certName" class="cert-line cert-name"></div>
+        <div id="certScore" class="cert-line cert-score"></div>
+        <div id="certPhrase" class="cert-line cert-phrase"></div>
 
       </div>
-
     </div>
 
     <div class="result-actions">
-
       <button
         id="printBtn"
         class="btn btn-primary wide hidden"
@@ -703,9 +638,7 @@
       >
         🖨️ طباعة الشهادة أو حفظها PDF
       </button>
-
     </div>
-
   </section>
 
 </main>
@@ -717,9 +650,9 @@
 </footer>
 
 <script>
-  const challenges = [
+  const challenges=[
   {id:1,icon:"🌸",title:"تحدي بوابة الجمال",subtitle:"الجمال والحياة",active:true},
-  {id:2,icon:"📖",title:"تحدي ربيع القلوب",subtitle:"ربيع القلوب"},
+  {id:2,icon:"📖",title:"تحدي ربيع القلوب",subtitle:"ربيع القلوب",active:true},
   {id:3,icon:"🌿",title:"تحدي سفيرة الأرض",subtitle:"حماية البيئة"},
   {id:4,icon:"⏳",title:"تحدي حارسة الدقائق",subtitle:"كنز الوقت"},
   {id:5,icon:"🔍",title:"تحدي عين القارئة",subtitle:"ما وراء السطور"},
@@ -740,18 +673,19 @@
   {id:20,icon:"🥇",title:"التحدي الذهبي",subtitle:"الاختبار الختامي"}
 ];
 
-const tests = {
+const tests={
+
   1:{
     passage:`
-      الجمال عنصر أصيل في بنية الكون، وقد خلق الله الإنسان مزودًا
-      بالقدرة على تذوقه. والحياة الحقة هي التي تتكامل فيها عناصر
-      الإنسان: جسمه بتغذيته، وعقله بتطويره، وعاطفته بتزويدها بالجمال.
+الجمال عنصر أصيل في بنية الكون، وقد خلق الله الإنسان مزودًا بالقدرة على تذوقه.
 
-      ومن يتأمل الطبيعة يرى جمال السماء والأرض والطيور والأزهار
-      وشروق الشمس وغروبها. وكلما دق بصر الإنسان وصفت روحه،
-      رأى من جمال العالم ما يبعث في نفسه السعادة والطمأنينة،
-      ويقوده إلى التفكر في عظمة الخالق.
+والحياة الحقة هي التي تتكامل فيها عناصر الإنسان: جسمه بتغذيته، وعقله بتطويره، وعاطفته بتزويدها بالجمال.
+
+ومن يتأمل الطبيعة يرى جمال السماء والأرض والطيور والأزهار وشروق الشمس وغروبها.
+
+وكلما دق بصر الإنسان وصفت روحه، رأى من جمال العالم ما يبعث في نفسه السعادة والطمأنينة، ويقوده إلى التفكر في عظمة الخالق.
     `,
+
     questions:[
       {
         q:"مرادف كلمة «قِوام» في سياق النص:",
@@ -780,11 +714,11 @@ const tests = {
           "العاطفة والعقل والتمييز"
         ],
         c:0,
-        e:"ذكر النص صراحة: الجسم والعقل والعاطفة."
+        e:"ذكر النص الجسم والعقل والعاطفة."
       },
       {
-        q:"العلاقة المعنوية بين «شروق» و«غروب» هي:",
-        a:["الترادف","السببية","التضاد","الزمان"],
+        q:"العلاقة بين «شروق» و«غروب» هي:",
+        a:["الترادف","السببية","التضاد","التعليل"],
         c:2,
         e:"الشروق والغروب لفظان متضادان."
       },
@@ -793,20 +727,15 @@ const tests = {
         a:[
           "وصف أنواع الطيور",
           "أهمية الجمال في حياة الإنسان",
-          "بيان صعوبة الحياة",
-          "تعداد مظاهر الطقس"
+          "صعوبة الحياة",
+          "تعداد أحوال الطقس"
         ],
         c:1,
         e:"يدور النص حول أثر الجمال والتأمل فيه في حياة الإنسان."
       },
       {
         q:"معنى «دق بصره» في السياق:",
-        a:[
-          "طرق الباب",
-          "ضعف نظره",
-          "أحسن الملاحظة",
-          "أسرع في المشي"
-        ],
+        a:["طرق الباب","ضعف نظره","أحسن الملاحظة","أسرع في المشي"],
         c:2,
         e:"المقصود دقة الملاحظة وحسن التأمل."
       },
@@ -814,27 +743,140 @@ const tests = {
         q:"أي المشاعر لا يبعثها التأمل في جمال الكون؟",
         a:["المتعة","السعادة","الدهشة","الفتور"],
         c:3,
-        e:"النص يربط التأمل بالمتعة والسعادة والدهشة، لا بالفتور."
+        e:"النص يربط التأمل بالسعادة والطمأنينة، لا بالفتور."
       },
       {
         q:"ضد كلمة «أصيل» هو:",
         a:["راسخ","أساسي","ثانوي","عريق"],
         c:2,
-        e:"أصيل تعني أساسي ومتجذر، وضدها ثانوي."
+        e:"أصيل تعني أساسيًا ومتجذرًا، وضدها ثانوي."
       },
       {
         q:"أدق تلخيص للنص:",
         a:[
-          "الجمال يقتصر على الطبيعة فقط",
+          "الجمال يقتصر على الطبيعة",
           "تأمل الجمال يغذي العاطفة ويقود إلى السعادة والتفكر",
           "العقل أهم من الجسم والعاطفة",
-          "مشاق الحياة تمنع الإنسان من رؤية الجمال"
+          "مشاق الحياة تمنع رؤية الجمال"
         ],
         c:1,
         e:"هذا الخيار يجمع الفكرة العامة وأثر الجمال في النفس."
       }
     ]
+  },
+
+  2:{
+    passage:`
+كان سليمان بن أيوب شديد الرغبة في حفظ القرآن الكريم، لكنه وجد مشقة كبيرة في بدايته، حتى إنه عجز مدة طويلة عن إتقان قراءة الفاتحة، فحزن وبكى وشكا حاله إلى رجل صالح.
+
+نصحه الرجل أن يطلب من أمه أن تدعو له؛ فعاد إليها وأخبرها بما يعاني، فدعت له بصدق وإخلاص.
+
+وما هي إلا مدة حتى انقشعت الغمة، وانفتح ذهنه، وقوي حفظه، وأصبح من أهل العلم والتميز.
+
+وقد شبّه سليمان حال عقله قبل الدعاء بالشمس التي حجبتها سحابة، ثم هبت عليها ريح عاصف فانقشعت السحابة وظهر نور الشمس.
+
+وفي قصته دلالة على بركة دعاء الوالدين، والصبر، وعدم اليأس عند تعثر الإنسان في طريق العلم.
+    `,
+
+    questions:[
+      {
+        q:"ما السبب الرئيس في بكاء سليمان بن أيوب؟",
+        a:[
+          "خوفه من معلمه",
+          "صعوبة حفظ القرآن عليه",
+          "رغبته في ترك العلم",
+          "ابتعاده عن أسرته"
+        ],
+        c:1,
+        e:"بكى سليمان بسبب المشقة التي وجدها في حفظ القرآن."
+      },
+      {
+        q:"ما النصيحة التي قدمها الرجل الصالح لسليمان؟",
+        a:[
+          "أن يغيّر معلمه",
+          "أن يطلب دعاء أمه",
+          "أن يترك الحفظ",
+          "أن يسافر"
+        ],
+        c:1,
+        e:"نصحه الرجل بأن يطلب من أمه أن تدعو له."
+      },
+      {
+        q:"معنى كلمة «انقشعت» في سياق النص:",
+        a:["اشتدت","انكشفت وزالت","غطت المكان","ثبتت"],
+        c:1,
+        e:"انقشعت تعني انكشفت وزالت."
+      },
+      {
+        q:"ما الشعور الذي سيطر على سليمان عند تعثره؟",
+        a:["الحزن","الفرح","الدهشة","الغرور"],
+        c:0,
+        e:"ذكر النص أنه حزن وبكى بسبب تعثره."
+      },
+      {
+        q:"إلام ترمز السحابة في التشبيه؟",
+        a:[
+          "قوة الذاكرة",
+          "العلم النافع",
+          "العائق الذي حجب الفهم",
+          "الشهرة"
+        ],
+        c:2,
+        e:"السحابة ترمز إلى العائق الذي كان يحجب الفهم."
+      },
+      {
+        q:"إلام ترمز الشمس في التشبيه؟",
+        a:[
+          "عقل سليمان وقدرته على الفهم",
+          "الرجل الصالح",
+          "مكان الدراسة",
+          "صعوبة الحفظ"
+        ],
+        c:0,
+        e:"شبّه سليمان عقله بالشمس التي حُجب نورها ثم ظهر."
+      },
+      {
+        q:"ما القيمة الأبرز في النص؟",
+        a:[
+          "الاعتماد على الحظ",
+          "بركة دعاء الوالدين",
+          "تجنب طلب العلم",
+          "منافسة الآخرين"
+        ],
+        c:1,
+        e:"القصة تبرز أثر دعاء الأم وبركة دعاء الوالدين."
+      },
+      {
+        q:"أي العبارات تمثل فكرة فرعية في النص؟",
+        a:[
+          "العلم لا يحتاج إلى صبر",
+          "الدعاء سبب من أسباب التوفيق",
+          "كل متعلم ينجح من أول مرة",
+          "الحفظ أهم من الفهم دائمًا"
+        ],
+        c:1,
+        e:"من أفكار النص أن الدعاء من أسباب التوفيق."
+      },
+      {
+        q:"ما العلاقة بين دعاء الأم وتحسن حال سليمان؟",
+        a:["مقارنة","سبب ونتيجة","تضاد","ترادف"],
+        c:1,
+        e:"جاء تحسن حال سليمان نتيجة لدعاء أمه مع صبره."
+      },
+      {
+        q:"أدق تلخيص للنص هو:",
+        a:[
+          "توقف سليمان عن الحفظ",
+          "نجح سليمان بفضل دعاء أمه وصبره بعد تعثره",
+          "انتقل سليمان إلى مدينة أخرى",
+          "كان الرجل الصالح معلم سليمان"
+        ],
+        c:1,
+        e:"هذا الخيار يجمع المشكلة والحل والنتيجة."
+      }
+    ]
   }
+
 };
 
 let currentId=1;
@@ -851,14 +893,14 @@ function renderCards(){
     const card=document.createElement("div");
 
     card.className=
-      "test-card"+(challenge.active ? "" : " locked");
+      "test-card"+(challenge.active?"":" locked");
 
     card.innerHTML=`
       <span class="icon">${challenge.icon}</span>
       <span class="title">${challenge.title}</span>
       <span class="subtitle">${challenge.subtitle}</span>
       <span class="badge">
-        ${challenge.active ? "ابدئي الآن" : "سيُضاف قريبًا"}
+        ${challenge.active?"ابدئي الآن":"سيُضاف قريبًا"}
       </span>
     `;
 
@@ -879,17 +921,11 @@ function renderCards(){
 function openChallenge(id){
   currentId=id;
 
-  document
-    .getElementById("home")
-    .classList.add("hidden");
+  document.getElementById("home").classList.add("hidden");
+  document.getElementById("nameScreen").classList.remove("hidden");
 
-  document
-    .getElementById("nameScreen")
-    .classList.remove("hidden");
-
-  document
-    .getElementById("challengeTitle")
-    .textContent=challenges[id-1].title;
+  document.getElementById("challengeTitle").textContent=
+    challenges[id-1].title;
 }
 
 function startQuiz(){
@@ -908,13 +944,8 @@ function startQuiz(){
   currentQ=0;
   score=0;
 
-  document
-    .getElementById("nameScreen")
-    .classList.add("hidden");
-
-  document
-    .getElementById("quizScreen")
-    .classList.remove("hidden");
+  document.getElementById("nameScreen").classList.add("hidden");
+  document.getElementById("quizScreen").classList.remove("hidden");
 
   showQuestion();
 }
@@ -925,31 +956,20 @@ function showQuestion(){
   const test=tests[currentId];
   const item=test.questions[currentQ];
 
-  document
-    .getElementById("passage")
-    .textContent=test.passage;
+  document.getElementById("passage").textContent=test.passage;
 
-  document
-    .getElementById("qCounter")
-    .textContent=
-      `السؤال ${currentQ+1} من ${test.questions.length}`;
+  document.getElementById("qCounter").textContent=
+    `السؤال ${currentQ+1} من ${test.questions.length}`;
 
-  document
-    .getElementById("scoreLive")
-    .textContent=`الدرجة: ${score}`;
+  document.getElementById("scoreLive").textContent=
+    `الدرجة: ${score}`;
 
-  document
-    .getElementById("barFill")
-    .style.width=
-      `${currentQ/test.questions.length*100}%`;
+  document.getElementById("barFill").style.width=
+    `${currentQ/test.questions.length*100}%`;
 
-  document
-    .getElementById("question")
-    .textContent=item.q;
+  document.getElementById("question").textContent=item.q;
 
-  const answers=
-    document.getElementById("answers");
-
+  const answers=document.getElementById("answers");
   answers.innerHTML="";
 
   item.a.forEach((answer,index)=>{
@@ -965,13 +985,8 @@ function showQuestion(){
     answers.appendChild(button);
   });
 
-  document
-    .getElementById("feedback")
-    .className="feedback hidden";
-
-  document
-    .getElementById("nextBtn")
-    .classList.add("hidden");
+  document.getElementById("feedback").className="feedback hidden";
+  document.getElementById("nextBtn").classList.add("hidden");
 }
 
 function showAnswerMark(isCorrect){
@@ -979,9 +994,9 @@ function showAnswerMark(isCorrect){
 
   mark.className=
     "answer-mark "+
-    (isCorrect ? "correct-mark" : "wrong-mark");
+    (isCorrect?"correct-mark":"wrong-mark");
 
-  mark.textContent=isCorrect ? "✓" : "✕";
+  mark.textContent=isCorrect?"✓":"✕";
 
   document.body.appendChild(mark);
 
@@ -991,25 +1006,18 @@ function showAnswerMark(isCorrect){
 }
 
 function choose(index,button){
-  if(answered){
-    return;
-  }
+  if(answered)return;
 
   answered=true;
 
-  const item=
-    tests[currentId].questions[currentQ];
-
-  const buttons=[
-    ...document.querySelectorAll(".answer")
-  ];
+  const item=tests[currentId].questions[currentQ];
+  const buttons=[...document.querySelectorAll(".answer")];
 
   buttons.forEach(answerButton=>{
     answerButton.disabled=true;
   });
 
-  const feedback=
-    document.getElementById("feedback");
+  const feedback=document.getElementById("feedback");
 
   if(index===item.c){
     score++;
@@ -1017,7 +1025,6 @@ function choose(index,button){
     button.classList.add("correct");
 
     feedback.className="feedback ok";
-
     feedback.innerHTML=`
       <strong>✅ إجابة صحيحة</strong>
       <br>
@@ -1030,11 +1037,9 @@ function choose(index,button){
 
   }else{
     button.classList.add("wrong");
-
     buttons[item.c].classList.add("correct");
 
-    const quizScreen=
-      document.getElementById("quizScreen");
+    const quizScreen=document.getElementById("quizScreen");
 
     quizScreen.classList.add("shake");
 
@@ -1058,21 +1063,15 @@ function choose(index,button){
     playTone(false);
   }
 
-  document
-    .getElementById("scoreLive")
-    .textContent=`الدرجة: ${score}`;
+  document.getElementById("scoreLive").textContent=
+    `الدرجة: ${score}`;
 
-  const nextButton=
-    document.getElementById("nextBtn");
+  const nextButton=document.getElementById("nextBtn");
 
-  if(
-    currentQ===
-    tests[currentId].questions.length-1
-  ){
-    nextButton.textContent="عرض النتيجة";
-  }else{
-    nextButton.textContent="السؤال التالي";
-  }
+  nextButton.textContent=
+    currentQ===tests[currentId].questions.length-1
+    ?"عرض النتيجة"
+    :"السؤال التالي";
 
   nextButton.classList.remove("hidden");
 }
@@ -1090,31 +1089,19 @@ function nextQuestion(){
 }
 
 function finishQuiz(){
-  document
-    .getElementById("quizScreen")
-    .classList.add("hidden");
+  document.getElementById("quizScreen").classList.add("hidden");
+  document.getElementById("resultScreen").classList.remove("hidden");
 
-  document
-    .getElementById("resultScreen")
-    .classList.remove("hidden");
+  const total=tests[currentId].questions.length;
+  const percentage=Math.round(score/total*100);
 
-  const total=
-    tests[currentId].questions.length;
+  document.getElementById("resultTitle").textContent=
+    score>=7
+    ?"🎉 اجتزتِ التحدي بنجاح"
+    :"🌷 محاولة جميلة";
 
-  const percentage=
-    Math.round(score/total*100);
-
-  document
-    .getElementById("resultTitle")
-    .textContent=
-      score>=7
-      ? "🎉 اجتزتِ التحدي بنجاح"
-      : "🌷 محاولة جميلة";
-
-  document
-    .getElementById("resultText")
-    .textContent=
-      `${student}، حصلتِ على ${score} من ${total} بنسبة ${percentage}٪.`;
+  document.getElementById("resultText").textContent=
+    `${student}، حصلتِ على ${score} من ${total} بنسبة ${percentage}٪.`;
 
   if(score>=7){
     localStorage.setItem(
@@ -1134,14 +1121,10 @@ function showCertificate(){
 
   const percentage=score*10;
 
-  document
-    .getElementById("certName")
-    .textContent=student;
+  document.getElementById("certName").textContent=student;
 
-  document
-    .getElementById("certScore")
-    .textContent=
-      `الدرجة ${score} من 10 | النسبة ${percentage}٪`;
+  document.getElementById("certScore").textContent=
+    `الدرجة: ${score} من 10 — النسبة: ${percentage}٪`;
 
   let title="";
 
@@ -1155,31 +1138,19 @@ function showCertificate(){
     title="استحققتِ لقب: المتقدمة بثقة";
   }
 
-  document
-    .getElementById("certPhrase")
-    .textContent=title;
+  document.getElementById("certPhrase").textContent=title;
 
-  const shell=
-    document.getElementById("certificateShell");
-
-  const certificate=
-    document.getElementById("certificate");
+  const shell=document.getElementById("certificateShell");
+  const certificate=document.getElementById("certificate");
 
   shell.classList.remove("hidden");
-
-  certificate.classList.remove(
-    "certificate-reveal"
-  );
+  certificate.classList.remove("certificate-reveal");
 
   void certificate.offsetWidth;
 
-  certificate.classList.add(
-    "certificate-reveal"
-  );
+  certificate.classList.add("certificate-reveal");
 
-  document
-    .getElementById("printBtn")
-    .classList.remove("hidden");
+  document.getElementById("printBtn").classList.remove("hidden");
 
   setTimeout(()=>{
     shell.scrollIntoView({
@@ -1192,52 +1163,29 @@ function showCertificate(){
 }
 
 function showCertificateImageError(){
-  document
-    .getElementById("certificateError")
-    .style.display="flex";
+  document.getElementById("certificateError").style.display="flex";
 }
 
 function restartQuiz(){
   currentQ=0;
   score=0;
 
-  document
-    .getElementById("resultScreen")
-    .classList.add("hidden");
-
-  document
-    .getElementById("certificateShell")
-    .classList.add("hidden");
-
-  document
-    .getElementById("certificate")
-    .classList.remove("certificate-reveal");
-
-  document
-    .getElementById("printBtn")
-    .classList.add("hidden");
-
-  document
-    .getElementById("quizScreen")
-    .classList.remove("hidden");
+  document.getElementById("resultScreen").classList.add("hidden");
+  document.getElementById("certificateShell").classList.add("hidden");
+  document.getElementById("certificate").classList.remove("certificate-reveal");
+  document.getElementById("printBtn").classList.add("hidden");
+  document.getElementById("quizScreen").classList.remove("hidden");
 
   showQuestion();
 }
 
 function goHome(){
-  document
-    .querySelectorAll("main > section")
-    .forEach(section=>{
-      section.classList.add("hidden");
-    });
+  document.querySelectorAll("main > section").forEach(section=>{
+    section.classList.add("hidden");
+  });
 
-  document
-    .getElementById("home")
-    .classList.remove("hidden");
-
-  document
-    .getElementById("studentName")
-    .value="";
+  document.getElementById("home").classList.remove("hidden");
+  document.getElementById("studentName").value="";
 }
 
 function updateSummary(){
@@ -1245,9 +1193,8 @@ function updateSummary(){
   let totalScore=0;
 
   for(let i=1;i<=20;i++){
-    const value=Number(
-      localStorage.getItem(`nafes_${i}`)||0
-    );
+    const value=
+      Number(localStorage.getItem(`nafes_${i}`)||0);
 
     if(value>=7){
       completed++;
@@ -1255,60 +1202,43 @@ function updateSummary(){
     }
   }
 
-  let text=
-    `أنجزتِ ${completed} من 20 تحديًا`;
+  let text=`أنجزتِ ${completed} من 20 تحديًا`;
 
-  if(
-    completed===20 &&
-    totalScore>=180
-  ){
-    text+=
-      " — 👑 استحققتِ وسام آفاق الذهبي الكبير";
+  if(completed===20 && totalScore>=180){
+    text+=" — 👑 استحققتِ وسام آفاق الذهبي الكبير";
   }
 
-  document
-    .getElementById("summary")
-    .textContent=text;
+  document.getElementById("summary").textContent=text;
 }
 
 function playTone(isCorrect){
   try{
     const AudioContextClass=
-      window.AudioContext ||
+      window.AudioContext||
       window.webkitAudioContext;
 
-    const context=
-      new AudioContextClass();
-
-    const oscillator=
-      context.createOscillator();
-
-    const gain=
-      context.createGain();
+    const context=new AudioContextClass();
+    const oscillator=context.createOscillator();
+    const gain=context.createGain();
 
     oscillator.connect(gain);
     gain.connect(context.destination);
 
-    oscillator.frequency.value=
-      isCorrect ? 700 : 180;
-
-    gain.gain.value=0.08;
+    oscillator.frequency.value=isCorrect?700:180;
+    gain.gain.value=.08;
 
     oscillator.start();
 
     oscillator.stop(
       context.currentTime+
-      (isCorrect ? 0.18 : 0.28)
+      (isCorrect?.18:.28)
     );
 
-  }catch(error){
-    console.log("تعذر تشغيل الصوت.");
-  }
+  }catch(error){}
 }
 
 function celebrate(){
-  const container=
-    document.getElementById("confetti");
+  const container=document.getElementById("confetti");
 
   const icons=[
     "🎈",
@@ -1319,23 +1249,18 @@ function celebrate(){
   ];
 
   for(let i=0;i<28;i++){
-    const piece=
-      document.createElement("span");
+    const piece=document.createElement("span");
 
     piece.className="piece";
 
     piece.textContent=
-      icons[
-        Math.floor(
-          Math.random()*icons.length
-        )
-      ];
+      icons[Math.floor(Math.random()*icons.length)];
 
     piece.style.left=
       Math.random()*100+"vw";
 
     piece.style.animationDelay=
-      Math.random()*0.5+"s";
+      Math.random()*.5+"s";
 
     container.appendChild(piece);
 
