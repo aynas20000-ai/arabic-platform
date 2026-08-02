@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>اختبارات نافس الشاملة | منصة آفاق</title>
 
   <style>
@@ -17,7 +18,9 @@
       --red:#b83a4b;
     }
 
-    *{box-sizing:border-box}
+    *{
+      box-sizing:border-box;
+    }
 
     body{
       margin:0;
@@ -35,9 +38,21 @@
       border-bottom:5px solid var(--gold);
     }
 
-    header h1{margin:0;font-size:34px}
-    header p{max-width:760px;margin:10px auto 0;font-size:17px}
-    main{width:min(94%,980px);margin:28px auto 40px}
+    header h1{
+      margin:0;
+      font-size:34px;
+    }
+
+    header p{
+      max-width:760px;
+      margin:10px auto 0;
+      font-size:17px;
+    }
+
+    main{
+      width:min(94%,980px);
+      margin:28px auto 40px;
+    }
 
     .top-link{
       display:inline-block;
@@ -50,7 +65,10 @@
       border-radius:13px;
     }
 
-    .panel,.name-box,.quiz-box,.result-box{
+    .panel,
+    .name-box,
+    .quiz-box,
+    .result-box{
       padding:22px;
       background:var(--paper);
       border:2px solid #dfd3e5;
@@ -97,13 +115,41 @@
       transition:.2s;
     }
 
-    .test-card:active{transform:scale(.98)}
-    .test-card.locked{opacity:.58;cursor:not-allowed}
-    .icon{margin-bottom:8px;font-size:44px}
-    .title{color:var(--dark-purple);font-size:21px;font-weight:bold}
-    .subtitle{margin-top:6px;color:#6d6172;font-size:14px}
-    .badge{margin-top:9px;color:#8d6b16;font-size:13px}
-    .hidden{display:none!important}
+    .test-card:active{
+      transform:scale(.98);
+    }
+
+    .test-card.locked{
+      opacity:.58;
+      cursor:not-allowed;
+    }
+
+    .icon{
+      margin-bottom:8px;
+      font-size:44px;
+    }
+
+    .title{
+      color:var(--dark-purple);
+      font-size:21px;
+      font-weight:bold;
+    }
+
+    .subtitle{
+      margin-top:6px;
+      color:#6d6172;
+      font-size:14px;
+    }
+
+    .badge{
+      margin-top:9px;
+      color:#8d6b16;
+      font-size:13px;
+    }
+
+    .hidden{
+      display:none!important;
+    }
 
     input[type="text"]{
       width:100%;
@@ -126,9 +172,19 @@
       transition:.2s;
     }
 
-    .btn:active{transform:scale(.97)}
-    .btn-primary{color:#fff;background:linear-gradient(135deg,#786094,#594474)}
-    .btn-gold{color:#35263d;background:linear-gradient(135deg,#d6b764,#c9a85c)}
+    .btn:active{
+      transform:scale(.97);
+    }
+
+    .btn-primary{
+      color:#fff;
+      background:linear-gradient(135deg,#786094,#594474);
+    }
+
+    .btn-gold{
+      color:#35263d;
+      background:linear-gradient(135deg,#d6b764,#c9a85c);
+    }
 
     .result-actions{
       display:flex;
@@ -138,7 +194,10 @@
       margin:16px 0 6px;
     }
 
-    .result-actions .btn{min-width:150px;margin:0}
+    .result-actions .btn{
+      min-width:150px;
+      margin:0;
+    }
 
     .question-head{
       display:flex;
@@ -174,8 +233,16 @@
       border-radius:14px;
     }
 
-    .question{margin:18px 0;font-size:21px;font-weight:bold}
-    .answers{display:grid;gap:12px}
+    .question{
+      margin:18px 0;
+      font-size:21px;
+      font-weight:bold;
+    }
+
+    .answers{
+      display:grid;
+      gap:12px;
+    }
 
     .answer{
       width:100%;
@@ -188,8 +255,17 @@
       border-radius:14px;
     }
 
-    .answer.correct{color:#0b653a;background:#ecfff4;border-color:var(--green)}
-    .answer.wrong{color:#8f2433;background:#fff0f2;border-color:var(--red)}
+    .answer.correct{
+      color:#0b653a;
+      background:#ecfff4;
+      border-color:var(--green);
+    }
+
+    .answer.wrong{
+      color:#8f2433;
+      background:#fff0f2;
+      border-color:var(--red);
+    }
 
     .feedback{
       margin-top:16px;
@@ -198,8 +274,15 @@
       border-radius:14px;
     }
 
-    .feedback.ok{color:#0b653a;background:#ecfff4}
-    .feedback.bad{color:#8f2433;background:#fff0f2}
+    .feedback.ok{
+      color:#0b653a;
+      background:#ecfff4;
+    }
+
+    .feedback.bad{
+      color:#8f2433;
+      background:#fff0f2;
+    }
 
     .answer-mark{
       position:fixed;
@@ -215,16 +298,34 @@
       animation:markPop .7s ease both;
     }
 
-    .correct-mark{color:var(--green)}
-    .wrong-mark{color:var(--red)}
-
-    @keyframes markPop{
-      0%{opacity:0;transform:scale(.25)}
-      55%{opacity:1;transform:scale(1.12)}
-      100%{opacity:0;transform:scale(.92)}
+    .correct-mark{
+      color:var(--green);
     }
 
-    .shake{animation:shake .38s}
+    .wrong-mark{
+      color:var(--red);
+    }
+
+    @keyframes markPop{
+      0%{
+        opacity:0;
+        transform:scale(.25);
+      }
+
+      55%{
+        opacity:1;
+        transform:scale(1.12);
+      }
+
+      100%{
+        opacity:0;
+        transform:scale(.92);
+      }
+    }
+
+    .shake{
+      animation:shake .38s;
+    }
 
     @keyframes shake{
       0%,100%{transform:translateX(0)}
@@ -249,8 +350,12 @@
     }
 
     @keyframes fall{
-      to{transform:translateY(110vh) rotate(720deg)}
+      to{
+        transform:translateY(110vh) rotate(720deg);
+      }
     }
+
+    /* تنسيق الشهادة */
 
     .certificate-shell{
       width:100%;
@@ -282,6 +387,7 @@
     .certificate-error{
       position:absolute;
       inset:0;
+      z-index:3;
       display:none;
       align-items:center;
       justify-content:center;
@@ -290,50 +396,62 @@
       color:var(--red);
       background:#fff;
       font-weight:bold;
-      z-index:3;
     }
 
     .cert-line{
       position:absolute;
-      right:15%;
-      left:15%;
+      right:14%;
+      left:14%;
       z-index:2;
       text-align:center;
-      line-height:1.25;
+      line-height:1.2;
     }
 
     .cert-name{
-      top:42%;
+      top:41%;
       color:#4f8d8d;
       font-size:clamp(17px,2.4vw,30px);
       font-weight:bold;
     }
 
+    /* رُفعت الدرجة لتكون قريبة من الاسم */
+
     .cert-score{
-      top:61%;
-      right:31%;
-      left:31%;
+      top:52%;
+      right:30%;
+      left:30%;
       padding:5px 8px;
       color:#75558d;
-      background:rgba(255,255,255,.92);
-      border:1px solid rgba(201,168,92,.85);
+      background:rgba(255,255,255,.94);
+      border:1px solid rgba(201,168,92,.90);
       border-radius:10px;
       font-size:clamp(9px,1.15vw,14px);
       font-weight:bold;
     }
 
+    /* رُفع اللقب ليظهر أسفل الدرجة مباشرة */
+
     .cert-phrase{
-      top:69%;
+      top:59%;
       color:#403347;
       font-size:clamp(9px,1.1vw,13px);
       font-weight:bold;
     }
 
-    .certificate-reveal{animation:certificateReveal .7s ease both}
+    .certificate-reveal{
+      animation:certificateReveal .7s ease both;
+    }
 
     @keyframes certificateReveal{
-      from{opacity:0;transform:scale(.92) translateY(18px)}
-      to{opacity:1;transform:scale(1) translateY(0)}
+      from{
+        opacity:0;
+        transform:scale(.92) translateY(18px);
+      }
+
+      to{
+        opacity:1;
+        transform:scale(1) translateY(0);
+      }
     }
 
     footer{
@@ -345,10 +463,21 @@
     }
 
     @media(max-width:700px){
-      .tests-grid{grid-template-columns:1fr}
-      header h1{font-size:28px}
-      main{width:96%}
-      .result-box{padding:18px 12px}
+      .tests-grid{
+        grid-template-columns:1fr;
+      }
+
+      header h1{
+        font-size:28px;
+      }
+
+      main{
+        width:96%;
+      }
+
+      .result-box{
+        padding:18px 12px;
+      }
 
       .result-actions{
         display:grid;
@@ -364,26 +493,28 @@
         font-size:14px;
       }
 
-      .result-actions .wide{grid-column:1/-1}
+      .result-actions .wide{
+        grid-column:1/-1;
+      }
 
       .cert-name{
-        top:42%;
-        right:13%;
-        left:13%;
+        top:41%;
+        right:12%;
+        left:12%;
         font-size:clamp(16px,4.6vw,25px);
       }
 
       .cert-score{
-        top:61%;
-        right:24%;
-        left:24%;
+        top:52%;
+        right:23%;
+        left:23%;
         font-size:clamp(8px,2.8vw,12px);
       }
 
       .cert-phrase{
-        top:69%;
-        right:12%;
-        left:12%;
+        top:59%;
+        right:11%;
+        left:11%;
         font-size:clamp(8px,2.5vw,11px);
       }
     }
@@ -394,7 +525,9 @@
     }
 
     @media print{
-      body *{visibility:hidden!important}
+      body *{
+        visibility:hidden!important;
+      }
 
       #certificateShell,
       #certificateShell *,
@@ -444,6 +577,7 @@
   </a>
 
   <section id="home" class="panel">
+
     <h2>تحديات نافس</h2>
 
     <div class="progress-summary" id="summary">
@@ -451,9 +585,11 @@
     </div>
 
     <div class="tests-grid" id="cards"></div>
+
   </section>
 
   <section id="nameScreen" class="name-box hidden">
+
     <h2 id="challengeTitle"></h2>
 
     <p>اكتبي اسمكِ الرباعي كما سيظهر في الشهادة:</p>
@@ -473,9 +609,11 @@
         رجوع
       </button>
     </div>
+
   </section>
 
   <section id="quizScreen" class="quiz-box hidden">
+
     <div class="question-head">
       <strong id="qCounter"></strong>
       <strong id="scoreLive">الدرجة: 0</strong>
@@ -497,13 +635,17 @@
     >
       السؤال التالي
     </button>
+
   </section>
 
   <section id="resultScreen" class="result-box hidden">
+
     <h2 id="resultTitle"></h2>
+
     <p id="resultText"></p>
 
     <div class="result-actions">
+
       <button class="btn btn-primary" onclick="showCertificate()">
         عرض الشهادة
       </button>
@@ -515,6 +657,7 @@
       <button class="btn btn-gold wide" onclick="goHome()">
         العودة للتحديات
       </button>
+
     </div>
 
     <div id="certificateShell" class="certificate-shell hidden">
@@ -534,17 +677,30 @@
         >
 
         <div id="certificateError" class="certificate-error">
-          لم تظهر صورة الشهادة. تأكدي أن الصورة مرفوعة في GitHub باسم 99.jpg
+          لم تظهر صورة الشهادة. تأكدي أن الصورة مرفوعة باسم 99.jpg
         </div>
 
-        <div id="certName" class="cert-line cert-name"></div>
-        <div id="certScore" class="cert-line cert-score"></div>
-        <div id="certPhrase" class="cert-line cert-phrase"></div>
+        <div
+          id="certName"
+          class="cert-line cert-name"
+        ></div>
+
+        <div
+          id="certScore"
+          class="cert-line cert-score"
+        ></div>
+
+        <div
+          id="certPhrase"
+          class="cert-line cert-phrase"
+        ></div>
 
       </div>
+
     </div>
 
     <div class="result-actions">
+
       <button
         id="printBtn"
         class="btn btn-primary wide hidden"
@@ -552,7 +708,9 @@
       >
         🖨️ طباعة الشهادة أو حفظها PDF
       </button>
+
     </div>
+
   </section>
 
 </main>
@@ -599,6 +757,7 @@ const tests = {
       رأى من جمال العالم ما يبعث في نفسه السعادة والطمأنينة،
       ويقوده إلى التفكر في عظمة الخالق.
     `,
+
     questions:[
       {
         q:"مرادف كلمة «قِوام» في سياق النص:",
