@@ -1938,6 +1938,59 @@ restartBtn.addEventListener("click", function () {
     behavior: "smooth"
   });
 });
+          const restartBtn = document.createElement("button");
+
+restartBtn.type = "button";
+restartBtn.textContent = "↻ البدء من جديد";
+
+restartBtn.style.border = "0";
+restartBtn.style.borderRadius = "18px";
+restartBtn.style.padding = "14px 24px";
+restartBtn.style.background = "#bf4040";
+restartBtn.style.color = "white";
+restartBtn.style.fontSize = "18px";
+restartBtn.style.fontWeight = "bold";
+restartBtn.style.cursor = "pointer";
+restartBtn.style.marginTop = "18px";
+
+document.querySelector(".top-bar").appendChild(restartBtn);
+
+restartBtn.addEventListener("click", function () {
+
+  completed.clear();
+
+  Object.keys(solved).forEach(function (key) {
+    delete solved[key];
+  });
+
+  Object.keys(ratings).forEach(function (key) {
+    delete ratings[key];
+  });
+
+  Object.keys(localStorage).forEach(function (key) {
+    const name = key.toLowerCase();
+
+    if (
+      name.includes("idea") ||
+      name.includes("tree") ||
+      name.includes("main-sub")
+    ) {
+      localStorage.removeItem(key);
+    }
+  });
+
+  workspace.hidden = true;
+  finalCard.classList.remove("show");
+  treeView.hidden = false;
+
+  buildTree();
+  updateProgress();
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
     </script>
 
   </main>
