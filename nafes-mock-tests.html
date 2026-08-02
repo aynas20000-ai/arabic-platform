@@ -1,521 +1,392 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>اختبارات نافس الشاملة | منصة آفاق</title>
 
   <style>
-    :root{
-      --purple:#75558d;
-      --dark:#4b385b;
-      --gold:#c9a85c;
-      --cream:#fffaf1;
-      --paper:#fffdf8;
-      --text:#403347;
-      --green:#168a52;
-      --red:#b83a4b;
+    :root {
+      --purple: #75558d;
+      --dark: #4b385b;
+      --light-purple: #eee4f2;
+      --gold: #c9a85c;
+      --cream: #fffaf1;
+      --paper: #fffdf8;
+      --text: #403347;
+      --green: #4f8c68;
+      --light-green: #e9f5ed;
+      --red: #bf4040;
+      --light-red: #fff0f0;
+      --shadow: 0 12px 28px rgba(75, 56, 91, 0.13);
     }
 
-    *{
-      box-sizing:border-box;
+    * {
+      box-sizing: border-box;
     }
 
-    body{
-      margin:0;
-      font-family:Tahoma,Arial,sans-serif;
-      color:var(--text);
-      background:linear-gradient(180deg,var(--cream),#f7eff8);
-      line-height:1.8;
+    html {
+      scroll-behavior: smooth;
     }
 
-    header{
-      padding:34px 18px;
-      text-align:center;
-      color:#fff;
-      background:linear-gradient(135deg,#786094,#594474);
-      border-bottom:5px solid var(--gold);
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: var(--text);
+      background:
+        linear-gradient(
+          180deg,
+          #fffdf8 0%,
+          #f8eff9 100%
+        );
+      font-family: Tahoma, Arial, sans-serif;
     }
 
-    header h1{
-      margin:0;
-      font-size:34px;
+    button,
+    a {
+      font-family: inherit;
     }
 
-    header p{
-      max-width:800px;
-      margin:10px auto 0;
-      font-size:17px;
+    button {
+      -webkit-tap-highlight-color: transparent;
     }
 
-    main{
-      width:min(94%,980px);
-      margin:28px auto 40px;
+    .hero {
+      padding: 34px 18px 30px;
+      text-align: center;
+      color: white;
+      background:
+        linear-gradient(
+          135deg,
+          var(--dark),
+          var(--purple)
+        );
+      border-bottom: 7px solid var(--gold);
     }
 
-    .top-link{
-      display:inline-block;
-      margin-bottom:18px;
-      padding:10px 16px;
-      color:#35263d;
-      font-weight:bold;
-      text-decoration:none;
-      background:var(--gold);
-      border-radius:13px;
+    .hero h1 {
+      margin: 0 0 12px;
+      font-size: clamp(31px, 8vw, 48px);
+      line-height: 1.5;
     }
 
-    .panel,
-    .name-box,
-    .quiz-box,
-    .result-box{
-      padding:22px;
-      background:var(--paper);
-      border:2px solid #dfd3e5;
-      border-radius:24px;
-      box-shadow:0 8px 22px rgba(73,56,92,.10);
+    .hero p {
+      max-width: 760px;
+      margin: 0 auto;
+      font-size: clamp(18px, 4.6vw, 24px);
+      line-height: 2;
     }
 
-    .panel h2,
-    .name-box h2,
-    .result-box h2{
-      margin:0 0 20px;
-      text-align:center;
-      color:var(--dark);
-      font-size:28px;
+    .top-panel {
+      width: min(94%, 850px);
+      margin: 24px auto 18px;
+      padding: 20px;
+      border: 3px solid #e3d4e7;
+      border-radius: 28px;
+      background: rgba(255, 253, 248, 0.97);
+      box-shadow: var(--shadow);
     }
 
-    .progress-summary{
-      margin:0 auto 20px;
-      padding:14px;
-      text-align:center;
-      font-weight:bold;
-      background:#fff;
-      border:2px solid var(--gold);
-      border-radius:16px;
+    .top-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
     }
 
-    .tests-grid{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:18px;
+    .library-link,
+    .sound-button {
+      min-height: 56px;
+      padding: 12px 18px;
+      border: 0;
+      border-radius: 17px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
     }
 
-    .test-card{
-      min-height:190px;
-      padding:20px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      cursor:pointer;
-      background:linear-gradient(145deg,#fffdf8,#f6eef9);
-      border:2px solid var(--gold);
-      border-radius:22px;
-      box-shadow:0 6px 16px rgba(73,56,92,.08);
-      transition:.2s;
+    .library-link {
+      color: var(--dark);
+      background: var(--gold);
     }
 
-    .test-card:active{
-      transform:scale(.98);
+    .sound-button {
+      color: white;
+      background: var(--purple);
     }
 
-    .icon{
-      margin-bottom:8px;
-      font-size:44px;
+    .score-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-top: 22px;
+      margin-bottom: 10px;
+      font-size: 18px;
+      font-weight: bold;
     }
 
-    .title{
-      color:var(--dark);
-      font-size:21px;
-      font-weight:bold;
+    .progress-track {
+      height: 16px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: var(--light-purple);
     }
 
-    .subtitle{
-      margin-top:6px;
-      color:#6d6172;
-      font-size:14px;
+    .progress-bar {
+      width: 5%;
+      height: 100%;
+      border-radius: inherit;
+      background:
+        linear-gradient(
+          90deg,
+          var(--gold),
+          var(--purple)
+        );
+      transition: width 0.4s ease;
     }
 
-    .badge{
-      margin-top:9px;
-      color:var(--green);
-      font-size:13px;
-      font-weight:bold;
+    main {
+      width: min(94%, 850px);
+      margin: 0 auto;
+      padding-bottom: 40px;
     }
 
-    .hidden{
-      display:none!important;
+    .quiz-shell {
+      position: relative;
+      min-height: 720px;
+      margin: 20px 0;
+      padding: 22px;
+      overflow: hidden;
+      border: 3px solid #e3d4e7;
+      border-radius: 34px;
+      background: rgba(255, 253, 248, 0.98);
+      box-shadow: var(--shadow);
     }
 
-    input[type="text"]{
-      width:100%;
-      padding:14px;
-      text-align:center;
-      font-size:18px;
-      border:2px solid #d9c9df;
-      border-radius:14px;
+    .screen {
+      display: none;
+      min-height: 650px;
+      animation: appear 0.42s ease;
     }
 
-    .btn{
-      margin:6px;
-      padding:12px 18px;
-      border:0;
-      border-radius:16px;
-      font-size:16px;
-      font-weight:bold;
-      cursor:pointer;
-      box-shadow:0 5px 12px rgba(73,56,92,.12);
+    .screen.active {
+      display: flex;
+      flex-direction: column;
     }
 
-    .btn:active{
-      transform:scale(.97);
-    }
-
-    .btn-primary{
-      color:#fff;
-      background:linear-gradient(135deg,#786094,#594474);
-    }
-
-    .btn-gold{
-      color:#35263d;
-      background:linear-gradient(135deg,#d6b764,#c9a85c);
-    }
-
-    .result-actions{
-      display:flex;
-      flex-wrap:wrap;
-      justify-content:center;
-      gap:10px;
-      margin:16px 0 6px;
-    }
-
-    .result-actions .btn{
-      min-width:150px;
-      margin:0;
-    }
-
-    .question-head{
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      align-items:center;
-    }
-
-    .bar{
-      height:12px;
-      margin:14px 0;
-      overflow:hidden;
-      background:#eee;
-      border-radius:20px;
-    }
-
-    .bar span{
-      display:block;
-      width:0;
-      height:100%;
-      background:linear-gradient(90deg,var(--gold),#786094);
-      transition:.3s;
-    }
-
-    .passage{
-      max-height:360px;
-      margin:14px 0;
-      padding:20px;
-      overflow:auto;
-      text-align:right;
-      white-space:pre-line;
-      background:#fffaf1;
-      border-right:5px solid var(--gold);
-      border-radius:14px;
-      font-size:17px;
-    }
-
-    .question{
-      margin:18px 0;
-      font-size:21px;
-      font-weight:bold;
-    }
-
-    .skill-label{
-      display:inline-block;
-      margin-bottom:10px;
-      padding:5px 12px;
-      color:#fff;
-      background:var(--purple);
-      border-radius:20px;
-      font-size:13px;
-      font-weight:bold;
-    }
-
-    .answers{
-      display:grid;
-      gap:12px;
-    }
-
-    .answer{
-      width:100%;
-      padding:14px;
-      text-align:right;
-      font-size:17px;
-      cursor:pointer;
-      background:#fff;
-      border:2px solid #d8c8df;
-      border-radius:14px;
-    }
-
-    .answer.correct{
-      color:#0b653a;
-      background:#ecfff4;
-      border-color:var(--green);
-    }
-
-    .answer.wrong{
-      color:#8f2433;
-      background:#fff0f2;
-      border-color:var(--red);
-    }
-
-    .feedback{
-      margin-top:16px;
-      padding:14px;
-      font-weight:bold;
-      border-radius:14px;
-    }
-
-    .feedback.ok{
-      color:#0b653a;
-      background:#ecfff4;
-    }
-
-    .feedback.bad{
-      color:#8f2433;
-      background:#fff0f2;
-    }
-
-    .answer-mark{
-      position:fixed;
-      inset:0;
-      z-index:120;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      pointer-events:none;
-      font-size:min(32vw,180px);
-      font-weight:bold;
-      text-shadow:0 8px 24px rgba(0,0,0,.18);
-      animation:markPop .7s ease both;
-    }
-
-    .correct-mark{
-      color:var(--green);
-    }
-
-    .wrong-mark{
-      color:var(--red);
-    }
-
-    @keyframes markPop{
-      0%{
-        opacity:0;
-        transform:scale(.25);
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
       }
 
-      55%{
-        opacity:1;
-        transform:scale(1.12);
-      }
-
-      100%{
-        opacity:0;
-        transform:scale(.92);
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
     }
 
-    .shake{
-      animation:shake .38s;
+    .question-number {
+      width: fit-content;
+      margin: 0 auto 15px;
+      padding: 9px 20px;
+      border-radius: 999px;
+      color: white;
+      background: var(--purple);
+      font-size: 17px;
+      font-weight: bold;
     }
 
-    @keyframes shake{
-      0%,100%{transform:translateX(0)}
-      25%{transform:translateX(8px)}
-      50%{transform:translateX(-8px)}
-      75%{transform:translateX(5px)}
+    .question-title {
+      margin: 5px 0 18px;
+      text-align: center;
+      color: var(--dark);
+      font-size: clamp(26px, 6.7vw, 39px);
+      line-height: 1.6;
     }
 
-    .confetti{
-      position:fixed;
-      inset:0;
-      z-index:99;
-      overflow:hidden;
-      pointer-events:none;
+    .question-instruction {
+      max-width: 720px;
+      margin: 0 auto 20px;
+      text-align: center;
+      color: #6d6072;
+      font-size: clamp(17px, 4.4vw, 22px);
+      line-height: 1.9;
     }
 
-    .piece{
-      position:absolute;
-      top:-20px;
-      font-size:26px;
-      animation:fall 2.7s linear forwards;
+    .text-card {
+      width: min(100%, 720px);
+      margin: 0 auto 20px;
+      padding: 22px;
+      border: 3px solid #e3d4e7;
+      border-radius: 25px;
+      background: var(--paper);
+      font-size: clamp(18px, 4.5vw, 23px);
+      line-height: 2.1;
+      text-align: justify;
     }
 
-    @keyframes fall{
-      to{
-        transform:translateY(110vh) rotate(720deg);
-      }
+    .options {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 13px;
+      width: min(100%, 720px);
+      margin: 0 auto;
     }
 
-    .certificate-shell{
-      width:100%;
-      margin:22px auto 0;
-      padding:10px 0 14px;
-      overflow:hidden;
+    .answer-button {
+      width: 100%;
+      min-height: 72px;
+      padding: 15px;
+      border: 3px solid var(--gold);
+      border-radius: 21px;
+      color: var(--text);
+      background: white;
+      font-size: clamp(17px, 4.3vw, 21px);
+      line-height: 1.7;
+      cursor: pointer;
+      transition:
+        transform 0.18s ease,
+        background 0.18s ease,
+        border-color 0.18s ease;
     }
 
-    .certificate{
-      position:relative;
-      width:min(100%,760px);
-      aspect-ratio:1536/1148;
-      margin:0 auto;
-      overflow:hidden;
-      background:#fff;
-      box-shadow:0 10px 28px rgba(45,34,70,.16);
+    .answer-button:active {
+      transform: scale(0.98);
     }
 
-    .certificate-bg{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      object-fit:fill;
-      display:block;
+    .answer-button.correct {
+      color: #245b3b;
+      border-color: var(--green);
+      background: var(--light-green);
     }
 
-    .score-cover{
-      position:absolute;
-      z-index:1;
-      top:49%;
-      right:17%;
-      left:17%;
-      height:16%;
-      background:#fff;
+    .answer-button.wrong {
+      color: #7d2929;
+      border-color: var(--red);
+      background: var(--light-red);
     }
 
-    .cert-line{
-      position:absolute;
-      right:10%;
-      left:10%;
-      z-index:2;
-      text-align:center;
-      line-height:1.2;
+    .answer-button:disabled {
+      cursor: default;
     }
 
-    .cert-name{
-      top:41%;
-      color:#4f8d8d;
-      font-size:clamp(17px,2.4vw,30px);
-      font-weight:bold;
+    .feedback {
+      display: none;
+      width: min(100%, 720px);
+      margin: 18px auto 0;
+      padding: 17px;
+      border-radius: 19px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      line-height: 1.8;
     }
 
-    .cert-challenge{
-      top:48%;
-      color:#403347;
-      font-size:clamp(9px,1.1vw,14px);
-      font-weight:bold;
+    .feedback.show {
+      display: block;
     }
 
-    .cert-score{
-      top:53%;
-      color:#75558d;
-      font-size:clamp(10px,1.25vw,16px);
-      font-weight:bold;
+    .feedback.correct {
+      color: #245b3b;
+      border: 2px solid #93c1a1;
+      background: var(--light-green);
     }
 
-    .cert-phrase{
-      top:58%;
-      color:#403347;
-      font-size:clamp(8px,1vw,12px);
-      font-weight:bold;
+    .feedback.wrong {
+      color: #7d2929;
+      border: 2px solid #d7a0a0;
+      background: var(--light-red);
     }
 
-    footer{
-      padding:18px;
-      text-align:center;
-      color:#fff;
-      background:var(--dark);
-      border-top:4px solid var(--gold);
+    .navigation {
+      display: flex;
+      gap: 14px;
+      margin-top: auto;
+      padding-top: 27px;
     }
 
-    @media(max-width:700px){
-      .tests-grid{
-        grid-template-columns:1fr;
-      }
-
-      header h1{
-        font-size:28px;
-      }
-
-      main{
-        width:96%;
-      }
-
-      .result-box{
-        padding:18px 12px;
-      }
-
-      .result-actions{
-        display:grid;
-        grid-template-columns:1fr 1fr;
-        gap:9px;
-      }
-
-      .result-actions .btn{
-        width:100%;
-        min-width:0;
-        padding:11px 7px;
-        font-size:14px;
-      }
-
-      .result-actions .wide{
-        grid-column:1/-1;
-      }
+    .nav-button {
+      flex: 1;
+      min-height: 64px;
+      border: 0;
+      border-radius: 20px;
+      font-size: clamp(19px, 5vw, 24px);
+      font-weight: bold;
+      cursor: pointer;
     }
 
-    @page{
-      size:A4 landscape;
-      margin:0;
+    .previous-button {
+      color: var(--dark);
+      background: var(--light-purple);
     }
 
-    @media print{
-      body *{
-        visibility:hidden!important;
-      }
+    .next-button {
+      color: white;
+      background: var(--purple);
+    }
 
-      #certificateShell,
-      #certificateShell *,
-      #certificate,
-      #certificate *{
-        visibility:visible!important;
-      }
+    .nav-button:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
 
-      #certificateShell{
-        position:absolute;
-        inset:0;
-        width:297mm;
-        height:210mm;
-        margin:0;
-        padding:0;
-      }
+    .result-box {
+      width: min(100%, 720px);
+      margin: auto;
+      padding: 28px 20px;
+      text-align: center;
+      border: 4px solid var(--gold);
+      border-radius: 30px;
+      background: #fffdf4;
+    }
 
-      #certificate{
-        position:absolute;
-        left:8mm;
-        top:4mm;
-        width:281mm;
-        height:202mm;
-        max-width:none;
-        margin:0;
-        box-shadow:none;
+    .result-icon {
+      font-size: 68px;
+    }
+
+    .result-box h2 {
+      margin: 12px 0;
+      color: var(--purple);
+      font-size: 34px;
+    }
+
+    .result-box p {
+      font-size: 20px;
+      line-height: 2;
+    }
+
+    .result-score {
+      margin: 20px 0;
+      padding: 18px;
+      border-radius: 20px;
+      color: white;
+      background: var(--purple);
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    footer {
+      padding: 25px 15px;
+      text-align: center;
+      color: white;
+      background: var(--dark);
+      border-top: 7px solid var(--gold);
+      font-size: 18px;
+    }
+
+    @media (min-width: 700px) {
+      .options {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
   </style>
@@ -523,3280 +394,1735 @@
 
 <body>
 
-<header>
-  <h1>🏆 اختبارات نافس الشاملة</h1>
+  <header class="hero">
+    <h1>🏆 اختبارات نافس الشاملة</h1>
 
-  <p>
-    اختبارات تفاعلية تقيس الفهم والاستنتاج والتحليل واختيار الإجابة الأدق.
-  </p>
-</header>
+    <p>
+      عشرون سؤالًا تفاعليًا
+      تقيس الفهم والاستنتاج والتحليل
+      واختيار الإجابة الأدق.
+    </p>
+  </header>
 
-<main>
+  <section class="top-panel">
 
-  <a class="top-link" href="nafes.html">
-    العودة إلى مكتبة نافس
-  </a>
+    <div class="top-buttons">
 
-  <section id="home" class="panel">
-    <h2>تحديات نافس</h2>
+      <a
+        class="library-link"
+        href="nafes-library.html"
+      >
+        العودة إلى مكتبة نافس
+      </a>
 
-    <div class="progress-summary" id="summary">
-      أنجزتِ 0 من 20 تحديًا
+      <button
+        id="soundBtn"
+        class="sound-button"
+        type="button"
+      >
+        🔊 الصوت مفعّل
+      </button>
+
     </div>
 
-    <div class="tests-grid" id="cards"></div>
+    <div class="score-row">
+      <span id="questionCounter">السؤال 1 من 20</span>
+      <span id="liveScore">الدرجة: 0</span>
+    </div>
+
+    <div class="progress-track">
+      <div
+        id="progressBar"
+        class="progress-bar"
+      ></div>
+    </div>
+
   </section>
 
-  <section id="nameScreen" class="name-box hidden">
-    <h2 id="challengeTitle"></h2>
+  <main>
 
-    <p>اكتبي اسمكِ الرباعي كما سيظهر في الشهادة:</p>
+    <section class="quiz-shell">
 
-    <input
-      id="studentName"
-      type="text"
-      placeholder="مثال: سارة محمد أحمد علي"
-    >
+      <article
+        id="quizScreen"
+        class="screen active"
+      >
 
-    <div>
-      <button class="btn btn-primary" onclick="startQuiz()">
-        ابدئي التحدي
-      </button>
+        <div
+          id="questionNumber"
+          class="question-number"
+        >
+          السؤال 1
+        </div>
 
-      <button class="btn btn-gold" onclick="goHome()">
-        رجوع
-      </button>
-    </div>
-  </section>
+        <h2
+          id="questionTitle"
+          class="question-title"
+        >
+          اختاري الإجابة الأدق
+        </h2>
 
-  <section id="quizScreen" class="quiz-box hidden">
-    <div class="question-head">
-      <strong id="qCounter"></strong>
-      <strong id="scoreLive">الدرجة: 0</strong>
-    </div>
+        <p
+          id="questionInstruction"
+          class="question-instruction"
+        >
+          اقرئي السؤال بعناية،
+          ثم قارني بين البدائل.
+        </p>
 
-    <div class="bar">
-      <span id="barFill"></span>
-    </div>
+        <div
+          id="passageCard"
+          class="text-card"
+        ></div>
 
-    <div id="passage" class="passage"></div>
-    <div id="skillLabel" class="skill-label"></div>
-    <div id="question" class="question"></div>
-    <div id="answers" class="answers"></div>
-    <div id="feedback" class="feedback hidden"></div>
+        <div
+          id="answersContainer"
+          class="options"
+        ></div>
 
-    <button
-      id="nextBtn"
-      class="btn btn-primary hidden"
-      onclick="nextQuestion()"
-    >
-      السؤال التالي
-    </button>
-  </section>
+        <div
+          id="feedback"
+          class="feedback"
+        ></div>
 
-  <section id="resultScreen" class="result-box hidden">
-    <h2 id="resultTitle"></h2>
-    <p id="resultText"></p>
+        <div class="navigation">
 
-    <div class="result-actions">
-      <button class="btn btn-primary" onclick="showCertificate()">
-        عرض الشهادة
-      </button>
+          <button
+            id="previousBtn"
+            class="nav-button previous-button"
+            type="button"
+            disabled
+          >
+            السابق
+          </button>
 
-      <button class="btn btn-gold" onclick="restartQuiz()">
-        إعادة الاختبار
-      </button>
+          <button
+            id="nextBtn"
+            class="nav-button next-button"
+            type="button"
+            disabled
+          >
+            التالي
+          </button>
 
-      <button class="btn btn-gold wide" onclick="goHome()">
-        العودة للتحديات
-      </button>
-    </div>
+        </div>
 
-    <div id="certificateShell" class="certificate-shell hidden">
-      <div id="certificate" class="certificate">
+      </article>
 
-        <img
-          class="certificate-bg"
-          src="./99.jpg"
-          alt="شهادة اجتياز تحدي نافس"
+      <article
+        id="resultScreen"
+        class="screen"
+      >
+
+        <div class="result-box">
+
+          <div
+            id="resultIcon"
+            class="result-icon"
+          >
+            🎉
+          </div>
+
+          <h2 id="resultTitle">
+            اكتمل الاختبار
+          </h2>
+
+          <div
+            id="resultScore"
+            class="result-score"
+          >
+            0 من 20
+          </div>
+
+          <p id="resultMessage"></p>
+
+          <a
+            class="library-link"
+            href="nafes-library.html"
+            style="
+              display:inline-block;
+              margin-top:16px;
+            "
+          >
+            العودة إلى مكتبة نافس
+          </a>
+
+        </div>
+
+      </article>
+
+    </section>
+
+  </main>
+
+  <footer>
+    جميع الحقوق محفوظة © 2026
+  </footer>
+
+  <script>
+    const questions = [
+            {
+        title: "الفكرة الرئيسة",
+        instruction: "اختاري الفكرة التي تشمل جميع تفاصيل النص.",
+        passage: `
+          تحرص المملكة على حماية البيئة من خلال زيادة الغطاء النباتي،
+          والحد من التلوث، والمحافظة على الموارد الطبيعية،
+          وتشجيع أفراد المجتمع على المشاركة في المبادرات البيئية؛
+          لتحقيق تنمية مستدامة وحياة أكثر جودة.
+        `,
+        question: "ما الفكرة الرئيسة للنص؟",
+        options: [
+          "أهمية زراعة الأشجار في الحدائق المنزلية فقط.",
+          "جهود المملكة في حماية البيئة وتحقيق التنمية المستدامة.",
+          "مشاركة أفراد المجتمع في المبادرات التطوعية.",
+          "المحافظة على الموارد الطبيعية من الاستهلاك."
+        ],
+        correct: 1,
+        explanation: `
+          الإجابة الأدق هي: جهود المملكة في حماية البيئة وتحقيق التنمية المستدامة؛
+          لأنها تجمع جميع الأفكار الواردة في النص،
+          أما بقية البدائل فتمثل تفاصيل جزئية.
+        `
+      },
+
+      {
+        title: "معنى الكلمة في السياق",
+        instruction: "استنتجي المعنى من الجملة، لا من المعنى المحفوظ فقط.",
+        passage: `
+          لم تكن العقبات التي واجهت الباحث سببًا في توقفه،
+          بل زادته إصرارًا على مواصلة تجربته حتى بلغ غايته.
+        `,
+        question: "ما معنى كلمة «بلغ غايته» في السياق؟",
+        options: [
+          "وصل إلى المكان الذي قصده.",
+          "حقق الهدف الذي كان يسعى إليه.",
+          "أنهى التجربة دون نتائج.",
+          "عرف سبب العقبات التي واجهته."
+        ],
+        correct: 1,
+        explanation: `
+          المقصود أنه حقق هدفه؛ لأن السياق يتحدث عن الإصرار
+          ومواصلة التجربة حتى الوصول إلى النتيجة المطلوبة.
+        `
+      },
+
+      {
+        title: "الاستنتاج",
+        instruction: "اختاري ما يمكن فهمه من النص وإن لم يُذكر صراحة.",
+        passage: `
+          خرجت نورة من المكتبة وهي تحمل كتابين،
+          ثم كتبت في مفكرتها أسماء كتب أخرى ترغب في قراءتها،
+          وحددت لنفسها ساعة يومية لاستخدام الهاتف.
+        `,
+        question: "ماذا نستنتج عن نورة؟",
+        options: [
+          "تفضّل شراء الكتب على استعارتها.",
+          "تحاول تنظيم وقتها وزيادة قراءتها.",
+          "تستخدم الهاتف للبحث عن الكتب فقط.",
+          "تجد صعوبة في اختيار الكتب المناسبة."
+        ],
+        correct: 1,
+        explanation: `
+          يدل تحديد وقت للهاتف وتسجيل الكتب المراد قراءتها
+          على أنها تنظم وقتها وتهتم بزيادة القراءة.
+        `
+      },
+
+      {
+        title: "العلاقة بين الأفكار",
+        instruction: "حددي العلاقة التي تربط الجملة الثانية بالأولى.",
+        passage: `
+          أصبحت المهارات الرقمية ضرورية في مجالات العمل الحديثة؛
+          لذلك تحرص المؤسسات على تدريب موظفيها على استخدام التقنيات الجديدة.
+        `,
+        question: "ما العلاقة بين الجملتين؟",
+        options: [
+          "تفصيل بعد إجمال.",
+          "سبب ونتيجة.",
+          "مقارنة بين موقفين.",
+          "مشكلة دون تقديم حل."
+        ],
+        correct: 1,
+        explanation: `
+          ضرورة المهارات الرقمية هي السبب،
+          وحرص المؤسسات على التدريب نتيجة مترتبة عليه.
+        `
+      },
+
+      {
+        title: "الحقيقة والرأي",
+        instruction: "ميّزي العبارة التي يمكن التحقق من صحتها.",
+        passage: `
+          افتُتح المركز الثقافي عام 2024م،
+          ويضم ثلاث قاعات للقراءة ومسرحًا صغيرًا.
+          ويرى بعض الزوار أنه أجمل مركز ثقافي في المنطقة.
+        `,
+        question: "أي العبارات الآتية تمثل حقيقة؟",
+        options: [
+          "المركز أجمل مكان ثقافي في المنطقة.",
+          "زيارة المركز تجربة ممتعة للجميع.",
+          "يضم المركز ثلاث قاعات للقراءة.",
+          "تصميم المسرح أكثر جمالًا من القاعات."
+        ],
+        correct: 2,
+        explanation: `
+          عدد القاعات معلومة محددة يمكن التحقق منها،
+          أما كلمات مثل «أجمل» و«ممتعة» فتعبر عن آراء.
+        `
+      },
+
+      {
+        title: "الغرض من النص",
+        instruction: "فكري في الهدف الذي يريد الكاتب تحقيقه.",
+        passage: `
+          قبل مشاركة أي خبر عبر وسائل التواصل،
+          تحققي من مصدره وتاريخه، واقرئي الخبر كاملًا،
+          ولا تجعلي كثرة إعادة نشره دليلًا على صحته.
+        `,
+        question: "ما الغرض الرئيس من النص؟",
+        options: [
+          "وصف سرعة انتشار الأخبار الإلكترونية.",
+          "التحذير من وسائل التواصل جميعها.",
+          "توجيه القارئ إلى التحقق من الأخبار قبل نشرها.",
+          "المقارنة بين الأخبار الورقية والإلكترونية."
+        ],
+        correct: 2,
+        explanation: `
+          النص يقدم خطوات مباشرة للتحقق من الأخبار،
+          ولذلك فغرضه التوجيه والتوعية قبل إعادة النشر.
+        `
+      },
+
+      {
+        title: "اختيار العنوان الأدق",
+        instruction: "اختاري عنوانًا يشمل الفكرة كاملة دون أن يكون عامًا جدًا.",
+        passage: `
+          يساعد النوم الكافي على تحسين التركيز،
+          وتنظيم الذاكرة، وزيادة النشاط،
+          كما أن تثبيت موعد النوم والابتعاد عن الأجهزة قبله
+          يسهمان في الحصول على نوم أفضل.
+        `,
+        question: "ما العنوان الأنسب للنص؟",
+        options: [
+          "الأجهزة الإلكترونية",
+          "فوائد النوم الصحي ووسائل تحسينه",
+          "أهمية التركيز في الدراسة",
+          "تنظيم الوقت قبل الاختبارات"
+        ],
+        correct: 1,
+        explanation: `
+          العنوان يجمع جانبي النص:
+          فوائد النوم، والوسائل التي تساعد على تحسينه.
+        `
+      },
+
+      {
+        title: "التلخيص",
+        instruction: "اختاري العبارة الأقصر التي تحافظ على المعنى الأساسي.",
+        passage: `
+          تتكون المكتبة الرقمية من مصادر متنوعة يمكن الوصول إليها
+          في أي وقت ومن أماكن مختلفة،
+          وتتيح للطالب البحث السريع وحفظ المراجع،
+          لكنها تتطلب حسن اختيار المصادر وتوثيق المعلومات.
+        `,
+        question: "أي الملخصات الآتية أدق؟",
+        options: [
+          "تتيح المكتبة الرقمية الوصول السريع إلى مصادر متنوعة، مع ضرورة التحقق منها وتوثيقها.",
+          "المكتبة الرقمية أفضل من جميع المكتبات التقليدية ولا تحتاج إلى تنظيم.",
+          "يستخدم الطلاب المكتبة الرقمية لحفظ المراجع فقط.",
+          "تضم المكتبة الرقمية مصادر كثيرة يصعب الوصول إليها."
+        ],
+        correct: 0,
+        explanation: `
+          هذا الملخص جمع المزايا والشرط المهم المذكور في النص،
+          دون حذف الفكرة الأساسية أو إضافة حكم غير موجود.
+        `
+      },
+
+      {
+        title: "قوة الدليل",
+        instruction: "اختاري الدليل الأكثر قدرة على دعم الادعاء.",
+        passage: `
+          ادعت إحدى الشركات أن تطبيقها التعليمي
+          يؤدي إلى تحسين التحصيل الدراسي لدى جميع المستخدمين.
+        `,
+        question: "أي الأدلة الآتية أقوى للتحقق من هذا الادعاء؟",
+        options: [
+          "إعلان جذاب نشرته الشركة عن التطبيق.",
+          "تعليقات مختارة لعدد من المستخدمين.",
+          "دراسة محايدة تقارن نتائج مجموعتين قبل الاستخدام وبعده.",
+          "ارتفاع عدد مرات تنزيل التطبيق."
+        ],
+        correct: 2,
+        explanation: `
+          الدراسة المحايدة المقارنة تقدم دليلًا قابلًا للقياس،
+          بينما الإعلان والتعليقات وعدد التنزيلات
+          لا تثبت وحدها تحسن التحصيل.
+        `
+      },
+
+      {
+        title: "الإجابة الأدق",
+        instruction: "قارني بين قوة الأسلوب وقوة الدليل.",
+        passage: `
+          جاء في إعلان عن برنامج تدريبي:
+          «هذا البرنامج المذهل هو الطريق الوحيد إلى التفوق،
+          وسيجعل كل متدرب عبقريًا خلال أيام قليلة.
+          لا تضيع فرصتك التي لن تتكرر أبدًا!»
+        `,
+        question: "ما الحكم الأدق على لغة الإعلان؟",
+        options: [
+          "لغة علمية محايدة تعرض نتائج دقيقة.",
+          "لغة مؤثرة تستخدم المبالغة والتعميم دون دليل كافٍ.",
+          "لغة وصفية لا تحاول التأثير في القارئ.",
+          "لغة تاريخية توثق تجربة سابقة."
+        ],
+        correct: 1,
+        explanation: `
+          الإعلان يستخدم ألفاظًا مطلقة مثل:
+          «الوحيد» و«كل متدرب» و«خلال أيام»،
+          وهي مبالغات لا يصاحبها دليل قابل للتحقق.
+        `
+      },
+            {
+        title: "الفكرة الضمنية",
+        instruction: "استنتجي المعنى الذي يلمح إليه النص دون أن يصرح به.",
+        passage: `
+          ظل خالد يؤجل إعداد مشروعه حتى اليوم الأخير،
+          ثم اضطر إلى إنجازه على عجل،
+          ولم يجد وقتًا كافيًا للمراجعة أو التعديل.
+        `,
+        question: "ما الفكرة الضمنية في النص؟",
+        options: [
+          "المشروعات المدرسية تحتاج إلى أجهزة حديثة.",
+          "التأجيل قد يؤدي إلى ضعف جودة العمل.",
+          "المراجعة ليست مهمة إذا كان الوقت قصيرًا.",
+          "إنجاز المشروع في يوم واحد أمر سهل."
+        ],
+        correct: 1,
+        explanation: `
+          النص يوضح أن التأجيل أدى إلى إنجاز العمل بسرعة
+          ومن دون مراجعة، وهذا يدل على أن التأجيل
+          قد يضعف جودة النتيجة.
+        `
+      },
+
+      {
+        title: "تفسير موقف",
+        instruction: "اختاري التفسير الأكثر اتساقًا مع أحداث النص.",
+        passage: `
+          لاحظت المعلمة أن إحدى الطالبات لا تشارك في النقاش،
+          لكنها تقدم إجابات دقيقة في الأنشطة الكتابية،
+          فبدأت تمنحها وقتًا أطول للتفكير قبل طلب الإجابة.
+        `,
+        question: "لماذا غيّرت المعلمة أسلوبها؟",
+        options: [
+          "لأن الطالبة لا تفهم الدروس.",
+          "لأن الطالبة تحتاج إلى وقت للتفكير قبل التعبير الشفهي.",
+          "لأن الأنشطة الكتابية أسهل من جميع الأنشطة.",
+          "لأن المعلمة تريد تقليل مشاركة الطالبات."
+        ],
+        correct: 1,
+        explanation: `
+          دقة إجابات الطالبة الكتابية تدل على الفهم،
+          وعدم مشاركتها الشفهية قد يكون مرتبطًا بحاجتها
+          إلى وقت أطول للتفكير.
+        `
+      },
+
+      {
+        title: "تمييز السبب المباشر",
+        instruction: "اختاري السبب الذي يفسر النتيجة المذكورة بدقة.",
+        passage: `
+          انخفض استهلاك الماء في المدرسة بعد تركيب صنابير موفرة،
+          وتنفيذ حملة توعوية،
+          ومتابعة التسربات وإصلاحها بسرعة.
+        `,
+        question: "ما السبب الأوضح لانخفاض الاستهلاك؟",
+        options: [
+          "زيادة عدد الطالبات في المدرسة.",
+          "تنفيذ مجموعة من الإجراءات العملية والتوعوية.",
+          "تغيير أوقات الدوام المدرسي.",
+          "استخدام الماء في الأنشطة فقط."
+        ],
+        correct: 1,
+        explanation: `
+          الانخفاض نتج عن اجتماع أكثر من إجراء:
+          أدوات موفرة، وتوعية، وإصلاح التسربات.
+        `
+      },
+
+      {
+        title: "المقارنة بين نصين",
+        instruction: "حددي وجه الاتفاق بين الموقفين.",
+        passage: `
+          النص الأول: يراجع الطالب مصادره قبل كتابة البحث.
+
+          النص الثاني: تتحقق الصحفية من أكثر من مصدر قبل نشر الخبر.
+        `,
+        question: "ما وجه الاتفاق بين النصين؟",
+        options: [
+          "كلاهما يرفض استخدام المصادر الإلكترونية.",
+          "كلاهما يعتمد على التحقق من المعلومات قبل عرضها.",
+          "كلاهما يكتب للغرض نفسه.",
+          "كلاهما يستخدم مصدرًا واحدًا فقط."
+        ],
+        correct: 1,
+        explanation: `
+          الموقفان يشتركان في التحقق من المعلومات
+          والرجوع إلى المصادر قبل تقديم المحتوى.
+        `
+      },
+
+      {
+        title: "تقويم الحجة",
+        instruction: "اختاري الحكم الأدق على الحجة.",
+        passage: `
+          قال أحدهم:
+          «هذا الكتاب هو الأفضل؛ لأن جميع أصدقائي أعجبوا به».
+        `,
+        question: "ما المشكلة في هذه الحجة؟",
+        options: [
+          "تعتمد على رأي مجموعة محدودة ولا تقدم دليلًا موضوعيًا.",
+          "تستخدم معلومات علمية كثيرة يصعب فهمها.",
+          "تقارن الكتاب بكتب أخرى مقارنة دقيقة.",
+          "تعرض نتائج دراسة موثوقة."
+        ],
+        correct: 0,
+        explanation: `
+          إعجاب الأصدقاء لا يكفي لإثبات أن الكتاب هو الأفضل؛
+          لأنه رأي محدود وليس دليلًا موضوعيًا عامًا.
+        `
+      },
+
+      {
+        title: "التسلسل المنطقي",
+        instruction: "اختاري الترتيب الأكثر منطقية للأفكار.",
+        passage: `
+          بدأت المدرسة مشروعًا للقراءة،
+          ثم خصصت وقتًا أسبوعيًا للطالبات،
+          وبعد ذلك نظمت معرضًا لأفضل المراجعات،
+          فازداد الإقبال على استعارة الكتب.
+        `,
+        question: "ما النتيجة النهائية للأحداث؟",
+        options: [
+          "تخصيص وقت أسبوعي للقراءة.",
+          "تنظيم معرض للمراجعات.",
+          "زيادة استعارة الكتب.",
+          "بدء مشروع القراءة."
+        ],
+        correct: 2,
+        explanation: `
+          تسلسل الأحداث ينتهي بزيادة الإقبال على استعارة الكتب،
+          وهي النتيجة النهائية للمشروع.
+        `
+      },
+
+      {
+        title: "اختيار الدليل الأنسب",
+        instruction: "اختاري العبارة التي تدعم الفكرة الرئيسة مباشرة.",
+        passage: `
+          القراءة المنتظمة تساعد على نمو الثروة اللغوية.
+        `,
+        question: "أي الأدلة الآتية يدعم الفكرة بصورة أقوى؟",
+        options: [
+          "يحب بعض الطلاب زيارة المكتبات في العطلات.",
+          "أظهرت متابعة الطلاب أن كثرة القراءة زادت قدرتهم على فهم الكلمات الجديدة.",
+          "تحتوي بعض الكتب على صور ملونة.",
+          "تختلف أوقات القراءة من شخص إلى آخر."
+        ],
+        correct: 1,
+        explanation: `
+          هذا الدليل يربط القراءة مباشرة
+          بزيادة القدرة على فهم الكلمات الجديدة،
+          ولذلك فهو الأقوى دعمًا للفكرة.
+        `
+      },
+
+      {
+        title: "التحيز في النص",
+        instruction: "حددي العبارة التي تكشف عن تحيز واضح.",
+        passage: `
+          كتب صاحب متجر:
+          «منتجاتنا هي الخيار المثالي لكل الناس،
+          ولا يمكن لأي متجر آخر أن يقدم جودة قريبة منها».
+        `,
+        question: "أي وصف أدق للعبارة؟",
+        options: [
+          "معلومة محايدة يمكن التحقق منها بسهولة.",
+          "رأي متحيز يستخدم التعميم والمبالغة.",
+          "وصف تاريخي لتطور المتجر.",
+          "مقارنة علمية قائمة على نتائج منشورة."
+        ],
+        correct: 1,
+        explanation: `
+          العبارة منحازة للمتجر،
+          وتستخدم تعميمًا مطلقًا مثل «لكل الناس»
+          و«لا يمكن لأي متجر آخر».
+        `
+      },
+
+      {
+        title: "الاستدلال من التفاصيل",
+        instruction: "اربطي التفاصيل بالنتيجة الأكثر منطقية.",
+        passage: `
+          حملت سارة مظلتها،
+          وارتدت معطفًا خفيفًا،
+          وأغلقت نوافذ المنزل قبل خروجها.
+        `,
+        question: "ما الذي يمكن استنتاجه؟",
+        options: [
+          "الجو شديد الحرارة.",
+          "هناك احتمال لسقوط المطر.",
+          "سارة ذاهبة إلى المدرسة لأول مرة.",
+          "المنزل يحتاج إلى تنظيف."
+        ],
+        correct: 1,
+        explanation: `
+          المظلة والمعطف وإغلاق النوافذ
+          كلها قرائن تدل على احتمال المطر.
+        `
+      },
+
+      {
+        title: "الحكم النقدي",
+        instruction: "اختاري الحكم الأكثر توازنًا ودقة.",
+        passage: `
+          يقترح أحد الطلاب إلغاء جميع الواجبات المنزلية؛
+          لأنها تسبب ضغطًا لبعض الطلاب.
+        `,
+        question: "ما الحكم النقدي الأدق؟",
+        options: [
+          "الاقتراح صحيح تمامًا لأن كل الواجبات ضارة.",
+          "الاقتراح ضعيف لأنه يرفض فكرة الواجبات كليًا دون بحث بدائل أو تنظيمها.",
+          "الاقتراح صحيح لأن الطلاب لا يحتاجون إلى مراجعة.",
+          "الاقتراح غير مهم ولا يستحق المناقشة."
+        ],
+        correct: 1,
+        explanation: `
+          وجود ضغط لدى بعض الطلاب لا يبرر إلغاء الواجبات كلها؛
+          والأدق بحث حجم الواجبات ونوعها وتنظيمها.
+        `
+      }
+    ];
+        const quizScreen =
+      document.getElementById("quizScreen");
+
+    const resultScreen =
+      document.getElementById("resultScreen");
+
+    const questionNumber =
+      document.getElementById("questionNumber");
+
+    const questionCounter =
+      document.getElementById("questionCounter");
+
+    const questionTitle =
+      document.getElementById("questionTitle");
+
+    const questionInstruction =
+      document.getElementById("questionInstruction");
+
+    const passageCard =
+      document.getElementById("passageCard");
+
+    const answersContainer =
+      document.getElementById("answersContainer");
+
+    const feedback =
+      document.getElementById("feedback");
+
+    const previousBtn =
+      document.getElementById("previousBtn");
+
+    const nextBtn =
+      document.getElementById("nextBtn");
+
+    const liveScore =
+      document.getElementById("liveScore");
+
+    const progressBar =
+      document.getElementById("progressBar");
+
+    const soundBtn =
+      document.getElementById("soundBtn");
+
+    const resultIcon =
+      document.getElementById("resultIcon");
+
+    const resultTitle =
+      document.getElementById("resultTitle");
+
+    const resultScore =
+      document.getElementById("resultScore");
+
+    const resultMessage =
+      document.getElementById("resultMessage");
+
+    const quizShell =
+      document.querySelector(".quiz-shell");
+
+    const totalQuestions =
+      questions.length;
+
+    let currentQuestion = 0;
+    let score = 0;
+    let studentName = "";
+    let studentClass = "";
+
+    let soundOn =
+      localStorage.getItem("nafesSound") !== "off";
+
+    const studentAnswers =
+      new Array(totalQuestions).fill(null);
+
+    const answerWasCorrect =
+      new Array(totalQuestions).fill(false);
+
+    const extraStyle =
+      document.createElement("style");
+
+    extraStyle.textContent = `
+      .start-screen {
+        display: flex;
+        min-height: 650px;
+        flex-direction: column;
+        justify-content: center;
+        animation: appear 0.42s ease;
+      }
+
+      .start-card {
+        width: min(100%, 650px);
+        margin: auto;
+        padding: 28px;
+        text-align: center;
+        border: 4px solid var(--gold);
+        border-radius: 30px;
+        background: #fffdf4;
+      }
+
+      .start-card h2 {
+        margin: 0 0 12px;
+        color: var(--purple);
+        font-size: 34px;
+      }
+
+      .start-card p {
+        font-size: 18px;
+        line-height: 1.9;
+      }
+
+      .student-input {
+        width: 100%;
+        min-height: 58px;
+        margin: 9px 0;
+        padding: 13px 16px;
+        text-align: right;
+        color: var(--text);
+        background: white;
+        border: 2px solid #d9c8df;
+        border-radius: 16px;
+        font-family: inherit;
+        font-size: 18px;
+      }
+
+      .start-button,
+      .certificate-button,
+      .print-button {
+        min-height: 58px;
+        margin-top: 13px;
+        padding: 13px 22px;
+        color: white;
+        background: var(--purple);
+        border: 0;
+        border-radius: 17px;
+        font-family: inherit;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .print-button {
+        background: var(--green);
+      }
+
+      .input-warning {
+        display: none;
+        margin-top: 12px;
+        padding: 11px;
+        color: #812c2c;
+        background: #fff0f0;
+        border-radius: 13px;
+        font-weight: bold;
+      }
+
+      .input-warning.show {
+        display: block;
+      }
+
+      .answer-mark {
+        position: fixed;
+        z-index: 9999;
+        top: 50%;
+        left: 50%;
+        display: grid;
+        place-items: center;
+        width: 130px;
+        height: 130px;
+        transform: translate(-50%, -50%);
+        color: white;
+        border-radius: 50%;
+        font-size: 85px;
+        font-weight: bold;
+        pointer-events: none;
+        animation: markAnimation 0.75s ease forwards;
+      }
+
+      .answer-mark.correct-mark {
+        background: rgba(63, 139, 87, 0.94);
+      }
+
+      .answer-mark.wrong-mark {
+        background: rgba(190, 56, 56, 0.94);
+      }
+
+      @keyframes markAnimation {
+        0% {
+          opacity: 0;
+          transform:
+            translate(-50%, -50%)
+            scale(0.4);
+        }
+
+        35% {
+          opacity: 1;
+          transform:
+            translate(-50%, -50%)
+            scale(1.15);
+        }
+
+        100% {
+          opacity: 0;
+          transform:
+            translate(-50%, -50%)
+            scale(0.9);
+        }
+      }
+
+      .certificate {
+        display: none;
+        position: relative;
+        width: min(100%, 760px);
+        min-height: 520px;
+        margin: 25px auto 0;
+        padding: 42px 25px;
+        overflow: hidden;
+        text-align: center;
+        color: #493851;
+        background:
+          radial-gradient(
+            circle at top,
+            #fff7d4,
+            transparent 35%
+          ),
+          linear-gradient(
+            145deg,
+            #fffef8,
+            #f3e8f6
+          );
+        border: 9px double var(--gold);
+        border-radius: 25px;
+      }
+
+      .certificate.show {
+        display: block;
+      }
+
+      .certificate::before,
+      .certificate::after {
+        content: "✦";
+        position: absolute;
+        color: var(--gold);
+        font-size: 65px;
+      }
+
+      .certificate::before {
+        top: 12px;
+        right: 20px;
+      }
+
+      .certificate::after {
+        bottom: 12px;
+        left: 20px;
+      }
+
+      .certificate-logo {
+        font-size: 62px;
+      }
+
+      .certificate h2 {
+        margin: 7px 0;
+        color: var(--purple);
+        font-size: clamp(30px, 7vw, 45px);
+      }
+
+      .certificate-name {
+        margin: 17px 0;
+        color: #8a6524;
+        font-size: clamp(27px, 6vw, 40px);
+        font-weight: bold;
+      }
+
+      .certificate p {
+        margin: 9px auto;
+        max-width: 620px;
+        font-size: 19px;
+        line-height: 1.9;
+      }
+
+      .certificate-rank {
+        display: inline-block;
+        margin: 15px 0;
+        padding: 11px 20px;
+        color: white;
+        background: var(--purple);
+        border-radius: 999px;
+        font-size: 21px;
+        font-weight: bold;
+      }
+
+      .certificate-signature {
+        display: flex;
+        justify-content: space-around;
+        gap: 20px;
+        margin-top: 30px;
+        font-weight: bold;
+      }
+
+      .confetti-piece {
+        position: fixed;
+        z-index: 9998;
+        top: -40px;
+        pointer-events: none;
+        animation: confettiFall 3.2s linear forwards;
+      }
+
+      @keyframes confettiFall {
+        to {
+          transform:
+            translateY(110vh)
+            rotate(720deg);
+          opacity: 0;
+        }
+      }
+
+      @media print {
+        body * {
+          visibility: hidden;
+        }
+
+        #certificate,
+        #certificate * {
+          visibility: visible;
+        }
+
+        #certificate {
+          display: block !important;
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 100%;
+          min-height: 100vh;
+          margin: 0;
+          border-radius: 0;
+        }
+
+        .print-button,
+        .certificate-button {
+          display: none !important;
+        }
+      }
+    `;
+
+    document.head.appendChild(extraStyle);
+
+    const startScreen =
+      document.createElement("article");
+
+    startScreen.className = "start-screen";
+
+    startScreen.innerHTML = `
+      <div class="start-card">
+
+        <div style="font-size:65px;">
+          🏆
+        </div>
+
+        <h2>
+          استعدي لتحدي نافس
+        </h2>
+
+        <p>
+          اكتبي اسمكِ الرباعي وصفكِ،
+          ثم ابدئي الاختبار.
+          ستظهر لكِ الإجابة الصحيحة
+          والتفسير بعد كل سؤال.
+        </p>
+
+        <input
+          id="studentName"
+          class="student-input"
+          type="text"
+          placeholder="الاسم الرباعي"
+          autocomplete="name"
         >
 
-        <div class="score-cover"></div>
+        <input
+          id="studentClass"
+          class="student-input"
+          type="text"
+          placeholder="الصف والفصل، مثال: ثالث متوسط أ"
+        >
 
-        <div id="certName" class="cert-line cert-name"></div>
-        <div id="certChallenge" class="cert-line cert-challenge"></div>
-        <div id="certScore" class="cert-line cert-score"></div>
-        <div id="certPhrase" class="cert-line cert-phrase"></div>
+        <div
+          id="inputWarning"
+          class="input-warning">
+        </div>
+
+        <button
+          id="startQuizBtn"
+          class="start-button"
+          type="button">
+          ابدئي الاختبار
+        </button>
 
       </div>
-    </div>
-
-    <div class="result-actions">
-      <button
-        id="printBtn"
-        class="btn btn-primary wide hidden"
-        onclick="window.print()"
-      >
-        🖨️ طباعة الشهادة أو حفظها PDF
-      </button>
-    </div>
-  </section>
-
-</main>
-
-<div id="confetti" class="confetti"></div>
-
-<footer>
-  جميع الحقوق محفوظة © 2026
-</footer>
-
-<script>
-
-const challenges=[
-  {id:1,icon:"🌸",title:"تحدي بوابة الجمال",subtitle:"الجمال وجودة الحياة"},
-  {id:2,icon:"📖",title:"تحدي ربيع القلوب",subtitle:"المثابرة والدعاء"},
-  {id:3,icon:"🌿",title:"تحدي سفيرة الأرض",subtitle:"المسؤولية البيئية"},
-  {id:4,icon:"⏳",title:"تحدي حارسة الدقائق",subtitle:"الوقت والأولويات"},
-  {id:5,icon:"🔍",title:"تحدي عين القارئة",subtitle:"المعنى الضمني"},
-  {id:6,icon:"⚖️",title:"تحدي الناقدة الواعية",subtitle:"الحجج والأدلة"},
-  {id:7,icon:"🎯",title:"تحدي الإجابة الأدق",subtitle:"المفاضلة بين البدائل"},
-  {id:8,icon:"💡",title:"تحدي التطبيق الذكي",subtitle:"توظيف المعرفة"},
-  {id:9,icon:"📝",title:"تحدي صانعة الملخص",subtitle:"التلخيص الدقيق"},
-  {id:10,icon:"🏆",title:"تحدي الفهم الشامل",subtitle:"مهارات متنوعة"},
-  {id:11,icon:"🌟",title:"تحدي النجمة القارئة",subtitle:"الفهم والاستنتاج"},
-  {id:12,icon:"🧭",title:"تحدي بوصلة المعنى",subtitle:"السياق والدلالة"},
-  {id:13,icon:"🧠",title:"تحدي العقل المتأمل",subtitle:"الأفكار الضمنية"},
-  {id:14,icon:"🔗",title:"تحدي روابط النص",subtitle:"العلاقات بين الأفكار"},
-  {id:15,icon:"📚",title:"تحدي قارئة النصوص",subtitle:"أنواع النصوص"},
-  {id:16,icon:"🪄",title:"تحدي سحر المفردات",subtitle:"الدلالات السياقية"},
-  {id:17,icon:"🕊️",title:"تحدي القيم الجميلة",subtitle:"القيم والمواقف"},
-  {id:18,icon:"🔮",title:"تحدي التوقع الذكي",subtitle:"التوقع والاستنتاج"},
-  {id:19,icon:"👑",title:"تحدي القارئة المتميزة",subtitle:"مستوى متقدم"},
-  {id:20,icon:"🥇",title:"التحدي الذهبي",subtitle:"الاختبار الختامي"}
-];
-
-const tests={
-    1:{
-    passage:`
-لا يُقاس جمال المدن بكثرة الأبنية الشاهقة، ولا باتساع الطرق وحده، بل بقدرتها على أن تمنح ساكنيها حياة أكثر راحة وطمأنينة. فقد تكون المدينة متطورة في ظاهرها، لكنها تفتقر إلى المساحات الخضراء، أو تضيق فيها الأرصفة بالمشاة، أو تغيب عنها الأماكن التي تجمع الناس في أجواء إنسانية آمنة.
-
-وحين أنشأت إحدى المدن حديقة صغيرة وسط حي مزدحم، لم يكن المشروع ضخمًا من حيث المساحة أو التكلفة، لكنه أحدث أثرًا تجاوز حدوده. أصبح كبار السن يجدون مكانًا مناسبًا للمشي، واجتمع الأطفال في مساحة آمنة للعب، وتحولت الجدران المحيطة إلى لوحات فنية شارك في رسمها طلاب الحي. وبعد أشهر لاحظ السكان انخفاض النفايات في المكان، وازدياد حرصهم على المحافظة على الأشجار والمقاعد.
-
-ولم يكن هذا التحول نتيجة التعليمات وحدها؛ بل لأن السكان شعروا أن المكان أصبح جزءًا منهم، وأن المحافظة عليه حماية لراحتهم وصورتهم أمام الآخرين. فالجمال حين يكون مشتركًا لا يبقى منظرًا تتأمله العيون، بل يتحول إلى مسؤولية وسلوك.
-
-ومع ذلك، فإن تجميل المكان لا يعني إخفاء مشكلاته بالألوان والزينة؛ فالمدينة الجميلة بحق هي التي تعالج أسباب التلوث، وتوفر خدمات عادلة، وتحترم احتياجات جميع فئات المجتمع. ولذلك فإن الجمال الحقيقي يجمع بين حسن المظهر وجودة الحياة، ولا يكتمل أحدهما من دون الآخر.
-    `,
-
-    questions:[
-      {
-        skill:"الدلالة السياقية",
-        q:"يدل السياق على أن معنى كلمة «تفتقر» هو:",
-        a:[
-          "تبحث عن الشيء",
-          "ينقصها الشيء",
-          "تتخلى عن الشيء",
-          "تستبدل الشيء"
-        ],
-        c:1,
-        e:"وردت الكلمة في وصف مدينة لا تتوافر فيها مساحات خضراء؛ فالمقصود ينقصها الشيء."
-      },
-      {
-        skill:"الفكرة الرئيسة",
-        q:"أي العبارات الآتية تمثل الفكرة الرئيسة للنص بصورة أدق؟",
-        a:[
-          "الحدائق الصغيرة أكثر فائدة من المشروعات الكبرى",
-          "مشاركة الطلاب هي الوسيلة الأهم لتجميل المدن",
-          "الجمال الحضري الحقيقي يجمع بين حسن المكان وجودة حياة الإنسان",
-          "نظافة الأحياء تعتمد على كثرة التعليمات"
-        ],
-        c:2,
-        e:"النص يربط الجمال بالمظهر والخدمات والراحة والمسؤولية، وليس بالزينة وحدها."
-      },
-      {
-        skill:"الاستنتاج",
-        q:"أي النتائج الآتية لم تُذكر مباشرة، ويمكن استنتاجها من تجربة الحديقة؟",
-        a:[
-          "زيادة شعور السكان بالانتماء إلى المكان",
-          "تحول الحديقة إلى أكبر مشروع في المدينة",
-          "توقف الأطفال عن اللعب خارج الحديقة نهائيًا",
-          "استغناء الحي عن جميع الخدمات الأخرى"
-        ],
-        c:0,
-        e:"ازدياد حرص السكان على المكان يدل ضمنيًا على نمو شعورهم بالانتماء إليه."
-      },
-      {
-        skill:"العلاقات بين الأفكار",
-        q:"العلاقة بين شعور السكان بأن المكان جزء منهم ومحافظتهم عليه هي:",
-        a:[
-          "مقارنة بين موقفين",
-          "تفصيل بعد إجمال",
-          "سبب ونتيجة",
-          "تضاد بين فكرتين"
-        ],
-        c:2,
-        e:"شعورهم بالانتماء كان سببًا في حرصهم على الحديقة."
-      },
-      {
-        skill:"غرض الفقرة",
-        q:"ما الغرض الرئيس من الفقرة الأخيرة؟",
-        a:[
-          "إثبات أن الزينة لا قيمة لها مطلقًا",
-          "توضيح أن الجمال لا يكتمل دون معالجة المشكلات وتحسين الحياة",
-          "الدعوة إلى إلغاء مشروعات التجميل",
-          "المقارنة بين المدن القديمة والحديثة"
-        ],
-        c:1,
-        e:"الفقرة تضع معيارًا أعمق للجمال يتجاوز المظهر الخارجي."
-      },
-      {
-        skill:"تقييم الأدلة",
-        q:"أي الأدلة الآتية أقوى في إثبات أن المشروع أثّر في سلوك السكان؟",
-        a:[
-          "وجود الحديقة في حي مزدحم",
-          "صغر مساحة المشروع وقلة تكلفته",
-          "مشاركة الطلاب في رسم الجدران",
-          "انخفاض النفايات وازدياد المحافظة على الأشجار والمقاعد"
-        ],
-        c:3,
-        e:"تغير السلوك يظهر بصورة مباشرة في النظافة والمحافظة على الممتلكات."
-      },
-      {
-        skill:"الحقيقة والرأي",
-        q:"أي العبارات الآتية تمثل رأيًا أكثر من كونها حقيقة قابلة للتحقق؟",
-        a:[
-          "شارك طلاب الحي في رسم الجدران",
-          "كانت الحديقة أجمل مشروعات المدينة",
-          "انخفضت النفايات بعد إنشاء الحديقة",
-          "خُصصت مساحة للأطفال وكبار السن"
-        ],
-        c:1,
-        e:"وصف الحديقة بأنها الأجمل حكم شخصي يختلف من شخص إلى آخر."
-      },
-      {
-        skill:"التطبيق",
-        q:"أي المواقف الآتية يطبق فكرة النص بصورة أدق؟",
-        a:[
-          "طلاء واجهة المدرسة مع ترك مرافقها المتضررة",
-          "شراء زينة كثيرة مع إهمال النظافة اليومية",
-          "تحسين فناء المدرسة ومشاركة الطالبات في المحافظة عليه",
-          "وضع لوحات جميلة تمنع الطالبات من استخدام المكان"
-        ],
-        c:2,
-        e:"هذا الموقف يجمع بين جمال المكان وجودة استخدامه والمسؤولية المشتركة."
-      },
-      {
-        skill:"موقف الكاتب",
-        q:"أي العبارات الآتية أقرب إلى موقف الكاتب؟",
-        a:[
-          "جمال المكان الحقيقي يظهر في أثره على الإنسان وسلوكه",
-          "جمال المكان أهم من عدالة الخدمات",
-          "التعليمات الصارمة وحدها تغير سلوك الناس",
-          "المشروعات الصغيرة لا تحدث أثرًا مهمًا"
-        ],
-        c:0,
-        e:"النص يربط الجمال بالراحة والانتماء والمسؤولية وجودة الحياة."
-      },
-      {
-        skill:"التلخيص",
-        q:"أي العبارات الآتية تمثل أدق تلخيص للنص؟",
-        a:[
-          "إنشاء الحدائق هو الحل الوحيد لمشكلات المدن",
-          "مشاركة السكان في الرسم أهم من معالجة التلوث",
-          "المدن الحديثة لا تحتاج إلا إلى توسيع الطرق",
-          "الجمال الحضري بيئة مريحة وخدمات عادلة ومسؤولية مشتركة"
-        ],
-        c:3,
-        e:"هذا الخيار يجمع الفكرة العامة والتجربة والنتيجة ومعيار الجمال الحقيقي."
-      }
-    ]
-  },
-
-  2:{
-    passage:`
-كان سالم مولعًا بالقراءة، لكنه كلما حاول حفظ ما يقرأ شعر أن المعاني تتبدد من ذهنه سريعًا. ظن في البداية أن ضعف الذاكرة أمر ثابت لا يمكن تغييره، فصار يقرأ النصوص مرات كثيرة دون خطة، ثم يغلق الكتاب وهو أكثر إحباطًا.
-
-لاحظت أمه تغيره، فسألته عن سبب انصرافه عن كتبه، فشرح لها ما يعانيه. لم تقدم له حلًا جاهزًا، بل طلبت منه أن يصف طريقته في القراءة. وحين أخبرها أنه يكرر النص كاملًا، قالت: لعل المشكلة ليست في قدرتك، بل في الطريقة التي تستخدمها.
-
-بدأ سالم يقسم النص إلى أفكار، ويضع عنوانًا لكل فقرة، ويربط المعلومة الجديدة بما يعرفه سابقًا، ثم يشرحها بصوته كما لو كان يعلمها لغيره. وفي الأيام الأولى لم يشعر بتغير كبير، لكنه واصل التدريب. وبعد أسابيع أصبح يتذكر الأفكار ويستدعي الأدلة التي تدعمها، ولم يعد الحفظ عنده ترديدًا للكلمات، بل فهمًا للعلاقات بينها.
-
-أدرك سالم أن النجاح لا يأتي دائمًا من زيادة الجهد نفسه، بل من مراجعة الطريقة، وأن طلب المساعدة لا يدل على العجز، بل على وعي الإنسان بحاجته إلى التعلم.
-    `,
-
-    questions:[
-      {
-        skill:"الدلالة السياقية",
-        q:"يدل السياق على أن معنى «تتبدد» هو:",
-        a:[
-          "تترابط",
-          "تتكرر",
-          "تتلاشى",
-          "تتعمق"
-        ],
-        c:2,
-        e:"كان سالم يفقد المعاني سريعًا؛ فالمقصود أنها تتلاشى من ذهنه."
-      },
-      {
-        skill:"تحديد المشكلة",
-        q:"ما المشكلة الحقيقية التي اكتشفتها الأم في طريقة سالم؟",
-        a:[
-          "قلة عدد الكتب التي يقرأها",
-          "اعتماده على التكرار دون تنظيم أو فهم",
-          "ضعف قدرته على القراءة الجهرية",
-          "عدم رغبته في التعلم"
-        ],
-        c:1,
-        e:"النص يوضح أن المشكلة كانت في الطريقة، لا في القدرة أو الرغبة."
-      },
-      {
-        skill:"الاستنتاج",
-        q:"أي الصفات الآتية يمكن استنتاجها من موقف الأم؟",
-        a:[
-          "الحكمة وحسن التشخيص",
-          "التردد في اتخاذ القرار",
-          "الاعتماد على الحلول السريعة",
-          "ضعف الثقة بقدرات سالم"
-        ],
-        c:0,
-        e:"سألت عن الطريقة قبل تقديم الحل، فشخصت المشكلة بوعي."
-      },
-      {
-        skill:"العلاقات بين الأفكار",
-        q:"العلاقة بين تقسيم النص إلى أفكار وتحسن تذكر سالم هي:",
-        a:[
-          "مقارنة",
-          "سبب ونتيجة",
-          "ترادف",
-          "تضاد"
-        ],
-        c:1,
-        e:"تنظيم القراءة وفهم العلاقات أديا إلى تحسن التذكر."
-      },
-      {
-        skill:"المعنى الضمني",
-        q:"ما المعنى الضمني لعبارة: «لم يعد الحفظ عنده ترديدًا للكلمات»؟",
-        a:[
-          "توقف سالم عن حفظ النصوص",
-          "أصبح يقرأ النص مرة واحدة فقط",
-          "صار يعتمد على الفهم بدل الحفظ الآلي",
-          "أصبح يرفض استخدام ذاكرته"
-        ],
-        c:2,
-        e:"المقصود انتقاله من التكرار الآلي إلى فهم المعاني والعلاقات."
-      },
-      {
-        skill:"تقييم التصرف",
-        q:"لماذا كان استمرار سالم في التدريب مهمًا؟",
-        a:[
-          "لأن نتائج الطريقة الجديدة احتاجت وقتًا حتى تظهر",
-          "لأن أمه كانت تختبر صبره فقط",
-          "لأن النصوص كانت تزداد سهولة",
-          "لأنه لم يجد طريقة أخرى"
-        ],
-        c:0,
-        e:"ذكر النص أنه لم يشعر بتغير كبير في البداية، ثم ظهرت النتائج بعد أسابيع."
-      },
-      {
-        skill:"القيم والاتجاهات",
-        q:"أي القيم الآتية يبرزها النص بصورة أوضح؟",
-        a:[
-          "السرعة في إنجاز العمل",
-          "الاعتماد على الذاكرة وحدها",
-          "إخفاء الصعوبات عن الآخرين",
-          "مراجعة الطريقة والاستفادة من التوجيه"
-        ],
-        c:3,
-        e:"النص يبين أهمية تغيير الأسلوب وطلب المساعدة والتعلم من الخبرة."
-      },
-      {
-        skill:"التطبيق",
-        q:"أي المواقف الآتية يمثل تطبيقًا دقيقًا لفكرة النص؟",
-        a:[
-          "طالبة تكرر الإجابة الخاطئة بالطريقة نفسها",
-          "طالبة تغير استراتيجية مذاكرتها بعد تحليل أخطائها",
-          "طالبة تترك المادة لأنها لم تنجح من أول مرة",
-          "طالبة تحفظ الكلمات دون فهم"
-        ],
-        c:1,
-        e:"تغيير الاستراتيجية بعد تحليل المشكلة يطابق تجربة سالم."
-      },
-      {
-        skill:"غرض الكاتب",
-        q:"ما الغرض الرئيس من النص؟",
-        a:[
-          "إثبات أن الذاكرة لا تتغير",
-          "الدعوة إلى ترك الحفظ نهائيًا",
-          "بيان أثر الاستراتيجية المناسبة والمثابرة في التعلم",
-          "المقارنة بين القراءة الصامتة والجهرية"
-        ],
-        c:2,
-        e:"النص يوضح أن تحسين الطريقة مع الاستمرار يؤدي إلى نتائج أفضل."
-      },
-      {
-        skill:"التلخيص",
-        q:"أي العبارات الآتية تمثل أدق تلخيص للنص؟",
-        a:[
-          "تغلب سالم على صعوبة التذكر بتغيير طريقة قراءته والاستمرار عليها",
-          "نجح سالم لأن أمه حفظت النصوص معه",
-          "ضعف الذاكرة مشكلة لا يمكن علاجها",
-          "التكرار وحده أفضل طريقة للتعلم"
-        ],
-        c:0,
-        e:"يلخص هذا الخيار المشكلة والتوجيه والتغيير والنتيجة."
-      }
-    ]
-  },
-
-  3:{
-    passage:`
-تتحدث التقارير البيئية كثيرًا عن النفايات البلاستيكية، غير أن المشكلة لا تبدأ عند لحظة رمي العبوة فقط، بل قبل ذلك بكثير؛ حين يشتري الإنسان أشياء لا يحتاج إليها، أو يفضل المنتجات ذات التغليف المفرط، أو يستخدم الأداة الواحدة مرة ثم يتخلص منها.
-
-وفي إحدى المدارس لاحظ فريق البيئة كثرة الأكواب البلاستيكية بعد الفسحة، فاقترح بعض الطالبات منع بيع المشروبات نهائيًا، بينما اقترحت أخريات توزيع منشورات توعوية. لكن الفريق قرر أولًا أن يجمع معلومات دقيقة: أحصى عدد الأكواب خلال أسبوع، وسأل الطالبات عن أسباب استخدامها، وقارن بين تكلفة الأكواب ذات الاستخدام الواحد والعبوات القابلة لإعادة الاستخدام.
-
-أظهرت النتائج أن كثيرًا من الطالبات لم يرفضن البديل، لكنهن لم يجدن مكانًا مناسبًا لغسل العبوات، كما أن بعضهن اعتقدن أن العبوات القابلة للاستخدام المتكرر أكثر كلفة، مع أن الحساب على مدى فصل دراسي أثبت عكس ذلك.
-
-بناء على هذه البيانات، وفرت المدرسة نقطة لتنظيف العبوات، وقدمت خصمًا لمن تستخدم عبوتها الخاصة، ثم تابعت كمية النفايات شهريًا. وبعد ثلاثة أشهر انخفض عدد الأكواب بدرجة ملحوظة.
-
-تكشف التجربة أن الحل البيئي الناجح لا يقوم على الحماس وحده، بل على فهم أسباب السلوك، وجمع الأدلة، وتصميم بديل يسهل على الناس الالتزام به.
-    `,
-
-    questions:[
-      {
-        skill:"الفكرة الرئيسة",
-        q:"أي العبارات الآتية تمثل الفكرة الرئيسة للنص؟",
-        a:[
-          "المشروبات هي السبب الرئيس في التلوث",
-          "الحلول البيئية الفعالة تبنى على البيانات وفهم السلوك",
-          "المنشورات التوعوية لا تحقق أي فائدة",
-          "منع المنتجات هو الحل الأسرع دائمًا"
-        ],
-        c:1,
-        e:"التجربة أثبتت أن فهم الأسباب وتوفير البديل المناسب أهم من الحماس وحده."
-      },
-      {
-        skill:"الدلالة السياقية",
-        q:"المقصود بعبارة «التغليف المفرط» هو:",
-        a:[
-          "استخدام تغليف يفوق حاجة المنتج",
-          "إعادة استخدام مواد التغليف",
-          "اختيار مواد يسهل تدويرها",
-          "تقليل حجم العبوة"
-        ],
-        c:0,
-        e:"المفرط يعني الزائد عن الحاجة."
-      },
-      {
-        skill:"تقييم المقترحات",
-        q:"لماذا لم يعتمد الفريق اقتراح منع بيع المشروبات مباشرة؟",
-        a:[
-          "لأن المنع غير مسموح في المدارس",
-          "لأنه أراد تأجيل المشكلة",
-          "لأنه احتاج إلى فهم الأسباب قبل اختيار الحل",
-          "لأن الطالبات رفضن المشاركة"
-        ],
-        c:2,
-        e:"بدأ الفريق بجمع المعلومات حتى يكون الحل مناسبًا لأسباب السلوك."
-      },
-      {
-        skill:"السبب والنتيجة",
-        q:"ما السبب الأبرز لاستمرار بعض الطالبات في استخدام الأكواب البلاستيكية؟",
-        a:[
-          "عدم اهتمامهن بالبيئة مطلقًا",
-          "غياب التوعية في جميع المواد",
-          "ارتفاع سعر المشروبات",
-          "عدم توافر مكان مناسب لغسل العبوات"
-        ],
-        c:3,
-        e:"أظهرت البيانات أن عدم وجود مكان للغسل كان عائقًا عمليًا."
-      },
-      {
-        skill:"الاستنتاج",
-        q:"ماذا يمكن استنتاجه من تقديم خصم لمن تستخدم عبوتها الخاصة؟",
-        a:[
-          "أن الحوافز قد تساعد على تغيير السلوك",
-          "أن جميع الطالبات لا يستجبن إلا للمال",
-          "أن المدرسة توقفت عن الاهتمام بالنظافة",
-          "أن العبوات المتكررة أكثر كلفة"
-        ],
-        c:0,
-        e:"الخصم حافز يدعم السلوك المرغوب ويسهّل تبنيه."
-      },
-      {
-        skill:"تقييم الأدلة",
-        q:"أي الأدلة الآتية كان أكثر أهمية في تصحيح اعتقاد الطالبات بشأن التكلفة؟",
-        a:[
-          "رأي فريق البيئة",
-          "عدد المنشورات الموزعة",
-          "المقارنة الحسابية على مدى فصل دراسي",
-          "انخفاض عدد الأكواب بعد ثلاثة أشهر"
-        ],
-        c:2,
-        e:"الحساب الممتد أثبت أن العبوات القابلة لإعادة الاستخدام أوفر."
-      },
-      {
-        skill:"التسلسل",
-        q:"أي الخطوات الآتية جاءت مباشرة قبل تنفيذ الحل؟",
-        a:[
-          "متابعة كمية النفايات شهريًا",
-          "جمع البيانات وتحليل أسباب الاستخدام",
-          "انخفاض عدد الأكواب",
-          "تقديم النتائج بعد ثلاثة أشهر"
-        ],
-        c:1,
-        e:"جُمعت البيانات وحُللت أولًا، ثم صُمم الحل ونُفذ."
-      },
-      {
-        skill:"الحقيقة والرأي",
-        q:"أي العبارات الآتية تمثل رأيًا لا تدعمه بيانات كافية في النص؟",
-        a:[
-          "انخفض عدد الأكواب بعد ثلاثة أشهر",
-          "أُنشئت نقطة لتنظيف العبوات",
-          "الحل الذي نفذته المدرسة هو أفضل حل لجميع المدارس",
-          "قورنت تكلفة نوعين من العبوات"
-        ],
-        c:2,
-        e:"نجاح الحل في مدرسة واحدة لا يثبت أنه الأفضل في جميع المدارس."
-      },
-      {
-        skill:"التطبيق",
-        q:"إذا أرادت مدرسة تقليل هدر الورق، فما الإجراء الأقرب إلى منهج النص؟",
-        a:[
-          "منع الطباعة فورًا دون دراسة",
-          "لوم الطالبات في الإذاعة المدرسية",
-          "شراء أوراق جديدة بكميات أكبر",
-          "قياس الهدر ومعرفة أسبابه ثم توفير بدائل مناسبة"
-        ],
-        c:3,
-        e:"هذا الإجراء يبدأ بالبيانات وفهم السلوك قبل تصميم الحل."
-      },
-      {
-        skill:"التلخيص",
-        q:"أي العبارات الآتية تمثل أدق تلخيص للنص؟",
-        a:[
-          "أدى منع المشروبات إلى اختفاء النفايات البلاستيكية",
-          "نجحت المدرسة في تقليل الأكواب بعد دراسة الأسباب وتوفير بدائل وحوافز",
-          "كان توزيع المنشورات كافيًا لتغيير السلوك",
-          "رفضت الطالبات استخدام العبوات المتكررة"
-        ],
-        c:1,
-        e:"يلخص هذا الخيار المشكلة وجمع البيانات والحل والنتيجة."
-      }
-    ]
-  },
-
-  4:{
-    passage:`
-يظن بعض الناس أن إدارة الوقت تعني ملء اليوم بأكبر عدد ممكن من الأعمال، غير أن ازدحام الجدول لا يدل دائمًا على حسن التنظيم. فقد يقضي الإنسان ساعات طويلة في أعمال قليلة الأهمية، ثم يشعر بالتعب لأنه لم ينجز ما كان أكثر أثرًا.
-
-وتبدأ الإدارة الواعية للوقت بتحديد الأولويات، والتمييز بين ما هو عاجل وما هو مهم. فالمهمة العاجلة تتطلب استجابة قريبة، أما المهمة المهمة فقد لا تضغط على الإنسان في اللحظة نفسها، لكنها تؤثر في أهدافه البعيدة. ومن هنا يقع بعض الطلاب في خطأ تأجيل المذاكرة اليومية لأنها لا تبدو عاجلة، ثم تتحول قبل الاختبار إلى مهمة عاجلة ومربكة.
-
-وفي تجربة أجرتها مجموعة من الطالبات، سجلت كل طالبة أعمالها لمدة أسبوع، ثم صنفتها بحسب أهميتها والوقت الذي استغرقته. اكتشفت إحداهن أنها تقضي وقتًا طويلًا في التنقل بين التطبيقات أثناء إنجاز الواجب، بينما كانت تظن أن الواجب نفسه يحتاج إلى ساعات. وحين أغلقت التنبيهات وحددت وقتًا لكل مهمة، انخفض زمن الإنجاز وتحسنت جودة عملها.
-
-لا يعني ذلك أن الراحة مضيعة للوقت؛ فالراحة المخططة تحافظ على التركيز، بينما يتحول الترفيه غير المحدود إلى استنزاف خفي للوقت. ولذلك لا تُقاس جودة إدارة الوقت بعدد الأعمال المنجزة فقط، بل بمدى ارتباطها بالأهداف، وجودة تنفيذها، والتوازن بين العمل والراحة.
-    `,
-
-    questions:[
-      {
-        skill:"الفكرة الرئيسة",
-        q:"ما الفكرة الرئيسة التي يعالجها النص؟",
-        a:[
-          "إدارة الوقت تقوم على كثرة الأعمال",
-          "الراحة تعيق الإنجاز",
-          "تنظيم الوقت يعتمد على الأولويات والتركيز والتوازن",
-          "الأعمال العاجلة أهم من جميع الأعمال"
-        ],
-        c:2,
-        e:"النص يربط الإدارة الجيدة بالأولويات وجودة التنفيذ والتوازن."
-      },
-      {
-        skill:"المقارنة",
-        q:"ما الفرق بين المهمة العاجلة والمهمة المهمة وفق النص؟",
-        a:[
-          "العاجلة تحتاج استجابة قريبة، والمهمة تؤثر في الأهداف البعيدة",
-          "العاجلة طويلة دائمًا، والمهمة قصيرة",
-          "العاجلة نافعة، والمهمة غير نافعة",
-          "لا يوجد فرق بينهما"
-        ],
-        c:0,
-        e:"هذا الفرق ورد بوضوح في الفقرة الثانية."
-      },
-      {
-        skill:"الاستنتاج",
-        q:"ماذا يمكن استنتاجه من تحول المذاكرة المؤجلة إلى مهمة عاجلة؟",
-        a:[
-          "كل مهمة مهمة تكون عاجلة منذ البداية",
-          "التأجيل قد يحول العمل المنظم إلى ضغط مفاجئ",
-          "المذاكرة اليومية غير مؤثرة",
-          "الاختبارات هي سبب سوء التنظيم"
-        ],
-        c:1,
-        e:"تأجيل المهمة المهمة جعلها لاحقًا عاجلة ومربكة."
-      },
-      {
-        skill:"تفسير النتائج",
-        q:"لماذا انخفض زمن إنجاز الطالبة بعد إغلاق التنبيهات؟",
-        a:[
-          "لأن الواجب أصبح أسهل",
-          "لأنها حذفت بعض الأسئلة",
-          "لأن تقليل المشتتات حافظ على تركيزها",
-          "لأنها توقفت عن مراجعة عملها"
-        ],
-        c:2,
-        e:"التنقل بين التطبيقات كان يستهلك الوقت ويقطع التركيز."
-      },
-      {
-        skill:"الدلالة السياقية",
-        q:"يدل السياق على أن معنى «استنزاف خفي للوقت» هو:",
-        a:[
-          "استثمار منظم للوقت",
-          "ضياع تدريجي لا ينتبه إليه الإنسان",
-          "راحة قصيرة تعيد النشاط",
-          "عمل متواصل بلا توقف"
-        ],
-        c:1,
-        e:"الترفيه غير المحدود يستهلك الوقت تدريجيًا دون شعور واضح."
-      },
-      {
-        skill:"الحقيقة والرأي",
-        q:"أي العبارات الآتية تمثل حقيقة وردت في التجربة؟",
-        a:[
-          "التنبيهات أسوأ سبب لضياع الوقت لدى جميع الطلاب",
-          "كل واجب يحتاج إلى وقت قصير",
-          "الراحة المخططة أفضل من كل أنواع الترفيه",
-          "تحسنت جودة عمل الطالبة بعد تنظيم الوقت"
-        ],
-        c:3,
-        e:"هذه نتيجة محددة وردت في وصف التجربة."
-      },
-      {
-        skill:"نقد فكرة",
-        q:"أي العبارات الآتية ينتقدها الكاتب بصورة مباشرة؟",
-        a:[
-          "ازدحام الجدول دليل كافٍ على حسن التنظيم",
-          "تحديد الأولويات يساعد على الإنجاز",
-          "الراحة المخططة تحافظ على التركيز",
-          "المهام المهمة تؤثر في الأهداف"
-        ],
-        c:0,
-        e:"بدأ النص بنقد الاعتقاد أن كثرة الأعمال وحدها تعني حسن التنظيم."
-      },
-      {
-        skill:"التطبيق",
-        q:"أي خطة دراسية تنسجم مع النص بصورة أدق؟",
-        a:[
-          "تأجيل جميع المهمات إلى نهاية الأسبوع",
-          "العمل المتواصل دون راحة",
-          "تحديد الأولويات وتقليل المشتتات وتخصيص وقت للراحة",
-          "إنجاز الأعمال الأسهل فقط"
-        ],
-        c:2,
-        e:"تجمع الخطة بين الأولويات والتركيز والتوازن."
-      },
-      {
-        skill:"غرض الكاتب",
-        q:"ما غرض الكاتب من ذكر تجربة الطالبات؟",
-        a:[
-          "إثبات أن التطبيقات غير مفيدة",
-          "تقديم مثال واقعي يوضح أثر تحليل استخدام الوقت",
-          "الدعوة إلى إلغاء الواجبات",
-          "المقارنة بين المدارس"
-        ],
-        c:1,
-        e:"التجربة تدعم الفكرة العامة بمثال تطبيقي ونتيجة قابلة للملاحظة."
-      },
-      {
-        skill:"التلخيص",
-        q:"أي العبارات الآتية تمثل أدق تلخيص للنص؟",
-        a:[
-          "إدارة الوقت تعني إنجاز أك
-                    "إدارة الوقت تعني إنجاز أكبر عدد من الأعمال",
-          "الراحة مضيعة للوقت إذا كانت طويلة",
-          "المهمات العاجلة هي التي تحقق الأهداف دائمًا",
-          "الإدارة الجيدة للوقت تقوم على الأولويات وتقليل المشتتات والتوازن"
-        ],
-        c:3,
-        e:"هذا الخيار يجمع الأفكار الأساسية للنص."
-      }
-    ]
-  },
-
-  5:{
-    passage:`
-حين تقرأ العين الكلمات، لا يكون الفهم قد اكتمل بالضرورة؛ فالقارئ الماهر لا يكتفي بما تقوله الجمل صراحة، بل ينتبه إلى التفاصيل الصغيرة، ويربط بين المواقف، ويستدل بما ورد في النص على ما لم يُذكر مباشرة.
-
-دخلت مريم مكتبة المدرسة في وقت الاستراحة، فرأت كتابًا مفتوحًا على إحدى الطاولات، وبجواره أوراق مبعثرة وقلم لم يُغلق غطاؤه. نظرت حولها فلم تجد أحدًا، فرتبت الأوراق وأغلقت القلم، ثم وضعت علامة صغيرة عند الصفحة المفتوحة حتى لا يضيع موضع القراءة.
-
-وبعد دقائق عادت طالبة مسرعة، وما إن رأت الكتاب مرتبًا حتى تنفست بارتياح، وشكرت مريم. لم تسألها مريم عن سبب خروجها، ولم تحدث زميلاتها بما جرى، بل عادت إلى مقعدها وأكملت قراءتها.
-
-قد يبدو الموقف بسيطًا، لكنه يكشف أن الأخلاق تظهر أحيانًا في أفعال لا ينتظر صاحبها عليها مدحًا أو مكافأة. كما يكشف أن فهم الشخصيات لا يعتمد على الأوصاف المباشرة وحدها، بل على ما تختاره من أفعال في المواقف المختلفة.
-    `,
-
-    questions:[
-      {
-        skill:"الاستنتاج",
-        q:"أي الصفات الآتية يمكن استنتاجها عن مريم بصورة أدق؟",
-        a:[
-          "الدقة والأمانة",
-          "الجرأة والفضول",
-          "التردد والخوف",
-          "السرعة والتنافس"
-        ],
-        c:0,
-        e:"ترتيبها للأوراق وحفاظها على موضع القراءة يدلان على الدقة والأمانة."
-      },
-      {
-        skill:"المعنى الضمني",
-        q:"ما المعنى الضمني لعبارة «تنفست بارتياح»؟",
-        a:[
-          "كانت متعبة من الجري فقط",
-          "شعرت بالطمأنينة بعد أن وجدت أغراضها محفوظة",
-          "قررت مغادرة المكتبة",
-          "لم تكن تهتم بالكتاب"
-        ],
-        c:1,
-        e:"الارتياح نتج عن رؤيتها الكتاب والأوراق في حالة جيدة."
-      },
-      {
-        skill:"القرائن",
-        q:"أي القرائن الآتية أقوى في إثبات أن مريم لا تنتظر الثناء؟",
-        a:[
-          "دخولها المكتبة وقت الاستراحة",
-          "رؤيتها القلم مفتوحًا",
-          "عدم حديثها لزميلاتها بما فعلت",
-          "عودتها إلى مقعدها"
-        ],
-        c:2,
-        e:"عدم إعلانها عن موقفها يدل على أنها لم تبحث عن المدح."
-      },
-      {
-        skill:"العلاقات بين الأفكار",
-        q:"العلاقة بين ترتيب مريم للأغراض وشعور الطالبة بالارتياح هي:",
-        a:[
-          "تضاد",
-          "سبب ونتيجة",
-          "مقارنة",
-          "تفسير بعد غموض"
-        ],
-        c:1,
-        e:"حفظ الأغراض وترتيبها كان سببًا في اطمئنان صاحبتها."
-      },
-      {
-        skill:"موقف الشخصية",
-        q:"لماذا لم تسأل مريم الطالبة عن سبب خروجها؟",
-        a:[
-          "لأنها لم ترها",
-          "لأنها خافت منها",
-          "لأنها احترمت خصوصيتها واكتفت بالمساعدة",
-          "لأنها أرادت أخذ الكتاب"
-        ],
-        c:2,
-        e:"تصرفها الهادئ يدل على احترام الخصوصية."
-      },
-      {
-        skill:"الفكرة الرئيسة",
-        q:"أي العبارات الآتية تمثل الفكرة الرئيسة للنص؟",
-        a:[
-          "المكتبة أفضل مكان لقضاء الاستراحة",
-          "الأفعال والقرائن تكشف أخلاق الشخصيات ومعاني النص الضمنية",
-          "الكتب المفتوحة تتعرض للضياع",
-          "على الطالبات إغلاق الأقلام بعد استخدامها"
-        ],
-        c:1,
-        e:"النص يربط بين قراءة الموقف واستنتاج الصفات من الأفعال."
-      },
-      {
-        skill:"الحقيقة والرأي",
-        q:"أي العبارات الآتية تمثل رأيًا؟",
-        a:[
-          "وجدت مريم كتابًا مفتوحًا",
-          "عادت الطالبة مسرعة",
-          "موقف مريم أجمل موقف يمكن أن يحدث في المكتبة",
-          "وضعت مريم علامة عند الصفحة"
-        ],
-        c:2,
-        e:"وصف الموقف بأنه الأجمل حكم شخصي."
-      },
-      {
-        skill:"التطبيق",
-        q:"أي المواقف الآتية يطبق قيمة النص بصورة أدق؟",
-        a:[
-          "إعادة غرض مفقود إلى صاحبه دون انتظار مكافأة",
-          "إخبار الجميع بمساعدة زميلة",
-          "ترك الأوراق المبعثرة كما هي",
-          "فتح حقيبة زميلة لمعرفة صاحبتها"
-        ],
-        c:0,
-        e:"هذا الموقف يجمع الأمانة والعمل دون انتظار الثناء."
-      },
-      {
-        skill:"غرض الكاتب",
-        q:"ما غرض الكاتب من ذكر تفاصيل القلم والأوراق والعلامة؟",
-        a:[
-          "إطالة القصة",
-          "وصف أثاث المكتبة",
-          "توفير قرائن تساعد على فهم شخصية مريم",
-          "إثبات أن الطالبة مهملة دائمًا"
-        ],
-        c:2,
-        e:"التفاصيل الصغيرة أدلة يستنتج منها القارئ صفات الشخصية."
-      },
-      {
-        skill:"التلخيص",
-        q:"أي العبارات الآتية تمثل أدق تلخيص للنص؟",
-        a:[
-          "وجدت مريم كتابًا ثم غادرت المكتبة",
-          "تكشف الأفعال الصغيرة أخلاق الإنسان وتساعد القارئ على استنتاج المعاني",
-          "ينبغي منع ترك الكتب على الطاولات",
-          "شكرت الطالبة مريم أمام زميلاتها"
-        ],
-        c:1,
-        e:"يجمع هذا الخيار الحدث والرسالة القرائية والأخلاقية."
-      }
-    ]
-  },
-    6:{
-    passage:`
-انتشر في إحدى المنصات الرقمية مقطع يدّعي أن القراءة الورقية أفضل من القراءة الرقمية في جميع الأحوال، واستند صاحبه إلى تجربة شخصية قال فيها إنه يتذكر ما يقرؤه من الكتب أكثر مما يتذكره من الشاشة.
-
-شاهدت ليان المقطع، لكنها لم تكتفِ بالنتيجة الجاهزة. بحثت عن دراسات تقارن بين النوعين، فوجدت أن بعض النتائج تشير إلى تفوق الورق في مواقف تحتاج تركيزًا عميقًا، بينما تشير نتائج أخرى إلى أن القراءة الرقمية قد تكون أكثر فاعلية حين تتضمن أدوات للبحث والتعليق والوصول السريع إلى المصادر.
-
-كما لاحظت أن طريقة الاستخدام تؤثر في النتيجة؛ فالقراءة من شاشة تمتلئ بالتنبيهات تختلف عن القراءة من جهاز خُصص للدراسة، والكتاب الورقي الذي يُقرأ على عجل لا يضمن فهمًا أفضل.
-
-خلصت ليان إلى أن السؤال الأدق ليس: أيهما أفضل دائمًا؟ بل: أي وسيلة أنسب للهدف وطريقة الاستخدام؟ فالحكم المتوازن لا يبنى على تجربة واحدة، ولا على تعميم يتجاهل الظروف المختلفة.
-    `,
-
-    questions:[
-      {
-        skill:"تقييم الحجج",
-        q:"ما أضعف جوانب الحجة الواردة في المقطع؟",
-        a:[
-          "اعتمادها على تجربة شخصية واحدة",
-          "مقارنتها بين وسيلتين مختلفتين",
-          "تحدثها عن القراءة",
-          "إشارتها إلى التذكر"
-        ],
-        c:0,
-        e:"التجربة الفردية لا تكفي لتعميم الحكم على جميع القراء والمواقف."
-      },
-      {
-        skill:"الفكرة الرئيسة",
-        q:"أي العبارات الآتية تمثل الفكرة الرئيسة للنص؟",
-        a:[
-          "القراءة الرقمية أفضل في جميع الأحوال",
-          "القراءة الورقية تضمن الفهم دائمًا",
-          "اختيار وسيلة القراءة يعتمد على الهدف وطريقة الاستخدام",
-          "التنبيهات لا تؤثر في القراءة"
-        ],
-        c:2,
-        e:"النص يرفض التعميم ويؤكد ارتباط الفاعلية بالهدف والظروف."
-      },
-      {
-        skill:"الاستنتاج",
-        q:"ماذا يمكن استنتاجه من بحث ليان عن دراسات متعددة؟",
-        a:[
-          "أنها رفضت القراءة الورقية",
-          "أنها أرادت حكمًا قائمًا على أدلة أوسع",
-          "أنها لم تفهم المقطع",
-          "أنها فضلت الشاشة منذ البداية"
-        ],
-        c:1,
-        e:"بحثها عن مصادر متعددة يدل على رغبتها في تقييم الادعاء بموضوعية."
-      },
-      {
-        skill:"تمييز التعميم",
-        q:"أي العبارات الآتية تمثل تعميمًا غير دقيق؟",
-        a:[
-          "قد تكون القراءة الرقمية أنسب لبعض المهام",
-          "تؤثر التنبيهات في التركيز",
-          "الورق أفضل لكل قارئ وفي كل موقف",
-          "تختلف النتائج باختلاف طريقة الاستخدام"
-        ],
-        c:2,
-        e:"الحكم المطلق يتجاهل اختلاف الأهداف والقراء والظروف."
-      },
-      {
-        skill:"العلاقات بين الأفكار",
-        q:"العلاقة بين كثرة التنبيهات وضعف التركيز هي:",
-        a:[
-          "سبب ونتيجة",
-          "ترادف",
-          "مقارنة",
-          "تفصيل"
-        ],
-        c:0,
-        e:"التنبيهات سبب محتمل في تشتيت القارئ وضعف تركيزه."
-      },
-      {
-        skill:"الحقيقة والرأي",
-        q:"أي العبارات الآتية تمثل رأيًا؟",
-        a:[
-          "بحثت ليان عن دراسات",
-          "تختلف القراءة من جهاز ممتلئ بالتنبيهات",
-          "الكتاب الورقي أكثر متعة من أي وسيلة أخرى",
-          "استخدمت بعض الدراسات المقارنة بين الوسيلتين"
-        ],
-        c:2,
-        e:"المتعة حكم شخصي يختلف بين القراء."
-      },
-      {
-        skill:"موقف الكاتب",
-        q:"أي العبارات الآتية أقرب إلى موقف الكاتب؟",
-        a:[
-          "كل تجربة شخصية غير مفيدة",
-          "الحكم المتوازن يحتاج أدلة ويراعي اختلاف الظروف",
-          "الدراسات لا تصل إلى نتائج مفيدة",
-          "الوسيلة أهم من الهدف"
-        ],
-        c:1,
-        e:"النص يدعو إلى التوازن وفحص الأدلة وتجنب التعميم."
-      },
-      {
-        skill:"التطبيق",
-        q:"أي المواقف الآتية يطبق منهج ليان في التفكير؟",
-        a:[
-          "نشر خبر بعد قراءة عنوانه فقط",
-          "قبول رأي مشهور دون فحص",
-          "مقارنة مصادر متعددة قبل إصدار الحكم",
-          "رفض كل تجربة شخصية"
-        ],
-        c:2,
-        e:"مقارنة الأدلة قبل الحكم تمثل القراءة الناقدة."
-      },
-      {
-        skill:"صياغة سؤال ناقد",
-        q:"أي الأسئلة الآتية أكثر ملاءمة لتقييم الادعاء؟",
-        a:[
-          "هل صاحب المقطع مشهور؟",
-          "هل جُربت الوسيلتان في ظروف متشابهة؟",
-          "كم دقيقة استغرق المقطع؟",
-          "ما لون غلاف الكتاب؟"
-        ],
-        c:1,
-        e:"مقارنة الظروف تساعد على الحكم في قوة النتيجة."
-      },
-      {
-        skill:"التلخيص",
-        q:"أي العبارات الآتية تمثل أدق تلخيص للنص؟",
-        a:[
-          "رفضت ليان القراءة الرقمية",
-          "تثبت التجربة الشخصية أن الورق أفضل",
-          "تتحدد فاعلية وسيلة القراءة بحسب الهدف والظروف والأدلة",
-          "كل الدراسات متناقضة"
-        ],
-        c:2,
-        e:"يجمع هذا الخيار الفكرة العامة ومنهج التقييم."
-      }
-    ]
-  },
-
-  7:{
-    passage:`
-في بعض أسئلة القراءة تبدو أكثر من إجابة صحيحة للوهلة الأولى، لكن الفرق بينها يظهر عند العودة الدقيقة إلى المطلوب. فقد يكون أحد البدائل صحيحًا في ذاته، لكنه لا يجيب عن السؤال كاملًا، وقد يكون آخر قريبًا من المعنى، إلا أن لفظًا واحدًا فيه يجعله أوسع من النص أو أضيق منه.
-
-قرأت سارة نصًا عن أثر العمل التطوعي في تنمية شعور الفرد بالمسؤولية، ثم واجهت سؤالًا عن الفكرة الرئيسة. كان أحد البدائل يتحدث عن مساعدة المحتاجين، والآخر عن اكتساب الخبرة، والثالث عن أثر التطوع في الفرد والمجتمع، والرابع عن تنظيم الحملات.
-
-لاحظت سارة أن البدائل الثلاثة الأولى ترتبط بالنص، لكنها اختارت الثالث؛ لأنه يشمل المعنى العام، بينما تمثل بقية البدائل جوانب جزئية.
-
-تعلمت سارة أن الإجابة الأدق لا تُختار لأنها تبدو مألوفة، بل لأنها توافق السؤال والنص دون زيادة أو نقص.
-    `,
-
-    questions:[
-      {
-        skill:"الفكرة الرئيسة",
-        q:"ما الفكرة الرئيسة للنص؟",
-        a:[
-          "كل البدائل في الاختبار خاطئة",
-          "اختيار الإجابة الأدق يحتاج فهم المطلوب ومقارنة البدائل بالنص",
-          "البديل الأطول هو الصحيح",
-          "الأسئلة المباشرة أصعب من غيرها"
-        ],
-        c:1,
-        e:"النص يشرح طريقة المفاضلة بين البدائل المتقاربة."
-      },
-      {
-        skill:"التمييز بين العام والجزئي",
-        q:"لماذا اختارت سارة البديل الثالث؟",
-        a:[
-          "لأنه أقصر البدائل",
-          "لأنه ذكر أولًا في النص",
-          "لأنه شمل أثر التطوع في الفرد والمجتمع",
-          "لأنه تحدث عن الحملات"
-        ],
-        c:2,
-        e:"البديل الثالث أوسع وأشمل للفكرة العامة."
-      },
-      {
-        skill:"الدلالة السياقية",
-        q:"المقصود بعبارة «دون زيادة أو نقص» هو:",
-        a:[
-          "أن يطابق البديل معنى النص بدقة",
-          "أن يكون البديل قصيرًا",
-          "أن يكرر ألفاظ النص حرفيًا",
-          "أن يحذف بعض المعاني"
-        ],
-        c:0,
-        e:"المقصود ألا يضيف البديل معنى غير موجود ولا يهمل جزءًا أساسيًا."
-      },
-      {
-        skill:"تحليل البدائل",
-        q:"ما المشكلة في البديل الذي يتحدث عن مساعدة المحتاجين فقط؟",
-        a:[
-          "أنه غير مرتبط بالنص",
-          "أنه يمثل جانبًا جزئيًا لا الفكرة العامة",
-          "أنه أطول من السؤال",
-          "أنه رأي شخصي"
-        ],
-        c:1,
-        e:"مساعدة المحتاجين جزء من التطوع وليست الفكرة الأشمل."
-      },
-      {
-        skill:"الاستنتاج",
-        q:"ماذا يمكن استنتاجه عن طريقة سارة في الحل؟",
-        a:[
-          "اعتمدت على التخمين",
-          "قارنت مدى شمول كل بديل",
-          "اختارت أول إجابة مألوفة",
-          "لم تعد إلى النص"
-        ],
-        c:1,
-        e:"اختيارها يدل على تحليل البدائل ومقارنتها بالفكرة العامة."
-      },
-      {
-        skill:"التطبيق",
-        q:"إذا كان السؤال يطلب سبب حدث في النص، فأي بديل يكون أدق؟",
-        a:[
-          "بديل يذكر نتيجة الحدث",
-          "بديل يذكر تفصيلًا غير مرتبط",
-          "بديل يحدد العامل الذي أدى إلى الحدث",
-          "بديل يكرر عنوان النص"
-        ],
-        c:2,
-        e:"السبب هو العامل الذي يؤدي إلى وقوع النتيجة."
-      },
-      {
-        skill:"نقد استراتيجية",
-        q:"أي الاستراتيجيات الآتية أقل فاعلية في اختيار الإجابة الأدق؟",
-        a:[
-          "تحديد الكلمات المفتاحية في السؤال",
-          "استبعاد البدائل البعيدة",
-          "اختيار البديل الأطول دون الرجوع إلى النص",
-          "مقارنة البدائل المتقاربة"
-        ],
-        c:2,
-        e:"طول البديل ليس دليلًا على صحته."
-      },
-      {
-        skill:"المعنى الضمني",
-        q:"ما المعنى الضمني لعبارة «قد يكون البديل صحيحًا في ذاته»؟",
-        a:[
-          "كل إجابة صحيحة تصلح لكل سؤال",
-          "قد تكون المعلومة صحيحة لكنها لا تحقق المطلوب",
-          "الأسئلة لا ترتبط بالنص",
-          "البدائل الجزئية أفضل"
-        ],
-        c:1,
-        e:"صحة العبارة لا تعني أنها الإجابة المناسبة للسؤال المحدد."
-      },
-      {
-        skill:"التطبيق في موقف جديد",
-        q:"أي تصرف يمثل تطبيقًا لمهارة الإجابة الأدق؟",
-        a:[
-          "اختيار أول بديل مألوف",
-          "الاعتماد على طول الإجابة",
-          "مراجعة حدود السؤال ثم مقارنة البدائل",
-          "تجاهل الكلمات مثل: الأدق والأرجح"
-        ],
-        c:2,
-        e:"تحديد المطلوب ثم المقارنة هو أساس الاختيار الدقيق."
-      },
-      {
-        skill:"التلخيص",
-        q:"أي العبارات الآتية تمثل أدق تلخيص للنص؟",
-        a:[
-          "كل البدائل الصحيحة متساوية",
-          "الإجابة الأدق هي التي تطابق المطلوب ومعنى النص كاملًا",
-          "الفكرة الرئيسة هي أول جملة دائمًا",
-          "البدائل الجزئية أكثر دقة"
-        ],
-        c:1,
-        e:"هذا الخيار يلخص قاعدة المفاضلة بين البدائل."
-      }
-    ]
-  },
-
-  8:{
-    passage:`
-تعلمت مجموعة من الطالبات في درس العلوم أن ترشيد استهلاك الطاقة يسهم في تقليل الهدر وحماية الموارد. وبعد الدرس اقترحت المعلمة أن يطبقن الفكرة داخل المدرسة، لا أن يكتفين بترديدها.
-
-لاحظت الطالبات أن بعض أجهزة التكييف تظل تعمل في الفصول الفارغة، وأن الإضاءة تبقى مشتعلة رغم كفاية ضوء الشمس. اقترحت إحداهن كتابة عبارات توعوية، بينما اقترحت أخرى تكوين فريق يتابع الاستهلاك.
-
-قررت المجموعة الجمع بين المقترحين، لكنها أضافت خطوة أخرى: سجلت أوقات تشغيل الأجهزة خلال أسبوع، وحددت الأماكن الأكثر هدرًا، ثم وضعت خطة للتوعية والمتابعة.
-
-بعد شهر قارنت الطالبات البيانات الجديدة بالقديمة، فوجدن انخفاضًا في ساعات التشغيل غير الضرورية. وبذلك لم تعد المعرفة فكرة محفوظة، بل تحولت إلى إجراء قابل للقياس والتقويم.
-
-يوضح الموقف أن التطبيق الحقيقي لا يعني تكرار المثال الذي ورد في الدرس، بل نقل الفكرة إلى مشكلة واقعية، واقتراح حل، ومتابعة أثره.
-    `,
-
-    questions:[
-      {
-        skill:"الفكرة الرئيسة",
-        q:"ما الفكرة الرئيسة للنص؟",
-        a:[
-          "التوعية وحدها تكفي لحل كل مشكلة",
-          "التطبيق الحقيقي يحول المعرفة إلى إجراء واقعي قابل للقياس",
-          "أجهزة التكييف هي سبب الهدر الوحيد",
-          "جمع البيانات أهم من تنفيذ الحل"
-        ],
-        c:1,
-        e:"النص يربط التعلم بالتطبيق والمتابعة وقياس النتائج."
-      },
-      {
-        skill:"التسلسل",
-        q:"أي الخطوات الآتية جاءت أولًا؟",
-        a:[
-          "مقارنة البيانات الجديدة بالقديمة",
-          "وضع خطة للمتابعة",
-          "ملاحظة مظاهر الهدر",
-          "قياس انخفاض ساعات التشغيل"
-        ],
-        c:2,
-        e:"بدأت الطالبات بملاحظة المشكلة، ثم جمع البيانات ووضع الخطة."
-      },
-      {
-        skill:"تقييم الحلول",
-        q:"لماذا كان الجمع بين التوعية والمتابعة أكثر قوة؟",
-        a:[
-          "لأنه جمع بين تغيير الوعي وقياس السلوك",
-          "لأنه ألغى دور البيانات",
-          "لأنه منع استخدام الأجهزة",
-          "لأنه اعتمد على العبارات فقط"
-        ],
-        c:0,
-        e:"التوعية تؤثر في الوعي، والمتابعة تكشف أثر السلوك فعليًا."
-      },
-      {
-        skill:"الاستنتاج",
-        q:"ماذا يمكن استنتاجه من مقارنة البيانات قبل الخطة وبعدها؟",
-        a:[
-          "أن الطالبات اعتمدن على الانطباعات فقط",
-          "أنهن تحقّقن من أثر الحل بطريقة موضوعية",
-          "أن المشكلة اختفت تمامًا",
-          "أن الأجهزة لم تعد تستخدم"
-        ],
-        c:1,
-        e:"المقارنة سمحت بالحكم على نجاح الخطة بأدلة."
-      },
-      {
-        skill:"الدلالة السياقية",
-        q:"معنى «قابل للقياس والتقويم» في السياق هو:",
-        a:[
-          "يمكن ملاحظة نتائجه والحكم عليها",
-          "يصعب تطبيقه",
-          "يُحفظ دون استخدام",
-          "لا يحتاج بيانات"
-        ],
-        c:0,
-        e:"المقصود متابعة النتائج وتقييم مدى النجاح."
-      },
-      {
-        skill:"العلاقات بين الأفكار",
-        q:"العلاقة بين تسجيل أوقات التشغيل وتحديد أماكن الهدر هي:",
-        a:[
-          "سبب ونتيجة",
-          "تضاد",
-          "ترادف",
-          "مقارنة فقط"
-        ],
-        c:0,
-        e:"البيانات المسجلة ساعدت على تحديد مواضع الهدر."
-      },
-      {
-        skill:"التطبيق",
-        q:"أي المواقف الآتية يمثل تطبيقًا مشابهًا لفكرة النص؟",
-        a:[
-          "حفظ قواعد الغذاء الصحي دون تغيير العادات",
-          "قياس كمية الطعام المهدَر ثم تنفيذ خطة للحد منه",
-          "كتابة تعريف النظافة في الدفتر",
-          "ترديد فوائد الرياضة فقط"
-        ],
-        c:1,
-        e:"الموقف ينقل المعرفة إلى مشكلة واقعية مع قياس النتيجة."
-      },
-      {
-        skill:"الحقيقة والرأي",
-        q:"أي العبارات الآتية تمثل حقيقة وردت في النص؟",
-        a:[
-          "التوعية أجمل الأنشطة المدرسية",
-          "كل الطالبات يفضلن العمل الجماعي",
-          "انخفضت ساعات التشغيل غير الضرورية بعد شهر",
-          "الخطة هي الأفضل لجميع المدارس"
-        ],
-        c:2,
-        e:"هذه نتيجة محددة وردت في النص ويمكن التحقق منها."
-      },
-      {
-        skill:"غرض الكاتب",
-        q:"ما غرض الكاتب من ذكر البيانات قبل الخطة وبعدها؟",
-        a:[
-          "إطالة النص",
-          "إثبات أن الحل كان قابلًا للتقييم",
-          "إظهار صعوبة استخدام الأجهزة",
-          "مقارنة الطالبات بالمعلمات"
-        ],
-        c:1,
-        e:"البيانات توضح أن نجاح الحل لم يكن مجرد انطباع."
-      },
-      {
-        skill:"التلخيص",
-        q:"أي العبارات الآتية تمثل أدق تلخيص للنص؟",
-        a:[
-          "طبقت الطالبات مفهوم ترشيد الطاقة من خلال رصد المشكلة وتنفيذ حل وقياس أثره",
-          "أوقفت المدرسة جميع الأجهزة",
-          "كانت العبارات التوعوية هي الحل الوحيد",
-          "اكتفت الطالبات بتسجيل الملاحظات"
-        ],
-        c:0,
-        e:"يلخص هذا الخيار المشكلة والإجراء والمتابعة والنتيجة."
-      }
-    ]
-  },
-    9:{
-    passage:`
-لا يعني التلخيص اختصار النص بحذف عدد من جمله عشوائيًا، ولا إعادة كتابته بألفاظه نفسها، بل هو عملية فهم واختيار وإعادة صياغة. فالقارئ يبدأ بتحديد موضوع النص، ثم يميز أفكاره الرئيسة من التفاصيل والأمثلة، ويربط بين تلك الأفكار في عبارات موجزة تحافظ على المعنى.
-
-قرأت هدى نصًا عن أثر النوم في التحصيل الدراسي. تحدث النص عن حاجة الدماغ إلى الراحة، وأثر النوم في تثبيت المعلومات، وذكر تجربة لطالبات قُسمن إلى مجموعتين، ثم أورد نصائح متعددة تتعلق بوقت النوم ومكانه.
-
-حين بدأت هدى التلخيص كتبت تفاصيل التجربة وأسماء المجموعتين، لكنها حذفت الفكرة التي تربط النوم بالتعلم. راجعت عملها، فأدركت أن بعض التفاصيل كانت صحيحة، لكنها لم تكن أساسية.
-
-أعادت صياغة الملخص بعبارة تقول: «يسهم النوم الكافي والمنظم في تحسين التركيز وتثبيت المعلومات؛ لذلك ينبغي للطالب تنظيم وقت نومه بما يدعم تعلمه». كان ملخصها أقصر من النص، لكنه حافظ على فكرته الأساسية وعلاقتها بالنتيجة.
-
-وهكذا فإن جودة الملخص لا تقاس بعدد كلماته فقط، بل بقدرته على تمثيل النص بدقة دون إخلال أو إضافة رأي شخصي.
-    `,
-
-    questions:[
-      {
-        skill:"مفهوم التلخيص",
-        q:"أي العبارات الآتية تعبر عن مفهوم التلخيص بصورة أدق؟",
-        a:[
-          "حذف بعض الجمل مع إبقاء الباقي كما هو",
-          "اختيار الأفكار الأساسية وإعادة صياغتها بإيجاز",
-          "نسخ مقدمة النص وخاتمته",
-          "عرض رأي القارئ في موضوع النص"
-        ],
-        c:1,
-        e:"التلخيص يقوم على الفهم والاختيار وإعادة الصياغة."
-      },
-      {
-        skill:"تمييز الأساسي من الثانوي",
-        q:"ما الخطأ في المحاولة الأولى لهدى؟",
-        a:[
-          "ذكرت تفاصيل التجربة وأغفلت الفكرة الأساسية",
-          "كتبت الملخص بأسلوبها",
-          "ربطت بين النوم والتعلم",
-          "حذفت آراءها الشخصية"
-        ],
-        c:0,
-        e:"ركزت على تفاصيل فرعية ولم تحفظ الفكرة المحورية."
-      },
-      {
-        skill:"الفكرة الرئيسة",
-        q:"ما الفكرة الأساسية في النص الذي لخصته هدى؟",
-        a:[
-          "تنظيم مكان النوم أهم من مدته",
-          "التجارب العلمية تعتمد على مجموعتين",
-          "النوم الكافي والمنظم يدعم التعلم والتحصيل",
-          "النصائح الكثيرة تجعل النص أطول"
-        ],
-        c:2,
-        e:"هذه الفكرة جمعت أثر النوم في التركيز وتثبيت المعلومات."
-      },
-      {
-        skill:"الاستنتاج",
-        q:"ماذا يمكن استنتاجه من مراجعة هدى لمحاولتها الأولى؟",
-        a:[
-          "أن التلخيص الجيد قد يحتاج إلى مراجعة وتنقيح",
-          "أن كل تفصيل في النص يجب أن يبقى",
-          "أن الملخص الأطول أكثر دقة",
-          "أن التجارب لا تصلح للتلخيص"
-        ],
-        c:0,
-        e:"مراجعتها قادتها إلى حذف التفاصيل واستعادة الفكرة الأساسية."
-      },
-      {
-        skill:"العلاقات بين الأفكار",
-        q:"العلاقة بين النوم الكافي وتحسن التركيز في ملخص هدى هي:",
-        a:[
-          "تضاد",
-          "سبب ونتيجة",
-          "مقارنة",
-          "ترادف"
-        ],
-        c:1,
-        e:"النوم الكافي سبب في تحسن التركيز."
-      },
-      {
-        skill:"نقد ملخص",
-        q:"أي العبارات الآتية تضعف جودة الملخص؟",
-        a:[
-          "الحفاظ على الفكرة الرئيسة",
-          "الربط بين الأفكار",
-          "إضافة حكم شخصي لم يرد في النص",
-          "حذف التكرار"
-        ],
-        c:2,
-        e:"الملخص لا يضيف رأيًا خارج مضمون النص."
-      },
-      {
-        skill:"الدلالة السياقية",
-        q:"المقصود بعبارة «دون إخلال» هو:",
-        a:[
-          "دون تغيير يفسد المعنى",
-          "دون استخدام كلمات جديدة",
-          "دون حذف أي تفصيل",
-          "دون تقصير النص"
-        ],
-        c:0,
-        e:"الإخلال هو إضعاف المعنى أو تشويهه."
-      },
-      {
-        skill:"تقييم البدائل",
-        q:"أي الملخصات الآتية أقرب إلى معايير النص؟",
-        a:[
-          "النوم موضوع جميل وتوجد حوله نصائح كثيرة",
-          "أجريت تجربة على مجموعتين من الطالبات",
-          "يؤثر النوم المنظم في التركيز والتعلم، لذا ينبغي تنظيمه",
-          "يفضل بعض الطلاب النوم مبكرًا"
-        ],
-        c:2,
-        e:"هذا الخيار يجمع الفكرة والنتيجة دون تفاصيل زائدة."
-      },
-      {
-        skill:"غرض الكاتب",
-        q:"ما غرض الكاتب من عرض محاولتي هدى؟",
-        a:[
-          "توضيح الفرق بين التلخيص الضعيف والجيد",
-          "إثبات صعوبة موضوع النوم",
-          "المقارنة بين مجموعتين علميتين",
-          "الدعوة إلى زيادة طول الملخص"
-        ],
-        c:0,
-        e:"المحاولتان توضحان كيف يتحسن الملخص بعد المراجعة."
-      },
-      {
-        skill:"التلخيص",
-        q:"أي العبارات الآتية تمثل أدق تلخيص للنص كله؟",
-        a:[
-          "التلخيص حذف لبعض الجمل",
-          "الملخص الجيد يعيد صياغة الأفكار الأساسية بإيجاز ودقة",
-          "كل تفاصيل النص مهمة",
-          "لا يحتاج الملخص إلى مراجعة"
-        ],
-        c:1,
-        e:"يجمع هذا الخيار تعريف التلخيص ومعياره."
-      }
-    ]
-  },
-
-  10:{
-    passage:`
-شهدت إحدى القرى في السنوات الأخيرة تناقصًا في كمية المياه المتوافرة للزراعة. أرجع بعض المزارعين المشكلة إلى قلة الأمطار وحدها، بينما رأى آخرون أن طرق الري التقليدية تسهم في زيادة الفاقد.
-
-قرر فريق من طلاب المدرسة دراسة القضية. جمعوا بيانات عن كمية الأمطار، وقارنوا استهلاك المياه في مزارع تستخدم الري بالغمر وأخرى تستخدم الري بالتنقيط. كما أجروا مقابلات مع المزارعين لمعرفة الصعوبات التي تمنعهم من تغيير أنظمة الري.
-
-أظهرت البيانات أن قلة الأمطار أثرت فعلًا، لكنها لم تكن العامل الوحيد؛ فقد استهلكت مزارع الري بالغمر كميات أكبر بكثير. وكشفت المقابلات أن بعض المزارعين يدركون فائدة التنقيط، لكن كلفة التحول الأولية ونقص الخبرة التقنية يمثلان عائقين.
-
-اقترح الفريق تنفيذ مشروع تجريبي في مزرعة واحدة، مع تدريب المزارعين وتقديم دعم جزئي للتجهيزات. وبعد موسم زراعي انخفض استهلاك المياه مع بقاء الإنتاج قريبًا من مستواه السابق.
-
-تكشف التجربة أن المشكلات المعقدة لا تفسر بسبب واحد، وأن الحل الناجح يجمع بين البيانات وفهم ظروف الناس وتجربة البدائل قبل تعميمها.
-    `,
-
-    questions:[
-      {
-        skill:"الفكرة الرئيسة",
-        q:"ما الفكرة الرئيسة للنص؟",
-        a:[
-          "قلة الأمطار هي السبب الوحيد لنقص المياه",
-          "حل المشكلات المعقدة يحتاج بيانات وفهمًا للظروف وتجريبًا للحلول",
-          "الري بالتنقيط مناسب لكل مزرعة دون دراسة",
-          "المقابلات أهم من البيانات"
-        ],
-        c:1,
-        e:"النص يؤكد تعدد الأسباب وتكامل الأدلة والحلول."
-      },
-      {
-        skill:"تقييم الأسباب",
-        q:"لماذا لم يكن تفسير نقص المياه بقلة الأمطار كافيًا؟",
-        a:[
-          "لأن الأمطار لم تنخفض",
-          "لأن البيانات أظهرت أثر طريقة الري أيضًا",
-          "لأن المزارعين رفضوا الحديث",
-          "لأن الزراعة لا تحتاج ماء"
-        ],
-        c:1,
-        e:"المقارنة بين المزارع كشفت تفاوت الاستهلاك باختلاف نظام الري."
-      },
-      {
-        skill:"مقارنة",
-        q:"ما الفرق الأبرز بين الري بالغمر والري بالتنقيط وفق النص؟",
-        a:[
-          "الغمر أقل استهلاكًا للماء",
-          "التنقيط لا يحتاج تجهيزات",
-          "الغمر استهلك كمية أكبر من المياه",
-          "التنقيط أوقف الإنتاج"
-        ],
-        c:2,
-        e:"أظهرت البيانات أن مزارع الغمر أكثر استهلاكًا."
-      },
-      {
-        skill:"الاستنتاج",
-        q:"ماذا يمكن استنتاجه من بقاء الإنتاج قريبًا من مستواه السابق؟",
-        a:[
-          "أن خفض استهلاك الماء لم يؤد إلى خسارة كبيرة في الإنتاج",
-          "أن التنقيط زاد الإنتاج أضعافًا",
-          "أن المزرعة لم تحتج إلى ماء",
-          "أن النتائج غير قابلة للقياس"
-        ],
-        c:0,
-        e:"حقق المشروع ترشيدًا للماء مع الحفاظ على الإنتاج تقريبًا."
-      },
-      {
-        skill:"تحديد العوائق",
-        q:"ما العائقان اللذان منعا بعض المزارعين من التحول إلى التنقيط؟",
-        a:[
-          "قلة المطر وضعف الإنتاج",
-          "كلفة التحول ونقص الخبرة",
-          "زيادة العمالة وكثرة المحاصيل",
-          "رفض المدرسة ومحدودية الأرض"
-        ],
-        c:1,
-        e:"ورد العائقان صراحة في نتائج المقابلات."
-      },
-      {
-        skill:"تقييم الحل",
-        q:"لماذا بدأ الفريق بمزرعة واحدة؟",
-        a:[
-          "لاختبار الحل قبل تعميمه",
-          "لإجبار بقية المزارعين",
-          "لإلغاء الدراسة",
-          "لأن القرية لا تضم غيرها"
-        ],
-        c:0,
-        e:"المشروع التجريبي يسمح بقياس النتائج وتقليل المخاطرة."
-      },
-      {
-        skill:"الحقيقة والرأي",
-        q:"أي العبارات الآتية تمثل رأيًا غير مثبت في النص؟",
-        a:[
-          "استهلك الري بالغمر ماء أكثر",
-          "كانت كلفة التحول عائقًا",
-          "الري بالتنقيط هو الحل المثالي لكل مناطق العالم",
-          "انخفض الاستهلاك بعد التجربة"
-        ],
-        c:2,
-        e:"نجاحه في تجربة محددة لا يثبت ملاءمته لكل مكان."
-      },
-      {
-        skill:"العلاقات بين الأفكار",
-        q:"العلاقة بين التدريب وقدرة المزارعين على استخدام النظام الجديد هي:",
-        a:[
-          "تضاد",
-          "سبب ونتيجة",
-          "ترادف",
-          "مقارنة"
-        ],
-        c:1,
-        e:"التدريب يساعد على تجاوز نقص الخبرة."
-      },
-      {
-        skill:"التطبيق",
-        q:"أي إجراء ينسجم مع منهج الفريق عند معالجة مشكلة أخرى؟",
-        a:[
-          "اختيار حل سريع قبل دراسة الأسباب",
-          "جمع بيانات وتجربة حل محدود ثم تقييمه",
-          "الاعتماد على رأي شخص واحد",
-          "تعميم حل دون اختبار"
-        ],
-        c:1,
-        e:"هذا هو المسار الذي اتبعه الفريق."
-      },
-      {
-        skill:"التلخيص",
-        q:"أي العبارات الآتية تمثل أدق تلخيص للنص؟",
-        a:[
-          "انتهت مشكلة المياه بعد هطول الأمطار",
-          "درست مجموعة أسباب هدر المياه وجربت التنقيط مع دعم وتدريب فنجح في خفض الاستهلاك",
-          "رفض المزارعون جميع الحلول",
-          "أدى التنقيط إلى توقف الإنتاج"
-        ],
-        c:1,
-        e:"يلخص المشكلة والدراسة والحل والنتيجة."
-      }
-    ]
-  },
-
-  11:{
-    passage:`
-كانت نجلاء تظن أن الطالبة المتفوقة هي التي تجيب بسرعة عن كل سؤال، ولذلك كانت تتردد في المشاركة إذا احتاجت إلى وقت للتفكير. وفي أحد الدروس عرضت المعلمة مسألة تتطلب قراءة جدول وربط نتائجه بنص قصير.
-
-بادرت بعض الطالبات بإجابات سريعة، لكنها كانت تعتمد على رقم واحد فقط. أما نجلاء فراجعت عنوان الجدول ووحدات القياس، ثم قارنت القيم وربطتها بما ورد في النص. تأخرت قليلًا، لكنها قدمت إجابة فسرت النتيجة وذكرت الدليل.
-
-أوضحت المعلمة أن السرعة قد تكون مفيدة في بعض المواقف، لكنها لا تعوض الدقة، وأن التفكير المتأني ليس علامة على ضعف الفهم. كما بينت أن القارئ الماهر يغير سرعته بحسب نوع المهمة؛ فيقرأ بعض الأجزاء سريعًا للعثور على معلومة، ويتمهل عند التحليل والمقارنة.
-
-خرجت نجلاء من الدرس بفكرة مختلفة: الثقة لا تعني الإجابة قبل الآخرين، بل امتلاك طريقة واضحة للوصول إلى جواب يمكن الدفاع عنه بالدليل.
-    `,
-
-    questions:[
-      {
-        skill:"الفكرة الرئيسة",
-        q:"ما الفكرة الرئيسة للنص؟",
-        a:[
-          "السرعة هي معيار التفوق",
-          "الدقة واستخدام الدليل أهم من الاستعجال في المهام التحليلية",
-          "الجداول أصعب من النصوص",
-          "المشاركة الصفية غير مهمة"
-        ],
-        c:1,
-        e:"النص يوازن بين السرعة والدقة ويركز على الدليل."
-      },
-      {
-        skill:"الاستنتاج",
-        q:"لماذا كانت إجابة نجلاء أقوى من الإجابات السريعة؟",
-        a:[
-          "لأنها كانت أطول فقط",
-          "لأنها اعتمدت على أكثر من قرينة وفسرت النتيجة",
-          "لأنها جاءت في النهاية",
-          "لأن المعلمة اختارتها مسبقًا"
-        ],
-        c:1,
-        e:"راجعت العنوان والوحدات والقيم والنص وقدمت دليلًا."
-      },
-      {
-        skill:"المعنى الضمني",
-        q:"ما المعنى الضمني لعبارة «جواب يمكن الدفاع عنه بالدليل»؟",
-        a:[
-          "جواب مرتفع الصوت",
-          "جواب قائم على شواهد واضحة",
-          "جواب طويل جدًا",
-          "جواب يوافق رأي المعلمة"
-        ],
-        c:1,
-        e:"الدفاع عن الجواب يعني تبريره بأدلة."
-      },
-      {
-        skill:"المقارنة",
-        q:"كيف يختلف أسلوب نجلاء عن أسلوب بعض الطالبات؟",
-        a:[
-          "اعتمدت نجلاء على التحليل، واعتمدن على رقم واحد",
-          "اعتمدت نجلاء على التخمين، واعتمدن على النص",
-          "أجابت نجلاء دون قراءة",
-          "رفضت نجلاء المشاركة"
-        ],
-        c:0,
-        e:"هذا الفرق ورد بوضوح في الموقف."
-      },
-      {
-        skill:"موقف الكاتب",
-        q:"أي العبارات الآتية أقرب إلى موقف النص؟",
-        a:[
-          "التمهل مطلوب في كل سؤال",
-          "السرعة غير مفيدة مطلقًا",
-          "تتغير سرعة القراءة بحسب طبيعة المهمة",
-          "الإجابة الأولى صحيحة غالبًا"
-        ],
-        c:2,
-        e:"ذكر النص أن القارئ يسرع أو يتمهل وفق المطلوب."
-      },
-      {
-        skill:"الدلالة السياقية",
-        q:"معنى «المتأني» في السياق هو:",
-        a:[
-          "المتردد بلا سبب",
-          "الذي يفكر بهدوء ودقة",
-          "الذي يرفض الإجابة",
-          "الذي يكرر السؤال"
-        ],
-        c:1,
-        e:"التأني هنا تفكير منظم وليس ترددًا."
-      },
-      {
-        skill:"التطبيق",
-        q:"أي موقف يتطلب قراءة متأنية أكثر؟",
-        a:[
-          "البحث عن تاريخ محدد",
-          "معرفة عدد فقرات النص",
-          "مقارنة حجتين والحكم على الأقوى",
-          "تحديد اسم الكاتب"
-        ],
-        c:2,
-        e:"المقارنة والتقييم يحتاجان إلى تحليل عميق."
-      },
-      {
-        skill:"الحقيقة والرأي",
-        q:"أي العبارات الآتية تمثل رأيًا؟",
-        a:[
-          "قارنت نجلاء القيم",
-          "عرضت المعلمة مسألة",
-          "كانت إجابة نجلاء أجمل إجابة في الدرس",
-          "ذكرت نجلاء دليلًا"
-        ],
-        c:2,
-        e:"وصف الإجابة بأنها الأجمل حكم شخصي."
-      },
-      {
-        skill:"تطور الشخصية",
-        q:"ما التغير الذي حدث في فهم نجلاء للتفوق؟",
-        a:[
-          "انتقلت من ربطه بالسرعة إلى ربطه بالمنهج والدليل",
-          "توقفت عن المشاركة",
-          "أصبحت تجيب دون تفكير",
-          "أصبحت ترفض الجداول"
-        ],
-        c:0,
-        e:"تغير معيارها من السبق إلى الدقة والتبرير."
-      },
-      {
-        skill:"التلخيص",
-        q:"أي العبارات الآتية تمثل أدق تلخيص للنص؟",
-        a:[
-          "تعلمت نجلاء أن الإجابة الدقيقة المبنية على الدليل أهم من الاستعجال",
-          "تفوقت نجلاء لأنها أجابت أولًا",
-          "السرعة لا تفيد في أي قراءة",
-          "تجنب المشاركة أفضل عند صعوبة السؤال"
-        ],
-        c:0,
-        e:"يلخص هذا الخيار المشكلة والتجربة والتحول."
-      }
-    ]
-  },
-
-  12:{
-    passage:`
-تتعدد معاني الكلمات، ولا يستطيع القارئ أن يختار المعنى المناسب إلا بالنظر إلى السياق. فكلمة «جذر» قد تدل على جزء من النبات، وقد تستخدم للدلالة على أصل المشكلة، كما تستعمل في الرياضيات بمعنى خاص.
-
-قرأ مازن في تقرير عن الازدحام العبارة الآتية: «لا يكفي توسيع الطريق، بل ينبغي معالجة جذور المشكلة». اختار في البداية معنى الجزء الموجود تحت التربة، ثم أدرك أن الكلمات المحيطة لا تتحدث عن نبات، وأن المقصود الأسباب الأساسية التي أدت إلى الازدحام.
-
-وفي فقرة أخرى وردت العبارة: «أثمرت المبادرة نتائج إيجابية». لم تكن المبادرة شجرة، لكن الفعل «أثمرت» استُخدم للدلالة على أنها أدت إلى نتائج.
-
-إن فهم هذه الدلالات يحتاج إلى ملاحظة موضوع النص، والكلمات القريبة، والعلاقة بين الجمل. أما اختيار المعنى المحفوظ دون اختبار ملاءمته للسياق فقد يقود إلى تفسير غير منطقي.
-    `,
-
-    questions:[
-      {
-        skill:"الدلالة السياقية",
-        q:"ما معنى «جذور المشكلة» في النص؟",
-        a:[
-          "الأجزاء الموجودة تحت التربة",
-          "الأسباب الأساسية للمشكلة",
-          "نتائج المشكلة",
-          "أماكن الازدحام"
-        ],
-        c:1,
-        e:"السياق يتحدث عن معالجة أسباب الازدحام."
-      },
-      {
-        skill:"المعنى المجازي",
-        q:"المقصود بعبارة «أثمرت المبادرة» هو:",
-        a:[
-          "تحولت المبادرة إلى شجرة",
-          "انتهت المبادرة سريعًا",
-          "أدت المبادرة إلى نتائج",
-          "احتاجت المبادرة إلى الماء"
-        ],
-        c:2,
-        e:"الفعل استخدم مجازيًا للدلالة على تحقق النتائج."
-      },
-      {
-        skill:"تقييم الاختيار",
-        q:"لماذا كان اختيار مازن الأول غير مناسب؟",
-        a:[
-          "لأن الكلمة لا تستخدم للنبات",
-          "لأنه تجاهل موضوع النص والكلمات المحيطة",
-          "لأن الازدحام لا يحدث في الطرق",
-          "لأن المعنى الرياضي هو الصحيح"
-        ],
-        c:1,
-        e:"اختار معنى محفوظًا دون فحص السياق."
-      },
-      {
-        skill:"الفكرة الرئيسة",
-        q:"ما الفكرة الرئيسة للنص؟",
-        a:[
-          "كل كلمة لها معنى واحد",
-          "السياق والقرائن يحددان المعنى المناسب للكلمة",
-          "المعاني المجازية غير مهمة",
-          "المعجم يغني عن قراءة الجملة"
-        ],
-        c:1,
-        e:"النص يوضح دور السياق في تحديد الدلالة."
-      },
-      {
-        skill:"القرائن",
-        q:"أي القرائن ساعدت مازن على تصحيح فهمه؟",
-        a:[
-          "حديث النص عن الطرق والازدحام",
-          "وجود كلمة نبات",
-          "ذكر التربة",
-          "وجود مسألة رياضية"
-        ],
-        c:0,
-        e:"موضوع النص لا ينسجم مع معنى الجذر النباتي."
-      },
-      {
-        skill:"التطبيق",
-        q:"ما معنى كلمة «نور» في عبارة «العلم نور للعقول»؟",
-        a:[
-          "ضوء مادي",
-          "معرفة وهداية",
-          "حرارة",
-          "مصباح"
-        ],
-        c:1,
-        e:"السياق يستخدم النور مجازًا للمعرفة."
-      },
-      {
-        skill:"العلاقات بين الأفكار",
-        q:"العلاقة بين تجاهل السياق والوصول إلى تفسير غير منطقي هي:",
-        a:[
-          "سبب ونتيجة",
-          "مقارنة",
-          "ترادف",
-          "تضاد"
-        ],
-        c:0,
-        e:"تجاهل السياق سبب الخطأ في التفسير."
-      },
-      {
-        skill:"تمييز الدلالة",
-        q:"أي العبارات تستخدم كلمة «قلب» بمعنى غير حقيقي؟",
-        a:[
-          "فحص الطبيب قلب المريض",
-          "يقع المتحف في قلب المدينة",
-          "ينبض القلب بالدم",
-          "حافظ الإنسان على قلبه"
-        ],
-        c:1,
-        e:"قلب المدينة يعني وسطها."
-      },
-      {
-        skill:"نقد استراتيجية",
-        q:"أي الطرق الآتية أقل دقة عند تحديد معنى الكلمة؟",
-        a:[
-          "قراءة الجملة كاملة",
-          "ملاحظة موضوع النص",
-          "اختيار أول معنى محفوظ دون فحص",
-          "ربط الكلمة بما حولها"
-        ],
-        c:2,
-        e:"المعنى المحفوظ قد لا يناسب السياق."
-      },
-      {
-        skill:"التلخيص",
-        q:"أي العبارات الآتية تمثل أدق تلخيص للنص؟",
-        a:[
-          "تتحدد دلالة الكلمة من السياق والقرائن لا من الحفظ وحده",
-          "كل الكلمات تستخدم مجازيًا",
-          "المعنى النباتي هو الأصل دائمًا",
-          "لا يحتاج القارئ إلى ملاحظة الجمل"
-        ],
-        c:0,
-        e:"هذا الخيار يلخص القاعدة والأمثلة."
-      }
-    ]
-  },
-    13:{
-    passage:`
-تسابق المؤسسات اليوم إلى جمع كميات ضخمة من البيانات، لكن قيمة هذه البيانات لا تكمن في حجمها، بل في القدرة على تحليلها واستخلاص ما يفيد منها. فقد تمتلك مدرسة سجلات دقيقة عن حضور الطالبات ونتائجهن، إلا أن تلك السجلات تبقى أرقامًا صامتة ما لم تُفسَّر وتُربط ببعضها.
-
-لاحظ فريق الجودة في إحدى المدارس أن انخفاض نتائج القراءة يتركز في عدد محدود من الفصول. لم يكتفِ الفريق بهذه الملاحظة، بل قارن نسب الغياب، وراجع خطط التدريس، وحلل نتائج الاختبارات السابقة. وأظهرت البيانات أن الطالبات اللواتي يقرأن يوميًا حققن تقدمًا أوضح من غيرهن، وأن الفصول التي خصصت وقتًا ثابتًا للقراءة الحرة سجلت نتائج أفضل.
-
-بناءً على ذلك وضعت المدرسة برنامجًا يوميًا للقراءة، مع متابعة شهرية لقياس أثره. وبعد فصل دراسي كامل تحسنت النتائج، لكن الفريق لم ينسب النجاح إلى البرنامج وحده، بل أشار إلى أن تعاون المعلمات وأولياء الأمور أسهم أيضًا في هذا التحسن.
-
-ويبين هذا الموقف أن اتخاذ القرار الرشيد يعتمد على قراءة البيانات وتحليلها، لا على الانطباعات أو التوقعات.
-    `,
-
-    questions:[
-      {
-        skill:"الفكرة الرئيسة",
-        q:"ما الفكرة الرئيسة للنص؟",
-        a:[
-          "جمع البيانات أهم من تحليلها",
-          "تحليل البيانات أساس اتخاذ القرار الصحيح",
-          "الغياب هو سبب ضعف القراءة دائمًا",
-          "القراءة الحرة تغني عن التدريس"
-        ],
-        c:1,
-        e:"النص يؤكد أن قيمة البيانات في تحليلها."
-      },
-      {
-        skill:"الاستنتاج",
-        q:"لماذا لم ينسب الفريق النجاح إلى البرنامج وحده؟",
-        a:[
-          "لأن عوامل أخرى شاركت في التحسن",
-          "لأن البرنامج لم يطبق",
-          "لأن النتائج لم تتحسن",
-          "لأن الطالبات رفضنه"
-        ],
-        c:0,
-        e:"ذكر النص دور المعلمات وأولياء الأمور."
-      },
-      {
-        skill:"العلاقة",
-        q:"العلاقة بين القراءة اليومية وتحسن النتائج هي:",
-        a:["ترادف","سبب ونتيجة","تضاد","تفصيل"],
-        c:1,
-        e:"القراءة اليومية ارتبطت بتحسن النتائج."
-      },
-      {
-        skill:"الحقيقة والرأي",
-        q:"أي العبارات تمثل رأيًا؟",
-        a:[
-          "خصصت المدرسة برنامجًا يوميًا",
-          "تحليل البيانات عمل ممل",
-          "تحسنت النتائج بعد فصل دراسي",
-          "راجع الفريق نتائج الاختبارات"
-        ],
-        c:1,
-        e:"هذا حكم شخصي."
-      },
-      {
-        skill:"التلخيص",
-        q:"أي العبارات تمثل أدق تلخيص للنص؟",
-        a:[
-          "القرارات الجيدة تعتمد على تحليل البيانات ومتابعة النتائج",
-          "الغياب سبب كل المشكلات",
-          "القراءة الحرة تكفي وحدها",
-          "الأرقام ليست مهمة"
-        ],
-        c:0,
-        e:"يجمع الفكرة العامة للنص."
-      },
-      {
-        skill:"التطبيق",
-        q:"أي موقف يطبق فكرة النص؟",
-        a:[
-          "اتخاذ قرار دون معلومات",
-          "جمع النتائج وتحليلها قبل إصدار الحكم",
-          "الاعتماد على التخمين",
-          "تقليد مدرسة أخرى"
-        ],
-        c:1,
-        e:"هذا يوافق منهج النص."
-      },
-      {
-        skill:"غرض الكاتب",
-        q:"ما غرض الكاتب؟",
-        a:[
-          "الإقناع بأهمية تحليل البيانات",
-          "السخرية من المدارس",
-          "وصف القراءة فقط",
-          "رواية قصة خيالية"
-        ],
-        c:0,
-        e:"النص يهدف إلى الإقناع."
-      },
-      {
-        skill:"الدلالة",
-        q:"المقصود بعبارة «أرقام صامتة» هو:",
-        a:[
-          "أرقام بلا صوت",
-          "بيانات لا تفيد حتى تُحلل",
-          "أرقام كبيرة",
-          "بيانات خاطئة"
-        ],
-        c:1,
-        e:"المقصود أنها تحتاج إلى تفسير."
-      },
-      {
-        skill:"تقييم الأدلة",
-        q:"ما أقوى دليل اعتمد عليه الفريق؟",
-        a:[
-          "الانطباعات",
-          "مقارنة البيانات والنتائج",
-          "رأي طالبة واحدة",
-          "توقعات المعلمات"
-        ],
-        c:1,
-        e:"الدليل قائم على المقارنة والتحليل."
-      },
-      {
-        skill:"المعنى الضمني",
-        q:"يُفهم من النص أن:",
-        a:[
-          "كل قرار ناجح يحتاج معلومات موثوقة",
-          "البيانات تكفي دون تحليل",
-          "البرامج لا تنجح",
-          "القراءة ليست مهمة"
-        ],
-        c:0,
-        e:"هذا هو المعنى الضمني العام."
-      }
-    ]
-  },
-
-  14:{
-    passage:`
-يظن بعض الناس أن الإبداع يولد فجأة، لكنه في الحقيقة نتيجة ملاحظة دقيقة، وتجربة متكررة، واستفادة من الأخطاء السابقة. فالمخترعون لا يصلون إلى النجاح من المحاولة الأولى غالبًا، بل يراجعون نتائجهم ويعدلون أفكارهم حتى يقتربوا من الحل المناسب.
-
-أراد فريق طلابي تصميم وسيلة تقلل استهلاك الورق في المدرسة. اقترح بعضهم الاكتفاء بطباعة وجه واحد من الورقة، لكن الفريق اكتشف أن هذا الحل لا يحقق الهدف المطلوب. بعد ذلك درسوا أسباب كثرة الطباعة، ولاحظوا أن معظم الأوراق تُستخدم مرة واحدة فقط.
-
-صمم الفريق نظامًا يسمح بتبادل الملفات إلكترونيًا داخل المدرسة، مع تخصيص صناديق لإعادة استخدام الأوراق المطبوعة من وجه واحد. وبعد عدة أسابيع انخفض استهلاك الورق بصورة ملحوظة.
-
-ويؤكد هذا المثال أن الحلول الفعالة لا تعتمد على الفكرة الأولى، بل على تحليل المشكلة واختبار البدائل وتطويرها باستمرار.
-    `,
-
-    questions:[
-      {
-        skill:"الفكرة الرئيسة",
-        q:"ما الفكرة الرئيسة للنص؟",
-        a:[
-          "الإبداع نتيجة تحليل وتجريب مستمر",
-          "الورق غير مهم",
-          "كل فكرة أولى ناجحة",
-          "الطباعة الإلكترونية مستحيلة"
-        ],
-        c:0,
-        e:"هذا هو محور النص."
-      },
-      {
-        skill:"الاستنتاج",
-        q:"لماذا رفض الفريق الحل الأول؟",
-        a:[
-          "لأنه لم يحقق الهدف المطلوب",
-          "لأنه مكلف جدًا",
-          "لأن المدير رفضه",
-          "لأنه صعب التنفيذ"
-        ],
-        c:0,
-        e:"ورد ذلك صراحة."
-      },
-      {
-        skill:"العلاقة",
-        q:"العلاقة بين تحليل المشكلة والوصول للحل هي:",
-        a:["سبب ونتيجة","تضاد","ترادف","وصف"],
-        c:0,
-        e:"التحليل أدى إلى الحل."
-      },
-      {
-        skill:"التطبيق",
-        q:"أي موقف يشبه ما فعله الفريق؟",
-        a:[
-          "تجربة أكثر من حل قبل الاختيار",
-          "اختيار أول فكرة دون مراجعة",
-          "إلغاء المشروع",
-          "تجاهل النتائج"
-        ],
-        c:0,
-        e:"هذا يوافق منهج التفكير العلمي."
-      },
-      {
-        skill:"التلخيص",
-        q:"أي تلخيص هو الأدق؟",
-        a:[
-          "نجح الفريق لأنه طور أفكاره بعد دراسة المشكلة",
-          "الإبداع يولد فجأة",
-          "الورق انتهى من المدارس",
-          "كل البدائل صحيحة"
-        ],
-        c:0,
-        e:"يلخص النص بدقة."
-      },
-      {
-        skill:"الحقيقة والرأي",
-        q:"أي العبارات تمثل رأيًا؟",
-        a:[
-          "الإبداع أجمل مهارة في الحياة",
-          "انخفض استهلاك الورق",
-          "صمم الفريق نظامًا إلكترونيًا",
-          "استخدموا صناديق إعادة الاستخدام"
-        ],
-        c:0,
-        e:"وصف الإبداع بأنه أجمل مهارة رأي."
-      },
-      {
-        skill:"غرض الكاتب",
-        q:"غرض الكاتب هو:",
-        a:[
-          "الحث على التفكير المنظم",
-          "وصف الطباعة",
-          "الترفيه",
-          "إعطاء تعليمات تقنية"
-        ],
-        c:0,
-        e:"النص يدعو إلى التفكير المنظم."
-      },
-      {
-        skill:"المعنى الضمني",
-        q:"يفهم من النص أن:",
-        a:[
-          "الخطأ قد يقود إلى النجاح",
-          "الأخطاء لا فائدة منها",
-          "الفكرة الأولى دائمًا صحيحة",
-          "الإبداع موهبة فقط"
-        ],
-        c:0,
-        e:"المراجعة والتعديل أساس النجاح."
-      },
-      {
-        skill:"الدلالة",
-        q:"المقصود بعبارة «اختبار البدائل» هو:",
-        a:[
-          "تجربة أكثر من حل",
-          "حذف جميع الحلول",
-          "إلغاء المشروع",
-          "كتابة تقرير"
-        ],
-        c:0,
-        e:"أي تجربة حلول مختلفة."
-      },
-      {
-        skill:"تقييم الأدلة",
-        q:"أفضل دليل على نجاح المشروع هو:",
-        a:[
-          "انخفاض استهلاك الورق",
-          "إعجاب الطلاب",
-          "سهولة التنفيذ",
-          "طول مدة المشروع"
-        ],
-        c:0,
-        e:"الدليل هو النتيجة القابلة للقياس."
-      }
-    ]
-  },
-    15:{
-    passage:`
-لا تُقرأ النصوص بالطريقة نفسها؛ لأن لكل نص غرضًا وبناءً يوجهان القارئ إلى طريقة فهمه. فالنص السردي يعرض أحداثًا وشخصيات تتحرك في زمن ومكان، بينما يركز النص الوصفي على الصفات والتفاصيل التي ترسم صورة في ذهن القارئ. أما النص المعلوماتي فيعرض حقائق وبيانات، في حين يسعى النص الإقناعي إلى التأثير في موقف القارئ من خلال الحجج والأدلة.
-
-قرأت ريم أربعة نصوص حول المحافظة على الماء. كان الأول قصة عن أسرة غيّرت عاداتها بعد تعرض منزلها لانقطاع الماء، والثاني وصفًا لعين ماء بين الجبال، والثالث تقريرًا يوضح نسب الاستهلاك، والرابع مقالًا يدعو إلى تقليل الهدر ويستند إلى أرقام وأمثلة.
-
-لاحظت ريم أن الموضوع واحد، لكن طريقة بناء كل نص اختلفت باختلاف غرضه. ففي القصة تابعت تطور الأحداث، وفي التقرير ركزت على البيانات، وفي المقال الإقناعي فحصت قوة الأدلة.
-
-أدركت أن معرفة نوع النص لا تعني وضع اسم عليه فقط، بل تساعد القارئ على توقع محتواه، وتحديد العناصر الأهم، واختيار الاستراتيجية المناسبة لفهمه.
-    `,
-
-    questions:[
-      {
-        skill:"الفكرة الرئيسة",
-        q:"أي العبارات الآتية تمثل الفكرة الرئيسة للنص؟",
-        a:[
-          "الموضوع الواحد لا يصلح إلا لنوع واحد من النصوص",
-          "معرفة نوع النص تساعد على فهم غرضه وبنائه واختيار طريقة قراءته",
-          "النص السردي أكثر أهمية من بقية الأنواع",
-          "البيانات لا تظهر إلا في النص المعلوماتي"
-        ],
-        c:1,
-        e:"النص يربط بين نوع النص وغرضه وبنائه واستراتيجية قراءته."
-      },
-      {
-        skill:"تمييز نوع النص",
-        q:"النص الذي يعرض نسب استهلاك الماء يُصنف على الأرجح بأنه:",
-        a:[
-          "وصفي",
-          "سردي",
-          "معلوماتي",
-          "إقناعي خالص"
-        ],
-        c:2,
-        e:"عرض النسب والبيانات من سمات النص المعلوماتي."
-      },
-      {
-        skill:"غرض النص",
-        q:"ما الغرض الرئيس من المقال الذي يدعو إلى تقليل الهدر ويستخدم أرقامًا وأمثلة؟",
-        a:[
-          "الإقناع",
-          "الوصف",
-          "السرد",
-          "التفسير اللغوي"
-        ],
-        c:0,
-        e:"المقال يستخدم أدلة للتأثير في موقف القارئ."
-      },
-      {
-        skill:"المقارنة",
-        q:"ما الفرق الأدق بين القصة والتقرير وفق النص؟",
-        a:[
-          "القصة تعرض أحداثًا، والتقرير يقدم بيانات وحقائق",
-          "القصة تخلو من الشخصيات، والتقرير يركز عليها",
-          "القصة تقنع بالأرقام، والتقرير يصف المشاعر",
-          "لا يوجد فرق جوهري بينهما"
-        ],
-        c:0,
-        e:"هذا الفرق يتفق مع خصائص النوعين."
-      },
-      {
-        skill:"الاستنتاج",
-        q:"ماذا يمكن استنتاجه من استخدام الموضوع نفسه في أربعة نصوص مختلفة؟",
-        a:[
-          "أن موضوع النص يحدد نوعه وحده",
-          "أن الغرض وطريقة البناء أهم من الموضوع وحده في تحديد النوع",
-          "أن النصوص المختلفة يجب أن تتضمن المعلومات نفسها",
-          "أن النص الوصفي لا يمكن أن يتناول قضايا واقعية"
-        ],
-        c:1,
-        e:"الموضوع بقي واحدًا، بينما تغير النوع بتغير الغرض والبناء."
-      },
-      {
-        skill:"تحديد الاستراتيجية",
-        q:"أي استراتيجية تعد الأنسب عند قراءة النص الإقناعي؟",
-        a:[
-          "تتبع الشخصيات والأحداث فقط",
-          "حصر الصفات الحسية",
-          "فحص الحجج والأدلة",
-          "البحث عن الزمان والمكان"
-        ],
-        c:2,
-        e:"النص الإقناعي يُقرأ من خلال تقييم الحجة وشواهدها."
-      },
-      {
-        skill:"المعنى الضمني",
-        q:"ما المعنى الضمني لعبارة «معرفة نوع النص لا تعني وضع اسم عليه فقط»؟",
-        a:[
-          "تصنيف النص غير مهم",
-          "فائدة التصنيف تظهر في توجيه الفهم والقراءة",
-          "كل النصوص تنتمي إلى نوع واحد",
-          "العنوان يكفي لفهم النص"
-        ],
-        c:1,
-        e:"المقصود أن التصنيف أداة للفهم، وليس تسمية شكلية."
-      },
-      {
-        skill:"التطبيق",
-        q:"عند قراءة قصة عن طفل أنقذ طائرًا مصابًا، ما العنصر الأهم الذي يبدأ القارئ بتتبعه؟",
-        a:[
-          "تسلسل الأحداث ودوافع الشخصية",
-          "النسب والإحصاءات",
-          "قوة الحجج",
-          "تعريف المصطلحات"
-        ],
-        c:0,
-        e:"القصة السردية تقوم على الأحداث والشخصيات."
-      },
-      {
-        skill:"نقد تصنيف",
-        q:"أي الأحكام الآتية غير دقيق؟",
-        a:[
-          "قد يتناول أكثر من نوع نصي الموضوع نفسه",
-          "يساعد نوع النص على توقع بنائه",
-          "كل نص يحتوي أرقامًا يُعد إقناعيًا بالضرورة",
-          "تختلف طريقة القراءة باختلاف الغرض"
-        ],
-        c:2,
-        e:"وجود الأرقام وحده لا يكفي لتصنيف النص إقناعيًا."
-      },
-      {
-        skill:"التلخيص",
-        q:"أي العبارات الآتية تمثل أدق تلخيص للنص؟",
-        a:[
-          "تختلف النصوص في أغراضها وبنائها، ويساعد تحديد نوعها على فهمها بفاعلية",
-          "جميع النصوص التي تتحدث عن الماء متشابهة",
-          "النص السردي هو الأكثر ملاءمة لكل موضوع",
-          "تصنيف النصوص لا يؤثر في الفهم"
-        ],
-        c:0,
-        e:"هذا الخيار يجمع الأنواع والغرض وفائدة التصنيف."
-      }
-    ]
-  },
-
-  16:{
-    passage:`
-لا تُفهم المفردة دائمًا من معناها المعجمي الأول؛ فقد تنتقل الكلمة من معناها الحقيقي إلى معنى مجازي يحدده السياق. وتظهر مهارة القارئ حين يميز بين المعاني المحتملة، ثم يختار ما ينسجم مع موضوع النص والعلاقات بين جمله.
-
-ورد في مقال عن العلم قول الكاتب: «فتحت الاكتشافات الحديثة أبوابًا واسعة أمام علاج أمراض كانت مستعصية». لا تشير كلمة «أبواب» هنا إلى أبواب حقيقية، بل إلى فرص وطرائق جديدة.
-
-وفي موضع آخر قال: «لكن بعض التطبيقات تحتاج إلى عين ناقدة تميز نفعها من ضررها». ولم يقصد عضو البصر وحده، وإنما الوعي والفحص الدقيق.
-
-وقد يضل القارئ إذا تمسك بالمعنى الحرفي في جميع المواضع؛ لأن بعض النصوص تستخدم الصور والتعبيرات المجازية لتكثيف المعنى وإثارة التفكير. لذلك فإن تحديد الدلالة المناسبة يحتاج إلى قراءة الجملة وما قبلها وما بعدها، لا إلى عزل الكلمة عن سياقها.
-    `,
-
-    questions:[
-      {
-        skill:"الدلالة السياقية",
-        q:"ما معنى كلمة «أبوابًا» في العبارة الواردة في النص؟",
-        a:[
-          "مداخل المباني",
-          "فرصًا وطرائق جديدة",
-          "عوائق وصعوبات",
-          "نهايات مغلقة"
-        ],
-        c:1,
-        e:"السياق يتحدث عن فرص جديدة للعلاج."
-      },
-      {
-        skill:"المعنى المجازي",
-        q:"المقصود بعبارة «عين ناقدة» هو:",
-        a:[
-          "قدرة قوية على الإبصار",
-          "جهاز طبي حديث",
-          "وعي دقيق يفحص المنافع والأضرار",
-          "نظرة سريعة إلى التطبيقات"
-        ],
-        c:2,
-        e:"العين هنا مجاز عن الفحص والوعي."
-      },
-      {
-        skill:"الفكرة الرئيسة",
-        q:"ما الفكرة الرئيسة للنص؟",
-        a:[
-          "كل المفردات تستخدم بمعناها الحقيقي",
-          "السياق ضروري لتحديد المعنى الحقيقي أو المجازي للكلمة",
-          "المعجم غير مفيد في فهم الكلمات",
-          "المجاز يوجد في النصوص الأدبية فقط"
-        ],
-        c:1,
-        e:"النص يؤكد أن الدلالة تحدد من السياق."
-      },
-      {
-        skill:"الاستنتاج",
-        q:"لماذا قد يخطئ القارئ إذا عزل الكلمة عن سياقها؟",
-        a:[
-          "لأنه قد يختار معنى لا ينسجم مع موضوع النص",
-          "لأن جميع الكلمات متشابهة",
-          "لأن الجملة لا تحمل معنى",
-          "لأن المعاني المجازية ثابتة"
-        ],
-        c:0,
-        e:"عزل الكلمة قد يؤدي إلى اختيار معنى حرفي غير مناسب."
-      },
-      {
-        skill:"تمييز الحقيقي والمجازي",
-        q:"أي العبارات الآتية تستخدم كلمة «جسر» استخدامًا مجازيًا؟",
-        a:[
-          "عبرت السيارة فوق الجسر",
-          "بُني الجسر فوق الوادي",
-          "الحوار جسر للتفاهم بين الناس",
-          "أُغلق الجسر للصيانة"
-        ],
-        c:2,
-        e:"الجسر هنا يرمز إلى وسيلة التواصل."
-      },
-      {
-        skill:"القرائن",
-        q:"أي القرائن كانت الأهم في فهم معنى «أبواب»؟",
-        a:[
-          "ذكر الاكتشافات والعلاج",
-          "وجود كلمة حديثة",
-          "طول الجملة",
-          "استخدام صيغة الجمع"
-        ],
-        c:0,
-        e:"مجال الاكتشافات والعلاج يدل على معنى الفرص."
-      },
-      {
-        skill:"غرض الكاتب",
-        q:"لماذا استخدم الكاتب التعبيرات المجازية؟",
-        a:[
-          "لإخفاء المعنى",
-          "لتكثيف المعنى وإثارة التفكير",
-          "لزيادة عدد الكلمات",
-          "لمنع القارئ من الفهم"
-        ],
-        c:1,
-        e:"ورد هذا الغرض صراحة في النص."
-      },
-      {
-        skill:"التطبيق",
-        q:"ما معنى كلمة «ثمرة» في عبارة «النجاح ثمرة الاجتهاد»؟",
-        a:[
-          "نوع من الطعام",
-          "نتيجة",
-          "بداية",
-          "صعوبة"
-        ],
-        c:1,
-        e:"الثمرة هنا مجاز عن النتيجة."
-      },
-      {
-        skill:"نقد استراتيجية",
-        q:"أي الطرق الآتية أقل دقة في فهم المفردة؟",
-        a:[
-          "قراءة الجملة كاملة",
-          "ملاحظة موضوع النص",
-          "اختيار أول معنى معجمي دون فحص",
-          "الربط بين الجمل"
-        ],
-        c:2,
-        e:"أول معنى معجمي قد لا يناسب السياق."
-      },
-      {
-        skill:"التلخيص",
-        q:"أي العبارات الآتية تمثل أدق تلخيص للنص؟",
-        a:[
-          "تُفهم دلالة الكلمة من السياق الذي يحدد معناها الحقيقي أو المجازي",
-          "كل الكلمات المجازية صعبة الفهم",
-          "المعنى الحرفي هو الصحيح دائمًا",
-          "لا علاقة بين الجمل ومعنى الكلمات"
-        ],
-        c:0,
-        e:"هذا الخيار يلخص القاعدة والأمثلة."
-      }
-    ]
-  },
-    17:{
-    passage:`
-لم تعد القراءة في العصر الحديث مجرد وسيلة للحصول على المعلومات، بل أصبحت أداة لبناء التفكير الناقد. فالقارئ المتميز لا يكتفي بقبول كل ما يقرأ، وإنما يوازن بين الأدلة، ويفحص مصادرها، ويميز بين الحقيقة والرأي، ويبحث عن العلاقات بين الأفكار.
-
-نشرت إحدى المجلات مقالين حول التعلم الإلكتروني. عرض المقال الأول نتائج دراسة أجريت على آلاف الطلاب، وأشار إلى تحسن مستوى التحصيل عند استخدام المنصات الرقمية بطريقة منظمة. أما المقال الثاني فاعتمد على تجربة شخصية لكاتب ذكر أن التعلم الإلكتروني لا يناسب جميع المتعلمين.
-
-أدركت سارة أن المقالين لا يتعارضان بالضرورة؛ فالدراسة تقدم نتائج عامة مبنية على بيانات، بينما تعكس التجربة الشخصية موقفًا فرديًا قد يختلف من شخص لآخر. لذلك فإن القارئ الواعي لا يرفض أحد الرأيين مباشرة، بل يقارن بين قوة الأدلة، وطبيعة المصدر، ومدى انطباق النتائج على الموقف الذي يدرسه.
-
-إن التفكير الناقد لا يعني الشك في كل شيء، بل يعني إصدار الأحكام بعد تحليل المعلومات وتقويمها اعتمادًا على الأدلة الموثوقة.
-    `,
-
-    questions:[
-      {
-        skill:"الفكرة الرئيسة",
-        q:"ما الفكرة الرئيسة للنص؟",
-        a:[
-          "القراءة تقتصر على جمع المعلومات",
-          "التفكير الناقد يعتمد على تحليل الأدلة وتقويمها",
-          "التعلم الإلكتروني أفضل من التعليم الحضوري",
-          "التجارب الشخصية غير مهمة"
-        ],
-        c:1,
-        e:"يدور النص حول التفكير الناقد وتحليل الأدلة."
-      },
-      {
-        skill:"الاستنتاج",
-        q:"لماذا لم تعتبر سارة المقالين متعارضين؟",
-        a:[
-          "لأن كليهما اعتمد على الدراسة نفسها",
-          "لأن لكل منهما نوعًا مختلفًا من الأدلة",
-          "لأنهما كُتبا في المجلة نفسها",
-          "لأن التعلم الإلكتروني غير مهم"
-        ],
-        c:1,
-        e:"أحدهما دراسة علمية والآخر تجربة شخصية."
-      },
-      {
-        skill:"الحجة والدليل",
-        q:"أي الأدلة الآتية يعد أقوى لدعم رأي عام؟",
-        a:[
-          "رأي صديق",
-          "تجربة فرد واحد",
-          "دراسة أجريت على آلاف المشاركين",
-          "تعليق في وسائل التواصل"
-        ],
-        c:2,
-        e:"الدراسة الواسعة أكثر قوة وموثوقية."
-      },
-      {
-        skill:"الحقيقة والرأي",
-        q:"أي العبارات الآتية تمثل رأيًا؟",
-        a:[
-          "أجريت الدراسة على آلاف الطلاب",
-          "التعلم الإلكتروني هو أفضل أسلوب للجميع",
-          "نُشر المقال في مجلة",
-          "اعتمد الباحث على بيانات"
-        ],
-        c:1,
-        e:"لأنها حكم قابل للنقاش."
-      },
-            {
-        skill:"المقارنة",
-        q:"ما الفرق الرئيس بين المقالين؟",
-        a:[
-          "الأول اعتمد على دراسة، والثاني على تجربة شخصية",
-          "الأول قصصي، والثاني شعري",
-          "الأول يرفض التقنية، والثاني يؤيدها",
-          "لا يوجد فرق بينهما"
-        ],
-        c:0,
-        e:"يعتمد كل مقال على نوع مختلف من الأدلة."
-      },
-      {
-        skill:"غرض الكاتب",
-        q:"ما الغرض من الفقرة الأخيرة؟",
-        a:[
-          "الدعوة إلى رفض جميع الآراء",
-          "توضيح مفهوم التفكير الناقد",
-          "مدح التعلم الإلكتروني",
-          "وصف تجربة سارة"
-        ],
-        c:1,
-        e:"اختتم الكاتب بتعريف التفكير الناقد."
-      },
-      {
-        skill:"الاستنتاج",
-        q:"يُستنتج من النص أن القارئ الواعي:",
-        a:[
-          "يصدق أول معلومة يقرؤها",
-          "يقارن بين الأدلة قبل إصدار الحكم",
-          "يعتمد على التجارب الشخصية فقط",
-          "يرفض نتائج الدراسات"
-        ],
-        c:1,
-        e:"القارئ الناقد يحلل الأدلة ويوازن بينها."
-      },
-      {
-        skill:"المفردات",
-        q:"مرادف كلمة «الموثوقة» في النص:",
-        a:[
-          "الصحيحة",
-          "المشكوك فيها",
-          "القديمة",
-          "المتغيرة"
-        ],
-        c:0,
-        e:"الموثوقة تعني التي يمكن الاعتماد عليها."
-      },
-      {
-        skill:"تفسير عبارة",
-        q:"ماذا يقصد الكاتب بقوله: «لا يعني الشك في كل شيء»؟",
-        a:[
-          "رفض جميع المعلومات",
-          "التوقف عن القراءة",
-          "تحليل المعلومات قبل الحكم عليها",
-          "تصديق كل الآراء"
-        ],
-        c:2,
-        e:"التفكير الناقد يقوم على التحليل لا الرفض."
-      },
-      {
-        skill:"التلخيص",
-        q:"أي العبارات تلخص النص بدقة؟",
-        a:[
-          "التفكير الناقد يعتمد على تقويم الأدلة وتحليلها قبل إصدار الأحكام.",
-          "كل التجارب الشخصية خاطئة.",
-          "الدراسات العلمية لا تخطئ أبدًا.",
-          "التعلم الإلكتروني يناسب الجميع."
-        ],
-        c:0,
-        e:"هذا يلخص الفكرة الرئيسة للنص."
-      }
-    ]
-  },
-    18:{
-    passage:`
-أصبح العمل التطوعي أحد أهم وسائل تنمية المجتمع، فهو لا يقتصر على تقديم المساعدة للآخرين، بل يسهم أيضًا في بناء شخصية المتطوع، وتنمية مهاراته، وتعزيز إحساسه بالمسؤولية. وقد أثبتت الدراسات أن المجتمعات التي يشارك أفرادها في الأعمال التطوعية تتمتع بروابط اجتماعية أقوى، وقدرة أكبر على مواجهة الأزمات.
-
-نظمت إحدى المدارس حملة تطوعية لتنظيف حديقة عامة، وشارك فيها الطلاب والمعلمون وأولياء الأمور. ولم يكن الهدف جمع النفايات فقط، بل نشر ثقافة المحافظة على البيئة، وإبراز قيمة التعاون بين أفراد المجتمع.
-
-بعد انتهاء الحملة لاحظ المنظمون انخفاض كمية المخلفات في الحديقة خلال الأسابيع التالية، مما يدل على أن التوعية المستمرة قد تُحدث أثرًا يفوق أثر العمل المؤقت. ولذلك فإن نجاح المبادرات التطوعية لا يقاس بعدد المشاركين فقط، وإنما بالأثر الإيجابي الذي يبقى بعد انتهائها.
-    `,
-
-    questions:[
-      {
-        skill:"الفكرة الرئيسة",
-        q:"ما الفكرة الرئيسة للنص؟",
-        a:[
-          "العمل التطوعي يحقق آثارًا إيجابية مستمرة في المجتمع والفرد.",
-          "تنظيف الحدائق هو أفضل الأعمال التطوعية.",
-          "الطلاب أكثر مشاركة من أولياء الأمور.",
-          "الأعمال التطوعية مؤقتة الأثر."
-        ],
-        c:0,
-        e:"النص يوضح أثر العمل التطوعي في الفرد والمجتمع."
-      },
-      {
-        skill:"غرض الكاتب",
-        q:"ما الغرض من ذكر حملة تنظيف الحديقة؟",
-        a:[
-          "عرض مثال يوضح أثر العمل التطوعي.",
-          "وصف الحديقة فقط.",
-          "انتقاد المشاركين.",
-          "المقارنة بين المدارس."
-        ],
-        c:0,
-        e:"وردت الحملة بوصفها مثالًا واقعيًا."
-      },
-      {
-        skill:"الاستنتاج",
-        q:"يستنتج من انخفاض كمية المخلفات بعد الحملة أن:",
-        a:[
-          "التوعية قد تترك أثرًا طويل المدى.",
-          "الحديقة أغلقت.",
-          "توقف الناس عن زيارة الحديقة.",
-          "لم تعد توجد نفايات في المدينة."
-        ],
-        c:0,
-        e:"النص يربط بين التوعية واستمرار الأثر."
-      },
-      {
-        skill:"الحقيقة والرأي",
-        q:"أي العبارات الآتية تمثل رأيًا؟",
-        a:[
-          "شارك الطلاب والمعلمون في الحملة.",
-          "انخفضت كمية المخلفات بعد الحملة.",
-          "تنظيف الحدائق أجمل عمل تطوعي.",
-          "هدفت الحملة إلى نشر ثقافة المحافظة على البيئة."
-        ],
-        c:2,
-        e:"لأنه حكم شخصي قابل للنقاش."
-      },
-            {
-        skill:"المقارنة",
-        q:"بمَ قاس الكاتب نجاح المبادرات التطوعية؟",
-        a:[
-          "بعدد المشاركين فقط.",
-          "بحجم التبرعات.",
-          "بالأثر الإيجابي الذي يستمر بعد انتهاء المبادرة.",
-          "بعدد ساعات العمل."
-        ],
-        c:2,
-        e:"أكد الكاتب أن النجاح يقاس بالأثر المستمر لا بعدد المشاركين."
-      },
-      {
-        skill:"سبب ونتيجة",
-        q:"ما السبب المباشر لانخفاض كمية المخلفات بعد الحملة؟",
-        a:[
-          "إغلاق الحديقة.",
-          "زيادة رسوم الدخول.",
-          "نشر ثقافة المحافظة على البيئة بين الزوار.",
-          "تقليل عدد الزائرين."
-        ],
-        c:2,
-        e:"النص يربط انخفاض المخلفات بزيادة الوعي البيئي."
-      },
-      {
-        skill:"المفردات",
-        q:"مرادف كلمة «تعزيز» في النص هو:",
-        a:[
-          "تقوية",
-          "إهمال",
-          "إضعاف",
-          "تقليل"
-        ],
-        c:0,
-        e:"تعزيز تعني تقوية ودعم."
-      },
-      {
-        skill:"الاستنتاج",
-        q:"أي الصفات يكتسبها المتطوع وفق النص؟",
-        a:[
-          "اللامبالاة",
-          "تحمل المسؤولية وتنمية المهارات.",
-          "العزلة عن المجتمع.",
-          "الاعتماد على الآخرين."
-        ],
-        c:1,
-        e:"ذكر النص تنمية المهارات وتعزيز المسؤولية."
-      },
-      {
-        skill:"غرض الكاتب",
-        q:"ما الهدف من هذا النص؟",
-        a:[
-          "الإقناع بأهمية العمل التطوعي وآثاره.",
-          "وصف حديقة عامة.",
-          "سرد قصة خيالية.",
-          "عرض إعلان."
-        ],
-        c:0,
-        e:"يعرض فوائد العمل التطوعي مدعمة بمثال."
-      },
-      {
-        skill:"التلخيص",
-        q:"أي العبارات الآتية تلخص النص بدقة؟",
-        a:[
-          "العمل التطوعي يحقق أثرًا مستدامًا عندما يصاحبه وعي مجتمعي.",
-          "تنظيف الحدائق هو العمل التطوعي الوحيد.",
-          "نجاح المبادرات يعتمد على كثرة المشاركين فقط.",
-          "العمل التطوعي يفيد البيئة فقط."
-        ],
-        c:0,
-        e:"هذا يجمع الفكرة الرئيسة ونتيجة النص."
-      }
-    ]
-  },
-    19:{
-    passage:`
-أصبحت التقنيات الرقمية جزءًا من حياة الإنسان اليومية، فهي تسهّل التعلم والعمل والتواصل، وتوفر الوصول إلى كمٍّ هائل من المعلومات في وقت قصير. غير أن كثرة المعلومات لا تعني بالضرورة صحة جميع ما يُنشر، لذلك يحتاج المستخدم إلى التحقق من المصادر، ومقارنة المعلومات، وعدم إعادة نشر الأخبار قبل التأكد منها.
-
-قرأ خالد خبرًا في أحد مواقع التواصل عن اكتشاف علمي جديد، فأراد مشاركته مع أصدقائه، لكنه تذكر ما تعلمه في المدرسة عن أهمية التثبت من الأخبار. بحث عن الخبر في مواقع علمية موثوقة، فوجد أن المعلومة قد نُقلت بصورة غير دقيقة، وأن بعض التفاصيل أُضيفت لإثارة انتباه القراء.
-
-أدرك خالد أن الاستخدام الواعي للتقنية لا يقتصر على سرعة الوصول إلى المعلومات، بل يشمل القدرة على تقييمها، وتمييز الصحيح من المضلل، واتخاذ القرار المناسب بناءً على أدلة موثوقة.
-    `,
-
-    questions:[
-      {
-        skill:"الفكرة الرئيسة",
-        q:"ما الفكرة الرئيسة للنص؟",
-        a:[
-          "التقنية تغني عن التفكير.",
-          "الاستخدام الواعي للتقنية يعتمد على التحقق من المعلومات.",
-          "جميع الأخبار في الإنترنت صحيحة.",
-          "وسائل التواصل غير مفيدة."
-        ],
-        c:1,
-        e:"يدور النص حول التحقق من المعلومات قبل تصديقها أو نشرها."
-      },
-      {
-        skill:"الاستنتاج",
-        q:"لماذا لم ينشر خالد الخبر مباشرة؟",
-        a:[
-          "لأنه لم يجد الإنترنت.",
-          "لأنه أراد التحقق من صحة الخبر.",
-          "لأنه لا يستخدم وسائل التواصل.",
-          "لأنه نسي الخبر."
-        ],
-        c:1,
-        e:"التزم بخطوات التحقق قبل النشر."
-      },
-      {
-        skill:"الحقيقة والرأي",
-        q:"أي العبارات الآتية تمثل حقيقة؟",
-        a:[
-          "الإنترنت أفضل اختراع في التاريخ.",
-          "بحث خالد عن الخبر في مواقع علمية.",
-          "كل الأخبار المنشورة صحيحة.",
-          "وسائل التواصل مضيعة للوقت."
-        ],
-        c:1,
-        e:"ورد ذلك صراحة في النص."
-      },
-      {
-        skill:"سبب ونتيجة",
-        q:"ما نتيجة بحث خالد في المواقع الموثوقة؟",
-        a:[
-          "وجد أن الخبر منقول بدقة كاملة.",
-          "اكتشف أن بعض التفاصيل غير دقيقة.",
-          "قرر حذف الإنترنت.",
-          "نشر الخبر فورًا."
-        ],
-        c:1,
-        e:"النص يذكر أن بعض التفاصيل أضيفت لإثارة الانتباه."
-      },
-            {
-        skill:"تقييم المصدر",
-        q:"أي المصادر الآتية أكثر ملاءمة للتحقق من خبر علمي؟",
-        a:[
-          "حساب مجهول في منصة اجتماعية",
-          "موقع علمي موثوق يذكر المصدر والدراسة",
-          "تعليق أحد المتابعين",
-          "رسالة متداولة بلا رابط"
-        ],
-        c:1,
-        e:"المصدر العلمي الموثوق الذي يذكر الدراسة أقوى للتحقق."
-      },
-      {
-        skill:"الدلالة السياقية",
-        q:"المقصود بكلمة «المضلل» في النص هو:",
-        a:[
-          "الواضح والدقيق",
-          "الذي يقود إلى فهم غير صحيح",
-          "المختصر",
-          "المفيد"
-        ],
-        c:1,
-        e:"المضلل هو ما يقدم المعلومة بطريقة توقع القارئ في الخطأ."
-      },
-      {
-        skill:"تقييم الأدلة",
-        q:"أي الأدلة الآتية أقوى في الحكم على صحة الخبر؟",
-        a:[
-          "كثرة مشاركته بين الناس",
-          "وجود عنوان مثير",
-          "مطابقته لمصادر علمية موثوقة",
-          "إعجاب الأصدقاء به"
-        ],
-        c:2,
-        e:"مطابقة الخبر لمصادر موثوقة دليل أقوى من الشهرة أو الإثارة."
-      },
-      {
-        skill:"المعنى الضمني",
-        q:"ما المعنى الضمني لعبارة «أضيفت بعض التفاصيل لإثارة انتباه القراء»؟",
-        a:[
-          "أن الخبر نُقل بحياد كامل",
-          "أن بعض الناشرين قد يبالغون لجذب التفاعل",
-          "أن الاكتشاف غير موجود",
-          "أن كل التفاصيل العلمية غير مهمة"
-        ],
-        c:1,
-        e:"العبارة توحي بأن الإثارة قد تدفع إلى المبالغة أو التحريف."
-      },
-      {
-        skill:"التطبيق",
-        q:"أي التصرفات الآتية يطبق فكرة النص بصورة أدق؟",
-        a:[
-          "إعادة نشر الخبر فورًا إذا كان مثيرًا",
-          "الاعتماد على عدد الإعجابات",
-          "مقارنة الخبر بأكثر من مصدر موثوق قبل نشره",
-          "رفض جميع الأخبار العلمية"
-        ],
-        c:2,
-        e:"المقارنة والتحقق قبل النشر تمثل الاستخدام الواعي."
-      },
-      {
-        skill:"التلخيص",
-        q:"أي العبارات الآتية تمثل أدق تلخيص للنص؟",
-        a:[
-          "التقنية مفيدة إذا استخدمها الإنسان بسرعة",
-          "كثرة المعلومات دليل على صحتها",
-          "الاستخدام الواعي للتقنية يتطلب التحقق من المعلومات وتقويم مصادرها قبل نشرها",
-          "وسائل التواصل لا تقدم أي معلومات نافعة"
-        ],
-        c:2,
-        e:"هذا الخيار يجمع المشكلة وطريقة التحقق والنتيجة."
-      }
-    ]
-  },
-    20:{
-    passage:`
-يُعد التعلم رحلة مستمرة لا تنتهي بانتهاء الحصة الدراسية أو الاختبار، فالإنسان يتعلم من القراءة، والملاحظة، والتجربة، والحوار، وحتى من أخطائه. وكلما امتلك مهارة التعلم الذاتي أصبح أكثر قدرة على التكيف مع التغيرات، ومواجهة المشكلات، والبحث عن الحلول المناسبة.
-
-كلفت المعلمة طالباتها بإعداد مشروع عن المحافظة على البيئة، ولم تحدد لهن مصدرًا واحدًا للمعلومات، بل طلبت منهن المقارنة بين الكتب والمقالات والمواقع الموثوقة، ثم تسجيل الملاحظات وذكر مصادرها.
-
-اختلفت نتائج الطالبات؛ فبعضهن اكتفى بنقل المعلومات كما هي، بينما أعادت أخريات تنظيم الأفكار، وربطن بين المصادر، واستخلصن نتائج جديدة مدعومة بالأدلة.
-
-أوضحت المعلمة أن قيمة المشروع لا تكمن في كثرة الصفحات، وإنما في جودة التفكير، وحسن اختيار المصادر، والقدرة على تحليل المعلومات وربطها، ثم عرضها بأسلوب واضح.
-
-وهكذا أدركت الطالبات أن التعلم الحقيقي لا يقوم على جمع المعلومات فقط، بل على فهمها، وتحليلها، وتوظيفها في مواقف جديدة.
-    `,
-
-    questions:[
-      {
-        skill:"الفكرة الرئيسة",
-        q:"ما الفكرة الرئيسة للنص؟",
-        a:[
-          "التعلم الحقيقي يعتمد على فهم المعلومات وتحليلها وتوظيفها.",
-          "المشروعات المدرسية تعتمد على كثرة الصفحات.",
-          "أفضل مصدر للمعلومات هو الإنترنت فقط.",
-          "القراءة تكفي وحدها للتعلم."
-        ],
-        c:0,
-        e:"النص يبين أن التعلم الحقيقي يتجاوز جمع المعلومات."
-      },
-      {
-        skill:"الاستنتاج",
-        q:"لماذا طلبت المعلمة استخدام أكثر من مصدر؟",
-        a:[
-          "لزيادة عدد الصفحات.",
-          "لتنمية مهارة المقارنة والتحقق من المعلومات.",
-          "لأن الكتب غير مفيدة.",
-          "لتسهيل المشروع."
-        ],
-        c:1,
-        e:"تنويع المصادر يساعد على بناء فهم أعمق."
-      },
-      {
-        skill:"الحقيقة والرأي",
-        q:"أي العبارات الآتية تمثل رأيًا؟",
-        a:[
-          "طلبت المعلمة ذكر المصادر.",
-          "المشروع أجمل نشاط دراسي.",
-          "قارنت الطالبات بين المصادر.",
-          "أعادت بعض الطالبات تنظيم الأفكار."
-        ],
-        c:1,
-        e:"لأنه حكم شخصي."
-      },
-      {
-        skill:"سبب ونتيجة",
-        q:"ما نتيجة إعادة تنظيم الأفكار وربط المصادر؟",
-        a:[
-          "زيادة عدد الصفحات فقط.",
-          "الوصول إلى نتائج جديدة مدعومة بالأدلة.",
-          "تقليل عدد المعلومات.",
-          "إنهاء المشروع بسرعة."
-        ],
-        c:1,
-        e:"النص يذكر أن الربط والتحليل قادا إلى نتائج أفضل."
-      },
-      {
-        skill:"المفردات",
-        q:"مرادف كلمة «توظيفها» في النص هو:",
-        a:[
-          "استخدامها",
-          "نسيانها",
-          "إخفاؤها",
-          "تقليلها"
-        ],
-        c:0,
-        e:"التوظيف يعني الاستخدام في مواقف جديدة."
-      },
-      {
-        skill:"غرض الكاتب",
-        q:"ما الغرض من النص؟",
-        a:[
-          "الإقناع بأهمية التعلم الذاتي والتفكير العميق.",
-          "وصف مشروع مدرسي فقط.",
-          "الترفيه.",
-          "عرض قصة خيالية."
-        ],
-        c:0,
-        e:"النص يحث على التعلم القائم على الفهم والتحليل."
-      },
-      {
-        skill:"المعنى الضمني",
-        q:"يفهم من النص أن الطالب المتميز هو الذي:",
-        a:[
-          "يحفظ المعلومات فقط.",
-          "ينقل المعلومات كما هي.",
-          "يفهم المعلومات ويحللها ويستفيد منها.",
-          "يعتمد على مصدر واحد."
-        ],
-        c:2,
-        e:"هذا هو المعنى الضمني للنص."
-      },
-      {
-        skill:"التطبيق",
-        q:"أي موقف يطبق فكرة النص؟",
-        a:[
-          "نسخ المعلومات دون فهم.",
-          "مقارنة عدة مصادر ثم كتابة استنتاجات خاصة.",
-          "الاكتفاء بعنوان واحد.",
-          "حفظ المعلومات دون استخدامها."
-        ],
-        c:1,
-        e:"يمثل التعلم القائم على التحليل."
-      },
-      {
-        skill:"تقييم الأدلة",
-        q:"أي دليل يدل على جودة المشروع؟",
-        a:[
-          "عدد الصفحات.",
-          "جمال الغلاف فقط.",
-          "تنظيم الأفكار وربطها بالأدلة.",
-          "سرعة الإنجاز."
-        ],
-        c:2,
-        e:"جودة التفكير أهم من كثرة الصفحات."
-      },
-      {
-        skill:"التلخيص",
-        q:"أي العبارات الآتية تمثل أدق تلخيص للنص؟",
-        a:[
-          "التعلم الحقيقي يعتمد على فهم المعلومات وتحليلها وتطبيقها في مواقف جديدة.",
-          "التعلم يقتصر على القراءة.",
-          "أفضل المشروعات هي الأطول.",
-          "مصدر واحد يكفي دائمًا."
-        ],
-        c:0,
-        e:"هذا الخيار يجمع الفكرة الرئيسة للنص."
-      }
-    ]
-  }
-
-};
-  let currentId=1;
-let currentQ=0;
-let score=0;
-let student="";
-let answered=false;
-
-function renderCards(){
-  const cards=document.getElementById("cards");
-  cards.innerHTML="";
-
-  challenges.forEach(challenge=>{
-    const card=document.createElement("div");
-
-    card.className="test-card";
-
-    card.innerHTML=`
-      <span class="icon">${challenge.icon}</span>
-      <span class="title">${challenge.title}</span>
-      <span class="subtitle">${challenge.subtitle}</span>
-      <span class="badge">ابدئي الآن</span>
     `;
 
-    card.onclick=()=>{
-      openChallenge(challenge.id);
-    };
-
-    cards.appendChild(card);
-  });
-
-  updateSummary();
-}
-
-function openChallenge(id){
-  currentId=id;
-
-  document.getElementById("home").classList.add("hidden");
-  document.getElementById("nameScreen").classList.remove("hidden");
-
-  document.getElementById("challengeTitle").textContent=
-    challenges[id-1].title;
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-}
-
-function startQuiz(){
-  const name=
-    document.getElementById("studentName").value.trim();
-
-  const parts=name.split(/\s+/).filter(Boolean);
-
-  if(parts.length<4){
-    alert("اكتبي اسمكِ الرباعي كاملًا.");
-    return;
-  }
-
-  student=name;
-  currentQ=0;
-  score=0;
-  answered=false;
-
-  document.getElementById("nameScreen").classList.add("hidden");
-  document.getElementById("quizScreen").classList.remove("hidden");
-
-  showQuestion();
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-}
-
-function showQuestion(){
-  answered=false;
-
-  const test=tests[currentId];
-  const item=test.questions[currentQ];
-
-  document.getElementById("passage").textContent=test.passage;
-
-  document.getElementById("qCounter").textContent=
-    `السؤال ${currentQ+1} من ${test.questions.length}`;
-
-  document.getElementById("scoreLive").textContent=
-    `الدرجة: ${score}`;
-
-  document.getElementById("barFill").style.width=
-    `${currentQ/test.questions.length*100}%`;
-
-  document.getElementById("skillLabel").textContent=
-    item.skill || "مهارة الفهم القرائي";
-
-  document.getElementById("question").textContent=item.q;
-
-  const answers=document.getElementById("answers");
-  answers.innerHTML="";
-
-  item.a.forEach((answer,index)=>{
-    const button=document.createElement("button");
-
-    button.className="answer";
-    button.textContent=answer;
-
-    button.onclick=()=>{
-      choose(index,button);
-    };
-
-    answers.appendChild(button);
-  });
-
-  document.getElementById("feedback").className="feedback hidden";
-  document.getElementById("nextBtn").classList.add("hidden");
-}
-
-function showAnswerMark(isCorrect){
-  const mark=document.createElement("div");
-
-  mark.className=
-    "answer-mark "+
-    (isCorrect?"correct-mark":"wrong-mark");
-
-  mark.textContent=isCorrect?"✓":"✕";
-
-  document.body.appendChild(mark);
-
-  setTimeout(()=>{
-    mark.remove();
-  },700);
-}
-
-function choose(index,button){
-  if(answered)return;
-
-  answered=true;
-
-  const item=tests[currentId].questions[currentQ];
-  const buttons=[...document.querySelectorAll(".answer")];
-
-  buttons.forEach(answerButton=>{
-    answerButton.disabled=true;
-  });
-
-  const feedback=document.getElementById("feedback");
-
-  if(index===item.c){
-    score++;
-
-    button.classList.add("correct");
-
-    feedback.className="feedback ok";
-
-    feedback.innerHTML=`
-      <strong>✅ إجابة صحيحة</strong>
-      <br>
-      أحسنتِ يا نجمة نافس!
-    `;
-
-    showAnswerMark(true);
-    playTone(true);
-    celebrate();
-
-  }else{
-    button.classList.add("wrong");
-    buttons[item.c].classList.add("correct");
-
-    const quizScreen=document.getElementById("quizScreen");
-
-    quizScreen.classList.add("shake");
-
-    setTimeout(()=>{
-      quizScreen.classList.remove("shake");
-    },450);
-
-    feedback.className="feedback bad";
-
-    feedback.innerHTML=`
-      <strong>❌ إجابتك غير صحيحة</strong>
-      <br>
-      <b>الإجابة الصحيحة:</b>
-      ${item.a[item.c]}
-      <br>
-      <b>التوضيح:</b>
-      ${item.e}
-    `;
-
-    showAnswerMark(false);
-    playTone(false);
-  }
-
-  document.getElementById("scoreLive").textContent=
-    `الدرجة: ${score}`;
-
-  const nextButton=document.getElementById("nextBtn");
-
-  nextButton.textContent=
-    currentQ===tests[currentId].questions.length-1
-    ?"عرض النتيجة"
-    :"السؤال التالي";
-
-  nextButton.classList.remove("hidden");
-}
-
-function nextQuestion(){
-  const lastQuestion=
-    tests[currentId].questions.length-1;
-
-  if(currentQ<lastQuestion){
-    currentQ++;
-    showQuestion();
-
-    window.scrollTo({
-      top:0,
-      behavior:"smooth"
-    });
-
-  }else{
-    finishQuiz();
-  }
-}
-
-function finishQuiz(){
-  document.getElementById("quizScreen").classList.add("hidden");
-  document.getElementById("resultScreen").classList.remove("hidden");
-
-  const total=tests[currentId].questions.length;
-  const percentage=Math.round(score/total*100);
-
-  document.getElementById("resultTitle").textContent=
-    score>=7
-    ?"🎉 اجتزتِ التحدي بنجاح"
-    :"🌷 محاولة جميلة";
-
-  document.getElementById("resultText").textContent=
-    `${student}، حصلتِ على ${score} من ${total} بنسبة ${percentage}٪.`;
-
-  if(score>=7){
-    localStorage.setItem(
-      `nafes_${currentId}`,
-      String(score)
+    quizShell.insertBefore(
+      startScreen,
+      quizScreen
     );
 
-    updateSummary();
-    celebrate();
-  }
+    quizScreen.classList.remove("active");
 
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-}
+    const studentNameInput =
+      document.getElementById("studentName");
 
-function showCertificate(){
-  if(score<7){
-    alert("الشهادة تظهر عند الحصول على 7 من 10 فأعلى.");
-    return;
-  }
+    const studentClassInput =
+      document.getElementById("studentClass");
 
-  const total=tests[currentId].questions.length;
+    const inputWarning =
+      document.getElementById("inputWarning");
 
-  const percentage=Math.round(
-    score/total*100
-  );
+    const startQuizBtn =
+      document.getElementById("startQuizBtn");
 
-  document.getElementById("certName").textContent=student;
+    const certificate =
+      document.createElement("section");
 
-  document.getElementById("certChallenge").textContent=
-    `لاجتيازها بنجاح: ${challenges[currentId-1].title}`;
+    certificate.id = "certificate";
+    certificate.className = "certificate";
 
-  document.getElementById("certScore").textContent=
-    `الدرجة: ${score} من ${total} — النسبة: ${percentage}٪`;
+    certificate.innerHTML = `
+      <div class="certificate-logo">
+        🏆
+      </div>
 
-  let title="";
+      <h2>
+        شهادة إنجاز في مهارات نافس
+      </h2>
 
-  if(percentage===100){
-    title="استحققتِ لقب: بطلة نافس الذهبية";
-  }else if(percentage>=90){
-    title="استحققتِ لقب: نجمة الفهم العميق";
-  }else if(percentage>=80){
-    title="استحققتِ لقب: القارئة الماهرة";
-  }else{
-    title="استحققتِ لقب: المتقدمة بثقة";
-  }
+      <p>
+        تمنح منصة آفاق هذه الشهادة للطالبة:
+      </p>
 
-  document.getElementById("certPhrase").textContent=title;
+      <div
+        id="certificateName"
+        class="certificate-name">
+      </div>
 
-  const shell=document.getElementById("certificateShell");
+      <p id="certificateClass"></p>
 
-  shell.classList.remove("hidden");
+      <p>
+        لإتمامها اختبار نافس الشامل
+        في مهارات الفهم القرائي،
+        وإظهار قدرتها على التحليل
+        والاستنتاج والتقويم واختيار
+        الإجابة الأدق.
+      </p>
 
-  document.getElementById("printBtn").classList.remove("hidden");
+      <div
+        id="certificateRank"
+        class="certificate-rank">
+      </div>
 
-  setTimeout(()=>{
-    shell.scrollIntoView({
-      behavior:"smooth",
-      block:"center"
-    });
-  },120);
+      <p id="certificateScore"></p>
 
-  celebrate();
-}
+      <div class="certificate-signature">
 
-function restartQuiz(){
-  currentQ=0;
-  score=0;
-  answered=false;
+        <div>
+          منصة آفاق
+          <br>
+          اللغة العربية
+        </div>
 
-  document.getElementById("resultScreen").classList.add("hidden");
-  document.getElementById("certificateShell").classList.add("hidden");
-  document.getElementById("printBtn").classList.add("hidden");
-  document.getElementById("quizScreen").classList.remove("hidden");
+        <div>
+          المعلمة
+          <br>
+          إيناس مدخلي
+        </div>
 
-  showQuestion();
+      </div>
+    `;
 
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-}
+    resultScreen
+      .querySelector(".result-box")
+      .appendChild(certificate);
 
-function goHome(){
-  document.querySelectorAll("main > section").forEach(section=>{
-    section.classList.add("hidden");
-  });
+    const certificateButton =
+      document.createElement("button");
 
-  document.getElementById("home").classList.remove("hidden");
-  document.getElementById("studentName").value="";
-  document.getElementById("certificateShell").classList.add("hidden");
-  document.getElementById("printBtn").classList.add("hidden");
+    certificateButton.type = "button";
+    certificateButton.className =
+      "certificate-button";
 
-  renderCards();
+    certificateButton.textContent =
+      "🎓 عرض الشهادة";
 
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-}
+    const printButton =
+      document.createElement("button");
 
-function updateSummary(){
-  let completed=0;
-  let totalScore=0;
+    printButton.type = "button";
+    printButton.className =
+      "print-button";
 
-  for(let i=1;i<=20;i++){
-    const value=
-      Number(localStorage.getItem(`nafes_${i}`)||0);
+    printButton.textContent =
+      "🖨️ طباعة أو حفظ الشهادة";
 
-    if(value>=7){
-      completed++;
-      totalScore+=value;
+    resultScreen
+      .querySelector(".result-box")
+      .appendChild(certificateButton);
+
+    resultScreen
+      .querySelector(".result-box")
+      .appendChild(printButton);
+
+    printButton.style.display = "none";
+
+    function updateSoundButton() {
+      soundBtn.textContent =
+        soundOn
+          ? "🔊 الصوت مفعّل"
+          : "🔇 الصوت مكتوم";
     }
-  }
 
-  let text=`أنجزتِ ${completed} من 20 تحديًا`;
+    function playTone(isCorrect) {
+      if (!soundOn) return;
 
-  if(completed===20 && totalScore>=180){
-    text+=" — 👑 استحققتِ وسام آفاق الذهبي الكبير";
-  }
+      try {
+        const AudioContextClass =
+          window.AudioContext ||
+          window.webkitAudioContext;
 
-  document.getElementById("summary").textContent=text;
-}
+        const context =
+          new AudioContextClass();
 
-function playTone(isCorrect){
-  try{
-    const AudioContextClass=
-      window.AudioContext||
-      window.webkitAudioContext;
+        const oscillator =
+          context.createOscillator();
 
-    const context=new AudioContextClass();
-    const oscillator=context.createOscillator();
-    const gain=context.createGain();
+        const gain =
+          context.createGain();
 
-    oscillator.connect(gain);
-    gain.connect(context.destination);
+        oscillator.type =
+          isCorrect ? "sine" : "triangle";
 
-    oscillator.frequency.value=
-      isCorrect?700:180;
+        oscillator.frequency.value =
+          isCorrect ? 720 : 185;
 
-    gain.gain.value=.08;
+        gain.gain.setValueAtTime(
+          isCorrect ? 0.13 : 0.1,
+          context.currentTime
+        );
 
-    oscillator.start();
+        gain.gain.exponentialRampToValueAtTime(
+          0.001,
+          context.currentTime +
+          (isCorrect ? 0.35 : 0.28)
+        );
 
-  oscillator.stop(context.currentTime + (isCorrect ? 0.18 : 0.28));
-      
-      
-    
+        oscillator.connect(gain);
+        gain.connect(context.destination);
 
-  }catch(error){}
-}
+        oscillator.start();
 
-function celebrate(){
-  const container=
-    document.getElementById("confetti");
+        oscillator.stop(
+          context.currentTime +
+          (isCorrect ? 0.35 : 0.28)
+        );
+      } catch (error) {
+        console.log(error);
+      }
+    }
 
-  const icons=[
-    "🎈",
-    "✨",
-    "🌸",
-    "⭐",
-    "🎉"
-  ];
+    function showAnswerMark(isCorrect) {
+      const mark =
+        document.createElement("div");
 
-  for(let i=0;i<28;i++){
-    const piece=
-      document.createElement("span");
+      mark.className =
+        isCorrect
+          ? "answer-mark correct-mark"
+          : "answer-mark wrong-mark";
 
-    piece.className="piece";
+      mark.textContent =
+        isCorrect ? "✓" : "✕";
 
-    piece.textContent=
-      icons[
-        Math.floor(
-          Math.random()*icons.length
-        )
+      document.body.appendChild(mark);
+
+      setTimeout(
+        () => {
+          mark.remove();
+        },
+        750
+      );
+    }
+
+    function celebrate() {
+      const symbols = [
+        "🎉",
+        "⭐",
+        "✨",
+        "🌸",
+        "🏆",
+        "🎈"
       ];
 
-    piece.style.left=
-      Math.random()*100+"vw";
+      for (let i = 0; i < 35; i++) {
+        const piece =
+          document.createElement("span");
 
-    piece.style.animationDelay=
-      Math.random()*.5+"s";
+        piece.className =
+          "confetti-piece";
 
-    container.appendChild(piece);
+        piece.textContent =
+          symbols[
+            Math.floor(
+              Math.random() *
+              symbols.length
+            )
+          ];
 
-    setTimeout(()=>{
-      piece.remove();
-    },3300);
-  }
-}
+        piece.style.left =
+          Math.random() * 100 + "vw";
 
-renderCards();
+        piece.style.fontSize =
+          18 + Math.random() * 22 + "px";
 
-</script>
+        piece.style.animationDelay =
+          Math.random() * 0.7 + "s";
+
+        document.body.appendChild(piece);
+
+        setTimeout(
+          () => {
+            piece.remove();
+          },
+          4000
+        );
+      }
+    }
+
+    function startQuiz() {
+      const enteredName =
+        studentNameInput.value.trim();
+
+      const enteredClass =
+        studentClassInput.value.trim();
+
+      const nameParts =
+        enteredName
+          .split(/\s+/)
+          .filter(Boolean);
+
+      if (nameParts.length < 4) {
+        inputWarning.textContent =
+          "اكتبي اسمكِ الرباعي كاملًا.";
+
+        inputWarning.classList.add("show");
+        return;
+      }
+
+      if (!enteredClass) {
+        inputWarning.textContent =
+          "اكتبي الصف والفصل.";
+
+        inputWarning.classList.add("show");
+        return;
+      }
+
+      studentName = enteredName;
+      studentClass = enteredClass;
+
+      inputWarning.classList.remove("show");
+      startScreen.style.display = "none";
+
+      quizScreen.classList.add("active");
+
+      renderQuestion();
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+
+    function updateHeader() {
+      questionCounter.textContent =
+        `السؤال ${currentQuestion + 1} من ${totalQuestions}`;
+
+      liveScore.textContent =
+        `الدرجة: ${score}`;
+
+      progressBar.style.width =
+        `${
+          (
+            (currentQuestion + 1) /
+            totalQuestions
+          ) * 100
+        }%`;
+    }
+
+    function renderQuestion() {
+      const item =
+        questions[currentQuestion];
+
+      updateHeader();
+
+      questionNumber.textContent =
+        `السؤال ${currentQuestion + 1}`;
+
+      questionTitle.textContent =
+        item.title;
+
+      questionInstruction.textContent =
+        item.instruction;
+
+      passageCard.innerHTML =
+        `
+          ${item.passage}
+
+          <hr style="
+            border:0;
+            border-top:2px solid #eaddea;
+            margin:19px 0;
+          ">
+
+          <strong style="
+            color:var(--purple);
+          ">
+            ${item.question}
+          </strong>
+        `;
+
+      answersContainer.innerHTML = "";
+      feedback.className = "feedback";
+      feedback.innerHTML = "";
+
+      item.options.forEach(
+        (answerText, answerIndex) => {
+          const button =
+            document.createElement("button");
+
+          button.type = "button";
+          button.className =
+            "answer-button";
+
+          button.textContent =
+            answerText;
+
+          button.addEventListener(
+            "click",
+            () => selectAnswer(
+              answerIndex,
+              button
+            )
+          );
+
+          answersContainer.appendChild(button);
+        }
+      );
+
+      previousBtn.disabled =
+        currentQuestion === 0;
+
+      nextBtn.disabled =
+        studentAnswers[currentQuestion] === null;
+
+      nextBtn.textContent =
+        currentQuestion === totalQuestions - 1
+          ? "عرض النتيجة"
+          : "التالي";
+
+      restoreAnsweredQuestion();
+    }
+
+    function restoreAnsweredQuestion() {
+      const selected =
+        studentAnswers[currentQuestion];
+
+      if (selected === null) return;
+
+      const item =
+        questions[currentQuestion];
+
+      const buttons =
+        Array.from(
+          answersContainer
+            .querySelectorAll(".answer-button")
+        );
+
+      buttons.forEach(button => {
+        button.disabled = true;
+      });
+
+      if (selected === item.correct) {
+        buttons[selected]
+          .classList.add("correct");
+
+        feedback.className =
+          "feedback correct show";
+
+        feedback.innerHTML = `
+          <strong>
+            ✅ إجابة صحيحة
+          </strong>
+
+          <br>
+
+          ${item.explanation}
+        `;
+      } else {
+        buttons[selected]
+          .classList.add("wrong");
+
+        buttons[item.correct]
+          .classList.add("correct");
+
+        feedback.className =
+          "feedback wrong show";
+
+        feedback.innerHTML = `
+          <strong>
+            ❌ الإجابة غير صحيحة
+          </strong>
+
+          <br>
+
+          <b>
+            الإجابة الصحيحة:
+          </b>
+
+          ${item.options[item.correct]}
+
+          <br><br>
+
+          ${item.explanation}
+        `;
+      }
+    }
+
+    function selectAnswer(
+      selectedIndex,
+      selectedButton
+    ) {
+      if (
+        studentAnswers[currentQuestion] !== null
+      ) {
+        return;
+      }
+
+      const item =
+        questions[currentQuestion];
+
+      const buttons =
+        Array.from(
+          answersContainer
+            .querySelectorAll(".answer-button")
+        );
+
+      studentAnswers[currentQuestion] =
+        selectedIndex;
+
+      buttons.forEach(button => {
+        button.disabled = true;
+      });
+
+      if (selectedIndex === item.correct) {
+        score++;
+
+        answerWasCorrect[currentQuestion] =
+          true;
+
+        selectedButton
+          .classList.add("correct");
+
+        feedback.className =
+          "feedback correct show";
+
+        feedback.innerHTML = `
+          <strong>
+            ✅ أحسنتِ، إجابة صحيحة
+          </strong>
+
+          <br>
+
+          ${item.explanation}
+        `;
+
+        showAnswerMark(true);
+        playTone(true);
+      } else {
+        selectedButton
+          .classList.add("wrong");
+
+        buttons[item.correct]
+          .classList.add("correct");
+
+        feedback.className =
+          "feedback wrong show";
+
+        feedback.innerHTML = `
+          <strong>
+            ❌ الإجابة غير صحيحة
+          </strong>
+
+          <br>
+
+          <b>
+            الإجابة الصحيحة:
+          </b>
+
+          ${item.options[item.correct]}
+
+          <br><br>
+
+          ${item.explanation}
+        `;
+
+        showAnswerMark(false);
+        playTone(false);
+      }
+
+      liveScore.textContent =
+        `الدرجة: ${score}`;
+
+      nextBtn.disabled = false;
+    }
+
+    function showPreviousQuestion() {
+      if (currentQuestion === 0) return;
+
+      currentQuestion--;
+      renderQuestion();
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+
+    function showNextQuestion() {
+      if (
+        studentAnswers[currentQuestion] === null
+      ) {
+        return;
+      }
+
+      if (
+        currentQuestion <
+        totalQuestions - 1
+      ) {
+        currentQuestion++;
+        renderQuestion();
+
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+
+        return;
+      }
+
+      finishQuiz();
+    }
+
+    function getRank() {
+      const percentage =
+        Math.round(
+          (score / totalQuestions) * 100
+        );
+
+      if (percentage === 100) {
+        return {
+          icon: "👑",
+          title: "بطلة نافس الذهبية",
+          message:
+            "إتقان استثنائي ودقة عالية في جميع المهارات."
+        };
+      }
+
+      if (percentage >= 90) {
+        return {
+          icon: "🏆",
+          title: "نجمة الفهم العميق",
+          message:
+            "أداء متميز يدل على فهم عميق وتحليل دقيق."
+        };
+      }
+
+      if (percentage >= 80) {
+        return {
+          icon: "⭐",
+          title: "القارئة الماهرة",
+          message:
+            "أداء قوي، وقدرة واضحة على الاستنتاج والتقويم."
+        };
+
+            if (percentage >= 70) {
+        return {
+          icon: "🌟",
+          title: "المتقدمة بثقة",
+          message:
+            "إنجاز جميل، ومع مزيد من التدريب تصلين إلى الإتقان."
+        };
+      }
+
+      return {
+        icon: "🌷",
+        title: "المثابرة الطموحة",
+        message:
+          "محاولة تستحق التقدير، وراجعي التفسيرات ثم واصلي التدريب."
+      };
+      }
+          function finishQuiz() {
+      quizScreen.classList.remove("active");
+      resultScreen.classList.add("active");
+
+      const percentage =
+        Math.round(
+          (score / totalQuestions) * 100
+        );
+
+      const rank = getRank();
+
+      resultIcon.textContent =
+        rank.icon;
+
+      resultTitle.textContent =
+        rank.title;
+
+      resultScore.textContent =
+        `${score} من ${totalQuestions} — ${percentage}٪`;
+
+      resultMessage.innerHTML = `
+        <strong>${studentName}</strong>
+        <br>
+        ${rank.message}
+      `;
+
+      document.getElementById(
+        "certificateName"
+      ).textContent = studentName;
+
+      document.getElementById(
+        "certificateClass"
+      ).textContent =
+        `الصف والفصل: ${studentClass}`;
+
+      document.getElementById(
+        "certificateRank"
+      ).textContent =
+        rank.title;
+
+      document.getElementById(
+        "certificateScore"
+      ).textContent =
+        `الدرجة: ${score} من ${totalQuestions} — النسبة: ${percentage}٪`;
+
+      if (percentage >= 80) {
+        celebrate();
+        playTone(true);
+      }
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+
+    function showCertificate() {
+      certificate.classList.add("show");
+      printButton.style.display =
+        "inline-block";
+
+      certificateButton.textContent =
+        "🎓 تم عرض الشهادة";
+
+      certificate.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+
+      celebrate();
+    }
+
+    startQuizBtn.addEventListener(
+      "click",
+      startQuiz
+    );
+
+    previousBtn.addEventListener(
+      "click",
+      showPreviousQuestion
+    );
+
+    nextBtn.addEventListener(
+      "click",
+      showNextQuestion
+    );
+
+    certificateButton.addEventListener(
+      "click",
+      showCertificate
+    );
+
+    printButton.addEventListener(
+      "click",
+      () => {
+        window.print();
+      }
+    );
+
+    soundBtn.addEventListener(
+      "click",
+      () => {
+        soundOn = !soundOn;
+
+        localStorage.setItem(
+          "nafesSound",
+          soundOn ? "on" : "off"
+        );
+
+        updateSoundButton();
+
+        if (soundOn) {
+          playTone(true);
+        }
+      }
+    );
+
+    updateSoundButton();
+  </script>
+
 </body>
 </html>
