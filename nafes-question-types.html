@@ -1645,16 +1645,42 @@ updateProgress();
     ↻ البدء من جديد
   </button>
 </div>
-
 <script>
-  document
-    .getElementById("restartBtn")
-    .addEventListener("click", function(){
+document.getElementById("restartBtn").addEventListener("click", function () {
 
-      localStorage.removeItem("nafes_question_types_progress");
-      location.reload();
+  completed.clear();
 
-    });
+  Object.keys(solved).forEach(function (key) {
+    delete solved[key];
+  });
+
+  Object.keys(ratings).forEach(function (key) {
+    delete ratings[key];
+  });
+
+  Object.keys(localStorage).forEach(function (key) {
+    const name = key.toLowerCase();
+
+    if (
+      name.includes("question") ||
+      name.includes("paper")
+    ) {
+      localStorage.removeItem(key);
+    }
+  });
+
+  workspace.hidden = true;
+  finalCard.classList.remove("show");
+  libraryView.hidden = false;
+
+  buildPapers();
+  updateProgress();
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
 </script>
   </main>
 
