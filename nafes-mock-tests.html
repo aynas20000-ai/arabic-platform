@@ -4,60 +4,167 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>اختبارات نافس الشاملة | منصة آفاق</title>
+
   <style>
     :root{
-      --p:#75558d;--pd:#4b385b;--g:#c9a85c;
-      --bg:#fffaf1;--paper:#fffdf8;--text:#403347;
-      --ok:#168a52;--bad:#b83a4b;
+      --p:#75558d;
+      --pd:#4b385b;
+      --g:#c9a85c;
+      --bg:#fffaf1;
+      --paper:#fffdf8;
+      --text:#403347;
+      --ok:#168a52;
+      --bad:#b83a4b;
     }
-    *{box-sizing:border-box}
+
+    *{
+      box-sizing:border-box;
+    }
+
     body{
-      margin:0;font-family:Tahoma,Arial,sans-serif;color:var(--text);
-      background:linear-gradient(180deg,var(--bg),#f7eff8);line-height:1.8
+      margin:0;
+      font-family:Tahoma,Arial,sans-serif;
+      color:var(--text);
+      background:linear-gradient(180deg,var(--bg),#f7eff8);
+      line-height:1.8;
     }
+
     header{
-      padding:34px 18px;text-align:center;color:#fff;
+      padding:34px 18px;
+      text-align:center;
+      color:#fff;
       background:linear-gradient(135deg,#786094,#594474);
-      border-bottom:5px solid var(--g)
+      border-bottom:5px solid var(--g);
     }
-    header h1{margin:0;font-size:34px}
-    header p{max-width:760px;margin:10px auto 0;font-size:17px}
-    main{width:min(94%,980px);margin:28px auto 40px}
+
+    header h1{
+      margin:0;
+      font-size:34px;
+    }
+
+    header p{
+      max-width:760px;
+      margin:10px auto 0;
+      font-size:17px;
+    }
+
+    main{
+      width:min(94%,980px);
+      margin:28px auto 40px;
+    }
+
     .top-link{
-      display:inline-block;margin-bottom:18px;padding:10px 14px;color:#35263d;
-      font-weight:bold;text-decoration:none;background:var(--g);border-radius:12px
+      display:inline-block;
+      margin-bottom:18px;
+      padding:10px 14px;
+      color:#35263d;
+      font-weight:bold;
+      text-decoration:none;
+      background:var(--g);
+      border-radius:12px;
     }
+
     .panel{
-      padding:22px;background:var(--paper);border:2px solid #dfd3e5;
-      border-radius:24px;box-shadow:0 8px 22px rgba(73,56,92,.10)
+      padding:22px;
+      background:var(--paper);
+      border:2px solid #dfd3e5;
+      border-radius:24px;
+      box-shadow:0 8px 22px rgba(73,56,92,.10);
     }
-    .panel h2{margin:0 0 20px;text-align:center;color:var(--pd);font-size:28px}
+
+    .panel h2{
+      margin:0 0 20px;
+      text-align:center;
+      color:var(--pd);
+      font-size:28px;
+    }
+
     .progress-summary{
-      margin:0 auto 20px;padding:14px;border:2px solid var(--g);border-radius:16px;
-      text-align:center;background:#fff
+      margin:0 auto 20px;
+      padding:14px;
+      border:2px solid var(--g);
+      border-radius:16px;
+      text-align:center;
+      background:#fff;
     }
-    .tests-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+
+    .tests-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:18px;
+    }
+
     .test-card{
-      border:2px solid var(--g);border-radius:22px;min-height:190px;padding:20px;
-      display:flex;flex-direction:column;align-items:center;justify-content:center;
-      text-align:center;background:linear-gradient(145deg,#fffdf8,#f6eef9);
-      box-shadow:0 6px 16px rgba(73,56,92,.08);cursor:pointer
+      border:2px solid var(--g);
+      border-radius:22px;
+      min-height:190px;
+      padding:20px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      background:linear-gradient(145deg,#fffdf8,#f6eef9);
+      box-shadow:0 6px 16px rgba(73,56,92,.08);
+      cursor:pointer;
     }
-    .test-card:active{transform:scale(.98)}
-    .test-card.locked{opacity:.62;cursor:not-allowed}
-    .icon{font-size:44px;margin-bottom:8px}
-    .title{font-size:21px;font-weight:bold;color:var(--pd)}
-    .subtitle{font-size:14px;color:#6d6172;margin-top:6px}
-    .badge{margin-top:8px;font-size:13px;color:#8d6b16}
-    .hidden{display:none!important}
-    .name-box,.quiz-box,.result-box,.certificate{
-      background:#fff;border:2px solid var(--g);border-radius:22px;padding:22px;
-      box-shadow:0 8px 22px rgba(73,56,92,.10)
+
+    .test-card:active{
+      transform:scale(.98);
     }
+
+    .test-card.locked{
+      opacity:.62;
+      cursor:not-allowed;
+    }
+
+    .icon{
+      font-size:44px;
+      margin-bottom:8px;
+    }
+
+    .title{
+      font-size:21px;
+      font-weight:bold;
+      color:var(--pd);
+    }
+
+    .subtitle{
+      font-size:14px;
+      color:#6d6172;
+      margin-top:6px;
+    }
+
+    .badge{
+      margin-top:8px;
+      font-size:13px;
+      color:#8d6b16;
+    }
+
+    .hidden{
+      display:none!important;
+    }
+
+    .name-box,
+    .quiz-box,
+    .result-box,
+    .certificate{
+      background:#fff;
+      border:2px solid var(--g);
+      border-radius:22px;
+      padding:22px;
+      box-shadow:0 8px 22px rgba(73,56,92,.10);
+    }
+
     input[type="text"]{
-      width:100%;padding:14px;border:2px solid #d9c9df;border-radius:14px;
-      font-size:18px;text-align:center
+      width:100%;
+      padding:14px;
+      border:2px solid #d9c9df;
+      border-radius:14px;
+      font-size:18px;
+      text-align:center;
     }
+
     .btn{
       border:none;
       border-radius:16px;
@@ -68,9 +175,21 @@
       transition:.2s;
       box-shadow:0 5px 12px rgba(73,56,92,.12);
     }
-    .btn:active{transform:scale(.97)}
-    .btn-primary{background:linear-gradient(135deg,#786094,#594474);color:#fff}
-    .btn-gold{background:linear-gradient(135deg,#d6b764,#c9a85c);color:#35263d}
+
+    .btn:active{
+      transform:scale(.97);
+    }
+
+    .btn-primary{
+      background:linear-gradient(135deg,#786094,#594474);
+      color:#fff;
+    }
+
+    .btn-gold{
+      background:linear-gradient(135deg,#d6b764,#c9a85c);
+      color:#35263d;
+    }
+
     .result-actions{
       display:flex;
       flex-wrap:wrap;
@@ -78,30 +197,96 @@
       gap:10px;
       margin:16px 0 6px;
     }
+
     .result-actions .btn{
       margin:0;
       min-width:150px;
     }
-    .question-head{display:flex;justify-content:space-between;gap:10px;align-items:center}
-    .bar{height:12px;background:#eee;border-radius:20px;overflow:hidden;margin:14px 0}
-    .bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--g),#786094)}
+
+    .question-head{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:center;
+    }
+
+    .bar{
+      height:12px;
+      background:#eee;
+      border-radius:20px;
+      overflow:hidden;
+      margin:14px 0;
+    }
+
+    .bar span{
+      display:block;
+      height:100%;
+      width:0;
+      background:linear-gradient(90deg,var(--g),#786094);
+    }
+
     .passage{
-      background:#fffaf1;border-right:5px solid var(--g);padding:18px;
-      border-radius:14px;text-align:right;margin:14px 0;max-height:310px;overflow:auto
+      background:#fffaf1;
+      border-right:5px solid var(--g);
+      padding:18px;
+      border-radius:14px;
+      text-align:right;
+      margin:14px 0;
+      max-height:310px;
+      overflow:auto;
     }
-    .question{font-size:21px;font-weight:bold;margin:18px 0}
-    .answers{display:grid;gap:12px}
+
+    .question{
+      font-size:21px;
+      font-weight:bold;
+      margin:18px 0;
+    }
+
+    .answers{
+      display:grid;
+      gap:12px;
+    }
+
     .answer{
-      width:100%;padding:14px;border:2px solid #d8c8df;background:#fff;
-      border-radius:14px;font-size:17px;text-align:right;cursor:pointer
+      width:100%;
+      padding:14px;
+      border:2px solid #d8c8df;
+      background:#fff;
+      border-radius:14px;
+      font-size:17px;
+      text-align:right;
+      cursor:pointer;
     }
-    .answer.correct{border-color:var(--ok);background:#ecfff4;color:#0b653a}
-    .answer.wrong{border-color:var(--bad);background:#fff0f2;color:#8f2433}
+
+    .answer.correct{
+      border-color:var(--ok);
+      background:#ecfff4;
+      color:#0b653a;
+    }
+
+    .answer.wrong{
+      border-color:var(--bad);
+      background:#fff0f2;
+      color:#8f2433;
+    }
+
     .feedback{
-      margin-top:16px;padding:14px;border-radius:14px;font-weight:bold
+      margin-top:16px;
+      padding:14px;
+      border-radius:14px;
+      font-weight:bold;
     }
-    .feedback.ok{background:#ecfff4;color:#0b653a}
-    .feedback.bad{background:#fff0f2;color:#8f2433}
+
+    .feedback.ok{
+      background:#ecfff4;
+      color:#0b653a;
+    }
+
+    .feedback.bad{
+      background:#fff0f2;
+      color:#8f2433;
+    }
+
     .answer-mark{
       position:fixed;
       inset:0;
@@ -115,23 +300,75 @@
       animation:markPop .65s ease both;
       text-shadow:0 8px 24px rgba(0,0,0,.18);
     }
-    .answer-mark.correct-mark{color:#168a52}
-    .answer-mark.wrong-mark{color:#b83a4b}
+
+    .answer-mark.correct-mark{
+      color:#168a52;
+    }
+
+    .answer-mark.wrong-mark{
+      color:#b83a4b;
+    }
+
     @keyframes markPop{
-      0%{opacity:0;transform:scale(.25)}
-      55%{opacity:1;transform:scale(1.12)}
-      100%{opacity:0;transform:scale(.92)}
+      0%{
+        opacity:0;
+        transform:scale(.25);
+      }
+
+      55%{
+        opacity:1;
+        transform:scale(1.12);
+      }
+
+      100%{
+        opacity:0;
+        transform:scale(.92);
+      }
     }
-    .shake{animation:shake .38s}
+
+    .shake{
+      animation:shake .38s;
+    }
+
     @keyframes shake{
-      0%,100%{transform:translateX(0)}
-      25%{transform:translateX(8px)}
-      50%{transform:translateX(-8px)}
-      75%{transform:translateX(5px)}
+      0%,100%{
+        transform:translateX(0);
+      }
+
+      25%{
+        transform:translateX(8px);
+      }
+
+      50%{
+        transform:translateX(-8px);
+      }
+
+      75%{
+        transform:translateX(5px);
+      }
     }
-    .confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:99}
-    .piece{position:absolute;top:-20px;font-size:26px;animation:fall 2.7s linear forwards}
-    @keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
+
+    .confetti{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      overflow:hidden;
+      z-index:99;
+    }
+
+    .piece{
+      position:absolute;
+      top:-20px;
+      font-size:26px;
+      animation:fall 2.7s linear forwards;
+    }
+
+    @keyframes fall{
+      to{
+        transform:translateY(110vh) rotate(720deg);
+      }
+    }
+
     .certificate-shell{
       width:100%;
       margin:22px auto 0;
@@ -169,50 +406,43 @@
     }
 
     .cert-title{
-      top:28%;
+      top:31%;
       color:#2a2194;
-      font-size:clamp(15px,2.3vw,27px);
+      font-size:clamp(13px,1.95vw,23px);
       font-weight:bold;
     }
 
     .cert-intro{
-      top:37%;
+      top:39%;
       color:#3d3348;
-      font-size:clamp(9px,1.15vw,14px);
+      font-size:clamp(8px,1vw,12px);
     }
 
     .student-name{
-      top:43%;
+      top:45%;
       color:#4f8d8d;
-      font-size:clamp(17px,2.55vw,30px);
+      font-size:clamp(15px,2.15vw,25px);
       font-weight:bold;
       white-space:normal;
     }
 
-    .cert-pass{
-      top:53%;
-      color:#3d3348;
-      font-size:clamp(9px,1.15vw,14px);
-    }
-
-    .cert-challenge{
-      top:58%;
-      color:#594474;
-      font-size:clamp(12px,1.7vw,20px);
-      font-weight:bold;
-    }
-
     .cert-score{
-      top:65%;
+      top:56%;
+      right:29%;
+      left:29%;
+      padding:4px 8px;
       color:#594474;
-      font-size:clamp(11px,1.45vw,18px);
+      background:rgba(255,255,255,.78);
+      border:1px solid rgba(201,168,92,.75);
+      border-radius:10px;
+      font-size:clamp(9px,1.2vw,14px);
       font-weight:bold;
     }
 
     .cert-phrase{
-      top:72%;
+      top:66%;
       color:#403347;
-      font-size:clamp(9px,1.15vw,14px);
+      font-size:clamp(8px,1vw,12px);
       font-weight:bold;
     }
 
@@ -221,31 +451,59 @@
     }
 
     @keyframes certificateReveal{
-      from{opacity:0;transform:scale(.92) translateY(18px)}
-      to{opacity:1;transform:scale(1) translateY(0)}
+      from{
+        opacity:0;
+        transform:scale(.92) translateY(18px);
+      }
+
+      to{
+        opacity:1;
+        transform:scale(1) translateY(0);
+      }
     }
 
-    .signatures{display:none}
-    footer{padding:18px;text-align:center;color:#fff;background:var(--pd);border-top:4px solid var(--g)}
+    footer{
+      padding:18px;
+      text-align:center;
+      color:#fff;
+      background:var(--pd);
+      border-top:4px solid var(--g);
+    }
+
     @media(max-width:700px){
-      .tests-grid{grid-template-columns:1fr}
-      header h1{font-size:28px}
-      main{width:min(96%,980px)}
-      .result-box{padding:18px 12px}
+      .tests-grid{
+        grid-template-columns:1fr;
+      }
+
+      header h1{
+        font-size:28px;
+      }
+
+      main{
+        width:min(96%,980px);
+      }
+
+      .result-box{
+        padding:18px 12px;
+      }
+
       .result-actions{
         display:grid;
         grid-template-columns:1fr 1fr;
         gap:9px;
       }
+
       .result-actions .btn{
         min-width:0;
         width:100%;
         padding:11px 8px;
         font-size:14px;
       }
+
       .result-actions .wide{
         grid-column:1 / -1;
       }
+
       .certificate{
         width:100%;
         max-width:620px;
@@ -258,7 +516,8 @@
     }
 
     @media print{
-      html,body{
+      html,
+      body{
         width:297mm;
         height:210mm;
         margin:0;
@@ -266,7 +525,9 @@
         background:#fff;
       }
 
-      body *{visibility:hidden!important}
+      body *{
+        visibility:hidden!important;
+      }
 
       #certificateShell,
       #certificateShell *,
@@ -299,347 +560,1022 @@
     }
   </style>
 </head>
+
 <body>
+
 <header>
   <h1>🏆 اختبارات نافس الشاملة</h1>
-  <p>اكتبي اسمكِ الرباعي، ثم اختاري التحدي. لكل اختبار شهادة، وبعد إكمال التحديات بدرجات مرتفعة تستحقين الوسام الكبير.</p>
+
+  <p>
+    اكتبي اسمكِ الرباعي، ثم اختاري التحدي.
+    لكل اختبار شهادة، وبعد إكمال التحديات بدرجات مرتفعة تستحقين الوسام الكبير.
+  </p>
 </header>
 
 <main>
-  <a class="top-link" href="nafes.html">العودة إلى مكتبة نافس</a>
+
+  <a class="top-link" href="nafes.html">
+    العودة إلى مكتبة نافس
+  </a>
 
   <section id="home" class="panel">
+
     <h2>تحديات نافس</h2>
-    <div class="progress-summary" id="summary">أنجزتِ 0 من 20 تحديًا</div>
+
+    <div class="progress-summary" id="summary">
+      أنجزتِ 0 من 20 تحديًا
+    </div>
+
     <div class="tests-grid" id="cards"></div>
+
   </section>
 
   <section id="nameScreen" class="name-box hidden">
+
     <h2 id="challengeTitle"></h2>
-    <p>اكتبي اسمكِ الرباعي كما سيظهر في الشهادة:</p>
-    <input id="studentName" type="text" placeholder="مثال: سارة محمد أحمد علي">
+
+    <p>
+      اكتبي اسمكِ الرباعي كما سيظهر في الشهادة:
+    </p>
+
+    <input
+      id="studentName"
+      type="text"
+      placeholder="مثال: سارة محمد أحمد علي"
+    >
+
     <div>
-      <button class="btn btn-primary" onclick="startQuiz()">ابدئي التحدي</button>
-      <button class="btn btn-gold" onclick="goHome()">رجوع</button>
+      <button
+        class="btn btn-primary"
+        onclick="startQuiz()"
+      >
+        ابدئي التحدي
+      </button>
+
+      <button
+        class="btn btn-gold"
+        onclick="goHome()"
+      >
+        رجوع
+      </button>
     </div>
+
   </section>
 
   <section id="quizScreen" class="quiz-box hidden">
+
     <div class="question-head">
       <strong id="qCounter"></strong>
       <strong id="scoreLive">الدرجة: 0</strong>
     </div>
-    <div class="bar"><span id="barFill"></span></div>
-    <div id="passage" class="passage"></div>
+
+    <div class="bar">
+      <span id="barFill"></span>
+    </div>
+        <div id="passage" class="passage"></div>
     <div id="question" class="question"></div>
     <div id="answers" class="answers"></div>
     <div id="feedback" class="feedback hidden"></div>
-    <button id="nextBtn" class="btn btn-primary hidden" onclick="nextQuestion()">السؤال التالي</button>
+
+    <button
+      id="nextBtn"
+      class="btn btn-primary hidden"
+      onclick="nextQuestion()"
+    >
+      السؤال التالي
+    </button>
+
   </section>
 
   <section id="resultScreen" class="result-box hidden">
+
     <h2 id="resultTitle"></h2>
     <p id="resultText"></p>
+
     <div class="result-actions">
-      <button class="btn btn-primary" onclick="showCertificate()">عرض الشهادة</button>
-      <button class="btn btn-gold" onclick="restartQuiz()">إعادة الاختبار</button>
-      <button class="btn btn-gold wide" onclick="goHome()">العودة للتحديات</button>
+
+      <button
+        class="btn btn-primary"
+        onclick="showCertificate()"
+      >
+        عرض الشهادة
+      </button>
+
+      <button
+        class="btn btn-gold"
+        onclick="restartQuiz()"
+      >
+        إعادة الاختبار
+      </button>
+
+      <button
+        class="btn btn-gold wide"
+        onclick="goHome()"
+      >
+        العودة للتحديات
+      </button>
+
     </div>
 
-    <div id="certificateShell" class="certificate-shell hidden">
-      <div id="certificate" class="certificate" aria-label="شهادة اجتياز تحدي نافس">
-        <img class="certificate-bg" src="nafes-certificate-bg.jpg?v=final2" alt="">
-        <div class="cert-line cert-title">شهادة اجتياز تحدي نافس</div>
-        <div class="cert-line cert-intro">تُمنح هذه الشهادة للطالبة</div>
-        <div id="certName" class="cert-line student-name"></div>
-        <div class="cert-line cert-pass">لاجتيازها التحدي بنجاح</div>
-        <div id="certChallenge" class="cert-line cert-challenge"></div>
-        <div id="certScore" class="cert-line cert-score"></div>
-        <div id="certPhrase" class="cert-line cert-phrase"></div>
+    <div
+      id="certificateShell"
+      class="certificate-shell hidden"
+    >
+
+      <div
+        id="certificate"
+        class="certificate"
+        aria-label="شهادة اجتياز تحدي نافس"
+      >
+
+        <img
+          class="certificate-bg"
+          src="nafes-certificate-bg.jpg?v=final3"
+          alt=""
+        >
+
+        <div class="cert-line cert-title">
+          شهادة اجتياز تحدي نافس
+        </div>
+
+        <div class="cert-line cert-intro">
+          تُمنح هذه الشهادة للطالبة
+        </div>
+
+        <div
+          id="certName"
+          class="cert-line student-name"
+        ></div>
+
+        <div
+          id="certScore"
+          class="cert-line cert-score"
+        ></div>
+
+        <div
+          id="certPhrase"
+          class="cert-line cert-phrase"
+        ></div>
+
       </div>
+
     </div>
 
     <div class="result-actions">
-      <button id="printBtn" class="btn btn-primary wide hidden" onclick="window.print()">🖨️ طباعة الشهادة أو حفظها PDF</button>
+
+      <button
+        id="printBtn"
+        class="btn btn-primary wide hidden"
+        onclick="window.print()"
+      >
+        🖨️ طباعة الشهادة أو حفظها PDF
+      </button>
+
     </div>
+
   </section>
+
 </main>
 
 <div id="confetti" class="confetti"></div>
-<footer>جميع الحقوق محفوظة © 2026</footer>
+
+<footer>
+  جميع الحقوق محفوظة © 2026
+</footer>
 
 <script>
+
 const challenges = [
-  {id:1, icon:"🌸", title:"تحدي بوابة الجمال", subtitle:"الجمال والحياة", active:true},
-  {id:2, icon:"📖", title:"تحدي ربيع القلوب", subtitle:"ربيع القلوب"},
-  {id:3, icon:"🌿", title:"تحدي سفيرة الأرض", subtitle:"حماية البيئة"},
-  {id:4, icon:"⏳", title:"تحدي حارسة الدقائق", subtitle:"كنز الوقت"},
-  {id:5, icon:"🔍", title:"تحدي عين القارئة", subtitle:"ما وراء السطور"},
-  {id:6, icon:"⚖️", title:"تحدي الناقدة الواعية", subtitle:"القراءة الناقدة"},
-  {id:7, icon:"🎯", title:"تحدي الإجابة الأدق", subtitle:"اختيار الأصوب"},
-  {id:8, icon:"💡", title:"تحدي التطبيق الذكي", subtitle:"مواقف جديدة"},
-  {id:9, icon:"📝", title:"تحدي صانعة الملخص", subtitle:"تلخيص النص"},
-  {id:10,icon:"🏆", title:"تحدي الفهم الشامل", subtitle:"مهارات متنوعة"},
-  {id:11,icon:"🌟", title:"تحدي النجمة القارئة", subtitle:"فهم واستنتاج"},
-  {id:12,icon:"🧭", title:"تحدي بوصلة المعنى", subtitle:"السياق والدلالة"},
-  {id:13,icon:"🧠", title:"تحدي العقل المتأمل", subtitle:"الفكرة الضمنية"},
-  {id:14,icon:"🔗", title:"تحدي روابط النص", subtitle:"العلاقات بين الأفكار"},
-  {id:15,icon:"📚", title:"تحدي قارئة النصوص", subtitle:"أنواع النصوص"},
-  {id:16,icon:"🪄", title:"تحدي سحر المفردات", subtitle:"المفردات في السياق"},
-  {id:17,icon:"🕊️", title:"تحدي القيم الجميلة", subtitle:"القيم والمواقف"},
-  {id:18,icon:"🔮", title:"تحدي التوقع الذكي", subtitle:"التوقع والاستنتاج"},
-  {id:19,icon:"👑", title:"تحدي القارئة المتميزة", subtitle:"مستوى متقدم"},
-  {id:20,icon:"🥇", title:"التحدي الذهبي", subtitle:"الاختبار الختامي"}
+  {
+    id:1,
+    icon:"🌸",
+    title:"تحدي بوابة الجمال",
+    subtitle:"الجمال والحياة",
+    active:true
+  },
+
+  {
+    id:2,
+    icon:"📖",
+    title:"تحدي ربيع القلوب",
+    subtitle:"ربيع القلوب"
+  },
+
+  {
+    id:3,
+    icon:"🌿",
+    title:"تحدي سفيرة الأرض",
+    subtitle:"حماية البيئة"
+  },
+
+  {
+    id:4,
+    icon:"⏳",
+    title:"تحدي حارسة الدقائق",
+    subtitle:"كنز الوقت"
+  },
+
+  {
+    id:5,
+    icon:"🔍",
+    title:"تحدي عين القارئة",
+    subtitle:"ما وراء السطور"
+  },
+
+  {
+    id:6,
+    icon:"⚖️",
+    title:"تحدي الناقدة الواعية",
+    subtitle:"القراءة الناقدة"
+  },
+
+  {
+    id:7,
+    icon:"🎯",
+    title:"تحدي الإجابة الأدق",
+    subtitle:"اختيار الأصوب"
+  },
+
+  {
+    id:8,
+    icon:"💡",
+    title:"تحدي التطبيق الذكي",
+    subtitle:"مواقف جديدة"
+  },
+
+  {
+    id:9,
+    icon:"📝",
+    title:"تحدي صانعة الملخص",
+    subtitle:"تلخيص النص"
+  },
+
+  {
+    id:10,
+    icon:"🏆",
+    title:"تحدي الفهم الشامل",
+    subtitle:"مهارات متنوعة"
+  },
+
+  {
+    id:11,
+    icon:"🌟",
+    title:"تحدي النجمة القارئة",
+    subtitle:"فهم واستنتاج"
+  },
+
+  {
+    id:12,
+    icon:"🧭",
+    title:"تحدي بوصلة المعنى",
+    subtitle:"السياق والدلالة"
+  },
+
+  {
+    id:13,
+    icon:"🧠",
+    title:"تحدي العقل المتأمل",
+    subtitle:"الفكرة الضمنية"
+  },
+
+  {
+    id:14,
+    icon:"🔗",
+    title:"تحدي روابط النص",
+    subtitle:"العلاقات بين الأفكار"
+  },
+
+  {
+    id:15,
+    icon:"📚",
+    title:"تحدي قارئة النصوص",
+    subtitle:"أنواع النصوص"
+  },
+
+  {
+    id:16,
+    icon:"🪄",
+    title:"تحدي سحر المفردات",
+    subtitle:"المفردات في السياق"
+  },
+
+  {
+    id:17,
+    icon:"🕊️",
+    title:"تحدي القيم الجميلة",
+    subtitle:"القيم والمواقف"
+  },
+
+  {
+    id:18,
+    icon:"🔮",
+    title:"تحدي التوقع الذكي",
+    subtitle:"التوقع والاستنتاج"
+  },
+
+  {
+    id:19,
+    icon:"👑",
+    title:"تحدي القارئة المتميزة",
+    subtitle:"مستوى متقدم"
+  },
+
+  {
+    id:20,
+    icon:"🥇",
+    title:"التحدي الذهبي",
+    subtitle:"الاختبار الختامي"
+  }
 ];
 
 const tests = {
+
   1: {
-    passage: `الجمال عنصر أصيل في بنية الكون، وقد خلق الله الإنسان مزودًا بالقدرة على تذوقه. والحياة الحقة هي التي تتكامل فيها عناصر الإنسان: جسمه بتغذيته، وعقله بتطويره، وعاطفته بتزويدها بالجمال. ومن يتأمل الطبيعة يرى جمال السماء والأرض والطيور والأزهار وشروق الشمس وغروبها. وكلما دق بصر الإنسان وصفت روحه، رأى من جمال العالم ما يبعث في نفسه السعادة والطمأنينة، ويقوده إلى التفكر في عظمة الخالق.`,
-    questions: [
-      {q:"مرادف كلمة «قِوام» في سياق النص:", a:["أداء","عماد","استواء","شروع"], c:1, e:"القِوام هو ما يقوم عليه الشيء ويعتمد عليه؛ أي العماد."},
-      {q:"الدلالة المعنوية للاستفهام: «كم في الكون من جمال؟» هي:", a:["الإثبات","التأييد","النفي","الكثرة"], c:3, e:"الاستفهام هنا يفيد كثرة مظاهر الجمال في الكون."},
-      {q:"القيمة التي حث عليها النص:", a:["التأمل","الإعمار","السعي","الإصلاح"], c:0, e:"النص يدعو إلى التأمل في جمال الكون والتفكر فيه."},
-      {q:"الإحساس بالجمال ينشأ عن التكامل بين:", a:["العقل والجسم والعاطفة","العاطفة والعقل والرغبة","الجسم والعاطفة والروح","العاطفة والعقل والتمييز"], c:0, e:"ذكر النص صراحة: الجسم والعقل والعاطفة."},
-      {q:"العلاقة المعنوية بين «شروق» و«غروب» هي:", a:["الترادف","السببية","التضاد","الزمان"], c:2, e:"الشروق والغروب لفظان متضادان."},
-      {q:"الفكرة الرئيسة للنص هي:", a:["وصف أنواع الطيور","أهمية الجمال في حياة الإنسان","بيان صعوبة الحياة","تعداد مظاهر الطقس"], c:1, e:"يدور النص حول أثر الجمال والتأمل فيه في حياة الإنسان."},
-      {q:"معنى «دق بصره» في السياق:", a:["طرق الباب","ضعف نظره","أحسن الملاحظة","أسرع في المشي"], c:2, e:"المقصود دقة الملاحظة وحسن التأمل."},
-      {q:"أي المشاعر لا يبعثها التأمل في جمال الكون؟", a:["المتعة","السعادة","الدهشة","الفتور"], c:3, e:"النص يربط التأمل بالمتعة والسعادة والدهشة، لا بالفتور."},
-      {q:"ضد كلمة «أصيل» هو:", a:["راسخ","أساسي","ثانوي","عريق"], c:2, e:"أصيل تعني أساسي ومتجذر، وضدها ثانوي."},
-      {q:"أدق تلخيص للنص:", a:["الجمال يقتصر على الطبيعة فقط","تأمل الجمال يغذي العاطفة ويقود إلى السعادة والتفكر","العقل أهم من الجسم والعاطفة","مشاق الحياة تمنع الإنسان من رؤية الجمال"], c:1, e:"هذا الخيار يجمع الفكرة العامة وأثر الجمال في النفس."}
+
+    passage: `
+      الجمال عنصر أصيل في بنية الكون، وقد خلق الله الإنسان
+      مزودًا بالقدرة على تذوقه. والحياة الحقة هي التي تتكامل
+      فيها عناصر الإنسان: جسمه بتغذيته، وعقله بتطويره،
+      وعاطفته بتزويدها بالجمال.
+
+      ومن يتأمل الطبيعة يرى جمال السماء والأرض والطيور
+      والأزهار وشروق الشمس وغروبها. وكلما دق بصر الإنسان
+      وصفت روحه، رأى من جمال العالم ما يبعث في نفسه
+      السعادة والطمأنينة، ويقوده إلى التفكر في عظمة الخالق.
+    `,
+
+    questions:[
+
+      {
+        q:"مرادف كلمة «قِوام» في سياق النص:",
+        a:["أداء","عماد","استواء","شروع"],
+        c:1,
+        e:"القِوام هو ما يقوم عليه الشيء ويعتمد عليه؛ أي العماد."
+      },
+
+      {
+        q:"الدلالة المعنوية للاستفهام: «كم في الكون من جمال؟» هي:",
+        a:["الإثبات","التأييد","النفي","الكثرة"],
+        c:3,
+        e:"الاستفهام هنا يفيد كثرة مظاهر الجمال في الكون."
+      },
+
+      {
+        q:"القيمة التي حث عليها النص:",
+        a:["التأمل","الإعمار","السعي","الإصلاح"],
+        c:0,
+        e:"النص يدعو إلى التأمل في جمال الكون والتفكر فيه."
+      },
+
+      {
+        q:"الإحساس بالجمال ينشأ عن التكامل بين:",
+        a:[
+          "العقل والجسم والعاطفة",
+          "العاطفة والعقل والرغبة",
+          "الجسم والعاطفة والروح",
+          "العاطفة والعقل والتمييز"
+        ],
+        c:0,
+        e:"ذكر النص صراحة: الجسم والعقل والعاطفة."
+      },
+
+      {
+        q:"العلاقة المعنوية بين «شروق» و«غروب» هي:",
+        a:["الترادف","السببية","التضاد","الزمان"],
+        c:2,
+        e:"الشروق والغروب لفظان متضادان."
+      },
+
+      {
+        q:"الفكرة الرئيسة للنص هي:",
+        a:[
+          "وصف أنواع الطيور",
+          "أهمية الجمال في حياة الإنسان",
+          "بيان صعوبة الحياة",
+          "تعداد مظاهر الطقس"
+        ],
+        c:1,
+        e:"يدور النص حول أثر الجمال والتأمل فيه في حياة الإنسان."
+      },
+
+      {
+        q:"معنى «دق بصره» في السياق:",
+        a:[
+          "طرق الباب",
+          "ضعف نظره",
+          "أحسن الملاحظة",
+          "أسرع في المشي"
+        ],
+        c:2,
+        e:"المقصود دقة الملاحظة وحسن التأمل."
+      },
+
+      {
+        q:"أي المشاعر لا يبعثها التأمل في جمال الكون؟",
+        a:["المتعة","السعادة","الدهشة","الفتور"],
+        c:3,
+        e:"النص يربط التأمل بالمتعة والسعادة والدهشة، لا بالفتور."
+      },
+
+      {
+        q:"ضد كلمة «أصيل» هو:",
+        a:["راسخ","أساسي","ثانوي","عريق"],
+        c:2,
+        e:"أصيل تعني أساسي ومتجذر، وضدها ثانوي."
+      },
+
+      {
+        q:"أدق تلخيص للنص:",
+        a:[
+          "الجمال يقتصر على الطبيعة فقط",
+          "تأمل الجمال يغذي العاطفة ويقود إلى السعادة والتفكر",
+          "العقل أهم من الجسم والعاطفة",
+          "مشاق الحياة تمنع الإنسان من رؤية الجمال"
+        ],
+        c:1,
+        e:"هذا الخيار يجمع الفكرة العامة وأثر الجمال في النفس."
+      }
+
     ]
+
   }
+
 };
 
-let currentId=1, currentQ=0, score=0, student="", answered=false;
+let currentId=1;
+let currentQ=0;
+let score=0;
+let student="";
+let answered=false;
 
 function renderCards(){
+
   const cards=document.getElementById("cards");
+
   cards.innerHTML="";
-  challenges.forEach(ch=>{
-    const d=document.createElement("div");
-    d.className="test-card"+(ch.active?"":" locked");
-    d.innerHTML=`<span class="icon">${ch.icon}</span>
-      <span class="title">${ch.title}</span>
-      <span class="subtitle">${ch.subtitle}</span>
-      <span class="badge">${ch.active?"ابدئي الآن":"سيُضاف بعد مراجعة أسئلته"}</span>`;
-    d.onclick=()=> ch.active ? openChallenge(ch.id) : alert("هذا التحدي سيُضاف بعد مراجعة أسئلته من الملفات المرفقة.");
-    cards.appendChild(d);
+
+  challenges.forEach(challenge=>{
+
+    const card=document.createElement("div");
+
+    card.className=
+      "test-card"+(challenge.active ? "" : " locked");
+
+    card.innerHTML=`
+      <span class="icon">${challenge.icon}</span>
+      <span class="title">${challenge.title}</span>
+      <span class="subtitle">${challenge.subtitle}</span>
+
+      <span class="badge">
+        ${
+          challenge.active
+          ? "ابدئي الآن"
+          : "سيُضاف بعد مراجعة أسئلته"
+        }
+      </span>
+    `;
+
+    card.onclick=()=>{
+
+      if(challenge.active){
+        openChallenge(challenge.id);
+      }else{
+        alert(
+          "هذا التحدي سيُضاف بعد مراجعة أسئلته."
+        );
+      }
+
+    };
+
+    cards.appendChild(card);
+
   });
+
   updateSummary();
+
 }
 
 function openChallenge(id){
+
   currentId=id;
-  document.getElementById("home").classList.add("hidden");
-  document.getElementById("nameScreen").classList.remove("hidden");
-  document.getElementById("challengeTitle").textContent=challenges[id-1].title;
+
+  document
+    .getElementById("home")
+    .classList.add("hidden");
+
+  document
+    .getElementById("nameScreen")
+    .classList.remove("hidden");
+
+  document.getElementById("challengeTitle")
+    .textContent=challenges[id-1].title;
+
 }
 
 function startQuiz(){
-  const name=document.getElementById("studentName").value.trim();
-  const parts=name.split(/\s+/).filter(Boolean);
-  if(parts.length<4){alert("اكتبي اسمكِ الرباعي كاملًا.");return;}
-  student=name; currentQ=0; score=0;
-  document.getElementById("nameScreen").classList.add("hidden");
-  document.getElementById("quizScreen").classList.remove("hidden");
+
+  const name=
+    document.getElementById("studentName").value.trim();
+
+  const parts=
+    name.split(/\s+/).filter(Boolean);
+
+  if(parts.length<4){
+
+    alert("اكتبي اسمكِ الرباعي كاملًا.");
+    return;
+
+  }
+
+  student=name;
+  currentQ=0;
+  score=0;
+
+  document
+    .getElementById("nameScreen")
+    .classList.add("hidden");
+
+  document
+    .getElementById("quizScreen")
+    .classList.remove("hidden");
+
   showQuestion();
+
 }
 
 function showQuestion(){
-  answered=false;
-  const test=tests[currentId], item=test.questions[currentQ];
-  document.getElementById("passage").textContent=test.passage;
-  document.getElementById("qCounter").textContent=`السؤال ${currentQ+1} من ${test.questions.length}`;
-  document.getElementById("scoreLive").textContent=`الدرجة: ${score}`;
-  document.getElementById("barFill").style.width=`${((currentQ)/test.questions.length)*100}%`;
-  document.getElementById("question").textContent=item.q;
-  const ans=document.getElementById("answers"); ans.innerHTML="";
-  item.a.forEach((x,i)=>{
-    const b=document.createElement("button");
-    b.className="answer"; b.textContent=x; b.onclick=()=>choose(i,b);
-    ans.appendChild(b);
-  });
-  document.getElementById("feedback").className="feedback hidden";
-  document.getElementById("nextBtn").classList.add("hidden");
-}
 
+  answered=false;
+
+  const test=tests[currentId];
+  const item=test.questions[currentQ];
+
+  document.getElementById("passage")
+    .textContent=test.passage;
+
+  document.getElementById("qCounter")
+    .textContent=
+      `السؤال ${currentQ+1} من ${test.questions.length}`;
+
+  document.getElementById("scoreLive")
+    .textContent=`الدرجة: ${score}`;
+
+  document.getElementById("barFill")
+    .style.width=
+      `${currentQ/test.questions.length*100}%`;
+
+  document.getElementById("question")
+    .textContent=item.q;
+
+  const answers=
+    document.getElementById("answers");
+
+  answers.innerHTML="";
+
+  item.a.forEach((answer,index)=>{
+
+    const button=document.createElement("button");
+
+    button.className="answer";
+    button.textContent=answer;
+
+    button.onclick=()=>{
+      choose(index,button);
+    };
+
+    answers.appendChild(button);
+
+  });
+
+  document.getElementById("feedback")
+    .className="feedback hidden";
+
+  document.getElementById("nextBtn")
+    .classList.add("hidden");
+
+}
 
 function showAnswerMark(isCorrect){
+
   const mark=document.createElement("div");
-  mark.className="answer-mark "+(isCorrect?"correct-mark":"wrong-mark");
-  mark.textContent=isCorrect?"✓":"✕";
+
+  mark.className=
+    "answer-mark "+
+    (isCorrect ? "correct-mark" : "wrong-mark");
+
+  mark.textContent=isCorrect ? "✓" : "✕";
+
   document.body.appendChild(mark);
-  setTimeout(()=>mark.remove(),700);
+
+  setTimeout(()=>{
+    mark.remove();
+  },700);
+
 }
 
-function choose(i,btn){
-  if(answered)return;
-  answered=true;
-  const item=tests[currentId].questions[currentQ];
-  const buttons=[...document.querySelectorAll(".answer")];
-  buttons.forEach(b=>b.disabled=true);
-  const f=document.getElementById("feedback");
+function choose(index,button){
 
-  if(i===item.c){
+  if(answered){
+    return;
+  }
+
+  answered=true;
+
+  const item=
+    tests[currentId].questions[currentQ];
+
+  const buttons=[
+    ...document.querySelectorAll(".answer")
+  ];
+
+  buttons.forEach(answerButton=>{
+    answerButton.disabled=true;
+  });
+
+  const feedback=
+    document.getElementById("feedback");
+
+  if(index===item.c){
+
     score++;
-    btn.classList.add("correct");
-    f.className="feedback ok";
-    f.innerHTML="<strong>✅ إجابة صحيحة</strong><br>أحسنتِ يا نجمة نافس!";
+
+    button.classList.add("correct");
+
+    feedback.className="feedback ok";
+
+    feedback.innerHTML=`
+      <strong>✅ إجابة صحيحة</strong>
+      <br>
+      أحسنتِ يا نجمة نافس!
+    `;
+
     showAnswerMark(true);
-    playTone(true); celebrate();
+    playTone(true);
+    celebrate();
+
   }else{
-    btn.classList.add("wrong");
+
+    button.classList.add("wrong");
+
     buttons[item.c].classList.add("correct");
-    document.getElementById("quizScreen").classList.add("shake");
-    setTimeout(()=>document.getElementById("quizScreen").classList.remove("shake"),450);
-    f.className="feedback bad";
-    f.innerHTML=`<strong>❌ إجابتك غير صحيحة</strong><br><b>الإجابة الصحيحة:</b> ${item.a[item.c]}<br><b>التوضيح:</b> ${item.e}`;
+
+    const quizScreen=
+      document.getElementById("quizScreen");
+
+    quizScreen.classList.add("shake");
+
+    setTimeout(()=>{
+      quizScreen.classList.remove("shake");
+    },450);
+
+    feedback.className="feedback bad";
+
+    feedback.innerHTML=`
+      <strong>❌ إجابتك غير صحيحة</strong>
+      <br>
+      <b>الإجابة الصحيحة:</b>
+      ${item.a[item.c]}
+      <br>
+      <b>التوضيح:</b>
+      ${item.e}
+    `;
+
     showAnswerMark(false);
     playTone(false);
+
   }
-  document.getElementById("scoreLive").textContent=`الدرجة: ${score}`;
-  document.getElementById("nextBtn").textContent=currentQ===tests[currentId].questions.length-1?"عرض النتيجة":"السؤال التالي";
-  document.getElementById("nextBtn").classList.remove("hidden");
+
+  document.getElementById("scoreLive")
+    .textContent=`الدرجة: ${score}`;
+
+  const nextButton=
+    document.getElementById("nextBtn");
+
+  if(
+    currentQ===
+    tests[currentId].questions.length-1
+  ){
+
+    nextButton.textContent="عرض النتيجة";
+
+  }else{
+
+    nextButton.textContent="السؤال التالي";
+
+  }
+
+  nextButton.classList.remove("hidden");
+
 }
 
 function nextQuestion(){
-  if(currentQ<tests[currentId].questions.length-1){currentQ++;showQuestion();}
-  else finishQuiz();
+
+  const lastQuestion=
+    tests[currentId].questions.length-1;
+
+  if(currentQ<lastQuestion){
+
+    currentQ++;
+    showQuestion();
+
+  }else{
+
+    finishQuiz();
+
+  }
+
 }
 
 function finishQuiz(){
-  document.getElementById("quizScreen").classList.add("hidden");
-  document.getElementById("resultScreen").classList.remove("hidden");
-  const total=tests[currentId].questions.length;
-  const pct=Math.round(score/total*100);
-  document.getElementById("resultTitle").textContent=score>=7?"🎉 اجتزتِ التحدي بنجاح":"🌷 محاولة جميلة";
-  document.getElementById("resultText").textContent=`${student}، حصلتِ على ${score} من ${total} بنسبة ${pct}٪.`;
+
+  document
+    .getElementById("quizScreen")
+    .classList.add("hidden");
+
+  document
+    .getElementById("resultScreen")
+    .classList.remove("hidden");
+
+  const total=
+    tests[currentId].questions.length;
+
+  const percentage=
+    Math.round(score/total*100);
+
+  document.getElementById("resultTitle")
+    .textContent=
+      score>=7
+      ? "🎉 اجتزتِ التحدي بنجاح"
+      : "🌷 محاولة جميلة";
+
+  document.getElementById("resultText")
+    .textContent=
+      `${student}، حصلتِ على ${score} من ${total} بنسبة ${percentage}٪.`;
+
   if(score>=7){
-    localStorage.setItem(`nafes_${currentId}`,String(score));
+
+    localStorage.setItem(
+      `nafes_${currentId}`,
+      String(score)
+    );
+
     updateSummary();
+
   }
+
 }
 
 function showCertificate(){
-  if(score<7){alert("الشهادة تظهر عند الحصول على 7 من 10 فأعلى.");return;}
-  const pct=score*10;
-  document.getElementById("certName").textContent=student;
-  document.getElementById("certChallenge").textContent=challenges[currentId-1].title;
-  document.getElementById("certScore").textContent=`الدرجة: ${score} من 10 — النسبة: ${pct}٪`;
-  document.getElementById("certPhrase").textContent=score===10?"استحققتِ لقب: بطلة نافس الذهبية":score===9?"استحققتِ لقب: نجمة الفهم العميق":score===8?"استحققتِ لقب: القارئة الماهرة":"استحققتِ لقب: المتقدمة بثقة";
-  const shell
-    const shell=document.getElementById("certificateShell");
-  const certificate=document.getElementById("certificate");
+
+  if(score<7){
+
+    alert(
+      "الشهادة تظهر عند الحصول على 7 من 10 فأعلى."
+    );
+
+    return;
+
+  }
+
+  const percentage=score*10;
+
+  document.getElementById("certName")
+    .textContent=student;
+
+  document.getElementById("certScore")
+    .textContent=
+      `الدرجة ${score} من 10 | النسبة ${percentage}٪`;
+
+  let title="";
+
+  if(score===10){
+
+    title="استحققتِ لقب: بطلة نافس الذهبية";
+
+  }else if(score===9){
+
+    title="استحققتِ لقب: نجمة الفهم العميق";
+
+  }else if(score===8){
+
+    title="استحققتِ لقب: القارئة الماهرة";
+
+  }else{
+
+    title="استحققتِ لقب: المتقدمة بثقة";
+
+  }
+
+  document.getElementById("certPhrase")
+    .textContent=title;
+
+  const shell=
+    document.getElementById("certificateShell");
+
+  const certificate=
+    document.getElementById("certificate");
 
   shell.classList.remove("hidden");
-  certificate.classList.remove("certificate-reveal");
+
+  certificate.classList.remove(
+    "certificate-reveal"
+  );
 
   void certificate.offsetWidth;
 
-  certificate.classList.add("certificate-reveal");
-  document.getElementById("printBtn").classList.remove("hidden");
+  certificate.classList.add(
+    "certificate-reveal"
+  );
+
+  document.getElementById("printBtn")
+    .classList.remove("hidden");
 
   setTimeout(()=>{
+
     shell.scrollIntoView({
       behavior:"smooth",
       block:"center"
     });
+
   },120);
 
   celebrate();
+
 }
 
 function restartQuiz(){
+
   currentQ=0;
   score=0;
 
-  document.getElementById("resultScreen").classList.add("hidden");
-  document.getElementById("certificateShell").classList.add("hidden");
-  document.getElementById("certificate").classList.remove("certificate-reveal");
-  document.getElementById("printBtn").classList.add("hidden");
-  document.getElementById("quizScreen").classList.remove("hidden");
+  document
+    .getElementById("resultScreen")
+    .classList.add("hidden");
+
+  document
+    .getElementById("certificateShell")
+    .classList.add("hidden");
+
+  document
+    .getElementById("certificate")
+    .classList.remove("certificate-reveal");
+
+  document
+    .getElementById("printBtn")
+    .classList.add("hidden");
+
+  document
+    .getElementById("quizScreen")
+    .classList.remove("hidden");
 
   showQuestion();
+
 }
 
 function goHome(){
-  document.querySelectorAll("main > section").forEach(section=>{
-    section.classList.add("hidden");
-  });
 
-  document.getElementById("home").classList.remove("hidden");
-  document.getElementById("studentName").value="";
+  document
+    .querySelectorAll("main > section")
+    .forEach(section=>{
+
+      section.classList.add("hidden");
+
+    });
+
+  document
+    .getElementById("home")
+    .classList.remove("hidden");
+
+  document.getElementById("studentName")
+    .value="";
+
 }
 
 function updateSummary(){
-  let done=0;
+
+  let completed=0;
   let totalScore=0;
 
   for(let i=1;i<=20;i++){
-    const value=Number(localStorage.getItem(`nafes_${i}`)||0);
+
+    const value=Number(
+      localStorage.getItem(`nafes_${i}`)||0
+    );
 
     if(value>=7){
-      done++;
+
+      completed++;
       totalScore+=value;
+
     }
+
   }
 
-  let text=`أنجزتِ ${done} من 20 تحديًا`;
+  let text=
+    `أنجزتِ ${completed} من 20 تحديًا`;
 
-  if(done===20 && totalScore>=180){
-    text+=" — 👑 استحققتِ وسام آفاق الذهبي الكبير";
+  if(
+    completed===20 &&
+    totalScore>=180
+  ){
+
+    text+=
+      " — 👑 استحققتِ وسام آفاق الذهبي الكبير";
+
   }
 
-  document.getElementById("summary").textContent=text;
+  document.getElementById("summary")
+    .textContent=text;
+
 }
 
-function playTone(ok){
-  try{
-    const AudioContextClass=
-      window.AudioContext||window.webkitAudioContext;
+function playTone(isCorrect){
 
-    const ctx=new AudioContextClass();
-    const oscillator=ctx.createOscillator();
-    const gain=ctx.createGain();
+  try{
+
+    const AudioContextClass=
+      window.AudioContext ||
+      window.webkitAudioContext;
+
+    const context=
+      new AudioContextClass();
+
+    const oscillator=
+      context.createOscillator();
+
+    const gain=
+      context.createGain();
 
     oscillator.connect(gain);
-    gain.connect(ctx.destination);
+    gain.connect(context.destination);
 
-    oscillator.frequency.value=ok ? 700 : 180;
+    oscillator.frequency.value=
+      isCorrect ? 700 : 180;
+
     gain.gain.value=0.08;
 
     oscillator.start();
+
     oscillator.stop(
-      ctx.currentTime+(ok ? 0.18 : 0.28)
+      context.currentTime+
+      (isCorrect ? 0.18 : 0.28)
     );
+
   }catch(error){
-    console.log("تعذر تشغيل الصوت");
+
+    console.log("تعذر تشغيل الصوت.");
+
   }
+
 }
 
 function celebrate(){
-  const container=document.getElementById("confetti");
-  const icons=["🎈","✨","🌸","⭐","🎉"];
+
+  const container=
+    document.getElementById("confetti");
+
+  const icons=[
+    "🎈",
+    "✨",
+    "🌸",
+    "⭐",
+    "🎉"
+  ];
 
   for(let i=0;i<28;i++){
-    const piece=document.createElement("span");
+
+    const piece=
+      document.createElement("span");
 
     piece.className="piece";
-    piece.textContent=
-      icons[Math.floor(Math.random()*icons.length)];
 
-    piece.style.left=Math.random()*100+"vw";
-    piece.style.animationDelay=Math.random()*0.5+"s";
+    piece.textContent=
+      icons[
+        Math.floor(
+          Math.random()*icons.length
+        )
+      ];
+
+    piece.style.left=
+      Math.random()*100+"vw";
+
+    piece.style.animationDelay=
+      Math.random()*0.5+"s";
 
     container.appendChild(piece);
 
     setTimeout(()=>{
+
       piece.remove();
+
     },3300);
+
   }
+
 }
 
 renderCards();
+
 </script>
 </body>
 </html>
