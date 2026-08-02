@@ -3,18 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>اختبارات نافس الشاملة | منصة آفاق</title>
 
   <style>
     :root{
-      --p:#75558d;
-      --pd:#4b385b;
-      --g:#c9a85c;
-      --bg:#fffaf1;
+      --purple:#75558d;
+      --dark-purple:#4b385b;
+      --gold:#c9a85c;
+      --cream:#fffaf1;
       --paper:#fffdf8;
       --text:#403347;
-      --ok:#168a52;
-      --bad:#b83a4b;
+      --green:#168a52;
+      --red:#b83a4b;
     }
 
     *{
@@ -25,16 +26,16 @@
       margin:0;
       font-family:Tahoma,Arial,sans-serif;
       color:var(--text);
-      background:linear-gradient(180deg,var(--bg),#f7eff8);
+      background:linear-gradient(180deg,var(--cream),#f7eff8);
       line-height:1.8;
     }
 
     header{
       padding:34px 18px;
       text-align:center;
-      color:#fff;
+      color:white;
       background:linear-gradient(135deg,#786094,#594474);
-      border-bottom:5px solid var(--g);
+      border-bottom:5px solid var(--gold);
     }
 
     header h1{
@@ -56,15 +57,18 @@
     .top-link{
       display:inline-block;
       margin-bottom:18px;
-      padding:10px 14px;
+      padding:10px 16px;
       color:#35263d;
       font-weight:bold;
       text-decoration:none;
-      background:var(--g);
-      border-radius:12px;
+      background:var(--gold);
+      border-radius:13px;
     }
 
-    .panel{
+    .panel,
+    .name-box,
+    .quiz-box,
+    .result-box{
       padding:22px;
       background:var(--paper);
       border:2px solid #dfd3e5;
@@ -75,17 +79,18 @@
     .panel h2{
       margin:0 0 20px;
       text-align:center;
-      color:var(--pd);
+      color:var(--dark-purple);
       font-size:28px;
     }
 
     .progress-summary{
       margin:0 auto 20px;
       padding:14px;
-      border:2px solid var(--g);
+      border:2px solid var(--gold);
       border-radius:16px;
       text-align:center;
-      background:#fff;
+      background:white;
+      font-weight:bold;
     }
 
     .tests-grid{
@@ -95,8 +100,6 @@
     }
 
     .test-card{
-      border:2px solid var(--g);
-      border-radius:22px;
       min-height:190px;
       padding:20px;
       display:flex;
@@ -105,8 +108,11 @@
       justify-content:center;
       text-align:center;
       background:linear-gradient(145deg,#fffdf8,#f6eef9);
+      border:2px solid var(--gold);
+      border-radius:22px;
       box-shadow:0 6px 16px rgba(73,56,92,.08);
       cursor:pointer;
+      transition:.2s;
     }
 
     .test-card:active{
@@ -114,46 +120,35 @@
     }
 
     .test-card.locked{
-      opacity:.62;
+      opacity:.58;
       cursor:not-allowed;
     }
 
     .icon{
-      font-size:44px;
       margin-bottom:8px;
+      font-size:44px;
     }
 
     .title{
+      color:var(--dark-purple);
       font-size:21px;
       font-weight:bold;
-      color:var(--pd);
     }
 
     .subtitle{
-      font-size:14px;
-      color:#6d6172;
       margin-top:6px;
+      color:#6d6172;
+      font-size:14px;
     }
 
     .badge{
-      margin-top:8px;
-      font-size:13px;
+      margin-top:9px;
       color:#8d6b16;
+      font-size:13px;
     }
 
     .hidden{
-      display:none!important;
-    }
-
-    .name-box,
-    .quiz-box,
-    .result-box,
-    .certificate{
-      background:#fff;
-      border:2px solid var(--g);
-      border-radius:22px;
-      padding:22px;
-      box-shadow:0 8px 22px rgba(73,56,92,.10);
+      display:none !important;
     }
 
     input[type="text"]{
@@ -166,14 +161,15 @@
     }
 
     .btn{
-      border:none;
-      border-radius:16px;
+      margin:6px;
       padding:12px 18px;
+      border:0;
+      border-radius:16px;
       font-size:16px;
       font-weight:bold;
       cursor:pointer;
-      transition:.2s;
       box-shadow:0 5px 12px rgba(73,56,92,.12);
+      transition:.2s;
     }
 
     .btn:active{
@@ -181,13 +177,13 @@
     }
 
     .btn-primary{
+      color:white;
       background:linear-gradient(135deg,#786094,#594474);
-      color:#fff;
     }
 
     .btn-gold{
-      background:linear-gradient(135deg,#d6b764,#c9a85c);
       color:#35263d;
+      background:linear-gradient(135deg,#d6b764,#c9a85c);
     }
 
     .result-actions{
@@ -199,8 +195,8 @@
     }
 
     .result-actions .btn{
-      margin:0;
       min-width:150px;
+      margin:0;
     }
 
     .question-head{
@@ -212,34 +208,35 @@
 
     .bar{
       height:12px;
+      margin:14px 0;
+      overflow:hidden;
       background:#eee;
       border-radius:20px;
-      overflow:hidden;
-      margin:14px 0;
     }
 
     .bar span{
       display:block;
-      height:100%;
       width:0;
-      background:linear-gradient(90deg,var(--g),#786094);
+      height:100%;
+      background:linear-gradient(90deg,var(--gold),#786094);
+      transition:.3s;
     }
 
     .passage{
-      background:#fffaf1;
-      border-right:5px solid var(--g);
-      padding:18px;
-      border-radius:14px;
-      text-align:right;
-      margin:14px 0;
       max-height:310px;
+      margin:14px 0;
+      padding:18px;
       overflow:auto;
+      text-align:right;
+      background:#fffaf1;
+      border-right:5px solid var(--gold);
+      border-radius:14px;
     }
 
     .question{
+      margin:18px 0;
       font-size:21px;
       font-weight:bold;
-      margin:18px 0;
     }
 
     .answers{
@@ -250,24 +247,24 @@
     .answer{
       width:100%;
       padding:14px;
+      text-align:right;
+      background:white;
       border:2px solid #d8c8df;
-      background:#fff;
       border-radius:14px;
       font-size:17px;
-      text-align:right;
       cursor:pointer;
     }
 
     .answer.correct{
-      border-color:var(--ok);
-      background:#ecfff4;
       color:#0b653a;
+      background:#ecfff4;
+      border-color:var(--green);
     }
 
     .answer.wrong{
-      border-color:var(--bad);
-      background:#fff0f2;
       color:#8f2433;
+      background:#fff0f2;
+      border-color:var(--red);
     }
 
     .feedback{
@@ -278,13 +275,13 @@
     }
 
     .feedback.ok{
-      background:#ecfff4;
       color:#0b653a;
+      background:#ecfff4;
     }
 
     .feedback.bad{
-      background:#fff0f2;
       color:#8f2433;
+      background:#fff0f2;
     }
 
     .answer-mark{
@@ -297,16 +294,16 @@
       pointer-events:none;
       font-size:min(32vw,180px);
       font-weight:bold;
-      animation:markPop .65s ease both;
       text-shadow:0 8px 24px rgba(0,0,0,.18);
+      animation:markPop .7s ease both;
     }
 
-    .answer-mark.correct-mark{
-      color:#168a52;
+    .correct-mark{
+      color:var(--green);
     }
 
-    .answer-mark.wrong-mark{
-      color:#b83a4b;
+    .wrong-mark{
+      color:var(--red);
     }
 
     @keyframes markPop{
@@ -331,29 +328,18 @@
     }
 
     @keyframes shake{
-      0%,100%{
-        transform:translateX(0);
-      }
-
-      25%{
-        transform:translateX(8px);
-      }
-
-      50%{
-        transform:translateX(-8px);
-      }
-
-      75%{
-        transform:translateX(5px);
-      }
+      0%,100%{transform:translateX(0)}
+      25%{transform:translateX(8px)}
+      50%{transform:translateX(-8px)}
+      75%{transform:translateX(5px)}
     }
 
     .confetti{
       position:fixed;
       inset:0;
-      pointer-events:none;
-      overflow:hidden;
       z-index:99;
+      overflow:hidden;
+      pointer-events:none;
     }
 
     .piece{
@@ -369,6 +355,8 @@
       }
     }
 
+    /* الشهادة */
+
     .certificate-shell{
       width:100%;
       margin:22px auto 0;
@@ -378,13 +366,13 @@
 
     .certificate{
       position:relative;
-      width:min(100%,680px);
+      width:min(100%,700px);
       aspect-ratio:1536 / 1191;
       margin:0 auto;
-      background:#fff;
+      overflow:hidden;
+      background:white;
       border-radius:4px;
       box-shadow:0 10px 28px rgba(45,34,70,.16);
-      overflow:hidden;
     }
 
     .certificate-bg{
@@ -393,54 +381,47 @@
       width:100%;
       height:100%;
       object-fit:fill;
-      display:block;
     }
 
     .cert-line{
       position:absolute;
-      right:16%;
-      left:16%;
-      text-align:center;
-      line-height:1.2;
+      right:13%;
+      left:13%;
       z-index:2;
+      text-align:center;
+      line-height:1.25;
     }
 
-    .cert-title{
-      top:31%;
-      color:#2a2194;
-      font-size:clamp(13px,1.95vw,23px);
-      font-weight:bold;
-    }
-
-    .cert-intro{
-      top:39%;
-      color:#3d3348;
-      font-size:clamp(8px,1vw,12px);
-    }
-
-    .student-name{
-      top:45%;
+    .cert-name{
+      top:42%;
       color:#4f8d8d;
-      font-size:clamp(15px,2.15vw,25px);
+      font-size:clamp(15px,2.15vw,26px);
       font-weight:bold;
-      white-space:normal;
+    }
+
+    .cert-success{
+      top:52%;
+      color:#35263d;
+      font-size:clamp(9px,1.25vw,15px);
+      font-weight:bold;
+      white-space:nowrap;
     }
 
     .cert-score{
-      top:56%;
-      right:29%;
-      left:29%;
-      padding:4px 8px;
-      color:#594474;
-      background:rgba(255,255,255,.78);
+      top:60%;
+      right:31%;
+      left:31%;
+      padding:4px 7px;
+      color:#75558d;
+      background:rgba(255,255,255,.88);
       border:1px solid rgba(201,168,92,.75);
-      border-radius:10px;
-      font-size:clamp(9px,1.2vw,14px);
+      border-radius:9px;
+      font-size:clamp(8px,1vw,12px);
       font-weight:bold;
     }
 
     .cert-phrase{
-      top:66%;
+      top:68%;
       color:#403347;
       font-size:clamp(8px,1vw,12px);
       font-weight:bold;
@@ -465,9 +446,9 @@
     footer{
       padding:18px;
       text-align:center;
-      color:#fff;
-      background:var(--pd);
-      border-top:4px solid var(--g);
+      color:white;
+      background:var(--dark-purple);
+      border-top:4px solid var(--gold);
     }
 
     @media(max-width:700px){
@@ -480,7 +461,7 @@
       }
 
       main{
-        width:min(96%,980px);
+        width:96%;
       }
 
       .result-box{
@@ -494,9 +475,10 @@
       }
 
       .result-actions .btn{
-        min-width:0;
         width:100%;
-        padding:11px 8px;
+        min-width:0;
+        margin:0;
+        padding:11px 7px;
         font-size:14px;
       }
 
@@ -504,9 +486,15 @@
         grid-column:1 / -1;
       }
 
-      .certificate{
-        width:100%;
-        max-width:620px;
+      .cert-success{
+        right:8%;
+        left:8%;
+        font-size:10px;
+      }
+
+      .cert-score{
+        right:27%;
+        left:27%;
       }
     }
 
@@ -516,24 +504,15 @@
     }
 
     @media print{
-      html,
-      body{
-        width:297mm;
-        height:210mm;
-        margin:0;
-        padding:0;
-        background:#fff;
-      }
-
       body *{
-        visibility:hidden!important;
+        visibility:hidden !important;
       }
 
       #certificateShell,
       #certificateShell *,
       #certificate,
       #certificate *{
-        visibility:visible!important;
+        visibility:visible !important;
       }
 
       #certificateShell{
@@ -543,7 +522,6 @@
         height:210mm;
         margin:0;
         padding:0;
-        overflow:hidden;
       }
 
       #certificate{
@@ -553,7 +531,6 @@
         width:261mm;
         height:194mm;
         max-width:none;
-        aspect-ratio:auto;
         margin:0;
         box-shadow:none;
       }
@@ -594,9 +571,7 @@
 
     <h2 id="challengeTitle"></h2>
 
-    <p>
-      اكتبي اسمكِ الرباعي كما سيظهر في الشهادة:
-    </p>
+    <p>اكتبي اسمكِ الرباعي كما سيظهر في الشهادة:</p>
 
     <input
       id="studentName"
@@ -605,17 +580,11 @@
     >
 
     <div>
-      <button
-        class="btn btn-primary"
-        onclick="startQuiz()"
-      >
+      <button class="btn btn-primary" onclick="startQuiz()">
         ابدئي التحدي
       </button>
 
-      <button
-        class="btn btn-gold"
-        onclick="goHome()"
-      >
+      <button class="btn btn-gold" onclick="goHome()">
         رجوع
       </button>
     </div>
@@ -632,9 +601,13 @@
     <div class="bar">
       <span id="barFill"></span>
     </div>
-        <div id="passage" class="passage"></div>
+
+    <div id="passage" class="passage"></div>
+
     <div id="question" class="question"></div>
+
     <div id="answers" class="answers"></div>
+
     <div id="feedback" class="feedback hidden"></div>
 
     <button
@@ -650,37 +623,26 @@
   <section id="resultScreen" class="result-box hidden">
 
     <h2 id="resultTitle"></h2>
+
     <p id="resultText"></p>
 
     <div class="result-actions">
 
-      <button
-        class="btn btn-primary"
-        onclick="showCertificate()"
-      >
+      <button class="btn btn-primary" onclick="showCertificate()">
         عرض الشهادة
       </button>
 
-      <button
-        class="btn btn-gold"
-        onclick="restartQuiz()"
-      >
+      <button class="btn btn-gold" onclick="restartQuiz()">
         إعادة الاختبار
       </button>
 
-      <button
-        class="btn btn-gold wide"
-        onclick="goHome()"
-      >
+      <button class="btn btn-gold wide" onclick="goHome()">
         العودة للتحديات
       </button>
 
     </div>
 
-    <div
-      id="certificateShell"
-      class="certificate-shell hidden"
-    >
+    <div id="certificateShell" class="certificate-shell hidden">
 
       <div
         id="certificate"
@@ -690,22 +652,18 @@
 
         <img
           class="certificate-bg"
-          src="nafes-certificate-bg.jpg?v=final3"
+          src="nafes-certificate-bg.jpg?v=second-certificate"
           alt=""
         >
 
-        <div class="cert-line cert-title">
-          شهادة اجتياز تحدي نافس
-        </div>
-
-        <div class="cert-line cert-intro">
-          تُمنح هذه الشهادة للطالبة
-        </div>
-
         <div
           id="certName"
-          class="cert-line student-name"
+          class="cert-line cert-name"
         ></div>
+
+        <div class="cert-line cert-success">
+          لاجتيازها التحدي بنجاح: تحدي بوابة الجمال
+        </div>
 
         <div
           id="certScore"
@@ -744,8 +702,7 @@
 </footer>
 
 <script>
-
-const challenges = [
+  const challenges = [
   {
     id:1,
     icon:"🌸",
@@ -753,133 +710,114 @@ const challenges = [
     subtitle:"الجمال والحياة",
     active:true
   },
-
   {
     id:2,
     icon:"📖",
     title:"تحدي ربيع القلوب",
     subtitle:"ربيع القلوب"
   },
-
   {
     id:3,
     icon:"🌿",
     title:"تحدي سفيرة الأرض",
     subtitle:"حماية البيئة"
   },
-
   {
     id:4,
     icon:"⏳",
     title:"تحدي حارسة الدقائق",
     subtitle:"كنز الوقت"
   },
-
   {
     id:5,
     icon:"🔍",
     title:"تحدي عين القارئة",
     subtitle:"ما وراء السطور"
   },
-
   {
     id:6,
     icon:"⚖️",
     title:"تحدي الناقدة الواعية",
     subtitle:"القراءة الناقدة"
   },
-
   {
     id:7,
     icon:"🎯",
     title:"تحدي الإجابة الأدق",
     subtitle:"اختيار الأصوب"
   },
-
   {
     id:8,
     icon:"💡",
     title:"تحدي التطبيق الذكي",
     subtitle:"مواقف جديدة"
   },
-
   {
     id:9,
     icon:"📝",
     title:"تحدي صانعة الملخص",
     subtitle:"تلخيص النص"
   },
-
   {
     id:10,
     icon:"🏆",
     title:"تحدي الفهم الشامل",
     subtitle:"مهارات متنوعة"
   },
-
   {
     id:11,
     icon:"🌟",
     title:"تحدي النجمة القارئة",
     subtitle:"فهم واستنتاج"
   },
-
   {
     id:12,
     icon:"🧭",
     title:"تحدي بوصلة المعنى",
     subtitle:"السياق والدلالة"
   },
-
   {
     id:13,
     icon:"🧠",
     title:"تحدي العقل المتأمل",
     subtitle:"الفكرة الضمنية"
   },
-
   {
     id:14,
     icon:"🔗",
     title:"تحدي روابط النص",
     subtitle:"العلاقات بين الأفكار"
   },
-
   {
     id:15,
     icon:"📚",
     title:"تحدي قارئة النصوص",
     subtitle:"أنواع النصوص"
   },
-
   {
     id:16,
     icon:"🪄",
     title:"تحدي سحر المفردات",
     subtitle:"المفردات في السياق"
   },
-
   {
     id:17,
     icon:"🕊️",
     title:"تحدي القيم الجميلة",
     subtitle:"القيم والمواقف"
   },
-
   {
     id:18,
     icon:"🔮",
     title:"تحدي التوقع الذكي",
     subtitle:"التوقع والاستنتاج"
   },
-
   {
     id:19,
     icon:"👑",
     title:"تحدي القارئة المتميزة",
     subtitle:"مستوى متقدم"
   },
-
   {
     id:20,
     icon:"🥇",
@@ -889,44 +827,37 @@ const challenges = [
 ];
 
 const tests = {
+  1:{
+    passage:`
+      الجمال عنصر أصيل في بنية الكون، وقد خلق الله الإنسان مزودًا
+      بالقدرة على تذوقه. والحياة الحقة هي التي تتكامل فيها عناصر
+      الإنسان: جسمه بتغذيته، وعقله بتطويره، وعاطفته بتزويدها بالجمال.
 
-  1: {
-
-    passage: `
-      الجمال عنصر أصيل في بنية الكون، وقد خلق الله الإنسان
-      مزودًا بالقدرة على تذوقه. والحياة الحقة هي التي تتكامل
-      فيها عناصر الإنسان: جسمه بتغذيته، وعقله بتطويره،
-      وعاطفته بتزويدها بالجمال.
-
-      ومن يتأمل الطبيعة يرى جمال السماء والأرض والطيور
-      والأزهار وشروق الشمس وغروبها. وكلما دق بصر الإنسان
-      وصفت روحه، رأى من جمال العالم ما يبعث في نفسه
-      السعادة والطمأنينة، ويقوده إلى التفكر في عظمة الخالق.
+      ومن يتأمل الطبيعة يرى جمال السماء والأرض والطيور والأزهار
+      وشروق الشمس وغروبها. وكلما دق بصر الإنسان وصفت روحه،
+      رأى من جمال العالم ما يبعث في نفسه السعادة والطمأنينة،
+      ويقوده إلى التفكر في عظمة الخالق.
     `,
 
     questions:[
-
       {
         q:"مرادف كلمة «قِوام» في سياق النص:",
         a:["أداء","عماد","استواء","شروع"],
         c:1,
         e:"القِوام هو ما يقوم عليه الشيء ويعتمد عليه؛ أي العماد."
       },
-
       {
         q:"الدلالة المعنوية للاستفهام: «كم في الكون من جمال؟» هي:",
         a:["الإثبات","التأييد","النفي","الكثرة"],
         c:3,
         e:"الاستفهام هنا يفيد كثرة مظاهر الجمال في الكون."
       },
-
       {
         q:"القيمة التي حث عليها النص:",
         a:["التأمل","الإعمار","السعي","الإصلاح"],
         c:0,
         e:"النص يدعو إلى التأمل في جمال الكون والتفكر فيه."
       },
-
       {
         q:"الإحساس بالجمال ينشأ عن التكامل بين:",
         a:[
@@ -938,14 +869,12 @@ const tests = {
         c:0,
         e:"ذكر النص صراحة: الجسم والعقل والعاطفة."
       },
-
       {
         q:"العلاقة المعنوية بين «شروق» و«غروب» هي:",
         a:["الترادف","السببية","التضاد","الزمان"],
         c:2,
         e:"الشروق والغروب لفظان متضادان."
       },
-
       {
         q:"الفكرة الرئيسة للنص هي:",
         a:[
@@ -957,7 +886,6 @@ const tests = {
         c:1,
         e:"يدور النص حول أثر الجمال والتأمل فيه في حياة الإنسان."
       },
-
       {
         q:"معنى «دق بصره» في السياق:",
         a:[
@@ -969,21 +897,18 @@ const tests = {
         c:2,
         e:"المقصود دقة الملاحظة وحسن التأمل."
       },
-
       {
         q:"أي المشاعر لا يبعثها التأمل في جمال الكون؟",
         a:["المتعة","السعادة","الدهشة","الفتور"],
         c:3,
         e:"النص يربط التأمل بالمتعة والسعادة والدهشة، لا بالفتور."
       },
-
       {
         q:"ضد كلمة «أصيل» هو:",
         a:["راسخ","أساسي","ثانوي","عريق"],
         c:2,
         e:"أصيل تعني أساسي ومتجذر، وضدها ثانوي."
       },
-
       {
         q:"أدق تلخيص للنص:",
         a:[
@@ -995,11 +920,8 @@ const tests = {
         c:1,
         e:"هذا الخيار يجمع الفكرة العامة وأثر الجمال في النفس."
       }
-
     ]
-
   }
-
 };
 
 let currentId=1;
@@ -1009,13 +931,10 @@ let student="";
 let answered=false;
 
 function renderCards(){
-
   const cards=document.getElementById("cards");
-
   cards.innerHTML="";
 
   challenges.forEach(challenge=>{
-
     const card=document.createElement("div");
 
     card.className=
@@ -1025,38 +944,26 @@ function renderCards(){
       <span class="icon">${challenge.icon}</span>
       <span class="title">${challenge.title}</span>
       <span class="subtitle">${challenge.subtitle}</span>
-
       <span class="badge">
-        ${
-          challenge.active
-          ? "ابدئي الآن"
-          : "سيُضاف بعد مراجعة أسئلته"
-        }
+        ${challenge.active ? "ابدئي الآن" : "سيُضاف قريبًا"}
       </span>
     `;
 
     card.onclick=()=>{
-
       if(challenge.active){
         openChallenge(challenge.id);
       }else{
-        alert(
-          "هذا التحدي سيُضاف بعد مراجعة أسئلته."
-        );
+        alert("هذا التحدي سيُضاف بعد مراجعة أسئلته.");
       }
-
     };
 
     cards.appendChild(card);
-
   });
 
   updateSummary();
-
 }
 
 function openChallenge(id){
-
   currentId=id;
 
   document
@@ -1067,13 +974,12 @@ function openChallenge(id){
     .getElementById("nameScreen")
     .classList.remove("hidden");
 
-  document.getElementById("challengeTitle")
+  document
+    .getElementById("challengeTitle")
     .textContent=challenges[id-1].title;
-
 }
 
 function startQuiz(){
-
   const name=
     document.getElementById("studentName").value.trim();
 
@@ -1081,10 +987,8 @@ function startQuiz(){
     name.split(/\s+/).filter(Boolean);
 
   if(parts.length<4){
-
     alert("اكتبي اسمكِ الرباعي كاملًا.");
     return;
-
   }
 
   student=name;
@@ -1100,31 +1004,34 @@ function startQuiz(){
     .classList.remove("hidden");
 
   showQuestion();
-
 }
 
 function showQuestion(){
-
   answered=false;
 
   const test=tests[currentId];
   const item=test.questions[currentQ];
 
-  document.getElementById("passage")
+  document
+    .getElementById("passage")
     .textContent=test.passage;
 
-  document.getElementById("qCounter")
+  document
+    .getElementById("qCounter")
     .textContent=
       `السؤال ${currentQ+1} من ${test.questions.length}`;
 
-  document.getElementById("scoreLive")
+  document
+    .getElementById("scoreLive")
     .textContent=`الدرجة: ${score}`;
 
-  document.getElementById("barFill")
+  document
+    .getElementById("barFill")
     .style.width=
       `${currentQ/test.questions.length*100}%`;
 
-  document.getElementById("question")
+  document
+    .getElementById("question")
     .textContent=item.q;
 
   const answers=
@@ -1133,7 +1040,6 @@ function showQuestion(){
   answers.innerHTML="";
 
   item.a.forEach((answer,index)=>{
-
     const button=document.createElement("button");
 
     button.className="answer";
@@ -1144,19 +1050,18 @@ function showQuestion(){
     };
 
     answers.appendChild(button);
-
   });
 
-  document.getElementById("feedback")
+  document
+    .getElementById("feedback")
     .className="feedback hidden";
 
-  document.getElementById("nextBtn")
+  document
+    .getElementById("nextBtn")
     .classList.add("hidden");
-
 }
 
 function showAnswerMark(isCorrect){
-
   const mark=document.createElement("div");
 
   mark.className=
@@ -1170,11 +1075,9 @@ function showAnswerMark(isCorrect){
   setTimeout(()=>{
     mark.remove();
   },700);
-
 }
 
 function choose(index,button){
-
   if(answered){
     return;
   }
@@ -1196,7 +1099,6 @@ function choose(index,button){
     document.getElementById("feedback");
 
   if(index===item.c){
-
     score++;
 
     button.classList.add("correct");
@@ -1214,9 +1116,7 @@ function choose(index,button){
     celebrate();
 
   }else{
-
     button.classList.add("wrong");
-
     buttons[item.c].classList.add("correct");
 
     const quizScreen=
@@ -1242,10 +1142,10 @@ function choose(index,button){
 
     showAnswerMark(false);
     playTone(false);
-
   }
 
-  document.getElementById("scoreLive")
+  document
+    .getElementById("scoreLive")
     .textContent=`الدرجة: ${score}`;
 
   const nextButton=
@@ -1255,39 +1155,27 @@ function choose(index,button){
     currentQ===
     tests[currentId].questions.length-1
   ){
-
     nextButton.textContent="عرض النتيجة";
-
   }else{
-
     nextButton.textContent="السؤال التالي";
-
   }
 
   nextButton.classList.remove("hidden");
-
 }
 
 function nextQuestion(){
-
   const lastQuestion=
     tests[currentId].questions.length-1;
 
   if(currentQ<lastQuestion){
-
     currentQ++;
     showQuestion();
-
   }else{
-
     finishQuiz();
-
   }
-
 }
 
 function finishQuiz(){
-
   document
     .getElementById("quizScreen")
     .classList.add("hidden");
@@ -1302,71 +1190,59 @@ function finishQuiz(){
   const percentage=
     Math.round(score/total*100);
 
-  document.getElementById("resultTitle")
+  document
+    .getElementById("resultTitle")
     .textContent=
       score>=7
       ? "🎉 اجتزتِ التحدي بنجاح"
       : "🌷 محاولة جميلة";
 
-  document.getElementById("resultText")
+  document
+    .getElementById("resultText")
     .textContent=
       `${student}، حصلتِ على ${score} من ${total} بنسبة ${percentage}٪.`;
 
   if(score>=7){
-
     localStorage.setItem(
       `nafes_${currentId}`,
       String(score)
     );
 
     updateSummary();
-
   }
-
 }
 
 function showCertificate(){
-
   if(score<7){
-
-    alert(
-      "الشهادة تظهر عند الحصول على 7 من 10 فأعلى."
-    );
-
+    alert("الشهادة تظهر عند الحصول على 7 من 10 فأعلى.");
     return;
-
   }
 
   const percentage=score*10;
 
-  document.getElementById("certName")
+  document
+    .getElementById("certName")
     .textContent=student;
 
-  document.getElementById("certScore")
+  document
+    .getElementById("certScore")
     .textContent=
       `الدرجة ${score} من 10 | النسبة ${percentage}٪`;
 
   let title="";
 
   if(score===10){
-
     title="استحققتِ لقب: بطلة نافس الذهبية";
-
   }else if(score===9){
-
     title="استحققتِ لقب: نجمة الفهم العميق";
-
   }else if(score===8){
-
     title="استحققتِ لقب: القارئة الماهرة";
-
   }else{
-
     title="استحققتِ لقب: المتقدمة بثقة";
-
   }
 
-  document.getElementById("certPhrase")
+  document
+    .getElementById("certPhrase")
     .textContent=title;
 
   const shell=
@@ -1387,24 +1263,21 @@ function showCertificate(){
     "certificate-reveal"
   );
 
-  document.getElementById("printBtn")
+  document
+    .getElementById("printBtn")
     .classList.remove("hidden");
 
   setTimeout(()=>{
-
     shell.scrollIntoView({
       behavior:"smooth",
       block:"center"
     });
-
   },120);
 
   celebrate();
-
 }
 
 function restartQuiz(){
-
   currentQ=0;
   score=0;
 
@@ -1429,46 +1302,37 @@ function restartQuiz(){
     .classList.remove("hidden");
 
   showQuestion();
-
 }
 
 function goHome(){
-
   document
     .querySelectorAll("main > section")
     .forEach(section=>{
-
       section.classList.add("hidden");
-
     });
 
   document
     .getElementById("home")
     .classList.remove("hidden");
 
-  document.getElementById("studentName")
+  document
+    .getElementById("studentName")
     .value="";
-
 }
 
 function updateSummary(){
-
   let completed=0;
   let totalScore=0;
 
   for(let i=1;i<=20;i++){
-
     const value=Number(
       localStorage.getItem(`nafes_${i}`)||0
     );
 
     if(value>=7){
-
       completed++;
       totalScore+=value;
-
     }
-
   }
 
   let text=
@@ -1478,21 +1342,17 @@ function updateSummary(){
     completed===20 &&
     totalScore>=180
   ){
-
     text+=
       " — 👑 استحققتِ وسام آفاق الذهبي الكبير";
-
   }
 
-  document.getElementById("summary")
+  document
+    .getElementById("summary")
     .textContent=text;
-
 }
 
 function playTone(isCorrect){
-
   try{
-
     const AudioContextClass=
       window.AudioContext ||
       window.webkitAudioContext;
@@ -1522,15 +1382,11 @@ function playTone(isCorrect){
     );
 
   }catch(error){
-
     console.log("تعذر تشغيل الصوت.");
-
   }
-
 }
 
 function celebrate(){
-
   const container=
     document.getElementById("confetti");
 
@@ -1543,7 +1399,6 @@ function celebrate(){
   ];
 
   for(let i=0;i<28;i++){
-
     const piece=
       document.createElement("span");
 
@@ -1565,13 +1420,9 @@ function celebrate(){
     container.appendChild(piece);
 
     setTimeout(()=>{
-
       piece.remove();
-
     },3300);
-
   }
-
 }
 
 renderCards();
