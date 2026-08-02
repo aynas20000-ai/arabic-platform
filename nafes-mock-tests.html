@@ -369,7 +369,8 @@ function playTone(ok){
     const o=ctx.createOscillator(),g=ctx.createGain();
     o.connect(g);g.connect(ctx.destination);
     o.frequency.value=ok?700:180;g.gain.value=.08;
-    o.start();o.stop(ctx.currentTime+(ok?.18:.28));
+    o.start();
+    o.stop(ctx.currentTime + (ok ? 0.18 : 0.28));
   }catch(e){}
 }
 function celebrate(){
