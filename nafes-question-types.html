@@ -1628,25 +1628,24 @@ updateProgress();
 
       buildPapers();
     </script>
-<div style="text-align:center; margin:20px 0 28px;">
-  <button
-    id="restartBtn"
-    style="
-      border:0;
-      border-radius:18px;
-      padding:14px 24px;
-      background:#bf4040;
-      color:white;
-      font-size:18px;
-      font-weight:bold;
-      cursor:pointer;
-    "
-  >
-    ↻ البدء من جديد
-  </button>
-</div>
-<script>
-document.getElementById("restartBtn").addEventListener("click", function () {
+  const restartBtn = document.createElement("button");
+
+restartBtn.type = "button";
+restartBtn.textContent = "↻ البدء من جديد";
+restartBtn.id = "restartBtn";
+
+restartBtn.style.border = "0";
+restartBtn.style.borderRadius = "12px";
+restartBtn.style.padding = "10px 13px";
+restartBtn.style.background = "#bf4040";
+restartBtn.style.color = "white";
+restartBtn.style.fontSize = "16px";
+restartBtn.style.fontWeight = "bold";
+restartBtn.style.cursor = "pointer";
+
+document.querySelector(".top-bar").appendChild(restartBtn);
+
+restartBtn.addEventListener("click", function () {
 
   completed.clear();
 
@@ -1681,7 +1680,8 @@ document.getElementById("restartBtn").addEventListener("click", function () {
     behavior: "smooth"
   });
 });
-</script>
+  
+
   </main>
 
   <footer>
