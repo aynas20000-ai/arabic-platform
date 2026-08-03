@@ -306,9 +306,6 @@
       background: white;
       font-size: 16px;
       outline: none;
-      transition:
-        border-color 0.2s,
-        box-shadow 0.2s;
     }
 
     .text-input,
@@ -363,7 +360,7 @@
       display: grid;
       grid-template-columns:
         repeat(
-          4,
+          3,
           minmax(0, 1fr)
         );
       gap: 9px;
@@ -389,15 +386,11 @@
         2px solid #ddcad7;
       border-radius: 15px;
       background: white;
-      font-size: 14px;
+      font-size: 15px;
       line-height: 1.5;
       font-weight: bold;
       text-align: center;
       cursor: pointer;
-      transition:
-        transform 0.2s,
-        border-color 0.2s,
-        background 0.2s;
     }
 
     .rating-option input:checked
@@ -453,10 +446,6 @@
       cursor: pointer;
     }
 
-    .submit-button:active {
-      transform: scale(0.985);
-    }
-
     .thank-you-screen {
       display: none;
       padding: 30px 20px;
@@ -475,25 +464,6 @@
 
     .thank-you-screen.show {
       display: block;
-      animation:
-        thankYouAppear
-        0.7s ease both;
-    }
-
-    @keyframes thankYouAppear {
-      from {
-        opacity: 0;
-        transform:
-          translateY(40px)
-          scale(0.95);
-      }
-
-      to {
-        opacity: 1;
-        transform:
-          translateY(0)
-          scale(1);
-      }
     }
 
     .thank-you-icon {
@@ -576,11 +546,7 @@
 
     @media (max-width: 680px) {
       .rating-options {
-        grid-template-columns:
-          repeat(
-            2,
-            minmax(0, 1fr)
-          );
+        grid-template-columns: 1fr;
       }
 
       .top-actions > * {
@@ -684,7 +650,6 @@
             id="studentName"
             class="text-input"
             type="text"
-            autocomplete="name"
             placeholder="اكتبي اسمكِ هنا"
           >
 
@@ -811,7 +776,7 @@
         id="formWarning"
         class="form-warning"
       >
-        أكملي الحقول المطلوبة واختاري تقييمًا لكل عبارة.
+        أكملي الحقول المطلوبة واختاري إجابة لكل عبارة.
       </div>
 
       <button
@@ -876,61 +841,57 @@
   {
     id: "easeOfUse",
     text:
-      "كانت منصة آفاق سهلة الاستخدام والتنقل بين صفحاتها."
+      "هل كانت منصة آفاق سهلة الاستخدام والتنقل بين صفحاتها؟"
   },
   {
     id: "lessonClarity",
     text:
-      "ساعدني شرح الدروس في فهم المهارات بصورة أوضح."
+      "هل ساعدكِ شرح الدروس في فهم المهارات بصورة أوضح؟"
   },
   {
     id: "designQuality",
     text:
-      "ألوان المنصة وتصميمها مريحان وجاذبان."
+      "هل كانت ألوان المنصة مريحة وتصميمها جذابًا؟"
   },
   {
     id: "testsBenefit",
     text:
-      "كانت الاختبارات مفيدة في معرفة مستوى فهمي."
+      "هل ساعدتكِ الاختبارات في معرفة مستوى فهمكِ؟"
   },
   {
     id: "nafesChallenges",
     text:
-      "ساعدتني تحديات نافس على تطوير مهارات الفهم القرائي."
+      "هل ساعدتكِ تحديات نافس على تطوير مهارات الفهم القرائي؟"
   },
   {
     id: "pageSpeed",
     text:
-      "كانت الصفحات والملفات تفتح بسهولة وسرعة."
+      "هل كانت صفحات المنصة وملفاتها تفتح بسهولة وسرعة؟"
   },
   {
     id: "motivation",
     text:
-      "شجعتني الرسائل والشهادات والمؤثرات على الاستمرار."
+      "هل شجعتكِ الرسائل والشهادات والمؤثرات على الاستمرار؟"
   },
   {
     id: "futureUse",
     text:
-      "أرغب في الاستمرار باستخدام منصة آفاق مستقبلًا."
+      "هل ترغبين في الاستمرار باستخدام منصة آفاق مستقبلًا؟"
   }
 ];
 
 const ratingChoices = [
   {
-    value: "ممتاز",
-    label: "ممتاز"
+    value: "نعم",
+    label: "نعم"
   },
   {
-    value: "جيد جدًا",
-    label: "جيد جدًا"
+    value: "إلى حد ما",
+    label: "إلى حد ما"
   },
   {
-    value: "جيد",
-    label: "جيد"
-  },
-  {
-    value: "يحتاج تحسين",
-    label: "يحتاج تحسين"
+    value: "لا",
+    label: "لا"
   }
 ];
 
