@@ -10,205 +10,586 @@
   >
 
   <title>
-    استطلاع رأي الطالبة | منصة آفاق اللغة
+    استطلاع رأي الطالبة | منصة آفاق
   </title>
 
   <style>
+    :root {
+      --lavender: #9877a8;
+      --lavender-dark: #624b70;
+      --lavender-light: #eee5f2;
+
+      --pink: #d895aa;
+      --pink-light: #faeaf0;
+
+      --beige: #fff9f1;
+      --gold: #c9a552;
+      --gold-light: #f4dda0;
+
+      --green: #4f8768;
+      --green-light: #eaf6ee;
+
+      --red: #ae4552;
+      --red-light: #fff0f2;
+
+      --text: #55465c;
+      --white: #ffffff;
+
+      --shadow:
+        0 16px 40px
+        rgba(98, 75, 112, 0.16);
+    }
+
     * {
       box-sizing: border-box;
     }
 
-    html,
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      width: 100%;
-      max-width: 100%;
       margin: 0;
-      overflow-x: hidden;
-    }
-
-    body {
       min-height: 100vh;
-      font-family: Tahoma, Arial, sans-serif;
-      color: #4b3a57;
-      text-align: center;
-      background: linear-gradient(
-        145deg,
-        #fffaf2,
-        #f8f0fb
-      );
+      overflow-x: hidden;
+      color: var(--text);
+      background:
+        radial-gradient(
+          circle at top,
+          #fffdf9,
+          #f8eef3 48%,
+          #eee5f2
+        );
+      font-family:
+        Tahoma,
+        Arial,
+        sans-serif;
     }
 
-    header {
-      padding: 36px 16px 42px;
+    button,
+    input,
+    select,
+    textarea,
+    a {
+      font-family: inherit;
+      -webkit-tap-highlight-color:
+        transparent;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 34px 16px 30px;
       color: white;
-      border-radius: 0 0 34px 34px;
-      background: linear-gradient(
-        135deg,
-        #776094,
-        #5b4677
-      );
-      box-shadow: 0 12px 28px rgba(73, 56, 92, 0.22);
+      text-align: center;
+      background:
+        linear-gradient(
+          135deg,
+          var(--lavender-dark),
+          var(--lavender),
+          var(--pink)
+        );
+      border-bottom:
+        7px solid var(--gold);
     }
 
-    .header-icon {
-      width: 82px;
-      height: 82px;
-      margin: 0 auto 13px;
+    .hero::before,
+    .hero::after {
+      position: absolute;
+      content: "";
+      width: 185px;
+      height: 185px;
+      border-radius: 50%;
+      background:
+        rgba(255, 255, 255, 0.08);
+    }
+
+    .hero::before {
+      top: -95px;
+      right: -65px;
+    }
+
+    .hero::after {
+      left: -55px;
+      bottom: -105px;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-icon {
+      margin-bottom: 7px;
+      font-size: 64px;
+    }
+
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size:
+        clamp(
+          31px,
+          8vw,
+          48px
+        );
+    }
+
+    .hero p {
+      max-width: 760px;
+      margin: 0 auto;
+      font-size:
+        clamp(
+          16px,
+          4.2vw,
+          21px
+        );
+      line-height: 1.9;
+    }
+
+    .page-shell {
+      width:
+        min(
+          94%,
+          900px
+        );
+      margin: 0 auto;
+      padding: 20px 0 36px;
+    }
+
+    .top-actions {
       display: flex;
       align-items: center;
-      justify-content: center;
-      border-radius: 24px;
-      font-size: 44px;
-      background: rgba(255, 255, 255, 0.15);
-      border: 2px solid rgba(255, 255, 255, 0.42);
+      justify-content:
+        space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 17px;
     }
 
-    header h1 {
-      margin: 0;
-      color: #fff8df;
-      font-size: 33px;
-      line-height: 1.7;
-    }
-
-    header p {
-      max-width: 680px;
-      margin: 10px auto 0;
-      color: #f7effb;
-      font-size: 17px;
-      line-height: 1.9;
-    }
-
-    main {
-      width: 94%;
-      max-width: 800px;
-      margin: 28px auto 45px;
-    }
-
-    .card {
-      padding: 25px;
-      border-radius: 28px;
-      background: #fffdf8;
-      border: 1px solid rgba(93, 67, 116, 0.15);
-      box-shadow: 0 13px 34px rgba(73, 56, 92, 0.13);
-    }
-
-    .intro {
-      margin-bottom: 22px;
-      padding: 17px;
-      border-radius: 18px;
-      color: #5d4374;
-      background: #f5ecfb;
-      border-right: 7px solid #c9a85c;
-      font-size: 17px;
-      line-height: 1.9;
-    }
-
-    .survey-box {
-      padding: 28px 20px;
-      border-radius: 22px;
-      color: #5d4374;
-      background: #fff8dc;
-      border: 2px dashed #c9a85c;
-      box-shadow: 0 7px 18px rgba(73, 56, 92, 0.08);
-    }
-
-    .survey-icon {
-      margin-bottom: 13px;
-      font-size: 48px;
-    }
-
-    .survey-box h2 {
-      margin: 0 0 10px;
-      color: #5d4374;
-      font-size: 24px;
-      line-height: 1.7;
-    }
-
-    .survey-box p {
-      margin: 0;
-      color: #6d6274;
-      font-size: 17px;
-      line-height: 2;
-    }
-
-    .status {
-      display: inline-block;
-      margin-top: 17px;
-      padding: 9px 18px;
-      border-radius: 25px;
-      color: #705217;
-      background: white;
-      border: 1px solid #d8bd73;
-      font-size: 15px;
+    .back-link,
+    .restart-button {
+      min-height: 49px;
+      padding: 11px 17px;
+      border: 0;
+      border-radius: 16px;
+      font-size: 16px;
       font-weight: bold;
-    }
-
-    .back {
-      display: block;
-      width: 100%;
-      margin-top: 23px;
-      padding: 15px;
-      border-radius: 17px;
-      color: white;
-      background: #6f5288;
+      cursor: pointer;
       text-decoration: none;
-      font-size: 17px;
-      font-weight: bold;
-      transition:
-        opacity 0.2s,
-        transform 0.2s;
+      box-shadow:
+        0 8px 20px
+        rgba(98, 75, 112, 0.12);
     }
 
-    .back:hover {
-      opacity: 0.94;
+    .back-link {
+      color: #654b16;
+      background:
+        linear-gradient(
+          135deg,
+          var(--gold-light),
+          #f9ebbd
+        );
     }
 
-    .back:active {
-      transform: scale(0.98);
-    }
-
-    footer {
-      padding: 22px 12px;
+    .restart-button {
       color: white;
-      background: #49385c;
+      background:
+        linear-gradient(
+          135deg,
+          #a84150,
+          #ca6877
+        );
+    }
+
+    .intro-card {
+      margin-bottom: 18px;
+      padding: 20px;
+      border:
+        2px solid #e1d0db;
+      border-radius: 25px;
+      background:
+        rgba(255, 255, 255, 0.92);
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .intro-card h2 {
+      margin: 0 0 8px;
+      color: var(--lavender-dark);
+      font-size:
+        clamp(
+          24px,
+          5.5vw,
+          32px
+        );
+    }
+
+    .intro-card p {
+      max-width: 740px;
+      margin: 0 auto;
+      font-size: 17px;
+      line-height: 1.9;
+    }
+
+    .privacy-note {
+      display: inline-block;
+      margin-top: 13px;
+      padding: 9px 15px;
+      border-radius: 999px;
+      color: #654b16;
+      background: #fff3ce;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .survey-form {
+      display: block;
+    }
+
+    .survey-section {
+      margin-bottom: 17px;
+      padding: 21px 18px;
+      border:
+        2px solid #e1d0db;
+      border-radius: 25px;
+      background:
+        rgba(255, 253, 249, 0.95);
+      box-shadow: var(--shadow);
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 16px;
+      color: var(--lavender-dark);
+      font-size:
+        clamp(
+          22px,
+          5vw,
+          29px
+        );
+    }
+
+    .field-group {
+      margin-bottom: 17px;
+      text-align: right;
+    }
+
+    .field-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .field-label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--lavender-dark);
+      font-size: 16px;
+      font-weight: bold;
+      line-height: 1.7;
+    }
+
+    .optional {
+      color: #8d7a94;
+      font-size: 13px;
+      font-weight: normal;
+    }
+
+    .text-input,
+    .select-input,
+    .text-area {
+      width: 100%;
+      border:
+        2px solid #ddcad7;
+      border-radius: 16px;
+      color: var(--text);
+      background: white;
+      font-size: 16px;
+      outline: none;
+      transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+    }
+
+    .text-input,
+    .select-input {
+      min-height: 53px;
+      padding: 11px 13px;
+    }
+
+    .text-area {
+      min-height: 130px;
+      padding: 13px;
+      resize: vertical;
       line-height: 1.8;
     }
 
-    @media (max-width: 600px) {
-      header {
-        padding: 29px 14px 36px;
+    .text-input:focus,
+    .select-input:focus,
+    .text-area:focus {
+      border-color: var(--lavender);
+      box-shadow:
+        0 0 0 4px
+        rgba(152, 119, 168, 0.12);
+    }
+
+    .question-card {
+      margin-bottom: 15px;
+      padding: 17px;
+      border:
+        2px solid #e4d2dd;
+      border-radius: 20px;
+      background:
+        linear-gradient(
+          145deg,
+          #fffefd,
+          var(--pink-light)
+        );
+    }
+
+    .question-card:last-child {
+      margin-bottom: 0;
+    }
+
+    .question-title {
+      margin: 0 0 13px;
+      color: var(--lavender-dark);
+      font-size: 17px;
+      line-height: 1.8;
+      font-weight: bold;
+    }
+
+    .rating-options {
+      display: grid;
+      grid-template-columns:
+        repeat(
+          4,
+          minmax(0, 1fr)
+        );
+      gap: 9px;
+    }
+
+    .rating-option {
+      position: relative;
+    }
+
+    .rating-option input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .rating-option label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 9px 7px;
+      border:
+        2px solid #ddcad7;
+      border-radius: 15px;
+      background: white;
+      font-size: 14px;
+      line-height: 1.5;
+      font-weight: bold;
+      text-align: center;
+      cursor: pointer;
+      transition:
+        transform 0.2s,
+        border-color 0.2s,
+        background 0.2s;
+    }
+
+    .rating-option input:checked
+    + label {
+      color: white;
+      border-color: var(--lavender-dark);
+      background:
+        linear-gradient(
+          135deg,
+          var(--lavender-dark),
+          var(--lavender)
+        );
+      transform: translateY(-2px);
+    }
+
+    .form-warning {
+      display: none;
+      margin-bottom: 15px;
+      padding: 14px;
+      border:
+        2px solid #daa4ab;
+      border-radius: 17px;
+      color: #7b2c38;
+      background: var(--red-light);
+      font-size: 16px;
+      line-height: 1.8;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .form-warning.show {
+      display: block;
+    }
+
+    .submit-button {
+      width: 100%;
+      min-height: 58px;
+      border: 0;
+      border-radius: 18px;
+      color: white;
+      background:
+        linear-gradient(
+          135deg,
+          var(--lavender-dark),
+          var(--lavender),
+          var(--pink)
+        );
+      box-shadow:
+        0 12px 26px
+        rgba(98, 75, 112, 0.22);
+      font-size: 19px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .submit-button:active {
+      transform: scale(0.985);
+    }
+
+    .thank-you-screen {
+      display: none;
+      padding: 30px 20px;
+      border:
+        4px solid var(--gold);
+      border-radius: 30px;
+      background:
+        linear-gradient(
+          145deg,
+          #fffdf5,
+          #faeaf1
+        );
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .thank-you-screen.show {
+      display: block;
+      animation:
+        thankYouAppear
+        0.7s ease both;
+    }
+
+    @keyframes thankYouAppear {
+      from {
+        opacity: 0;
+        transform:
+          translateY(40px)
+          scale(0.95);
       }
 
-      header h1 {
-        font-size: 27px;
+      to {
+        opacity: 1;
+        transform:
+          translateY(0)
+          scale(1);
+      }
+    }
+
+    .thank-you-icon {
+      font-size: 82px;
+    }
+
+    .thank-you-screen h2 {
+      margin: 8px 0;
+      color: var(--lavender-dark);
+      font-size:
+        clamp(
+          28px,
+          7vw,
+          41px
+        );
+    }
+
+    .thank-you-screen p {
+      max-width: 680px;
+      margin: 0 auto;
+      font-size: 18px;
+      line-height: 1.9;
+    }
+
+    .thank-you-actions {
+      display: flex;
+      justify-content: center;
+      gap: 11px;
+      flex-wrap: wrap;
+      margin-top: 19px;
+    }
+
+    .thank-you-button {
+      min-height: 52px;
+      padding: 11px 18px;
+      border: 0;
+      border-radius: 17px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .edit-button {
+      color: white;
+      background:
+        linear-gradient(
+          135deg,
+          var(--lavender-dark),
+          var(--lavender)
+        );
+    }
+
+    .return-button {
+      color: #654b16;
+      background:
+        linear-gradient(
+          135deg,
+          var(--gold-light),
+          #f9ebbd
+        );
+    }
+
+    footer {
+      margin-top: 27px;
+      padding: 20px 13px;
+      color: white;
+      border-top:
+        6px solid var(--gold);
+      background:
+        linear-gradient(
+          135deg,
+          var(--lavender-dark),
+          var(--lavender)
+        );
+      text-align: center;
+      line-height: 1.8;
+      font-weight: bold;
+    }
+
+    @media (max-width: 680px) {
+      .rating-options {
+        grid-template-columns:
+          repeat(
+            2,
+            minmax(0, 1fr)
+          );
       }
 
-      header p {
-        font-size: 15px;
+      .top-actions > * {
+        flex: 1 1 100%;
+        text-align: center;
       }
 
-      main {
-        width: 93%;
-      }
-
-      .card {
-        padding: 18px;
-      }
-
-      .intro {
-        font-size: 16px;
-      }
-
-      .survey-box {
-        padding: 23px 16px;
-      }
-
-      .survey-box h2 {
-        font-size: 21px;
-      }
-
-      .survey-box p {
-        font-size: 16px;
+      .survey-section {
+        padding: 18px 14px;
       }
     }
   </style>
@@ -216,69 +597,788 @@
 
 <body>
 
-  <header>
+  <header class="hero">
 
-    <div class="header-icon">
-      👩‍🎓
+    <div class="hero-content">
+
+      <div class="hero-icon">
+        👩‍🎓
+      </div>
+
+      <h1>
+        استطلاع رأي الطالبة
+      </h1>
+
+      <p>
+        رأيكِ يصنع فرقًا، ويساعدنا على تطوير
+        منصة آفاق وتحسين تجربتكِ التعليمية.
+      </p>
+
     </div>
-
-    <h1>
-      استطلاع رأي الطالبة
-    </h1>
-
-    <p>
-      رأيكِ مهم، وملاحظاتكِ تساعدنا
-      على تطوير منصة آفاق اللغة وتحسين تجربتكِ التعليمية.
-    </p>
 
   </header>
 
-  <main>
+  <main class="page-shell">
 
-    <section class="card">
-
-      <div class="intro">
-        نشكركِ على اهتمامكِ ومشاركتكِ،
-        وسيتم توفير نموذج الاستطلاع في هذه الصفحة قريبًا.
-      </div>
-
-      <div class="survey-box">
-
-        <div class="survey-icon">
-          📝
-        </div>
-
-        <h2>
-          نموذج استطلاع رأي الطالبة
-        </h2>
-
-        <p>
-          سيتم إضافة أسئلة الاستطلاع هنا،
-          حتى تتمكني من مشاركة رأيكِ ومقترحاتكِ
-          بكل سهولة ووضوح.
-        </p>
-
-        <div class="status">
-          النموذج قيد الإعداد
-        </div>
-
-      </div>
+    <div class="top-actions">
 
       <a
-        class="back"
+        class="back-link"
         href="surveys.html"
       >
         العودة إلى استطلاعات الرأي
       </a>
+
+      <button
+        id="restartButton"
+        class="restart-button"
+        type="button"
+      >
+        ↺ البدء من جديد
+      </button>
+
+    </div>
+
+    <section class="intro-card">
+
+      <h2>
+        صوتكِ مهم لدينا 🌸
+      </h2>
+
+      <p>
+        أجيبي بصدق ووضوح؛ فلا توجد إجابة صحيحة أو خاطئة،
+        وكل ملاحظة منكِ تساعدنا على جعل المنصة أجمل وأنفع.
+      </p>
+
+      <div class="privacy-note">
+        كتابة الاسم اختيارية
+      </div>
+
+    </section>
+
+    <form
+      id="studentSurveyForm"
+      class="survey-form"
+      novalidate
+    >
+
+      <section class="survey-section">
+
+        <h2 class="section-heading">
+          👤 بيانات عامة
+        </h2>
+
+        <div class="field-group">
+
+          <label
+            class="field-label"
+            for="studentName"
+          >
+            اسم الطالبة
+            <span class="optional">
+              (اختياري)
+            </span>
+          </label>
+
+          <input
+            id="studentName"
+            class="text-input"
+            type="text"
+            autocomplete="name"
+            placeholder="اكتبي اسمكِ هنا"
+          >
+
+        </div>
+
+        <div class="field-group">
+
+          <label
+            class="field-label"
+            for="studentClass"
+          >
+            الصف والشعبة
+          </label>
+
+          <select
+            id="studentClass"
+            class="select-input"
+            required
+          >
+
+            <option value="">
+              اختاري الصف والشعبة
+            </option>
+
+            <option value="ثالث متوسط أ">
+              ثالث متوسط أ
+            </option>
+
+            <option value="ثالث متوسط ب">
+              ثالث متوسط ب
+            </option>
+
+            <option value="ثالث متوسط ج">
+              ثالث متوسط ج
+            </option>
+
+            <option value="أخرى">
+              أخرى
+            </option>
+
+          </select>
+
+        </div>
+
+      </section>
+
+      <section class="survey-section">
+
+        <h2 class="section-heading">
+          ⭐ تقييم تجربتكِ
+        </h2>
+
+        <div id="ratingQuestions"></div>
+
+      </section>
+
+      <section class="survey-section">
+
+        <h2 class="section-heading">
+          💬 رأيكِ ومقترحاتكِ
+        </h2>
+
+        <div class="field-group">
+
+          <label
+            class="field-label"
+            for="favoritePart"
+          >
+            ما أكثر جزء أعجبكِ في منصة آفاق؟
+          </label>
+
+          <textarea
+            id="favoritePart"
+            class="text-area"
+            placeholder="اكتبي أكثر جزء أعجبكِ..."
+            required
+          ></textarea>
+
+        </div>
+
+        <div class="field-group">
+
+          <label
+            class="field-label"
+            for="improvementSuggestion"
+          >
+            ما الذي تقترحين تحسينه أو إضافته؟
+            <span class="optional">
+              (اختياري)
+            </span>
+          </label>
+
+          <textarea
+            id="improvementSuggestion"
+            class="text-area"
+            placeholder="اكتبي مقترحكِ هنا..."
+          ></textarea>
+
+        </div>
+
+        <div class="field-group">
+
+          <label
+            class="field-label"
+            for="finalMessage"
+          >
+            رسالة تحبين توجيهها لمعلمة المنصة
+            <span class="optional">
+              (اختياري)
+            </span>
+          </label>
+
+          <textarea
+            id="finalMessage"
+            class="text-area"
+            placeholder="اكتبي رسالتكِ هنا..."
+          ></textarea>
+
+        </div>
+
+      </section>
+
+      <div
+        id="formWarning"
+        class="form-warning"
+      >
+        أكملي الحقول المطلوبة واختاري تقييمًا لكل عبارة.
+      </div>
+
+      <button
+        class="submit-button"
+        type="submit"
+      >
+        إرسال الاستطلاع 🌸
+      </button>
+
+    </form>
+
+    <section
+      id="thankYouScreen"
+      class="thank-you-screen"
+    >
+
+      <div class="thank-you-icon">
+        💜
+      </div>
+
+      <h2>
+        شكرًا لمشاركتكِ
+      </h2>
+
+      <p>
+        تم حفظ إجاباتكِ بنجاح على هذا الجهاز.
+        رأيكِ محل تقدير، وملاحظاتكِ تساعدنا
+        على تطوير منصة آفاق.
+      </p>
+
+      <div class="thank-you-actions">
+
+        <button
+          id="editResponseButton"
+          class="thank-you-button edit-button"
+          type="button"
+        >
+          تعديل إجاباتي
+        </button>
+
+        <a
+          class="thank-you-button return-button"
+          href="surveys.html"
+        >
+          العودة إلى استطلاعات الرأي
+        </a>
+
+      </div>
 
     </section>
 
   </main>
 
   <footer>
+    منصة آفاق التعليمية 🌸
+    <br>
     جميع الحقوق محفوظة © 2026
   </footer>
 
-</body>
+  <script>
+    const ratingQuestionsData = [
+  {
+    id: "easeOfUse",
+    text:
+      "كانت منصة آفاق سهلة الاستخدام والتنقل بين صفحاتها."
+  },
+  {
+    id: "lessonClarity",
+    text:
+      "ساعدني شرح الدروس في فهم المهارات بصورة أوضح."
+  },
+  {
+    id: "designQuality",
+    text:
+      "ألوان المنصة وتصميمها مريحان وجاذبان."
+  },
+  {
+    id: "testsBenefit",
+    text:
+      "كانت الاختبارات مفيدة في معرفة مستوى فهمي."
+  },
+  {
+    id: "nafesChallenges",
+    text:
+      "ساعدتني تحديات نافس على تطوير مهارات الفهم القرائي."
+  },
+  {
+    id: "pageSpeed",
+    text:
+      "كانت الصفحات والملفات تفتح بسهولة وسرعة."
+  },
+  {
+    id: "motivation",
+    text:
+      "شجعتني الرسائل والشهادات والمؤثرات على الاستمرار."
+  },
+  {
+    id: "futureUse",
+    text:
+      "أرغب في الاستمرار باستخدام منصة آفاق مستقبلًا."
+  }
+];
 
+const ratingChoices = [
+  {
+    value: "ممتاز",
+    label: "ممتاز"
+  },
+  {
+    value: "جيد جدًا",
+    label: "جيد جدًا"
+  },
+  {
+    value: "جيد",
+    label: "جيد"
+  },
+  {
+    value: "يحتاج تحسين",
+    label: "يحتاج تحسين"
+  }
+];
+
+const storageKey =
+  "studentSurveyResponse";
+
+const studentSurveyForm =
+  document.getElementById(
+    "studentSurveyForm"
+  );
+
+const ratingQuestions =
+  document.getElementById(
+    "ratingQuestions"
+  );
+
+const studentName =
+  document.getElementById(
+    "studentName"
+  );
+
+const studentClass =
+  document.getElementById(
+    "studentClass"
+  );
+
+const favoritePart =
+  document.getElementById(
+    "favoritePart"
+  );
+
+const improvementSuggestion =
+  document.getElementById(
+    "improvementSuggestion"
+  );
+
+const finalMessage =
+  document.getElementById(
+    "finalMessage"
+  );
+
+const formWarning =
+  document.getElementById(
+    "formWarning"
+  );
+
+const thankYouScreen =
+  document.getElementById(
+    "thankYouScreen"
+  );
+
+const restartButton =
+  document.getElementById(
+    "restartButton"
+  );
+
+const editResponseButton =
+  document.getElementById(
+    "editResponseButton"
+  );
+
+function createRatingQuestions() {
+  ratingQuestions.innerHTML = "";
+
+  ratingQuestionsData.forEach(
+    (
+      question,
+      questionIndex
+    ) => {
+      const questionCard =
+        document.createElement(
+          "div"
+        );
+
+      questionCard.className =
+        "question-card";
+
+      const title =
+        document.createElement(
+          "p"
+        );
+
+      title.className =
+        "question-title";
+
+      title.textContent =
+        `${questionIndex + 1}. ${question.text}`;
+
+      const optionsContainer =
+        document.createElement(
+          "div"
+        );
+
+      optionsContainer.className =
+        "rating-options";
+
+      ratingChoices.forEach(
+        (
+          choice,
+          choiceIndex
+        ) => {
+          const optionWrapper =
+            document.createElement(
+              "div"
+            );
+
+          optionWrapper.className =
+            "rating-option";
+
+          const input =
+            document.createElement(
+              "input"
+            );
+
+          input.type =
+            "radio";
+
+          input.name =
+            question.id;
+
+          input.id =
+            `${question.id}-${choiceIndex}`;
+
+          input.value =
+            choice.value;
+
+          input.required =
+            true;
+
+          const label =
+            document.createElement(
+              "label"
+            );
+
+          label.htmlFor =
+            input.id;
+
+          label.textContent =
+            choice.label;
+
+          optionWrapper.appendChild(
+            input
+          );
+
+          optionWrapper.appendChild(
+            label
+          );
+
+          optionsContainer.appendChild(
+            optionWrapper
+          );
+        }
+      );
+
+      questionCard.appendChild(
+        title
+      );
+
+      questionCard.appendChild(
+        optionsContainer
+      );
+
+      ratingQuestions.appendChild(
+        questionCard
+      );
+    }
+  );
+}
+
+function collectRatings() {
+  const ratings = {};
+
+  ratingQuestionsData.forEach(
+    question => {
+      const selected =
+        document.querySelector(
+          `input[name="${question.id}"]:checked`
+        );
+
+      ratings[question.id] =
+        selected
+          ? selected.value
+          : "";
+    }
+  );
+
+  return ratings;
+}
+
+function allRatingsCompleted(
+  ratings
+) {
+  return ratingQuestionsData.every(
+    question =>
+      Boolean(
+        ratings[question.id]
+      )
+  );
+}
+
+function saveSurveyResponse(
+  response
+) {
+  localStorage.setItem(
+    storageKey,
+    JSON.stringify(response)
+  );
+}
+
+function readSavedResponse() {
+  const saved =
+    localStorage.getItem(
+      storageKey
+    );
+
+  if (!saved) {
+    return null;
+  }
+
+  try {
+    return JSON.parse(saved);
+  } catch (error) {
+    console.log(
+      "تعذر قراءة الاستطلاع المحفوظ:",
+      error
+    );
+
+    return null;
+  }
+}
+
+function restoreSurveyResponse(
+  response
+) {
+  if (!response) {
+    return;
+  }
+
+  studentName.value =
+    response.studentName || "";
+
+  studentClass.value =
+    response.studentClass || "";
+
+  favoritePart.value =
+    response.favoritePart || "";
+
+  improvementSuggestion.value =
+    response.improvementSuggestion || "";
+
+  finalMessage.value =
+    response.finalMessage || "";
+
+  const savedRatings =
+    response.ratings || {};
+
+  ratingQuestionsData.forEach(
+    question => {
+      const savedValue =
+        savedRatings[question.id];
+
+      if (!savedValue) {
+        return;
+      }
+
+      const matchingInput =
+        document.querySelector(
+          `input[name="${question.id}"][value="${savedValue}"]`
+        );
+
+      if (matchingInput) {
+        matchingInput.checked =
+          true;
+      }
+    }
+  );
+}
+
+function showFormWarning() {
+  formWarning
+    .classList
+    .add("show");
+
+  formWarning.scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
+
+  setTimeout(
+    () => {
+      formWarning
+        .classList
+        .remove("show");
+    },
+    4000
+  );
+}
+
+function showThankYouScreen() {
+  studentSurveyForm.style.display =
+    "none";
+
+  thankYouScreen
+    .classList
+    .add("show");
+
+  thankYouScreen.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
+
+function showSurveyForm() {
+  thankYouScreen
+    .classList
+    .remove("show");
+
+  studentSurveyForm.style.display =
+    "block";
+
+  studentSurveyForm.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
+    studentSurveyForm.addEventListener(
+  "submit",
+  event => {
+    event.preventDefault();
+
+    const ratings =
+      collectRatings();
+
+    const studentClassValue =
+      studentClass.value.trim();
+
+    const favoritePartValue =
+      favoritePart.value.trim();
+
+    const formCompleted =
+      studentClassValue &&
+      favoritePartValue &&
+      allRatingsCompleted(
+        ratings
+      );
+
+    if (!formCompleted) {
+      showFormWarning();
+      return;
+    }
+
+    const response = {
+      studentName:
+        studentName.value.trim(),
+
+      studentClass:
+        studentClassValue,
+
+      favoritePart:
+        favoritePartValue,
+
+      improvementSuggestion:
+        improvementSuggestion
+          .value
+          .trim(),
+
+      finalMessage:
+        finalMessage
+          .value
+          .trim(),
+
+      ratings:
+        ratings,
+
+      submittedAt:
+        new Date().toISOString()
+    };
+
+    saveSurveyResponse(
+      response
+    );
+
+    showThankYouScreen();
+  }
+);
+
+editResponseButton.addEventListener(
+  "click",
+  () => {
+    showSurveyForm();
+  }
+);
+
+restartButton.addEventListener(
+  "click",
+  () => {
+    const confirmed =
+      window.confirm(
+        "هل تريدين مسح إجابات الاستطلاع والبدء من جديد؟"
+      );
+
+    if (!confirmed) {
+      return;
+    }
+
+    localStorage.removeItem(
+      storageKey
+    );
+
+    studentSurveyForm.reset();
+
+    thankYouScreen
+      .classList
+      .remove("show");
+
+    studentSurveyForm.style.display =
+      "block";
+
+    formWarning
+      .classList
+      .remove("show");
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+);
+
+function initializeSurvey() {
+  createRatingQuestions();
+
+  const savedResponse =
+    readSavedResponse();
+
+  if (!savedResponse) {
+    return;
+  }
+
+  restoreSurveyResponse(
+    savedResponse
+  );
+
+  showThankYouScreen();
+}
+
+initializeSurvey();
+    </script>
+
+</body>
 </html>
