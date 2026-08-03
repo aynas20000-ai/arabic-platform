@@ -1161,9 +1161,16 @@ function finishChallenge() {
   );
 
   if (score >= 8) {
-    celebrate();
-    playTone(true);
+  showCertificateButton.style.display = "inline-flex";
+  celebrate();
+  playTone(true);
+} else {
+  showCertificateButton.style.display = "none";
+  certificateShell.classList.remove("show");
   }
+    
+  
+  
 }
 
 function restartChallenge() {
