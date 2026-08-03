@@ -1,0 +1,327 @@
+(() => {
+  "use strict";
+
+  const REQUIRED_PERCENTAGE = 80;
+
+  function getChallengeNumber() {
+    const match =
+      window.location.pathname.match(
+        /nafes-challenge-(\d+)\.html/i
+      );
+
+    if (!match) {
+      return null;
+    }
+
+    return Number(match[1]);
+  }
+
+  function getSavedResult() {
+    const challengeNumber =
+      getChallengeNumber();
+
+    if (!challengeNumber) {
+      return null;
+    }
+
+    const storageKey =
+      `nafesChallenge${challengeNumber}Result`;
+
+    const savedValue =
+      localStorage.getItem(storageKey);
+
+    if (!savedValue) {
+      return null;
+    }
+
+    try {
+      const result =
+        JSON.parse(savedValue);
+
+      const score =
+        Number(result.score);
+
+      const total =
+        Number(result.total);
+
+      if (
+        !Number.isFinite(score) ||
+        !Number.isFinite(total) ||
+        total <= 0
+      ) {
+        return null;
+      }
+
+      return {
+        score,
+        total,
+        percentage:
+          Math.round(
+            (score / total) * 100
+          )
+      };
+    } catch (error) {
+      console.log(
+        "تعذر قراءة نتيجة التحدي:",
+        error
+      );
+
+      return null;
+    }
+  }
+
+  function getElements() {
+    return {
+      certificateButton:
+        document.getElementById(
+          "showCertificateButton"
+        ),
+
+      certificateShell:
+        document.getElementById(
+          "certificateShell"
+        ),
+
+      resultScreen:
+        document.getElementById(
+          "resultScreen"
+        ),
+
+      resultMessage:
+        document.getElementById(
+          "resultMessage"
+        )
+    };
+  }
+
+  function addNotEligibleMessage(
+    result,
+    elements
+  ) {
+    if (
+      !elements.resultMessage ||
+      document.getElementById(
+        "certificateRequirementMessage"
+      )
+    ) {
+      return;
+    }
+
+    const message =
+      document.createElement("div");
+
+    message.id =
+      "certificateRequirementMessage";
+
+    message.style.marginTop =
+      "14px";
+
+    message.style.padding =
+      "13px";
+
+    message.style.borderRadius =
+      "16px";
+
+    message.style.background =
+      "#fff0f4";
+
+    message.style.color =
+      "#7a4057";
+
+    message.style.fontWeight =
+      "bold";
+
+    message.style.lineHeight =
+      "1.8";
+
+    message.textContent =
+      `نتيجتكِ ${result.score} من ${result.total}. تظهر شهادة التحدي عند تحقيق 80٪ فأكثر، أي 8 من 10 على الأقل. واصلي التدريب بثقة 🌷`;
+
+    elements.resultMessage
+      .insertAdjacentElement(
+        "afterend",
+        message
+      );
+  }
+
+  function removeNotEligibleMessage() {
+    const message =
+      document.getElementById(
+        "certificateRequirementMessage"
+      );
+
+    if (message) {
+      message.remove();
+    }
+  }
+
+  function applyCertificateRule() {
+    const result =
+      getSavedResult();
+
+    const elements =
+      getElements();
+
+    if (
+      !elements.certificateButton
+    ) {
+      return;
+    }
+
+    if (!result) {
+      elements.certificateButton
+        .style
+        .display = "none";
+
+      if (
+        elements.certificateShell
+      ) {
+        elements.certificateShell
+          .classList
+          .remove("show");
+      }
+
+      return;
+    }
+
+    const eligible =
+      result.percentage >=
+      REQUIRED_PERCENTAGE;
+
+    if (eligible) {
+      elements.certificateButton
+        .style
+        .display = "";
+
+      removeNotEligibleMessage();
+
+      return;
+    }
+
+    elements.certificateButton
+      .style
+      .display = "none";
+
+    if (
+      elements.certificateShell
+    ) {
+      elements.certificateShell
+        .classList
+        .remove("show");
+    }
+
+    addNotEligibleMessage(
+      result,
+      elements
+    );
+  }
+
+  function protectCertificateButton() {
+    const elements =
+      getElements();
+
+    if (
+      !elements.certificateButton
+    ) {
+      return;
+    }
+
+    elements.certificateButton
+      .addEventListener(
+        "click",
+        event => {
+          const result =
+            getSavedResult();
+
+          const eligible =
+            result &&
+            result.percentage >=
+              REQUIRED_PERCENTAGE;
+
+          if (eligible) {
+            return;
+          }
+
+          event.preventDefault();
+
+          event.stopImmediatePropagation();
+
+          if (
+            elements.certificateShell
+          ) {
+            elements.certificateShell
+              .classList
+              .remove("show");
+          }
+
+          alert(
+            "تظهر شهادة التحدي عند تحقيق 80٪ فأكثر، أي 8 من 10 على الأقل."
+          );
+        },
+        true
+      );
+  }
+
+  function observeResultChanges() {
+    const elements =
+      getElements();
+
+    if (
+      !elements.resultScreen
+    ) {
+      return;
+    }
+
+    const observer =
+      new MutationObserver(
+        () => {
+          applyCertificateRule();
+        }
+      );
+
+    observer.observe(
+      elements.resultScreen,
+      {
+        attributes: true,
+        childList: true,
+        subtree: true,
+        characterData: true
+      }
+    );
+  }
+
+  function initializeCertificateRule() {
+    protectCertificateButton();
+
+    observeResultChanges();
+
+    applyCertificateRule();
+
+    setTimeout(
+      applyCertificateRule,
+      300
+    );
+
+    setTimeout(
+      applyCertificateRule,
+      1000
+    );
+  }
+
+  if (
+    document.readyState ===
+    "loading"
+  ) {
+    document.addEventListener(
+      "DOMContentLoaded",
+      initializeCertificateRule
+    );
+  } else {
+    initializeCertificateRule();
+  }
+
+  window.addEventListener(
+    "pageshow",
+    applyCertificateRule
+  );
+})();
