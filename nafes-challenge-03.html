@@ -1,0 +1,2269 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>تحدي مشروع نيوم | منصة آفاق</title>
+
+  <style>
+    :root {
+      --purple: #398a83;
+      --dark: #245b58;
+      --gold: #c9a85c;
+      --paper: #f8fffd;
+      --text: #294744;
+      --light: #def1ed;
+      --green: #43835d;
+      --green-light: #eaf6ee;
+      --red: #bd4040;
+      --red-light: #fff0f0;
+      --shadow:
+        0 14px 34px rgba(36, 91, 88, 0.17);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: var(--text);
+      background:
+        linear-gradient(
+          180deg,
+          #fbfffe,
+          #eaf6f3
+        );
+      font-family:
+        Tahoma,
+        Arial,
+        sans-serif;
+    }
+
+    button,
+    input,
+    a {
+      font-family: inherit;
+    }
+
+    button {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .hero {
+      padding: 24px 14px 18px;
+      text-align: center;
+      color: white;
+      background:
+        linear-gradient(
+          135deg,
+          var(--dark),
+          var(--purple)
+        );
+      border-bottom:
+        6px solid var(--gold);
+    }
+
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size:
+        clamp(
+          28px,
+          7vw,
+          44px
+        );
+    }
+
+    .hero p {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size:
+        clamp(
+          16px,
+          4vw,
+          21px
+        );
+      line-height: 1.8;
+    }
+
+    .top-panel {
+      width:
+        min(
+          94%,
+          900px
+        );
+      margin: 14px auto;
+      padding: 14px;
+      border:
+        2px solid #cfe5df;
+      border-radius: 24px;
+      background: #fbfffe;
+      box-shadow:
+        var(--shadow);
+    }
+
+    .top-row,
+    .status-row {
+      display: flex;
+      align-items: center;
+      justify-content:
+        space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .status-row {
+      margin-top: 13px;
+      font-size: 17px;
+      font-weight: bold;
+    }
+
+    .library-link,
+    .sound-button {
+      min-height: 48px;
+      padding: 10px 15px;
+      border: 0;
+      border-radius: 15px;
+      font-size: 16px;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .library-link {
+      color: var(--dark);
+      background: var(--gold);
+    }
+
+    .sound-button {
+      color: white;
+      background: var(--purple);
+    }
+
+    .progress-track {
+      height: 13px;
+      margin-top: 9px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: var(--light);
+    }
+
+    .progress-bar {
+      width: 10%;
+      height: 100%;
+      border-radius: inherit;
+      background:
+        linear-gradient(
+          90deg,
+          var(--gold),
+          var(--purple)
+        );
+      transition:
+        width 0.35s ease;
+    }
+
+    main {
+      width:
+        min(
+          94%,
+          900px
+        );
+      margin: 0 auto;
+      padding-bottom: 28px;
+    }
+
+    .screen {
+      display: none;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    .start-card,
+    .result-card {
+      width:
+        min(
+          100%,
+          680px
+        );
+      margin: 18px auto;
+      padding: 24px;
+      text-align: center;
+      border:
+        3px solid #cfe5df;
+      border-radius: 30px;
+      background: #fbfffe;
+      box-shadow:
+        var(--shadow);
+    }
+
+    .start-icon,
+    .result-icon {
+      font-size: 65px;
+    }
+
+    .start-card h2,
+    .result-card h2 {
+      margin: 8px 0 12px;
+      color: var(--purple);
+      font-size: 32px;
+    }
+
+    .start-card p,
+    .result-message {
+      font-size: 18px;
+      line-height: 1.9;
+    }
+
+    .student-input {
+      width: 100%;
+      min-height: 58px;
+      padding: 13px 15px;
+      border:
+        2px solid #bfd9d3;
+      border-radius: 16px;
+      color: var(--text);
+      background: white;
+      text-align: right;
+      font-size: 18px;
+    }
+
+    .warning {
+      display: none;
+      margin-top: 10px;
+      padding: 11px;
+      border-radius: 13px;
+      color: #7d2929;
+      background:
+        var(--red-light);
+      font-weight: bold;
+    }
+
+    .warning.show {
+      display: block;
+    }
+
+    .primary-button,
+    .result-button {
+      min-height: 54px;
+      padding: 12px 19px;
+      border: 0;
+      border-radius: 17px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .primary-button {
+      margin-top: 16px;
+      color: white;
+      background: var(--purple);
+    }
+
+    .book-wrap {
+      margin: 14px auto;
+      perspective: 1500px;
+    }
+
+    .book {
+      position: relative;
+      width: 100%;
+      min-height: 610px;
+      overflow: hidden;
+      border:
+        3px solid #c8e0da;
+      border-radius: 30px;
+      background: var(--paper);
+      box-shadow:
+        var(--shadow);
+      transform-style:
+        preserve-3d;
+    }
+
+    .page {
+      min-height: 610px;
+      padding: 22px;
+      background:
+        linear-gradient(
+          180deg,
+          #fcfffe,
+          #f1faf7
+        );
+      transform-origin:
+        right center;
+      backface-visibility:
+        hidden;
+    }
+
+    .page.flip-next {
+      animation:
+        flipNext
+        0.46s ease;
+    }
+
+    .page.flip-previous {
+      animation:
+        flipPrevious
+        0.46s ease;
+    }
+
+    @keyframes flipNext {
+      0% {
+        transform:
+          rotateY(0deg);
+        opacity: 1;
+      }
+
+      50% {
+        transform:
+          rotateY(-12deg);
+        opacity: 0.55;
+      }
+
+      100% {
+        transform:
+          rotateY(0deg);
+        opacity: 1;
+      }
+    }
+
+    @keyframes flipPrevious {
+      0% {
+        transform:
+          rotateY(0deg);
+        opacity: 1;
+      }
+
+      50% {
+        transform:
+          rotateY(12deg);
+        opacity: 0.55;
+      }
+
+      100% {
+        transform:
+          rotateY(0deg);
+        opacity: 1;
+      }
+    }
+
+    .question-number {
+      width: fit-content;
+      margin: 0 auto 10px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      color: white;
+      background: var(--purple);
+      font-weight: bold;
+    }
+
+    .question-skill {
+      margin: 0 0 12px;
+      text-align: center;
+      color: var(--purple);
+      font-size:
+        clamp(
+          24px,
+          6vw,
+          34px
+        );
+    }
+
+    .page-scroll {
+      max-height: 470px;
+      overflow-y: auto;
+      padding:
+        4px 5px 10px;
+      scrollbar-width: thin;
+    }
+
+    .passage-card {
+      padding: 18px;
+      border:
+        2px solid #cfe3de;
+      border-radius: 20px;
+      background:
+        rgba(
+          255,
+          255,
+          255,
+          0.8
+        );
+      font-size:
+        clamp(
+          17px,
+          4.2vw,
+          21px
+        );
+      line-height: 2;
+      text-align: justify;
+    }
+
+    .passage-card h3 {
+      margin-top: 0;
+      color: var(--dark);
+      text-align: center;
+    }
+
+    .question-text {
+      margin-top: 16px;
+      padding: 15px;
+      border-radius: 17px;
+      color: var(--dark);
+      background: #e5f3ef;
+      text-align: center;
+      font-size:
+        clamp(
+          18px,
+          4.6vw,
+          23px
+        );
+      line-height: 1.8;
+      font-weight: bold;
+    }
+
+    .answers {
+      display: grid;
+      grid-template-columns:
+        1fr;
+      gap: 11px;
+      margin-top: 14px;
+    }
+
+    .answer-button {
+      width: 100%;
+      min-height: 64px;
+      padding: 13px;
+      border:
+        2px solid var(--gold);
+      border-radius: 18px;
+      color: var(--text);
+      background: white;
+      font-size:
+        clamp(
+          16px,
+          4vw,
+          20px
+        );
+      line-height: 1.65;
+      cursor: pointer;
+    }
+
+    .answer-button.correct {
+      color: #245b3b;
+      border-color: var(--green);
+      background:
+        var(--green-light);
+    }
+
+    .answer-button.wrong {
+      color: #7d2929;
+      border-color: var(--red);
+      background:
+        var(--red-light);
+    }
+
+    .feedback {
+      display: none;
+      margin-top: 14px;
+      padding: 15px;
+      border-radius: 18px;
+      text-align: center;
+      font-size: 17px;
+      line-height: 1.85;
+      font-weight: bold;
+    }
+
+    .feedback.show {
+      display: block;
+    }
+
+    .feedback.correct {
+      color: #245b3b;
+      border:
+        2px solid #8dbb9d;
+      background:
+        var(--green-light);
+    }
+
+    .feedback.wrong {
+      color: #7d2929;
+      border:
+        2px solid #d6a1a1;
+      background:
+        var(--red-light);
+    }
+
+    .navigation {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .nav-button {
+      flex: 1;
+      min-height: 58px;
+      border: 0;
+      border-radius: 18px;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .previous-button {
+      color: var(--dark);
+      background: var(--light);
+    }
+
+    .next-button {
+      color: white;
+      background: var(--purple);
+    }
+
+    .nav-button:disabled {
+      opacity: 0.42;
+      cursor: not-allowed;
+    }
+
+    .result-score {
+      margin: 16px auto;
+      padding: 14px;
+      border-radius: 18px;
+      color: white;
+      background: var(--purple);
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .result-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .certificate-button {
+      color: white;
+      background: var(--green);
+    }
+
+    .restart-button {
+      color: white;
+      background: var(--purple);
+    }
+
+    .next-challenge-button {
+      color: var(--dark);
+      background: var(--gold);
+    }
+
+    .print-button {
+      margin-top: 14px;
+      color: white;
+      background: var(--dark);
+    }
+
+    .certificate-shell {
+      display: none;
+      margin-top: 20px;
+    }
+
+    .certificate-shell.show {
+      display: block;
+    }
+
+    .certificate {
+      position: relative;
+      width:
+        min(
+          100%,
+          640px
+        );
+      aspect-ratio:
+        1100 / 775;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 16px;
+      background:
+        white
+        url("99.jpg")
+        center / contain
+        no-repeat;
+      box-shadow:
+        0 10px 25px
+        rgba(0, 0, 0, 0.14);
+    }
+
+    .certificate-content {
+      position: absolute;
+      top: 42%;
+      right: 18%;
+      left: 18%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-align: center;
+      color: #111;
+    }
+
+    .certificate-name {
+      max-width: 100%;
+      font-size:
+        clamp(
+          17px,
+          4vw,
+          27px
+        );
+      line-height: 1.25;
+      font-weight: 900;
+    }
+
+    .certificate-achievement {
+      margin-top: 6px;
+      font-size:
+        clamp(
+          13px,
+          3.2vw,
+          20px
+        );
+      color: var(--purple);
+      font-weight: bold;
+    }
+
+    .answer-mark {
+      position: fixed;
+      z-index: 9999;
+      top: 50%;
+      left: 50%;
+      display: grid;
+      place-items: center;
+      width: 110px;
+      height: 110px;
+      transform:
+        translate(
+          -50%,
+          -50%
+        );
+      color: white;
+      border-radius: 50%;
+      font-size: 72px;
+      font-weight: bold;
+      pointer-events: none;
+      animation:
+        answerMark
+        0.7s ease
+        forwards;
+    }
+
+    .correct-mark {
+      background:
+        rgba(
+          63,
+          139,
+          87,
+          0.95
+        );
+    }
+
+    .wrong-mark {
+      background:
+        rgba(
+          190,
+          56,
+          56,
+          0.95
+        );
+    }
+
+    @keyframes answerMark {
+      0% {
+        opacity: 0;
+        transform:
+          translate(
+            -50%,
+            -50%
+          )
+          scale(0.4);
+      }
+
+      35% {
+        opacity: 1;
+        transform:
+          translate(
+            -50%,
+            -50%
+          )
+          scale(1.08);
+      }
+
+      100% {
+        opacity: 0;
+        transform:
+          translate(
+            -50%,
+            -50%
+          )
+          scale(0.9);
+      }
+    }
+
+    .confetti-piece {
+      position: fixed;
+      z-index: 9998;
+      top: -40px;
+      pointer-events: none;
+      animation:
+        confettiFall
+        3.2s linear
+        forwards;
+    }
+
+    @keyframes confettiFall {
+      to {
+        transform:
+          translateY(110vh)
+          rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    footer {
+      padding: 20px 14px;
+      text-align: center;
+      color: white;
+      background: var(--dark);
+      border-top:
+        6px solid var(--gold);
+    }
+
+    @media (min-width: 700px) {
+      .answers {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+      .page {
+        padding: 28px;
+      }
+    }
+
+    @media print {
+      @page {
+        size: landscape;
+        margin: 0;
+      }
+
+      body * {
+        visibility: hidden;
+      }
+
+      #certificate,
+      #certificate * {
+        visibility: visible;
+      }
+
+      #certificate {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        max-width: none;
+        border-radius: 0;
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="hero">
+
+    <h1>
+      🌆 تحدي مشروع نيوم
+    </h1>
+
+    <p>
+      اقرئي النص بوعي، ثم أجيبي عن عشرة أسئلة
+      تقيس فهم الأفكار الوطنية، والاستنتاج،
+      وتحليل الأدلة، وتقويم الادعاءات.
+    </p>
+
+  </header>
+
+  <section class="top-panel">
+
+    <div class="top-row">
+
+      <a
+        class="library-link"
+        href="nafes-mock-tests.html"
+      >
+        العودة إلى تحديات نافس
+      </a>
+
+      <button
+        id="soundBtn"
+        class="sound-button"
+        type="button"
+      >
+        🔊 الصوت مفعّل
+      </button>
+
+    </div>
+
+    <div class="status-row">
+
+      <span id="questionCounter">
+        السؤال 1 من 10
+      </span>
+
+      <span id="liveScore">
+        الدرجة: 0
+      </span>
+
+    </div>
+
+    <div class="progress-track">
+
+      <div
+        id="progressBar"
+        class="progress-bar"
+      ></div>
+
+    </div>
+
+  </section>
+
+  <main>
+
+    <section
+      id="startScreen"
+      class="screen active"
+    >
+
+      <div class="start-card">
+
+        <div class="start-icon">
+          🌱
+        </div>
+
+        <h2>
+          استعدي للتحدي
+        </h2>
+
+        <p>
+          اكتبي اسمكِ الرباعي ليظهر تلقائيًا
+          في شهادة اجتياز التحدي.
+        </p>
+
+        <input
+          id="studentNameInput"
+          class="student-input"
+          type="text"
+          placeholder="اكتبي الاسم الرباعي"
+          autocomplete="name"
+        >
+
+        <div
+          id="nameWarning"
+          class="warning"
+        ></div>
+
+        <button
+          id="startButton"
+          class="primary-button"
+          type="button"
+        >
+          ابدئي تحدي مشروع نيوم
+        </button>
+
+      </div>
+
+    </section>
+
+    <section
+      id="quizScreen"
+      class="screen"
+    >
+
+      <div class="book-wrap">
+
+        <article class="book">
+
+          <div
+            id="page"
+            class="page"
+          >
+
+            <div
+              id="questionNumber"
+              class="question-number"
+            ></div>
+
+            <h2
+              id="questionSkill"
+              class="question-skill"
+            ></h2>
+
+            <div class="page-scroll">
+
+              <div
+                id="passageCard"
+                class="passage-card"
+              ></div>
+
+              <div
+                id="questionText"
+                class="question-text"
+              ></div>
+
+              <div
+                id="answersContainer"
+                class="answers"
+              ></div>
+
+              <div
+                id="feedback"
+                class="feedback"
+              ></div>
+
+            </div>
+
+            <div class="navigation">
+
+              <button
+                id="previousButton"
+                class="nav-button previous-button"
+                type="button"
+                disabled
+              >
+                السابق
+              </button>
+
+              <button
+                id="nextButton"
+                class="nav-button next-button"
+                type="button"
+                disabled
+              >
+                التالي
+              </button>
+
+            </div>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+    <section
+      id="resultScreen"
+      class="screen"
+    >
+
+      <div class="result-card">
+
+        <div
+          id="resultIcon"
+          class="result-icon"
+        >
+          🌆
+        </div>
+
+        <h2 id="resultTitle">
+          اكتمل التحدي
+        </h2>
+
+        <div
+          id="resultScore"
+          class="result-score"
+        ></div>
+
+        <p
+          id="resultMessage"
+          class="result-message"
+        ></p>
+
+        <div class="result-buttons">
+
+          <button
+            id="showCertificateButton"
+            class="result-button certificate-button"
+            type="button"
+          >
+            🎓 عرض الشهادة
+          </button>
+
+          <button
+            id="restartButton"
+            class="result-button restart-button"
+            type="button"
+          >
+            البدء من جديد
+          </button>
+
+          <button
+            id="nextChallengeButton"
+            class="result-button next-challenge-button"
+            type="button"
+          >
+            التحدي التالي
+          </button>
+
+        </div>
+
+        <div
+          id="certificateShell"
+          class="certificate-shell"
+        >
+
+          <div
+            id="certificate"
+            class="certificate"
+          >
+
+            <div class="certificate-content">
+
+              <div
+                id="certificateName"
+                class="certificate-name"
+              ></div>
+
+              <div class="certificate-achievement">
+                لاجتيازها تحدي مشروع نيوم بنجاح
+              </div>
+
+            </div>
+
+          </div>
+
+          <button
+            id="printButton"
+            class="result-button print-button"
+            type="button"
+          >
+            🖨️ طباعة أو حفظ الشهادة
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer>
+    جميع الحقوق محفوظة © 2026
+  </footer>
+
+  <script>
+    const challengeName = "مشروع نيوم";
+
+const mainPassage = `
+  <h3>
+    نيوم... حين تتحول الفكرة إلى نموذج للمستقبل
+  </h3>
+
+  <p>
+    لم تعد المدن الحديثة تُقاس باتساع طرقها أو ارتفاع مبانيها فقط،
+    بل بقدرتها على تحسين حياة الإنسان، وتقليل استهلاك الموارد،
+    وابتكار حلول تستجيب لتحديات المستقبل. ومن هذا المنطلق برز مشروع نيوم
+    بوصفه مساحة تُختبر فيها أفكار جديدة في مجالات الطاقة، والتنقل،
+    والتقنية، والتخطيط الحضري، مع السعي إلى بناء اقتصاد أكثر تنوعًا.
+  </p>
+
+  <p>
+    ويقوم التصور المعلن للمشروع على الاستفادة من الموقع الجغرافي،
+    والطبيعة المتنوعة، والتقدم التقني، من أجل تطوير مجتمعات تعتمد
+    على الابتكار وتستقطب المعرفة والاستثمار. غير أن تحويل الرؤية
+    إلى واقع لا يتحقق بمجرد تصميم مشروعات كبيرة، بل يحتاج إلى
+    بنية تحتية فعالة، وكفاءات بشرية، وقرارات تراعي البيئة،
+    وقدرة على مراجعة النتائج وتصحيح المسار.
+  </p>
+
+  <p>
+    ويرى مؤيدو المشروع أن نيوم يمكن أن تسهم في إيجاد فرص اقتصادية جديدة،
+    ودعم قطاعات غير تقليدية، وتحسين جودة الحياة من خلال حلول حضرية متقدمة.
+    وفي المقابل، يؤكد مختصون أن نجاح المشروعات المستقبلية لا يُقاس
+    بحجمها أو غرابة تصميمها، بل بقدرتها على تحقيق أهداف قابلة للقياس،
+    وخدمة الإنسان، والمحافظة على الموارد على المدى الطويل.
+  </p>
+
+  <p>
+    وتظهر أهمية هذا التوازن عند الحديث عن الاستدامة؛ فالاعتماد على
+    مصادر طاقة أنظف، وتقليل الانبعاثات، وحماية المواطن الطبيعية،
+    أهداف إيجابية، لكنها تحتاج إلى بيانات واضحة تبين مقدار الأثر الفعلي.
+    فالإعلان عن هدف بيئي لا يكفي وحده، ما لم تُقاس النتائج،
+    وتُنشر المؤشرات، وتُراجع الخطط وفق ما تكشفه التجربة.
+  </p>
+
+  <p>
+    ومن هنا فإن قراءة مشروع مثل نيوم قراءة واعية لا تعني الاكتفاء
+    بالإعجاب بفكرته، ولا رفضها لمجرد أنها غير مألوفة، بل تعني فهم أهدافه،
+    وتحليل الأدلة التي تدعمه، والتمييز بين الطموح الممكن والادعاء
+    الذي لم يثبت بعد. فالمستقبل لا يُبنى بالشعارات، وإنما بخطط قابلة
+    للتنفيذ، ومعايير للنجاح، وقدرة دائمة على التعلم والتطوير.
+  </p>
+`;
+
+const questions = [
+
+  {
+    skill:
+      "المفردات في السياق",
+
+    question:
+      "ما المعنى الأدق لعبارة «تصحيح المسار» في الفقرة الثانية؟",
+
+    options: [
+      "تغيير موقع المشروع بالكامل.",
+      "إيقاف الخطط عند ظهور أول مشكلة.",
+      "العودة إلى الفكرة الأولى دون تعديل.",
+      "مراجعة الخطط وتعديلها وفق النتائج."
+    ],
+
+    correct: 3,
+
+    explanation:
+      "السياق يربط العبارة بمراجعة النتائج؛ لذلك فالمقصود هو تعديل الخطط والقرارات عندما تكشف التجربة الحاجة إلى ذلك."
+  },
+
+  {
+    skill:
+      "الفكرة الرئيسة",
+
+    question:
+      "ما الفكرة الرئيسة التي ينتظم حولها النص كله؟",
+
+    options: [
+      "نجاح نيوم يرتبط بتحويل الطموح إلى نتائج قابلة للقياس تخدم الإنسان وتحافظ على الموارد.",
+      "الموقع الجغرافي هو العامل الوحيد الذي يحدد نجاح المشروعات.",
+      "التصميمات غير المألوفة أهم من الأهداف الاقتصادية.",
+      "كل مشروع مستقبلي يحقق النجاح بمجرد استخدام التقنية."
+    ],
+
+    correct: 0,
+
+    explanation:
+      "الخيار الأول هو الأشمل؛ لأنه يجمع الطموح، والتنفيذ، والقياس، وخدمة الإنسان، والاستدامة."
+  },
+
+  {
+    skill:
+      "الاستنتاج",
+
+    question:
+      "ماذا نستنتج من تأكيد الكاتب أن الإعلان عن هدف بيئي لا يكفي وحده؟",
+
+    options: [
+      "أن الأهداف البيئية غير مهمة في المشروعات الكبرى.",
+      "أن حماية البيئة تعطل التنمية الاقتصادية.",
+      "أن صدق الادعاء البيئي يحتاج إلى مؤشرات ونتائج قابلة للقياس.",
+      "أن البيانات لا تستخدم إلا بعد انتهاء المشروع."
+    ],
+
+    correct: 2,
+
+    explanation:
+      "الكاتب يفرق بين إعلان الهدف وإثبات أثره؛ لذلك لا بد من بيانات ومؤشرات توضح مقدار ما تحقق فعليًا."
+  },
+
+  {
+    skill:
+      "العلاقة بين الأفكار",
+
+    question:
+      "ما العلاقة بين الفقرة الثالثة والفقرة الرابعة؟",
+
+    options: [
+      "الثالثة تصف الموقع، والرابعة تنفي أهمية الموقع.",
+      "الثالثة تعرض معايير النجاح العامة، والرابعة تطبقها على الاستدامة.",
+      "الفقرتان تعرضان أحداثًا تاريخية متتابعة.",
+      "الرابعة تكرر الثالثة دون إضافة."
+    ],
+
+    correct: 1,
+
+    explanation:
+      "الفقرة الثالثة توضح أن النجاح يقاس بالأثر، ثم تطبق الفقرة الرابعة هذا المبدأ على الأهداف البيئية وضرورة قياس نتائجها."
+  },
+
+  {
+    skill:
+      "الحقيقة والرأي",
+
+    question:
+      "أي العبارات الآتية تمثل رأيًا تفسيريًا أكثر من كونها معلومة مباشرة؟",
+
+    options: [
+      "يركز المشروع على مجالات الطاقة والتنقل والتقنية.",
+      "يستفيد المشروع من الموقع والطبيعة المتنوعة.",
+      "تحتاج الخطط إلى كفاءات بشرية وبنية تحتية.",
+      "المستقبل لا يُبنى بالشعارات بل بخطط قابلة للتنفيذ."
+    ],
+
+    correct: 3,
+
+    explanation:
+      "العبارة الرابعة حكم فكري يلخص موقف الكاتب، أما بقية العبارات فتعرض عناصر أو متطلبات وردت مباشرة."
+  },
+
+  {
+    skill:
+      "تقويم الدليل",
+
+    question:
+      "أي دليل سيكون الأقوى لإثبات أن المشروع حسّن جودة الحياة؟",
+
+    options: [
+      "بيانات تقارن مؤشرات النقل والخدمات ورضا السكان قبل التنفيذ وبعده.",
+      "إعلان بصري يعرض تصميمات المشروع.",
+      "رأي زائر أعجبته الفكرة.",
+      "زيادة عدد الأخبار المنشورة عن المشروع."
+    ],
+
+    correct: 0,
+
+    explanation:
+      "المقارنة بين مؤشرات واضحة قبل التنفيذ وبعده تقيس الأثر مباشرة، بخلاف الانطباعات أو الإعلانات."
+  },
+
+  {
+    skill:
+      "الغرض من النص",
+
+    question:
+      "ما الغرض الرئيس للكاتب؟",
+
+    options: [
+      "الترويج للمشروع دون مناقشة أي تحديات.",
+      "رفض المشروعات المستقبلية لأنها غير مألوفة.",
+      "تعريف القارئ بالمشروع ودعوته إلى تقويمه وفق الأدلة والنتائج.",
+      "إثبات أن التقنية وحدها تكفي لبناء المدن."
+    ],
+
+    correct: 2,
+
+    explanation:
+      "النص يقدم المشروع ثم يدعو إلى قراءته بوعي من خلال تحليل أهدافه وقياس نتائجه، لا إلى القبول أو الرفض المسبق."
+  },
+
+  {
+    skill:
+      "التطبيق",
+
+    question:
+      "أعلنت جهة أن مبنى جديدًا «مستدام بالكامل» دون نشر بيانات. ما التصرف الأكثر اتساقًا مع النص؟",
+
+    options: [
+      "قبول الادعاء لأن الجهة استخدمت كلمة مستدام.",
+      "طلب مؤشرات توضح استهلاك الطاقة والمياه والأثر البيئي.",
+      "رفض المشروع قبل الاطلاع على أي معلومات.",
+      "الحكم عليه من جمال التصميم فقط."
+    ],
+
+    correct: 1,
+
+    explanation:
+      "النص يؤكد أن الادعاءات البيئية تحتاج إلى بيانات ومؤشرات قابلة للقياس، وليس إلى شعارات فقط."
+  },
+
+  {
+    skill:
+      "التلخيص",
+
+    question:
+      "أي الملخصات الآتية هو الأدق؟",
+
+    options: [
+      "نيوم مشروع يعتمد على موقعه الطبيعي فقط.",
+      "تقوم المشروعات المستقبلية على التصميم الجريء مهما كانت نتائجها.",
+      "يهدف نيوم إلى الابتكار والتنويع، ويعتمد نجاحه على التنفيذ والقياس وخدمة الإنسان والاستدامة.",
+      "تنجح المشروعات الكبرى عندما تحظى بإعجاب الجمهور."
+    ],
+
+    correct: 2,
+
+    explanation:
+      "الخيار الثالث يجمع أهداف المشروع ومعايير نجاحه الأساسية دون اختزال أو مبالغة."
+  },
+
+  {
+    skill:
+      "الحكم النقدي",
+
+    question:
+      "أي حكم نقدي يعبر عن موقف النص بأكبر قدر من الدقة؟",
+
+    options: [
+      "النص متحيز تمامًا للمشروع ويتجاهل أي تحديات.",
+      "النص يرفض المشروع لأنه لم يكتمل بعد.",
+      "النص يهتم بالشكل المعماري أكثر من النتائج.",
+      "النص يتبنى موقفًا متوازنًا؛ يعترف بالطموح ويشترط الأدلة القابلة للقياس."
+    ],
+
+    correct: 3,
+
+    explanation:
+      "الكاتب لا يرفض المشروع ولا يقبله بلا شروط، بل يوازن بين الطموح وضرورة قياس النتائج ومراجعة الخطط."
+  }
+
+];
+    const startScreen =
+  document.getElementById("startScreen");
+
+const quizScreen =
+  document.getElementById("quizScreen");
+
+const resultScreen =
+  document.getElementById("resultScreen");
+
+const studentNameInput =
+  document.getElementById("studentNameInput");
+
+const nameWarning =
+  document.getElementById("nameWarning");
+
+const startButton =
+  document.getElementById("startButton");
+
+const soundBtn =
+  document.getElementById("soundBtn");
+
+const questionCounter =
+  document.getElementById("questionCounter");
+
+const liveScore =
+  document.getElementById("liveScore");
+
+const progressBar =
+  document.getElementById("progressBar");
+
+const questionNumber =
+  document.getElementById("questionNumber");
+
+const questionSkill =
+  document.getElementById("questionSkill");
+
+const passageCard =
+  document.getElementById("passageCard");
+
+const questionText =
+  document.getElementById("questionText");
+
+const answersContainer =
+  document.getElementById("answersContainer");
+
+const feedback =
+  document.getElementById("feedback");
+
+const previousButton =
+  document.getElementById("previousButton");
+
+const nextButton =
+  document.getElementById("nextButton");
+
+const page =
+  document.getElementById("page");
+
+const resultIcon =
+  document.getElementById("resultIcon");
+
+const resultTitle =
+  document.getElementById("resultTitle");
+
+const resultScore =
+  document.getElementById("resultScore");
+
+const resultMessage =
+  document.getElementById("resultMessage");
+
+const showCertificateButton =
+  document.getElementById(
+    "showCertificateButton"
+  );
+
+const restartButton =
+  document.getElementById(
+    "restartButton"
+  );
+
+const nextChallengeButton =
+  document.getElementById(
+    "nextChallengeButton"
+  );
+
+const certificateShell =
+  document.getElementById(
+    "certificateShell"
+  );
+
+const certificateName =
+  document.getElementById(
+    "certificateName"
+  );
+
+const printButton =
+  document.getElementById(
+    "printButton"
+  );
+
+let studentName = "";
+
+let currentQuestion = 0;
+
+let score = 0;
+
+let soundOn =
+  localStorage.getItem(
+    "nafesSound"
+  ) !== "off";
+
+const selectedAnswers =
+  new Array(
+    questions.length
+  ).fill(null);
+
+function updateSoundButton() {
+  soundBtn.textContent =
+    soundOn
+      ? "🔊 الصوت مفعّل"
+      : "🔇 الصوت مكتوم";
+}
+
+function playTone(isCorrect) {
+  if (!soundOn) return;
+
+  try {
+    const AudioContextClass =
+      window.AudioContext ||
+      window.webkitAudioContext;
+
+    const context =
+      new AudioContextClass();
+
+    const oscillator =
+      context.createOscillator();
+
+    const gain =
+      context.createGain();
+
+    oscillator.type =
+      isCorrect
+        ? "sine"
+        : "triangle";
+
+    oscillator.frequency.value =
+      isCorrect
+        ? 720
+        : 190;
+
+    gain.gain.setValueAtTime(
+      isCorrect
+        ? 0.13
+        : 0.1,
+      context.currentTime
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+      0.001,
+      context.currentTime +
+      (
+        isCorrect
+          ? 0.35
+          : 0.28
+      )
+    );
+
+    oscillator.connect(gain);
+
+    gain.connect(
+      context.destination
+    );
+
+    oscillator.start();
+
+    oscillator.stop(
+      context.currentTime +
+      (
+        isCorrect
+          ? 0.35
+          : 0.28
+      )
+    );
+
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+function showAnswerMark(
+  isCorrect
+) {
+  const mark =
+    document.createElement(
+      "div"
+    );
+
+  mark.className =
+    isCorrect
+      ? "answer-mark correct-mark"
+      : "answer-mark wrong-mark";
+
+  mark.textContent =
+    isCorrect
+      ? "✓"
+      : "✕";
+
+  document.body
+    .appendChild(mark);
+
+  setTimeout(
+    () => {
+      mark.remove();
+    },
+    720
+  );
+}
+
+function celebrate() {
+  const symbols = [
+    "🎉",
+    "⭐",
+    "✨",
+    "🌱",
+    "🌆",
+    "🎈"
+  ];
+
+  for (
+    let j = 0;
+    j < 34;
+    j++
+  ) {
+    const piece =
+      document.createElement(
+        "span"
+      );
+
+    piece.className =
+      "confetti-piece";
+
+    piece.textContent =
+      symbols[
+        Math.floor(
+          Math.random() *
+          symbols.length
+        )
+      ];
+
+    piece.style.left =
+      Math.random() *
+      100 +
+      "vw";
+
+    piece.style.fontSize =
+      18 +
+      Math.random() *
+      22 +
+      "px";
+
+    piece.style.animationDelay =
+      Math.random() *
+      0.7 +
+      "s";
+
+    document.body
+      .appendChild(piece);
+
+    setTimeout(
+      () => {
+        piece.remove();
+      },
+      4100
+    );
+  }
+}
+
+function startChallenge() {
+  const enteredName =
+    studentNameInput
+      .value
+      .trim();
+
+  const nameParts =
+    enteredName
+      .split(/\s+/)
+      .filter(Boolean);
+
+  if (
+    nameParts.length < 4
+  ) {
+    nameWarning.textContent =
+      "اكتبي اسمكِ الرباعي كاملًا.";
+
+    nameWarning
+      .classList
+      .add("show");
+
+    return;
+  }
+
+  studentName =
+    enteredName;
+
+  nameWarning
+    .classList
+    .remove("show");
+
+  startScreen
+    .classList
+    .remove("active");
+
+  quizScreen
+    .classList
+    .add("active");
+
+  renderQuestion();
+}
+
+function updateTopStatus() {
+  questionCounter.textContent =
+    `السؤال ${
+      currentQuestion + 1
+    } من ${
+      questions.length
+    }`;
+
+  liveScore.textContent =
+    `الدرجة: ${score}`;
+
+  progressBar.style.width =
+    `${
+      (
+        (
+          currentQuestion + 1
+        ) /
+        questions.length
+      ) * 100
+    }%`;
+}
+
+function renderQuestion() {
+  const item =
+    questions[
+      currentQuestion
+    ];
+
+  updateTopStatus();
+
+  questionNumber.textContent =
+    `السؤال ${
+      currentQuestion + 1
+    }`;
+
+  questionSkill.textContent =
+    item.skill;
+
+  passageCard.innerHTML =
+    mainPassage;
+
+  questionText.textContent =
+    item.question;
+
+  answersContainer.innerHTML =
+    "";
+
+  feedback.className =
+    "feedback";
+
+  feedback.innerHTML =
+    "";
+
+  item.options.forEach(
+    (
+      optionText,
+      optionIndex
+    ) => {
+      const button =
+        document.createElement(
+          "button"
+        );
+
+      button.type =
+        "button";
+
+      button.className =
+        "answer-button";
+
+      button.textContent =
+        optionText;
+
+      button.addEventListener(
+        "click",
+        () => {
+          chooseAnswer(
+            optionIndex,
+            button
+          );
+        }
+      );
+
+      answersContainer
+        .appendChild(
+          button
+        );
+    }
+  );
+
+  previousButton.disabled =
+    currentQuestion === 0;
+
+  nextButton.disabled =
+    selectedAnswers[
+      currentQuestion
+    ] === null;
+
+  nextButton.textContent =
+    currentQuestion ===
+    questions.length - 1
+      ? "عرض النتيجة"
+      : "التالي";
+
+  restoreAnswer();
+
+  const pageScroll =
+    document.querySelector(
+      ".page-scroll"
+    );
+
+  if (pageScroll) {
+    pageScroll.scrollTop =
+      0;
+  }
+}
+
+function restoreAnswer() {
+  const selected =
+    selectedAnswers[
+      currentQuestion
+    ];
+
+  if (
+    selected === null
+  ) {
+    return;
+  }
+
+  const item =
+    questions[
+      currentQuestion
+    ];
+
+  const buttons =
+    Array.from(
+      answersContainer
+        .querySelectorAll(
+          ".answer-button"
+        )
+    );
+
+  buttons.forEach(
+    button => {
+      button.disabled =
+        true;
+    }
+  );
+
+  if (
+    selected ===
+    item.correct
+  ) {
+    buttons[selected]
+      .classList
+      .add("correct");
+
+    feedback.className =
+      "feedback correct show";
+
+    feedback.innerHTML = `
+      <strong>
+        ✅ إجابة صحيحة
+      </strong>
+
+      <br>
+
+      ${item.explanation}
+    `;
+  } else {
+    buttons[selected]
+      .classList
+      .add("wrong");
+
+    buttons[item.correct]
+      .classList
+      .add("correct");
+
+    feedback.className =
+      "feedback wrong show";
+
+    feedback.innerHTML = `
+      <strong>
+        ❌ الإجابة غير صحيحة
+      </strong>
+
+      <br>
+
+      <b>
+        الإجابة الصحيحة:
+      </b>
+
+      ${
+        item.options[
+          item.correct
+        ]
+      }
+
+      <br><br>
+
+      ${item.explanation}
+    `;
+  }
+}
+
+function chooseAnswer(
+  selectedIndex,
+  selectedButton
+) {
+  if (
+    selectedAnswers[
+      currentQuestion
+    ] !== null
+  ) {
+    return;
+  }
+
+  const item =
+    questions[
+      currentQuestion
+    ];
+
+  const buttons =
+    Array.from(
+      answersContainer
+        .querySelectorAll(
+          ".answer-button"
+        )
+    );
+
+  selectedAnswers[
+    currentQuestion
+  ] =
+    selectedIndex;
+
+  buttons.forEach(
+    button => {
+      button.disabled =
+        true;
+    }
+  );
+
+  if (
+    selectedIndex ===
+    item.correct
+  ) {
+    score++;
+
+    selectedButton
+      .classList
+      .add("correct");
+
+    feedback.className =
+      "feedback correct show";
+
+    feedback.innerHTML = `
+      <strong>
+        ✅ أحسنتِ، اختياركِ هو الأدق
+      </strong>
+
+      <br>
+
+      ${item.explanation}
+    `;
+
+    showAnswerMark(true);
+
+    playTone(true);
+
+  } else {
+    selectedButton
+      .classList
+      .add("wrong");
+
+    buttons[item.correct]
+      .classList
+      .add("correct");
+
+    feedback.className =
+      "feedback wrong show";
+
+    feedback.innerHTML = `
+      <strong>
+        ❌ الإجابة غير صحيحة
+      </strong>
+
+      <br>
+
+      <b>
+        الإجابة الصحيحة:
+      </b>
+
+      ${
+        item.options[
+          item.correct
+        ]
+      }
+
+      <br><br>
+
+      ${item.explanation}
+    `;
+
+    showAnswerMark(false);
+
+    playTone(false);
+  }
+
+  liveScore.textContent =
+    `الدرجة: ${score}`;
+
+  nextButton.disabled =
+    false;
+}
+
+function animatePage(
+  direction,
+  callback
+) {
+  page.classList.remove(
+    "flip-next",
+    "flip-previous"
+  );
+
+  void page.offsetWidth;
+
+  page.classList.add(
+    direction === "next"
+      ? "flip-next"
+      : "flip-previous"
+  );
+
+  setTimeout(
+    () => {
+      callback();
+
+      page.classList.remove(
+        "flip-next",
+        "flip-previous"
+      );
+    },
+    220
+  );
+}
+
+function showPreviousQuestion() {
+  if (
+    currentQuestion === 0
+  ) {
+    return;
+  }
+
+  animatePage(
+    "previous",
+    () => {
+      currentQuestion--;
+
+      renderQuestion();
+    }
+  );
+}
+
+function showNextQuestion() {
+  if (
+    selectedAnswers[
+      currentQuestion
+    ] === null
+  ) {
+    return;
+  }
+
+  if (
+    currentQuestion <
+    questions.length - 1
+  ) {
+    animatePage(
+      "next",
+      () => {
+        currentQuestion++;
+
+        renderQuestion();
+      }
+    );
+
+    return;
+  }
+
+  finishChallenge();
+          }
+    function getResultMessage() {
+  const percentage =
+    Math.round(
+      (
+        score /
+        questions.length
+      ) * 100
+    );
+
+  if (
+    percentage === 100
+  ) {
+    return {
+      icon: "👑",
+      title:
+        "إتقان كامل",
+      message:
+        "أداء استثنائي ودقة عالية في مهارات الفهم والتحليل والنقد."
+    };
+  }
+
+  if (
+    percentage >= 90
+  ) {
+    return {
+      icon: "🏆",
+      title:
+        "أداء متميز",
+      message:
+        "نتيجة متميزة جدًا واختيار دقيق للإجابات."
+    };
+  }
+
+  if (
+    percentage >= 80
+  ) {
+    return {
+      icon: "⭐",
+      title:
+        "أداء متقن",
+      message:
+        "إتقان واضح لمهارات الفهم القرائي."
+    };
+  }
+
+  if (
+    percentage >= 70
+  ) {
+    return {
+      icon: "🌟",
+      title:
+        "إنجاز جيد",
+      message:
+        "إنجاز جميل، ومع مزيد من التدريب تصلين إلى مستوى أعلى."
+    };
+  }
+
+  return {
+    icon: "🌷",
+    title:
+      "محاولة جيدة",
+    message:
+      "راجعي التفسيرات، ثم أعيدي التحدي لترتفع نتيجتك."
+  };
+}
+
+function finishChallenge() {
+  quizScreen
+    .classList
+    .remove("active");
+
+  resultScreen
+    .classList
+    .add("active");
+
+  const result =
+    getResultMessage();
+
+  resultIcon.textContent =
+    result.icon;
+
+  resultTitle.textContent =
+    result.title;
+
+  resultScore.textContent =
+    `${score} من ${questions.length}`;
+
+  resultMessage.innerHTML = `
+    <strong>
+      ${studentName}
+    </strong>
+
+    <br>
+
+    ${result.message}
+  `;
+
+  certificateName.textContent =
+    studentName;
+
+  localStorage.setItem(
+    "nafesChallenge03Result",
+    JSON.stringify({
+      name:
+        studentName,
+
+      challenge:
+        challengeName,
+
+      score:
+        score,
+
+      total:
+        questions.length
+    })
+  );
+
+  if (
+    score >= 8
+  ) {
+    celebrate();
+
+    playTone(true);
+  }
+}
+
+function restartChallenge() {
+  currentQuestion =
+    0;
+
+  score =
+    0;
+
+  selectedAnswers
+    .fill(null);
+
+  certificateShell
+    .classList
+    .remove("show");
+
+  resultScreen
+    .classList
+    .remove("active");
+
+  quizScreen
+    .classList
+    .add("active");
+
+  renderQuestion();
+}
+
+function showCertificate() {
+  certificateShell
+    .classList
+    .add("show");
+
+  celebrate();
+}
+
+startButton
+  .addEventListener(
+    "click",
+    startChallenge
+  );
+
+previousButton
+  .addEventListener(
+    "click",
+    showPreviousQuestion
+  );
+
+nextButton
+  .addEventListener(
+    "click",
+    showNextQuestion
+  );
+
+showCertificateButton
+  .addEventListener(
+    "click",
+    showCertificate
+  );
+
+restartButton
+  .addEventListener(
+    "click",
+    restartChallenge
+  );
+
+nextChallengeButton
+  .addEventListener(
+    "click",
+    () => {
+      window.location.href =
+        "nafes-challenge-04.html";
+    }
+  );
+
+printButton
+  .addEventListener(
+    "click",
+    () => {
+      window.print();
+    }
+  );
+
+soundBtn
+  .addEventListener(
+    "click",
+    () => {
+      soundOn =
+        !soundOn;
+
+      localStorage.setItem(
+        "nafesSound",
+        soundOn
+          ? "on"
+          : "off"
+      );
+
+      updateSoundButton();
+
+      if (
+        soundOn
+      ) {
+        playTone(true);
+      }
+    }
+  );
+
+updateSoundButton();
+
+</script>
+
+</body>
+</html>
