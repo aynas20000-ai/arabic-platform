@@ -9,310 +9,528 @@
     content="width=device-width, initial-scale=1.0"
   >
 
-  <title>
-    شجرة الأفكار | مكتبة نافس
-  </title>
+  <title>شجرة الأفكار | مكتبة نافس</title>
 
   <style>
     :root {
-      --purple: #75558d;
-      --dark: #4b385b;
-      --light-purple: #efe5f3;
-      --gold: #c9a85c;
-      --cream: #fffaf1;
-      --paper: #fffdf8;
-      --text: #403347;
-      --green: #4f8c68;
-      --light-green: #e9f5ed;
-      --red: #bf4040;
-      --shadow: 0 12px 30px rgba(75, 56, 91, 0.12);
+      --lavender: #9877a8;
+      --lavender-dark: #624b70;
+      --lavender-light: #eee5f2;
+
+      --pink: #d895aa;
+      --pink-light: #faeaf0;
+
+      --beige: #fff9f1;
+      --gold: #c9a552;
+      --gold-light: #f4dda0;
+
+      --green: #4e8a68;
+      --green-light: #eaf6ee;
+
+      --red: #b84a4a;
+      --red-light: #fff0f0;
+
+      --text: #55465c;
+      --white: #ffffff;
+
+      --shadow:
+        0 18px 45px
+        rgba(98, 75, 112, 0.18);
     }
 
     * {
       box-sizing: border-box;
     }
 
-    html,
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      min-height: 100%;
-      font-family:
-        "Tahoma",
-        "Arial",
-        sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
       color: var(--text);
       background:
-        linear-gradient(
-          180deg,
-          #fffdf8 0%,
-          #f8eff9 100%
+        radial-gradient(
+          circle at top,
+          #fffdf9,
+          #f7edf3 48%,
+          #ece2f1
         );
+      font-family:
+        Tahoma,
+        Arial,
+        sans-serif;
     }
 
-    body {
-      overflow-x: hidden;
-    }
-
-    button {
+    button,
+    a {
       font-family: inherit;
+      -webkit-tap-highlight-color:
+        transparent;
     }
 
-    .page-header {
-      padding: 34px 20px 30px;
-      text-align: center;
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 28px 16px 24px;
       color: white;
       background:
         linear-gradient(
           135deg,
-          var(--dark),
-          var(--purple)
+          var(--lavender-dark),
+          var(--lavender),
+          var(--pink)
         );
-      border-bottom: 7px solid var(--gold);
+      text-align: center;
+      border-bottom:
+        6px solid var(--gold);
     }
 
-    .page-header h1 {
-      margin: 0 0 14px;
-      font-size: clamp(32px, 8vw, 50px);
-      line-height: 1.5;
+    .hero::before,
+    .hero::after {
+      position: absolute;
+      content: "";
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background:
+        rgba(
+          255,
+          255,
+          255,
+          0.08
+        );
     }
 
-    .page-header p {
-      max-width: 780px;
+    .hero::before {
+      top: -95px;
+      right: -65px;
+    }
+
+    .hero::after {
+      bottom: -105px;
+      left: -55px;
+    }
+
+    .hero-icon,
+    .hero h1,
+    .hero p {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-icon {
+      font-size: 62px;
+      margin-bottom: 5px;
+    }
+
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size:
+        clamp(
+          31px,
+          8vw,
+          48px
+        );
+    }
+
+    .hero p {
+      max-width: 760px;
       margin: 0 auto;
-      font-size: clamp(18px, 4.7vw, 26px);
-      line-height: 2;
+      font-size:
+        clamp(
+          16px,
+          4.2vw,
+          21px
+        );
+      line-height: 1.9;
+    }
+
+    .page-shell {
+      width:
+        min(
+          94%,
+          920px
+        );
+      margin: 0 auto;
+      padding: 18px 0 34px;
     }
 
     .top-panel {
-      width: min(94%, 900px);
-      margin: 26px auto 18px;
-      padding: 22px;
-      border: 3px solid #e5d7e9;
-      border-radius: 28px;
-      background: rgba(255, 253, 248, 0.95);
+      padding: 14px;
+      border:
+        2px solid #dfcfda;
+      border-radius: 24px;
+      background:
+        rgba(
+          255,
+          255,
+          255,
+          0.92
+        );
       box-shadow: var(--shadow);
     }
 
     .top-actions {
       display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
       align-items: center;
-      justify-content: space-between;
+      justify-content:
+        space-between;
+      gap: 10px;
+      flex-wrap: wrap;
     }
 
-    .home-link,
-    .sound-button {
+    .library-link,
+    .sound-button,
+    .restart-button {
+      min-height: 48px;
+      padding: 10px 15px;
       border: 0;
-      border-radius: 18px;
-      padding: 14px 20px;
-      font-size: 18px;
+      border-radius: 15px;
+      font-size: 16px;
       font-weight: bold;
       cursor: pointer;
       text-decoration: none;
     }
 
-    .home-link {
-      color: var(--dark);
-      background: var(--gold);
+    .library-link {
+      color: #654b16;
+      background:
+        linear-gradient(
+          135deg,
+          var(--gold-light),
+          #f9ebbd
+        );
     }
 
     .sound-button {
       color: white;
-      background: var(--purple);
+      background:
+        linear-gradient(
+          135deg,
+          var(--lavender-dark),
+          var(--lavender)
+        );
     }
 
-    .progress-info {
-      margin-top: 22px;
+    .restart-button {
+      color: white;
+      background:
+        linear-gradient(
+          135deg,
+          #a73f4c,
+          #ca6674
+        );
     }
 
-    .progress-text {
+    .progress-row {
       display: flex;
-      justify-content: space-between;
-      gap: 15px;
-      margin-bottom: 10px;
-      font-size: 18px;
+      justify-content:
+        space-between;
+      align-items: center;
+      gap: 10px;
+      margin-top: 14px;
+      font-size: 17px;
       font-weight: bold;
     }
 
     .progress-track {
-      height: 16px;
+      height: 14px;
+      margin-top: 9px;
       overflow: hidden;
       border-radius: 999px;
-      background: var(--light-purple);
+      background: #eee5eb;
     }
 
     .progress-bar {
-      width: 0%;
+      width: 16.66%;
       height: 100%;
       border-radius: inherit;
       background:
         linear-gradient(
           90deg,
-          var(--gold),
-          var(--purple)
+          var(--pink),
+          var(--lavender),
+          var(--gold)
         );
-      transition: width 0.4s ease;
-    }
-
-    main {
-      width: min(94%, 900px);
-      margin: 0 auto;
-      padding: 0 0 40px;
-    }
-
-    .stage-shell {
-      position: relative;
-      min-height: 720px;
-      margin: 24px 0;
-      padding: 22px;
-      overflow: hidden;
-      border: 3px solid #e5d7e9;
-      border-radius: 34px;
-      background: rgba(255, 253, 248, 0.97);
-      box-shadow: var(--shadow);
+      transition:
+        width 0.45s ease;
     }
 
     .stage {
-      display: none;
-      min-height: 620px;
-      animation: stageAppear 0.45s ease;
+      margin-top: 18px;
+      perspective: 1600px;
     }
 
-    .stage.active {
+    .flip-card {
+      position: relative;
+      width: 100%;
+      min-height: 650px;
+      transform-style:
+        preserve-3d;
+      transition:
+        transform 0.75s ease;
+      cursor: pointer;
+    }
+
+    .flip-card.flipped {
+      transform:
+        rotateY(180deg);
+    }
+
+    .card-face {
+      position: absolute;
+      inset: 0;
       display: flex;
       flex-direction: column;
+      overflow: hidden;
+      border:
+        4px solid #dfcad7;
+      border-radius: 31px;
+      background:
+        linear-gradient(
+          160deg,
+          #fffefd,
+          #faedf3
+        );
+      box-shadow: var(--shadow);
+      backface-visibility:
+        hidden;
+      -webkit-backface-visibility:
+        hidden;
     }
 
-    @keyframes stageAppear {
+    .card-front {
+      align-items: center;
+      justify-content: center;
+      padding: 28px 22px;
+      text-align: center;
+    }
+
+    .card-back {
+      transform:
+        rotateY(180deg);
+    }
+
+    .front-number {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      padding: 8px 15px;
+      border-radius: 999px;
+      color: white;
+      background:
+        linear-gradient(
+          135deg,
+          var(--lavender-dark),
+          var(--lavender)
+        );
+      font-weight: bold;
+    }
+
+    .front-icon {
+      font-size:
+        clamp(
+          80px,
+          20vw,
+          130px
+        );
+      line-height: 1;
+      animation:
+        gentleFloat
+        2.5s ease-in-out
+        infinite alternate;
+    }
+
+    @keyframes gentleFloat {
       from {
-        opacity: 0;
-        transform: translateY(18px);
+        transform:
+          translateY(0);
+      }
+
+      to {
+        transform:
+          translateY(-10px);
+      }
+    }
+
+    .front-title {
+      margin: 20px 0 10px;
+      color: var(--lavender-dark);
+      font-size:
+        clamp(
+          30px,
+          8vw,
+          48px
+        );
+    }
+
+    .front-hint {
+      max-width: 620px;
+      margin: 0;
+      padding: 13px 18px;
+      border-radius: 18px;
+      color: #654c70;
+      background:
+        var(--lavender-light);
+      font-size:
+        clamp(
+          17px,
+          4.5vw,
+          21px
+        );
+      line-height: 1.8;
+      font-weight: bold;
+    }
+
+    .tap-hint {
+      margin-top: 22px;
+      color: var(--pink);
+      font-size: 18px;
+      font-weight: bold;
+      animation:
+        pulseHint
+        1.2s ease-in-out
+        infinite alternate;
+    }
+
+    @keyframes pulseHint {
+      from {
+        opacity: 0.55;
       }
 
       to {
         opacity: 1;
-        transform: translateY(0);
       }
     }
 
-    .stage-number {
-      width: fit-content;
-      margin: 0 auto 15px;
-      padding: 9px 20px;
-      border-radius: 999px;
+    .back-header {
+      padding: 17px 18px;
       color: white;
-      background: var(--purple);
-      font-weight: bold;
-      font-size: 17px;
+      background:
+        linear-gradient(
+          135deg,
+          var(--lavender-dark),
+          var(--lavender)
+        );
+      text-align: center;
     }
 
-    .stage-title {
-      margin: 5px 0 15px;
-      text-align: center;
-      color: var(--dark);
-      font-size: clamp(28px, 7vw, 42px);
-      line-height: 1.5;
+    .back-header h2 {
+      margin: 0;
+      font-size:
+        clamp(
+          25px,
+          6vw,
+          35px
+        );
     }
 
-    .stage-instruction {
-      max-width: 740px;
-      margin: 0 auto 22px;
-      text-align: center;
-      color: #6c5e70;
-      font-size: clamp(18px, 4.6vw, 24px);
+    .back-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 19px;
+      scrollbar-width: thin;
+    }
+
+    .learning-box {
+      margin-bottom: 14px;
+      padding: 16px;
+      border:
+        2px solid #e2d1dc;
+      border-radius: 20px;
+      background:
+        rgba(
+          255,
+          255,
+          255,
+          0.86
+        );
+      font-size:
+        clamp(
+          16px,
+          4vw,
+          19px
+        );
       line-height: 1.9;
     }
 
-    .content-card {
-      width: min(100%, 720px);
-      margin: 0 auto;
-      padding: 24px;
-      border: 3px solid #e3d4e7;
-      border-radius: 28px;
-      background: var(--paper);
-      box-shadow: 0 8px 22px rgba(75, 56, 91, 0.08);
+    .learning-box h3 {
+      margin: 0 0 7px;
+      color: var(--lavender-dark);
+      font-size: 21px;
     }
 
-    .reading-text {
-      font-size: clamp(19px, 4.7vw, 25px);
-      line-height: 2.2;
+    .passage-box {
+      background:
+        linear-gradient(
+          145deg,
+          #fff9ef,
+          #fbf0e3
+        );
+      border-color: #ead6b8;
       text-align: justify;
     }
 
-    .reading-text strong {
-      color: var(--purple);
+    .question-box {
+      background:
+        linear-gradient(
+          145deg,
+          #f8edf4,
+          #f0e6f5
+        );
     }
 
-    .tree-guide {
+    .answers {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 14px;
-      margin-top: 18px;
+      gap: 10px;
+      margin-top: 12px;
     }
 
-    .guide-item {
-      padding: 16px;
-      border-radius: 18px;
-      font-size: 18px;
-      line-height: 1.8;
-      background: #f7eff8;
-    }
-
-    .guide-item b {
-      color: var(--purple);
-    }
-
-    .options-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
-      width: min(100%, 720px);
-      margin: 0 auto;
-    }
-
-    .option-button {
+    .answer-button {
       width: 100%;
-      padding: 18px;
-      border: 3px solid var(--gold);
-      border-radius: 22px;
+      min-height: 58px;
+      padding: 11px 13px;
+      border:
+        2px solid var(--gold);
+      border-radius: 17px;
       color: var(--text);
-      background: #fff;
-      font-size: clamp(17px, 4.4vw, 22px);
-      line-height: 1.8;
+      background: white;
+      font-size:
+        clamp(
+          15px,
+          3.8vw,
+          18px
+        );
+      line-height: 1.65;
       cursor: pointer;
-      transition:
-        transform 0.2s ease,
-        background 0.2s ease,
-        border-color 0.2s ease;
+      text-align: right;
     }
 
-    .option-button:active {
-      transform: scale(0.98);
-    }
-
-    .option-button.correct {
-      color: #235b3a;
+    .answer-button.correct {
+      color: #245b3b;
       border-color: var(--green);
-      background: var(--light-green);
+      background: var(--green-light);
     }
 
-    .option-button.wrong {
-      color: #7e2929;
+    .answer-button.wrong {
+      color: #7d2929;
       border-color: var(--red);
-      background: #fff0f0;
+      background: var(--red-light);
     }
 
     .feedback {
       display: none;
-      width: min(100%, 720px);
-      margin: 18px auto 0;
-      padding: 18px;
-      border-radius: 20px;
-      font-size: 18px;
-      line-height: 1.9;
-      text-align: center;
+      margin-top: 12px;
+      padding: 14px;
+      border-radius: 17px;
+      font-size: 16px;
+      line-height: 1.8;
       font-weight: bold;
+      text-align: center;
     }
 
     .feedback.show {
@@ -320,42 +538,48 @@
     }
 
     .feedback.correct {
-      color: #235b3a;
-      border: 2px solid #8bc09d;
-      background: var(--light-green);
+      color: #245b3b;
+      border:
+        2px solid #91bea0;
+      background: var(--green-light);
     }
 
     .feedback.wrong {
-      color: #7e2929;
-      border: 2px solid #dba1a1;
-      background: #fff0f0;
+      color: #7d2929;
+      border:
+        2px solid #d7a3a3;
+      background: var(--red-light);
     }
 
     .navigation {
       display: flex;
-      gap: 14px;
-      margin-top: auto;
-      padding-top: 28px;
+      gap: 12px;
+      margin-top: 16px;
     }
 
     .nav-button {
       flex: 1;
-      min-height: 64px;
+      min-height: 57px;
       border: 0;
-      border-radius: 20px;
-      font-size: clamp(19px, 5vw, 24px);
+      border-radius: 18px;
+      font-size: 19px;
       font-weight: bold;
       cursor: pointer;
     }
 
     .previous-button {
-      color: var(--dark);
-      background: var(--light-purple);
+      color: var(--lavender-dark);
+      background: var(--lavender-light);
     }
 
     .next-button {
       color: white;
-      background: var(--purple);
+      background:
+        linear-gradient(
+          135deg,
+          var(--lavender-dark),
+          var(--lavender)
+        );
     }
 
     .nav-button:disabled {
@@ -363,90 +587,158 @@
       cursor: not-allowed;
     }
 
-    .tree-board {
-      width: min(100%, 720px);
-      margin: 0 auto;
-      padding: 22px;
-      border: 3px solid #e3d4e7;
-      border-radius: 28px;
+    .completion-screen {
+      display: none;
+      margin-top: 18px;
+      padding: 28px 20px;
+      border:
+        4px solid var(--gold);
+      border-radius: 31px;
       background:
         linear-gradient(
-          180deg,
-          #fffef9,
-          #f7edf8
+          145deg,
+          #fffdf5,
+          #faeaf1
+        );
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .completion-screen.show {
+      display: block;
+      animation:
+        completionAppear
+        0.8s ease both;
+    }
+
+    @keyframes completionAppear {
+      from {
+        opacity: 0;
+        transform:
+          translateY(45px)
+          scale(0.94);
+      }
+
+      to {
+        opacity: 1;
+        transform:
+          translateY(0)
+          scale(1);
+      }
+    }
+
+    .completion-icon {
+      font-size: 85px;
+    }
+
+    .completion-screen h2 {
+      margin: 8px 0;
+      color: var(--lavender-dark);
+      font-size:
+        clamp(
+          28px,
+          7vw,
+          42px
         );
     }
 
-    .tree-part {
-      margin: 14px 0;
-      padding: 17px;
-      border-radius: 20px;
-      text-align: center;
-      font-size: 19px;
-      line-height: 1.8;
+    .completion-screen p {
+      max-width: 680px;
+      margin: 0 auto;
+      font-size: 18px;
+      line-height: 1.9;
     }
 
-    .tree-trunk {
+    .completion-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 11px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .completion-button {
+      min-height: 52px;
+      padding: 11px 18px;
+      border: 0;
+      border-radius: 17px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .again-button {
       color: white;
-      background: #8a633f;
+      background:
+        linear-gradient(
+          135deg,
+          #a73f4c,
+          #ca6674
+        );
     }
 
-    .tree-main {
-      color: white;
-      background: var(--purple);
+    .library-button {
+      color: #654b16;
+      background:
+        linear-gradient(
+          135deg,
+          var(--gold-light),
+          #f9ebbd
+        );
     }
 
-    .tree-sub {
-      border: 2px solid var(--gold);
-      background: #fff7dc;
+    .confetti-piece {
+      position: fixed;
+      z-index: 9999;
+      top: -50px;
+      pointer-events: none;
+      animation:
+        confettiFall
+        3.8s linear
+        forwards;
     }
 
-    .tree-detail {
-      border: 2px solid #9abfa6;
-      background: var(--light-green);
-    }
-
-    .final-box {
-      width: min(100%, 720px);
-      margin: auto;
-      padding: 30px 22px;
-      border: 4px solid var(--gold);
-      border-radius: 30px;
-      text-align: center;
-      background: #fffdf4;
-    }
-
-    .final-box .emoji {
-      font-size: 70px;
-    }
-
-    .final-box h2 {
-      margin: 14px 0;
-      color: var(--purple);
-      font-size: 34px;
-    }
-
-    .final-box p {
-      font-size: 21px;
-      line-height: 2;
+    @keyframes confettiFall {
+      to {
+        transform:
+          translateY(115vh)
+          rotate(850deg);
+        opacity: 0;
+      }
     }
 
     footer {
-      padding: 25px 15px;
-      text-align: center;
+      margin-top: 22px;
+      padding: 18px;
       color: white;
-      background: var(--dark);
-      border-top: 7px solid var(--gold);
-      font-size: 18px;
+      border-top:
+        5px solid var(--gold);
+      background:
+        linear-gradient(
+          135deg,
+          var(--lavender-dark),
+          var(--lavender)
+        );
+      text-align: center;
+      font-weight: bold;
     }
 
     @media (min-width: 700px) {
-      .tree-guide {
-        grid-template-columns: repeat(2, 1fr);
+      .answers {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 620px) {
+      .flip-card {
+        min-height: 700px;
       }
 
-      .options-grid.two-columns {
-        grid-template-columns: repeat(2, 1fr);
+      .top-actions > * {
+        flex: 1 1 100%;
+        text-align: center;
       }
     }
   </style>
@@ -454,1253 +746,1127 @@
 
 <body>
 
-  <header class="page-header">
-    <h1>🌳 شجرة الأفكار</h1>
+  <header class="hero">
 
-    <p>
-      نتعلم كيف نحدد موضوع النص،
-      ونستخرج فكرته الرئيسة،
-      وأفكاره الفرعية،
-      وتفاصيله الداعمة.
-    </p>
-  </header>
-
-  <section class="top-panel">
-    <div class="top-actions">
-
-      <a
-        class="home-link"
-        href="nafes-library.html"
-      >
-        العودة إلى مكتبة نافس
-      </a>
-
-      <button
-        id="soundBtn"
-        class="sound-button"
-        type="button"
-      >
-        🔊 الصوت مفعّل
-      </button>
-
+    <div class="hero-icon">
+      🌳
     </div>
 
-    <div class="progress-info">
+    <h1>
+      شجرة الأفكار
+    </h1>
 
-      <div class="progress-text">
-        <span>تقدمك</span>
-        <span id="progressLabel">1 من 9</span>
+    <p>
+      ست بطاقات تفاعلية تساعدكِ على فهم أنواع الأفكار
+      داخل النص، من مفتاح النص حتى الفكرة الضمنية.
+    </p>
+
+  </header>
+
+  <main class="page-shell">
+
+    <section class="top-panel">
+
+      <div class="top-actions">
+
+        <a
+          class="library-link"
+          href="nafes-library.html"
+        >
+          🏠 العودة إلى مكتبة نافس
+        </a>
+
+        <button
+          id="soundButton"
+          class="sound-button"
+          type="button"
+        >
+          🔊 الصوت مفعّل
+        </button>
+
+        <button
+          id="restartButton"
+          class="restart-button"
+          type="button"
+        >
+          ↺ البدء من جديد
+        </button>
+
+      </div>
+
+      <div class="progress-row">
+
+        <span id="cardCounter">
+          البطاقة 1 من 6
+        </span>
+
+        <span id="completedCounter">
+          المكتمل: 0 من 6
+        </span>
+
       </div>
 
       <div class="progress-track">
+
         <div
           id="progressBar"
           class="progress-bar"
         ></div>
+
       </div>
 
-    </div>
-  </section>
+    </section>
 
-  <main>
+    <section
+      id="cardStage"
+      class="stage"
+    >
 
-    <section class="stage-shell">
-
-      <!-- المرحلة الأولى -->
-      <article
-        class="stage active"
-        data-stage="0"
+      <div
+        id="flipCard"
+        class="flip-card"
+        role="button"
+        tabindex="0"
+        aria-label="اضغطي لقلب البطاقة"
       >
 
-        <div class="stage-number">
-          المرحلة 1
-        </div>
+        <article class="card-face card-front">
 
-        <h2 class="stage-title">
-          اقرئي النص بعناية
-        </h2>
+          <div
+            id="frontNumber"
+            class="front-number"
+          ></div>
 
-        <p class="stage-instruction">
-          ابدئي بقراءة النص،
-          ثم انتقلي خطوة خطوة
-          لبناء شجرة أفكاره.
-        </p>
+          <div
+            id="frontIcon"
+            class="front-icon"
+          ></div>
 
-        <div class="content-card">
+          <h2
+            id="frontTitle"
+            class="front-title"
+          ></h2>
 
-          <div class="reading-text">
-            في صباح يومٍ مشرق،
-            شاهدت ريم قطةً صغيرة
-            تبحث عن الطعام قرب المدرسة.
-            اقتربت منها بهدوء،
-            وقدمت لها الماء والطعام،
-            ثم طلبت مساعدة أسرتها
-            لتوفير مكان آمن لها.
+          <p
+            id="frontHint"
+            class="front-hint"
+          ></p>
 
-            <br><br>
-
-            أدركت ريم أن
-            <strong>
-              الرفق بالحيوان
-            </strong>
-            لا يكون بالكلمات فقط،
-            بل يظهر في رعايته،
-            وعدم إيذائه،
-            وتوفير حاجاته الأساسية.
+          <div class="tap-hint">
+            اضغطي على البطاقة لتبدأي ✨
           </div>
 
-          <div class="tree-guide">
+        </article>
 
-            <div class="guide-item">
-              🌳 <b>الجذع:</b>
-              موضوع النص.
-            </div>
+        <article class="card-face card-back">
 
-            <div class="guide-item">
-              🌿 <b>الفرع الكبير:</b>
-              الفكرة الرئيسة.
-            </div>
+          <header class="back-header">
 
-            <div class="guide-item">
-              🌱 <b>الفروع الصغيرة:</b>
-              الأفكار الفرعية.
-            </div>
+            <h2 id="backTitle"></h2>
 
-            <div class="guide-item">
-              🍃 <b>الأوراق:</b>
-              التفاصيل والأمثلة.
-            </div>
+          </header>
+
+          <div class="back-scroll">
+
+            <section class="learning-box">
+
+              <h3>
+                📘 التعريف
+              </h3>
+
+              <div id="definitionText"></div>
+
+            </section>
+
+            <section class="learning-box passage-box">
+
+              <h3>
+                📖 نص التدريب
+              </h3>
+
+              <div id="passageText"></div>
+
+            </section>
+
+            <section class="learning-box question-box">
+
+              <h3>
+                🎯 سؤال التدريب
+              </h3>
+
+              <div id="questionText"></div>
+
+              <div
+                id="answersContainer"
+                class="answers"
+              ></div>
+
+              <div
+                id="feedback"
+                class="feedback"
+              ></div>
+
+            </section>
 
           </div>
-        </div>
 
-        <div class="navigation">
+        </article>
 
-          <button
-            class="nav-button previous-button"
-            type="button"
-            disabled
-          >
-            السابق
-          </button>
+      </div>
 
-          <button
-            class="nav-button next-button"
-            type="button"
-            data-next
-          >
-            التالي
-          </button>
+      <div class="navigation">
 
-        </div>
-
-      </article>
-            <!-- المرحلة الثانية -->
-      <article
-        class="stage"
-        data-stage="1"
-      >
-
-        <div class="stage-number">
-          المرحلة 2
-        </div>
-
-        <h2 class="stage-title">
-          حددي موضوع النص
-        </h2>
-
-        <p class="stage-instruction">
-          موضوع النص هو المجال العام
-          الذي تدور حوله جميع الأفكار.
-        </p>
-
-        <div class="options-grid">
-
-          <button
-            class="option-button"
-            type="button"
-            data-correct="false"
-          >
-            المدرسة في الصباح
-          </button>
-
-          <button
-            class="option-button"
-            type="button"
-            data-correct="true"
-          >
-            الرفق بالحيوان
-          </button>
-
-          <button
-            class="option-button"
-            type="button"
-            data-correct="false"
-          >
-            البحث عن الطعام
-          </button>
-
-          <button
-            class="option-button"
-            type="button"
-            data-correct="false"
-          >
-            مساعدة الأسرة
-          </button>
-
-        </div>
-
-        <div class="feedback"></div>
-
-        <div class="navigation">
-
-          <button
-            class="nav-button previous-button"
-            type="button"
-            data-previous
-          >
-            السابق
-          </button>
-
-          <button
-            class="nav-button next-button"
-            type="button"
-            data-next
-            disabled
-          >
-            التالي
-          </button>
-
-        </div>
-
-      </article>
-
-      <!-- المرحلة الثالثة -->
-      <article
-        class="stage"
-        data-stage="2"
-      >
-
-        <div class="stage-number">
-          المرحلة 3
-        </div>
-
-        <h2 class="stage-title">
-          استخرجي الفكرة الرئيسة
-        </h2>
-
-        <p class="stage-instruction">
-          الفكرة الرئيسة تلخص
-          أهم ما يريد النص توضيحه.
-        </p>
-
-        <div class="options-grid">
-
-          <button
-            class="option-button"
-            type="button"
-            data-correct="false"
-          >
-            القطة كانت قرب المدرسة.
-          </button>
-
-          <button
-            class="option-button"
-            type="button"
-            data-correct="true"
-          >
-            الرفق بالحيوان يكون
-            برعايته وعدم إيذائه.
-          </button>
-
-          <button
-            class="option-button"
-            type="button"
-            data-correct="false"
-          >
-            ريم خرجت في صباح مشرق.
-          </button>
-
-          <button
-            class="option-button"
-            type="button"
-            data-correct="false"
-          >
-            الأسرة ساعدت ريم فقط.
-          </button>
-
-        </div>
-
-        <div class="feedback"></div>
-
-        <div class="navigation">
-
-          <button
-            class="nav-button previous-button"
-            type="button"
-            data-previous
-          >
-            السابق
-          </button>
-
-          <button
-            class="nav-button next-button"
-            type="button"
-            data-next
-            disabled
-          >
-            التالي
-          </button>
-
-        </div>
-
-      </article>
-
-      <!-- المرحلة الرابعة -->
-      <article
-        class="stage"
-        data-stage="3"
-      >
-
-        <div class="stage-number">
-          المرحلة 4
-        </div>
-
-        <h2 class="stage-title">
-          ميّزي الأفكار الفرعية
-        </h2>
-
-        <p class="stage-instruction">
-          اختاري الفكرتين اللتين
-          تدعمان الفكرة الرئيسة.
-        </p>
-
-        <div
-          class="options-grid two-columns"
-          data-multiple="true"
-          data-required="2"
+        <button
+          id="previousButton"
+          class="nav-button previous-button"
+          type="button"
+          disabled
         >
+          السابق
+        </button>
 
-          <button
-            class="option-button"
-            type="button"
-            data-correct="true"
-          >
-            تقديم الطعام والماء للحيوان.
-          </button>
-
-          <button
-            class="option-button"
-            type="button"
-            data-correct="true"
-          >
-            توفير مكان آمن للحيوان.
-          </button>
-
-          <button
-            class="option-button"
-            type="button"
-            data-correct="false"
-          >
-            كان الصباح مشرقًا.
-          </button>
-
-          <button
-            class="option-button"
-            type="button"
-            data-correct="false"
-          >
-            تقع المدرسة قرب الطريق.
-          </button>
-
-        </div>
-
-        <div class="feedback"></div>
-
-        <div class="navigation">
-
-          <button
-            class="nav-button previous-button"
-            type="button"
-            data-previous
-          >
-            السابق
-          </button>
-
-          <button
-            class="nav-button next-button"
-            type="button"
-            data-next
-            disabled
-          >
-            التالي
-          </button>
-
-        </div>
-
-      </article>
-
-      <!-- المرحلة الخامسة -->
-      <article
-        class="stage"
-        data-stage="4"
-      >
-
-        <div class="stage-number">
-          المرحلة 5
-        </div>
-
-        <h2 class="stage-title">
-          حددي التفاصيل الداعمة
-        </h2>
-
-        <p class="stage-instruction">
-          التفاصيل هي المعلومات
-          التي تشرح الأفكار وتوضحها.
-        </p>
-
-        <div class="options-grid">
-
-          <button
-            class="option-button"
-            type="button"
-            data-correct="true"
-          >
-            اقتربت ريم من القطة بهدوء.
-          </button>
-
-          <button
-            class="option-button"
-            type="button"
-            data-correct="false"
-          >
-            القطة هي الفكرة الرئيسة.
-          </button>
-
-          <button
-            class="option-button"
-            type="button"
-            data-correct="false"
-          >
-            الرفق بالحيوان عنوان النص.
-          </button>
-
-          <button
-            class="option-button"
-            type="button"
-            data-correct="false"
-          >
-            المدرسة هي موضوع النص.
-          </button>
-
-        </div>
-
-        <div class="feedback"></div>
-
-        <div class="navigation">
-
-          <button
-            class="nav-button previous-button"
-            type="button"
-            data-previous
-          >
-            السابق
-          </button>
-
-          <button
-            class="nav-button next-button"
-            type="button"
-            data-next
-            disabled
-          >
-            التالي
-          </button>
-
-        </div>
-
-      </article>
-
-      <!-- المرحلة السادسة -->
-      <article
-        class="stage"
-        data-stage="5"
-      >
-
-        <div class="stage-number">
-          المرحلة 6
-        </div>
-
-        <h2 class="stage-title">
-          ابني شجرة الأفكار
-        </h2>
-
-        <p class="stage-instruction">
-          تأملي ترتيب مكونات النص
-          من العام إلى الأكثر تفصيلًا.
-        </p>
-
-        <div class="tree-board">
-
-          <div class="tree-part tree-trunk">
-            الجذع: الرفق بالحيوان
-          </div>
-
-          <div class="tree-part tree-main">
-            الفرع الكبير:
-            الرفق بالحيوان يكون
-            برعايته وعدم إيذائه.
-          </div>
-
-          <div class="tree-part tree-sub">
-            فرع صغير:
-            تقديم الطعام والماء.
-          </div>
-
-          <div class="tree-part tree-sub">
-            فرع صغير:
-            توفير مكان آمن.
-          </div>
-
-          <div class="tree-part tree-detail">
-            ورقة:
-            اقتربت ريم بهدوء.
-          </div>
-
-          <div class="tree-part tree-detail">
-            ورقة:
-            طلبت مساعدة أسرتها.
-          </div>
-
-        </div>
-
-        <div class="navigation">
-
-          <button
-            class="nav-button previous-button"
-            type="button"
-            data-previous
-          >
-            السابق
-          </button>
-
-          <button
-            class="nav-button next-button"
-            type="button"
-            data-next
-          >
-            التالي
-          </button>
-
-        </div>
-
-      </article>
-            <!-- المرحلة السابعة -->
-      <article
-        class="stage"
-        data-stage="6"
-      >
-
-        <div class="stage-number">
-          المرحلة 7
-        </div>
-
-        <h2 class="stage-title">
-          سؤال تطبيقي
-        </h2>
-
-        <p class="stage-instruction">
-          اقرئي النص القصير،
-          ثم اختاري الفكرة الرئيسة الأدق.
-        </p>
-
-        <div class="content-card">
-
-          <div class="reading-text">
-            تحرص المدرسة على المحافظة
-            على نظافة مرافقها،
-            وتحث الطالبات على وضع النفايات
-            في الأماكن المخصصة،
-            وترشيد استهلاك الماء،
-            والمشاركة في حملات النظافة؛
-            لأن البيئة النظيفة تساعد
-            على التعلم والراحة.
-          </div>
-
-        </div>
-
-        <div
-          class="options-grid"
-          style="margin-top:20px;"
+        <button
+          id="nextButton"
+          class="nav-button next-button"
+          type="button"
+          disabled
         >
+          التالي
+        </button>
 
-          <button
-            class="option-button"
-            type="button"
-            data-correct="false"
-          >
-            المدرسة مكان واسع.
-          </button>
+      </div>
 
-          <button
-            class="option-button"
-            type="button"
-            data-correct="true"
-          >
-            المحافظة على نظافة البيئة المدرسية
-            مسؤولية مشتركة.
-          </button>
+    </section>
 
-          <button
-            class="option-button"
-            type="button"
-            data-correct="false"
-          >
-            الماء موجود في المدرسة.
-          </button>
+    <section
+      id="completionScreen"
+      class="completion-screen"
+    >
 
-          <button
-            class="option-button"
-            type="button"
-            data-correct="false"
-          >
-            حملات النظافة تقام صباحًا.
-          </button>
+      <div class="completion-icon">
+        🏅
+      </div>
 
-        </div>
+      <h2>
+        خبيرة الأفكار
+      </h2>
 
-        <div class="feedback"></div>
+      <p>
+        أحسنتِ! أنهيتِ بطاقات شجرة الأفكار الست،
+        وأصبحتِ قادرةً على التمييز بين أنواع الأفكار
+        داخل النص بثقة ووعي.
+      </p>
 
-        <div class="navigation">
+      <div class="completion-buttons">
 
-          <button
-            class="nav-button previous-button"
-            type="button"
-            data-previous
-          >
-            السابق
-          </button>
-
-          <button
-            class="nav-button next-button"
-            type="button"
-            data-next
-            disabled
-          >
-            التالي
-          </button>
-
-        </div>
-
-      </article>
-
-      <!-- المرحلة الثامنة -->
-      <article
-        class="stage"
-        data-stage="7"
-      >
-
-        <div class="stage-number">
-          المرحلة 8
-        </div>
-
-        <h2 class="stage-title">
-          رتبي شجرة الأفكار
-        </h2>
-
-        <p class="stage-instruction">
-          اضغطي البطاقات بالترتيب الصحيح:
-          الموضوع، الفكرة الرئيسة،
-          الفكرة الفرعية، ثم التفصيل.
-        </p>
-
-        <div
-          id="sortingOptions"
-          class="options-grid"
+        <button
+          id="completionRestartButton"
+          class="completion-button again-button"
+          type="button"
         >
+          ↺ البدء من جديد
+        </button>
 
-          <button
-            class="option-button sort-button"
-            type="button"
-            data-order="3"
-          >
-            وضع النفايات في الأماكن المخصصة.
-          </button>
+        <a
+          class="completion-button library-button"
+          href="nafes-library.html"
+        >
+          🏠 العودة إلى مكتبة نافس
+        </a>
 
-          <button
-            class="option-button sort-button"
-            type="button"
-            data-order="1"
-          >
-            نظافة البيئة المدرسية.
-          </button>
-
-          <button
-            class="option-button sort-button"
-            type="button"
-            data-order="4"
-          >
-            شاركت الطالبات في حملة النظافة.
-          </button>
-
-          <button
-            class="option-button sort-button"
-            type="button"
-            data-order="2"
-          >
-            المحافظة على نظافة المدرسة
-            مسؤولية مشتركة.
-          </button>
-
-        </div>
-
-        <div
-          id="sortingResult"
-          class="feedback"
-        ></div>
-
-        <div class="navigation">
-
-          <button
-            class="nav-button previous-button"
-            type="button"
-            data-previous
-          >
-            السابق
-          </button>
-
-          <button
-            id="sortingNext"
-            class="nav-button next-button"
-            type="button"
-            data-next
-            disabled
-          >
-            التالي
-          </button>
-
-        </div>
-
-      </article>
-
-      <!-- المرحلة التاسعة -->
-      <article
-        class="stage"
-        data-stage="8"
-      >
-
-        <div class="stage-number">
-          المرحلة 9
-        </div>
-
-        <div class="final-box">
-
-          <div class="emoji">
-            🎉
-          </div>
-
-          <h2>
-            أحسنتِ بناء شجرة الأفكار
-          </h2>
-
-          <p>
-            أصبحتِ الآن قادرة على
-            تحديد موضوع النص،
-            واستخراج فكرته الرئيسة،
-            وأفكاره الفرعية،
-            وتفاصيله الداعمة.
-          </p>
-
-          <p id="finalScore">
-            أنجزتِ جميع المراحل بنجاح.
-          </p>
-
-          <a
-            class="home-link"
-            href="nafes-library.html"
-            style="
-              display:inline-block;
-              margin-top:15px;
-            "
-          >
-            العودة إلى مكتبة نافس
-          </a>
-
-        </div>
-
-        <div class="navigation">
-
-          <button
-            class="nav-button previous-button"
-            type="button"
-            data-previous
-          >
-            السابق
-          </button>
-
-          <button
-            class="nav-button next-button"
-            type="button"
-            disabled
-          >
-            اكتملت الرحلة
-          </button>
-
-        </div>
-
-      </article>
+      </div>
 
     </section>
 
   </main>
 
   <footer>
-    جميع الحقوق محفوظة © 2026
+    منصة آفاق التعليمية 🌸
   </footer>
 
   <script>
-    const stages =
-      Array.from(
-        document.querySelectorAll(".stage")
-      );
+    const trainingPassage = `
+  تُعَدُّ الطاقةُ الشمسيةُ من أنظفِ مصادرِ الطاقةِ المتجددةِ في العالم،
+  إذ تُحوَّلُ أشعةُ الشمسِ إلى كهرباءَ عبرَ الألواحِ الشمسيةِ
+  دونَ انبعاثاتٍ ضارةٍ.
 
-    const progressBar =
-      document.getElementById("progressBar");
+  وتشهدُ الدولُ المتقدمةُ إقبالًا متزايدًا على تركيبِ هذه الألواحِ
+  فوقَ أسطحِ المنازلِ والمصانعِ لتقليلِ الاعتمادِ على الوقودِ الأحفوريِّ.
 
-    const progressLabel =
-      document.getElementById("progressLabel");
+  ومع ذلك، ترتفعُ تكلفةُ التركيبِ الأوليةُ بشكلٍ ملحوظٍ،
+  ويحتاجُ المستهلكونَ غالبًا إلى سنواتٍ عدةٍ
+  لاستردادِ قيمةِ استثمارهم من خلالِ توفيرِ فواتيرِ الكهرباءِ.
 
-    const soundBtn =
-      document.getElementById("soundBtn");
+  وفي بعضِ المناطقِ النائيةِ التي لا تصلُها شبكاتُ الكهرباءِ التقليديةِ،
+  أصبحتِ الألواحُ الشمسيةُ الخيارَ الوحيدَ المتاحَ للسكانِ
+  لإنارةِ منازلهم وتشغيلِ الأجهزةِ الأساسيةِ.
+`;
 
-    const totalStages =
-      stages.length;
+const cards = [
+  {
+    number: 1,
+    icon: "🔑",
+    title: "مفتاح النص",
+    hint:
+      "الكلمة أو العبارة التي تقودكِ بسرعة إلى موضوع النص.",
 
-    let currentStage = 0;
+    definition:
+      "الكلمة أو العبارة التي تتكرر في النص، أو تحمل أكبر قدر من الدلالة، وتكون بمثابة البوصلة التي تقودكِ إلى موضوع النص بسرعة.",
 
-    let soundOn =
-      localStorage.getItem("nafesSound") !== "off";
+    question:
+      "ما مفتاح النص السابق؟",
 
-    const completedStages =
-      new Set([0]);
+    options: [
+      "الوقود الأحفوري",
+      "الطاقة الشمسية",
+      "فواتير الكهرباء",
+      "المناطق النائية"
+    ],
 
-    function updateSoundButton() {
-      soundBtn.textContent =
-        soundOn
-          ? "🔊 الصوت مفعّل"
-          : "🔇 الصوت مكتوم";
+    correct: 1,
+
+    explanation:
+      "لأن الطاقة الشمسية هي المحور الذي تدور حوله جميع أفكار النص، بينما بقية الخيارات تفاصيل مرتبطة بها.",
+
+    encouragement:
+      "أحسنتِ! امتلكتِ البوصلة الأولى لفهم النص. 🌟"
+  },
+
+  {
+    number: 2,
+    icon: "🎯",
+    title: "الفكرة الرئيسة",
+    hint:
+      "الخلاصة الشاملة التي تجمع مضمون النص كله في جملة واحدة.",
+
+    definition:
+      "المحور العام الذي يلخّص مضمون النص كله بجملة واحدة شاملة.",
+
+    question:
+      "اختاري الفكرة الرئيسة الأدق للنص:",
+
+    options: [
+      "الطاقة الشمسية مصدر نظيف، لكن الاستفادة منها تحتاج إلى تجاوز تحديات معينة.",
+      "الطاقة الشمسية رخيصة ومتاحة للجميع فور التركيب.",
+      "جميع الدول استغنت عن الوقود الأحفوري بفضل الطاقة الشمسية.",
+      "المناطق النائية هي المستفيد الوحيد من الطاقة الشمسية."
+    ],
+
+    correct: 0,
+
+    explanation:
+      "لأن هذا الخيار يجمع بين فوائد الطاقة الشمسية والتحديات المرتبطة بارتفاع تكلفة تركيبها.",
+
+    encouragement:
+      "رائع! الفكرة الرئيسة تجمع صورة النص كاملة. 🌿"
+  },
+
+  {
+    number: 3,
+    icon: "🌿",
+    title: "الأفكار الفرعية",
+    hint:
+      "أفكار تتفرع من الفكرة الرئيسة وتخدمها.",
+
+    definition:
+      "أفكار تتفرع من الفكرة الرئيسة، ويحمل كل جزء من النص فكرة تخدم الفكرة العامة.",
+
+    question:
+      "أي العبارات التالية ليست فكرة فرعية في النص؟",
+
+    options: [
+      "تحوّل الألواح الشمسية أشعة الشمس إلى كهرباء.",
+      "الدول المتقدمة تقبل على تركيب الألواح الشمسية.",
+      "تكلفة التركيب الأولية مرتفعة.",
+      "جميع سكان العالم يمتلكون ألواحًا شمسية حاليًا."
+    ],
+
+    correct: 3,
+
+    explanation:
+      "لأن العبارة الأخيرة غير موجودة في النص، بينما بقية الخيارات وردت فيه بوضوح.",
+
+    encouragement:
+      "ممتاز! ميّزتِ بين ما ورد في النص وما لم يرد. ✨"
+  },
+
+  {
+    number: 4,
+    icon: "🔍",
+    title: "الأفكار الثانوية",
+    hint:
+      "تفاصيل دقيقة توضّح الفكرة الفرعية وتدعمها.",
+
+    definition:
+      "تفاصيل أدق داخل الفكرة الفرعية نفسها، تكون أقل وزنًا لكنها توضّحها أو تدعمها.",
+
+    question:
+      "ما الفكرة الثانوية المرتبطة بفكرة ارتفاع تكلفة التركيب؟",
+
+    options: [
+      "الألواح الشمسية تنتج كهرباء نظيفة.",
+      "المستهلك يحتاج سنوات عدة لاسترداد قيمة استثماره.",
+      "الدول المتقدمة تركب الألواح فوق الأسطح.",
+      "المناطق النائية تعتمد على الطاقة الشمسية."
+    ],
+
+    correct: 1,
+
+    explanation:
+      "لأن طول مدة استرداد قيمة الاستثمار تفصيل يوضّح نتيجة ارتفاع تكلفة التركيب.",
+
+    encouragement:
+      "أحسنتِ! فرّقتِ بين الفكرة الفرعية وتفصيلها الداعم. 🌸"
+  },
+
+  {
+    number: 5,
+    icon: "📝",
+    title: "الفكرة الصريحة",
+    hint:
+      "فكرة مذكورة مباشرة في النص ولا تحتاج إلى استنتاج.",
+
+    definition:
+      "فكرة مذكورة مباشرة في النص، ولا تحتاج إلى استنتاج أو ربط.",
+
+    question:
+      "أي العبارات التالية فكرة صريحة وردت حرفيًا في النص؟",
+
+    options: [
+      "الطاقة الشمسية ستحل محل جميع مصادر الطاقة مستقبلًا.",
+      "ترتفع تكلفة التركيب الأولية بشكل ملحوظ.",
+      "يجب على الحكومات دعم الطاقة الشمسية ماليًا.",
+      "المناطق النائية أفضل من المدن في استخدام الطاقة الشمسية."
+    ],
+
+    correct: 1,
+
+    explanation:
+      "لأن هذه العبارة وردت مباشرة في النص، بينما بقية الخيارات آراء أو افتراضات لم يذكرها الكاتب.",
+
+    encouragement:
+      "جميل! التقطتِ الفكرة المذكورة مباشرة دون تأويل. 🔎"
+  },
+
+  {
+    number: 6,
+    icon: "💭",
+    title: "الفكرة الضمنية",
+    hint:
+      "فكرة تُفهم من السياق ولا تُذكر بصورة مباشرة.",
+
+    definition:
+      "فكرة غير مذكورة صراحة، تُفهم من السياق أو الإيحاء، وتحتاج إلى مهارة الاستنتاج.",
+
+    question:
+      "ما الفكرة الضمنية المستنتجة من اعتماد المناطق النائية على الألواح الشمسية؟",
+
+    options: [
+      "سكان المناطق النائية لا يريدون الكهرباء التقليدية.",
+      "الطاقة الشمسية فرصة تنموية لهذه المناطق رغم غياب البنية التحتية التقليدية.",
+      "المناطق النائية أغنى من المدن الكبرى.",
+      "لا حاجة إلى الكهرباء التقليدية في أي مكان بعد الآن."
+    ],
+
+    correct: 1,
+
+    explanation:
+      "لأن النص لم يذكر عبارة فرصة تنموية حرفيًا، لكنها تُفهم من كون الطاقة الشمسية أتاحت الكهرباء لمناطق لا تصلها الشبكات التقليدية.",
+
+    encouragement:
+      "تهانينا! وصلتِ إلى أعمق مستوى من الفهم: قراءة ما بين السطور. 🌳✨"
+  }
+];
+
+const flipCard =
+  document.getElementById("flipCard");
+
+const cardStage =
+  document.getElementById("cardStage");
+
+const frontNumber =
+  document.getElementById("frontNumber");
+
+const frontIcon =
+  document.getElementById("frontIcon");
+
+const frontTitle =
+  document.getElementById("frontTitle");
+
+const frontHint =
+  document.getElementById("frontHint");
+
+const backTitle =
+  document.getElementById("backTitle");
+
+const definitionText =
+  document.getElementById("definitionText");
+
+const passageText =
+  document.getElementById("passageText");
+
+const questionText =
+  document.getElementById("questionText");
+
+const answersContainer =
+  document.getElementById("answersContainer");
+
+const feedback =
+  document.getElementById("feedback");
+
+const previousButton =
+  document.getElementById("previousButton");
+
+const nextButton =
+  document.getElementById("nextButton");
+
+const cardCounter =
+  document.getElementById("cardCounter");
+
+const completedCounter =
+  document.getElementById("completedCounter");
+
+const progressBar =
+  document.getElementById("progressBar");
+
+const restartButton =
+  document.getElementById("restartButton");
+
+const completionRestartButton =
+  document.getElementById("completionRestartButton");
+
+const completionScreen =
+  document.getElementById("completionScreen");
+
+const soundButton =
+  document.getElementById("soundButton");
+
+let currentCard = 0;
+
+let soundOn =
+  localStorage.getItem("ideasTreeSound") !== "off";
+
+let completedCards =
+  JSON.parse(
+    localStorage.getItem("ideasTreeCompleted") || "[]"
+  );
+
+if (!Array.isArray(completedCards)) {
+  completedCards = [];
+}
+
+let answeredCards =
+  new Array(cards.length).fill(false);
+
+completedCards.forEach(
+  index => {
+    if (
+      Number.isInteger(index) &&
+      index >= 0 &&
+      index < cards.length
+    ) {
+      answeredCards[index] = true;
     }
+  }
+);
 
-    function playCorrectSound() {
-      if (!soundOn) return;
+function updateSoundButton() {
+  soundButton.textContent =
+    soundOn
+      ? "🔊 الصوت مفعّل"
+      : "🔇 الصوت مكتوم";
+}
 
-      try {
-        const AudioContextClass =
-          window.AudioContext ||
-          window.webkitAudioContext;
+function playTone(isCorrect) {
+  if (!soundOn) {
+    return;
+  }
 
-        const context =
-          new AudioContextClass();
+  try {
+    const AudioContextClass =
+      window.AudioContext ||
+      window.webkitAudioContext;
 
-        const oscillator =
-          context.createOscillator();
+    const audioContext =
+      new AudioContextClass();
 
-        const gain =
-          context.createGain();
+    const oscillator =
+      audioContext.createOscillator();
 
-        oscillator.type = "sine";
-        oscillator.frequency.value = 720;
+    const gain =
+      audioContext.createGain();
 
-        gain.gain.setValueAtTime(
-          0.13,
-          context.currentTime
+    oscillator.type =
+      isCorrect
+        ? "sine"
+        : "triangle";
+
+    oscillator.frequency.value =
+      isCorrect
+        ? 720
+        : 190;
+
+    gain.gain.setValueAtTime(
+      0.11,
+      audioContext.currentTime
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+      0.001,
+      audioContext.currentTime + 0.35
+    );
+
+    oscillator.connect(gain);
+    gain.connect(audioContext.destination);
+
+    oscillator.start();
+    oscillator.stop(
+      audioContext.currentTime + 0.35
+    );
+
+  } catch (error) {
+    console.log(error);
+  }
+}
+    function saveProgress() {
+  const uniqueCompleted =
+    [...new Set(
+      answeredCards
+        .map(
+          (isAnswered, index) =>
+            isAnswered
+              ? index
+              : null
+        )
+        .filter(
+          index =>
+            index !== null
+        )
+    )];
+
+  localStorage.setItem(
+    "ideasTreeCompleted",
+    JSON.stringify(
+      uniqueCompleted
+    )
+  );
+}
+
+function updateProgress() {
+  const completedCount =
+    answeredCards.filter(Boolean).length;
+
+  cardCounter.textContent =
+    `البطاقة ${
+      currentCard + 1
+    } من ${
+      cards.length
+    }`;
+
+  completedCounter.textContent =
+    `المكتمل: ${
+      completedCount
+    } من ${
+      cards.length
+    }`;
+
+  progressBar.style.width =
+    `${
+      (
+        completedCount /
+        cards.length
+      ) * 100
+    }%`;
+}
+
+function renderCard() {
+  const card =
+    cards[currentCard];
+
+  flipCard.classList.remove(
+    "flipped"
+  );
+
+  frontNumber.textContent =
+    `البطاقة ${
+      card.number
+    }`;
+
+  frontIcon.textContent =
+    card.icon;
+
+  frontTitle.textContent =
+    card.title;
+
+  frontHint.textContent =
+    card.hint;
+
+  backTitle.textContent =
+    card.title;
+
+  definitionText.textContent =
+    card.definition;
+
+  passageText.textContent =
+    trainingPassage;
+
+  questionText.textContent =
+    card.question;
+
+  answersContainer.innerHTML =
+    "";
+
+  feedback.className =
+    "feedback";
+
+  feedback.innerHTML =
+    "";
+
+  card.options.forEach(
+    (
+      option,
+      optionIndex
+    ) => {
+      const button =
+        document.createElement(
+          "button"
         );
 
-        gain.gain.exponentialRampToValueAtTime(
-          0.001,
-          context.currentTime + 0.35
-        );
+      button.type =
+        "button";
 
-        oscillator.connect(gain);
-        gain.connect(context.destination);
+      button.className =
+        "answer-button";
 
-        oscillator.start();
+      button.textContent =
+        option;
 
-        oscillator.stop(
-          context.currentTime + 0.35
-        );
-      } catch (error) {
-        console.log(error);
-      }
-    }
+      button.addEventListener(
+        "click",
+        event => {
+          event.stopPropagation();
 
-    function playWrongSound() {
-      if (!soundOn) return;
-
-      try {
-        const AudioContextClass =
-          window.AudioContext ||
-          window.webkitAudioContext;
-
-        const context =
-          new AudioContextClass();
-
-        const oscillator =
-          context.createOscillator();
-
-        const gain =
-          context.createGain();
-
-        oscillator.type = "triangle";
-        oscillator.frequency.value = 190;
-
-        gain.gain.setValueAtTime(
-          0.1,
-          context.currentTime
-        );
-
-        gain.gain.exponentialRampToValueAtTime(
-          0.001,
-          context.currentTime + 0.25
-        );
-
-        oscillator.connect(gain);
-        gain.connect(context.destination);
-
-        oscillator.start();
-
-        oscillator.stop(
-          context.currentTime + 0.25
-        );
-      } catch (error) {
-        console.log(error);
-      }
-    }
-
-    function updateProgress() {
-      const visibleNumber =
-        currentStage + 1;
-
-      progressLabel.textContent =
-        `${visibleNumber} من ${totalStages}`;
-
-      progressBar.style.width =
-        `${(visibleNumber / totalStages) * 100}%`;
-    }
-
-    function showStage(index) {
-      if (
-        index < 0 ||
-        index >= totalStages
-      ) {
-        return;
-      }
-
-      stages.forEach(
-        (stage) => {
-          stage.classList.remove("active");
-        }
-      );
-
-      currentStage = index;
-
-      stages[currentStage]
-        .classList.add("active");
-
-      updateProgress();
-
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-    }
-
-    document
-      .querySelectorAll("[data-next]")
-      .forEach(
-        (button) => {
-          button.addEventListener(
-            "click",
-            () => {
-              if (
-                button.disabled
-              ) {
-                return;
-              }
-
-              completedStages.add(
-                currentStage
-              );
-
-              showStage(
-                currentStage + 1
-              );
-            }
+          chooseAnswer(
+            optionIndex,
+            button
           );
         }
       );
 
-    document
-      .querySelectorAll("[data-previous]")
-      .forEach(
-        (button) => {
-          button.addEventListener(
-            "click",
-            () => {
-              showStage(
-                currentStage - 1
-              );
-            }
-          );
-        }
-      );
+      answersContainer
+        .appendChild(button);
+    }
+  );
 
-    soundBtn.addEventListener(
-      "click",
-      () => {
-        soundOn = !soundOn;
+  previousButton.disabled =
+    currentCard === 0;
 
-        localStorage.setItem(
-          "nafesSound",
-          soundOn ? "on" : "off"
-        );
+  nextButton.disabled =
+    !answeredCards[
+      currentCard
+    ];
 
-        updateSoundButton();
+  nextButton.textContent =
+    currentCard ===
+    cards.length - 1
+      ? "إنهاء الشجرة"
+      : "التالي";
 
-        if (soundOn) {
-          playCorrectSound();
-        }
+  if (
+    answeredCards[
+      currentCard
+    ]
+  ) {
+    restoreCompletedCard();
+  }
+
+  updateProgress();
+}
+
+function restoreCompletedCard() {
+  const card =
+    cards[currentCard];
+
+  const buttons =
+    Array.from(
+      answersContainer
+        .querySelectorAll(
+          ".answer-button"
+        )
+    );
+
+  buttons.forEach(
+    button => {
+      button.disabled = true;
+    }
+  );
+
+  buttons[
+    card.correct
+  ].classList.add(
+    "correct"
+  );
+
+  feedback.className =
+    "feedback correct show";
+
+  feedback.innerHTML = `
+    <strong>
+      ✅ هذه البطاقة مكتملة
+    </strong>
+
+    <br>
+
+    ${
+      card.explanation
+    }
+
+    <br><br>
+
+    ${
+      card.encouragement
+    }
+  `;
+}
+
+function chooseAnswer(
+  selectedIndex,
+  selectedButton
+) {
+  if (
+    answeredCards[
+      currentCard
+    ]
+  ) {
+    return;
+  }
+
+  const card =
+    cards[currentCard];
+
+  const buttons =
+    Array.from(
+      answersContainer
+        .querySelectorAll(
+          ".answer-button"
+        )
+    );
+
+  if (
+    selectedIndex ===
+    card.correct
+  ) {
+    selectedButton
+      .classList
+      .add("correct");
+
+    buttons.forEach(
+      button => {
+        button.disabled = true;
       }
     );
 
-    document
-      .querySelectorAll(
-        ".stage:not([data-stage='3']) .option-button:not(.sort-button)"
-      )
-      .forEach(
-        (button) => {
-          button.addEventListener(
-            "click",
-            () => {
-              const stage =
-                button.closest(".stage");
+    feedback.className =
+      "feedback correct show";
 
-              const feedback =
-                stage.querySelector(".feedback");
+    feedback.innerHTML = `
+      <strong>
+        ✅ أحسنتِ، إجابة صحيحة
+      </strong>
 
-              const nextButton =
-                stage.querySelector("[data-next]");
+      <br>
 
-              const buttons =
-                stage.querySelectorAll(".option-button");
-
-              buttons.forEach(
-                (item) => {
-                  item.classList.remove(
-                    "correct",
-                    "wrong"
-                  );
-                }
-              );
-
-              if (
-                button.dataset.correct === "true"
-              ) {
-                button.classList.add("correct");
-
-                feedback.textContent =
-                  "أحسنتِ، اختيارك صحيح ودقيق 🌟";
-
-                feedback.className =
-                  "feedback correct show";
-
-                if (nextButton) {
-                  nextButton.disabled = false;
-                }
-
-                playCorrectSound();
-              } else {
-                button.classList.add("wrong");
-
-                feedback.textContent =
-                  "حاولي مرة أخرى، وابحثي عن الفكرة الأعم والأدق.";
-
-                feedback.className =
-                  "feedback wrong show";
-
-                playWrongSound();
-              }
-            }
-          );
-        }
-      );
-        const multipleStage =
-      document.querySelector(
-        "[data-stage='3']"
-      );
-
-    const multipleContainer =
-      multipleStage.querySelector(
-        "[data-multiple='true']"
-      );
-
-    const multipleFeedback =
-      multipleStage.querySelector(
-        ".feedback"
-      );
-
-    const multipleNext =
-      multipleStage.querySelector(
-        "[data-next]"
-      );
-
-    const selectedCorrect =
-      new Set();
-
-    multipleContainer
-      .querySelectorAll(".option-button")
-      .forEach(
-        (button) => {
-          button.addEventListener(
-            "click",
-            () => {
-              if (
-                button.dataset.correct === "true"
-              ) {
-                button.classList.toggle("correct");
-
-                if (
-                  button.classList.contains("correct")
-                ) {
-                  selectedCorrect.add(button);
-                  playCorrectSound();
-                } else {
-                  selectedCorrect.delete(button);
-                }
-
-                if (
-                  selectedCorrect.size === 2
-                ) {
-                  multipleFeedback.textContent =
-                    "ممتاز، اخترتِ الفكرتين الفرعيتين الصحيحـتين 🌟";
-
-                  multipleFeedback.className =
-                    "feedback correct show";
-
-                  multipleNext.disabled = false;
-                } else {
-                  multipleFeedback.textContent =
-                    "اختاري فكرتين فرعيتين تدعمان الفكرة الرئيسة.";
-
-                  multipleFeedback.className =
-                    "feedback wrong show";
-
-                  multipleNext.disabled = true;
-                }
-              } else {
-                button.classList.add("wrong");
-
-                multipleFeedback.textContent =
-                  "هذه معلومة جانبية، وليست فكرة فرعية داعمة.";
-
-                multipleFeedback.className =
-                  "feedback wrong show";
-
-                playWrongSound();
-
-                setTimeout(
-                  () => {
-                    button.classList.remove("wrong");
-                  },
-                  900
-                );
-              }
-            }
-          );
-        }
-      );
-
-    const sortingButtons =
-      Array.from(
-        document.querySelectorAll(
-          ".sort-button"
-        )
-      );
-
-    const sortingResult =
-      document.getElementById(
-        "sortingResult"
-      );
-
-    const sortingNext =
-      document.getElementById(
-        "sortingNext"
-      );
-
-    let sortingStep = 1;
-
-    sortingButtons.forEach(
-      (button) => {
-        button.addEventListener(
-          "click",
-          () => {
-            const correctOrder =
-              Number(
-                button.dataset.order
-              );
-
-            if (
-              correctOrder === sortingStep
-            ) {
-              button.classList.add("correct");
-              button.disabled = true;
-
-              sortingStep += 1;
-
-              playCorrectSound();
-
-              if (
-                sortingStep === 5
-              ) {
-                sortingResult.textContent =
-                  "أحسنتِ، رتبتِ شجرة الأفكار من العام إلى التفصيل 🎉";
-
-                sortingResult.className =
-                  "feedback correct show";
-
-                sortingNext.disabled = false;
-              } else {
-                sortingResult.textContent =
-                  "صحيح، اختاري البطاقة التالية في الترتيب.";
-
-                sortingResult.className =
-                  "feedback correct show";
-              }
-            } else {
-              button.classList.add("wrong");
-
-              sortingResult.textContent =
-                "ليس هذا موقعها الآن، فكري: هل نبدأ بالموضوع أم بالتفصيل؟";
-
-              sortingResult.className =
-                "feedback wrong show";
-
-              playWrongSound();
-
-              setTimeout(
-                () => {
-                  button.classList.remove("wrong");
-                },
-                900
-              );
-            }
-          }
-        );
+      ${
+        card.explanation
       }
+
+      <br><br>
+
+      ${
+        card.encouragement
+      }
+    `;
+
+    answeredCards[
+      currentCard
+    ] = true;
+
+    saveProgress();
+
+    updateProgress();
+
+    nextButton.disabled =
+      false;
+
+    playTone(true);
+
+    return;
+  }
+
+  selectedButton
+    .classList
+    .add("wrong");
+
+  feedback.className =
+    "feedback wrong show";
+
+  feedback.innerHTML = `
+    <strong>
+      ❌ ليست الإجابة الأدق
+    </strong>
+
+    <br>
+
+    حاولي مرةً أخرى، واقرئي السؤال والنص بتركيز.
+  `;
+
+  playTone(false);
+
+  setTimeout(
+    () => {
+      selectedButton
+        .classList
+        .remove("wrong");
+
+      selectedButton.disabled =
+        false;
+    },
+    800
+  );
+}
+
+function toggleCard() {
+  flipCard.classList.toggle(
+    "flipped"
+  );
+}
+
+function showPreviousCard() {
+  if (
+    currentCard === 0
+  ) {
+    return;
+  }
+
+  currentCard--;
+
+  renderCard();
+}
+
+function showNextCard() {
+  if (
+    !answeredCards[
+      currentCard
+    ]
+  ) {
+    return;
+  }
+
+  if (
+    currentCard <
+    cards.length - 1
+  ) {
+    currentCard++;
+
+    renderCard();
+
+    return;
+  }
+
+  finishTree();
+}
+
+function createConfetti() {
+  const symbols = [
+    "🎉",
+    "✨",
+    "🌸",
+    "🌳",
+    "⭐",
+    "🏅"
+  ];
+
+  for (
+    let index = 0;
+    index < 44;
+    index++
+  ) {
+    const piece =
+      document.createElement(
+        "span"
+      );
+
+    piece.className =
+      "confetti-piece";
+
+    piece.textContent =
+      symbols[
+        Math.floor(
+          Math.random() *
+          symbols.length
+        )
+      ];
+
+    piece.style.left =
+      Math.random() *
+      100 +
+      "vw";
+
+    piece.style.fontSize =
+      17 +
+      Math.random() *
+      23 +
+      "px";
+
+    piece.style.animationDelay =
+      Math.random() *
+      0.8 +
+      "s";
+
+    document.body
+      .appendChild(piece);
+
+    setTimeout(
+      () => {
+        piece.remove();
+      },
+      4700
+    );
+  }
+}
+
+function finishTree() {
+  cardStage.style.display =
+    "none";
+
+  completionScreen
+    .classList
+    .add("show");
+
+  progressBar.style.width =
+    "100%";
+
+  completedCounter.textContent =
+    `المكتمل: ${
+      cards.length
+    } من ${
+      cards.length
+    }`;
+
+  createConfetti();
+
+  playTone(true);
+
+  completionScreen
+    .scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+}
+
+function restartTree() {
+  const confirmed =
+    window.confirm(
+      "هل تريدين البدء من جديد؟ سيتم مسح تقدم شجرة الأفكار فقط."
+    );
+
+  if (!confirmed) {
+    return;
+  }
+
+  localStorage.removeItem(
+    "ideasTreeCompleted"
+  );
+
+  answeredCards =
+    new Array(
+      cards.length
+    ).fill(false);
+
+  currentCard = 0;
+
+  completionScreen
+    .classList
+    .remove("show");
+
+  cardStage.style.display =
+    "block";
+
+  renderCard();
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+  }
+    flipCard.addEventListener(
+  "click",
+  toggleCard
+);
+
+flipCard.addEventListener(
+  "keydown",
+  event => {
+    if (
+      event.key === "Enter" ||
+      event.key === " "
+    ) {
+      event.preventDefault();
+      toggleCard();
+    }
+  }
+);
+
+previousButton.addEventListener(
+  "click",
+  event => {
+    event.stopPropagation();
+    showPreviousCard();
+  }
+);
+
+nextButton.addEventListener(
+  "click",
+  event => {
+    event.stopPropagation();
+    showNextCard();
+  }
+);
+
+restartButton.addEventListener(
+  "click",
+  restartTree
+);
+
+completionRestartButton.addEventListener(
+  "click",
+  restartTree
+);
+
+soundButton.addEventListener(
+  "click",
+  () => {
+    soundOn = !soundOn;
+
+    localStorage.setItem(
+      "ideasTreeSound",
+      soundOn
+        ? "on"
+        : "off"
     );
 
     updateSoundButton();
-    updateProgress();
-  </script>
+
+    if (soundOn) {
+      playTone(true);
+    }
+  }
+);
+
+updateSoundButton();
+renderCard();
+
+</script>
 
 </body>
 </html>
