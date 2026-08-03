@@ -1,261 +1,942 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
   <title>تحديات نافس | منصة آفاق</title>
 
   <style>
-    :root{
-      --purple:#75558d;
-      --dark:#4b385b;
-      --gold:#c9a85c;
-      --text:#403347;
-      --paper:#fffdf8;
-      --shadow:0 14px 34px rgba(75,56,91,.15);
+    :root {
+      --lavender: #9877a8;
+      --lavender-dark: #624b70;
+      --lavender-light: #eee5f2;
+
+      --pink: #d895aa;
+      --pink-light: #faeaf0;
+
+      --beige: #fff9f1;
+      --beige-dark: #eadbc8;
+
+      --gold: #c9a552;
+      --gold-light: #f4dda0;
+
+      --green: #4e8a68;
+      --green-light: #eaf6ee;
+
+      --red: #b84747;
+      --red-light: #fff0f0;
+
+      --text: #55465c;
+      --white: #ffffff;
+
+      --shadow:
+        0 15px 38px
+        rgba(98, 75, 112, 0.16);
     }
 
-    *{box-sizing:border-box}
-
-    body{
-      margin:0;
-      min-height:100vh;
-      overflow-x:hidden;
-      color:var(--text);
-      background:linear-gradient(180deg,#fffdf8,#f7eef8);
-      font-family:Tahoma,Arial,sans-serif;
+    * {
+      box-sizing: border-box;
     }
 
-    a,button{font-family:inherit}
-
-    .hero{
-      padding:28px 16px 24px;
-      text-align:center;
-      color:#fff;
-      background:linear-gradient(135deg,var(--dark),var(--purple));
-      border-bottom:6px solid var(--gold);
+    html {
+      scroll-behavior: smooth;
     }
 
-    .hero h1{
-      margin:0 0 10px;
-      font-size:clamp(30px,7vw,48px);
-    }
-
-    .hero p{
-      max-width:850px;
-      margin:0 auto;
-      font-size:clamp(16px,4vw,21px);
-      line-height:1.9;
-    }
-
-    .top-actions{
-      width:min(94%,1000px);
-      margin:15px auto 0;
-      display:flex;
-      justify-content:center;
-    }
-
-    .back-link{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      min-height:50px;
-      padding:11px 18px;
-      border-radius:17px;
-      color:var(--dark);
-      background:var(--gold);
-      text-decoration:none;
-      font-weight:bold;
-      box-shadow:var(--shadow);
-    }
-
-    main{
-      width:min(94%,1050px);
-      margin:22px auto 34px;
-    }
-
-    .intro-card{
-      margin-bottom:22px;
-      padding:20px;
-      text-align:center;
-      border:3px solid #e4d7e8;
-      border-radius:28px;
-      background:#fffdf9;
-      box-shadow:var(--shadow);
-    }
-
-    .intro-card h2{
-      margin:0 0 8px;
-      color:var(--purple);
-      font-size:clamp(24px,6vw,34px);
-    }
-
-    .intro-card p{
-      margin:0;
-      font-size:17px;
-      line-height:1.9;
-    }
-
-    .cards-grid{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:20px;
-    }
-
-    .challenge-card{
-      position:relative;
-      overflow:hidden;
-      min-height:330px;
-      padding:6px;
-      border-radius:30px;
-      background:linear-gradient(135deg,var(--c1),var(--c2));
-      box-shadow:var(--shadow);
-    }
-
-    .challenge-card::before{
-      content:"";
-      position:absolute;
-      inset:0;
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: var(--text);
       background:
-        radial-gradient(circle at top right,rgba(255,255,255,.45),transparent 38%),
-        linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,0));
-      pointer-events:none;
+        radial-gradient(
+          circle at top,
+          #fffdf9,
+          #f8eef3 44%,
+          #eee5f2
+        );
+      font-family:
+        Tahoma,
+        Arial,
+        sans-serif;
     }
 
-    .card-inner{
-      position:relative;
-      z-index:1;
-      height:100%;
-      padding:22px 18px 18px;
-      border:4px solid rgba(255,255,255,.65);
-      border-radius:25px;
-      background:rgba(255,255,255,.84);
-      text-align:center;
+    button,
+    a {
+      font-family: inherit;
+      -webkit-tap-highlight-color:
+        transparent;
     }
 
-    .challenge-number{
-      position:absolute;
-      top:14px;
-      right:14px;
-      display:grid;
-      place-items:center;
-      width:46px;
-      height:46px;
-      border-radius:50%;
-      color:#fff;
-      background:linear-gradient(135deg,var(--dark),var(--purple));
-      font-size:18px;
-      font-weight:bold;
-      box-shadow:0 7px 16px rgba(75,56,91,.22);
+    a {
+      color: inherit;
     }
 
-    .challenge-icon{
-      margin-top:12px;
-      font-size:66px;
-      line-height:1;
-      filter:drop-shadow(0 7px 9px rgba(75,56,91,.16));
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding:
+        36px 16px 31px;
+      text-align: center;
+      color: white;
+      background:
+        linear-gradient(
+          135deg,
+          var(--lavender-dark),
+          var(--lavender),
+          var(--pink)
+        );
+      border-bottom:
+        7px solid var(--gold);
     }
 
-    .challenge-card h3{
-      margin:18px 0 10px;
-      color:var(--dark);
-      font-size:clamp(24px,5vw,31px);
+    .hero::before,
+    .hero::after {
+      position: absolute;
+      content: "";
+      width: 190px;
+      height: 190px;
+      border-radius: 50%;
+      background:
+        rgba(
+          255,
+          255,
+          255,
+          0.08
+        );
     }
 
-    .challenge-type{
-      display:inline-block;
-      margin-bottom:12px;
-      padding:7px 13px;
-      border-radius:999px;
-      color:#fff;
-      background:linear-gradient(135deg,var(--c1),var(--c2));
-      font-size:14px;
-      font-weight:bold;
+    .hero::before {
+      top: -90px;
+      right: -70px;
     }
 
-    .challenge-desc{
-      min-height:70px;
-      margin:0 auto 15px;
-      max-width:440px;
-      font-size:16px;
-      line-height:1.85;
+    .hero::after {
+      bottom: -105px;
+      left: -55px;
     }
 
-    .challenge-meta{
-      display:flex;
-      justify-content:center;
-      gap:9px;
-      flex-wrap:wrap;
-      margin-bottom:16px;
+    .hero-icon {
+      position: relative;
+      z-index: 2;
+      margin-bottom: 7px;
+      font-size: 64px;
     }
 
-    .meta-pill{
-      padding:7px 11px;
-      border-radius:999px;
-      color:var(--dark);
-      background:#f3edf5;
-      font-size:14px;
-      font-weight:bold;
+    .hero h1 {
+      position: relative;
+      z-index: 2;
+      margin: 0 0 10px;
+      font-size:
+        clamp(
+          31px,
+          8vw,
+          51px
+        );
     }
 
-    .start-link,
-    .coming-button{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-width:190px;
-      min-height:54px;
-      padding:12px 20px;
-      border:0;
-      border-radius:18px;
-      font-size:18px;
-      font-weight:bold;
-      text-decoration:none;
+    .hero p {
+      position: relative;
+      z-index: 2;
+      max-width: 820px;
+      margin: 0 auto;
+      font-size:
+        clamp(
+          17px,
+          4.2vw,
+          22px
+        );
+      line-height: 1.9;
     }
 
-    .start-link{
-      color:#fff;
-      background:linear-gradient(135deg,var(--dark),var(--purple));
-      box-shadow:0 9px 20px rgba(75,56,91,.22);
+    .page-shell {
+      width:
+        min(
+          94%,
+          1040px
+        );
+      margin: 0 auto;
+      padding:
+        20px 0 34px;
     }
 
-    .coming-button{
-      color:#6f6176;
-      background:#e9e0ec;
-      cursor:not-allowed;
+    .top-actions {
+      display: flex;
+      align-items: center;
+      justify-content:
+        space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 17px;
     }
 
-    .completed-badge{
-      display:none;
-      margin:14px auto 0;
-      width:max-content;
-      padding:8px 13px;
-      border-radius:999px;
-      color:#23613d;
-      background:#e7f5ec;
-      font-weight:bold;
+    .home-link,
+    .sound-button {
+      min-height: 49px;
+      padding: 11px 17px;
+      border: 0;
+      border-radius: 16px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow:
+        0 8px 20px
+        rgba(98, 75, 112, 0.12);
     }
 
-    .challenge-card.completed .completed-badge{
-      display:block;
+    .home-link {
+      color: var(--lavender-dark);
+      background:
+        linear-gradient(
+          135deg,
+          var(--gold-light),
+          #f9eabc
+        );
     }
 
-    .challenge-card.completed{
-      outline:4px solid #79b78d;
-      outline-offset:3px;
+    .sound-button {
+      color: white;
+      background:
+        linear-gradient(
+          135deg,
+          var(--lavender-dark),
+          var(--lavender)
+        );
     }
 
-    footer{
-      padding:22px 14px;
-      text-align:center;
-      color:#fff;
-      background:var(--dark);
-      border-top:6px solid var(--gold);
+    .cup-rules {
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 18px;
+      padding: 23px 18px;
+      border:
+        3px solid
+        rgba(
+          201,
+          165,
+          82,
+          0.58
+        );
+      border-radius: 29px;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(
+            255,
+            249,
+            241,
+            0.98
+          ),
+          rgba(
+            250,
+            234,
+            240,
+            0.95
+          )
+        );
+      box-shadow: var(--shadow);
     }
 
-    @media(min-width:760px){
-      .cards-grid{
-        grid-template-columns:repeat(2,1fr);
+    .cup-rules::after {
+      position: absolute;
+      content: "🏆";
+      left: 12px;
+      bottom: -16px;
+      font-size: 105px;
+      opacity: 0.08;
+      transform: rotate(-10deg);
+    }
+
+    .rules-heading {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      margin: 0 0 13px;
+      color: var(--lavender-dark);
+      text-align: center;
+      font-size:
+        clamp(
+          25px,
+          6vw,
+          35px
+        );
+    }
+
+    .rules-text {
+      position: relative;
+      z-index: 2;
+      max-width: 820px;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 18px;
+      line-height: 2;
+    }
+
+    .rules-text strong {
+      color: var(--lavender-dark);
+    }
+
+    .journey-panel {
+      margin-bottom: 19px;
+      padding: 18px;
+      border:
+        2px solid #e3d3de;
+      border-radius: 26px;
+      background:
+        rgba(
+          255,
+          255,
+          255,
+          0.9
+        );
+      box-shadow: var(--shadow);
+    }
+
+    .journey-title {
+      margin: 0 0 14px;
+      color: var(--lavender-dark);
+      text-align: center;
+      font-size:
+        clamp(
+          23px,
+          5.5vw,
+          31px
+        );
+    }
+
+    .journey-stats {
+      display: grid;
+      grid-template-columns:
+        repeat(
+          3,
+          minmax(0, 1fr)
+        );
+      gap: 12px;
+    }
+
+    .journey-stat {
+      padding: 15px 9px;
+      border:
+        2px solid transparent;
+      border-radius: 19px;
+      background:
+        linear-gradient(
+          145deg,
+          var(--pink-light),
+          var(--lavender-light)
+        );
+      text-align: center;
+      font-weight: bold;
+      line-height: 1.65;
+    }
+
+    .journey-stat strong {
+      display: block;
+      margin-top: 5px;
+      color: var(--lavender-dark);
+      font-size:
+        clamp(
+          21px,
+          5vw,
+          29px
+        );
+    }
+
+    .journey-track {
+      height: 18px;
+      margin-top: 15px;
+      overflow: hidden;
+      border:
+        1px solid #d9c8d3;
+      border-radius: 999px;
+      background: #f1e9ee;
+    }
+
+    .journey-bar {
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background:
+        linear-gradient(
+          90deg,
+          var(--pink),
+          var(--lavender),
+          var(--gold)
+        );
+      transition:
+        width 0.7s ease;
+    }
+
+    .journey-message {
+      margin: 12px 0 0;
+      text-align: center;
+      font-size: 17px;
+      line-height: 1.8;
+      font-weight: bold;
+    }
+
+    .section-title {
+      margin: 27px 0 15px;
+      color: var(--lavender-dark);
+      text-align: center;
+      font-size:
+        clamp(
+          27px,
+          6.5vw,
+          38px
+        );
+    }
+
+    .section-subtitle {
+      max-width: 760px;
+      margin: -5px auto 19px;
+      text-align: center;
+      font-size: 17px;
+      line-height: 1.8;
+    }
+
+    .challenge-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(
+          2,
+          minmax(0, 1fr)
+        );
+      gap: 15px;
+    }
+
+    .challenge-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 220px;
+      overflow: hidden;
+      border:
+        3px solid #e3d1dc;
+      border-radius: 27px;
+      background:
+        linear-gradient(
+          155deg,
+          #fffefd,
+          #f8ecf2
+        );
+      box-shadow: var(--shadow);
+      text-decoration: none;
+      transition:
+        transform 0.24s ease,
+        box-shadow 0.24s ease,
+        border-color 0.24s ease;
+    }
+
+    .challenge-card:hover {
+      transform:
+        translateY(-5px);
+      border-color: var(--gold);
+      box-shadow:
+        0 19px 44px
+        rgba(98, 75, 112, 0.21);
+    }
+
+    .challenge-card.completed {
+      border-color: #86b69a;
+      background:
+        linear-gradient(
+          155deg,
+          #fbfffc,
+          var(--green-light)
+        );
+    }
+
+    .challenge-card.golden {
+      border:
+        4px solid var(--gold);
+      background:
+        linear-gradient(
+          145deg,
+          #fffdf3,
+          #f9e8b7,
+          #f5d987
+        );
+    }
+
+    .challenge-number {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      color: white;
+      border-radius: 50%;
+      background:
+        linear-gradient(
+          135deg,
+          var(--lavender-dark),
+          var(--lavender)
+        );
+      font-size: 17px;
+      font-weight: bold;
+    }
+
+    .challenge-card.golden
+    .challenge-number {
+      color: #604617;
+      background:
+        linear-gradient(
+          135deg,
+          #f8e7a9,
+          #d5ad4c
+        );
+    }
+
+    .challenge-icon {
+      margin:
+        24px auto 8px;
+      font-size: 52px;
+      line-height: 1;
+    }
+
+    .challenge-name {
+      margin:
+        5px 14px 8px;
+      color: var(--lavender-dark);
+      text-align: center;
+      font-size:
+        clamp(
+          19px,
+          4.5vw,
+          25px
+        );
+      line-height: 1.55;
+    }
+
+    .challenge-card.golden
+    .challenge-name {
+      color: #6b4d16;
+    }
+
+    .challenge-description {
+      flex: 1;
+      margin:
+        0 15px 14px;
+      text-align: center;
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    .challenge-status {
+      margin-top: auto;
+      padding: 11px 10px;
+      color: white;
+      background:
+        linear-gradient(
+          135deg,
+          var(--lavender-dark),
+          var(--lavender)
+        );
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .challenge-card.completed
+    .challenge-status {
+      background:
+        linear-gradient(
+          135deg,
+          #397552,
+          var(--green)
+        );
+    }
+
+    .challenge-card.golden
+    .challenge-status {
+      color: #624716;
+      background:
+        linear-gradient(
+          135deg,
+          #f6db83,
+          #d8ad49
+        );
+    }
+
+    .special-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(
+          2,
+          minmax(0, 1fr)
+        );
+      gap: 15px;
+      margin-top: 21px;
+    }
+
+    .special-card {
+      position: relative;
+      min-height: 185px;
+      overflow: hidden;
+      padding: 22px 17px;
+      border:
+        3px solid #dfcdda;
+      border-radius: 27px;
+      background:
+        linear-gradient(
+          145deg,
+          #fffdfb,
+          var(--pink-light)
+        );
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .special-card.locked {
+      filter: grayscale(0.35);
+    }
+
+    .special-icon {
+      font-size: 54px;
+    }
+
+    .special-card h3 {
+      margin: 7px 0;
+      color: var(--lavender-dark);
+      font-size: 25px;
+    }
+
+    .special-card p {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .special-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      margin-top: 13px;
+      padding: 10px 17px;
+      border: 0;
+      border-radius: 15px;
+      color: white;
+      background:
+        linear-gradient(
+          135deg,
+          var(--lavender-dark),
+          var(--lavender)
+        );
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .special-button:disabled {
+      opacity: 0.53;
+      cursor: not-allowed;
+    }
+
+    .cup-result-section {
+      display: none;
+      margin-top: 25px;
+      padding: 18px;
+      border:
+        4px solid
+        rgba(
+          201,
+          165,
+          82,
+          0.76
+        );
+      border-radius: 31px;
+      background:
+        linear-gradient(
+          145deg,
+          #fffdf6,
+          #faedf2
+        );
+      box-shadow:
+        0 20px 50px
+        rgba(98, 75, 112, 0.22);
+    }
+
+    .cup-result-section.show {
+      display: block;
+      animation:
+        cupAppear
+        1s ease both;
+    }
+
+    @keyframes cupAppear {
+      from {
+        opacity: 0;
+        transform:
+          translateY(65px)
+          scale(0.94);
+      }
+
+      to {
+        opacity: 1;
+        transform:
+          translateY(0)
+          scale(1);
+      }
+    }
+
+    .cup-heading {
+      margin:
+        2px 0 16px;
+      color: var(--lavender-dark);
+      text-align: center;
+      font-size:
+        clamp(
+          29px,
+          7vw,
+          43px
+        );
+    }
+
+    .cup-image-wrap {
+      position: relative;
+      width:
+        min(
+          100%,
+          760px
+        );
+      margin: 0 auto;
+      overflow: hidden;
+      border:
+        3px solid #e2c66e;
+      border-radius: 23px;
+      background: var(--beige);
+      box-shadow:
+        0 15px 38px
+        rgba(94, 65, 105, 0.2);
+      line-height: 0;
+    }
+
+    .cup-image {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .cup-student-name {
+      position: absolute;
+      z-index: 3;
+      top: 78.1%;
+      right: 11%;
+      left: 11%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 6.8%;
+      padding: 3px 7px;
+      color: #785985;
+      text-align: center;
+      font-size:
+        clamp(
+          19px,
+          5.1vw,
+          40px
+        );
+      line-height: 1.25;
+      font-weight: 900;
+      text-shadow:
+        0 1px 0 white;
+    }
+
+    .cup-average-overlay {
+      position: absolute;
+      z-index: 4;
+      right: 67%;
+      bottom: 2.5%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 18%;
+      height: 5%;
+      color: #775982;
+      background: #fff8ef;
+      font-size:
+        clamp(
+          13px,
+          3.3vw,
+          26px
+        );
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .cup-message {
+      max-width: 760px;
+      margin: 17px auto 0;
+      text-align: center;
+      font-size: 18px;
+      line-height: 1.9;
+    }
+
+    .cup-actions {
+      display: flex;
+      justify-content: center;
+      gap: 11px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .cup-button {
+      min-height: 52px;
+      padding: 11px 18px;
+      border: 0;
+      border-radius: 17px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .print-cup-button {
+      color: white;
+      background:
+        linear-gradient(
+          135deg,
+          var(--lavender-dark),
+          var(--lavender)
+        );
+    }
+
+    .hide-cup-button {
+      color: #694b16;
+      background:
+        linear-gradient(
+          135deg,
+          var(--gold-light),
+          #f8e7b6
+        );
+    }
+
+    .locked-message {
+      display: none;
+      margin-top: 21px;
+      padding: 19px;
+      border:
+        2px solid #dfcad7;
+      border-radius: 23px;
+      background:
+        rgba(
+          255,
+          249,
+          241,
+          0.96
+        );
+      text-align: center;
+      font-size: 17px;
+      line-height: 1.85;
+      font-weight: bold;
+    }
+
+    .locked-message.show {
+      display: block;
+    }
+
+    .confetti-piece {
+      position: fixed;
+      z-index: 9999;
+      top: -60px;
+      pointer-events: none;
+      animation:
+        confettiFall
+        4.2s linear
+        forwards;
+    }
+
+    @keyframes confettiFall {
+      to {
+        transform:
+          translateY(115vh)
+          rotate(900deg);
+        opacity: 0;
+      }
+    }
+
+    footer {
+      margin-top: 28px;
+      padding: 21px 14px;
+      color: white;
+      border-top:
+        6px solid var(--gold);
+      background:
+        linear-gradient(
+          135deg,
+          var(--lavender-dark),
+          var(--lavender)
+        );
+      text-align: center;
+      font-size: 16px;
+      line-height: 1.8;
+      font-weight: bold;
+    }
+
+    @media (max-width: 720px) {
+      .journey-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .challenge-grid,
+      .special-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .challenge-card {
+        min-height: 205px;
+      }
+
+      .cup-student-name {
+        top: 78%;
+      }
+    }
+
+    @media print {
+      @page {
+        size: portrait;
+        margin: 0;
+      }
+
+      body {
+        background: white;
+      }
+
+      body * {
+        visibility: hidden;
+      }
+
+      #cupImageWrap,
+      #cupImageWrap * {
+        visibility: visible;
+      }
+
+      #cupImageWrap {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        max-width: none;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+      }
+
+      .cup-average-overlay {
+        -webkit-print-color-adjust:
+          exact;
+        print-color-adjust: exact;
       }
     }
   </style>
@@ -264,289 +945,1288 @@
 <body>
 
   <header class="hero">
-    <h1>🏆 تحديات نافس التفاعلية</h1>
+
+    <div class="hero-icon">
+      📚🏆
+    </div>
+
+    <h1>
+      تحديات نافس
+    </h1>
+
     <p>
-      عشرون تحديًا متدرجًا في الصعوبة، بنصوص علمية وأدبية وتاريخية ووطنية،
-      تقيس الفهم والاستنتاج والتحليل والنقد واختيار الإجابة الأدق.
+      عشرون تحديًا متدرجًا في الفهم القرائي،
+      تقودكِ خطوة بعد خطوة نحو التميز
+      والفوز بكأس نافس في منصة آفاق.
     </p>
+
   </header>
 
-  <div class="top-actions">
-    <a class="back-link" href="nafes-library.html">⬅ العودة إلى مكتبة نافس</a>
-  </div>
+  <main class="page-shell">
 
-  <main>
+    <div class="top-actions">
 
-    <section class="intro-card">
-      <h2>اختاري تحديكِ التالي</h2>
-      <p>
-        كل بطاقة تضم عشرة أسئلة تفاعلية، وبعد إتمامها تحصل الطالبة على شهادة اجتياز خاصة بالتحدي.
+      <a
+        class="home-link"
+        href="index.html"
+      >
+        🏠 العودة إلى منصة آفاق
+      </a>
+
+      <button
+        id="soundButton"
+        class="sound-button"
+        type="button"
+      >
+        🔊 الصوت مفعّل
+      </button>
+
+    </div>
+
+    <section class="cup-rules">
+
+      <h2 class="rules-heading">
+        🏆 كيف تحصلين على كأس نافس؟
+      </h2>
+
+      <p class="rules-text">
+        أكملي تحديات نافس العشرين،
+        وتُحفظ درجاتكِ تلقائيًا بعد كل تحدٍّ.
+        وعندما يبلغ متوسط درجاتكِ
+        <strong>
+          80٪ فأكثر
+        </strong>
+        يظهر لكِ كأس نافس باسمكِ
+        تكريمًا لإنجازكِ في رحلة الفهم القرائي.
       </p>
+
     </section>
 
-    <section id="cardsGrid" class="cards-grid"></section>
+    <section class="journey-panel">
+
+      <h2 class="journey-title">
+        🌟 تقدمكِ في رحلة نافس
+      </h2>
+
+      <div class="journey-stats">
+
+        <div class="journey-stat">
+          التحديات المكتملة
+          <strong id="completedCount">
+            0 من 20
+          </strong>
+        </div>
+
+        <div class="journey-stat">
+          متوسط الدرجات
+          <strong id="averageScore">
+            0%
+          </strong>
+        </div>
+
+        <div class="journey-stat">
+          حالة كأس نافس
+          <strong id="cupStatus">
+            مقفل 🔒
+          </strong>
+        </div>
+
+      </div>
+
+      <div class="journey-track">
+
+        <div
+          id="journeyBar"
+          class="journey-bar"
+        ></div>
+
+      </div>
+
+      <p
+        id="journeyMessage"
+        class="journey-message"
+      >
+        ابدئي التحديات، وكل خطوة تقرّبكِ من الكأس.
+      </p>
+
+    </section>
+
+    <h2 class="section-title">
+      ✨ اختاري التحدي
+    </h2>
+
+    <p class="section-subtitle">
+      تُحفظ نتيجتكِ تلقائيًا بعد إتمام كل تحدٍّ،
+      وتظهر علامة الإنجاز على البطاقة المكتملة.
+    </p>
+
+    <section
+      id="challengeGrid"
+      class="challenge-grid"
+    ></section>
+
+    <section class="special-grid">
+
+      <div
+        id="answerKeyCard"
+        class="special-card locked"
+      >
+
+        <div class="special-icon">
+          🔑
+        </div>
+
+        <h3>
+          مفاتيح التحديات
+        </h3>
+
+        <p id="answerKeyText">
+          تُفتح مفاتيح الإجابات وأسبابها
+          بعد إكمال التحديات العشرين.
+        </p>
+
+        <button
+          id="answerKeyButton"
+          class="special-button"
+          type="button"
+          disabled
+        >
+          🔒 المفاتيح مقفلة
+        </button>
+
+      </div>
+
+      <div
+        id="cupCard"
+        class="special-card locked"
+      >
+
+        <div class="special-icon">
+          🏆
+        </div>
+
+        <h3>
+          كأس نافس
+        </h3>
+
+        <p id="cupCardText">
+          يظهر الكأس بعد إكمال التحديات العشرين
+          وتحقيق متوسط 80٪ فأكثر.
+        </p>
+
+      <button
+  id="showCupButton"
+  class="special-button"
+  type="button"
+  disabled
+>
+  🔒 الكأس مقفل
+</button>
+
+      </div>
+
+    </section>
+
+    <section
+      id="lockedMessage"
+      class="locked-message"
+    ></section>
+
+    <section
+      id="cupResultSection"
+      class="cup-result-section"
+    >
+
+      <h2 class="cup-heading">
+        🎉 مبارك لكِ كأس نافس
+      </h2>
+
+      <div
+        id="cupImageWrap"
+        class="cup-image-wrap"
+      >
+
+        <img
+          class="cup-image"
+          src="100.png"
+          alt="كأس نافس"
+        >
+
+        <div
+          id="cupStudentName"
+          class="cup-student-name"
+        ></div>
+
+        <div
+          id="cupAverageOverlay"
+          class="cup-average-overlay"
+        >
+          80%
+        </div>
+
+      </div>
+
+      <p
+        id="cupMessage"
+        class="cup-message"
+      ></p>
+
+      <div class="cup-actions">
+
+        <button
+          id="printCupButton"
+          class="cup-button print-cup-button"
+          type="button"
+        >
+          🖨️ طباعة أو حفظ الكأس
+        </button>
+
+        <button
+          id="hideCupButton"
+          class="cup-button hide-cup-button"
+          type="button"
+        >
+          العودة إلى البطاقات
+        </button>
+
+      </div>
+
+    </section>
 
   </main>
 
   <footer>
-    جميع الحقوق محفوظة © 2026 — منصة آفاق
+    منصة آفاق التعليمية 🌸
+    <br>
+    جميع الحقوق محفوظة © 2026
   </footer>
 
   <script>
-    const challenges = [
-      {
-        number:1,
-        icon:"🧭",
-        title:"تحدي بوصلة الفهم",
-        type:"نص تحليلي عام",
-        description:"بوابتكِ الأولى إلى مهارات الفهم والاستنتاج والتحليل وتقويم الدليل.",
-        color1:"#75558d",
-        color2:"#c9a85c",
-        file:"nafes-challenge-01.html",
-        ready:true,
-        storageKey:"nafesChallenge01Result"
-      },
-      {
-        number:2,
-        icon:"🛡️",
-        title:"تحدي الأمن السيبراني",
-        type:"نص علمي حديث",
-        description:"رحلة في الحماية الرقمية وكشف الرسائل المضللة والسلوك الآمن على الشبكة.",
-        color1:"#3e6f9f",
-        color2:"#6fb5d3",
-        file:"nafes-challenge-02.html"
-      },
-      {
-        number:3,
-        icon:"🌆",
-        title:"تحدي مشروع نيوم",
-        type:"نص وطني معلوماتي",
-        description:"تحليل أهداف المشروع وأبعاده المستقبلية وعلاقته بالابتكار والاستدامة.",
-        color1:"#3b8f87",
-        color2:"#81c7b8",
-        file:"nafes-challenge-03.html"
-      },
-      {
-        number:4,
-        icon:"🎢",
-        title:"تحدي القدية",
-        type:"نص وصفي معلوماتي",
-        description:"استكشاف الأفكار الرئيسة والفرعية والعلاقات بين الترفيه والاقتصاد والثقافة.",
-        color1:"#d47a42",
-        color2:"#e8b56f",
-        file:"nafes-challenge-04.html"
-      },
-      {
-        number:5,
-        icon:"🤖",
-        title:"تحدي الذكاء الاصطناعي",
-        type:"نص علمي نقدي",
-        description:"موازنة دقيقة بين الفرص والتحديات والتمييز بين الحقيقة والرأي.",
-        color1:"#64458a",
-        color2:"#9f7cc2",
-        file:"nafes-challenge-05.html"
-      },
-      {
-        number:6,
-        icon:"🚀",
-        title:"تحدي الفضاء السعودي",
-        type:"نص علمي وطني",
-        description:"قراءة حول الاستكشاف العلمي والطموح السعودي والعلاقة بين السبب والنتيجة.",
-        color1:"#294c7a",
-        color2:"#5f7fb5",
-        file:"nafes-challenge-06.html"
-      },
-      {
-        number:7,
-        icon:"🌊",
-        title:"تحدي البحر الأحمر",
-        type:"نص بيئي سياحي",
-        description:"تحليل التوازن بين التنمية السياحية وحماية البيئة البحرية.",
-        color1:"#278ca4",
-        color2:"#75c5d3",
-        file:"nafes-challenge-07.html"
-      },
-      {
-        number:8,
-        icon:"☀️",
-        title:"تحدي الطاقة المتجددة",
-        type:"نص علمي",
-        description:"قراءة الأرقام والاستنتاج من الأدلة ومقارنة مصادر الطاقة النظيفة.",
-        color1:"#d6a62d",
-        color2:"#ecd47a",
-        file:"nafes-challenge-08.html"
-      },
-      {
-        number:9,
-        icon:"🇸🇦",
-        title:"تحدي رؤية المملكة 2030",
-        type:"نص وطني معلوماتي",
-        description:"تحديد الفكرة الرئيسة والفرعية واستنتاج أثر التحول الوطني.",
-        color1:"#2f8a56",
-        color2:"#75be8b",
-        file:"nafes-challenge-09.html"
-      },
-      {
-        number:10,
-        icon:"🏛️",
-        title:"تحدي التراث السعودي",
-        type:"نص تاريخي",
-        description:"رحلة بين الدرعية والعلا لفهم التسلسل التاريخي وقيمة حفظ التراث.",
-        color1:"#9b6c45",
-        color2:"#caa77e",
-        file:"nafes-challenge-10.html"
-      },
-      {
-        number:11,
-        icon:"🧭",
-        title:"تحدي طريق الحرير",
-        type:"نص تاريخي حضاري",
-        description:"تحليل حركة التجارة وانتقال المعرفة والعلاقات بين الحضارات.",
-        color1:"#a06a49",
-        color2:"#d39e74",
-        file:"nafes-challenge-11.html"
-      },
-      {
-        number:12,
-        icon:"🔬",
-        title:"تحدي العلماء المسلمين",
-        type:"نص تاريخي علمي",
-        description:"استنتاج أثر العلماء المسلمين في بناء المعرفة وتطوير المنهج العلمي.",
-        color1:"#487a73",
-        color2:"#87b8ab",
-        file:"nafes-challenge-12.html"
-      },
-      {
-        number:13,
-        icon:"✒️",
-        title:"تحدي أسرار اللغة العربية",
-        type:"نص أدبي لغوي",
-        description:"تذوق الدلالة والصورة والأسلوب واختيار المعنى الأكثر دقة.",
-        color1:"#8f4f78",
-        color2:"#c78dac",
-        file:"nafes-challenge-13.html"
-      },
-      {
-        number:14,
-        icon:"📚",
-        title:"تحدي القراءة الواعية",
-        type:"نص فكري",
-        description:"مقارنة الآراء وتقويم الحجج واستخلاص الرسائل الضمنية.",
-        color1:"#557ca0",
-        color2:"#8db2cf",
-        file:"nafes-challenge-14.html"
-      },
-      {
-        number:15,
-        icon:"🌿",
-        title:"تحدي البيئة والمناخ",
-        type:"نص علمي بيئي",
-        description:"تحليل الأسباب والنتائج وتقويم الحلول المقترحة للمشكلات البيئية.",
-        color1:"#4d915b",
-        color2:"#91c99b",
-        file:"nafes-challenge-15.html"
-      },
-      {
-        number:16,
-        icon:"💧",
-        title:"تحدي الأمن المائي",
-        type:"نص علمي تطبيقي",
-        description:"اختيار الإجابة الأدق وربط المعلومات بالحلول المستدامة.",
-        color1:"#3f83a8",
-        color2:"#83bed5",
-        file:"nafes-challenge-16.html"
-      },
-      {
-        number:17,
-        icon:"💡",
-        title:"تحدي الابتكار",
-        type:"نص علمي تطبيقي",
-        description:"تقويم الأفكار الجديدة وربط المشكلات بالحلول الممكنة.",
-        color1:"#c28a31",
-        color2:"#e6be6e",
-        file:"nafes-challenge-17.html"
-      },
-      {
-        number:18,
-        icon:"❤️",
-        title:"تحدي الصحة الذكية",
-        type:"نص صحي توعوي",
-        description:"تمييز الحقائق من الادعاءات وتحليل النصائح الصحية المدعومة بالدليل.",
-        color1:"#b4535f",
-        color2:"#dd8d96",
-        file:"nafes-challenge-18.html"
-      },
-      {
-        number:19,
-        icon:"🕌",
-        title:"تحدي صفحات من التاريخ الإسلامي",
-        type:"نص تاريخي",
-        description:"تتبع التسلسل الزمني واستنتاج القيم والدروس من الأحداث.",
-        color1:"#786143",
-        color2:"#b9a176",
-        file:"nafes-challenge-19.html"
-      },
-      {
-        number:20,
-        icon:"👑",
-        title:"التحدي الذهبي — كأس نافس",
-        type:"التحدي الختامي",
-        description:"أصعب تحديات الرحلة، يجمع جميع مهارات الفهم والتحليل والنقد.",
-        color1:"#b48722",
-        color2:"#efd57d",
-        file:"nafes-challenge-20.html"
+    const totalChallenges = 20;
+const requiredAverage = 80;
+
+const challenges = [
+  {
+    number: 1,
+    title: "تحدي بوصلة الفهم",
+    icon: "🧭",
+    description:
+      "بداية الرحلة لاكتشاف مهارات الفهم القرائي وتحديد المعنى الأدق.",
+    file: "nafes-challenge-1.html",
+    storageKey: "nafesChallenge1Result"
+  },
+
+  {
+    number: 2,
+    title: "تحدي الأمن السيبراني",
+    icon: "🔐",
+    description:
+      "تحدٍّ توعوي ينمّي الفهم والتحليل في موضوعات الأمن الرقمي.",
+    file: "nafes-challenge-2.html",
+    storageKey: "nafesChallenge2Result"
+  },
+
+  {
+    number: 3,
+    title: "تحدي مشروع نيوم",
+    icon: "🏙️",
+    description:
+      "قراءة تحليلية لمشروع مستقبلي يجمع بين الابتكار والاستدامة.",
+    file: "nafes-challenge-3.html",
+    storageKey: "nafesChallenge3Result"
+  },
+
+  {
+    number: 4,
+    title: "تحدي القدية",
+    icon: "🎢",
+    description:
+      "تحدٍّ يختبر فهم الأفكار واستنتاج الأهداف والعلاقات بينها.",
+    file: "nafes-challenge-4.html",
+    storageKey: "nafesChallenge4Result"
+  },
+
+  {
+    number: 5,
+    title: "تحدي الذكاء الاصطناعي",
+    icon: "🤖",
+    description:
+      "قراءة واعية حول التقنية الحديثة وفرصها ومسؤولية استخدامها.",
+    file: "nafes-challenge-5.html",
+    storageKey: "nafesChallenge5Result"
+  },
+
+  {
+    number: 6,
+    title: "تحدي الفضاء السعودي",
+    icon: "🚀",
+    description:
+      "رحلة معرفية تقيس الاستنتاج وتحليل المعلومات العلمية.",
+    file: "nafes-challenge-6.html",
+    storageKey: "nafesChallenge6Result"
+  },
+
+  {
+    number: 7,
+    title: "تحدي البحر الأحمر",
+    icon: "🌊",
+    description:
+      "تحدٍّ بيئي وسياحي يختبر فهم التفاصيل والروابط في النص.",
+    file: "nafes-challenge-7.html",
+    storageKey: "nafesChallenge7Result"
+  },
+
+  {
+    number: 8,
+    title: "تحدي الطاقة المتجددة",
+    icon: "☀️",
+    description:
+      "فهم علمي لأهمية مصادر الطاقة واستدامتها في المستقبل.",
+    file: "nafes-challenge-8.html",
+    storageKey: "nafesChallenge8Result"
+  },
+
+  {
+    number: 9,
+    title: "تحدي رؤية المملكة 2030",
+    icon: "🇸🇦",
+    description:
+      "قراءة وطنية تنمّي مهارات الفكرة الرئيسة والاستنتاج والتقويم.",
+    file: "nafes-challenge-9.html",
+    storageKey: "nafesChallenge9Result"
+  },
+
+  {
+    number: 10,
+    title: "تحدي التراث السعودي",
+    icon: "🏺",
+    description:
+      "تحدٍّ يربط القراءة بالهوية والثقافة والموروث الوطني.",
+    file: "nafes-challenge-10.html",
+    storageKey: "nafesChallenge10Result"
+  },
+
+  {
+    number: 11,
+    title: "تحدي طريق الحرير",
+    icon: "🧵",
+    description:
+      "رحلة تاريخية تقيس فهم العلاقات بين التجارة والثقافات.",
+    file: "nafes-challenge-11.html",
+    storageKey: "nafesChallenge11Result"
+  },
+
+  {
+    number: 12,
+    title: "تحدي العلماء المسلمين",
+    icon: "🔭",
+    description:
+      "قراءة معرفية تستعرض أثر العلماء المسلمين في مسيرة العلم.",
+    file: "nafes-challenge-12.html",
+    storageKey: "nafesChallenge12Result"
+  },
+
+  {
+    number: 13,
+    title: "تحدي أسرار اللغة العربية",
+    icon: "📜",
+    description:
+      "تحدٍّ لغوي يكشف جمال العربية ودقة ألفاظها ودلالاتها.",
+    file: "nafes-challenge-13.html",
+    storageKey: "nafesChallenge13Result"
+  },
+
+  {
+    number: 14,
+    title: "تحدي القراءة الواعية",
+    icon: "📖",
+    description:
+      "قراءة عميقة تقيس الفهم والاستنتاج والحكم على الأفكار.",
+    file: "nafes-challenge-14.html",
+    storageKey: "nafesChallenge14Result"
+  },
+
+  {
+    number: 15,
+    title: "تحدي البيئة والمناخ",
+    icon: "🌍",
+    description:
+      "تحدٍّ بيئي ينمّي تحليل الأسباب والنتائج وتقويم الحلول.",
+    file: "nafes-challenge-15.html",
+    storageKey: "nafesChallenge15Result"
+  },
+
+  {
+    number: 16,
+    title: "تحدي الأمن المائي",
+    icon: "💧",
+    description:
+      "قراءة توعوية حول المياه والاستدامة ومسؤولية المحافظة عليها.",
+    file: "nafes-challenge-16.html",
+    storageKey: "nafesChallenge16Result"
+  },
+
+  {
+    number: 17,
+    title: "تحدي الابتكار",
+    icon: "💡",
+    description:
+      "تحدٍّ يدعم التفكير الإبداعي وتحليل الأفكار والحلول الجديدة.",
+    file: "nafes-challenge-17.html",
+    storageKey: "nafesChallenge17Result"
+  },
+
+  {
+    number: 18,
+    title: "تحدي الصحة الذكية",
+    icon: "🩺",
+    description:
+      "قراءة علمية تقيس فهم دور التقنية في تطوير الرعاية الصحية.",
+    file: "nafes-challenge-18.html",
+    storageKey: "nafesChallenge18Result"
+  },
+
+  {
+    number: 19,
+    title: "تحدي صفحات من التاريخ الإسلامي",
+    icon: "🕌",
+    description:
+      "تحدٍّ تاريخي يختبر فهم الأحداث ودلالاتها والعبر المستفادة.",
+    file: "nafes-challenge-19.html",
+    storageKey: "nafesChallenge19Result"
+  },
+
+  {
+    number: 20,
+    title: "التحدي الذهبي – كأس نافس",
+    icon: "🏆",
+    description:
+      "المحطة الأخيرة في الرحلة؛ أكمليها لتظهري إنجازكِ النهائي.",
+    file: "nafes-challenge-20.html",
+    storageKey: "nafesChallenge20Result",
+    golden: true
+  }
+];
+
+const challengeGrid =
+  document.getElementById("challengeGrid");
+
+const completedCount =
+  document.getElementById("completedCount");
+
+const averageScore =
+  document.getElementById("averageScore");
+
+const cupStatus =
+  document.getElementById("cupStatus");
+
+const journeyBar =
+  document.getElementById("journeyBar");
+
+const journeyMessage =
+  document.getElementById("journeyMessage");
+
+const answerKeyCard =
+  document.getElementById("answerKeyCard");
+
+const answerKeyText =
+  document.getElementById("answerKeyText");
+
+const answerKeyButton =
+  document.getElementById("answerKeyButton");
+
+const cupCard =
+  document.getElementById("cupCard");
+
+const cupCardText =
+  document.getElementById("cupCardText");
+
+const showCupButton =
+  document.getElementById("showCupButton");
+
+const lockedMessage =
+  document.getElementById("lockedMessage");
+
+const cupResultSection =
+  document.getElementById("cupResultSection");
+
+const cupStudentName =
+  document.getElementById("cupStudentName");
+
+const cupAverageOverlay =
+  document.getElementById("cupAverageOverlay");
+
+const cupMessage =
+  document.getElementById("cupMessage");
+
+const printCupButton =
+  document.getElementById("printCupButton");
+
+const hideCupButton =
+  document.getElementById("hideCupButton");
+
+const soundButton =
+  document.getElementById("soundButton");
+
+let soundOn =
+  localStorage.getItem("nafesSound") !== "off";
+
+let completedChallenges = 0;
+let totalEarnedScore = 0;
+let totalPossibleScore = 0;
+let finalAverage = 0;
+let savedStudentName = "";
+
+function readChallengeResult(storageKey) {
+  const savedResult =
+    localStorage.getItem(storageKey);
+
+  if (!savedResult) {
+    return null;
+  }
+
+  try {
+    const parsedResult =
+      JSON.parse(savedResult);
+
+    const score =
+      Number(parsedResult.score);
+
+    const total =
+      Number(parsedResult.total);
+
+    if (
+      !Number.isFinite(score) ||
+      !Number.isFinite(total) ||
+      total <= 0
+    ) {
+      return null;
+    }
+
+    return {
+      name:
+        String(
+          parsedResult.name || ""
+        ).trim(),
+
+      score: score,
+      total: total,
+
+      challenge:
+        String(
+          parsedResult.challenge || ""
+        )
+    };
+
+  } catch (error) {
+    console.log(
+      "تعذر قراءة النتيجة:",
+      storageKey,
+      error
+    );
+
+    return null;
+  }
+}
+
+function collectJourneyResults() {
+  completedChallenges = 0;
+  totalEarnedScore = 0;
+  totalPossibleScore = 0;
+  savedStudentName = "";
+
+  challenges.forEach(
+    challenge => {
+      const result =
+        readChallengeResult(
+          challenge.storageKey
+        );
+
+      challenge.result = result;
+
+      if (!result) {
+        return;
       }
+
+      completedChallenges++;
+
+      totalEarnedScore +=
+        result.score;
+
+      totalPossibleScore +=
+        result.total;
+
+      if (result.name) {
+        savedStudentName =
+          result.name;
+      }
+    }
+  );
+
+  if (totalPossibleScore > 0) {
+    finalAverage =
+      Math.round(
+        (
+          totalEarnedScore /
+          totalPossibleScore
+        ) * 100
+      );
+  } else {
+    finalAverage = 0;
+  }
+}
+
+function updateSoundButton() {
+  soundButton.textContent =
+    soundOn
+      ? "🔊 الصوت مفعّل"
+      : "🔇 الصوت مكتوم";
+}
+
+function playCelebrationTone() {
+  if (!soundOn) {
+    return;
+  }
+
+  try {
+    const AudioContextClass =
+      window.AudioContext ||
+      window.webkitAudioContext;
+
+    const audioContext =
+      new AudioContextClass();
+
+    const notes = [
+      523.25,
+      659.25,
+      783.99,
+      1046.5
     ];
 
-    const cardsGrid = document.getElementById("cardsGrid");
+    notes.forEach(
+      (frequency, index) => {
+        const oscillator =
+          audioContext.createOscillator();
 
-    challenges.forEach(challenge => {
-      const card = document.createElement("article");
-      card.className = "challenge-card";
-      card.style.setProperty("--c1", challenge.color1);
-      card.style.setProperty("--c2", challenge.color2);
+        const gain =
+          audioContext.createGain();
 
-      if (challenge.storageKey && localStorage.getItem(challenge.storageKey)) {
-        card.classList.add("completed");
+        oscillator.type = "sine";
+
+        oscillator.frequency.setValueAtTime(
+          frequency,
+          audioContext.currentTime +
+          index * 0.16
+        );
+
+        gain.gain.setValueAtTime(
+          0.001,
+          audioContext.currentTime +
+          index * 0.16
+        );
+
+        gain.gain.exponentialRampToValueAtTime(
+          0.12,
+          audioContext.currentTime +
+          index * 0.16 +
+          0.03
+        );
+
+        gain.gain.exponentialRampToValueAtTime(
+          0.001,
+          audioContext.currentTime +
+          index * 0.16 +
+          0.35
+        );
+
+        oscillator.connect(gain);
+        gain.connect(audioContext.destination);
+
+        oscillator.start(
+          audioContext.currentTime +
+          index * 0.16
+        );
+
+        oscillator.stop(
+          audioContext.currentTime +
+          index * 0.16 +
+          0.38
+        );
+      }
+    );
+
+  } catch (error) {
+    console.log(error);
+  }
+      }
+    function createChallengeCards() {
+  challengeGrid.innerHTML = "";
+
+  challenges.forEach(
+    challenge => {
+      const card =
+        document.createElement("a");
+
+      card.href =
+        challenge.file;
+
+      card.className =
+        "challenge-card";
+
+      if (
+        challenge.golden
+      ) {
+        card.classList.add(
+          "golden"
+        );
       }
 
+      if (
+        challenge.result
+      ) {
+        card.classList.add(
+          "completed"
+        );
+      }
+
+      const statusText =
+        challenge.result
+          ? `✅ تم الإنجاز — ${
+              challenge.result.score
+            } من ${
+              challenge.result.total
+            }`
+          : challenge.golden
+            ? "🏆 ابدئي التحدي الذهبي"
+            : "ابدئي التحدي";
+
       card.innerHTML = `
-        <div class="card-inner">
-          <div class="challenge-number">${challenge.number}</div>
-          <div class="challenge-icon">${challenge.icon}</div>
+        <span class="challenge-number">
+          ${challenge.number}
+        </span>
 
-          <h3>${challenge.title}</h3>
+        <div class="challenge-icon">
+          ${challenge.icon}
+        </div>
 
-          <span class="challenge-type">${challenge.type}</span>
+        <h3 class="challenge-name">
+          ${challenge.title}
+        </h3>
 
-          <p class="challenge-desc">
-            ${challenge.description}
-          </p>
+        <p class="challenge-description">
+          ${challenge.description}
+        </p>
 
-          <div class="challenge-meta">
-            <span class="meta-pill">📝 10 أسئلة</span>
-            <span class="meta-pill">🎓 شهادة اجتياز</span>
-          </div>
-
-          ${
-            challenge.ready
-              ? `<a class="start-link" href="${challenge.file}">
-                   ابدئي التحدي
-                 </a>`
-              : `<button class="coming-button" type="button" disabled>
-                   قريبًا
-                 </button>`
-          }
-
-          <div class="completed-badge">
-            ✅ تم إنجاز التحدي
-          </div>
+        <div class="challenge-status">
+          ${statusText}
         </div>
       `;
 
-      cardsGrid.appendChild(card);
+      challengeGrid
+        .appendChild(card);
+    }
+  );
+}
+
+function getAchievementLevel() {
+  if (
+    finalAverage >= 95
+  ) {
+    return {
+      title:
+        "👑 بطلة نافس الذهبية",
+
+      message:
+        "حققتِ مستوى استثنائيًا في الفهم القرائي، وأتممتِ رحلتكِ بإتقان مميز."
+    };
+  }
+
+  if (
+    finalAverage >= 90
+  ) {
+    return {
+      title:
+        "🏆 بطلة نافس المتميزة",
+
+      message:
+        "أظهرتِ تميزًا عاليًا ودقة رائعة في قراءة النصوص وتحليلها."
+    };
+  }
+
+  if (
+    finalAverage >= 85
+  ) {
+    return {
+      title:
+        "⭐ بطلة نافس",
+
+      message:
+        "أنجزتِ التحديات بمستوى متقن، واستحققتِ كأس نافس بكل جدارة."
+    };
+  }
+
+  return {
+    title:
+      "🌸 بطلة نافس المجتهدة",
+
+    message:
+      "أتممتِ التحديات العشرين وحققتِ النسبة المطلوبة للفوز بكأس نافس."
+  };
+}
+
+function updateJourneyPanel() {
+  completedCount.textContent =
+    `${completedChallenges} من ${totalChallenges}`;
+
+  averageScore.textContent =
+    `${finalAverage}%`;
+
+  const progressPercentage =
+    Math.min(
+      100,
+      Math.round(
+        (
+          completedChallenges /
+          totalChallenges
+        ) * 100
+      )
+    );
+
+  journeyBar.style.width =
+    `${progressPercentage}%`;
+
+  const allCompleted =
+    completedChallenges ===
+    totalChallenges;
+
+  const cupEligible =
+    allCompleted &&
+    finalAverage >=
+      requiredAverage;
+
+  if (
+    completedChallenges === 0
+  ) {
+    cupStatus.textContent =
+      "مقفل 🔒";
+
+    journeyMessage.textContent =
+      "ابدئي التحديات، وكل خطوة تقرّبكِ من الكأس.";
+
+    return;
+  }
+
+  if (
+    !allCompleted
+  ) {
+    const remaining =
+      totalChallenges -
+      completedChallenges;
+
+    cupStatus.textContent =
+      "قيد الإنجاز ⏳";
+
+    journeyMessage.textContent =
+      `أحسنتِ، أنجزتِ ${
+        completedChallenges
+      } تحديات، وبقي لكِ ${
+        remaining
+      } من التحديات.`;
+
+    return;
+  }
+
+  if (
+    cupEligible
+  ) {
+    cupStatus.textContent =
+      "مفتوح 🏆";
+
+    journeyMessage.textContent =
+      `مبارك لكِ! أتممتِ التحديات العشرين بمتوسط ${finalAverage}٪ واستحققتِ كأس نافس.`;
+
+    return;
+  }
+
+  cupStatus.textContent =
+    "اكتملت الرحلة 🌷";
+
+  journeyMessage.textContent =
+    `أتممتِ التحديات العشرين، ومتوسطكِ النهائي ${finalAverage}٪.`;
+}
+
+function updateAnswerKeyCard() {
+  const allCompleted =
+    completedChallenges ===
+    totalChallenges;
+
+  if (
+    allCompleted
+  ) {
+    answerKeyCard
+      .classList
+      .remove("locked");
+
+    answerKeyText.textContent =
+      "أصبحت مفاتيح الإجابات وأسبابها متاحة للمراجعة بعد إتمام الرحلة.";
+
+    answerKeyButton.disabled =
+      false;
+
+    answerKeyButton.textContent =
+      "🔓 فتح مفاتيح التحديات";
+
+    return;
+  }
+
+  answerKeyCard
+    .classList
+    .add("locked");
+
+  answerKeyText.textContent =
+    "تُفتح مفاتيح الإجابات وأسبابها بعد إكمال التحديات العشرين.";
+
+  answerKeyButton.disabled =
+    true;
+
+  answerKeyButton.textContent =
+    "🔒 المفاتيح مقفلة";
+}
+
+function updateCupCard() {
+  const allCompleted =
+    completedChallenges ===
+    totalChallenges;
+
+  const cupEligible =
+    allCompleted &&
+    finalAverage >=
+      requiredAverage;
+
+  if (
+    cupEligible
+  ) {
+    cupCard
+      .classList
+      .remove("locked");
+
+    cupCardText.textContent =
+      `أتممتِ التحديات العشرين بمتوسط ${finalAverage}٪، وأصبح كأس نافس جاهزًا باسمكِ.`;
+
+    showCupButton.disabled =
+      false;
+
+    showCupButton.textContent =
+      "🏆 استلام كأس نافس";
+
+    return;
+  }
+
+  cupCard
+    .classList
+    .add("locked");
+
+  showCupButton.disabled =
+    true;
+
+  showCupButton.textContent =
+    "🔒 الكأس مقفل";
+
+  if (
+    !allCompleted
+  ) {
+    const remaining =
+      totalChallenges -
+      completedChallenges;
+
+    cupCardText.textContent =
+      `يظهر الكأس بعد إكمال التحديات العشرين وتحقيق متوسط 80٪ فأكثر. بقي ${remaining} من التحديات.`;
+
+    return;
+  }
+
+  cupCardText.textContent =
+    `اكتملت التحديات العشرون، ومتوسط الدرجات النهائي ${finalAverage}٪.`;
+}
+
+function showLockedMessage(
+  message
+) {
+  lockedMessage.textContent =
+    message;
+
+  lockedMessage
+    .classList
+    .add("show");
+
+  lockedMessage.scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
+
+  setTimeout(
+    () => {
+      lockedMessage
+        .classList
+        .remove("show");
+    },
+    4200
+  );
+}
+
+function createConfetti() {
+  const symbols = [
+    "🎉",
+    "✨",
+    "⭐",
+    "🌸",
+    "🏆",
+    "💜",
+    "🎈"
+  ];
+
+  for (
+    let index = 0;
+    index < 58;
+    index++
+  ) {
+    const piece =
+      document.createElement(
+        "span"
+      );
+
+    piece.className =
+      "confetti-piece";
+
+    piece.textContent =
+      symbols[
+        Math.floor(
+          Math.random() *
+          symbols.length
+        )
+      ];
+
+    piece.style.left =
+      Math.random() *
+      100 +
+      "vw";
+
+    piece.style.fontSize =
+      17 +
+      Math.random() *
+      24 +
+      "px";
+
+    piece.style.animationDelay =
+      Math.random() *
+      0.9 +
+      "s";
+
+    piece.style.animationDuration =
+      3.2 +
+      Math.random() *
+      1.8 +
+      "s";
+
+    document.body
+      .appendChild(piece);
+
+    setTimeout(
+      () => {
+        piece.remove();
+      },
+      5600
+    );
+  }
+}
+
+function showCup() {
+  const allCompleted =
+    completedChallenges ===
+    totalChallenges;
+
+  const cupEligible =
+    allCompleted &&
+    finalAverage >=
+      requiredAverage;
+
+  if (
+    !allCompleted
+  ) {
+    const remaining =
+      totalChallenges -
+      completedChallenges;
+
+    showLockedMessage(
+      `أكملي التحديات المتبقية أولًا. بقي لكِ ${remaining} من التحديات.`
+    );
+
+    return;
+  }
+
+  if (
+    !cupEligible
+  ) {
+    showLockedMessage(
+      `أتممتِ التحديات العشرين، ومتوسطكِ النهائي ${finalAverage}٪.`
+    );
+
+    return;
+  }
+
+  const achievement =
+    getAchievementLevel();
+
+  const displayName =
+    savedStudentName ||
+    "بطلة نافس";
+
+  cupStudentName.textContent =
+    displayName;
+
+  cupAverageOverlay.textContent =
+    `${finalAverage}%`;
+
+  cupMessage.innerHTML = `
+    <strong>
+      ${displayName}
+    </strong>
+
+    <br>
+
+    ${
+      achievement.title
+    }
+
+    <br>
+
+    ${
+      achievement.message
+    }
+  `;
+
+  cupResultSection
+    .classList
+    .add("show");
+
+  cupResultSection
+    .scrollIntoView({
+      behavior: "smooth",
+      block: "start"
     });
-  </script>
+
+  createConfetti();
+
+  playCelebrationTone();
+}
+
+function hideCup() {
+  cupResultSection
+    .classList
+    .remove("show");
+
+  cupCard.scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
+}
+
+function openAnswerKeys() {
+  const allCompleted =
+    completedChallenges ===
+    totalChallenges;
+
+  if (
+    !allCompleted
+  ) {
+    const remaining =
+      totalChallenges -
+      completedChallenges;
+
+    showLockedMessage(
+      `تُفتح مفاتيح التحديات بعد إكمال الرحلة. بقي لكِ ${remaining} من التحديات.`
+    );
+
+    return;
+  }
+
+  window.location.href =
+    "nafes-answer-keys.html";
+}
+
+function initializePage() {
+  collectJourneyResults();
+
+  createChallengeCards();
+
+  updateJourneyPanel();
+
+  updateAnswerKeyCard();
+
+  updateCupCard();
+
+  updateSoundButton();
+}
+
+answerKeyButton
+  .addEventListener(
+    "click",
+    openAnswerKeys
+  );
+
+showCupButton
+  .addEventListener(
+    "click",
+    showCup
+  );
+
+hideCupButton
+  .addEventListener(
+    "click",
+    hideCup
+  );
+
+printCupButton
+  .addEventListener(
+    "click",
+    () => {
+      window.print();
+    }
+  );
+
+soundButton
+  .addEventListener(
+    "click",
+    () => {
+      soundOn =
+        !soundOn;
+
+      localStorage.setItem(
+        "nafesSound",
+        soundOn
+          ? "on"
+          : "off"
+      );
+
+      updateSoundButton();
+
+      if (
+        soundOn
+      ) {
+        playCelebrationTone();
+      }
+    }
+  );
+
+window.addEventListener(
+  "pageshow",
+  () => {
+    initializePage();
+  }
+);
+
+initializePage();
+    </script>
 
 </body>
 </html>
