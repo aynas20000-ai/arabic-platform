@@ -10,229 +10,347 @@
   >
 
   <title>
-    استطلاعات الرأي | منصة آفاق اللغة
+    آراء شركاء النجاح | منصة آفاق
   </title>
 
   <style>
+    :root {
+      --lavender: #9877a8;
+      --lavender-dark: #624b70;
+      --lavender-light: #eee5f2;
+      --pink: #d895aa;
+      --pink-light: #faeaf0;
+      --beige: #fff9f1;
+      --gold: #c9a552;
+      --gold-light: #f4dda0;
+      --text: #55465c;
+      --white: #ffffff;
+      --shadow:
+        0 16px 40px
+        rgba(98, 75, 112, 0.17);
+    }
+
     * {
       box-sizing: border-box;
     }
 
-    html,
-    body {
-      width: 100%;
-      max-width: 100%;
-      margin: 0;
-      overflow-x: hidden;
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
+      margin: 0;
       min-height: 100vh;
-      font-family: Tahoma, Arial, sans-serif;
-      color: #4b3a57;
+      overflow-x: hidden;
+      color: var(--text);
+      background:
+        radial-gradient(
+          circle at top,
+          #fffdf9,
+          #f8eef3 47%,
+          #eee5f2
+        );
+      font-family:
+        Tahoma,
+        Arial,
+        sans-serif;
+    }
+
+    button,
+    a {
+      font-family: inherit;
+      -webkit-tap-highlight-color:
+        transparent;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 40px 16px 34px;
+      color: white;
       text-align: center;
-      background: linear-gradient(
-        145deg,
-        #fffaf2,
-        #f8f0fb
-      );
+      background:
+        linear-gradient(
+          135deg,
+          var(--lavender-dark),
+          var(--lavender),
+          var(--pink)
+        );
+      border-bottom:
+        7px solid var(--gold);
     }
 
-    header {
-      padding: 36px 16px 42px;
-      color: white;
-      border-radius: 0 0 34px 34px;
-      background: linear-gradient(
-        135deg,
-        #776094,
-        #5b4677
-      );
-      box-shadow: 0 12px 28px rgba(73, 56, 92, 0.22);
+    .hero::before,
+    .hero::after {
+      position: absolute;
+      content: "";
+      width: 190px;
+      height: 190px;
+      border-radius: 50%;
+      background:
+        rgba(255, 255, 255, 0.08);
     }
 
-    .header-icon {
-      width: 82px;
-      height: 82px;
-      margin: 0 auto 13px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 24px;
-      font-size: 44px;
-      background: rgba(255, 255, 255, 0.15);
-      border: 2px solid rgba(255, 255, 255, 0.42);
+    .hero::before {
+      top: -105px;
+      right: -65px;
     }
 
-    header h1 {
-      margin: 0;
-      color: #fff8df;
-      font-size: 33px;
-      line-height: 1.7;
+    .hero::after {
+      bottom: -110px;
+      left: -60px;
     }
 
-    header p {
-      max-width: 680px;
-      margin: 10px auto 0;
-      color: #f7effb;
-      font-size: 17px;
-      line-height: 1.9;
+    .hero-content {
+      position: relative;
+      z-index: 2;
     }
 
-    main {
-      width: 94%;
+    .hero-icon {
+      margin-bottom: 8px;
+      font-size: 68px;
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size:
+        clamp(
+          31px,
+          8vw,
+          50px
+        );
+    }
+
+    .hero p {
       max-width: 800px;
-      margin: 28px auto 45px;
+      margin: 0 auto;
+      font-size:
+        clamp(
+          16px,
+          4.3vw,
+          21px
+        );
+      line-height: 2;
     }
 
-    .card {
-      padding: 25px;
-      border-radius: 28px;
-      background: #fffdf8;
-      border: 1px solid rgba(93, 67, 116, 0.15);
-      box-shadow: 0 13px 34px rgba(73, 56, 92, 0.13);
+    .page-shell {
+      width:
+        min(
+          94%,
+          1050px
+        );
+      margin: 0 auto;
+      padding: 21px 0 38px;
     }
 
-    .intro {
-      margin-bottom: 22px;
-      padding: 17px;
-      border-radius: 18px;
-      color: #5d4374;
-      background: #f5ecfb;
-      border-right: 7px solid #c9a85c;
+    .home-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 49px;
+      margin-bottom: 18px;
+      padding: 11px 18px;
+      border-radius: 16px;
+      color: #654b16;
+      background:
+        linear-gradient(
+          135deg,
+          var(--gold-light),
+          #f9ebbd
+        );
+      box-shadow:
+        0 8px 20px
+        rgba(98, 75, 112, 0.12);
+      font-size: 16px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .intro-card {
+      margin-bottom: 21px;
+      padding: 23px 18px;
+      border:
+        2px solid #dfced9;
+      border-radius: 27px;
+      background:
+        rgba(255, 255, 255, 0.92);
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .intro-card h2 {
+      margin: 0 0 9px;
+      color: var(--lavender-dark);
+      font-size:
+        clamp(
+          24px,
+          5.8vw,
+          34px
+        );
+    }
+
+    .intro-card p {
+      max-width: 800px;
+      margin: 0 auto;
       font-size: 17px;
+      line-height: 2;
+    }
+
+    .partners-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(
+          2,
+          minmax(0, 1fr)
+        );
+      gap: 17px;
+    }
+
+    .partner-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 285px;
+      overflow: hidden;
+      padding: 22px 18px 18px;
+      border:
+        3px solid #e2cfda;
+      border-radius: 29px;
+      background:
+        linear-gradient(
+          150deg,
+          #fffefd,
+          var(--pink-light)
+        );
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .partner-card::before {
+      position: absolute;
+      top: -42px;
+      left: -40px;
+      content: "";
+      width: 115px;
+      height: 115px;
+      border-radius: 50%;
+      background:
+        rgba(216, 149, 170, 0.12);
+    }
+
+    .partner-icon {
+      position: relative;
+      z-index: 2;
+      margin-bottom: 8px;
+      font-size: 60px;
+    }
+
+    .partner-card h2 {
+      position: relative;
+      z-index: 2;
+      margin: 3px 0 10px;
+      color: var(--lavender-dark);
+      font-size:
+        clamp(
+          22px,
+          5vw,
+          29px
+        );
+    }
+
+    .partner-card p {
+      position: relative;
+      z-index: 2;
+      flex: 1;
+      margin: 0;
+      font-size: 16px;
       line-height: 1.9;
     }
 
-    .survey-list {
-      display: grid;
-      gap: 16px;
-    }
-
-    .survey-link {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-      width: 100%;
-      padding: 20px;
-      color: #5d4374;
-      text-decoration: none;
-      border-radius: 19px;
-      background: #fffdf8;
-      border: 2px solid #dccbe8;
-      box-shadow: 0 7px 18px rgba(73, 56, 92, 0.08);
-      transition:
-        transform 0.2s ease,
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
-    }
-
-    .survey-link:hover {
-      transform: translateY(-3px);
-      border-color: #c9a85c;
-      box-shadow: 0 11px 24px rgba(73, 56, 92, 0.13);
-    }
-
-    .survey-content {
-      display: flex;
-      align-items: center;
-      gap: 13px;
-      text-align: right;
-    }
-
-    .survey-icon {
-      width: 58px;
-      height: 58px;
-      flex: 0 0 58px;
+    .survey-button {
+      position: relative;
+      z-index: 2;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 17px;
-      background: #f5ecfb;
-      font-size: 30px;
-    }
-
-    .survey-title {
-      font-size: 20px;
-      font-weight: bold;
-      line-height: 1.7;
-    }
-
-    .arrow {
-      color: #c9a85c;
-      font-size: 25px;
-      font-weight: bold;
-    }
-
-    .back {
-      display: block;
-      width: 100%;
-      margin-top: 23px;
-      padding: 15px;
+      min-height: 52px;
+      margin-top: 16px;
+      padding: 11px 16px;
+      border: 0;
       border-radius: 17px;
       color: white;
-      background: #6f5288;
-      text-decoration: none;
+      background:
+        linear-gradient(
+          135deg,
+          var(--lavender-dark),
+          var(--lavender),
+          var(--pink)
+        );
+      box-shadow:
+        0 9px 21px
+        rgba(98, 75, 112, 0.19);
       font-size: 17px;
       font-weight: bold;
-      transition:
-        opacity 0.2s,
-        transform 0.2s;
+      text-decoration: none;
+      cursor: pointer;
     }
 
-    .back:hover {
-      opacity: 0.94;
-    }
-
-    .back:active {
+    .survey-button:active {
       transform: scale(0.98);
     }
 
-    footer {
-      padding: 22px 12px;
-      color: white;
-      background: #49385c;
-      line-height: 1.8;
+    .coming-soon {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 7px 13px;
+      border-radius: 999px;
+      color: #73551b;
+      background: #fff1c5;
+      font-size: 13px;
+      font-weight: bold;
     }
 
-    @media (max-width: 600px) {
-      header {
-        padding: 29px 14px 36px;
+    .last-card {
+      grid-column:
+        1 / -1;
+      width:
+        min(
+          100%,
+          510px
+        );
+      justify-self: center;
+    }
+
+    footer {
+      margin-top: 30px;
+      padding: 21px 14px;
+      color: white;
+      border-top:
+        6px solid var(--gold);
+      background:
+        linear-gradient(
+          135deg,
+          var(--lavender-dark),
+          var(--lavender)
+        );
+      text-align: center;
+      line-height: 1.8;
+      font-weight: bold;
+    }
+
+    @media (max-width: 720px) {
+      .partners-grid {
+        grid-template-columns: 1fr;
       }
 
-      header h1 {
-        font-size: 27px;
+      .last-card {
+        grid-column: auto;
+        width: 100%;
       }
 
-      header p {
-        font-size: 15px;
-      }
-
-      main {
-        width: 93%;
-      }
-
-      .card {
-        padding: 18px;
-      }
-
-      .intro {
-        font-size: 16px;
-      }
-
-      .survey-link {
-        padding: 16px;
-      }
-
-      .survey-icon {
-        width: 52px;
-        height: 52px;
-        flex-basis: 52px;
-        font-size: 27px;
-      }
-
-      .survey-title {
-        font-size: 17px;
+      .home-link {
+        display: flex;
+        width: 100%;
       }
     }
   </style>
@@ -240,122 +358,206 @@
 
 <body>
 
-  <header>
+  <header class="hero">
 
-    <div class="header-icon">
-      🗳️
+    <div class="hero-content">
+
+      <div class="hero-icon">
+        💜
+      </div>
+
+      <h1>
+        آراء شركاء النجاح
+      </h1>
+
+      <p>
+        نؤمن في منصة آفاق بأن التطوير يبدأ
+        بالاستماع إلى شركاء النجاح،
+        ونعتز بآرائكم ومقترحاتكم التي تسهم
+        في بناء تجربة تعليمية أكثر جودة وإبداعًا.
+      </p>
+
     </div>
-
-    <h1>
-      استطلاعات الرأي
-    </h1>
-
-    <p>
-      نسعد بآرائكم ومقترحاتكم،
-      فهي تساعدنا على تطوير منصة آفاق اللغة وتحسينها.
-    </p>
 
   </header>
 
-  <main>
+  <main class="page-shell">
 
-    <section class="card">
+    <a
+      class="home-link"
+      href="index.html"
+    >
+      🏠 العودة إلى منصة آفاق
+    </a>
 
-      <div class="intro">
-        اختاري الاستطلاع المناسب،
-        ثم شاركينا رأيك بكل وضوح واهتمام.
-      </div>
+    <section class="intro-card">
 
-      <div class="survey-list">
+      <h2>
+        مشاركتكم تصنع الفرق 🌸
+      </h2>
+
+      <p>
+        اختاري الفئة المناسبة، وشاركي برأيكِ
+        في تجربة منصة آفاق؛ فكل ملاحظة
+        تمثل خطوة نحو التحسين والتطوير المستمر.
+      </p>
+
+    </section>
+
+    <section class="partners-grid">
+            <article class="partner-card">
+
+        <div class="partner-icon">
+          👩‍🎓
+        </div>
+
+        <h2>
+          رأي الطالبة
+        </h2>
+
+        <p>
+          رأيكِ يصنع الفرق، وملاحظاتكِ تساعدنا
+          على تطوير منصة آفاق لتصبح أكثر متعة وفائدة،
+          وتلبي احتياجاتكِ التعليمية بصورة أفضل.
+        </p>
 
         <a
-          class="survey-link"
+          class="survey-button"
           href="student-survey.html"
         >
-
-          <div class="survey-content">
-
-            <div class="survey-icon">
-              👩‍🎓
-            </div>
-
-            <div class="survey-title">
-              استطلاع رأي الطالبة
-            </div>
-
-          </div>
-
-          <div class="arrow">
-            ‹
-          </div>
-
+          📝 شاركي برأيكِ
         </a>
 
+        <span class="coming-soon">
+          سيتم ربط نموذج الاستطلاع قريبًا
+        </span>
+
+      </article>
+
+      <article class="partner-card">
+
+        <div class="partner-icon">
+          👨‍👩‍👧
+        </div>
+
+        <h2>
+          رأي ولي الأمر
+        </h2>
+
+        <p>
+          نعتز بملاحظاتكم، فشراكتكم معنا تسهم
+          في دعم تعلم الطالبات، وتعزيز المتابعة المنزلية،
+          وتطوير خدمات منصة آفاق.
+        </p>
 
         <a
-          class="survey-link"
+          class="survey-button"
           href="parent-survey.html"
         >
-
-          <div class="survey-content">
-
-            <div class="survey-icon">
-              👨‍👩‍👧
-            </div>
-
-            <div class="survey-title">
-              استطلاع رأي ولي الأمر
-            </div>
-
-          </div>
-
-          <div class="arrow">
-            ‹
-          </div>
-
+          📝 شارك برأيك
         </a>
 
+        <span class="coming-soon">
+          سيتم ربط نموذج الاستطلاع قريبًا
+        </span>
+
+      </article>
+
+      <article class="partner-card">
+
+        <div class="partner-icon">
+          👩‍💼
+        </div>
+
+        <h2>
+          رأي مديرة المدرسة
+        </h2>
+
+        <p>
+          رؤيتكِ القيادية وملاحظاتكِ المهنية
+          تسهمان في تطوير المبادرات التعليمية،
+          وتعزيز جودة منصة آفاق وقابليتها للتوسع.
+        </p>
 
         <a
-          class="survey-link"
+          class="survey-button"
           href="principal-survey.html"
         >
-
-          <div class="survey-content">
-
-            <div class="survey-icon">
-              🏫
-            </div>
-
-            <div class="survey-title">
-              استطلاع رأي مديرة المدرسة
-            </div>
-
-          </div>
-
-          <div class="arrow">
-            ‹
-          </div>
-
+          📝 شاركي برأيكِ
         </a>
 
-      </div>
+        <span class="coming-soon">
+          سيتم ربط نموذج الاستطلاع قريبًا
+        </span>
 
-      <a
-        class="back"
-        href="index.html"
-      >
-        العودة إلى الصفحة الرئيسية
-      </a>
+      </article>
+
+      <article class="partner-card">
+
+        <div class="partner-icon">
+          🌸
+        </div>
+
+        <h2>
+          رأي المرشدة الطلابية
+        </h2>
+
+        <p>
+          نثمّن ملاحظاتكِ التربوية، ونؤمن بأثرها
+          في بناء تجربة تعليمية أكثر دعمًا وتحفيزًا،
+          ومراعاةً لاحتياجات الطالبات.
+        </p>
+
+        <a
+          class="survey-button"
+          href="counselor-survey.html"
+        >
+          📝 شاركي برأيكِ
+        </a>
+
+        <span class="coming-soon">
+          سيتم ربط نموذج الاستطلاع قريبًا
+        </span>
+
+      </article>
+
+      <article class="partner-card last-card">
+
+        <div class="partner-icon">
+          📋
+        </div>
+
+        <h2>
+          رأي وكيلة شؤون الطالبات
+        </h2>
+
+        <p>
+          آراؤكِ ومقترحاتكِ تسهم في تحسين
+          تنظيم الخدمات التعليمية، وتعزيز متابعة الطالبات،
+          وتطوير تجربة المستفيدات داخل منصة آفاق.
+        </p>
+
+        <a
+          class="survey-button"
+          href="student-affairs-survey.html"
+        >
+          📝 شاركي برأيكِ
+        </a>
+
+        <span class="coming-soon">
+          سيتم ربط نموذج الاستطلاع قريبًا
+        </span>
+
+      </article>
 
     </section>
 
   </main>
-
-  <footer>
+    <footer>
+    منصة آفاق التعليمية 🌸
+    <br>
     جميع الحقوق محفوظة © 2026
   </footer>
 
 </body>
-
 </html>
