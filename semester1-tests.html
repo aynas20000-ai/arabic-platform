@@ -655,12 +655,32 @@
         </strong>
       `;
 
-      certificateSection.classList.add("show");
+      if (total >= 80) {
+  certificateSection.classList.add("show");
 
-      renderCertificate(
-        getStudentName(),
-        total
-      );
+  renderCertificate(
+    getStudentName(),
+    total
+  );
+} else {
+  certificateSection.classList.remove("show");
+
+  finalResult.innerHTML += `
+    <br><br>
+    <div style="
+      padding:18px;
+      border-radius:18px;
+      background:#fff1c9;
+      color:#654b3f;
+      font-weight:bold;
+      line-height:1.9;
+    ">
+      🌸 أحسنتِ المحاولة، اقتربتِ من الحصول على الشهادة.
+      <br>
+      يلزم تحقيق ٨٠ من ١٠٠ فأكثر، راجعي المهارات ثم أعيدي المحاولة.
+    </div>
+  `;
+      }
 
     } else {
       const remaining = [];
