@@ -3,7 +3,11 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>ملف درس النعت | منصة آفاق</title>
 
@@ -11,14 +15,22 @@
     :root {
       --purple: #74558c;
       --purple-dark: #4d385d;
+      --purple-light: #f5edf9;
+
       --gold: #c9a85c;
+      --gold-light: #fff4cf;
+
       --cream: #fffaf1;
       --paper: #fffdf8;
       --text: #4b3857;
-      --light-purple: #f5edf9;
-      --light-green: #eef8e9;
-      --light-blue: #edf5ff;
-      --light-gold: #fff7dd;
+
+      --green-light: #edf8ee;
+      --blue-light: #eef6ff;
+      --pink-light: #fff0f5;
+
+      --shadow:
+        0 10px 25px
+        rgba(75, 56, 87, 0.12);
     }
 
     * {
@@ -35,124 +47,136 @@
 
     body {
       min-height: 100vh;
-      font-family: Tahoma, Arial, sans-serif;
       color: var(--text);
-      background: linear-gradient(180deg, var(--cream), #f7eff8);
+      background:
+        linear-gradient(
+          180deg,
+          var(--cream),
+          #f7eff8
+        );
+      font-family:
+        Tahoma,
+        Arial,
+        sans-serif;
       line-height: 1.9;
     }
 
     header {
-      padding: 45px 18px;
-      text-align: center;
+      padding: 44px 18px;
       color: white;
-      background: linear-gradient(135deg, var(--purple), var(--purple-dark));
-      border-bottom: 6px solid var(--gold);
+      text-align: center;
+      background:
+        linear-gradient(
+          135deg,
+          var(--purple),
+          var(--purple-dark)
+        );
+      border-bottom:
+        6px solid var(--gold);
     }
 
     header h1 {
       margin: 0 0 10px;
-      font-size: 38px;
+      font-size:
+        clamp(
+          31px,
+          8vw,
+          40px
+        );
     }
 
     header p {
-      margin: 0;
+      max-width: 760px;
+      margin: 0 auto;
       color: #faf4fc;
       font-size: 18px;
     }
 
     main {
-      width: min(94%, 920px);
-      margin: 40px auto;
+      width:
+        min(
+          94%,
+          930px
+        );
+      margin: 38px auto;
     }
 
     .main-box {
-      padding: 30px 22px;
-      background: rgba(255, 255, 255, 0.88);
-      border: 4px solid var(--gold);
+      padding: 28px 20px;
+      background:
+        rgba(
+          255,
+          255,
+          255,
+          0.88
+        );
+      border:
+        4px solid var(--gold);
       border-radius: 34px;
-      box-shadow: 0 12px 30px rgba(75, 56, 87, 0.12);
+      box-shadow: var(--shadow);
     }
 
     .intro {
       margin: 0 0 28px;
+      padding: 18px;
       text-align: center;
       font-size: 18px;
+      background: var(--purple-light);
+      border:
+        2px dashed var(--gold);
+      border-radius: 22px;
     }
 
-    .section {
-      margin: 28px 0;
-      padding: 24px 20px;
+    .lesson-section {
+      margin: 27px 0;
+      padding: 23px 19px;
       background: var(--paper);
-      border: 3px solid var(--gold);
-      border-radius: 26px;
-      box-shadow: 0 7px 18px rgba(75, 56, 87, 0.09);
+      border:
+        3px solid var(--gold);
+      border-radius: 25px;
+      box-shadow:
+        0 6px 16px
+        rgba(75, 56, 87, 0.08);
     }
 
-    .purple-box {
-      background: var(--light-purple);
+    .purple-section {
+      background: var(--purple-light);
     }
 
-    .green-box {
-      background: var(--light-green);
+    .green-section {
+      background: var(--green-light);
     }
 
-    .blue-box {
-      background: var(--light-blue);
+    .blue-section {
+      background: var(--blue-light);
     }
 
-    .gold-box {
-      background: var(--light-gold);
+    .gold-section {
+      background: var(--gold-light);
     }
 
-    .section h2 {
+    .pink-section {
+      background: var(--pink-light);
+    }
+
+    .lesson-section h2 {
       margin: 0 0 16px;
       padding-bottom: 9px;
       color: var(--purple-dark);
       font-size: 27px;
-      border-bottom: 2px solid var(--gold);
+      border-bottom:
+        2px solid var(--gold);
     }
 
-    .section h3 {
+    .lesson-section h3 {
       margin: 22px 0 10px;
       color: var(--purple);
       font-size: 22px;
     }
 
-    .section p {
+    .lesson-section p {
       margin: 9px 0;
       font-size: 18px;
-    }
-
-    .example {
-      margin: 14px 0;
-      padding: 15px 14px;
-      font-size: 19px;
-      font-weight: bold;
-      background: white;
-      border-right: 5px solid var(--purple);
-      border-radius: 15px;
-    }
-
-    .parts {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-      margin-top: 18px;
-    }
-
-    .part {
-      padding: 18px 12px;
-      text-align: center;
-      background: white;
-      border: 2px solid var(--gold);
-      border-radius: 18px;
-    }
-
-    .part strong {
-      display: block;
-      margin-bottom: 5px;
-      color: var(--purple-dark);
-      font-size: 20px;
     }
 
     ul,
@@ -166,74 +190,170 @@
       margin: 8px 0;
     }
 
-    .rule {
+    .example {
+      margin: 14px 0;
+      padding: 15px;
+      background: white;
+      border-right:
+        5px solid var(--purple);
+      border-radius: 15px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .note {
       margin: 15px 0;
       padding: 16px;
       background: white;
-      border: 2px dashed var(--gold);
-      border-radius: 18px;
-    }
-
-    .comparison {
-      width: 100%;
-      margin-top: 15px;
-      border-collapse: collapse;
-      overflow: hidden;
-      background: white;
-      border-radius: 18px;
-    }
-
-    .comparison th,
-    .comparison td {
-      padding: 14px 10px;
-      text-align: center;
+      border:
+        2px dashed var(--gold);
+      border-radius: 17px;
       font-size: 17px;
-      border: 1px solid #dcc9a1;
     }
 
-    .comparison th {
+    .parts-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 17px;
+    }
+
+    .part-card {
+      padding: 18px 13px;
+      text-align: center;
+      background: white;
+      border:
+        2px solid var(--gold);
+      border-radius: 18px;
+    }
+
+    .part-card strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--purple-dark);
+      font-size: 20px;
+    }
+
+    .types-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(2, 1fr);
+      gap: 15px;
+      margin-top: 16px;
+    }
+
+    .type-card {
+      padding: 19px 15px;
+      background: white;
+      border:
+        2px solid var(--gold);
+      border-radius: 20px;
+    }
+
+    .type-card h3 {
+      margin: 0 0 10px;
+      text-align: center;
+    }
+
+    .rule-card {
+      margin: 13px 0;
+      padding: 15px;
+      background: white;
+      border:
+        2px solid #ddcbe6;
+      border-radius: 17px;
+    }
+
+    .rule-card strong {
+      color: var(--purple-dark);
+    }
+
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      margin-top: 15px;
+      border-radius: 18px;
+    }
+
+    table {
+      width: 100%;
+      min-width: 600px;
+      border-collapse: collapse;
+      background: white;
+    }
+
+    th,
+    td {
+      padding: 13px 10px;
+      text-align: center;
+      border:
+        1px solid #dcc9a1;
+      font-size: 16px;
+    }
+
+    th {
       color: white;
       background: var(--purple);
     }
 
-    .analysis {
-      margin: 15px 0;
-      padding: 17px;
+    .parsing-box {
+      margin: 16px 0;
+      padding: 18px;
       background: white;
-      border: 2px solid #d7c1e2;
-      border-radius: 18px;
+      border:
+        2px solid #d7c2e2;
+      border-radius: 19px;
     }
 
-    .analysis strong {
-      color: var(--purple-dark);
-    }
-
-    .answer {
-      margin-top: 9px;
+    .parsing-sentence {
+      margin-bottom: 12px;
       padding: 12px;
-      background: #faf6fc;
-      border-right: 4px solid var(--gold);
+      color: var(--purple-dark);
+      text-align: center;
+      background: var(--purple-light);
+      border-radius: 14px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .parsing-line {
+      margin: 8px 0;
+      padding: 11px;
+      background: #fffdf9;
+      border-right:
+        4px solid var(--gold);
       border-radius: 12px;
+    }
+
+    .label {
+      color: var(--purple-dark);
+      font-weight: bold;
     }
 
     .summary {
       margin-top: 30px;
       padding: 25px 20px;
-      text-align: center;
-      background: linear-gradient(135deg, var(--purple), var(--purple-dark));
       color: white;
-      border: 4px solid var(--gold);
-      border-radius: 28px;
+      text-align: center;
+      background:
+        linear-gradient(
+          135deg,
+          var(--purple),
+          var(--purple-dark)
+        );
+      border:
+        4px solid var(--gold);
+      border-radius: 27px;
     }
 
     .summary h2 {
       margin: 0 0 14px;
-      color: white;
       font-size: 27px;
     }
 
     .summary p {
-      margin: 8px 0;
+      margin: 7px 0;
       font-size: 18px;
     }
 
@@ -246,25 +366,28 @@
       text-decoration: none;
       font-size: 19px;
       font-weight: bold;
-      background: linear-gradient(135deg, var(--purple), var(--purple-dark));
-      border: 3px solid var(--gold);
+      background:
+        linear-gradient(
+          135deg,
+          var(--purple),
+          var(--purple-dark)
+        );
+      border:
+        3px solid var(--gold);
       border-radius: 28px;
     }
 
     footer {
       margin-top: 42px;
       padding: 23px 15px;
-      text-align: center;
       color: white;
+      text-align: center;
       background: var(--purple-dark);
-      border-top: 5px solid var(--gold);
+      border-top:
+        5px solid var(--gold);
     }
 
     @media (max-width: 650px) {
-      header h1 {
-        font-size: 31px;
-      }
-
       header p,
       .intro {
         font-size: 16px;
@@ -275,39 +398,39 @@
       }
 
       .main-box {
-        padding: 23px 13px;
+        padding: 22px 12px;
       }
 
-      .section {
-        padding: 20px 14px;
+      .lesson-section {
+        padding: 20px 13px;
       }
 
-      .section h2 {
-        font-size: 24px;
+      .lesson-section h2 {
+        font-size: 23px;
       }
 
-      .section h3 {
+      .lesson-section h3 {
         font-size: 20px;
       }
 
-      .section p,
+      .lesson-section p,
       ul,
       ol {
         font-size: 16px;
       }
 
-      .parts {
+      .parts-grid,
+      .types-grid {
         grid-template-columns: 1fr;
       }
 
-      .comparison th,
-      .comparison td {
-        padding: 10px 5px;
-        font-size: 14px;
+      .example {
+        font-size: 16px;
       }
 
-      .example {
-        font-size: 17px;
+      th,
+      td {
+        font-size: 14px;
       }
     }
   </style>
@@ -317,7 +440,11 @@
 
   <header>
     <h1>📄 ملف درس النعت</h1>
-    <p>مراجعة شاملة ومبسطة لدرس النعت الحقيقي والسببي.</p>
+
+    <p>
+      مراجعة شاملة للنعت وأنواعه وشروطه،
+      مع تطبيقات وإعراب للمنعوت والنعت.
+    </p>
   </header>
 
   <main>
@@ -325,18 +452,21 @@
     <section class="main-box">
 
       <p class="intro">
-        اقرئي الشرح بالترتيب، وتأملي الأمثلة، ثم طبّقي على الجمل والتدريبات الإعرابية.
+        اقرئي أقسام الملف بالترتيب، وتأملي الأمثلة،
+        ثم طبّقي على الجمل والتدريبات في نهاية الدرس.
       </p>
 
-      <section class="section purple-box">
+      <section class="lesson-section purple-section">
+
         <h2>أولًا: التوابع</h2>
 
         <p>
           <strong>التوابع:</strong>
-          أسماء تتبع ما قبلها في علامة الإعراب: رفعًا، أو نصبًا، أو جرًّا.
+          أسماء تتبع ما قبلها في علامة الإعراب:
+          رفعًا، أو نصبًا، أو جرًّا.
         </p>
 
-        <p>ومن أنواع التوابع:</p>
+        <p>أنواع التوابع:</p>
 
         <ul>
           <li>النعت.</li>
@@ -344,14 +474,17 @@
           <li>التوكيد.</li>
           <li>البدل.</li>
         </ul>
+
       </section>
 
-      <section class="section">
+      <section class="lesson-section">
+
         <h2>ثانيًا: تعريف النعت</h2>
 
         <p>
           <strong>النعت:</strong>
-          تابع يذكر بعد اسم قبله يسمى المنعوت؛ ليبين صفة فيه أو في شيء يتعلق به.
+          تابع يذكر بعد اسم قبله يسمى المنعوت؛
+          ليبين صفة فيه أو في شيء يتعلق به.
         </p>
 
         <div class="example">
@@ -359,23 +492,26 @@
         </div>
 
         <p>
-          كلمة <strong>المجتهد</strong> نعت؛ لأنها وصفت الطالب.
+          كلمة <strong>المجتهد</strong> نعت؛
+          لأنها وصفت الطالب.
         </p>
+
       </section>
 
-      <section class="section blue-box">
+      <section class="lesson-section blue-section">
+
         <h2>ثالثًا: ركنا التركيب الوصفي</h2>
 
-        <div class="parts">
+        <div class="parts-grid">
 
-          <div class="part">
+          <div class="part-card">
             <strong>المنعوت</strong>
-            الاسم الذي تصفه الكلمة التي بعده.
+            الاسم الذي نريد وصفه.
           </div>
 
-          <div class="part">
+          <div class="part-card">
             <strong>النعت</strong>
-            الكلمة التي تبين صفة في المنعوت.
+            الكلمة أو التركيب الذي يبين صفة المنعوت.
           </div>
 
         </div>
@@ -385,73 +521,93 @@
         </div>
 
         <p>
-          المنعوت: <strong>الكتابُ</strong> — النعت: <strong>المفيدُ</strong>.
+          المنعوت: <strong>الكتابُ</strong>.
+          والنعت: <strong>المفيدُ</strong>.
         </p>
+
       </section>
 
-      <section class="section green-box">
-        <h2>رابعًا: أنواع النعت</h2>
+      <section class="lesson-section green-section">
 
-        <h3>١- النعت الحقيقي</h3>
+        <h2>رابعًا: أنواع النعت بحسب علاقته بالمنعوت</h2>
 
-        <p>
-          هو النعت الذي يصف المنعوت نفسه مباشرة.
-        </p>
+        <div class="types-grid">
 
-        <div class="example">
-          قرأتُ كتابًا مفيدًا.
+          <div class="type-card">
+
+            <h3>١- النعت الحقيقي</h3>
+
+            <p>
+              هو النعت الذي يصف المنعوت نفسه مباشرة.
+            </p>
+
+            <div class="example">
+              قرأتُ كتابًا مفيدًا.
+            </div>
+
+            <div class="example">
+              حضرت الطالبتان المجتهدتان.
+            </div>
+
+            <div class="example">
+              كرّمتُ الطالباتِ المتفوقاتِ.
+            </div>
+
+          </div>
+
+          <div class="type-card">
+
+            <h3>٢- النعت السببي</h3>
+
+            <p>
+              هو النعت الذي يصف اسمًا ظاهرًا بعده،
+              له علاقة بالمنعوت.
+            </p>
+
+            <div class="example">
+              رأيتُ رجلًا حسنًا خلقُه.
+            </div>
+
+            <div class="example">
+              أعجبتني فتاةٌ جميلةٌ أخلاقُها.
+            </div>
+
+            <div class="example">
+              مررتُ بحديقةٍ متفتحةٍ أزهارُها.
+            </div>
+
+          </div>
+
         </div>
 
-        <div class="example">
-          حضرتِ الطالبتان المجتهدتان.
-        </div>
-
-        <div class="example">
-          سلمتُ على الطالباتِ المتميزاتِ.
-        </div>
-
-        <h3>٢- النعت السببي</h3>
-
-        <p>
-          هو النعت الذي لا يصف المنعوت نفسه، بل يصف اسمًا ظاهرًا بعده له علاقة بالمنعوت.
-        </p>
-
-        <div class="example">
-          رأيتُ رجلًا حسنًا خلقُه.
-        </div>
-
-        <div class="example">
-          أعجبتني فتاةٌ جميلةٌ أخلاقُها.
-        </div>
-
-        <div class="example">
-          مررتُ بحديقةٍ متفتحةٍ أزهارُها.
-        </div>
       </section>
 
-      <section class="section gold-box">
+      <section class="lesson-section gold-section">
+
         <h2>خامسًا: شروط المطابقة</h2>
 
         <h3>مطابقة النعت الحقيقي للمنعوت</h3>
 
-        <p>يطابق النعت الحقيقي المنعوت في أربعة أمور:</p>
+        <p>
+          يطابق النعت الحقيقي المنعوت في أربعة أمور:
+        </p>
 
-        <div class="rule">
+        <div class="rule-card">
           <strong>١- الإعراب:</strong>
           الرفع، والنصب، والجر.
         </div>
 
-        <div class="rule">
+        <div class="rule-card">
           <strong>٢- التعريف والتنكير:</strong>
           الطالبُ المجتهدُ — طالبٌ مجتهدٌ.
         </div>
 
-        <div class="rule">
+        <div class="rule-card">
           <strong>٣- التذكير والتأنيث:</strong>
           طالبٌ مجتهدٌ — طالبةٌ مجتهدةٌ.
         </div>
 
-        <div class="rule">
+        <div class="rule-card">
           <strong>٤- العدد:</strong>
           الإفراد، والتثنية، والجمع.
         </div>
@@ -459,188 +615,564 @@
         <h3>مطابقة النعت السببي</h3>
 
         <ul>
-          <li>يطابق المنعوت في الإعراب والتعريف أو التنكير.</li>
-          <li>يطابق الاسم الذي بعده في التذكير والتأنيث.</li>
-          <li>يلزم صورة المفرد غالبًا.</li>
-          <li>يأتي بعده اسم مرفوع.</li>
+          <li>
+            يطابق المنعوت في الإعراب.
+          </li>
+
+          <li>
+            يطابق المنعوت في التعريف أو التنكير.
+          </li>
+
+          <li>
+            يطابق الاسم الذي بعده في التذكير والتأنيث.
+          </li>
+
+          <li>
+            يبقى مفردًا، ولو كان المنعوت مثنى أو جمعًا.
+          </li>
+
+          <li>
+            يأتي بعده اسم مرفوع له علاقة بالمنعوت.
+          </li>
         </ul>
+
       </section>
 
-      <section class="section">
+      <section class="lesson-section">
+
         <h2>سادسًا: الفرق بين النعت الحقيقي والسببي</h2>
 
-        <table class="comparison">
-          <thead>
-            <tr>
-              <th>النعت الحقيقي</th>
-              <th>النعت السببي</th>
-            </tr>
-          </thead>
+        <div class="table-wrap">
 
-          <tbody>
-            <tr>
-              <td>يصف المنعوت نفسه.</td>
-              <td>يصف اسمًا بعده له علاقة بالمنعوت.</td>
-            </tr>
+          <table>
 
-            <tr>
-              <td>يطابق المنعوت في أربعة أمور.</td>
-              <td>يطابق المنعوت في الإعراب والتعريف أو التنكير.</td>
-            </tr>
+            <thead>
+              <tr>
+                <th>وجه المقارنة</th>
+                <th>النعت الحقيقي</th>
+                <th>النعت السببي</th>
+              </tr>
+            </thead>
 
-            <tr>
-              <td>لا يشترط أن يأتي بعده اسم مرفوع.</td>
-              <td>يأتي بعده اسم مرفوع.</td>
-            </tr>
+            <tbody>
 
-            <tr>
-              <td>مثال: الطالبُ المجتهدُ.</td>
-              <td>مثال: الطالبُ الحسنُ خلقُه.</td>
-            </tr>
-          </tbody>
-        </table>
+              <tr>
+                <td>ما الذي يصفه؟</td>
+                <td>يصف المنعوت نفسه.</td>
+                <td>يصف اسمًا بعده له علاقة بالمنعوت.</td>
+              </tr>
+
+              <tr>
+                <td>المطابقة</td>
+                <td>يطابق المنعوت في أربعة أمور.</td>
+                <td>
+                  يطابق المنعوت في الإعراب والتعريف،
+                  ويطابق الاسم بعده في الجنس.
+                </td>
+              </tr>
+
+              <tr>
+                <td>العدد</td>
+                <td>مفرد أو مثنى أو جمع.</td>
+                <td>يلزم الإفراد.</td>
+              </tr>
+
+              <tr>
+                <td>الاسم بعده</td>
+                <td>لا يشترط وجود اسم مرفوع بعده.</td>
+                <td>يأتي بعده اسم مرفوع.</td>
+              </tr>
+
+              <tr>
+                <td>المثال</td>
+                <td>الطالبُ المجتهدُ.</td>
+                <td>الطالبُ الحسنُ خلقُه.</td>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
       </section>
+            <section class="lesson-section pink-section">
 
-      <section class="section purple-box">
-        <h2>سابعًا: جمل تطبيقية</h2>
+        <h2>سابعًا: أنواع النعت بحسب صورته</h2>
 
-        <ol>
-          <li>شاهدتُ منظرًا جميلًا.</li>
-          <li>قرأتُ القصةَ الممتعةَ.</li>
-          <li>مررتُ بالطالبين المجتهدين.</li>
-          <li>رأيتُ فتاةً حسنًا سلوكُها.</li>
-          <li>أعجبتني مدرسةٌ واسعٌ فناءُها.</li>
-          <li>كرمتِ المعلمةُ الطالباتِ المتفوقاتِ.</li>
-        </ol>
+        <h3>١- النعت المفرد</h3>
 
         <p>
-          استخرجي من كل جملة: المنعوت، والنعت، ونوع النعت.
+          ما كان كلمة واحدة، وليس جملة ولا شبه جملة.
         </p>
+
+        <div class="note">
+          المقصود بالمفرد هنا: كلمة واحدة؛
+          وقد تدل على مفرد أو مثنى أو جمع.
+        </div>
+
+        <div class="example">
+          حضر الطالبُ المجتهدُ.
+        </div>
+
+        <div class="example">
+          حضرت الطالبتان المجتهدتان.
+        </div>
+
+        <div class="example">
+          كرّمتُ الطالباتِ المتفوقاتِ.
+        </div>
+
+        <h3>٢- النعت الجملة</h3>
+
+        <p>
+          يكون جملة اسمية أو جملة فعلية،
+          وتأتي الجملة بعد اسم نكرة لتصفه.
+        </p>
+
+        <div class="example">
+          قرأتُ كتابًا موضوعُه مفيدٌ.
+        </div>
+
+        <p>
+          جملة <strong>موضوعه مفيد</strong>
+          جملة اسمية في محل نصب نعت لكلمة
+          <strong>كتابًا</strong>.
+        </p>
+
+        <div class="example">
+          رأيتُ طائرًا يحلّق في السماء.
+        </div>
+
+        <p>
+          جملة <strong>يحلّق في السماء</strong>
+          جملة فعلية في محل نصب نعت لكلمة
+          <strong>طائرًا</strong>.
+        </p>
+
+        <h3>٣- النعت شبه الجملة</h3>
+
+        <p>
+          يأتي جارًّا ومجرورًا أو ظرفًا،
+          ويكون في محل نعت إذا جاء بعد اسم نكرة ووصفه.
+        </p>
+
+        <div class="example">
+          قرأتُ كتابًا في المكتبة.
+        </div>
+
+        <p>
+          شبه الجملة <strong>في المكتبة</strong>
+          في محل نصب نعت لكلمة <strong>كتابًا</strong>.
+        </p>
+
+        <div class="example">
+          شاهدتُ طائرًا فوق الشجرة.
+        </div>
+
+        <p>
+          شبه الجملة <strong>فوق الشجرة</strong>
+          في محل نصب نعت لكلمة <strong>طائرًا</strong>.
+        </p>
+
       </section>
 
-      <section class="section blue-box">
-        <h2>ثامنًا: الإعراب</h2>
+      <section class="lesson-section gold-section">
 
-        <div class="analysis">
-          <strong>حضر الطالبُ المجتهدُ.</strong>
-
-          <div class="answer">
-            المجتهدُ: نعت مرفوع، وعلامة رفعه الضمة الظاهرة.
-          </div>
-        </div>
-
-        <div class="analysis">
-          <strong>رأيتُ الطالبَ المجتهدَ.</strong>
-
-          <div class="answer">
-            المجتهدَ: نعت منصوب، وعلامة نصبه الفتحة الظاهرة.
-          </div>
-        </div>
-
-        <div class="analysis">
-          <strong>مررتُ بالطالبِ المجتهدِ.</strong>
-
-          <div class="answer">
-            المجتهدِ: نعت مجرور، وعلامة جره الكسرة الظاهرة.
-          </div>
-        </div>
-
-        <div class="analysis">
-          <strong>حضر الطالبان المجتهدان.</strong>
-
-          <div class="answer">
-            المجتهدان: نعت مرفوع، وعلامة رفعه الألف؛ لأنه مثنى.
-          </div>
-        </div>
-
-        <div class="analysis">
-          <strong>سلمتُ على الطالباتِ المجتهداتِ.</strong>
-
-          <div class="answer">
-            المجتهداتِ: نعت مجرور، وعلامة جره الكسرة الظاهرة.
-          </div>
-        </div>
-
-        <div class="analysis">
-          <strong>رأيتُ رجلًا حسنًا خلقُه.</strong>
-
-          <div class="answer">
-            حسنًا: نعت سببي منصوب، وعلامة نصبه الفتحة الظاهرة.<br>
-            خلقُه: فاعل مرفوع للصفة المشبهة، وهو مضاف، والهاء مضاف إليه.
-          </div>
-        </div>
-      </section>
-
-      <section class="section green-box">
-        <h2>تاسعًا: الفرق بين النعت والحال</h2>
-
-        <table class="comparison">
-          <thead>
-            <tr>
-              <th>النعت</th>
-              <th>الحال</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <tr>
-              <td>يصف اسمًا قبله.</td>
-              <td>يبين هيئة صاحبه وقت حدوث الفعل.</td>
-            </tr>
-
-            <tr>
-              <td>يتبع المنعوت في الإعراب.</td>
-              <td>يكون منصوبًا دائمًا.</td>
-            </tr>
-
-            <tr>
-              <td>يطابق المنعوت في التعريف والتنكير.</td>
-              <td>يكون غالبًا نكرة، وصاحبه غالبًا معرفة.</td>
-            </tr>
-
-            <tr>
-              <td>جاء طالبٌ مسرعٌ.</td>
-              <td>جاء الطالبُ مسرعًا.</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h3>كيف أميز بينهما؟</h3>
-
-        <div class="rule">
-          إذا كانت الكلمة تتبع الاسم قبلها في التعريف أو التنكير والإعراب فهي غالبًا
-          <strong>نعت</strong>.
-        </div>
-
-        <div class="rule">
-          إذا بينت هيئة اسم معرفة وقت حدوث الفعل وكانت منصوبة فهي
-          <strong>حال</strong>.
-        </div>
-      </section>
-
-      <section class="section gold-box">
-        <h2>عاشرًا: تدريب ختامي</h2>
+        <h2>ثامنًا: شروط النعت الجملة</h2>
 
         <ol>
-          <li>حددي النعت والمنعوت في: شاهدتُ زهرةً جميلةً.</li>
-          <li>حددي نوع النعت في: رأيتُ فتاةً جميلًا خطُّها.</li>
-          <li>أعربي كلمة «المجتهدة» في: كرمتُ الطالبةَ المجتهدةَ.</li>
-          <li>حوّلي الجملة إلى المثنى: حضر الطالبُ المجتهدُ.</li>
-          <li>ميزي النعت من الحال: عاد المسافرُ مسرورًا.</li>
+          <li>
+            أن يكون المنعوت نكرة.
+          </li>
+
+          <li>
+            أن تكون الجملة خبرية تحتمل الصدق أو الكذب.
+          </li>
+
+          <li>
+            أن تشتمل الجملة على رابط يعود على المنعوت.
+          </li>
+
+          <li>
+            أن تأتي الجملة بعد المنعوت لتصفه.
+          </li>
         </ol>
+
+        <div class="example">
+          قرأتُ كتابًا موضوعُه مفيدٌ.
+        </div>
+
+        <div class="note">
+          الرابط هو الهاء في كلمة
+          <strong>موضوعه</strong>؛
+          لأنها تعود على الكتاب.
+        </div>
+
+        <div class="example">
+          رأيتُ طائرًا يحلّق في السماء.
+        </div>
+
+        <div class="note">
+          الرابط ضمير مستتر في الفعل
+          <strong>يحلّق</strong>،
+          تقديره: هو، ويعود على الطائر.
+        </div>
+
+      </section>
+
+      <section class="lesson-section blue-section">
+
+        <h2>تاسعًا: إعراب المنعوت والنعت</h2>
+
+        <div class="parsing-box">
+
+          <div class="parsing-sentence">
+            حضر الطالبُ المجتهدُ.
+          </div>
+
+          <div class="parsing-line">
+            <span class="label">الطالبُ:</span>
+            فاعل مرفوع، وعلامة رفعه الضمة الظاهرة،
+            وهو المنعوت.
+          </div>
+
+          <div class="parsing-line">
+            <span class="label">المجتهدُ:</span>
+            نعت مرفوع، وعلامة رفعه الضمة الظاهرة.
+          </div>
+
+        </div>
+
+        <div class="parsing-box">
+
+          <div class="parsing-sentence">
+            رأيتُ الطالبَ المجتهدَ.
+          </div>
+
+          <div class="parsing-line">
+            <span class="label">الطالبَ:</span>
+            مفعول به منصوب، وعلامة نصبه الفتحة الظاهرة،
+            وهو المنعوت.
+          </div>
+
+          <div class="parsing-line">
+            <span class="label">المجتهدَ:</span>
+            نعت منصوب، وعلامة نصبه الفتحة الظاهرة.
+          </div>
+
+        </div>
+
+        <div class="parsing-box">
+
+          <div class="parsing-sentence">
+            مررتُ بالطالبِ المجتهدِ.
+          </div>
+
+          <div class="parsing-line">
+            <span class="label">الطالبِ:</span>
+            اسم مجرور بالباء، وعلامة جره الكسرة الظاهرة،
+            وهو المنعوت.
+          </div>
+
+          <div class="parsing-line">
+            <span class="label">المجتهدِ:</span>
+            نعت مجرور، وعلامة جره الكسرة الظاهرة.
+          </div>
+
+        </div>
+
+        <div class="parsing-box">
+
+          <div class="parsing-sentence">
+            حضر الطالبان المجتهدان.
+          </div>
+
+          <div class="parsing-line">
+            <span class="label">الطالبان:</span>
+            فاعل مرفوع، وعلامة رفعه الألف؛
+            لأنه مثنى، وهو المنعوت.
+          </div>
+
+          <div class="parsing-line">
+            <span class="label">المجتهدان:</span>
+            نعت مرفوع، وعلامة رفعه الألف؛
+            لأنه مثنى.
+          </div>
+
+        </div>
+
+        <div class="parsing-box">
+
+          <div class="parsing-sentence">
+            كرّمتُ الطالباتِ المجتهداتِ.
+          </div>
+
+          <div class="parsing-line">
+            <span class="label">الطالباتِ:</span>
+            مفعول به منصوب، وعلامة نصبه الكسرة
+            نيابة عن الفتحة؛ لأنه جمع مؤنث سالم،
+            وهو المنعوت.
+          </div>
+
+          <div class="parsing-line">
+            <span class="label">المجتهداتِ:</span>
+            نعت منصوب، وعلامة نصبه الكسرة
+            نيابة عن الفتحة؛ لأنه جمع مؤنث سالم.
+          </div>
+
+        </div>
+
+        <div class="parsing-box">
+
+          <div class="parsing-sentence">
+            رأيتُ رجلًا حسنًا خلقُه.
+          </div>
+
+          <div class="parsing-line">
+            <span class="label">رجلًا:</span>
+            مفعول به منصوب، وعلامة نصبه الفتحة الظاهرة،
+            وهو المنعوت.
+          </div>
+
+          <div class="parsing-line">
+            <span class="label">حسنًا:</span>
+            نعت سببي منصوب، وعلامة نصبه الفتحة الظاهرة.
+          </div>
+
+          <div class="parsing-line">
+            <span class="label">خلقُه:</span>
+            فاعل مرفوع للصفة المشبهة،
+            وهو مضاف، والهاء ضمير متصل في محل جر مضاف إليه.
+          </div>
+
+        </div>
+
+        <div class="parsing-box">
+
+          <div class="parsing-sentence">
+            رأيتُ طائرًا يحلّق في السماء.
+          </div>
+
+          <div class="parsing-line">
+            <span class="label">طائرًا:</span>
+            مفعول به منصوب، وعلامة نصبه الفتحة الظاهرة،
+            وهو المنعوت.
+          </div>
+
+          <div class="parsing-line">
+            <span class="label">يحلّق في السماء:</span>
+            جملة فعلية في محل نصب نعت.
+          </div>
+
+        </div>
+
+        <div class="parsing-box">
+
+          <div class="parsing-sentence">
+            قرأتُ كتابًا موضوعُه مفيدٌ.
+          </div>
+
+          <div class="parsing-line">
+            <span class="label">كتابًا:</span>
+            مفعول به منصوب، وعلامة نصبه الفتحة الظاهرة،
+            وهو المنعوت.
+          </div>
+
+          <div class="parsing-line">
+            <span class="label">موضوعه مفيد:</span>
+            جملة اسمية في محل نصب نعت.
+          </div>
+
+        </div>
+
+      </section>
+
+      <section class="lesson-section green-section">
+
+        <h2>عاشرًا: الفرق بين النعت والحال</h2>
+
+        <div class="table-wrap">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>وجه المقارنة</th>
+                <th>النعت</th>
+                <th>الحال</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr>
+                <td>الوظيفة</td>
+                <td>يصف اسمًا قبله.</td>
+                <td>يبين هيئة صاحبه وقت حدوث الفعل.</td>
+              </tr>
+
+              <tr>
+                <td>الإعراب</td>
+                <td>يتبع المنعوت في الإعراب.</td>
+                <td>يكون منصوبًا.</td>
+              </tr>
+
+              <tr>
+                <td>التعريف والتنكير</td>
+                <td>يطابق المنعوت.</td>
+                <td>يكون غالبًا نكرة، وصاحبه غالبًا معرفة.</td>
+              </tr>
+
+              <tr>
+                <td>المثال</td>
+                <td>جاء طالبٌ مسرعٌ.</td>
+                <td>جاء الطالبُ مسرعًا.</td>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+        <div class="note">
+          إذا جاءت الصفة بعد اسم نكرة ووافقته في الإعراب،
+          فهي غالبًا <strong>نعت</strong>.
+        </div>
+
+        <div class="note">
+          إذا بينت الكلمة هيئة اسم معرفة وقت حدوث الفعل
+          وكانت منصوبة، فهي غالبًا <strong>حال</strong>.
+        </div>
+
+      </section>
+
+      <section class="lesson-section purple-section">
+
+        <h2>الحادي عشر: تطبيقات</h2>
+
+        <p>
+          استخرجي المنعوت والنعت، وحددي نوع النعت وصورته:
+        </p>
+
+        <ol>
+          <li>
+            شاهدتُ منظرًا جميلًا.
+          </li>
+
+          <li>
+            مررتُ بحديقةٍ متفتحةٍ أزهارُها.
+          </li>
+
+          <li>
+            قرأتُ كتابًا موضوعُه مفيدٌ.
+          </li>
+
+          <li>
+            رأيتُ طائرًا يحلّق في السماء.
+          </li>
+
+          <li>
+            شاهدتُ منزلًا فوق الجبل.
+          </li>
+
+          <li>
+            حضرت الطالبتان المجتهدتان.
+          </li>
+
+          <li>
+            أعجبتني فتاةٌ حسنةٌ أخلاقُها.
+          </li>
+
+          <li>
+            عاد المسافرُ مسرورًا.
+          </li>
+        </ol>
+
+      </section>
+
+      <section class="lesson-section gold-section">
+
+        <h2>الثاني عشر: تدريب إعرابي</h2>
+
+        <ol>
+          <li>
+            أعربي المنعوت والنعت في:
+            حضر الطالبُ المجتهدُ.
+          </li>
+
+          <li>
+            أعربي المنعوت والنعت في:
+            كرّمتُ الطالبتين المجتهدتين.
+          </li>
+
+          <li>
+            أعربي المنعوت والنعت في:
+            سلمتُ على المعلماتِ المخلصاتِ.
+          </li>
+
+          <li>
+            حددي محل جملة النعت في:
+            قرأتُ قصةً أحداثُها ممتعةٌ.
+          </li>
+
+          <li>
+            حددي محل جملة النعت في:
+            شاهدتُ طفلًا يلعب في الحديقة.
+          </li>
+
+          <li>
+            ميزي النعت من الحال في:
+            عاد الطالبُ مسرعًا.
+          </li>
+        </ol>
+
       </section>
 
       <section class="summary">
+
         <h2>🌟 خلاصة الدرس في دقيقة</h2>
 
-        <p>النعت تابع يصف اسمًا قبله يسمى المنعوت.</p>
-        <p>للنعت نوعان: حقيقي وسببي.</p>
-        <p>النعت الحقيقي يصف المنعوت نفسه ويطابقه في أربعة أمور.</p>
-        <p>النعت السببي يصف اسمًا مرفوعًا بعده له علاقة بالمنعوت.</p>
-        <p>النعت يتبع المنعوت في الإعراب، أما الحال فمنصوب دائمًا.</p>
+        <p>
+          النعت تابع يصف اسمًا قبله يسمى المنعوت.
+        </p>
+
+        <p>
+          النعت بحسب علاقته بالمنعوت:
+          حقيقي وسببي.
+        </p>
+
+        <p>
+          النعت بحسب صورته:
+          مفرد، وجملة، وشبه جملة.
+        </p>
+
+        <p>
+          النعت الحقيقي يطابق المنعوت في أربعة أمور.
+        </p>
+
+        <p>
+          النعت الجملة يأتي بعد نكرة،
+          ويشتمل على رابط يعود على المنعوت.
+        </p>
+
+        <p>
+          المنعوت يعرب بحسب موقعه في الجملة،
+          والنعت يتبعه في الإعراب.
+        </p>
+
+        <p>
+          النعت يتبع المنعوت،
+          أما الحال فيكون منصوبًا.
+        </p>
+
       </section>
 
-      <a class="back" href="adjective.html">
+      <a
+        class="back"
+        href="adjective.html"
+      >
         العودة إلى درس النعت
       </a>
 
