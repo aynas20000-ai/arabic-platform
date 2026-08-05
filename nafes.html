@@ -12,64 +12,84 @@
   <title>مكتبة نافس | منصة آفاق اللغة</title>
 
   <style>
+    :root {
+      --purple: #74558c;
+      --purple-dark: #4d385d;
+      --gold: #c9a85c;
+      --cream: #fffaf1;
+      --paper: #fffdf8;
+      --text: #4b3857;
+      --light-purple: #f7effb;
+    }
+
     * {
       box-sizing: border-box;
     }
 
+    html,
     body {
+      width: 100%;
+      max-width: 100%;
       margin: 0;
-      font-family: Tahoma, Arial, sans-serif;
-      background: linear-gradient(
-        180deg,
-        #fffaf2,
-        #f8f0fb
-      );
-      color: #3e3048;
-      line-height: 1.8;
       overflow-x: hidden;
     }
 
+    body {
+      min-height: 100vh;
+      font-family: Tahoma, Arial, sans-serif;
+      color: var(--text);
+      background: linear-gradient(
+        180deg,
+        var(--cream),
+        #f8f0fb
+      );
+      line-height: 1.8;
+    }
+
     header {
-      padding: 35px 18px;
+      padding: 38px 18px;
       text-align: center;
       color: white;
       background: linear-gradient(
         135deg,
-        #776094,
-        #5b4677
+        var(--purple),
+        var(--purple-dark)
       );
-      border-bottom: 5px solid #c9a85c;
+      border-bottom: 5px solid var(--gold);
     }
 
     header h1 {
       margin: 0;
-      font-size: 34px;
+      font-size: 35px;
     }
 
     header p {
       max-width: 680px;
       margin: 10px auto 0;
+      color: #f8f2fb;
       font-size: 17px;
     }
 
     main {
       width: min(92%, 760px);
-      margin: 28px auto;
+      margin: 30px auto;
     }
 
     .menu-box {
-      padding: 22px;
-      background: #fffdf8;
-      border: 2px solid #c9a85c;
-      border-radius: 22px;
-      box-shadow: 0 7px 18px rgba(73, 56, 92, 0.1);
+      padding: 24px 20px;
+      background: var(--paper);
+      border: 3px solid var(--gold);
+      border-radius: 24px;
+      box-shadow:
+        0 9px 22px
+        rgba(73, 56, 92, 0.12);
     }
 
     .menu-box h2 {
-      margin: 0 0 20px;
+      margin: 0 0 22px;
       text-align: center;
-      color: #6f5288;
-      font-size: 27px;
+      color: var(--purple);
+      font-size: 28px;
     }
 
     .menu-link {
@@ -81,40 +101,115 @@
       min-height: 72px;
       margin-bottom: 14px;
       padding: 14px;
-      text-decoration: none;
+      color: var(--purple-dark);
       text-align: center;
+      text-decoration: none;
       font-size: 19px;
       font-weight: bold;
-      color: #5b4677;
       background: linear-gradient(
         135deg,
-        #fffdf8,
-        #f7effb
+        var(--paper),
+        var(--light-purple)
       );
-      border: 2px solid #c9a85c;
+      border: 2px solid var(--gold);
       border-radius: 18px;
-      box-shadow: 0 4px 10px rgba(73, 56, 92, 0.08);
+      box-shadow:
+        0 4px 10px
+        rgba(73, 56, 92, 0.08);
+      transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease;
     }
 
+    .menu-link:hover,
     .menu-link:active {
-      transform: scale(0.98);
+      transform: translateY(-2px);
+      box-shadow:
+        0 8px 16px
+        rgba(73, 56, 92, 0.13);
     }
 
     .icon {
-      font-size: 24px;
+      font-size: 25px;
+      flex: 0 0 auto;
+    }
+
+    .home-button {
+      display: block;
+      width: fit-content;
+      margin: 34px auto 4px;
+      padding: 14px 30px;
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: bold;
+      background: linear-gradient(
+        135deg,
+        var(--purple),
+        var(--purple-dark)
+      );
+      border: 3px solid var(--gold);
+      border-radius: 28px;
+      box-shadow:
+        0 7px 16px
+        rgba(77, 56, 93, 0.16);
+      transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease;
+    }
+
+    .home-button:hover,
+    .home-button:active {
+      transform: translateY(-2px);
+      box-shadow:
+        0 10px 20px
+        rgba(77, 56, 93, 0.20);
     }
 
     footer {
-      margin-top: 35px;
-      padding: 18px;
+      margin-top: 38px;
+      padding: 20px 15px;
       text-align: center;
-      background: #49385c;
       color: white;
-      border-top: 4px solid #c9a85c;
+      background: var(--purple-dark);
+      border-top: 4px solid var(--gold);
     }
 
     footer p {
       margin: 0;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 31px;
+      }
+
+      header p {
+        font-size: 16px;
+      }
+
+      main {
+        width: 94%;
+      }
+
+      .menu-box {
+        padding: 21px 14px;
+      }
+
+      .menu-box h2 {
+        font-size: 25px;
+      }
+
+      .menu-link {
+        min-height: 68px;
+        padding: 13px 10px;
+        font-size: 17px;
+      }
+
+      .home-button {
+        width: 100%;
+        text-align: center;
+      }
     }
   </style>
 </head>
@@ -182,28 +277,23 @@
         <span>الإجابة الأدق</span>
       </a>
 
-      <a
-        class="menu-link"
-        href="https://aynas20000-ai.github.io/arabic-platform/nafes-new-situations.html"
-      >
+      <a class="menu-link" href="nafes-new-situations.html">
         <span class="icon">💡</span>
         <span>التطبيق في مواقف جديدة</span>
       </a>
 
-      <a
-        class="menu-link"
-        href="https://aynas20000-ai.github.io/arabic-platform/nafes-summary-organizer.html"
-      >
+      <a class="menu-link" href="nafes-summary-organizer.html">
         <span class="icon">📝</span>
         <span>تلخيص النص وتنظيمه</span>
       </a>
 
-      <a
-        class="menu-link"
-        href="https://aynas20000-ai.github.io/arabic-platform/nafes-mock-tests.html"
-      >
+      <a class="menu-link" href="nafes-mock-tests.html">
         <span class="icon">🏆</span>
         <span>الاختبار الشامل</span>
+      </a>
+
+      <a class="home-button" href="index.html">
+        🏠 العودة إلى الصفحة الرئيسة
       </a>
 
     </section>
