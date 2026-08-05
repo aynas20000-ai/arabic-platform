@@ -3,23 +3,36 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>اختبار درس النعت | منصة آفاق</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>الاختبار التفاعلي لدرس النعت | منصة آفاق</title>
 
   <style>
     :root {
       --purple: #74558c;
       --purple-dark: #4d385d;
+      --purple-light: #f5edf9;
+
       --gold: #c9a85c;
+      --gold-light: #fff3cb;
+
       --cream: #fffaf1;
       --paper: #fffdf8;
       --text: #4b3857;
-      --light-purple: #f5edf9;
+
       --green: #2f7d4a;
       --green-light: #eaf7ee;
+
       --red: #a83d4d;
       --red-light: #fff0f2;
+
+      --shadow:
+        0 14px 32px
+        rgba(75, 56, 87, 0.14);
     }
 
     * {
@@ -36,23 +49,49 @@
 
     body {
       min-height: 100vh;
-      font-family: Tahoma, Arial, sans-serif;
       color: var(--text);
-      background: linear-gradient(180deg, var(--cream), #f7eff8);
+      background:
+        linear-gradient(
+          180deg,
+          var(--cream),
+          #f7eff8
+        );
+      font-family:
+        Tahoma,
+        Arial,
+        sans-serif;
       line-height: 1.8;
     }
 
+    button,
+    a {
+      font-family: inherit;
+      -webkit-tap-highlight-color:
+        transparent;
+    }
+
     header {
-      padding: 44px 18px;
-      text-align: center;
+      padding: 42px 18px;
       color: white;
-      background: linear-gradient(135deg, var(--purple), var(--purple-dark));
-      border-bottom: 6px solid var(--gold);
+      text-align: center;
+      background:
+        linear-gradient(
+          135deg,
+          var(--purple),
+          var(--purple-dark)
+        );
+      border-bottom:
+        6px solid var(--gold);
     }
 
     header h1 {
       margin: 0 0 10px;
-      font-size: 37px;
+      font-size:
+        clamp(
+          30px,
+          8vw,
+          40px
+        );
     }
 
     header p {
@@ -63,40 +102,50 @@
     }
 
     main {
-      width: min(95%, 900px);
-      margin: 38px auto;
+      width:
+        min(
+          94%,
+          850px
+        );
+      margin: 34px auto;
     }
 
     .quiz-shell {
-      padding: 28px 20px;
-      background: rgba(255, 255, 255, 0.9);
-      border: 4px solid var(--gold);
-      border-radius: 34px;
-      box-shadow: 0 12px 30px rgba(75, 56, 87, 0.12);
+      padding: 26px 19px;
+      background:
+        rgba(
+          255,
+          255,
+          255,
+          0.9
+        );
+      border:
+        4px solid var(--gold);
+      border-radius: 32px;
+      box-shadow: var(--shadow);
     }
 
-    .info-box {
-      margin-bottom: 25px;
-      padding: 19px 16px;
+    .quiz-info {
+      margin-bottom: 24px;
+      padding: 18px;
       text-align: center;
-      background: var(--light-purple);
-      border: 2px dashed var(--gold);
-      border-radius: 22px;
+      background: var(--purple-light);
+      border:
+        2px dashed var(--gold);
+      border-radius: 21px;
     }
 
-    .info-box p {
+    .quiz-info p {
       margin: 5px 0;
       font-size: 17px;
     }
 
-    .progress-wrap {
-      margin: 20px 0 30px;
-    }
-
-    .progress-label {
+    .progress-row {
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      margin-bottom: 8px;
+      gap: 10px;
+      margin-bottom: 9px;
       font-weight: bold;
     }
 
@@ -104,153 +153,182 @@
       height: 15px;
       overflow: hidden;
       background: #eadff0;
-      border: 1px solid #d3b8df;
-      border-radius: 20px;
+      border:
+        1px solid #d5bfdf;
+      border-radius: 999px;
     }
 
     .progress-bar {
-      width: 0;
+      width: 10%;
       height: 100%;
-      background: linear-gradient(90deg, var(--gold), var(--purple));
-      transition: width 0.25s ease;
+      background:
+        linear-gradient(
+          90deg,
+          var(--gold),
+          var(--purple)
+        );
+      border-radius: inherit;
+      transition:
+        width 0.3s ease;
     }
 
     .question-card {
-      margin: 24px 0;
-      padding: 23px 18px;
+      margin-top: 25px;
+      padding: 24px 18px;
       background: var(--paper);
-      border: 3px solid #dcc7a1;
-      border-radius: 25px;
-      box-shadow: 0 7px 18px rgba(75, 56, 87, 0.08);
+      border:
+        3px solid var(--gold);
+      border-radius: 27px;
+      box-shadow:
+        0 8px 20px
+        rgba(75, 56, 87, 0.09);
     }
 
     .question-number {
       display: inline-block;
-      margin-bottom: 11px;
-      padding: 5px 14px;
+      margin-bottom: 13px;
+      padding: 6px 15px;
       color: white;
+      background:
+        linear-gradient(
+          135deg,
+          var(--purple),
+          var(--purple-dark)
+        );
+      border:
+        2px solid var(--gold);
+      border-radius: 999px;
       font-weight: bold;
-      background: var(--purple);
-      border: 2px solid var(--gold);
-      border-radius: 18px;
     }
 
     .question-text {
-      margin: 0 0 17px;
+      margin: 0 0 19px;
       color: var(--purple-dark);
-      font-size: 20px;
+      font-size:
+        clamp(
+          19px,
+          5vw,
+          23px
+        );
       font-weight: bold;
+      line-height: 1.8;
     }
 
-    .choices {
+    .answers {
       display: grid;
-      gap: 11px;
+      grid-template-columns: 1fr;
+      gap: 12px;
     }
 
-    .choice {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      padding: 13px 12px;
+    .answer-button {
+      width: 100%;
+      min-height: 62px;
+      padding: 13px 14px;
       cursor: pointer;
+      color: var(--text);
+      text-align: right;
       background: white;
-      border: 2px solid #e1d5c0;
-      border-radius: 17px;
+      border:
+        2px solid #dcc99f;
+      border-radius: 18px;
+      font-size: 17px;
+      line-height: 1.7;
       transition:
         transform 0.15s ease,
-        border-color 0.15s ease,
-        background 0.15s ease;
+        background 0.15s ease,
+        border-color 0.15s ease;
     }
 
-    .choice:hover {
+    .answer-button:hover {
       transform: translateY(-1px);
-      border-color: var(--purple);
       background: #fbf8fd;
+      border-color: var(--purple);
     }
 
-    .choice input {
-      width: 19px;
-      height: 19px;
-      margin-top: 4px;
-      accent-color: var(--purple);
-      flex: 0 0 auto;
-    }
-
-    .choice span {
-      font-size: 17px;
-    }
-
-    .choice.correct-choice {
+    .answer-button.correct {
       color: #205d35;
       background: var(--green-light);
       border-color: var(--green);
     }
 
-    .choice.wrong-choice {
-      color: #853341;
+    .answer-button.wrong {
+      color: #83303d;
       background: var(--red-light);
       border-color: var(--red);
     }
 
+    .answer-button:disabled {
+      cursor: default;
+      transform: none;
+    }
+
     .feedback {
       display: none;
-      margin-top: 15px;
-      padding: 13px;
-      border-radius: 15px;
-      font-size: 16px;
+      margin-top: 17px;
+      padding: 16px;
+      border-radius: 18px;
+      font-size: 17px;
+      line-height: 1.8;
+      font-weight: bold;
+    }
+
+    .feedback.show {
+      display: block;
     }
 
     .feedback.correct {
-      display: block;
       color: #205d35;
       background: var(--green-light);
-      border-right: 5px solid var(--green);
+      border-right:
+        5px solid var(--green);
     }
 
     .feedback.wrong {
-      display: block;
-      color: #7d2f3b;
+      color: #83303d;
       background: var(--red-light);
-      border-right: 5px solid var(--red);
+      border-right:
+        5px solid var(--red);
     }
 
-    .actions {
-      margin-top: 30px;
-      text-align: center;
-    }
-
-    .main-button {
-      min-width: 220px;
-      padding: 15px 28px;
+    .next-button {
+      display: none;
+      width: 100%;
+      min-height: 56px;
+      margin-top: 20px;
+      padding: 13px 20px;
       cursor: pointer;
       color: white;
-      font-family: inherit;
-      font-size: 19px;
+      background:
+        linear-gradient(
+          135deg,
+          var(--purple),
+          var(--purple-dark)
+        );
+      border:
+        3px solid var(--gold);
+      border-radius: 22px;
+      font-size: 18px;
       font-weight: bold;
-      background: linear-gradient(135deg, var(--purple), var(--purple-dark));
-      border: 3px solid var(--gold);
-      border-radius: 28px;
     }
 
-    .main-button:hover {
-      transform: translateY(-2px);
-    }
-
-    .main-button:disabled {
-      cursor: not-allowed;
-      opacity: 0.55;
-      transform: none;
+    .next-button.show {
+      display: block;
     }
 
     .result-box {
       display: none;
-      margin-top: 32px;
-      padding: 28px 18px;
-      text-align: center;
-      background: linear-gradient(135deg, var(--purple), var(--purple-dark));
+      padding: 30px 20px;
       color: white;
-      border: 4px solid var(--gold);
-      border-radius: 28px;
+      text-align: center;
+      background:
+        linear-gradient(
+          135deg,
+          var(--purple),
+          var(--purple-dark)
+        );
+      border:
+        4px solid var(--gold);
+      border-radius: 29px;
     }
 
     .result-box.show {
@@ -258,7 +336,7 @@
     }
 
     .result-icon {
-      font-size: 52px;
+      font-size: 68px;
     }
 
     .result-box h2 {
@@ -267,99 +345,115 @@
     }
 
     .score {
-      margin: 10px 0;
-      color: #fff4c7;
-      font-size: 28px;
+      margin: 12px 0;
+      color: #fff1b8;
+      font-size: 29px;
       font-weight: bold;
     }
 
     .result-message {
-      margin: 8px auto 20px;
       max-width: 650px;
+      margin: 0 auto 21px;
       font-size: 18px;
+      line-height: 1.9;
     }
 
-    .retry-button {
-      padding: 12px 25px;
+    .result-actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .result-button,
+    .back-button {
+      min-height: 52px;
+      padding: 12px 23px;
       cursor: pointer;
-      color: var(--purple-dark);
-      font-family: inherit;
+      text-decoration: none;
       font-size: 17px;
       font-weight: bold;
+      border:
+        3px solid var(--gold);
+      border-radius: 22px;
+    }
+
+    .result-button {
+      color: var(--purple-dark);
       background: white;
-      border: 3px solid var(--gold);
-      border-radius: 24px;
     }
 
-    .warning {
-      display: none;
-      margin: 15px 0;
-      padding: 13px;
-      text-align: center;
-      color: #7d2f3b;
-      background: var(--red-light);
-      border: 2px solid var(--red);
-      border-radius: 17px;
+    .back-button {
+      color: white;
+      background:
+        linear-gradient(
+          135deg,
+          var(--purple),
+          var(--purple-dark)
+        );
     }
 
-    .warning.show {
-      display: block;
-    }
-
-    .back {
+    .bottom-back {
       display: block;
       width: fit-content;
-      margin: 32px auto 0;
-      padding: 14px 30px;
+      margin: 30px auto 0;
+      padding: 13px 27px;
       color: white;
       text-decoration: none;
-      font-size: 19px;
+      font-size: 18px;
       font-weight: bold;
-      background: var(--purple);
-      border: 3px solid var(--gold);
-      border-radius: 28px;
+      background:
+        linear-gradient(
+          135deg,
+          var(--purple),
+          var(--purple-dark)
+        );
+      border:
+        3px solid var(--gold);
+      border-radius: 25px;
     }
 
     footer {
-      margin-top: 42px;
-      padding: 23px 15px;
-      text-align: center;
+      margin-top: 40px;
+      padding: 22px 15px;
       color: white;
+      text-align: center;
       background: var(--purple-dark);
-      border-top: 5px solid var(--gold);
+      border-top:
+        5px solid var(--gold);
     }
 
-    @media (max-width: 650px) {
-      header h1 {
-        font-size: 30px;
+    @media (min-width: 700px) {
+      .answers {
+        grid-template-columns:
+          repeat(2, 1fr);
       }
+    }
 
-      header p {
+    @media (max-width: 620px) {
+      header p,
+      .quiz-info p {
         font-size: 16px;
       }
 
       main {
-        width: 97%;
+        width: 96%;
       }
 
       .quiz-shell {
-        padding: 22px 11px;
+        padding: 21px 11px;
       }
 
       .question-card {
-        padding: 20px 12px;
+        padding: 21px 12px;
       }
 
-      .question-text {
-        font-size: 18px;
-      }
-
-      .choice span {
+      .answer-button {
         font-size: 16px;
       }
 
-      .result-box h2 {
-        font-size: 25px;
+      .result-actions {
+        flex-direction: column;
       }
     }
   </style>
@@ -368,60 +462,155 @@
 <body>
 
   <header>
-    <h1>✅ الاختبار التفاعلي لدرس النعت</h1>
+
+    <h1>
+      ✅ الاختبار التفاعلي لدرس النعت
+    </h1>
+
     <p>
-      خمسة عشر سؤالًا تشمل مفهوم النعت، وأنواعه، والمطابقة، والإعراب،
-      والتمييز بين النعت والحال.
+      عشرة أسئلة مركزة تشمل المنعوت والنعت،
+      والنعت الحقيقي والسببي، والمفرد والجملة،
+      وشروط النعت الجملة، والإعراب، والفرق بين النعت والحال.
     </p>
+
   </header>
 
   <main>
 
     <section class="quiz-shell">
 
-      <div class="info-box">
-        <p><strong>عدد الأسئلة:</strong> 15 سؤالًا.</p>
-        <p><strong>درجة كل سؤال:</strong> درجة واحدة.</p>
-        <p>أجيبي عن جميع الأسئلة، ثم اضغطي زر إظهار النتيجة.</p>
-      </div>
+      <div
+        id="quizArea"
+      >
 
-      <div class="progress-wrap">
-        <div class="progress-label">
-          <span>تقدمكِ في الاختبار</span>
-          <span id="progressText">0 من 15</span>
+        <div class="quiz-info">
+
+          <p>
+            <strong>عدد الأسئلة:</strong>
+            10 أسئلة.
+          </p>
+
+          <p>
+            اختاري الإجابة، وسيظهر لكِ التصحيح
+            والتفسير مباشرة.
+          </p>
+
+          <p>
+            🔔 توجد نغمة للصواب والخطأ،
+            ويعمل الاهتزاز عند الخطأ في الأجهزة التي تدعمه.
+          </p>
+
+        </div>
+
+        <div class="progress-row">
+
+          <span>
+            تقدمكِ في الاختبار
+          </span>
+
+          <span id="progressText">
+            السؤال 1 من 10
+          </span>
+
         </div>
 
         <div class="progress-track">
-          <div class="progress-bar" id="progressBar"></div>
+
+          <div
+            id="progressBar"
+            class="progress-bar"
+          ></div>
+
         </div>
+
+        <section
+          id="questionCard"
+          class="question-card"
+        >
+
+          <span
+            id="questionNumber"
+            class="question-number"
+          ></span>
+
+          <p
+            id="questionText"
+            class="question-text"
+          ></p>
+
+          <div
+            id="answersContainer"
+            class="answers"
+          ></div>
+
+          <div
+            id="feedback"
+            class="feedback"
+          ></div>
+
+          <button
+            id="nextButton"
+            class="next-button"
+            type="button"
+          >
+            السؤال التالي
+          </button>
+
+        </section>
+
       </div>
 
-      <form id="quizForm">
-        <div id="questionsContainer"></div>
+      <section
+        id="resultBox"
+        class="result-box"
+      >
 
-        <div class="warning" id="warning">
-          ⚠️ أجيبي عن جميع الأسئلة قبل إظهار النتيجة.
+        <div
+          id="resultIcon"
+          class="result-icon"
+        >
+          🏆
         </div>
 
-        <div class="actions">
-          <button class="main-button" id="submitButton" type="submit">
-            إظهار النتيجة والتصحيح
+        <h2>
+          نتيجتكِ في اختبار النعت
+        </h2>
+
+        <div
+          id="scoreText"
+          class="score"
+        ></div>
+
+        <p
+          id="resultMessage"
+          class="result-message"
+        ></p>
+
+        <div class="result-actions">
+
+          <button
+            id="retryButton"
+            class="result-button"
+            type="button"
+          >
+            ↺ إعادة الاختبار
           </button>
+
+          <a
+            class="back-button"
+            href="adjective.html"
+          >
+            العودة إلى درس النعت
+          </a>
+
         </div>
-      </form>
 
-      <section class="result-box" id="resultBox">
-        <div class="result-icon" id="resultIcon">🏆</div>
-        <h2>نتيجتكِ في اختبار النعت</h2>
-        <div class="score" id="scoreText"></div>
-        <p class="result-message" id="resultMessage"></p>
-
-        <button class="retry-button" id="retryButton" type="button">
-          إعادة الاختبار
-        </button>
       </section>
 
-      <a class="back" href="adjective.html">
+      <a
+        class="bottom-back"
+        href="adjective.html"
+      >
         العودة إلى درس النعت
       </a>
 
@@ -436,365 +625,508 @@
   <script>
     const questions = [
       {
-        question: "ما التعريف الصحيح للتوابع؟",
-        choices: [
-          "أسماء منصوبة دائمًا.",
-          "أسماء تتبع ما قبلها في الإعراب.",
-          "أفعال تدل على زمن.",
-          "حروف تدخل على الجملة الاسمية."
-        ],
-        answer: 1,
-        explanation: "التوابع أسماء تتبع ما قبلها في علامة الإعراب: رفعًا أو نصبًا أو جرًّا."
-      },
-      {
-        question: "ما تعريف النعت؟",
-        choices: [
-          "تابع يبين صفة في اسم قبله أو فيما يتعلق به.",
+        question:
+          "ما التعريف الصحيح للنعت؟",
+
+        options: [
           "اسم منصوب يبين هيئة صاحبه.",
-          "اسم يأتي بعد حرف الجر.",
-          "فعل يدل على صفة ثابتة."
+          "تابع يبين صفة في اسم قبله أو في شيء يتعلق به.",
+          "اسم يأتي بعد حرف الجر دائمًا.",
+          "فعل يدل على حدوث صفة."
         ],
-        answer: 0,
-        explanation: "النعت تابع يذكر بعد المنعوت لبيان صفة فيه أو في شيء يتعلق به."
+
+        correct: 1,
+
+        explanation:
+          "النعت تابع يأتي بعد اسم يسمى المنعوت؛ ليبين صفة فيه أو في شيء يتعلق به."
       },
+
       {
-        question: "في جملة: «حضر الطالبُ المجتهدُ» ما المنعوت؟",
-        choices: [
-          "حضر",
-          "الطالب",
-          "المجتهد",
-          "الجملة كاملة"
+        question:
+          "في جملة: «حضر الطالبُ المجتهدُ» ما المنعوت وما النعت؟",
+
+        options: [
+          "المنعوت: حضر، والنعت: الطالب.",
+          "المنعوت: المجتهد، والنعت: الطالب.",
+          "المنعوت: الطالب، والنعت: المجتهد.",
+          "المنعوت: الطالب، ولا يوجد نعت."
         ],
-        answer: 1,
-        explanation: "الطالب هو الاسم الموصوف؛ لذلك يسمى المنعوت، والمجتهد نعت له."
+
+        correct: 2,
+
+        explanation:
+          "الطالب هو الاسم الموصوف، ولذلك يسمى المنعوت، والمجتهد كلمة تصفه فهي النعت."
       },
+
       {
-        question: "أي الجمل الآتية اشتملت على نعت حقيقي؟",
-        choices: [
+        question:
+          "أي الجمل الآتية اشتملت على نعت حقيقي؟",
+
+        options: [
           "عاد المسافرُ مسرورًا.",
           "قرأتُ كتابًا مفيدًا.",
           "رأيتُ رجلًا حسنًا خلقُه.",
           "دخل الطالبُ مسرعًا."
         ],
-        answer: 1,
-        explanation: "مفيدًا نعت حقيقي؛ لأنه وصف الكتاب نفسه."
+
+        correct: 1,
+
+        explanation:
+          "مفيدًا نعت حقيقي؛ لأنه وصف الكتاب نفسه مباشرة."
       },
+
       {
-        question: "أي الجمل الآتية اشتملت على نعت سببي؟",
-        choices: [
-          "رأيتُ منزلًا واسعًا.",
+        question:
+          "أي الجمل الآتية اشتملت على نعت سببي؟",
+
+        options: [
+          "شاهدتُ منزلًا واسعًا.",
           "حضرت الطالبةُ المجتهدةُ.",
           "أعجبتني فتاةٌ جميلةٌ أخلاقُها.",
           "عاد الطفلُ سعيدًا."
         ],
-        answer: 2,
-        explanation: "جميلة نعت سببي؛ لأنها وصفت الأخلاق، وهي اسم مرفوع جاء بعدها وله علاقة بالفتاة."
+
+        correct: 2,
+
+        explanation:
+          "جميلة نعت سببي؛ لأنها لم تصف الفتاة نفسها، بل وصفت أخلاقها، وجاء بعدها اسم مرفوع."
       },
+
       {
-        question: "في كم أمر يطابق النعت الحقيقي المنعوت؟",
-        choices: [
-          "أمر واحد.",
-          "أمران.",
-          "ثلاثة أمور.",
-          "أربعة أمور."
+        question:
+          "أي الجمل الآتية اشتملت على نعت مفرد؟",
+
+        options: [
+          "رأيتُ طائرًا يحلّق في السماء.",
+          "قرأتُ كتابًا موضوعُه مفيدٌ.",
+          "شاهدتُ منزلًا فوق الجبل.",
+          "قرأتُ قصةً ممتعةً."
         ],
-        answer: 3,
-        explanation: "يطابقه في الإعراب، والتعريف والتنكير، والتذكير والتأنيث، والإفراد والتثنية والجمع."
+
+        correct: 3,
+
+        explanation:
+          "ممتعة كلمة واحدة، ولذلك فهي نعت مفرد، والمقصود بالمفرد هنا أنه ليس جملة ولا شبه جملة."
       },
-      {
-        question: "أي الجمل الآتية صحيحة من حيث مطابقة النعت للمنعوت؟",
-        choices: [
-          "حضرت الطالبتان المجتهدون.",
-          "حضرت الطالبتان المجتهدتان.",
-          "حضرت الطالبتان المجتهدة.",
-          "حضرت الطالبتان المجتهدين."
+            {
+        question:
+          "أي الجمل الآتية اشتملت على نعت جملة فعلية؟",
+
+        options: [
+          "قرأتُ قصةً ممتعةً.",
+          "رأيتُ طائرًا يحلّق في السماء.",
+          "شاهدتُ منزلًا فوق الجبل.",
+          "مررتُ بحديقةٍ جميلةٍ."
         ],
-        answer: 1,
-        explanation: "الطالبتان معرفة، مؤنث، مثنى، مرفوع؛ لذلك نعتها: المجتهدتان."
+
+        correct: 1,
+
+        explanation:
+          "الجملة الفعلية «يحلّق في السماء» جاءت بعد الاسم النكرة «طائرًا» ووصفته، فهي في محل نصب نعت."
       },
+
       {
-        question: "ما إعراب «المجتهدَ» في: «رأيتُ الطالبَ المجتهدَ»؟",
-        choices: [
-          "حال منصوب.",
-          "نعت منصوب وعلامة نصبه الفتحة.",
-          "نعت مرفوع وعلامة رفعه الضمة.",
-          "مفعول به منصوب."
+        question:
+          "ما الشرط المتحقق في جملة: «قرأتُ كتابًا موضوعُه مفيدٌ»؟",
+
+        options: [
+          "المنعوت معرفة.",
+          "جملة النعت خالية من رابط.",
+          "المنعوت نكرة، وفي الجملة رابط يعود عليه.",
+          "جملة النعت إنشائية."
         ],
-        answer: 1,
-        explanation: "المجتهد نعت للطالب، وتبعه في النصب، وعلامة نصبه الفتحة."
+
+        correct: 2,
+
+        explanation:
+          "المنعوت «كتابًا» نكرة، والهاء في «موضوعه» رابط يعود على الكتاب؛ لذلك صح أن تكون الجملة نعتًا."
       },
+
       {
-        question: "ما علامة رفع النعت في: «حضر الطالبان المجتهدان»؟",
-        choices: [
-          "الضمة.",
-          "الواو.",
-          "الألف.",
-          "الياء."
+        question:
+          "ما إعراب كلمة «الطالبَ» في: «رأيتُ الطالبَ المجتهدَ»؟",
+
+        options: [
+          "فاعل مرفوع، وهو المنعوت.",
+          "مفعول به منصوب، وهو المنعوت.",
+          "نعت منصوب.",
+          "اسم مجرور."
         ],
-        answer: 2,
-        explanation: "المجتهدان نعت مرفوع وعلامة رفعه الألف؛ لأنه مثنى."
+
+        correct: 1,
+
+        explanation:
+          "الطالبَ مفعول به منصوب وعلامة نصبه الفتحة الظاهرة، وهو المنعوت."
       },
+
       {
-        question: "ما إعراب «المجتهداتِ» في: «سلمتُ على الطالباتِ المجتهداتِ»؟",
-        choices: [
-          "حال منصوب.",
+        question:
+          "ما إعراب كلمة «المجتهداتِ» في: «كرّمتُ الطالباتِ المجتهداتِ»؟",
+
+        options: [
+          "نعت منصوب وعلامة نصبه الكسرة؛ لأنه جمع مؤنث سالم.",
           "نعت مجرور وعلامة جره الكسرة.",
-          "نعت منصوب وعلامة نصبه الكسرة.",
-          "فاعل مرفوع."
+          "فاعل مرفوع وعلامة رفعه الضمة.",
+          "حال منصوب وعلامة نصبه الفتحة."
         ],
-        answer: 1,
-        explanation: "المجتهدات نعت مجرور؛ لأنه تبع المنعوت الطالبات المجرور بحرف الجر."
+
+        correct: 0,
+
+        explanation:
+          "المجتهداتِ نعت منصوب، وعلامة نصبه الكسرة نيابة عن الفتحة؛ لأنه جمع مؤنث سالم."
       },
+
       {
-        question: "في جملة: «رأيتُ رجلًا حسنًا خلقُه» ما نوع كلمة «حسنًا»؟",
-        choices: [
-          "نعت حقيقي.",
-          "حال.",
-          "نعت سببي.",
-          "بدل."
-        ],
-        answer: 2,
-        explanation: "حسنًا نعت سببي؛ لأنه وصف الخلق، وهو اسم مرفوع بعده له علاقة بالرجل."
-      },
-      {
-        question: "ما إعراب «خلقُه» في: «رأيتُ رجلًا حسنًا خلقُه»؟",
-        choices: [
-          "مفعول به منصوب.",
-          "فاعل مرفوع للصفة المشبهة.",
-          "مضاف إليه مجرور.",
-          "حال منصوب."
-        ],
-        answer: 1,
-        explanation: "خلقُه فاعل مرفوع للصفة المشبهة «حسنًا»، وهو مضاف والهاء مضاف إليه."
-      },
-      {
-        question: "أي الجمل الآتية اشتملت على حال؟",
-        choices: [
+        question:
+          "أي الجمل الآتية اشتملت على حال لا على نعت؟",
+
+        options: [
           "جاء طالبٌ مسرعٌ.",
-          "جاء الطالبُ المجتهدُ.",
           "جاء الطالبُ مسرعًا.",
-          "حضر الطالبان المجتهدان."
+          "حضر الطالبُ المجتهدُ.",
+          "قرأتُ كتابًا مفيدًا."
         ],
-        answer: 2,
-        explanation: "مسرعًا حال؛ لأنها بينت هيئة الطالب وقت المجيء، وهي منصوبة."
-      },
-      {
-        question: "لماذا تعد كلمة «مسرعٌ» نعتًا في: «جاء طالبٌ مسرعٌ»؟",
-        choices: [
-          "لأنها منصوبة.",
-          "لأنها معرفة والاسم قبلها نكرة.",
-          "لأنها تبعت الاسم قبلها في التنكير والرفع.",
-          "لأنها جاءت بعد فعل."
-        ],
-        answer: 2,
-        explanation: "طالب ومسرع كلاهما نكرتان مرفوعتان، والكلمة الثانية تصف الأولى؛ فهي نعت."
-      },
-      {
-        question: "ما الفرق الأوضح بين النعت والحال؟",
-        choices: [
-          "النعت منصوب دائمًا، والحال يتبع ما قبله.",
-          "النعت يتبع المنعوت في الإعراب، والحال منصوب دائمًا.",
-          "النعت فعل، والحال اسم.",
-          "لا فرق بينهما."
-        ],
-        answer: 1,
-        explanation: "النعت تابع يتبع المنعوت في الإعراب، أما الحال فحكمها النصب."
+
+        correct: 1,
+
+        explanation:
+          "مسرعًا حال؛ لأنها بينت هيئة الطالب وقت المجيء، وهي منصوبة، وصاحبها معرفة."
       }
     ];
 
-    const container = document.getElementById("questionsContainer");
-    const quizForm = document.getElementById("quizForm");
-    const submitButton = document.getElementById("submitButton");
-    const resultBox = document.getElementById("resultBox");
-    const scoreText = document.getElementById("scoreText");
-    const resultMessage = document.getElementById("resultMessage");
-    const resultIcon = document.getElementById("resultIcon");
-    const retryButton = document.getElementById("retryButton");
-    const warning = document.getElementById("warning");
-    const progressBar = document.getElementById("progressBar");
-    const progressText = document.getElementById("progressText");
+    const quizArea =
+      document.getElementById("quizArea");
 
-    function renderQuestions() {
-      container.innerHTML = "";
+    const questionCard =
+      document.getElementById("questionCard");
 
-      questions.forEach((item, questionIndex) => {
-        const card = document.createElement("section");
-        card.className = "question-card";
-        card.id = `question-${questionIndex}`;
+    const questionNumber =
+      document.getElementById("questionNumber");
 
-        const choicesHtml = item.choices.map((choice, choiceIndex) => `
-          <label class="choice" id="choice-${questionIndex}-${choiceIndex}">
-            <input
-              type="radio"
-              name="question-${questionIndex}"
-              value="${choiceIndex}"
-            >
-            <span>${choice}</span>
-          </label>
-        `).join("");
+    const questionText =
+      document.getElementById("questionText");
 
-        card.innerHTML = `
-          <span class="question-number">
-            السؤال ${questionIndex + 1}
-          </span>
+    const answersContainer =
+      document.getElementById("answersContainer");
 
-          <p class="question-text">
-            ${item.question}
-          </p>
+    const feedback =
+      document.getElementById("feedback");
 
-          <div class="choices">
-            ${choicesHtml}
-          </div>
+    const nextButton =
+      document.getElementById("nextButton");
 
-          <div class="feedback" id="feedback-${questionIndex}"></div>
-        `;
+    const progressText =
+      document.getElementById("progressText");
 
-        container.appendChild(card);
-      });
+    const progressBar =
+      document.getElementById("progressBar");
 
-      document.querySelectorAll('input[type="radio"]').forEach(input => {
-        input.addEventListener("change", updateProgress);
-      });
+    const resultBox =
+      document.getElementById("resultBox");
+
+    const resultIcon =
+      document.getElementById("resultIcon");
+
+    const scoreText =
+      document.getElementById("scoreText");
+
+    const resultMessage =
+      document.getElementById("resultMessage");
+
+    const retryButton =
+      document.getElementById("retryButton");
+
+    let currentQuestion = 0;
+    let score = 0;
+    let answered = false;
+
+    function playTone(isCorrect) {
+      try {
+        const AudioContext =
+          window.AudioContext ||
+          window.webkitAudioContext;
+
+        const audioContext =
+          new AudioContext();
+
+        const oscillator =
+          audioContext.createOscillator();
+
+        const gain =
+          audioContext.createGain();
+
+        oscillator.connect(gain);
+        gain.connect(audioContext.destination);
+
+        oscillator.type =
+          isCorrect ? "sine" : "square";
+
+        oscillator.frequency.setValueAtTime(
+          isCorrect ? 720 : 220,
+          audioContext.currentTime
+        );
+
+        gain.gain.setValueAtTime(
+          0.13,
+          audioContext.currentTime
+        );
+
+        gain.gain.exponentialRampToValueAtTime(
+          0.001,
+          audioContext.currentTime + 0.35
+        );
+
+        oscillator.start();
+
+        oscillator.stop(
+          audioContext.currentTime + 0.35
+        );
+      } catch (error) {
+        console.log("تعذر تشغيل نغمة الإجابة.");
+      }
     }
 
-    function updateProgress() {
-      let answered = 0;
-
-      questions.forEach((_, index) => {
-        if (document.querySelector(`input[name="question-${index}"]:checked`)) {
-          answered++;
-        }
-      });
-
-      const percentage = (answered / questions.length) * 100;
-      progressBar.style.width = `${percentage}%`;
-      progressText.textContent = `${answered} من ${questions.length}`;
+    function vibrateWrongAnswer() {
+      if ("vibrate" in navigator) {
+        navigator.vibrate([180, 90, 180]);
+      }
     }
 
-    function getSelectedAnswer(index) {
-      const selected = document.querySelector(
-        `input[name="question-${index}"]:checked`
+    function renderQuestion() {
+      answered = false;
+
+      const item =
+        questions[currentQuestion];
+
+      questionNumber.textContent =
+        `السؤال ${currentQuestion + 1}`;
+
+      questionText.textContent =
+        item.question;
+
+      answersContainer.innerHTML = "";
+
+      feedback.className =
+        "feedback";
+
+      feedback.innerHTML = "";
+
+      nextButton.classList.remove(
+        "show"
       );
 
-      return selected ? Number(selected.value) : null;
+      item.options.forEach(
+        (option, optionIndex) => {
+          const button =
+            document.createElement("button");
+
+          button.type = "button";
+
+          button.className =
+            "answer-button";
+
+          button.textContent =
+            option;
+
+          button.addEventListener(
+            "click",
+            () => {
+              checkAnswer(
+                optionIndex,
+                button
+              );
+            }
+          );
+
+          answersContainer.appendChild(
+            button
+          );
+        }
+      );
+
+      progressText.textContent =
+        `السؤال ${currentQuestion + 1} من ${questions.length}`;
+
+      progressBar.style.width =
+        `${((currentQuestion + 1) / questions.length) * 100}%`;
+
+      nextButton.textContent =
+        currentQuestion === questions.length - 1
+          ? "إظهار النتيجة"
+          : "السؤال التالي";
     }
 
-    quizForm.addEventListener("submit", function(event) {
-      event.preventDefault();
-
-      const answers = questions.map((_, index) => getSelectedAnswer(index));
-      const unansweredIndex = answers.findIndex(answer => answer === null);
-
-      if (unansweredIndex !== -1) {
-        warning.classList.add("show");
-
-        document
-          .getElementById(`question-${unansweredIndex}`)
-          .scrollIntoView({ behavior: "smooth", block: "center" });
-
+    function checkAnswer(
+      selectedIndex,
+      selectedButton
+    ) {
+      if (answered) {
         return;
       }
 
-      warning.classList.remove("show");
+      answered = true;
 
-      let score = 0;
+      const item =
+        questions[currentQuestion];
 
-      questions.forEach((item, questionIndex) => {
-        const selectedAnswer = answers[questionIndex];
-        const correctAnswer = item.answer;
-        const feedback = document.getElementById(
-          `feedback-${questionIndex}`
+      const buttons =
+        answersContainer.querySelectorAll(
+          ".answer-button"
         );
 
-        const correctChoice = document.getElementById(
-          `choice-${questionIndex}-${correctAnswer}`
-        );
+      buttons.forEach(
+        (button, index) => {
+          button.disabled = true;
 
-        correctChoice.classList.add("correct-choice");
-
-        if (selectedAnswer === correctAnswer) {
-          score++;
-          feedback.className = "feedback correct";
-          feedback.innerHTML = `✅ إجابة صحيحة. ${item.explanation}`;
-        } else {
-          const wrongChoice = document.getElementById(
-            `choice-${questionIndex}-${selectedAnswer}`
-          );
-
-          wrongChoice.classList.add("wrong-choice");
-          feedback.className = "feedback wrong";
-          feedback.innerHTML = `❌ إجابة غير صحيحة. ${item.explanation}`;
+          if (index === item.correct) {
+            button.classList.add(
+              "correct"
+            );
+          }
         }
-      });
+      );
 
-      document.querySelectorAll('input[type="radio"]').forEach(input => {
-        input.disabled = true;
-      });
+      if (
+        selectedIndex === item.correct
+      ) {
+        score++;
 
-      submitButton.disabled = true;
+        selectedButton.classList.add(
+          "correct"
+        );
 
-      const percentage = Math.round((score / questions.length) * 100);
+        feedback.className =
+          "feedback show correct";
+
+        feedback.innerHTML =
+          `✅ إجابتكِ صحيحة، أحسنتِ!<br>${item.explanation}`;
+
+        playTone(true);
+      } else {
+        selectedButton.classList.add(
+          "wrong"
+        );
+
+        feedback.className =
+          "feedback show wrong";
+
+        feedback.innerHTML =
+          `❌ إجابتكِ غير صحيحة.<br>${item.explanation}`;
+
+        playTone(false);
+        vibrateWrongAnswer();
+      }
+
+      nextButton.classList.add(
+        "show"
+      );
+    }
+
+    function showResult() {
+      quizArea.style.display =
+        "none";
+
+      document
+        .querySelector(".bottom-back")
+        .style.display =
+        "none";
+
+      resultBox.classList.add(
+        "show"
+      );
+
+      const percentage =
+        Math.round(
+          (score / questions.length) * 100
+        );
 
       scoreText.textContent =
         `${score} من ${questions.length} — ${percentage}%`;
 
-      if (score === 15) {
+      if (score === 10) {
         resultIcon.textContent = "👑";
+
         resultMessage.textContent =
-          "إجابة كاملة ومتميزة! أتقنتِ جميع مهارات درس النعت.";
-      } else if (score >= 12) {
+          "ممتازة جدًا! أتقنتِ جميع مهارات درس النعت.";
+      } else if (score >= 8) {
         resultIcon.textContent = "🏆";
+
         resultMessage.textContent =
-          "أداء رائع جدًا! راجعي الأسئلة التي أخطأتِ فيها للوصول إلى الدرجة الكاملة.";
-      } else if (score >= 9) {
+          "أداء رائع! راجعي التعقيبات البسيطة للوصول إلى الدرجة الكاملة.";
+      } else if (score >= 6) {
         resultIcon.textContent = "🌟";
+
         resultMessage.textContent =
-          "أداء جيد، وتحتاجين إلى مراجعة المطابقة والإعراب والفرق بين النعت والحال.";
+          "أداء جيد، ويفيدكِ مراجعة أنواع النعت والإعراب وشروط النعت الجملة.";
       } else {
         resultIcon.textContent = "📚";
+
         resultMessage.textContent =
-          "تحتاجين إلى مراجعة ملف الدرس ومشاهدة الفيديو مرة أخرى، ثم أعيدي الاختبار.";
+          "راجعي ملف الدرس بهدوء، ثم أعيدي الاختبار لتثبيت المهارات.";
       }
 
-      resultBox.classList.add("show");
-      resultBox.scrollIntoView({ behavior: "smooth", block: "center" });
-    });
-
-    retryButton.addEventListener("click", function() {
-      quizForm.reset();
-
-      document.querySelectorAll(".choice").forEach(choice => {
-        choice.classList.remove("correct-choice", "wrong-choice");
+      resultBox.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
       });
+    }
 
-      document.querySelectorAll(".feedback").forEach(feedback => {
-        feedback.className = "feedback";
-        feedback.innerHTML = "";
-      });
+    nextButton.addEventListener(
+      "click",
+      () => {
+        if (!answered) {
+          return;
+        }
 
-      document.querySelectorAll('input[type="radio"]').forEach(input => {
-        input.disabled = false;
-      });
+        if (
+          currentQuestion <
+          questions.length - 1
+        ) {
+          currentQuestion++;
 
-      submitButton.disabled = false;
-      warning.classList.remove("show");
-      resultBox.classList.remove("show");
-      progressBar.style.width = "0%";
-            submitButton.disabled = false;
-      warning.classList.remove("show");
-      resultBox.classList.remove("show");
-      progressBar.style.width = "0%";
-      progressText.textContent = `0 من ${questions.length}`;
+          renderQuestion();
 
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-    });
+          questionCard.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+        } else {
+          showResult();
+        }
+      }
+    );
 
-    renderQuestions();
+    retryButton.addEventListener(
+      "click",
+      () => {
+        currentQuestion = 0;
+        score = 0;
+        answered = false;
+
+        resultBox.classList.remove(
+          "show"
+        );
+
+        quizArea.style.display =
+          "block";
+
+        document
+          .querySelector(".bottom-back")
+          .style.display =
+          "block";
+
+        renderQuestion();
+
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      }
+    );
+
+    renderQuestion();
   </script>
 
 </body>
+
 </html>
-      progressText.textContent = `0 من ${question
