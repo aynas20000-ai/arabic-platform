@@ -240,7 +240,7 @@
     .flip-card {
       position: relative;
       width: 100%;
-      min-height: 710px;
+      min-height: 1200px;
       cursor: pointer;
       transform-style: preserve-3d;
       transition: transform 0.7s ease;
@@ -255,7 +255,7 @@
       inset: 0;
       display: flex;
       flex-direction: column;
-      overflow: hidden;
+      overflow: visible;
       background:
         linear-gradient(
           155deg,
@@ -383,6 +383,7 @@
           var(--purple-dark)
         );
       border-bottom: 4px solid var(--gold);
+      border-radius: 27px 27px 0 0;
     }
 
     .back-header h2 {
@@ -397,9 +398,8 @@
 
     .back-scroll {
       flex: 1;
-      overflow-y: auto;
+      overflow: visible;
       padding: 19px;
-      scrollbar-width: thin;
     }
 
     .learning-box {
@@ -660,11 +660,15 @@
         grid-template-columns:
           repeat(2, 1fr);
       }
+
+      .flip-card {
+        min-height: 1100px;
+      }
     }
 
     @media (max-width: 620px) {
       .flip-card {
-        min-height: 750px;
+        min-height: 1450px;
       }
 
       .top-actions > * {
