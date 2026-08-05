@@ -1475,8 +1475,17 @@
 
     function showPreviousCard() {
       if (currentCard > 0) {
+        const currentPosition =
+          window.scrollY;
+
         currentCard--;
+
         renderCard();
+
+        window.scrollTo({
+          top: currentPosition,
+          behavior: "auto"
+        });
       }
     }
 
@@ -1491,12 +1500,16 @@
         currentCard <
         cards.length - 1
       ) {
+        const currentPosition =
+          window.scrollY;
+
         currentCard++;
+
         renderCard();
 
         window.scrollTo({
-          top: 0,
-          behavior: "smooth"
+          top: currentPosition,
+          behavior: "auto"
         });
       } else {
         showCompletion();
@@ -1603,7 +1616,7 @@
 
       window.scrollTo({
         top: 0,
-        behavior: "smooth"
+        behavior: "auto"
       });
     }
 
