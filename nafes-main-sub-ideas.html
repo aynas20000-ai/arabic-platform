@@ -13,29 +13,26 @@
 
   <style>
     :root {
-      --lavender: #9877a8;
-      --lavender-dark: #624b70;
-      --lavender-light: #eee5f2;
+      --purple: #74558c;
+      --purple-dark: #4d385d;
+      --purple-light: #f4ecf8;
 
-      --pink: #d895aa;
-      --pink-light: #faeaf0;
+      --gold: #c9a85c;
+      --gold-light: #fff3cb;
 
-      --beige: #fff9f1;
-      --gold: #c9a552;
-      --gold-light: #f4dda0;
+      --cream: #fffaf1;
+      --paper: #fffdf8;
+      --text: #4b3857;
 
-      --green: #4e8a68;
-      --green-light: #eaf6ee;
+      --green: #3f8756;
+      --green-light: #eaf7ee;
 
-      --red: #b84a4a;
-      --red-light: #fff0f0;
-
-      --text: #55465c;
-      --white: #ffffff;
+      --red: #ad4655;
+      --red-light: #fff0f2;
 
       --shadow:
-        0 18px 45px
-        rgba(98, 75, 112, 0.18);
+        0 16px 36px
+        rgba(77, 56, 93, 0.15);
     }
 
     * {
@@ -47,16 +44,15 @@
     }
 
     body {
-      margin: 0;
       min-height: 100vh;
+      margin: 0;
       overflow-x: hidden;
       color: var(--text);
       background:
-        radial-gradient(
-          circle at top,
-          #fffdf9,
-          #f7edf3 48%,
-          #ece2f1
+        linear-gradient(
+          180deg,
+          var(--cream),
+          #f7eff8
         );
       font-family:
         Tahoma,
@@ -67,117 +63,84 @@
     button,
     a {
       font-family: inherit;
-      -webkit-tap-highlight-color:
-        transparent;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .hero {
       position: relative;
       overflow: hidden;
-      padding: 28px 16px 24px;
+      padding: 32px 18px 28px;
       color: white;
+      text-align: center;
       background:
         linear-gradient(
           135deg,
-          var(--lavender-dark),
-          var(--lavender),
-          var(--pink)
+          var(--purple),
+          var(--purple-dark)
         );
-      text-align: center;
-      border-bottom:
-        6px solid var(--gold);
+      border-bottom: 6px solid var(--gold);
     }
 
     .hero::before,
     .hero::after {
       position: absolute;
       content: "";
-      width: 180px;
-      height: 180px;
+      width: 190px;
+      height: 190px;
       border-radius: 50%;
-      background:
-        rgba(
-          255,
-          255,
-          255,
-          0.08
-        );
+      background: rgba(255, 255, 255, 0.07);
     }
 
     .hero::before {
-      top: -95px;
+      top: -105px;
       right: -65px;
     }
 
     .hero::after {
-      bottom: -105px;
-      left: -55px;
+      bottom: -115px;
+      left: -60px;
     }
 
-    .hero-icon,
-    .hero h1,
-    .hero p {
+    .hero > * {
       position: relative;
       z-index: 2;
     }
 
     .hero-icon {
+      margin-bottom: 4px;
       font-size: 62px;
-      margin-bottom: 5px;
     }
 
     .hero h1 {
       margin: 0 0 8px;
-      font-size:
-        clamp(
-          31px,
-          8vw,
-          48px
-        );
+      font-size: clamp(32px, 8vw, 48px);
     }
 
     .hero p {
       max-width: 760px;
       margin: 0 auto;
-      font-size:
-        clamp(
-          16px,
-          4.2vw,
-          21px
-        );
+      font-size: clamp(16px, 4.2vw, 21px);
       line-height: 1.9;
     }
 
     .page-shell {
-      width:
-        min(
-          94%,
-          920px
-        );
+      width: min(94%, 920px);
       margin: 0 auto;
-      padding: 18px 0 34px;
+      padding: 22px 0 38px;
     }
 
     .top-panel {
-      padding: 14px;
-      border:
-        2px solid #dfcfda;
-      border-radius: 24px;
-      background:
-        rgba(
-          255,
-          255,
-          255,
-          0.92
-        );
+      padding: 15px;
+      background: rgba(255, 253, 248, 0.96);
+      border: 3px solid var(--gold);
+      border-radius: 25px;
       box-shadow: var(--shadow);
     }
 
     .top-actions {
       display: flex;
       align-items: center;
-      justify-content:
-        space-between;
+      justify-content: space-between;
       gap: 10px;
       flex-wrap: wrap;
     }
@@ -185,34 +148,30 @@
     .library-link,
     .sound-button,
     .restart-button {
-      min-height: 48px;
-      padding: 10px 15px;
-      border: 0;
-      border-radius: 15px;
+      min-height: 49px;
+      padding: 11px 16px;
+      border: 2px solid var(--gold);
+      border-radius: 17px;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
       font-size: 16px;
       font-weight: bold;
-      cursor: pointer;
-      text-decoration: none;
     }
 
     .library-link {
-      color: #654b16;
-      background:
-        linear-gradient(
-          135deg,
-          var(--gold-light),
-          #f9ebbd
-        );
-    }
-
-    .sound-button {
       color: white;
       background:
         linear-gradient(
           135deg,
-          var(--lavender-dark),
-          var(--lavender)
+          var(--purple),
+          var(--purple-dark)
         );
+    }
+
+    .sound-button {
+      color: var(--purple-dark);
+      background: var(--gold-light);
     }
 
     .restart-button {
@@ -220,64 +179,59 @@
       background:
         linear-gradient(
           135deg,
-          #a73f4c,
-          #ca6674
+          #a64051,
+          #c35e70
         );
     }
 
     .progress-row {
       display: flex;
-      justify-content:
-        space-between;
+      justify-content: space-between;
       align-items: center;
       gap: 10px;
-      margin-top: 14px;
+      margin-top: 15px;
       font-size: 17px;
       font-weight: bold;
     }
 
     .progress-track {
-      height: 14px;
-      margin-top: 9px;
+      height: 15px;
+      margin-top: 10px;
       overflow: hidden;
-      border-radius: 999px;
-      background: #eee5eb;
+      background: #eadff0;
+      border: 1px solid #d3b8df;
+      border-radius: 20px;
     }
 
     .progress-bar {
       width: 16.66%;
       height: 100%;
-      border-radius: inherit;
       background:
         linear-gradient(
           90deg,
-          var(--pink),
-          var(--lavender),
-          var(--gold)
+          var(--gold),
+          var(--purple)
         );
-      transition:
-        width 0.45s ease;
+      border-radius: inherit;
+      transition: width 0.35s ease;
     }
 
     .stage {
-      margin-top: 18px;
+      margin-top: 22px;
       perspective: 1600px;
     }
 
     .flip-card {
       position: relative;
       width: 100%;
-      min-height: 650px;
-      transform-style:
-        preserve-3d;
-      transition:
-        transform 0.75s ease;
+      min-height: 710px;
       cursor: pointer;
+      transform-style: preserve-3d;
+      transition: transform 0.7s ease;
     }
 
     .flip-card.flipped {
-      transform:
-        rotateY(180deg);
+      transform: rotateY(180deg);
     }
 
     .card-face {
@@ -286,119 +240,94 @@
       display: flex;
       flex-direction: column;
       overflow: hidden;
-      border:
-        4px solid #dfcad7;
-      border-radius: 31px;
       background:
         linear-gradient(
-          160deg,
-          #fffefd,
-          #faedf3
+          155deg,
+          var(--paper),
+          var(--purple-light)
         );
+      border: 4px solid var(--gold);
+      border-radius: 32px;
       box-shadow: var(--shadow);
-      backface-visibility:
-        hidden;
-      -webkit-backface-visibility:
-        hidden;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
     }
 
     .card-front {
       align-items: center;
       justify-content: center;
-      padding: 28px 22px;
+      padding: 32px 22px;
       text-align: center;
     }
 
     .card-back {
-      transform:
-        rotateY(180deg);
+      transform: rotateY(180deg);
     }
 
     .front-number {
       position: absolute;
       top: 18px;
       right: 18px;
-      padding: 8px 15px;
-      border-radius: 999px;
+      padding: 7px 17px;
       color: white;
       background:
         linear-gradient(
           135deg,
-          var(--lavender-dark),
-          var(--lavender)
+          var(--purple),
+          var(--purple-dark)
         );
+      border: 2px solid var(--gold);
+      border-radius: 999px;
       font-weight: bold;
     }
 
     .front-icon {
-      font-size:
-        clamp(
-          80px,
-          20vw,
-          130px
-        );
+      margin: 25px 0 10px;
+      font-size: clamp(80px, 20vw, 125px);
       line-height: 1;
-      animation:
-        gentleFloat
-        2.5s ease-in-out
-        infinite alternate;
+      animation: gentleFloat 2.4s ease-in-out infinite alternate;
     }
 
     @keyframes gentleFloat {
       from {
-        transform:
-          translateY(0);
+        transform: translateY(0);
       }
 
       to {
-        transform:
-          translateY(-10px);
+        transform: translateY(-10px);
       }
     }
 
     .front-title {
-      margin: 20px 0 10px;
-      color: var(--lavender-dark);
-      font-size:
-        clamp(
-          30px,
-          8vw,
-          48px
-        );
+      margin: 14px 0 10px;
+      color: var(--purple-dark);
+      font-size: clamp(30px, 8vw, 47px);
     }
 
     .front-hint {
-      max-width: 620px;
+      max-width: 650px;
       margin: 0;
-      padding: 13px 18px;
-      border-radius: 18px;
-      color: #654c70;
-      background:
-        var(--lavender-light);
-      font-size:
-        clamp(
-          17px,
-          4.5vw,
-          21px
-        );
+      padding: 14px 17px;
+      color: var(--purple-dark);
+      background: white;
+      border: 2px dashed var(--gold);
+      border-radius: 19px;
+      font-size: clamp(17px, 4.3vw, 21px);
       line-height: 1.8;
       font-weight: bold;
     }
 
     .tap-hint {
-      margin-top: 22px;
-      color: var(--pink);
+      margin-top: 24px;
+      color: var(--purple);
       font-size: 18px;
       font-weight: bold;
-      animation:
-        pulseHint
-        1.2s ease-in-out
-        infinite alternate;
+      animation: pulseHint 1.2s ease-in-out infinite alternate;
     }
 
     @keyframes pulseHint {
       from {
-        opacity: 0.55;
+        opacity: 0.5;
       }
 
       to {
@@ -407,25 +336,21 @@
     }
 
     .back-header {
-      padding: 17px 18px;
+      padding: 18px;
       color: white;
+      text-align: center;
       background:
         linear-gradient(
           135deg,
-          var(--lavender-dark),
-          var(--lavender)
+          var(--purple),
+          var(--purple-dark)
         );
-      text-align: center;
+      border-bottom: 4px solid var(--gold);
     }
 
     .back-header h2 {
       margin: 0;
-      font-size:
-        clamp(
-          25px,
-          6vw,
-          35px
-        );
+      font-size: clamp(25px, 6vw, 35px);
     }
 
     .back-scroll {
@@ -436,140 +361,133 @@
     }
 
     .learning-box {
-      margin-bottom: 14px;
-      padding: 16px;
-      border:
-        2px solid #e2d1dc;
-      border-radius: 20px;
-      background:
-        rgba(
-          255,
-          255,
-          255,
-          0.86
-        );
-      font-size:
-        clamp(
-          16px,
-          4vw,
-          19px
-        );
+      margin-bottom: 15px;
+      padding: 17px;
+      background: white;
+      border: 2px solid #ddcce5;
+      border-radius: 21px;
+      font-size: clamp(16px, 4vw, 19px);
       line-height: 1.9;
     }
 
     .learning-box h3 {
-      margin: 0 0 7px;
-      color: var(--lavender-dark);
+      margin: 0 0 8px;
+      color: var(--purple-dark);
       font-size: 21px;
     }
 
     .passage-box {
+      text-align: justify;
       background:
         linear-gradient(
           145deg,
-          #fff9ef,
-          #fbf0e3
+          #fffaf1,
+          #fff4df
         );
-      border-color: #ead6b8;
-      text-align: justify;
+      border-color: var(--gold);
+      white-space: pre-line;
     }
 
     .question-box {
       background:
         linear-gradient(
           145deg,
-          #f8edf4,
-          #f0e6f5
+          #faf4fc,
+          var(--purple-light)
         );
     }
 
     .answers {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 10px;
-      margin-top: 12px;
+      gap: 11px;
+      margin-top: 13px;
     }
 
     .answer-button {
       width: 100%;
-      min-height: 58px;
-      padding: 11px 13px;
-      border:
-        2px solid var(--gold);
-      border-radius: 17px;
-      color: var(--text);
-      background: white;
-      font-size:
-        clamp(
-          15px,
-          3.8vw,
-          18px
-        );
-      line-height: 1.65;
+      min-height: 59px;
+      padding: 12px 14px;
       cursor: pointer;
+      color: var(--text);
       text-align: right;
+      background: white;
+      border: 2px solid var(--gold);
+      border-radius: 18px;
+      font-size: clamp(15px, 3.8vw, 18px);
+      line-height: 1.65;
+      transition:
+        transform 0.15s ease,
+        background 0.15s ease;
+    }
+
+    .answer-button:hover {
+      transform: translateY(-2px);
+      background: #fbf7fd;
     }
 
     .answer-button.correct {
-      color: #245b3b;
-      border-color: var(--green);
+      color: #205b34;
       background: var(--green-light);
+      border-color: var(--green);
     }
 
     .answer-button.wrong {
-      color: #7d2929;
-      border-color: var(--red);
+      color: #83303d;
       background: var(--red-light);
+      border-color: var(--red);
+    }
+
+    .answer-button:disabled {
+      cursor: default;
     }
 
     .feedback {
       display: none;
-      margin-top: 12px;
-      padding: 14px;
+      margin-top: 13px;
+      padding: 15px;
+      text-align: center;
       border-radius: 17px;
-      font-size: 16px;
       line-height: 1.8;
       font-weight: bold;
-      text-align: center;
     }
 
     .feedback.show {
       display: block;
     }
 
-    .feedback.correct {
-      color: #245b3b;
-      border:
-        2px solid #91bea0;
+    .feedback.good {
+      color: #205b34;
       background: var(--green-light);
+      border: 2px solid var(--green);
     }
 
-    .feedback.wrong {
-      color: #7d2929;
-      border:
-        2px solid #d7a3a3;
+    .feedback.bad {
+      color: #83303d;
       background: var(--red-light);
+      border: 2px solid var(--red);
     }
 
     .navigation {
       display: flex;
       gap: 12px;
-      margin-top: 16px;
+      margin-top: 18px;
     }
 
     .nav-button {
       flex: 1;
-      min-height: 57px;
-      border: 0;
-      border-radius: 18px;
-      font-size: 19px;
-      font-weight: bold;
+      min-height: 55px;
+      padding: 11px;
       cursor: pointer;
+      font-size: 18px;
+      font-weight: bold;
+      border: 3px solid var(--gold);
+      border-radius: 20px;
     }
 
     .previous-button {
-      color: var(--lavender-dark);
-      background: var(--lavender-light);
+      color: var(--purple-dark);
+      background: var(--purple-light);
     }
 
     .next-button {
@@ -577,74 +495,62 @@
       background:
         linear-gradient(
           135deg,
-          var(--lavender-dark),
-          var(--lavender)
+          var(--purple),
+          var(--purple-dark)
         );
     }
 
     .nav-button:disabled {
-      opacity: 0.42;
       cursor: not-allowed;
+      opacity: 0.45;
     }
 
     .completion-screen {
       display: none;
-      margin-top: 18px;
-      padding: 28px 20px;
-      border:
-        4px solid var(--gold);
-      border-radius: 31px;
+      margin-top: 22px;
+      padding: 34px 20px;
+      text-align: center;
       background:
         linear-gradient(
           145deg,
-          #fffdf5,
-          #faeaf1
+          var(--paper),
+          var(--purple-light)
         );
+      border: 4px solid var(--gold);
+      border-radius: 32px;
       box-shadow: var(--shadow);
-      text-align: center;
     }
 
     .completion-screen.show {
       display: block;
-      animation:
-        completionAppear
-        0.8s ease both;
+      animation: completionAppear 0.7s ease both;
     }
 
     @keyframes completionAppear {
       from {
         opacity: 0;
-        transform:
-          translateY(45px)
-          scale(0.94);
+        transform: translateY(35px) scale(0.95);
       }
 
       to {
         opacity: 1;
-        transform:
-          translateY(0)
-          scale(1);
+        transform: translateY(0) scale(1);
       }
     }
 
     .completion-icon {
-      font-size: 85px;
+      font-size: 78px;
     }
 
     .completion-screen h2 {
       margin: 8px 0;
-      color: var(--lavender-dark);
-      font-size:
-        clamp(
-          28px,
-          7vw,
-          42px
-        );
+      color: var(--purple-dark);
+      font-size: 35px;
     }
 
     .completion-screen p {
-      max-width: 680px;
-      margin: 0 auto;
+      max-width: 700px;
+      margin: 0 auto 22px;
       font-size: 18px;
       line-height: 1.9;
     }
@@ -652,39 +558,34 @@
     .completion-buttons {
       display: flex;
       justify-content: center;
-      gap: 11px;
+      gap: 12px;
       flex-wrap: wrap;
-      margin-top: 18px;
     }
 
     .completion-button {
-      min-height: 52px;
-      padding: 11px 18px;
-      border: 0;
-      border-radius: 17px;
+      min-height: 53px;
+      padding: 12px 19px;
+      cursor: pointer;
+      color: white;
+      text-decoration: none;
+      background:
+        linear-gradient(
+          135deg,
+          var(--purple),
+          var(--purple-dark)
+        );
+      border: 3px solid var(--gold);
+      border-radius: 21px;
       font-size: 17px;
       font-weight: bold;
-      cursor: pointer;
-      text-decoration: none;
     }
 
     .again-button {
-      color: white;
       background:
         linear-gradient(
           135deg,
-          #a73f4c,
-          #ca6674
-        );
-    }
-
-    .library-button {
-      color: #654b16;
-      background:
-        linear-gradient(
-          135deg,
-          var(--gold-light),
-          #f9ebbd
+          #a64051,
+          #c35e70
         );
     }
 
@@ -693,10 +594,7 @@
       z-index: 9999;
       top: -50px;
       pointer-events: none;
-      animation:
-        confettiFall
-        3.8s linear
-        forwards;
+      animation: confettiFall 3.5s linear forwards;
     }
 
     @keyframes confettiFall {
@@ -709,36 +607,45 @@
     }
 
     footer {
-      margin-top: 22px;
-      padding: 18px;
+      margin-top: 25px;
+      padding: 21px 15px;
       color: white;
-      border-top:
-        5px solid var(--gold);
+      text-align: center;
       background:
         linear-gradient(
           135deg,
-          var(--lavender-dark),
-          var(--lavender)
+          var(--purple-dark),
+          var(--purple)
         );
-      text-align: center;
+      border-top: 5px solid var(--gold);
       font-weight: bold;
     }
 
     @media (min-width: 700px) {
       .answers {
-        grid-template-columns:
-          repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr);
       }
     }
 
     @media (max-width: 620px) {
       .flip-card {
-        min-height: 700px;
+        min-height: 750px;
       }
 
       .top-actions > * {
         flex: 1 1 100%;
-        text-align: center;
+      }
+
+      .progress-row {
+        font-size: 15px;
+      }
+
+      .back-scroll {
+        padding: 13px;
+      }
+
+      .navigation {
+        flex-direction: column;
       }
     }
   </style>
@@ -748,17 +655,13 @@
 
   <header class="hero">
 
-    <div class="hero-icon">
-      🌳
-    </div>
+    <div class="hero-icon">🌳</div>
 
-    <h1>
-      شجرة الأفكار
-    </h1>
+    <h1>شجرة الأفكار</h1>
 
     <p>
-      ست بطاقات تفاعلية تساعدكِ على فهم أنواع الأفكار
-      داخل النص، من مفتاح النص حتى الفكرة الضمنية.
+      ست بطاقات تفاعلية تساعدكِ على فهم أنواع الأفكار داخل النص،
+      من مفتاح النص حتى الفكرة الضمنية.
     </p>
 
   </header>
@@ -770,8 +673,8 @@
       <div class="top-actions">
 
         <a
-          class="library-link"
-          href="nafes-library.html"
+          class="library-link back-to-library"
+          href="index.html"
         >
           🏠 العودة إلى مكتبة نافس
         </a>
@@ -870,9 +773,7 @@
 
             <section class="learning-box">
 
-              <h3>
-                📘 التعريف
-              </h3>
+              <h3>📘 التعريف</h3>
 
               <div id="definitionText"></div>
 
@@ -880,9 +781,7 @@
 
             <section class="learning-box passage-box">
 
-              <h3>
-                📖 نص التدريب
-              </h3>
+              <h3>📖 نص التدريب</h3>
 
               <div id="passageText"></div>
 
@@ -890,9 +789,7 @@
 
             <section class="learning-box question-box">
 
-              <h3>
-                🎯 سؤال التدريب
-              </h3>
+              <h3>🎯 سؤال التدريب</h3>
 
               <div id="questionText"></div>
 
@@ -920,7 +817,6 @@
           id="previousButton"
           class="nav-button previous-button"
           type="button"
-          disabled
         >
           السابق
         </button>
@@ -929,7 +825,6 @@
           id="nextButton"
           class="nav-button next-button"
           type="button"
-          disabled
         >
           التالي
         </button>
@@ -943,13 +838,9 @@
       class="completion-screen"
     >
 
-      <div class="completion-icon">
-        🏅
-      </div>
+      <div class="completion-icon">🏅</div>
 
-      <h2>
-        خبيرة الأفكار
-      </h2>
+      <h2>خبيرة الأفكار</h2>
 
       <p>
         أحسنتِ! أنهيتِ بطاقات شجرة الأفكار الست،
@@ -968,8 +859,8 @@
         </button>
 
         <a
-          class="completion-button library-button"
-          href="nafes-library.html"
+          class="completion-button back-to-library"
+          href="index.html"
         >
           🏠 العودة إلى مكتبة نافس
         </a>
@@ -986,887 +877,752 @@
 
   <script>
     const trainingPassage = `
-  تُعَدُّ الطاقةُ الشمسيةُ من أنظفِ مصادرِ الطاقةِ المتجددةِ في العالم،
-  إذ تُحوَّلُ أشعةُ الشمسِ إلى كهرباءَ عبرَ الألواحِ الشمسيةِ
-  دونَ انبعاثاتٍ ضارةٍ.
-
-  وتشهدُ الدولُ المتقدمةُ إقبالًا متزايدًا على تركيبِ هذه الألواحِ
-  فوقَ أسطحِ المنازلِ والمصانعِ لتقليلِ الاعتمادِ على الوقودِ الأحفوريِّ.
-
-  ومع ذلك، ترتفعُ تكلفةُ التركيبِ الأوليةُ بشكلٍ ملحوظٍ،
-  ويحتاجُ المستهلكونَ غالبًا إلى سنواتٍ عدةٍ
-  لاستردادِ قيمةِ استثمارهم من خلالِ توفيرِ فواتيرِ الكهرباءِ.
-
-  وفي بعضِ المناطقِ النائيةِ التي لا تصلُها شبكاتُ الكهرباءِ التقليديةِ،
-  أصبحتِ الألواحُ الشمسيةُ الخيارَ الوحيدَ المتاحَ للسكانِ
-  لإنارةِ منازلهم وتشغيلِ الأجهزةِ الأساسيةِ.
-`;
-
-const cards = [
-  {
-    number: 1,
-    icon: "🔑",
-    title: "مفتاح النص",
-    hint:
-      "الكلمة أو العبارة التي تقودكِ بسرعة إلى موضوع النص.",
-
-    definition:
-      "الكلمة أو العبارة التي تتكرر في النص، أو تحمل أكبر قدر من الدلالة، وتكون بمثابة البوصلة التي تقودكِ إلى موضوع النص بسرعة.",
-
-    question:
-      "ما مفتاح النص السابق؟",
-
-    options: [
-      "الوقود الأحفوري",
-      "الطاقة الشمسية",
-      "فواتير الكهرباء",
-      "المناطق النائية"
-    ],
-
-    correct: 1,
-
-    explanation:
-      "لأن الطاقة الشمسية هي المحور الذي تدور حوله جميع أفكار النص، بينما بقية الخيارات تفاصيل مرتبطة بها.",
-
-    encouragement:
-      "أحسنتِ! امتلكتِ البوصلة الأولى لفهم النص. 🌟"
-  },
-
-  {
-    number: 2,
-    icon: "🎯",
-    title: "الفكرة الرئيسة",
-    hint:
-      "الخلاصة الشاملة التي تجمع مضمون النص كله في جملة واحدة.",
-
-    definition:
-      "المحور العام الذي يلخّص مضمون النص كله بجملة واحدة شاملة.",
-
-    question:
-      "اختاري الفكرة الرئيسة الأدق للنص:",
-
-    options: [
-      "الطاقة الشمسية مصدر نظيف، لكن الاستفادة منها تحتاج إلى تجاوز تحديات معينة.",
-      "الطاقة الشمسية رخيصة ومتاحة للجميع فور التركيب.",
-      "جميع الدول استغنت عن الوقود الأحفوري بفضل الطاقة الشمسية.",
-      "المناطق النائية هي المستفيد الوحيد من الطاقة الشمسية."
-    ],
-
-    correct: 0,
-
-    explanation:
-      "لأن هذا الخيار يجمع بين فوائد الطاقة الشمسية والتحديات المرتبطة بارتفاع تكلفة تركيبها.",
-
-    encouragement:
-      "رائع! الفكرة الرئيسة تجمع صورة النص كاملة. 🌿"
-  },
-
-  {
-    number: 3,
-    icon: "🌿",
-    title: "الأفكار الفرعية",
-    hint:
-      "أفكار تتفرع من الفكرة الرئيسة وتخدمها.",
-
-    definition:
-      "أفكار تتفرع من الفكرة الرئيسة، ويحمل كل جزء من النص فكرة تخدم الفكرة العامة.",
-
-    question:
-      "أي العبارات التالية ليست فكرة فرعية في النص؟",
-
-    options: [
-      "تحوّل الألواح الشمسية أشعة الشمس إلى كهرباء.",
-      "الدول المتقدمة تقبل على تركيب الألواح الشمسية.",
-      "تكلفة التركيب الأولية مرتفعة.",
-      "جميع سكان العالم يمتلكون ألواحًا شمسية حاليًا."
-    ],
-
-    correct: 3,
-
-    explanation:
-      "لأن العبارة الأخيرة غير موجودة في النص، بينما بقية الخيارات وردت فيه بوضوح.",
-
-    encouragement:
-      "ممتاز! ميّزتِ بين ما ورد في النص وما لم يرد. ✨"
-  },
-
-  {
-    number: 4,
-    icon: "🔍",
-    title: "الأفكار الثانوية",
-    hint:
-      "تفاصيل دقيقة توضّح الفكرة الفرعية وتدعمها.",
+تُعَدُّ الطاقةُ الشمسيةُ من أنظفِ مصادرِ الطاقةِ المتجددةِ في العالم،
+إذ تُحوَّلُ أشعةُ الشمسِ إلى كهرباءَ عبرَ الألواحِ الشمسيةِ
+دونَ انبعاثاتٍ ضارةٍ.
 
-    definition:
-      "تفاصيل أدق داخل الفكرة الفرعية نفسها، تكون أقل وزنًا لكنها توضّحها أو تدعمها.",
+وتشهدُ الدولُ المتقدمةُ إقبالًا متزايدًا على تركيبِ هذه الألواحِ
+فوقَ أسطحِ المنازلِ والمصانعِ لتقليلِ الاعتمادِ على الوقودِ الأحفوريِّ.
 
-    question:
-      "ما الفكرة الثانوية المرتبطة بفكرة ارتفاع تكلفة التركيب؟",
+ومع ذلك، ترتفعُ تكلفةُ التركيبِ الأوليةُ بشكلٍ ملحوظٍ،
+ويحتاجُ المستهلكونَ غالبًا إلى سنواتٍ عدةٍ
+لاستردادِ قيمةِ استثمارهم من خلالِ توفيرِ فواتيرِ الكهرباءِ.
 
-    options: [
-      "الألواح الشمسية تنتج كهرباء نظيفة.",
-      "المستهلك يحتاج سنوات عدة لاسترداد قيمة استثماره.",
-      "الدول المتقدمة تركب الألواح فوق الأسطح.",
-      "المناطق النائية تعتمد على الطاقة الشمسية."
-    ],
+وفي بعضِ المناطقِ النائيةِ التي لا تصلُها شبكاتُ الكهرباءِ التقليديةِ،
+أصبحتِ الألواحُ الشمسيةُ الخيارَ الوحيدَ المتاحَ للسكانِ
+لإنارةِ منازلهم وتشغيلِ الأجهزةِ الأساسيةِ.
+    `;
 
-    correct: 1,
+    const cards = [
+      {
+        number: 1,
+        icon: "🔑",
+        title: "مفتاح النص",
 
-    explanation:
-      "لأن طول مدة استرداد قيمة الاستثمار تفصيل يوضّح نتيجة ارتفاع تكلفة التركيب.",
+        hint:
+          "الكلمة أو العبارة التي تقودكِ بسرعة إلى موضوع النص.",
 
-    encouragement:
-      "أحسنتِ! فرّقتِ بين الفكرة الفرعية وتفصيلها الداعم. 🌸"
-  },
+        definition:
+          "الكلمة أو العبارة التي تتكرر في النص، أو تحمل أكبر قدر من الدلالة، وتكون بمثابة البوصلة التي تقودكِ إلى موضوع النص بسرعة.",
 
-  {
-    number: 5,
-    icon: "📝",
-    title: "الفكرة الصريحة",
-    hint:
-      "فكرة مذكورة مباشرة في النص ولا تحتاج إلى استنتاج.",
+        question:
+          "ما مفتاح النص السابق؟",
 
-    definition:
-      "فكرة مذكورة مباشرة في النص، ولا تحتاج إلى استنتاج أو ربط.",
+        options: [
+          "الوقود الأحفوري",
+          "الطاقة الشمسية",
+          "فواتير الكهرباء",
+          "المناطق النائية"
+        ],
 
-    question:
-      "أي العبارات التالية فكرة صريحة وردت حرفيًا في النص؟",
+        correct: 1,
 
-    options: [
-      "الطاقة الشمسية ستحل محل جميع مصادر الطاقة مستقبلًا.",
-      "ترتفع تكلفة التركيب الأولية بشكل ملحوظ.",
-      "يجب على الحكومات دعم الطاقة الشمسية ماليًا.",
-      "المناطق النائية أفضل من المدن في استخدام الطاقة الشمسية."
-    ],
+        explanation:
+          "لأن الطاقة الشمسية هي المحور الذي تدور حوله جميع أفكار النص، بينما بقية الخيارات تفاصيل مرتبطة بها.",
 
-    correct: 1,
+        encouragement:
+          "أحسنتِ! امتلكتِ البوصلة الأولى لفهم النص. 🌟"
+      },
 
-    explanation:
-      "لأن هذه العبارة وردت مباشرة في النص، بينما بقية الخيارات آراء أو افتراضات لم يذكرها الكاتب.",
+      {
+        number: 2,
+        icon: "🎯",
+        title: "الفكرة الرئيسة",
 
-    encouragement:
-      "جميل! التقطتِ الفكرة المذكورة مباشرة دون تأويل. 🔎"
-  },
+        hint:
+          "الخلاصة الشاملة التي تجمع مضمون النص كله في جملة واحدة.",
 
-  {
-    number: 6,
-    icon: "💭",
-    title: "الفكرة الضمنية",
-    hint:
-      "فكرة تُفهم من السياق ولا تُذكر بصورة مباشرة.",
+        definition:
+          "المحور العام الذي يلخّص مضمون النص كله بجملة واحدة شاملة.",
 
-    definition:
-      "فكرة غير مذكورة صراحة، تُفهم من السياق أو الإيحاء، وتحتاج إلى مهارة الاستنتاج.",
+        question:
+          "اختاري الفكرة الرئيسة الأدق للنص:",
 
-    question:
-      "ما الفكرة الضمنية المستنتجة من اعتماد المناطق النائية على الألواح الشمسية؟",
+        options: [
+          "الطاقة الشمسية مصدر نظيف، لكن الاستفادة منها تحتاج إلى تجاوز تحديات معينة.",
+          "الطاقة الشمسية رخيصة ومتاحة للجميع فور التركيب.",
+          "جميع الدول استغنت عن الوقود الأحفوري بفضل الطاقة الشمسية.",
+          "المناطق النائية هي المستفيد الوحيد من الطاقة الشمسية."
+        ],
 
-    options: [
-      "سكان المناطق النائية لا يريدون الكهرباء التقليدية.",
-      "الطاقة الشمسية فرصة تنموية لهذه المناطق رغم غياب البنية التحتية التقليدية.",
-      "المناطق النائية أغنى من المدن الكبرى.",
-      "لا حاجة إلى الكهرباء التقليدية في أي مكان بعد الآن."
-    ],
+        correct: 0,
 
-    correct: 1,
+        explanation:
+          "لأن هذا الخيار يجمع بين فوائد الطاقة الشمسية والتحديات المرتبطة بارتفاع تكلفة تركيبها.",
 
-    explanation:
-      "لأن النص لم يذكر عبارة فرصة تنموية حرفيًا، لكنها تُفهم من كون الطاقة الشمسية أتاحت الكهرباء لمناطق لا تصلها الشبكات التقليدية.",
+        encouragement:
+          "رائع! الفكرة الرئيسة تجمع صورة النص كاملة. 🌿"
+      },
 
-    encouragement:
-      "تهانينا! وصلتِ إلى أعمق مستوى من الفهم: قراءة ما بين السطور. 🌳✨"
-  }
-];
+      {
+        number: 3,
+        icon: "🌿",
+        title: "الأفكار الفرعية",
 
-const flipCard =
-  document.getElementById("flipCard");
+        hint:
+          "أفكار تتفرع من الفكرة الرئيسة وتخدمها.",
 
-const cardStage =
-  document.getElementById("cardStage");
+        definition:
+          "أفكار تتفرع من الفكرة الرئيسة، ويحمل كل جزء من النص فكرة تخدم الفكرة العامة.",
 
-const frontNumber =
-  document.getElementById("frontNumber");
+        question:
+          "أي العبارات التالية ليست فكرة فرعية في النص؟",
 
-const frontIcon =
-  document.getElementById("frontIcon");
+        options: [
+          "تحوّل الألواح الشمسية أشعة الشمس إلى كهرباء.",
+          "الدول المتقدمة تقبل على تركيب الألواح الشمسية.",
+          "تكلفة التركيب الأولية مرتفعة.",
+          "جميع سكان العالم يمتلكون ألواحًا شمسية حاليًا."
+        ],
 
-const frontTitle =
-  document.getElementById("frontTitle");
+        correct: 3,
 
-const frontHint =
-  document.getElementById("frontHint");
+        explanation:
+          "لأن العبارة الأخيرة غير موجودة في النص، بينما بقية الخيارات وردت فيه بوضوح.",
 
-const backTitle =
-  document.getElementById("backTitle");
+        encouragement:
+          "ممتاز! ميّزتِ بين ما ورد في النص وما لم يرد. ✨"
+      },
 
-const definitionText =
-  document.getElementById("definitionText");
+      {
+            {
+        number: 4,
+        icon: "🔍",
+        title: "الأفكار الثانوية",
 
-const passageText =
-  document.getElementById("passageText");
+        hint:
+          "تفاصيل دقيقة توضّح الفكرة الفرعية وتدعمها.",
 
-const questionText =
-  document.getElementById("questionText");
+        definition:
+          "تفاصيل أدق داخل الفكرة الفرعية نفسها، تكون أقل وزنًا لكنها توضّحها أو تدعمها.",
 
-const answersContainer =
-  document.getElementById("answersContainer");
+        question:
+          "ما الفكرة الثانوية المرتبطة بارتفاع تكلفة التركيب؟",
 
-const feedback =
-  document.getElementById("feedback");
+        options: [
+          "الألواح الشمسية تنتج كهرباء نظيفة.",
+          "المستهلك يحتاج سنوات عدة لاسترداد قيمة استثماره.",
+          "الدول المتقدمة تركب الألواح فوق الأسطح.",
+          "المناطق النائية تعتمد على الطاقة الشمسية."
+        ],
 
-const previousButton =
-  document.getElementById("previousButton");
+        correct: 1,
 
-const nextButton =
-  document.getElementById("nextButton");
+        explanation:
+          "لأن طول مدة استرداد قيمة الاستثمار تفصيل يوضّح نتيجة ارتفاع تكلفة التركيب.",
 
-const cardCounter =
-  document.getElementById("cardCounter");
+        encouragement:
+          "أحسنتِ! فرّقتِ بين الفكرة الفرعية وتفصيلها الداعم. 🌸"
+      },
 
-const completedCounter =
-  document.getElementById("completedCounter");
+      {
+        number: 5,
+        icon: "📝",
+        title: "الفكرة الصريحة",
 
-const progressBar =
-  document.getElementById("progressBar");
+        hint:
+          "فكرة مذكورة مباشرة في النص ولا تحتاج إلى استنتاج.",
 
-const restartButton =
-  document.getElementById("restartButton");
+        definition:
+          "فكرة مذكورة مباشرة في النص، ولا تحتاج إلى استنتاج أو ربط.",
 
-const completionRestartButton =
-  document.getElementById("completionRestartButton");
+        question:
+          "أي العبارات التالية فكرة صريحة وردت في النص؟",
 
-const completionScreen =
-  document.getElementById("completionScreen");
+        options: [
+          "الطاقة الشمسية ستحل محل جميع مصادر الطاقة مستقبلًا.",
+          "ترتفع تكلفة التركيب الأولية بشكل ملحوظ.",
+          "يجب على الحكومات دعم الطاقة الشمسية ماليًا.",
+          "المناطق النائية أفضل من المدن في استخدام الطاقة الشمسية."
+        ],
 
-const soundButton =
-  document.getElementById("soundButton");
+        correct: 1,
 
-let currentCard = 0;
+        explanation:
+          "لأن هذه العبارة وردت مباشرة في النص، بينما بقية الخيارات آراء أو افتراضات لم يذكرها الكاتب.",
 
-let soundOn =
-  localStorage.getItem("ideasTreeSound") !== "off";
+        encouragement:
+          "جميل! التقطتِ الفكرة المذكورة مباشرة دون تأويل. 🔎"
+      },
 
-let completedCards =
-  JSON.parse(
-    localStorage.getItem("ideasTreeCompleted") || "[]"
-  );
+      {
+        number: 6,
+        icon: "💭",
+        title: "الفكرة الضمنية",
 
-if (!Array.isArray(completedCards)) {
-  completedCards = [];
-}
+        hint:
+          "فكرة تُفهم من السياق ولا تُذكر بصورة مباشرة.",
 
-let answeredCards =
-  new Array(cards.length).fill(false);
+        definition:
+          "فكرة غير مذكورة صراحة، تُفهم من السياق أو الإيحاء، وتحتاج إلى مهارة الاستنتاج.",
 
-completedCards.forEach(
-  index => {
+        question:
+          "ما الفكرة الضمنية المستنتجة من اعتماد المناطق النائية على الألواح الشمسية؟",
+
+        options: [
+          "سكان المناطق النائية لا يريدون الكهرباء التقليدية.",
+          "الطاقة الشمسية فرصة تنموية لهذه المناطق رغم غياب البنية التحتية التقليدية.",
+          "المناطق النائية أغنى من المدن الكبرى.",
+          "لا حاجة إلى الكهرباء التقليدية في أي مكان بعد الآن."
+        ],
+
+        correct: 1,
+
+        explanation:
+          "النص لم يذكر عبارة فرصة تنموية حرفيًا، لكنها تُفهم من كون الطاقة الشمسية أتاحت الكهرباء لمناطق لا تصلها الشبكات التقليدية.",
+
+        encouragement:
+          "تهانينا! وصلتِ إلى أعمق مستوى من الفهم: قراءة ما بين السطور. 🌳✨"
+      }
+    ];
+
+    const flipCard =
+      document.getElementById("flipCard");
+
+    const frontNumber =
+      document.getElementById("frontNumber");
+
+    const frontIcon =
+      document.getElementById("frontIcon");
+
+    const frontTitle =
+      document.getElementById("frontTitle");
+
+    const frontHint =
+      document.getElementById("frontHint");
+
+    const backTitle =
+      document.getElementById("backTitle");
+
+    const definitionText =
+      document.getElementById("definitionText");
+
+    const passageText =
+      document.getElementById("passageText");
+
+    const questionText =
+      document.getElementById("questionText");
+
+    const answersContainer =
+      document.getElementById("answersContainer");
+
+    const feedback =
+      document.getElementById("feedback");
+
+    const previousButton =
+      document.getElementById("previousButton");
+
+    const nextButton =
+      document.getElementById("nextButton");
+
+    const cardCounter =
+      document.getElementById("cardCounter");
+
+    const completedCounter =
+      document.getElementById("completedCounter");
+
+    const progressBar =
+      document.getElementById("progressBar");
+
+    const restartButton =
+      document.getElementById("restartButton");
+
+    const completionRestartButton =
+      document.getElementById("completionRestartButton");
+
+    const completionScreen =
+      document.getElementById("completionScreen");
+
+    const cardStage =
+      document.getElementById("cardStage");
+
+    const soundButton =
+      document.getElementById("soundButton");
+
+    let currentCard = 0;
+
+    let soundOn =
+      localStorage.getItem("ideasTreeSound") !== "off";
+
+    let answeredCards =
+      JSON.parse(
+        localStorage.getItem("ideasTreeCompleted")
+        || "[]"
+      );
+
     if (
-      Number.isInteger(index) &&
-      index >= 0 &&
-      index < cards.length
+      !Array.isArray(answeredCards)
+      || answeredCards.length !== cards.length
     ) {
-      answeredCards[index] = true;
+      answeredCards =
+        new Array(cards.length).fill(false);
     }
-  }
-);
 
-function updateSoundButton() {
-  soundButton.textContent =
-    soundOn
-      ? "🔊 الصوت مفعّل"
-      : "🔇 الصوت مكتوم";
-}
+    function updateLibraryLinks() {
+      document
+        .querySelectorAll(".back-to-library")
+        .forEach(link => {
+          link.addEventListener(
+            "click",
+            event => {
+              event.preventDefault();
 
-function playTone(isCorrect) {
-  if (!soundOn) {
-    return;
-  }
+              if (window.history.length > 1) {
+                window.history.back();
+              } else {
+                window.location.href =
+                  "index.html";
+              }
+            }
+          );
+        });
+    }
 
-  try {
-    const AudioContextClass =
-      window.AudioContext ||
-      window.webkitAudioContext;
+    function updateSoundButton() {
+      soundButton.textContent =
+        soundOn
+          ? "🔊 الصوت مفعّل"
+          : "🔇 الصوت متوقف";
+    }
 
-    const audioContext =
-      new AudioContextClass();
+    function speak(text) {
+      if (
+        !soundOn
+        || !("speechSynthesis" in window)
+      ) {
+        return;
+      }
 
-    const oscillator =
-      audioContext.createOscillator();
+      window.speechSynthesis.cancel();
 
-    const gain =
-      audioContext.createGain();
+      const utterance =
+        new SpeechSynthesisUtterance(text);
 
-    oscillator.type =
-      isCorrect
-        ? "sine"
-        : "triangle";
+      utterance.lang = "ar-SA";
+      utterance.rate = 0.9;
 
-    oscillator.frequency.value =
-      isCorrect
-        ? 720
-        : 190;
+      window.speechSynthesis.speak(
+        utterance
+      );
+    }
 
-    gain.gain.setValueAtTime(
-      0.11,
-      audioContext.currentTime
-    );
+    function playTone(success) {
+      if (!soundOn) {
+        return;
+      }
 
-    gain.gain.exponentialRampToValueAtTime(
-      0.001,
-      audioContext.currentTime + 0.35
-    );
+      try {
+        const AudioContext =
+          window.AudioContext
+          || window.webkitAudioContext;
 
-    oscillator.connect(gain);
-    gain.connect(audioContext.destination);
+        const audioContext =
+          new AudioContext();
 
-    oscillator.start();
-    oscillator.stop(
-      audioContext.currentTime + 0.35
-    );
+        const oscillator =
+          audioContext.createOscillator();
 
-  } catch (error) {
-    console.log(error);
-  }
-}
-    function saveProgress() {
-  const uniqueCompleted =
-    [...new Set(
-      answeredCards
-        .map(
-          (isAnswered, index) =>
-            isAnswered
-              ? index
-              : null
-        )
-        .filter(
-          index =>
-            index !== null
-        )
-    )];
+        const gain =
+          audioContext.createGain();
 
-  localStorage.setItem(
-    "ideasTreeCompleted",
-    JSON.stringify(
-      uniqueCompleted
-    )
-  );
-}
+        oscillator.connect(gain);
+        gain.connect(audioContext.destination);
 
-function updateProgress() {
-  const completedCount =
-    answeredCards.filter(Boolean).length;
+        oscillator.frequency.value =
+          success ? 650 : 240;
 
-  cardCounter.textContent =
-    `البطاقة ${
-      currentCard + 1
-    } من ${
-      cards.length
-    }`;
-
-  completedCounter.textContent =
-    `المكتمل: ${
-      completedCount
-    } من ${
-      cards.length
-    }`;
-
-  progressBar.style.width =
-    `${
-      (
-        completedCount /
-        cards.length
-      ) * 100
-    }%`;
-}
-
-function renderCard() {
-  const card =
-    cards[currentCard];
-
-  flipCard.classList.remove(
-    "flipped"
-  );
-
-  frontNumber.textContent =
-    `البطاقة ${
-      card.number
-    }`;
-
-  frontIcon.textContent =
-    card.icon;
-
-  frontTitle.textContent =
-    card.title;
-
-  frontHint.textContent =
-    card.hint;
-
-  backTitle.textContent =
-    card.title;
-
-  definitionText.textContent =
-    card.definition;
-
-  passageText.textContent =
-    trainingPassage;
-
-  questionText.textContent =
-    card.question;
-
-  answersContainer.innerHTML =
-    "";
-
-  feedback.className =
-    "feedback";
-
-  feedback.innerHTML =
-    "";
-
-  card.options.forEach(
-    (
-      option,
-      optionIndex
-    ) => {
-      const button =
-        document.createElement(
-          "button"
+        gain.gain.setValueAtTime(
+          0.12,
+          audioContext.currentTime
         );
 
-      button.type =
-        "button";
+        gain.gain.exponentialRampToValueAtTime(
+          0.001,
+          audioContext.currentTime + 0.35
+        );
 
-      button.className =
-        "answer-button";
+        oscillator.start();
 
-      button.textContent =
-        option;
+        oscillator.stop(
+          audioContext.currentTime + 0.35
+        );
+      } catch (error) {
+        console.log("تعذر تشغيل النغمة.");
+      }
+    }
 
-      button.addEventListener(
-        "click",
-        event => {
-          event.stopPropagation();
+    function saveProgress() {
+      localStorage.setItem(
+        "ideasTreeCompleted",
+        JSON.stringify(answeredCards)
+      );
+    }
 
-          chooseAnswer(
-            optionIndex,
+    function renderCard() {
+      const card =
+        cards[currentCard];
+
+      flipCard.classList.remove("flipped");
+
+      frontNumber.textContent =
+        `البطاقة ${card.number}`;
+
+      frontIcon.textContent =
+        card.icon;
+
+      frontTitle.textContent =
+        card.title;
+
+      frontHint.textContent =
+        card.hint;
+
+      backTitle.textContent =
+        `${card.icon} ${card.title}`;
+
+      definitionText.textContent =
+        card.definition;
+
+      passageText.textContent =
+        trainingPassage;
+
+      questionText.textContent =
+        card.question;
+
+      answersContainer.innerHTML = "";
+
+      feedback.className =
+        "feedback";
+
+      feedback.innerHTML = "";
+
+      card.options.forEach(
+        (option, optionIndex) => {
+          const button =
+            document.createElement("button");
+
+          button.type = "button";
+
+          button.className =
+            "answer-button";
+
+          button.textContent =
+            option;
+
+          button.addEventListener(
+            "click",
+            event => {
+              event.stopPropagation();
+
+              checkAnswer(
+                optionIndex,
+                button
+              );
+            }
+          );
+
+          answersContainer.appendChild(
             button
           );
         }
       );
 
-      answersContainer
-        .appendChild(button);
-    }
-  );
+      cardCounter.textContent =
+        `البطاقة ${card.number} من ${cards.length}`;
 
-  previousButton.disabled =
-    currentCard === 0;
+      const completed =
+        answeredCards.filter(Boolean).length;
 
-  nextButton.disabled =
-    !answeredCards[
-      currentCard
-    ];
+      completedCounter.textContent =
+        `المكتمل: ${completed} من ${cards.length}`;
 
-  nextButton.textContent =
-    currentCard ===
-    cards.length - 1
-      ? "إنهاء الشجرة"
-      : "التالي";
+      progressBar.style.width =
+        `${((currentCard + 1) / cards.length) * 100}%`;
 
-  if (
-    answeredCards[
-      currentCard
-    ]
-  ) {
-    restoreCompletedCard();
-  }
+      previousButton.disabled =
+        currentCard === 0;
 
-  updateProgress();
-}
+      nextButton.disabled =
+        !answeredCards[currentCard];
 
-function restoreCompletedCard() {
-  const card =
-    cards[currentCard];
-
-  const buttons =
-    Array.from(
-      answersContainer
-        .querySelectorAll(
-          ".answer-button"
-        )
-    );
-
-  buttons.forEach(
-    button => {
-      button.disabled = true;
-    }
-  );
-
-  buttons[
-    card.correct
-  ].classList.add(
-    "correct"
-  );
-
-  feedback.className =
-    "feedback correct show";
-
-  feedback.innerHTML = `
-    <strong>
-      ✅ هذه البطاقة مكتملة
-    </strong>
-
-    <br>
-
-    ${
-      card.explanation
+      nextButton.textContent =
+        currentCard === cards.length - 1
+          ? "إنهاء"
+          : "التالي";
     }
 
-    <br><br>
-
-    ${
-      card.encouragement
-    }
-  `;
-}
-
-function chooseAnswer(
-  selectedIndex,
-  selectedButton
-) {
-  if (
-    answeredCards[
-      currentCard
-    ]
-  ) {
-    return;
-  }
-
-  const card =
-    cards[currentCard];
-
-  const buttons =
-    Array.from(
-      answersContainer
-        .querySelectorAll(
-          ".answer-button"
-        )
-    );
-
-  if (
-    selectedIndex ===
-    card.correct
-  ) {
-    selectedButton
-      .classList
-      .add("correct");
-
-    buttons.forEach(
-      button => {
-        button.disabled = true;
-      }
-    );
-
-    feedback.className =
-      "feedback correct show";
-
-    feedback.innerHTML = `
-      <strong>
-        ✅ أحسنتِ، إجابة صحيحة
-      </strong>
-
-      <br>
-
-      ${
-        card.explanation
-      }
-
-      <br><br>
-
-      ${
-        card.encouragement
-      }
-    `;
-
-    answeredCards[
-      currentCard
-    ] = true;
-
-    saveProgress();
-
-    updateProgress();
-
-    nextButton.disabled =
-      false;
-
-    playTone(true);
-
-    return;
-  }
-
-  selectedButton
-    .classList
-    .add("wrong");
-
-  feedback.className =
-    "feedback wrong show";
-
-  feedback.innerHTML = `
-    <strong>
-      ❌ ليست الإجابة الأدق
-    </strong>
-
-    <br>
-
-    حاولي مرةً أخرى، واقرئي السؤال والنص بتركيز.
-  `;
-
-  playTone(false);
-
-  setTimeout(
-    () => {
-      selectedButton
-        .classList
-        .remove("wrong");
-
-      selectedButton.disabled =
-        false;
-    },
-    800
-  );
-}
-
-function toggleCard() {
-  flipCard.classList.toggle(
-    "flipped"
-  );
-}
-
-function showPreviousCard() {
-  if (
-    currentCard === 0
-  ) {
-    return;
-  }
-
-  currentCard--;
-
-  renderCard();
-}
-
-function showNextCard() {
-  if (
-    !answeredCards[
-      currentCard
-    ]
-  ) {
-    return;
-  }
-
-  if (
-    currentCard <
-    cards.length - 1
-  ) {
-    currentCard++;
-
-    renderCard();
-
-    return;
-  }
-
-  finishTree();
-}
-
-function createConfetti() {
-  const symbols = [
-    "🎉",
-    "✨",
-    "🌸",
-    "🌳",
-    "⭐",
-    "🏅"
-  ];
-
-  for (
-    let index = 0;
-    index < 44;
-    index++
-  ) {
-    const piece =
-      document.createElement(
-        "span"
+    function toggleCard() {
+      flipCard.classList.toggle(
+        "flipped"
       );
 
-    piece.className =
-      "confetti-piece";
-
-    piece.textContent =
-      symbols[
-        Math.floor(
-          Math.random() *
-          symbols.length
+      if (
+        flipCard.classList.contains(
+          "flipped"
         )
-      ];
+      ) {
+        speak(
+          cards[currentCard].definition
+        );
+      }
+    }
 
-    piece.style.left =
-      Math.random() *
-      100 +
-      "vw";
-
-    piece.style.fontSize =
-      17 +
-      Math.random() *
-      23 +
-      "px";
-
-    piece.style.animationDelay =
-      Math.random() *
-      0.8 +
-      "s";
-
-    document.body
-      .appendChild(piece);
-
-    setTimeout(
-      () => {
-        piece.remove();
-      },
-      4700
-    );
-  }
-}
-
-function finishTree() {
-  cardStage.style.display =
-    "none";
-
-  completionScreen
-    .classList
-    .add("show");
-
-  progressBar.style.width =
-    "100%";
-
-  completedCounter.textContent =
-    `المكتمل: ${
-      cards.length
-    } من ${
-      cards.length
-    }`;
-
-  createConfetti();
-
-  playTone(true);
-
-  completionScreen
-    .scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    });
-}
-
-function restartTree() {
-  const confirmed =
-    window.confirm(
-      "هل تريدين البدء من جديد؟ سيتم مسح تقدم شجرة الأفكار فقط."
-    );
-
-  if (!confirmed) {
-    return;
-  }
-
-  localStorage.removeItem(
-    "ideasTreeCompleted"
-  );
-
-  answeredCards =
-    new Array(
-      cards.length
-    ).fill(false);
-
-  currentCard = 0;
-
-  completionScreen
-    .classList
-    .remove("show");
-
-  cardStage.style.display =
-    "block";
-
-  renderCard();
-
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-  }
-    flipCard.addEventListener(
-  "click",
-  toggleCard
-);
-
-flipCard.addEventListener(
-  "keydown",
-  event => {
-    if (
-      event.key === "Enter" ||
-      event.key === " "
+    function checkAnswer(
+      selectedIndex,
+      selectedButton
     ) {
-      event.preventDefault();
-      toggleCard();
+      const card =
+        cards[currentCard];
+
+      const buttons =
+        answersContainer.querySelectorAll(
+          ".answer-button"
+        );
+
+      buttons.forEach(
+        (button, index) => {
+          button.disabled = true;
+
+          if (index === card.correct) {
+            button.classList.add(
+              "correct"
+            );
+          }
+        }
+      );
+
+      if (
+        selectedIndex === card.correct
+      ) {
+        selectedButton.classList.add(
+          "correct"
+        );
+
+        feedback.className =
+          "feedback show good";
+
+        feedback.innerHTML =
+          `✅ ${card.encouragement}<br>${card.explanation}`;
+
+        playTone(true);
+        speak(card.encouragement);
+      } else {
+        selectedButton.classList.add(
+          "wrong"
+        );
+
+        feedback.className =
+          "feedback show bad";
+
+        feedback.innerHTML =
+          `❌ الإجابة الصحيحة موضحة باللون الأخضر.<br>${card.explanation}`;
+
+        playTone(false);
+      }
+
+      answeredCards[currentCard] = true;
+
+      saveProgress();
+
+      nextButton.disabled = false;
+
+      const completed =
+        answeredCards.filter(Boolean).length;
+
+      completedCounter.textContent =
+        `المكتمل: ${completed} من ${cards.length}`;
     }
-  }
-);
 
-previousButton.addEventListener(
-  "click",
-  event => {
-    event.stopPropagation();
-    showPreviousCard();
-  }
-);
+    function showPreviousCard() {
+      if (currentCard > 0) {
+        currentCard--;
+        renderCard();
+      }
+    }
 
-nextButton.addEventListener(
-  "click",
-  event => {
-    event.stopPropagation();
-    showNextCard();
-  }
-);
+    function showNextCard() {
+      if (!answeredCards[currentCard]) {
+        return;
+      }
 
-restartButton.addEventListener(
-  "click",
-  restartTree
-);
+      if (
+        currentCard <
+        cards.length - 1
+      ) {
+        currentCard++;
+        renderCard();
 
-completionRestartButton.addEventListener(
-  "click",
-  restartTree
-);
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      } else {
+        showCompletion();
+      }
+    }
 
-soundButton.addEventListener(
-  "click",
-  () => {
-    soundOn = !soundOn;
+    function createConfetti() {
+      const pieces =
+        ["🌸", "⭐", "✨", "💜", "🏅"];
 
-    localStorage.setItem(
-      "ideasTreeSound",
-      soundOn
-        ? "on"
-        : "off"
+      for (let i = 0; i < 34; i++) {
+        const piece =
+          document.createElement("span");
+
+        piece.className =
+          "confetti-piece";
+
+        piece.textContent =
+          pieces[
+            Math.floor(
+              Math.random()
+              * pieces.length
+            )
+          ];
+
+        piece.style.left =
+          `${Math.random() * 100}vw`;
+
+        piece.style.fontSize =
+          `${18 + Math.random() * 20}px`;
+
+        piece.style.animationDelay =
+          `${Math.random() * 1.4}s`;
+
+        document.body.appendChild(
+          piece
+        );
+
+        setTimeout(
+          () => piece.remove(),
+          5200
+        );
+      }
+    }
+
+    function showCompletion() {
+      cardStage.style.display =
+        "none";
+
+      completionScreen.classList.add(
+        "show"
+      );
+
+      createConfetti();
+      playTone(true);
+
+      speak(
+        "أحسنتِ، أنهيتِ بطاقات شجرة الأفكار."
+      );
+
+      completionScreen.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+
+    function restartTree() {
+      const confirmed =
+        window.confirm(
+          "هل تريدين البدء من جديد؟ سيتم مسح تقدم شجرة الأفكار فقط."
+        );
+
+      if (!confirmed) {
+        return;
+      }
+
+      localStorage.removeItem(
+        "ideasTreeCompleted"
+      );
+
+      answeredCards =
+        new Array(cards.length).fill(false);
+
+      currentCard = 0;
+
+      completionScreen.classList.remove(
+        "show"
+      );
+
+      cardStage.style.display =
+        "block";
+
+      renderCard();
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+
+    flipCard.addEventListener(
+      "click",
+      toggleCard
     );
 
+    flipCard.addEventListener(
+      "keydown",
+      event => {
+        if (
+          event.key === "Enter"
+          || event.key === " "
+        ) {
+          event.preventDefault();
+          toggleCard();
+        }
+      }
+    );
+
+    previousButton.addEventListener(
+      "click",
+      event => {
+        event.stopPropagation();
+        showPreviousCard();
+      }
+    );
+
+    nextButton.addEventListener(
+      "click",
+      event => {
+        event.stopPropagation();
+        showNextCard();
+      }
+    );
+
+    restartButton.addEventListener(
+      "click",
+      restartTree
+    );
+
+    completionRestartButton.addEventListener(
+      "click",
+      restartTree
+    );
+
+    soundButton.addEventListener(
+      "click",
+      () => {
+        soundOn = !soundOn;
+
+        localStorage.setItem(
+          "ideasTreeSound",
+          soundOn ? "on" : "off"
+        );
+
+        updateSoundButton();
+
+        if (soundOn) {
+          playTone(true);
+        } else {
+          window.speechSynthesis?.cancel();
+        }
+      }
+    );
+
+    updateLibraryLinks();
     updateSoundButton();
-
-    if (soundOn) {
-      playTone(true);
-    }
-  }
-);
-
-updateSoundButton();
-renderCard();
-
-</script>
+    renderCard();
+  </script>
 
 </body>
+
 </html>
