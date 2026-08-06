@@ -1,108 +1,282 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>خريطة مفاهيم اسمي الزمان والمكان</title>
+  <title>كيف أتقن أسماء الزمان والمكان؟ | منصة آفاق</title>
 
   <style>
-    * {
-      box-sizing: border-box;
+    :root{
+      --purple:#74558c;
+      --purple-dark:#4d385d;
+      --gold:#c9a85c;
+      --cream:#fffaf1;
+      --paper:#fffdf8;
+      --text:#4b3857;
+      --rose:#fff0f4;
+      --green:#eef8eb;
+      --blue:#edf5ff;
+      --yellow:#fff8dd;
     }
 
-    html,
-    body {
-      width: 100%;
-      max-width: 100%;
-      margin: 0;
-      overflow-x: hidden;
+    *{box-sizing:border-box}
+
+    html,body{
+      margin:0;
+      width:100%;
+      overflow-x:hidden;
     }
 
-    body {
-      min-height: 100vh;
-      font-family: Tahoma, Arial, sans-serif;
-      color: #4b3a57;
-      text-align: center;
-      background: linear-gradient(180deg, #fffaf2, #f8f0fb);
+    body{
+      min-height:100vh;
+      font-family:Tahoma,Arial,sans-serif;
+      color:var(--text);
+      background:linear-gradient(180deg,var(--cream),#f7eff8);
+      line-height:1.9;
     }
 
-    header {
-      padding: 38px 20px;
-      color: white;
-      background: linear-gradient(135deg, #776094, #5b4677);
-      border-bottom: 4px solid #c9a85c;
+    header{
+      padding:42px 18px;
+      text-align:center;
+      color:#fff;
+      background:linear-gradient(135deg,var(--purple),var(--purple-dark));
+      border-bottom:6px solid var(--gold);
     }
 
-    header h1 {
-      margin: 0;
-      color: #fffdf8;
-      font-size: 34px;
-      line-height: 1.6;
+    header h1{
+      margin:0 0 8px;
+      font-size:36px;
     }
 
-    section {
-      width: 85%;
-      max-width: 700px;
-      margin: 30px auto;
-      padding: 25px;
-      background: #fffdf8;
-      border: 2px solid #c9a85c;
-      border-radius: 20px;
-      box-shadow: 0 7px 18px rgba(91, 63, 111, 0.12);
+    header p{
+      margin:0;
+      color:#f8f0fb;
+      font-size:18px;
     }
 
-    .box {
-      margin: 18px 0;
-      padding: 30px 20px;
-      color: #5d4374;
-      font-size: 21px;
-      font-weight: bold;
-      line-height: 1.9;
-      background: linear-gradient(135deg, #f5ecfb, #fffaf2);
-      border: 2px dashed #c9a85c;
-      border-radius: 16px;
+    main{
+      width:min(94%,920px);
+      margin:34px auto;
     }
 
-    .back {
-      display: inline-block;
-      margin-top: 18px;
-      padding: 12px 22px;
-      color: white;
-      font-weight: bold;
-      text-decoration: none;
-      background: #6f5288;
-      border: 2px solid #c9a85c;
-      border-radius: 22px;
+    .hero-box,
+    .step-card,
+    .compare-card,
+    .quran-card,
+    .challenge-card,
+    .mastery-card{
+      margin:24px 0;
+      padding:24px 20px;
+      background:rgba(255,255,255,.94);
+      border:3px solid var(--gold);
+      border-radius:28px;
+      box-shadow:0 12px 28px rgba(75,56,87,.11);
     }
 
-    .back:hover,
-    .back:active {
-      background: #5b4677;
+    .hero-box{
+      text-align:center;
+      background:linear-gradient(145deg,#fffdf8,#fff3f7);
     }
 
-    footer {
-      margin-top: 30px;
-      padding: 20px;
-      color: #fffdf8;
-      background: #49385c;
-      border-top: 3px solid #c9a85c;
+    .hero-box h2,
+    .compare-card h2,
+    .quran-card h2,
+    .challenge-card h2,
+    .mastery-card h2{
+      margin:0 0 14px;
+      color:var(--purple-dark);
+      font-size:28px;
+      text-align:center;
     }
 
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 27px;
+    .steps{
+      display:grid;
+      gap:18px;
+    }
+
+    .step-card{
+      position:relative;
+      padding-right:82px;
+      border-color:#ddcce6;
+    }
+
+    .step-number{
+      position:absolute;
+      right:20px;
+      top:22px;
+      width:45px;
+      height:45px;
+      display:grid;
+      place-items:center;
+      color:#fff;
+      background:var(--purple);
+      border:3px solid var(--gold);
+      border-radius:50%;
+      font-size:20px;
+      font-weight:bold;
+    }
+
+    .step-card h3{
+      margin:0 0 8px;
+      color:var(--purple-dark);
+      font-size:23px;
+    }
+
+    .example{
+      margin:10px 0;
+      padding:12px 14px;
+      background:#fff;
+      border-right:6px solid var(--gold);
+      border-radius:16px;
+    }
+
+    .rule{
+      margin-top:10px;
+      padding:13px 15px;
+      background:var(--blue);
+      border:2px solid #bfd5ec;
+      border-radius:17px;
+    }
+
+    .compare-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
+
+    .compare-box{
+      padding:18px;
+      border-radius:20px;
+      border:2px solid #d7c5e2;
+      background:#fbf8fd;
+    }
+
+    .compare-box h3{
+      margin:0 0 10px;
+      text-align:center;
+      color:var(--purple);
+      font-size:22px;
+    }
+
+    .compare-box ul{
+      margin:0;
+      padding-right:22px;
+    }
+
+    .quran-card{
+      background:linear-gradient(145deg,#fffdf7,#fff8df);
+    }
+
+    .ayah{
+      margin:16px 0;
+      padding:18px;
+      text-align:center;
+      font-size:23px;
+      font-weight:bold;
+      color:#5f4a1d;
+      background:#fff;
+      border:2px solid var(--gold);
+      border-radius:20px;
+    }
+
+    .analysis{
+      padding:16px;
+      background:var(--green);
+      border:2px solid #a9cc98;
+      border-radius:18px;
+      font-size:18px;
+    }
+
+    .challenge-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:14px;
+    }
+
+    .word-card{
+      padding:16px;
+      text-align:center;
+      background:#fff;
+      border:2px solid #d7c6e1;
+      border-radius:18px;
+    }
+
+    .word{
+      display:block;
+      margin-bottom:8px;
+      color:var(--purple-dark);
+      font-size:22px;
+      font-weight:bold;
+    }
+
+    .answer{
+      color:#2f6d49;
+      font-weight:bold;
+    }
+
+    .mastery-card{
+      text-align:center;
+      background:linear-gradient(145deg,#eef8eb,#fffdf7);
+      border-color:#9dbf8b;
+    }
+
+    .mastery-list{
+      display:grid;
+      gap:10px;
+      margin-top:16px;
+    }
+
+    .mastery-item{
+      padding:12px 14px;
+      background:#fff;
+      border:2px solid #c8dfbd;
+      border-radius:16px;
+      font-weight:bold;
+    }
+
+    .back{
+      display:block;
+      width:fit-content;
+      margin:32px auto 0;
+      padding:14px 28px;
+      color:#fff;
+      text-decoration:none;
+      font-weight:bold;
+      font-size:18px;
+      background:var(--purple);
+      border:3px solid var(--gold);
+      border-radius:26px;
+    }
+
+    footer{
+      margin-top:38px;
+      padding:22px 15px;
+      text-align:center;
+      color:#fff;
+      background:var(--purple-dark);
+      border-top:5px solid var(--gold);
+    }
+
+    @media(max-width:650px){
+      header h1{font-size:30px}
+      .compare-grid,
+      .challenge-grid{
+        grid-template-columns:1fr;
       }
-
-      section {
-        width: 92%;
-        padding: 20px 14px;
+      .step-card{
+        padding:72px 15px 18px;
       }
-
-      .box {
-        padding: 25px 14px;
-        font-size: 18px;
+      .step-number{
+        right:50%;
+        transform:translateX(50%);
+        top:15px;
+      }
+      .hero-box h2,
+      .compare-card h2,
+      .quran-card h2,
+      .challenge-card h2,
+      .mastery-card h2{
+        font-size:24px;
       }
     }
   </style>
@@ -110,26 +284,213 @@
 
 <body>
 
-  <header>
-    <h1>🧠 خريطة مفاهيم اسمي الزمان والمكان</h1>
-  </header>
+<header>
+  <h1>🌟 كيف أتقن أسماء الزمان والمكان؟</h1>
+  <p>خطوات واضحة تساعدكِ على الفهم والتمييز والتطبيق</p>
+</header>
 
-  <section>
+<main>
 
-    <div class="box">
-      سيتم إضافة خريطة مفاهيم اسمي الزمان والمكان هنا
-    </div>
+  <section class="hero-box">
+    <h2>خطوات لإتقان الدرس</h2>
+    <p>
+      اتبعي الخطوات بالترتيب، ثم اختبري نفسكِ في النهاية.
+    </p>
+  </section>
 
-    <a class="back" href="time-place-nouns.html">
-      العودة إلى درس اسمي الزمان والمكان
-    </a>
+  <section class="steps">
+
+    <article class="step-card">
+      <div class="step-number">1</div>
+      <h3>أفهم المعنى</h3>
+      <p>
+        اسم الزمان يدل على <strong>وقت حدوث الفعل</strong>،
+        واسم المكان يدل على <strong>مكان حدوثه</strong>.
+      </p>
+
+      <div class="example">
+        <strong>مَوْعِدُ</strong> الاختبار صباحًا ← اسم زمان.
+      </div>
+
+      <div class="example">
+        جلستُ في <strong>مَجْلِسِ</strong> الضيوف ← اسم مكان.
+      </div>
+    </article>
+
+    <article class="step-card">
+      <div class="step-number">2</div>
+      <h3>أردّ الاسم إلى فعله</h3>
+      <p>
+        ابحثي عن الفعل الذي اشتُق منه الاسم.
+      </p>
+
+      <div class="example">
+        مَوْعِد ← وَعَدَ
+      </div>
+
+      <div class="example">
+        مَلْعَب ← لَعِبَ
+      </div>
+
+      <div class="example">
+        مَجْلِس ← جَلَسَ
+      </div>
+    </article>
+
+    <article class="step-card">
+      <div class="step-number">3</div>
+      <h3>أحدد نوع الفعل</h3>
+      <p>
+        هل الفعل <strong>ثلاثي</strong> أم <strong>غير ثلاثي</strong>؟
+      </p>
+
+      <div class="rule">
+        من الثلاثي نصوغ على وزن: <strong>مَفْعَل</strong> أو <strong>مَفْعِل</strong>.
+      </div>
+
+      <div class="rule">
+        من غير الثلاثي نصوغ على صورة <strong>اسم المفعول</strong>.
+      </div>
+    </article>
+
+    <article class="step-card">
+      <div class="step-number">4</div>
+      <h3>أطبق الوزن الصحيح</h3>
+
+      <div class="example">
+        جلس – يجلس ← <strong>مَجْلِس</strong>
+      </div>
+
+      <div class="example">
+        لعب – يلعب ← <strong>مَلْعَب</strong>
+      </div>
+
+      <div class="example">
+        استودع – يستودع ← <strong>مُسْتَوْدَع</strong>
+      </div>
+    </article>
+
+    <article class="step-card">
+      <div class="step-number">5</div>
+      <h3>أستعين بالسياق</h3>
+      <p>
+        قد تكون الكلمة واحدة، ويحدد معناها السياق.
+      </p>
+
+      <div class="example">
+        <strong>مَطْلَعُ</strong> الفجر وقت جميل ← اسم زمان.
+      </div>
+
+      <div class="example">
+        وقفتُ عند <strong>مَطْلَعِ</strong> الجبل ← اسم مكان.
+      </div>
+    </article>
 
   </section>
 
-  <footer>
-    جميع الحقوق محفوظة © 2026
-  </footer>
+  <section class="compare-card">
+    <h2>كيف أفرق بين أسماء الزمان والمكان والظروف؟</h2>
+
+    <div class="compare-grid">
+
+      <div class="compare-box">
+        <h3>أسماء الزمان والمكان</h3>
+        <ul>
+          <li>أسماء مشتقة من أفعال.</li>
+          <li>تدل على زمان أو مكان حدوث الفعل.</li>
+          <li>مثل: موعد، ملعب، مجلس، مستشفى.</li>
+        </ul>
+      </div>
+
+      <div class="compare-box">
+        <h3>ظرفا الزمان والمكان</h3>
+        <ul>
+          <li>أسماء تدل على زمان أو مكان وقوع الحدث.</li>
+          <li>ليست مشتقة من فعل على أوزان الدرس.</li>
+          <li>مثل: اليوم، غدًا، أمام، فوق.</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="rule">
+      إذا استطعتِ ردَّ الكلمة إلى فعل، وكانت على أحد أوزان الدرس،
+      فهي غالبًا اسم زمان أو اسم مكان.
+    </div>
+  </section>
+
+  <section class="quran-card">
+    <h2>📖 شاهد من القرآن الكريم</h2>
+
+    <div class="ayah">
+      ﴿وَاتَّخِذُوا مِنْ مَقَامِ إِبْرَاهِيمَ مُصَلًّى﴾
+    </div>
+
+    <div class="analysis">
+      <strong>مَقَام</strong>: اسم مكان مشتق من الفعل <strong>قام</strong>،
+      ويدل في الآية على موضع قيام إبراهيم عليه السلام.
+    </div>
+  </section>
+
+  <section class="challenge-card">
+    <h2>⚡ أختبر نفسي</h2>
+
+    <div class="challenge-grid">
+
+      <div class="word-card">
+        <span class="word">موعد</span>
+        <span class="answer">اسم زمان</span>
+      </div>
+
+      <div class="word-card">
+        <span class="word">ملعب</span>
+        <span class="answer">اسم مكان</span>
+      </div>
+
+      <div class="word-card">
+        <span class="word">اليوم</span>
+        <span class="answer">ظرف زمان</span>
+      </div>
+
+      <div class="word-card">
+        <span class="word">أمام</span>
+        <span class="answer">ظرف مكان</span>
+      </div>
+
+      <div class="word-card">
+        <span class="word">مستشفى</span>
+        <span class="answer">اسم مكان</span>
+      </div>
+
+      <div class="word-card">
+        <span class="word">مساءً</span>
+        <span class="answer">ظرف زمان</span>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="mastery-card">
+    <h2>✅ متى أقول: أتقنتُ الدرس؟</h2>
+
+    <div class="mastery-list">
+      <div class="mastery-item">أميز اسم الزمان من اسم المكان.</div>
+      <div class="mastery-item">أردّ الاسم إلى فعله.</div>
+      <div class="mastery-item">أحدد الوزن الصحيح.</div>
+      <div class="mastery-item">أفرق بين الاسم المشتق والظرف.</div>
+      <div class="mastery-item">أحدد الدلالة من خلال السياق.</div>
+    </div>
+  </section>
+
+  <a class="back" href="time-place-nouns-file.html">
+    العودة إلى ملف الدرس
+  </a>
+
+</main>
+
+<footer>
+  منصة آفاق التعليمية © 2026
+</footer>
 
 </body>
-
 </html>
