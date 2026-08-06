@@ -1,135 +1,573 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>اختبار اسمي الزمان والمكان</title>
+  <title>اختبار أسماء الزمان والمكان | منصة آفاق</title>
 
   <style>
-    * {
-      box-sizing: border-box;
+    :root{
+      --purple:#74558c;
+      --purple-dark:#4d385d;
+      --gold:#c9a85c;
+      --cream:#fffaf1;
+      --paper:#fffdf8;
+      --text:#4b3857;
+      --green:#2f8f5b;
+      --green-light:#eaf8ef;
+      --red:#b94a58;
+      --red-light:#fff0f2;
+      --blue:#eef5ff;
     }
 
-    html,
-    body {
-      width: 100%;
-      max-width: 100%;
-      margin: 0;
-      overflow-x: hidden;
+    *{box-sizing:border-box}
+
+    html,body{
+      margin:0;
+      width:100%;
+      overflow-x:hidden;
     }
 
-    body {
-      min-height: 100vh;
-      font-family: Tahoma, Arial, sans-serif;
-      color: #4b3a57;
-      text-align: center;
-      background: linear-gradient(180deg, #fffaf2, #f8f0fb);
+    body{
+      min-height:100vh;
+      font-family:Tahoma,Arial,sans-serif;
+      color:var(--text);
+      background:linear-gradient(180deg,var(--cream),#f7eff8);
+      line-height:1.8;
     }
 
-    header {
-      padding: 38px 20px;
-      color: white;
-      background: linear-gradient(135deg, #776094, #5b4677);
-      border-bottom: 4px solid #c9a85c;
+    header{
+      padding:38px 18px;
+      text-align:center;
+      color:white;
+      background:linear-gradient(135deg,var(--purple),var(--purple-dark));
+      border-bottom:6px solid var(--gold);
     }
 
-    header h1 {
-      margin: 0;
-      color: #fffdf8;
-      font-size: 34px;
-      line-height: 1.6;
+    header h1{
+      margin:0 0 8px;
+      font-size:35px;
     }
 
-    section {
-      width: 85%;
-      max-width: 700px;
-      margin: 30px auto;
-      padding: 25px;
-      background: #fffdf8;
-      border: 2px solid #c9a85c;
-      border-radius: 20px;
-      box-shadow: 0 7px 18px rgba(91, 63, 111, 0.12);
+    header p{
+      margin:0;
+      color:#f8f0fb;
+      font-size:17px;
     }
 
-    .box {
-      margin: 18px 0;
-      padding: 30px 20px;
-      color: #5d4374;
-      font-size: 21px;
-      font-weight: bold;
-      line-height: 1.9;
-      background: linear-gradient(135deg, #f5ecfb, #fffaf2);
-      border: 2px dashed #c9a85c;
-      border-radius: 16px;
+    main{
+      width:min(94%,850px);
+      margin:30px auto;
     }
 
-    .back {
-      display: inline-block;
-      margin-top: 18px;
-      padding: 12px 22px;
-      color: white;
-      font-weight: bold;
-      text-decoration: none;
-      background: #6f5288;
-      border: 2px solid #c9a85c;
-      border-radius: 22px;
+    .top-panel,
+    .question-card,
+    .result-card{
+      background:rgba(255,255,255,.94);
+      border:3px solid var(--gold);
+      border-radius:28px;
+      box-shadow:0 12px 28px rgba(75,56,87,.12);
     }
 
-    .back:hover,
-    .back:active {
-      background: #5b4677;
+    .top-panel{
+      padding:20px;
+      margin-bottom:24px;
     }
 
-    footer {
-      margin-top: 30px;
-      padding: 20px;
-      color: #fffdf8;
-      background: #49385c;
-      border-top: 3px solid #c9a85c;
+    .status-row{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      font-weight:bold;
+      font-size:17px;
     }
 
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 27px;
-      }
+    .progress-track{
+      height:16px;
+      margin-top:15px;
+      overflow:hidden;
+      background:#eee7f2;
+      border-radius:20px;
+    }
 
-      section {
-        width: 92%;
-        padding: 20px 14px;
-      }
+    .progress-bar{
+      width:10%;
+      height:100%;
+      background:linear-gradient(90deg,var(--gold),var(--purple));
+      transition:width .35s ease;
+    }
 
-      .box {
-        padding: 25px 14px;
-        font-size: 18px;
-      }
+    .question-card{
+      padding:25px 20px;
+    }
+
+    .question-number{
+      display:inline-block;
+      padding:7px 15px;
+      color:white;
+      background:var(--purple);
+      border-radius:18px;
+      font-weight:bold;
+    }
+
+    .question-text{
+      margin:20px 0;
+      font-size:23px;
+      font-weight:bold;
+    }
+
+    .answers{
+      display:grid;
+      gap:13px;
+    }
+
+    .answer-btn{
+      width:100%;
+      padding:15px 14px;
+      text-align:right;
+      font-family:inherit;
+      font-size:18px;
+      color:var(--text);
+      background:white;
+      border:2px solid #d8c7e2;
+      border-radius:18px;
+      cursor:pointer;
+      transition:.2s ease;
+    }
+
+    .answer-btn:hover{
+      transform:translateY(-1px);
+      border-color:var(--purple);
+    }
+
+    .answer-btn:disabled{
+      cursor:default;
+      opacity:1;
+    }
+
+    .answer-btn.correct{
+      color:#176b40;
+      background:var(--green-light);
+      border-color:var(--green);
+    }
+
+    .answer-btn.wrong{
+      color:#8e2e3d;
+      background:var(--red-light);
+      border-color:var(--red);
+    }
+
+    .feedback{
+      display:none;
+      margin-top:20px;
+      padding:17px;
+      border-radius:19px;
+      font-size:18px;
+      font-weight:bold;
+    }
+
+    .feedback.show{display:block}
+
+    .feedback.correct{
+      color:#176b40;
+      background:var(--green-light);
+      border:2px solid #86c7a3;
+    }
+
+    .feedback.wrong{
+      color:#8e2e3d;
+      background:var(--red-light);
+      border:2px solid #e0a4ad;
+    }
+
+    .explanation{
+      display:block;
+      margin-top:8px;
+      font-weight:normal;
+    }
+
+    .next-btn,
+    .restart-btn,
+    .back-btn{
+      display:none;
+      width:fit-content;
+      margin:20px auto 0;
+      padding:13px 27px;
+      color:white;
+      font-family:inherit;
+      font-size:18px;
+      font-weight:bold;
+      background:var(--purple);
+      border:3px solid var(--gold);
+      border-radius:24px;
+      cursor:pointer;
+      text-decoration:none;
+    }
+
+    .next-btn.show,
+    .restart-btn.show,
+    .back-btn.show{
+      display:block;
+    }
+
+    .result-card{
+      display:none;
+      padding:28px 20px;
+      text-align:center;
+    }
+
+    .result-card.show{display:block}
+
+    .result-icon{
+      font-size:72px;
+    }
+
+    .result-card h2{
+      margin:8px 0;
+      font-size:31px;
+      color:var(--purple-dark);
+    }
+
+    .score{
+      margin:14px 0;
+      font-size:26px;
+      font-weight:bold;
+    }
+
+    .final-message{
+      padding:17px;
+      background:var(--blue);
+      border:2px solid #b9d3ec;
+      border-radius:20px;
+      font-size:18px;
+    }
+
+    footer{
+      margin-top:38px;
+      padding:22px 15px;
+      text-align:center;
+      color:white;
+      background:var(--purple-dark);
+      border-top:5px solid var(--gold);
+    }
+
+    @media(max-width:600px){
+      header h1{font-size:29px}
+      .question-text{font-size:20px}
+      .answer-btn{font-size:17px}
+      .question-card{padding:20px 14px}
     }
   </style>
 </head>
 
 <body>
 
-  <header>
-    <h1>✅ اختبار تجريبي لدرس اسمي الزمان والمكان</h1>
-  </header>
+<header>
+  <h1>⏰📍 اختبار أسماء الزمان والمكان</h1>
+  <p>اختبار تفاعلي من 10 أسئلة مع تغذية راجعة فورية</p>
+</header>
 
-  <section>
+<main>
 
-    <div class="box">
-      سيتم إضافة الاختبار التجريبي لدرس اسمي الزمان والمكان هنا
+  <section id="quizArea">
+    <div class="top-panel">
+      <div class="status-row">
+        <span id="questionCounter">السؤال 1 من 10</span>
+        <span id="liveScore">الدرجة: 0</span>
+      </div>
+
+      <div class="progress-track">
+        <div id="progressBar" class="progress-bar"></div>
+      </div>
     </div>
 
-    <a class="back" href="time-place-nouns.html">
-      العودة إلى درس اسمي الزمان والمكان
-    </a>
+    <div class="question-card">
+      <span id="questionNumber" class="question-number">السؤال 1</span>
 
+      <div id="questionText" class="question-text"></div>
+
+      <div id="answers" class="answers"></div>
+
+      <div id="feedback" class="feedback"></div>
+
+      <button id="nextButton" class="next-btn">السؤال التالي ←</button>
+    </div>
   </section>
 
-  <footer>
-    جميع الحقوق محفوظة © 2026
-  </footer>
+  <section id="resultCard" class="result-card">
+    <div id="resultIcon" class="result-icon">🏆</div>
+    <h2>اكتمل الاختبار</h2>
+    <div id="finalScore" class="score"></div>
+    <div id="finalMessage" class="final-message"></div>
+
+    <button id="restartButton" class="restart-btn show">🔄 إعادة الاختبار</button>
+    <a class="back-btn show" href="time-place-nouns-file.html">📖 العودة إلى ملف الدرس</a>
+  </section>
+
+</main>
+
+<footer>
+  منصة آفاق التعليمية © 2026
+</footer>
+
+<script>
+  const questions = [
+    {
+      question: "أيُّ الكلمات الآتية اسمُ مكان؟",
+      answers: ["مَوْعِد", "مَلْعَب", "صباح", "سريع"],
+      correct: 1,
+      success: "رائعة! أحسنتِ التمييز بين اسم المكان وغيره.",
+      explanation: "مَلْعَب اسم مكان؛ لأنه يدل على المكان الذي يحدث فيه اللعب.",
+      wrong: "قريبة، لكن فكري: أين يحدث الفعل؟"
+    },
+    {
+      question: "كلمة «مَوْعِد» في جملة: موعدُ الاختبار صباحًا، تُعد:",
+      answers: ["اسم زمان", "اسم مكان", "اسم فاعل", "مصدرًا"],
+      correct: 0,
+      success: "ممتاز! إجابة دقيقة.",
+      explanation: "مَوْعِد يدل هنا على زمن حدوث الاختبار؛ لذلك هو اسم زمان.",
+      wrong: "راجعي معنى الكلمة في الجملة: هل دلت على وقت أم مكان؟"
+    },
+    {
+      question: "اسم المكان المشتق من الفعل «جلس» هو:",
+      answers: ["مَجْلَس", "مَجْلِس", "جالِس", "جُلوس"],
+      correct: 1,
+      success: "أبدعتِ! الوزن صحيح.",
+      explanation: "جلس – يجلس، ومضارعه مكسور العين؛ لذلك يصاغ على وزن مَفْعِل: مَجْلِس.",
+      wrong: "انتبهي إلى حركة عين المضارع في «يجلِس»."
+    },
+    {
+      question: "أيُّ الكلمات الآتية صيغت على وزن «مَفْعَل»؟",
+      answers: ["مَجْلِس", "مَوْعِد", "مَلْعَب", "مَنْزِل"],
+      correct: 2,
+      success: "صحيح! أحسنتِ تطبيق القاعدة.",
+      explanation: "لعب – يلعب، واسم المكان منه مَلْعَب على وزن مَفْعَل.",
+      wrong: "قارني وزن الكلمة بحروف «مَفْعَل»."
+    },
+    {
+      question: "اسم المكان من الفعل غير الثلاثي «استودع» هو:",
+      answers: ["مَودَع", "مُسْتَوْدَع", "وَدِيعَة", "مُسْتَوْدِع"],
+      correct: 1,
+      success: "رائعة! أتقنتِ صياغة غير الثلاثي.",
+      explanation: "يصاغ من غير الثلاثي على صورة اسم المفعول: يستودع ← مُسْتَوْدَع.",
+      wrong: "تذكري: نأتي بالمضارع، ونبدل حرف المضارعة ميمًا مضمومة، ونفتح ما قبل الآخر."
+    },
+    {
+      question: "في جملة «وقفتُ عند مَطْلَع الجبل» كلمة «مطلع» اسم:",
+      answers: ["زمان", "مكان", "فاعل", "مفعول"],
+      correct: 1,
+      success: "ممتاز! فهمتِ دلالة السياق.",
+      explanation: "مطلع الجبل يدل على مكان؛ لأن الوقوف حدث عند موضع معين.",
+      wrong: "اسألي نفسك: هل الكلمة هنا تدل على وقت أم موضع؟"
+    },
+    {
+      question: "في جملة «مَغْرِب الشمس وقت هادئ» كلمة «مغرب» اسم:",
+      answers: ["مكان", "زمان", "آلة", "تفضيل"],
+      correct: 1,
+      success: "أحسنتِ! السياق قادكِ إلى الإجابة الصحيحة.",
+      explanation: "مغرب الشمس يدل على وقت غروبها؛ لذلك هو اسم زمان.",
+      wrong: "لاحظي كلمة «وقت» في الجملة."
+    },
+    {
+      question: "أيُّ الأزواج الآتية صحيح؟",
+      answers: [
+        "وَعَدَ – مَوْعِد",
+        "جَلَسَ – مَجْلَس",
+        "لَعِبَ – مَلْعِب",
+        "كَتَبَ – مِكْتَب"
+      ],
+      correct: 0,
+      success: "إجابة موفقة جدًا!",
+      explanation: "وعد – يعد، واسم الزمان منه مَوْعِد على وزن مَفْعِل.",
+      wrong: "راجعي ضبط الحروف في كل كلمة، فالفروق صغيرة لكنها مهمة."
+    },
+    {
+      question: "لماذا صيغت كلمة «مَنْزِل» على وزن مَفْعِل؟",
+      answers: [
+        "لأن الفعل غير ثلاثي",
+        "لأن مضارع الفعل مكسور العين",
+        "لأنها اسم زمان فقط",
+        "لأن الفعل معتل الآخر"
+      ],
+      correct: 1,
+      success: "ممتاز! هذه هي القاعدة الأساسية.",
+      explanation: "نزل – ينزِل، وعين المضارع مكسورة؛ لذلك جاء الاسم على وزن مَفْعِل.",
+      wrong: "انظري إلى حركة الزاي في «ينزِل»."
+    },
+    {
+      question: "أيُّ الجمل الآتية اشتملت على اسم زمان؟",
+      answers: [
+        "جلستُ في مجلس الضيوف.",
+        "ذهبتُ إلى الملعب.",
+        "مطلعُ الفجر وقت جميل.",
+        "وضعتُ الكتب في المستودع."
+      ],
+      correct: 2,
+      success: "بطلة! أنهيتِ الاختبار بإجابة صحيحة.",
+      explanation: "مطلع الفجر يدل على زمن طلوع الفجر؛ لذلك هو اسم زمان.",
+      wrong: "اختاري الجملة التي تدل فيها الكلمة على وقت حدوث الفعل."
+    }
+  ];
+
+  const encouragements = [
+    "🌟 إجابة صحيحة! واصلي هذا التركيز.",
+    "👏 رائعة! فهمكِ واضح.",
+    "💜 أحسنتِ يا بطلة آفاق.",
+    "✨ ممتاز! خطوة أقرب إلى الإتقان.",
+    "🎉 صحيحة! أداء جميل."
+  ];
+
+  let currentQuestion = 0;
+  let score = 0;
+  let answered = false;
+
+  const quizArea = document.getElementById("quizArea");
+  const questionCounter = document.getElementById("questionCounter");
+  const liveScore = document.getElementById("liveScore");
+  const progressBar = document.getElementById("progressBar");
+  const questionNumber = document.getElementById("questionNumber");
+  const questionText = document.getElementById("questionText");
+  const answersContainer = document.getElementById("answers");
+  const feedback = document.getElementById("feedback");
+  const nextButton = document.getElementById("nextButton");
+  const resultCard = document.getElementById("resultCard");
+  const finalScore = document.getElementById("finalScore");
+  const finalMessage = document.getElementById("finalMessage");
+  const resultIcon = document.getElementById("resultIcon");
+  const restartButton = document.getElementById("restartButton");
+
+  function renderQuestion() {
+    answered = false;
+    feedback.className = "feedback";
+    feedback.innerHTML = "";
+    nextButton.classList.remove("show");
+
+    const item = questions[currentQuestion];
+
+    questionCounter.textContent = `السؤال ${currentQuestion + 1} من ${questions.length}`;
+    liveScore.textContent = `الدرجة: ${score}`;
+    progressBar.style.width = `${((currentQuestion + 1) / questions.length) * 100}%`;
+    questionNumber.textContent = `السؤال ${currentQuestion + 1}`;
+    questionText.textContent = item.question;
+
+    answersContainer.innerHTML = "";
+
+    item.answers.forEach((answer, index) => {
+      const button = document.createElement("button");
+      button.className = "answer-btn";
+      button.textContent = `${["أ", "ب", "ج", "د"][index]} ـ ${answer}`;
+      button.addEventListener("click", () => selectAnswer(index, button));
+      answersContainer.appendChild(button);
+    });
+  }
+
+  function selectAnswer(selectedIndex, selectedButton) {
+    if (answered) return;
+    answered = true;
+
+    const item = questions[currentQuestion];
+    const buttons = [...answersContainer.querySelectorAll(".answer-btn")];
+
+    buttons.forEach(button => button.disabled = true);
+    buttons[item.correct].classList.add("correct");
+
+    if (selectedIndex === item.correct) {
+      score++;
+      selectedButton.classList.add("correct");
+
+      const randomEncouragement =
+        encouragements[Math.floor(Math.random() * encouragements.length)];
+
+      feedback.className = "feedback correct show";
+      feedback.innerHTML = `
+        ${randomEncouragement}<br>
+        ${item.success}
+        <span class="explanation">${item.explanation}</span>
+      `;
+    } else {
+      selectedButton.classList.add("wrong");
+
+      feedback.className = "feedback wrong show";
+      feedback.innerHTML = `
+        ❌ ${item.wrong}
+        <span class="explanation">
+          الإجابة الصحيحة: <strong>${item.answers[item.correct]}</strong><br>
+          ${item.explanation}
+        </span>
+      `;
+    }
+
+    liveScore.textContent = `الدرجة: ${score}`;
+    nextButton.textContent =
+      currentQuestion === questions.length - 1
+        ? "عرض النتيجة 🏆"
+        : "السؤال التالي ←";
+
+    nextButton.classList.add("show");
+  }
+
+  function showResult() {
+    quizArea.style.display = "none";
+    resultCard.classList.add("show");
+
+    const percentage = Math.round((score / questions.length) * 100);
+    finalScore.textContent = `درجتكِ: ${score} من ${questions.length} — ${percentage}٪`;
+
+    if (score === 10) {
+      resultIcon.textContent = "🏆";
+      finalMessage.textContent =
+        "إتقان كامل! أبدعتِ في أسماء الزمان والمكان، وأثبتِّ أنكِ بطلة لغوية.";
+    } else if (score >= 8) {
+      resultIcon.textContent = "🌟";
+      finalMessage.textContent =
+        "أداء متميز جدًا! بقيت لكِ مراجعة بسيطة لتصلي إلى الإتقان الكامل.";
+    } else if (score >= 6) {
+      resultIcon.textContent = "👏";
+      finalMessage.textContent =
+        "أداء جيد! راجعي أوزان مَفْعَل ومَفْعِل ثم أعيدي المحاولة.";
+    } else {
+      resultIcon.textContent = "💪";
+      finalMessage.textContent =
+        "لا بأس، كل محاولة تقرّبكِ من الإتقان. عودي إلى ملف الدرس ثم جربي مرة أخرى.";
+    }
+
+    const resultData = {
+      score: score,
+      total: questions.length,
+      percentage: percentage,
+      completed: true,
+      date: new Date().toISOString()
+    };
+
+    localStorage.setItem(
+      "timePlaceNounsTestResult",
+      JSON.stringify(resultData)
+    );
+  }
+
+  nextButton.addEventListener("click", () => {
+    if (currentQuestion < questions.length - 1) {
+      currentQuestion++;
+      renderQuestion();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      showResult();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  });
+
+  restartButton.addEventListener("click", () => {
+    currentQuestion = 0;
+    score = 0;
+    resultCard.classList.remove("show");
+    quizArea.style.display = "block";
+    renderQuestion();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  renderQuestion();
+</script>
 
 </body>
-
 </html>
