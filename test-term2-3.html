@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>النموذج التدريبي الثالث | منصة آفاق</title>
+<style>
+:root{--p:#75558d;--pd:#4b385b;--g:#c9a85c;--bg:#fffaf1;--paper:#fffdf8;--text:#403347;--ok:#2f855a;--bad:#b84444;--soft:#f1e9f5}
+*{box-sizing:border-box}body{margin:0;font-family:Tahoma,Arial,sans-serif;color:var(--text);line-height:1.85;background:radial-gradient(circle at 12% 8%,rgba(255,214,120,.20),transparent 25%),radial-gradient(circle at 88% 18%,rgba(154,112,181,.20),transparent 28%),linear-gradient(180deg,#fff9ed,#f7ebfa)}
+header{padding:28px 16px;text-align:center;color:#fff;background:linear-gradient(135deg,#786094,#594474);border-bottom:5px solid var(--g)}
+header h1{margin:0 0 6px;font-size:30px}header p{margin:0;opacity:.95}
+main{max-width:900px;margin:24px auto;padding:0 14px 50px}.notice,.card,.result{padding:20px;margin-bottom:18px;background:var(--paper);border:2px solid rgba(185,154,91,.28);border-radius:20px;box-shadow:0 12px 30px rgba(83,57,95,.10)}
+.notice{border-right:6px solid var(--g)}.topbar{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}.badge{padding:7px 12px;color:var(--pd);background:var(--soft);border-radius:999px;font-weight:bold}
+.progress{height:12px;margin:14px 0 4px;overflow:hidden;background:#eee4f1;border-radius:999px}.progress>div{width:0;height:100%;background:linear-gradient(90deg,var(--g),var(--p));transition:.35s}
+.section-title{margin:0 0 8px;color:var(--p);font-size:22px}.question{margin:12px 0;font-size:19px;font-weight:bold}.source-text{max-height:340px;padding:16px;overflow:auto;white-space:pre-line;background:#fff;border:1px dashed #ceb9d7;border-radius:16px}
+.options{display:grid;gap:10px}button,.option{padding:13px 15px;border:none;border-radius:14px;font:inherit;cursor:pointer;transition:.2s}.option{text-align:right;color:var(--text);background:#fff;border:1px solid #dbcde1;box-shadow:0 5px 12px rgba(91,63,104,.07)}
+.option.correct{color:#17613b;background:linear-gradient(135deg,#dff8e8,#f5fff8);border:2px solid #35a56c;transform:scale(1.02);box-shadow:0 0 0 5px rgba(53,165,108,.12),0 12px 24px rgba(53,165,108,.20)}
+.option.wrong{color:#8d2525;background:linear-gradient(135deg,#ffe7e7,#fff7f7);border:2px solid #d64b4b}.primary{color:#fff;background:var(--p)}.muted{color:var(--pd);background:#eee7f1}
+.feedback{display:none;margin-top:15px;padding:14px;background:#f8f3fa;border-radius:14px;border-right:5px solid var(--p)}.feedback.ok{font-size:17px;background:#eaf8ef;border:2px solid #86d6a8;border-right:5px solid var(--ok)}.feedback.bad{font-size:17px;background:#fff1f1;border:2px solid #efadad;border-right:5px solid var(--bad)}
+.nav{display:flex;justify-content:space-between;gap:10px;margin-top:18px}.nav button{min-width:130px}.result{display:none;text-align:center}.score{color:var(--p);font-size:42px;font-weight:bold}.small{color:#766b7b;font-size:14px}
+.confetti{position:fixed;inset:0;z-index:999;overflow:hidden;pointer-events:none}.piece{position:absolute;top:-20px;font-size:24px;animation:fall 2.8s linear forwards}.answer-celebration{position:fixed;inset:0;z-index:2000;display:none;align-items:center;justify-content:center;pointer-events:none;background:rgba(52,34,63,.12)}.answer-celebration.show{display:flex;animation:fadeOut 1.35s ease forwards}
+.answer-bubble{min-width:230px;max-width:82vw;padding:22px 25px;text-align:center;background:linear-gradient(145deg,#fffdf6,#ecfff3);border:4px solid #3cad72;border-radius:28px;box-shadow:0 22px 55px rgba(42,111,72,.30);animation:popIn .42s cubic-bezier(.2,1.45,.45,1)}
+.answer-hand{display:block;font-size:72px;animation:pointBounce .55s ease infinite alternate}.answer-title{color:#23764a;font-size:25px;font-weight:900}.answer-sub{margin-top:3px;color:#5a4861;font-weight:bold}.quiz-shake{animation:shake .38s ease}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:.9}}@keyframes popIn{0%{transform:scale(.25) rotate(-9deg);opacity:0}75%{transform:scale(1.08) rotate(2deg)}100%{transform:scale(1);opacity:1}}@keyframes pointBounce{from{transform:translateY(0) rotate(-8deg)}to{transform:translateY(-12px) rotate(6deg)}}@keyframes fadeOut{0%,72%{opacity:1}100%{opacity:0}}@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-9px)}40%{transform:translateX(8px)}60%{transform:translateX(-6px)}80%{transform:translateX(4px)}}
+@media(max-width:600px){header h1{font-size:24px}.question{font-size:17px}.card{padding:16px}}
+</style>
+</head>
+<body>
+<header><h1>النموذج التدريبي الثالث</h1><p>اختبارات الفصل الدراسي الثاني — الدرجة الكلية ٣٠</p></header>
+<main>
+<section class="notice"><strong>نموذج مركزي تفاعلي.</strong><div class="small">اختاري الإجابة، ثم يظهر سبب صحتها أو خطئها مباشرة.</div></section>
+<section class="card" id="quizCard">
+<div class="topbar"><span class="badge" id="sectionBadge"></span><span class="badge" id="counter"></span><span class="badge" id="liveScore">الدرجة: ٠ / ٣٠</span></div>
+<div class="progress"><div id="progressBar"></div></div>
+<h2 class="section-title" id="sectionTitle"></h2><div id="passage"></div><div class="question" id="questionText"></div><div id="answerArea"></div><div class="feedback" id="feedback"></div>
+<div class="nav"><button class="muted" id="prevBtn">السابق</button><button class="primary" id="nextBtn">التالي</button></div>
+</section>
+<section class="result" id="result"><div>🎉 أنهيتِ النموذج الثالث</div><div class="score" id="finalScore"></div><p id="finalMessage"></p><button class="primary" onclick="location.reload()">إعادة النموذج</button></section>
+</main>
+<div class="confetti" id="confetti"></div>
+<div class="answer-celebration" id="answerCelebration"><div class="answer-bubble"><span class="answer-hand">👉</span><div class="answer-title">إجابة صحيحة!</div><div class="answer-sub">أحسنتِ يا بطلة آفاق ✨</div></div></div>
+<script>
+let audioContext;
+function playTone(f,d,t="sine",v=.07,delay=0){try{audioContext=audioContext||new(window.AudioContext||window.webkitAudioContext)();const o=audioContext.createOscillator(),g=audioContext.createGain();o.type=t;o.frequency.value=f;g.gain.value=v;o.connect(g);g.connect(audioContext.destination);const s=audioContext.currentTime+delay;o.start(s);g.gain.setValueAtTime(v,s);g.gain.exponentialRampToValueAtTime(.001,s+d);o.stop(s+d)}catch(e){}}
+function playSuccessSound(){playTone(523,.14,"sine",.08);playTone(659,.16,"sine",.08,.12);playTone(784,.25,"triangle",.09,.25)}
+function playWrongSound(){playTone(190,.17,"sawtooth",.045);playTone(145,.20,"sawtooth",.035,.12)}
+function celebrateCorrect(){playSuccessSound();if(navigator.vibrate)navigator.vibrate([35,45,70]);const e=document.getElementById("answerCelebration");e.classList.remove("show");void e.offsetWidth;e.classList.add("show");setTimeout(()=>e.classList.remove("show"),1450)}
+function reactToWrongAnswer(){playWrongSound();if(navigator.vibrate)navigator.vibrate([90,55,90]);const c=document.getElementById("quizCard");c.classList.remove("quiz-shake");void c.offsetWidth;c.classList.add("quiz-shake");setTimeout(()=>c.classList.remove("quiz-shake"),450)}
+
+const readingPassage=`تتبوأ المملكة العربية السعودية مكانة متقدمة بين دول العالم في تبني وتوظيف تطبيقات الذكاء الاصطناعي، استنادًا إلى مستهدفات رؤية المملكة 2030 الهادفة إلى تشييد اقتصاد متنوع وصياغة مجتمع معرفي رائد. فلم يعد الذكاء الاصطناعي مجرد ابتكار تقني، بل أضحى محركًا جوهريًا لمسيرة التحول الوطني.
+
+يستخدم الذكاء الاصطناعي في المملكة في مجالات شتى؛ فظهر مصطلح المدن الذكية، ففي مكة المكرمة تدار الحشود عبر تطبيق «عابر»، وتقاس كفاءة وجودة الخدمات الحكومية من خلال منصة «بلدي». كما تتطلع المملكة إلى أن تكون مدينة «نيوم» نموذجًا عالميًا لمدن المستقبل.
+
+وفي الرعاية الصحية يجري تطوير حلول متقدمة للتشخيص المبكر للأمراض، وتقديم خدمات صحية متطورة ووضعها في قواعد بيانات وتحليلها، كتطبيق «صحتي».
+
+ومن المجالات الأخرى الطاقة والاستدامة البيئية؛ إذ يدعم الذكاء الاصطناعي مشاريع الطاقة ومراقبة التغيرات المناخية، وطبقت وزارة البيئة نظامًا ذكيًا لتحليل الغطاء النباتي يسهم في مكافحة التصحر.
+
+وأطلقت «سدايا» مبادرة «سماي» لتطوير القدرات وبناء المحتوى، وذلك بتدريب وتمكين مليون مواطن في مهارات الذكاء الاصطناعي التوليدي وبناء نماذج لغوية عربية موثوقة.`;
+
+const poem=`جاء في النص الشعري على لسان عاطل متواكل:
+مستكينٌ لم أزاول أيَّ جهدٍ بيدي
+مستقرٌّ لم أحرك أيَّ طرفٍ قدميه
+مستدرٌّ أتغذّى من فتاتِ البشرية
+أنفق الأيام بحثًا عمّن أتحول عليه`;
+
+const questions=[
+{section:"الفهم القرائي",passage:"reading",question:"ضد كلمة «حثيثة» الواردة في النص هو «بطيئة».",options:["صحيح","خطأ"],answer:0,explanation:"«حثيثة» تعني سريعة ومتتابعة، وضدها بطيئة."},
+{section:"الفهم القرائي",passage:"reading",question:"الهدف الرئيس لمبادرة «سماي» هو تمكين مليون مواطن في مجال الذكاء الاصطناعي.",options:["صحيح","خطأ"],answer:0,explanation:"ورد في النص أن المبادرة تستهدف تدريب وتمكين مليون مواطن."},
+{section:"الفهم القرائي",passage:"reading",question:"تطبيق «وافي» من تطبيقات الذكاء الاصطناعي المستخدمة في القطاع الحكومي.",options:["صحيح","خطأ"],answer:1,explanation:"النص ذكر «عابر» و«بلدي» و«صحتي»، ولم يذكر «وافي»."},
+{section:"الفهم القرائي",passage:"reading",question:"رتبي المجالات حسب ورودها في النص: الطاقة، المدن الذكية، الخدمات الصحية.",options:["٣-١-٢","٢-١-٣","١-٣-٢","٢-٣-١"],answer:3,explanation:"وردت المدن الذكية أولًا، ثم الخدمات الصحية، ثم الطاقة."},
+{section:"الفهم القرائي",passage:"reading",question:"العلاقة بين رؤية ٢٠٣٠ وتبني الذكاء الاصطناعي في المملكة:",options:["توظيف الذكاء الاصطناعي أحد مستهدفات الرؤية","الذكاء الاصطناعي منفصل عن الرؤية","الذكاء الاصطناعي خطة مؤجلة","مستهدفات الرؤية تتعارض معه"],answer:0,explanation:"النص ربط تبني الذكاء الاصطناعي مباشرة بمستهدفات رؤية ٢٠٣٠."},
+{section:"الفهم القرائي",passage:"reading",question:"أي إجراء يمثل استخدام الذكاء الاصطناعي في إدارة الحشود؟",options:["استخدام نظام ساهر","وضع لافتات إرشادية","كاميرات ذكية لتوجيه المسارات","إغلاق الطرق المزدحمة"],answer:2,explanation:"الكاميرات الذكية توجه المسارات وفق تحليل آني للحشود."},
+{section:"الفهم القرائي",passage:"reading",question:"«تحليل الغطاء النباتي لمكافحة التصحر» و«قيادة المملكة للتحول الرقمي» تمثلان على الترتيب:",options:["رئيسية–رئيسية","فرعية–رئيسية","رئيسية–فرعية","فرعية–فرعية"],answer:1,explanation:"تحليل الغطاء النباتي تفصيل فرعي، بينما قيادة التحول الرقمي فكرة رئيسية."},
+{section:"الفهم القرائي",passage:"reading",question:"أنسب عنوان للنص:",options:["الذكاء الاصطناعي في المملكة","أضرار التقنية الحديثة","الطاقة التقليدية","المدن القديمة"],answer:0,explanation:"النص يتناول مجالات توظيف الذكاء الاصطناعي وجهود المملكة فيه."},
+{section:"الفهم القرائي",passage:"reading",question:"يمكن الاستفادة من الذكاء الاصطناعي في المناهج الدراسية من خلال:",options:["منع المصادر الرقمية","تخصيص تعلم تفاعلي وتحليل أداء الطلاب","إلغاء دور المعلم","الاعتماد على الحفظ فقط"],answer:1,explanation:"التعلم التفاعلي وتحليل الأداء استخدام تعليمي مناسب للذكاء الاصطناعي."},
+{section:"النص الشعري",passage:"poem",question:"إحدى المشاعر السلبية التي توحي بها الأبيات:",options:["الحماس","الاعتماد على النفس","الاتكالية والكسل","الشجاعة"],answer:2,explanation:"الأبيات تصف عاطلًا متواكلًا لا يبذل جهدًا."},
+{section:"النص الشعري",passage:"poem",question:"أي التعبيرين أبلغ؟",options:["أتغذى من طعام البشرية","أتغذى من فتات البشرية","أتناول طعامًا كثيرًا","أبحث عن رزقي"],answer:1,explanation:"«فتات البشرية» يصور الذل والاتكالية بقوة أكبر."},
+
+{section:"الأسلوب اللغوي",question:"المستثنى في «نجح طلاب الفصل إلا خالدًا» هو:",options:["خالدًا","طلاب","نجح","الفصل"],answer:0,explanation:"الاسم الواقع بعد «إلا» هو المستثنى."},
+{section:"الأسلوب اللغوي",question:"تحويل «الحديقة جميلة» إلى تعجب قياسي:",options:["ما أجمل الحديقة!","الحديقة جميلة جدًا","يا للحديقة","هل الحديقة جميلة؟"],answer:0,explanation:"صيغة «ما أفعل» من صيغ التعجب القياسي."},
+{section:"الأسلوب اللغوي",question:"الصياغة الصحيحة للعدد في «اشتريت ١٥ كتابًا»:",options:["اشتريت خمسة عشر كتابًا","اشتريت خمس عشرة كتابًا","اشتريت خمسة عشرة كتابًا","اشتريت خمس عشر كتابًا"],answer:0,explanation:"المعدود مذكر؛ فنقول خمسة عشر كتابًا."},
+{section:"الأسلوب اللغوي",question:"أكملي: «قرأت أربعَ ........»",options:["كتابٍ","قصصٍ","أقلامٍ","دفاترٍ"],answer:1,explanation:"العدد ٣–١٠ يخالف المعدود؛ «قصة» مؤنث فنقول أربع قصص."},
+
+{section:"الوظيفة النحوية",question:"نوع التابع في «زرت العلا ونيوم الصيف الماضي»:",options:["نعت","بدل","معطوف","توكيد"],answer:2,explanation:"«نيوم» معطوفة على «العلا» بالواو."},
+{section:"الوظيفة النحوية",question:"نوع التابع في «نعم القائد خالد بن الوليد»:",options:["بدل","نعت","معطوف","حال"],answer:0,explanation:"«خالد» بدل يوضح المقصود بالقائد."},
+{section:"الوظيفة النحوية",question:"أي حرف عطف يفيد الترتيب مع التعقيب؟",options:["الواو","ثم","الفاء","أو"],answer:2,explanation:"الفاء تفيد الترتيب مع التعقيب."},
+{section:"الوظيفة النحوية",question:"أي الجمل تتضمن بدل بعض من كل؟",options:["أكلت الرغيف نصفه","جاء المعلم خالد","حضر محمد وعلي","رأيت طالبًا مجتهدًا"],answer:0,explanation:"«نصفه» جزء حقيقي من «الرغيف»."},
+{section:"الوظيفة النحوية",question:"الصواب في «نجحت الطالبة المجتهدةَ» هو:",options:["المجتهدةُ","المجتهدةَ","المجتهدةِ","المجتهدتان"],answer:0,explanation:"النعت يتبع المنعوت، و«الطالبة» فاعل مرفوع؛ لذا «المجتهدةُ»."},
+{section:"الوظيفة النحوية",question:"إعراب «المثابر» في «الطالب المثابر يستحق الاحترام»:",options:["نعت مرفوع","مفعول به","حال منصوب","بدل مجرور"],answer:0,explanation:"«المثابر» وصف للطالب ويتبعه في الرفع."},
+
+{section:"الصنف اللغوي",question:"اسم الآلة الجامد فيما يأتي:",options:["ملعقة","سكين","مفتاح","مشرط"],answer:1,explanation:"«سكين» اسم آلة جامد سماعي."},
+{section:"الصنف اللغوي",question:"وزن المصدر «الإبداع»:",options:["إفعال","تفعيل","فعّال","فعللة"],answer:0,explanation:"«إبداع» مصدر الفعل الرباعي «أبدع» على وزن إفعال."},
+{section:"الصنف اللغوي",question:"أي الكلمات مصدر ثلاثي سماعي؟",options:["هديل","سجود","رحيل","ثوران"],answer:1,explanation:"«سجود» مصدر ثلاثي سماعي للفعل «سجد»."},
+{section:"الصنف اللغوي",question:"الجملة التي تحتوي اسم مكان على وزن «مَفْعِل»:",options:["الكتاب فوق الطاولة","اجتمع المعلمون أمام الفصل","مكة مهبط الوحي","مبدأ الحفل الساعة الرابعة"],answer:2,explanation:"«مهبط» اسم مكان على وزن مَفْعِل."},
+{section:"الصنف اللغوي",question:"مصدر الفعل «استخرج»:",options:["خروج","إخراج","استخراج","مخرج"],answer:2,explanation:"مصدر «استخرج» هو «استخراج»."},
+{section:"الصنف اللغوي",question:"اسم الآلة على وزن «فاعول» من الفعل «حسب»:",options:["حاسوب","حاسبة","محسب","حساب"],answer:0,explanation:"«حاسوب» اسم آلة على وزن فاعول."},
+
+{section:"الرسم الإملائي",question:"تصويب «يدعوا المؤمن ربه»:",options:["يدعو المؤمن ربه","يدعوا المؤمن ربه","يدعي المؤمن ربه","يدعون المؤمن ربه"],answer:0,explanation:"الواو أصلية، فلا تزاد بعدها الألف."},
+{section:"الرسم الإملائي",question:"تصويب «عمر ابن الخطاب ثاني الخلفاء»:",options:["عمر بن الخطاب ثاني الخلفاء","عمر ابن الخطاب ثاني الخلفاء","عمر إبن الخطاب ثاني الخلفاء","عمر بنّ الخطاب ثاني الخلفاء"],answer:0,explanation:"تحذف ألف «ابن» إذا وقعت بين علمين وكان الثاني أبًا للأول."},
+{section:"الرسم الإملائي",question:"في «اعلم أن لا نجاح بلا اجتهاد» كُتبت «أن لا» منفصلة لأن:",options:["بعد «لا» فعل","«لا» نافية للجنس وبعدها اسم","«أن» حرف جر","لا يجوز وصلهما مطلقًا"],answer:1,explanation:"جاء بعد «لا» اسم هو «نجاح»، لذلك تفصل «أن لا»."}
+];
+
+const totalQuestions=questions.length,totalScore=30;
+let currentQuestion=0,correctAnswers=0;
+const answeredQuestions=new Array(totalQuestions).fill(false);
+const element=id=>document.getElementById(id);
+const toArabicNumber=n=>String(n).replace(/\d/g,d=>"٠١٢٣٤٥٦٧٨٩"[d]);
+const calculateScore=()=>Math.round((correctAnswers/totalQuestions)*totalScore);
+
+function renderQuestion(){
+ const q=questions[currentQuestion];
+ element("sectionBadge").textContent=q.section;
+ element("sectionTitle").textContent=q.section;
+ element("counter").textContent=`السؤال ${toArabicNumber(currentQuestion+1)} من ${toArabicNumber(totalQuestions)}`;
+ element("liveScore").textContent=`الدرجة: ${toArabicNumber(calculateScore())} / ٣٠`;
+ element("progressBar").style.width=((currentQuestion+1)/totalQuestions*100)+"%";
+ element("passage").innerHTML=q.passage==="reading"?`<div class="source-text">${readingPassage}</div>`:q.passage==="poem"?`<div class="source-text">${poem}</div>`:"";
+ element("questionText").textContent=q.question;element("answerArea").innerHTML="";element("feedback").style.display="none";element("feedback").className="feedback";
+ const box=document.createElement("div");box.className="options";
+ q.options.forEach((txt,index)=>{const b=document.createElement("button");b.className="option";b.textContent=txt;b.onclick=()=>selectAnswer(index,b,box);box.appendChild(b)});
+ element("answerArea").appendChild(box);element("prevBtn").disabled=currentQuestion===0;element("nextBtn").textContent=currentQuestion===totalQuestions-1?"إنهاء النموذج":"التالي";
+}
+function selectAnswer(selectedIndex,selectedButton,optionsBox){
+ if(answeredQuestions[currentQuestion])return;
+ const q=questions[currentQuestion],ok=selectedIndex===q.answer;
+ answeredQuestions[currentQuestion]=true;
+ const buttons=optionsBox.querySelectorAll(".option");buttons.forEach(b=>b.disabled=true);buttons[q.answer].classList.add("correct");if(!ok)selectedButton.classList.add("wrong");if(ok)correctAnswers++;
+ element("liveScore").textContent=`الدرجة: ${toArabicNumber(calculateScore())} / ٣٠`;showFeedback(ok,q.explanation);
+}
+function showFeedback(ok,explanation){
+ const f=element("feedback");
+ if(ok){f.className="feedback ok";f.innerHTML=`✅ <strong>إجابة صحيحة!</strong><br><strong>السبب:</strong> ${explanation}`;createConfetti(16);celebrateCorrect()}
+ else{f.className="feedback bad";f.innerHTML=`❌ <strong>الإجابة غير صحيحة.</strong><br><strong>التوضيح:</strong> ${explanation}`;reactToWrongAnswer()}
+ f.style.display="block";
+}
+element("prevBtn").onclick=()=>{if(currentQuestion>0){currentQuestion--;renderQuestion()}};
+element("nextBtn").onclick=()=>{if(!answeredQuestions[currentQuestion])return alert("اختاري إجابة أولًا.");if(currentQuestion<totalQuestions-1){currentQuestion++;renderQuestion()}else finishQuiz()};
+function finishQuiz(){
+ element("quizCard").style.display="none";element("result").style.display="block";const s=calculateScore();element("finalScore").textContent=`${toArabicNumber(s)} من ٣٠`;
+ element("finalMessage").textContent=s>=27?"👑 أداء متميز جدًا! أنتِ من نجمات آفاق.":s>=22?"🌸 أداء جميل، راجعي تعليقات الأسئلة التي أخطأتِ فيها.":"💜 أحسنتِ المحاولة، أعيدي النموذج بعد مراجعة المهارات.";
+ if(s>=27){createConfetti(55);playSuccessSound()}else if(s>=22)createConfetti(30);
+}
+function createConfetti(n){const c=element("confetti"),icons=["🎈","✨","🌸","⭐"];for(let i=0;i<n;i++){const p=document.createElement("span");p.className="piece";p.textContent=icons[Math.floor(Math.random()*icons.length)];p.style.left=Math.random()*100+"vw";p.style.animationDelay=Math.random()*.6+"s";c.appendChild(p);setTimeout(()=>p.remove(),3500)}}
+renderQuestion();
+</script>
+</body>
+</html>
