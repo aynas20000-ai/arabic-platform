@@ -3,76 +3,306 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ملف درس الكلمات الموصولة خطًّا</title>
-
+  <title>رسم بعض الكلمات المفصولة خطًّا | منصة آفاق</title>
   <style>
+    :root{
+      --purple:#74558c;
+      --purple-dark:#4d385d;
+      --gold:#c9a85c;
+      --cream:#fffaf1;
+      --paper:#fffdf8;
+      --text:#4b3857;
+      --rose:#fff0f4;
+      --green:#eef8eb;
+      --blue:#edf5ff;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;width:100%;overflow-x:hidden}
     body{
-      margin:0;
+      min-height:100vh;
       font-family:Tahoma,Arial,sans-serif;
-      background:#f5f5f5;
-      text-align:center;
+      color:var(--text);
+      background:linear-gradient(180deg,var(--cream),#f7eff8);
+      line-height:1.9;
     }
-
     header{
-      background:#1565c0;
-      color:white;
-      padding:35px 20px;
+      padding:42px 18px;
+      text-align:center;
+      color:#fff;
+      background:linear-gradient(135deg,var(--purple),var(--purple-dark));
+      border-bottom:6px solid var(--gold);
     }
-
-    section{
-      background:white;
-      margin:30px auto;
-      padding:25px;
-      width:85%;
-      max-width:700px;
-      border-radius:18px;
-      box-shadow:0 4px 15px rgba(0,0,0,0.12);
+    header h1{margin:0 0 8px;font-size:35px}
+    header p{margin:0;color:#f8f0fb;font-size:18px}
+    main{width:min(94%,920px);margin:34px auto}
+    .card{
+      margin:24px 0;
+      padding:24px 20px;
+      background:rgba(255,255,255,.94);
+      border:3px solid var(--gold);
+      border-radius:28px;
+      box-shadow:0 12px 28px rgba(75,56,87,.11);
     }
-
-    .box{
-      background:#eaf3ff;
-      margin:18px 0;
-      padding:24px;
-      border-radius:14px;
+    .card h2{
+      margin:0 0 15px;
+      text-align:center;
+      color:var(--purple-dark);
+      font-size:27px;
+    }
+    .intro{
+      text-align:center;
+      font-size:20px;
+      background:linear-gradient(145deg,#fffdf8,#fff3f7);
+    }
+    .rule-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+    }
+    .rule-box{
+      padding:18px 14px;
+      text-align:center;
+      background:#fbf8fd;
+      border:2px solid #d8c5e3;
+      border-radius:20px;
+    }
+    .wrong{
+      color:#b24655;
+      text-decoration:line-through;
+      font-weight:bold;
+    }
+    .correct{
+      color:#2f7c50;
+      font-weight:bold;
       font-size:21px;
     }
-
-    .back{
-      color:#1565c0;
-      font-weight:bold;
-      text-decoration:none;
+    .example{
+      margin:12px 0;
+      padding:13px 15px;
+      background:#fff;
+      border-right:6px solid var(--gold);
+      border-radius:17px;
     }
-
+    table{
+      width:100%;
+      border-collapse:collapse;
+      background:#fff;
+      border-radius:18px;
+      overflow:hidden;
+    }
+    th,td{
+      padding:13px 9px;
+      border:1px solid #dccfe3;
+      text-align:center;
+      font-size:17px;
+    }
+    th{color:#fff;background:var(--purple)}
+    .note{
+      padding:17px;
+      background:var(--green);
+      border:2px solid #a8c996;
+      border-radius:20px;
+      font-size:18px;
+    }
+    .steps{
+      margin:0;
+      padding-right:25px;
+    }
+    .steps li{
+      margin:12px 0;
+      padding:11px 13px;
+      background:var(--blue);
+      border:2px solid #bfd6eb;
+      border-radius:16px;
+    }
+    .practice{
+      background:var(--rose);
+    }
+    .answer{
+      color:#2f7c50;
+      font-weight:bold;
+    }
+    .back{
+      display:block;
+      width:fit-content;
+      margin:32px auto 0;
+      padding:14px 28px;
+      color:#fff;
+      text-decoration:none;
+      font-weight:bold;
+      font-size:18px;
+      background:var(--purple);
+      border:3px solid var(--gold);
+      border-radius:26px;
+    }
     footer{
-      background:#222;
-      color:white;
-      padding:20px;
-      margin-top:30px;
+      margin-top:38px;
+      padding:22px 15px;
+      text-align:center;
+      color:#fff;
+      background:var(--purple-dark);
+      border-top:5px solid var(--gold);
+    }
+    @media(max-width:650px){
+      header h1{font-size:29px}
+      .rule-grid{grid-template-columns:1fr}
+      .card{padding:19px 14px}
+      th,td{font-size:15px;padding:10px 5px}
     }
   </style>
 </head>
-
 <body>
 
 <header>
-  <h1>📄 ملف درس الكلمات الموصولة خطًّا</h1>
+  <h1>✍️ رسم بعض الكلمات المفصولة خطًّا</h1>
+  <p>شرح مبسّط بالأمثلة وفق هوية منصة آفاق</p>
 </header>
 
-<section>
+<main>
 
-  <div class="box">
-    سيتم إضافة ملف الدرس هنا
-  </div>
+  <section class="card intro">
+    <h2>الفكرة الرئيسة</h2>
+    <p>
+      بعض الكلمات تتكوّن من كلمتين، لكنهما تُكتبان <strong>منفصلتين</strong>
+      ولا توصل إحداهما بالأخرى.
+    </p>
+  </section>
 
-  <p>
-    <a class="back" href="connected-words-term2.html">العودة إلى الدرس</a>
-  </p>
+  <section class="card">
+    <h2>الكلمات التي نكتبها مفصولة</h2>
 
-</section>
+    <div class="rule-grid">
+      <div class="rule-box">
+        <div class="wrong">إنلم</div>
+        <div class="correct">إنْ لم</div>
+      </div>
+
+      <div class="rule-box">
+        <div class="wrong">منما</div>
+        <div class="correct">مِنْ ما</div>
+      </div>
+
+      <div class="rule-box">
+        <div class="wrong">أنلا</div>
+        <div class="correct">أنْ لا</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>أولًا: إنْ لم</h2>
+    <div class="note">
+      تتكوّن من <strong>إنْ الشرطية</strong> و<strong>لم النافية الجازمة</strong>،
+      وتُكتبان منفصلتين.
+    </div>
+
+    <div class="example">
+      <span class="answer">إنْ لم</span> يعمل الإنسان فلا قيمة له.
+    </div>
+
+    <div class="example">
+      <span class="answer">إنْ لم</span> تجتهدي فلن تحققي هدفكِ.
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>ثانيًا: مِنْ ما</h2>
+    <div class="note">
+      تتكوّن من حرف الجر <strong>مِنْ</strong> واسم الموصول <strong>ما</strong>،
+      وتُكتبان منفصلتين.
+    </div>
+
+    <div class="example">
+      أعلم <span class="answer">مِنْ ما</span> لا يعجب النجاح.
+    </div>
+
+    <div class="example">
+      استفدتُ <span class="answer">مِنْ ما</span> قرأتُه.
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>ثالثًا: أنْ لا</h2>
+    <div class="note">
+      تتكوّن من <strong>أنْ الناصبة</strong> و<strong>لا النافية</strong>،
+      وتُكتبان منفصلتين.
+    </div>
+
+    <div class="example">
+      أعلم <span class="answer">أنْ لا</span> تتهاون بعد الآن.
+    </div>
+
+    <div class="example">
+      أرجو <span class="answer">أنْ لا</span> تتأخري عن موعدكِ.
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>ملخص سريع</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>الصواب</th>
+          <th>التركيب</th>
+          <th>مثال</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>إنْ لم</td>
+          <td>إنْ الشرطية + لم النافية الجازمة</td>
+          <td>إنْ لم تدرسي فلن تنجحي.</td>
+        </tr>
+        <tr>
+          <td>مِنْ ما</td>
+          <td>مِنْ حرف الجر + ما الموصولة</td>
+          <td>تعلمتُ مِنْ ما قرأتُ.</td>
+        </tr>
+        <tr>
+          <td>أنْ لا</td>
+          <td>أنْ الناصبة + لا النافية</td>
+          <td>أحب أنْ لا أتأخر.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="card">
+    <h2>كيف أتقن الكتابة الصحيحة؟</h2>
+    <ol class="steps">
+      <li>أحدّد الكلمتين المكوّنتين للتركيب.</li>
+      <li>أتأكد أن لكل كلمة معنى ووظيفة مستقلة.</li>
+      <li>أكتب بينهما مسافة.</li>
+      <li>أراجع الجملة بعد الكتابة.</li>
+    </ol>
+  </section>
+
+  <section class="card practice">
+    <h2>تدريب سريع</h2>
+
+    <div class="example">
+      الصواب: <span class="answer">إنْ لم</span> تصنع نفسك فلن يصنعك أحد.
+    </div>
+
+    <div class="example">
+      الصواب: استفدتُ <span class="answer">مِنْ ما</span> تعلمتُه.
+    </div>
+
+    <div class="example">
+      الصواب: أرجو <span class="answer">أنْ لا</span> تهملي واجبكِ.
+    </div>
+  </section>
+
+  <a class="back" href="connected-words-term2.html">
+    العودة إلى صفحة الدرس
+  </a>
+
+</main>
 
 <footer>
-  جميع الحقوق محفوظة © 2026
+  منصة آفاق التعليمية © 2026
 </footer>
 
 </body>
 </html>
+
