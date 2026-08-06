@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>النموذج التدريبي الأول | منصة آفاق</title>
+  <style>
+    :root{
+      --p:#75558d; --pd:#4b385b; --g:#c9a85c;
+      --bg:#fffaf1; --paper:#fffdf8; --text:#403347;
+      --ok:#2f855a; --bad:#b84444; --soft:#f1e9f5;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family:Tahoma,Arial,sans-serif; color:var(--text);
+      background:linear-gradient(180deg,var(--bg),#f7eff8); line-height:1.85;
+    }
+    header{
+      padding:28px 16px; text-align:center; color:#fff;
+      background:linear-gradient(135deg,#786094,#594474);
+      border-bottom:5px solid var(--g);
+    }
+    header h1{margin:0 0 6px;font-size:30px}
+    header p{margin:0;opacity:.95}
+    main{max-width:900px;margin:24px auto;padding:0 14px 50px}
+    .notice,.card,.result{
+      background:var(--paper); border:1px solid #eadfee; border-radius:20px;
+      box-shadow:0 12px 30px rgba(83,57,95,.10); padding:20px; margin-bottom:18px;
+    }
+    .notice{border-right:6px solid var(--g)}
+    .topbar{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+    .badge{background:var(--soft);color:var(--pd);padding:7px 12px;border-radius:999px;font-weight:bold}
+    .progress{height:12px;background:#eee4f1;border-radius:999px;overflow:hidden;margin:14px 0 4px}
+    .progress > div{height:100%;width:0;background:linear-gradient(90deg,var(--g),var(--p));transition:.35s}
+    .section-title{color:var(--p);margin:0 0 8px;font-size:22px}
+    .question{font-size:19px;font-weight:bold;margin:12px 0}
+    .source-text{
+      background:#fff; border:1px dashed #ceb9d7; border-radius:16px;
+      padding:16px; white-space:pre-line; max-height:320px; overflow:auto;
+    }
+    .options{display:grid;gap:10px}
+    button,.option{
+      font:inherit; border:none; border-radius:14px; cursor:pointer;
+      transition:.2s; padding:13px 15px;
+    }
+    .option{
+      text-align:right;background:#fff;border:1px solid #dbcde1;color:var(--text)
+    }
+    .option:hover{transform:translateY(-1px);border-color:var(--p)}
+    .option.correct{background:#e7f7ed;border-color:var(--ok);color:#1d643f}
+    .option.wrong{background:#fff0f0;border-color:var(--bad);color:#8d2e2e}
+    textarea,input[type=text]{
+      width:100%;padding:13px;border:1px solid #d8cadf;border-radius:13px;
+      font:inherit;background:#fff;min-height:52px
+    }
+    textarea{min-height:120px;resize:vertical}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .primary{background:var(--p);color:#fff}
+    .gold{background:var(--g);color:#fff}
+    .muted{background:#eee7f1;color:var(--pd)}
+    .feedback{
+      display:none;margin-top:15px;padding:14px;border-radius:14px;border-right:5px solid var(--p);
+      background:#f8f3fa
+    }
+    .feedback.ok{background:#eaf8ef;border-color:var(--ok)}
+    .feedback.bad{background:#fff1f1;border-color:var(--bad)}
+    .model{display:none;margin-top:12px;padding:14px;background:#fff7df;border-radius:14px;border-right:5px solid var(--g)}
+    .selfscore{display:none;margin-top:12px;gap:8px;flex-wrap:wrap}
+    .nav{display:flex;justify-content:space-between;gap:10px;margin-top:18px}
+    .nav button{min-width:130px}
+    .result{display:none;text-align:center}
+    .score{font-size:42px;color:var(--p);font-weight:bold}
+    .small{font-size:14px;color:#766b7b}
+    .confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:999}
+    .piece{position:absolute;top:-20px;font-size:24px;animation:fall 2.8s linear forwards}
+    @keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:.9}}
+    @media(max-width:600px){
+      header h1{font-size:24px}.question{font-size:17px}.card{padding:16px}
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>النموذج التدريبي الأول</h1>
+  <p>الفصل الدراسي الثاني — الدرجة الكلية ٤٠</p>
+</header>
+
+<main>
+  <section class="notice">
+    <strong>تدريب يحاكي ترتيب الاختبار الأصلي.</strong>
+    <div class="small">بعد كل إجابة يظهر السبب والقاعدة، والأسئلة المقالية تعرض إجابة نموذجية للتقويم الذاتي.</div>
+  </section>
+
+  <section class="card" id="quizCard">
+    <div class="topbar">
+      <span class="badge" id="sectionBadge">الفهم القرائي</span>
+      <span class="badge" id="counter">السؤال ١</span>
+      <span class="badge" id="liveScore">الدرجة: ٠ / ٤٠</span>
+    </div>
+    <div class="progress"><div id="progressBar"></div></div>
+    <h2 class="section-title" id="sectionTitle"></h2>
+    <div id="passage"></div>
+    <div class="question" id="questionText"></div>
+    <div id="answerArea"></div>
+    <div class="feedback" id="feedback"></div>
+    <div class="model" id="modelAnswer"></div>
+    <div class="selfscore" id="selfScore"></div>
+    <div class="nav">
+      <button class="muted" id="prevBtn">السابق</button>
+      <button class="primary" id="nextBtn">التالي</button>
+    </div>
+  </section>
+
+  <section class="result" id="result">
+    <div>🎉 أنهيتِ النموذج الأول</div>
+    <div class="score" id="finalScore"></div>
+    <p id="finalMessage"></p>
+    <button class="primary" onclick="location.reload()">إعادة النموذج</button>
+  </section>
+</main>
+<div class="confetti" id="confetti"></div>
+
+<script>
+const passage = `تعد ظاهرة الإدمان على المخدرات من أخطر الظواهر التي تعاني منها جميع دول العالم، فتعاطي المخدرات له تأثير وأضرار على الجسد والعقل والنفس؛ فهي تذهب العقل، وتسبب أمراض القلب، والتهاب المريء، وتقرح المعدة، والتهاب البنكرياس، والسرطان، فضلًا عما يلازم المدمن من أمراض نفسية كالاكتئاب والعزلة والتوتر.
+
+ومن الأسباب المؤدية إلى إدمان المخدرات: مصاحبة أصدقاء السوء، والفضول وحب التجربة، والتفكك الأسري، والفقر، والفراغ، وضعف الوازع الديني. كما أن تأثير المخدرات لا ينحصر على الفرد فقط، بل يطال المجتمعات أيضًا؛ فهي تؤدي إلى تفكك الأسر، وانتشار الجرائم، وارتفاع معدل العنف، وزيادة البطالة.
+
+وللوقاية من المخدرات يجب التقرب من الأبناء واحترامهم، وتنمية مواهبهم بأنشطة إيجابية كالرياضة والرسم، وتوعيتهم بأضرار المخدرات، ومنحهم الثقة والدعم، وتعزيز الوازع الديني.`;
+
+const questions = [
+  {s:"الفهم القرائي",p:2,t:"essay",q:"تحدثي عن أضرار المخدرات الصحية والنفسية.",m:"من أضرارها الصحية: ذهاب العقل، وأمراض القلب، والتهاب المريء، وتقرح المعدة، والتهاب البنكرياس، والسرطان. ومن أضرارها النفسية: الاكتئاب والعزلة والتوتر.",why:"تُقبل الإجابة التي تجمع ضررًا صحيًا وضررًا نفسيًا من النص.",pass:true},
+  {s:"الفهم القرائي",p:2,t:"essay",q:"اذكري بعضًا من الأسباب المؤدية إلى الإدمان على المخدرات.",m:"مصاحبة أصدقاء السوء، والفضول وحب التجربة، والتفكك الأسري، والفقر، والفراغ، وضعف الوازع الديني.",why:"المطلوب ذكر بعض الأسباب الواردة صراحة في النص.",pass:true},
+  {s:"الفهم القرائي",p:2,t:"essay",q:"بيّني تأثير المخدرات على المجتمعات.",m:"تؤدي إلى تفكك الأسر، وانتشار الجرائم، وارتفاع معدل العنف، وزيادة البطالة.",why:"هذه آثار اجتماعية ذكرها النص مباشرة.",pass:true},
+  {s:"الفهم القرائي",p:1,t:"mcq",q:"مرادف كلمة «يتعاطى»:",o:["يتناول","يقلع","يترك","يبتعد"],a:0,why:"يتعاطى الشيء أي يتناوله أو يستعمله."},
+  {s:"الفهم القرائي",p:1,t:"mcq",q:"من طرق الوقاية وتجنب وقوع الأبناء في المخدرات:",o:["منحهم الثقة والدعم","التفكك الأسري","انتشار الفساد","ارتفاع معدل العنف"],a:0,why:"ذكر النص منح الأبناء الثقة والدعم ضمن وسائل الوقاية."},
+  {s:"الفهم القرائي",p:1,t:"mcq",q:"الفكرة العامة للنص:",o:["اختيار الأصدقاء","أسباب البطالة وعلاجها","أضرار المخدرات وأسبابها وطرق الوقاية منها","أنواع الرياضة"],a:2,why:"النص تناول أضرار المخدرات وأسبابها وآثارها وسبل الوقاية منها."},
+  {s:"الفهم القرائي",p:1,t:"mcq",q:"ضد كلمة «العنف»:",o:["القسوة","التعب","الرفق","الشدة"],a:2,why:"الرفق هو اللين، وهو ضد العنف والشدة."},
+  {s:"الفهم القرائي",p:1,t:"text",q:"اكتبي مفرد كلمة «جرائم».",answers:["جريمة"],m:"جريمة",why:"مفرد «جرائم» هو «جريمة»."},
+  {s:"الفهم القرائي",p:1,t:"tf",q:"تأثير المخدرات وضررها ينحصر على الفرد نفسه فقط.",a:false,why:"العبارة خطأ؛ لأن النص أكد أن أثرها يطال المجتمع أيضًا، مثل تفكك الأسر وانتشار الجرائم."},
+
+  {s:"الرسم الإملائي",p:1,t:"mcq",q:"أي الجمل التالية تشتمل على كلمة فُصلت خطأ؟",o:["أشهد أن لا إله إلا الله","عفوت عمن ظلمني","حينئذ ترى فائدة العلم","يعجبني ألا تهمل واجباتك"],a:0,why:"في المقصود بالقاعدة في هذا السؤال تُوصل «أن» بـ«لا» فتكتب: «ألا»."},
+  {s:"الرسم الإملائي",p:1,t:"mcq",q:"الكلمة التي كُتبت بالصورة الخاطئة هي:",o:["يرجوا","قالوا","يصحو","اعملوا"],a:0,why:"الصواب «يرجو» بلا ألف؛ لأن الواو أصلية وليست واو الجماعة."},
+  {s:"الرسم الإملائي",p:1,t:"mcq",q:"تحذف همزة الوصل من كلمة «ابن» في جملة:",o:["خالد بن الوليد سيف الله المسلول","سام ابن الخطاب بالعدل","ابن عفان من الخلفاء الراشدين","المهندس ابن المهندس"],a:0,why:"تحذف ألف «ابن» إذا وقعت بين علمين وكان الثاني أبًا للأول، مثل: خالد بن الوليد."},
+  {s:"الرسم الإملائي",p:1,t:"mcq",q:"تزاد الألف في جملة:",o:["لا تهملوا دروسكم","حضر معلمو المدرسة","يدعو المؤمن ربه","يظهر القمر مساء"],a:0,why:"تزاد الألف الفارقة بعد واو الجماعة في الفعل: «تهملوا»."},
+  {s:"الرسم الإملائي",p:1,t:"essay",q:"اجعلي الفعل «يحافظون» منصوبًا أو مجزومًا في جملة من إنشائك.",m:"مثال منصوب: لن يحافظوا على البيئة إذا أهملوا واجبهم. مثال مجزوم: لم يحافظوا على ممتلكات المدرسة.",why:"عند نصب أو جزم الأفعال الخمسة تحذف النون: يحافظون ← يحافظوا."},
+  {s:"الرسم الإملائي",p:2,t:"essay",q:"«اعلم أن لا إتقان بدون تعب». اكتشفي الخطأ وصوبيه.",m:"الخطأ: أن لا. الصواب وفق قاعدة الدرس: ألا. والجملة: اعلم ألا إتقان بدون تعب.",why:"وصلت «أن» بـ«لا» في الصورة المقصودة في درس الكلمات الموصولة والمفصولة."},
+
+  {s:"الصنف اللغوي",p:1,t:"text",q:"استخرجي اسم الآلة: «لنضرب على أيدي السفهاء بمطرقة من حديد».",answers:["مطرقة","بمطرقة"],m:"مطرقة",why:"«مطرقة» اسم آلة على وزن «مِفْعَلة»."},
+  {s:"الصنف اللغوي",p:1,t:"text",q:"استخرجي المصدر: «نحن نعيش في عصر انفجرت فيه المعلومات كثوران البركان».",answers:["ثوران"],m:"ثوران",why:"«ثوران» مصدر الفعل «ثار»."},
+  {s:"الصنف اللغوي",p:1,t:"tf",q:"«سيف» اسم آلة جامد.",a:true,why:"صحيح؛ «سيف» اسم آلة جامد سماعي لا يؤخذ من فعل على وزن قياسي."},
+  {s:"الصنف اللغوي",p:1,t:"tf",q:"المصدر من الفعل «استخرج» هو «خروج».",a:false,why:"خطأ؛ مصدر «استخرج» هو «استخراج»، أما «خروج» فمصدر «خرج»."},
+  {s:"الصنف اللغوي",p:2,t:"essay",q:"في جملة «اتجه الطلاب إلى ملعب الكرة» عيّني اسم المكان ووزنه.",m:"اسم المكان: مَلْعَب. وزنه: مَفْعَل.",why:"صيغ «ملعب» من الفعل الثلاثي «لعب» للدلالة على مكان اللعب، ووزنه «مَفْعَل»."},
+
+  {s:"الأسلوب اللغوي",p:1,t:"text",q:"أعيدي كتابة الجملة بتحويل الرقم إلى لفظ عددي: «اشتريت (٤) أقلام».",answers:["اشتريت أربعة أقلام","اشتريت أربعة أقلامًا","اشتريت أربعة أقلام."],m:"اشتريت أربعة أقلام.",why:"العدد من ٣ إلى ١٠ يخالف المعدود في التذكير والتأنيث؛ و«قلم» مذكر، لذا نقول «أربعة»."},
+  {s:"الأسلوب اللغوي",p:1,t:"mcq",q:"«عاد المسافرون ما عدا مسافرًا». نوع «ما عدا»:",o:["فعل ماضٍ","حرف جر","مضاف إليه","مستثنى منصوب"],a:0,why:"إذا سبقت «عدا» بـ«ما» المصدرية وجب عدّها فعلًا ماضيًا، وما بعدها مفعول به منصوب."},
+  {s:"الأسلوب اللغوي",p:1,t:"mcq",q:"«ما أقبح الجهل!» أسلوب تعجب على صيغة:",o:["مِفْعال","أفعل به","ما أفعل","فَعّال"],a:2,why:"الصيغة القياسية هنا هي: «ما أفعله!»."},
+  {s:"الأسلوب اللغوي",p:1,t:"mcq",q:"«كرمت المعلمة .......... طالبة». الاختيار الصحيح:",o:["ثلاثة عشرة","ثلاث عشرة","ثلاثة عشر","ثلاث عشر"],a:1,why:"مع المعدود المؤنث «طالبة» نقول: «ثلاث عشرة طالبة»."},
+  {s:"الأسلوب اللغوي",p:1,t:"mcq",q:"أي الجمل تمثل تعجبًا سماعيًا؟",o:["أكرم بمحمد","يا لها من كارثة","ما أعظم الصدق","حضر الطلاب إلا طالبًا"],a:1,why:"«يا لها من كارثة» تعجب سماعي؛ أما «أكرم بمحمد» و«ما أعظم الصدق» فصيغتان قياسيتان."},
+
+  {s:"الوظيفة النحوية",p:1,t:"mcq",q:"«أقلع محمد عن الذنوب حتى الصغائر». المعطوف عليه هو:",o:["الذنوب","محمد","الصغائر","حتى"],a:0,why:"«الصغائر» معطوف، و«الذنوب» هو المعطوف عليه."},
+  {s:"الوظيفة النحوية",p:1,t:"mcq",q:"الجملة التي نوع البدل فيها بدل بعض من كل:",o:["أكلت الرغيف نصفه","هذا الطالب مجتهد","كان الإمام علي بليغًا","الفاروق عمر يتصف بالعدل"],a:0,why:"«نصفه» جزء حقيقي من «الرغيف»، ولذلك فهو بدل بعض من كل، وفيه ضمير يعود إلى المبدل منه."},
+  {s:"الوظيفة النحوية",p:1,t:"mcq",q:"«فحص المهندس محمد أجهزة الاتصال». الموقع الإعرابي لـ«محمد»:",o:["صفة مرفوعة","بدل مرفوع","اسم معطوف مرفوع","مفعول به"],a:1,why:"«محمد» يوضح المقصود بالمهندس ويتبعه في الرفع، فهو بدل مرفوع."},
+  {s:"الوظيفة النحوية",p:1,t:"mcq",q:"«دخل المعلم فوقف الطلاب». معنى حرف العطف في الجملة:",o:["التعيين","الترتيب مع التعقيب","الاستدراك","التخيير"],a:1,why:"الفاء تفيد الترتيب مع التعقيب؛ أي وقع الوقوف بعد الدخول مباشرة."},
+  {s:"الوظيفة النحوية",p:1,t:"mcq",q:"«جاء رجل أخلاقه حسنة». نوع النعت:",o:["مفرد","جملة اسمية","جملة فعلية","شبه جملة"],a:1,why:"«أخلاقه حسنة» جملة اسمية وقعت نعتًا لـ«رجل»، وبها ضمير يربطها بالمنعوت."},
+  {s:"الوظيفة النحوية",p:1,t:"essay",q:"حوّلي ما تحته خط إلى بدل في الجملة: «تُمنح جائزة فيصل للعلماء».",m:"صياغة مقترحة: تُمنح الجائزةُ، جائزةُ فيصلٍ، للعلماء.",why:"جعلنا «جائزة فيصل» بدلًا يوضح المقصود من «الجائزة»، وتبعه في الرفع."},
+  {s:"الوظيفة النحوية",p:1,t:"essay",q:"أعربي كلمة «أمينًا» في الجملة: «عرفت تاجرًا أمينًا».",m:"أمينًا: نعت منصوب، وعلامة نصبه الفتحة الظاهرة على آخره.",why:"«أمينًا» وصفٌ لـ«تاجرًا»، وتبعه في النصب والتنكير والتذكير والإفراد."},
+
+  {s:"الرسم الكتابي",p:3,t:"hand",q:"اكتبي بخط الرقعة: «أصبح من الممكن المشاركة عن بُعد في المحاضرات والمؤتمرات والندوات».",m:"اكتبي العبارة في دفترك، ثم قارني: وضوح الحروف، ارتكاز الحروف على السطر أو نزولها في مواضعها، اتصال الحروف، وتناسق حجم الكلمات.",why:"هذا تدريب أدائي؛ لذلك يُقوَّم ذاتيًا ولا يصحح آليًا."}
+];
+
+let current=0, score=0;
+const answered = Array(questions.length).fill(false);
+const earned = Array(questions.length).fill(0);
+
+const $ = id => document.getElementById(id);
+function ar(n){return String(n).replace(/\d/g,d=>"٠١٢٣٤٥٦٧٨٩"[d])}
+
+function render(){
+  const q=questions[current];
+  $("sectionBadge").textContent=q.s;
+  $("sectionTitle").textContent=q.s;
+  $("counter").textContent=`السؤال ${ar(current+1)} من ${ar(questions.length)}`;
+  $("liveScore").textContent=`الدرجة: ${ar(score)} / ٤٠`;
+  $("progressBar").style.width=((current+1)/questions.length*100)+"%";
+  $("passage").innerHTML=q.pass?`<div class="source-text">${passage}</div>`:"";
+  $("questionText").textContent=q.q;
+  $("feedback").className="feedback"; $("feedback").style.display="none";
+  $("modelAnswer").style.display="none";
+  $("selfScore").style.display="none";
+  $("answerArea").innerHTML="";
+  $("prevBtn").disabled=current===0;
+  $("nextBtn").textContent=current===questions.length-1?"إنهاء النموذج":"التالي";
+
+  if(q.t==="mcq"){
+    const box=document.createElement("div"); box.className="options";
+    q.o.forEach((x,i)=>{
+      const b=document.createElement("button"); b.className="option"; b.textContent=x;
+      b.onclick=()=>markChoice(i,b,box); box.appendChild(b);
+    }); $("answerArea").appendChild(box);
+  } else if(q.t==="tf"){
+    const box=document.createElement("div"); box.className="options";
+    [["صحيح",true],["خطأ",false]].forEach(([x,v])=>{
+      const b=document.createElement("button"); b.className="option"; b.textContent=x;
+      b.onclick=()=>markTF(v,b,box); box.appendChild(b);
+    }); $("answerArea").appendChild(box);
+  } else if(q.t==="text"){
+    $("answerArea").innerHTML=`<input id="textInput" type="text" placeholder="اكتبي الإجابة هنا"><div class="actions"><button class="primary" onclick="checkText()">تحقق من الإجابة</button></div>`;
+  } else {
+    $("answerArea").innerHTML=`<textarea placeholder="اكتبي إجابتك أولًا قبل إظهار النموذج"></textarea>
+      <div class="actions"><button class="gold" onclick="showModel()">عرض الإجابة النموذجية</button></div>`;
+  }
+}
+
+function lock(box){[...box.children].forEach(b=>b.disabled=true)}
+function addScore(points){
+  if(answered[current]) return;
+  answered[current]=true; earned[current]=points; score+=points;
+  $("liveScore").textContent=`الدرجة: ${ar(score)} / ٤٠`;
+}
+function showFeedback(ok,html){
+  const f=$("feedback"); f.className="feedback "+(ok?"ok":"bad");
+  f.innerHTML=html; f.style.display="block";
+  if(ok) sparkle(10);
+}
+function markChoice(i,b,box){
+  if(answered[current]) return;
+  const q=questions[current], ok=i===q.a; lock(box);
+  [...box.children][q.a].classList.add("correct");
+  if(!ok)b.classList.add("wrong");
+  addScore(ok?q.p:0);
+  showFeedback(ok,`${ok?"✅ أحسنتِ!":"❌ الإجابة غير صحيحة."}<br><strong>السبب:</strong> ${q.why}`);
+}
+function markTF(v,b,box){
+  if(answered[current]) return;
+  const q=questions[current], ok=v===q.a; lock(box);
+  [...box.children].forEach((x,i)=>{ if((i===0)===q.a)x.classList.add("correct") });
+  if(!ok)b.classList.add("wrong");
+  addScore(ok?q.p:0);
+  showFeedback(ok,`${ok?"✅ أحسنتِ!":"❌ الإجابة غير صحيحة."}<br><strong>التوضيح:</strong> ${q.why}`);
+}
+function normalize(s){return s.trim().replace(/[ًٌٍَُِّْـ.،]/g,"").replace(/\s+/g," ")}
+function checkText(){
+  if(answered[current]) return;
+  const q=questions[current], val=normalize($("textInput").value);
+  const ok=q.answers.some(a=>normalize(a)===val);
+  addScore(ok?q.p:0);
+  $("textInput").disabled=true;
+  showFeedback(ok,`${ok?"✅ إجابة صحيحة.":"❌ راجعي الإجابة."}<br><strong>الإجابة النموذجية:</strong> ${q.m}<br><strong>السبب:</strong> ${q.why}`);
+}
+function showModel(){
+  const q=questions[current];
+  $("modelAnswer").innerHTML=`<strong>الإجابة النموذجية:</strong><br>${q.m}<br><br><strong>لماذا؟</strong> ${q.why}`;
+  $("modelAnswer").style.display="block";
+  const s=$("selfScore"); s.style.display="flex"; s.innerHTML="";
+  const choices = q.t==="hand"
+    ? [["أتقنت العبارة",q.p],["أحتاج تدريبًا إضافيًا",0]]
+    : [["إجابتي كاملة",q.p],["إجابتي جزئية",Math.max(1,Math.floor(q.p/2))],["لم أجب إجابة صحيحة",0]];
+  choices.forEach(([label,pts])=>{
+    const b=document.createElement("button"); b.className="muted"; b.textContent=label;
+    b.onclick=()=>{if(!answered[current]){addScore(pts);s.querySelectorAll("button").forEach(x=>x.disabled=true);showFeedback(pts===q.p,`سُجل التقويم الذاتي: ${ar(pts)} من ${ar(q.p)}.`)}};
+    s.appendChild(b);
+  });
+}
+$("prevBtn").onclick=()=>{if(current>0){current--;render()}};
+$("nextBtn").onclick=()=>{
+  if(!answered[current]){
+    alert("أجيبي عن السؤال أو اعرضي الإجابة النموذجية ثم قيّمي إجابتك.");
+    return;
+  }
+  if(current<questions.length-1){current++;render()} else finish();
+};
+function finish(){
+  $("quizCard").style.display="none"; $("result").style.display="block";
+  $("finalScore").textContent=`${ar(score)} من ٤٠`;
+  $("finalMessage").textContent=score>=36?"أداء متميز جدًا، واصلي التألق.":score>=30?"أداء جميل، راجعي تعليقات الأسئلة التي أخطأتِ فيها.":"أحسنتِ المحاولة، أعيدي النموذج بعد مراجعة القواعد.";
+  sparkle(45);
+}
+function sparkle(n){
+  const c=$("confetti"), icons=["🎈","✨","🌸","⭐"];
+  for(let i=0;i<n;i++){
+    const x=document.createElement("span"); x.className="piece";
+    x.textContent=icons[Math.floor(Math.random()*icons.length)];
+    x.style.left=Math.random()*100+"vw"; x.style.animationDelay=Math.random()*.6+"s";
+    c.appendChild(x); setTimeout(()=>x.remove(),3500);
+  }
+}
+render();
+</script>
+</body>
+</html>
