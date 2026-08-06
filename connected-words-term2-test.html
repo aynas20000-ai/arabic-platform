@@ -3,51 +3,339 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>اختبار الكلمات الموصولة خطًّا</title>
+  <title>اختبار الوصل والفصل | منصة آفاق</title>
 
   <style>
-    body{
+    :root{
+      --purple:#74558c;
+      --purple-dark:#4d385d;
+      --lavender:#eee5f2;
+      --gold:#c9a85c;
+      --gold-light:#f4dda0;
+      --cream:#fffaf1;
+      --paper:#fffdf8;
+      --text:#4b3857;
+      --green:#2f8f5b;
+      --green-light:#eaf8ef;
+      --red:#b94a58;
+      --red-light:#fff0f2;
+      --blue:#edf5ff;
+      --rose:#fff1f5;
+    }
+
+    *{box-sizing:border-box}
+
+    html,body{
+      width:100%;
       margin:0;
+      overflow-x:hidden;
+    }
+
+    body{
+      min-height:100vh;
       font-family:Tahoma,Arial,sans-serif;
-      background:#f5f5f5;
-      text-align:center;
+      color:var(--text);
+      background:linear-gradient(180deg,var(--cream),#f7eff8);
+      line-height:1.8;
     }
 
     header{
-      background:#1565c0;
-      color:white;
-      padding:35px 20px;
+      position:relative;
+      overflow:hidden;
+      padding:40px 18px 34px;
+      text-align:center;
+      color:#fff;
+      background:linear-gradient(135deg,var(--purple-dark),var(--purple));
+      border-bottom:6px solid var(--gold);
     }
 
-    section{
-      background:white;
+    header::before,
+    header::after{
+      position:absolute;
+      content:"";
+      width:170px;
+      height:170px;
+      border-radius:50%;
+      background:rgba(255,255,255,.07);
+    }
+
+    header::before{top:-90px;right:-55px}
+    header::after{bottom:-100px;left:-50px}
+
+    header h1{
+      position:relative;
+      margin:0 0 8px;
+      font-size:35px;
+    }
+
+    header p{
+      position:relative;
+      margin:0;
+      color:#f8f0fb;
+      font-size:17px;
+    }
+
+    main{
+      width:min(94%,850px);
       margin:30px auto;
-      padding:25px;
-      width:85%;
-      max-width:700px;
-      border-radius:18px;
-      box-shadow:0 4px 15px rgba(0,0,0,0.12);
     }
 
-    .box{
-      background:#eaf3ff;
-      margin:18px 0;
-      padding:24px;
-      border-radius:14px;
-      font-size:21px;
+    .top-actions{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:18px;
     }
 
-    .back{
-      color:#1565c0;
+    .action-btn,
+    .back-link{
+      min-height:48px;
+      padding:10px 17px;
+      border:0;
+      border-radius:16px;
+      font-family:inherit;
+      font-size:16px;
       font-weight:bold;
+      cursor:pointer;
       text-decoration:none;
+      box-shadow:0 8px 18px rgba(75,56,87,.12);
+    }
+
+    .back-link{
+      color:var(--purple-dark);
+      background:linear-gradient(135deg,var(--gold-light),#f8e9ba);
+    }
+
+    .action-btn{
+      color:#fff;
+      background:linear-gradient(135deg,var(--purple-dark),var(--purple));
+    }
+
+    .panel,
+    .question-card,
+    .result-card{
+      background:rgba(255,255,255,.95);
+      border:3px solid var(--gold);
+      border-radius:28px;
+      box-shadow:0 12px 28px rgba(75,56,87,.12);
+    }
+
+    .panel{
+      margin-bottom:22px;
+      padding:19px;
+    }
+
+    .status-row{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      font-size:17px;
+      font-weight:bold;
+    }
+
+    .progress-track{
+      height:17px;
+      margin-top:14px;
+      overflow:hidden;
+      background:#eee7f2;
+      border-radius:999px;
+    }
+
+    .progress-bar{
+      width:10%;
+      height:100%;
+      background:linear-gradient(90deg,var(--gold),var(--purple));
+      border-radius:inherit;
+      transition:width .35s ease;
+    }
+
+    .question-card{
+      padding:25px 20px;
+    }
+
+    .question-badge{
+      display:inline-block;
+      padding:7px 15px;
+      color:#fff;
+      background:var(--purple);
+      border:2px solid var(--gold);
+      border-radius:18px;
+      font-weight:bold;
+    }
+
+    .question-text{
+      margin:20px 0;
+      font-size:23px;
+      font-weight:bold;
+    }
+
+    .answers{
+      display:grid;
+      gap:13px;
+    }
+
+    .answer-btn{
+      width:100%;
+      padding:15px 14px;
+      text-align:right;
+      font-family:inherit;
+      font-size:18px;
+      color:var(--text);
+      background:#fff;
+      border:2px solid #d8c7e2;
+      border-radius:18px;
+      cursor:pointer;
+      transition:.2s ease;
+    }
+
+    .answer-btn:hover{
+      transform:translateY(-1px);
+      border-color:var(--purple);
+    }
+
+    .answer-btn:disabled{
+      cursor:default;
+      opacity:1;
+    }
+
+    .answer-btn.correct{
+      color:#176b40;
+      background:var(--green-light);
+      border-color:var(--green);
+    }
+
+    .answer-btn.wrong{
+      color:#8e2f3e;
+      background:var(--red-light);
+      border-color:var(--red);
+    }
+
+    .feedback{
+      display:none;
+      margin-top:19px;
+      padding:17px;
+      border-radius:19px;
+      font-size:18px;
+      font-weight:bold;
+    }
+
+    .feedback.show{display:block}
+
+    .feedback.correct{
+      color:#176b40;
+      background:var(--green-light);
+      border:2px solid #8fc7a4;
+    }
+
+    .feedback.wrong{
+      color:#8e2f3e;
+      background:var(--red-light);
+      border:2px solid #dfa4ae;
+    }
+
+    .explanation{
+      display:block;
+      margin-top:8px;
+      font-weight:normal;
+    }
+
+    .next-btn,
+    .restart-btn{
+      display:none;
+      width:fit-content;
+      margin:20px auto 0;
+      padding:13px 27px;
+      color:#fff;
+      font-family:inherit;
+      font-size:18px;
+      font-weight:bold;
+      background:linear-gradient(135deg,var(--purple-dark),var(--purple));
+      border:3px solid var(--gold);
+      border-radius:23px;
+      cursor:pointer;
+    }
+
+    .next-btn.show,
+    .restart-btn.show{
+      display:block;
+    }
+
+    .result-card{
+      display:none;
+      padding:28px 20px;
+      text-align:center;
+    }
+
+    .result-card.show{display:block}
+
+    .result-icon{
+      font-size:74px;
+    }
+
+    .result-card h2{
+      margin:8px 0;
+      color:var(--purple-dark);
+      font-size:31px;
+    }
+
+    .final-score{
+      margin:14px 0;
+      font-size:25px;
+      font-weight:bold;
+    }
+
+    .final-message{
+      padding:17px;
+      background:var(--blue);
+      border:2px solid #b9d3ec;
+      border-radius:20px;
+      font-size:18px;
+    }
+
+    .result-link{
+      display:block;
+      width:fit-content;
+      margin:14px auto 0;
+      padding:12px 23px;
+      color:var(--purple-dark);
+      text-decoration:none;
+      font-weight:bold;
+      background:linear-gradient(135deg,var(--gold-light),#f8e9ba);
+      border:2px solid var(--gold);
+      border-radius:20px;
+    }
+
+    .confetti{
+      position:fixed;
+      top:-40px;
+      z-index:9999;
+      pointer-events:none;
+      animation:fall 3.8s linear forwards;
+    }
+
+    @keyframes fall{
+      to{
+        transform:translateY(110vh) rotate(720deg);
+        opacity:0;
+      }
     }
 
     footer{
-      background:#222;
-      color:white;
-      padding:20px;
-      margin-top:30px;
+      margin-top:38px;
+      padding:22px 15px;
+      text-align:center;
+      color:#fff;
+      background:var(--purple-dark);
+      border-top:5px solid var(--gold);
+    }
+
+    @media(max-width:600px){
+      header h1{font-size:29px}
+      .question-text{font-size:20px}
+      .answer-btn{font-size:17px}
+      .question-card{padding:20px 14px}
     }
   </style>
 </head>
@@ -55,24 +343,368 @@
 <body>
 
 <header>
-  <h1>✅ اختبار تجريبي للكلمات الموصولة خطًّا</h1>
+  <h1>✍️ اختبار الوصل والفصل</h1>
+  <p>اختبار تفاعلي من 10 أسئلة مع صوت وتغذية راجعة فورية</p>
 </header>
 
-<section>
+<main>
 
-  <div class="box">
-    سيتم إضافة الاختبار التجريبي هنا
+  <div class="top-actions">
+    <a class="back-link" href="connected-words-term2-file.html">📖 العودة إلى ملف الدرس</a>
+    <button id="soundButton" class="action-btn" type="button">🔊 الصوت مفعّل</button>
   </div>
 
-  <p>
-    <a class="back" href="connected-words-term2.html">العودة إلى الدرس</a>
-  </p>
+  <section id="quizArea">
 
-</section>
+    <div class="panel">
+      <div class="status-row">
+        <span id="counter">السؤال 1 من 10</span>
+        <span id="scoreLive">الدرجة: 0</span>
+      </div>
+
+      <div class="progress-track">
+        <div id="progressBar" class="progress-bar"></div>
+      </div>
+    </div>
+
+    <div class="question-card">
+      <span id="badge" class="question-badge">السؤال 1</span>
+
+      <div id="questionText" class="question-text"></div>
+
+      <div id="answers" class="answers"></div>
+
+      <div id="feedback" class="feedback"></div>
+
+      <button id="nextButton" class="next-btn">السؤال التالي ←</button>
+    </div>
+
+  </section>
+
+  <section id="resultCard" class="result-card">
+    <div id="resultIcon" class="result-icon">🏆</div>
+    <h2>اكتمل الاختبار</h2>
+    <div id="finalScore" class="final-score"></div>
+    <div id="finalMessage" class="final-message"></div>
+
+    <button id="restartButton" class="restart-btn show">🔄 إعادة الاختبار</button>
+    <a class="result-link" href="connected-words-term2-map.html">🔍 أميّز بين الوصل والفصل</a>
+  </section>
+
+</main>
 
 <footer>
-  جميع الحقوق محفوظة © 2026
+  منصة آفاق التعليمية © 2026
 </footer>
+
+<script>
+  const questions = [
+    {
+      question: "اختاري الرسم الإملائي الصحيح:",
+      answers: ["إنلم تجتهدي فلن تنجحي.", "إنْ لم تجتهدي فلن تنجحي.", "إنْلم تجتهدي فلن تنجحي.", "إن لمْ تجتهدي فلن تنجحي."],
+      correct: 1,
+      correctText: "رائعة! كتبتِ التركيب مفصولًا بصورة صحيحة.",
+      wrongText: "انتبهي: «إنْ» و«لم» كلمتان مستقلتان.",
+      explanation: "الصواب: إنْ لم؛ لأنها تتكون من إنْ الشرطية ولم النافية الجازمة."
+    },
+    {
+      question: "أيُّ الكلمات الآتية تُكتب موصولة؟",
+      answers: ["أنْ لا", "مِنْ ما", "إنْ لم", "إنما"],
+      correct: 3,
+      correctText: "ممتاز! عرفتِ الكلمة الموصولة.",
+      wrongText: "راجعي الأمثلة: ثلاث كلمات مفصولة وواحدة موصولة.",
+      explanation: "«إنما» تُكتب موصولة، أما «أنْ لا، مِنْ ما، إنْ لم» فتكتب مفصولة."
+    },
+    {
+      question: "اختاري التصحيح المناسب للجملة: «استفدتُ منما قرأتُ».",
+      answers: ["استفدتُ مِنْ ما قرأتُ.", "استفدتُ منْما قرأتُ.", "استفدتُ من ماقرأتُ.", "الجملة صحيحة."],
+      correct: 0,
+      correctText: "أحسنتِ! تصحيح دقيق.",
+      wrongText: "فكري في حرف الجر «مِنْ» واسم الموصول «ما».",
+      explanation: "الصواب «مِنْ ما»؛ لأن كل كلمة تؤدي وظيفة مستقلة."
+    },
+    {
+      question: "أيُّ التراكيب الآتية كُتب خطأ؟",
+      answers: ["إنْ لم", "أنْ لا", "مِنْ ما", "أنلا"],
+      correct: 3,
+      correctText: "صحيح! اكتشفتِ الخطأ بسرعة.",
+      wrongText: "ابحثي عن الكلمتين اللتين وصلتا مع وجوب الفصل.",
+      explanation: "«أنلا» خطأ، والصواب «أنْ لا»."
+    },
+    {
+      question: "السبب الصحيح لفصل «أنْ لا» هو:",
+      answers: ["لأنها كلمة واحدة", "لأن أنْ الناصبة ولا النافية كلمتان مستقلتان", "لأن لا حرف جر", "لأن أنْ اسم موصول"],
+      correct: 1,
+      correctText: "ممتاز! فهمتِ السبب لا الحفظ فقط.",
+      wrongText: "حددي وظيفة كل جزء من التركيب.",
+      explanation: "أنْ حرف نصب، ولا حرف نفي؛ لذلك تكتبان منفصلتين."
+    },
+    {
+      question: "أيُّ الجمل الآتية صحيحة إملائيًا؟",
+      answers: ["أرجو أنلا تتأخري.", "أرجو أنْ لا تتأخري.", "أرجو أنْلا تتأخري.", "أرجو أن لاْ تتأخري."],
+      correct: 1,
+      correctText: "أبدعتِ! هذه هي الكتابة الصحيحة.",
+      wrongText: "تذكري: نترك مسافة بين «أنْ» و«لا».",
+      explanation: "الصواب: أرجو أنْ لا تتأخري."
+    },
+    {
+      question: "أيُّ الكلمات الآتية تُكتب موصولة؟",
+      answers: ["فيما", "في ما", "إنْ لم", "مِنْ ما"],
+      correct: 0,
+      correctText: "رائعة! «فيما» كلمة موصولة.",
+      wrongText: "ميّزي بين أمثلة الوصل وأمثلة الفصل.",
+      explanation: "«فيما» تُكتب موصولة، بينما أمثلة الدرس الثلاثة تُكتب مفصولة."
+    },
+    {
+      question: "اختاري العبارة الصحيحة:",
+      answers: ["إنلم تصنعي نفسك فلن يصنعك أحد.", "إنْ لم تصنعي نفسك فلن يصنعك أحد.", "إنْلم تصنعي نفسك فلن يصنعك أحد.", "إن لمْ تصنعي نفسك فلن يصنعك أحد."],
+      correct: 1,
+      correctText: "صحيحة! تركيز جميل.",
+      wrongText: "راجعي موضع المسافة بين الكلمتين.",
+      explanation: "الصواب «إنْ لم» بفصل الكلمتين."
+    },
+    {
+      question: "أيُّ خيار يشتمل على كلمتين مفصولتين بصورة صحيحة؟",
+      answers: ["عما", "ممن", "إنما", "مِنْ ما"],
+      correct: 3,
+      correctText: "أحسنتِ! «مِنْ ما» مفصولة.",
+      wrongText: "ثلاثة خيارات كلمات موصولة، وخيار واحد مفصول.",
+      explanation: "مِنْ حرف جر، وما اسم موصول؛ لذلك تكتبان منفصلتين."
+    },
+    {
+      question: "الخطوة الأهم قبل الحكم بالوصل أو الفصل هي:",
+      answers: ["حذف إحدى الكلمتين", "تغيير معنى الجملة", "تفكيك التركيب وتحديد وظيفة كل كلمة", "كتابة الكلمتين دائمًا موصولتين"],
+      correct: 2,
+      correctText: "بطلة! هذه مهارة الإتقان الحقيقية.",
+      wrongText: "تذكري خطوات منع الخطأ.",
+      explanation: "نفكك التركيب أولًا، ثم نحدد وظيفة كل كلمة قبل الكتابة."
+    }
+  ];
+
+  const correctMessages = [
+    "🌟 إجابة صحيحة! واصلي هذا التركيز.",
+    "👏 ممتازة يا بطلة آفاق.",
+    "✨ أحسنتِ! فهمكِ واضح.",
+    "🎉 صحيحة! أداء جميل.",
+    "💜 رائعة! خطوة نحو الإتقان."
+  ];
+
+  let current = 0;
+  let score = 0;
+  let answered = false;
+  let soundOn = localStorage.getItem("connectedWordsSound") !== "off";
+
+  const quizArea = document.getElementById("quizArea");
+  const counter = document.getElementById("counter");
+  const scoreLive = document.getElementById("scoreLive");
+  const progressBar = document.getElementById("progressBar");
+  const badge = document.getElementById("badge");
+  const questionText = document.getElementById("questionText");
+  const answers = document.getElementById("answers");
+  const feedback = document.getElementById("feedback");
+  const nextButton = document.getElementById("nextButton");
+  const resultCard = document.getElementById("resultCard");
+  const finalScore = document.getElementById("finalScore");
+  const finalMessage = document.getElementById("finalMessage");
+  const resultIcon = document.getElementById("resultIcon");
+  const restartButton = document.getElementById("restartButton");
+  const soundButton = document.getElementById("soundButton");
+
+  function updateSoundButton(){
+    soundButton.textContent = soundOn ? "🔊 الصوت مفعّل" : "🔇 الصوت مكتوم";
+  }
+
+  function playTone(type){
+    if(!soundOn) return;
+
+    try{
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      const ctx = new AudioContextClass();
+
+      const notes = type === "correct"
+        ? [523.25, 659.25, 783.99]
+        : [220, 185];
+
+      notes.forEach((frequency,index)=>{
+        const oscillator = ctx.createOscillator();
+        const gain = ctx.createGain();
+        const start = ctx.currentTime + index * 0.12;
+
+        oscillator.type = type === "correct" ? "sine" : "triangle";
+        oscillator.frequency.setValueAtTime(frequency,start);
+
+        gain.gain.setValueAtTime(0.001,start);
+        gain.gain.exponentialRampToValueAtTime(0.12,start + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.001,start + 0.25);
+
+        oscillator.connect(gain);
+        gain.connect(ctx.destination);
+
+        oscillator.start(start);
+        oscillator.stop(start + 0.28);
+      });
+    }catch(error){
+      /* يبقى الاختبار يعمل حتى لو منع المتصفح الصوت */
+    }
+  }
+
+  function confetti(){
+    const symbols = ["🎉","✨","⭐","🌸","💜"];
+    for(let i=0;i<34;i++){
+      const piece = document.createElement("span");
+      piece.className = "confetti";
+      piece.textContent = symbols[Math.floor(Math.random()*symbols.length)];
+      piece.style.left = `${Math.random()*100}vw`;
+      piece.style.fontSize = `${16 + Math.random()*18}px`;
+      piece.style.animationDelay = `${Math.random()*.7}s`;
+      document.body.appendChild(piece);
+      setTimeout(()=>piece.remove(),4700);
+    }
+  }
+
+  function renderQuestion(){
+    answered = false;
+    feedback.className = "feedback";
+    feedback.innerHTML = "";
+    nextButton.classList.remove("show");
+
+    const item = questions[current];
+
+    counter.textContent = `السؤال ${current + 1} من ${questions.length}`;
+    scoreLive.textContent = `الدرجة: ${score}`;
+    progressBar.style.width = `${((current + 1) / questions.length) * 100}%`;
+    badge.textContent = `السؤال ${current + 1}`;
+    questionText.textContent = item.question;
+
+    answers.innerHTML = "";
+
+    item.answers.forEach((answer,index)=>{
+      const button = document.createElement("button");
+      button.className = "answer-btn";
+      button.textContent = `${["أ","ب","ج","د"][index]} ـ ${answer}`;
+      button.addEventListener("click",()=>selectAnswer(index,button));
+      answers.appendChild(button);
+    });
+  }
+
+  function selectAnswer(selectedIndex,selectedButton){
+    if(answered) return;
+    answered = true;
+
+    const item = questions[current];
+    const buttons = [...answers.querySelectorAll(".answer-btn")];
+
+    buttons.forEach(button=>button.disabled = true);
+    buttons[item.correct].classList.add("correct");
+
+    if(selectedIndex === item.correct){
+      score++;
+      selectedButton.classList.add("correct");
+      playTone("correct");
+
+      const message =
+        correctMessages[Math.floor(Math.random()*correctMessages.length)];
+
+      feedback.className = "feedback correct show";
+      feedback.innerHTML = `
+        ${message}<br>
+        ${item.correctText}
+        <span class="explanation">${item.explanation}</span>
+      `;
+    }else{
+      selectedButton.classList.add("wrong");
+      playTone("wrong");
+
+      feedback.className = "feedback wrong show";
+      feedback.innerHTML = `
+        ❌ ${item.wrongText}
+        <span class="explanation">
+          الإجابة الصحيحة: <strong>${item.answers[item.correct]}</strong><br>
+          ${item.explanation}
+        </span>
+      `;
+    }
+
+    scoreLive.textContent = `الدرجة: ${score}`;
+    nextButton.textContent =
+      current === questions.length - 1
+        ? "عرض النتيجة 🏆"
+        : "السؤال التالي ←";
+
+    nextButton.classList.add("show");
+  }
+
+  function showResult(){
+    quizArea.style.display = "none";
+    resultCard.classList.add("show");
+
+    const percentage = Math.round((score/questions.length)*100);
+    finalScore.textContent = `درجتكِ: ${score} من ${questions.length} — ${percentage}٪`;
+
+    if(score === 10){
+      resultIcon.textContent = "🏆";
+      finalMessage.textContent =
+        "إتقان كامل! أبدعتِ في التمييز بين الوصل والفصل وتجنبتِ الأخطاء الشائعة.";
+      confetti();
+      playTone("correct");
+    }else if(score >= 8){
+      resultIcon.textContent = "🌟";
+      finalMessage.textContent =
+        "أداء متميز جدًا! بقيت لكِ مراجعة بسيطة للوصول إلى الإتقان الكامل.";
+    }else if(score >= 6){
+      resultIcon.textContent = "👏";
+      finalMessage.textContent =
+        "أداء جيد! راجعي أمثلة الفصل: إنْ لم، مِنْ ما، أنْ لا.";
+    }else{
+      resultIcon.textContent = "💪";
+      finalMessage.textContent =
+        "لا بأس، كل محاولة تقربكِ من الإتقان. عودي إلى ملف الدرس ثم جربي مجددًا.";
+    }
+
+    const resultData = {
+      score,
+      total:questions.length,
+      percentage,
+      completed:true,
+      date:new Date().toISOString()
+    };
+
+    localStorage.setItem(
+      "connectedWordsTerm2TestResult",
+      JSON.stringify(resultData)
+    );
+  }
+
+  nextButton.addEventListener("click",()=>{
+    if(current < questions.length - 1){
+      current++;
+      renderQuestion();
+      window.scrollTo({top:0,behavior:"smooth"});
+    }else{
+      showResult();
+      window.scrollTo({top:0,behavior:"smooth"});
+    }
+  });
+
+  restartButton.addEventListener("click",()=>{
+    current = 0;
+    score = 0;
+    resultCard.classList.remove("show");
+    quizArea.style.display = "block";
+    renderQuestion();
+    window.scrollTo({top:0,behavior:"smooth"});
+  });
+
+  soundButton.addEventListener("click",()=>{
+    soundOn = !soundOn;
+    localStorage.setItem("connectedWordsSound",soundOn ? "on" : "off");
+    updateSoundButton();
+    if(soundOn) playTone("correct");
+  });
+
+  updateSoundButton();
+  renderQuestion();
+</script>
 
 </body>
 </html>
