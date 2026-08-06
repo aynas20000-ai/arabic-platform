@@ -1,1592 +1,1322 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>النموذج التدريبي الأول | منصة آفاق</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>النموذج الأول | اختبارات الفصل الدراسي الثاني</title>
 
   <style>
     :root{
-      --p:#75558d;
-      --pd:#4b385b;
-      --g:#c9a85c;
-      --bg:#fffaf1;
-      --paper:#fffdf8;
+      --purple:#76548f;
+      --purple-dark:#4f3763;
+      --purple-light:#eee5f4;
+      --gold:#c9a85c;
+      --gold-light:#f6e9bd;
+      --cream:#fffaf2;
+      --paper:#ffffff;
       --text:#403347;
-      --ok:#2f855a;
-      --bad:#b84444;
-      --soft:#f1e9f5;
+      --muted:#776b7e;
+      --green:#2f8a5b;
+      --green-light:#e8f7ef;
+      --red:#b74848;
+      --red-light:#fff0f0;
+      --shadow:0 14px 35px rgba(79,55,99,.14);
     }
 
-    *{
-      box-sizing:border-box;
-    }
+    *{box-sizing:border-box}
 
     body{
       margin:0;
       font-family:Tahoma,Arial,sans-serif;
       color:var(--text);
-      line-height:1.85;
       background:
-        radial-gradient(
-          circle at 12% 8%,
-          rgba(255,214,120,.20),
-          transparent 25%
-        ),
-        radial-gradient(
-          circle at 88% 18%,
-          rgba(154,112,181,.20),
-          transparent 28%
-        ),
-        linear-gradient(180deg,#fff9ed,#f7ebfa);
+        radial-gradient(circle at top right, rgba(201,168,92,.14), transparent 25%),
+        linear-gradient(180deg,var(--cream),#f7eff9);
+      line-height:1.9;
+      min-height:100vh;
     }
 
     header{
-      padding:28px 16px;
+      padding:34px 18px 26px;
       text-align:center;
       color:#fff;
-      background:linear-gradient(135deg,#786094,#594474);
-      border-bottom:5px solid var(--g);
+      background:linear-gradient(135deg,var(--purple),var(--purple-dark));
+      border-bottom:5px solid var(--gold);
+      position:relative;
+      overflow:hidden;
     }
 
+    header::before,
+    header::after{
+      content:"";
+      position:absolute;
+      width:180px;
+      height:180px;
+      border-radius:50%;
+      background:rgba(255,255,255,.07);
+    }
+
+    header::before{top:-100px;right:-70px}
+    header::after{bottom:-110px;left:-70px}
+
     header h1{
-      margin:0 0 6px;
-      font-size:30px;
+      margin:0;
+      font-size:clamp(26px,6vw,39px);
+      position:relative;
+      z-index:1;
     }
 
     header p{
-      margin:0;
+      margin:8px 0 0;
+      font-size:16px;
       opacity:.95;
+      position:relative;
+      z-index:1;
     }
 
-    main{
-      max-width:900px;
-      margin:24px auto;
-      padding:0 14px 50px;
+    .wrap{
+      width:min(950px,92%);
+      margin:24px auto 50px;
     }
 
-    .notice,
-    .card,
-    .result{
-      padding:20px;
-      margin-bottom:18px;
+    .top-card,
+    .quiz-card,
+    .result-card{
       background:var(--paper);
-      border:2px solid rgba(185,154,91,.28);
-      border-radius:20px;
-      box-shadow:0 12px 30px rgba(83,57,95,.10);
+      border:1px solid #eadff0;
+      border-radius:24px;
+      box-shadow:var(--shadow);
     }
 
-    .notice{
-      border-right:6px solid var(--g);
+    .top-card{
+      padding:18px;
+      margin-bottom:18px;
     }
 
-    .topbar{
-      display:flex;
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
       gap:10px;
-      align-items:center;
-      justify-content:space-between;
-      flex-wrap:wrap;
     }
 
-    .badge{
-      padding:7px 12px;
-      color:var(--pd);
-      background:var(--soft);
-      border-radius:999px;
+    .stat{
+      text-align:center;
+      background:var(--purple-light);
+      border:1px solid #dfcfe8;
+      border-radius:16px;
+      padding:10px 8px;
       font-weight:bold;
     }
 
-    .progress{
-      height:12px;
-      margin:14px 0 4px;
-      overflow:hidden;
-      background:#eee4f1;
+    .stat span{
+      display:block;
+      font-size:19px;
+      color:var(--purple-dark);
+    }
+
+    .progress-shell{
+      height:13px;
       border-radius:999px;
+      background:#eee8f0;
+      overflow:hidden;
+      margin-top:15px;
     }
 
-    .progress > div{
-      width:0;
+    .progress-bar{
       height:100%;
-      background:linear-gradient(90deg,var(--g),var(--p));
-      transition:.35s;
+      width:0%;
+      background:linear-gradient(90deg,var(--gold),#e3c575);
+      border-radius:999px;
+      transition:width .35s ease;
     }
 
-    .section-title{
-      margin:0 0 8px;
-      color:var(--p);
+    .reading{
+      background:linear-gradient(180deg,#fffdfa,#fff9ed);
+      border:1px solid #ead8ad;
+      border-right:6px solid var(--gold);
+      border-radius:20px;
+      padding:20px;
+      margin-bottom:18px;
+    }
+
+    .reading h2{
+      margin:0 0 10px;
+      color:var(--purple-dark);
       font-size:22px;
     }
 
-    .question{
-      margin:12px 0;
-      font-size:19px;
-      font-weight:bold;
+    .reading p{
+      margin:0;
+      text-align:justify;
     }
 
-    .source-text{
-      max-height:320px;
-      padding:16px;
-      overflow:auto;
-      white-space:pre-line;
-      background:#fff;
-      border:1px dashed #ceb9d7;
-      border-radius:16px;
+    .quiz-card{
+      padding:24px;
+      position:relative;
+    }
+
+    .section-label{
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+      background:var(--gold-light);
+      color:#6c5520;
+      border:1px solid #e4cb80;
+      border-radius:999px;
+      padding:5px 13px;
+      font-weight:bold;
+      font-size:14px;
+      margin-bottom:12px;
+    }
+
+    .question-number{
+      color:var(--purple);
+      font-weight:bold;
+      margin-bottom:6px;
+    }
+
+    .question{
+      font-size:21px;
+      font-weight:bold;
+      margin:0 0 19px;
     }
 
     .options{
       display:grid;
-      gap:10px;
+      gap:11px;
     }
 
-    button,
     .option{
-      padding:13px 15px;
-      border:none;
-      border-radius:14px;
-      font:inherit;
+      width:100%;
+      border:2px solid #e6dceb;
+      background:#fff;
+      color:var(--text);
+      border-radius:16px;
+      padding:14px 15px;
+      font-size:17px;
+      font-family:inherit;
+      text-align:right;
       cursor:pointer;
       transition:.2s;
-    }
-
-    .option{
-      text-align:right;
-      color:var(--text);
-      background:#fff;
-      border:1px solid #dbcde1;
-      box-shadow:0 5px 12px rgba(91,63,104,.07);
+      display:flex;
+      align-items:center;
+      gap:11px;
     }
 
     .option:hover{
+      border-color:#b89bc7;
       transform:translateY(-1px);
-      border-color:var(--p);
+    }
+
+    .option:disabled{cursor:default}
+
+    .choice-letter{
+      flex:0 0 35px;
+      height:35px;
+      display:grid;
+      place-items:center;
+      border-radius:50%;
+      background:var(--purple-light);
+      color:var(--purple-dark);
+      font-weight:bold;
     }
 
     .option.correct{
-      color:#17613b;
-      background:linear-gradient(135deg,#dff8e8,#f5fff8);
-      border:2px solid #35a56c;
-      transform:scale(1.02);
-      box-shadow:
-        0 0 0 5px rgba(53,165,108,.12),
-        0 12px 24px rgba(53,165,108,.20);
+      border-color:var(--green);
+      background:var(--green-light);
     }
 
     .option.wrong{
-      color:#8d2525;
-      background:linear-gradient(135deg,#ffe7e7,#fff7f7);
-      border:2px solid #d64b4b;
+      border-color:var(--red);
+      background:var(--red-light);
     }
 
-    .primary{
+    .option.correct .choice-letter{
+      background:var(--green);
       color:#fff;
-      background:var(--p);
     }
 
-    .muted{
-      color:var(--pd);
-      background:#eee7f1;
+    .option.wrong .choice-letter{
+      background:var(--red);
+      color:#fff;
     }
 
     .feedback{
       display:none;
-      margin-top:15px;
-      padding:14px;
-      background:#f8f3fa;
-      border-radius:14px;
-      border-right:5px solid var(--p);
-    }
-
-    .feedback.ok{
-      font-size:17px;
-      background:#eaf8ef;
-      border:2px solid #86d6a8;
-      border-right:5px solid var(--ok);
-      box-shadow:0 8px 20px rgba(47,133,90,.12);
-    }
-
-    .feedback.bad{
-      font-size:17px;
-      background:#fff1f1;
-      border:2px solid #efadad;
-      border-right:5px solid var(--bad);
-      box-shadow:0 8px 20px rgba(184,68,68,.10);
-    }
-
-    .nav{
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      margin-top:18px;
-    }
-
-    .nav button{
-      min-width:130px;
-    }
-
-    .result{
-      display:none;
-      text-align:center;
-    }
-
-    .score{
-      color:var(--p);
-      font-size:42px;
+      margin-top:17px;
+      padding:14px 16px;
+      border-radius:15px;
       font-weight:bold;
     }
 
-    .small{
-      color:#766b7b;
+    .feedback.show{display:block}
+    .feedback.good{
+      background:var(--green-light);
+      border:1px solid #a9d8be;
+      color:#1f6842;
+    }
+
+    .feedback.bad{
+      background:var(--red-light);
+      border:1px solid #e4b7b7;
+      color:#8c3333;
+    }
+
+    .explain{
+      display:block;
+      font-weight:normal;
+      margin-top:4px;
+    }
+
+    .controls{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      margin-top:20px;
+    }
+
+    button.nav{
+      border:0;
+      border-radius:14px;
+      padding:12px 20px;
+      font-family:inherit;
+      font-size:16px;
+      font-weight:bold;
+      cursor:pointer;
+    }
+
+    #nextBtn{
+      background:linear-gradient(135deg,var(--purple),var(--purple-dark));
+      color:#fff;
+      min-width:145px;
+      display:none;
+    }
+
+    #nextBtn::before{
+      content:"☝️";
+      margin-left:7px;
+      display:inline-block;
+      animation:point 1s infinite;
+    }
+
+    @keyframes point{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-5px)}
+    }
+
+    #restartBtn{
+      background:var(--gold-light);
+      color:#5c481a;
+      border:1px solid #ddc26d;
+    }
+
+    .result-card{
+      display:none;
+      padding:28px 20px;
+      text-align:center;
+    }
+
+    .result-card.show{display:block}
+
+    .result-icon{font-size:68px}
+    .result-card h2{
+      color:var(--purple-dark);
+      margin:4px 0;
+      font-size:30px;
+    }
+
+    .score-big{
+      font-size:44px;
+      color:var(--gold);
+      font-weight:bold;
+      margin:10px 0;
+    }
+
+    .result-note{
+      font-size:18px;
+      margin-bottom:18px;
+    }
+
+    .review{
+      margin-top:20px;
+      text-align:right;
+      display:grid;
+      gap:12px;
+    }
+
+    .review-item{
+      padding:13px;
+      border-radius:14px;
+      border:1px solid #eadff0;
+      background:#fff;
+    }
+
+    .review-item strong{
+      color:var(--purple-dark);
+    }
+
+    .footer-note{
+      text-align:center;
+      color:var(--muted);
+      margin-top:20px;
       font-size:14px;
     }
 
     .confetti{
       position:fixed;
-      inset:0;
-      z-index:999;
-      overflow:hidden;
-      pointer-events:none;
-    }
-
-    .piece{
-      position:absolute;
       top:-20px;
-      font-size:24px;
-      animation:fall 2.8s linear forwards;
-    }
-
-    .answer-celebration{
-      position:fixed;
-      inset:0;
-      z-index:2000;
-      display:none;
-      align-items:center;
-      justify-content:center;
+      z-index:9999;
       pointer-events:none;
-      background:rgba(52,34,63,.12);
-      backdrop-filter:blur(1px);
-    }
-
-    .answer-celebration.show{
-      display:flex;
-      animation:fadeOut 1.35s ease forwards;
-    }
-
-    .answer-bubble{
-      min-width:230px;
-      max-width:82vw;
-      padding:22px 25px;
-      text-align:center;
-      background:linear-gradient(145deg,#fffdf6,#ecfff3);
-      border:4px solid #3cad72;
-      border-radius:28px;
-      box-shadow:0 22px 55px rgba(42,111,72,.30);
-      animation:popIn .42s cubic-bezier(.2,1.45,.45,1);
-    }
-
-    .answer-hand{
-      display:block;
-      font-size:72px;
-      animation:pointBounce .55s ease infinite alternate;
-    }
-
-    .answer-title{
-      color:#23764a;
-      font-size:25px;
-      font-weight:900;
-    }
-
-    .answer-sub{
-      margin-top:3px;
-      color:#5a4861;
-      font-weight:bold;
-    }
-
-    .quiz-shake{
-      animation:shake .38s ease;
+      animation:fall linear forwards;
     }
 
     @keyframes fall{
       to{
         transform:translateY(110vh) rotate(720deg);
-        opacity:.9;
+        opacity:.95;
       }
     }
 
-    @keyframes popIn{
-      0%{
-        transform:scale(.25) rotate(-9deg);
-        opacity:0;
-      }
-      75%{
-        transform:scale(1.08) rotate(2deg);
-      }
-      100%{
-        transform:scale(1);
-        opacity:1;
-      }
-    }
-
-    @keyframes pointBounce{
-      from{
-        transform:translateY(0) rotate(-8deg);
-      }
-      to{
-        transform:translateY(-12px) rotate(6deg);
-      }
-    }
-
-    @keyframes fadeOut{
-      0%,72%{
-        opacity:1;
-      }
-      100%{
-        opacity:0;
-      }
-    }
-
-    @keyframes shake{
-      0%,100%{transform:translateX(0)}
-      20%{transform:translateX(-9px)}
-      40%{transform:translateX(8px)}
-      60%{transform:translateX(-6px)}
-      80%{transform:translateX(4px)}
-    }
-
-    @media(max-width:600px){
-      header h1{
-        font-size:24px;
-      }
-
-      .question{
-        font-size:17px;
-      }
-
-      .card{
-        padding:16px;
-      }
+    @media (max-width:600px){
+      .stats{grid-template-columns:repeat(3,1fr)}
+      .stat{font-size:12px}
+      .stat span{font-size:17px}
+      .quiz-card{padding:19px 15px}
+      .question{font-size:18px}
+      .option{font-size:16px;padding:12px}
+      .controls{flex-direction:column}
+      button.nav{width:100%}
     }
   </style>
 </head>
+
 <body>
-
-<header>
-  <h1>النموذج التدريبي الأول</h1>
-  <p>اختبارات الفصل الدراسي الثاني — الدرجة الكلية ٣٠</p>
-</header>
-
-<main>
-
-  <section class="notice">
-    <strong>تدريب تفاعلي يحاكي ترتيب الاختبار الأصلي.</strong>
-
-    <div class="small">
-      اختاري الإجابة، ثم سيظهر لكِ سبب صحتها أو خطئها مباشرة.
-    </div>
-  </section>
-
-  <section class="card" id="quizCard">
-
-    <div class="topbar">
-
-      <span class="badge" id="sectionBadge">
-        الفهم القرائي
-      </span>
-
-      <span class="badge" id="counter">
-        السؤال ١
-      </span>
-
-      <span class="badge" id="liveScore">
-        الدرجة: ٠ / ٣٠
-      </span>
-
-    </div>
-
-    <div class="progress">
-      <div id="progressBar"></div>
-    </div>
-
-    <h2
-      class="section-title"
-      id="sectionTitle"
-    ></h2>
-
-    <div id="passage"></div>
-
-    <div
-      class="question"
-      id="questionText"
-    ></div>
-
-    <div id="answerArea"></div>
-
-    <div
-      class="feedback"
-      id="feedback"
-    ></div>
-
-    <div class="nav">
-
-      <button
-        class="muted"
-        id="prevBtn"
-      >
-        السابق
-      </button>
-
-      <button
-        class="primary"
-        id="nextBtn"
-      >
-        التالي
-      </button>
-
-    </div>
-
-  </section>
-
-  <section
-    class="result"
-    id="result"
-  >
-
-    <div>
-      🎉 أنهيتِ النموذج الأول
-    </div>
-
-    <div
-      class="score"
-      id="finalScore"
-    ></div>
-
-    <p id="finalMessage"></p>
-
-    <button
-      class="primary"
-      onclick="location.reload()"
-    >
-      إعادة النموذج
-    </button>
-
-  </section>
-
-</main>
-
-<div
-  class="confetti"
-  id="confetti"
-></div>
-
-<div
-  class="answer-celebration"
-  id="answerCelebration"
->
-
-  <div class="answer-bubble">
-
-    <span class="answer-hand">
-      👉
-    </span>
-
-    <div class="answer-title">
-      إجابة صحيحة!
-    </div>
-
-    <div class="answer-sub">
-      أحسنتِ يا بطلة آفاق ✨
-    </div>
-
-  </div>
-
-</div>
-
-<script>
-
-  let audioContext;
-
-  function playTone(
-    frequency,
-    duration,
-    type = "sine",
-    volume = 0.07,
-    delay = 0
-  ){
-
-    try{
-
-      audioContext =
-        audioContext ||
-        new (
-          window.AudioContext ||
-          window.webkitAudioContext
-        )();
-
-      const oscillator =
-        audioContext.createOscillator();
-
-      const gain =
-        audioContext.createGain();
-
-      oscillator.type = type;
-
-      oscillator.frequency.value =
-        frequency;
-
-      gain.gain.value =
-        volume;
-
-      oscillator.connect(gain);
-
-      gain.connect(
-        audioContext.destination
-      );
-
-      const startTime =
-        audioContext.currentTime + delay;
-
-      oscillator.start(startTime);
-
-      gain.gain.setValueAtTime(
-        volume,
-        startTime
-      );
-
-      gain.gain.exponentialRampToValueAtTime(
-        0.001,
-        startTime + duration
-      );
-
-      oscillator.stop(
-        startTime + duration
-      );
-
-    }catch(error){
-
-      console.log(
-        "تعذر تشغيل الصوت"
-      );
-
-    }
-
-  }
-
-  function playSuccessSound(){
-
-    playTone(
-      523,
-      0.14,
-      "sine",
-      0.08
-    );
-
-    playTone(
-      659,
-      0.16,
-      "sine",
-      0.08,
-      0.12
-    );
-
-    playTone(
-      784,
-      0.25,
-      "triangle",
-      0.09,
-      0.25
-    );
-
-  }
-
-  function playWrongSound(){
-
-    playTone(
-      190,
-      0.17,
-      "sawtooth",
-      0.045
-    );
-
-    playTone(
-      145,
-      0.20,
-      "sawtooth",
-      0.035,
-      0.12
-    );
-
-  }
-
-  function celebrateCorrect(){
-
-    playSuccessSound();
-
-    if(
-      navigator.vibrate
-    ){
-
-      navigator.vibrate(
-        [35,45,70]
-      );
-
-    }
-
-    const celebration =
-      document.getElementById(
-        "answerCelebration"
-      );
-
-    celebration.classList.remove(
-      "show"
-    );
-
-    void celebration.offsetWidth;
-
-    celebration.classList.add(
-      "show"
-    );
-
-    setTimeout(
-      function(){
-
-        celebration.classList.remove(
-          "show"
-        );
-
-      },
-      1450
-    );
-
-  }
-
-  function reactToWrongAnswer(){
-
-    playWrongSound();
-
-    if(
-      navigator.vibrate
-    ){
-
-      navigator.vibrate(
-        [90,55,90]
-      );
-
-    }
-
-    const quizCard =
-      document.getElementById(
-        "quizCard"
-      );
-
-    quizCard.classList.remove(
-      "quiz-shake"
-    );
-
-    void quizCard.offsetWidth;
-
-    quizCard.classList.add(
-      "quiz-shake"
-    );
-
-    setTimeout(
-      function(){
-
-        quizCard.classList.remove(
-          "quiz-shake"
-        );
-
-      },
-      450
-    );
-
-  }
-
-  const readingPassage = `
-تعد ظاهرة الإدمان على المخدرات من أخطر الظواهر التي تعاني منها جميع دول العالم، فتعاطي المخدرات له تأثير وأضرار على الجسد والعقل والنفس؛ فهي تذهب العقل، وتسبب أمراض القلب، والتهاب المريء، وتقرح المعدة، والتهاب البنكرياس، والسرطان، فضلًا عما يلازم المدمن من أمراض نفسية كالاكتئاب والعزلة والتوتر.
-
-ومن الأسباب المؤدية إلى إدمان المخدرات: مصاحبة أصدقاء السوء، والفضول وحب التجربة، والتفكك الأسري، والفقر، والفراغ، وضعف الوازع الديني.
-
-كما أن تأثير المخدرات لا ينحصر على الفرد فقط، بل يطال المجتمعات أيضًا؛ فهي تؤدي إلى تفكك الأسر، وانتشار الجرائم، وارتفاع معدل العنف، وزيادة البطالة.
-
-وللوقاية من المخدرات يجب التقرب من الأبناء واحترامهم، وتنمية مواهبهم بأنشطة إيجابية كالرياضة والرسم، وتوعيتهم بأضرار المخدرات، ومنحهم الثقة والدعم، وتعزيز الوازع الديني.
-  `;
+  <header>
+    <h1>النموذج الأول</h1>
+    <p>اختبار لغتي الخالدة – الفصل الدراسي الثاني</p>
+  </header>
+
+  <main class="wrap">
+    <section class="top-card" id="topCard">
+      <div class="stats">
+        <div class="stat">السؤال<span id="currentStat">١ / ٤٠</span></div>
+        <div class="stat">الصحيح<span id="correctStat">٠</span></div>
+        <div class="stat">الدرجة<span id="scoreStat">٠ / ٤٠</span></div>
+      </div>
+      <div class="progress-shell">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+    </section>
+
+    <section class="reading" id="readingBox">
+      <h2>النص القرائي: أضرار المخدرات</h2>
+      <p>
+        تُعَدُّ ظاهرة الإدمان على المخدرات من أخطر الظواهر التي تعاني منها جميع دول العالم؛
+        فتعاطي المخدرات له تأثير وأضرار على الجسد والعقل والنفس، فهي تُذهب العقل، وتسبب
+        أمراض القلب، والتهاب المريء، وتقرح المعدة، والتهاب البنكرياس، والسرطان، فضلًا عما
+        يصيب المدمن من أمراض نفسية كالاكتئاب والعزلة والتوتر.
+        ومن الأسباب المؤدية إلى إدمان المخدرات: مصاحبة أصدقاء السوء، والفضول وحب التجربة،
+        والتفكك الأسري، والفقر، والفراغ، وضعف الوازع الديني.
+        كما أن تأثير المخدرات لا ينحصر على الفرد فقط، بل يطال المجتمعات أيضًا؛ فهي تؤدي إلى
+        تفكك الأسر، وانتشار الجرائم، وارتفاع معدل العنف، وزيادة البطالة.
+        وللوقاية من المخدرات يجب التقرب من الأبناء واحترامهم، وتنمية مواهبهم بأنشطة إيجابية
+        كالرياضة والرسم، وتوعيتهم بأضرار المخدرات، ومنحهم الثقة والدعم، وتعزيز الوازع الديني.
+      </p>
+    </section>
+
+    <section class="quiz-card" id="quizCard">
+      <div class="section-label" id="sectionLabel">الفهم القرائي</div>
+      <div class="question-number" id="questionNumber">السؤال ١ من ٤٠</div>
+      <h2 class="question" id="questionText"></h2>
+      <div class="options" id="options"></div>
+      <div class="feedback" id="feedback"></div>
+
+      <div class="controls">
+        <button class="nav" id="restartBtn" type="button">إعادة الاختبار</button>
+        <button class="nav" id="nextBtn" type="button">السؤال التالي</button>
+      </div>
+    </section>
+
+    <section class="result-card" id="resultCard">
+      <div class="result-icon" id="resultIcon">🏆</div>
+      <h2>اكتمل النموذج الأول</h2>
+      <div class="score-big" id="finalScore">٠ / ٤٠</div>
+      <div class="result-note" id="resultNote"></div>
+      <button class="nav" id="resultRestart" type="button">إعادة المحاولة</button>
+      <div class="review" id="review"></div>
+    </section>
+
+    <div class="footer-note">منصة آفاق التعليمية</div>
+  </main>
+
+  <script>
     const questions = [
+      {
+        section:"الفهم القرائي",
+        q:"مرادف كلمة «يتعاطى»:",
+        options:["يتناول","يقلع","يترك","يبتعد"],
+        answer:0,
+        explain:"«يتعاطى» بمعنى يتناول."
+      },
+      {
+        section:"الفهم القرائي",
+        q:"أي الآتي يُعد من الأضرار الصحية للمخدرات؟",
+        options:["تقوية الذاكرة","أمراض القلب وتقرح المعدة","زيادة النشاط","تحسين الحالة النفسية"],
+        answer:1,
+        explain:"ذكر النص أمراض القلب وتقرح المعدة ضمن أضرار المخدرات."
+      },
+      {
+        section:"الفهم القرائي",
+        q:"أي الآتي يُعد من الأضرار النفسية للمخدرات؟",
+        options:["الاكتئاب والعزلة والتوتر","الثقة بالنفس","الهدوء والاستقرار","قوة الشخصية"],
+        answer:0,
+        explain:"ذكر النص الاكتئاب والعزلة والتوتر."
+      },
+      {
+        section:"الفهم القرائي",
+        q:"من الأسباب المؤدية إلى الإدمان على المخدرات:",
+        options:["استثمار وقت الفراغ","مصاحبة أصدقاء السوء","ممارسة الرياضة","تعزيز الوازع الديني"],
+        answer:1,
+        explain:"مصاحبة أصدقاء السوء من الأسباب المؤدية إلى الإدمان."
+      },
+      {
+        section:"الفهم القرائي",
+        q:"من طرق وقاية الأبناء من الوقوع في المخدرات:",
+        options:["منحهم الثقة والدعم","تركهم دون متابعة","تجاهل مشكلاتهم","نشر الخوف بينهم"],
+        answer:0,
+        explain:"منح الأبناء الثقة والدعم من وسائل الوقاية المذكورة في النص."
+      },
+      {
+        section:"الفهم القرائي",
+        q:"تأثير المخدرات في المجتمع يؤدي إلى:",
+        options:["تماسك الأسر","انخفاض معدل الجريمة","تفكك الأسر وانتشار الجرائم","زيادة فرص العمل"],
+        answer:2,
+        explain:"يؤدي أثر المخدرات إلى تفكك الأسر وانتشار الجرائم."
+      },
+      {
+        section:"الفهم القرائي",
+        q:"الفكرة العامة للنص:",
+        options:["اختيار الأصدقاء","أسباب البطالة وعلاجها","أضرار المخدرات وأسبابها وطرق الوقاية منها","أنواع الرياضة"],
+        answer:2,
+        explain:"تناول النص أضرار المخدرات وأسبابها وطرق الوقاية منها."
+      },
+      {
+        section:"الفهم القرائي",
+        q:"ضد كلمة «العنف»:",
+        options:["القسوة","التعب","الرفق","الشدة"],
+        answer:2,
+        explain:"ضد العنف هو الرفق."
+      },
+      {
+        section:"الفهم القرائي",
+        q:"مفرد كلمة «جرائم»:",
+        options:["جُرم","جريمة","مجرم","إجرام"],
+        answer:1,
+        explain:"مفرد جرائم هو جريمة."
+      },
+      {
+        section:"الفهم القرائي",
+        q:"«تأثير المخدرات وضررها ينحصر على الفرد نفسه فقط»:",
+        options:["صحيحة","خاطئة"],
+        answer:1,
+        explain:"العبارة خاطئة؛ لأن أثر المخدرات يطال الفرد والأسرة والمجتمع."
+      },
 
-    {
-      section:"الفهم القرائي",
-      question:"ما الفكرة العامة للنص؟",
-      options:[
-        "فوائد ممارسة الرياضة",
-        "أضرار المخدرات وأسبابها وطرق الوقاية منها",
-        "أسباب البطالة فقط",
-        "أهمية العلاقات الأسرية"
-      ],
-      answer:1,
-      explanation:"لأن النص تناول أضرار المخدرات وأسباب الإدمان وآثاره على الفرد والمجتمع وطرق الوقاية."
-    },
+      {
+        section:"الرسم الإملائي",
+        q:"أي الجمل الآتية تشتمل على كلمة وُصلت خطأ؟",
+        options:["أشهد ألّا إله إلا الله.","عفوت عمّن ظلمني.","حينئذٍ ترى فائدة العلم.","يعجبني ألّا تهمل واجباتك."],
+        answer:0,
+        explain:"الصواب: «أشهد أن لا إله إلا الله»؛ لأن «لا» دخلت على اسم."
+      },
+      {
+        section:"الرسم الإملائي",
+        q:"الكلمة التي كُتبت بصورة خاطئة هي:",
+        options:["يرجوا","قالوا","يصحو","اعملوا"],
+        answer:0,
+        explain:"الصواب «يرجو»؛ لأن الواو أصلية وليست واو الجماعة."
+      },
+      {
+        section:"الرسم الإملائي",
+        q:"تُحذف همزة الوصل من كلمة «ابن» في الجملة:",
+        options:["خالد بن الوليد سيف الله المسلول.","سام ابن الخطاب معروف بالعدل.","ابن عفان من الخلفاء الراشدين.","المهندس ابن المهندس."],
+        answer:0,
+        explain:"حُذفت همزة «ابن» لوقوعها بين علمين والثاني أب للأول."
+      },
+      {
+        section:"الرسم الإملائي",
+        q:"تُزاد الألف الفارقة في الجملة:",
+        options:["لا تهملوا دروسكم.","حضر معلمو المدرسة.","يدعو المؤمن ربه.","يظهر القمر مساءً."],
+        answer:0,
+        explain:"تزاد الألف الفارقة بعد واو الجماعة في الفعل «تهملوا»."
+      },
+      {
+        section:"الرسم الإملائي",
+        q:"الصياغة الصحيحة عند نصب الفعل «يحافظون»:",
+        options:["لن يحافظون على الأمانة.","لن يحافظوا على الأمانة.","لن يحافظن على الأمانة.","لن يحافظوان على الأمانة."],
+        answer:1,
+        explain:"الفعل من الأفعال الخمسة، وعلامة نصبه حذف النون."
+      },
+      {
+        section:"الرسم الإملائي",
+        q:"الصياغة الصحيحة عند جزم الفعل «يحافظون»:",
+        options:["لم يحافظون على النظام.","لم يحافظوا على النظام.","لم يحافظن على النظام.","لم يحافظوان على النظام."],
+        answer:1,
+        explain:"الفعل من الأفعال الخمسة، وعلامة جزمه حذف النون."
+      },
+      {
+        section:"الرسم الإملائي",
+        q:"الخطأ في العبارة «اعلم ألّا إتقان بدون تعب» هو:",
+        options:["كتابة «ألّا» موصولة","كتابة «إتقان»","كتابة «اعلم»","لا يوجد خطأ"],
+        answer:0,
+        explain:"الصواب «أن لا إتقان»؛ لأن «لا» دخلت على اسم."
+      },
 
-    {
-      section:"الفهم القرائي",
-      question:"مرادف كلمة «يتعاطى» في النص:",
-      options:[
-        "يتناول",
-        "يبتعد",
-        "يمنع",
-        "يترك"
-      ],
-      answer:0,
-      explanation:"يتعاطى الشيء أي يتناوله أو يستعمله."
-    },
+      {
+        section:"الصنف اللغوي",
+        q:"اسم الآلة في الجملة «لنضرب على أيدي السفهاء بمطرقة من حديد»:",
+        options:["السفهاء","مطرقة","حديد","أيدي"],
+        answer:1,
+        explain:"«مطرقة» اسم آلة."
+      },
+      {
+        section:"الصنف اللغوي",
+        q:"المصدر في الجملة «نحن نعيش في عصر انفجرت فيه المعلومات كثوران البركان»:",
+        options:["عصر","المعلومات","ثوران","البركان"],
+        answer:2,
+        explain:"«ثوران» مصدر."
+      },
+      {
+        section:"الصنف اللغوي",
+        q:"«سيف اسم آلة جامد»:",
+        options:["صحيحة","خاطئة"],
+        answer:0,
+        explain:"«سيف» من أسماء الآلة الجامدة."
+      },
+      {
+        section:"الصنف اللغوي",
+        q:"«المصدر من الفعل استخرج هو خروج»:",
+        options:["صحيحة","خاطئة"],
+        answer:1,
+        explain:"العبارة خاطئة، والمصدر الصحيح هو «استخراج»."
+      },
+      {
+        section:"الصنف اللغوي",
+        q:"في الجملة «اتجه الطلاب إلى ملعب الكرة»، كلمة «ملعب» هي:",
+        options:["اسم زمان","اسم مكان","اسم آلة","مصدر"],
+        answer:1,
+        explain:"«ملعب» اسم مكان."
+      },
+      {
+        section:"الصنف اللغوي",
+        q:"وزن كلمة «ملعب»:",
+        options:["مَفْعَل","مَفْعِل","فاعِل","مِفْعال"],
+        answer:0,
+        explain:"وزن «مَلْعَب» هو «مَفْعَل»."
+      },
 
-    {
-      section:"الفهم القرائي",
-      question:"ضد كلمة «العنف»:",
-      options:[
-        "الشدة",
-        "القسوة",
-        "الرفق",
-        "الغضب"
-      ],
-      answer:2,
-      explanation:"الرفق هو اللين وحسن المعاملة، وهو ضد العنف."
-    },
+      {
+        section:"الأسلوب اللغوي",
+        q:"نوع «ما عدا» في الجملة «عاد المسافرون ما عدا مسافرًا»:",
+        options:["فعل ماضٍ","حرف جر","مضاف إليه","مستثنى منصوب"],
+        answer:0,
+        explain:"عند نصب ما بعدها تكون «عدا» فعلًا ماضيًا."
+      },
+      {
+        section:"الأسلوب اللغوي",
+        q:"صيغة التعجب في الجملة «ما أقبح الجهل!»:",
+        options:["مِفعال","أفعل به","ما أفعل","فعّال"],
+        answer:2,
+        explain:"الجملة على صيغة «ما أفعل»."
+      },
+      {
+        section:"الأسلوب اللغوي",
+        q:"الصياغة الصحيحة للعدد في الجملة «كرمت المعلمة ١٣ طالبة»:",
+        options:["ثلاثة عشرة طالبة","ثلاث عشرة طالبة","ثلاثة عشر طالبة","ثلاث عشر طالبة"],
+        answer:1,
+        explain:"الصواب «ثلاث عشرة طالبة»."
+      },
+      {
+        section:"الأسلوب اللغوي",
+        q:"أي الجمل الآتية تمثل تعجبًا سماعيًا؟",
+        options:["أكرم بمحمد!","يا لها من كارثة!","ما أعظم الصدق!","حضر الطلاب إلا طالبًا."],
+        answer:1,
+        explain:"«يا لها من كارثة!» تعجب سماعي."
+      },
+      {
+        section:"الأسلوب اللغوي",
+        q:"الصياغة الصحيحة للعدد في الجملة «اشتريت ٤ أقلام»:",
+        options:["اشتريت أربع أقلام.","اشتريت أربعة أقلام.","اشتريت أربعًا قلمًا.","اشتريت أربعة قلم."],
+        answer:1,
+        explain:"الصواب «اشتريت أربعة أقلام»."
+      },
 
-    {
-      section:"الفهم القرائي",
-      question:"مفرد كلمة «جرائم»:",
-      options:[
-        "جرم",
-        "جريمة",
-        "مجرم",
-        "إجرام"
-      ],
-      answer:1,
-      explanation:"مفرد جمع «جرائم» هو «جريمة»."
-    },
+      {
+        section:"الوظيفة النحوية",
+        q:"المعطوف عليه في الجملة «أقلع محمد عن الذنوب حتى الصغائر»:",
+        options:["الذنوب","محمد","الصغائر","حتى"],
+        answer:0,
+        explain:"المعطوف عليه هو «الذنوب»."
+      },
+      {
+        section:"الوظيفة النحوية",
+        q:"أي الجمل الآتية تتضمن بدل بعض من كل؟",
+        options:["أكلت الرغيف نصفه.","هذا الطالب مجتهد.","كان الإمام علي بليغًا.","الفاروق عمر يتصف بالعدل."],
+        answer:0,
+        explain:"«نصفه» بدل بعض من كل، واتصل بضمير يعود على المبدل منه."
+      },
+      {
+        section:"الوظيفة النحوية",
+        q:"الموقع الإعرابي لكلمة «محمد» في الجملة «فحص المهندس محمد أجهزة الاتصال»:",
+        options:["نعت مرفوع","بدل مرفوع","اسم معطوف مرفوع","مفعول به منصوب"],
+        answer:1,
+        explain:"«محمد» بدل مرفوع من «المهندس»."
+      },
+      {
+        section:"الوظيفة النحوية",
+        q:"معنى حرف العطف في الجملة «دخل المعلم فوقف الطلاب»:",
+        options:["التعيين","الترتيب مع التعقيب","الاستدراك","التخيير"],
+        answer:1,
+        explain:"الفاء تفيد الترتيب مع التعقيب."
+      },
+      {
+        section:"الوظيفة النحوية",
+        q:"نوع النعت في الجملة «جاء رجل أخلاقه حسنة»:",
+        options:["نعت مفرد","جملة اسمية","جملة فعلية","شبه جملة"],
+        answer:1,
+        explain:"«أخلاقه حسنة» جملة اسمية في محل نعت."
+      },
+      {
+        section:"الوظيفة النحوية",
+        q:"الجملة التي اشتملت على بدل هي:",
+        options:["تُمنح جائزة الأمير فيصل للعلماء.","تُمنح جائزة فيصل العلمية للعلماء.","تُمنح جائزة العلماء فيصل.","تُمنح فيصل جائزة للعلماء."],
+        answer:0,
+        explain:"«فيصل» بدل من «الأمير»."
+      },
+      {
+        section:"الوظيفة النحوية",
+        q:"إعراب كلمة «أمينًا» في الجملة «عرفت تاجرًا أمينًا»:",
+        options:["حال منصوب","مفعول به منصوب","نعت منصوب","بدل منصوب"],
+        answer:2,
+        explain:"«أمينًا» نعت منصوب لـ«تاجرًا»."
+      },
 
-    {
-      section:"الفهم القرائي",
-      question:"أي الآتي من الأسباب المؤدية إلى الإدمان؟",
-      options:[
-        "تنمية المواهب",
-        "مصاحبة أصدقاء السوء",
-        "الوعي بأضرار المخدرات",
-        "التقرب من الأبناء"
-      ],
-      answer:1,
-      explanation:"ذكر النص أن مصاحبة أصدقاء السوء من أسباب الإدمان."
-    },
-
-    {
-      section:"الفهم القرائي",
-      question:"أي الآتي من الآثار النفسية للمخدرات؟",
-      options:[
-        "السرطان",
-        "قرحة المعدة",
-        "الاكتئاب والعزلة",
-        "التهاب البنكرياس"
-      ],
-      answer:2,
-      explanation:"الاكتئاب والعزلة والتوتر آثار نفسية، أما بقية الخيارات فآثار صحية."
-    },
-
-    {
-      section:"الفهم القرائي",
-      question:"تأثير المخدرات ينحصر على الفرد فقط.",
-      options:[
-        "صحيح",
-        "خطأ"
-      ],
-      answer:1,
-      explanation:"العبارة خطأ؛ لأن أثر المخدرات يمتد إلى الأسرة والمجتمع."
-    },
-
-    {
-      section:"الفهم القرائي",
-      question:"من طرق الوقاية من المخدرات:",
-      options:[
-        "ترك الأبناء دون متابعة",
-        "منح الأبناء الثقة والدعم",
-        "زيادة أوقات الفراغ",
-        "مصاحبة أصدقاء السوء"
-      ],
-      answer:1,
-      explanation:"ذكر النص منح الأبناء الثقة والدعم ضمن وسائل الوقاية."
-    },
-
-    {
-      section:"الفهم القرائي",
-      question:"أي الآتي من آثار المخدرات على المجتمع؟",
-      options:[
-        "زيادة الترابط الأسري",
-        "انتشار الجرائم",
-        "ارتفاع مستوى التعليم",
-        "تحسن الصحة العامة"
-      ],
-      answer:1,
-      explanation:"ذكر النص أن المخدرات تؤدي إلى انتشار الجرائم وتفكك الأسر."
-    },
-
-    {
-      section:"الفهم القرائي",
-      question:"العلاقة بين المخدرات والبطالة كما وردت في النص:",
-      options:[
-        "المخدرات تقلل البطالة",
-        "المخدرات تزيد البطالة",
-        "لا علاقة بينهما",
-        "البطالة تمنع الإدمان"
-      ],
-      answer:1,
-      explanation:"ذكر النص أن من آثار المخدرات زيادة البطالة."
-    },
-
-    {
-      section:"الرسم الإملائي",
-      question:"أي الجمل الآتية كُتبت فيها «أن لا» كتابة صحيحة؟",
-      options:[
-        "يعجبني أن لا تهمل واجباتك",
-        "اعلم أن لا إتقانَ بدون تعب",
-        "أرجو أن لا تتأخر",
-        "يسرني أن لا تغيب"
-      ],
-      answer:1,
-      explanation:"فُصلت «أن لا» لأن «لا» نافية للجنس وبعدها اسم هو «إتقان»."
-    },
-
-    {
-      section:"الرسم الإملائي",
-      question:"الصواب في الجملة «يعجبني أن لا تهمل واجباتك» هو:",
-      options:[
-        "يعجبني أنْ لا تهمل واجباتك",
-        "يعجبني ألا تهمل واجباتك",
-        "يعجبني أنلا تهمل واجباتك",
-        "يعجبني لا أن تهمل واجباتك"
-      ],
-      answer:1,
-      explanation:"تُوصل «أن» بـ«لا» عندما تأتي «لا» قبل فعل، فتكتب «ألا»."
-    },
-
-    {
-      section:"الرسم الإملائي",
-      question:"الكلمة المكتوبة كتابة خاطئة هي:",
-      options:[
-        "يرجوا",
-        "قالوا",
-        "اعملوا",
-        "لن يهملوا"
-      ],
-      answer:0,
-      explanation:"الصواب «يرجو» بلا ألف؛ لأن الواو أصلية وليست واو الجماعة."
-    },
-
-    {
-      section:"الرسم الإملائي",
-      question:"تحذف ألف «ابن» في:",
-      options:[
-        "ابن عفان من الخلفاء",
-        "خالد بن الوليد قائد عظيم",
-        "المهندس ابن المهندس",
-        "هذا ابن كريم"
-      ],
-      answer:1,
-      explanation:"تحذف ألف «ابن» إذا وقعت بين علمين وكان الثاني أبًا للأول."
-    },
-
-    {
-      section:"الرسم الإملائي",
-      question:"تزاد الألف الفارقة بعد واو الجماعة في:",
-      options:[
-        "هم معلمو المدرسة",
-        "لا تهملوا واجباتكم",
-        "هو يرجو النجاح",
-        "الطلاب حاضرون"
-      ],
-      answer:1,
-      explanation:"تزاد الألف الفارقة بعد واو الجماعة في الأفعال مثل «تهملوا»."
-    },
-
-    {
-      section:"الرسم الإملائي",
-      question:"الفعل «يحافظون» عند نصبه يصبح:",
-      options:[
-        "يحافظون",
-        "يحافظوا",
-        "يحافظان",
-        "يحافظن"
-      ],
-      answer:1,
-      explanation:"تحذف النون من الأفعال الخمسة عند النصب، فنقول: لن يحافظوا."
-    },
-
-    {
-      section:"الصنف اللغوي",
-      question:"اسم الآلة في جملة «ضرب الحداد الحديد بمطرقة» هو:",
-      options:[
-        "الحداد",
-        "الحديد",
-        "مطرقة",
-        "ضرب"
-      ],
-      answer:2,
-      explanation:"«مطرقة» اسم آلة تدل على الأداة التي يُطرق بها."
-    },
-
-    {
-      section:"الصنف اللغوي",
-      question:"وزن اسم الآلة «مِطرقة»:",
-      options:[
-        "مِفعال",
-        "مِفعلة",
-        "فاعول",
-        "فعّالة"
-      ],
-      answer:1,
-      explanation:"كلمة «مطرقة» على وزن «مِفعلة»."
-    },
-
-    {
-      section:"الصنف اللغوي",
-      question:"المصدر في جملة «ثار البركان ثورانًا شديدًا» هو:",
-      options:[
-        "البركان",
-        "شديدًا",
-        "ثار",
-        "ثورانًا"
-      ],
-      answer:3,
-      explanation:"«ثورانًا» مصدر الفعل «ثار»."
-    },
-
-    {
-      section:"الصنف اللغوي",
-      question:"مصدر الفعل «استخرج» هو:",
-      options:[
-        "خروج",
-        "إخراج",
-        "استخراج",
-        "مخرج"
-      ],
-      answer:2,
-      explanation:"مصدر الفعل الخماسي «استخرج» هو «استخراج»."
-    },
-
-    {
-      section:"الصنف اللغوي",
-      question:"اسم المكان في جملة «اتجه الطلاب إلى ملعب الكرة» هو:",
-      options:[
-        "الطلاب",
-        "اتجه",
-        "ملعب",
-        "الكرة"
-      ],
-      answer:2,
-      explanation:"«ملعب» اسم مكان يدل على مكان اللعب."
-    },
-
-    {
-      section:"الصنف اللغوي",
-      question:"وزن كلمة «مَلعب»:",
-      options:[
-        "مَفعل",
-        "مِفعال",
-        "فاعل",
-        "مفعول"
-      ],
-      answer:0,
-      explanation:"كلمة «ملعب» على وزن «مَفعل»."
-    },
-
-    {
-      section:"الأسلوب اللغوي",
-      question:"الصياغة الصحيحة للعدد في «اشتريت (٤) أقلام» هي:",
-      options:[
-        "اشتريت أربع أقلام",
-        "اشتريت أربعة أقلام",
-        "اشتريت أربعًا أقلام",
-        "اشتريت أربعة قلم"
-      ],
-      answer:1,
-      explanation:"العدد من ٣ إلى ١٠ يخالف المعدود، و«قلم» مذكر، فنقول «أربعة»."
-    },
-
-    {
-      section:"الأسلوب اللغوي",
-      question:"نوع الأسلوب في «ما أجمل الصدق!»:",
-      options:[
-        "استثناء",
-        "تعجب",
-        "نداء",
-        "نهي"
-      ],
-      answer:1,
-      explanation:"الجملة على صيغة التعجب القياسية «ما أفعل»."
-    },
-
-    {
-      section:"الأسلوب اللغوي",
-      question:"أي الجمل تمثل تعجبًا سماعيًا؟",
-      options:[
-        "ما أعظم الصدق!",
-        "أكرم بالعلم!",
-        "يا لها من كارثة!",
-        "ما أجمل السماء!"
-      ],
-      answer:2,
-      explanation:"«يا لها من كارثة» تعجب سماعي، أما بقية الخيارات فتعجب قياسي."
-    },
-
-    {
-      section:"الأسلوب اللغوي",
-      question:"نوع «ما عدا» في «حضر الطلاب ما عدا طالبًا»:",
-      options:[
-        "فعل ماض",
-        "حرف جر",
-        "اسم",
-        "حرف عطف"
-      ],
-      answer:0,
-      explanation:"إذا سبقت «عدا» بـ«ما» المصدرية فإنها تكون فعلًا ماضيًا."
-    },
-
-    {
-      section:"الوظيفة النحوية",
-      question:"المعطوف عليه في «أقلع محمد عن الذنوب حتى الصغائر» هو:",
-      options:[
-        "محمد",
-        "الذنوب",
-        "الصغائر",
-        "حتى"
-      ],
-      answer:1,
-      explanation:"«الصغائر» معطوف، و«الذنوب» هو المعطوف عليه."
-    },
-
-    {
-      section:"الوظيفة النحوية",
-      question:"أي الجمل الآتية تتضمن بدل بعض من كل؟",
-      options:[
-        "جاء الطالب محمد",
-        "أكلت الرغيف نصفه",
-        "نجح خالد وسالم",
-        "رأيت رجلًا كريمًا"
-      ],
-      answer:1,
-      explanation:"«نصفه» جزء حقيقي من «الرغيف»، فهو بدل بعض من كل."
-    },
-
-    {
-      section:"الوظيفة النحوية",
-      question:"الموقع الإعرابي لكلمة «محمد» في «فحص المهندس محمد الأجهزة» هو:",
-      options:[
-        "نعت مرفوع",
-        "بدل مرفوع",
-        "مفعول به",
-        "حال منصوب"
-      ],
-      answer:1,
-      explanation:"«محمد» بدل مرفوع يوضح المقصود بالمهندس."
-    },
-
-    {
-      section:"الوظيفة النحوية",
-      question:"تفيد الفاء في «دخل المعلم فوقف الطلاب»:",
-      options:[
-        "الشك",
-        "التخيير",
-        "الترتيب مع التعقيب",
-        "الاستدراك"
-      ],
-      answer:2,
-      explanation:"الفاء تفيد الترتيب مع التعقيب؛ فالوقوف حدث بعد الدخول مباشرة."
-    },
-
-    {
-      section:"الوظيفة النحوية",
-      question:"نوع النعت في «جاء رجل أخلاقه حسنة»:",
-      options:[
-        "نعت مفرد",
-        "جملة اسمية",
-        "جملة فعلية",
-        "شبه جملة"
-      ],
-      answer:1,
-      explanation:"«أخلاقه حسنة» جملة اسمية وقعت نعتًا لكلمة «رجل»."
-    },
-
-    {
-      section:"الوظيفة النحوية",
-      question:"إعراب «أمينًا» في «عرفت تاجرًا أمينًا»:",
-      options:[
-        "حال منصوب",
-        "مفعول به",
-        "نعت منصوب",
-        "بدل منصوب"
-      ],
-      answer:2,
-      explanation:"«أمينًا» نعت لـ«تاجرًا»، وتبعه في النصب."
-    }
-
-  ];
-
-  const totalQuestions =
-    questions.length;
-
-  const totalScore = 30;
-
-  let currentQuestion = 0;
-
-  let correctAnswers = 0;
-
-  let answeredQuestions =
-    new Array(
-      totalQuestions
-    ).fill(false);
-
-  const element = function(id){
-
-    return document.getElementById(id);
-
-  };
-
-  function toArabicNumber(number){
-
-    return String(number).replace(
-      /\d/g,
-      function(digit){
-
-        return "٠١٢٣٤٥٦٧٨٩"[digit];
-
+      {
+        section:"أسئلة إضافية",
+        q:"نوع البدل في الجملة «أعجبني الكتاب أسلوبه»:",
+        options:["بدل كل من كل","بدل بعض من كل","بدل اشتمال","نعت"],
+        answer:2,
+        explain:"«أسلوبه» بدل اشتمال، واتصل بضمير يعود على المبدل منه."
+      },
+      {
+        section:"أسئلة إضافية",
+        q:"اسم الآلة في الجملة «فتحت الباب بالمفتاح»:",
+        options:["الباب","المفتاح","فتحت","الباء"],
+        answer:1,
+        explain:"«المفتاح» اسم آلة."
+      },
+      {
+        section:"أسئلة إضافية",
+        q:"أي الكلمات الآتية اسم آلة على وزن «مِفْعَلة»؟",
+        options:["مكنسة","مفتاح","منشار","قلم"],
+        answer:0,
+                explain:"«مِكنسة» اسم آلة على وزن «مِفْعَلة»."
+      },
+      {
+        section:"أسئلة إضافية",
+        q:"الصياغة الصحيحة للعدد في الجملة «حضر ١١ طالبًا»:",
+        options:[
+          "أحد عشر طالبًا",
+          "إحدى عشرة طالبًا",
+          "أحد عشرة طالبًا",
+          "إحدى عشر طالبًا"
+        ],
+        answer:0,
+        explain:"الصواب: «أحد عشر طالبًا»."
+      },
+      {
+        section:"أسئلة إضافية",
+        q:"نوع النعت في الجملة «رأيت بيتًا أمام المدرسة»:",
+        options:[
+          "نعت مفرد",
+          "جملة اسمية",
+          "جملة فعلية",
+          "شبه جملة"
+        ],
+        answer:3,
+        explain:"«أمام المدرسة» شبه جملة في محل نعت."
       }
-    );
+    ];
 
-  }
+    const arabicDigits = n =>
+      String(n).replace(/\d/g, d => "٠١٢٣٤٥٦٧٨٩"[d]);
 
-  function calculateScore(){
+    let current = 0;
+    let score = 0;
+    let answered = false;
+    let userAnswers = [];
 
-    return Math.round(
-      (
-        correctAnswers /
-        totalQuestions
-      ) *
-      totalScore
-    );
+    const questionText =
+      document.getElementById("questionText");
 
-      }
-    function renderQuestion(){
+    const questionNumber =
+      document.getElementById("questionNumber");
 
-    const question =
-      questions[currentQuestion];
-
-    element("sectionBadge").textContent =
-      question.section;
-
-    element("sectionTitle").textContent =
-      question.section;
-
-    element("counter").textContent =
-      "السؤال " +
-      toArabicNumber(
-        currentQuestion + 1
-      ) +
-      " من " +
-      toArabicNumber(
-        totalQuestions
-      );
-
-    element("liveScore").textContent =
-      "الدرجة: " +
-      toArabicNumber(
-        calculateScore()
-      ) +
-      " / ٣٠";
-
-    element("progressBar").style.width =
-      (
-        (
-          currentQuestion + 1
-        ) /
-        totalQuestions
-      ) *
-      100 +
-      "%";
-
-    if(
-      question.section ===
-      "الفهم القرائي"
-    ){
-
-      element("passage").innerHTML =
-        '<div class="source-text">' +
-        readingPassage +
-        "</div>";
-
-    }else{
-
-      element("passage").innerHTML =
-        "";
-
-    }
-
-    element("questionText").textContent =
-      question.question;
-
-    element("answerArea").innerHTML =
-      "";
-
-    element("feedback").style.display =
-      "none";
-
-    element("feedback").className =
-      "feedback";
+    const sectionLabel =
+      document.getElementById("sectionLabel");
 
     const optionsBox =
-      document.createElement("div");
+      document.getElementById("options");
 
-    optionsBox.className =
-      "options";
+    const feedback =
+      document.getElementById("feedback");
 
-    question.options.forEach(
-      function(optionText,index){
+    const nextBtn =
+      document.getElementById("nextBtn");
 
-        const optionButton =
-          document.createElement(
-            "button"
+    const restartBtn =
+      document.getElementById("restartBtn");
+
+    const resultRestart =
+      document.getElementById("resultRestart");
+
+    const quizCard =
+      document.getElementById("quizCard");
+
+    const resultCard =
+      document.getElementById("resultCard");
+
+    const topCard =
+      document.getElementById("topCard");
+
+    const readingBox =
+      document.getElementById("readingBox");
+
+    const currentStat =
+      document.getElementById("currentStat");
+
+    const correctStat =
+      document.getElementById("correctStat");
+
+    const scoreStat =
+      document.getElementById("scoreStat");
+
+    const progressBar =
+      document.getElementById("progressBar");
+
+    function playTone(correct = true){
+      try{
+        const AudioContext =
+          window.AudioContext ||
+          window.webkitAudioContext;
+
+        const ctx = new AudioContext();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.type = "sine";
+
+        osc.frequency.setValueAtTime(
+          correct ? 660 : 220,
+          ctx.currentTime
+        );
+
+        if(correct){
+          osc.frequency.exponentialRampToValueAtTime(
+            880,
+            ctx.currentTime + 0.18
+          );
+        }else{
+          osc.frequency.exponentialRampToValueAtTime(
+            150,
+            ctx.currentTime + 0.22
+          );
+        }
+
+        gain.gain.setValueAtTime(
+          0.12,
+          ctx.currentTime
+        );
+
+        gain.gain.exponentialRampToValueAtTime(
+          0.001,
+          ctx.currentTime + 0.28
+        );
+
+        osc.start();
+        osc.stop(ctx.currentTime + 0.3);
+
+      }catch(error){}
+    }
+
+    function vibrate(correct = true){
+      if(navigator.vibrate){
+        navigator.vibrate(
+          correct
+            ? [60, 35, 60]
+            : [160]
+        );
+      }
+    }
+
+    function confettiBurst(){
+      const pieces = 28;
+
+      const symbols = [
+        "●",
+        "■",
+        "▲",
+        "★",
+        "✦"
+      ];
+
+      const colors = [
+        "#76548f",
+        "#c9a85c",
+        "#d895aa",
+        "#4e8a68",
+        "#6e9bc5"
+      ];
+
+      for(let i = 0; i < pieces; i++){
+
+        const el =
+          document.createElement("span");
+
+        el.className = "confetti";
+
+        el.textContent =
+          symbols[
+            Math.floor(
+              Math.random() * symbols.length
+            )
+          ];
+
+        el.style.left =
+          Math.random() * 100 + "vw";
+
+        el.style.fontSize =
+          10 + Math.random() * 12 + "px";
+
+        el.style.color =
+          colors[
+            Math.floor(
+              Math.random() * colors.length
+            )
+          ];
+
+        el.style.animationDuration =
+          1.6 + Math.random() * 1.5 + "s";
+
+        el.style.transform =
+          `rotate(${Math.random() * 360}deg)`;
+
+        document.body.appendChild(el);
+
+        setTimeout(
+          () => el.remove(),
+          3200
+        );
+      }
+    }
+
+    function updateStats(){
+
+      currentStat.textContent =
+        `${arabicDigits(
+          Math.min(
+            current + 1,
+            questions.length
+          )
+        )} / ${arabicDigits(
+          questions.length
+        )}`;
+
+      correctStat.textContent =
+        arabicDigits(score);
+
+      scoreStat.textContent =
+        `${arabicDigits(score)} / ${arabicDigits(
+          questions.length
+        )}`;
+
+      progressBar.style.width =
+        `${(current / questions.length) * 100}%`;
+    }
+
+    function renderQuestion(){
+
+      answered = false;
+
+      feedback.className = "feedback";
+      feedback.innerHTML = "";
+
+      nextBtn.style.display = "none";
+
+      const item = questions[current];
+
+      sectionLabel.textContent =
+        item.section;
+
+      questionNumber.textContent =
+        `السؤال ${arabicDigits(
+          current + 1
+        )} من ${arabicDigits(
+          questions.length
+        )}`;
+
+      questionText.textContent =
+        item.q;
+
+      optionsBox.innerHTML = "";
+
+      const letters = [
+        "أ",
+        "ب",
+        "ج",
+        "د"
+      ];
+
+      item.options.forEach(
+        (option, index) => {
+
+          const btn =
+            document.createElement("button");
+
+          btn.type = "button";
+          btn.className = "option";
+
+          btn.innerHTML = `
+            <span class="choice-letter">
+              ${letters[index]}
+            </span>
+
+            <span>
+              ${option}
+            </span>
+          `;
+
+          btn.addEventListener(
+            "click",
+            () => selectAnswer(index, btn)
           );
 
-        optionButton.className =
-          "option";
-
-        optionButton.textContent =
-          optionText;
-
-        optionButton.onclick =
-          function(){
-
-            selectAnswer(
-              index,
-              optionButton,
-              optionsBox
-            );
-
-          };
-
-        optionsBox.appendChild(
-          optionButton
-        );
-
-      }
-    );
-
-    element("answerArea").appendChild(
-      optionsBox
-    );
-
-    element("prevBtn").disabled =
-      currentQuestion === 0;
-
-    if(
-      currentQuestion ===
-      totalQuestions - 1
-    ){
-
-      element("nextBtn").textContent =
-        "إنهاء النموذج";
-
-    }else{
-
-      element("nextBtn").textContent =
-        "التالي";
-
-    }
-
-  }
-
-  function selectAnswer(
-    selectedIndex,
-    selectedButton,
-    optionsBox
-  ){
-
-    if(
-      answeredQuestions[
-        currentQuestion
-      ]
-    ){
-
-      return;
-
-    }
-
-    const question =
-      questions[currentQuestion];
-
-    const isCorrect =
-      selectedIndex ===
-      question.answer;
-
-    answeredQuestions[
-      currentQuestion
-    ] = true;
-
-    const optionButtons =
-      optionsBox.querySelectorAll(
-        ".option"
+          optionsBox.appendChild(btn);
+        }
       );
 
-    optionButtons.forEach(
-      function(button){
+      readingBox.style.display =
+        current < 10
+          ? "block"
+          : "none";
 
-        button.disabled = true;
+      updateStats();
 
-      }
-    );
+      window.scrollTo({
+        top:0,
+        behavior:"smooth"
+      });
+    }
 
-    optionButtons[
-      question.answer
-    ].classList.add(
-      "correct"
-    );
-
-    if(
-      !isCorrect
+    function selectAnswer(
+      selected,
+      button
     ){
 
-      selectedButton.classList.add(
-        "wrong"
+      if(answered) return;
+
+      answered = true;
+
+      const item =
+        questions[current];
+
+      const buttons = [
+        ...document.querySelectorAll(
+          ".option"
+        )
+      ];
+
+      buttons.forEach(
+        btn => btn.disabled = true
       );
 
-    }
+      buttons[item.answer]
+        .classList.add("correct");
 
-    if(
-      isCorrect
-    ){
+      const isCorrect =
+        selected === item.answer;
 
-      correctAnswers++;
+      userAnswers[current] =
+        selected;
 
-    }
+      if(isCorrect){
 
-    element("liveScore").textContent =
-      "الدرجة: " +
-      toArabicNumber(
-        calculateScore()
-      ) +
-      " / ٣٠";
+        score++;
 
-    showFeedback(
-      isCorrect,
-      question.explanation
-    );
-
-  }
-
-  function showFeedback(
-    isCorrect,
-    explanation
-  ){
-
-    const feedbackBox =
-      element("feedback");
-
-    if(
-      isCorrect
-    ){
-
-      feedbackBox.className =
-        "feedback ok";
-
-      feedbackBox.innerHTML =
-        "✅ <strong>إجابة صحيحة!</strong>" +
-        "<br>" +
-        "<strong>السبب:</strong> " +
-        explanation;
-
-      feedbackBox.style.display =
-        "block";
-
-      createConfetti(16);
-
-      celebrateCorrect();
-
-    }else{
-
-      feedbackBox.className =
-        "feedback bad";
-
-      feedbackBox.innerHTML =
-        "❌ <strong>الإجابة غير صحيحة.</strong>" +
-        "<br>" +
-        "<strong>التوضيح:</strong> " +
-        explanation;
-
-      feedbackBox.style.display =
-        "block";
-
-      reactToWrongAnswer();
-
-    }
-
-  }
-
-  element("prevBtn").onclick =
-    function(){
-
-      if(
-        currentQuestion > 0
-      ){
-
-        currentQuestion--;
-
-        renderQuestion();
-
-      }
-
-    };
-
-  element("nextBtn").onclick =
-    function(){
-
-      if(
-        !answeredQuestions[
-          currentQuestion
-        ]
-      ){
-
-        alert(
-          "اختاري إجابة أولًا."
+        button.classList.add(
+          "correct"
         );
 
-        return;
+        feedback.className =
+          "feedback show good";
 
-      }
+        feedback.innerHTML = `
+          أحسنتِ! إجابة صحيحة 🌟
 
-      if(
-        currentQuestion <
-        totalQuestions - 1
-      ){
+          <span class="explain">
+            ${item.explain}
+          </span>
+        `;
 
-        currentQuestion++;
-
-        renderQuestion();
+        playTone(true);
+        vibrate(true);
+        confettiBurst();
 
       }else{
 
-        finishQuiz();
-
-      }
-
-    };
-
-  function finishQuiz(){
-
-    element("quizCard").style.display =
-      "none";
-
-    element("result").style.display =
-      "block";
-
-    const finalScore =
-      calculateScore();
-
-    element("finalScore").textContent =
-      toArabicNumber(
-        finalScore
-      ) +
-      " من ٣٠";
-
-    if(
-      finalScore >= 27
-    ){
-
-      element("finalMessage").textContent =
-        "👑 أداء متميز جدًا! أنتِ من نجمات آفاق.";
-
-      createConfetti(55);
-
-      playSuccessSound();
-
-    }else if(
-      finalScore >= 22
-    ){
-
-      element("finalMessage").textContent =
-        "🌸 أداء جميل، راجعي تعليقات الأسئلة التي أخطأتِ فيها.";
-
-      createConfetti(30);
-
-    }else{
-
-      element("finalMessage").textContent =
-        "💜 أحسنتِ المحاولة، أعيدي النموذج بعد مراجعة المهارات.";
-
-    }
-
-  }
-
-  function createConfetti(
-    numberOfPieces
-  ){
-
-    const confettiBox =
-      element("confetti");
-
-    const icons = [
-      "🎈",
-      "✨",
-      "🌸",
-      "⭐"
-    ];
-
-    for(
-      let index = 0;
-      index < numberOfPieces;
-      index++
-    ){
-
-      const piece =
-        document.createElement(
-          "span"
+        button.classList.add(
+          "wrong"
         );
 
-      piece.className =
-        "piece";
+        feedback.className =
+          "feedback show bad";
 
-      piece.textContent =
-        icons[
-          Math.floor(
-            Math.random() *
-            icons.length
-          )
-        ];
+        feedback.innerHTML = `
+          الإجابة غير صحيحة.
 
-      piece.style.left =
-        Math.random() *
-        100 +
-        "vw";
+          <span class="explain">
+            الإجابة الصحيحة:
+            ${item.options[item.answer]}
+            —
+            ${item.explain}
+          </span>
+        `;
 
-      piece.style.animationDelay =
-        Math.random() *
-        0.6 +
-        "s";
+        playTone(false);
+        vibrate(false);
+      }
 
-      confettiBox.appendChild(
-        piece
-      );
+      updateStats();
 
-      setTimeout(
-        function(){
+      nextBtn.textContent =
+        current === questions.length - 1
+          ? "عرض النتيجة"
+          : "السؤال التالي";
 
-          piece.remove();
-
-        },
-        3500
-      );
-
+      nextBtn.style.display =
+        "inline-block";
     }
 
-  }
+    nextBtn.addEventListener(
+      "click",
+      () => {
 
-  renderQuestion();
+        if(!answered) return;
 
-</script>
+        current++;
 
+        if(current < questions.length){
+
+          renderQuestion();
+
+        }else{
+
+          showResult();
+        }
+      }
+    );
+
+    function showResult(){
+
+      quizCard.style.display =
+        "none";
+
+      topCard.style.display =
+        "none";
+
+      readingBox.style.display =
+        "none";
+
+      resultCard.classList.add(
+        "show"
+      );
+
+      const percent =
+        Math.round(
+          (score / questions.length) * 100
+        );
+
+      document.getElementById(
+        "finalScore"
+      ).textContent =
+        `${arabicDigits(score)} / ${arabicDigits(
+          questions.length
+        )}`;
+
+      const resultNote =
+        document.getElementById(
+          "resultNote"
+        );
+
+      const resultIcon =
+        document.getElementById(
+          "resultIcon"
+        );
+
+      if(percent >= 90){
+
+        resultIcon.textContent =
+          "🏆";
+
+        resultNote.textContent =
+          "ممتازة! أداء رائع وإتقان مميز.";
+
+        confettiBurst();
+
+      }else if(percent >= 75){
+
+        resultIcon.textContent =
+          "🌟";
+
+        resultNote.textContent =
+          "أداء جميل جدًا، واصلي التقدم.";
+
+      }else if(percent >= 60){
+
+        resultIcon.textContent =
+          "👏";
+
+        resultNote.textContent =
+          "نتيجة جيدة، وتحتاج بعض المهارات إلى مراجعة.";
+
+      }else{
+
+        resultIcon.textContent =
+          "📚";
+
+        resultNote.textContent =
+          "راجعي المهارات ثم أعيدي المحاولة؛ تستطيعين التحسن.";
+      }
+
+      progressBar.style.width =
+        "100%";
+
+      buildReview();
+
+      window.scrollTo({
+        top:0,
+        behavior:"smooth"
+      });
+    }
+
+    function buildReview(){
+
+      const review =
+        document.getElementById(
+          "review"
+        );
+
+      review.innerHTML =
+        "<h3>مراجعة الإجابات غير الصحيحة</h3>";
+
+      let mistakes = 0;
+
+      questions.forEach(
+        (item, index) => {
+
+          if(
+            userAnswers[index] !==
+            item.answer
+          ){
+
+            mistakes++;
+
+            const box =
+              document.createElement(
+                "div"
+              );
+
+            box.className =
+              "review-item";
+
+            const chosen =
+              userAnswers[index] == null
+                ? "لم تُجب"
+                : item.options[
+                    userAnswers[index]
+                  ];
+
+            box.innerHTML = `
+              <strong>
+                السؤال ${arabicDigits(
+                  index + 1
+                )}:
+              </strong>
+
+              ${item.q}
+
+              <br>
+
+              <span>
+                إجابتك:
+                ${chosen}
+              </span>
+
+              <br>
+
+              <span>
+                الصحيح:
+                ${item.options[item.answer]}
+              </span>
+            `;
+
+            review.appendChild(box);
+          }
+        }
+      );
+
+      if(mistakes === 0){
+
+        review.innerHTML =
+          "<h3>رائعة! جميع الإجابات صحيحة 🎉</h3>";
+      }
+    }
+
+    function restart(){
+
+      current = 0;
+      score = 0;
+      answered = false;
+      userAnswers = [];
+
+      resultCard.classList.remove(
+        "show"
+      );
+
+      quizCard.style.display =
+        "block";
+
+      topCard.style.display =
+        "block";
+
+      renderQuestion();
+    }
+
+    restartBtn.addEventListener(
+      "click",
+      restart
+    );
+
+    resultRestart.addEventListener(
+      "click",
+      restart
+    );
+
+    renderQuestion();
+
+  </script>
 </body>
 </html>
