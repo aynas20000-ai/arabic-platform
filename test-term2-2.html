@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>النموذج التدريبي الثاني | منصة آفاق</title>
+<style>
+:root{--p:#75558d;--pd:#4b385b;--g:#b99a5b;--bg:#fffaf1;--paper:#fffdf8;--text:#403347;--ok:#2f855a;--bad:#b84444;--soft:#f1e9f5}
+*{box-sizing:border-box}body{margin:0;font-family:Tahoma,Arial,sans-serif;color:var(--text);background:linear-gradient(180deg,var(--bg),#f7eff8);line-height:1.85}
+header{padding:30px 16px;text-align:center;color:#fff;background:linear-gradient(135deg,#786094,#594474);border-bottom:5px solid var(--g)}
+header h1{margin:0;color:#ead4a0;font-size:30px}header p{margin:5px 0 0}
+main{max-width:920px;margin:24px auto;padding:0 14px 50px}.card,.notice,.result{background:var(--paper);border:1px solid #eadfee;border-radius:20px;box-shadow:0 12px 30px rgba(83,57,95,.1);padding:20px;margin-bottom:18px}
+.notice{border-right:6px solid var(--g)}.top{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}.badge{background:var(--soft);padding:7px 11px;border-radius:999px;font-weight:bold}
+.progress{height:12px;background:#eee4f1;border-radius:999px;overflow:hidden;margin:14px 0}.progress div{height:100%;background:linear-gradient(90deg,var(--g),var(--p));transition:.3s}
+h2{color:var(--p);margin:4px 0 10px}.passage{background:#fff;border:1px dashed #cdb8d6;border-radius:16px;padding:16px;white-space:pre-line;max-height:340px;overflow:auto}
+.question{font-size:19px;font-weight:bold;margin:14px 0}.options{display:grid;gap:10px}.option,button{font:inherit;border-radius:13px;padding:12px 14px;border:none;cursor:pointer}
+.option{text-align:right;background:#fff;border:1px solid #dacbe0}.option.correct{background:#e7f7ed;border-color:var(--ok)}.option.wrong{background:#fff0f0;border-color:var(--bad)}
+textarea,input,select{width:100%;font:inherit;padding:12px;border:1px solid #d8cadf;border-radius:12px;background:#fff}textarea{min-height:115px}
+.actions,.self,.nav{display:flex;gap:9px;flex-wrap:wrap;margin-top:13px}.primary{background:var(--p);color:#fff}.gold{background:var(--g);color:#fff}.muted{background:#eee7f1;color:var(--pd)}
+.feedback,.model{display:none;margin-top:14px;padding:14px;border-radius:13px}.feedback{background:#f8f3fa;border-right:5px solid var(--p)}.feedback.ok{background:#eaf8ef;border-color:var(--ok)}.feedback.bad{background:#fff1f1;border-color:var(--bad)}.model{background:#fff7df;border-right:5px solid var(--g)}
+.nav{justify-content:space-between}.nav button{min-width:125px}.result{text-align:center;display:none}.score{font-size:42px;color:var(--p);font-weight:bold}
+.match-grid{display:grid;grid-template-columns:1fr 120px;gap:10px;align-items:center}.match-row{display:contents}.match-label{background:#fff;padding:10px;border:1px solid #dfd2e4;border-radius:10px}
+.confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:999}.piece{position:absolute;top:-20px;font-size:24px;animation:fall 2.8s linear forwards}@keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
+@media(max-width:600px){header h1{font-size:24px}.question{font-size:17px}.match-grid{grid-template-columns:1fr 90px}}
+</style>
+</head>
+<body>
+<header><h1>النموذج التدريبي الثاني</h1><p>اختبار مركزي عام ١٤٤٧هـ — الدرجة الكلية ٤٠</p></header>
+<main>
+<section class="notice"><strong>يحافظ هذا النموذج على ترتيب الأسئلة وصيغتها.</strong><br>الاختيار والصح والخطأ يصححان فورًا، والأسئلة المقالية تعرض إجابة نموذجية للتقويم الذاتي.</section>
+<section class="card" id="quiz">
+<div class="top"><span class="badge" id="sectionBadge"></span><span class="badge" id="counter"></span><span class="badge" id="scoreLive">الدرجة: ٠ / ٤٠</span></div>
+<div class="progress"><div id="bar"></div></div>
+<h2 id="sectionTitle"></h2><div id="passage"></div><div class="question" id="qtext"></div><div id="answer"></div>
+<div class="feedback" id="feedback"></div><div class="model" id="model"></div><div class="self" id="self"></div>
+<div class="nav"><button class="muted" id="prev">السابق</button><button class="primary" id="next">التالي</button></div>
+</section>
+<section class="result" id="result"><div>🎉 أنهيتِ النموذج الثاني</div><div class="score" id="final"></div><p id="message"></p><button class="primary" onclick="location.reload()">إعادة النموذج</button></section>
+</main><div class="confetti" id="confetti"></div>
+<script>
+const reading=`اللغة العربية هوية ذات قوة وأصالة، وهي من اللغات الأكثر انتشارًا واستخدامًا في العالم، ويقدّر عدد المتكلمين بها بما يزيد على أربعمائة مليون نسمة. وقد تقرر تحديد اليوم الثامن عشر من ديسمبر من كل عام يومًا للاحتفاء بها؛ لأنه اليوم الذي أقرت فيه الجمعية العامة للأمم المتحدة عام 1973م أن تكون اللغة العربية لغة رسمية سادسة في المنظمة.
+
+وتمتاز لغتنا الجميلة بالأصالة التي حفظت لنا تراث العرب الفني والثقافي، وأنتجت المعارف والعلوم ونشرتها بين الثقافات، كما أسهمت في نقل المعارف من ثقافات أخرى عن طريق الترجمة.
+
+إن الاعتزاز بلغتنا العربية يتخذ صورًا متعددة، منها اعتمادها لغة للخطاب والتخاطب، والحرص على تعلمها وتذوقها من خلال دراسة علومها النحوية والبلاغية والتمثل بما فيها من آداب رفيعة. كما أنها لغة القرآن الكريم، ويكفيها فخرًا هذا الانتساب، إضافة إلى أنها لغة العلم والأدب، واليوم تعد اللغة العربية لغة رسمية في نحو خمس وعشرين دولة.
+
+وقد أولت قيادتنا الرشيدة اهتمامًا كبيرًا بالمحافظة على اللغة العربية؛ فأنشأت مجمع الملك سلمان العالمي للغة العربية الذي يعزز دورها إقليميًا وعالميًا، ويطوّر تقنيات الذكاء الاصطناعي في المعالجة الآلية للغة العربية.
+
+إن لغتنا الخالدة لغة للحضارة والتقنية والتطور، فلها في كل مجال علمي مكانة تقدير واعتزاز؛ لأنها لغة حياة في علم وعمل، تجدها مع الطبيب في مختبره، ومع المهندس في مكتبه، وفي كل العلوم ترى لها حضورًا فاعلًا وحداثة وتنمية.`;
+
+const poem=`جاء في النص الشعري على لسان عاطل متواكل:
+مستكينٌ لم أزاول أيَّ جهدٍ بيدي
+مستديرٌ أتغذّى من فتاتِ البشرية
+أنفق الأيام بحثًا عمّن أتحول عليه`;
+
+const qs=[
+{s:"الفهم المقروء",p:1,t:"mcq",q:"يفتخر المسلمون باللغة العربية لأنها:",o:["أكثر اللغات انتشارًا","لغة العلم","لغة القرآن الكريم","لغة الشعر"],a:2,w:"ورد في النص أنها لغة القرآن الكريم ويكفيها فخرًا هذا الانتساب.",pass:"read"},
+{s:"الفهم المقروء",p:1,t:"mcq",q:"«والتمثل بما فيها من آداب رفيعة» معنى كلمة «رفيعة» في السياق:",o:["جديدة","كثيرة","بسيطة","نبيلة"],a:3,w:"رفيعة هنا بمعنى سامية ونبيلة.",pass:"read"},
+{s:"الفهم المقروء",p:1,t:"mcq",q:"الفكرة التي لم ترد في النص هي:",o:["اللغة العربية لغة العلوم","أسباب الهجوم على العربية","العربية لغة خطاب","اليوم العالمي للغة العربية"],a:1,w:"لم يتحدث النص عن أسباب الهجوم على العربية.",pass:"read"},
+{s:"الفهم المقروء",p:1,t:"essay",q:"ما أثر الترجمة على اللغة العربية؟",m:"أسهمت الترجمة في نقل المعارف من ثقافات أخرى إلى العربية، وفي نشر المعارف والعلوم بين الثقافات.",w:"الإجابة تستند إلى الفقرة الثانية.",pass:"read"},
+{s:"الفهم المقروء",p:1,t:"essay",q:"عللي إنشاء مجمع الملك سلمان العالمي للغة العربية.",m:"لتعزيز دور اللغة العربية إقليميًا وعالميًا، وتطوير تقنيات الذكاء الاصطناعي في المعالجة الآلية للغة العربية.",w:"هذا مذكور صراحة في الفقرة الرابعة.",pass:"read"},
+{s:"الفهم المقروء",p:1,t:"essay",q:"اذكري صورة من صور اعتزاز الطالب بلغته العربية.",m:"مثل: التحدث بها، والحرص على تعلمها، ودراسة علومها، وتذوق آدابها، والتمثل بقيمها الرفيعة.",w:"يكفي ذكر صورة صحيحة واحدة من النص.",pass:"read"},
+{s:"الفهم المقروء",p:4,t:"match",q:"صلي كل فكرة برقم الفقرة المناسبة:",items:["الجهود الحكومية لتعزيز قيمة اللغة العربية","مكانة اللغة العربية عالميًا","اللغة العربية لغة الحاضر والمستقبل","واجب أبناء اللغة العربية تجاهها"],correct:[4,1,5,3],w:"المطابقة بحسب ترتيب فقرات النص.",pass:"read"},
+{s:"النص الشعري",p:1,t:"essay",q:"من خلال الأبيات السابقة، اذكري إحدى المشاعر السلبية التي توحي بها الأبيات.",m:"مثل: الاتكالية، والكسل، والعجز، والذل، والاستسلام.",w:"تُقبل أي عاطفة سلبية واضحة تدل عليها الأبيات.",pass:"poem"},
+{s:"النص الشعري",p:2,t:"essay",q:"أي التعبيرين أبلغ: «أتغذى من فتات البشرية» أم «أتغذى من طعام البشرية»؟ ولماذا؟",m:"«أتغذى من فتات البشرية» أبلغ؛ لأنه يصور الذل والاتكالية والعيش على بقايا الآخرين، أما «طعام البشرية» فلا يؤدي هذا المعنى القوي.",w:"المطلوب اختيار التعبير الأبلغ وتعليل بلاغته.",pass:"poem"},
+
+{s:"الأسلوب اللغوي",p:1,t:"mcq",q:"الجملة الصحيحة وفق قواعد العدد والمعدود:",o:["اشتريت إحدى عشرة قلمًا","اشتريت أحد عشرة قلمًا","اشتريت أحد عشر قلمًا","اشتريت إحدى عشر قلمًا"],a:2,w:"«قلم» مذكر، والصواب في العدد 11: أحد عشر قلمًا."},
+{s:"الأسلوب اللغوي",p:1,t:"essay",q:"مثّلي لأسلوب تعجب على صيغة «أفعل به».",m:"مثال: أكرمْ بالصدقِ! أو أجملْ باللغة العربية!",w:"الصيغة القياسية: أفعلْ بـ..."},
+{s:"الأسلوب اللغوي",p:1,t:"essay",q:"كرّم المدير (٧) طلاب. أعيدي كتابة الجملة بعد تحويل العدد إلى صياغة لفظية.",m:"كرّم المدير سبعة طلاب.",w:"الأعداد من 3 إلى 10 تخالف المعدود، و«طلاب» مذكر."},
+{s:"الأسلوب اللغوي",p:1,t:"text",q:"حددي المستثنى في الجملة: «حضر الطلاب إلا طالبًا».",answers:["طالبا","طالبًا"],m:"طالبًا",w:"هو الاسم الواقع بعد أداة الاستثناء «إلا»."},
+
+{s:"الوظيفة النحوية",p:1,t:"tf",q:"«الجنود يحرسون وطنًا عزيزًا». النعت «عزيزًا» وافق المنعوت في الإفراد والرفع والتعريف والتذكير.",a:false,w:"خطأ؛ وافقه في الإفراد والتذكير والتنكير، لكنه منصوب لا مرفوع."},
+{s:"الوظيفة النحوية",p:1,t:"tf",q:"«زرت مكة المكرمة ثم المدينة المنورة». نوع المعطوف في الجملة اسم على اسم.",a:true,w:"صحيح؛ «المدينة» اسم معطوف على «مكة»."},
+{s:"الوظيفة النحوية",p:1,t:"essay",q:"مثّلي في جملة مفيدة لبدل بعض من كل.",m:"مثال: قرأت الكتاب نصفه. أو أكلت الرغيف ثلثه.",w:"لابد أن يكون البدل جزءًا حقيقيًا من المبدل منه، ويشتمل على ضمير يعود إليه."},
+{s:"الوظيفة النحوية",p:1,t:"essay",q:"مثّلي في جملة مفيدة لمعطوف سبقه حرف عطف يفيد التعقيب.",m:"مثال: دخل المعلم فوقف الطلاب.",w:"الفاء تفيد الترتيب مع التعقيب."},
+{s:"الوظيفة النحوية",p:1,t:"essay",q:"«الطالبان المهذبان محبوبان». عللي رفع كلمة «المهذبان».",m:"لأنها نعت مرفوع للطالبان، وعلامة رفعه الألف لأنه مثنى.",w:"النعت يتبع المنعوت في الإعراب."},
+{s:"الوظيفة النحوية",p:2,t:"essay",q:"أعربي ما تحته خط: «يحرص الأمير محمد بن سلمان - حفظه الله - على تنمية الوطن». أعربي «محمد».",m:"محمد: بدل أو عطف بيان مرفوع، وعلامة رفعه الضمة الظاهرة.",w:"جاء بعد لقب «الأمير» موضحًا له وتبعه في الرفع."},
+
+{s:"الصنف اللغوي",p:1,t:"essay",q:"أكملي: اسم المكان من الفعل «جلس» مضبوطًا بالحركات هو ..........، ومصدر الفعل «سلّم» هو ..........",m:"مَجْلِس، تَسْلِيم.",w:"اسم المكان من جلس على وزن مَفْعِل، ومصدر فعّل على وزن تفعيل."},
+{s:"الصنف اللغوي",p:1,t:"text",q:"عللي مجيء اسم المكان من الفعل «وقف» على وزن «مَفْعِل». اكتبي اسم المكان.",answers:["موقف","مَوْقِف"],m:"مَوْقِف",w:"لأن مضارع «وقف» هو «يقف» مكسور العين، فيأتي اسم المكان على وزن مَفْعِل."},
+{s:"الصنف اللغوي",p:1,t:"text",q:"«الاستثمار في الصناعة يدعم الاقتصاد والوطن». المصدر الخماسي في الجملة هو:",answers:["استثمار","الاستثمار"],m:"الاستثمار",w:"«استثمار» مصدر الفعل الخماسي «استثمر»."},
+{s:"الصنف اللغوي",p:2,t:"order",q:"«اشترى والدي طابعة وحاسوبًا لمكتبه الجديد». رتبي اسمي الآلة في الجملة حسب ورودهما.",items:["حاسوبًا","طابعة"],correct:["طابعة","حاسوبًا"],w:"وردت «طابعة» أولًا ثم «حاسوبًا»."},
+{s:"الصنف اللغوي",p:1,t:"essay",q:"اكتبي وزن اسم الآلة «مِفْتاح».",m:"مِفْعال.",w:"«مفتاح» من أوزان اسم الآلة القياسية على وزن مِفْعال."},
+
+{s:"الظاهرة الإملائية",p:1,t:"tf",q:"«هؤلاء الطلاب متفوقون». استعملت العلامة على كلمة «هؤلاء» علامة حذف الألف من وسطها.",a:true,w:"صحيح؛ الألف محذوفة رسمًا في «هؤلاء» مع بقائها نطقًا."},
+{s:"الظاهرة الإملائية",p:1,t:"tf",q:"«عبدالله بن عباس حبر هذه الأمة». حذفت همزة «ابن» لأنها جاءت مفردة.",a:false,w:"خطأ؛ تحذف ألف «ابن» إذا وقعت بين علمين وكان الثاني أبًا للأول."},
+{s:"الظاهرة الإملائية",p:1,t:"essay",q:"صوبي الخطأ الإملائي: «هؤلاء الطلاب متفوقون» إذا كتبت «هاؤلاء الطلاب متفوقون».",m:"الصواب: هؤلاء الطلاب متفوقون.",w:"تحذف الألف بعد الهاء في رسم كلمة «هؤلاء»."},
+{s:"الظاهرة الإملائية",p:1,t:"essay",q:"عللي حذف الواو من اسم «داود» في الرسم العثماني للكلمة المقصودة في الدرس.",m:"لأنها من الكلمات التي حُذف بعض أحرفها رسمًا مع بقائها نطقًا وفق الرسم العثماني.",w:"التعليل مرتبط بباب الحذف في بعض الكلمات."},
+{s:"الظاهرة الإملائية",p:1,t:"essay",q:"اشتملت كلمة «أولئك» على موضعي حذف وزيادة. حدديهما.",m:"الحذف: حذف الألف بعد اللام. الزيادة: زيادة الواو بعد الهمزة.",w:"تكتب «أولئك» بواو زائدة وألف محذوفة بعد اللام."},
+{s:"الظاهرة الإملائية",p:1,t:"essay",q:"أدخلي أداة الاستفهام «مَن» على حرف الجر «مِن» في جملة مفيدة.",m:"مثال: مِمَّن أخذتِ الكتاب؟",w:"عند دخول «مِن» على «مَن» تحذف النون وتدغم الميمان: مِمَّن."},
+{s:"الظاهرة الإملائية",p:1,t:"essay",q:"اذكري كلمة أخرى من الكلمات التي حذف بعض أحرفها رسمًا مع بقائها نطقًا.",m:"مثل: هذا، هذه، لكن، الرحمن، أولئك، هؤلاء.",w:"تُقبل كلمة صحيحة من أمثلة الحذف المقررة."},
+
+{s:"الرسم الكتابي",p:1,t:"tf",q:"الحروف (و، ج، م) ترتكز كلها على السطر في خط الرقعة.",a:false,w:"خطأ؛ تختلف مواضع الحروف، وينزل جزء من بعضها عن السطر."},
+{s:"الرسم الكتابي",p:1,t:"tf",q:"كل الخطوط في خط الرقعة متوازية.",a:false,w:"خطأ؛ المطلوب التناسق والوضوح، وليست جميع الخطوط متوازية."},
+{s:"الرسم الكتابي",p:1,t:"hand",q:"اكتبي بخط الرقعة: «العلم نور يضيء به المستقبل».",m:"اكتبي العبارة في دفترك ثم قارني وضوح الحروف، واتصالها، ومواضع نزولها عن السطر، وتناسق الكلمات.",w:"هذا تدريب أدائي لا يصحح آليًا."}
+];
+
+let i=0,score=0; const done=Array(qs.length).fill(false);
+const $=x=>document.getElementById(x), ar=n=>String(n).replace(/\d/g,d=>"٠١٢٣٤٥٦٧٨٩"[d]);
+function render(){
+ const q=qs[i]; $("sectionBadge").textContent=q.s;$("sectionTitle").textContent=q.s;$("counter").textContent=`السؤال ${ar(i+1)} من ${ar(qs.length)}`;$("scoreLive").textContent=`الدرجة: ${ar(score)} / ٤٠`;$("bar").style.width=((i+1)/qs.length*100)+"%";
+ $("passage").innerHTML=q.pass==="read"?`<div class="passage">${reading}</div>`:q.pass==="poem"?`<div class="passage">${poem}</div>`:"";
+ $("qtext").textContent=q.q;$("answer").innerHTML="";$("feedback").style.display="none";$("model").style.display="none";$("self").style.display="none";$("prev").disabled=i===0;$("next").textContent=i===qs.length-1?"إنهاء النموذج":"التالي";
+ if(q.t==="mcq"||q.t==="tf"){let box=document.createElement("div");box.className="options";let vals=q.t==="tf"?[["صحيح",true],["خطأ",false]]:q.o.map((x,j)=>[x,j]);vals.forEach(([x,v])=>{let b=document.createElement("button");b.className="option";b.textContent=x;b.onclick=()=>choice(v,b,box);box.appendChild(b)});$("answer").appendChild(box)}
+ else if(q.t==="text")$("answer").innerHTML=`<input id="txt" placeholder="اكتبي الإجابة"><div class="actions"><button class="primary" onclick="checkText()">تحقق</button></div>`;
+ else if(q.t==="match"){let h='<div class="match-grid">';q.items.forEach((x,j)=>h+=`<div class="match-label">${x}</div><select class="matchSel"><option value="">الفقرة</option>${[1,2,3,4,5].map(n=>`<option value="${n}">${ar(n)}</option>`).join("")}</select>`);h+=`</div><div class="actions"><button class="primary" onclick="checkMatch()">تحقق من التوصيل</button></div>`;$("answer").innerHTML=h}
+ else if(q.t==="order")$("answer").innerHTML=`<select id="ord1"><option value="">الأول</option>${q.items.map(x=>`<option>${x}</option>`).join("")}</select><br><br><select id="ord2"><option value="">الثاني</option>${q.items.map(x=>`<option>${x}</option>`).join("")}</select><div class="actions"><button class="primary" onclick="checkOrder()">تحقق</button></div>`;
+ else $("answer").innerHTML=`<textarea placeholder="اكتبي إجابتك أولًا"></textarea><div class="actions"><button class="gold" onclick="showModel()">عرض الإجابة النموذجية</button></div>`;
+}
+function award(p){if(done[i])return;done[i]=true;score+=p;$("scoreLive").textContent=`الدرجة: ${ar(score)} / ٤٠`}
+function fb(ok,txt){let f=$("feedback");f.className="feedback "+(ok?"ok":"bad");f.innerHTML=txt;f.style.display="block";if(ok)sparkle(8)}
+function choice(v,b,box){if(done[i])return;let q=qs[i],ok=v===q.a;[...box.children].forEach((x,j)=>x.disabled=true);let correctIndex=q.t==="tf"?(q.a?0:1):q.a;box.children[correctIndex].classList.add("correct");if(!ok)b.classList.add("wrong");award(ok?q.p:0);fb(ok,`${ok?"✅ أحسنتِ.":"❌ الإجابة غير صحيحة."}<br><strong>التوضيح:</strong> ${q.w}`)}
+function norm(s){return s.trim().replace(/[ًٌٍَُِّْـ.،]/g,"").replace(/\s+/g," ")}
+function checkText(){if(done[i])return;let q=qs[i],v=norm($("txt").value),ok=q.answers.some(x=>norm(x)===v);$("txt").disabled=true;award(ok?q.p:0);fb(ok,`${ok?"✅ صحيحة.":"❌ راجعيها."}<br><strong>الإجابة:</strong> ${q.m}<br>${q.w}`)}
+function checkMatch(){if(done[i])return;let q=qs[i],vals=[...document.querySelectorAll(".matchSel")].map(x=>+x.value),ok=vals.every((x,j)=>x===q.correct[j]);document.querySelectorAll(".matchSel").forEach(x=>x.disabled=true);award(ok?q.p:0);fb(ok,`${ok?"✅ التوصيل كامل وصحيح.":"❌ يوجد توصيل غير صحيح."}<br>${q.w}<br><strong>الترتيب الصحيح:</strong> ${q.correct.map(ar).join("، ")}`)}
+function checkOrder(){if(done[i])return;let q=qs[i],ok=$("ord1").value===q.correct[0]&&$("ord2").value===q.correct[1];$("ord1").disabled=$("ord2").disabled=true;award(ok?q.p:0);fb(ok,`${ok?"✅ الترتيب صحيح.":"❌ الترتيب غير صحيح."}<br><strong>الصواب:</strong> ${q.correct.join(" ثم ")}`)}
+function showModel(){let q=qs[i];$("model").innerHTML=`<strong>الإجابة النموذجية:</strong><br>${q.m}<br><br><strong>التوضيح:</strong> ${q.w}`;$("model").style.display="block";let s=$("self");s.innerHTML="";s.style.display="flex";let arr=q.t==="hand"?[["أتقنت العبارة",q.p],["أحتاج تدريبًا",0]]:[["إجابتي كاملة",q.p],["إجابتي جزئية",Math.max(1,Math.floor(q.p/2))],["غير صحيحة",0]];arr.forEach(([x,p])=>{let b=document.createElement("button");b.className="muted";b.textContent=x;b.onclick=()=>{if(!done[i]){award(p);s.querySelectorAll("button").forEach(z=>z.disabled=true);fb(p===q.p,`سُجل التقويم الذاتي: ${ar(p)} من ${ar(q.p)}.`)}};s.appendChild(b)})}
+$("prev").onclick=()=>{if(i>0){i--;render()}};$("next").onclick=()=>{if(!done[i])return alert("أجيبي عن السؤال أو اعرضي الإجابة النموذجية ثم قيّمي إجابتك.");if(i<qs.length-1){i++;render()}else finish()};
+function finish(){$("quiz").style.display="none";$("result").style.display="block";$("final").textContent=`${ar(score)} من ٤٠`;$("message").textContent=score>=36?"أداء متميز جدًا.":score>=30?"أداء جميل، راجعي التعليقات.":"أعيدي النموذج بعد مراجعة المهارات.";sparkle(45)}
+function sparkle(n){let c=$("confetti"),a=["🎈","✨","🌸","⭐"];for(let k=0;k<n;k++){let x=document.createElement("span");x.className="piece";x.textContent=a[Math.floor(Math.random()*a.length)];x.style.left=Math.random()*100+"vw";x.style.animationDelay=Math.random()*.5+"s";c.appendChild(x);setTimeout(()=>x.remove(),3400)}}
+render();
+</script>
+</body></html>
