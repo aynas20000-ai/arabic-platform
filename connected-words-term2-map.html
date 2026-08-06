@@ -3,51 +3,308 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>خريطة مفاهيم الكلمات الموصولة خطًّا</title>
+  <title>أميّز بين الوصل والفصل | منصة آفاق</title>
 
   <style>
-    body{
+    :root{
+      --purple:#74558c;
+      --purple-dark:#4d385d;
+      --gold:#c9a85c;
+      --cream:#fffaf1;
+      --paper:#fffdf8;
+      --text:#4b3857;
+      --green:#2f8f5b;
+      --green-light:#edf9f1;
+      --red:#b94a58;
+      --red-light:#fff0f2;
+      --blue:#edf5ff;
+      --rose:#fff2f6;
+    }
+
+    *{box-sizing:border-box}
+
+    html,body{
       margin:0;
+      width:100%;
+      overflow-x:hidden;
+    }
+
+    body{
+      min-height:100vh;
       font-family:Tahoma,Arial,sans-serif;
-      background:#f5f5f5;
-      text-align:center;
+      color:var(--text);
+      background:linear-gradient(180deg,var(--cream),#f7eff8);
+      line-height:1.9;
     }
 
     header{
-      background:#1565c0;
-      color:white;
-      padding:35px 20px;
+      padding:42px 18px;
+      text-align:center;
+      color:#fff;
+      background:linear-gradient(135deg,var(--purple),var(--purple-dark));
+      border-bottom:6px solid var(--gold);
     }
 
-    section{
-      background:white;
-      margin:30px auto;
-      padding:25px;
-      width:85%;
-      max-width:700px;
-      border-radius:18px;
-      box-shadow:0 4px 15px rgba(0,0,0,0.12);
+    header h1{
+      margin:0 0 8px;
+      font-size:36px;
     }
 
-    .box{
-      background:#eaf3ff;
-      margin:18px 0;
-      padding:24px;
-      border-radius:14px;
+    header p{
+      margin:0;
+      color:#f8f0fb;
+      font-size:18px;
+    }
+
+    main{
+      width:min(94%,920px);
+      margin:34px auto;
+    }
+
+    .card{
+      margin:24px 0;
+      padding:24px 20px;
+      background:rgba(255,255,255,.95);
+      border:3px solid var(--gold);
+      border-radius:28px;
+      box-shadow:0 12px 28px rgba(75,56,87,.11);
+    }
+
+    .card h2{
+      margin:0 0 15px;
+      text-align:center;
+      color:var(--purple-dark);
+      font-size:27px;
+    }
+
+    .intro{
+      text-align:center;
+      font-size:20px;
+      background:linear-gradient(145deg,#fffdf8,#fff3f7);
+    }
+
+    .compare-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
+
+    .compare-box{
+      padding:20px 16px;
+      border-radius:22px;
+      border:2px solid #d8c7e2;
+    }
+
+    .connected{
+      background:var(--green-light);
+      border-color:#9bc9ad;
+    }
+
+    .separated{
+      background:var(--blue);
+      border-color:#aac9e4;
+    }
+
+    .compare-box h3{
+      margin:0 0 12px;
+      text-align:center;
+      font-size:23px;
+      color:var(--purple-dark);
+    }
+
+    .rule{
+      margin:12px 0;
+      padding:13px 15px;
+      background:#fff;
+      border-right:6px solid var(--gold);
+      border-radius:17px;
+    }
+
+    .word{
+      color:var(--purple-dark);
+      font-weight:bold;
       font-size:21px;
     }
 
-    .back{
-      color:#1565c0;
+    .examples-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+    }
+
+    .example-card{
+      padding:17px 12px;
+      text-align:center;
+      background:#fbf8fd;
+      border:2px solid #d8c7e2;
+      border-radius:19px;
+    }
+
+    .wrong{
+      display:block;
+      margin-bottom:7px;
+      color:var(--red);
       font-weight:bold;
+      text-decoration:line-through;
+      font-size:19px;
+    }
+
+    .correct{
+      display:block;
+      color:var(--green);
+      font-weight:bold;
+      font-size:22px;
+    }
+
+    .reason{
+      display:block;
+      margin-top:8px;
+      font-size:15px;
+      color:#66536f;
+    }
+
+    .mistakes{
+      background:var(--rose);
+    }
+
+    .mistake-row{
+      display:grid;
+      grid-template-columns:1fr auto 1fr;
+      align-items:center;
+      gap:12px;
+      margin:13px 0;
+      padding:14px;
+      background:#fff;
+      border:2px solid #ead0d8;
+      border-radius:18px;
+      text-align:center;
+    }
+
+    .arrow{
+      color:var(--gold);
+      font-size:26px;
+      font-weight:bold;
+    }
+
+    .check-list{
+      display:grid;
+      gap:11px;
+    }
+
+    .check-item{
+      padding:13px 15px;
+      background:var(--green-light);
+      border:2px solid #add1ba;
+      border-radius:17px;
+      font-weight:bold;
+    }
+
+    .challenge-word{
+      margin:15px 0;
+      padding:16px;
+      text-align:center;
+      font-size:25px;
+      font-weight:bold;
+      color:var(--purple-dark);
+      background:#fff;
+      border:2px solid #d8c7e2;
+      border-radius:18px;
+    }
+
+    .buttons{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+
+    .choice-btn{
+      padding:14px 12px;
+      font-family:inherit;
+      font-size:18px;
+      font-weight:bold;
+      color:#fff;
+      background:var(--purple);
+      border:3px solid var(--gold);
+      border-radius:19px;
+      cursor:pointer;
+    }
+
+    .feedback{
+      display:none;
+      margin-top:15px;
+      padding:15px;
+      text-align:center;
+      font-size:18px;
+      font-weight:bold;
+      border-radius:18px;
+    }
+
+    .feedback.correct{
+      display:block;
+      color:#176b40;
+      background:var(--green-light);
+      border:2px solid #8fc6a4;
+    }
+
+    .feedback.wrong{
+      display:block;
+      color:#8f3040;
+      background:var(--red-light);
+      border:2px solid #dda3ad;
+    }
+
+    .next-btn{
+      display:none;
+      width:fit-content;
+      margin:16px auto 0;
+      padding:12px 24px;
+      color:#fff;
+      font-family:inherit;
+      font-size:17px;
+      font-weight:bold;
+      background:var(--purple);
+      border:3px solid var(--gold);
+      border-radius:21px;
+      cursor:pointer;
+    }
+
+    .next-btn.show{display:block}
+
+    .back{
+      display:block;
+      width:fit-content;
+      margin:32px auto 0;
+      padding:14px 28px;
+      color:#fff;
       text-decoration:none;
+      font-size:18px;
+      font-weight:bold;
+      background:var(--purple);
+      border:3px solid var(--gold);
+      border-radius:26px;
     }
 
     footer{
-      background:#222;
-      color:white;
-      padding:20px;
-      margin-top:30px;
+      margin-top:38px;
+      padding:22px 15px;
+      text-align:center;
+      color:#fff;
+      background:var(--purple-dark);
+      border-top:5px solid var(--gold);
+    }
+
+    @media(max-width:650px){
+      header h1{font-size:29px}
+      .compare-grid,
+      .examples-grid{
+        grid-template-columns:1fr;
+      }
+      .mistake-row{
+        grid-template-columns:1fr;
+      }
+      .arrow{transform:rotate(90deg)}
+      .buttons{grid-template-columns:1fr}
+      .card{padding:19px 14px}
     }
   </style>
 </head>
@@ -55,24 +312,208 @@
 <body>
 
 <header>
-  <h1>🧠 خريطة مفاهيم الكلمات الموصولة خطًّا</h1>
+  <h1>🔍 أميّز بين الوصل والفصل</h1>
+  <p>أفهم القاعدة، وأتجنب الأخطاء الشائعة، ثم أختبر نفسي</p>
 </header>
 
-<section>
+<main>
 
-  <div class="box">
-    سيتم إضافة خريطة مفاهيم الدرس هنا
-  </div>
+  <section class="card intro">
+    <h2>الفكرة ببساطة</h2>
+    <p>
+      بعض الكلمات تُكتب <strong>موصولة</strong> فتصبح كلمة واحدة،
+      وبعض التراكيب تُكتب <strong>مفصولة</strong> لأن كل جزء منها كلمة مستقلة.
+    </p>
+  </section>
 
-  <p>
-    <a class="back" href="connected-words-term2.html">العودة إلى الدرس</a>
-  </p>
+  <section class="card">
+    <h2>كيف أفرق بين الوصل والفصل؟</h2>
 
-</section>
+    <div class="compare-grid">
+
+      <div class="compare-box connected">
+        <h3>🔗 الوصل</h3>
+        <div class="rule">
+          تُكتب الكلمتان موصولتين عندما تصبحان في الاستعمال
+          <strong>كلمة واحدة</strong>.
+        </div>
+        <div class="rule">
+          أمثلة شائعة:
+          <span class="word">إنما – عما – ممن – فيما</span>
+        </div>
+      </div>
+
+      <div class="compare-box separated">
+        <h3>✂️ الفصل</h3>
+        <div class="rule">
+          تُكتب الكلمتان منفصلتين عندما تبقى لكل واحدة منهما
+          <strong>وظيفتها ومعناها المستقل</strong>.
+        </div>
+        <div class="rule">
+          أمثلة الدرس:
+          <span class="word">إنْ لم – مِنْ ما – أنْ لا</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>أمثلة الدرس</h2>
+
+    <div class="examples-grid">
+
+      <div class="example-card">
+        <span class="wrong">إنلم</span>
+        <span class="correct">إنْ لم</span>
+        <span class="reason">إنْ الشرطية + لم النافية الجازمة</span>
+      </div>
+
+      <div class="example-card">
+        <span class="wrong">منما</span>
+        <span class="correct">مِنْ ما</span>
+        <span class="reason">مِنْ حرف الجر + ما الموصولة</span>
+      </div>
+
+      <div class="example-card">
+        <span class="wrong">أنلا</span>
+        <span class="correct">أنْ لا</span>
+        <span class="reason">أنْ الناصبة + لا النافية</span>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="card mistakes">
+    <h2>⚠️ أخطاء شائعة وتصحيحها</h2>
+
+    <div class="mistake-row">
+      <span class="wrong">إنلم تجتهدي فلن تنجحي.</span>
+      <span class="arrow">←</span>
+      <span class="correct">إنْ لم تجتهدي فلن تنجحي.</span>
+    </div>
+
+    <div class="mistake-row">
+      <span class="wrong">استفدتُ منما قرأتُ.</span>
+      <span class="arrow">←</span>
+      <span class="correct">استفدتُ مِنْ ما قرأتُ.</span>
+    </div>
+
+    <div class="mistake-row">
+      <span class="wrong">أرجو أنلا تتأخري.</span>
+      <span class="arrow">←</span>
+      <span class="correct">أرجو أنْ لا تتأخري.</span>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>خطوات تمنع الخطأ</h2>
+
+    <div class="check-list">
+      <div class="check-item">1️⃣ أفكك التركيب إلى كلمتين.</div>
+      <div class="check-item">2️⃣ أحدد وظيفة كل كلمة.</div>
+      <div class="check-item">3️⃣ إذا بقي لكل كلمة معنى مستقل، أكتب بينهما مسافة.</div>
+      <div class="check-item">4️⃣ أراجع شكل الكلمة بعد الكتابة.</div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>⚡ تحدي الوصل والفصل</h2>
+
+    <div id="challengeWord" class="challenge-word"></div>
+
+    <div class="buttons">
+      <button class="choice-btn" onclick="answerChallenge('موصول')">تُكتب موصولة</button>
+      <button class="choice-btn" onclick="answerChallenge('مفصول')">تُكتب مفصولة</button>
+    </div>
+
+    <div id="feedback" class="feedback"></div>
+    <button id="nextButton" class="next-btn" onclick="nextChallenge()">الكلمة التالية ←</button>
+  </section>
+
+  <a class="back" href="connected-words-term2-file.html">
+    العودة إلى ملف الدرس
+  </a>
+
+</main>
 
 <footer>
-  جميع الحقوق محفوظة © 2026
+  منصة آفاق التعليمية © 2026
 </footer>
+
+<script>
+  const challenges = [
+    {
+      word: "إنْ لم",
+      type: "مفصول",
+      explanation: "لأنها تتكون من إنْ الشرطية ولم النافية الجازمة."
+    },
+    {
+      word: "إنما",
+      type: "موصول",
+      explanation: "تُكتب إنما موصولة."
+    },
+    {
+      word: "مِنْ ما",
+      type: "مفصول",
+      explanation: "لأن مِنْ حرف جر، وما اسم موصول."
+    },
+    {
+      word: "فيما",
+      type: "موصول",
+      explanation: "تُكتب فيما موصولة."
+    },
+    {
+      word: "أنْ لا",
+      type: "مفصول",
+      explanation: "لأن أنْ الناصبة ولا النافية كلمتان مستقلتان."
+    },
+    {
+      word: "عما",
+      type: "موصول",
+      explanation: "تُكتب عما موصولة."
+    }
+  ];
+
+  let current = 0;
+  let answered = false;
+
+  const challengeWord = document.getElementById("challengeWord");
+  const feedback = document.getElementById("feedback");
+  const nextButton = document.getElementById("nextButton");
+
+  function showChallenge(){
+    answered = false;
+    challengeWord.textContent = challenges[current].word;
+    feedback.className = "feedback";
+    feedback.textContent = "";
+    nextButton.classList.remove("show");
+  }
+
+  function answerChallenge(choice){
+    if(answered) return;
+    answered = true;
+
+    const item = challenges[current];
+
+    if(choice === item.type){
+      feedback.className = "feedback correct";
+      feedback.textContent = "✅ أحسنتِ! " + item.explanation;
+    }else{
+      feedback.className = "feedback wrong";
+      feedback.textContent = "❌ حاولي الانتباه إلى استقلال الكلمتين. " + item.explanation;
+    }
+
+    nextButton.classList.add("show");
+  }
+
+  function nextChallenge(){
+    current = (current + 1) % challenges.length;
+    showChallenge();
+  }
+
+  showChallenge();
+</script>
 
 </body>
 </html>
