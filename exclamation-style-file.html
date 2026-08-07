@@ -1,77 +1,524 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ملف درس التعجب</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>أسلوب التعجب | منصة آفاق</title>
 
-  <style>
-    body{
-      margin:0;
-      font-family:Tahoma,Arial,sans-serif;
-      background:linear-gradient(180deg,#F8F3E7,#F2ECFF);
-      text-align:center;
-    }
-
-    header{
-      background:#8E73B5;
-      color:white;
-      padding:35px 20px;
-    }
-
-    section{
-      background:#FFFDF8;
-      margin:30px auto;
-      padding:25px;
-      width:85%;
-      max-width:700px;
-      border-radius:18px;
-      box-shadow:0 4px 15px rgba(0,0,0,0.12);
-    }
-
-    .box{
-      background:linear-gradient(135deg,#FFF7F8,#F6EFE3);
-      margin:18px 0;
-      padding:24px;
-      border-radius:14px;
-      font-size:21px;
-    }
-
-    .back{
-      color:#8E73B5;
-      font-weight:bold;
-      text-decoration:none;
-    }
-
-    footer{
-      background:#8E73B5;
-      color:white;
-      padding:20px;
-      margin-top:30px;
-    }
-  </style>
+<style>
+:root{
+  --p:#5b4677;
+  --p2:#776094;
+  --pd:#453457;
+  --lav:#eee5f5;
+  --g:#b69750;
+  --g2:#d8c28a;
+  --cream:#fffaf2;
+  --paper:#fffdf9;
+  --text:#403448;
+  --muted:#766d7c;
+  --rose:#776094;
+  --green:#5b4677;
+  --shadow:0 14px 30px rgba(73,54,92,.12);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Tahoma,Arial,sans-serif;
+  color:var(--text);
+  line-height:1.95;
+  background:
+    radial-gradient(circle at 8% 5%,rgba(216,194,138,.18),transparent 23%),
+    linear-gradient(180deg,#f5f0fa 0%,#fbf9fd 50%,#f1ebf7 100%);
+}
+header{
+  position:relative;
+  overflow:hidden;
+  text-align:center;
+  color:#fff;
+  padding:38px 18px 34px;
+  background:linear-gradient(145deg,var(--p2),var(--p),var(--pd));
+  border-bottom:5px solid var(--g);
+}
+header::before,header::after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  background:rgba(255,255,255,.055);
+}
+header::before{width:220px;height:220px;right:-80px;top:-120px}
+header::after{width:280px;height:280px;left:-120px;bottom:-190px}
+.brand{
+  position:relative;z-index:1;
+  display:inline-block;
+  padding:5px 14px;
+  border-radius:999px;
+  border:1px solid #dbc785;
+  color:#fff3ca;
+  background:rgba(182,151,80,.15);
+  font-weight:bold;
+  font-size:13px;
+}
+header h1{
+  position:relative;z-index:1;
+  margin:8px 0 2px;
+  font-size:clamp(30px,7vw,44px);
+}
+header p{
+  position:relative;z-index:1;
+  margin:0;
+  color:#f4edf8;
+}
+.nav{
+  width:min(980px,92%);
+  margin:18px auto 0;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:8px;
+}
+.nav a{
+  text-decoration:none;
+  color:var(--p);
+  background:#fff;
+  border:1px solid #ddd1e5;
+  padding:7px 12px;
+  border-radius:999px;
+  font-weight:bold;
+  font-size:13px;
+  box-shadow:0 6px 14px rgba(80,60,100,.06);
+}
+main{
+  width:min(980px,92%);
+  margin:20px auto 50px;
+}
+.intro,.section,.golden{
+  background:var(--paper);
+  border:1px solid var(--g2);
+  border-radius:24px;
+  box-shadow:var(--shadow);
+}
+.intro{
+  padding:22px 20px;
+  text-align:center;
+  margin-bottom:18px;
+}
+.intro h2{margin:0;color:var(--p);font-size:28px}
+.intro p{margin:5px auto 0;color:var(--muted);max-width:780px}
+.section{padding:22px 20px;margin-bottom:18px}
+.title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:13px;
+}
+.no{
+  min-width:40px;height:40px;
+  display:grid;place-items:center;
+  border-radius:13px;
+  color:#fff;
+  font-weight:bold;
+  background:linear-gradient(145deg,var(--p2),var(--p));
+  border:1px solid var(--g);
+}
+.title h2{margin:0;color:var(--p);font-size:23px}
+.definition{
+  padding:15px 16px;
+  border-radius:16px;
+  background:var(--cream);
+  border:1px solid #e5d3a5;
+  border-right:6px solid var(--g);
+  font-size:17px;
+}
+.definition strong{color:var(--p)}
+.grid2{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+  margin-top:12px;
+}
+.card{
+  background:#fff;
+  border:1px solid #dfd3e6;
+  border-radius:17px;
+  padding:15px;
+}
+.card h3{margin:0 0 8px;color:var(--p);font-size:18px}
+.example{
+  margin-top:10px;
+  padding:12px 14px;
+  background:#fff;
+  border:1px solid #e5ddea;
+  border-radius:15px;
+}
+.sentence{font-size:18px;font-weight:bold;color:#4b3c5e}
+.formula{
+  margin:14px 0;
+  padding:15px 12px;
+  text-align:center;
+  border-radius:16px;
+  border:1px dashed var(--g);
+  background:linear-gradient(145deg,#fffdf8,#f8f1df);
+  font-size:18px;
+  font-weight:bold;
+  color:var(--pd);
+}
+.note{
+  margin-top:12px;
+  padding:12px 14px;
+  background:#fff7df;
+  border:1px solid #dfc778;
+  border-radius:14px;
+  color:#5c4924;
+}
+.alert{
+  margin-top:12px;
+  padding:12px 14px;
+  background:#f3edf8;
+  border:1px solid #d9cbe1;
+  border-right:5px solid var(--p2);
+  border-radius:14px;
+}
+.rule{
+  margin-top:12px;
+  padding:13px 14px;
+  background:#f3edf8;
+  border:1px solid #d9cbe1;
+  border-right:5px solid var(--g);
+  border-radius:14px;
+  color:#4b3c5e;
+}
+table{
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0;
+  overflow:hidden;
+  border:1px solid #d9c58d;
+  border-radius:16px;
+  background:#fff;
+  margin-top:12px;
+}
+th,td{
+  padding:10px 8px;
+  text-align:center;
+  vertical-align:middle;
+  border-bottom:1px solid #eadfca;
+  border-left:1px solid #eadfca;
+  font-size:14px;
+}
+th{
+  color:#fff;
+  background:linear-gradient(145deg,#6c5686,#4d3a63);
+}
+tr:last-child td{border-bottom:0}
+td:last-child,th:last-child{border-left:0}
+.steps{display:grid;gap:9px}
+.step{
+  padding:11px 13px;
+  border:1px solid #e3d9e8;
+  background:#fff;
+  border-radius:14px;
+}
+.step b{color:var(--p)}
+.golden{
+  padding:21px 20px;
+  color:#fff;
+  background:linear-gradient(145deg,#66527e,#453457);
+  border-color:#c7a75d;
+}
+.golden h2{margin:0 0 8px;color:#ecd99e}
+.golden ul{margin:0;padding-right:20px}
+.back{
+  display:block;
+  width:min(370px,100%);
+  margin:22px auto 0;
+  padding:12px 16px;
+  text-align:center;
+  text-decoration:none;
+  color:#fff;
+  font-weight:bold;
+  border-radius:14px;
+  border:1px solid var(--g);
+  background:linear-gradient(145deg,var(--p2),var(--p));
+}
+footer{
+  padding:20px 12px;
+  text-align:center;
+  color:#eee8f2;
+  background:#3e304d;
+  border-top:2px solid var(--g);
+  font-size:13px;
+}
+@media(max-width:760px){
+  .grid2{grid-template-columns:1fr}
+  .section{padding:18px 14px}
+  th,td{font-size:12px;padding:8px 5px}
+  .formula{font-size:16px}
+}
+</style>
 </head>
 
 <body>
 
 <header>
-  <h1>📄 ملف درس التعجب</h1>
+  <span class="brand">منصة آفاق التعليمية</span>
+  <h1>أسلوب التعجب</h1>
+  <p>الأسلوب اللغوي | الصف الثالث المتوسط</p>
 </header>
 
-<section>
+<nav class="nav">
+  <a href="#definition">التعريف</a>
+  <a href="#parts">الأركان</a>
+  <a href="#types">القياسي والسماعي</a>
+  <a href="#conditions">الشروط</a>
+  <a href="#broken">إذا اختل شرط</a>
+  <a href="#summary">الخلاصة</a>
+</nav>
 
-  <div class="box">
-    سيتم إضافة ملف درس التعجب هنا
-  </div>
+<main>
 
-  <p>
-    <a class="back" href="exclamation-style.html">العودة إلى درس التعجب</a>
-  </p>
-
+<section class="intro">
+  <h2>التعجب ببساطة</h2>
+  <p>نتعرف تعريف التعجب وأركانه وصيغتيه القياسيتين، ثم شروط صياغته من الفعل، وكيف نتصرف إذا اختل شرط من الشروط.</p>
 </section>
 
+<section class="section" id="definition">
+  <div class="title"><span class="no">١</span><h2>تعريف التعجب</h2></div>
+
+  <div class="definition">
+    <strong>التعجب:</strong>
+    أسلوب يدل على الدهشة والاستعظام لصفة في شيء ما.
+  </div>
+
+  <div class="example">
+    <div class="sentence">ما أجملَ الصدقَ!</div>
+    نعبر بهذه الجملة عن الدهشة من جمال الصدق وعِظَم أثره.
+  </div>
+</section>
+
+<section class="section" id="parts">
+  <div class="title"><span class="no">٢</span><h2>أركان أسلوب التعجب</h2></div>
+
+  <div class="definition">
+    في الصيغة القياسية الأولى تتكون جملة التعجب من:
+    <strong>ما التعجبية + فعل التعجب + المتعجب منه</strong>.
+  </div>
+
+  <div class="formula">
+    ما + أَفْعَلَ + المتعجب منه
+  </div>
+
+  <div class="example">
+    <div class="sentence">ما أجملَ السماءَ!</div>
+    <b>ما:</b> تعجبية<br>
+    <b>أجمل:</b> فعل التعجب<br>
+    <b>السماء:</b> المتعجب منه
+  </div>
+
+  <div class="definition" style="margin-top:14px">
+    وفي الصيغة القياسية الثانية:
+    <strong>أَفْعِلْ + الباء + المتعجب منه</strong>.
+  </div>
+
+  <div class="formula">
+    أَفْعِلْ + بـ + المتعجب منه
+  </div>
+
+  <div class="example">
+    <div class="sentence">أجملْ بالسماءِ!</div>
+  </div>
+
+  <div class="note">
+    في «ما أفعله» يأتي المتعجب منه منصوبًا، مثل: ما أجملَ <b>السماءَ</b>!<br>
+    وفي «أفعل به» يأتي بعد الباء، مثل: أجملْ <b>بالسماءِ</b>!
+  </div>
+</section>
+
+<section class="section" id="types">
+  <div class="title"><span class="no">٣</span><h2>القياسي والسماعي</h2></div>
+
+  <div class="grid2">
+
+    <div class="card">
+      <h3>التعجب القياسي</h3>
+      <p>له صيغتان معروفتان يمكن القياس عليهما:</p>
+
+      <div class="example">
+        <div class="sentence">ما أَفْعَلَه!</div>
+        مثال: ما أجملَ الصدقَ!
+      </div>
+
+      <div class="example">
+        <div class="sentence">أَفْعِلْ به!</div>
+        مثال: أجملْ بالصدقِ!
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>التعجب السماعي</h3>
+      <p>تعبيرات سُمعت عن العرب للدلالة على التعجب، ولا تلتزم بالصيغتين القياسيتين.</p>
+
+      <div class="example">
+        <div class="sentence">سبحان الله!</div>
+      </div>
+
+      <div class="example">
+        <div class="sentence">لله درُّه!</div>
+      </div>
+
+      <div class="example">
+        <div class="sentence">يا له من منظر!</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="formula">
+    ما أفعله / أفعل به = قياسي<br>
+    تعبير محفوظ خارج الصيغتين = سماعي
+  </div>
+</section>
+
+<section class="section" id="conditions">
+  <div class="title"><span class="no">٤</span><h2>شروط صياغة التعجب القياسي مباشرة</h2></div>
+
+  <div class="definition">
+    حتى نصوغ التعجب مباشرة على «ما أفعله» أو «أفعل به» لا بد أن يكون الفعل مستوفيًا للشروط الآتية:
+  </div>
+
+  <div class="steps" style="margin-top:14px">
+    <div class="step"><b>١. ثلاثيًّا:</b> مكوّنًا من ثلاثة أحرف أصلية.</div>
+    <div class="step"><b>٢. تامًّا:</b> ليس من الأفعال الناقصة.</div>
+    <div class="step"><b>٣. متصرفًا:</b> يأتي منه ماضٍ ومضارع ونحوهما.</div>
+    <div class="step"><b>٤. مثبتًا:</b> غير منفي.</div>
+    <div class="step"><b>٥. مبنيًّا للمعلوم:</b> وليس مبنيًّا للمجهول.</div>
+    <div class="step"><b>٦. قابلًا للتفاوت:</b> تقبل صفته الزيادة والنقصان.</div>
+    <div class="step"><b>٧. ليس الوصف منه على «أفعل» الذي مؤنثه «فعلاء».</b></div>
+  </div>
+
+  <div class="formula">
+    ثلاثي + تام + متصرف + مثبت + معلوم + قابل للتفاوت + ليس أفعل/فعلاء
+  </div>
+
+  <div class="example">
+    <div class="sentence">جَمُلَ ← ما أجملَ الصدقَ!</div>
+    الفعل «جمل» مستوفٍ للشروط؛ لذلك صغنا التعجب منه مباشرة.
+  </div>
+</section>
+
+<section class="section" id="broken">
+  <div class="title"><span class="no">٥</span><h2>إذا اختل شرط من الشروط، كيف نتصرف؟</h2></div>
+
+  <div class="definition">
+    إذا كان الفعل يمكن التعجب من معناه، لكنه لا يستوفي شروط الصياغة المباشرة، نستخدم:
+    <strong>فعل تعجب مساعد + مصدر الفعل</strong>.
+  </div>
+
+  <div class="formula">
+    ما أشدَّ / ما أجملَ / ما أعظمَ + مصدر الفعل
+  </div>
+
+  <table>
+    <tr>
+      <th>الحالة</th>
+      <th>الفعل</th>
+      <th>التصرف الصحيح</th>
+    </tr>
+
+    <tr>
+      <td>غير ثلاثي</td>
+      <td>استقام</td>
+      <td>ما أجملَ استقامةَ السلوكِ!</td>
+    </tr>
+
+    <tr>
+      <td>الوصف منه أفعل/فعلاء</td>
+      <td>احمرَّ</td>
+      <td>ما أشدَّ احمرارَ الوردِ!</td>
+    </tr>
+
+    <tr>
+      <td>مبني للمجهول</td>
+      <td>كُرِّم</td>
+      <td>ما أعظمَ تكريمَ المتفوقِ!</td>
+    </tr>
+
+    <tr>
+      <td>لا يقبل التفاوت</td>
+      <td>مات</td>
+      <td>لا يُصاغ منه تعجب قياسي</td>
+    </tr>
+  </table>
+
+  <div class="alert">
+    <b>انتبهي:</b>
+    ليس كل شرط إذا اختل يمكن إصلاحه باستعمال المصدر؛ فإذا كان الفعل لا يقبل التفاوت أصلًا، فلا يصاغ منه تعجب قياسي.
+  </div>
+
+  <div class="rule">
+    <b>قاعدة الحسم:</b><br>
+    إذا استوفى الفعل الشروط ← نصوغ منه مباشرة.<br>
+    إذا لم يستوفِ بعض الشروط وكان المعنى قابلًا للتعجب ← نستخدم فعل تعجب مساعدًا + المصدر.<br>
+    إذا كان المعنى لا يقبل التفاوت ← لا نصوغ منه تعجبًا قياسيًا.
+  </div>
+</section>
+
+<section class="section">
+  <div class="title"><span class="no">٦</span><h2>حوّلي بين الصيغتين</h2></div>
+
+  <div class="grid2">
+    <div class="example">
+      <div class="sentence">ما أجملَ الصدقَ!</div>
+    </div>
+    <div class="example">
+      <div class="sentence">أجملْ بالصدقِ!</div>
+    </div>
+  </div>
+
+  <div class="note">
+    الصيغتان تؤديان معنى التعجب نفسه، لكن يختلف تركيبهما.
+  </div>
+</section>
+
+<section class="section">
+  <div class="title"><span class="no">٧</span><h2>رياضيات نحوية للتعجب ✨</h2></div>
+
+  <div class="formula">
+    فعل مستوفٍ للشروط → ما أفعله! / أفعل به!
+  </div>
+
+  <div class="formula">
+    فعل غير مستوفٍ لبعض الشروط + قابل للتعجب → فعل تعجب مساعد + المصدر
+  </div>
+
+  <div class="example">
+    <div class="sentence">احمرَّ → احمرار → ما أشدَّ احمرارَ الوردِ!</div>
+  </div>
+
+  <div class="example">
+    <div class="sentence">استقام → استقامة → ما أجملَ استقامةَ السلوكِ!</div>
+  </div>
+</section>
+
+<section class="golden" id="summary">
+  <h2>التعجب في دقيقة ✨</h2>
+  <ul>
+    <li>التعجب أسلوب يدل على الدهشة والاستعظام.</li>
+    <li>القياسي له صيغتان: «ما أفعله!» و«أفعل به!».</li>
+    <li>السماعي تعبير محفوظ عن العرب ولا يلتزم بالصيغتين القياسيتين.</li>
+    <li>للتعجب المباشر شروط: ثلاثي، تام، متصرف، مثبت، معلوم، قابل للتفاوت، وليس الوصف منه أفعل/فعلاء.</li>
+    <li>إذا اختل شرط وكان المعنى قابلًا للتعجب نستخدم فعل تعجب مساعدًا + المصدر.</li>
+    <li>إذا كان الفعل لا يقبل التفاوت فلا نصوغ منه تعجبًا قياسيًا.</li>
+  </ul>
+</section>
+
+<a class="back" href="exclamation-style.html">العودة إلى درس التعجب</a>
+
+</main>
+
 <footer>
-  جميع الحقوق محفوظة © 2026
+  منصة آفاق التعليمية | لغتي الخالدة | الصف الثالث المتوسط
 </footer>
 
 </body>
