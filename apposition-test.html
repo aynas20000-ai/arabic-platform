@@ -1,78 +1,364 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>اختبار درس البدل</title>
-
-  <style>
-    body{
-      margin:0;
-      font-family:Tahoma,Arial,sans-serif;
-      background:#f5f5f5;
-      text-align:center;
-    }
-
-    header{
-      background:#1565c0;
-      color:white;
-      padding:35px 20px;
-    }
-
-    section{
-      background:white;
-      margin:30px auto;
-      padding:25px;
-      width:85%;
-      max-width:700px;
-      border-radius:18px;
-      box-shadow:0 4px 15px rgba(0,0,0,0.12);
-    }
-
-    .box{
-      background:#eaf3ff;
-      margin:18px 0;
-      padding:24px;
-      border-radius:14px;
-      font-size:21px;
-    }
-
-    .back{
-      color:#1565c0;
-      font-weight:bold;
-      text-decoration:none;
-    }
-
-    footer{
-      background:#222;
-      color:white;
-      padding:20px;
-      margin-top:30px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>اختبار البدل | منصة آفاق</title>
+<style>
+:root{
+  --plum:#624b70;
+  --mauve:#9877a8;
+  --rose:#d895aa;
+  --rose-light:#faeaf0;
+  --gold:#c9a552;
+  --gold-light:#f4dda0;
+  --cream:#fff9f1;
+  --lav:#eee5f2;
+  --text:#55465c;
+  --green:#4e8a68;
+  --green-light:#eaf6ee;
+  --red:#b84747;
+  --red-light:#fff0f0;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Tahoma,Arial,sans-serif;
+  color:var(--text);
+  line-height:1.8;
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 8% 8%,rgba(216,149,170,.15),transparent 24%),
+    linear-gradient(180deg,#fff9f1 0%,#f8f0f8 48%,#f2eaf5 100%);
+}
+header{
+  position:relative;
+  overflow:hidden;
+  text-align:center;
+  color:white;
+  padding:35px 18px 32px;
+  background:linear-gradient(145deg,#9877a8 0%,#755a83 55%,#624b70 100%);
+  border-bottom:5px solid var(--gold);
+}
+header:before,header:after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  background:rgba(255,255,255,.06);
+}
+header:before{width:210px;height:210px;right:-70px;top:-115px}
+header:after{width:260px;height:260px;left:-100px;bottom:-175px}
+.tag{
+  position:relative;z-index:1;
+  display:inline-block;
+  padding:5px 13px;
+  border-radius:999px;
+  background:rgba(244,221,160,.13);
+  border:1px solid rgba(244,221,160,.75);
+  color:#fff3c8;
+  font-weight:bold;
+  font-size:13px;
+}
+header h1{
+  position:relative;z-index:1;
+  margin:7px 0 2px;
+  font-size:35px;
+}
+header p{
+  position:relative;z-index:1;
+  margin:0;
+  color:#f7eff8;
+}
+main{
+  width:min(760px,92%);
+  margin:22px auto 45px;
+}
+.top{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:9px;
+  font-weight:bold;
+  color:var(--plum);
+}
+.progress{
+  height:10px;
+  background:#e9deed;
+  border-radius:999px;
+  overflow:hidden;
+  margin-bottom:16px;
+  box-shadow:inset 0 1px 3px rgba(70,50,80,.08);
+}
+.progress div{
+  height:100%;
+  width:0;
+  background:linear-gradient(90deg,var(--rose),var(--gold));
+  transition:.3s ease;
+}
+.card,.result{
+  background:rgba(255,253,249,.98);
+  border:1px solid #d9c690;
+  border-radius:25px;
+  box-shadow:0 15px 34px rgba(85,70,92,.13);
+  padding:22px 19px;
+}
+.qnum{
+  display:inline-block;
+  background:var(--lav);
+  color:var(--plum);
+  border:1px solid #d9cae0;
+  border-radius:999px;
+  padding:4px 11px;
+  font-weight:bold;
+  font-size:13px;
+  margin-bottom:8px;
+}
+h2{
+  margin:3px 0 16px;
+  color:#4f3d58;
+  font-size:21px;
+}
+.options{
+  display:grid;
+  gap:10px;
+}
+.opt{
+  width:100%;
+  padding:13px 14px;
+  border-radius:15px;
+  border:2px solid #e8dce8;
+  background:white;
+  color:var(--text);
+  font:inherit;
+  font-size:16px;
+  text-align:right;
+  cursor:pointer;
+  transition:.18s;
+}
+.opt:hover{
+  border-color:#c6a9c6;
+  background:#fffafd;
+  transform:translateY(-1px);
+}
+.opt.correct{
+  background:var(--green-light);
+  border-color:#79aa8e;
+  color:#2f6748;
+}
+.opt.wrong{
+  background:var(--red-light);
+  border-color:#d48686;
+  color:#893939;
+}
+.opt:disabled{cursor:default;transform:none}
+.feedback{
+  display:none;
+  margin-top:14px;
+  padding:13px 14px;
+  border-radius:15px;
+  font-size:15px;
+}
+.feedback.show{display:block}
+.feedback.good{
+  background:var(--green-light);
+  border:1px solid #9ac2aa;
+  color:#2f6748;
+}
+.feedback.bad{
+  background:var(--red-light);
+  border:1px solid #dfa1a1;
+  color:#873939;
+}
+.next{
+  display:none;
+  width:100%;
+  margin-top:15px;
+  padding:13px;
+  border:0;
+  border-radius:15px;
+  background:linear-gradient(145deg,#9877a8,#624b70);
+  color:white;
+  font:inherit;
+  font-weight:bold;
+  font-size:16px;
+  cursor:pointer;
+  box-shadow:0 8px 17px rgba(98,75,112,.18);
+}
+.result{
+  display:none;
+  text-align:center;
+}
+.result.show{display:block}
+.score{
+  font-size:45px;
+  font-weight:bold;
+  color:var(--gold);
+  margin:5px 0;
+}
+.restart,.lesson{
+  display:block;
+  width:100%;
+  padding:12px;
+  margin-top:10px;
+  border-radius:14px;
+  font-weight:bold;
+  text-decoration:none;
+}
+.restart{
+  border:0;
+  background:linear-gradient(145deg,#d895aa,#9877a8);
+  color:white;
+  font:inherit;
+  cursor:pointer;
+}
+.lesson{
+  color:var(--plum);
+  background:#f1e8f3;
+  border:1px solid #d8c6df;
+}
+footer{
+  text-align:center;
+  padding:16px;
+  color:#776c7d;
+  font-size:12px;
+}
+</style>
 </head>
-
 <body>
 
 <header>
-  <h1>✅ اختبار تجريبي لدرس البدل</h1>
+  <span class="tag">منصة آفاق التعليمية</span>
+  <h1>اختبار البدل</h1>
+  <p>١٠ أسئلة تفاعلية مع تعقيب فوري بعد كل إجابة</p>
 </header>
 
-<section>
-
-  <div class="box">
-    سيتم إضافة الاختبار التجريبي لدرس البدل هنا
+<main>
+  <div class="top">
+    <span id="counter">السؤال ١ من ١٠</span>
+    <span id="correctCount">الصحيح: ٠</span>
   </div>
 
-  <p>
-    <a class="back" href="apposition.html">العودة إلى درس البدل</a>
-  </p>
+  <div class="progress"><div id="bar"></div></div>
 
-</section>
+  <section class="card" id="card">
+    <div class="qnum" id="qnum"></div>
+    <h2 id="question"></h2>
+    <div class="options" id="options"></div>
+    <div class="feedback" id="feedback"></div>
+    <button class="next" id="next">السؤال التالي</button>
+  </section>
 
-<footer>
-  جميع الحقوق محفوظة © 2026
-</footer>
+  <section class="result" id="result">
+    <h2>اكتمل اختبار البدل 🌟</h2>
+    <div class="score" id="score"></div>
+    <p id="message"></p>
+    <button class="restart" onclick="restartQuiz()">إعادة الاختبار</button>
+    <a class="lesson" href="apposition-file.html">مراجعة ملف درس البدل</a>
+  </section>
+</main>
 
+<footer>منصة آفاق التعليمية | لغتي الخالدة | الصف الثالث المتوسط</footer>
+
+<script>
+const questions = [{"q": "البدل هو:", "o": ["اسم تابع مقصود بالحكم من غير واسطة بينه وبين متبوعه", "اسم منصوب يبين هيئة صاحبه", "تابع يتوسط بينه وبين متبوعه حرف عطف", "اسم نكرة يفسر ما قبله"], "a": 0, "ok": "أحسنتِ 🌟 البدل اسم تابع مقصود بالحكم من غير واسطة بينه وبين المبدل منه.", "bad": "راجعي التعريف: البدل اسم تابع مقصود بالحكم من غير واسطة بينه وبين متبوعه."}, {"q": "في الجملة: «الملكُ عبدالعزيزُ من قادة العالم» كلمة «عبدالعزيزُ» هي:", "o": ["مبدل منه", "بدل", "معطوف", "نعت"], "a": 1, "ok": "صحيح 👏 «عبدالعزيز» هو المقصود بالحكم، ولذلك هو بدل من «الملك».", "bad": "الإجابة الصحيحة: «بدل». الاسم الأول «الملك» مبدل منه، و«عبدالعزيز» بدل."}, {"q": "ما نوع البدل في: «كان الإمامُ عليٌّ بليغًا»؟", "o": ["بدل مطابق", "بدل بعض من كل", "بدل اشتمال", "بدل مباين"], "a": 0, "ok": "ممتاز ✨ «علي» هو نفسه «الإمام»، لذلك فهو بدل مطابق (كل من كل).", "bad": "إذا كان البدل هو نفسه المبدل منه تمامًا، فذلك بدل مطابق."}, {"q": "ما نوع البدل في: «قرأتُ الكتابَ ثلثَه»؟", "o": ["بدل مطابق", "بدل بعض من كل", "بدل اشتمال", "لا يوجد بدل"], "a": 1, "ok": "رائعة 🌿 «ثلث الكتاب» جزء حقيقي من الكتاب، لذلك هو بدل بعض من كل.", "bad": "اسألي نفسك: هل البدل جزء حقيقي من المبدل منه؟ نعم؛ إذن هو بدل بعض من كل."}, {"q": "ما نوع البدل في: «أعجبني المعلمُ علمُه»؟", "o": ["بدل مطابق", "بدل بعض من كل", "بدل اشتمال", "عطف بيان"], "a": 2, "ok": "صحيح 💜 «العلم» معنى يشتمل عليه المعلم وليس جزءًا ماديًا منه، فهو بدل اشتمال.", "bad": "الاشتمال يكون معنى أو صفة يشتمل عليها المبدل منه، مثل: علمه، أدبه، خلقه."}, {"q": "أي عبارة صحيحة عن بدل بعض من كل وبدل الاشتمال؟", "o": ["لا يحتاجان إلى ضمير", "يتصل بالبدل غالبًا ضمير يعود على المبدل منه", "يجب أن يكونا علمين", "لا يتبعان المبدل منه في الإعراب"], "a": 1, "ok": "أحسنتِ 🎯 من علاماتهما اتصال البدل بضمير يعود على المبدل منه، مثل: «ثلثَه» و«علمُه».", "bad": "تذكري الملاحظة المهمة: في بعض من كل والاشتمال يتصل بالبدل ضمير يعود على المبدل منه."}, {"q": "في الجملة: «جاء أخوك خالدٌ» ما إعراب «خالدٌ»؟", "o": ["بدل مرفوع", "بدل منصوب", "بدل مجرور", "مفعول به"], "a": 0, "ok": "صحيح 🌟 «خالدٌ» بدل من «أخوك» المرفوع، لذلك جاء مرفوعًا.", "bad": "البدل يتبع المبدل منه في الإعراب. «أخوك» مرفوع، إذن «خالدٌ» بدل مرفوع."}, {"q": "في الجملة: «رأيت أخاك خالدًا» ما إعراب «خالدًا»؟", "o": ["بدل مرفوع", "بدل منصوب", "بدل مجرور", "فاعل"], "a": 1, "ok": "ممتاز 👏 «خالدًا» بدل منصوب؛ لأنه يتبع «أخاك» المنصوب.", "bad": "أعربي المبدل منه أولًا: «أخاك» منصوب، إذن البدل «خالدًا» منصوب."}, {"q": "أي مثال يمثل بدل اشتمال؟", "o": ["زارنا الطبيبُ خالدٌ", "قرأت الكتابَ نصفَه", "أعجبني الطالبُ أدبُه", "حضر محمدٌ وعليٌّ"], "a": 2, "ok": "أحسنتِ ✨ «أدبه» معنى يشتمل عليه الطالب، لذلك هو بدل اشتمال.", "bad": "بدل الاشتمال ليس جزءًا ماديًا، بل معنى أو صفة، مثل: أدبه، علمه، خلقه."}, {"q": "أي قاعدة تختصر التمييز بين أنواع البدل؟", "o": ["نفسه = مطابق، جزء منه = بعض من كل، معنى أو صفة فيه = اشتمال", "كل بدل بعد علم هو مطابق", "كل بدل فيه ضمير هو مطابق", "إذا كان البدل مجرورًا فهو بعض من كل"], "a": 0, "ok": "رائعة جدًا 🏆 هذه هي قاعدة الحسم: نفسه = مطابق، جزء منه = بعض من كل، معنى أو صفة فيه = اشتمال.", "bad": "قاعدة الحسم الصحيحة: نفسه = مطابق، جزء حقيقي منه = بعض من كل، معنى أو صفة فيه = اشتمال."}];
+let index=0, score=0, answered=false;
+
+const arabicDigits=n=>String(n).replace(/\d/g,d=>'٠١٢٣٤٥٦٧٨٩'[d]);
+const question=document.getElementById('question');
+const options=document.getElementById('options');
+const feedback=document.getElementById('feedback');
+const next=document.getElementById('next');
+
+function render(){
+  answered=false;
+  const x=questions[index];
+
+  document.getElementById('qnum').textContent='السؤال '+arabicDigits(index+1);
+  document.getElementById('counter').textContent='السؤال '+arabicDigits(index+1)+' من '+arabicDigits(questions.length);
+  document.getElementById('correctCount').textContent='الصحيح: '+arabicDigits(score);
+  document.getElementById('bar').style.width=(index/questions.length*100)+'%';
+
+  question.textContent=x.q;
+  options.innerHTML='';
+  feedback.className='feedback';
+  feedback.innerHTML='';
+  next.style.display='none';
+
+  x.o.forEach((t,i)=>{
+    const b=document.createElement('button');
+    b.className='opt';
+    b.textContent=t;
+    b.onclick=()=>choose(i,b);
+    options.appendChild(b);
+  });
+}
+
+function choose(choice,button){
+  if(answered)return;
+  answered=true;
+
+  const x=questions[index];
+  const btns=[...document.querySelectorAll('.opt')];
+  btns.forEach(b=>b.disabled=true);
+  btns[x.a].classList.add('correct');
+
+  if(choice===x.a){
+    score++;
+    button.classList.add('correct');
+    feedback.className='feedback show good';
+    feedback.textContent=x.ok;
+    if(navigator.vibrate)navigator.vibrate(50);
+  }else{
+    button.classList.add('wrong');
+    feedback.className='feedback show bad';
+    feedback.innerHTML='<b>الإجابة غير صحيحة.</b><br>'+x.bad;
+    if(navigator.vibrate)navigator.vibrate([80,50,80]);
+  }
+
+  document.getElementById('correctCount').textContent='الصحيح: '+arabicDigits(score);
+  next.textContent=index===questions.length-1?'عرض النتيجة':'السؤال التالي';
+  next.style.display='block';
+}
+
+next.onclick=()=>{
+  index++;
+  if(index<questions.length)render();
+  else finish();
+};
+
+function finish(){
+  document.getElementById('bar').style.width='100%';
+  document.getElementById('card').style.display='none';
+  document.querySelector('.top').style.display='none';
+  document.querySelector('.progress').style.display='none';
+
+  const result=document.getElementById('result');
+  result.classList.add('show');
+
+  document.getElementById('score').textContent=arabicDigits(score)+' / '+arabicDigits(questions.length);
+
+  const pct=score/questions.length;
+  document.getElementById('message').textContent=
+    pct===1 ? 'إتقان رائع جدًا! جميع إجاباتك صحيحة 👏' :
+    pct>=.8 ? 'ممتازة جدًا، أتقنتِ أنواع البدل وطريقة إعرابه.' :
+    pct>=.6 ? 'جيد جدًا، راجعي الفرق بين بعض من كل والاشتمال ثم أعيدي المحاولة.' :
+    'راجعي ملف الدرس، خاصة أنواع البدل وقاعدة الحسم، ثم أعيدي الاختبار.';
+}
+
+function restartQuiz(){
+  index=0;
+  score=0;
+  answered=false;
+
+  document.getElementById('card').style.display='block';
+  document.querySelector('.top').style.display='flex';
+  document.querySelector('.progress').style.display='block';
+  document.getElementById('result').classList.remove('show');
+
+  render();
+}
+
+render();
+</script>
 </body>
 </html>
