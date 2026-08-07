@@ -3,523 +3,89 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>نماذج اختبارات الفصل الدراسي الثاني | منصة آفاق</title>
-
+  <title>اختبارات الفصل الدراسي الثاني | منصة آفاق</title>
   <style>
     :root{
-      --lavender:#8b6b9f;
-      --lavender-dark:#574061;
-      --lavender-light:#eee5f2;
-
-      --gold:#b99a5b;
-      --gold-dark:#8d703d;
-      --gold-light:#f1e7cf;
-      --gold-matte:#a98a50;
-
-      --cream:#fffaf2;
-      --paper:#fffdf9;
-      --text:#4b3d50;
-      --muted:#786c7b;
-
-      --green:#4e8667;
-      --shadow:0 14px 35px rgba(82,58,92,.12);
+      --purple:#76548f;--purple-dark:#4f3763;--purple-light:#eee5f4;
+      --gold:#c9a85c;--gold-light:#f6e9bd;--cream:#fffaf2;
+      --paper:#fff;--text:#403347;--shadow:0 15px 35px rgba(79,55,99,.14)
     }
-
     *{box-sizing:border-box}
-
-    html{scroll-behavior:smooth}
-
-    body{
-      margin:0;
-      font-family:Tahoma,Arial,sans-serif;
-      color:var(--text);
-      background:
-        radial-gradient(circle at 15% 10%, rgba(185,154,91,.12), transparent 28%),
-        radial-gradient(circle at 85% 18%, rgba(139,107,159,.13), transparent 27%),
-        linear-gradient(180deg,#fffaf2 0%,#f8f0f8 100%);
-      line-height:1.8;
-      min-height:100vh;
-    }
-
-    .hero{
-      position:relative;
-      overflow:hidden;
-      text-align:center;
-      padding:46px 18px 40px;
-      color:#fff;
-      background:
-        linear-gradient(135deg,rgba(87,64,97,.98),rgba(126,93,143,.96));
-      border-bottom:5px solid var(--gold);
-    }
-
-    .hero::before,
-    .hero::after{
-      content:"";
-      position:absolute;
-      border-radius:50%;
-      background:rgba(255,255,255,.07);
-    }
-
-    .hero::before{
-      width:220px;
-      height:220px;
-      top:-110px;
-      right:-55px;
-    }
-
-    .hero::after{
-      width:180px;
-      height:180px;
-      bottom:-95px;
-      left:-40px;
-    }
-
-    .hero-badge{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:7px 15px;
-      margin-bottom:14px;
-      border:1px solid rgba(255,255,255,.35);
-      border-radius:999px;
-      background:rgba(255,255,255,.10);
-      font-size:14px;
-      font-weight:bold;
-    }
-
-    .hero h1{
-      margin:0;
-      color:#e3ca91;
-      font-size:clamp(28px,6vw,44px);
-      font-weight:800;
-      letter-spacing:.2px;
-      text-shadow:0 3px 12px rgba(0,0,0,.17);
-    }
-
-    .hero p{
-      max-width:760px;
-      margin:12px auto 0;
-      font-size:17px;
-      color:#fff;
-      opacity:.96;
-    }
-
-    main{
-      max-width:1120px;
-      margin:0 auto;
-      padding:28px 16px 54px;
-    }
-
-    .intro{
-      position:relative;
-      margin:-48px auto 26px;
-      padding:22px;
-      border:1px solid rgba(185,154,91,.35);
-      border-radius:22px;
-      background:rgba(255,253,249,.97);
-      box-shadow:var(--shadow);
-      text-align:center;
-    }
-
-    .intro strong{
-      display:block;
-      color:var(--gold-dark);
-      font-size:19px;
-      margin-bottom:4px;
-    }
-
-    .intro p{
-      margin:0;
-      color:var(--muted);
-    }
-
-    .note{
-      display:flex;
-      align-items:flex-start;
-      gap:12px;
-      margin:0 0 26px;
-      padding:15px 17px;
-      background:#fff8e8;
-      border:1px solid #ead6aa;
-      border-right:5px solid var(--gold);
-      border-radius:16px;
-      color:#67522e;
-    }
-
-    .note .icon{font-size:23px;line-height:1.4}
-
-    .section-heading{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      margin:0 0 18px;
-      flex-wrap:wrap;
-    }
-
-    .section-heading h2{
-      margin:0;
-      font-size:25px;
-      color:var(--lavender-dark);
-    }
-
-    .count{
-      padding:6px 13px;
-      border-radius:999px;
-      color:var(--gold-dark);
-      background:var(--gold-light);
-      border:1px solid #dfc995;
-      font-weight:bold;
-      font-size:14px;
-    }
-
-    .cards{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:18px;
-    }
-
-    .test-card{
-      position:relative;
-      overflow:hidden;
-      min-height:210px;
-      padding:22px;
-      border:1px solid #e4d9e8;
-      border-radius:22px;
-      background:linear-gradient(145deg,#fffdf9,#faf4fb);
-      box-shadow:0 9px 24px rgba(75,55,84,.09);
-      transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;
-    }
-
-    .test-card::after{
-      content:"";
-      position:absolute;
-      width:105px;
-      height:105px;
-      left:-42px;
-      bottom:-46px;
-      border-radius:50%;
-      background:rgba(185,154,91,.11);
-    }
-
-    .test-card.ready:hover{
-      transform:translateY(-5px);
-      border-color:#cfb36f;
-      box-shadow:0 16px 34px rgba(75,55,84,.16);
-    }
-
-    .card-top{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      margin-bottom:14px;
-    }
-
-    .number{
-      display:grid;
-      place-items:center;
-      width:52px;
-      height:52px;
-      flex:0 0 52px;
-      border-radius:16px;
-      color:#fff;
-      background:linear-gradient(145deg,var(--gold),var(--gold-dark));
-      box-shadow:0 8px 18px rgba(169,138,80,.25);
-      font-size:23px;
-      font-weight:bold;
-    }
-
-    .status{
-      padding:5px 11px;
-      border-radius:999px;
-      font-size:12px;
-      font-weight:bold;
-    }
-
-    .status.ready{
-      color:#2f684b;
-      background:#e8f5ed;
-      border:1px solid #bfdfcc;
-    }
-
-    .status.waiting{
-      color:#776443;
-      background:#f5ecd9;
-      border:1px solid #e3d0a5;
-    }
-
-    .test-card h3{
-      margin:0 0 5px;
-      color:var(--lavender-dark);
-      font-size:22px;
-    }
-
-    .test-card p{
-      margin:0;
-      color:var(--muted);
-      font-size:14px;
-      min-height:50px;
-    }
-
-    .meta{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      margin:15px 0;
-    }
-
-    .meta span{
-      padding:5px 9px;
-      border-radius:10px;
-      color:#67536f;
-      background:#f0e8f3;
-      font-size:12px;
-      font-weight:bold;
-    }
-
-    .open-btn{
-      position:relative;
-      z-index:2;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      width:100%;
-      min-height:45px;
-      padding:10px 14px;
-      border:none;
-      border-radius:13px;
-      text-decoration:none;
-      font:inherit;
-      font-weight:bold;
-      transition:.2s;
-    }
-
-    .open-btn.active{
-      color:#fff;
-      background:linear-gradient(135deg,var(--lavender),var(--lavender-dark));
-      box-shadow:0 8px 17px rgba(87,64,97,.22);
-    }
-
-    .open-btn.active:hover{filter:brightness(1.06)}
-
-    .open-btn.disabled{
-      color:#806d48;
-      background:#eee2c7;
-      border:1px solid #dbc393;
-      cursor:default;
-    }
-
-    .footer-actions{
-      display:flex;
-      justify-content:center;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-top:30px;
-    }
-
-    .back{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-width:210px;
-      padding:12px 20px;
-      border-radius:14px;
-      color:#fff;
-      background:var(--lavender-dark);
-      text-decoration:none;
-      font-weight:bold;
-      box-shadow:0 8px 18px rgba(87,64,97,.19);
-    }
-
-    footer{
-      padding:22px 15px;
-      text-align:center;
-      color:#746779;
-      border-top:1px solid #e6dce9;
-      background:rgba(255,255,255,.65);
-      font-size:14px;
-    }
-
-    @media(max-width:720px){
-      .hero{padding:38px 16px 54px}
-      .hero p{font-size:15px}
-      .intro{margin-top:-38px}
-      .cards{grid-template-columns:1fr}
-      .test-card{min-height:auto}
-    }
+    body{margin:0;font-family:Tahoma,Arial,sans-serif;color:var(--text);background:linear-gradient(180deg,var(--cream),#f7eff9);min-height:100vh;line-height:1.8}
+    header{padding:38px 18px 30px;text-align:center;color:#fff;background:linear-gradient(135deg,var(--purple),var(--purple-dark));border-bottom:5px solid var(--gold)}
+    header h1{margin:0;font-size:clamp(28px,7vw,42px)}
+    header p{margin:8px 0 0;font-size:17px}
+    main{width:min(1000px,92%);margin:28px auto 50px}
+    .intro{background:var(--paper);border:1px solid #eadff0;border-radius:22px;padding:20px;text-align:center;box-shadow:var(--shadow);margin-bottom:22px}
+    .intro h2{margin:0 0 6px;color:var(--purple-dark)}
+    .intro p{margin:0}
+    .tests-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+    .test-card{position:relative;overflow:hidden;background:var(--paper);border:1px solid #eadff0;border-radius:24px;padding:22px;box-shadow:var(--shadow)}
+    .test-card::before{content:"";position:absolute;top:0;right:0;width:100%;height:6px;background:linear-gradient(90deg,var(--gold),var(--purple))}
+    .number{width:52px;height:52px;display:grid;place-items:center;border-radius:50%;background:var(--purple-light);color:var(--purple-dark);font-weight:bold;font-size:23px;margin-bottom:12px;border:1px solid #dccae6}
+    .test-card h3{margin:0 0 8px;color:var(--purple-dark);font-size:22px}
+    .test-card p{margin:0 0 17px;color:#6e6274}
+    .open-btn{display:block;width:100%;text-decoration:none;text-align:center;padding:12px 15px;border-radius:14px;background:linear-gradient(135deg,var(--purple),var(--purple-dark));color:#fff;font-weight:bold;font-size:16px}
+    .final-card{grid-column:1/-1;background:linear-gradient(180deg,#fffdf7,#fff8e6);border-color:#e7d39b}
+    .final-card .number{background:var(--gold-light);border-color:#dfc777;color:#6b531b}
+    .final-card .open-btn{background:linear-gradient(135deg,var(--gold),#ad8736)}
+    .back{display:block;width:min(340px,100%);margin:26px auto 0;padding:12px 16px;text-align:center;text-decoration:none;color:var(--purple-dark);background:var(--purple-light);border:1px solid #dccae6;border-radius:14px;font-weight:bold}
+    footer{text-align:center;color:#786d7e;padding:0 15px 25px;font-size:14px}
+    @media(max-width:700px){.tests-grid{grid-template-columns:1fr}.final-card{grid-column:auto}.test-card{padding:19px}}
   </style>
 </head>
-
 <body>
-
-  <header class="hero">
-    <div class="hero-badge">✦ منصة آفاق ✦</div>
-    <h1>نماذج اختبارات الفصل الدراسي الثاني</h1>
-    <p>
-      نماذج تدريبية تفاعلية تحاكي ترتيب الاختبار، وتوضح للطالبة سبب صحة الإجابة
-      أو خطئها؛ لتتعلم من كل محاولة وتستعد بثقة.
-    </p>
+  <header>
+    <h1>📗 اختبارات الفصل الدراسي الثاني</h1>
+    <p>خمسة نماذج شاملة لمراجعة مهارات لغتي الخالدة</p>
   </header>
 
   <main>
-
     <section class="intro">
-      <strong>اختبري مهاراتكِ… وتعلمي من كل إجابة 🌸</strong>
-      <p>درجة كل نموذج ٤٠ درجة، وتشمل مهارات الفصل الدراسي الثاني كما وردت في نماذج الاختبارات.</p>
+      <h2>اختاري النموذج وابدئي</h2>
+      <p>كل نموذج يتكون من ٤٠ سؤالًا مع التصحيح الفوري والنتيجة النهائية.</p>
     </section>
 
-    <div class="note">
-      <span class="icon">💡</span>
-      <div>
-        <strong>تنبيه مهم:</strong>
-        هذه نماذج تدريبية للاستعداد والمراجعة، وليست الاختبار النهائي الرسمي.
-      </div>
-    </div>
-
-    <div class="section-heading">
-      <h2>اختاري النموذج التدريبي</h2>
-      <span class="count">١٠ نماذج</span>
-    </div>
-
-    <section class="cards">
-
-      <article class="test-card ready">
-        <div class="card-top">
-          <span class="number">١</span>
-          <span class="status ready">جاهز للتدريب</span>
-        </div>
+    <section class="tests-grid">
+      <article class="test-card">
+        <div class="number">١</div>
         <h3>النموذج الأول</h3>
-        <p>نموذج تفاعلي متكامل، مع تفسير الإجابات والتقويم الذاتي للأسئلة المقالية.</p>
-        <div class="meta">
-          <span>٤٠ درجة</span>
-          <span>تغذية راجعة</span>
-          <span>تفاعلي</span>
-        </div>
-        <a class="open-btn active" href="test-term2-1.html?v=31">
-          ابدئي النموذج الأول
-          <span>←</span>
-        </a>
+        <p>مراجعة شاملة لمهارات الفصل الدراسي الثاني.</p>
+        <a class="open-btn" href="test-term2-1.html">ابدئي الاختبار</a>
       </article>
 
-      <article class="test-card ready">
-        <div class="card-top">
-          <span class="number">٢</span>
-          <span class="status ready">جاهز للتدريب</span>
-        </div>
+      <article class="test-card">
+        <div class="number">٢</div>
         <h3>النموذج الثاني</h3>
-        <p>نموذج مركزي تفاعلي مع تعليل الإجابات، مؤثرات تشجيعية، واهتزاز خفيف عند الخطأ.</p>
-        <div class="meta">
-          <span>٤٠ درجة</span>
-          <span>تغذية راجعة</span>
-          <span>تفاعلي</span>
-        </div>
-        <a class="open-btn active" href="test-term2-2.html?v=31">
-          ابدئي النموذج الثاني
-          <span>←</span>
-        </a>
+        <p>أسئلة متنوعة في الفهم القرائي والمهارات اللغوية.</p>
+        <a class="open-btn" href="test-term2-2.html">ابدئي الاختبار</a>
       </article>
 
       <article class="test-card">
-        <div class="card-top">
-          <span class="number">٣</span>
-          <span class="status waiting">يُضاف تباعًا</span>
-        </div>
+        <div class="number">٣</div>
         <h3>النموذج الثالث</h3>
-        <p>نموذج مستقل يحافظ على ترتيب مهاراته وأسئلته الأصلية دون تكرار النماذج المطابقة.</p>
-        <div class="meta"><span>٤٠ درجة</span><span>نموذج مستقل</span></div>
-        <span class="open-btn disabled">تحت التجهيز</span>
+        <p>تدريب إضافي على التراكيب والرسم الإملائي.</p>
+        <a class="open-btn" href="test-term2-3.html">ابدئي الاختبار</a>
       </article>
 
       <article class="test-card">
-        <div class="card-top">
-          <span class="number">٤</span>
-          <span class="status waiting">يُضاف تباعًا</span>
-        </div>
+        <div class="number">٤</div>
         <h3>النموذج الرابع</h3>
-        <p>يتضمن الفهم القرائي والمهارات اللغوية والكتابية وفق ترتيب النموذج الأصلي.</p>
-        <div class="meta"><span>٤٠ درجة</span><span>شرح الإجابات</span></div>
-        <span class="open-btn disabled">تحت التجهيز</span>
+        <p>اختبار شامل مع نصوص وأسئلة تطبيقية متنوعة.</p>
+        <a class="open-btn" href="test-term2-4.html">ابدئي الاختبار</a>
       </article>
 
-      <article class="test-card">
-        <div class="card-top">
-          <span class="number">٥</span>
-          <span class="status waiting">يُضاف تباعًا</span>
-        </div>
-        <h3>النموذج الخامس</h3>
-        <p>تدريب جديد بأسئلة مختلفة، مع تعقيب مباشر بعد الإجابات الموضوعية.</p>
-        <div class="meta"><span>٤٠ درجة</span><span>تفاعلي</span></div>
-        <span class="open-btn disabled">تحت التجهيز</span>
+      <article class="test-card final-card">
+        <div class="number">٥</div>
+        <h3>النموذج الخامس الختامي</h3>
+        <p>النموذج الأخير لإكمال المراجعة الشاملة والاستعداد للاختبار.</p>
+        <a class="open-btn" href="test-term2-5.html">ابدئي الاختبار الختامي</a>
       </article>
-
-      <article class="test-card">
-        <div class="card-top">
-          <span class="number">٦</span>
-          <span class="status waiting">يُضاف تباعًا</span>
-        </div>
-        <h3>النموذج السادس</h3>
-        <p>يحافظ على طريقة الاختبارات الرسمية لتعتاد الطالبة شكل الأسئلة وتسلسلها.</p>
-        <div class="meta"><span>٤٠ درجة</span><span>محاكاة الاختبار</span></div>
-        <span class="open-btn disabled">تحت التجهيز</span>
-      </article>
-
-      <article class="test-card">
-        <div class="card-top">
-          <span class="number">٧</span>
-          <span class="status waiting">يُضاف تباعًا</span>
-        </div>
-        <h3>النموذج السابع</h3>
-        <p>أسئلة متنوعة في المهارات المقررة مع توضيح القاعدة بعد الإجابة.</p>
-        <div class="meta"><span>٤٠ درجة</span><span>تغذية راجعة</span></div>
-        <span class="open-btn disabled">تحت التجهيز</span>
-      </article>
-
-      <article class="test-card">
-        <div class="card-top">
-          <span class="number">٨</span>
-          <span class="status waiting">يُضاف تباعًا</span>
-        </div>
-        <h3>النموذج الثامن</h3>
-        <p>نموذج تدريبي مستقل يُراجع كاملًا قبل نشره للطالبة.</p>
-        <div class="meta"><span>٤٠ درجة</span><span>مدقق</span></div>
-        <span class="open-btn disabled">تحت التجهيز</span>
-      </article>
-
-      <article class="test-card">
-        <div class="card-top">
-          <span class="number">٩</span>
-          <span class="status waiting">يُضاف تباعًا</span>
-        </div>
-        <h3>النموذج التاسع</h3>
-        <p>تدريب إضافي يوسع خبرة الطالبة في أنماط الأسئلة المختلفة.</p>
-        <div class="meta"><span>٤٠ درجة</span><span>نموذج مستقل</span></div>
-        <span class="open-btn disabled">تحت التجهيز</span>
-      </article>
-
-      <article class="test-card">
-        <div class="card-top">
-          <span class="number">١٠</span>
-          <span class="status waiting">يُضاف تباعًا</span>
-        </div>
-        <h3>النموذج العاشر</h3>
-        <p>النموذج العاشر ضمن سلسلة المراجعة التفاعلية للفصل الدراسي الثاني.</p>
-        <div class="meta"><span>٤٠ درجة</span><span>تفاعلي</span></div>
-        <span class="open-btn disabled">تحت التجهيز</span>
-      </article>
-
     </section>
 
-    <div class="footer-actions">
-      <a class="back" href="tests.html">العودة إلى صفحة الاختبارات</a>
-    </div>
-
+    <a class="back" href="tests.html">العودة إلى صفحة الاختبارات</a>
   </main>
 
-  <footer>
-    جميع الحقوق محفوظة © ٢٠٢٦ — منصة آفاق
-  </footer>
-
+  <footer>جميع الحقوق محفوظة © 2026 — منصة آفاق التعليمية</footer>
 </body>
 </html>
