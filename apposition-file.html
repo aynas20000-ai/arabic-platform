@@ -1,77 +1,570 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ملف درس البدل</title>
-
-  <style>
-    body{
-      margin:0;
-      font-family:Tahoma,Arial,sans-serif;
-      background:#f5f5f5;
-      text-align:center;
-    }
-
-    header{
-      background:#1565c0;
-      color:white;
-      padding:35px 20px;
-    }
-
-    section{
-      background:white;
-      margin:30px auto;
-      padding:25px;
-      width:85%;
-      max-width:700px;
-      border-radius:18px;
-      box-shadow:0 4px 15px rgba(0,0,0,0.12);
-    }
-
-    .box{
-      background:#eaf3ff;
-      margin:18px 0;
-      padding:24px;
-      border-radius:14px;
-      font-size:21px;
-    }
-
-    .back{
-      color:#1565c0;
-      font-weight:bold;
-      text-decoration:none;
-    }
-
-    footer{
-      background:#222;
-      color:white;
-      padding:20px;
-      margin-top:30px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ملف درس البدل | منصة آفاق</title>
+<style>
+:root{
+  --p:#5b4677;
+  --p2:#776094;
+  --pd:#453457;
+  --lav:#eee5f5;
+  --g:#b69750;
+  --g2:#d8c28a;
+  --cream:#fffaf2;
+  --paper:#fffdf9;
+  --text:#403448;
+  --muted:#756b7c;
+  --rose:#a96d7f;
+  --green:#4f7d67;
+  --shadow:0 14px 30px rgba(73,54,92,.12);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Tahoma,Arial,sans-serif;
+  color:var(--text);
+  line-height:1.95;
+  background:
+    radial-gradient(circle at 8% 5%,rgba(216,194,138,.18),transparent 23%),
+    linear-gradient(180deg,#f5f0fa,#fbf9fd,#f1ebf7);
+}
+header{
+  position:relative;
+  overflow:hidden;
+  text-align:center;
+  color:#fff;
+  padding:38px 18px 34px;
+  background:linear-gradient(145deg,var(--p2),var(--p),var(--pd));
+  border-bottom:5px solid var(--g);
+}
+header::before,header::after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  background:rgba(255,255,255,.055);
+}
+header::before{width:220px;height:220px;right:-80px;top:-120px}
+header::after{width:280px;height:280px;left:-120px;bottom:-190px}
+.brand{
+  position:relative;z-index:1;
+  display:inline-block;
+  padding:5px 14px;
+  border-radius:999px;
+  border:1px solid #dbc785;
+  color:#fff3ca;
+  background:rgba(182,151,80,.15);
+  font-weight:bold;
+  font-size:13px;
+}
+header h1{
+  position:relative;z-index:1;
+  margin:8px 0 2px;
+  font-size:clamp(31px,7vw,46px);
+}
+header p{
+  position:relative;z-index:1;
+  margin:0;
+  color:#f4edf8;
+}
+.nav{
+  width:min(980px,92%);
+  margin:18px auto 0;
+  display:flex;
+  gap:8px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+.nav a{
+  text-decoration:none;
+  color:var(--p);
+  background:#fff;
+  border:1px solid #ddd1e5;
+  padding:7px 12px;
+  border-radius:999px;
+  font-weight:bold;
+  font-size:13px;
+  box-shadow:0 6px 14px rgba(80,60,100,.06);
+}
+main{width:min(980px,92%);margin:20px auto 50px}
+.intro,.section,.golden{
+  background:var(--paper);
+  border:1px solid var(--g2);
+  border-radius:24px;
+  box-shadow:var(--shadow);
+}
+.intro{
+  padding:22px 20px;
+  text-align:center;
+  margin-bottom:18px;
+}
+.intro h2{margin:0;color:var(--p);font-size:28px}
+.intro p{margin:5px auto 0;color:var(--muted);max-width:780px}
+.section{padding:22px 20px;margin-bottom:18px}
+.title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:13px;
+}
+.no{
+  min-width:40px;height:40px;
+  display:grid;place-items:center;
+  border-radius:13px;
+  color:#fff;
+  font-weight:bold;
+  background:linear-gradient(145deg,var(--p2),var(--p));
+  border:1px solid var(--g);
+}
+.title h2{margin:0;color:var(--p);font-size:23px}
+.definition{
+  padding:15px 16px;
+  border-radius:16px;
+  background:var(--cream);
+  border:1px solid #e5d3a5;
+  border-right:6px solid var(--g);
+  font-size:17px;
+}
+.definition strong{color:var(--p)}
+.formula{
+  margin:14px 0;
+  padding:15px 12px;
+  text-align:center;
+  border-radius:16px;
+  border:1px dashed var(--g);
+  background:linear-gradient(145deg,#fffdf8,#f8f1df);
+  font-size:18px;
+  font-weight:bold;
+  color:var(--pd);
+}
+.parts{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+  margin-top:12px;
+}
+.part{
+  padding:15px 12px;
+  text-align:center;
+  border-radius:16px;
+  border:1px solid #dfd3e6;
+  background:#fff;
+}
+.part b{display:block;color:var(--p);margin-bottom:3px}
+.example{
+  margin-top:11px;
+  padding:13px 14px;
+  background:#fff;
+  border:1px solid #e5ddea;
+  border-radius:15px;
+}
+.sentence{font-size:18px;font-weight:bold;color:#4b3c5e}
+.note{
+  margin-top:12px;
+  padding:12px 14px;
+  background:#fff7df;
+  border:1px solid #dfc778;
+  border-radius:14px;
+  color:#5c4924;
+}
+.alert{
+  margin-top:12px;
+  padding:12px 14px;
+  background:#f8eef2;
+  border:1px solid #dfbcc8;
+  border-right:5px solid var(--rose);
+  border-radius:14px;
+}
+.type-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+  margin-top:12px;
+}
+.type{
+  border:1px solid #dcd0e3;
+  background:#fff;
+  border-radius:18px;
+  padding:15px;
+}
+.type h3{
+  margin:0 0 6px;
+  color:var(--p);
+  font-size:18px;
+}
+.type .badge{
+  display:inline-block;
+  font-size:12px;
+  padding:3px 9px;
+  border-radius:999px;
+  background:var(--lav);
+  color:var(--pd);
+  font-weight:bold;
+  margin-bottom:7px;
+}
+ul{margin:8px 0;padding-right:20px}
+table{
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0;
+  overflow:hidden;
+  border:1px solid #d9c58d;
+  border-radius:16px;
+  background:#fff;
+  margin-top:12px;
+}
+th,td{
+  padding:10px 8px;
+  text-align:center;
+  vertical-align:middle;
+  border-bottom:1px solid #eadfca;
+  border-left:1px solid #eadfca;
+  font-size:14px;
+}
+th{
+  color:#fff;
+  background:linear-gradient(145deg,#6c5686,#4d3a63);
+}
+tr:last-child td{border-bottom:0}
+td:last-child,th:last-child{border-left:0}
+.steps{display:grid;gap:9px}
+.step{
+  padding:11px 13px;
+  border:1px solid #e3d9e8;
+  background:#fff;
+  border-radius:14px;
+}
+.step b{color:var(--p)}
+.math-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:11px;
+  margin-top:12px;
+}
+.math{
+  padding:15px 12px;
+  text-align:center;
+  border-radius:16px;
+  background:var(--lav);
+  border:1px solid #d7c9e1;
+}
+.math b{display:block;color:var(--pd);margin-bottom:4px}
+.golden{
+  padding:21px 20px;
+  color:#fff;
+  background:linear-gradient(145deg,#66527e,#453457);
+  border-color:#c7a75d;
+}
+.golden h2{margin:0 0 8px;color:#ecd99e}
+.golden ul{margin:0;padding-right:20px}
+.back{
+  display:block;
+  width:min(350px,100%);
+  margin:22px auto 0;
+  padding:12px 16px;
+  text-align:center;
+  text-decoration:none;
+  color:#fff;
+  font-weight:bold;
+  border-radius:14px;
+  border:1px solid var(--g);
+  background:linear-gradient(145deg,var(--p2),var(--p));
+}
+footer{
+  padding:20px 12px;
+  text-align:center;
+  color:#eee8f2;
+  background:#3e304d;
+  border-top:2px solid var(--g);
+  font-size:13px;
+}
+@media(max-width:760px){
+  .parts,.type-grid,.math-grid{grid-template-columns:1fr}
+  .section{padding:18px 14px}
+  th,td{font-size:12px;padding:8px 5px}
+  .formula{font-size:16px}
+}
+</style>
 </head>
-
 <body>
 
 <header>
-  <h1>📄 ملف درس البدل</h1>
+  <span class="brand">منصة آفاق التعليمية</span>
+  <h1>درس البدل</h1>
+  <p>الوظيفة النحوية | الصف الثالث المتوسط</p>
 </header>
 
-<section>
+<nav class="nav">
+  <a href="#definition">التعريف والأركان</a>
+  <a href="#types">أنواع البدل</a>
+  <a href="#conditions">الشروط والعلامات</a>
+  <a href="#parse">الإعراب</a>
+  <a href="#examples">أمثلة محللة</a>
+  <a href="#notes">ملاحظات مهمة</a>
+</nav>
 
-  <div class="box">
-    سيتم إضافة ملف درس البدل هنا
-  </div>
+<main>
 
-  <p>
-    <a class="back" href="apposition.html">العودة إلى درس البدل</a>
-  </p>
-
+<section class="intro">
+  <h2>البدل ببساطة</h2>
+  <p>في هذا الملف تتعرفين البدل، وأركانه، وأنواعه، وشروط كل نوع، وطريقة التمييز بينها، ثم تتدربين على الإعراب من خلال أمثلة واضحة.</p>
 </section>
 
+<section class="section" id="definition">
+  <div class="title"><span class="no">١</span><h2>تعريف البدل وأركانه</h2></div>
+
+  <div class="definition">
+    <strong>البدل:</strong> اسمٌ تابعٌ مقصودٌ بالحكم من غير واسطة بينه وبين متبوعه.
+  </div>
+
+  <div class="formula">
+    المبدل منه + البدل = تركيب البدل
+  </div>
+
+  <div class="parts">
+    <div class="part">
+      <b>المبدل منه</b>
+      الاسم الأول الذي يأتي قبل البدل.
+    </div>
+    <div class="part">
+      <b>البدل</b>
+      الاسم التابع المقصود بالحكم، ويأتي بعد المبدل منه.
+    </div>
+  </div>
+
+  <div class="example">
+    <div class="sentence">بعث اللهُ الرسولَ <b>محمدًا</b> ﷺ هاديًا.</div>
+    الرسولَ: المبدل منه ـ محمدًا: البدل.
+  </div>
+
+  <div class="example">
+    <div class="sentence">الشيخُ <b>محمدٌ</b> بن عبدالوهاب من المصلحين.</div>
+    الشيخُ: المبدل منه ـ محمدٌ: البدل.
+  </div>
+
+  <div class="example">
+    <div class="sentence">الملكُ <b>عبدالعزيزُ</b> من قادة العالم البارزين.</div>
+    الملكُ: المبدل منه ـ عبدالعزيزُ: البدل.
+  </div>
+
+  <div class="note">
+    <b>علامة تساعدكِ:</b> في كثير من أمثلة البدل يمكن حذف المبدل منه ووضع البدل مكانه، ويبقى أصل المعنى مستقيمًا.
+  </div>
+</section>
+
+<section class="section" id="types">
+  <div class="title"><span class="no">٢</span><h2>أنواع البدل</h2></div>
+
+  <div class="type-grid">
+
+    <div class="type">
+      <span class="badge">النوع الأول</span>
+      <h3>بدل مطابق «كل من كل»</h3>
+      <p>يكون البدل فيه مساويًا للمبدل منه، أي إنهما يدلان على الشخص أو الشيء نفسه.</p>
+      <div class="example">
+        <div class="sentence">كان الإمامُ <b>عليٌّ</b> بليغًا.</div>
+        عليٌّ هو نفسه الإمام.
+      </div>
+    </div>
+
+    <div class="type">
+      <span class="badge">النوع الثاني</span>
+      <h3>بدل بعض من كل</h3>
+      <p>يكون البدل جزءًا حقيقيًا من المبدل منه.</p>
+      <div class="example">
+        <div class="sentence">مضى الليلُ <b>ثلثُه</b>.</div>
+        الثلث جزء من الليل.
+      </div>
+      <div class="example">
+        <div class="sentence">قرأتُ الكتابَ <b>ثلثَه</b>.</div>
+        الثلث جزء من الكتاب.
+      </div>
+    </div>
+
+    <div class="type">
+      <span class="badge">النوع الثالث</span>
+      <h3>بدل اشتمال</h3>
+      <p>يدل البدل فيه على معنى أو صفة يشتمل عليها المبدل منه، وليست جزءًا ماديًا منه.</p>
+      <div class="example">
+        <div class="sentence">أعجبني المعلمُ <b>علمُه</b>.</div>
+        العلم معنى يشتمل عليه المعلم.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section" id="conditions">
+  <div class="title"><span class="no">٣</span><h2>شروط وعلامات كل نوع</h2></div>
+
+  <table>
+    <tr>
+      <th>النوع</th>
+      <th>كيف أعرفه؟</th>
+      <th>الضمير</th>
+      <th>مثال سريع</th>
+    </tr>
+    <tr>
+      <td><b>المطابق</b></td>
+      <td>البدل هو نفس المبدل منه تمامًا</td>
+      <td>لا يُشترط</td>
+      <td>الملكُ عبدالعزيزُ</td>
+    </tr>
+    <tr>
+      <td><b>بعض من كل</b></td>
+      <td>البدل جزء حقيقي من المبدل منه</td>
+      <td>يتصل به ضمير يعود على المبدل منه</td>
+      <td>الكتابَ ثلثَه</td>
+    </tr>
+    <tr>
+      <td><b>اشتمال</b></td>
+      <td>البدل معنى أو صفة يشتمل عليها المبدل منه</td>
+      <td>يتصل به ضمير يعود على المبدل منه</td>
+      <td>المعلمُ علمُه</td>
+    </tr>
+  </table>
+
+  <div class="note">
+    <b>قاعدة الحسم:</b><br>
+    إذا كان البدل = المبدل منه نفسه → <b>بدل مطابق</b>.<br>
+    إذا كان البدل جزءًا منه يمكن تصوره جزءًا حقيقيًا → <b>بعض من كل</b>.<br>
+    إذا كان البدل معنى أو صفة تتعلق به وليست جزءًا ماديًا منه → <b>بدل اشتمال</b>.
+  </div>
+
+  <div class="alert">
+    <b>انتبهي:</b> بدل بعض من كل وبدل الاشتمال يحتاجان إلى ضمير في البدل يعود على المبدل منه، مثل: «ثلثَه» و«علمُه».
+  </div>
+</section>
+
+<section class="section" id="parse">
+  <div class="title"><span class="no">٤</span><h2>إعراب البدل والمبدل منه</h2></div>
+
+  <div class="definition">
+    <strong>القاعدة:</strong> يتبع البدل المبدل منه في الإعراب: رفعًا، ونصبًا، وجرًّا.
+  </div>
+
+  <div class="example">
+    <div class="sentence">جاء أخوك <b>خالدٌ</b>.</div>
+    أخوك: فاعل مرفوع، وهو المبدل منه.<br>
+    خالدٌ: بدل مرفوع وعلامة رفعه الضمة.
+  </div>
+
+  <div class="example">
+    <div class="sentence">رأيت أخاك <b>خالدًا</b>.</div>
+    أخاك: مفعول به منصوب، وهو المبدل منه.<br>
+    خالدًا: بدل منصوب وعلامة نصبه الفتحة.
+  </div>
+
+  <div class="example">
+    <div class="sentence">مررت بأخيك <b>خالدٍ</b>.</div>
+    أخيك: اسم مجرور، وهو المبدل منه.<br>
+    خالدٍ: بدل مجرور وعلامة جره الكسرة.
+  </div>
+
+  <div class="note">
+    <b>طريقة سريعة للإعراب:</b> أعربي المبدل منه أولًا، ثم اجعلي البدل يتبعه في الحالة الإعرابية.
+  </div>
+</section>
+
+<section class="section">
+  <div class="title"><span class="no">٥</span><h2>الرياضيات النحوية للبدل</h2></div>
+
+  <div class="math-grid">
+    <div class="math">
+      <b>المبدل منه = البدل نفسه</b>
+      ⇦ بدل مطابق
+    </div>
+    <div class="math">
+      <b>المبدل منه ⟵ جزء حقيقي منه</b>
+      ⇦ بدل بعض من كل
+    </div>
+    <div class="math">
+      <b>المبدل منه ⟵ معنى أو صفة فيه</b>
+      ⇦ بدل اشتمال
+    </div>
+  </div>
+
+  <div class="formula">
+    اسألي نفسك: «هل البدل هو نفسه؟ أم جزء منه؟ أم معنى يشتمل عليه؟»
+  </div>
+</section>
+
+<section class="section" id="examples">
+  <div class="title"><span class="no">٦</span><h2>أمثلة محللة</h2></div>
+
+  <table>
+    <tr>
+      <th>الجملة</th>
+      <th>المبدل منه</th>
+      <th>البدل</th>
+      <th>النوع</th>
+    </tr>
+    <tr>
+      <td>الشيخُ محمدٌ من المصلحين</td>
+      <td>الشيخُ</td>
+      <td>محمدٌ</td>
+      <td>مطابق</td>
+    </tr>
+    <tr>
+      <td>الملكُ عبدالعزيزُ من قادة العالم</td>
+      <td>الملكُ</td>
+      <td>عبدالعزيزُ</td>
+      <td>مطابق</td>
+    </tr>
+    <tr>
+      <td>مضى الليلُ ثلثُه</td>
+      <td>الليلُ</td>
+      <td>ثلثُه</td>
+      <td>بعض من كل</td>
+    </tr>
+    <tr>
+      <td>قرأتُ الكتابَ ثلثَه</td>
+      <td>الكتابَ</td>
+      <td>ثلثَه</td>
+      <td>بعض من كل</td>
+    </tr>
+    <tr>
+      <td>أعجبني المعلمُ علمُه</td>
+      <td>المعلمُ</td>
+      <td>علمُه</td>
+      <td>اشتمال</td>
+    </tr>
+  </table>
+</section>
+
+<section class="section" id="notes">
+  <div class="title"><span class="no">٧</span><h2>ملاحظات مهمة من الدرس</h2></div>
+
+  <div class="steps">
+    <div class="step"><b>١.</b> البدل اسم تابع مقصود بالحكم من غير واسطة بينه وبين المبدل منه.</div>
+    <div class="step"><b>٢.</b> البدل يتبع المبدل منه في الإعراب: رفعًا ونصبًا وجرًّا.</div>
+    <div class="step"><b>٣.</b> البدل المطابق يسمى أيضًا «بدل الكل من الكل».</div>
+    <div class="step"><b>٤.</b> في بدل بعض من كل يكون البدل جزءًا من المبدل منه، ويتصل به ضمير يعود عليه.</div>
+    <div class="step"><b>٥.</b> من أنواع البدل أيضًا بدل الاشتمال، ويمثل معنى أو صفة يشتمل عليها المبدل منه.</div>
+    <div class="step"><b>٦.</b> لا تخلطي بين «بعض من كل» و«الاشتمال»: الأول جزء حقيقي، والثاني معنى أو صفة.</div>
+  </div>
+</section>
+
+<section class="golden">
+  <h2>البدل في دقيقة ✨</h2>
+  <ul>
+    <li>البدل تابع مقصود بالحكم، ولا يفصل بينه وبين متبوعه حرف.</li>
+    <li>أركانه: المبدل منه + البدل.</li>
+    <li>أنواعه: مطابق، بعض من كل، اشتمال.</li>
+    <li>البدل يتبع المبدل منه في الإعراب.</li>
+    <li>المطابق = نفسه، بعض من كل = جزء منه، الاشتمال = معنى أو صفة فيه.</li>
+    <li>في بعض من كل والاشتمال يرتبط البدل بضمير يعود على المبدل منه.</li>
+  </ul>
+</section>
+
+<a class="back" href="lessons.html">العودة إلى الدروس</a>
+
+</main>
+
 <footer>
-  جميع الحقوق محفوظة © 2026
+  منصة آفاق التعليمية | لغتي الخالدة | الصف الثالث المتوسط
 </footer>
 
 </body>
