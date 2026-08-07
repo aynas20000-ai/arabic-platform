@@ -21,238 +21,638 @@
   --rose:#a96d7f;
   --shadow:0 14px 30px rgba(73,54,92,.12);
 }
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
 body{
   margin:0;
   font-family:Tahoma,Arial,sans-serif;
   color:var(--text);
   line-height:1.95;
+
   background:
-    radial-gradient(circle at 8% 5%,rgba(216,194,138,.18),transparent 23%),
-    linear-gradient(180deg,#f5f0fa 0%,#fbf9fd 50%,#f1ebf7 100%);
+    radial-gradient(
+      circle at 8% 5%,
+      rgba(216,194,138,.18),
+      transparent 23%
+    ),
+    linear-gradient(
+      180deg,
+      #f5f0fa 0%,
+      #fbf9fd 50%,
+      #f1ebf7 100%
+    );
 }
+
 header{
   position:relative;
   overflow:hidden;
   text-align:center;
   color:#fff;
+
   padding:38px 18px 34px;
-  background:linear-gradient(145deg,var(--p2),var(--p),var(--pd));
-  border-bottom:5px solid var(--g);
+
+  background:
+    linear-gradient(
+      145deg,
+      var(--p2),
+      var(--p),
+      var(--pd)
+    );
+
+  border-bottom:
+    5px solid var(--g);
 }
-header::before,header::after{
+
+header::before,
+header::after{
   content:"";
   position:absolute;
   border-radius:50%;
-  background:rgba(255,255,255,.055);
+  background:
+    rgba(255,255,255,.055);
 }
-header::before{width:220px;height:220px;right:-80px;top:-120px}
-header::after{width:280px;height:280px;left:-120px;bottom:-190px}
+
+header::before{
+  width:220px;
+  height:220px;
+  right:-80px;
+  top:-120px;
+}
+
+header::after{
+  width:280px;
+  height:280px;
+  left:-120px;
+  bottom:-190px;
+}
+
 .brand{
-  position:relative;z-index:1;
+  position:relative;
+  z-index:1;
+
   display:inline-block;
-  padding:5px 14px;
-  border-radius:999px;
-  border:1px solid #dbc785;
-  color:#fff3ca;
-  background:rgba(182,151,80,.15);
+
+  padding:
+    5px 14px;
+
+  border-radius:
+    999px;
+
+  border:
+    1px solid
+    #dbc785;
+
+  color:
+    #fff3ca;
+
+  background:
+    rgba(182,151,80,.15);
+
   font-weight:bold;
   font-size:13px;
 }
+
 header h1{
-  position:relative;z-index:1;
-  margin:8px 0 2px;
-  font-size:clamp(30px,7vw,44px);
+  position:relative;
+  z-index:1;
+
+  margin:
+    8px 0 2px;
+
+  font-size:
+    clamp(
+      30px,
+      7vw,
+      44px
+    );
 }
+
 header p{
-  position:relative;z-index:1;
+  position:relative;
+  z-index:1;
+
   margin:0;
-  color:#f4edf8;
+
+  color:
+    #f4edf8;
 }
+
 .nav{
-  width:min(980px,92%);
-  margin:18px auto 0;
+  width:
+    min(
+      980px,
+      92%
+    );
+
+  margin:
+    18px auto 0;
+
   display:flex;
   flex-wrap:wrap;
   justify-content:center;
   gap:8px;
 }
+
 .nav a{
   text-decoration:none;
-  color:var(--p);
-  background:#fff;
-  border:1px solid #ddd1e5;
-  padding:7px 12px;
-  border-radius:999px;
+
+  color:
+    var(--p);
+
+  background:
+    #fff;
+
+  border:
+    1px solid
+    #ddd1e5;
+
+  padding:
+    7px 12px;
+
+  border-radius:
+    999px;
+
   font-weight:bold;
   font-size:13px;
-  box-shadow:0 6px 14px rgba(80,60,100,.06);
-}
-main{width:min(980px,92%);margin:20px auto 50px}
-.intro,.section,.golden{
-  background:var(--paper);
-  border:1px solid var(--g2);
-  border-radius:24px;
-  box-shadow:var(--shadow);
-}
-.intro{
-  padding:22px 20px;
-  text-align:center;
-  margin-bottom:18px;
-}
-.intro h2{margin:0;color:var(--p);font-size:28px}
-.intro p{margin:5px auto 0;color:var(--muted);max-width:780px}
 
-.section{padding:22px 20px;margin-bottom:18px}
+  box-shadow:
+    0 6px 14px
+    rgba(80,60,100,.06);
+}
+
+main{
+  width:
+    min(
+      980px,
+      92%
+    );
+
+  margin:
+    20px auto 50px;
+}
+
+.intro,
+.section,
+.golden{
+  background:
+    var(--paper);
+
+  border:
+    1px solid
+    var(--g2);
+
+  border-radius:
+    24px;
+
+  box-shadow:
+    var(--shadow);
+}
+
+.intro{
+  padding:
+    22px 20px;
+
+  text-align:center;
+
+  margin-bottom:
+    18px;
+}
+
+.intro h2{
+  margin:0;
+
+  color:
+    var(--p);
+
+  font-size:
+    28px;
+}
+
+.intro p{
+  margin:
+    5px auto 0;
+
+  color:
+    var(--muted);
+
+  max-width:
+    780px;
+}
+
+.section{
+  padding:
+    22px 20px;
+
+  margin-bottom:
+    18px;
+}
+
 .title{
   display:flex;
   align-items:center;
-  gap:10px;
-  margin-bottom:13px;
+
+  gap:
+    10px;
+
+  margin-bottom:
+    13px;
 }
+
 .no{
-  min-width:40px;height:40px;
-  display:grid;place-items:center;
-  border-radius:13px;
-  color:#fff;
+  min-width:
+    40px;
+
+  height:
+    40px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:
+    13px;
+
+  color:
+    #fff;
+
   font-weight:bold;
-  background:linear-gradient(145deg,var(--p2),var(--p));
-  border:1px solid var(--g);
+
+  background:
+    linear-gradient(
+      145deg,
+      var(--p2),
+      var(--p)
+    );
+
+  border:
+    1px solid
+    var(--g);
 }
-.title h2{margin:0;color:var(--p);font-size:23px}
+
+.title h2{
+  margin:0;
+
+  color:
+    var(--p);
+
+  font-size:
+    23px;
+}
 
 .definition{
-  padding:15px 16px;
-  border-radius:16px;
-  background:var(--cream);
-  border:1px solid #e5d3a5;
-  border-right:6px solid var(--g);
-  font-size:17px;
+  padding:
+    15px 16px;
+
+  border-radius:
+    16px;
+
+  background:
+    var(--cream);
+
+  border:
+    1px solid
+    #e5d3a5;
+
+  border-right:
+    6px solid
+    var(--g);
+
+  font-size:
+    17px;
 }
-.definition strong{color:var(--p)}
+
+.definition strong{
+  color:
+    var(--p);
+}
 
 .formula{
-  margin:14px 0;
-  padding:15px 12px;
+  margin:
+    14px 0;
+
+  padding:
+    15px 12px;
+
   text-align:center;
-  border-radius:16px;
-  border:1px dashed var(--g);
-  background:linear-gradient(145deg,#fffdf8,#f8f1df);
-  font-size:18px;
+
+  border-radius:
+    16px;
+
+  border:
+    1px dashed
+    var(--g);
+
+  background:
+    linear-gradient(
+      145deg,
+      #fffdf8,
+      #f8f1df
+    );
+
+  font-size:
+    18px;
+
   font-weight:bold;
-  color:var(--pd);
+
+  color:
+    var(--pd);
 }
+
 .grid2{
   display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:12px;
-  margin-top:12px;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0,1fr)
+    );
+
+  gap:
+    12px;
+
+  margin-top:
+    12px;
 }
+
 .card{
   background:#fff;
-  border:1px solid #dfd3e6;
-  border-radius:17px;
-  padding:15px;
+
+  border:
+    1px solid
+    #dfd3e6;
+
+  border-radius:
+    17px;
+
+  padding:
+    15px;
 }
+
 .card h3{
-  margin:0 0 8px;
-  color:var(--p);
-  font-size:18px;
+  margin:
+    0 0 8px;
+
+  color:
+    var(--p);
+
+  font-size:
+    18px;
 }
+
 .example{
-  margin-top:10px;
-  padding:12px 14px;
+  margin-top:
+    10px;
+
+  padding:
+    12px 14px;
+
   background:#fff;
-  border:1px solid #e5ddea;
-  border-radius:15px;
+
+  border:
+    1px solid
+    #e5ddea;
+
+  border-radius:
+    15px;
 }
-.sentence{font-size:18px;font-weight:bold;color:#4b3c5e}
+
+.sentence{
+  font-size:
+    18px;
+
+  font-weight:bold;
+
+  color:
+    #4b3c5e;
+}
+
 .note{
-  margin-top:12px;
-  padding:12px 14px;
-  background:#fff7df;
-  border:1px solid #dfc778;
-  border-radius:14px;
-  color:#5c4924;
+  margin-top:
+    12px;
+
+  padding:
+    12px 14px;
+
+  background:
+    #fff7df;
+
+  border:
+    1px solid
+    #dfc778;
+
+  border-radius:
+    14px;
+
+  color:
+    #5c4924;
 }
+
 .alert{
-  margin-top:12px;
-  padding:12px 14px;
-  background:#f8eef2;
-  border:1px solid #dfbcc8;
-  border-right:5px solid var(--rose);
-  border-radius:14px;
+  margin-top:
+    12px;
+
+  padding:
+    12px 14px;
+
+  background:
+    #f8eef2;
+
+  border:
+    1px solid
+    #dfbcc8;
+
+  border-right:
+    5px solid
+    var(--rose);
+
+  border-radius:
+    14px;
 }
+
 table{
   width:100%;
-  border-collapse:separate;
+
+  border-collapse:
+    separate;
+
   border-spacing:0;
+
   overflow:hidden;
-  border:1px solid #d9c58d;
-  border-radius:16px;
+
+  border:
+    1px solid
+    #d9c58d;
+
+  border-radius:
+    16px;
+
   background:#fff;
-  margin-top:12px;
+
+  margin-top:
+    12px;
 }
-th,td{
-  padding:10px 8px;
+
+th,
+td{
+  padding:
+    10px 8px;
+
   text-align:center;
   vertical-align:middle;
-  border-bottom:1px solid #eadfca;
-  border-left:1px solid #eadfca;
-  font-size:14px;
+
+  border-bottom:
+    1px solid
+    #eadfca;
+
+  border-left:
+    1px solid
+    #eadfca;
+
+  font-size:
+    14px;
 }
+
 th{
   color:#fff;
-  background:linear-gradient(145deg,#6c5686,#4d3a63);
-}
-tr:last-child td{border-bottom:0}
-td:last-child,th:last-child{border-left:0}
 
-.steps{display:grid;gap:9px}
-.step{
-  padding:11px 13px;
-  border:1px solid #e3d9e8;
-  background:#fff;
-  border-radius:14px;
+  background:
+    linear-gradient(
+      145deg,
+      #6c5686,
+      #4d3a63
+    );
 }
-.step b{color:var(--p)}
+
+tr:last-child td{
+  border-bottom:0;
+}
+
+td:last-child,
+th:last-child{
+  border-left:0;
+}
 
 .golden{
-  padding:21px 20px;
+  padding:
+    21px 20px;
+
   color:#fff;
-  background:linear-gradient(145deg,#66527e,#453457);
-  border-color:#c7a75d;
+
+  background:
+    linear-gradient(
+      145deg,
+      #66527e,
+      #453457
+    );
+
+  border-color:
+    #c7a75d;
 }
-.golden h2{margin:0 0 8px;color:#ecd99e}
-.golden ul{margin:0;padding-right:20px}
+
+.golden h2{
+  margin:
+    0 0 8px;
+
+  color:
+    #ecd99e;
+}
+
+.golden ul{
+  margin:0;
+  padding-right:
+    20px;
+}
 
 .back{
   display:block;
-  width:min(350px,100%);
-  margin:22px auto 0;
-  padding:12px 16px;
+
+  width:
+    min(
+      370px,
+      100%
+    );
+
+  margin:
+    22px auto 0;
+
+  padding:
+    12px 16px;
+
   text-align:center;
+
   text-decoration:none;
+
   color:#fff;
+
   font-weight:bold;
-  border-radius:14px;
-  border:1px solid var(--g);
-  background:linear-gradient(145deg,var(--p2),var(--p));
+
+  border-radius:
+    14px;
+
+  border:
+    1px solid
+    var(--g);
+
+  background:
+    linear-gradient(
+      145deg,
+      var(--p2),
+      var(--p)
+    );
 }
+
 footer{
-  padding:20px 12px;
+  padding:
+    20px 12px;
+
   text-align:center;
-  color:#eee8f2;
-  background:#3e304d;
-  border-top:2px solid var(--g);
-  font-size:13px;
+
+  color:
+    #eee8f2;
+
+  background:
+    #3e304d;
+
+  border-top:
+    2px solid
+    var(--g);
+
+  font-size:
+    13px;
 }
-@media(max-width:760px){
-  .grid2{grid-template-columns:1fr}
-  .section{padding:18px 14px}
-  th,td{font-size:12px;padding:8px 5px}
-  .formula{font-size:16px}
+
+@media(
+  max-width:760px
+){
+  .grid2{
+    grid-template-columns:
+      1fr;
+  }
+
+  .section{
+    padding:
+      18px 14px;
+  }
+
+  th,
+  td{
+    font-size:
+      12px;
+
+    padding:
+      8px 5px;
+  }
+
+  .formula{
+    font-size:
+      16px;
+  }
 }
 </style>
 </head>
@@ -260,259 +660,950 @@ footer{
 <body>
 
 <header>
-  <span class="brand">منصة آفاق التعليمية</span>
-  <h1>اسما الزمان والمكان</h1>
-  <p>الصنف اللغوي | الصف الثالث المتوسط</p>
+
+  <span class="brand">
+    منصة آفاق التعليمية
+  </span>
+
+  <h1>
+    اسما الزمان والمكان
+  </h1>
+
+  <p>
+    الصنف اللغوي |
+    الصف الثالث المتوسط
+  </p>
+
 </header>
 
+
 <nav class="nav">
-  <a href="#definition">التعريف</a>
-  <a href="#triliteral">من الفعل الثلاثي</a>
-  <a href="#defective">معتل الآخر</a>
-  <a href="#nontriliteral">من غير الثلاثي</a>
-  <a href="#difference">كيف أميّز؟</a>
-  <a href="#summary">الخلاصة</a>
+
+  <a href="#definition">
+    التعريف
+  </a>
+
+  <a href="#triliteral">
+    من الفعل الثلاثي
+  </a>
+
+  <a href="#defective">
+    معتل الآخر
+  </a>
+
+  <a href="#nontriliteral">
+    من غير الثلاثي
+  </a>
+
+  <a href="#difference">
+    كيف أميّز؟
+  </a>
+
+  <a href="#summary">
+    الخلاصة
+  </a>
+
 </nav>
+
 
 <main>
 
+
 <section class="intro">
-  <h2>اسما الزمان والمكان ببساطة</h2>
-  <p>نتعلم كيف نصوغهما من الفعل الثلاثي وغير الثلاثي، ومتى نستخدم وزن «مَفْعَل» أو «مَفْعِل»، مع التركيز على قاعدة الفعل الثلاثي المعتل الآخر.</p>
+
+  <h2>
+    اسما الزمان والمكان ببساطة
+  </h2>
+
+  <p>
+    نتعلم كيف نصوغهما من الفعل
+    الثلاثي وغير الثلاثي،
+    ومتى نستخدم وزن
+    «مَفْعَل»
+    أو
+    «مَفْعِل»،
+    مع التركيز على قاعدة
+    الفعل الثلاثي المعتل الآخر.
+  </p>
+
 </section>
 
-<section class="section" id="definition">
-  <div class="title"><span class="no">١</span><h2>التعريف</h2></div>
+
+<section
+  class="section"
+  id="definition"
+>
+
+  <div class="title">
+
+    <span class="no">
+      ١
+    </span>
+
+    <h2>
+      التعريف
+    </h2>
+
+  </div>
 
   <div class="definition">
-    <strong>اسم الزمان:</strong> اسم مشتق يدل على زمن وقوع الفعل.<br>
-    <strong>اسم المكان:</strong> اسم مشتق يدل على مكان وقوع الفعل.
+
+    <strong>
+      اسم الزمان:
+    </strong>
+
+    اسم مشتق
+    يدل على زمن
+    وقوع الفعل.
+
+    <br>
+
+    <strong>
+      اسم المكان:
+    </strong>
+
+    اسم مشتق
+    يدل على مكان
+    وقوع الفعل.
+
   </div>
 
-  <div class="example">
-    <div class="sentence">مَوْعِدُ الامتحان صباحًا.</div>
-    «موعد»: اسم زمان؛ لأنه دل على زمن وقوع الفعل.
-  </div>
 
   <div class="example">
-    <div class="sentence">مَجْلِسُ الضيوف واسعٌ.</div>
-    «مجلس»: اسم مكان؛ لأنه دل على مكان وقوع الفعل.
+
+    <div class="sentence">
+      مَوْعِدُ الامتحان صباحًا.
+    </div>
+
+    «موعد» اسم زمان؛
+    لأنه دل على زمن
+    وقوع الفعل.
+
   </div>
+
+
+  <div class="example">
+
+    <div class="sentence">
+      مَجْلِسُ الضيوف واسعٌ.
+    </div>
+
+    «مجلس» اسم مكان؛
+    لأنه دل على مكان
+    وقوع الفعل.
+
+  </div>
+
 </section>
 
-<section class="section" id="triliteral">
-  <div class="title"><span class="no">٢</span><h2>صياغتهما من الفعل الثلاثي</h2></div>
+
+<section
+  class="section"
+  id="triliteral"
+>
+
+  <div class="title">
+
+    <span class="no">
+      ٢
+    </span>
+
+    <h2>
+      صياغتهما من الفعل الثلاثي
+    </h2>
+
+  </div>
+
 
   <div class="definition">
-    يصاغ اسما الزمان والمكان من الفعل الثلاثي على وزنين رئيسين:
-    <strong>مَفْعَل</strong> و <strong>مَفْعِل</strong>.
+
+    يصاغ اسما الزمان والمكان
+    من الفعل الثلاثي
+    على وزنين رئيسين:
+
+    <strong>
+      مَفْعَل
+    </strong>
+
+    و
+
+    <strong>
+      مَفْعِل
+    </strong>.
+
   </div>
+
 
   <div class="grid2">
 
+
     <div class="card">
-      <h3>أولًا: على وزن «مَفْعَل»</h3>
-      <p>إذا كان مضارع الفعل:</p>
+
+      <h3>
+        أولًا:
+        على وزن «مَفْعَل»
+      </h3>
+
+      <p>
+        يأتي على وزن
+        <b>مَفْعَل</b>
+        إذا كان مضارع الفعل:
+      </p>
+
       <ul>
-        <li>مفتوح العين.</li>
-        <li>أو مضموم العين.</li>
-        <li>أو كان الفعل الثلاثي <b>معتل الآخر (ناقصًا)</b>.</li>
+
+        <li>
+          مفتوح العين.
+        </li>
+
+        <li>
+          أو مضموم العين.
+        </li>
+
+        <li>
+          أو كان الفعل الثلاثي
+          معتل الآخر «ناقصًا».
+        </li>
+
       </ul>
 
-      <div class="example">
-        <div class="sentence">لَعِبَ يَلْعَبُ ← مَلْعَب</div>
-        عين المضارع مفتوحة.
-      </div>
 
       <div class="example">
-        <div class="sentence">دَخَلَ يَدْخُلُ ← مَدْخَل</div>
-        عين المضارع مضمومة.
+
+        <div class="sentence">
+          لَعِبَ
+          يَلْعَبُ
+          ←
+          مَلْعَب
+        </div>
+
+        عين المضارع مفتوحة.
+
       </div>
+
+
+      <div class="example">
+
+        <div class="sentence">
+          دَخَلَ
+          يَدْخُلُ
+          ←
+          مَدْخَل
+        </div>
+
+        عين المضارع مضمومة.
+
+      </div>
+
     </div>
 
+
     <div class="card">
-      <h3>ثانيًا: على وزن «مَفْعِل»</h3>
-      <p>إذا كان:</p>
+
+      <h3>
+        ثانيًا:
+        على وزن «مَفْعِل»
+      </h3>
+
+      <p>
+        يأتي على وزن
+        <b>مَفْعِل</b>
+        إذا كان:
+      </p>
+
       <ul>
-        <li>مضارع الفعل الثلاثي مكسور العين.</li>
-        <li>أو كان الفعل مثالًا واويًا صحيح الآخر.</li>
+
+        <li>
+          مضارع الفعل الثلاثي
+          مكسور العين.
+        </li>
+
+        <li>
+          أو كان الفعل
+          مثالًا واويًا
+          صحيح الآخر.
+        </li>
+
       </ul>
 
-      <div class="example">
-        <div class="sentence">جَلَسَ يَجْلِسُ ← مَجْلِس</div>
-        عين المضارع مكسورة.
-      </div>
 
       <div class="example">
-        <div class="sentence">وَعَدَ يَعِدُ ← مَوْعِد</div>
-        فعل مثال واوي صحيح الآخر.
+
+        <div class="sentence">
+          جَلَسَ
+          يَجْلِسُ
+          ←
+          مَجْلِس
+        </div>
+
+        عين المضارع مكسورة.
+
       </div>
+
+
+      <div class="example">
+
+        <div class="sentence">
+          وَعَدَ
+          يَعِدُ
+          ←
+          مَوْعِد
+        </div>
+
+        فعل مثال واوي
+        صحيح الآخر.
+
+      </div>
+
     </div>
 
   </div>
+
 </section>
 
-<section class="section" id="defective">
-  <div class="title"><span class="no">٣</span><h2>القاعدة المهمة: الفعل الثلاثي المعتل الآخر</h2></div>
+
+<section
+  class="section"
+  id="defective"
+>
+
+  <div class="title">
+
+    <span class="no">
+      ٣
+    </span>
+
+    <h2>
+      الفعل الثلاثي
+      المعتل الآخر
+    </h2>
+
+  </div>
+
 
   <div class="definition">
-    إذا كان الفعل الثلاثي <strong>معتلَّ الآخر (ناقصًا)</strong>، فإن اسم الزمان أو المكان منه يُصاغ على وزن
-    <strong>«مَفْعَل»</strong>.
+
+    إذا كان الفعل الثلاثي
+    <strong>
+      معتلَّ الآخر
+      «ناقصًا»
+    </strong>
+
+    فإن اسم الزمان
+    أو المكان منه
+    يصاغ على وزن:
+
+    <strong>
+      مَفْعَل
+    </strong>.
+
   </div>
+
 
   <div class="formula">
-    فعل ثلاثي معتل الآخر ← اسم الزمان أو المكان على وزن «مَفْعَل»
+
+    فعل ثلاثي
+    معتل الآخر
+
+    ←
+
+    مَفْعَل
+
   </div>
 
+
   <table>
+
     <tr>
-      <th>الفعل</th>
-      <th>المضارع</th>
-      <th>اسم الزمان / المكان</th>
-      <th>الوزن</th>
+
+      <th>
+        الفعل
+      </th>
+
+      <th>
+        المضارع
+      </th>
+
+      <th>
+        اسم الزمان / المكان
+      </th>
+
+      <th>
+        الوزن
+      </th>
+
     </tr>
+
+
     <tr>
-      <td>سعى</td>
-      <td>يسعى</td>
-      <td>مَسْعَى</td>
-      <td>مَفْعَل</td>
+
+      <td>
+        سعى
+      </td>
+
+      <td>
+        يسعى
+      </td>
+
+      <td>
+        مَسْعَى
+      </td>
+
+      <td>
+        مَفْعَل
+      </td>
+
     </tr>
+
+
     <tr>
-      <td>رمى</td>
-      <td>يرمي</td>
-      <td>مَرْمَى</td>
-      <td>مَفْعَل</td>
+
+      <td>
+        رمى
+      </td>
+
+      <td>
+        يرمي
+      </td>
+
+      <td>
+        مَرْمَى
+      </td>
+
+      <td>
+        مَفْعَل
+      </td>
+
     </tr>
+
+
     <tr>
-      <td>جرى</td>
-      <td>يجري</td>
-      <td>مَجْرَى</td>
-      <td>مَفْعَل</td>
+
+      <td>
+        جرى
+      </td>
+
+      <td>
+        يجري
+      </td>
+
+      <td>
+        مَجْرَى
+      </td>
+
+      <td>
+        مَفْعَل
+      </td>
+
     </tr>
+
   </table>
+
 
   <div class="alert">
-    <b>انتبهي جدًا:</b> لا نطبق قاعدة كسر عين المضارع على الفعل الناقص؛ فمثلًا:
-    <br><b>جرى يجري ← مَجْرَى</b>، وليس «مَجْرِي».
-    <br>لأن الفعل الثلاثي المعتل الآخر له حكم خاص: <b>يأتي على وزن «مَفْعَل»</b>.
+
+    <b>
+      انتبهي جدًا:
+    </b>
+
+    لا نطبق قاعدة
+    كسر عين المضارع
+    على الفعل الناقص.
+
+    <br>
+
+    مثال:
+
+    <b>
+      جرى يجري
+      ←
+      مَجْرَى
+    </b>
+
+    وليس
+    «مَجْرِي».
+
+    <br>
+
+    لأن الفعل الثلاثي
+    المعتل الآخر
+    له حكم خاص:
+
+    <b>
+      يأتي على وزن
+      مَفْعَل.
+    </b>
+
   </div>
+
 </section>
 
-<section class="section" id="nontriliteral">
-  <div class="title"><span class="no">٤</span><h2>صياغتهما من الفعل غير الثلاثي</h2></div>
+
+<section
+  class="section"
+  id="nontriliteral"
+>
+
+  <div class="title">
+
+    <span class="no">
+      ٤
+    </span>
+
+    <h2>
+      صياغتهما
+      من الفعل غير الثلاثي
+    </h2>
+
+  </div>
+
 
   <div class="definition">
-    يصاغ اسما الزمان والمكان من الفعل غير الثلاثي على صورة اسم المفعول:
-    <strong>نأتي بالمضارع، ونبدل حرف المضارعة ميمًا مضمومة، ونفتح ما قبل الآخر.</strong>
+
+    يصاغ اسما الزمان
+    والمكان
+    من الفعل غير الثلاثي
+    على صورة اسم المفعول:
+
+    <strong>
+      نأتي بالمضارع،
+      ونبدل حرف المضارعة
+      ميمًا مضمومة،
+      ونفتح ما قبل الآخر.
+    </strong>
+
   </div>
+
 
   <div class="formula">
-    المضارع غير الثلاثي → ميم مضمومة بدل حرف المضارعة + فتح ما قبل الآخر
+
+    المضارع غير الثلاثي
+
+    ←
+
+    ميم مضمومة
+    بدل حرف المضارعة
+
+    +
+
+    فتح ما قبل الآخر
+
   </div>
 
-  <div class="example">
-    <div class="sentence">اِسْتَوْدَعَ → يَسْتَوْدِعُ → مُسْتَوْدَع</div>
-    «مستودع» قد يدل على المكان الذي تُودَع فيه الأشياء.
-  </div>
 
   <div class="example">
-    <div class="sentence">اِنْطَلَقَ → يَنْطَلِقُ → مُنْطَلَق</div>
-    «منطلق» قد يدل على مكان الانطلاق أو زمانه بحسب السياق.
+
+    <div class="sentence">
+
+      اِسْتَوْدَعَ
+
+      ←
+
+      يَسْتَوْدِعُ
+
+      ←
+
+      مُسْتَوْدَع
+
+    </div>
+
+    «مستودع»
+    يدل على المكان
+    الذي تودع فيه الأشياء.
+
   </div>
+
+
+  <div class="example">
+
+    <div class="sentence">
+
+      اِنْطَلَقَ
+
+      ←
+
+      يَنْطَلِقُ
+
+      ←
+
+      مُنْطَلَق
+
+    </div>
+
+    «منطلق»
+    قد يدل على مكان
+    الانطلاق أو زمانه
+    بحسب السياق.
+
+  </div>
+
 
   <div class="note">
-    <b>ملاحظة:</b> صيغة اسم الزمان والمكان من غير الثلاثي تشبه صيغة اسم المفعول، ويُفهم المعنى المقصود من السياق.
+
+    <b>
+      ملاحظة:
+    </b>
+
+    صيغة اسم الزمان
+    والمكان من غير الثلاثي
+    تشبه صيغة اسم المفعول،
+    ويُفهم المعنى
+    من السياق.
+
   </div>
+
 </section>
 
-<section class="section" id="difference">
-  <div class="title"><span class="no">٥</span><h2>كيف أميز اسم الزمان من اسم المكان؟</h2></div>
+
+<section
+  class="section"
+  id="difference"
+>
+
+  <div class="title">
+
+    <span class="no">
+      ٥
+    </span>
+
+    <h2>
+      كيف أميز
+      اسم الزمان
+      من اسم المكان؟
+    </h2>
+
+  </div>
+
 
   <div class="grid2">
-    <div class="card">
-      <h3>اسم الزمان</h3>
-      <p>اسألي: <b>متى وقع الفعل؟</b></p>
-      <div class="example">
-        <div class="sentence">مَوْعِدُنا بعد العصر.</div>
-        «موعد» دل على زمن.
-      </div>
-    </div>
+
 
     <div class="card">
-      <h3>اسم المكان</h3>
-      <p>اسألي: <b>أين وقع الفعل؟</b></p>
+
+      <h3>
+        اسم الزمان
+      </h3>
+
+      <p>
+        اسألي:
+        <b>
+          متى وقع الفعل؟
+        </b>
+      </p>
+
       <div class="example">
-        <div class="sentence">المَلْعَبُ واسعٌ.</div>
-        «الملعب» دل على مكان.
+
+        <div class="sentence">
+          مَوْعِدُنا
+          بعد العصر.
+        </div>
+
+        «موعد»
+        دل على زمن.
+
       </div>
+
     </div>
+
+
+    <div class="card">
+
+      <h3>
+        اسم المكان
+      </h3>
+
+      <p>
+        اسألي:
+        <b>
+          أين وقع الفعل؟
+        </b>
+      </p>
+
+      <div class="example">
+
+        <div class="sentence">
+          المَلْعَبُ واسعٌ.
+        </div>
+
+        «الملعب»
+        دل على مكان.
+
+      </div>
+
+    </div>
+
   </div>
+
 
   <div class="note">
-    قد تأتي الصيغة نفسها اسم زمان أو اسم مكان، ويحدد <b>السياق</b> المقصود منها.
+
+    قد تأتي الصيغة نفسها
+    اسم زمان
+    أو اسم مكان،
+    ويحدد
+
+    <b>
+      السياق
+    </b>
+
+    المقصود منها.
+
   </div>
+
 </section>
+
 
 <section class="section">
-  <div class="title"><span class="no">٦</span><h2>جدول الحسم السريع</h2></div>
+
+  <div class="title">
+
+    <span class="no">
+      ٦
+    </span>
+
+    <h2>
+      جدول الحسم السريع
+    </h2>
+
+  </div>
+
 
   <table>
+
     <tr>
-      <th>نوع الفعل</th>
-      <th>القاعدة</th>
-      <th>مثال</th>
+
+      <th>
+        نوع الفعل
+      </th>
+
+      <th>
+        القاعدة
+      </th>
+
+      <th>
+        مثال
+      </th>
+
     </tr>
+
+
     <tr>
-      <td>ثلاثي، عين مضارعه مفتوحة</td>
-      <td>مَفْعَل</td>
-      <td>لعب يلعب ← ملعب</td>
+
+      <td>
+        ثلاثي،
+        عين مضارعه مفتوحة
+      </td>
+
+      <td>
+        مَفْعَل
+      </td>
+
+      <td>
+        لعب يلعب
+        ←
+        ملعب
+      </td>
+
     </tr>
+
+
     <tr>
-      <td>ثلاثي، عين مضارعه مضمومة</td>
-      <td>مَفْعَل</td>
-      <td>دخل يدخل ← مدخل</td>
+
+      <td>
+        ثلاثي،
+        عين مضارعه مضمومة
+      </td>
+
+      <td>
+        مَفْعَل
+      </td>
+
+      <td>
+        دخل يدخل
+        ←
+        مدخل
+      </td>
+
     </tr>
+
+
     <tr>
-      <td>ثلاثي، معتل الآخر</td>
-      <td>مَفْعَل</td>
-      <td>جرى يجري ← مجرى</td>
+
+      <td>
+        ثلاثي،
+        معتل الآخر
+      </td>
+
+      <td>
+        مَفْعَل
+      </td>
+
+      <td>
+        جرى يجري
+        ←
+        مجرى
+      </td>
+
     </tr>
+
+
     <tr>
-      <td>ثلاثي، عين مضارعه مكسورة</td>
-      <td>مَفْعِل</td>
-      <td>جلس يجلس ← مجلس</td>
+
+      <td>
+        ثلاثي،
+        عين مضارعه مكسورة
+      </td>
+
+      <td>
+        مَفْعِل
+      </td>
+
+      <td>
+        جلس يجلس
+        ←
+        مجلس
+      </td>
+
     </tr>
+
+
     <tr>
-      <td>مثال واوي صحيح الآخر</td>
-      <td>مَفْعِل</td>
-      <td>وعد يعد ← موعد</td>
+
+      <td>
+        مثال واوي
+        صحيح الآخر
+      </td>
+
+      <td>
+        مَفْعِل
+      </td>
+
+      <td>
+        وعد يعد
+        ←
+        موعد
+      </td>
+
     </tr>
+
+
     <tr>
-      <td>غير ثلاثي</td>
-      <td>على صورة اسم المفعول</td>
-      <td>استودع ← مستودع</td>
+
+      <td>
+        غير ثلاثي
+      </td>
+
+      <td>
+        على صورة
+        اسم المفعول
+      </td>
+
+      <td>
+        استودع
+        ←
+        مستودع
+      </td>
+
     </tr>
+
   </table>
+
 </section>
 
-<section class="golden" id="summary">
-  <h2>اسما الزمان والمكان في دقيقة ✨</h2>
+
+<section
+  class="golden"
+  id="summary"
+>
+
+  <h2>
+    اسما الزمان والمكان
+    في دقيقة ✨
+  </h2>
+
   <ul>
-    <li><b>مَفْعَل:</b> إذا كانت عين المضارع مفتوحة أو مضمومة، أو كان الفعل الثلاثي معتل الآخر.</li>
-    <li><b>مَفْعِل:</b> إذا كانت عين المضارع مكسورة، أو كان الفعل مثالًا واويًا صحيح الآخر.</li>
-    <li><b>غير الثلاثي:</b> يُصاغ على صورة اسم المفعول: ميم مضمومة وفتح ما قبل الآخر.</li>
-    <li>اسم الزمان يجيب عن «متى؟»، واسم المكان يجيب عن «أين؟».</li>
-    <li>السياق هو الذي يحدد هل الصيغة اسم زمان أم اسم مكان.</li>
+
+    <li>
+      <b>
+        مَفْعَل:
+      </b>
+
+      إذا كانت عين المضارع
+      مفتوحة أو مضمومة،
+      أو كان الفعل الثلاثي
+      معتل الآخر.
+    </li>
+
+    <li>
+      <b>
+        مَفْعِل:
+      </b>
+
+      إذا كانت عين المضارع
+      مكسورة،
+      أو كان الفعل
+      مثالًا واويًا
+      صحيح الآخر.
+    </li>
+
+    <li>
+      <b>
+        غير الثلاثي:
+      </b>
+
+      يصاغ على صورة
+      اسم المفعول:
+      ميم مضمومة
+      وفتح ما قبل الآخر.
+    </li>
+
+    <li>
+      اسم الزمان
+      يجيب عن:
+      «متى؟»
+    </li>
+
+    <li>
+      اسم المكان
+      يجيب عن:
+      «أين؟»
+    </li>
+
+    <li>
+      السياق
+      هو الذي يحدد
+      هل الصيغة
+      اسم زمان
+      أم اسم مكان.
+    </li>
+
   </ul>
+
 </section>
 
-<a class="back" href="lessons.html">العودة إلى الدروس</a>
+
+<a
+  class="back"
+  href="time-place-nouns.html"
+>
+  العودة إلى درس
+  اسمي الزمان والمكان
+</a>
+
 
 </main>
 
+
 <footer>
-  منصة آفاق التعليمية | لغتي الخالدة | الصف الثالث المتوسط
+
+  منصة آفاق التعليمية
+  |
+  لغتي الخالدة
+  |
+  الصف الثالث المتوسط
+
 </footer>
+
 
 </body>
 </html>
