@@ -1,79 +1,451 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>اختبار الكلمات المزيد بعض أحرفها</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>اختبار الحروف المزيدة | منصة آفاق</title>
 
-  <style>
-    body{
-      margin:0;
-      font-family:Tahoma,Arial,sans-serif;
-      background:#F8F5FC;
-      text-align:center;
-    }
+<style>
+:root{
+  --p:#5b4677;
+  --p2:#776094;
+  --pd:#453457;
+  --g:#b69750;
+  --g2:#d8c28a;
+  --lav:#eee5f5;
+  --paper:#fffdf9;
+  --text:#403448;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{
+  font-family:Tahoma,Arial,sans-serif;
+  color:var(--text);
+  background:linear-gradient(180deg,#f5f0fa,#fbf9fd,#f1ebf7);
+  overflow:hidden;
+}
+.app{
+  height:100dvh;
+  display:grid;
+  grid-template-rows:auto 1fr auto;
+}
+header{
+  text-align:center;
+  color:#fff;
+  padding:10px 12px 8px;
+  background:linear-gradient(145deg,var(--p2),var(--p),var(--pd));
+  border-bottom:4px solid var(--g);
+}
+.tag{
+  display:inline-block;
+  padding:3px 10px;
+  border-radius:999px;
+  border:1px solid var(--g2);
+  color:#fff2c6;
+  background:rgba(182,151,80,.13);
+  font-size:11px;
+  font-weight:bold;
+}
+header h1{
+  margin:4px 0 0;
+  font-size:clamp(20px,5vw,29px);
+}
+header p{
+  margin:0;
+  color:#f2ebf6;
+  font-size:11px;
+}
+main{
+  min-height:0;
+  width:min(760px,94%);
+  margin:0 auto;
+  padding:7px 0;
+  display:flex;
+  flex-direction:column;
+}
+.top{
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+  font-weight:bold;
+  color:var(--p);
+  font-size:13px;
+  margin-bottom:5px;
+}
+.progress{
+  height:8px;
+  background:#e9e0ef;
+  border-radius:999px;
+  overflow:hidden;
+  margin-bottom:7px;
+}
+.progress>div{
+  height:100%;
+  width:0;
+  background:linear-gradient(90deg,var(--g),#dfca8f);
+  transition:.3s;
+}
+.card,.result{
+  flex:1;
+  min-height:0;
+  background:var(--paper);
+  border:1px solid var(--g2);
+  border-radius:22px;
+  box-shadow:0 14px 30px rgba(73,54,92,.12);
+  padding:12px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.qnum{
+  color:var(--g);
+  font-weight:bold;
+  font-size:12px;
+  margin-bottom:2px;
+}
+h2{
+  font-size:clamp(16px,4.4vw,21px);
+  margin:2px 0 8px;
+  color:var(--pd);
+  line-height:1.5;
+}
+.options{
+  display:grid;
+  gap:6px;
+}
+.opt{
+  width:100%;
+  padding:8px 10px;
+  border-radius:13px;
+  border:2px solid #e4dbe9;
+  background:#fff;
+  color:var(--text);
+  font:inherit;
+  font-size:clamp(13px,3.5vw,16px);
+  text-align:right;
+  cursor:pointer;
+  line-height:1.35;
+}
+.opt.correct{
+  background:#f0ecf6;
+  border-color:var(--p2);
+  color:var(--pd);
+}
+.opt.wrong{
+  background:#fff8ec;
+  border-color:var(--g2);
+  color:#66522e;
+}
+.opt:disabled{cursor:default}
+.feedback{
+  display:none;
+  margin-top:7px;
+  padding:8px 10px;
+  border-radius:13px;
+  font-size:clamp(12px,3.2vw,14px);
+  line-height:1.45;
+}
+.feedback.show{display:block}
+.feedback.good{
+  background:#f3edf8;
+  border:1px solid #c9b8d4;
+  color:var(--pd);
+}
+.feedback.bad{
+  background:#fff9ec;
+  border:1px solid var(--g2);
+  color:#66522e;
+}
+.next{
+  display:none;
+  width:100%;
+  margin-top:7px;
+  padding:8px;
+  border:0;
+  border-radius:13px;
+  background:linear-gradient(145deg,var(--p2),var(--p));
+  color:#fff;
+  font:inherit;
+  font-weight:bold;
+  cursor:pointer;
+  font-size:14px;
+}
+.result{
+  display:none;
+  text-align:center;
+}
+.result.show{display:flex}
+.score{
+  font-size:40px;
+  color:var(--g);
+  font-weight:bold;
+}
+.restart,.lesson{
+  display:block;
+  text-decoration:none;
+  width:100%;
+  padding:10px;
+  margin-top:8px;
+  border-radius:13px;
+  font-weight:bold;
+}
+.restart{
+  border:0;
+  background:linear-gradient(145deg,var(--p2),var(--p));
+  color:#fff;
+  font:inherit;
+  cursor:pointer;
+}
+.lesson{
+  background:var(--lav);
+  color:var(--pd);
+  border:1px solid #d6c7df;
+}
+footer{
+  text-align:center;
+  padding:5px;
+  color:#73697a;
+  font-size:9px;
+}
+.burst{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+  z-index:20;
+}
+.confetti{
+  position:absolute;
+  width:8px;
+  height:8px;
+  border-radius:2px;
+  animation:fall 900ms ease-out forwards;
+}
+@keyframes fall{
+  0%{transform:translateY(-20px) rotate(0);opacity:1}
+  100%{transform:translateY(105vh) rotate(540deg);opacity:0}
+}
+.pop{animation:pop .25s ease}
+@keyframes pop{50%{transform:scale(1.018)}}
 
-    header{
-    background:#8E73B5;
-      color:white;
-      padding:35px 20px;
-    }
-
-    section{
-      background:#FFFDF8;
-      margin:30px auto;
-      padding:25px;
-      width:85%;
-      max-width:700px;
-      border-radius:18px;
-      box-shadow:0 4px 15px rgba(0,0,0,0.12);
-    }
-
-    .box{
-      background:#F7F0FB;
-      margin:18px 0;
-      padding:24px;
-      border-radius:14px;
-      font-size:21px;
-    }
-
-    .back{
-      color:#1565c0;
-      font-weight:bold;
-      text-decoration:none;
-    }
-
-    footer{
-      background:#222;
-      color:white;
-      padding:20px;
-      margin-top:30px;
-    }
-  </style>
+@media(max-height:650px){
+  header{padding:5px 10px 4px}
+  header h1{font-size:18px}
+  header p{font-size:9px}
+  main{padding:3px 0}
+  .top{font-size:11px;margin-bottom:3px}
+  .progress{height:6px;margin-bottom:4px}
+  .card{padding:7px}
+  h2{font-size:15px;margin-bottom:5px}
+  .options{gap:4px}
+  .opt{padding:5px 7px;font-size:12px}
+  .feedback{padding:5px 7px;margin-top:4px;font-size:11px}
+  .next{padding:6px;margin-top:4px}
+}
+</style>
 </head>
 
 <body>
+<div class="app">
 
 <header>
-  <h1>✅ اختبار تجريبي للكلمات المزيد بعض أحرفها</h1>
-  <p>كالألف والواو</p>
+  <span class="tag">منصة آفاق التعليمية</span>
+  <h1>تحدي الحروف المزيدة</h1>
+  <p>١٠ أسئلة • سؤال واحد في كل شاشة • تعقيب فوري ✨</p>
 </header>
 
-<section>
-
-  <div class="box">
-    سيتم إضافة الاختبار التجريبي هنا
+<main>
+  <div class="top">
+    <span id="counter">السؤال ١ من ١٠</span>
+    <span id="correctCount">الصحيح: ٠</span>
   </div>
 
-  <p>
-    <a class="back" href="added-letters.html">العودة إلى الدرس</a>
-  </p>
+  <div class="progress"><div id="bar"></div></div>
 
-</section>
+  <section class="card" id="card">
+    <div class="qnum" id="qnum"></div>
+    <h2 id="question"></h2>
+    <div class="options" id="options"></div>
+    <div class="feedback" id="feedback"></div>
+    <button class="next" id="next">السؤال التالي</button>
+  </section>
 
-<footer>
-  جميع الحقوق محفوظة © 2026
-</footer>
+  <section class="result" id="result">
+    <h2>انتهى التحدي ✨</h2>
+    <div class="score" id="score"></div>
+    <p id="message"></p>
+
+    <button class="restart" onclick="restartQuiz()">أعيدي التحدي</button>
+    <a class="lesson" href="added-letters-file.html">راجعي ملف الدرس</a>
+    <a class="lesson" href="added-letters.html">العودة إلى الدرس</a>
+  </section>
+</main>
+
+<footer>منصة آفاق التعليمية | لغتي الخالدة | الصف الثالث المتوسط</footer>
+</div>
+
+<div class="burst" id="burst"></div>
+
+<script>
+const questions = [{"q": "أيُّ كتابةٍ صحيحة بعد اتصال واو الجماعة بالفعل الماضي؟", "o": ["كتبوا", "كتبو", "كتبؤا", "كتب و"], "a": 0, "ok": "أحسنتِ 🌟 بعد واو الجماعة في الفعل الماضي تزاد الألف الفارقة: «كتبوا».", "bad": "تذكري: الفعل الماضي + واو الجماعة ← نزيد الألف الفارقة."}, {"q": "في أي كلمة مما يأتي لا تزاد الألف بعد الواو؟", "o": ["قالوا", "اعملوا", "يدعو", "لن يهملوا"], "a": 2, "ok": "صحيح ✨ في «يدعو» الواو أصلية في الفعل، لذلك لا تزاد بعدها ألف.", "bad": "إذا كانت الواو أصلية في بنية الفعل مثل «يدعو» فلا نضيف الألف الفارقة."}, {"q": "أيُّ جملة كُتبت فيها واو الجماعة مع فعل الأمر كتابة صحيحة؟", "o": ["أحسنو إلى الناس", "أحسنوا إلى الناس", "أحسنؤا إلى الناس", "أحسن و إلى الناس"], "a": 1, "ok": "ممتازة 👏 الصواب: «أحسنوا»؛ لأنها فعل أمر اتصلت به واو الجماعة.", "bad": "فعل الأمر إذا اتصلت به واو الجماعة نكتب بعد الواو ألفًا فارقة: «أحسنوا»."}, {"q": "أيُّ كلمة تمثل مضارعًا منصوبًا حُذفت نونه وزيدت بعد واو الجماعة ألف؟", "o": ["يصونون", "لن يصونوا", "يصونوا", "صانوا"], "a": 1, "ok": "رائعة 💜 «لن يصونوا» مضارع منصوب، حذفت نونه وبقيت واو الجماعة ثم زيدت الألف الفارقة.", "bad": "ابحثي عن أداة النصب «لن» مع فعل من الأفعال الخمسة: «لن يصونوا»."}, {"q": "أيُّ كتابة صحيحة لجمع المذكر السالم المرفوع؟", "o": ["معلموا المدرسة", "معلمو المدرسة", "معلموو المدرسة", "معلمووا المدرسة"], "a": 1, "ok": "صحيح جدًا 🎯 الصواب: «معلمو المدرسة»؛ الواو علامة رفع وليست واو الجماعة.", "bad": "لا تزاد الألف بعد واو جمع المذكر السالم: «معلمو المدرسة»."}, {"q": "أيُّ اسم منون منصوب يحتاج إلى ألف تنوين النصب؟", "o": ["مدرسةً", "سماءً", "كتابًا", "هدىً"], "a": 2, "ok": "إتقان رائع 🏆 «كتابًا» تزاد فيه ألف تنوين النصب.", "bad": "لا تزاد الألف مع التاء المربوطة أو الهمزة المسبوقة بألف أو الألف المقصورة؛ لذا الصواب «كتابًا»."}, {"q": "أيُّ كلمة لا تزاد فيها ألف تنوين النصب لأنها منتهية بتاء مربوطة؟", "o": ["مديرًا", "يومًا", "مدرسةً", "عهدًا"], "a": 2, "ok": "أحسنتِ 🌷 «مدرسةً» لا نزيد بعدها ألف تنوين النصب.", "bad": "إذا انتهى الاسم بتاء مربوطة فلا تزاد بعده ألف تنوين النصب."}, {"q": "أيُّ مجموعة تحتوي كلمات تزاد فيها الواو في الرسم؟", "o": ["أولئك – أولو – أولي – أولات", "هذا – هذه – لكن – ذلك", "قالوا – اعملوا – اكتبوا – اسعوا", "كتابًا – عهدًا – مديرًا – يومًا"], "a": 0, "ok": "ممتازة جدًا 🌟 من الكلمات التي تثبت فيها الواو: «أولئك، أولو، أولي، أولات».", "bad": "ركزي على الكلمات المحفوظة في باب زيادة الواو: «أولئك، أولو، أولي، أولات»."}, {"q": "لماذا تزاد الواو في اسم العلم «عمرو»؟", "o": ["لأنها واو جماعة", "للتفريق بينه وبين «عمر»", "لأنه جمع مذكر سالم", "لأنه فعل ماضٍ"], "a": 1, "ok": "صحيح 👏 تزاد الواو في «عمرو» للتفريق بينه وبين «عمر».", "bad": "الواو في «عمرو» زائدة للتفريق بينه وبين الاسم «عمر»."}, {"q": "أيُّ قاعدة تلخص درس الحروف المزيدة بأفضل صورة؟", "o": ["كل واو في آخر الكلمة نضع بعدها ألفًا", "كل اسم منصوب نضيف إليه ألفًا بلا استثناء", "نميز أولًا نوع الواو أو نهاية الاسم ثم نطبق موضع الزيادة", "كل ألف زائدة تُنطق"], "a": 2, "ok": "بطلة الرسم الإملائي ✨ هذه هي قاعدة الحسم الصحيحة.", "bad": "المفتاح هو التمييز أولًا: هل الواو واو جماعة أم أصلية؟ وهل الاسم المنون المنصوب له مانع من زيادة الألف؟"}];
+let index=0,score=0,answered=false;
+
+const arabicDigits=n=>String(n).replace(/\d/g,d=>'٠١٢٣٤٥٦٧٨٩'[d]);
+
+function tone(ok){
+  try{
+    const AC=window.AudioContext||window.webkitAudioContext;
+    const c=new AC(),o=c.createOscillator(),g=c.createGain();
+    o.connect(g);g.connect(c.destination);
+    o.type=ok?'sine':'triangle';
+    o.frequency.setValueAtTime(ok?660:220,c.currentTime);
+    if(ok){
+      o.frequency.exponentialRampToValueAtTime(920,c.currentTime+.16);
+    }else{
+      o.frequency.exponentialRampToValueAtTime(170,c.currentTime+.16);
+    }
+    g.gain.setValueAtTime(.07,c.currentTime);
+    g.gain.exponentialRampToValueAtTime(.001,c.currentTime+.23);
+    o.start();
+    o.stop(c.currentTime+.24);
+  }catch(e){}
+}
+
+function confetti(){
+  const burst=document.getElementById('burst');
+  burst.innerHTML='';
+  const colors=['#5b4677','#776094','#b69750','#d8c28a','#eee5f5'];
+  for(let i=0;i<26;i++){
+    const s=document.createElement('i');
+    s.className='confetti';
+    s.style.left=(Math.random()*100)+'vw';
+    s.style.top='-10px';
+    s.style.background=colors[i%colors.length];
+    s.style.animationDelay=(Math.random()*170)+'ms';
+    burst.appendChild(s);
+  }
+  setTimeout(()=>burst.innerHTML='',1200);
+}
+
+function render(){
+  answered=false;
+  const x=questions[index];
+
+  document.getElementById('qnum').textContent='السؤال '+arabicDigits(index+1);
+  document.getElementById('counter').textContent='السؤال '+arabicDigits(index+1)+' من '+arabicDigits(questions.length);
+  document.getElementById('correctCount').textContent='الصحيح: '+arabicDigits(score);
+  document.getElementById('bar').style.width=(index/questions.length*100)+'%';
+
+  document.getElementById('question').textContent=x.q;
+
+  const options=document.getElementById('options');
+  const feedback=document.getElementById('feedback');
+  const next=document.getElementById('next');
+  const card=document.getElementById('card');
+
+  options.innerHTML='';
+  feedback.className='feedback';
+  feedback.innerHTML='';
+  next.style.display='none';
+  card.classList.remove('pop');
+
+  x.o.forEach((t,j)=>{
+    const b=document.createElement('button');
+    b.className='opt';
+    b.textContent=t;
+    b.onclick=()=>choose(j,b);
+    options.appendChild(b);
+  });
+}
+
+function choose(choice,button){
+  if(answered)return;
+  answered=true;
+
+  const x=questions[index];
+  const btns=[...document.querySelectorAll('.opt')];
+  btns.forEach(b=>b.disabled=true);
+  btns[x.a].classList.add('correct');
+
+  const feedback=document.getElementById('feedback');
+
+  if(choice===x.a){
+    score++;
+    button.classList.add('correct');
+    feedback.className='feedback show good';
+    feedback.textContent=x.ok;
+    tone(true);
+    confetti();
+    if(navigator.vibrate)navigator.vibrate(45);
+  }else{
+    button.classList.add('wrong');
+    feedback.className='feedback show bad';
+    feedback.innerHTML='<b>راجعي القاعدة 👀</b><br>'+x.bad;
+    tone(false);
+    if(navigator.vibrate)navigator.vibrate([70,40,70]);
+  }
+
+  document.getElementById('correctCount').textContent='الصحيح: '+arabicDigits(score);
+  document.getElementById('card').classList.add('pop');
+
+  const next=document.getElementById('next');
+  next.textContent=index===questions.length-1
+    ?'شوفي نتيجتك ✨'
+    :'كمّلي التحدي ←';
+
+  next.style.display='block';
+}
+
+document.getElementById('next').onclick=()=>{
+  index++;
+  if(index<questions.length){
+    render();
+  }else{
+    finish();
+  }
+};
+
+function finish(){
+  document.getElementById('bar').style.width='100%';
+  document.getElementById('card').style.display='none';
+  document.querySelector('.top').style.display='none';
+  document.querySelector('.progress').style.display='none';
+
+  const result=document.getElementById('result');
+  result.classList.add('show');
+
+  document.getElementById('score').textContent=
+    arabicDigits(score)+' / '+arabicDigits(questions.length);
+
+  const pct=score/questions.length;
+
+  document.getElementById('message').textContent=
+    pct===1
+    ?'إتقان كامل! بطلة الحروف المزيدة 🏆'
+    :pct>=.8
+    ?'ممتازة جدًا 🌟 أتقنتِ مواضع زيادة الألف والواو.'
+    :pct>=.6
+    ?'أداء جميل 👏 راجعي الألف الفارقة وألف تنوين النصب ومواضع زيادة الواو ثم أعيدي التحدي.'
+    :'راجعي ملف الدرس، خاصة الألف الفارقة، مواضع عدم زيادة الألف، وألف تنوين النصب، ثم عودي للتحدي.';
+
+  if(pct>=.8)confetti();
+}
+
+function restartQuiz(){
+  index=0;
+  score=0;
+  answered=false;
+
+  document.getElementById('card').style.display='flex';
+  document.querySelector('.top').style.display='flex';
+  document.querySelector('.progress').style.display='block';
+  document.getElementById('result').classList.remove('show');
+
+  render();
+}
+
+render();
+</script>
 
 </body>
 </html>
