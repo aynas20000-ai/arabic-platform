@@ -1,861 +1,307 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>اختبار درس الاستثناء</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    html,
-    body {
-      width: 100%;
-      max-width: 100%;
-      margin: 0;
-      overflow-x: hidden;
-    }
-
-    body {
-      min-height: 100vh;
-      font-family: Tahoma, Arial, sans-serif;
-      color: #4b3a57;
-      text-align: center;
-      background: linear-gradient(180deg, #fffaf2, #f8f0fb);
-    }
-
-    header {
-      padding: 38px 20px;
-      color: white;
-      background: linear-gradient(135deg, #776094, #5b4677);
-      border-bottom: 4px solid #c9a85c;
-    }
-
-    header h1 {
-      margin: 0;
-      color: #fffdf8;
-      font-size: 32px;
-      line-height: 1.6;
-    }
-
-    main {
-      width: 90%;
-      max-width: 800px;
-      margin: 25px auto;
-    }
-
-    .quiz-info,
-    .quiz-card,
-    .result-card {
-      padding: 22px;
-      background: #fffdf8;
-      border: 2px solid #c9a85c;
-      border-radius: 22px;
-      box-shadow: 0 7px 18px rgba(91, 63, 111, 0.12);
-    }
-
-    .quiz-info {
-      margin-bottom: 18px;
-    }
-
-    .quiz-stats {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 12px;
-      color: #5d4374;
-      font-weight: bold;
-    }
-
-    .progress-track {
-      height: 14px;
-      overflow: hidden;
-      background: #eadff0;
-      border-radius: 20px;
-    }
-
-    .progress-fill {
-      width: 0;
-      height: 100%;
-      background: linear-gradient(90deg, #776094, #c9a85c);
-      transition: width 0.4s ease;
-    }
-
-    .question-number {
-      margin-bottom: 10px;
-      color: #8b6b25;
-      font-weight: bold;
-    }
-
-    .question-text {
-      margin-bottom: 20px;
-      color: #5d4374;
-      font-size: 23px;
-      font-weight: bold;
-      line-height: 1.8;
-    }
-
-    .answers {
-      display: grid;
-      gap: 13px;
-    }
-
-    .answer-btn {
-      width: 100%;
-      padding: 15px;
-      color: #4b3a57;
-      font-family: Tahoma, Arial, sans-serif;
-      font-size: 18px;
-      line-height: 1.7;
-      text-align: right;
-      cursor: pointer;
-      background: linear-gradient(135deg, #f5ecfb, #fffaf2);
-      border: 2px solid #c9a85c;
-      border-radius: 16px;
-      transition:
-        transform 0.2s ease,
-        background 0.2s ease;
-    }
-
-    .answer-btn:hover,
-    .answer-btn:active {
-      background: #f1e5f8;
-      transform: translateY(-2px);
-    }
-
-    .answer-btn:disabled {
-      cursor: default;
-    }
-
-    .answer-btn.correct {
-      color: #25663c;
-      background: #e5f6e9;
-      border-color: #4d9b64;
-    }
-
-    .answer-btn.wrong {
-      color: #9c3547;
-      background: #fde8ec;
-      border-color: #c95c70;
-    }
-
-    .feedback {
-      min-height: 55px;
-      margin-top: 18px;
-      padding: 13px;
-      font-size: 18px;
-      font-weight: bold;
-      line-height: 1.7;
-      text-align: center;
-      border-radius: 16px;
-    }
-
-    .feedback.good {
-      color: #25663c;
-      background: #e5f6e9;
-      border: 1px solid #4d9b64;
-    }
-
-    .feedback.bad {
-      color: #9c3547;
-      background: #fde8ec;
-      border: 1px solid #c95c70;
-    }
-
-    .next-btn,
-    .restart-btn,
-    .return-btn {
-      display: block;
-      width: 100%;
-      margin-top: 15px;
-      padding: 15px;
-      color: white;
-      font-family: Tahoma, Arial, sans-serif;
-      font-size: 19px;
-      font-weight: bold;
-      text-align: center;
-      text-decoration: none;
-      cursor: pointer;
-      background: #6f5288;
-      border: 2px solid #c9a85c;
-      border-radius: 16px;
-    }
-
-    .next-btn {
-      display: none;
-    }
-
-    .next-btn:hover,
-    .next-btn:active,
-    .restart-btn:hover,
-    .restart-btn:active,
-    .return-btn:hover,
-    .return-btn:active {
-      background: #5b4677;
-    }
-
-    .result-card {
-      display: none;
-      text-align: center;
-    }
-
-    .result-icon {
-      font-size: 70px;
-    }
-
-    .result-title {
-      margin: 10px 0;
-      color: #5d4374;
-      font-size: 30px;
-    }
-
-    .final-score {
-      margin: 18px 0;
-      color: #8b6b25;
-      font-size: 24px;
-      font-weight: bold;
-    }
-
-    .result-card p {
-      color: #4b3a57;
-      font-size: 18px;
-      line-height: 1.8;
-    }
-
-    footer {
-      margin-top: 30px;
-      padding: 20px;
-      color: #fffdf8;
-      background: #49385c;
-      border-top: 3px solid #c9a85c;
-    }
-
-    .shake {
-      animation: shake 0.35s;
-    }
-
-    @keyframes shake {
-      0% {
-        transform: translateX(0);
-      }
-
-      25% {
-        transform: translateX(8px);
-      }
-
-      50% {
-        transform: translateX(-8px);
-      }
-
-      75% {
-        transform: translateX(6px);
-      }
-
-      100% {
-        transform: translateX(0);
-      }
-    }
-
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 27px;
-      }
-
-      main {
-        width: 94%;
-      }
-
-      .quiz-info,
-      .quiz-card,
-      .result-card {
-        padding: 18px 14px;
-      }
-
-      .quiz-stats {
-        font-size: 14px;
-      }
-
-      .question-text {
-        font-size: 19px;
-      }
-
-      .answer-btn {
-        padding: 14px 12px;
-        font-size: 16px;
-      }
-
-      .feedback {
-        font-size: 16px;
-      }
-
-      .next-btn,
-      .restart-btn,
-      .return-btn {
-        font-size: 17px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>اختبار أسلوب الاستثناء | منصة آفاق</title>
+<style>
+:root{
+ --p:#5b4677;--p2:#776094;--pd:#453457;
+ --g:#b69750;--g2:#d8c28a;--lav:#eee5f5;
+ --paper:#fffdf9;--text:#403448;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{
+ font-family:Tahoma,Arial,sans-serif;color:var(--text);
+ background:linear-gradient(180deg,#f5f0fa,#fbf9fd,#f1ebf7);
+ overflow:hidden;
+}
+.app{height:100dvh;display:grid;grid-template-rows:auto 1fr auto}
+header{
+ text-align:center;color:#fff;padding:10px 12px 8px;
+ background:linear-gradient(145deg,var(--p2),var(--p),var(--pd));
+ border-bottom:4px solid var(--g);
+}
+.tag{
+ display:inline-block;padding:3px 10px;border-radius:999px;
+ border:1px solid var(--g2);color:#fff2c6;
+ background:rgba(182,151,80,.13);font-size:11px;font-weight:bold;
+}
+header h1{margin:4px 0 0;font-size:clamp(19px,4.8vw,28px)}
+header p{margin:0;color:#f2ebf6;font-size:11px}
+main{
+ min-height:0;width:min(760px,94%);margin:0 auto;padding:7px 0;
+ display:flex;flex-direction:column;
+}
+.top{
+ display:flex;justify-content:space-between;gap:8px;
+ font-weight:bold;color:var(--p);font-size:13px;margin-bottom:5px;
+}
+.progress{
+ height:8px;background:#e9e0ef;border-radius:999px;
+ overflow:hidden;margin-bottom:7px;
+}
+.progress>div{
+ height:100%;width:0;
+ background:linear-gradient(90deg,var(--g),#dfca8f);transition:.3s;
+}
+.card,.result{
+ flex:1;min-height:0;background:var(--paper);
+ border:1px solid var(--g2);border-radius:22px;
+ box-shadow:0 14px 30px rgba(73,54,92,.12);
+ padding:12px;display:flex;flex-direction:column;justify-content:center;
+}
+.qnum{color:var(--g);font-weight:bold;font-size:12px;margin-bottom:2px}
+h2{
+ font-size:clamp(16px,4.3vw,21px);margin:2px 0 8px;
+ color:var(--pd);line-height:1.5;
+}
+.options{display:grid;gap:6px}
+.opt{
+ width:100%;padding:8px 10px;border-radius:13px;
+ border:2px solid #e4dbe9;background:#fff;color:var(--text);
+ font:inherit;font-size:clamp(13px,3.4vw,16px);
+ text-align:right;cursor:pointer;line-height:1.35;
+}
+.opt.correct{background:#f0ecf6;border-color:var(--p2);color:var(--pd)}
+.opt.wrong{background:#fff8ec;border-color:var(--g2);color:#66522e}
+.opt:disabled{cursor:default}
+.feedback{
+ display:none;margin-top:7px;padding:8px 10px;border-radius:13px;
+ font-size:clamp(12px,3.2vw,14px);line-height:1.45;
+}
+.feedback.show{display:block}
+.feedback.good{background:#f3edf8;border:1px solid #c9b8d4;color:var(--pd)}
+.feedback.bad{background:#fff9ec;border:1px solid var(--g2);color:#66522e}
+.next{
+ display:none;width:100%;margin-top:7px;padding:8px;border:0;border-radius:13px;
+ background:linear-gradient(145deg,var(--p2),var(--p));
+ color:#fff;font:inherit;font-weight:bold;cursor:pointer;font-size:14px;
+}
+.result{display:none;text-align:center}
+.result.show{display:flex}
+.score{font-size:40px;color:var(--g);font-weight:bold}
+.restart,.lesson{
+ display:block;text-decoration:none;width:100%;padding:10px;
+ margin-top:8px;border-radius:13px;font-weight:bold;
+}
+.restart{
+ border:0;background:linear-gradient(145deg,var(--p2),var(--p));
+ color:#fff;font:inherit;cursor:pointer;
+}
+.lesson{background:var(--lav);color:var(--pd);border:1px solid #d6c7df}
+footer{text-align:center;padding:5px;color:#73697a;font-size:9px}
+.burst{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:20}
+.confetti{
+ position:absolute;width:8px;height:8px;border-radius:2px;
+ animation:fall 900ms ease-out forwards;
+}
+@keyframes fall{
+ 0%{transform:translateY(-20px) rotate(0);opacity:1}
+ 100%{transform:translateY(105vh) rotate(540deg);opacity:0}
+}
+.pop{animation:pop .25s ease}
+@keyframes pop{50%{transform:scale(1.018)}}
+@media(max-height:650px){
+ header{padding:5px 10px 4px}
+ header h1{font-size:17px}
+ header p{font-size:9px}
+ main{padding:3px 0}
+ .top{font-size:11px;margin-bottom:3px}
+ .progress{height:6px;margin-bottom:4px}
+ .card{padding:7px}
+ h2{font-size:15px;margin-bottom:5px}
+ .options{gap:4px}
+ .opt{padding:5px 7px;font-size:12px}
+ .feedback{padding:5px 7px;margin-top:4px;font-size:11px}
+ .next{padding:6px;margin-top:4px}
+}
+</style>
 </head>
-
 <body>
 
-  <header>
-    <h1>✅ اختبار تجريبي لدرس الاستثناء</h1>
-  </header>
-
-  <main>
-
-    <div id="quizArea">
-
-      <div class="quiz-info">
-
-        <div class="quiz-stats">
-          <span id="progressText">السؤال 1 من 15</span>
-          <span id="scoreText">الدرجة: 0</span>
-        </div>
-
-        <div class="progress-track">
-          <div class="progress-fill" id="progressFill"></div>
-        </div>
-
-      </div>
-
-      <div class="quiz-card" id="quizCard">
-
-        <div class="question-number" id="questionNumber"></div>
-
-        <div class="question-text" id="questionText"></div>
-
-        <div class="answers" id="answers"></div>
-
-        <div class="feedback" id="feedback"></div>
-
-        <button
-          type="button"
-          class="next-btn"
-          id="nextBtn"
-          onclick="nextQuestion()">
-          السؤال التالي ←
-        </button>
-
-      </div>
-
-    </div>
-
-    <div class="result-card" id="resultCard">
-
-      <div class="result-icon" id="resultIcon">🏆</div>
-
-      <h2 class="result-title" id="resultTitle">
-        أحسنتِ
-      </h2>
-
-      <div class="final-score" id="finalScore"></div>
-
-      <p id="resultMessage"></p>
-
-      <button
-        type="button"
-        class="restart-btn"
-        onclick="restartQuiz()">
-        🔄 إعادة الاختبار
-      </button>
-
-      <a class="return-btn" href="mustathna.html">
-        العودة إلى درس المستثنى
-      </a>
-
-    </div>
-
-  </main>
-
-  <footer>
-    جميع الحقوق محفوظة © 2026
-  </footer>
-
-  <script>
-    const questions = [
-      {
-        question: "ما تعريف أسلوب الاستثناء؟",
-        answers: [
-          "إخراج اسم من حكم ما قبله بواسطة أداة استثناء",
-          "وصف اسم بصفة",
-          "تأكيد معنى الجملة",
-          "ربط جملتين بحرف عطف"
-        ],
-        correct: 0
-      },
-      {
-        question: "ما المستثنى منه في جملة: حضر الطلابُ إلا طالبًا؟",
-        answers: [
-          "حضر",
-          "الطلابُ",
-          "إلا",
-          "طالبًا"
-        ],
-        correct: 1
-      },
-      {
-        question: "ما المستثنى في جملة: حضر الطلابُ إلا طالبًا؟",
-        answers: [
-          "حضر",
-          "الطلابُ",
-          "إلا",
-          "طالبًا"
-        ],
-        correct: 3
-      },
-      {
-        question: "أي الكلمات الآتية أداة استثناء؟",
-        answers: [
-          "لكن",
-          "إلا",
-          "ثم",
-          "لعل"
-        ],
-        correct: 1
-      },
-      {
-        question: "ما نوع الاستثناء في: حضر الطلابُ إلا طالبًا؟",
-        answers: [
-          "تام مثبت",
-          "تام منفي",
-          "ناقص منفي",
-          "أسلوب شرط"
-        ],
-        correct: 0
-      },
-      {
-        question: "ما حكم المستثنى في الاستثناء التام المثبت؟",
-        answers: [
-          "يجب رفعه",
-          "يجب جره",
-          "يجب نصبه",
-          "يجوز جزمه"
-        ],
-        correct: 2
-      },
-      {
-        question: "ما نوع الاستثناء في: ما حضر الطلابُ إلا طالبٌ؟",
-        answers: [
-          "تام مثبت",
-          "تام منفي",
-          "ناقص منفي",
-          "مفرغ مثبت"
-        ],
-        correct: 1
-      },
-      {
-        question: "في الاستثناء التام المنفي يجوز في المستثنى:",
-        answers: [
-          "النصب فقط",
-          "الرفع فقط",
-          "النصب على الاستثناء أو الإتباع على البدلية",
-          "الجر فقط"
-        ],
-        correct: 2
-      },
-      {
-        question: "ما نوع الاستثناء في: ما حضر إلا طالبٌ؟",
-        answers: [
-          "تام مثبت",
-          "تام منفي",
-          "ناقص منفي مفرغ",
-          "منقطع"
-        ],
-        correct: 2
-      },
-      {
-        question: "ما إعراب كلمة طالبٌ في: ما حضر إلا طالبٌ؟",
-        answers: [
-          "مستثنى منصوب",
-          "فاعل مرفوع",
-          "مفعول به منصوب",
-          "مضاف إليه مجرور"
-        ],
-        correct: 1
-      },
-      {
-        question: "في جملة: حضر الطلابُ غيرَ طالبٍ، تعرب غيرَ:",
-        answers: [
-          "فاعلًا مرفوعًا",
-          "مستثنى منصوبًا وهو مضاف",
-          "مفعولًا به",
-          "مضافًا إليه"
-        ],
-        correct: 1
-      },
-      {
-        question: "في جملة: حضر الطلابُ غيرَ طالبٍ، تعرب طالبٍ:",
-        answers: [
-          "فاعلًا",
-          "تمييزًا",
-          "مضافًا إليه مجرورًا",
-          "حالًا"
-        ],
-        correct: 2
-      },
-      {
-        question: "أي الأدوات الآتية تعامل معاملة غير؟",
-        answers: [
-          "سوى",
-          "إلا",
-          "عدا",
-          "حاشا"
-        ],
-        correct: 0
-      },
-      {
-        question: "في جملة: حضر الطلابُ ما عدا طالبًا، تعرب طالبًا:",
-        answers: [
-          "فاعلًا مرفوعًا",
-          "مفعولًا به منصوبًا",
-          "مضافًا إليه",
-          "بدلًا مرفوعًا"
-        ],
-        correct: 1
-      },
-      {
-        question: "أي جملة تمثل استثناءً ناقصًا منفيًا؟",
-        answers: [
-          "نجح الطلابُ إلا طالبًا",
-          "ما نجح الطلابُ إلا طالبٌ",
-          "ما نجح إلا طالبٌ",
-          "نجح غيرُ طالبٍ"
-        ],
-        correct: 2
-      }
-    ];
-
-    const goodMessages = [
-      "صوت النجاح لكِ! إجابة رائعة 🎵🌟",
-      "أبدعتِ، خطوة أقرب إلى الإتقان 🏆",
-      "إجابة صحيحة يا خبيرة الاستثناء 👏",
-      "رائعة! حافظي على هذا التركيز 🚀",
-      "ممتازة، تم فتح مستوى جديد 🔓",
-      "يا سلام! إجابة دقيقة جدًا ✨"
-    ];
-
-    const badMessages = [
-      "محاولة طيبة، راجعي نوع الاستثناء ثم واصلي 🌱",
-      "لا بأس، الخطأ تدريب للعقل 💪",
-      "قريبة جدًا، انتبهي لوجود النفي والمستثنى منه 🔍",
-      "السؤال القادم فرصتك للتعويض 🌷",
-      "استمري، البطلات لا يتوقفن عند خطأ واحد ⭐"
-    ];
-
-    let currentQuestion = 0;
-    let score = 0;
-    let answered = false;
-
-    const questionText =
-      document.getElementById("questionText");
-
-    const answersBox =
-      document.getElementById("answers");
-
-    const feedback =
-      document.getElementById("feedback");
-
-    const nextBtn =
-      document.getElementById("nextBtn");
-
-    const quizCard =
-      document.getElementById("quizCard");
-
-    function loadQuestion() {
-      answered = false;
-
-      const item = questions[currentQuestion];
-
-      document.getElementById("questionNumber").textContent =
-        "السؤال رقم " + (currentQuestion + 1);
-
-      document.getElementById("progressText").textContent =
-        "السؤال " +
-        (currentQuestion + 1) +
-        " من " +
-        questions.length;
-
-      document.getElementById("scoreText").textContent =
-        "الدرجة: " + score;
-
-      document.getElementById("progressFill").style.width =
-        ((currentQuestion / questions.length) * 100) + "%";
-
-      questionText.textContent = item.question;
-
-      answersBox.innerHTML = "";
-      feedback.textContent = "";
-      feedback.className = "feedback";
-      nextBtn.style.display = "none";
-
-      item.answers.forEach((answer, index) => {
-        const button = document.createElement("button");
-
-        button.type = "button";
-        button.className = "answer-btn";
-        button.textContent = answer;
-
-        button.onclick = () =>
-          selectAnswer(index, button);
-
-        answersBox.appendChild(button);
-      });
-    }
-
-    function selectAnswer(index, selectedButton) {
-      if (answered) {
-        return;
-      }
-
-      answered = true;
-
-      const correctIndex =
-        questions[currentQuestion].correct;
-
-      const buttons =
-        document.querySelectorAll(".answer-btn");
-
-      buttons.forEach(button => {
-        button.disabled = true;
-      });
-
-      if (index === correctIndex) {
-        score++;
-
-        selectedButton.classList.add("correct");
-
-        feedback.textContent =
-          goodMessages[
-            Math.floor(
-              Math.random() * goodMessages.length
-            )
-          ];
-
-        feedback.className = "feedback good";
-
-        playTone(true);
-      } else {
-        selectedButton.classList.add("wrong");
-        buttons[correctIndex].classList.add("correct");
-
-        feedback.textContent =
-          badMessages[
-            Math.floor(
-              Math.random() * badMessages.length
-            )
-          ];
-
-        feedback.className = "feedback bad";
-
-        quizCard.classList.add("shake");
-
-        setTimeout(() => {
-          quizCard.classList.remove("shake");
-        }, 400);
-
-        if ("vibrate" in navigator) {
-          navigator.vibrate([100, 60, 100]);
-        }
-
-        playTone(false);
-      }
-
-      document.getElementById("scoreText").textContent =
-        "الدرجة: " + score;
-
-      nextBtn.style.display = "block";
-
-      if (currentQuestion === questions.length - 1) {
-        nextBtn.textContent = "عرض النتيجة 🏆";
-      } else {
-        nextBtn.textContent = "السؤال التالي ←";
-      }
-    }
-
-    function playTone(correct) {
-      try {
-        const audioContext =
-          new (
-            window.AudioContext ||
-            window.webkitAudioContext
-          )();
-
-        const oscillator =
-          audioContext.createOscillator();
-
-        const gain =
-          audioContext.createGain();
-
-        oscillator.connect(gain);
-        gain.connect(audioContext.destination);
-
-        oscillator.type =
-          correct ? "sine" : "triangle";
-
-        if (correct) {
-          oscillator.frequency.setValueAtTime(
-            620,
-            audioContext.currentTime
-          );
-
-          oscillator.frequency.setValueAtTime(
-            820,
-            audioContext.currentTime + 0.1
-          );
-
-          oscillator.frequency.setValueAtTime(
-            1040,
-            audioContext.currentTime + 0.2
-          );
-        } else {
-          oscillator.frequency.setValueAtTime(
-            260,
-            audioContext.currentTime
-          );
-
-          oscillator.frequency.setValueAtTime(
-            190,
-            audioContext.currentTime + 0.15
-          );
-        }
-
-        gain.gain.setValueAtTime(
-          0.12,
-          audioContext.currentTime
-        );
-
-        gain.gain.exponentialRampToValueAtTime(
-          0.01,
-          audioContext.currentTime + 0.35
-        );
-
-        oscillator.start();
-
-        oscillator.stop(
-          audioContext.currentTime + 0.35
-        );
-      } catch (error) {
-        console.log(
-          "الصوت غير مدعوم في هذا الجهاز"
-        );
-      }
-    }
-
-    function nextQuestion() {
-      currentQuestion++;
-
-      if (currentQuestion < questions.length) {
-        loadQuestion();
-
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth"
-        });
-      } else {
-        showResult();
-      }
-    }
-
-    function showResult() {
-      document.getElementById("quizArea").style.display =
-        "none";
-
-      document.getElementById("resultCard").style.display =
-        "block";
-
-      const percentage =
-        Math.round(
-          (score / questions.length) * 100
-        );
-
-      document.getElementById("finalScore").textContent =
-        "درجتك: " +
-        score +
-        " من " +
-        questions.length +
-        " — " +
-        percentage +
-        "%";
-
-      const icon =
-        document.getElementById("resultIcon");
-
-      const title =
-        document.getElementById("resultTitle");
-
-      const message =
-        document.getElementById("resultMessage");
-
-      if (percentage >= 90) {
-        icon.textContent = "🏆";
-        title.textContent = "خبيرة الاستثناء!";
-
-        message.textContent =
-          "إتقان مذهل، تستحقين وسام النجمة الذهبية.";
-      } else if (percentage >= 70) {
-        icon.textContent = "🌟";
-        title.textContent = "أداء رائع!";
-
-        message.textContent =
-          "فهمك قوي، راجعي الأخطاء البسيطة فقط.";
-      } else if (percentage >= 50) {
-        icon.textContent = "🌱";
-        title.textContent = "تقدم جميل";
-
-        message.textContent =
-          "راجعي أنواع الاستثناء وأحكامه ثم أعيدي المحاولة.";
-      } else {
-        icon.textContent = "💪";
-        title.textContent = "المحاولة تصنع الإتقان";
-
-        message.textContent =
-          "اقرئي ملف الدرس وشاهدي الفيديو ثم عودي بثقة.";
-      }
-
-      if (
-        "vibrate" in navigator &&
-        percentage >= 70
-      ) {
-        navigator.vibrate([
-          100,
-          70,
-          100,
-          70,
-          180
-        ]);
-      }
-
-      playTone(percentage >= 70);
-
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-    }
-
-    function restartQuiz() {
-      currentQuestion = 0;
-      score = 0;
-      answered = false;
-
-      document.getElementById("quizArea").style.display =
-        "block";
-
-      document.getElementById("resultCard").style.display =
-        "none";
-
-      loadQuestion();
-    }
-
-    loadQuestion();
-  </script>
+<div class="app">
+<header>
+ <span class="tag">منصة آفاق التعليمية</span>
+ <h1>تحدي أسلوب الاستثناء</h1>
+ <p>١٠ أسئلة • سؤال واحد في كل شاشة • تعقيب فوري ✨</p>
+</header>
+
+<main>
+ <div class="top">
+  <span id="counter">السؤال ١ من ١٠</span>
+  <span id="correctCount">الصحيح: ٠</span>
+ </div>
+
+ <div class="progress"><div id="bar"></div></div>
+
+ <section class="card" id="card">
+  <div class="qnum" id="qnum"></div>
+  <h2 id="question"></h2>
+  <div class="options" id="options"></div>
+  <div class="feedback" id="feedback"></div>
+  <button class="next" id="next">السؤال التالي</button>
+ </section>
+
+ <section class="result" id="result">
+  <h2>انتهى التحدي ✨</h2>
+  <div class="score" id="score"></div>
+  <p id="message"></p>
+  <button class="restart" onclick="restartQuiz()">أعيدي التحدي</button>
+  <a class="lesson" href="exception-style-file.html">راجعي ملف الدرس</a>
+  <a class="lesson" href="exception-style.html">العودة إلى درس الاستثناء</a>
+ </section>
+</main>
+
+<footer>منصة آفاق التعليمية | لغتي الخالدة | الصف الثالث المتوسط</footer>
+</div>
+
+<div class="burst" id="burst"></div>
+
+<script>
+const questions=[{"q": "ما المستثنى في الجملة: «حضر الطلابُ إلا خالدًا»؟", "o": ["حضر", "الطلابُ", "إلا", "خالدًا"], "a": 3, "ok": "أحسنتِ 🌟 «خالدًا» هو المستثنى؛ لأنه أُخرج من حكم ما قبله بأداة الاستثناء «إلا».", "bad": "ابحثي عن الاسم الواقع بعد «إلا» والمخالف لما قبلها في الحكم: «خالدًا»."}, {"q": "الجملة «نجح الطلابُ إلا طالبًا» تُعدُّ:", "o": ["تامّة مثبتة", "تامّة منفية", "ناقصة منفية", "أسلوب تعجب"], "a": 0, "ok": "ممتازة ✨ الجملة تامة لأن المستثنى منه مذكور، ومثبتة لعدم وجود نفي.", "bad": "وجود «الطلاب» يعني أن المستثنى منه مذكور، وعدم وجود نفي يجعلها تامة مثبتة."}, {"q": "ما حكم المستثنى بـ«إلا» في الاستثناء التام المثبت؟", "o": ["يجب نصبه", "يجب رفعه", "يجوز نصبه أو إتباعه", "يعرب حسب موقعه"], "a": 0, "ok": "رائعة 👏 في الاستثناء التام المثبت يجب نصب المستثنى.", "bad": "القاعدة: تام مثبت + إلا ← المستثنى منصوب وجوبًا."}, {"q": "في الجملة «ما حضر الطلابُ إلا خالدٌ/خالدًا» ما الحكم الصحيح؟", "o": ["يجب النصب فقط", "يجوز النصب على الاستثناء أو الإتباع على البدلية", "يجب الجر", "يعرب مفعولًا به فقط"], "a": 1, "ok": "صحيح جدًا 💜 في التام المنفي يجوز الوجهان: النصب على الاستثناء أو الإتباع للمستثنى منه.", "bad": "إذا كان الأسلوب تامًا منفيًا، جاز نصب المستثنى أو إتباعه للمستثنى منه في الإعراب."}, {"q": "ما نوع الاستثناء في الجملة: «ما حضر إلا خالدٌ»؟", "o": ["تام مثبت", "تام منفي", "ناقص منفي (مفرغ)", "استثناء بغير"], "a": 2, "ok": "أحسنتِ 🎯 المستثنى منه غير مذكور والجملة منفية، فهو استثناء ناقص منفي «مفرغ».", "bad": "إذا حذف المستثنى منه وسبق الأسلوب بنفي فهو ناقص منفي «مفرغ»."}, {"q": "كيف نعرب «خالدٌ» في: «ما حضر إلا خالدٌ»؟", "o": ["مستثنى منصوب", "فاعل مرفوع", "مضاف إليه", "مفعول به"], "a": 1, "ok": "ممتازة 🌟 في الاستثناء المفرغ يُعرب ما بعد «إلا» حسب موقعه في الجملة؛ وهنا «خالدٌ» فاعل.", "bad": "احذفي «إلا» ذهنيًا: «ما حضر خالدٌ»؛ إذن خالد فاعل مرفوع."}, {"q": "أيُّ عبارة صحيحة عن «غير» و«سوى» في الاستثناء؟", "o": ["حرفان لا محل لهما", "اسمان يأخذان حكم المستثنى بـ«إلا»، وما بعدهما مضاف إليه", "فعلان ماضيان", "ما بعدهما يعرب فاعلًا دائمًا"], "a": 1, "ok": "بطلة 👏 «غير» و«سوى» اسمان، يعربان بحسب نوع الاستثناء، وما بعدهما مضاف إليه.", "bad": "تذكري: «غير» و«سوى» اسمان، وما بعدهما دائمًا مضاف إليه."}, {"q": "في الجملة «حضر الطلابُ غيرَ خالدٍ»، ما إعراب «خالدٍ»؟", "o": ["مستثنى منصوب", "مضاف إليه مجرور", "فاعل مرفوع", "بدل مرفوع"], "a": 1, "ok": "صحيح ✨ الاسم بعد «غير» أو «سوى» مضاف إليه مجرور: «خالدٍ».", "bad": "ما بعد «غير» و«سوى» يعرب مضافًا إليه مجرورًا."}, {"q": "أيُّ جملة تمثل استثناءً ناقصًا منفيًا؟", "o": ["حضر القومُ إلا رجلًا", "ما حضر القومُ إلا رجلٌ", "ما حضر إلا رجلٌ", "حضر القومُ غيرَ رجلٍ"], "a": 2, "ok": "إتقان رائع 🏆 «ما حضر إلا رجلٌ» ناقص منفي؛ لأن المستثنى منه محذوف.", "bad": "ابحثي عن جملة منفية لا يظهر فيها المستثنى منه: «ما حضر إلا رجلٌ»."}, {"q": "ما الخطوة الأذكى لتحديد حكم المستثنى بـ«إلا»؟", "o": ["أنظر إلى حركة آخر المستثنى فقط", "أحدد أولًا: هل المستثنى منه مذكور؟ وهل الجملة مثبتة أم منفية؟", "أنصب ما بعد «إلا» دائمًا", "أحذف أداة الاستثناء دائمًا"], "a": 1, "ok": "ممتازة جدًا 🧠 ابدئي بتحديد نوع الأسلوب: تام أم ناقص، مثبت أم منفي؛ ومنه يظهر الحكم.", "bad": "مفتاح الدرس: وجود المستثنى منه + وجود النفي يحددان نوع الاستثناء وحكمه."}];
+let index=0,score=0,answered=false;
+const arabicDigits=n=>String(n).replace(/\d/g,d=>'٠١٢٣٤٥٦٧٨٩'[d]);
+
+function tone(ok){
+ try{
+  const AC=window.AudioContext||window.webkitAudioContext;
+  const c=new AC(),o=c.createOscillator(),g=c.createGain();
+  o.connect(g);g.connect(c.destination);
+  o.type=ok?'sine':'triangle';
+  o.frequency.setValueAtTime(ok?660:220,c.currentTime);
+  if(ok) o.frequency.exponentialRampToValueAtTime(920,c.currentTime+.16);
+  else o.frequency.exponentialRampToValueAtTime(170,c.currentTime+.16);
+  g.gain.setValueAtTime(.07,c.currentTime);
+  g.gain.exponentialRampToValueAtTime(.001,c.currentTime+.23);
+  o.start();o.stop(c.currentTime+.24);
+ }catch(e){}
+}
+
+function confetti(){
+ const burst=document.getElementById('burst');
+ burst.innerHTML='';
+ const colors=['#5b4677','#776094','#b69750','#d8c28a','#eee5f5'];
+ for(let i=0;i<26;i++){
+  const s=document.createElement('i');
+  s.className='confetti';
+  s.style.left=(Math.random()*100)+'vw';
+  s.style.top='-10px';
+  s.style.background=colors[i%colors.length];
+  s.style.animationDelay=(Math.random()*170)+'ms';
+  burst.appendChild(s);
+ }
+ setTimeout(()=>burst.innerHTML='',1200);
+}
+
+function render(){
+ answered=false;
+ const x=questions[index];
+ document.getElementById('qnum').textContent='السؤال '+arabicDigits(index+1);
+ document.getElementById('counter').textContent='السؤال '+arabicDigits(index+1)+' من '+arabicDigits(questions.length);
+ document.getElementById('correctCount').textContent='الصحيح: '+arabicDigits(score);
+ document.getElementById('bar').style.width=(index/questions.length*100)+'%';
+ document.getElementById('question').textContent=x.q;
+
+ const options=document.getElementById('options');
+ const feedback=document.getElementById('feedback');
+ const next=document.getElementById('next');
+ const card=document.getElementById('card');
+
+ options.innerHTML='';
+ feedback.className='feedback';
+ feedback.innerHTML='';
+ next.style.display='none';
+ card.classList.remove('pop');
+
+ x.o.forEach((t,j)=>{
+  const b=document.createElement('button');
+  b.className='opt';
+  b.textContent=t;
+  b.onclick=()=>choose(j,b);
+  options.appendChild(b);
+ });
+}
+
+function choose(choice,button){
+ if(answered)return;
+ answered=true;
+
+ const x=questions[index];
+ const btns=[...document.querySelectorAll('.opt')];
+ btns.forEach(b=>b.disabled=true);
+ btns[x.a].classList.add('correct');
+
+ const feedback=document.getElementById('feedback');
+
+ if(choice===x.a){
+  score++;
+  button.classList.add('correct');
+  feedback.className='feedback show good';
+  feedback.textContent=x.ok;
+  tone(true);
+  confetti();
+  if(navigator.vibrate)navigator.vibrate(45);
+ }else{
+  button.classList.add('wrong');
+  feedback.className='feedback show bad';
+  feedback.innerHTML='<b>راجعي القاعدة 👀</b><br>'+x.bad;
+  tone(false);
+  if(navigator.vibrate)navigator.vibrate([70,40,70]);
+ }
+
+ document.getElementById('correctCount').textContent='الصحيح: '+arabicDigits(score);
+ document.getElementById('card').classList.add('pop');
+
+ const next=document.getElementById('next');
+ next.textContent=index===questions.length-1?'شوفي نتيجتك ✨':'كمّلي التحدي ←';
+ next.style.display='block';
+}
+
+document.getElementById('next').onclick=()=>{
+ index++;
+ if(index<questions.length) render();
+ else finish();
+};
+
+function finish(){
+ document.getElementById('bar').style.width='100%';
+ document.getElementById('card').style.display='none';
+ document.querySelector('.top').style.display='none';
+ document.querySelector('.progress').style.display='none';
+
+ const result=document.getElementById('result');
+ result.classList.add('show');
+
+ document.getElementById('score').textContent=
+  arabicDigits(score)+' / '+arabicDigits(questions.length);
+
+ const pct=score/questions.length;
+
+ document.getElementById('message').textContent=
+  pct===1
+  ?'إتقان كامل! بطلة أسلوب الاستثناء 🏆'
+  :pct>=.8
+  ?'ممتازة جدًا 🌟 أتقنتِ أنواع الاستثناء وأحكام المستثنى.'
+  :pct>=.6
+  ?'أداء جميل 👏 راجعي التام المثبت والتام المنفي والاستثناء المفرغ ثم أعيدي التحدي.'
+  :'راجعي ملف الدرس، وابدئي بتحديد: هل الأسلوب تام أم ناقص؟ مثبت أم منفي؟ ثم عودي للتحدي.';
+
+ if(pct>=.8)confetti();
+}
+
+function restartQuiz(){
+ index=0;score=0;answered=false;
+ document.getElementById('card').style.display='flex';
+ document.querySelector('.top').style.display='flex';
+ document.querySelector('.progress').style.display='block';
+ document.getElementById('result').classList.remove('show');
+ render();
+}
+
+render();
+</script>
 
 </body>
-
 </html>
