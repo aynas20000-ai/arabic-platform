@@ -2,242 +2,131 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>اختبار البدل | منصة آفاق</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>تحدي البدل | منصة آفاق</title>
 <style>
 :root{
-  --plum:#624b70;
-  --mauve:#9877a8;
-  --rose:#d895aa;
-  --rose-light:#faeaf0;
-  --gold:#c9a552;
-  --gold-light:#f4dda0;
-  --cream:#fff9f1;
-  --lav:#eee5f2;
-  --text:#55465c;
-  --green:#4e8a68;
-  --green-light:#eaf6ee;
-  --red:#b84747;
-  --red-light:#fff0f0;
+  --p:#5b4677;--p2:#776094;--pd:#453457;
+  --g:#b69750;--g2:#d8c28a;--lav:#eee5f5;
+  --paper:#fffdf9;--text:#403448;
 }
 *{box-sizing:border-box}
+html,body{height:100%;margin:0}
 body{
-  margin:0;
-  font-family:Tahoma,Arial,sans-serif;
-  color:var(--text);
-  line-height:1.8;
-  min-height:100vh;
-  background:
-    radial-gradient(circle at 8% 8%,rgba(216,149,170,.15),transparent 24%),
-    linear-gradient(180deg,#fff9f1 0%,#f8f0f8 48%,#f2eaf5 100%);
-}
-header{
-  position:relative;
+  font-family:Tahoma,Arial,sans-serif;color:var(--text);
+  background:linear-gradient(180deg,#f5f0fa,#fbf9fd,#f1ebf7);
   overflow:hidden;
-  text-align:center;
-  color:white;
-  padding:35px 18px 32px;
-  background:linear-gradient(145deg,#9877a8 0%,#755a83 55%,#624b70 100%);
-  border-bottom:5px solid var(--gold);
 }
-header:before,header:after{
-  content:"";
-  position:absolute;
-  border-radius:50%;
-  background:rgba(255,255,255,.06);
+.app{height:100dvh;display:grid;grid-template-rows:auto 1fr auto}
+header{
+  text-align:center;color:#fff;padding:10px 12px 8px;
+  background:linear-gradient(145deg,var(--p2),var(--p),var(--pd));
+  border-bottom:4px solid var(--g);
 }
-header:before{width:210px;height:210px;right:-70px;top:-115px}
-header:after{width:260px;height:260px;left:-100px;bottom:-175px}
 .tag{
-  position:relative;z-index:1;
-  display:inline-block;
-  padding:5px 13px;
-  border-radius:999px;
-  background:rgba(244,221,160,.13);
-  border:1px solid rgba(244,221,160,.75);
-  color:#fff3c8;
-  font-weight:bold;
-  font-size:13px;
+  display:inline-block;padding:3px 10px;border-radius:999px;
+  border:1px solid var(--g2);color:#fff2c6;
+  background:rgba(182,151,80,.13);font-size:11px;font-weight:bold
 }
-header h1{
-  position:relative;z-index:1;
-  margin:7px 0 2px;
-  font-size:35px;
-}
-header p{
-  position:relative;z-index:1;
-  margin:0;
-  color:#f7eff8;
-}
+header h1{margin:4px 0 0;font-size:clamp(19px,4.8vw,28px)}
+header p{margin:0;color:#f2ebf6;font-size:11px}
 main{
-  width:min(760px,92%);
-  margin:22px auto 45px;
+  min-height:0;width:min(760px,94%);margin:0 auto;padding:7px 0;
+  display:flex;flex-direction:column;
 }
 .top{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  margin-bottom:9px;
-  font-weight:bold;
-  color:var(--plum);
+  display:flex;justify-content:space-between;gap:8px;
+  font-weight:bold;color:var(--p);font-size:13px;margin-bottom:5px
 }
 .progress{
-  height:10px;
-  background:#e9deed;
-  border-radius:999px;
-  overflow:hidden;
-  margin-bottom:16px;
-  box-shadow:inset 0 1px 3px rgba(70,50,80,.08);
+  height:8px;background:#e9e0ef;border-radius:999px;
+  overflow:hidden;margin-bottom:7px
 }
-.progress div{
-  height:100%;
-  width:0;
-  background:linear-gradient(90deg,var(--rose),var(--gold));
-  transition:.3s ease;
+.progress>div{
+  height:100%;width:0;background:linear-gradient(90deg,var(--g),#dfca8f);transition:.3s
 }
 .card,.result{
-  background:rgba(255,253,249,.98);
-  border:1px solid #d9c690;
-  border-radius:25px;
-  box-shadow:0 15px 34px rgba(85,70,92,.13);
-  padding:22px 19px;
+  flex:1;min-height:0;background:var(--paper);
+  border:1px solid var(--g2);border-radius:22px;
+  box-shadow:0 14px 30px rgba(73,54,92,.12);
+  padding:12px;display:flex;flex-direction:column;justify-content:center
 }
-.qnum{
-  display:inline-block;
-  background:var(--lav);
-  color:var(--plum);
-  border:1px solid #d9cae0;
-  border-radius:999px;
-  padding:4px 11px;
-  font-weight:bold;
-  font-size:13px;
-  margin-bottom:8px;
-}
-h2{
-  margin:3px 0 16px;
-  color:#4f3d58;
-  font-size:21px;
-}
-.options{
-  display:grid;
-  gap:10px;
-}
+.qnum{color:var(--g);font-weight:bold;font-size:12px;margin-bottom:2px}
+h2{font-size:clamp(16px,4.3vw,21px);margin:2px 0 8px;color:var(--pd);line-height:1.5}
+.options{display:grid;gap:6px}
 .opt{
-  width:100%;
-  padding:13px 14px;
-  border-radius:15px;
-  border:2px solid #e8dce8;
-  background:white;
-  color:var(--text);
-  font:inherit;
-  font-size:16px;
-  text-align:right;
-  cursor:pointer;
-  transition:.18s;
+  width:100%;padding:8px 10px;border-radius:13px;
+  border:2px solid #e4dbe9;background:#fff;color:var(--text);
+  font:inherit;font-size:clamp(13px,3.4vw,16px);
+  text-align:right;cursor:pointer;line-height:1.35
 }
-.opt:hover{
-  border-color:#c6a9c6;
-  background:#fffafd;
-  transform:translateY(-1px);
-}
-.opt.correct{
-  background:var(--green-light);
-  border-color:#79aa8e;
-  color:#2f6748;
-}
-.opt.wrong{
-  background:var(--red-light);
-  border-color:#d48686;
-  color:#893939;
-}
-.opt:disabled{cursor:default;transform:none}
+.opt.correct{background:#f0ecf6;border-color:var(--p2);color:var(--pd)}
+.opt.wrong{background:#fff8ec;border-color:var(--g2);color:#66522e}
+.opt:disabled{cursor:default}
 .feedback{
-  display:none;
-  margin-top:14px;
-  padding:13px 14px;
-  border-radius:15px;
-  font-size:15px;
+  display:none;margin-top:7px;padding:8px 10px;border-radius:13px;
+  font-size:clamp(12px,3.2vw,14px);line-height:1.45
 }
 .feedback.show{display:block}
-.feedback.good{
-  background:var(--green-light);
-  border:1px solid #9ac2aa;
-  color:#2f6748;
-}
-.feedback.bad{
-  background:var(--red-light);
-  border:1px solid #dfa1a1;
-  color:#873939;
-}
+.feedback.good{background:#f3edf8;border:1px solid #c9b8d4;color:var(--pd)}
+.feedback.bad{background:#fff9ec;border:1px solid var(--g2);color:#66522e}
 .next{
-  display:none;
-  width:100%;
-  margin-top:15px;
-  padding:13px;
-  border:0;
-  border-radius:15px;
-  background:linear-gradient(145deg,#9877a8,#624b70);
-  color:white;
-  font:inherit;
-  font-weight:bold;
-  font-size:16px;
-  cursor:pointer;
-  box-shadow:0 8px 17px rgba(98,75,112,.18);
+  display:none;width:100%;margin-top:7px;padding:8px;border:0;border-radius:13px;
+  background:linear-gradient(145deg,var(--p2),var(--p));
+  color:#fff;font:inherit;font-weight:bold;cursor:pointer;font-size:14px
 }
-.result{
-  display:none;
-  text-align:center;
-}
-.result.show{display:block}
-.score{
-  font-size:45px;
-  font-weight:bold;
-  color:var(--gold);
-  margin:5px 0;
-}
+.result{display:none;text-align:center}
+.result.show{display:flex}
+.score{font-size:40px;color:var(--g);font-weight:bold}
 .restart,.lesson{
-  display:block;
-  width:100%;
-  padding:12px;
-  margin-top:10px;
-  border-radius:14px;
-  font-weight:bold;
-  text-decoration:none;
+  display:block;text-decoration:none;width:100%;padding:10px;margin-top:8px;
+  border-radius:13px;font-weight:bold
 }
 .restart{
-  border:0;
-  background:linear-gradient(145deg,#d895aa,#9877a8);
-  color:white;
-  font:inherit;
-  cursor:pointer;
+  border:0;background:linear-gradient(145deg,var(--p2),var(--p));
+  color:#fff;font:inherit;cursor:pointer
 }
-.lesson{
-  color:var(--plum);
-  background:#f1e8f3;
-  border:1px solid #d8c6df;
+.lesson{background:var(--lav);color:var(--pd);border:1px solid #d6c7df}
+footer{text-align:center;padding:5px;color:#73697a;font-size:9px}
+.burst{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:20}
+.confetti{
+  position:absolute;width:8px;height:8px;border-radius:2px;
+  animation:fall 900ms ease-out forwards
 }
-footer{
-  text-align:center;
-  padding:16px;
-  color:#776c7d;
-  font-size:12px;
+@keyframes fall{
+  0%{transform:translateY(-20px) rotate(0);opacity:1}
+  100%{transform:translateY(105vh) rotate(540deg);opacity:0}
+}
+.pop{animation:pop .25s ease}
+@keyframes pop{50%{transform:scale(1.018)}}
+@media(max-height:650px){
+  header{padding:5px 10px 4px}
+  header h1{font-size:17px}
+  header p{font-size:9px}
+  main{padding:3px 0}
+  .top{font-size:11px;margin-bottom:3px}
+  .progress{height:6px;margin-bottom:4px}
+  .card{padding:7px}
+  h2{font-size:15px;margin-bottom:5px}
+  .options{gap:4px}
+  .opt{padding:5px 7px;font-size:12px}
+  .feedback{padding:5px 7px;margin-top:4px;font-size:11px}
+  .next{padding:6px;margin-top:4px}
 }
 </style>
 </head>
 <body>
-
+<div class="app">
 <header>
   <span class="tag">منصة آفاق التعليمية</span>
-  <h1>اختبار البدل</h1>
-  <p>١٠ أسئلة تفاعلية مع تعقيب فوري بعد كل إجابة</p>
+  <h1>تحدي البدل</h1>
+  <p>١٠ أسئلة • سؤال واحد في كل شاشة • تعقيب فوري ✨</p>
 </header>
-
 <main>
   <div class="top">
     <span id="counter">السؤال ١ من ١٠</span>
     <span id="correctCount">الصحيح: ٠</span>
   </div>
-
   <div class="progress"><div id="bar"></div></div>
 
   <section class="card" id="card">
@@ -249,115 +138,107 @@ footer{
   </section>
 
   <section class="result" id="result">
-    <h2>اكتمل اختبار البدل 🌟</h2>
+    <h2>انتهى التحدي ✨</h2>
     <div class="score" id="score"></div>
     <p id="message"></p>
-    <button class="restart" onclick="restartQuiz()">إعادة الاختبار</button>
-    <a class="lesson" href="apposition-file.html">مراجعة ملف درس البدل</a>
+    <button class="restart" onclick="restartQuiz()">أعيدي التحدي</button>
+    <a class="lesson" href="apposition-file.html">راجعي ملف الدرس</a>
+    <a class="lesson" href="apposition.html">العودة إلى الدرس</a>
   </section>
 </main>
-
 <footer>منصة آفاق التعليمية | لغتي الخالدة | الصف الثالث المتوسط</footer>
+</div>
 
+<div class="burst" id="burst"></div>
 <script>
-const questions = [{"q": "البدل هو:", "o": ["اسم تابع مقصود بالحكم من غير واسطة بينه وبين متبوعه", "اسم منصوب يبين هيئة صاحبه", "تابع يتوسط بينه وبين متبوعه حرف عطف", "اسم نكرة يفسر ما قبله"], "a": 0, "ok": "أحسنتِ 🌟 البدل اسم تابع مقصود بالحكم من غير واسطة بينه وبين المبدل منه.", "bad": "راجعي التعريف: البدل اسم تابع مقصود بالحكم من غير واسطة بينه وبين متبوعه."}, {"q": "في الجملة: «الملكُ عبدالعزيزُ من قادة العالم» كلمة «عبدالعزيزُ» هي:", "o": ["مبدل منه", "بدل", "معطوف", "نعت"], "a": 1, "ok": "صحيح 👏 «عبدالعزيز» هو المقصود بالحكم، ولذلك هو بدل من «الملك».", "bad": "الإجابة الصحيحة: «بدل». الاسم الأول «الملك» مبدل منه، و«عبدالعزيز» بدل."}, {"q": "ما نوع البدل في: «كان الإمامُ عليٌّ بليغًا»؟", "o": ["بدل مطابق", "بدل بعض من كل", "بدل اشتمال", "بدل مباين"], "a": 0, "ok": "ممتاز ✨ «علي» هو نفسه «الإمام»، لذلك فهو بدل مطابق (كل من كل).", "bad": "إذا كان البدل هو نفسه المبدل منه تمامًا، فذلك بدل مطابق."}, {"q": "ما نوع البدل في: «قرأتُ الكتابَ ثلثَه»؟", "o": ["بدل مطابق", "بدل بعض من كل", "بدل اشتمال", "لا يوجد بدل"], "a": 1, "ok": "رائعة 🌿 «ثلث الكتاب» جزء حقيقي من الكتاب، لذلك هو بدل بعض من كل.", "bad": "اسألي نفسك: هل البدل جزء حقيقي من المبدل منه؟ نعم؛ إذن هو بدل بعض من كل."}, {"q": "ما نوع البدل في: «أعجبني المعلمُ علمُه»؟", "o": ["بدل مطابق", "بدل بعض من كل", "بدل اشتمال", "عطف بيان"], "a": 2, "ok": "صحيح 💜 «العلم» معنى يشتمل عليه المعلم وليس جزءًا ماديًا منه، فهو بدل اشتمال.", "bad": "الاشتمال يكون معنى أو صفة يشتمل عليها المبدل منه، مثل: علمه، أدبه، خلقه."}, {"q": "أي عبارة صحيحة عن بدل بعض من كل وبدل الاشتمال؟", "o": ["لا يحتاجان إلى ضمير", "يتصل بالبدل غالبًا ضمير يعود على المبدل منه", "يجب أن يكونا علمين", "لا يتبعان المبدل منه في الإعراب"], "a": 1, "ok": "أحسنتِ 🎯 من علاماتهما اتصال البدل بضمير يعود على المبدل منه، مثل: «ثلثَه» و«علمُه».", "bad": "تذكري الملاحظة المهمة: في بعض من كل والاشتمال يتصل بالبدل ضمير يعود على المبدل منه."}, {"q": "في الجملة: «جاء أخوك خالدٌ» ما إعراب «خالدٌ»؟", "o": ["بدل مرفوع", "بدل منصوب", "بدل مجرور", "مفعول به"], "a": 0, "ok": "صحيح 🌟 «خالدٌ» بدل من «أخوك» المرفوع، لذلك جاء مرفوعًا.", "bad": "البدل يتبع المبدل منه في الإعراب. «أخوك» مرفوع، إذن «خالدٌ» بدل مرفوع."}, {"q": "في الجملة: «رأيت أخاك خالدًا» ما إعراب «خالدًا»؟", "o": ["بدل مرفوع", "بدل منصوب", "بدل مجرور", "فاعل"], "a": 1, "ok": "ممتاز 👏 «خالدًا» بدل منصوب؛ لأنه يتبع «أخاك» المنصوب.", "bad": "أعربي المبدل منه أولًا: «أخاك» منصوب، إذن البدل «خالدًا» منصوب."}, {"q": "أي مثال يمثل بدل اشتمال؟", "o": ["زارنا الطبيبُ خالدٌ", "قرأت الكتابَ نصفَه", "أعجبني الطالبُ أدبُه", "حضر محمدٌ وعليٌّ"], "a": 2, "ok": "أحسنتِ ✨ «أدبه» معنى يشتمل عليه الطالب، لذلك هو بدل اشتمال.", "bad": "بدل الاشتمال ليس جزءًا ماديًا، بل معنى أو صفة، مثل: أدبه، علمه، خلقه."}, {"q": "أي قاعدة تختصر التمييز بين أنواع البدل؟", "o": ["نفسه = مطابق، جزء منه = بعض من كل، معنى أو صفة فيه = اشتمال", "كل بدل بعد علم هو مطابق", "كل بدل فيه ضمير هو مطابق", "إذا كان البدل مجرورًا فهو بعض من كل"], "a": 0, "ok": "رائعة جدًا 🏆 هذه هي قاعدة الحسم: نفسه = مطابق، جزء منه = بعض من كل، معنى أو صفة فيه = اشتمال.", "bad": "قاعدة الحسم الصحيحة: نفسه = مطابق، جزء حقيقي منه = بعض من كل، معنى أو صفة فيه = اشتمال."}];
-let index=0, score=0, answered=false;
-
+const questions=[{"q": "ما البدل في الجملة: «حضر أخوك خالدٌ»؟", "o": ["حضر", "أخوك", "خالدٌ", "الواو"], "a": 2, "ok": "أحسنتِ 🌟 «خالدٌ» بدل من «أخوك»، وهو المقصود بالحكم.", "bad": "البدل هو التابع المقصود بالحكم، وهنا المقصود بالحضور هو «خالدٌ»."}, {"q": "أيُّ نوع من البدل في: «جاء الخليفةُ عمرُ»؟", "o": ["بدل مطابق (كل من كل)", "بدل بعض من كل", "بدل اشتمال", "نعت"], "a": 0, "ok": "ممتازة ✨ «عمرُ» هو الخليفة نفسه؛ لذلك هو بدل مطابق.", "bad": "إذا كان البدل هو المبدل منه نفسه تمامًا، فهو بدل مطابق."}, {"q": "أيُّ جملة فيها بدل بعض من كل؟", "o": ["أعجبني الطالبُ أدبُه.", "أكلتُ الرغيفَ نصفَه.", "زارني أخوك خالدٌ.", "نفعني المعلمُ علمُه."], "a": 1, "ok": "رائعة 👏 «نصفَه» جزء حقيقي من «الرغيف»، فهو بدل بعض من كل.", "bad": "بدل بعض من كل يكون جزءًا حقيقيًا من المبدل منه، مثل «نصف الرغيف»."}, {"q": "أيُّ جملة فيها بدل اشتمال؟", "o": ["أكلتُ التفاحةَ نصفَها.", "أعجبني الطالبُ أدبُه.", "جاء أخوك خالدٌ.", "شاهدتُ المنزلَ بابَه."], "a": 1, "ok": "صحيح جدًا 💜 «أدبُه» معنى يشتمل عليه الطالب وليس جزءًا ماديًا منه؛ فهو بدل اشتمال.", "bad": "بدل الاشتمال يكون معنى أو صفة مرتبطة بالمبدل منه وليست جزءًا ماديًا منه."}, {"q": "ما العلامة المهمة في بدل بعض من كل وبدل الاشتمال؟", "o": ["وجود حرف عطف", "وجود ضمير في البدل يعود على المبدل منه غالبًا", "أن يكون البدل فعلًا", "أن يسبق البدل بحرف جر دائمًا"], "a": 1, "ok": "أحسنتِ 🎯 من العلامات المهمة وجود ضمير يعود على المبدل منه: «نصفَه، أدبُه».", "bad": "في بدل البعض والاشتمال يظهر غالبًا ضمير يربط البدل بالمبدل منه."}, {"q": "في الجملة «قرأتُ الكتابَ نصفَه»، ما إعراب «نصفَه»؟", "o": ["بدل منصوب", "فاعل مرفوع", "مضاف إليه مجرور", "خبر مرفوع"], "a": 0, "ok": "ممتازة 🌟 «نصفَه» بدل منصوب؛ لأنه تابع لـ«الكتابَ» المنصوب.", "bad": "البدل يتبع المبدل منه في الإعراب؛ «الكتابَ» منصوب إذن «نصفَه» منصوب."}, {"q": "أيُّ عبارة تصف البدل المطابق بدقة؟", "o": ["البدل جزء من المبدل منه", "البدل معنى يشتمل عليه المبدل منه", "البدل هو المبدل منه نفسه", "البدل لا يتبع المبدل منه في الإعراب"], "a": 2, "ok": "بطلة 👏 في البدل المطابق يكون البدل هو المبدل منه نفسه.", "bad": "المطابق = كل من كل؛ أي إن الثاني هو الأول نفسه."}, {"q": "كيف تميزين بدل الاشتمال عن بدل بعض من كل؟", "o": ["الاشتمال جزء مادي، والبعض معنى", "البعض جزء حقيقي، والاشتمال معنى أو صفة مرتبطة بالمبدل منه", "كلاهما مطابق تمامًا للمبدل منه", "لا فرق بينهما"], "a": 1, "ok": "صحيح ✨ الجزء المادي = بعض من كل، والمعنى أو الصفة = اشتمال.", "bad": "اسألي: هل البدل جزء مادي؟ إذن بعض من كل. هل هو معنى أو صفة؟ إذن اشتمال."}, {"q": "في «أعجبني المعلمُ علمُه»، على مَن يعود الضمير في «علمُه»؟", "o": ["المعلم", "المتكلم", "العلم", "لا يعود على شيء"], "a": 0, "ok": "إتقان رائع 🏆 الضمير «الهاء» يعود على المبدل منه «المعلم».", "bad": "الرابط في بدل الاشتمال هو الضمير «الهاء» العائد على «المعلم»."}, {"q": "ما أفضل طريقة لتحديد نوع البدل؟", "o": ["أنظر إلى حركة آخر الكلمة فقط", "أحدد العلاقة: هل الثاني هو الأول نفسه، أم جزء منه، أم معنى يشتمل عليه؟", "أبحث عن حرف عطف", "أجعل كل اسم ثانٍ بدلًا"], "a": 1, "ok": "ممتازة جدًا 🧠 بهذه الأسئلة الثلاثة تميزين أنواع البدل بسهولة.", "bad": "مفتاح الدرس هو العلاقة بين البدل والمبدل منه: مطابق، جزء، أم معنى مشتمل عليه."}];
+let index=0,score=0,answered=false;
 const arabicDigits=n=>String(n).replace(/\d/g,d=>'٠١٢٣٤٥٦٧٨٩'[d]);
-const question=document.getElementById('question');
-const options=document.getElementById('options');
-const feedback=document.getElementById('feedback');
-const next=document.getElementById('next');
 
+function tone(ok){
+  try{
+    const AC=window.AudioContext||window.webkitAudioContext;
+    const c=new AC(),o=c.createOscillator(),g=c.createGain();
+    o.connect(g);g.connect(c.destination);
+    o.type=ok?'sine':'triangle';
+    o.frequency.setValueAtTime(ok?660:220,c.currentTime);
+    if(ok)o.frequency.exponentialRampToValueAtTime(920,c.currentTime+.16);
+    else o.frequency.exponentialRampToValueAtTime(170,c.currentTime+.16);
+    g.gain.setValueAtTime(.07,c.currentTime);
+    g.gain.exponentialRampToValueAtTime(.001,c.currentTime+.23);
+    o.start();o.stop(c.currentTime+.24);
+  }catch(e){}
+}
+function confetti(){
+  const burst=document.getElementById('burst');burst.innerHTML='';
+  const colors=['#5b4677','#776094','#b69750','#d8c28a','#eee5f5'];
+  for(let i=0;i<26;i++){
+    const s=document.createElement('i');s.className='confetti';
+    s.style.left=(Math.random()*100)+'vw';s.style.top='-10px';
+    s.style.background=colors[i%colors.length];
+    s.style.animationDelay=(Math.random()*170)+'ms';
+    burst.appendChild(s);
+  }
+  setTimeout(()=>burst.innerHTML='',1200);
+}
 function render(){
-  answered=false;
-  const x=questions[index];
-
+  answered=false;const x=questions[index];
   document.getElementById('qnum').textContent='السؤال '+arabicDigits(index+1);
   document.getElementById('counter').textContent='السؤال '+arabicDigits(index+1)+' من '+arabicDigits(questions.length);
   document.getElementById('correctCount').textContent='الصحيح: '+arabicDigits(score);
   document.getElementById('bar').style.width=(index/questions.length*100)+'%';
-
-  question.textContent=x.q;
-  options.innerHTML='';
-  feedback.className='feedback';
-  feedback.innerHTML='';
-  next.style.display='none';
-
-  x.o.forEach((t,i)=>{
-    const b=document.createElement('button');
-    b.className='opt';
-    b.textContent=t;
-    b.onclick=()=>choose(i,b);
-    options.appendChild(b);
+  document.getElementById('question').textContent=x.q;
+  const options=document.getElementById('options'),feedback=document.getElementById('feedback'),
+        next=document.getElementById('next'),card=document.getElementById('card');
+  options.innerHTML='';feedback.className='feedback';feedback.innerHTML='';
+  next.style.display='none';card.classList.remove('pop');
+  x.o.forEach((t,j)=>{
+    const b=document.createElement('button');b.className='opt';b.textContent=t;
+    b.onclick=()=>choose(j,b);options.appendChild(b);
   });
 }
-
 function choose(choice,button){
-  if(answered)return;
-  answered=true;
-
-  const x=questions[index];
-  const btns=[...document.querySelectorAll('.opt')];
-  btns.forEach(b=>b.disabled=true);
-  btns[x.a].classList.add('correct');
-
+  if(answered)return;answered=true;
+  const x=questions[index],btns=[...document.querySelectorAll('.opt')];
+  btns.forEach(b=>b.disabled=true);btns[x.a].classList.add('correct');
+  const feedback=document.getElementById('feedback');
   if(choice===x.a){
-    score++;
-    button.classList.add('correct');
-    feedback.className='feedback show good';
-    feedback.textContent=x.ok;
-    if(navigator.vibrate)navigator.vibrate(50);
+    score++;button.classList.add('correct');feedback.className='feedback show good';
+    feedback.textContent=x.ok;tone(true);confetti();if(navigator.vibrate)navigator.vibrate(45);
   }else{
-    button.classList.add('wrong');
-    feedback.className='feedback show bad';
-    feedback.innerHTML='<b>الإجابة غير صحيحة.</b><br>'+x.bad;
-    if(navigator.vibrate)navigator.vibrate([80,50,80]);
+    button.classList.add('wrong');feedback.className='feedback show bad';
+    feedback.innerHTML='<b>راجعي القاعدة 👀</b><br>'+x.bad;
+    tone(false);if(navigator.vibrate)navigator.vibrate([70,40,70]);
   }
-
   document.getElementById('correctCount').textContent='الصحيح: '+arabicDigits(score);
-  next.textContent=index===questions.length-1?'عرض النتيجة':'السؤال التالي';
+  document.getElementById('card').classList.add('pop');
+  const next=document.getElementById('next');
+  next.textContent=index===questions.length-1?'شوفي نتيجتك ✨':'كمّلي التحدي ←';
   next.style.display='block';
 }
-
-next.onclick=()=>{
-  index++;
-  if(index<questions.length)render();
-  else finish();
-};
-
+document.getElementById('next').onclick=()=>{index++;if(index<questions.length)render();else finish();};
 function finish(){
   document.getElementById('bar').style.width='100%';
   document.getElementById('card').style.display='none';
   document.querySelector('.top').style.display='none';
   document.querySelector('.progress').style.display='none';
-
-  const result=document.getElementById('result');
-  result.classList.add('show');
-
+  const result=document.getElementById('result');result.classList.add('show');
   document.getElementById('score').textContent=arabicDigits(score)+' / '+arabicDigits(questions.length);
-
   const pct=score/questions.length;
   document.getElementById('message').textContent=
-    pct===1 ? 'إتقان رائع جدًا! جميع إجاباتك صحيحة 👏' :
-    pct>=.8 ? 'ممتازة جدًا، أتقنتِ أنواع البدل وطريقة إعرابه.' :
-    pct>=.6 ? 'جيد جدًا، راجعي الفرق بين بعض من كل والاشتمال ثم أعيدي المحاولة.' :
-    'راجعي ملف الدرس، خاصة أنواع البدل وقاعدة الحسم، ثم أعيدي الاختبار.';
+    pct===1?"إتقان كامل! بطلة البدل 🏆":
+    pct>=.8?"ممتازة جدًا 🌟 أتقنتِ أنواع البدل والعلاقة بين البدل والمبدل منه.":
+    pct>=.6?"أداء جميل 👏 راجعي الفرق بين المطابق وبعض من كل والاشتمال ثم أعيدي التحدي.":
+    "راجعي ملف الدرس، وركزي على العلاقة بين البدل والمبدل منه والضمير الرابط.";
+  if(pct>=.8)confetti();
 }
-
 function restartQuiz(){
-  index=0;
-  score=0;
-  answered=false;
-
-  document.getElementById('card').style.display='block';
+  index=0;score=0;answered=false;
+  document.getElementById('card').style.display='flex';
   document.querySelector('.top').style.display='flex';
   document.querySelector('.progress').style.display='block';
-  document.getElementById('result').classList.remove('show');
-
-  render();
+  document.getElementById('result').classList.remove('show');render();
 }
-
 render();
 </script>
 </body>
