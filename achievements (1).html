@@ -1142,7 +1142,7 @@
         turning: `
           <strong>اللحظة التي صنعت الفرق:</strong>
           لم يتغيّر النص، ولم تصبح الكلمات أقصر؛
-          الذي تغيّر هو طريقة سارة في القراءة.
+          الذي تغيّر هو أسلوب سارة في القراءة.
           قسّمت النص، وطرحت أسئلة، ولاحظت العلاقة بين الأحداث.
         `,
 
@@ -1866,15 +1866,15 @@
         choices: [
           {
             text:
-              "أقارن نتيجتي بنتائجهم في كل مرة.",
+              "أقارن نتيجتي بنتائجهنّ في كل مرة.",
             type: "guide",
             feedback:
-              "المقارنة المستمرة قد تخفي إنجازكِ؛ لأن لكل طالبة بداية وظروفًا ومسارًا مختلفًا."
+              "المقارنة المستمرة قد تخفي إنجازكِ؛ فلكل طالبة بدايةٌ خاصة، وظروفٌ مختلفة، ومسارٌ يخصّها."
           },
 
           {
             text:
-              "أتعلم من طرائقهم، ثم أقارن عملي الحالي بعملي السابق.",
+              "أتعلم من طرائقهنّ، ثم أقارن عملي الحالي بعملي السابق.",
             type: "good",
             feedback:
               "هذا توازن جميل؛ تستفيدين من الآخرين، وتحافظين في الوقت نفسه على رؤية تقدّمكِ الحقيقي."
@@ -1970,14 +1970,53 @@
     const starsLayer =
       document.getElementById("starsLayer");
 
+    startJourneyBtn.addEventListener(
+      "click",
+      () => {
+        welcomeCard.style.display =
+          "none";
+
+        journeyPanel.classList.add(
+          "active"
+        );
+
+        renderStory();
+
+        journeyPanel.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+    );
+
     let currentStory = 0;
 
-    let selectedAnswers =
-      JSON.parse(
+    let selectedAnswers = {};
+
+    try {
+      const savedAnswersRaw =
         localStorage.getItem(
           "afaq_story_answers"
-        )
-      ) || {};
+        );
+
+      if (savedAnswersRaw) {
+        const parsedAnswers =
+          JSON.parse(savedAnswersRaw);
+
+        if (
+          parsedAnswers &&
+          typeof parsedAnswers === "object" &&
+          !Array.isArray(parsedAnswers)
+        ) {
+          selectedAnswers = parsedAnswers;
+        }
+      }
+    } catch (error) {
+      selectedAnswers = {};
+      localStorage.removeItem(
+        "afaq_story_answers"
+      );
+    }
 
     let savedStory =
       Number(
@@ -2459,20 +2498,6 @@
       return div.innerHTML;
     }
 
-    startJourneyBtn.addEventListener(
-      "click",
-      () => {
-        welcomeCard.style.display =
-          "none";
-
-        journeyPanel.classList.add(
-          "active"
-        );
-
-        renderStory();
-      }
-    );
-
     previousBtn.addEventListener(
       "click",
       () => {
@@ -2552,6 +2577,10 @@ restartJourneyBtn.addEventListener(
 
     localStorage.removeItem(
       "afaq_story_answers"
+    );
+
+    localStorage.removeItem(
+      "afaq_language_promise"
     );
 
     currentStory = 0;
