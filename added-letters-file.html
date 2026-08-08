@@ -1,79 +1,447 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ملف درس الكلمات المزيد بعض أحرفها</title>
-
-  <style>
-    body{
-      margin:0;
-      font-family:Tahoma,Arial,sans-serif;
-      background:#F8F5FC;
-      text-align:center;
-    }
-
-    header{
-    background:#8E73B5;
-      color:white;
-      padding:35px 20px;
-    }
-
-    section{
-      background:#FFFDF8;
-      margin:30px auto;
-      padding:25px;
-      width:85%;
-      max-width:700px;
-      border-radius:18px;
-      box-shadow:0 4px 15px rgba(0,0,0,0.12);
-    }
-
-    .box{
-      background:#F7F0FB;
-      margin:18px 0;
-      padding:24px;
-      border-radius:14px;
-      font-size:21px;
-    }
-
-    .back{
-      color:#1565c0;
-      font-weight:bold;
-      text-decoration:none;
-    }
-
-    footer{
-      background:#222;
-      color:white;
-      padding:20px;
-      margin-top:30px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>رسم بعض الكلمات المزيد بعض أحرفها كالألف والواو | منصة آفاق</title>
+<style>
+:root{
+  --p:#5b4677;
+  --p2:#776094;
+  --pd:#453457;
+  --g:#b69750;
+  --g2:#d8c28a;
+  --lav:#eee5f5;
+  --cream:#fffaf2;
+  --paper:#fffdf9;
+  --text:#403448;
+  --muted:#756c7a;
+  --shadow:0 14px 30px rgba(73,54,92,.11);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Tahoma,Arial,sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 10% 4%,rgba(216,194,138,.17),transparent 22%),
+    linear-gradient(180deg,#f5f0fa 0%,#fbf9fd 50%,#f1ebf7 100%);
+  line-height:1.9;
+}
+header{
+  position:relative;
+  overflow:hidden;
+  text-align:center;
+  color:#fff;
+  padding:38px 17px 32px;
+  background:linear-gradient(145deg,var(--p2),var(--p),var(--pd));
+  border-bottom:5px solid var(--g);
+}
+header:before,header:after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  background:rgba(255,255,255,.055);
+}
+header:before{width:240px;height:240px;right:-95px;top:-130px}
+header:after{width:270px;height:270px;left:-115px;bottom:-195px}
+.tag{
+  position:relative;z-index:1;
+  display:inline-block;padding:4px 13px;border-radius:999px;
+  border:1px solid var(--g2);background:rgba(182,151,80,.14);
+  color:#fff2c6;font-size:12px;font-weight:bold
+}
+header h1{
+  position:relative;z-index:1;
+  margin:7px auto 2px;
+  max-width:900px;
+  font-size:clamp(25px,6.4vw,40px);
+  line-height:1.5;
+}
+header p{position:relative;z-index:1;margin:0;color:#f3edf7;font-size:14px}
+main{width:min(920px,93%);margin:20px auto 42px}
+.quick-nav{
+  display:flex;gap:7px;flex-wrap:wrap;justify-content:center;margin-bottom:15px
+}
+.quick-nav a{
+  text-decoration:none;color:var(--p);background:#fff;
+  border:1px solid #d9cce2;border-radius:999px;
+  padding:7px 11px;font-size:12px;font-weight:bold
+}
+.intro,.section{
+  background:var(--paper);
+  border:1px solid #ded2e6;
+  border-radius:22px;
+  padding:18px;
+  box-shadow:var(--shadow);
+  margin:13px 0;
+}
+.intro{border-top:4px solid var(--g);text-align:center}
+.intro h2,.section h2{margin:0 0 8px;color:var(--p);font-size:22px}
+.intro p{margin:0;color:var(--muted)}
+.hero-rule{
+  margin-top:12px;padding:12px 14px;border-radius:16px;
+  background:linear-gradient(135deg,#f3edf8,#fff8e8);
+  border:1px solid var(--g2);font-weight:bold;color:var(--pd)
+}
+.cards{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;margin:14px 0
+}
+.card{
+  background:var(--paper);
+  border:1px solid #ddd2e4;
+  border-top:4px solid var(--g);
+  border-radius:22px;
+  padding:17px 15px;
+  box-shadow:var(--shadow)
+}
+.card h3{margin:0 0 8px;color:var(--p);font-size:21px}
+.badge{
+  display:inline-block;margin-bottom:7px;
+  padding:3px 10px;border-radius:999px;
+  background:var(--lav);border:1px solid #d7c7df;
+  color:var(--pd);font-size:12px;font-weight:bold
+}
+.formula{
+  text-align:center;
+  padding:10px 12px;margin:10px 0;
+  border-radius:15px;
+  background:linear-gradient(135deg,#f3edf8,#fff9ec);
+  border:1px solid var(--g2);
+  color:var(--pd);
+  font-size:20px;font-weight:bold
+}
+.example{
+  background:#fff;
+  border:1px dashed #cbb9d6;
+  border-radius:14px;
+  padding:9px 11px;
+  margin:7px 0
+}
+.example b{color:var(--p)}
+.note{
+  background:#fff8e8;
+  border:1px solid var(--g2);
+  border-right:5px solid var(--g);
+  border-radius:15px;
+  padding:11px 13px;
+  margin:10px 0
+}
+.lav-note{
+  background:#f3edf8;
+  border:1px solid #d7c7df;
+  border-right:5px solid var(--p2);
+  border-radius:15px;
+  padding:11px 13px;
+  margin:10px 0
+}
+.warning{
+  background:#faf6fc;
+  border:1px solid #ccb9d7;
+  border-radius:15px;
+  padding:11px 13px;
+  margin:8px 0
+}
+.warning strong{color:var(--p)}
+table{
+  width:100%;border-collapse:collapse;background:#fff;margin-top:10px
+}
+th,td{
+  border:1px solid #ddd1e5;
+  padding:9px 7px;
+  text-align:center;
+  vertical-align:middle
+}
+th{background:var(--lav);color:var(--pd)}
+.mini-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:9px;margin-top:10px
+}
+.mini{
+  background:linear-gradient(135deg,#f5eff9,#fff9ec);
+  border:1px solid #dccfe4;
+  border-radius:15px;padding:11px
+}
+.mini b{color:var(--p)}
+.math{
+  display:grid;gap:8px;margin-top:10px
+}
+.math div{
+  padding:11px 12px;border-radius:14px;
+  background:linear-gradient(135deg,#f4eef8,#fff9ed);
+  border:1px solid #d9cbe1;font-weight:bold
+}
+.summary li{margin:7px 0}
+.back{
+  display:block;width:min(430px,100%);
+  margin:22px auto 0;padding:12px 15px;
+  text-align:center;text-decoration:none;color:#fff;font-weight:bold;
+  border-radius:14px;background:linear-gradient(145deg,var(--p2),var(--p));
+  border:1px solid var(--g)
+}
+footer{
+  text-align:center;color:#eee8f2;background:#3e304d;
+  border-top:2px solid var(--g);padding:17px 10px;font-size:12px
+}
+@media(max-width:700px){
+  .cards,.mini-grid{grid-template-columns:1fr}
+  .intro,.section,.card{padding:14px 12px}
+  th,td{font-size:12px;padding:7px 4px}
+  .formula{font-size:18px}
+}
+</style>
 </head>
-
 <body>
 
 <header>
-  <h1>📄 ملف درس الكلمات المزيد بعض أحرفها</h1>
-  <p>كالألف والواو</p>
+  <span class="tag">منصة آفاق التعليمية</span>
+  <h1>رسم بعض الكلمات المزيد بعض أحرفها كالألف والواو</h1>
+  <p>الرسم الإملائي | الصف الثالث المتوسط</p>
 </header>
 
-<section>
+<main>
 
-  <div class="box">
-    سيتم إضافة ملف الدرس هنا
+<nav class="quick-nav">
+  <a href="#alif-waw">الألف بعد واو الجماعة</a>
+  <a href="#tanween">ألف تنوين النصب</a>
+  <a href="#no-alif">مواضع لا تزاد فيها الألف</a>
+  <a href="#waw">زيادة الواو</a>
+  <a href="#summary">الخلاصة</a>
+</nav>
+
+<section class="intro">
+  <h2>الفكرة الأساسية ✨</h2>
+  <p>توجد كلمات نكتب فيها حرفًا زائدًا في الرسم الإملائي، وقد يكون هذا الحرف <b>ألفًا</b> أو <b>واوًا</b>.</p>
+  <div class="hero-rule">
+    مفتاح الدرس: أميز الحرف الأصلي من الحرف الزائد، وأعرف متى يُكتب الحرف ولا يُنطق.
   </div>
-
-  <p>
-    <a class="back" href="added-letters.html">العودة إلى الدرس</a>
-  </p>
-
 </section>
 
-<footer>
-  جميع الحقوق محفوظة © 2026
-</footer>
+<section class="section" id="alif-waw">
+  <h2>أولًا: زيادة الألف بعد واو الجماعة</h2>
+
+  <div class="lav-note">
+    تُزاد ألف بعد <b>واو الجماعة المتطرفة</b>، وتسمى <b>الألف الفارقة</b>، وهي <b>تُكتب ولا تُنطق</b>.
+  </div>
+
+  <div class="cards">
+
+    <article class="card">
+      <span class="badge">الفعل الماضي</span>
+      <h3>إذا اتصلت واو الجماعة بفعل ماضٍ</h3>
+      <div class="formula">قال + واو الجماعة ← قالوا</div>
+      <div class="example">مثال: الطلاب <b>قالوا</b> الحق.</div>
+      <div class="example">مثال: المؤمنون <b>أنفقوا</b> في سبيل الخير.</div>
+    </article>
+
+    <article class="card">
+      <span class="badge">فعل الأمر</span>
+      <h3>إذا اتصلت واو الجماعة بفعل أمر</h3>
+      <div class="formula">اعمل + واو الجماعة ← اعملوا</div>
+      <div class="example">مثال: <b>اعملوا</b> بإتقان.</div>
+      <div class="example">مثال: <b>أحسنوا</b> إلى الآخرين.</div>
+    </article>
+
+    <article class="card">
+      <span class="badge">المضارع المنصوب</span>
+      <h3>إذا حُذفت نون الأفعال الخمسة للنصب</h3>
+      <div class="formula">يصونون ← لن يصونوا</div>
+      <div class="example">مثال: لن <b>يصونوا</b> كرامتهم إن فرطوا في واجبهم.</div>
+      <div class="note">حُذفت النون للنصب، وزيدت ألف بعد واو الجماعة.</div>
+    </article>
+
+    <article class="card">
+      <span class="badge">المضارع المجزوم</span>
+      <h3>إذا حُذفت نون الأفعال الخمسة للجزم</h3>
+      <div class="formula">يصونون ← لم يصونوا</div>
+      <div class="example">مثال: لم <b>يصونوا</b> العهد.</div>
+      <div class="note">حُذفت النون للجزم، وزيدت ألف بعد واو الجماعة.</div>
+    </article>
+
+  </div>
+
+  <div class="formula">
+    ماضٍ + واو الجماعة / أمر + واو الجماعة / مضارع منصوب أو مجزوم بواو الجماعة
+    ← نزيد الألف الفارقة
+  </div>
+</section>
+
+<section class="section" id="no-alif">
+  <h2>ثانيًا: مواضع لا تزاد فيها الألف بعد الواو</h2>
+
+  <div class="warning">
+    <strong>١ ـ جمع المذكر السالم وملحقاته:</strong>
+    لا تزاد الألف بعد واو جمع المذكر السالم؛ لأن الواو علامة رفع وليست واو الجماعة.
+    <div class="example">الصواب: <b>مهندسو</b> الصيانة جاهزون.</div>
+    <div class="example">الصواب: <b>معلمو</b> المدرسة متميزون.</div>
+  </div>
+
+  <div class="warning">
+    <strong>٢ ـ الواو الأصلية في بنية الفعل:</strong>
+    لا تزاد بعدها ألف.
+    <div class="example">المؤمن <b>يدعو</b> ربه.</div>
+    <div class="example">الطالب <b>يسمو</b> بأخلاقه.</div>
+  </div>
+
+  <div class="warning">
+    <strong>٣ ـ الواو في بعض الأسماء:</strong>
+    لا نزيد بعدها ألفًا لمجرد أنها في آخر الكلمة.
+    <div class="example"><b>ذوو</b> الفضل محبوبون.</div>
+    <div class="example"><b>أولو</b> العلم أصحاب مكانة.</div>
+  </div>
+
+  <div class="note">
+    قاعدة الحسم: هل الواو <b>واو جماعة متطرفة متصلة بفعل</b>؟ إن لم تكن كذلك، فلا نضع الألف الفارقة.
+  </div>
+</section>
+
+<section class="section" id="tanween">
+  <h2>ثالثًا: زيادة الألف في آخر الاسم المنون المنصوب</h2>
+
+  <div class="lav-note">
+    تزاد ألف في آخر الاسم النكرة المنون تنوين نصب، وتسمى <b>ألف تنوين النصب</b>.
+  </div>
+
+  <div class="mini-grid">
+    <div class="mini">عهد ← <b>عهدًا</b></div>
+    <div class="mini">زجر ← <b>زجرًا</b></div>
+    <div class="mini">معلم ← <b>معلمًا</b></div>
+    <div class="mini">مدير ← <b>مديرًا</b></div>
+    <div class="mini">كتاب ← <b>كتابًا</b></div>
+    <div class="mini">يوم ← <b>يومًا</b></div>
+  </div>
+
+  <h3 style="color:var(--pd);margin-bottom:6px">متى لا نزيد ألف تنوين النصب؟</h3>
+
+  <table>
+    <tr>
+      <th>نهاية الاسم</th>
+      <th>المثال الصحيح</th>
+      <th>الملاحظة</th>
+    </tr>
+    <tr>
+      <td>تاء مربوطة</td>
+      <td><b>مدرسةً</b></td>
+      <td>لا نضيف ألفًا بعدها</td>
+    </tr>
+    <tr>
+      <td>همزة على ألف</td>
+      <td><b>مبدأً</b></td>
+      <td>لا نضيف ألفًا أخرى</td>
+    </tr>
+    <tr>
+      <td>همزة قبلها ألف</td>
+      <td><b>سماءً</b></td>
+      <td>لا نزيد ألفًا بعد الهمزة</td>
+    </tr>
+    <tr>
+      <td>ألف مقصورة</td>
+      <td><b>هدىً</b></td>
+      <td>لا تزاد ألف تنوين النصب</td>
+    </tr>
+  </table>
+
+  <div class="formula">
+    اسم نكرة منصوب منون + لا ينتهي بحالة من الحالات السابقة ← نزيد ألف تنوين النصب
+  </div>
+</section>
+
+<section class="section" id="waw">
+  <h2>رابعًا: مواضع زيادة الواو</h2>
+
+  <div class="cards">
+
+    <article class="card">
+      <span class="badge">كلمات مخصوصة</span>
+      <h3>تزاد الواو في بعض الكلمات</h3>
+      <div class="example"><b>أولئك</b></div>
+      <div class="example"><b>أولو</b></div>
+      <div class="example"><b>أولي</b></div>
+      <div class="example"><b>أولات</b> بمعنى ذوات</div>
+      <div class="note">احفظي رسم هذه الكلمات كما هو.</div>
+    </article>
+
+    <article class="card">
+      <span class="badge">للتفريق</span>
+      <h3>الواو في «عمرو»</h3>
+      <p>تزاد الواو في اسم العلم <b>عمرو</b> للتفريق بينه وبين <b>عمر</b>.</p>
+      <div class="example">حضر <b>عمرو</b>.</div>
+      <div class="example">مررت بـ<b>عمرو</b>.</div>
+      <div class="note">
+        إذا كان «عمرو» منونًا منصوبًا لا تظهر الواو:
+        <b>رأيت عمرًا</b>.
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section class="section">
+  <h2>إثراء إملائي</h2>
+
+  <div class="cards">
+    <article class="card">
+      <h3>الألف في «مائة» ومضاعفاتها</h3>
+      <p>من صور زيادة الألف: كتابتها بعد الميم في <b>مائة</b> ومضاعفاتها في الرسم التقليدي.</p>
+      <div class="example"><b>مائة – مائتان – ثلاثمائة – أربعمائة...</b></div>
+      <div class="note">لا تكون هذه الألف في جمع «مئات»، ولا عند النسب: «مئوي».</div>
+    </article>
+
+    <article class="card">
+      <h3>ألف الإطلاق في الشعر</h3>
+      <p>قد تزاد ألف في آخر بيت الشعر لإتباع الحركة الأخيرة إذا كانت فتحًا.</p>
+      <div class="note">هذه حالة إثرائية وليست محور الدرس الأساسي.</div>
+    </article>
+  </div>
+</section>
+
+<section class="section">
+  <h2>جدول الحسم السريع 🧠</h2>
+  <table>
+    <tr><th>الحالة</th><th>ماذا أفعل؟</th><th>مثال</th></tr>
+    <tr><td>واو جماعة مع ماضٍ</td><td>أزيد الألف الفارقة</td><td><b>قالوا</b></td></tr>
+    <tr><td>واو جماعة مع أمر</td><td>أزيد الألف الفارقة</td><td><b>اعملوا</b></td></tr>
+    <tr><td>مضارع منصوب/مجزوم حذفت نونه</td><td>أزيد الألف بعد واو الجماعة</td><td><b>لن يهملوا / لم يهملوا</b></td></tr>
+    <tr><td>جمع مذكر سالم مرفوع</td><td>لا أزيد ألفًا</td><td><b>معلمو المدرسة</b></td></tr>
+    <tr><td>الواو أصلية في الفعل</td><td>لا أزيد ألفًا</td><td><b>يدعو / يسمو</b></td></tr>
+    <tr><td>اسم منون منصوب</td><td>أزيد ألفًا غالبًا</td><td><b>كتابًا</b></td></tr>
+    <tr><td>أولئك، أولو، أولي، أولات</td><td>أثبت الواو</td><td><b>أولئك</b></td></tr>
+    <tr><td>عمرو</td><td>أثبت الواو للتفريق عن عمر</td><td><b>عمرو</b></td></tr>
+  </table>
+</section>
+
+<section class="section">
+  <h2>رياضيات إملائية ✨</h2>
+  <div class="math">
+    <div>فعل + واو الجماعة المتطرفة ← <b>ألف فارقة تُكتب ولا تُنطق</b></div>
+    <div>جمع مذكر سالم مرفوع أو واو أصلية ← <b>لا ألف بعد الواو</b></div>
+    <div>اسم نكرة منصوب منون ← <b>ألف تنوين نصب</b> ما لم يوجد مانع</div>
+    <div>أولئك / أولو / أولي / أولات / عمرو ← <b>انتبهي إلى الواو الزائدة</b></div>
+  </div>
+</section>
+
+<section class="section" id="summary">
+  <h2>الخلاصة التي تثبت القاعدة 🌟</h2>
+  <ul class="summary">
+    <li>الألف بعد واو الجماعة تسمى <b>الألف الفارقة</b>، وتكتب ولا تنطق.</li>
+    <li>تزاد بعد واو الجماعة في الماضي والأمر والمضارع المنصوب أو المجزوم إذا حذفت نونه.</li>
+    <li>لا تزاد بعد واو جمع المذكر السالم ولا بعد الواو الأصلية في الفعل.</li>
+    <li>تزاد ألف في آخر الاسم النكرة المنون المنصوب غالبًا.</li>
+    <li>لا تزاد ألف تنوين النصب مع التاء المربوطة، أو الهمزة على ألف، أو الهمزة المسبوقة بألف، أو الألف المقصورة.</li>
+    <li>تزاد الواو في كلمات مخصوصة مثل: <b>أولئك، أولو، أولي، أولات</b>.</li>
+    <li>تزاد الواو في <b>عمرو</b> للتفريق بينه وبين <b>عمر</b>، وتحذف في حالة النصب المنون: <b>رأيت عمرًا</b>.</li>
+  </ul>
+</section>
+
+<a class="back" href="added-letters.html">العودة إلى درس الحروف المزيدة</a>
+
+</main>
+
+<footer>منصة آفاق التعليمية | لغتي الخالدة | الصف الثالث المتوسط</footer>
 
 </body>
 </html>
