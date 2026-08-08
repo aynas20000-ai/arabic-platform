@@ -2,146 +2,242 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>اختبار العطف | منصة آفاق</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>تحدي العطف | منصة آفاق</title>
 <style>
 :root{
- --p:#5b4677;--p2:#776094;--pd:#453457;--g:#b69750;--gl:#ead9a8;
- --cream:#fffaf2;--bg:#f5f0fa;--text:#3f3348;--green:#367554;--red:#a54444;
+  --p:#5b4677;--p2:#776094;--pd:#453457;
+  --g:#b69750;--g2:#d8c28a;--lav:#eee5f5;
+  --paper:#fffdf9;--text:#403448;
 }
 *{box-sizing:border-box}
-body{margin:0;font-family:Tahoma,Arial,sans-serif;color:var(--text);background:linear-gradient(180deg,#f5f0fa,#fbf9fd,#f1ebf7);min-height:100vh;line-height:1.8}
-header{text-align:center;color:white;padding:35px 18px;background:linear-gradient(145deg,var(--p2),var(--p),var(--pd));border-bottom:5px solid var(--g)}
-header .tag{display:inline-block;padding:4px 12px;border-radius:999px;border:1px solid #dbc681;color:#fff4ce;background:rgba(182,151,80,.15);font-weight:bold;font-size:13px}
-header h1{margin:7px 0 2px;font-size:34px}header p{margin:0;color:#f3edf7}
-main{width:min(760px,92%);margin:22px auto 45px}
-.top{display:flex;justify-content:space-between;gap:10px;margin-bottom:10px;font-weight:bold;color:var(--p)}
-.progress{height:10px;background:#e9e0ef;border-radius:999px;overflow:hidden;margin-bottom:16px}
-.progress>div{height:100%;width:0;background:linear-gradient(90deg,var(--g),#dfca8f);transition:.3s}
-.card,.result{background:#fffdfb;border:1px solid #d8c28a;border-radius:24px;box-shadow:0 15px 32px rgba(73,54,92,.12);padding:22px 19px}
-.qnum{font-weight:bold;color:var(--g);margin-bottom:5px}
-h2{font-size:21px;margin:4px 0 16px;color:var(--pd)}
-.options{display:grid;gap:10px}
-.opt{width:100%;padding:13px 14px;border-radius:14px;border:2px solid #e4dbe9;background:#fff;color:var(--text);font:inherit;font-size:16px;text-align:right;cursor:pointer}
-.opt:hover{border-color:#bfa8cc;background:#fbf8fd}
-.opt.correct{background:#e9f6ef;border-color:#60a27c;color:#285f42}
-.opt.wrong{background:#fff0f0;border-color:#c87777;color:#873535}
+html,body{height:100%;margin:0}
+body{
+  font-family:Tahoma,Arial,sans-serif;color:var(--text);
+  background:linear-gradient(180deg,#f5f0fa,#fbf9fd,#f1ebf7);
+  overflow:hidden;
+}
+.app{height:100dvh;display:grid;grid-template-rows:auto 1fr auto}
+header{
+  text-align:center;color:#fff;padding:10px 12px 8px;
+  background:linear-gradient(145deg,var(--p2),var(--p),var(--pd));
+  border-bottom:4px solid var(--g);
+}
+.tag{
+  display:inline-block;padding:3px 10px;border-radius:999px;
+  border:1px solid var(--g2);color:#fff2c6;
+  background:rgba(182,151,80,.13);font-size:11px;font-weight:bold
+}
+header h1{margin:4px 0 0;font-size:clamp(19px,4.8vw,28px)}
+header p{margin:0;color:#f2ebf6;font-size:11px}
+main{
+  min-height:0;width:min(760px,94%);margin:0 auto;padding:7px 0;
+  display:flex;flex-direction:column;
+}
+.top{
+  display:flex;justify-content:space-between;gap:8px;
+  font-weight:bold;color:var(--p);font-size:13px;margin-bottom:5px
+}
+.progress{
+  height:8px;background:#e9e0ef;border-radius:999px;
+  overflow:hidden;margin-bottom:7px
+}
+.progress>div{
+  height:100%;width:0;background:linear-gradient(90deg,var(--g),#dfca8f);transition:.3s
+}
+.card,.result{
+  flex:1;min-height:0;background:var(--paper);
+  border:1px solid var(--g2);border-radius:22px;
+  box-shadow:0 14px 30px rgba(73,54,92,.12);
+  padding:12px;display:flex;flex-direction:column;justify-content:center
+}
+.qnum{color:var(--g);font-weight:bold;font-size:12px;margin-bottom:2px}
+h2{font-size:clamp(16px,4.3vw,21px);margin:2px 0 8px;color:var(--pd);line-height:1.5}
+.options{display:grid;gap:6px}
+.opt{
+  width:100%;padding:8px 10px;border-radius:13px;
+  border:2px solid #e4dbe9;background:#fff;color:var(--text);
+  font:inherit;font-size:clamp(13px,3.4vw,16px);
+  text-align:right;cursor:pointer;line-height:1.35
+}
+.opt.correct{background:#f0ecf6;border-color:var(--p2);color:var(--pd)}
+.opt.wrong{background:#fff8ec;border-color:var(--g2);color:#66522e}
 .opt:disabled{cursor:default}
-.feedback{display:none;margin-top:14px;padding:13px 14px;border-radius:14px;font-size:15px}
-.feedback.show{display:block}.feedback.good{background:#e9f6ef;border:1px solid #8cbea1;color:#285f42}.feedback.bad{background:#fff1f1;border:1px solid #dca0a0;color:#843838}
-.next{display:none;width:100%;margin-top:15px;padding:13px;border:0;border-radius:14px;background:linear-gradient(145deg,var(--p2),var(--p));color:white;font:inherit;font-weight:bold;font-size:16px;cursor:pointer}
-.result{display:none;text-align:center}.result.show{display:block}.score{font-size:44px;font-weight:bold;color:var(--g)}
-.restart,.lesson{display:block;text-decoration:none;width:100%;padding:12px;margin-top:10px;border-radius:14px;font-weight:bold}
-.restart{border:0;background:linear-gradient(145deg,var(--p2),var(--p));color:white;font:inherit;cursor:pointer}.lesson{background:#f0e8f5;color:var(--pd);border:1px solid #d7c8e0}
-footer{text-align:center;color:#756c7a;padding:16px;font-size:12px}
+.feedback{
+  display:none;margin-top:7px;padding:8px 10px;border-radius:13px;
+  font-size:clamp(12px,3.2vw,14px);line-height:1.45
+}
+.feedback.show{display:block}
+.feedback.good{background:#f3edf8;border:1px solid #c9b8d4;color:var(--pd)}
+.feedback.bad{background:#fff9ec;border:1px solid var(--g2);color:#66522e}
+.next{
+  display:none;width:100%;margin-top:7px;padding:8px;border:0;border-radius:13px;
+  background:linear-gradient(145deg,var(--p2),var(--p));
+  color:#fff;font:inherit;font-weight:bold;cursor:pointer;font-size:14px
+}
+.result{display:none;text-align:center}
+.result.show{display:flex}
+.score{font-size:40px;color:var(--g);font-weight:bold}
+.restart,.lesson{
+  display:block;text-decoration:none;width:100%;padding:10px;margin-top:8px;
+  border-radius:13px;font-weight:bold
+}
+.restart{
+  border:0;background:linear-gradient(145deg,var(--p2),var(--p));
+  color:#fff;font:inherit;cursor:pointer
+}
+.lesson{background:var(--lav);color:var(--pd);border:1px solid #d6c7df}
+footer{text-align:center;padding:5px;color:#73697a;font-size:9px}
+.burst{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:20}
+.confetti{
+  position:absolute;width:8px;height:8px;border-radius:2px;
+  animation:fall 900ms ease-out forwards
+}
+@keyframes fall{
+  0%{transform:translateY(-20px) rotate(0);opacity:1}
+  100%{transform:translateY(105vh) rotate(540deg);opacity:0}
+}
+.pop{animation:pop .25s ease}
+@keyframes pop{50%{transform:scale(1.018)}}
+@media(max-height:650px){
+  header{padding:5px 10px 4px}
+  header h1{font-size:17px}
+  header p{font-size:9px}
+  main{padding:3px 0}
+  .top{font-size:11px;margin-bottom:3px}
+  .progress{height:6px;margin-bottom:4px}
+  .card{padding:7px}
+  h2{font-size:15px;margin-bottom:5px}
+  .options{gap:4px}
+  .opt{padding:5px 7px;font-size:12px}
+  .feedback{padding:5px 7px;margin-top:4px;font-size:11px}
+  .next{padding:6px;margin-top:4px}
+}
 </style>
 </head>
 <body>
+<div class="app">
 <header>
- <span class="tag">منصة آفاق التعليمية</span>
- <h1>اختبار العطف</h1>
- <p>١٠ أسئلة تفاعلية مع تعقيب فوري على كل إجابة</p>
+  <span class="tag">منصة آفاق التعليمية</span>
+  <h1>تحدي العطف</h1>
+  <p>١٠ أسئلة • سؤال واحد في كل شاشة • تعقيب فوري ✨</p>
 </header>
 <main>
- <div class="top"><span id="counter">السؤال ١ من ١٠</span><span id="correctCount">الصحيح: ٠</span></div>
- <div class="progress"><div id="bar"></div></div>
- <section class="card" id="card">
-   <div class="qnum" id="qnum"></div>
-   <h2 id="question"></h2>
-   <div class="options" id="options"></div>
-   <div class="feedback" id="feedback"></div>
-   <button class="next" id="next">السؤال التالي</button>
- </section>
- <section class="result" id="result">
-   <h2>اكتمل الاختبار 🌟</h2>
-   <div class="score" id="score"></div>
-   <p id="message"></p>
-   <button class="restart" onclick="restartQuiz()">إعادة الاختبار</button>
-   <a class="lesson" href="conjunction-file.html">مراجعة ملف درس العطف</a>
- </section>
+  <div class="top">
+    <span id="counter">السؤال ١ من ١٠</span>
+    <span id="correctCount">الصحيح: ٠</span>
+  </div>
+  <div class="progress"><div id="bar"></div></div>
+
+  <section class="card" id="card">
+    <div class="qnum" id="qnum"></div>
+    <h2 id="question"></h2>
+    <div class="options" id="options"></div>
+    <div class="feedback" id="feedback"></div>
+    <button class="next" id="next">السؤال التالي</button>
+  </section>
+
+  <section class="result" id="result">
+    <h2>انتهى التحدي ✨</h2>
+    <div class="score" id="score"></div>
+    <p id="message"></p>
+    <button class="restart" onclick="restartQuiz()">أعيدي التحدي</button>
+    <a class="lesson" href="conjunction-file.html">راجعي ملف الدرس</a>
+    <a class="lesson" href="conjunction.html">العودة إلى الدرس</a>
+  </section>
 </main>
 <footer>منصة آفاق التعليمية | لغتي الخالدة | الصف الثالث المتوسط</footer>
+</div>
+
+<div class="burst" id="burst"></div>
 <script>
-const questions = [{"q": "في الجملة: «حضر خالدٌ ومحمدٌ» ما إعراب كلمة «محمدٌ»؟", "o": ["معطوف مرفوع", "معطوف منصوب", "معطوف مجرور", "معطوف عليه مرفوع"], "a": 0, "ok": "أحسنتِ 🌟 «محمدٌ» معطوف على «خالدٌ»، والمعطوف يتبع المعطوف عليه في الإعراب، لذلك هو مرفوع.", "bad": "راجعي قاعدة الإعراب: المعطوف يتبع المعطوف عليه. «خالدٌ» مرفوع، إذن «محمدٌ» معطوف مرفوع."}, {"q": "أي حرف عطف يفيد الترتيب مع التعقيب؟", "o": ["الواو", "الفاء", "ثم", "أو"], "a": 1, "ok": "صحيح 👏 الفاء تفيد الترتيب والتعقيب؛ أي إن الثاني يأتي بعد الأول مباشرة أو قريبًا منه.", "bad": "الإجابة الصحيحة: «الفاء». لا تخلطي بينها وبين «ثم»؛ فـ«ثم» تفيد الترتيب مع التراخي."}, {"q": "في الجملة: «دخل المعلمُ ثم المديرُ» ما معنى «ثم»؟", "o": ["المشاركة دون ترتيب", "الترتيب مع التعقيب", "الترتيب مع التراخي", "التخيير"], "a": 2, "ok": "ممتاز ✨ «ثم» تفيد الترتيب مع التراخي؛ أي وجود مهلة بين الحدثين.", "bad": "انتبهي: «ثم» = ترتيب + تراخٍ، أما «الفاء» = ترتيب + تعقيب."}, {"q": "«قرأ وكتب محمدٌ» نوع العطف في المثال هو:", "o": ["عطف اسم على اسم", "عطف فعل على فعل", "عطف جملة فعلية على جملة فعلية", "عطف جملة اسمية على جملة اسمية"], "a": 1, "ok": "رائعة 👌 الفاعل «محمد» واحد ومشترك بين الفعلين «قرأ» و«كتب»، لذلك هو عطف فعل على فعل.", "bad": "اسألي نفسك: هل الفاعل واحد للفعلين؟ نعم، «محمد» فاعل لهما؛ إذن عطف فعل على فعل."}, {"q": "«قرأ زيدٌ وكتب خالدٌ» نوع العطف هو:", "o": ["عطف فعل على فعل", "عطف اسم على اسم", "عطف جملة فعلية على جملة فعلية", "عطف جملة اسمية على جملة اسمية"], "a": 2, "ok": "صحيح جدًا 🌿 لكل فعل فاعل مستقل: «زيد» للأول و«خالد» للثاني؛ إذن جملة فعلية عطفت على جملة فعلية.", "bad": "هنا لكل فعل فاعل مختلف، لذلك لدينا جملتان فعليتان مستقلتان، والثانية معطوفة على الأولى."}, {"q": "«العلمُ نورٌ والجهلُ ظلامٌ» نوع العطف هو:", "o": ["عطف اسم على اسم", "عطف جملة اسمية على جملة اسمية", "عطف فعل على فعل", "عطف جملة فعلية على جملة فعلية"], "a": 1, "ok": "أحسنتِ 💜 «العلم نور» جملة اسمية، و«الجهل ظلام» جملة اسمية أخرى؛ إذن عطف جملة اسمية على جملة اسمية.", "bad": "قسّمي المثال: «العلم نور» = مبتدأ وخبر، و«الجهل ظلام» = مبتدأ وخبر؛ إذن عطف جملتين اسميتين."}, {"q": "في «رأيت خالدًا ومحمدًا» ما إعراب «محمدًا»؟", "o": ["معطوف مرفوع", "معطوف منصوب", "معطوف مجرور", "فاعل"], "a": 1, "ok": "إجابة صحيحة 🌟 «خالدًا» منصوب، ولذلك جاء المعطوف «محمدًا» منصوبًا مثله.", "bad": "أعربي المعطوف عليه أولًا: «خالدًا» مفعول به منصوب، إذن «محمدًا» معطوف منصوب."}, {"q": "في «أحب الصدقَ لا الكذبَ» ماذا تفيد «لا»؟", "o": ["الترتيب والتعقيب", "إثبات الحكم لما قبلها ونفيه عما بعدها", "الغاية", "التراخي"], "a": 1, "ok": "ممتاز 👏 «لا» تثبت الحكم لما قبلها وتنفيه عما بعدها: أحب الصدق ولا أحب الكذب.", "bad": "الإجابة الصحيحة: إثبات الحكم لما قبل «لا» ونفيه عما بعدها."}, {"q": "في «ما قرأتُ قصةً بل روايةً» ماذا تفيد «بل»؟", "o": ["التخيير", "الغاية", "الإضراب والانتقال من حكم إلى آخر", "المشاركة دون ترتيب"], "a": 2, "ok": "صحيح ✨ «بل» تفيد الإضراب والانتقال من الحكم الأول إلى الحكم الثاني.", "bad": "«بل» ليست للتخيير ولا للترتيب؛ معناها هنا الإضراب والانتقال من حكم إلى آخر."}, {"q": "أي عبارة تساعدكِ على التمييز بين عطف الفعل وعطف الجملة الفعلية في الأمثلة المدرسية؟", "o": ["نفس الفاعل = عطف فعل، وفعل لكل فاعل مختلف = عطف جملة", "كل واو تعني عطف جملة", "إذا كان الفعل ماضيًا فهو عطف فعل", "إذا كان الفاعل مستترًا فهو عطف جملة"], "a": 0, "ok": "ممتاز جدًا 🎯 هذه قاعدة حسم مبسطة: فاعل واحد مشترك = عطف فعل، وفاعل مستقل لكل فعل = عطف جملة فعلية.", "bad": "القاعدة المبسطة التي نستخدمها هنا: إذا اشترك الفعلان في فاعل واحد فهو عطف فعل، وإذا كان لكل فعل فاعل مستقل فهو عطف جملة."}];
-let index=0, score=0, answered=false;
+const questions=[{"q": "ما حرف العطف في الجملة: «حضر خالدٌ ومحمدٌ»؟", "o": ["حضر", "خالدٌ", "الواو", "محمدٌ"], "a": 2, "ok": "أحسنتِ 🌟 الواو حرف عطف، و«محمدٌ» معطوف على «خالدٌ».", "bad": "حرف العطف هو الذي يتوسط بين المعطوف عليه والمعطوف؛ وهنا هو «الواو»."}, {"q": "ماذا تفيد الفاء في: «دخلت المعلمةُ فالطالباتُ»؟", "o": ["الترتيب مع التراخي", "الترتيب مع التعقيب", "الشك", "الإضراب"], "a": 1, "ok": "ممتازة ✨ الفاء تفيد الترتيب مع التعقيب، أي وقوع الثاني بعد الأول مباشرة.", "bad": "الفاء = ترتيب + تعقيب، بخلاف «ثم» التي تدل على التراخي."}, {"q": "أيُّ حرف عطف يفيد الترتيب مع التراخي؟", "o": ["الواو", "الفاء", "ثم", "بل"], "a": 2, "ok": "رائعة 👏 «ثم» تفيد الترتيب مع التراخي.", "bad": "تذكري: الفاء للتعقيب، و«ثم» للتراخي."}, {"q": "في الجملة «أتحبين القراءةَ أم الكتابةَ؟» تفيد «أم»:", "o": ["التعيين في الاستفهام", "النفي", "الإضراب", "الجمع المطلق"], "a": 0, "ok": "صحيح جدًا 💜 «أم» تأتي في الاستفهام لطلب التعيين بين أمرين.", "bad": "«أم» هنا مرتبطة بالاستفهام وتطلب تعيين أحد الخيارين."}, {"q": "أيُّ جملة استُعملت فيها «أو» للتخيير؟", "o": ["خذي قلمًا أو دفترًا.", "وصل خالدٌ أو محمدٌ ولا أدري أيهما.", "الكلمة اسمٌ أو فعلٌ أو حرفٌ.", "حضر محمدٌ بل خالدٌ."], "a": 0, "ok": "أحسنتِ 🎯 في «خذي قلمًا أو دفترًا» المخاطبة مخيّرة بين أمرين.", "bad": "التخيير يعني اختيار أحد الأمرين، مثل: «خذي قلمًا أو دفترًا»."}, {"q": "أيُّ جملة استُعملت فيها «أو» للشك؟", "o": ["اختاري الكتابَ أو القصةَ.", "حضر خالدٌ أو محمدٌ ولا أدري أيهما.", "الكلمة اسمٌ أو فعلٌ أو حرفٌ.", "ذاكري ثم استريحي."], "a": 1, "ok": "ممتازة 🌟 وجود «لا أدري أيهما» يدل على الشك.", "bad": "إذا كان المتكلم غير متأكد من أحد أمرين فـ«أو» للشك."}, {"q": "أيُّ مثال يدل على استعمال «أو» للتقسيم؟", "o": ["الكلمة اسمٌ أو فعلٌ أو حرفٌ.", "اشربي ماءً أو عصيرًا.", "حضر خالدٌ أو محمدٌ ولا أعلم.", "دخلت المعلمة ثم الطالبات."], "a": 0, "ok": "بطلة 👏 «الكلمة اسم أو فعل أو حرف» تقسيم لأقسام الكلمة.", "bad": "التقسيم يذكر أنواع الشيء وأقسامه، مثل: «اسم أو فعل أو حرف»."}, {"q": "ما دلالة «بل» في: «ما حضر خالدٌ بل محمدٌ»؟", "o": ["التخيير", "الإضراب والانتقال إلى ما بعدها", "التعقيب", "التراخي"], "a": 1, "ok": "صحيح ✨ «بل» تفيد الإضراب والانتقال بالحكم إلى ما بعدها.", "bad": "«بل» تنقل الحكم عما قبلها إلى ما بعدها."}, {"q": "في الجملة «حضر الطالبُ والمعلمُ»، ما إعراب «المعلمُ»؟", "o": ["معطوف مرفوع", "مفعول به منصوب", "مضاف إليه مجرور", "حال منصوب"], "a": 0, "ok": "إتقان رائع 🏆 المعطوف يتبع المعطوف عليه في الإعراب؛ لذلك «المعلمُ» مرفوع.", "bad": "«الطالبُ» مرفوع، والمعطوف يتبعه في الإعراب، لذا «المعلمُ» معطوف مرفوع."}, {"q": "أيُّ قاعدة تلخص العطف بدقة؟", "o": ["المعطوف لا يتبع ما قبله في الإعراب", "المعطوف عليه + حرف العطف + المعطوف، والمعطوف يتبع المعطوف عليه في الإعراب", "كل حرف عطف له المعنى نفسه", "العطف يكون بين الأسماء فقط"], "a": 1, "ok": "ممتازة جدًا 🧠 هذه هي البنية الأساسية للعطف مع قاعدة الإعراب.", "bad": "تذكري الصيغة: معطوف عليه + حرف عطف + معطوف، والمعطوف تابع في الإعراب."}];
+let index=0,score=0,answered=false;
 const arabicDigits=n=>String(n).replace(/\d/g,d=>'٠١٢٣٤٥٦٧٨٩'[d]);
-const question=document.getElementById('question'), options=document.getElementById('options'),
-feedback=document.getElementById('feedback'), next=document.getElementById('next');
 
+function tone(ok){
+  try{
+    const AC=window.AudioContext||window.webkitAudioContext;
+    const c=new AC(),o=c.createOscillator(),g=c.createGain();
+    o.connect(g);g.connect(c.destination);
+    o.type=ok?'sine':'triangle';
+    o.frequency.setValueAtTime(ok?660:220,c.currentTime);
+    if(ok)o.frequency.exponentialRampToValueAtTime(920,c.currentTime+.16);
+    else o.frequency.exponentialRampToValueAtTime(170,c.currentTime+.16);
+    g.gain.setValueAtTime(.07,c.currentTime);
+    g.gain.exponentialRampToValueAtTime(.001,c.currentTime+.23);
+    o.start();o.stop(c.currentTime+.24);
+  }catch(e){}
+}
+function confetti(){
+  const burst=document.getElementById('burst');burst.innerHTML='';
+  const colors=['#5b4677','#776094','#b69750','#d8c28a','#eee5f5'];
+  for(let i=0;i<26;i++){
+    const s=document.createElement('i');s.className='confetti';
+    s.style.left=(Math.random()*100)+'vw';s.style.top='-10px';
+    s.style.background=colors[i%colors.length];
+    s.style.animationDelay=(Math.random()*170)+'ms';
+    burst.appendChild(s);
+  }
+  setTimeout(()=>burst.innerHTML='',1200);
+}
 function render(){
- answered=false;
- const x=questions[index];
- document.getElementById('qnum').textContent='السؤال '+arabicDigits(index+1);
- document.getElementById('counter').textContent='السؤال '+arabicDigits(index+1)+' من '+arabicDigits(questions.length);
- document.getElementById('correctCount').textContent='الصحيح: '+arabicDigits(score);
- document.getElementById('bar').style.width=(index/questions.length*100)+'%';
- question.textContent=x.q;
- options.innerHTML='';
- feedback.className='feedback';
- feedback.innerHTML='';
- next.style.display='none';
- x.o.forEach((t,i)=>{
-   const b=document.createElement('button');
-   b.className='opt'; b.textContent=t;
-   b.onclick=()=>choose(i,b);
-   options.appendChild(b);
- });
+  answered=false;const x=questions[index];
+  document.getElementById('qnum').textContent='السؤال '+arabicDigits(index+1);
+  document.getElementById('counter').textContent='السؤال '+arabicDigits(index+1)+' من '+arabicDigits(questions.length);
+  document.getElementById('correctCount').textContent='الصحيح: '+arabicDigits(score);
+  document.getElementById('bar').style.width=(index/questions.length*100)+'%';
+  document.getElementById('question').textContent=x.q;
+  const options=document.getElementById('options'),feedback=document.getElementById('feedback'),
+        next=document.getElementById('next'),card=document.getElementById('card');
+  options.innerHTML='';feedback.className='feedback';feedback.innerHTML='';
+  next.style.display='none';card.classList.remove('pop');
+  x.o.forEach((t,j)=>{
+    const b=document.createElement('button');b.className='opt';b.textContent=t;
+    b.onclick=()=>choose(j,b);options.appendChild(b);
+  });
 }
-
 function choose(choice,button){
- if(answered)return;
- answered=true;
- const x=questions[index];
- const btns=[...document.querySelectorAll('.opt')];
- btns.forEach(b=>b.disabled=true);
- btns[x.a].classList.add('correct');
-
- if(choice===x.a){
-   score++;
-   button.classList.add('correct');
-   feedback.className='feedback show good';
-   feedback.textContent=x.ok;
-   if(navigator.vibrate) navigator.vibrate(50);
- }else{
-   button.classList.add('wrong');
-   feedback.className='feedback show bad';
-   feedback.innerHTML='<b>ليست الإجابة الصحيحة.</b><br>'+x.bad;
-   if(navigator.vibrate) navigator.vibrate([80,50,80]);
- }
- document.getElementById('correctCount').textContent='الصحيح: '+arabicDigits(score);
- next.textContent=index===questions.length-1?'عرض النتيجة':'السؤال التالي';
- next.style.display='block';
+  if(answered)return;answered=true;
+  const x=questions[index],btns=[...document.querySelectorAll('.opt')];
+  btns.forEach(b=>b.disabled=true);btns[x.a].classList.add('correct');
+  const feedback=document.getElementById('feedback');
+  if(choice===x.a){
+    score++;button.classList.add('correct');feedback.className='feedback show good';
+    feedback.textContent=x.ok;tone(true);confetti();if(navigator.vibrate)navigator.vibrate(45);
+  }else{
+    button.classList.add('wrong');feedback.className='feedback show bad';
+    feedback.innerHTML='<b>راجعي القاعدة 👀</b><br>'+x.bad;
+    tone(false);if(navigator.vibrate)navigator.vibrate([70,40,70]);
+  }
+  document.getElementById('correctCount').textContent='الصحيح: '+arabicDigits(score);
+  document.getElementById('card').classList.add('pop');
+  const next=document.getElementById('next');
+  next.textContent=index===questions.length-1?'شوفي نتيجتك ✨':'كمّلي التحدي ←';
+  next.style.display='block';
 }
-
-next.onclick=()=>{
- index++;
- if(index<questions.length) render();
- else finish();
-};
-
+document.getElementById('next').onclick=()=>{index++;if(index<questions.length)render();else finish();};
 function finish(){
- document.getElementById('bar').style.width='100%';
- document.getElementById('card').style.display='none';
- document.querySelector('.top').style.display='none';
- document.querySelector('.progress').style.display='none';
- const r=document.getElementById('result');
- r.classList.add('show');
- document.getElementById('score').textContent=arabicDigits(score)+' / '+arabicDigits(questions.length);
- const pct=score/questions.length;
- document.getElementById('message').textContent=
- pct===1?'إتقان رائع جدًا! جميع إجاباتك صحيحة 👏':
- pct>=.8?'ممتازة جدًا، لديكِ فهم قوي لدرس العطف.':
- pct>=.6?'جيد جدًا، راجعي الأسئلة التي أخطأتِ فيها ثم أعيدي المحاولة.':
- 'راجعي ملف الدرس، خاصة معاني الحروف والرياضيات النحوية، ثم أعيدي الاختبار.';
+  document.getElementById('bar').style.width='100%';
+  document.getElementById('card').style.display='none';
+  document.querySelector('.top').style.display='none';
+  document.querySelector('.progress').style.display='none';
+  const result=document.getElementById('result');result.classList.add('show');
+  document.getElementById('score').textContent=arabicDigits(score)+' / '+arabicDigits(questions.length);
+  const pct=score/questions.length;
+  document.getElementById('message').textContent=
+    pct===1?"إتقان كامل! بطلة العطف 🏆":
+    pct>=.8?"ممتازة جدًا 🌟 أتقنتِ حروف العطف ومعانيها وإعراب المعطوف.":
+    pct>=.6?"أداء جميل 👏 راجعي معاني حروف العطف، خاصة «أو» و«الفاء» و«ثم»، ثم أعيدي التحدي.":
+    "راجعي ملف الدرس، وركزي على معاني حروف العطف وقاعدة تبعية المعطوف في الإعراب.";
+  if(pct>=.8)confetti();
 }
-
 function restartQuiz(){
- index=0;score=0;answered=false;
- document.getElementById('card').style.display='block';
- document.querySelector('.top').style.display='flex';
- document.querySelector('.progress').style.display='block';
- document.getElementById('result').classList.remove('show');
- render();
+  index=0;score=0;answered=false;
+  document.getElementById('card').style.display='flex';
+  document.querySelector('.top').style.display='flex';
+  document.querySelector('.progress').style.display='block';
+  document.getElementById('result').classList.remove('show');render();
 }
 render();
 </script>
