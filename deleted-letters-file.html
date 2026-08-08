@@ -1,78 +1,527 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ملف درس الكلمات المحذوف بعض أحرفها</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>رسم بعض الكلمات المحذوف بعض أحرفها | منصة آفاق</title>
 
-  <style>
-    body{
-      margin:0;
-      font-family:Tahoma,Arial,sans-serif;
-      background:#f5f5f5;
-      text-align:center;
-    }
-
-    header{
-      background:#1565c0;
-      color:white;
-      padding:35px 20px;
-    }
-
-    section{
-      background:white;
-      margin:30px auto;
-      padding:25px;
-      width:85%;
-      max-width:700px;
-      border-radius:18px;
-      box-shadow:0 4px 15px rgba(0,0,0,0.12);
-    }
-
-    .box{
-      background:#eaf3ff;
-      margin:18px 0;
-      padding:24px;
-      border-radius:14px;
-      font-size:21px;
-    }
-
-    .back{
-      color:#1565c0;
-      font-weight:bold;
-      text-decoration:none;
-    }
-
-    footer{
-      background:#222;
-      color:white;
-      padding:20px;
-      margin-top:30px;
-    }
-  </style>
+<style>
+:root{
+  --p:#5b4677;
+  --p2:#776094;
+  --pd:#453457;
+  --g:#b69750;
+  --g2:#d8c28a;
+  --lav:#eee5f5;
+  --cream:#fffaf2;
+  --paper:#fffdf9;
+  --text:#403448;
+  --muted:#756c7a;
+  --shadow:0 14px 30px rgba(73,54,92,.11);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Tahoma,Arial,sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 10% 4%,rgba(216,194,138,.16),transparent 22%),
+    linear-gradient(180deg,#f5f0fa 0%,#fbf9fd 50%,#f1ebf7 100%);
+  line-height:1.9;
+}
+header{
+  position:relative;
+  overflow:hidden;
+  text-align:center;
+  color:#fff;
+  padding:38px 17px 32px;
+  background:linear-gradient(145deg,var(--p2),var(--p),var(--pd));
+  border-bottom:5px solid var(--g);
+}
+header:before,header:after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  background:rgba(255,255,255,.055);
+}
+header:before{width:240px;height:240px;right:-95px;top:-130px}
+header:after{width:270px;height:270px;left:-115px;bottom:-195px}
+.tag{
+  position:relative;z-index:1;
+  display:inline-block;padding:4px 13px;border-radius:999px;
+  border:1px solid var(--g2);
+  background:rgba(182,151,80,.14);
+  color:#fff2c6;font-size:12px;font-weight:bold
+}
+header h1{
+  position:relative;z-index:1;
+  margin:7px auto 2px;
+  max-width:920px;
+  font-size:clamp(25px,6.2vw,39px);
+  line-height:1.5;
+}
+header p{position:relative;z-index:1;margin:0;color:#f3edf7;font-size:14px}
+main{width:min(920px,93%);margin:20px auto 42px}
+.quick-nav{
+  display:flex;gap:7px;flex-wrap:wrap;justify-content:center;margin-bottom:15px
+}
+.quick-nav a{
+  text-decoration:none;color:var(--p);background:#fff;
+  border:1px solid #d9cce2;border-radius:999px;
+  padding:7px 11px;font-size:12px;font-weight:bold
+}
+.intro,.section{
+  background:var(--paper);
+  border:1px solid #ded2e6;
+  border-radius:22px;
+  padding:18px;
+  box-shadow:var(--shadow);
+  margin:13px 0;
+}
+.intro{border-top:4px solid var(--g);text-align:center}
+.intro h2,.section h2{margin:0 0 8px;color:var(--p);font-size:22px}
+.intro p{margin:0;color:var(--muted)}
+.hero-rule{
+  margin-top:12px;padding:12px 14px;border-radius:16px;
+  background:linear-gradient(135deg,#f3edf8,#fff8e8);
+  border:1px solid var(--g2);font-weight:bold;color:var(--pd)
+}
+.cards{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;margin:14px 0
+}
+.card{
+  background:var(--paper);
+  border:1px solid #ddd2e4;
+  border-top:4px solid var(--g);
+  border-radius:22px;
+  padding:17px 15px;
+  box-shadow:var(--shadow)
+}
+.card h3{margin:0 0 8px;color:var(--p);font-size:21px}
+.badge{
+  display:inline-block;margin-bottom:7px;
+  padding:3px 10px;border-radius:999px;
+  background:var(--lav);border:1px solid #d7c7df;
+  color:var(--pd);font-size:12px;font-weight:bold
+}
+.formula{
+  text-align:center;
+  padding:10px 12px;margin:10px 0;
+  border-radius:15px;
+  background:linear-gradient(135deg,#f3edf8,#fff9ec);
+  border:1px solid var(--g2);
+  color:var(--pd);
+  font-size:20px;font-weight:bold
+}
+.example{
+  background:#fff;
+  border:1px dashed #cbb9d6;
+  border-radius:14px;
+  padding:9px 11px;
+  margin:7px 0
+}
+.example b{color:var(--p)}
+.note{
+  background:#fff8e8;
+  border:1px solid var(--g2);
+  border-right:5px solid var(--g);
+  border-radius:15px;
+  padding:11px 13px;
+  margin:10px 0
+}
+.lav-note{
+  background:#f3edf8;
+  border:1px solid #d7c7df;
+  border-right:5px solid var(--p2);
+  border-radius:15px;
+  padding:11px 13px;
+  margin:10px 0
+}
+.warning{
+  background:#faf6fc;
+  border:1px solid #ccb9d7;
+  border-radius:15px;
+  padding:11px 13px;
+  margin:8px 0
+}
+.warning strong{color:var(--p)}
+table{
+  width:100%;
+  border-collapse:collapse;
+  background:#fff;
+  margin-top:10px
+}
+th,td{
+  border:1px solid #ddd1e5;
+  padding:9px 7px;
+  text-align:center;
+  vertical-align:middle
+}
+th{background:var(--lav);color:var(--pd)}
+.word-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:8px;margin-top:10px
+}
+.word{
+  text-align:center;
+  background:linear-gradient(135deg,#f4eef8,#fff9ed);
+  border:1px solid #dacde1;
+  border-radius:14px;
+  padding:9px 5px;
+  color:var(--pd);
+  font-weight:bold;
+  font-size:18px
+}
+.math{display:grid;gap:8px;margin-top:10px}
+.math div{
+  padding:11px 12px;border-radius:14px;
+  background:linear-gradient(135deg,#f4eef8,#fff9ed);
+  border:1px solid #d9cbe1;font-weight:bold
+}
+.summary li{margin:7px 0}
+.back{
+  display:block;width:min(440px,100%);
+  margin:22px auto 0;padding:12px 15px;
+  text-align:center;text-decoration:none;color:#fff;font-weight:bold;
+  border-radius:14px;background:linear-gradient(145deg,var(--p2),var(--p));
+  border:1px solid var(--g)
+}
+footer{
+  text-align:center;color:#eee8f2;background:#3e304d;
+  border-top:2px solid var(--g);padding:17px 10px;font-size:12px
+}
+@media(max-width:700px){
+  .cards{grid-template-columns:1fr}
+  .word-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .intro,.section,.card{padding:14px 12px}
+  th,td{font-size:12px;padding:7px 4px}
+  .formula{font-size:18px}
+}
+</style>
 </head>
 
 <body>
 
 <header>
-  <h1>📄 ملف درس الكلمات المحذوف بعض أحرفها</h1>
+  <span class="tag">منصة آفاق التعليمية</span>
+  <h1>رسم بعض الكلمات المحذوف بعض أحرفها</h1>
+  <p>همزة الوصل • الألف اللينة المتوسطة والمتطرفة • النون</p>
 </header>
 
-<section>
+<main>
 
-  <div class="box">
-    سيتم إضافة ملف الدرس هنا
-  </div>
+<nav class="quick-nav">
+  <a href="#idea">الفكرة</a>
+  <a href="#middle">الألف المحذوفة</a>
+  <a href="#ibn">ابن</a>
+  <a href="#question">ما الاستفهامية</a>
+  <a href="#wasl">همزة الوصل</a>
+  <a href="#noon">حذف النون</a>
+  <a href="#summary">الخلاصة</a>
+</nav>
 
+<section class="intro" id="idea">
+  <h2>الفكرة الأساسية ✨</h2>
   <p>
-    <a class="back" href="deleted-letters.html">العودة إلى الدرس</a>
+    في بعض الكلمات يوجد حرف <b>نسمعه عند النطق، لكنه لا يظهر في الرسم الإملائي</b>،
+    وفي كلمات أخرى يحذف حرف بسبب تركيب معين.
   </p>
-
+  <div class="hero-rule">
+    السر في هذا الدرس: لا تكتبي الكلمة كما تسمعينها فقط؛ تعرّفي صورتها الإملائية الصحيحة وموضع الحرف المحذوف.
+  </div>
 </section>
 
-<footer>
-  جميع الحقوق محفوظة © 2026
-</footer>
+<section class="section">
+  <h2>أول ملاحظة: ألف تُنطق ولا تُكتب</h2>
+
+  <div class="cards">
+    <article class="card">
+      <span class="badge">مثال الكتاب</span>
+      <h3>هذا</h3>
+      <div class="formula">هٰذا ← هذا</div>
+      <p>بعد الهاء نسمع صوت الألف، ولكن الألف <b>لا تكتب</b>.</p>
+      <div class="example">هذا كتابٌ مفيد.</div>
+    </article>
+
+    <article class="card">
+      <span class="badge">مثال الكتاب</span>
+      <h3>هذه</h3>
+      <div class="formula">هٰذه ← هذه</div>
+      <p>بعد الهاء الأولى نسمع ألفًا لا تكتب، وتكتب الكلمة في آخرها <b>هاءً</b> لا ياءً.</p>
+      <div class="example">هذه ساعةٌ جميلة.</div>
+    </article>
+  </div>
+
+  <div class="note">
+    انتبهي إلى الأخطاء التي يلفت إليها الدرس:
+    لا نكتب الألف المنطوقة بعد الهاء في «هذا/هذه»، ولا نستبدل هاء «هذه» الأخيرة بياء، ولا نكتب الزاي بدل الذال.
+  </div>
+</section>
+
+<section class="section" id="middle">
+  <h2>ثانيًا: كلمات حُذفت منها ألف في الرسم</h2>
+  <p>هذه الكلمات تحفظ بصورتها الصحيحة؛ ففيها ألف تُنطق ولكنها لا تُكتب.</p>
+
+  <div class="word-grid">
+    <div class="word">هذا</div>
+    <div class="word">هذه</div>
+    <div class="word">هذان</div>
+    <div class="word">هؤلاء</div>
+    <div class="word">ذلك</div>
+    <div class="word">كذلك</div>
+    <div class="word">لكن</div>
+    <div class="word">أولئك</div>
+  </div>
+
+  <div class="cards">
+    <article class="card">
+      <h3>لكن</h3>
+      <div class="example">العلوم والمعارف نافعة، <b>لكن</b> علينا أن نحسن استخدامها.</div>
+      <div class="note">في «لكن» ألف نسمعها في النطق، ولا نكتبها.</div>
+    </article>
+
+    <article class="card">
+      <h3>ذلك / كذلك</h3>
+      <div class="example">حدثت الظاهرة، وحدث <b>ذلك</b> سريعًا.</div>
+      <div class="example">أحب القراءة، و<b>كذلك</b> الكتابة.</div>
+    </article>
+
+    <article class="card">
+      <h3>أولئك</h3>
+      <div class="example"><b>أولئك</b> الطلابُ متفوقون.</div>
+      <div class="note">احفظي رسم الكلمة كما هو، ولا تضيفي ألفًا لمجرد أنك تسمعينها.</div>
+    </article>
+
+    <article class="card">
+      <h3>هذه / هؤلاء</h3>
+      <div class="example"><b>هذه</b> دعوةٌ للعلم.</div>
+      <div class="example"><b>هؤلاء</b> طلابٌ مجتهدون.</div>
+    </article>
+  </div>
+
+  <div class="lav-note">
+    مقارنة تساعدك: ليست كل ألف نسمعها محذوفة في الكتابة؛ فهناك كلمات تُنطق فيها الألف وتُكتب أيضًا.
+    لذلك نعتمد الرسم الصحيح للكلمة ولا نحكم بالصوت وحده.
+  </div>
+</section>
+
+<section class="section" id="ibn">
+  <h2>ثالثًا: حذف ألف «ابن»</h2>
+
+  <div class="example">
+    حفظ الله الملك سلمان <b>بن</b> عبدالعزيز.
+  </div>
+
+  <div class="formula">ابن ← بن</div>
+
+  <p>
+    في المثال السابق حذفت ألف «ابن» في الرسم.
+    ولإتقان القاعدة، من المهم أن تعرفي الحالات التي <b>لا تحذف</b> فيها ألف «ابن».
+  </p>
+
+  <div class="cards">
+    <article class="card">
+      <span class="badge">لا تحذف الألف</span>
+      <h3>إذا ثُنِّيت أو جُمعت</h3>
+      <div class="example">تبقى الألف عند تثنية الكلمة أو جمعها.</div>
+    </article>
+
+    <article class="card">
+      <span class="badge">لا تحذف الألف</span>
+      <h3>إذا وقعت بين اسمين غير علمين</h3>
+      <div class="example">المهندس <b>ابن</b> المهندس.</div>
+    </article>
+
+    <article class="card">
+      <span class="badge">لا تحذف الألف</span>
+      <h3>إذا فُصل بين العلمين</h3>
+      <div class="example">إذا لم يتصل العلمان مباشرة تبقى ألف «ابن».</div>
+    </article>
+
+    <article class="card">
+      <span class="badge">لا تحذف الألف</span>
+      <h3>إذا وقعت في أول السطر</h3>
+      <div class="example">إذا بدأت بها السطر تكتب: <b>ابن</b>.</div>
+    </article>
+  </div>
+</section>
+
+<section class="section" id="question">
+  <h2>رابعًا: «ما» بعد حروف الجر: استفهامية أم موصولة؟</h2>
+
+  <div class="lav-note">
+    هنا لا يكفي أن نرى «ما» بعد حرف الجر؛ بل نحدد نوعها أولًا:
+    هل هي <b>استفهامية</b> للسؤال؟ أم <b>موصولة</b> بمعنى «الذي»؟
+  </div>
+
+  <h3 style="color:var(--pd);margin-bottom:6px">أ ـ إذا كانت «ما» استفهامية</h3>
+  <p>
+    إذا جاءت «ما» الاستفهامية بعد حرف الجر، <b>تحذف ألفها</b>.
+  </p>
+
+  <table>
+    <tr><th>التركيب</th><th>الرسم بعد الحذف</th><th>مثال</th></tr>
+    <tr><td>في + ما؟</td><td><b>فيمَ؟</b></td><td>فيمَ تفكرين؟</td></tr>
+    <tr><td>لِ + ما؟</td><td><b>لِمَ؟</b></td><td>لِمَ تأخرتِ؟</td></tr>
+    <tr><td>عن + ما؟</td><td><b>عَمَّ؟</b></td><td>عَمَّ تتحدثين؟</td></tr>
+    <tr><td>من + ما؟</td><td><b>مِمَّ؟</b></td><td>مِمَّ صُنعت هذه القطعة؟</td></tr>
+    <tr><td>بِ + ما؟</td><td><b>بِمَ؟</b></td><td>بِمَ تكتبين؟</td></tr>
+    <tr><td>على + ما؟</td><td><b>علامَ؟</b></td><td>علامَ تعتمدين؟</td></tr>
+    <tr><td>إلى + ما؟</td><td><b>إلامَ؟</b></td><td>إلامَ تسعين؟</td></tr>
+  </table>
+
+  <div class="formula">
+    حرف جر + ما الاستفهامية ← تحذف ألف «ما»
+  </div>
+
+  <h3 style="color:var(--pd);margin:16px 0 6px">ب ـ إذا كانت «ما» موصولة</h3>
+  <p>
+    إذا كانت «ما» <b>موصولة بمعنى «الذي»</b> فلا نحذف ألفها.
+  </p>
+
+  <div class="example">اهتممتُ <b>بما</b> قرأتُ.</div>
+  <div class="example">فكرتُ <b>فيما</b> تعلمتُ.</div>
+  <div class="example">سررتُ <b>بما</b> أنجزتِ.</div>
+
+  <div class="note">
+    مفتاح التمييز:
+    <b>إذا كانت «ما» للسؤال ← احذفي الألف.</b><br>
+    <b>إذا كانت بمعنى «الذي» ← لا تحذفي الألف.</b>
+  </div>
+
+  <div class="warning">
+    <strong>قارني:</strong><br>
+    <b>فيمَ تفكرين؟</b> ← «ما» استفهامية، حُذفت ألفها.<br>
+    <b>فكرتُ فيما تعلمتُ.</b> ← «ما» موصولة، بقيت ألفها.
+  </div>
+</section>
+
+<section class="section" id="noon">
+  <h2>خامسًا: مواضع حذف النون</h2>
+
+  <div class="cards">
+
+    <article class="card">
+      <span class="badge">عن / من + مَن</span>
+      <h3>تحذف النون عند الاتصال بـ«مَن»</h3>
+      <div class="formula">عن + مَن ← عمَّن</div>
+      <div class="formula">من + مَن ← ممَّن</div>
+      <div class="example">عمَّن تسألين؟</div>
+      <div class="example">ممَّن تعلمتِ هذا الخُلُق؟</div>
+    </article>
+
+    <article class="card">
+      <span class="badge">أنْ + لا النافية</span>
+      <h3>تحذف نون «أنْ»</h3>
+      <p>
+        تحذف النون من «أنْ» المصدرية الناصبة للفعل المضارع إذا جاءت بعدها «لا» النافية.
+      </p>
+      <div class="formula">أنْ + لا + فعل مضارع ← ألّا</div>
+      <div class="example">أنصحك <b>ألّا تهملَ</b>.</div>
+    </article>
+
+  </div>
+
+  <div class="note">
+    مفتاح التمييز: في «ألّا» يكون بعدها فعل مضارع في المثال التعليمي: «ألّا تهملَ».
+  </div>
+</section>
+
+<section class="section" id="wasl">
+  <h2>سادسًا: حذف همزة الوصل بعد همزة الاستفهام</h2>
+
+  <div class="lav-note">
+    همزة الوصل تحذف إذا وقعت بعد <b>همزة الاستفهام</b>.
+  </div>
+
+  <div class="example">
+    أستفادَ من هذه المعلومة؟
+  </div>
+
+  <div class="formula">همزة استفهام + همزة وصل ← تحذف همزة الوصل</div>
+
+  <div class="note">
+    استثناء مهم: إذا كانت همزة الوصل في «أل» التعريفية فإنها لا تحذف،
+    وإنما تكتب هي وهمزة الاستفهام ألفًا عليها مدة.
+  </div>
+
+  <div class="example">
+    <b>آلمعلوماتُ</b> مفيدة؟
+  </div>
+</section>
+
+<section class="section">
+  <h2>سابعًا: حذف الواو تخفيفًا</h2>
+
+  <div class="lav-note">
+    من ملاحظات الدرس: تحذف الواو تخفيفًا من بعض الكلمات.
+  </div>
+
+  <div class="word-grid">
+    <div class="word">داود</div>
+    <div class="word">طاووس</div>
+    <div class="word">مسؤول</div>
+    <div class="word">شؤون</div>
+  </div>
+
+  <div class="note">
+    هذه الكلمات تحفظ برسمها الصحيح، فلا نزيد فيها واوًا أخرى لمجرد امتداد الصوت عند النطق.
+  </div>
+</section>
+
+<section class="section">
+  <h2>جدول الحسم السريع 🧠</h2>
+
+  <table>
+    <tr><th>الموضع</th><th>ماذا يحدث؟</th><th>مثال</th></tr>
+    <tr><td>هذا، هذه، هذان، هؤلاء، ذلك، كذلك، لكن، أولئك</td><td>ألف تنطق ولا تكتب</td><td><b>هذا / لكن</b></td></tr>
+    <tr><td>ابن في موضع الحذف</td><td>تحذف ألفها</td><td><b>سلمان بن عبدالعزيز</b></td></tr>
+    <tr><td>حرف جر + ما الاستفهامية</td><td>تحذف ألف «ما»</td><td><b>فيمَ / بِمَ / علامَ / إلامَ</b></td></tr>
+    <tr><td>حرف جر + ما الموصولة</td><td>تبقى ألف «ما»</td><td><b>بما / فيما</b></td></tr>
+    <tr><td>عن أو من + مَن</td><td>تحذف النون ويدغم المثلان</td><td><b>عمَّن / ممَّن</b></td></tr>
+    <tr><td>أنْ الناصبة + لا النافية + مضارع</td><td>تحذف نون «أنْ»</td><td><b>ألّا تهملَ</b></td></tr>
+    <tr><td>همزة استفهام + همزة وصل</td><td>تحذف همزة الوصل</td><td><b>أستفاد؟</b></td></tr>
+    <tr><td>همزة استفهام + أل التعريف</td><td>لا تحذف همزة الوصل وتكتب مدة</td><td><b>آلمعلومات؟</b></td></tr>
+  </table>
+</section>
+
+<section class="section">
+  <h2>رياضيات إملائية ✨</h2>
+
+  <div class="math">
+    <div>أسمع ألفًا في «هذا / هذه / لكن...» ← <b>لا أضيفها؛ أحفظ الرسم الصحيح</b></div>
+    <div>حرف جر + ما الاستفهامية ← <b>أحذف ألف «ما»</b></div>
+    <div>حرف جر + ما الموصولة بمعنى «الذي» ← <b>أُبقي ألف «ما»</b></div>
+    <div>عن / من + مَن ← <b>عمَّن / ممَّن</b></div>
+    <div>أنْ الناصبة + لا النافية + مضارع ← <b>ألّا</b></div>
+    <div>همزة استفهام + همزة وصل ← <b>تحذف همزة الوصل</b></div>
+  </div>
+</section>
+
+<section class="section" id="summary">
+  <h2>الخلاصة التي تثبت الدرس 🌟</h2>
+
+  <ul class="summary">
+    <li>في كلمات مثل <b>هذا، هذه، هذان، هؤلاء، ذلك، كذلك، لكن، أولئك</b> ألف تنطق ولا تكتب.</li>
+    <li>تحذف ألف «ابن» في موضع الحذف، ولها حالات تبقى فيها الألف: إذا ثنيت أو جمعت، أو وقعت بين اسمين غير علمين، أو فصل بين العلمين، أو وقعت في أول السطر.</li>
+    <li>تحذف ألف «ما» الاستفهامية بعد حرف الجر: <b>فيمَ، لِمَ، بِمَ، عمَّ، ممَّ، علامَ، إلامَ</b>.</li>
+    <li>إذا كانت «ما» موصولة بمعنى «الذي» فلا تحذف ألفها: <b>بما، فيما</b>.</li>
+    <li>تحذف النون من «عن/من» إذا دخلتا على «مَن»: <b>عمَّن، ممَّن</b>.</li>
+    <li>تحذف نون «أنْ» المصدرية الناصبة إذا جاءت بعدها «لا» النافية: <b>ألّا تهملَ</b>.</li>
+    <li>تحذف همزة الوصل بعد همزة الاستفهام، إلا إذا كانت في «أل» التعريفية فتكتب مع همزة الاستفهام ألفًا ممدودة.</li>
+    <li>من ملاحظات الدرس حذف الواو تخفيفًا في بعض الكلمات، وتحفظ بصورتها الإملائية الصحيحة.</li>
+  </ul>
+</section>
+
+<a class="back" href="deleted-letters.html">العودة إلى درس الكلمات المحذوف بعض أحرفها</a>
+
+</main>
+
+<footer>منصة آفاق التعليمية | لغتي الخالدة | الصف الثالث المتوسط</footer>
 
 </body>
 </html>
