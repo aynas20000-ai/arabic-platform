@@ -9,7 +9,9 @@
     content="width=device-width, initial-scale=1.0"
   >
 
-  <title>بين سطرٍ وخطوة | منصة آفاق</title>
+  <title>
+    بين سطرٍ وخطوة | منصة آفاق
+  </title>
 
   <style>
     :root {
@@ -35,21 +37,24 @@
       --rose-light: #f7f0f4;
 
       --shadow:
-        0 18px 38px
-        rgba(31, 21, 43, .22);
+        0 12px 28px
+        rgba(69, 52, 87, .12);
     }
+
 
     * {
       box-sizing: border-box;
     }
 
-    html,
-    body {
-      margin: 0;
-      min-height: 100%;
+
+    html {
+      scroll-behavior: smooth;
     }
 
+
     body {
+      margin: 0;
+
       font-family:
         Tahoma,
         Arial,
@@ -59,188 +64,228 @@
 
       background:
         linear-gradient(
-          160deg,
-          #453457 0%,
-          #5b4677 45%,
-          #453457 100%
+          180deg,
+          #fffaf2 0%,
+          #fffdf9 65%,
+          #f8f2fa 100%
         );
+
+      min-height: 100vh;
 
       line-height: 1.8;
     }
+
 
     button,
     textarea {
       font-family: inherit;
     }
 
-    .page {
-      width: min(94%, 900px);
-      margin: auto;
 
-      padding:
-        18px 0
-        34px;
-    }
-
-    .top-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      gap: 10px;
-
-      margin-bottom: 14px;
-    }
-
-    .brand {
-      color: var(--cream);
-
-      font-size: 18px;
-      font-weight: 800;
-    }
-
-    .home-link {
-      text-decoration: none;
-
-      color: var(--cream);
-
-      padding:
-        8px 13px;
-
-      border-radius: 14px;
-
-      border:
-        1px solid
-        rgba(216, 194, 138, .45);
-
-      background:
-        rgba(255, 255, 255, .08);
-    }
-
-    .hero {
+    .site-header {
       position: relative;
+
       overflow: hidden;
-
-      padding:
-        25px 18px;
-
-      margin-bottom: 15px;
-
-      text-align: center;
-
-      border-radius: 27px;
 
       background:
         linear-gradient(
           145deg,
-          #5b4677,
-          #453457
+          #776094 0%,
+          #5b4677 52%,
+          #453457 100%
         );
 
-      border:
-        1px solid
-        rgba(216, 194, 138, .70);
-
-      box-shadow:
-        var(--shadow);
-    }
-
-    .hero::before {
-      content: "";
-
-      position: absolute;
-
-      width: 150px;
-      height: 150px;
-
-      top: -80px;
-      left: -55px;
-
-      border-radius: 50%;
-
-      background:
-        rgba(216, 194, 138, .11);
-    }
-
-    .hero::after {
-      content: "";
-
-      position: absolute;
-
-      width: 170px;
-      height: 170px;
-
-      right: -65px;
-      bottom: -100px;
-
-      border-radius: 50%;
-
-      background:
-        rgba(255, 250, 242, .06);
-    }
-
-    .hero h1 {
-      position: relative;
-
-      margin:
-        0 0 5px;
+      border-bottom:
+        6px solid
+        var(--gold);
 
       color: var(--cream);
-
-      font-size:
-        clamp(
-          30px,
-          7vw,
-          44px
-        );
     }
 
-    .hero h2 {
-      position: relative;
 
-      margin:
-        0 0 8px;
+    .site-header::before {
+      content: "";
 
-      color: var(--gold-light);
+      position: absolute;
 
-      font-size:
-        clamp(
-          17px,
-          4.5vw,
-          21px
-        );
+      width: 230px;
+      height: 230px;
+
+      top: -120px;
+      left: -70px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(255, 255, 255, .06);
     }
 
-    .hero p {
-      position: relative;
 
-      max-width: 650px;
+    .header-inner {
+      width: min(92%, 900px);
 
       margin: auto;
 
-      color: #eee5f5;
-
-      font-size: 14px;
+      padding:
+        18px 0 30px;
     }
 
-    .welcome-card {
-      padding:
-        23px 18px;
 
-      text-align: center;
+    .top-bar {
+      position: relative;
 
-      border-radius: 25px;
+      z-index: 2;
 
-      background:
-        var(--cream);
+      display: flex;
+
+      align-items: center;
+
+      justify-content:
+        space-between;
+
+      gap: 10px;
+    }
+
+
+    .brand {
+      font-size: 18px;
+
+      font-weight: 800;
+
+      color: var(--cream);
+    }
+
+
+    .home-link {
+      text-decoration: none;
+
+      color: var(--purple-dark);
+
+      background: var(--cream);
 
       border:
         2px solid
         var(--gold);
 
+      padding:
+        8px 14px;
+
+      border-radius: 16px;
+
+      font-size: 14px;
+
+      font-weight: 700;
+    }
+
+
+    .hero {
+      position: relative;
+
+      z-index: 2;
+
+      text-align: center;
+
+      padding:
+        34px 10px 10px;
+    }
+
+
+    .hero-icon {
+      width: 82px;
+      height: 82px;
+
+      margin:
+        0 auto 13px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      border-radius: 24px;
+
+      border:
+        2px solid
+        var(--gold-light);
+
+      background:
+        rgba(255, 255, 255, .07);
+
+      font-size: 39px;
+    }
+
+
+    .hero h1 {
+      margin:
+        0 0 7px;
+
+      color: var(--cream);
+
+      font-size:
+        clamp(
+          31px,
+          7vw,
+          45px
+        );
+    }
+
+
+    .hero h2 {
+      margin:
+        0 0 9px;
+
+      color: var(--gold-light);
+
+      font-size:
+        clamp(
+          18px,
+          4.5vw,
+          22px
+        );
+    }
+
+
+    .hero p {
+      max-width: 650px;
+
+      margin: auto;
+
+      color: #f3edf6;
+
+      font-size: 15px;
+    }
+
+
+    .main-area {
+      width: min(92%, 900px);
+
+      margin: auto;
+
+      padding:
+        22px 0 36px;
+    }
+
+
+    .welcome-card {
+      padding:
+        22px 18px;
+
+      text-align: center;
+
+      border-radius: 26px;
+
+      background:
+        var(--cream-light);
+
+      border:
+        3px solid
+        var(--gold);
+
       box-shadow:
         var(--shadow);
     }
+
 
     .welcome-card h3 {
       margin:
@@ -249,84 +294,91 @@
       color:
         var(--purple-dark);
 
-      font-size: 23px;
+      font-size: 24px;
     }
 
-    .welcome-card p {
-      margin: auto;
 
+    .welcome-card p {
       max-width: 620px;
 
-      color:
-        var(--muted);
+      margin: auto;
+
+      color: var(--muted);
 
       font-size: 15px;
     }
 
-    .start-btn {
-      margin-top: 16px;
 
-      min-height: 50px;
+    .start-btn {
+      margin-top: 17px;
+
+      min-height: 51px;
 
       padding:
-        12px 25px;
+        12px 26px;
 
       border:
-        1px solid
-        var(--gold-light);
+        2px solid
+        var(--gold);
 
       border-radius: 16px;
 
       color: var(--cream);
 
+      background:
+        var(--purple);
+
       font-size: 16px;
+
       font-weight: 800;
 
       cursor: pointer;
-
-      background:
-        linear-gradient(
-          135deg,
-          #776094,
-          #5b4677
-        );
-
-      box-shadow:
-        0 9px 18px
-        rgba(69, 52, 87, .22);
     }
+
 
     .start-btn:active {
       transform: scale(.98);
     }
 
+
     .journey-panel {
       display: none;
     }
+
 
     .journey-panel.active {
       display: block;
     }
 
+
     .progress-wrap {
-      margin-bottom: 11px;
+      margin-bottom: 12px;
 
       padding:
-        11px 13px;
+        11px 14px;
 
-      border-radius: 17px;
+      border-radius: 18px;
 
       background:
-        rgba(255, 250, 242, .96);
+        var(--cream-light);
 
       border:
-        1px solid
-        rgba(216, 194, 138, .65);
+        2px solid
+        var(--gold);
+
+      box-shadow:
+        0 6px 15px
+        rgba(69, 52, 87, .08);
     }
+
 
     .progress-head {
       display: flex;
-      justify-content: space-between;
+
+      align-items: center;
+
+      justify-content:
+        space-between;
 
       gap: 10px;
 
@@ -336,22 +388,26 @@
         var(--purple-dark);
 
       font-size: 13px;
+
       font-weight: 800;
     }
 
+
     .progress-track {
-      height: 8px;
+      height: 9px;
 
       overflow: hidden;
 
       border-radius: 999px;
 
       background:
-        #e5dced;
+        #e7deed;
     }
+
 
     .progress-fill {
       width: 12.5%;
+
       height: 100%;
 
       border-radius: inherit;
@@ -360,61 +416,65 @@
         linear-gradient(
           90deg,
           var(--gold),
-          var(--purple-mid)
+          var(--purple)
         );
 
       transition:
         width .3s ease;
     }
 
-    .book {
+
+    .book-shell {
       position: relative;
 
-      border-radius: 26px;
-
       padding: 5px;
+
+      border-radius: 28px;
 
       background:
         linear-gradient(
           145deg,
           #b69750,
           #d8c28a,
-          #8f7138
+          #9c7c3c
         );
 
       box-shadow:
-        0 20px 42px
-        rgba(25, 16, 35, .28);
+        0 15px 34px
+        rgba(69, 52, 87, .16);
     }
 
-    .story-card {
+
+    .book-page {
       position: relative;
 
+      overflow: hidden;
+
       min-height:
-        calc(100vh - 195px);
+        calc(100vh - 160px);
 
       padding:
-        18px 16px 76px;
+        19px 16px 82px;
 
-      border-radius: 22px;
+      border-radius: 23px;
 
       background:
         linear-gradient(
           165deg,
-          #fffdf9,
-          #fffaf2
+          #fffdf9 0%,
+          #fffaf2 100%
         );
-
-      overflow: hidden;
     }
 
-    .story-card::before {
+
+    .book-page::before {
       content: "";
 
       position: absolute;
 
       top: 0;
       bottom: 0;
+
       right: 50%;
 
       width: 1px;
@@ -422,53 +482,60 @@
       background:
         linear-gradient(
           transparent,
-          rgba(91, 70, 119, .12),
+          rgba(91, 70, 119, .08),
           transparent
         );
-
-      pointer-events: none;
     }
 
+
     .story-head {
+      position: relative;
+
+      z-index: 2;
+
       display: flex;
+
       align-items: center;
 
       gap: 8px;
 
       flex-wrap: wrap;
 
-      margin-bottom: 7px;
+      margin-bottom: 8px;
     }
+
 
     .story-number {
       display: inline-flex;
+
       align-items: center;
+
       justify-content: center;
 
-      min-width: 38px;
-      min-height: 38px;
+      min-width: 39px;
+      min-height: 39px;
 
       padding:
         6px 10px;
 
       border-radius: 13px;
 
-      color:
-        var(--cream);
+      color: var(--cream);
 
       background:
         var(--purple);
 
       border:
-        1px solid
-        var(--gold-light);
+        2px solid
+        var(--gold);
 
       font-weight: 800;
     }
 
+
     .story-category {
       padding:
-        5px 10px;
+        5px 11px;
 
       border-radius: 999px;
 
@@ -479,12 +546,18 @@
         var(--lavender);
 
       font-size: 12px;
+
       font-weight: 800;
     }
 
+
     .story-title {
+      position: relative;
+
+      z-index: 2;
+
       margin:
-        5px 0 10px;
+        6px 0 11px;
 
       color:
         var(--purple-dark);
@@ -493,58 +566,77 @@
         clamp(
           21px,
           5vw,
-          27px
+          28px
         );
 
       line-height: 1.5;
     }
-        .story-text{
-      color:var(--text);
-      font-size:15px;
+
+
+    .story-page-content {
+      position: relative;
+
+      z-index: 2;
+
+      color: var(--text);
+
+      font-size: 15px;
     }
 
-    .story-text p{
+
+    .story-page-content p {
       margin:
-        0 0 11px;
+        0 0 12px;
     }
 
-    .story-text p + p{
-      padding-top:10px;
 
-      border-top:
-        1px dashed
-        rgba(91,70,119,.14);
+    .page-indicator {
+      margin-top: 9px;
+
+      text-align: center;
+
+      color: var(--gold);
+
+      font-size: 12px;
+
+      font-weight: 800;
     }
+        .story-section {
+      position: relative;
 
-    .turning-box{
-      margin-top:12px;
+      z-index: 2;
 
-      padding:
-        13px 14px;
+      margin-top: 12px;
 
-      border-radius:17px;
+      padding: 13px 14px;
+
+      border-radius: 17px;
 
       background:
-        #f4ecf8;
+        #f5eff8;
 
       border:
         1px solid
-        rgba(91,70,119,.14);
-
-      font-size:14px;
+        rgba(91,70,119,.13);
     }
 
-    .turning-box strong{
+
+    .story-section strong {
       color:
         var(--purple-dark);
     }
 
-    .reflection-box{
-      margin-top:12px;
 
-      padding:14px;
+    .reflection-box {
+      position: relative;
 
-      border-radius:18px;
+      z-index: 2;
+
+      margin-top: 12px;
+
+      padding: 14px;
+
+      border-radius: 18px;
 
       background:
         #eee5f5;
@@ -554,57 +646,63 @@
         rgba(91,70,119,.14);
     }
 
-    .reflection-box h4{
+
+    .reflection-box h4 {
       margin:
-        0 0 5px;
+        0 0 6px;
 
       color:
         var(--purple-dark);
 
-      font-size:17px;
+      font-size: 17px;
     }
 
-    .reflection-help{
+
+    .reflection-help {
       margin:
         0 0 10px;
 
       color:
         var(--muted);
 
-      font-size:13px;
+      font-size: 13px;
     }
 
-    .choices{
-      display:grid;
-      gap:8px;
+
+    .choices {
+      display: grid;
+
+      gap: 8px;
     }
 
-    .choice-btn{
-      width:100%;
+
+    .choice-btn {
+      width: 100%;
 
       padding:
         11px 12px;
 
-      border-radius:14px;
+      border-radius: 14px;
 
       border:
         1px solid
         rgba(91,70,119,.17);
 
       background:
-        #fffdf9;
+        var(--cream-light);
 
       color:
         var(--text);
 
-      text-align:right;
+      text-align: right;
 
-      font-size:14px;
+      font-size: 14px;
 
-      cursor:pointer;
+      cursor: pointer;
     }
 
-    .choice-btn.selected{
+
+    .choice-btn.selected {
       background:
         #e5d8ee;
 
@@ -612,119 +710,146 @@
         var(--purple-mid);
     }
 
-    .feedback-box{
-      display:none;
 
-      margin-top:9px;
+    .feedback-box {
+      display: none;
+
+      margin-top: 9px;
 
       padding:
         11px 12px;
 
-      border-radius:14px;
+      border-radius: 14px;
 
-      font-size:13px;
+      font-size: 13px;
     }
 
-    .feedback-box.show{
-      display:block;
+
+    .feedback-box.show {
+      display: block;
     }
 
-    .feedback-box.good{
-      background:
-        var(--green-light);
 
+    .feedback-box.good {
       color:
         #496557;
+
+      background:
+        var(--green-light);
 
       border:
         1px solid
         rgba(95,125,108,.22);
     }
 
-    .feedback-box.reflect{
-      background:
-        var(--rose-light);
 
+    .feedback-box.reflect {
       color:
         #735364;
+
+      background:
+        var(--rose-light);
 
       border:
         1px solid
         rgba(155,113,130,.22);
     }
 
-    .mission-box{
-      margin-top:12px;
+
+    .mission-box {
+      position: relative;
+
+      z-index: 2;
+
+      margin-top: 12px;
 
       padding:
         12px 14px;
 
-      border-radius:17px;
+      border-radius: 17px;
 
       background:
-        #fff8ea;
+        #fff7e7;
 
       border:
         1px solid
-        rgba(182,151,80,.28);
+        rgba(182,151,80,.30);
 
-      font-size:14px;
+      font-size: 14px;
     }
 
-    .mission-box strong{
+
+    .mission-box strong {
       color:
         var(--gold);
     }
 
-    .page-turns{
-      position:absolute;
 
-      left:14px;
-      right:14px;
-      bottom:14px;
+    .page-turns {
+      position: absolute;
 
-      display:flex;
+      z-index: 5;
+
+      left: 14px;
+      right: 14px;
+      bottom: 14px;
+
+      display: flex;
+
+      align-items: center;
 
       justify-content:
         space-between;
 
-      gap:10px;
+      gap: 10px;
     }
 
-    .page-btn{
-      flex:1;
 
-      min-height:48px;
+    .page-btn {
+      flex: 1;
 
-      border-radius:16px;
+      min-height: 48px;
+
+      padding:
+        10px 12px;
+
+      border-radius: 16px;
 
       border:
-        1px solid
-        rgba(216,194,138,.65);
+        2px solid
+        var(--gold);
 
-      font-size:14px;
-      font-weight:800;
+      font-size: 14px;
 
-      cursor:pointer;
+      font-weight: 800;
 
-      box-shadow:
-        0 6px 13px
-        rgba(69,52,87,.11);
+      cursor: pointer;
+
+      transition:
+        transform .15s ease;
     }
 
-    .prev-btn{
+
+    .page-btn:active {
+      transform:
+        scale(.97);
+    }
+
+
+    .prev-btn {
       color:
         var(--purple-dark);
 
       background:
         linear-gradient(
           145deg,
-          #f3ebf8,
-          #e5d8ee
+          #f4edf8,
+          #e7daee
         );
     }
 
-    .next-btn{
+
+    .next-btn {
       color:
         var(--cream);
 
@@ -736,43 +861,44 @@
         );
     }
 
-    .page-btn:disabled{
-      opacity:.38;
-      cursor:not-allowed;
+
+    .page-btn:disabled {
+      opacity: .35;
+
+      cursor: not-allowed;
     }
 
-    .page-btn:active{
-      transform:scale(.98);
-    }
 
-    .final-panel{
-      display:none;
+    .final-panel {
+      display: none;
 
-      margin-top:14px;
+      margin-top: 16px;
 
       padding:
-        22px 18px;
+        23px 18px;
 
-      border-radius:25px;
+      border-radius: 26px;
 
-      text-align:center;
+      text-align: center;
 
       background:
-        var(--cream);
+        var(--cream-light);
 
       border:
-        2px solid
+        3px solid
         var(--gold);
 
       box-shadow:
         var(--shadow);
     }
 
-    .final-panel.show{
-      display:block;
+
+    .final-panel.show {
+      display: block;
     }
 
-    .final-panel h2{
+
+    .final-panel h2 {
       margin:
         0 0 8px;
 
@@ -780,89 +906,100 @@
         var(--purple-dark);
     }
 
-    .final-panel p{
-      margin:0;
+
+    .final-panel p {
+      margin:
+        0;
 
       color:
         var(--muted);
 
-      font-size:14px;
+      font-size: 14px;
     }
 
-    .promise-box{
-      margin-top:14px;
 
-      padding:14px;
+    .promise-box {
+      margin-top: 14px;
 
-      border-radius:18px;
+      padding: 14px;
 
-      text-align:right;
+      border-radius: 18px;
+
+      text-align: right;
 
       background:
-        #f4ecf8;
+        #f4edf8;
 
       border:
         1px solid
         rgba(91,70,119,.14);
     }
 
-    .promise-box label{
-      display:block;
 
-      margin-bottom:8px;
+    .promise-box label {
+      display: block;
+
+      margin-bottom: 8px;
 
       color:
         var(--purple-dark);
 
-      font-weight:800;
+      font-weight: 800;
 
-      font-size:14px;
+      font-size: 14px;
     }
 
-    .promise-box textarea{
-      width:100%;
 
-      min-height:90px;
+    .promise-box textarea {
+      width: 100%;
 
-      padding:11px;
+      min-height: 90px;
 
-      border-radius:14px;
+      padding: 11px;
+
+      border-radius: 14px;
 
       border:
         1px solid
         rgba(91,70,119,.18);
 
       background:
-        #fffdf9;
+        var(--cream-light);
 
       color:
         var(--text);
 
-      font-size:14px;
+      font-size: 14px;
 
-      resize:vertical;
+      resize: vertical;
     }
 
-    .promise-actions{
-      display:flex;
-      gap:8px;
-      margin-top:9px;
+
+    .promise-actions {
+      display: flex;
+
+      gap: 8px;
+
+      margin-top: 9px;
     }
 
-    .promise-actions button{
-      flex:1;
 
-      min-height:43px;
+    .promise-actions button {
+      flex: 1;
 
-      border:0;
-      border-radius:13px;
+      min-height: 44px;
 
-      font-weight:800;
+      border: 0;
 
-      cursor:pointer;
+      border-radius: 14px;
+
+      font-weight: 800;
+
+      cursor: pointer;
     }
 
-    .save-promise-btn{
+
+    .save-promise-btn {
       color:
         var(--cream);
 
@@ -870,7 +1007,8 @@
         var(--purple);
     }
 
-    .restart-btn{
+
+    .restart-btn {
       color:
         var(--purple-dark);
 
@@ -878,14 +1016,15 @@
         #e5d8ee;
     }
 
-    .promise-result{
-      display:none;
 
-      margin-top:9px;
+    .promise-result {
+      display: none;
 
-      padding:10px;
+      margin-top: 9px;
 
-      border-radius:13px;
+      padding: 10px;
+
+      border-radius: 13px;
 
       color:
         #496557;
@@ -894,36 +1033,41 @@
         var(--green-light);
     }
 
-    .promise-result.show{
-      display:block;
+
+    .promise-result.show {
+      display: block;
     }
 
-    footer{
-      margin-top:18px;
 
-      text-align:center;
+    footer {
+      margin-top: 19px;
+
+      text-align: center;
 
       color:
-        #eee5f5;
+        var(--purple-dark);
 
-      font-size:12px;
+      font-size: 12px;
     }
 
-    .stars-layer{
-      position:fixed;
-      inset:0;
 
-      pointer-events:none;
+    .stars-layer {
+      position: fixed;
 
-      overflow:hidden;
+      inset: 0;
 
-      z-index:9999;
+      z-index: 9999;
+
+      pointer-events: none;
+
+      overflow: hidden;
     }
 
-    .star{
-      position:absolute;
 
-      font-size:20px;
+    .star {
+      position: absolute;
+
+      font-size: 20px;
 
       animation:
         starFall
@@ -931,20 +1075,23 @@
         forwards;
     }
 
-    @keyframes starFall{
-      0%{
-        opacity:0;
+
+    @keyframes starFall {
+
+      0% {
+        opacity: 0;
+
         transform:
           translateY(-10px)
           scale(.7);
       }
 
-      20%{
-        opacity:1;
+      20% {
+        opacity: 1;
       }
 
-      100%{
-        opacity:0;
+      100% {
+        opacity: 0;
 
         transform:
           translateY(80px)
@@ -953,33 +1100,39 @@
       }
     }
 
-    @media(max-width:600px){
 
-      .page{
-        width:92%;
+    @media(max-width:600px) {
+
+      .header-inner,
+      .main-area {
+        width: 92%;
       }
 
-      .hero{
+
+      .hero {
         padding:
-          21px 15px;
+          27px 8px 9px;
       }
 
-      .story-card{
+
+      .book-page {
         min-height:
-          calc(100vh - 175px);
+          calc(100vh - 150px);
 
         padding:
-          16px 14px 78px;
+          17px 14px 82px;
       }
 
-      .page-turns{
-        left:12px;
-        right:12px;
-        bottom:12px;
+
+      .page-turns {
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
       }
 
-      .promise-actions{
-        flex-direction:column;
+
+      .promise-actions {
+        flex-direction: column;
       }
     }
 
@@ -987,51 +1140,66 @@
 
 </head>
 
+
 <body>
+
 
   <div
     class="stars-layer"
     id="starsLayer"
   ></div>
 
-  <main class="page">
 
-    <div class="top-bar">
+  <header class="site-header">
 
-      <div class="brand">
-        منصة آفاق
+    <div class="header-inner">
+
+      <div class="top-bar">
+
+        <div class="brand">
+          منصة آفاق
+        </div>
+
+        <a
+          class="home-link"
+          href="index.html"
+        >
+          العودة إلى الصفحة الرئيسة
+        </a>
+
       </div>
 
-      <a
-        class="home-link"
-        href="index.html"
-      >
-        العودة إلى الصفحة الرئيسة
-      </a>
+
+      <div class="hero">
+
+        <div class="hero-icon">
+          📖
+        </div>
+
+        <h1>
+          بين سطرٍ وخطوة
+        </h1>
+
+        <h2>
+          حكايات تبني صوتكِ اللغوي بثقة
+        </h2>
+
+        <p>
+          ثماني حكايات قريبة من يومكِ،
+          تبدأ بموقف صغير،
+          ثم تقودكِ خطوةً خطوة
+          إلى طريقة أذكى في التعلّم.
+        </p>
+
+      </div>
 
     </div>
 
-    <section class="hero">
+  </header>
 
-      <h1>
-        بين سطرٍ وخطوة
-      </h1>
 
-      <h2>
-        حكايات تبني صوتكِ اللغوي بثقة
-      </h2>
+  <main class="main-area">
 
-      <p>
-        ثماني حكايات قريبة من يومكِ،
-        تبدأ بموقف صغير،
-        ثم تكشف أن التحوّل
-        لا يحتاج إلى قفزة كبيرة؛
-        بل إلى بداية صادقة،
-        وطريقة أذكى،
-        ومحاولة لا تتوقف عند تعثّر عابر.
-      </p>
-
-    </section>
 
     <section
       class="welcome-card"
@@ -1043,9 +1211,8 @@
       </h3>
 
       <p>
-        ابدئي الحكاية الأولى،
-        وتأملي الموقف،
-        ثم انتقلي بين الحكايات
+        ستظهر لكِ الحكاية صفحةً بعد صفحة،
+        وتنتقلين بينها بزرّي السابق والتالي
         كما لو أنكِ تقلّبين صفحات كتاب.
       </p>
 
@@ -1058,6 +1225,7 @@
       </button>
 
     </section>
+
 
     <section
       class="journey-panel"
@@ -1089,11 +1257,12 @@
 
       </div>
 
-      <div class="book">
+
+      <div class="book-shell">
 
         <article
-          class="story-card"
-          id="storyCard"
+          class="book-page"
+          id="bookPage"
         >
 
           <div class="story-head">
@@ -1110,22 +1279,37 @@
 
           </div>
 
+
           <h2
             class="story-title"
             id="storyTitle"
           ></h2>
 
-          <div
-            class="story-text"
-            id="storyText"
-          ></div>
 
           <div
-            class="turning-box"
+            class="story-page-content"
+            id="storyPageContent"
+          ></div>
+
+
+          <div
+            class="page-indicator"
+            id="pageIndicator"
+          ></div>
+
+
+          <div
+            class="story-section"
             id="turningBox"
+            style="display:none;"
           ></div>
 
-          <div class="reflection-box">
+
+          <div
+            class="reflection-box"
+            id="reflectionBox"
+            style="display:none;"
+          >
 
             <h4
               id="questionText"
@@ -1149,10 +1333,13 @@
 
           </div>
 
+
           <div
             class="mission-box"
             id="missionBox"
+            style="display:none;"
           ></div>
+
 
           <div class="page-turns">
 
@@ -1161,7 +1348,7 @@
               class="page-btn prev-btn"
               id="prevBtn"
             >
-              ‹ الصفحة السابقة
+              ‹ السابق
             </button>
 
             <button
@@ -1169,7 +1356,7 @@
               class="page-btn next-btn"
               id="nextBtn"
             >
-              الصفحة التالية ›
+              التالي ›
             </button>
 
           </div>
@@ -1190,7 +1377,7 @@
 
       <p>
         مررتِ بثماني حكايات،
-        وكل محاولة فيها تركت لكِ سؤالًا،
+        وكل حكاية تركت لكِ فكرةً،
         وخطوةً،
         وطريقةً جديدة للنظر إلى تعلّمكِ.
       </p>
@@ -1237,11 +1424,13 @@
 
     </section>
 
+
     <footer>
       منصة آفاق ✦ رحلة لغوية تبدأ بخطوة
     </footer>
 
   </main>
+
 
   <script>
 
@@ -1256,55 +1445,64 @@
         title:
           "الصفحة التي تغيّرت حين قرأتها بهدوء",
 
-        text: `
-          <p>
-            اعتادت سارة أن تنظر إلى النص الطويل
-            وكأنه كتلة واحدة لا تعرف من أين تبدأ.
-            كانت تقرأ السطور بسرعة،
-            ثم تصل إلى النهاية ولا تستطيع أن تحدد
-            الفكرة التي أراد الكاتب إيصالها.
-          </p>
+        pages: [
 
-          <p>
-            في أحد الأيام، أعطت المعلمة الطالبات
-            نصًّا أدبيًّا، ثم طلبت منهن الإجابة
-            عن سؤالين فقط:
-            ما الفكرة الرئيسة؟
-            وما العبارة التي ساعدتكِ على فهمها؟
-          </p>
+          `
+            <p>
+              اعتادت سارة أن تنظر إلى النص الطويل
+              وكأنه كتلة واحدة لا تعرف من أين تبدأ.
+              كانت تقرأ السطور بسرعة،
+              ثم تصل إلى النهاية ولا تستطيع أن تحدد
+              الفكرة التي أراد الكاتب إيصالها.
+            </p>
 
-          <p>
-            من حولها، بدأت الطالبات يكتبن،
-            بينما بقيت سارة تعيد النظر في النص.
-            شعرت أن الكلمات كثيرة،
-            وأن الإجابة تختبئ في مكان لا تراه.
-          </p>
+            <p>
+              في أحد الأيام،
+              أعطت المعلمة الطالبات نصًّا أدبيًّا،
+              ثم طلبت منهن الإجابة عن سؤالين فقط:
+              ما الفكرة الرئيسة؟
+              وما العبارة التي ساعدتكِ على فهمها؟
+            </p>
+          `,
 
-          <p>
-            لكنها هذه المرة لم تستسلم للسرعة.
-            بدأت تقرأ فقرةً فقرة،
-            وتضع خطًّا تحت الكلمات التي تتكرر،
-            ثم كتبت بجانب كل فقرة كلمةً تلخّص معناها.
-          </p>
+          `
+            <p>
+              من حولها، بدأت الطالبات يكتبن،
+              بينما بقيت سارة تعيد النظر في النص.
+              شعرت أن الكلمات كثيرة،
+              وأن الإجابة تختبئ في مكان لا تراه.
+            </p>
 
-          <p>
-            بعد دقائق، نظرت إلى الصفحة نفسها،
-            لكنها لم تعد تبدو لها كما كانت.
-            لم يتغيّر النص؛
-            الذي تغيّر هو أسلوب سارة في القراءة.
-          </p>
-        `,
+            <p>
+              لكنها هذه المرة لم تستسلم للسرعة.
+              بدأت تقرأ فقرةً فقرة،
+              وتضع خطًّا تحت الكلمات التي تتكرر،
+              ثم كتبت بجانب كل فقرة كلمةً تلخّص معناها.
+            </p>
+          `,
 
-        turning: `
-          <strong>لحظة التحوّل:</strong>
-          قسّمت سارة النص، وطرحت أسئلة صغيرة،
-          فتحوّل النص الطويل إلى أفكار يمكن التعامل معها.
-        `,
+          `
+            <p>
+              بعد دقائق،
+              نظرت إلى الصفحة نفسها،
+              لكنها لم تعد تبدو لها كما كانت.
+            </p>
+
+            <p>
+              لم يتغيّر النص؛
+              الذي تغيّر هو أسلوب سارة في القراءة.
+            </p>
+          `
+        ],
+
+        turning:
+          "قسّمت سارة النص، وطرحت أسئلة صغيرة، فتحوّل النص الطويل إلى أفكار يمكن التعامل معها.",
 
         question:
           "لو واجهتِ نصًّا طويلًا، فما البداية الأقرب لكِ؟",
 
         choices: [
+
           {
             text:
               "أقسّمه إلى فقرات، وأبحث عن فكرة كل فقرة.",
@@ -1337,11 +1535,13 @@
             feedback:
               "قد تصادفين عبارة تبدو مناسبة، لكن الفهم الحقيقي يحتاج إلى معرفة سياقها داخل النص."
           }
+
         ],
 
         mission:
           "اختاري اليوم فقرة قصيرة، واكتبي بجانبها كلمة واحدة تلخّص فكرتها."
       },
+
 
       {
         number: "٢",
@@ -1352,62 +1552,74 @@
         title:
           "الكلمة التي عرفت مكانها",
 
-        text: `
-          <p>
-            كانت نورة تحفظ علامات الإعراب،
-            لكنها تتردد كلما طُلب منها إعراب كلمة داخل جملة.
-            تعرف أن الضمة علامة رفع،
-            وأن الفتحة علامة نصب،
-            لكن السؤال الذي يربكها كان:
-            لماذا رُفعت هذه الكلمة أصلًا؟
-          </p>
+        pages: [
 
-          <p>
-            في أحد الدروس،
-            كتبت المعلمة على السبورة:
-            «شجّعتِ المعلمةُ الطالبةَ.»
-            ثم طلبت من الطالبات ألا يبدأن بالحركة،
-            بل بثلاثة أسئلة:
-            ما الفعل؟
-            مَن قام به؟
-            وهل وقع الفعل على مفعول به؟
-          </p>
+          `
+            <p>
+              كانت نورة تحفظ علامات الإعراب،
+              لكنها تتردد كلما طُلب منها إعراب كلمة داخل جملة.
+              تعرف أن الضمة علامة رفع،
+              وأن الفتحة علامة نصب،
+              لكن السؤال الذي يربكها كان:
+              لماذا رُفعت هذه الكلمة أصلًا؟
+            </p>
+          `,
 
-          <p>
-            أجابت نورة بهدوء:
-            الفعل «شجّعت»،
-            والمعلمة هي التي قامت بالفعل،
-            والطالبة وقع عليها التشجيع.
-          </p>
+          `
+            <p>
+              في أحد الدروس،
+              كتبت المعلمة على السبورة:
+              «شجّعتِ المعلمةُ الطالبةَ.»
+            </p>
 
-          <p>
-            عندها فهمت أن علامة الإعراب
-            تأتي بعد معرفة الموقع الإعرابي،
-            وأن الموقع نفسه يتضح من وظيفة الكلمة
-            داخل الجملة.
-          </p>
+            <p>
+              ثم طلبت من الطالبات
+              ألا يبدأن بالحركة،
+              بل بثلاثة أسئلة:
+              ما الفعل؟
+              مَن قام به؟
+              وهل وقع الفعل على مفعول به؟
+            </p>
+          `,
 
-          <p>
-            ثم كتبت المعلمة جملة أخرى:
-            «تفوّقتِ الطالبةُ في المسابقة.»
-            ولاحظت نورة أن كلمة «الطالبة»
-            بقيت مرفوعة،
-            لكن وظيفتها النحوية تغيّرت بحسب الجملة.
-          </p>
-        `,
+          `
+            <p>
+              أجابت نورة بهدوء:
+              الفعل «شجّعت»،
+              والمعلمة هي التي قامت بالفعل،
+              والطالبة وقع عليها التشجيع.
+            </p>
 
-        turning: `
-          <strong>لحظة التحوّل:</strong>
-          توقفت نورة عن سؤال نفسها:
-          «ما الحركة؟»
-          وبدأت أولًا بالسؤال:
-          «ما وظيفة الكلمة في الجملة؟»
-        `,
+            <p>
+              عندها فهمت أن علامة الإعراب
+              تأتي بعد معرفة الموقع الإعرابي،
+              وأن الموقع نفسه يتضح من وظيفة الكلمة
+              داخل الجملة.
+            </p>
+          `,
+
+          `
+            <p>
+              ثم كتبت المعلمة جملة أخرى:
+              «تفوّقتِ الطالبةُ في المسابقة.»
+            </p>
+
+            <p>
+              ولاحظت نورة أن كلمة «الطالبة»
+              بقيت مرفوعة،
+              لكن وظيفتها النحوية تغيّرت بحسب الجملة.
+            </p>
+          `
+        ],
+
+        turning:
+          "توقفت نورة عن سؤال نفسها: «ما الحركة؟» وبدأت أولًا بالسؤال: «ما وظيفة الكلمة في الجملة؟»",
 
         question:
           "عندما تريدين إعراب كلمة، ما الخطوة الأدق أولًا؟",
 
         choices: [
+
           {
             text:
               "أحدّد وظيفتها النحوية وموقعها الإعرابي.",
@@ -1440,11 +1652,13 @@
             feedback:
               "الحفظ قد يساعد مؤقتًا، لكن فهم الوظائف النحوية يجعلكِ قادرة على إعراب جمل جديدة."
           }
+
         ],
 
         mission:
           "اختاري جملة من كتابكِ، وحددي فيها فعلًا وفاعلًا أو مبتدأً وخبرًا قبل النظر إلى الحركات."
       },
+
 
       {
         number: "٣",
@@ -1455,57 +1669,70 @@
         title:
           "النص الذي بدأ من ثلاث كلمات",
 
-        text: `
-          <p>
-            كانت ليان تحب الأفكار،
-            لكنها كلما بدأت الكتابة شعرت أن الصفحة البيضاء
-            تطلب منها نصًّا كاملًا منذ اللحظة الأولى.
-          </p>
+        pages: [
 
-          <p>
-            تكتب جملة، ثم تمحوها.
-            تبدأ بفكرة، ثم تنتقل إلى أخرى،
-            ولا تمنح أيًّا منها فرصةً لتكتمل.
-          </p>
+          `
+            <p>
+              كانت ليان تحب الأفكار،
+              لكنها كلما بدأت الكتابة
+              شعرت أن الصفحة البيضاء
+              تطلب منها نصًّا كاملًا
+              منذ اللحظة الأولى.
+            </p>
 
-          <p>
-            في نشاط قصير،
-            طلبت المعلمة من الطالبات كتابة ثلاث كلمات فقط
-            ترتبط بموضوع «النجاح».
-          </p>
+            <p>
+              تكتب جملة، ثم تمحوها.
+              تبدأ بفكرة، ثم تنتقل إلى أخرى،
+              ولا تمنح أيًّا منها فرصةً لتكتمل.
+            </p>
+          `,
 
-          <p>
-            كتبت ليان:
-            محاولة،
-            صبر،
-            خطوة.
-          </p>
+          `
+            <p>
+              في نشاط قصير،
+              طلبت المعلمة من الطالبات
+              كتابة ثلاث كلمات فقط
+              ترتبط بموضوع «النجاح».
+            </p>
 
-          <p>
-            ثم طلبت المعلمة أن تتحول كل كلمة
-            إلى جملة،
-            وبعدها أن تربط الجمل ببعضها.
-            فجأة لم تعد الصفحة بيضاء،
-            بل أصبحت أمام ليان بداية يمكن البناء عليها.
-          </p>
+            <p>
+              كتبت ليان:
+              محاولة،
+              صبر،
+              خطوة.
+            </p>
+          `,
 
-          <p>
-            لم يكن النص رائعًا من المحاولة الأولى،
-            لكنه كان موجودًا،
-            وهذا وحده جعل تحسينه ممكنًا.
-          </p>
-        `,
+          `
+            <p>
+              ثم طلبت المعلمة أن تتحول كل كلمة
+              إلى جملة،
+              وبعدها أن تربط الجمل ببعضها.
+            </p>
 
-        turning: `
-          <strong>لحظة التحوّل:</strong>
-          فهمت ليان أن النص لا يولد كاملًا؛
-          بل يبدأ بفكرة صغيرة ثم ينمو بالمراجعة.
-        `,
+            <p>
+              فجأة لم تعد الصفحة بيضاء،
+              بل أصبحت أمام ليان بداية يمكن البناء عليها.
+            </p>
+          `,
+
+          `
+            <p>
+              لم يكن النص رائعًا من المحاولة الأولى،
+              لكنه كان موجودًا،
+              وهذا وحده جعل تحسينه ممكنًا.
+            </p>
+          `
+        ],
+
+        turning:
+          "فهمت ليان أن النص لا يولد كاملًا؛ بل يبدأ بفكرة صغيرة ثم ينمو بالمراجعة.",
 
         question:
           "إذا توقفتِ أمام صفحة بيضاء، ماذا يمكن أن تفعلي؟",
 
         choices: [
+
           {
             text:
               "أكتب كلمات وأفكارًا أولية، ثم أبني عليها.",
@@ -1538,12 +1765,15 @@
             feedback:
               "بعض الجمل تحتاج إلى تعديل لا إلى حذف؛ امنحي فكرتكِ فرصةً قبل الحكم عليها."
           }
+
         ],
 
         mission:
           "اختاري موضوعًا واحدًا، واكتبي ثلاث كلمات مرتبطة به، ثم حوّلي كل كلمة إلى جملة."
       },
-            {
+
+
+      {
         number: "٤",
 
         category:
@@ -1552,56 +1782,70 @@
         title:
           "علامة صغيرة أنقذت المعنى",
 
-        text: `
-          <p>
-            كانت مها تكتب بسرعة،
-            وتركّز على الفكرة أكثر من شكل الجملة.
-            لذلك كانت بعض كتاباتها تبدو صحيحة في معناها العام،
-            لكنها تفقد دقتها بسبب خطأ إملائي،
-            أو علامة ترقيم في غير موضعها.
-          </p>
+        pages: [
 
-          <p>
-            في أحد الأنشطة،
-            كتبت مها العبارة:
-            «لا تهملين الكتاب».
-            ثم توقفت المعلمة عند الجملة،
-            وسألت الطالبات:
-            هل هذه الصياغة سليمة؟
-          </p>
+          `
+            <p>
+              كانت مها تكتب بسرعة،
+              وتركّز على الفكرة أكثر من شكل الجملة.
+            </p>
 
-          <p>
-            أعادت مها قراءة العبارة،
-            ثم قارنتها بالقاعدة،
-            فاكتشفت أن الصواب:
-            «لا تُهمِلْنَ الكتابَ.»
-          </p>
+            <p>
+              لذلك كانت بعض كتاباتها
+              تبدو صحيحة في معناها العام،
+              لكنها تفقد دقتها بسبب خطأ إملائي،
+              أو علامة ترقيم في غير موضعها.
+            </p>
+          `,
 
-          <p>
-            لم يكن الأمر مجرد حركة أو حرف؛
-            بل كان الفرق بين جملة دقيقة
-            وأخرى لا تؤدي المعنى على الوجه الصحيح.
-          </p>
+          `
+            <p>
+              في أحد الأنشطة،
+              كتبت مها العبارة:
+              «لا تهملين الكتاب».
+            </p>
 
-          <p>
-            بعد ذلك بدأت مها تراجع كتابتها
-            على ثلاث مراحل:
-            الإملاء أولًا،
-            ثم علامات الترقيم،
-            ثم تركيب الجملة.
-          </p>
-        `,
+            <p>
+              ثم توقفت المعلمة عند الجملة،
+              وسألت الطالبات:
+              هل هذه الصياغة سليمة؟
+            </p>
+          `,
 
-        turning: `
-          <strong>لحظة التحوّل:</strong>
-          أدركت مها أن المراجعة ليست مرحلة زائدة،
-          بل جزء من الكتابة نفسها.
-        `,
+          `
+            <p>
+              أعادت مها قراءة العبارة،
+              ثم قارنتها بالقاعدة،
+              فاكتشفت أن الصواب:
+              «لا تُهمِلْنَ الكتابَ.»
+            </p>
+
+            <p>
+              لم يكن الأمر مجرد حركة أو حرف؛
+              بل كان الفرق بين جملة دقيقة
+              وأخرى لا تؤدي المعنى على الوجه الصحيح.
+            </p>
+          `,
+
+          `
+            <p>
+              بعد ذلك بدأت مها تراجع كتابتها
+              على ثلاث مراحل:
+              الإملاء أولًا،
+              ثم علامات الترقيم،
+              ثم تركيب الجملة.
+            </p>
+          `
+        ],
+
+        turning:
+          "أدركت مها أن المراجعة ليست مرحلة زائدة، بل جزء من الكتابة نفسها.",
 
         question:
           "بعد أن تنتهي من كتابة جملة، ما المراجعة الأذكى؟",
 
         choices: [
+
           {
             text:
               "أراجع الإملاء والترقيم وتركيب الجملة.",
@@ -1634,13 +1878,13 @@
             feedback:
               "وضوح المعنى مهم، لكن سلامة الكتابة تجعل فكرتكِ أدق وأسهل قراءة."
           }
+
         ],
 
         mission:
           "راجعي اليوم ثلاث جمل كتبتِها، وابحثي في كل واحدة عن الإملاء والترقيم وتركيب الجملة."
       },
-
-      {
+            {
         number: "٥",
 
         category:
@@ -1649,59 +1893,71 @@
         title:
           "حين وصل صوتها إلى آخر الصف",
 
-        text: `
-          <p>
-            كانت رهف تستعد لعرض قصير أمام زميلاتها،
-            لكنها كلما تخيلت وقوفها أمام الصف
-            شعرت أن الكلمات التي تعرفها جيدًا
-            ستختفي في اللحظة التي تبدأ فيها الحديث.
-          </p>
+        pages: [
 
-          <p>
-            قالت للمعلمة:
-            «لعل الأفضل أن تقدمها طالبة أخرى».
-            لكن المعلمة لم تطلب منها حفظ النص من جديد،
-            بل قالت:
-            «لا تحفظي النص كلمةً كلمة.»
-          </p>
+          `
+            <p>
+              كانت رهف تستعد لعرض قصير أمام زميلاتها،
+              لكنها كلما تخيلت وقوفها أمام الصف
+              شعرت أن الكلمات التي تعرفها جيدًا
+              ستختفي في اللحظة التي تبدأ فيها الحديث.
+            </p>
 
-          <p>
-            طلبت منها أن تكتب ثلاث نقاط رئيسة فقط،
-            ثم تتحدث حول كل نقطة بأسلوبها.
-          </p>
+            <p>
+              قالت للمعلمة:
+              «لعل الأفضل أن تقدمها طالبة أخرى».
+            </p>
+          `,
 
-          <p>
-            تدربت رهف على الوقوف بثبات،
-            وعلى رفع صوتها بدرجة مناسبة،
-            وعلى ترك وقفة قصيرة بين فكرة وأخرى.
-          </p>
+          `
+            <p>
+              لكن المعلمة لم تطلب منها حفظ النص من جديد،
+              بل قالت:
+              «لا تحفظي النص كلمةً كلمة.»
+            </p>
 
-          <p>
-            وعندما جاء وقت العرض،
-            لم يكن صوتها خاليًا من التوتر،
-            لكنه كان واضحًا.
-            رفعت عينيها عن الورقة أكثر من مرة،
-            ووصل صوتها إلى آخر الصف.
-          </p>
+            <p>
+              طلبت منها أن تكتب ثلاث نقاط رئيسة فقط،
+              ثم تتحدث حول كل نقطة بأسلوبها.
+            </p>
+          `,
 
-          <p>
-            بعد أن انتهت،
-            لم تكن أكثر ما يسعدها كلمات الثناء،
-            بل اكتشافها أنها استطاعت أن تكمل.
-          </p>
-        `,
+          `
+            <p>
+              تدربت رهف على الوقوف بثبات،
+              وعلى رفع صوتها بدرجة مناسبة،
+              وعلى ترك وقفة قصيرة بين فكرة وأخرى.
+            </p>
 
-        turning: `
-          <strong>لحظة التحوّل:</strong>
-          استبدلت رهف حفظ كل كلمة
-          بفهم الأفكار الرئيسة
-          والتدرب على طريقة تقديمها.
-        `,
+            <p>
+              وعندما جاء وقت العرض،
+              لم يكن صوتها خاليًا من التوتر،
+              لكنه كان واضحًا.
+            </p>
+          `,
+
+          `
+            <p>
+              رفعت عينيها عن الورقة أكثر من مرة،
+              ووصل صوتها إلى آخر الصف.
+            </p>
+
+            <p>
+              بعد أن انتهت،
+              لم تكن أكثر ما يسعدها كلمات الثناء،
+              بل اكتشافها أنها استطاعت أن تكمل.
+            </p>
+          `
+        ],
+
+        turning:
+          "استبدلت رهف حفظ كل كلمة بفهم الأفكار الرئيسة والتدرب على طريقة تقديمها.",
 
         question:
           "ما الذي يساعدكِ أكثر عند الإلقاء؟",
 
         choices: [
+
           {
             text:
               "أفهم الأفكار الرئيسة وأتدرب على عرضها بصوت واضح.",
@@ -1734,11 +1990,13 @@
             feedback:
               "السرعة قد تضعف وضوح الصوت والمعنى؛ الوقفات الهادئة تساعدكِ أنتِ والمستمعات."
           }
+
         ],
 
         mission:
           "اختاري فكرة قصيرة، وحددي لها ثلاث نقاط رئيسة، ثم قدميها بصوت مسموع في دقيقة واحدة."
       },
+
 
       {
         number: "٦",
@@ -1749,55 +2007,62 @@
         title:
           "السؤال الذي فتح بابًا جديدًا",
 
-        text: `
-          <p>
-            كانت لمار تعمل على مهمة بحثية قصيرة،
-            واعتادت أن تكتفي بأول نتيجة تظهر أمامها.
-            تنسخ العبارة،
-            ثم تنتقل إلى السطر التالي.
-          </p>
+        pages: [
 
-          <p>
-            هذه المرة نسخت عبارة لم تكن واثقة من معناها،
-            ثم توقفت قبل أن تضيفها إلى عملها.
-          </p>
+          `
+            <p>
+              كانت لمار تعمل على مهمة بحثية قصيرة،
+              واعتادت أن تكتفي بأول نتيجة تظهر أمامها.
+              تنسخ العبارة،
+              ثم تنتقل إلى السطر التالي.
+            </p>
+          `,
 
-          <p>
-            ذهبت إلى أمينة مصادر التعلّم،
-            وسألتها:
-            كيف أعرف أن هذه المعلومة يمكن الاعتماد عليها؟
-          </p>
+          `
+            <p>
+              هذه المرة نسخت عبارة
+              لم تكن واثقة من معناها،
+              ثم توقفت قبل أن تضيفها إلى عملها.
+            </p>
 
-          <p>
-            لم تعطها الإجابة مباشرة،
-            بل طلبت منها أن تبحث عن مصدر موثوق،
-            وأن تقارن المعلومة بمرجع آخر،
-            ثم تشرحها بأسلوبها.
-          </p>
+            <p>
+              ذهبت إلى أمينة مصادر التعلّم،
+              وسألتها:
+              كيف أعرف أن هذه المعلومة يمكن الاعتماد عليها؟
+            </p>
+          `,
 
-          <p>
-            عندما عادت لمار إلى عملها،
-            حذفت بعض العبارات التي لم تستطع التحقق منها،
-            وأبقت ما فهمته
-            واستطاعت أن تشرح مصدره.
-          </p>
+          `
+            <p>
+              لم تعطها الإجابة مباشرة،
+              بل طلبت منها أن تبحث عن مصدر موثوق،
+              وأن تقارن المعلومة بمرجع آخر،
+              ثم تشرحها بأسلوبها.
+            </p>
+          `,
 
-          <p>
-            في نهاية النشاط كتبت في دفترها:
-            «السؤال لا ينتقص من معرفتي؛ بل يوسّعها.»
-          </p>
-        `,
+          `
+            <p>
+              عندما عادت لمار إلى عملها،
+              حذفت بعض العبارات التي لم تستطع التحقق منها،
+              وأبقت ما فهمته واستطاعت أن تشرح مصدره.
+            </p>
 
-        turning: `
-          <strong>لحظة التحوّل:</strong>
-          انتقلت لمار من جمع المعلومات
-          إلى التحقق منها وفهمها قبل استخدامها.
-        `,
+            <p>
+              في نهاية النشاط كتبت في دفترها:
+              «السؤال لا ينتقص من معرفتي؛ بل يوسّعها.»
+            </p>
+          `
+        ],
+
+        turning:
+          "انتقلت لمار من جمع المعلومات إلى التحقق منها وفهمها قبل استخدامها.",
 
         question:
           "إذا وجدتِ معلومة جديدة، ما التصرف الأدق؟",
 
         choices: [
+
           {
             text:
               "أتحقق من مصدرها، وأقارنها بمرجع موثوق، ثم أشرحها بأسلوبي.",
@@ -1830,12 +2095,15 @@
             feedback:
               "إعادة صياغة المعلومة بعد فهمها تساعدكِ على التأكد من أنكِ استوعبتِها فعلًا."
           }
+
         ],
 
         mission:
           "اختاري معلومة واحدة استخدمتِها مؤخرًا، وابحثي عن مصدرها أو مرجع يؤكدها."
       },
-            {
+
+
+      {
         number: "٧",
 
         category:
@@ -1844,66 +2112,74 @@
         title:
           "خمس عشرة دقيقة قبل الغروب",
 
-        text: `
-          <p>
-            كانت دانة تؤجل المراجعة كثيرًا.
-            كلما رأت قائمة المهام شعرت أنها طويلة،
-            فتقول لنفسها:
-            سأبدأ بعد قليل.
-          </p>
+        pages: [
 
-          <p>
-            يمر الوقت،
-            وتنتقل من مهمة إلى أخرى،
-            ثم تنتهي ساعات اليوم
-            وهي لم تبدأ ما أرادت.
-          </p>
+          `
+            <p>
+              كانت دانة تؤجل المراجعة كثيرًا.
+              كلما رأت قائمة المهام شعرت أنها طويلة،
+              فتقول لنفسها:
+              سأبدأ بعد قليل.
+            </p>
+          `,
 
-          <p>
-            في مساء هادئ،
-            قررت أن تغيّر شيئًا واحدًا فقط.
-            لم تكتب خطة طويلة،
-            ولم تحدد ساعات كثيرة.
-          </p>
+          `
+            <p>
+              يمر الوقت،
+              وتنتقل من مهمة إلى أخرى،
+              ثم تنتهي ساعات اليوم
+              وهي لم تبدأ ما أرادت.
+            </p>
 
-          <p>
-            اختارت مهمة لغوية واحدة،
-            وضبطت مؤقّتًا على خمس عشرة دقيقة.
-          </p>
+            <p>
+              في مساء هادئ،
+              قررت أن تغيّر شيئًا واحدًا فقط.
+            </p>
+          `,
 
-          <p>
-            قالت لنفسها:
-            لن أفكر في بقية المهام الآن،
-            سأعمل على هذه المهمة فقط
-            حتى ينتهي الوقت.
-          </p>
+          `
+            <p>
+              لم تكتب خطة طويلة،
+              ولم تحدد ساعات كثيرة.
+            </p>
 
-          <p>
-            عندما انتهت الدقائق الخمس عشرة،
-            اكتشفت أنها أنجزت أكثر مما توقعت.
-            والأهم من ذلك أنها تجاوزت
-            أصعب جزء:
-            البداية.
-          </p>
+            <p>
+              اختارت مهمة لغوية واحدة،
+              وضبطت مؤقّتًا على خمس عشرة دقيقة.
+            </p>
 
-          <p>
-            وفي نهاية المساء،
-            لم تكن قد أنهت كل شيء،
-            لكنها لم تعد واقفة في المكان نفسه.
-          </p>
-        `,
+            <p>
+              قالت لنفسها:
+              لن أفكر في بقية المهام الآن،
+              سأعمل على هذه المهمة فقط
+              حتى ينتهي الوقت.
+            </p>
+          `,
 
-        turning: `
-          <strong>لحظة التحوّل:</strong>
-          حوّلت دانة المهمة الكبيرة
-          إلى وقت قصير ومحدد،
-          فأصبح البدء أسهل.
-        `,
+          `
+            <p>
+              عندما انتهت الدقائق الخمس عشرة،
+              اكتشفت أنها أنجزت أكثر مما توقعت.
+              والأهم من ذلك أنها تجاوزت أصعب جزء:
+              البداية.
+            </p>
+
+            <p>
+              وفي نهاية المساء،
+              لم تكن قد أنهت كل شيء،
+              لكنها لم تعد واقفة في المكان نفسه.
+            </p>
+          `
+        ],
+
+        turning:
+          "حوّلت دانة المهمة الكبيرة إلى وقت قصير ومحدد، فأصبح البدء أسهل.",
 
         question:
           "إذا شعرتِ أن المهام كثيرة، ما الخطوة الأنسب؟",
 
         choices: [
+
           {
             text:
               "أحدد مهمة واحدة ووقتًا قصيرًا للبدء بها.",
@@ -1936,11 +2212,13 @@
             feedback:
               "تعدد المهام قد يشتت الانتباه؛ التركيز على مهمة واحدة يجعل تقدمكِ أوضح."
           }
+
         ],
 
         mission:
           "حددي مهمة لغوية واحدة اليوم، وخصصي لها خمس عشرة دقيقة فقط."
       },
+
 
       {
         number: "٨",
@@ -1951,69 +2229,75 @@
         title:
           "حين بدأت ترى تقدّمها",
 
-        text: `
-          <p>
-            كانت أروى تنظر كثيرًا
-            إلى أعمال الطالبات المتميزات،
-            ثم تعود إلى دفترها
-            وتشعر أن ما تكتبه أقل مما ينبغي.
-          </p>
+        pages: [
 
-          <p>
-            لم تكن ترى ما تحسن في كتابتها،
-            لأنها كانت تقارن بدايتها
-            بنتائج أخريات وصلن إلى مراحل مختلفة.
-          </p>
+          `
+            <p>
+              كانت أروى تنظر كثيرًا
+              إلى أعمال الطالبات المتميزات،
+              ثم تعود إلى دفترها
+              وتشعر أن ما تكتبه أقل مما ينبغي.
+            </p>
+          `,
 
-          <p>
-            في أحد الأنشطة،
-            طلبت المعلمة من الطالبات
-            أن يفتحن عملًا قديمًا من دفاترهن،
-            ثم طلبت منهن أن يقارنَّ بينه
-            وبين أحدث نص كتبنه.
-          </p>
+          `
+            <p>
+              لم تكن ترى ما تحسن في كتابتها،
+              لأنها كانت تقارن بدايتها
+              بنتائج أخريات وصلن إلى مراحل مختلفة.
+            </p>
 
-          <p>
-            فتحت أروى دفترها،
-            ووجدت نصًّا قديمًا مليئًا بالتردد،
-            وجملًا قصيرة
-            لم تكن تعرف كيف تربط بينها.
-          </p>
+            <p>
+              في أحد الأنشطة،
+              طلبت المعلمة من الطالبات
+              أن يفتحن عملًا قديمًا من دفاترهن،
+              ثم طلبت منهن أن يقارنَّ بينه
+              وبين أحدث نص كتبنه.
+            </p>
+          `,
 
-          <p>
-            ثم قرأت آخر نص كتبته.
-            وجدت فكرة أوضح،
-            وعلامات ترقيم أدق،
-            ونصًّا أصبحت راضية عنه.
-          </p>
+          `
+            <p>
+              فتحت أروى دفترها،
+              ووجدت نصًّا قديمًا مليئًا بالتردد،
+              وجملًا قصيرة
+              لم تكن تعرف كيف تربط بينها.
+            </p>
 
-          <p>
-            للمرة الأولى،
-            لم تسأل نفسها:
-            هل أنا أفضل من غيري؟
-            بل سألت:
-            هل أنا أفضل من أروى التي بدأت؟
-          </p>
+            <p>
+              ثم قرأت آخر نص كتبته.
+              وجدت فكرة أوضح،
+              وعلامات ترقيم أدق،
+              ونصًّا أصبحت راضية عنه.
+            </p>
+          `,
 
-          <p>
-            منذ ذلك اليوم،
-            لم تتوقف عن التعلم من المتميزات،
-            لكنها لم تعد تجعل نجاحهن
-            مقياسًا تنتقص به من تقدّمها.
-          </p>
-        `,
+          `
+            <p>
+              للمرة الأولى،
+              لم تسأل نفسها:
+              هل أنا أفضل من غيري؟
+              بل سألت:
+              هل أنا أفضل من أروى التي بدأت؟
+            </p>
 
-        turning: `
-          <strong>لحظة التحوّل:</strong>
-          بدأت أروى تقيس تقدّمها
-          بمقارنة عملها الحالي بعملها السابق،
-          لا بمقارنة بدايتها بنهاية الآخرين.
-        `,
+            <p>
+              منذ ذلك اليوم،
+              لم تتوقف عن التعلم من المتميزات،
+              لكنها لم تعد تجعل نجاحهن
+              مقياسًا تنتقص به من تقدّمها.
+            </p>
+          `
+        ],
+
+        turning:
+          "بدأت أروى تقيس تقدّمها بمقارنة عملها الحالي بعملها السابق، لا بمقارنة بدايتها بنهاية الآخرين.",
 
         question:
           "ما المقارنة الأكثر فائدة لتطوركِ؟",
 
         choices: [
+
           {
             text:
               "أتعلم من طرائقهنّ، ثم أقارن عملي الحالي بعملي السابق.",
@@ -2046,6 +2330,7 @@
             feedback:
               "يمكنكِ الاستفادة من النماذج الجيدة دون أن تجعليها أداة للحكم على نفسكِ."
           }
+
         ],
 
         mission:
@@ -2053,13 +2338,10 @@
       }
 
     ];
-        const arabicNumbers = [
-      "١","٢","٣","٤",
-      "٥","٦","٧","٨"
-    ];
+        let currentStory = 0;
+    let currentPage = 0;
 
-    let currentStory = 0;
-    let selectedAnswers = {};
+    const selectedAnswers = {};
 
     const $ = id =>
       document.getElementById(id);
@@ -2094,11 +2376,17 @@
     const storyTitle =
       $("storyTitle");
 
-    const storyText =
-      $("storyText");
+    const storyPageContent =
+      $("storyPageContent");
+
+    const pageIndicator =
+      $("pageIndicator");
 
     const turningBox =
       $("turningBox");
+
+    const reflectionBox =
+      $("reflectionBox");
 
     const questionText =
       $("questionText");
@@ -2121,17 +2409,20 @@
     const languagePromise =
       $("languagePromise");
 
+    const savePromiseBtn =
+      $("savePromiseBtn");
+
+    const restartBtn =
+      $("restartBtn");
+
     const promiseResult =
       $("promiseResult");
 
     const starsLayer =
       $("starsLayer");
 
-    const savePromiseBtn =
-      $("savePromiseBtn");
-
-    const restartBtn =
-      $("restartBtn");
+    const bookPage =
+      $("bookPage");
 
 
     function startJourney() {
@@ -2148,22 +2439,25 @@
       );
 
       currentStory = 0;
+      currentPage = 0;
 
-      renderStory();
-
-      setTimeout(() => {
-        journeyPanel.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-      }, 80);
+      renderPage();
     }
 
 
-    function renderStory() {
+    function renderPage() {
 
       const story =
         stories[currentStory];
+
+      const isStoryPage =
+        currentPage <
+        story.pages.length;
+
+      const isReflectionPage =
+        currentPage ===
+        story.pages.length;
+
 
       storyNumber.textContent =
         story.number;
@@ -2174,28 +2468,87 @@
       storyTitle.textContent =
         story.title;
 
-      storyText.innerHTML =
-        story.text;
 
-      turningBox.innerHTML =
-        story.turning;
+      storyPageContent.style.display =
+        isStoryPage
+        ? "block"
+        : "none";
 
-      questionText.textContent =
-        story.question;
 
-      missionBox.innerHTML =
-        "<strong>خطوتكِ:</strong> " +
-        story.mission;
+      turningBox.style.display =
+        isReflectionPage
+        ? "block"
+        : "none";
+
+
+      reflectionBox.style.display =
+        isReflectionPage
+        ? "block"
+        : "none";
+
+
+      missionBox.style.display =
+        isReflectionPage
+        ? "block"
+        : "none";
+
+
+      if (isStoryPage) {
+
+        storyPageContent.innerHTML =
+          story.pages[currentPage];
+
+        pageIndicator.textContent =
+          "صفحة " +
+          toArabicNumber(
+            currentPage + 1
+          ) +
+          " من " +
+          toArabicNumber(
+            story.pages.length
+          );
+
+      } else {
+
+        storyPageContent.innerHTML =
+          "";
+
+        pageIndicator.textContent =
+          "تأملي الحكاية";
+
+        turningBox.innerHTML =
+          "<strong>لحظة التحوّل:</strong> " +
+          story.turning;
+
+        questionText.textContent =
+          story.question;
+
+        missionBox.innerHTML =
+          "<strong>خطوتكِ:</strong> " +
+          story.mission;
+
+        renderChoices();
+      }
+
+
+      updateProgress();
+
+      updateButtons();
+    }
+
+
+    function renderChoices() {
+
+      const story =
+        stories[currentStory];
 
       choices.innerHTML = "";
 
       feedbackBox.className =
         "feedback-box";
 
-      feedbackBox.textContent = "";
-
-      const savedAnswer =
-        selectedAnswers[currentStory];
+      feedbackBox.textContent =
+        "";
 
 
       story.choices.forEach(
@@ -2215,13 +2568,18 @@
           button.textContent =
             choice.text;
 
+
           if (
-            savedAnswer === index
+            selectedAnswers[
+              currentStory
+            ] === index
           ) {
+
             button.classList.add(
               "selected"
             );
           }
+
 
           button.addEventListener(
             "click",
@@ -2233,6 +2591,7 @@
             }
           );
 
+
           choices.appendChild(
             button
           );
@@ -2240,51 +2599,20 @@
       );
 
 
+      const saved =
+        selectedAnswers[
+          currentStory
+        ];
+
+
       if (
-        savedAnswer !== undefined
+        saved !== undefined
       ) {
-        showSavedAnswer(
-          savedAnswer
+
+        showFeedback(
+          saved
         );
       }
-
-
-      prevBtn.disabled =
-        currentStory === 0;
-
-
-      nextBtn.textContent =
-        currentStory ===
-        stories.length - 1
-
-        ? "إنهاء الرحلة ✨"
-
-        : "الصفحة التالية ›";
-
-
-      const percent =
-        Math.round(
-          (
-            (currentStory + 1) /
-            stories.length
-          ) * 100
-        );
-
-
-      storyCounter.textContent =
-        "الحكاية " +
-        arabicNumbers[
-          currentStory
-        ] +
-        " من ٨";
-
-
-      progressPercent.textContent =
-        percent + "٪";
-
-
-      progressFill.style.width =
-        percent + "%";
     }
 
 
@@ -2292,12 +2620,6 @@
       index,
       button
     ) {
-
-      const choice =
-        stories[
-          currentStory
-        ].choices[index];
-
 
       selectedAnswers[
         currentStory
@@ -2309,11 +2631,10 @@
           ".choice-btn"
         )
         .forEach(
-          item => {
+          item =>
             item.classList.remove(
               "selected"
-            );
-          }
+            )
         );
 
 
@@ -2322,28 +2643,29 @@
       );
 
 
-      feedbackBox.textContent =
-        choice.feedback;
+      showFeedback(
+        index
+      );
 
 
-      feedbackBox.className =
-        "feedback-box show " +
-        choice.type;
+      const choice =
+        stories[
+          currentStory
+        ].choices[index];
 
 
       if (
-        choice.type === "good"
+        choice.type ===
+        "good"
       ) {
 
-        playSuccessSound();
-
         createStars();
-
+        playSuccessSound();
       }
     }
 
 
-    function showSavedAnswer(
+    function showFeedback(
       index
     ) {
 
@@ -2353,11 +2675,6 @@
         ].choices[index];
 
 
-      if (!choice) {
-        return;
-      }
-
-
       feedbackBox.textContent =
         choice.feedback;
 
@@ -2368,7 +2685,28 @@
     }
 
 
-    function nextStory() {
+    function nextPage() {
+
+      const story =
+        stories[currentStory];
+
+
+      if (
+        currentPage <
+        story.pages.length
+      ) {
+
+        currentPage++;
+
+        renderPage();
+
+        flipBook(
+          "next"
+        );
+
+        return;
+      }
+
 
       if (
         currentStory <
@@ -2376,36 +2714,59 @@
       ) {
 
         currentStory++;
+        currentPage = 0;
 
-        renderStory();
+        renderPage();
 
-        animatePageTurn(
+        flipBook(
           "next"
         );
 
-      } else {
-
-        journeyPanel.classList.remove(
-          "active"
-        );
-
-        finalPanel.classList.add(
-          "show"
-        );
-
-        createStars();
-
-        setTimeout(() => {
-          finalPanel.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-          });
-        }, 80);
+        return;
       }
+
+
+      journeyPanel.classList.remove(
+        "active"
+      );
+
+
+      finalPanel.classList.add(
+        "show"
+      );
+
+
+      createStars();
+
+
+      setTimeout(() => {
+
+        finalPanel.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+
+      },80);
     }
 
 
-    function previousStory() {
+    function previousPage() {
+
+      if (
+        currentPage > 0
+      ) {
+
+        currentPage--;
+
+        renderPage();
+
+        flipBook(
+          "prev"
+        );
+
+        return;
+      }
+
 
       if (
         currentStory > 0
@@ -2413,54 +2774,158 @@
 
         currentStory--;
 
-        renderStory();
+        currentPage =
+          stories[
+            currentStory
+          ].pages.length;
 
-        animatePageTurn(
+        renderPage();
+
+        flipBook(
           "prev"
         );
       }
     }
 
 
-    function animatePageTurn(
+    function updateButtons() {
+
+      prevBtn.disabled =
+        currentStory === 0 &&
+        currentPage === 0;
+
+
+      const lastStory =
+        currentStory ===
+        stories.length - 1;
+
+
+      const lastPage =
+        currentPage ===
+        stories[
+          currentStory
+        ].pages.length;
+
+
+      nextBtn.textContent =
+        lastStory &&
+        lastPage
+
+        ? "إنهاء الرحلة ✨"
+
+        : "التالي ›";
+    }
+
+
+    function updateProgress() {
+
+      const totalSteps =
+        stories.reduce(
+          (sum,story) =>
+            sum +
+            story.pages.length +
+            1,
+          0
+        );
+
+
+      let completedSteps = 0;
+
+
+      for (
+        let i = 0;
+        i < currentStory;
+        i++
+      ) {
+
+        completedSteps +=
+          stories[i].pages.length +
+          1;
+      }
+
+
+      completedSteps +=
+        currentPage + 1;
+
+
+      const percent =
+        Math.round(
+          (
+            completedSteps /
+            totalSteps
+          ) * 100
+        );
+
+
+      storyCounter.textContent =
+        "الحكاية " +
+        toArabicNumber(
+          currentStory + 1
+        ) +
+        " من ٨";
+
+
+      progressPercent.textContent =
+        toArabicNumber(
+          percent
+        ) +
+        "٪";
+
+
+      progressFill.style.width =
+        percent +
+        "%";
+    }
+
+
+    function toArabicNumber(
+      value
+    ) {
+
+      return String(value)
+        .replace(
+          /\d/g,
+          d =>
+            "٠١٢٣٤٥٦٧٨٩"[d]
+        );
+    }
+
+
+    function flipBook(
       direction
     ) {
 
-      const card =
-        $("storyCard");
-
-      if (!card) {
+      if (
+        !bookPage.animate
+      ) {
         return;
       }
 
-      card.animate(
+
+      bookPage.animate(
         [
           {
-            opacity: .65,
+            opacity: .55,
+
             transform:
               direction === "next"
-              ? "rotateY(-4deg) translateX(-5px)"
-              : "rotateY(4deg) translateX(5px)"
+              ? "perspective(1000px) rotateY(-7deg)"
+              : "perspective(1000px) rotateY(7deg)"
           },
 
           {
             opacity: 1,
+
             transform:
-              "rotateY(0deg) translateX(0)"
+              "perspective(1000px) rotateY(0deg)"
           }
         ],
+
         {
-          duration: 320,
+          duration: 330,
           easing: "ease-out"
         }
       );
-
-      setTimeout(() => {
-        journeyPanel.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-      }, 60);
     }
 
 
@@ -2472,11 +2937,9 @@
           .trim();
 
 
-      promiseResult
-        .classList
-        .add(
-          "show"
-        );
+      promiseResult.classList.add(
+        "show"
+      );
 
 
       if (!value) {
@@ -2489,8 +2952,7 @@
 
 
       promiseResult.textContent =
-        "جميل جدًا ✨ احتفظي بهذه الجملة؛ فكل تقدّم يبدأ بخطوة صادقة.";
-
+        "جميل ✨ اجعلي هذه الجملة بدايةً لخطوتكِ القادمة.";
 
       createStars();
 
@@ -2501,33 +2963,38 @@
     function restartJourney() {
 
       currentStory = 0;
+      currentPage = 0;
 
-      selectedAnswers = {};
+      Object.keys(
+        selectedAnswers
+      ).forEach(
+        key =>
+          delete selectedAnswers[key]
+      );
 
-      languagePromise.value = "";
 
-      promiseResult.textContent = "";
+      languagePromise.value =
+        "";
+
+      promiseResult.textContent =
+        "";
 
       promiseResult.classList.remove(
         "show"
       );
 
+
       finalPanel.classList.remove(
         "show"
       );
+
 
       journeyPanel.classList.add(
         "active"
       );
 
-      renderStory();
 
-      setTimeout(() => {
-        journeyPanel.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-      }, 80);
+      renderPage();
     }
 
 
@@ -2549,7 +3016,7 @@
           new AudioContext();
 
 
-        const osc =
+        const oscillator =
           ctx.createOscillator();
 
 
@@ -2557,27 +3024,29 @@
           ctx.createGain();
 
 
-        osc.type =
+        oscillator.type =
           "sine";
 
 
-        osc.frequency.setValueAtTime(
-          660,
-          ctx.currentTime
-        );
+        oscillator.frequency
+          .setValueAtTime(
+            660,
+            ctx.currentTime
+          );
 
 
-        osc.frequency
+        oscillator.frequency
           .exponentialRampToValueAtTime(
             880,
             ctx.currentTime + .18
           );
 
 
-        gain.gain.setValueAtTime(
-          .07,
-          ctx.currentTime
-        );
+        gain.gain
+          .setValueAtTime(
+            .06,
+            ctx.currentTime
+          );
 
 
         gain.gain
@@ -2587,7 +3056,7 @@
           );
 
 
-        osc.connect(
+        oscillator.connect(
           gain
         );
 
@@ -2597,10 +3066,10 @@
         );
 
 
-        osc.start();
+        oscillator.start();
 
 
-        osc.stop(
+        oscillator.stop(
           ctx.currentTime + .3
         );
 
@@ -2621,7 +3090,7 @@
 
       for (
         let i = 0;
-        i < 10;
+        i < 9;
         i++
       ) {
 
@@ -2649,15 +3118,17 @@
             Math.random() *
             90 +
             5
-          ) + "%";
+          ) +
+          "%";
 
 
         star.style.top =
           (
             Math.random() *
-            40 +
+            35 +
             10
-          ) + "%";
+          ) +
+          "%";
 
 
         starsLayer.appendChild(
@@ -2666,9 +3137,8 @@
 
 
         setTimeout(
-          () => {
-            star.remove();
-          },
+          () =>
+            star.remove(),
           1200
         );
       }
@@ -2681,15 +3151,15 @@
     );
 
 
-    prevBtn.addEventListener(
+    nextBtn.addEventListener(
       "click",
-      previousStory
+      nextPage
     );
 
 
-    nextBtn.addEventListener(
+    prevBtn.addEventListener(
       "click",
-      nextStory
+      previousPage
     );
 
 
@@ -2707,5 +3177,4 @@
   </script>
 
 </body>
-
 </html>
