@@ -6,14 +6,28 @@
 
   <meta
     name="viewport"
-    content="width=device-width, initial-scale=1.0"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
   >
 
   <title>
-    اختبار الألف اللينة في الأفعال | منصة آفاق اللغة
+    اختبري مهارتك | الألف اللينة في الأفعال غير الثلاثية
   </title>
 
   <style>
+    :root {
+      --purple: #5b4677;
+      --purple-light: #776094;
+      --purple-dark: #49385c;
+      --gold: #c9a85c;
+      --cream: #fffaf2;
+      --paper: #fffdf8;
+      --text: #44384f;
+      --green: #2f7650;
+      --green-bg: #e5f8ed;
+      --red: #96394a;
+      --red-bg: #ffe9ed;
+    }
+
     * {
       box-sizing: border-box;
     }
@@ -21,451 +35,563 @@
     html,
     body {
       width: 100%;
-      max-width: 100%;
+      height: 100%;
       margin: 0;
-      overflow-x: hidden;
+      overflow: hidden;
     }
 
     body {
-      min-height: 100vh;
       font-family: Tahoma, Arial, sans-serif;
-      color: #4b3a57;
-      line-height: 1.8;
-      background: linear-gradient(
-        145deg,
-        #fffaf2,
-        #f8f0fb
-      );
+      color: var(--text);
+
+      background:
+        linear-gradient(
+          145deg,
+          #fffaf2,
+          #f8f0fb
+        );
     }
 
     button,
-    input {
+    a {
       font-family: inherit;
     }
 
-    .page-header {
-      padding: 34px 16px 42px;
+    .app {
+      height: 100dvh;
+      display: grid;
+      grid-template-rows:
+        auto 1fr auto;
+    }
+
+    header {
+      padding: 9px 12px 8px;
       text-align: center;
       color: white;
-      border-radius: 0 0 34px 34px;
-      background: linear-gradient(
-        135deg,
-        #776094,
-        #5b4677
-      );
-      box-shadow: 0 12px 28px rgba(73, 56, 92, 0.22);
+
+      background:
+        linear-gradient(
+          135deg,
+          #776094,
+          #5b4677
+        );
+
+      border-bottom:
+        3px solid #c9a85c;
     }
 
-    .header-icon {
-      width: 82px;
-      height: 82px;
-      margin: 0 auto 13px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 24px;
-      font-size: 45px;
-      background: rgba(255, 255, 255, 0.15);
-      border: 2px solid rgba(255, 255, 255, 0.42);
+    .badge {
+      display: inline-block;
+      padding: 3px 11px;
+      color: #fff3d3;
+      font-size: 11px;
+      font-weight: bold;
+
+      border:
+        1px solid
+        rgba(234, 214, 158, 0.8);
+
+      border-radius: 999px;
+
+      background:
+        rgba(255,255,255,.1);
     }
 
-    .page-header h1 {
-      margin: 0;
+    header h1 {
+      margin: 4px 0 1px;
       color: #fff8df;
-      font-size: 32px;
-      line-height: 1.7;
+
+      font-size:
+        clamp(
+          17px,
+          4.5vw,
+          25px
+        );
+
+      line-height: 1.4;
     }
 
-    .page-header p {
-      max-width: 700px;
-      margin: 10px auto 0;
+    header p {
+      margin: 0;
       color: #f7effb;
-      font-size: 17px;
-      line-height: 1.9;
+      font-size: 10px;
     }
 
     main {
-      width: 94%;
-      max-width: 850px;
-      margin: 28px auto 45px;
-    }
+      width: min(760px, 94%);
+      min-height: 0;
+      margin: auto;
+      padding: 6px 0;
 
-    .start-card,
-    .quiz-area,
-    .result {
-      display: none;
-    }
-
-    .active {
-      display: block;
-    }
-
-    .card {
-      padding: 25px;
-      border-radius: 27px;
-      background: #fffdf8;
-      border: 1px solid rgba(93, 67, 116, 0.15);
-      box-shadow: 0 12px 30px rgba(73, 56, 92, 0.12);
-    }
-
-    .start-title {
-      margin: 0 0 15px;
-      text-align: center;
-      color: #5d4374;
-      font-size: 28px;
-    }
-
-    .start-message {
-      padding: 17px;
-      text-align: center;
-      border-radius: 18px;
-      color: #5d4374;
-      background: #fff7dc;
-      border-right: 7px solid #c9a85c;
-      font-size: 17px;
-      line-height: 2;
-    }
-
-    .name-box {
-      margin: 19px 0;
-      padding: 18px;
-      border-radius: 18px;
-      background: #f5ecfb;
-      border: 1px solid #dccbe8;
-    }
-
-    .name-box label {
-      display: block;
-      margin-bottom: 9px;
-      color: #5d4374;
-      font-weight: bold;
-      font-size: 17px;
-    }
-
-    .name-box input {
-      width: 100%;
-      padding: 14px 15px;
-      border: 2px solid #d7c5e4;
-      border-radius: 15px;
-      outline: none;
-      color: #4b3a57;
-      background: white;
-      font-size: 17px;
-    }
-
-    .name-box input:focus {
-      border-color: #776094;
-      box-shadow: 0 0 0 3px rgba(119, 96, 148, 0.12);
-    }
-
-    .name-error {
-      display: none;
-      margin-top: 9px;
-      color: #a23e4d;
-      font-weight: bold;
-    }
-
-    .instructions {
-      margin-bottom: 19px;
-      padding: 17px;
-      border-radius: 18px;
-      color: #4b3a57;
-      background: #f5ecfb;
-      border-right: 7px solid #776094;
-      line-height: 2;
-    }
-
-    .start-button,
-    .finish-btn {
-      width: 100%;
-      padding: 15px 18px;
-      border: 0;
-      border-radius: 17px;
-      color: white;
-      background: #6f5288;
-      box-shadow: 0 8px 18px rgba(93, 67, 116, 0.22);
-      font-size: 19px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .student-banner {
-      margin-bottom: 16px;
-      padding: 12px 15px;
-      text-align: center;
-      border-radius: 16px;
-      color: #5d4374;
-      background: #fff4d4;
-      border: 1px solid #ead194;
-      font-weight: bold;
-    }
-
-    .progress-card {
-      position: sticky;
-      top: 8px;
-      z-index: 20;
-      padding: 14px;
-      margin-bottom: 20px;
-      border-radius: 18px;
-      background: rgba(255, 253, 248, 0.96);
-      border: 1px solid #ddcbe8;
-      box-shadow: 0 5px 15px rgba(73, 56, 92, 0.1);
-      backdrop-filter: blur(8px);
-    }
-
-    .progress-info {
       display: flex;
+      flex-direction: column;
+    }
+
+    .top-panel {
+      margin-bottom: 5px;
+      padding: 7px 9px;
+
+      border:
+        1px solid #ddc98d;
+
+      border-radius: 15px;
+
+      background:
+        rgba(255,255,255,.95);
+    }
+
+    .score-row {
+      display: flex;
+      align-items: center;
       justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 8px;
-      color: #5d4374;
+      gap: 7px;
+      margin-bottom: 5px;
+
+      color: #624681;
+      font-size: 12px;
       font-weight: bold;
     }
 
     .progress-track {
-      width: 100%;
-      height: 13px;
+      height: 7px;
       overflow: hidden;
       border-radius: 20px;
-      background: #eee5f2;
+      background: #eee8f4;
     }
 
-    .progress-bar {
+    .progress-fill {
       width: 0;
       height: 100%;
       border-radius: 20px;
-      background: linear-gradient(
-        90deg,
-        #c9a85c,
-        #776094
-      );
-      transition: width 0.4s ease;
+
+      background:
+        linear-gradient(
+          90deg,
+          #c9a85c,
+          #776094
+        );
+
+      transition:
+        width .35s ease;
     }
 
-    .question {
-      padding: 20px;
-      margin: 20px 0;
-      border-radius: 22px;
+    .quiz-card,
+    .result-card {
+      flex: 1;
+      min-height: 0;
+      padding: 11px;
+
       background: #fffdf8;
-      border: 1px solid #ddcbe8;
-      box-shadow: 0 7px 18px rgba(73, 56, 92, 0.09);
+
+      border:
+        2px solid #dec98d;
+
+      border-radius: 21px;
+
+      box-shadow:
+        0 10px 24px
+        rgba(73,53,91,.12);
     }
 
-    .question.answered {
-      border-color: #c9a85c;
+    .quiz-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .question-number {
-      display: inline-block;
-      padding: 5px 13px;
-      margin-bottom: 8px;
-      border-radius: 20px;
+      width: fit-content;
+      margin: 0 auto 5px;
+      padding: 4px 11px;
+
       color: white;
-      background: #6f5288;
-      font-size: 14px;
+      font-size: 11px;
       font-weight: bold;
+
+      border-radius: 999px;
+      background: #6f5288;
     }
 
-    .question h2 {
-      margin: 8px 0 16px;
-      color: #5d4374;
-      font-size: 21px;
-      line-height: 1.8;
+    .question-text {
+      margin: 0 0 8px;
+      padding: 9px 10px;
+
+      text-align: center;
+      color: #583f72;
+
+      font-size:
+        clamp(
+          15px,
+          4vw,
+          19px
+        );
+
+      line-height: 1.55;
+      font-weight: bold;
+
+      border-radius: 14px;
+      background: #f5effd;
     }
 
     .options {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
+      gap: 5px;
     }
 
     .option {
       width: 100%;
-      min-height: 55px;
-      padding: 12px;
-      border: 2px solid #e1d6e7;
-      border-radius: 15px;
-      color: #4b3a57;
-      background: white;
-      font-size: 17px;
+      padding: 8px 10px;
+
+      color: #3f3745;
+
+      font-size:
+        clamp(
+          12px,
+          3.3vw,
+          15px
+        );
+
+      line-height: 1.4;
       font-weight: bold;
+      text-align: right;
+
       cursor: pointer;
-      transition: 0.2s ease;
+
+      border:
+        2px solid transparent;
+
+      border-radius: 13px;
+
+      background: #eef6ff;
+
+      transition:
+        transform .15s ease,
+        border-color .15s ease;
     }
 
-    .option:hover {
-      transform: translateY(-2px);
-      border-color: #9d82b5;
-      background: #fcf9ff;
+    .option:nth-child(2) {
+      background: #fff3df;
     }
 
-    .option.correct {
-      color: #166239;
-      border-color: #4db77a;
-      background: #e8f9ef;
+    .option:nth-child(3) {
+      background: #eef9f1;
     }
 
-    .option.wrong {
-      color: #9b3444;
-      border-color: #e46f82;
-      background: #fff0f2;
+    .option:nth-child(4) {
+      background: #f3edff;
+    }
+
+    .option:active {
+      transform: scale(.99);
     }
 
     .option:disabled {
       cursor: default;
     }
 
-    .feedback {
-      display: none;
-      padding: 12px 14px;
-      margin-top: 14px;
-      border-radius: 14px;
-      font-weight: bold;
+    .option.correct {
+      color: #176642;
+      background: #dff7e8;
+      border-color: #47ab72;
+      animation: correctPop .35s ease;
     }
 
-    .feedback.show {
-      display: block;
+    .option.wrong {
+      color: #983a4a;
+      background: #ffe3e8;
+      border-color: #dc6377;
+      animation: wrongShake .35s ease;
+    }
+
+    @keyframes correctPop {
+      50% {
+        transform: scale(1.025);
+      }
+    }
+
+    @keyframes wrongShake {
+      25% {
+        transform: translateX(5px);
+      }
+
+      50% {
+        transform: translateX(-5px);
+      }
+
+      75% {
+        transform: translateX(3px);
+      }
+    }
+
+    .feedback {
+      display: none;
+      margin-top: 6px;
+      padding: 7px 9px;
+
+      text-align: center;
+
+      font-size:
+        clamp(
+          11px,
+          3vw,
+          13px
+        );
+
+      line-height: 1.45;
+      font-weight: bold;
+
+      border-radius: 12px;
     }
 
     .feedback.good {
-      color: #17643b;
-      background: #e9f9ef;
+      display: block;
+      color: var(--green);
+      background: var(--green-bg);
+      border-right:
+        5px solid #4caf75;
     }
 
-    .feedback.try {
-      color: #944052;
-      background: #fff0f3;
+    .feedback.bad {
+      display: block;
+      color: var(--red);
+      background: var(--red-bg);
+      border-right:
+        5px solid #dc6679;
     }
 
-    .finish-btn {
-      margin-top: 25px;
+    .next-button {
+      display: none;
+      width: 100%;
+      margin-top: 6px;
+      padding: 8px;
+
+      color: white;
+      font-size: 13px;
+      font-weight: bold;
+
+      cursor: pointer;
+      border: 0;
+      border-radius: 12px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #776094,
+          #5b4677
+        );
     }
 
-    .finish-btn:disabled {
-      opacity: 0.45;
-      cursor: not-allowed;
+    .next-button.show {
+      display: block;
     }
 
-    .result {
-      padding: 25px 18px;
+    .result-card {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
       text-align: center;
-      border-radius: 25px;
-      background: #fffdf8;
-      border: 2px dashed #c9a85c;
-      box-shadow: 0 9px 23px rgba(73, 56, 92, 0.12);
+    }
+
+    .result-card.show {
+      display: flex;
+      animation:
+        resultAppear .5s ease;
+    }
+
+    @keyframes resultAppear {
+      from {
+        opacity: 0;
+        transform: scale(.9);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
 
     .result-icon {
-      font-size: 58px;
+      font-size: 48px;
     }
 
-    .result h2 {
+    .result-card h2 {
+      margin: 2px 0 5px;
+      color: #624681;
+      font-size: 22px;
+    }
+
+    .final-score {
       margin: 6px 0;
-      color: #5d4374;
-    }
+      padding: 8px;
 
-    .result-name {
-      margin: 12px 0;
-      padding: 11px;
-      border-radius: 14px;
-      color: #5d4374;
-      background: #f5ecfb;
+      color: #755317;
+      font-size: 20px;
       font-weight: bold;
+
+      border-radius: 13px;
+      background: #fff5d9;
     }
 
-    .score {
-      margin: 8px 0;
-      color: #6f5288;
-      font-size: 30px;
+    .result-message {
+      padding: 9px;
+
+      color: #5b4275;
+      font-size: 14px;
+      line-height: 1.55;
       font-weight: bold;
+
+      border-radius: 13px;
+      background: #f2ecff;
     }
 
-    .result-buttons {
+    .result-actions {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 19px;
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 6px;
+      margin-top: 8px;
     }
 
-    .restart,
-    .back {
+    .result-button,
+    .back-button {
       display: block;
-      padding: 14px;
-      border: 0;
-      border-radius: 16px;
+      width: 100%;
+      margin: 0;
+      padding: 8px 5px;
+
       color: white;
-      text-decoration: none;
-      background: #6f5288;
-      font-size: 16px;
+      font-size: 12px;
       font-weight: bold;
+      text-decoration: none;
+
+      border: 0;
+      border-radius: 11px;
       cursor: pointer;
+
+      background:
+        linear-gradient(
+          135deg,
+          #6c5089,
+          #4d3a60
+        );
     }
 
-    .back {
-      background: #5d4374;
+    .result-button {
+      background:
+        linear-gradient(
+          135deg,
+          #c9a85c,
+          #a7863e
+        );
     }
 
-    .floating-star {
+    .confetti {
       position: fixed;
+      top: -30px;
       z-index: 9999;
+
+      width: 9px;
+      height: 14px;
+
       pointer-events: none;
-      animation: starRise 1.45s ease-out forwards;
+      border-radius: 3px;
+
+      animation:
+        fall linear forwards;
     }
 
-    @keyframes starRise {
-      0% {
-        opacity: 0;
-        transform: translate(-50%, 10px) scale(0.25);
-      }
-
-      20% {
+    @keyframes fall {
+      from {
         opacity: 1;
+
+        transform:
+          translateY(-30px)
+          rotate(0deg);
       }
 
-      100% {
+      to {
         opacity: 0;
+
         transform:
-          translate(
-            calc(-50% + var(--move-x)),
-            var(--move-y)
-          )
-          scale(1.3)
-          rotate(var(--rotate));
+          translateY(110vh)
+          rotate(720deg);
       }
     }
 
     footer {
-      padding: 22px 12px;
+      padding: 4px 8px;
+      color: #756b7b;
+      font-size: 9px;
       text-align: center;
-      color: white;
-      background: #49385c;
     }
 
-    @media (max-width: 600px) {
-      .page-header h1 {
-        font-size: 26px;
+    @media (max-height:650px) {
+
+      header {
+        padding: 4px 9px;
+      }
+
+      header h1 {
+        margin: 1px 0;
+        font-size: 15px;
+      }
+
+      header p,
+      .badge {
+        font-size: 9px;
       }
 
       main {
-        width: 93%;
+        padding: 3px 0;
       }
 
-      .card,
-      .question {
-        padding: 17px;
+      .top-panel {
+        padding: 4px 7px;
+        margin-bottom: 3px;
       }
 
-      .options,
-      .result-buttons {
-        grid-template-columns: 1fr;
+      .score-row {
+        margin-bottom: 3px;
+        font-size: 10px;
       }
 
-      .question h2 {
-        font-size: 19px;
+      .quiz-card,
+      .result-card {
+        padding: 6px;
       }
 
-      .progress-info {
-        font-size: 14px;
+      .question-number {
+        margin-bottom: 3px;
+        padding: 2px 8px;
+        font-size: 9px;
+      }
+
+      .question-text {
+        margin-bottom: 4px;
+        padding: 5px;
+        font-size: 13px;
+      }
+
+      .options {
+        gap: 3px;
+      }
+
+      .option {
+        padding: 5px 7px;
+        font-size: 11px;
+      }
+
+      .feedback {
+        margin-top: 3px;
+        padding: 4px 6px;
+        font-size: 10px;
+      }
+
+      .next-button {
+        margin-top: 3px;
+        padding: 5px;
+        font-size: 11px;
       }
     }
   </style>
@@ -473,399 +599,161 @@
 
 <body>
 
-  <header class="page-header">
+<div class="app">
 
-    <div class="header-icon">
-      🌟
-    </div>
+  <header>
+
+    <span class="badge">
+      الرسم الإملائي
+    </span>
 
     <h1>
-      تحدّي الألف اللينة في الأفعال
+      ✨ اختبري مهارتك | الألف اللينة
     </h1>
 
     <p>
-      ميّزي بين الأفعال الثلاثية وغير الثلاثية،
-      واختاري الرسم الإملائي الصحيح.
+      الأفعال غير الثلاثية • ١٠ أسئلة • تعقيب فوري
     </p>
 
   </header>
 
+
   <main>
 
-    <section
-      id="startCard"
-      class="card start-card active"
+    <div
+      class="top-panel"
+      id="topPanel"
     >
 
-      <h2 class="start-title">
-        استعدّي للتحدي ✨
-      </h2>
+      <div class="score-row">
 
-      <div class="start-message">
-        يتكوّن الاختبار من عشرة أسئلة،
-        وستظهر لكِ الإجابة الصحيحة بعد كل محاولة.
+        <span id="questionCounter">
+          السؤال ١ من ١٠
+        </span>
+
+        <span>
+          الصحيح:
+          <span id="score">
+            ٠
+          </span>
+        </span>
+
+        <span>
+          ⭐
+          <span id="stars">
+            ٠
+          </span>
+        </span>
+
       </div>
 
-      <div class="name-box">
 
-        <label for="studentName">
-          اكتبي اسمكِ الرباعي:
-        </label>
-
-        <input
-          id="studentName"
-          type="text"
-          maxlength="80"
-          autocomplete="name"
-          placeholder="الاسم الأول واسم الأب والجد والعائلة"
-        >
+      <div class="progress-track">
 
         <div
-          id="nameError"
-          class="name-error"
-        >
-          يرجى كتابة الاسم الرباعي كاملًا.
-        </div>
+          class="progress-fill"
+          id="progressFill"
+        ></div>
 
       </div>
 
-      <div class="instructions">
-        📌 عدد الأسئلة: ١٠ أسئلة.<br>
-        📌 لا يمكن تغيير الإجابة بعد اختيارها.<br>
-        📌 أجيبي عن جميع الأسئلة لإظهار النتيجة.<br>
-        📌 شغّلي صوت الجهاز للاستمتاع بالمؤثرات.
-      </div>
-
-      <button
-        class="start-button"
-        onclick="startTest()"
-      >
-        ابدئي الاختبار 🚀
-      </button>
-
-    </section>
+    </div>
 
 
     <section
-      id="quizArea"
-      class="quiz-area"
+      class="quiz-card"
+      id="quizCard"
     >
 
       <div
-        id="studentBanner"
-        class="student-banner"
+        class="question-number"
+        id="questionNumber"
+      >
+        السؤال الأول
+      </div>
+
+      <div
+        class="question-text"
+        id="questionText"
       ></div>
 
-      <section class="progress-card">
+      <div
+        class="options"
+        id="options"
+      ></div>
 
-        <div class="progress-info">
-          <span id="progressText">
-            أُجيب عن ٠ من ١٠
-          </span>
-
-          <span id="liveScore">
-            النجوم: ٠ ⭐
-          </span>
-        </div>
-
-        <div class="progress-track">
-          <div
-            class="progress-bar"
-            id="progressBar"
-          ></div>
-        </div>
-
-      </section>
-            <section
-        class="question"
-        data-answer="نجا"
-      >
-        <span class="question-number">
-          السؤال ١
-        </span>
-
-        <h2>
-          اختاري الكتابة الصحيحة:
-          ___ المسافرُ من الخطر.
-        </h2>
-
-        <div class="options">
-          <button class="option">نجا</button>
-          <button class="option">نجى</button>
-        </div>
-
-        <div class="feedback"></div>
-      </section>
-
-
-      <section
-        class="question"
-        data-answer="بكى"
-      >
-        <span class="question-number">
-          السؤال ٢
-        </span>
-
-        <h2>
-          اختاري الفعل المكتوب كتابة صحيحة:
-        </h2>
-
-        <div class="options">
-          <button class="option">
-            بكا الطفلُ
-          </button>
-
-          <button
-            class="option"
-            data-value="بكى"
-          >
-            بكى الطفلُ
-          </button>
-        </div>
-
-        <div class="feedback"></div>
-      </section>
-
-
-      <section
-        class="question"
-        data-answer="عفا"
-      >
-        <span class="question-number">
-          السؤال ٣
-        </span>
-
-        <h2>
-          ___ الرجلُ عمّن أساء إليه.
-        </h2>
-
-        <div class="options">
-          <button class="option">عفى</button>
-          <button class="option">عفا</button>
-        </div>
-
-        <div class="feedback"></div>
-      </section>
-
-
-      <section
-        class="question"
-        data-answer="مشى"
-      >
-        <span class="question-number">
-          السؤال ٤
-        </span>
-
-        <h2>
-          أيُّ الجملتين كُتب فعلها كتابة صحيحة؟
-        </h2>
-
-        <div class="options">
-          <button class="option">
-            مشا الطالبُ بهدوء
-          </button>
-
-          <button
-            class="option"
-            data-value="مشى"
-          >
-            مشى الطالبُ بهدوء
-          </button>
-        </div>
-
-        <div class="feedback"></div>
-      </section>
-
-
-      <section
-        class="question"
-        data-answer="ارتقى"
-      >
-        <span class="question-number">
-          السؤال ٥
-        </span>
-
-        <h2>
-          ___ المجتهدُ بأخلاقه وعلمه.
-        </h2>
-
-        <div class="options">
-          <button class="option">ارتقا</button>
-          <button class="option">ارتقى</button>
-        </div>
-
-        <div class="feedback"></div>
-      </section>
-
-
-      <section
-        class="question"
-        data-answer="استوفى"
-      >
-        <span class="question-number">
-          السؤال ٦
-        </span>
-
-        <h2>
-          اختاري الرسم الصحيح للفعل غير الثلاثي:
-        </h2>
-
-        <div class="options">
-          <button class="option">استوفا</button>
-          <button class="option">استوفى</button>
-        </div>
-
-        <div class="feedback"></div>
-      </section>
-
-
-      <section
-        class="question"
-        data-answer="ابتغى"
-      >
-        <span class="question-number">
-          السؤال ٧
-        </span>
-
-        <h2>
-          ___ الطالبُ النجاحَ بالاجتهاد.
-        </h2>
-
-        <div class="options">
-          <button class="option">ابتغى</button>
-          <button class="option">ابتغا</button>
-        </div>
-
-        <div class="feedback"></div>
-      </section>
-
-
-      <section
-        class="question"
-        data-answer="أحيا"
-      >
-        <span class="question-number">
-          السؤال ٨
-        </span>
-
-        <h2>
-          ___ المطرُ الأرضَ بعد جفافها.
-        </h2>
-
-        <div class="options">
-          <button class="option">أحيى</button>
-          <button class="option">أحيا</button>
-        </div>
-
-        <div class="feedback"></div>
-      </section>
-
-
-      <section
-        class="question"
-        data-answer="استحيا"
-      >
-        <span class="question-number">
-          السؤال ٩
-        </span>
-
-        <h2>
-          اختاري الكلمة الصحيحة:
-        </h2>
-
-        <div class="options">
-          <button
-            class="option"
-            data-value="استحيا"
-          >
-            استحيا الطالبُ من خطئه
-          </button>
-
-          <button
-            class="option"
-            data-value="استحيى"
-          >
-            استحيى الطالبُ من خطئه
-          </button>
-        </div>
-
-        <div class="feedback"></div>
-      </section>
-
-
-      <section
-        class="question"
-        data-answer="هدى"
-      >
-        <span class="question-number">
-          السؤال ١٠
-        </span>
-
-        <h2>
-          ___ المرشدُ الزائرَ إلى الطريق.
-        </h2>
-
-        <div class="options">
-          <button class="option">هدا</button>
-          <button class="option">هدى</button>
-        </div>
-
-        <div class="feedback"></div>
-      </section>
-
+      <div
+        class="feedback"
+        id="feedback"
+      ></div>
 
       <button
-        class="finish-btn"
-        id="finishButton"
-        disabled
+        class="next-button"
+        id="nextButton"
+        type="button"
       >
-        🎉 إظهار النتيجة
+        السؤال التالي ←
       </button>
 
     </section>
 
 
     <section
-      class="result"
-      id="result"
+      class="result-card"
+      id="resultCard"
     >
+
       <div
         class="result-icon"
         id="resultIcon"
       >
-        🏆
+        🌟
       </div>
 
-      <h2 id="resultTitle">
-        أحسنتِ
+      <h2>
+        اكتمل الاختبار
       </h2>
 
       <div
-        id="resultName"
-        class="result-name"
-      ></div>
-
-      <div
-        class="score"
+        class="final-score"
         id="finalScore"
       ></div>
 
-      <p id="resultMessage"></p>
+      <div
+        class="result-message"
+        id="resultMessage"
+      ></div>
 
-      <div class="result-buttons">
+
+      <div class="result-actions">
 
         <button
-          class="restart"
-          onclick="restartTest()"
+          class="result-button"
+          id="restartButton"
+          type="button"
         >
           🔄 إعادة الاختبار
         </button>
 
         <a
-          class="back"
+          class="back-button"
+          href="soft-alif-nontriliteral-verbs-file.html"
+        >
+          📘 ملف الدرس
+        </a>
+
+        <a
+          class="back-button"
+          href="soft-alif-nontriliteral-verbs-rule.html"
+        >
+          ✍️ كتابة بلا أخطاء
+        </a>
+
+        <a
+          class="back-button"
           href="soft-alif-nontriliteral-verbs.html"
         >
-          📚 العودة إلى الدرس
+          ↩ العودة إلى الدرس
         </a>
 
       </div>
@@ -874,566 +762,868 @@
 
   </main>
 
+
   <footer>
-    جميع الحقوق محفوظة © 2026
+    منصة آفاق اللغة | لغتي الخالدة | الصف الثالث المتوسط
   </footer>
 
-  <script>
-    const questions =
-      document.querySelectorAll(".question");
+</div>
 
-    const finishButton =
-      document.getElementById("finishButton");
 
-    const progressBar =
-      document.getElementById("progressBar");
+<script>
+    const questions = [
 
-    const progressText =
-      document.getElementById("progressText");
+    {
+      question:
+        "اختاري الرسم الصحيح للفعل غير الثلاثي:",
 
-    const liveScore =
-      document.getElementById("liveScore");
+      options: [
+        "ارتقا",
+        "ارتقى",
+        "ارتقي",
+        "ارتقو"
+      ],
 
-    const result =
-      document.getElementById("result");
+      answer: 1,
 
-    let answeredCount = 0;
-    let score = 0;
-    let studentFullName = "";
+      explanation:
+        "الصواب «ارتقى»؛ لأنه فعل غير ثلاثي ولم تسبق ألفه بياء."
+    },
 
-    function toArabicNumber(number) {
-      const arabicNumbers = [
-        "٠", "١", "٢", "٣", "٤",
-        "٥", "٦", "٧", "٨", "٩"
-      ];
 
-      return String(number).replace(
+    {
+      question:
+        "ما الرسم الصحيح للفعل؟",
+
+      options: [
+        "استوفا",
+        "استوفى",
+        "استوفي",
+        "استوفو"
+      ],
+
+      answer: 1,
+
+      explanation:
+        "الصواب «استوفى»؛ لأنه فعل غير ثلاثي ولم تسبق ألفه بياء."
+    },
+
+
+    {
+      question:
+        "اختاري الكلمة الصحيحة في الجملة: «___ الطالبُ النجاحَ بالاجتهاد»",
+
+      options: [
+        "ابتغى",
+        "ابتغا",
+        "ابتغي",
+        "ابتغو"
+      ],
+
+      answer: 0,
+
+      explanation:
+        "الصواب «ابتغى»؛ لأنه فعل غير ثلاثي ولم تسبق ألفه بياء."
+    },
+
+
+    {
+      question:
+        "ما الرسم الصحيح للفعل؟",
+
+      options: [
+        "استدعا",
+        "استدعى",
+        "استدعي",
+        "استدعو"
+      ],
+
+      answer: 1,
+
+      explanation:
+        "الصواب «استدعى»؛ لأنه فعل غير ثلاثي ولم تسبق ألفه بياء."
+    },
+
+
+    {
+      question:
+        "اختاري الكتابة الصحيحة:",
+
+      options: [
+        "أعطا المعلمُ الطالبَ جائزةً.",
+        "أعطى المعلمُ الطالبَ جائزةً.",
+        "أعطي المعلمُ الطالبَ جائزةً.",
+        "أعطو المعلمُ الطالبَ جائزةً."
+      ],
+
+      answer: 1,
+
+      explanation:
+        "الصواب «أعطى»؛ لأنه فعل غير ثلاثي ولم تسبق ألفه بياء."
+    },
+
+
+    {
+      question:
+        "في الفعل غير الثلاثي، إذا لم تسبق الألف اللينة بياء فإنها تُكتب:",
+
+      options: [
+        "ألفًا قائمة «ا»",
+        "على صورة الياء «ى»",
+        "ياءً منقوطة «ي»",
+        "واوًا «و»"
+      ],
+
+      answer: 1,
+
+      explanation:
+        "الأصل في آخر الفعل غير الثلاثي أن تكتب الألف اللينة على صورة الياء «ى»."
+    },
+
+
+    {
+      question:
+        "إذا سبقت الألف اللينة في الفعل غير الثلاثي بحرف الياء فإنها تُكتب:",
+
+      options: [
+        "على صورة الياء «ى»",
+        "ياءً «ي»",
+        "ألفًا قائمة «ا»",
+        "واوًا «و»"
+      ],
+
+      answer: 2,
+
+      explanation:
+        "إذا سبقت الألف اللينة بياء، تُكتب ألفًا قائمة «ا»."
+    },
+
+
+    {
+      question:
+        "اختاري الرسم الصحيح في الجملة: «___ المطرُ الأرضَ بعد جفافها»",
+
+      options: [
+        "أحيى",
+        "أحيا",
+        "أحيي",
+        "أحيو"
+      ],
+
+      answer: 1,
+
+      explanation:
+        "الصواب «أحيا»؛ لأن الألف اللينة سبقتها ياء، فكتبت قائمة."
+    },
+
+
+    {
+      question:
+        "أيُّ الكلمات الآتية مكتوبة كتابة صحيحة؟",
+
+      options: [
+        "استحيى",
+        "استحيا",
+        "استحيي",
+        "استحيو"
+      ],
+
+      answer: 1,
+
+      explanation:
+        "الصواب «استحيا»؛ لأن الألف اللينة سبقتها ياء."
+    },
+
+
+    {
+      question:
+        "أيُّ الأفعال الآتية يختلف في رسم ألفه عن بقية الأفعال؟",
+
+      options: [
+        "اهتدى",
+        "اصطفى",
+        "استدعى",
+        "أحيا"
+      ],
+
+      answer: 3,
+
+      explanation:
+        "«أحيا» يختلف؛ لأن الألف سبقتها ياء، لذلك كُتبت ألفًا قائمة."
+    }
+
+  ];
+
+
+  const arabicNames = [
+    "الأول",
+    "الثاني",
+    "الثالث",
+    "الرابع",
+    "الخامس",
+    "السادس",
+    "السابع",
+    "الثامن",
+    "التاسع",
+    "العاشر"
+  ];
+
+
+  const toArabic =
+    value =>
+      String(value).replace(
         /\d/g,
-        digit => arabicNumbers[digit]
-      );
-    }
-
-    function normalizeName(name) {
-      return name
-        .trim()
-        .replace(/\s+/g, " ");
-    }
-
-    function isFourPartName(name) {
-      return normalizeName(name).split(" ").length >= 4;
-    }
-
-    function startTest() {
-      const nameInput =
-        document.getElementById("studentName");
-
-      const nameError =
-        document.getElementById("nameError");
-
-      const enteredName =
-        normalizeName(nameInput.value);
-
-      if (!isFourPartName(enteredName)) {
-        nameError.style.display = "block";
-        nameInput.focus();
-        return;
-      }
-
-      studentFullName = enteredName;
-
-      localStorage.setItem(
-        "semester1_student_full_name",
-        studentFullName
+        digit =>
+          "٠١٢٣٤٥٦٧٨٩"[digit]
       );
 
-      localStorage.setItem(
-        "studentFullName",
-        studentFullName
+
+  let currentQuestion = 0;
+  let score = 0;
+  let answered = false;
+
+
+  const questionCounter =
+    document.getElementById(
+      "questionCounter"
+    );
+
+  const scoreElement =
+    document.getElementById(
+      "score"
+    );
+
+  const stars =
+    document.getElementById(
+      "stars"
+    );
+
+  const progressFill =
+    document.getElementById(
+      "progressFill"
+    );
+
+  const questionNumber =
+    document.getElementById(
+      "questionNumber"
+    );
+
+  const questionText =
+    document.getElementById(
+      "questionText"
+    );
+
+  const options =
+    document.getElementById(
+      "options"
+    );
+
+  const feedback =
+    document.getElementById(
+      "feedback"
+    );
+
+  const nextButton =
+    document.getElementById(
+      "nextButton"
+    );
+
+  const quizCard =
+    document.getElementById(
+      "quizCard"
+    );
+
+  const topPanel =
+    document.getElementById(
+      "topPanel"
+    );
+
+  const resultCard =
+    document.getElementById(
+      "resultCard"
+    );
+
+  const finalScore =
+    document.getElementById(
+      "finalScore"
+    );
+
+  const resultMessage =
+    document.getElementById(
+      "resultMessage"
+    );
+
+  const resultIcon =
+    document.getElementById(
+      "resultIcon"
+    );
+
+  const restartButton =
+    document.getElementById(
+      "restartButton"
+    );
+
+
+  function loadQuestion() {
+
+    answered = false;
+
+    const current =
+      questions[currentQuestion];
+
+
+    questionCounter.textContent =
+      "السؤال " +
+      toArabic(
+        currentQuestion + 1
+      ) +
+      " من " +
+      toArabic(
+        questions.length
       );
 
-      nameError.style.display = "none";
 
-      document.getElementById("studentBanner").textContent =
-        "الطالبة: " + studentFullName;
+    scoreElement.textContent =
+      toArabic(score);
 
-      document
-        .getElementById("startCard")
-        .classList.remove("active");
+    stars.textContent =
+      toArabic(score);
 
-      document
-        .getElementById("quizArea")
-        .classList.add("active");
 
-      playStartSound();
+    progressFill.style.width =
+      (
+        (
+          currentQuestion + 1
+        ) /
+        questions.length *
+        100
+      ) +
+      "%";
 
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-    }
 
-    function getOptionValue(button) {
-      return (
-        button.dataset.value ||
-        button.textContent.trim().split(" ")[0]
-      );
-    }
-
-    function updateProgress() {
-      const percentage =
-        (answeredCount / questions.length) * 100;
-
-      progressBar.style.width =
-        percentage + "%";
-
-      progressText.textContent =
-        "أُجيب عن " +
-        toArabicNumber(answeredCount) +
-        " من " +
-        toArabicNumber(questions.length);
-
-      liveScore.textContent =
-        "النجوم: " +
-        toArabicNumber(score) +
-        " ⭐";
-
-      if (answeredCount === questions.length) {
-        finishButton.disabled = false;
-      }
-    }
-        questions.forEach((question) => {
-      const options =
-        question.querySelectorAll(".option");
-
-      const feedback =
-        question.querySelector(".feedback");
-
-      const correctAnswer =
-        question.dataset.answer;
-
-      options.forEach((button) => {
-        button.addEventListener("click", () => {
-          if (
-            question.classList.contains("answered")
-          ) {
-            return;
-          }
-
-          question.classList.add("answered");
-          answeredCount++;
-
-          const selectedValue =
-            getOptionValue(button);
-
-          const isCorrect =
-            selectedValue === correctAnswer;
-
-          options.forEach((option) => {
-            option.disabled = true;
-
-            if (
-              getOptionValue(option) === correctAnswer
-            ) {
-              option.classList.add("correct");
-            }
-          });
-
-          if (isCorrect) {
-            score++;
-
-            button.classList.add("correct");
-
-            feedback.textContent =
-              "🌟 إجابة رائعة! اختياركِ صحيح.";
-
-            feedback.className =
-              "feedback show good";
-
-            createStars(button, 18);
-            playCorrectSound();
-          } else {
-            button.classList.add("wrong");
-
-            feedback.textContent =
-              "🌷 محاولة جميلة، والإجابة الصحيحة هي: " +
-              correctAnswer;
-
-            feedback.className =
-              "feedback show try";
-
-            createStars(button, 10);
-            playWrongSound();
-          }
-
-          updateProgress();
-        });
-      });
-    });
-
-    finishButton.addEventListener("click", () => {
-      document
-        .getElementById("quizArea")
-        .classList.remove("active");
-
-      result.classList.add("active");
-
-      const finalScore =
-        document.getElementById("finalScore");
-
-      const resultTitle =
-        document.getElementById("resultTitle");
-
-      const resultMessage =
-        document.getElementById("resultMessage");
-
-      const resultIcon =
-        document.getElementById("resultIcon");
-
-      document.getElementById("resultName").textContent =
-        "الطالبة: " + studentFullName;
-
-      finalScore.textContent =
-        toArabicNumber(score) +
-        " من " +
-        toArabicNumber(questions.length);
-
-      if (score === questions.length) {
-        resultIcon.textContent = "👑";
-
-        resultTitle.textContent =
-          "إتقان مذهل!";
-
-        resultMessage.textContent =
-          "أجبتِ عن جميع الأسئلة إجابة صحيحة، وأتقنتِ كتابة الألف اللينة في الأفعال.";
-
-        createCelebration(60);
-        playVictorySound();
-      } else if (score >= 8) {
-        resultIcon.textContent = "🏆";
-
-        resultTitle.textContent =
-          "ممتازة جدًا!";
-
-        resultMessage.textContent =
-          "نتيجة قوية، وقد أتقنتِ الفرق بين الأفعال الثلاثية وغير الثلاثية.";
-
-        createCelebration(45);
-        playVictorySound();
-      } else if (score >= 6) {
-        resultIcon.textContent = "🌟";
-
-        resultTitle.textContent =
-          "أداء جميل!";
-
-        resultMessage.textContent =
-          "راجعي الكلمات التي أخطأتِ فيها، ثم أعيدي المحاولة للوصول إلى الإتقان.";
-
-        createCelebration(30);
-      } else {
-        resultIcon.textContent = "📚";
-
-        resultTitle.textContent =
-          "بداية طيبة!";
-
-        resultMessage.textContent =
-          "راجعي القاعدة مرة أخرى: في الفعل الثلاثي نبحث عن أصل الألف، وفي غير الثلاثي تُكتب غالبًا ألفًا مقصورة، إلا إذا سبقتها ياء.";
-
-        createCelebration(15);
-      }
-
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-    });
-
-    function restartTest() {
-      answeredCount = 0;
-      score = 0;
-
-      questions.forEach((question) => {
-        question.classList.remove("answered");
-
-        const options =
-          question.querySelectorAll(".option");
-
-        const feedback =
-          question.querySelector(".feedback");
-
-        options.forEach((option) => {
-          option.disabled = false;
-          option.classList.remove(
-            "correct",
-            "wrong"
-          );
-        });
-
-        feedback.className = "feedback";
-        feedback.textContent = "";
-      });
-
-      finishButton.disabled = true;
-      progressBar.style.width = "0%";
-
-      progressText.textContent =
-        "أُجيب عن ٠ من ١٠";
-
-      liveScore.textContent =
-        "النجوم: ٠ ⭐";
-
-      result.classList.remove("active");
-
-      document
-        .getElementById("quizArea")
-        .classList.add("active");
-
-      document.getElementById("studentBanner").textContent =
-        "الطالبة: " + studentFullName;
-
-      playStartSound();
-
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-    }
-
-    function createStars(button, amount = 14) {
-      const rect =
-        button.getBoundingClientRect();
-
-      const startX =
-        rect.left + rect.width / 2;
-
-      const startY =
-        rect.top + rect.height / 2;
-
-      for (let i = 0; i < amount; i++) {
-        const star =
-          document.createElement("span");
-
-        star.className = "floating-star";
-
-        star.textContent =
-          i % 2 === 0 ? "⭐" : "✨";
-
-        star.style.left =
-          startX + "px";
-
-        star.style.top =
-          startY + "px";
-
-        star.style.setProperty(
-          "--move-x",
-          Math.floor(Math.random() * 190) -
-            95 +
-            "px"
-        );
-
-        star.style.setProperty(
-          "--move-y",
-          -(
-            90 +
-            Math.floor(Math.random() * 170)
-          ) +
-            "px"
-        );
-
-        star.style.setProperty(
-          "--rotate",
-          Math.floor(Math.random() * 360) -
-            180 +
-            "deg"
-        );
-
-        document.body.appendChild(star);
-
-        setTimeout(() => {
-          star.remove();
-        }, 1800);
-      }
-    }
-
-    function createCelebration(amount) {
-      const symbols = [
-        "🎉",
-        "✨",
-        "⭐",
-        "🎈",
-        "💜",
-        "🌸"
+    questionNumber.textContent =
+      "السؤال " +
+      arabicNames[
+        currentQuestion
       ];
 
-      for (let i = 0; i < amount; i++) {
-        const piece =
-          document.createElement("span");
 
-        piece.className = "floating-star";
+    questionText.textContent =
+      current.question;
 
-        piece.textContent =
-          symbols[
-            Math.floor(
-              Math.random() * symbols.length
-            )
-          ];
+
+    options.innerHTML = "";
+
+    feedback.className =
+      "feedback";
+
+    feedback.textContent = "";
+
+    nextButton.classList.remove(
+      "show"
+    );
+
+
+    current.options.forEach(
+      (option, index) => {
+
+        const button =
+          document.createElement(
+            "button"
+          );
+
+        button.type =
+          "button";
+
+        button.className =
+          "option";
+
+        button.textContent =
+          option;
+
+
+        button.onclick =
+          event => {
+
+            chooseAnswer(
+              index,
+              button,
+              event
+            );
+
+          };
+
+
+        options.appendChild(
+          button
+        );
+
+      }
+    );
+
+  }
+
+
+  function chooseAnswer(
+    selectedIndex,
+    selectedButton,
+    event
+  ) {
+
+    if (answered) {
+      return;
+    }
+
+    answered = true;
+
+    const current =
+      questions[currentQuestion];
+
+    const buttons =
+      document.querySelectorAll(
+        ".option"
+      );
+
+
+    buttons.forEach(
+      button => {
+        button.disabled = true;
+      }
+    );
+
+
+    buttons[
+      current.answer
+    ].classList.add(
+      "correct"
+    );
+
+
+    if (
+      selectedIndex ===
+      current.answer
+    ) {
+
+      score++;
+
+      feedback.className =
+        "feedback good";
+
+      feedback.innerHTML =
+        "🌟 أحسنتِ، إجابة صحيحة.<br>" +
+        current.explanation;
+
+      playCorrectSound();
+
+      celebrate(
+        24,
+        event.clientX,
+        event.clientY
+      );
+
+      if (
+        navigator.vibrate
+      ) {
+        navigator.vibrate(45);
+      }
+
+    } else {
+
+      selectedButton.classList.add(
+        "wrong"
+      );
+
+      feedback.className =
+        "feedback bad";
+
+      feedback.innerHTML =
+        "🌷 راجعي القاعدة.<br>" +
+        current.explanation;
+
+      playWrongSound();
+
+      if (
+        navigator.vibrate
+      ) {
+        navigator.vibrate(
+          [70,40,70]
+        );
+      }
+
+    }
+
+
+    scoreElement.textContent =
+      toArabic(score);
+
+    stars.textContent =
+      toArabic(score);
+
+
+    nextButton.textContent =
+      currentQuestion ===
+      questions.length - 1
+        ? "شوفي نتيجتك ✨"
+        : "السؤال التالي ←";
+
+
+    nextButton.classList.add(
+      "show"
+    );
+
+  }
+
+
+  nextButton.onclick =
+    function () {
+
+      currentQuestion++;
+
+      if (
+        currentQuestion <
+        questions.length
+      ) {
+
+        loadQuestion();
+
+      } else {
+
+        showResult();
+
+      }
+
+    };
+
+
+  function showResult() {
+
+    quizCard.style.display =
+      "none";
+
+    topPanel.style.display =
+      "none";
+
+    resultCard.classList.add(
+      "show"
+    );
+
+
+    finalScore.textContent =
+      toArabic(score) +
+      " / " +
+      toArabic(
+        questions.length
+      );
+
+
+    if (
+      score ===
+      questions.length
+    ) {
+
+      resultIcon.textContent =
+        "👑";
+
+      resultMessage.textContent =
+        "إتقان كامل! أتقنتِ كتابة الألف اللينة في الأفعال غير الثلاثية.";
+
+      celebrate(90);
+
+      playVictorySound();
+
+    } else if (
+      score >= 8
+    ) {
+
+      resultIcon.textContent =
+        "🏆";
+
+      resultMessage.textContent =
+        "رائعة جدًا! أتقنتِ القاعدة والاستثناء الخاص بسبق الألف بالياء.";
+
+      celebrate(65);
+
+      playVictorySound();
+
+    } else if (
+      score >= 6
+    ) {
+
+      resultIcon.textContent =
+        "🌟";
+
+      resultMessage.textContent =
+        "أداء جميل. راجعي متى نكتب «ى» ومتى نكتب «ا»، ثم أعيدي الاختبار.";
+
+      celebrate(35);
+
+    } else {
+
+      resultIcon.textContent =
+        "📘";
+
+      resultMessage.textContent =
+        "راجعي ملف الدرس و«كتابة بلا أخطاء»، ثم حاولي مرة أخرى.";
+
+    }
+
+  }
+
+
+  restartButton.onclick =
+    function () {
+
+      currentQuestion = 0;
+      score = 0;
+      answered = false;
+
+      resultCard.classList.remove(
+        "show"
+      );
+
+      quizCard.style.display =
+        "flex";
+
+      topPanel.style.display =
+        "block";
+
+      loadQuestion();
+
+    };
+
+
+  function celebrate(
+    amount,
+    x,
+    y
+  ) {
+
+    const colors = [
+      "#776094",
+      "#5b4677",
+      "#c9a85c",
+      "#ead69e",
+      "#6f5288"
+    ];
+
+
+    for (
+      let i = 0;
+      i < amount;
+      i++
+    ) {
+
+      const piece =
+        document.createElement(
+          "span"
+        );
+
+      piece.className =
+        "confetti";
+
+
+      if (
+        typeof x ===
+        "number"
+      ) {
 
         piece.style.left =
-          Math.random() * 100 + "vw";
+          (
+            x +
+            Math.random() * 120 -
+            60
+          ) +
+          "px";
 
         piece.style.top =
-          65 + Math.random() * 25 + "vh";
-
-        piece.style.setProperty(
-          "--move-x",
-          Math.floor(Math.random() * 180) -
-            90 +
-            "px"
-        );
-
-        piece.style.setProperty(
-          "--move-y",
-          -(
-            150 +
-            Math.floor(Math.random() * 380)
+          (
+            y +
+            Math.random() * 30 -
+            15
           ) +
-            "px"
-        );
+          "px";
 
-        piece.style.setProperty(
-          "--rotate",
-          Math.floor(Math.random() * 720) -
-            360 +
-            "deg"
-        );
+      } else {
 
-        document.body.appendChild(piece);
+        piece.style.left =
+          Math.random() *
+          100 +
+          "vw";
 
-        setTimeout(() => {
-          piece.remove();
-        }, 1800);
       }
+
+
+      piece.style.background =
+        colors[
+          Math.floor(
+            Math.random() *
+            colors.length
+          )
+        ];
+
+
+      piece.style.animationDuration =
+        (
+          2 +
+          Math.random() *
+          2
+        ) +
+        "s";
+
+
+      document.body.appendChild(
+        piece
+      );
+
+
+      setTimeout(
+        () => piece.remove(),
+        4500
+      );
+
     }
 
-    function createAudioContext() {
+  }
+
+
+  function playTone(
+    frequency,
+    duration,
+    type = "sine"
+  ) {
+
+    try {
+
       const AudioContextClass =
         window.AudioContext ||
         window.webkitAudioContext;
 
-      if (!AudioContextClass) {
-        return null;
+      if (
+        !AudioContextClass
+      ) {
+        return;
       }
 
-      return new AudioContextClass();
-    }
 
-    function playTone(
-      frequency,
-      duration,
-      type = "sine",
-      volume = 0.12,
-      delay = 0
-    ) {
-      try {
-        const audioContext =
-          createAudioContext();
+      const context =
+        new AudioContextClass();
 
-        if (!audioContext) {
-          return;
-        }
+      const oscillator =
+        context.createOscillator();
 
-        const oscillator =
-          audioContext.createOscillator();
+      const gain =
+        context.createGain();
 
-        const gain =
-          audioContext.createGain();
 
-        oscillator.type = type;
-        oscillator.frequency.value = frequency;
+      oscillator.type =
+        type;
 
-        gain.gain.setValueAtTime(
-          volume,
-          audioContext.currentTime + delay
-        );
+      oscillator.frequency.value =
+        frequency;
 
-        gain.gain.exponentialRampToValueAtTime(
-          0.001,
-          audioContext.currentTime +
-            delay +
-            duration
-        );
 
-        oscillator.connect(gain);
-        gain.connect(audioContext.destination);
+      oscillator.connect(gain);
 
-        oscillator.start(
-          audioContext.currentTime + delay
-        );
-
-        oscillator.stop(
-          audioContext.currentTime +
-            delay +
-            duration
-        );
-      } catch (error) {
-        console.log("تعذر تشغيل الصوت.");
-      }
-    }
-
-    function playStartSound() {
-      playTone(392, 0.2, "sine", 0.09, 0);
-      playTone(523, 0.25, "sine", 0.1, 0.18);
-    }
-
-    function playCorrectSound() {
-      playTone(523, 0.22, "sine", 0.12, 0);
-      playTone(659, 0.22, "sine", 0.12, 0.16);
-      playTone(784, 0.3, "sine", 0.12, 0.32);
-    }
-
-    function playWrongSound() {
-      playTone(
-        280,
-        0.24,
-        "triangle",
-        0.09,
-        0
+      gain.connect(
+        context.destination
       );
 
-      playTone(
-        220,
-        0.3,
-        "triangle",
+
+      gain.gain.setValueAtTime(
         0.08,
-        0.18
+        context.currentTime
       );
-    }
 
-    function playVictorySound() {
-      playTone(523, 0.25, "sine", 0.12, 0);
-      playTone(659, 0.25, "sine", 0.12, 0.2);
-      playTone(784, 0.25, "sine", 0.12, 0.4);
-      playTone(1046, 0.45, "sine", 0.13, 0.6);
-    }
 
-    window.addEventListener(
-      "DOMContentLoaded",
-      () => {
-        const savedName =
-          localStorage.getItem(
-            "semester1_student_full_name"
-          ) ||
-          localStorage.getItem(
-            "studentFullName"
-          );
+      gain.gain.exponentialRampToValueAtTime(
+        0.001,
+        context.currentTime +
+        duration
+      );
 
-        if (savedName) {
-          document.getElementById(
-            "studentName"
-          ).value = savedName;
-        }
+
+      oscillator.start();
+
+      oscillator.stop(
+        context.currentTime +
+        duration
+      );
+
+    } catch (error) {}
+
+  }
+
+
+  function playCorrectSound() {
+
+    playTone(
+      523,
+      .14
+    );
+
+    setTimeout(
+      () =>
+        playTone(
+          659,
+          .16
+        ),
+      120
+    );
+
+    setTimeout(
+      () =>
+        playTone(
+          784,
+          .2
+        ),
+      230
+    );
+
+  }
+
+
+  function playWrongSound() {
+
+    playTone(
+      220,
+      .28,
+      "triangle"
+    );
+
+  }
+
+
+  function playVictorySound() {
+
+    const notes = [
+      523,
+      659,
+      784,
+      1046
+    ];
+
+
+    notes.forEach(
+      (note, index) => {
+
+        setTimeout(
+          () =>
+            playTone(
+              note,
+              .22
+            ),
+          index * 130
+        );
+
       }
     );
-  </script>
+
+  }
+
+
+  loadQuestion();
+
+</script>
 
 </body>
 
