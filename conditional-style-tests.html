@@ -6,306 +6,207 @@
 
   <meta
     name="viewport"
-    content="width=device-width, initial-scale=1.0"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
   >
 
-  <title>اختبار أسلوب الشرط | منصة آفاق اللغة</title>
+  <title>اختبري مهارتك | أسلوب الشرط</title>
 
   <style>
+    :root {
+      --purple: #5b4677;
+      --purple-light: #776094;
+      --purple-dark: #453457;
+      --gold: #c9a85c;
+      --gold-light: #ead69e;
+      --cream: #fffaf2;
+      --paper: #fffdf8;
+      --text: #403448;
+      --green: #2f7b4f;
+      --green-light: #e8f7ef;
+      --red: #a44d5d;
+      --red-light: #fff0f3;
+    }
+
     * {
       box-sizing: border-box;
     }
 
     html,
     body {
+      width: 100%;
+      height: 100%;
       margin: 0;
-      min-height: 100%;
-      overflow-x: hidden;
     }
 
     body {
       font-family: Tahoma, Arial, sans-serif;
-      color: #4b3a57;
-      background: linear-gradient(
-        145deg,
-        #fffaf2,
-        #f8f0fb
-      );
+      color: var(--text);
+      background:
+        linear-gradient(
+          180deg,
+          #f6f0fa,
+          #fffaf2
+        );
+      overflow: hidden;
     }
 
     button,
-    input {
+    a {
       font-family: inherit;
     }
 
-    .page-header {
-      padding: 34px 16px 42px;
+    .app {
+      height: 100dvh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+
+    header {
+      padding: 10px 12px 8px;
       text-align: center;
       color: white;
-      border-radius: 0 0 34px 34px;
-      background: linear-gradient(
-        135deg,
-        #776094,
-        #5b4677
-      );
-      box-shadow: 0 12px 28px rgba(73, 56, 92, 0.22);
+      background:
+        linear-gradient(
+          135deg,
+          var(--purple-light),
+          var(--purple),
+          var(--purple-dark)
+        );
+      border-bottom: 4px solid var(--gold);
     }
 
-    .page-header .icon {
-      width: 82px;
-      height: 82px;
-      margin: 0 auto 13px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 24px;
-      font-size: 45px;
-      color: #fff8df;
-      background: rgba(255, 255, 255, 0.15);
-      border: 2px solid rgba(255, 255, 255, 0.42);
+    .badge {
+      display: inline-block;
+      padding: 3px 11px;
+      color: #fff2c6;
+      font-size: 11px;
+      font-weight: bold;
+      background: rgba(255, 255, 255, 0.09);
+      border: 1px solid var(--gold-light);
+      border-radius: 999px;
     }
 
-    .page-header h1 {
+    header h1 {
+      margin: 4px 0 1px;
+      color: white;
+      font-size: clamp(19px, 5vw, 28px);
+      line-height: 1.4;
+    }
+
+    header p {
       margin: 0;
-      color: #fff8df;
-      font-size: 34px;
-    }
-
-    .page-header p {
-      max-width: 670px;
-      margin: 10px auto 0;
-      font-size: 17px;
-      line-height: 1.9;
+      color: #f3ecf7;
+      font-size: 11px;
     }
 
     main {
-      width: 94%;
-      max-width: 820px;
-      margin: 28px auto 45px;
-    }
-
-    .card {
-      padding: 26px;
-      border-radius: 28px;
-      background: #fffdf8;
-      border: 1px solid rgba(93, 67, 116, 0.15);
-      box-shadow: 0 13px 34px rgba(73, 56, 92, 0.13);
-    }
-
-    .start-screen,
-    .quiz-screen,
-    .result-screen {
-      display: none;
-    }
-
-    .active {
-      display: block;
-    }
-
-    .start-title {
-      margin: 0 0 16px;
-      text-align: center;
-      color: #5d4374;
-      font-size: 29px;
-    }
-
-    .start-message {
-      padding: 18px;
-      text-align: center;
-      border-radius: 19px;
-      border-right: 7px solid #c9a85c;
-      background: #fff7dc;
-      font-size: 18px;
-      line-height: 2;
-    }
-
-    .name-box {
-      margin: 19px 0;
-      padding: 18px;
-      border-radius: 19px;
-      background: #f5ecfb;
-      border: 1px solid #dccbe8;
-    }
-
-    .name-box label {
-      display: block;
-      margin-bottom: 9px;
-      color: #5d4374;
-      font-weight: bold;
-      font-size: 17px;
-    }
-
-    .name-box input {
-      width: 100%;
-      padding: 14px 15px;
-      border: 2px solid #d7c5e4;
-      border-radius: 15px;
-      outline: none;
-      color: #4b3a57;
-      background: white;
-      font-size: 17px;
-    }
-
-    .name-box input:focus {
-      border-color: #776094;
-      box-shadow: 0 0 0 3px rgba(119, 96, 148, 0.12);
-    }
-
-    .name-error {
-      display: none;
-      margin-top: 9px;
-      color: #a23e4d;
-      font-weight: bold;
-      line-height: 1.7;
-    }
-
-    .instructions {
-      margin: 19px 0;
-      padding: 18px;
-      border-radius: 19px;
-      border-right: 7px solid #776094;
-      background: #f5ecfb;
-      line-height: 2;
-    }
-
-    .main-button {
-      width: 100%;
-      padding: 16px;
-      border: none;
-      border-radius: 18px;
-      color: white;
-      background: #6f5288;
-      box-shadow: 0 8px 19px rgba(93, 67, 116, 0.24);
-      font-size: 19px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: transform 0.2s, opacity 0.2s;
-    }
-
-    .main-button:active {
-      transform: scale(0.98);
-    }
-
-    .main-button:hover {
-      opacity: 0.94;
-    }
-
-    .student-banner {
-      margin-bottom: 15px;
-      padding: 12px 15px;
-      text-align: center;
-      border-radius: 16px;
-      color: #5d4374;
-      background: #fff4d4;
-      border: 1px solid #ead194;
-      font-weight: bold;
-      line-height: 1.8;
+      width: min(760px, 94%);
+      min-height: 0;
+      margin: auto;
+      padding: 7px 0;
+      display: flex;
+      flex-direction: column;
     }
 
     .top-info {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 11px;
-      margin-bottom: 15px;
+      gap: 8px;
+      margin-bottom: 5px;
+      color: var(--purple);
+      font-size: 13px;
       font-weight: bold;
     }
 
-    .counter,
-    .score-box {
-      padding: 10px 14px;
-      border-radius: 15px;
-    }
-
-    .counter {
-      color: #5d4374;
-      background: #f5ecfb;
-    }
-
-    .score-box {
-      color: #176744;
-      background: #e4f8ed;
-    }
-
-    .progress-wrap {
-      height: 14px;
-      margin-bottom: 21px;
+    .progress {
+      height: 8px;
+      margin-bottom: 7px;
       overflow: hidden;
+      background: #e9e0ef;
       border-radius: 20px;
-      background: #eee5f2;
     }
 
     .progress-bar {
       width: 0;
       height: 100%;
+      background:
+        linear-gradient(
+          90deg,
+          var(--gold),
+          var(--purple-light)
+        );
       border-radius: 20px;
-      background: linear-gradient(
-        90deg,
-        #c9a85c,
-        #776094
-      );
-      transition: width 0.4s ease;
+      transition: width 0.35s ease;
     }
 
-    .motivation {
-      min-height: 45px;
-      margin-bottom: 15px;
-      padding: 11px 15px;
-      text-align: center;
-      border-radius: 15px;
-      color: #6e5519;
-      background: #fff4cf;
+    .quiz-card,
+    .result-card {
+      flex: 1;
+      min-height: 0;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: var(--paper);
+      border: 2px solid var(--gold);
+      border-radius: 22px;
+      box-shadow:
+        0 12px 28px
+        rgba(73, 56, 92, 0.13);
+    }
+
+    .question-number {
+      margin-bottom: 2px;
+      color: var(--gold);
+      font-size: 12px;
       font-weight: bold;
-      line-height: 1.7;
     }
 
     .question {
-      margin: 0 0 22px;
-      padding: 20px;
+      margin: 3px 0 9px;
+      color: var(--purple-dark);
+      font-size: clamp(16px, 4.3vw, 21px);
+      line-height: 1.6;
       text-align: center;
-      border-radius: 21px;
-      color: #4b3a57;
-      background: #f5ecfb;
-      border: 2px dashed #c9a85c;
-      font-size: 21px;
-      line-height: 1.9;
     }
 
     .answers {
       display: grid;
-      gap: 13px;
+      gap: 6px;
     }
 
     .answer-button {
       width: 100%;
-      padding: 15px 17px;
+      padding: 9px 11px;
+      color: var(--text);
+      font-size: clamp(13px, 3.4vw, 16px);
+      line-height: 1.45;
       text-align: right;
-      border: 2px solid #e1d6e7;
-      border-radius: 17px;
-      color: #4b3a57;
-      background: white;
-      font-size: 17px;
-      line-height: 1.8;
       cursor: pointer;
-      transition: all 0.2s ease;
+      background:
+        linear-gradient(
+          135deg,
+          #ffffff,
+          #faf6fc
+        );
+      border: 2px solid #e3d8e9;
+      border-radius: 13px;
     }
 
-    .answer-button:hover {
-      transform: translateY(-2px);
-      border-color: #9d82b5;
-      background: #fcf9ff;
+    .answer-button:active {
+      transform: scale(0.99);
     }
 
     .answer-button.correct {
-      color: #12663f;
-      border-color: #54bd83;
-      background: #dcf8e9;
+      color: #205d3a;
+      background: var(--green-light);
+      border-color: #62a978;
     }
 
     .answer-button.wrong {
-      color: #9c3444;
-      border-color: #e47482;
-      background: #ffe1e5;
+      color: #813949;
+      background: var(--red-light);
+      border-color: #cf7484;
     }
 
     .answer-button:disabled {
@@ -314,210 +215,195 @@
 
     .feedback {
       display: none;
-      margin-top: 18px;
-      padding: 16px;
+      margin-top: 7px;
+      padding: 8px 10px;
+      font-size: clamp(12px, 3.2vw, 14px);
+      line-height: 1.5;
       text-align: center;
-      border-radius: 17px;
-      font-weight: bold;
-      line-height: 1.9;
+      border-radius: 13px;
     }
 
-    .feedback.correct-feedback {
+    .feedback.good {
       display: block;
-      color: #176744;
-      background: #e3f9ed;
-      border: 1px solid #7acc9d;
+      color: #205d3a;
+      background: var(--green-light);
+      border: 1px solid #78b88b;
     }
 
-    .feedback.wrong-feedback {
+    .feedback.bad {
       display: block;
-      color: #933849;
-      background: #ffe8eb;
-      border: 1px solid #ed98a4;
+      color: #813949;
+      background: var(--red-light);
+      border: 1px solid #d68a97;
     }
 
     .next-button {
       display: none;
       width: 100%;
-      margin-top: 17px;
-      padding: 15px;
-      border: none;
-      border-radius: 17px;
+      margin-top: 7px;
+      padding: 9px;
       color: white;
-      background: #6f5288;
-      font-size: 18px;
+      font-size: 14px;
       font-weight: bold;
       cursor: pointer;
+      background:
+        linear-gradient(
+          135deg,
+          var(--purple-light),
+          var(--purple)
+        );
+      border: 2px solid var(--gold);
+      border-radius: 13px;
     }
 
-    .result-screen {
+    .result-card {
+      display: none;
       text-align: center;
     }
 
-    .result-icon {
-      font-size: 76px;
-      animation: bounce 1.2s infinite;
-    }
-
-    .result-screen h2 {
-      margin: 8px 0;
-      color: #5d4374;
-      font-size: 31px;
-    }
-
-    .result-name {
-      margin: 12px auto;
-      padding: 12px 16px;
-      border-radius: 16px;
-      color: #5d4374;
-      background: #f5ecfb;
-      font-weight: bold;
-      line-height: 1.8;
-    }
-
-    .final-score {
-      width: 180px;
-      height: 180px;
-      margin: 20px auto;
+    .result-card.show {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      color: white;
-      background: linear-gradient(
-        145deg,
-        #776094,
-        #5b4677
-      );
-      border: 7px solid #ead69e;
-      box-shadow: 0 12px 28px rgba(73, 56, 92, 0.25);
     }
 
-    .final-score strong {
-      font-size: 43px;
+    .result-icon {
+      font-size: 52px;
     }
 
-    .final-score span {
-      font-size: 17px;
+    .result-card h2 {
+      margin: 4px 0;
+      color: var(--purple-dark);
+    }
+
+    .score {
+      margin: 8px 0;
+      color: var(--gold);
+      font-size: 42px;
+      font-weight: bold;
     }
 
     .result-message {
-      margin: 19px 0;
-      padding: 18px;
-      border-radius: 19px;
-      color: #4b3a57;
-      background: #fff5d7;
-      border: 2px dashed #c9a85c;
-      font-size: 19px;
-      line-height: 1.9;
+      margin: 5px 0 8px;
+      padding: 10px;
+      color: var(--purple);
       font-weight: bold;
+      line-height: 1.7;
+      background: #f5ecfb;
+      border-radius: 14px;
     }
 
-    .buttons-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 20px;
-    }
-
-    .secondary-button {
+    .result-button,
+    .back-button {
       display: block;
-      padding: 15px;
-      border: none;
-      border-radius: 17px;
-      text-decoration: none;
-      color: white;
-      background: #6f5288;
-      font-size: 17px;
+      width: 100%;
+      margin-top: 8px;
+      padding: 10px;
+      font-size: 15px;
       font-weight: bold;
-      cursor: pointer;
+      text-decoration: none;
+      border-radius: 13px;
     }
 
-    .restart {
-      background: #5d4374;
+    .result-button {
+      color: white;
+      cursor: pointer;
+      background: var(--purple);
+      border: 2px solid var(--gold);
+    }
+
+    .back-button {
+      color: var(--purple-dark);
+      background: #eee5f5;
+      border: 1px solid #d5c5df;
+    }
+
+    footer {
+      padding: 5px;
+      color: #73697a;
+      font-size: 9px;
+      text-align: center;
     }
 
     .confetti {
       position: fixed;
-      top: -25px;
-      z-index: 999;
+      top: -20px;
+      z-index: 9999;
+      width: 9px;
+      height: 14px;
       pointer-events: none;
+      border-radius: 3px;
       animation: fall linear forwards;
     }
 
-    footer {
-      padding: 22px 12px;
-      text-align: center;
-      color: white;
-      background: #49385c;
-      line-height: 1.8;
-    }
-
-    @keyframes bounce {
-      0%,
-      100% {
-        transform: translateY(0);
-      }
-
-      50% {
-        transform: translateY(-10px);
-      }
-    }
-
     @keyframes fall {
-      0% {
-        transform: translateY(-30px) rotate(0deg);
+      from {
         opacity: 1;
+        transform:
+          translateY(-30px)
+          rotate(0deg);
       }
 
-      100% {
-        transform: translateY(110vh) rotate(720deg);
-        opacity: 0.15;
+      to {
+        opacity: 0;
+        transform:
+          translateY(110vh)
+          rotate(700deg);
       }
     }
 
-    @media (max-width: 600px) {
-      .page-header {
-        padding: 28px 14px 36px;
+    @media (max-height: 650px) {
+      header {
+        padding: 5px 10px 4px;
       }
 
-      .page-header h1 {
-        font-size: 27px;
+      header h1 {
+        font-size: 17px;
       }
 
-      .page-header p {
-        font-size: 15px;
+      header p {
+        font-size: 9px;
       }
 
       main {
-        width: 93%;
-      }
-
-      .card {
-        padding: 18px;
-      }
-
-      .question {
-        padding: 17px;
-        font-size: 18px;
-      }
-
-      .answer-button {
-        font-size: 16px;
-      }
-
-      .buttons-row {
-        grid-template-columns: 1fr;
+        padding: 3px 0;
       }
 
       .top-info {
-        font-size: 14px;
+        margin-bottom: 3px;
+        font-size: 11px;
       }
 
-      .final-score {
-        width: 165px;
-        height: 165px;
+      .progress {
+        height: 6px;
+        margin-bottom: 4px;
+      }
+
+      .quiz-card {
+        padding: 7px;
+      }
+
+      .question {
+        margin-bottom: 5px;
+        font-size: 15px;
+      }
+
+      .answers {
+        gap: 4px;
+      }
+
+      .answer-button {
+        padding: 6px 8px;
+        font-size: 12px;
+      }
+
+      .feedback {
+        margin-top: 4px;
+        padding: 5px 7px;
+        font-size: 11px;
+      }
+
+      .next-button {
+        margin-top: 4px;
+        padding: 6px;
       }
     }
   </style>
@@ -525,194 +411,155 @@
 
 <body>
 
-  <header class="page-header">
-    <div class="icon">🎯</div>
+  <div class="app">
 
-    <h1>تحدّي أسلوب الشرط</h1>
+    <header>
 
-    <p>
-      خمسة عشر سؤالًا تقيس فهمكِ لأسلوب الشرط،
-      مع تغذية راجعة مباشرة ونتيجة تحفيزية في النهاية.
-    </p>
-  </header>
+      <span class="badge">
+        الأسلوب اللغوي
+      </span>
 
-  <main>
+      <h1>
+        ✨ اختبري مهارتك | أسلوب الشرط
+      </h1>
 
-    <section
-      id="startScreen"
-      class="card start-screen active"
-    >
+      <p>
+        ١٠ أسئلة • أربعة خيارات • تعقيب فوري 🌟
+      </p>
 
-      <h2 class="start-title">
-        هل أنتِ مستعدة للتحدي؟ 🌟
-      </h2>
-
-      <div class="start-message">
-        اقرئي كل سؤال بهدوء، ثم اختاري الإجابة الصحيحة.
-        ستظهر لكِ المعلومة الصحيحة بعد كل إجابة.
-      </div>
-
-      <div class="name-box">
-        <label for="studentName">
-          اكتبي اسمكِ الرباعي:
-        </label>
-
-        <input
-          id="studentName"
-          type="text"
-          maxlength="80"
-          autocomplete="name"
-          placeholder="الاسم الأول واسم الأب والجد والعائلة"
-        >
-
-        <div
-          id="nameError"
-          class="name-error"
-        >
-          يرجى كتابة الاسم الرباعي كاملًا قبل بدء الاختبار.
-        </div>
-      </div>
-
-      <div class="instructions">
-        📌 عدد الأسئلة: ١٥ سؤالًا.<br>
-        📌 لكل سؤال درجة واحدة.<br>
-        📌 لا يمكن تغيير الإجابة بعد اختيارها.<br>
-        📌 شغّلي صوت الجهاز للاستمتاع بالمؤثرات.
-      </div>
-
-      <button
-        class="main-button"
-        onclick="startQuiz()"
-      >
-        ابدئي التحدي 🚀
-      </button>
-
-    </section>
+    </header>
 
 
-    <section
-      id="quizScreen"
-      class="card quiz-screen"
-    >
-
-      <div
-        id="studentBanner"
-        class="student-banner"
-      ></div>
+    <main>
 
       <div class="top-info">
 
-        <div
-          id="questionCounter"
-          class="counter"
-        >
-          السؤال ١ من ١٥
-        </div>
+        <span id="questionCounter">
+          السؤال ١ من ١٠
+        </span>
 
-        <div
-          id="liveScore"
-          class="score-box"
-        >
-          الدرجة: ٠
-        </div>
+        <span id="scoreText">
+          الصحيح: ٠
+        </span>
 
       </div>
 
-      <div class="progress-wrap">
+
+      <div class="progress">
         <div
           id="progressBar"
           class="progress-bar"
         ></div>
       </div>
 
-      <div
-        id="motivation"
-        class="motivation"
+
+      <section
+        id="quizCard"
+        class="quiz-card"
       >
-        ثقي بقدرتكِ وابدئي بثبات 🌷
-      </div>
 
-      <h2
-        id="questionText"
-        class="question"
-      ></h2>
+        <div
+          id="questionNumber"
+          class="question-number"
+        ></div>
 
-      <div
-        id="answersBox"
-        class="answers"
-      ></div>
+        <h2
+          id="questionText"
+          class="question"
+        ></h2>
 
-      <div
-        id="feedback"
-        class="feedback"
-      ></div>
+        <div
+          id="answersBox"
+          class="answers"
+        ></div>
 
-      <button
-        id="nextButton"
-        class="next-button"
-        onclick="nextQuestion()"
-      >
-        السؤال التالي ←
-      </button>
-
-    </section>
-        <section
-      id="resultScreen"
-      class="card result-screen"
-    >
-
-      <div
-        id="resultIcon"
-        class="result-icon"
-      >
-        🏆
-      </div>
-
-      <h2>اكتمل التحدي!</h2>
-
-      <div
-        id="resultName"
-        class="result-name"
-      ></div>
-
-      <div class="final-score">
-        <strong id="finalScore">٠ / ١٥</strong>
-        <span>درجتكِ النهائية</span>
-      </div>
-
-      <div
-        id="resultMessage"
-        class="result-message"
-      ></div>
-
-      <div class="buttons-row">
+        <div
+          id="feedback"
+          class="feedback"
+        ></div>
 
         <button
-          class="secondary-button restart"
+          id="nextButton"
+          class="next-button"
+        >
+          السؤال التالي ←
+        </button>
+
+      </section>
+
+
+      <section
+        id="resultCard"
+        class="result-card"
+      >
+
+        <div
+          id="resultIcon"
+          class="result-icon"
+        >
+          🏆
+        </div>
+
+        <h2>
+          🎉 اكتمل الاختبار
+        </h2>
+
+        <div
+          id="finalScore"
+          class="score"
+        >
+          ٠ / ١٠
+        </div>
+
+        <div
+          id="resultMessage"
+          class="result-message"
+        ></div>
+
+        <button
+          class="result-button"
           onclick="restartQuiz()"
         >
-          إعادة المحاولة 🔄
+          🔄 إعادة الاختبار
         </button>
 
         <a
-          class="secondary-button"
-          href="conditional-style.html"
+          class="back-button"
+          href="conditional-style-file.html"
         >
-          العودة إلى أسلوب الشرط
+          📘 مراجعة ملف الدرس
         </a>
 
-      </div>
+        <a
+          class="back-button"
+          href="conditional-style-wonders.html"
+        >
+          ✨ روائع أسلوب الشرط
+        </a>
 
-    </section>
+        <a
+          class="back-button"
+          href="conditional-style.html"
+        >
+          ↩ العودة إلى أسلوب الشرط
+        </a>
 
-  </main>
+      </section>
 
-  <footer>
-    جميع الحقوق محفوظة © 2026
-  </footer>
+    </main>
+
+
+    <footer>
+      منصة آفاق اللغة | لغتي الخالدة | الصف الثالث المتوسط
+    </footer>
+
+  </div>
+
 
   <script>
+
     const questions = [
+
       {
         question:
           "أيُّ الجمل الآتية اشتملت على أسلوب شرط؟",
@@ -727,8 +574,9 @@
         correct: 1,
 
         explanation:
-          "لأن الجملة بدأت بأداة الشرط «إنْ»، وربطت الاجتهاد بالنجاح."
+          "الجملة «إنْ تجتهدي تنجحي» ربطت الاجتهاد بالنجاح باستخدام أداة الشرط «إنْ»."
       },
+
 
       {
         question:
@@ -747,6 +595,7 @@
           "«مَن» أداة شرط جازمة تدل على العاقل."
       },
 
+
       {
         question:
           "ما فعل الشرط في الجملة: «إنْ تحسني إلى الناس يحبّوكِ»؟",
@@ -761,8 +610,9 @@
         correct: 1,
 
         explanation:
-          "الفعل الواقع بعد أداة الشرط هو «تحسني»، فهو فعل الشرط."
+          "الفعل «تحسني» هو فعل الشرط؛ لأنه وقع بعد أداة الشرط «إنْ»."
       },
+
 
       {
         question:
@@ -778,8 +628,9 @@
         correct: 3,
 
         explanation:
-          "«تنجزي أعمالكِ» هي النتيجة المترتبة على تنظيم الوقت."
+          "«تنجزي أعمالكِ» هي النتيجة المترتبة على تنظيم الوقت، ولذلك هي جواب الشرط."
       },
+
 
       {
         question:
@@ -798,9 +649,10 @@
           "«ما» شرطية؛ لأنها ربطت فعل الشرط «تزرعْ» بجوابه «تحصدْ»."
       },
 
+
       {
         question:
-          "ما نوع «ما» في الجملة: «ما هدفُكِ في المستقبل؟»؟",
+          "ما نوع «ما» في الجملة: «ما هدفُكِ في المستقبل؟»",
 
         answers: [
           "موصولة",
@@ -815,56 +667,6 @@
           "«ما» استفهامية؛ لأنها استُخدمت للسؤال وتحتاج إلى إجابة."
       },
 
-      {
-        question:
-          "ما نوع «ما» في الجملة: «ما أهملتُ واجبي»؟",
-
-        answers: [
-          "نافية",
-          "شرطية",
-          "تعجبية",
-          "موصولة"
-        ],
-
-        correct: 0,
-
-        explanation:
-          "«ما» نافية؛ لأنها نفت حدوث الإهمال."
-      },
-
-      {
-        question:
-          "ما نوع «ما» في الجملة: «أحبُّ ما ينفعُ الناس»؟",
-
-        answers: [
-          "استفهامية",
-          "تعجبية",
-          "موصولة",
-          "شرطية"
-        ],
-
-        correct: 2,
-
-        explanation:
-          "«ما» موصولة بمعنى «الذي»: أحبُّ الذي ينفع الناس."
-      },
-
-      {
-        question:
-          "ما نوع «ما» في الجملة: «ما أجملَ الوفاءَ!»؟",
-
-        answers: [
-          "تعجبية",
-          "نافية",
-          "شرطية",
-          "استفهامية"
-        ],
-
-        correct: 0,
-
-        explanation:
-          "جاءت على صيغة التعجب القياسية: «ما أفعلَ!»."
-      },
 
       {
         question:
@@ -880,8 +682,9 @@
         correct: 3,
 
         explanation:
-          "«ينصركم» جواب الشرط؛ لأنه النتيجة المترتبة على نصرة دين الله."
+          "«ينصركم» جواب الشرط؛ لأنه النتيجة المترتبة على الشرط."
       },
+
 
       {
         question:
@@ -897,29 +700,13 @@
         correct: 1,
 
         explanation:
-          "الفعل «يتقِ» فعل الشرط، وعلامة جزمه حذف حرف العلة."
+          "«يتقِ» فعل الشرط، وعلامة جزمه حذف حرف العلة."
       },
+
 
       {
         question:
-          "ما علامة جزم الفعل «يكتبْ» في جملة: «مَن يكتبْ بإتقان يتفوّقْ»؟",
-
-        answers: [
-          "حذف النون",
-          "الفتحة",
-          "حذف حرف العلة",
-          "السكون"
-        ],
-
-        correct: 3,
-
-        explanation:
-          "الفعل «يكتبْ» صحيح الآخر، ولذلك علامة جزمه السكون."
-      },
-
-      {
-        question:
-          "ما علامة جزم الفعل «يسعَ» في جملة: «مَن يسعَ للخير يلقَ أثره»؟",
+          "ما علامة جزم الفعل «يسعَ» في: «مَن يسعَ للخير يلقَ أثره»؟",
 
         answers: [
           "السكون",
@@ -931,25 +718,9 @@
         correct: 1,
 
         explanation:
-          "«يسعى» فعل معتل الآخر، وعند جزمه يُحذف حرف العلة فيصبح «يسعَ»."
+          "أصل الفعل «يسعى»، وهو معتل الآخر، وعند جزمه يُحذف حرف العلة فيصبح «يسعَ»."
       },
 
-      {
-        question:
-          "ما علامة جزم الفعل «تجتهدوا» في جملة: «إنْ تجتهدوا تنجحوا»؟",
-
-        answers: [
-          "حذف النون",
-          "السكون",
-          "حذف حرف العلة",
-          "الكسرة"
-        ],
-
-        correct: 0,
-
-        explanation:
-          "الفعل من الأفعال الخمسة، وعلامة جزمه حذف النون."
-      },
 
       {
         question:
@@ -965,504 +736,591 @@
         correct: 1,
 
         explanation:
-          "أداة الشرط «مَن» تجزم فعلين، وعلامة جزم الفعلين هنا السكون."
+          "«مَن» أداة شرط جازمة، والفعلان صحيحا الآخر؛ لذلك جُزما بالسكون."
       }
+
     ];
 
-    const encouragements = [
-      "بداية رائعة يا نجمة آفاق 🌟",
-      "أحسنتِ… واصلي بهذا التركيز 💜",
-      "خطواتكِ ثابتة نحو الإتقان 🌷",
-      "إجابة موفقة… أنتِ مبدعة 👏",
-      "رائع! فهمكِ يزداد مع كل سؤال ✨",
-      "نصف الطريق أصبح خلفكِ 🚀",
-      "استمري… بقي القليل يا بطلة 🏅",
-      "تركيز جميل ونتيجة أجمل 🌈",
-      "أنتِ قريبة من منصة التتويج 👑",
-      "السؤال الأخير… أظهري براعتكِ 🎯"
-    ];
 
     let currentQuestion = 0;
     let score = 0;
     let answered = false;
-    let studentFullName = "";
 
-    function toArabicNumber(number) {
-      const arabicNumbers = [
-        "٠", "١", "٢", "٣", "٤",
-        "٥", "٦", "٧", "٨", "٩"
-      ];
 
-      return String(number).replace(
+    const arabicDigits = number =>
+      String(number).replace(
         /\d/g,
-        digit => arabicNumbers[digit]
-      );
-    }
-
-    function normalizeName(name) {
-      return name
-        .trim()
-        .replace(/\s+/g, " ");
-    }
-
-    function isFourPartName(name) {
-      return normalizeName(name).split(" ").length >= 4;
-    }
-
-    function startQuiz() {
-      const nameInput =
-        document.getElementById("studentName");
-
-      const nameError =
-        document.getElementById("nameError");
-
-      const enteredName =
-        normalizeName(nameInput.value);
-
-      if (!isFourPartName(enteredName)) {
-        nameError.style.display = "block";
-        nameInput.focus();
-        return;
-      }
-
-      studentFullName = enteredName;
-
-      localStorage.setItem(
-        "semester1_student_full_name",
-        studentFullName
+        digit => "٠١٢٣٤٥٦٧٨٩"[digit]
       );
 
-      localStorage.setItem(
-        "studentFullName",
-        studentFullName
-      );
-
-      nameError.style.display = "none";
-
-      document.getElementById("studentBanner").textContent =
-        "الطالبة: " + studentFullName;
-
-      document
-        .getElementById("startScreen")
-        .classList.remove("active");
-
-      document
-        .getElementById("quizScreen")
-        .classList.add("active");
-
-      currentQuestion = 0;
-      score = 0;
-      answered = false;
-
-      playStartSound();
-      showQuestion();
-    }
 
     function showQuestion() {
+
       answered = false;
 
-      const item = questions[currentQuestion];
+      const item =
+        questions[currentQuestion];
 
-      document.getElementById("questionCounter").textContent =
+      document
+        .getElementById("questionCounter")
+        .textContent =
         "السؤال " +
-        toArabicNumber(currentQuestion + 1) +
+        arabicDigits(currentQuestion + 1) +
         " من " +
-        toArabicNumber(questions.length);
+        arabicDigits(questions.length);
 
-      document.getElementById("liveScore").textContent =
-        "الدرجة: " + toArabicNumber(score);
+      document
+        .getElementById("questionNumber")
+        .textContent =
+        "السؤال " +
+        arabicDigits(currentQuestion + 1);
 
-      document.getElementById("questionText").textContent =
+      document
+        .getElementById("scoreText")
+        .textContent =
+        "الصحيح: " +
+        arabicDigits(score);
+
+      document
+        .getElementById("questionText")
+        .textContent =
         item.question;
 
-      document.getElementById("feedback").className =
-        "feedback";
-
-      document.getElementById("feedback").textContent = "";
-
-      document.getElementById("nextButton").style.display =
-        "none";
-
-      const progress =
-        (currentQuestion / questions.length) * 100;
-
-      document.getElementById("progressBar").style.width =
-        progress + "%";
-
-      updateMotivation();
+      document
+        .getElementById("progressBar")
+        .style.width =
+        (
+          (currentQuestion + 1) /
+          questions.length *
+          100
+        ) + "%";
 
       const answersBox =
         document.getElementById("answersBox");
 
       answersBox.innerHTML = "";
 
-      item.answers.forEach((answer, index) => {
-        const button =
-          document.createElement("button");
+      const feedback =
+        document.getElementById("feedback");
 
-        button.className = "answer-button";
+      feedback.className =
+        "feedback";
 
-        button.textContent =
-          toArabicNumber(index + 1) +
-          " ـ " +
-          answer;
+      feedback.textContent = "";
 
-        button.onclick = () =>
-          selectAnswer(index, button);
+      const nextButton =
+        document.getElementById("nextButton");
 
-        answersBox.appendChild(button);
-      });
-    }    function selectAnswer(selectedIndex, selectedButton) {
+      nextButton.style.display =
+        "none";
+
+
+      item.answers.forEach(
+        (answer, index) => {
+
+          const button =
+            document.createElement("button");
+
+          button.type =
+            "button";
+
+          button.className =
+            "answer-button";
+
+          button.textContent =
+            answer;
+
+          button.onclick =
+            () =>
+              selectAnswer(
+                index,
+                button
+              );
+
+          answersBox.appendChild(
+            button
+          );
+
+        }
+      );
+
+    }
+
+
+    function selectAnswer(
+      selectedIndex,
+      selectedButton
+    ) {
+
       if (answered) {
         return;
       }
 
       answered = true;
 
-      const item = questions[currentQuestion];
+      const item =
+        questions[currentQuestion];
 
       const buttons =
-        document.querySelectorAll(".answer-button");
+        [
+          ...document.querySelectorAll(
+            ".answer-button"
+          )
+        ];
 
-      buttons.forEach(button => {
-        button.disabled = true;
-      });
+      buttons.forEach(
+        button =>
+          button.disabled = true
+      );
+
+      buttons[item.correct]
+        .classList
+        .add("correct");
+
 
       const feedback =
-        document.getElementById("feedback");
+        document.getElementById(
+          "feedback"
+        );
 
-      if (selectedIndex === item.correct) {
+
+      if (
+        selectedIndex ===
+        item.correct
+      ) {
+
         score++;
 
-        selectedButton.classList.add("correct");
+        selectedButton
+          .classList
+          .add("correct");
 
         feedback.className =
-          "feedback correct-feedback";
+          "feedback good";
 
         feedback.innerHTML =
-          "🎉 أحسنتِ، إجابة صحيحة!<br>" +
+          "🌟 أحسنتِ، إجابة صحيحة.<br>" +
           item.explanation;
 
         playCorrectSound();
-      } else {
-        selectedButton.classList.add("wrong");
 
-        buttons[item.correct].classList.add("correct");
+        celebrate(30);
+
+        if (
+          navigator.vibrate
+        ) {
+          navigator.vibrate(45);
+        }
+
+      } else {
+
+        selectedButton
+          .classList
+          .add("wrong");
 
         feedback.className =
-          "feedback wrong-feedback";
+          "feedback bad";
 
         feedback.innerHTML =
-          "🌷 محاولة جميلة، والإجابة الصحيحة موضحة أمامكِ.<br>" +
+          "🌷 راجعي الفكرة.<br>" +
           item.explanation;
 
         playWrongSound();
+
+        if (
+          navigator.vibrate
+        ) {
+          navigator.vibrate(
+            [70, 40, 70]
+          );
+        }
+
       }
 
-      document.getElementById("liveScore").textContent =
-        "الدرجة: " + toArabicNumber(score);
+
+      document
+        .getElementById("scoreText")
+        .textContent =
+        "الصحيح: " +
+        arabicDigits(score);
+
 
       const nextButton =
-        document.getElementById("nextButton");
+        document.getElementById(
+          "nextButton"
+        );
 
-      nextButton.style.display = "block";
+      nextButton.style.display =
+        "block";
 
-      if (currentQuestion === questions.length - 1) {
+      if (
+        currentQuestion ===
+        questions.length - 1
+      ) {
+
         nextButton.textContent =
-          "شاهدي نتيجتكِ 🏆";
+          "شوفي نتيجتك ✨";
+
       } else {
+
         nextButton.textContent =
-          "السؤال التالي ←";
+          "كمّلي الاختبار ←";
+
       }
+
     }
 
-    function nextQuestion() {
-      currentQuestion++;
 
-      if (currentQuestion < questions.length) {
-        showQuestion();
-      } else {
-        showResult();
-      }
-    }
+    document
+      .getElementById("nextButton")
+      .onclick =
+      function () {
 
-    function updateMotivation() {
-      let text = encouragements[0];
+        currentQuestion++;
 
-      if (currentQuestion >= 1) {
-        text = encouragements[1];
-      }
+        if (
+          currentQuestion <
+          questions.length
+        ) {
 
-      if (currentQuestion >= 3) {
-        text = encouragements[2];
-      }
+          showQuestion();
 
-      if (currentQuestion >= 5) {
-        text = encouragements[3];
-      }
+        } else {
 
-      if (currentQuestion >= 7) {
-        text = encouragements[5];
-      }
+          showResult();
 
-      if (currentQuestion >= 10) {
-        text = encouragements[6];
-      }
+        }
 
-      if (currentQuestion >= 12) {
-        text = encouragements[8];
-      }
+      };
 
-      if (currentQuestion === 14) {
-        text = encouragements[9];
-      }
-
-      document.getElementById("motivation").textContent =
-        text;
-    }
 
     function showResult() {
-      document
-        .getElementById("quizScreen")
-        .classList.remove("active");
 
       document
-        .getElementById("resultScreen")
-        .classList.add("active");
+        .getElementById("quizCard")
+        .style.display =
+        "none";
 
-      document.getElementById("progressBar").style.width =
-        "100%";
+      document
+        .querySelector(".top-info")
+        .style.display =
+        "none";
 
-      document.getElementById("finalScore").textContent =
-        toArabicNumber(score) +
+      document
+        .querySelector(".progress")
+        .style.display =
+        "none";
+
+
+      const resultCard =
+        document.getElementById(
+          "resultCard"
+        );
+
+      resultCard.classList.add(
+        "show"
+      );
+
+
+      document
+        .getElementById("finalScore")
+        .textContent =
+        arabicDigits(score) +
         " / " +
-        toArabicNumber(questions.length);
+        arabicDigits(
+          questions.length
+        );
 
-      document.getElementById("resultName").textContent =
-        "الطالبة: " + studentFullName;
 
-      const resultMessage =
-        document.getElementById("resultMessage");
+      const percentage =
+        score /
+        questions.length;
 
       const resultIcon =
-        document.getElementById("resultIcon");
+        document.getElementById(
+          "resultIcon"
+        );
 
-      if (score === questions.length) {
-        resultIcon.textContent = "👑";
+      const resultMessage =
+        document.getElementById(
+          "resultMessage"
+        );
 
-        resultMessage.innerHTML =
-          "إتقان كامل يا " +
-          studentFullName +
-          "!<br>أجبتِ عن جميع الأسئلة إجابة صحيحة.";
 
-        createCelebration(70);
+      if (
+        score ===
+        questions.length
+      ) {
+
+        resultIcon.textContent =
+          "👑";
+
+        resultMessage.textContent =
+          "إتقان كامل لأسلوب الشرط 🏆";
+
+        celebrate(100);
+
         playVictorySound();
-      } else if (score >= 12) {
-        resultIcon.textContent = "🏆";
 
-        resultMessage.innerHTML =
-          "نتيجة رائعة يا " +
-          studentFullName +
-          "!<br>فهمكِ لأسلوب الشرط مميز جدًا.";
+      } else if (
+        percentage >= 0.8
+      ) {
 
-        createCelebration(50);
+        resultIcon.textContent =
+          "🏆";
+
+        resultMessage.textContent =
+          "نتيجة رائعة جدًا 🌟 فهمكِ لأسلوب الشرط مميز.";
+
+        celebrate(75);
+
         playVictorySound();
-      } else if (score >= 9) {
-        resultIcon.textContent = "🌟";
 
-        resultMessage.innerHTML =
-          "أداء جميل يا " +
-          studentFullName +
-          "!<br>راجعي النقاط التي أخطأتِ فيها وستصلين إلى الإتقان.";
+      } else if (
+        percentage >= 0.6
+      ) {
 
-        createCelebration(35);
-        playVictorySound();
-      } else if (score >= 6) {
-        resultIcon.textContent = "🌷";
+        resultIcon.textContent =
+          "🌷";
 
-        resultMessage.innerHTML =
-          "خطوة طيبة يا " +
-          studentFullName +
-          ".<br>أعيدي مراجعة الدرس ثم جرّبي مرة أخرى.";
+        resultMessage.textContent =
+          "أداء جميل 👏 راجعي النقاط التي أخطأتِ فيها ثم أعيدي الاختبار.";
 
-        createCelebration(20);
+        celebrate(45);
+
       } else {
-        resultIcon.textContent = "📚";
 
-        resultMessage.innerHTML =
-          "لا بأس يا " +
-          studentFullName +
-          ".<br>راجعي درس أسلوب الشرط بهدوء ثم أعيدي المحاولة.";
+        resultIcon.textContent =
+          "📘";
+
+        resultMessage.textContent =
+          "راجعي ملف الدرس وروائع أسلوب الشرط، ثم عودي للاختبار مرة أخرى.";
+
       }
+
     }
 
+
     function restartQuiz() {
+
       currentQuestion = 0;
       score = 0;
       answered = false;
 
       document
-        .getElementById("resultScreen")
-        .classList.remove("active");
+        .getElementById("resultCard")
+        .classList
+        .remove("show");
 
       document
-        .getElementById("quizScreen")
-        .classList.add("active");
+        .getElementById("quizCard")
+        .style.display =
+        "flex";
 
-      document.getElementById("studentBanner").textContent =
-        "الطالبة: " + studentFullName;
+      document
+        .querySelector(".top-info")
+        .style.display =
+        "flex";
 
-      document.getElementById("nextButton").textContent =
-        "السؤال التالي ←";
+      document
+        .querySelector(".progress")
+        .style.display =
+        "block";
 
       showQuestion();
-      playStartSound();
 
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
     }
 
-    function createCelebration(amount) {
-      const symbols = [
-        "🎉",
-        "✨",
-        "🌟",
-        "🎈",
-        "💜",
-        "🌸"
+
+    function celebrate(amount) {
+
+      const colors = [
+        "#776094",
+        "#5b4677",
+        "#c9a85c",
+        "#ead69e",
+        "#6f5288"
       ];
 
-      for (let i = 0; i < amount; i++) {
+      for (
+        let i = 0;
+        i < amount;
+        i++
+      ) {
+
         const piece =
-          document.createElement("div");
+                    document.createElement(
+            "span"
+          );
 
-        piece.className = "confetti";
-
-        piece.textContent =
-          symbols[
-            Math.floor(Math.random() * symbols.length)
-          ];
+        piece.className =
+          "confetti";
 
         piece.style.left =
-          Math.random() * 100 + "vw";
+          Math.random() *
+          100 +
+          "vw";
 
-        piece.style.fontSize =
-          16 + Math.random() * 19 + "px";
+        piece.style.background =
+          colors[
+            Math.floor(
+              Math.random() *
+              colors.length
+            )
+          ];
 
         piece.style.animationDuration =
-          3 + Math.random() * 4 + "s";
+          (
+            2.1 +
+            Math.random() *
+            2.3
+          ) +
+          "s";
 
         piece.style.animationDelay =
-          Math.random() * 1.5 + "s";
+          (
+            Math.random() *
+            0.4
+          ) +
+          "s";
 
-        document.body.appendChild(piece);
+        document.body.appendChild(
+          piece
+        );
 
-        setTimeout(() => {
-          piece.remove();
-        }, 8000);
-      }
-    }
+        setTimeout(
+          () => piece.remove(),
+          5000
+        );
 
-    function createAudioContext() {
-      const AudioContextClass =
-        window.AudioContext ||
-        window.webkitAudioContext;
-
-      if (!AudioContextClass) {
-        return null;
       }
 
-      return new AudioContextClass();
     }
+
 
     function playTone(
       frequency,
-      duration,
-      type = "sine",
-      volume = 0.13,
-      delay = 0
+      duration
     ) {
-      try {
-        const audioContext =
-          createAudioContext();
 
-        if (!audioContext) {
+      try {
+
+        const AudioContextClass =
+          window.AudioContext ||
+          window.webkitAudioContext;
+
+        if (
+          !AudioContextClass
+        ) {
           return;
         }
 
+        const context =
+          new AudioContextClass();
+
         const oscillator =
-          audioContext.createOscillator();
+          context.createOscillator();
 
         const gain =
-          audioContext.createGain();
+          context.createGain();
 
-        oscillator.type = type;
-        oscillator.frequency.value = frequency;
+        oscillator.connect(gain);
+
+        gain.connect(
+          context.destination
+        );
+
+        oscillator.type =
+          "sine";
+
+        oscillator.frequency.value =
+          frequency;
 
         gain.gain.setValueAtTime(
-          volume,
-          audioContext.currentTime + delay
+          0.07,
+          context.currentTime
         );
 
         gain.gain.exponentialRampToValueAtTime(
           0.001,
-          audioContext.currentTime + delay + duration
+          context.currentTime +
+          duration
         );
 
-        oscillator.connect(gain);
-        gain.connect(audioContext.destination);
-
-        oscillator.start(
-          audioContext.currentTime + delay
-        );
+        oscillator.start();
 
         oscillator.stop(
-          audioContext.currentTime + delay + duration
+          context.currentTime +
+          duration
         );
-      } catch (error) {
-        console.log("تعذر تشغيل الصوت.");
-      }
+
+      } catch (error) {}
+
     }
+
 
     function playCorrectSound() {
-      playTone(523, 0.22, "sine", 0.12, 0);
-      playTone(659, 0.22, "sine", 0.12, 0.16);
-      playTone(784, 0.3, "sine", 0.12, 0.32);
+
+      playTone(
+        620,
+        0.12
+      );
+
+      setTimeout(
+        () =>
+          playTone(
+            820,
+            0.16
+          ),
+        130
+      );
+
     }
+
 
     function playWrongSound() {
-      playTone(280, 0.24, "triangle", 0.09, 0);
-      playTone(220, 0.3, "triangle", 0.08, 0.18);
+
+      playTone(
+        220,
+        0.18
+      );
+
     }
 
-    function playStartSound() {
-      playTone(392, 0.2, "sine", 0.09, 0);
-      playTone(523, 0.25, "sine", 0.1, 0.18);
-    }
 
     function playVictorySound() {
-      playTone(523, 0.25, "sine", 0.12, 0);
-      playTone(659, 0.25, "sine", 0.12, 0.2);
-      playTone(784, 0.25, "sine", 0.12, 0.4);
-      playTone(1046, 0.45, "sine", 0.13, 0.6);
+
+      playTone(
+        523,
+        0.18
+      );
+
+      setTimeout(
+        () =>
+          playTone(
+            659,
+            0.2
+          ),
+        150
+      );
+
+      setTimeout(
+        () =>
+          playTone(
+            784,
+            0.26
+          ),
+        300
+      );
+
     }
 
-    window.addEventListener("DOMContentLoaded", () => {
-      const savedName =
-        localStorage.getItem(
-          "semester1_student_full_name"
-        ) ||
-        localStorage.getItem("studentFullName");
 
-      if (savedName) {
-        document.getElementById("studentName").value =
-          savedName;
-      }
-    });
+    showQuestion();
+
   </script>
 
 </body>
+
 </html>
-    
+  
