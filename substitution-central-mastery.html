@@ -1,0 +1,1854 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
+  <title>إتقان الاختبار المركزي | البدل</title>
+
+  <style>
+    :root {
+      --purple: #5b4677;
+      --purple2: #776094;
+      --gold: #c9a85c;
+      --cream: #fffaf2;
+      --paper: #fffdf9;
+      --text: #473a52;
+      --green: #34775a;
+      --blue: #52779b;
+      --rose: #a05a75;
+      --shadow: rgba(82, 60, 101, .12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Tahoma, Arial, sans-serif;
+      color: var(--text);
+
+      background:
+        radial-gradient(
+          circle at 8% 4%,
+          rgba(255, 226, 150, .25),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 92% 8%,
+          rgba(190, 164, 220, .22),
+          transparent 30%
+        ),
+        linear-gradient(
+          180deg,
+          #fffaf2,
+          #f8f0fb
+        );
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .page {
+      width: min(1050px, 94%);
+      margin: auto;
+      padding: 16px 0 28px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+
+      padding: 24px 18px;
+      text-align: center;
+      color: white;
+
+      background:
+        linear-gradient(
+          135deg,
+          #776094,
+          #5b4677
+        );
+
+      border: 2px solid #c9a85c;
+      border-radius: 26px;
+
+      box-shadow:
+        0 12px 30px
+        rgba(73, 56, 92, .18);
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+
+      background:
+        rgba(255,255,255,.08);
+    }
+
+    .hero::before {
+      top: -70px;
+      right: -50px;
+    }
+
+    .hero::after {
+      bottom: -90px;
+      left: -40px;
+    }
+
+    .badge {
+      position: relative;
+      z-index: 1;
+
+      display: inline-block;
+
+      padding: 5px 13px;
+
+      color: #fff3cc;
+      font-size: 12px;
+      font-weight: bold;
+
+      border:
+        1px solid
+        rgba(255,231,174,.85);
+
+      border-radius: 999px;
+
+      background:
+        rgba(255,255,255,.1);
+    }
+
+    .hero h1 {
+      position: relative;
+      z-index: 1;
+
+      margin: 8px 0 5px;
+
+      color: #fff9e6;
+
+      font-size:
+        clamp(
+          23px,
+          5vw,
+          35px
+        );
+    }
+
+    .hero p {
+      position: relative;
+      z-index: 1;
+
+      max-width: 760px;
+      margin: auto;
+
+      color: #f8efff;
+
+      font-size:
+        clamp(
+          13px,
+          3vw,
+          16px
+        );
+
+      line-height: 1.8;
+    }
+
+    .confidence {
+      margin-top: 12px;
+      padding: 11px 13px;
+
+      color: #64491a;
+      font-size: 14px;
+      font-weight: bold;
+      line-height: 1.7;
+
+      border:
+        1px solid #dfc87e;
+
+      border-radius: 16px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #fff8dc,
+          #fffdf6
+        );
+    }
+
+    .section-title {
+      margin: 20px 0 10px;
+
+      color: #5b4677;
+
+      font-size:
+        clamp(
+          19px,
+          4vw,
+          25px
+        );
+
+      text-align: center;
+    }
+
+    .section-subtitle {
+      max-width: 720px;
+      margin: -3px auto 12px;
+
+      text-align: center;
+      color: #776b7f;
+
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .study-map {
+      display: grid;
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
+      gap: 10px;
+    }
+
+    .step {
+      padding: 13px 10px;
+
+      text-align: center;
+
+      border:
+        1px solid #dcc58a;
+
+      border-radius: 18px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #ffffff,
+          #f7effd
+        );
+
+      box-shadow:
+        0 6px 16px
+        rgba(83, 61, 102, .09);
+    }
+
+    .step strong {
+      display: block;
+
+      margin-bottom: 5px;
+
+      color: #6b4d84;
+      font-size: 15px;
+    }
+
+    .step span {
+      color: #625a68;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 12px;
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+
+      min-height: 140px;
+      padding: 15px;
+
+      border:
+        1px solid
+        rgba(201,168,92,.7);
+
+      border-radius: 20px;
+
+      box-shadow:
+        0 7px 20px var(--shadow);
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,.98),
+          rgba(255,250,242,.95)
+        );
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+
+      top: -34px;
+      left: -30px;
+
+      width: 85px;
+      height: 85px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(201,168,92,.09);
+    }
+
+    .card-purple {
+      background:
+        linear-gradient(
+          145deg,
+          #fbf7ff,
+          #f2e9fb
+        );
+    }
+
+    .card-gold {
+      background:
+        linear-gradient(
+          145deg,
+          #fffdf6,
+          #fff4d7
+        );
+    }
+
+    .card-green {
+      background:
+        linear-gradient(
+          145deg,
+          #f5fff9,
+          #e8f7ee
+        );
+    }
+
+    .card-blue {
+      background:
+        linear-gradient(
+          145deg,
+          #f7fbff,
+          #e9f3fb
+        );
+    }
+
+    .card-rose {
+      background:
+        linear-gradient(
+          145deg,
+          #fff8fa,
+          #faeaf0
+        );
+    }
+
+    .card h3 {
+      position: relative;
+      z-index: 1;
+
+      margin: 0 0 7px;
+
+      color: #5d4374;
+      font-size: 16px;
+    }
+
+    .card p,
+    .card li {
+      position: relative;
+      z-index: 1;
+
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .formula {
+      margin-top: 8px;
+      padding: 8px 10px;
+
+      text-align: center;
+
+      color: #5b4677;
+      font-weight: bold;
+
+      border-radius: 12px;
+
+      background:
+        rgba(255,255,255,.78);
+    }
+
+    .warning {
+      margin-top: 12px;
+      padding: 12px 14px;
+
+      color: #7a4e26;
+
+      font-size: 13px;
+      font-weight: bold;
+      line-height: 1.7;
+
+      border-right:
+        5px solid #c9a85c;
+
+      border-radius: 14px;
+
+      background: #fff8e8;
+    }
+
+    .worksheet {
+      margin-top: 16px;
+      padding: 18px;
+
+      border:
+        2px solid #c9a85c;
+
+      border-radius: 24px;
+
+      background:
+        linear-gradient(
+          180deg,
+          #fffefb,
+          #fffaf3
+        );
+
+      box-shadow:
+        0 10px 24px
+        rgba(81,59,98,.11);
+    }
+
+    .worksheet-head {
+      text-align: center;
+      margin-bottom: 13px;
+    }
+
+    .worksheet-head h2 {
+      margin: 0 0 5px;
+
+      color: #5b4677;
+      font-size: 23px;
+    }
+
+    .worksheet-head p {
+      margin: 0;
+
+      color: #756b7c;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .questions-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 11px;
+    }
+
+    .question-card {
+      padding: 13px;
+
+      border:
+        1px solid #dfcf9d;
+
+      border-radius: 17px;
+
+      background: white;
+    }
+
+    .question-card strong {
+      display: block;
+
+      margin-bottom: 6px;
+
+      color: #664a7e;
+      font-size: 14px;
+    }
+
+    .question-card p {
+      margin: 0 0 5px;
+
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .choice-list {
+      margin: 7px 0 0;
+      padding-right: 18px;
+
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .answer-lines {
+      margin-top: 9px;
+    }
+
+    .line {
+      height: 20px;
+
+      border-bottom:
+        1px dashed #c8b9ce;
+    }
+
+    .self-check {
+      display: grid;
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
+      gap: 9px;
+
+      margin-top: 12px;
+    }
+
+    .check {
+      padding: 10px;
+
+      color: #5b4677;
+      text-align: center;
+
+      font-size: 12px;
+      font-weight: bold;
+      line-height: 1.6;
+
+      border:
+        1px solid #d8c38d;
+
+      border-radius: 14px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #fff,
+          #f5effa
+        );
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 8px;
+      justify-content: center;
+
+      margin-top: 18px;
+    }
+
+    .btn {
+      display: inline-block;
+
+      padding: 10px 15px;
+
+      color: white;
+
+      font-size: 13px;
+      font-weight: bold;
+
+      text-decoration: none;
+
+      border:
+        1px solid #c9a85c;
+
+      border-radius: 13px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #776094,
+          #5b4677
+        );
+    }
+
+    .btn.print {
+      cursor: pointer;
+
+      background:
+        linear-gradient(
+          135deg,
+          #c9a85c,
+          #aa873a
+        );
+    }
+
+    footer {
+      margin-top: 18px;
+      padding: 10px;
+
+      color: #746b79;
+      font-size: 11px;
+      text-align: center;
+    }
+
+    @media (max-width: 800px) {
+
+      .grid {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+      .study-map {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+      .questions-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .self-check {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+
+      .page {
+        width: 95%;
+        padding-top: 10px;
+      }
+
+      .hero {
+        padding: 18px 13px;
+        border-radius: 21px;
+      }
+
+      .grid {
+        grid-template-columns:
+          1fr 1fr;
+
+        gap: 8px;
+      }
+
+      .card {
+        min-height: 125px;
+        padding: 11px;
+
+        border-radius: 16px;
+      }
+
+      .card h3 {
+        font-size: 14px;
+      }
+
+      .card p,
+      .card li {
+        font-size: 11.5px;
+        line-height: 1.65;
+      }
+
+      .study-map {
+        gap: 7px;
+      }
+
+      .step {
+        padding: 10px 7px;
+      }
+
+      .step strong {
+        font-size: 13px;
+      }
+
+      .step span {
+        font-size: 11px;
+      }
+
+      .worksheet {
+        padding: 12px;
+      }
+
+      .question-card p,
+      .choice-list {
+        font-size: 12px;
+      }
+    }
+
+    @media print {
+
+      body {
+        background: white;
+      }
+
+      .page {
+        width: 100%;
+        padding: 0;
+      }
+
+      .hero,
+      .confidence,
+      .study-section,
+      .actions,
+      footer {
+        display: none !important;
+      }
+
+      .worksheet {
+        margin: 0;
+        padding: 0;
+
+        border: 0;
+        box-shadow: none;
+      }
+
+      .questions-grid {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+      .question-card {
+        break-inside: avoid;
+
+        border:
+          1px solid #999;
+      }
+    }
+  </style>
+
+</head>
+<body>
+
+  <div class="page">
+
+    <section class="hero">
+
+      <span class="badge">
+        🎯 إتقان الاختبار المركزي
+      </span>
+
+      <h1>
+        البدل
+      </h1>
+
+      <p>
+        لا تحفظي المثال؛ افهمي العلاقة.
+        في البدل اسألي دائمًا:
+        من المقصود بالحكم فعلًا؟
+      </p>
+
+    </section>
+
+
+    <div class="confidence">
+      🌷 البدل يصبح سهلًا عندما تفرقين بين
+      الاسم الذي يصف،
+      والاسم الذي هو المقصود بالحكم نفسه.
+    </div>
+
+
+    <section class="study-section">
+
+      <h2 class="section-title">
+        🧠 كيف تذاكرين البدل عن فهم؟
+      </h2>
+
+      <p class="section-subtitle">
+        لا تحفظي أمثلة كثيرة.
+        استخدمي خطوات ثابتة على أي جملة جديدة.
+      </p>
+
+
+      <div class="study-map">
+
+        <div class="step">
+
+          <strong>
+            ١ ـ حددي الاسم الأول
+          </strong>
+
+          <span>
+            ابحثي عن الاسم الذي جاء أولًا
+            ويُسمّى المبدل منه.
+          </span>
+
+        </div>
+
+
+        <div class="step">
+
+          <strong>
+            ٢ ـ انظري إلى الاسم الثاني
+          </strong>
+
+          <span>
+            اسألي:
+            هل الثاني يصف الأول،
+            أم هو المقصود بالحكم نفسه؟
+          </span>
+
+        </div>
+
+
+        <div class="step">
+
+          <strong>
+            ٣ ـ جرّبي الحذف
+          </strong>
+
+          <span>
+            احذفي الاسم الأول،
+            ثم اقرئي الجملة من جديد.
+          </span>
+
+        </div>
+
+
+        <div class="step">
+
+          <strong>
+            ٤ ـ افحصي الإعراب
+          </strong>
+
+          <span>
+            البدل يتبع المبدل منه
+            في الإعراب.
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <h2 class="section-title">
+        🔍 مفاتيح تكشف لكِ البدل
+      </h2>
+
+
+      <div class="grid">
+
+        <article class="card card-purple">
+
+          <h3>
+            🔑 المفتاح الأول
+          </h3>
+
+          <p>
+            في البدل يكون الاسم الثاني
+            هو المقصود بالحكم نفسه.
+          </p>
+
+          <div class="formula">
+            المبدل منه ← البدل
+          </div>
+
+        </article>
+
+
+        <article class="card card-gold">
+
+          <h3>
+            🧠 اختبار الحذف
+          </h3>
+
+          <p>
+            في:
+            «حضر أخوك خالدٌ»
+            احذفي «أخوك».
+          </p>
+
+          <p>
+            تصبح:
+            «حضر خالدٌ».
+          </p>
+
+          <p>
+            ما زال المعنى مستقيمًا،
+            وخالد هو المقصود بالحضور.
+          </p>
+
+        </article>
+
+
+        <article class="card card-green">
+
+          <h3>
+            ⚖️ الإعراب
+          </h3>
+
+          <p>
+            البدل تابع،
+            لذلك يتبع المبدل منه
+            في الرفع أو النصب أو الجر.
+          </p>
+
+        </article>
+
+
+        <article class="card card-blue">
+
+          <h3>
+            👀 لا تنظري للموقع فقط
+          </h3>
+
+          <p>
+            ليس كل اسم يأتي بعد اسم
+            يُعرب بدلًا.
+            افهمي العلاقة بينهما أولًا.
+          </p>
+
+        </article>
+
+
+        <article class="card card-rose">
+
+          <h3>
+            ⚠️ الفخ الأشهر
+          </h3>
+
+          <p>
+            النعت يصف الاسم،
+            أما البدل فهو المقصود بالحكم نفسه.
+          </p>
+
+        </article>
+
+
+        <article class="card">
+
+          <h3>
+            🔗 والفرق عن العطف
+          </h3>
+
+          <p>
+            العطف يحتاج حرف عطف،
+            أما البدل فلا يحتاج
+            إلى حرف عطف بين الاسمين.
+          </p>
+
+        </article>
+
+      </div>
+
+
+      <div class="warning">
+        ⭐ طريقة المذاكرة الأقوى:
+        لا تحفظي عبارة
+        «خالد بدل».
+        اسألي:
+        لماذا هو بدل؟
+        إذا استطعتِ تفسير العلاقة،
+        فأنتِ فهمتِ القاعدة.
+      </div>
+
+
+      <h2 class="section-title">
+        ⚡ كيف تفرقين بين البدل والنعت؟
+      </h2>
+
+
+      <div class="grid">
+
+        <article class="card card-green">
+
+          <h3>
+            🌿 النعت
+          </h3>
+
+          <p>
+            «حضر الطالبُ المجتهدُ».
+          </p>
+
+          <p>
+            «المجتهد» يصف الطالب،
+            لذلك هو نعت.
+          </p>
+
+        </article>
+
+
+        <article class="card card-purple">
+
+          <h3>
+            🎯 البدل
+          </h3>
+
+          <p>
+            «حضر الطالبُ خالدٌ».
+          </p>
+
+          <p>
+            خالد ليس وصفًا للطالب،
+            بل هو الشخص المقصود بالحضور.
+          </p>
+
+        </article>
+
+
+        <article class="card card-gold">
+
+          <h3>
+            🔍 السؤال الذهبي
+          </h3>
+
+          <p>
+            هل الاسم الثاني
+            <strong>يصف</strong>
+            الأول؟
+          </p>
+
+          <p>
+            أم أنه
+            <strong>هو المقصود</strong>
+            بالحكم؟
+          </p>
+
+        </article>
+
+      </div>
+
+
+      <h2 class="section-title">
+        ⚡ حلّي سؤال البدل في خطوات
+      </h2>
+
+
+      <div class="study-map">
+
+        <div class="step">
+          <strong>١</strong>
+          <span>
+            اقرئي الجملة كاملة.
+          </span>
+        </div>
+
+        <div class="step">
+          <strong>٢</strong>
+          <span>
+            حددي الاسمين المرتبطين.
+          </span>
+        </div>
+
+        <div class="step">
+          <strong>٣</strong>
+          <span>
+            اسألي:
+            وصف أم مقصود بالحكم؟
+          </span>
+        </div>
+
+        <div class="step">
+          <strong>٤</strong>
+          <span>
+            جرّبي الحذف وافحصي الإعراب.
+          </span>
+        </div>
+
+      </div>
+
+
+      <h2 class="section-title">
+        🎯 كيف يمكن أن يأتي السؤال؟
+      </h2>
+
+
+      <div class="grid">
+
+        <article class="card card-gold">
+
+          <h3>
+            ① استخراج
+          </h3>
+
+          <p>
+            تحديد البدل
+            والمبدل منه.
+          </p>
+
+        </article>
+
+
+        <article class="card card-purple">
+
+          <h3>
+            ② إعراب
+          </h3>
+
+          <p>
+            إعراب البدل
+            اعتمادًا على المبدل منه.
+          </p>
+
+        </article>
+
+
+        <article class="card card-green">
+
+          <h3>
+            ③ تمييز
+          </h3>
+
+          <p>
+            التفرقة بين
+            البدل والنعت والعطف.
+          </p>
+
+        </article>
+
+
+        <article class="card card-blue">
+
+          <h3>
+            ④ تعليل
+          </h3>
+
+          <p>
+            لماذا عُدّت
+            الكلمة بدلًا؟
+          </p>
+
+        </article>
+
+
+        <article class="card card-rose">
+
+          <h3>
+            ⑤ تصحيح
+          </h3>
+
+          <p>
+            اكتشاف خطأ
+            في ضبط البدل وتصحيحه.
+          </p>
+
+        </article>
+
+
+        <article class="card">
+
+          <h3>
+            ⑥ إنشاء
+          </h3>
+
+          <p>
+            تكوين جملة
+            فيها مبدل منه وبدل.
+          </p>
+
+        </article>
+
+      </div>
+
+
+      <h2 class="section-title">
+        🧠 قبل ورقة التدريب
+      </h2>
+
+      <p class="section-subtitle">
+        حاولي الحل من ذاكرتك أولًا.
+        لا تفتحي ملف الدرس أثناء الإجابة.
+        إذا أخطأتِ، اكتشفي سبب الخطأ قبل أن تنظري للحل.
+      </p>
+
+
+      <div class="grid">
+
+        <article class="card card-green">
+
+          <h3>
+            🌱 المستوى الأول
+          </h3>
+
+          <p>
+            أميز البدل
+            والمبدل منه.
+          </p>
+
+        </article>
+
+
+        <article class="card card-gold">
+
+          <h3>
+            🔎 المستوى الثاني
+          </h3>
+
+          <p>
+            أفرق بين
+            البدل والنعت.
+          </p>
+
+        </article>
+
+
+        <article class="card card-purple">
+
+          <h3>
+            🏆 المستوى الثالث
+          </h3>
+
+          <p>
+            أحل جملة جديدة
+            وأفسر سبب إجابتي.
+          </p>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <section class="worksheet">
+
+      <div class="worksheet-head">
+
+        <h2>
+          📝 ورقة تدريب | البدل
+        </h2>
+
+        <p>
+          اطبعيها أو انقلي الأسئلة في دفترك.
+          أجيبي بقلمك أولًا،
+          ولا تبحثي عن الحل أثناء الإجابة.
+        </p>
+
+      </div>
+            <div class="questions-grid">
+
+        <article class="question-card">
+
+          <strong>
+            ١ ـ استخرجي
+          </strong>
+
+          <p>
+            «زارني أخوك خالدٌ».
+          </p>
+
+          <p>
+            حددي:
+            المبدل منه، والبدل،
+            ثم اذكري الحالة الإعرابية للبدل.
+          </p>
+
+          <div class="answer-lines">
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+
+        </article>
+
+
+        <article class="question-card">
+
+          <strong>
+            ٢ ـ اختيار من متعدد
+          </strong>
+
+          <p>
+            أي الجمل الآتية اشتملت على بدل؟
+          </p>
+
+          <ol class="choice-list">
+            <li>
+              حضر الطالبُ المجتهدُ.
+            </li>
+
+            <li>
+              حضر أخوك محمدٌ.
+            </li>
+
+            <li>
+              حضر خالدٌ وسعدٌ.
+            </li>
+
+            <li>
+              حضر الطالبُ صباحًا.
+            </li>
+          </ol>
+
+          <p>
+            اكتبي سبب اختيارك.
+          </p>
+
+          <div class="answer-lines">
+            <div class="line"></div>
+          </div>
+
+        </article>
+
+
+        <article class="question-card">
+
+          <strong>
+            ٣ ـ عللي
+          </strong>
+
+          <p>
+            «فاز زميلك أحمدُ بالجائزة».
+          </p>
+
+          <p>
+            لماذا تعد كلمة
+            «أحمدُ»
+            بدلًا؟
+          </p>
+
+          <div class="answer-lines">
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+
+        </article>
+
+
+        <article class="question-card">
+
+          <strong>
+            ٤ ـ ميّزي بين النعت والبدل
+          </strong>
+
+          <p>
+            قارني بين:
+          </p>
+
+          <p>
+            أ ـ «حضر الطالبُ المتفوقُ».
+          </p>
+
+          <p>
+            ب ـ «حضر الطالبُ خالدٌ».
+          </p>
+
+          <p>
+            ما وظيفة الكلمة الثانية
+            في كل جملة؟
+            ولماذا؟
+          </p>
+
+          <div class="answer-lines">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+
+        </article>
+
+
+        <article class="question-card">
+
+          <strong>
+            ٥ ـ اختبري الحذف
+          </strong>
+
+          <p>
+            «كرّمت المدرسةُ الطالبةَ سارةَ».
+          </p>
+
+          <p>
+            احذفي كلمة
+            «الطالبةَ»
+            ثم أعيدي قراءة الجملة.
+          </p>
+
+          <p>
+            ماذا تلاحظين؟
+            وكيف يساعدك هذا على اكتشاف البدل؟
+          </p>
+
+          <div class="answer-lines">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+
+        </article>
+
+
+        <article class="question-card">
+
+          <strong>
+            ٦ ـ أعربي
+          </strong>
+
+          <p>
+            «سلّمتُ على صديقك خالدٍ».
+          </p>
+
+          <p>
+            أعربي كلمة
+            «خالدٍ»
+            إعرابًا كاملًا.
+          </p>
+
+          <div class="answer-lines">
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+
+        </article>
+
+
+        <article class="question-card">
+
+          <strong>
+            ٧ ـ صواب أم خطأ؟ مع التعليل
+          </strong>
+
+          <p>
+            «كل اسم يأتي بعد اسم قبله
+            يُعرب بدلًا».
+          </p>
+
+          <p>
+            هل العبارة صحيحة أم خطأ؟
+            عللي إجابتك.
+          </p>
+
+          <div class="answer-lines">
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+
+        </article>
+
+
+        <article class="question-card">
+
+          <strong>
+            ٨ ـ اكتشفي الخطأ
+          </strong>
+
+          <p>
+            قالت طالبة:
+          </p>
+
+          <p>
+            «البدل يصف الاسم الذي قبله».
+          </p>
+
+          <p>
+            صححي كلامها
+            بجملة واضحة.
+          </p>
+
+          <div class="answer-lines">
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+
+        </article>
+
+
+        <article class="question-card">
+
+          <strong>
+            ٩ ـ سؤال مركزي
+          </strong>
+
+          <p>
+            أي الجمل الآتية تحتوي
+            على بدل مرفوع؟
+          </p>
+
+          <ol class="choice-list">
+            <li>
+              رأيتُ أخاك خالدًا.
+            </li>
+
+            <li>
+              مررتُ بأخيك خالدٍ.
+            </li>
+
+            <li>
+              حضر أخوك خالدٌ.
+            </li>
+
+            <li>
+              شاهدتُ الطالبَ المجتهدَ.
+            </li>
+          </ol>
+
+          <p>
+            اكتبي العلامة التي دلتكِ
+            على الإجابة.
+          </p>
+
+          <div class="answer-lines">
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+
+        </article>
+
+
+        <article class="question-card">
+
+          <strong>
+            ١٠ ـ قارني
+          </strong>
+
+          <p>
+            ما الفرق بين:
+          </p>
+
+          <p>
+            «جاء الطالبُ المجتهدُ».
+          </p>
+
+          <p>
+            و
+          </p>
+
+          <p>
+            «جاء الطالبُ محمدٌ».
+          </p>
+
+          <p>
+            من حيث وظيفة الكلمة الثانية؟
+          </p>
+
+          <div class="answer-lines">
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+
+        </article>
+
+
+        <article class="question-card">
+
+          <strong>
+            ١١ ـ حوّلي
+          </strong>
+
+          <p>
+            حوّلي الجملة:
+          </p>
+
+          <p>
+            «حضر محمدٌ».
+          </p>
+
+          <p>
+            إلى جملة تحتوي على
+            مبدل منه وبدل،
+            مع بقاء «محمد» هو المقصود بالحضور.
+          </p>
+
+          <div class="answer-lines">
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+
+        </article>
+
+
+        <article class="question-card">
+
+          <strong>
+            ١٢ ـ أنشئي
+          </strong>
+
+          <p>
+            اكتبي جملة من إنشائك
+            تحتوي على:
+          </p>
+
+          <p>
+            مبدل منه + بدل.
+          </p>
+
+          <p>
+            ثم ضعي دائرة حول البدل.
+          </p>
+
+          <div class="answer-lines">
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+
+        </article>
+                <article class="question-card">
+
+          <strong>
+            ١٣ ـ سؤال فهم
+          </strong>
+
+          <p>
+            قالت طالبة:
+          </p>
+
+          <p>
+            «إذا حذفتُ الاسم الأول
+            وبقي معنى الجملة صحيحًا،
+            فالكلمة الثانية بدل دائمًا».
+          </p>
+
+          <p>
+            هل هذه الطريقة كافية وحدها؟
+            أم تحتاجين أيضًا إلى فحص المعنى والإعراب؟
+            فسري.
+          </p>
+
+          <div class="answer-lines">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+
+        </article>
+
+
+        <article class="question-card">
+
+          <strong>
+            ١٤ ـ سؤال تمييز
+          </strong>
+
+          <p>
+            أي الجمل الآتية
+            لا تحتوي على بدل؟
+          </p>
+
+          <ol class="choice-list">
+            <li>
+              جاء أخوك خالدٌ.
+            </li>
+
+            <li>
+              فاز زميلك أحمدُ.
+            </li>
+
+            <li>
+              حضرت الطالبةُ المجتهدةُ.
+            </li>
+
+            <li>
+              كرّمتُ صديقتك سارةَ.
+            </li>
+          </ol>
+
+          <p>
+            اكتبي سبب استبعادك للجملة الصحيحة.
+          </p>
+
+          <div class="answer-lines">
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+
+        </article>
+
+
+        <article class="question-card">
+
+          <strong>
+            ١٥ ـ سؤال مركزي متقدم
+          </strong>
+
+          <p>
+            «نجح الطالبُ خالدٌ المتفوقُ».
+          </p>
+
+          <p>
+            حددي:
+          </p>
+
+          <ol class="choice-list">
+            <li>
+              المبدل منه.
+            </li>
+
+            <li>
+              البدل.
+            </li>
+
+            <li>
+              النعت.
+            </li>
+          </ol>
+
+          <p>
+            ثم فسري الفرق بين
+            «خالد» و«المتفوق».
+          </p>
+
+          <div class="answer-lines">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+
+        </article>
+
+
+        <article class="question-card">
+
+          <strong>
+            ١٦ ـ إعراب وفهم
+          </strong>
+
+          <p>
+            «مررتُ بأخيك محمدٍ».
+          </p>
+
+          <p>
+            لماذا جُرَّت كلمة
+            «محمدٍ»؟
+          </p>
+
+          <p>
+            لا تكتبي الحكم فقط؛
+            اربطيه بالمبدل منه.
+          </p>
+
+          <div class="answer-lines">
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+
+        </article>
+
+
+        <article class="question-card">
+
+          <strong>
+            ١٧ ـ صححي وعللي
+          </strong>
+
+          <p>
+            «رأيتُ أخاك خالدٌ».
+          </p>
+
+          <p>
+            صححي الجملة،
+            ثم فسري سبب التغيير.
+          </p>
+
+          <div class="answer-lines">
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+
+        </article>
+
+
+        <article class="question-card">
+
+          <strong>
+            ١٨ ـ السؤال الأهم
+          </strong>
+
+          <p>
+            إذا جاءت في الاختبار
+            جملة جديدة ولم تعرفي مباشرة
+            هل الكلمة الثانية بدل أم نعت،
+            فما الخطوات التي ستتبعينها؟
+          </p>
+
+          <div class="answer-lines">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+
+        </article>
+
+      </div>
+
+
+      <h2 class="section-title">
+        ✅ هل أتقنتِ البدل؟
+      </h2>
+
+      <p class="section-subtitle">
+        الإتقان لا يعني حفظ أمثلة الكتاب،
+        بل القدرة على تحليل جملة جديدة
+        وتفسير سبب الإجابة.
+      </p>
+
+
+      <div class="self-check">
+
+        <div class="check">
+          أستطيع تحديد
+          البدل والمبدل منه
+        </div>
+
+        <div class="check">
+          أستطيع التمييز
+          بين البدل والنعت
+        </div>
+
+        <div class="check">
+          أستطيع إعراب
+          البدل من المبدل منه
+        </div>
+
+        <div class="check">
+          أستطيع تفسير
+          سبب اختياري
+          في مثال جديد
+        </div>
+
+      </div>
+
+
+      <div class="warning">
+        🌟 إذا أخطأتِ:
+        لا تحفظي الجملة الصحيحة فقط.
+        اسألي نفسك:
+        هل ظننتُ أن الاسم الثاني وصف؟
+        أم لم أحدد المقصود بالحكم؟
+        أم أخطأتُ في الإعراب؟
+        معرفة سبب الخطأ أهم من حفظ الإجابة.
+      </div>
+
+
+      <div class="confidence">
+        🎯 قبل الاختبار المركزي:
+        اسألي في كل جملة:
+        هل الاسم الثاني يصف الأول،
+        أم هو المقصود بالحكم نفسه؟
+        ثم جرّبي الحذف وافحصي الإعراب.
+        إذا أتقنتِ هذه الخطوات،
+        تتغير الأمثلة وتبقى طريقة الحل معك.
+      </div>
+
+    </section>
+
+
+    <div class="actions">
+
+      <button
+        class="btn print"
+        type="button"
+        onclick="window.print()"
+      >
+        🖨️ طباعة ورقة التدريب
+      </button>
+
+      <a
+        class="btn"
+        href="substitution.html"
+      >
+        ↩ العودة إلى درس البدل
+      </a>
+
+    </div>
+
+
+    <footer>
+      منصة آفاق اللغة | لغتي الخالدة | الصف الثالث المتوسط
+    </footer>
+
+  </div>
+
+</body>
+
+</html>
