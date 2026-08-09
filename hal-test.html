@@ -1,1098 +1,1057 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 
-  <title>اختبار درس الحال</title>
+<title>تحدي الحال | منصة آفاق</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+:root{
+ --p:#5b4677;
+ --p2:#776094;
+ --pd:#453457;
+ --g:#b69750;
+ --g2:#d8c28a;
+ --lav:#eee5f5;
+ --paper:#fffdf9;
+ --text:#403448;
+}
 
-    html,
-    body {
-      width: 100%;
-      max-width: 100%;
-      margin: 0;
-      overflow-x: hidden;
-    }
+*{
+ box-sizing:border-box;
+}
 
-    body {
-      min-height: 100vh;
-      font-family: Tahoma, Arial, sans-serif;
-      color: #4b3a57;
-      line-height: 1.8;
-      background: linear-gradient(180deg, #fffaf2, #f8f0fb);
-    }
+html,
+body{
+ height:100%;
+ margin:0;
+}
 
-    header {
-      padding: 34px 18px;
-      color: white;
-      text-align: center;
-      background: linear-gradient(135deg, #776094, #5b4677);
-      border-bottom: 4px solid #c9a85c;
-    }
+body{
+ font-family:Tahoma,Arial,sans-serif;
+ color:var(--text);
+ background:linear-gradient(180deg,#f5f0fa,#fbf9fd,#f1ebf7);
+ overflow:hidden;
+}
 
-    header h1 {
-      margin: 0 0 8px;
-      color: #fffdf8;
-      font-size: 31px;
-    }
+.app{
+ height:100dvh;
+ display:grid;
+ grid-template-rows:auto 1fr auto;
+}
 
-    header p {
-      margin: 0;
-      color: #f7effb;
-      font-size: 16px;
-    }
+header{
+ text-align:center;
+ color:#fff;
+ padding:10px 12px 8px;
+ background:linear-gradient(145deg,var(--p2),var(--p),var(--pd));
+ border-bottom:4px solid var(--g);
+}
 
-    .container {
-      width: 92%;
-      max-width: 760px;
-      margin: 25px auto;
-    }
+.tag{
+ display:inline-block;
+ padding:3px 10px;
+ border-radius:999px;
+ border:1px solid var(--g2);
+ color:#fff2c6;
+ background:rgba(182,151,80,.13);
+ font-size:11px;
+ font-weight:bold;
+}
 
-    .top-info {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 10px;
-      color: #5d4374;
-      font-weight: bold;
-    }
+header h1{
+ margin:4px 0 0;
+ font-size:clamp(19px,4.8vw,28px);
+}
 
-    .progress-wrap {
-      width: 100%;
-      height: 14px;
-      margin-bottom: 22px;
-      overflow: hidden;
-      background: #eee3f2;
-      border: 1px solid #c9a85c;
-      border-radius: 20px;
-    }
+header p{
+ margin:0;
+ color:#f2ebf6;
+ font-size:11px;
+}
 
-    .progress-bar {
-      width: 10%;
-      height: 100%;
-      background: linear-gradient(90deg, #c9a85c, #8668a0);
-      border-radius: 20px;
-      transition: width 0.35s ease;
-    }
+main{
+ min-height:0;
+ width:min(760px,94%);
+ margin:0 auto;
+ padding:7px 0;
+ display:flex;
+ flex-direction:column;
+}
 
-    .question-card,
-    .result-card {
-      padding: 24px;
-      background: #fffdf8;
-      border: 2px solid #c9a85c;
-      border-radius: 20px;
-      box-shadow: 0 7px 18px rgba(91, 63, 111, 0.12);
-      animation: appear 0.35s ease;
-    }
+.top{
+ display:flex;
+ justify-content:space-between;
+ gap:8px;
+ font-weight:bold;
+ color:var(--p);
+ font-size:13px;
+ margin-bottom:5px;
+}
 
-    @keyframes appear {
-      from {
-        opacity: 0;
-        transform: translateY(12px);
-      }
+.progress{
+ height:8px;
+ background:#e9e0ef;
+ border-radius:999px;
+ overflow:hidden;
+ margin-bottom:7px;
+}
 
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+.progress>div{
+ height:100%;
+ width:0;
+ background:linear-gradient(90deg,var(--g),#dfca8f);
+ transition:.3s;
+}
 
-    .question-card h2 {
-      margin: 0 0 20px;
-      color: #5d4374;
-      font-size: 22px;
-      line-height: 1.9;
-    }
+.card,
+.result{
+ flex:1;
+ min-height:0;
+ background:var(--paper);
+ border:1px solid var(--g2);
+ border-radius:22px;
+ box-shadow:0 14px 30px rgba(73,54,92,.12);
+ padding:12px;
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+}
 
-    .choices {
-      display: grid;
-      gap: 12px;
-    }
+.qnum{
+ color:var(--g);
+ font-weight:bold;
+ font-size:12px;
+ margin-bottom:2px;
+}
 
-    .choice {
-      width: 100%;
-      padding: 15px 16px;
-      color: #4b3a57;
-      font-family: Tahoma, Arial, sans-serif;
-      font-size: 17px;
-      line-height: 1.7;
-      text-align: right;
-      cursor: pointer;
-      background: linear-gradient(135deg, #f7effb, #fffaf2);
-      border: 2px solid #d8c48a;
-      border-radius: 14px;
-      transition: 0.2s ease;
-    }
+h2{
+ font-size:clamp(16px,4.3vw,21px);
+ margin:2px 0 8px;
+ color:var(--pd);
+ line-height:1.5;
+}
 
-    .choice:hover,
-    .choice:active {
-      transform: translateY(-2px);
-      border-color: #8e72a4;
-    }
+.options{
+ display:grid;
+ gap:6px;
+}
 
-    .choice.correct {
-      color: #21683a;
-      background: #eaf7ee;
-      border-color: #54a66f;
-    }
+.opt{
+ width:100%;
+ padding:8px 10px;
+ border-radius:13px;
+ border:2px solid #e4dbe9;
+ background:#fff;
+ color:var(--text);
+ font:inherit;
+ font-size:clamp(13px,3.4vw,16px);
+ text-align:right;
+ cursor:pointer;
+ line-height:1.35;
+}
 
-    .choice.wrong {
-      color: #9c3344;
-      background: #fff0f2;
-      border-color: #cf6f7d;
-    }
+.opt.correct{
+ background:#f0ecf6;
+ border-color:var(--p2);
+ color:var(--pd);
+}
 
-    .choice:disabled {
-      cursor: default;
-    }
+.opt.wrong{
+ background:#fff8ec;
+ border-color:var(--g2);
+ color:#66522e;
+}
 
-    .feedback {
-      display: none;
-      margin-top: 18px;
-      padding: 14px;
-      font-weight: bold;
-      line-height: 1.9;
-      text-align: center;
-      border-radius: 13px;
-    }
+.opt:disabled{
+ cursor:default;
+}
 
-    .feedback.correct-feedback {
-      display: block;
-      color: #21683a;
-      background: #eef8f1;
-      border: 1px solid #8dc59d;
-    }
+.feedback{
+ display:none;
+ margin-top:7px;
+ padding:8px 10px;
+ border-radius:13px;
+ font-size:clamp(12px,3.2vw,14px);
+ line-height:1.45;
+}
 
-    .feedback.wrong-feedback {
-      display: block;
-      color: #9c3344;
-      background: #fff0f2;
-      border: 1px solid #dfa3ad;
-    }
+.feedback.show{
+ display:block;
+}
 
-    .next-btn,
-    .restart-btn {
-      display: none;
-      width: 100%;
-      margin-top: 16px;
-      padding: 15px;
-      color: white;
-      font-family: Tahoma, Arial, sans-serif;
-      font-size: 18px;
-      font-weight: bold;
-      cursor: pointer;
-      background: #6f5288;
-      border: 2px solid #c9a85c;
-      border-radius: 14px;
-    }
+.feedback.good{
+ background:#f3edf8;
+ border:1px solid #c9b8d4;
+ color:var(--pd);
+}
 
-    .next-btn:hover,
-    .restart-btn:hover {
-      background: #5b4677;
-    }
+.feedback.bad{
+ background:#fff9ec;
+ border:1px solid var(--g2);
+ color:#66522e;
+}
 
-    .result-card {
-      display: none;
-      text-align: center;
-    }
+.next{
+ display:none;
+ width:100%;
+ margin-top:7px;
+ padding:8px;
+ border:0;
+ border-radius:13px;
+ background:linear-gradient(145deg,var(--p2),var(--p));
+ color:#fff;
+ font:inherit;
+ font-weight:bold;
+ cursor:pointer;
+ font-size:14px;
+}
 
-    .result-icon {
-      font-size: 50px;
-      margin-bottom: 5px;
-    }
+.result{
+ display:none;
+ text-align:center;
+}
 
-    .result-card h2 {
-      margin: 5px 0 10px;
-      color: #5d4374;
-      font-size: 28px;
-    }
+.result.show{
+ display:flex;
+}
 
-    .score {
-      margin: 18px 0;
-      color: #8b6b25;
-      font-size: 36px;
-      font-weight: bold;
-    }
+.score{
+ font-size:40px;
+ color:var(--g);
+ font-weight:bold;
+}
 
-    .message {
-      font-size: 19px;
-      line-height: 2;
-    }
+.restart,
+.lesson{
+ display:block;
+ text-decoration:none;
+ width:100%;
+ padding:10px;
+ margin-top:8px;
+ border-radius:13px;
+ font-weight:bold;
+}
 
-    .result-links {
-      display: grid;
-      gap: 10px;
-      margin-top: 20px;
-    }
+.restart{
+ border:0;
+ background:linear-gradient(145deg,var(--p2),var(--p));
+ color:#fff;
+ font:inherit;
+ cursor:pointer;
+}
 
-    .result-link,
-    .back {
-      display: block;
-      padding: 12px 20px;
-      color: white;
-      font-weight: bold;
-      text-align: center;
-      text-decoration: none;
-      background: #6f5288;
-      border: 2px solid #c9a85c;
-      border-radius: 18px;
-    }
+.lesson{
+ background:var(--lav);
+ color:var(--pd);
+ border:1px solid #d6c7df;
+}
 
-    .back {
-      width: fit-content;
-      margin: 25px auto;
-      border-radius: 22px;
-    }
+footer{
+ text-align:center;
+ padding:5px;
+ color:#73697a;
+ font-size:9px;
+}
 
-    footer {
-      margin-top: 30px;
-      padding: 20px;
-      color: #fffdf8;
-      text-align: center;
-      background: #49385c;
-      border-top: 3px solid #c9a85c;
-    }
+.burst{
+ position:fixed;
+ inset:0;
+ pointer-events:none;
+ overflow:hidden;
+ z-index:20;
+}
 
-    .confetti {
-      position: fixed;
-      top: -30px;
-      z-index: 9999;
-      pointer-events: none;
-      animation: fall linear forwards;
-    }
+.confetti{
+ position:absolute;
+ width:8px;
+ height:8px;
+ border-radius:2px;
+ animation:fall 900ms ease-out forwards;
+}
 
-    @keyframes fall {
-      to {
-        transform: translateY(110vh) rotate(720deg);
-        opacity: 0.9;
-      }
-    }
+@keyframes fall{
+ 0%{
+  transform:translateY(-20px) rotate(0);
+  opacity:1;
+ }
 
-    .pop {
-      animation: pop 0.3s ease;
-    }
+ 100%{
+  transform:translateY(105vh) rotate(540deg);
+  opacity:0;
+ }
+}
 
-    @keyframes pop {
-      0% {
-        transform: scale(1);
-      }
+.pop{
+ animation:pop .25s ease;
+}
 
-      50% {
-        transform: scale(1.03);
-      }
+@keyframes pop{
+ 50%{
+  transform:scale(1.018);
+ }
+}
 
-      100% {
-        transform: scale(1);
-      }
-    }
+@media(max-height:650px){
 
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 26px;
-      }
+ header{
+  padding:5px 10px 4px;
+ }
 
-      .question-card,
-      .result-card {
-        padding: 19px 14px;
-      }
+ header h1{
+  font-size:17px;
+ }
 
-      .question-card h2 {
-        font-size: 19px;
-      }
+ header p{
+  font-size:9px;
+ }
 
-      .choice {
-        font-size: 16px;
-      }
+ main{
+  padding:3px 0;
+ }
 
-      .score {
-        font-size: 30px;
-      }
-    }
-  </style>
+ .top{
+  font-size:11px;
+  margin-bottom:3px;
+ }
+
+ .progress{
+  height:6px;
+  margin-bottom:4px;
+ }
+
+ .card{
+  padding:7px;
+ }
+
+ h2{
+  font-size:15px;
+  margin-bottom:5px;
+ }
+
+ .options{
+  gap:4px;
+ }
+
+ .opt{
+  padding:5px 7px;
+  font-size:12px;
+ }
+
+ .feedback{
+  padding:5px 7px;
+  margin-top:4px;
+  font-size:11px;
+ }
+
+ .next{
+  padding:6px;
+  margin-top:4px;
+ }
+
+}
+</style>
 </head>
 
 <body>
 
+<div class="app">
+
 <header>
-  <h1>🎯 تحدي الحال</h1>
-  <p>10 أسئلة... اختاري الإجابة الأدق واكتشفي مستوى إتقانك 🌟</p>
+
+ <span class="tag">
+  الوظيفة النحوية
+ </span>
+
+ <h1>
+  🎯 تحدي الحال
+ </h1>
+
+ <p>
+  ١٠ أسئلة • سؤال واحد في كل شاشة • تعقيب فوري ✨
+ </p>
+
 </header>
 
-<main class="container">
+<main>
 
-  <div id="quizArea">
+ <div class="top">
 
-    <div class="top-info">
-      <span id="questionNumber"></span>
-      <span id="liveScore">الصحيح: 0</span>
-    </div>
+  <span id="counter">
+   السؤال ١ من ١٠
+  </span>
 
-    <div class="progress-wrap">
-      <div class="progress-bar" id="progressBar"></div>
-    </div>
+  <span id="correctCount">
+   الصحيح: ٠
+  </span>
 
-    <div class="question-card" id="questionCard">
+ </div>
 
-      <h2 id="questionText"></h2>
+ <div class="progress">
+  <div id="bar"></div>
+ </div>
 
-      <div class="choices" id="choices"></div>
+ <section class="card" id="card">
 
-      <div class="feedback" id="feedback"></div>
+  <div class="qnum" id="qnum"></div>
 
-      <button class="next-btn" id="nextBtn" type="button">
-        السؤال التالي ←
-      </button>
+  <h2 id="question"></h2>
 
-    </div>
+  <div class="options" id="options"></div>
 
-  </div>
+  <div class="feedback" id="feedback"></div>
 
-  <div class="result-card" id="resultCard">
+  <button class="next" id="next">
+   السؤال التالي
+  </button>
 
-    <div class="result-icon" id="resultIcon">🎉</div>
+ </section>
 
-    <h2>انتهى التحدي</h2>
+ <section class="result" id="result">
 
-    <div class="score" id="finalScore"></div>
+  <h2>
+   🎉 انتهى تحدي الحال
+  </h2>
 
-    <div class="message" id="resultMessage"></div>
+  <div class="score" id="score"></div>
 
-    <button class="restart-btn" id="restartBtn" type="button">
-      🔄 إعادة التحدي
-    </button>
+  <p id="message"></p>
 
-    <div class="result-links">
+  <button class="restart" onclick="restartQuiz()">
+   🔄 أعيدي التحدي
+  </button>
 
-      <a class="result-link" href="hal-file.html">
-        📘 مراجعة ملف الدرس
-      </a>
-
-      <a class="result-link" href="hal-language-window.html">
-        🔬 النافذة اللغوية
-      </a>
-
-      <a class="result-link" href="hal.html">
-        ↩ العودة إلى درس الحال
-      </a>
-
-    </div>
-
-  </div>
-
-  <a class="back" href="hal.html">
-    العودة إلى درس الحال
+  <a class="lesson" href="hal-file.html">
+   📘 راجعي ملف الدرس
   </a>
+
+  <a class="lesson" href="hal-language-window.html">
+   🔬 النافذة اللغوية
+  </a>
+
+  <a class="lesson" href="hal.html">
+   ↩ العودة إلى درس الحال
+  </a>
+
+ </section>
 
 </main>
 
 <footer>
-  جميع الحقوق محفوظة © 2026
+ منصة آفاق اللغة | لغتي الخالدة | الصف الثالث المتوسط
 </footer>
+
+</div>
+
+<div class="burst" id="burst"></div>
 
 <script>
 
-  const questions = [
-
-    {
-      question:
-        "1- في الجملة «عاد المسافرُ متعبًا بعد رحلة طويلة»، ما الوظيفة النحوية لكلمة «متعبًا»؟",
-
-      choices: [
-        "نعت منصوب للمسافر",
-        "حال منصوب يبيّن هيئة المسافر وقت العودة",
-        "مفعول به منصوب",
-        "تمييز منصوب يزيل إبهام الجملة"
-      ],
-
-      answer: 1,
-
-      explanation:
-        "«متعبًا» تبيّن هيئة المسافر وقت عودته؛ لذلك فهي حال منصوبة."
-    },
-
-    {
-      question:
-        "2- أي الجمل الآتية اشتملت على حال مفردة؟",
-
-      choices: [
-        "عاد الطالب وهو مسرور",
-        "دخل الطالب يبتسم",
-        "عاد الطالب مسرورًا",
-        "وقف الطالب عند الباب"
-      ],
-
-      answer: 2,
-
-      explanation:
-        "«مسرورًا» كلمة واحدة وليست جملة ولا شبه جملة، ولذلك فهي حال مفردة."
-    },
-
-    {
-      question:
-        "3- في الجملة «دخل الطالبُ وهو مبتسمٌ»، ما نوع الحال؟",
-
-      choices: [
-        "حال مفردة",
-        "جملة اسمية",
-        "جملة فعلية",
-        "شبه جملة"
-      ],
-
-      answer: 1,
-
-      explanation:
-        "«وهو مبتسم» جملة اسمية في محل نصب حال، والرابط واو الحال والضمير «هو»."
-    },
-
-    {
-      question:
-        "4- في الجملة «خرج الطفلُ يركض»، ما نوع الحال؟",
-
-      choices: [
-        "جملة فعلية",
-        "جملة اسمية",
-        "حال مفردة",
-        "نعت"
-      ],
-
-      answer: 0,
-
-      explanation:
-        "«يركض» جملة فعلية تبيّن هيئة الطفل وقت الخروج، فهي جملة فعلية في محل نصب حال."
-    },
-
-    {
-      question:
-        "5- أي الجمل الآتية تحتوي كلمة منصوبة ليست حالًا؟",
-
-      choices: [
-        "عاد المسافرُ مسرورًا",
-        "شاهدتُ الطائرَ محلّقًا",
-        "ازداد الطالبُ علمًا",
-        "دخل الطفلُ ضاحكًا"
-      ],
-
-      answer: 2,
-
-      explanation:
-        "«علمًا» تمييز؛ لأنها توضّح جهة الزيادة، بينما بقية الكلمات تبيّن هيئة أصحابها."
-    },
-
-    {
-      question:
-        "6- ما الفرق الأدق بين الحال والنعت في الجملتين: «جاء الطالبُ مسرعًا» و«جاء الطالبُ المجتهدُ»؟",
-
-      choices: [
-        "كلاهما يبيّن هيئة مؤقتة",
-        "الحال يبيّن الهيئة وقت الفعل، والنعت يصف الاسم ويتبعه",
-        "الحال معرفة والنعت نكرة دائمًا",
-        "النعت منصوب دائمًا والحال مرفوع دائمًا"
-      ],
-
-      answer: 1,
+const questions = [
 
-      explanation:
-        "«مسرعًا» حال تبيّن الهيئة وقت المجيء، و«المجتهد» نعت يصف الطالب ويتبعه."
-    },
+{
+ q:"١- في الجملة «عاد المسافرُ متعبًا بعد رحلة طويلة»، ما الوظيفة النحوية لكلمة «متعبًا»؟",
 
-    {
-      question:
-        "7- في الجملة «عاد المسافرُ وهو سعيدٌ»، ما الرابط الذي ربط جملة الحال بصاحبها؟",
+ o:[
+  "نعت منصوب للمسافر",
+  "حال منصوب يبيّن هيئة المسافر وقت العودة",
+  "مفعول به منصوب",
+  "تمييز منصوب"
+ ],
 
-      choices: [
-        "واو العطف فقط",
-        "الضمير فقط",
-        "واو الحال والضمير «هو»",
-        "حرف الجر"
-      ],
+ a:1,
 
-      answer: 2,
+ ok:
+ "أحسنتِ 🌟 «متعبًا» تبيّن هيئة المسافر وقت عودته؛ لذلك فهي حال منصوبة.",
 
-      explanation:
-        "جملة الحال ارتبطت بصاحبها بواو الحال وبالضمير «هو» العائد على المسافر."
-    },
+ bad:
+ "اسألي: كيف عاد المسافر؟ الإجابة: متعبًا، إذن هي حال."
+},
 
-    {
-      question:
-        "8- أي الجمل الآتية تدل على حال جامدة مؤولة بمشتق؟",
+{
+ q:"٢- أي الجمل الآتية اشتملت على حال مفردة؟",
 
-      choices: [
-        "عاد الطالبُ فرحًا",
-        "انطلق العداءُ سهمًا",
-        "حضر الطالبُ المجتهدُ",
-        "ازداد الطالبُ علمًا"
-      ],
+ o:[
+  "عاد الطالب وهو مسرور",
+  "دخل الطالب يبتسم",
+  "عاد الطالب مسرورًا",
+  "وقف الطالب عند الباب"
+ ],
 
-      answer: 1,
+ a:2,
 
-      explanation:
-        "«سهمًا» اسم جامد جاء حالًا بمعنى «مسرعًا كالسهم»، فهو مؤول بمشتق."
-    },
+ ok:
+ "ممتازة ✨ «مسرورًا» كلمة واحدة تبيّن هيئة الطالب؛ فهي حال مفردة.",
 
-    {
-      question:
-        "9- في قوله تعالى ﴿فَخَرَجَ مِنْهَا خَائِفًا يَتَرَقَّبُ﴾، أي العبارات أدق؟",
+ bad:
+ "الحال المفردة تكون كلمة واحدة، وليست جملة ولا شبه جملة."
+},
 
-      choices: [
-        "«خائفًا» نعت و«يترقب» خبر",
-        "«خائفًا» حال مفردة، و«يترقب» جملة فعلية في محل نصب حال",
-        "«خائفًا» مفعول به و«يترقب» حال",
-        "«خائفًا» تمييز و«يترقب» نعت"
-      ],
+{
+ q:"٣- في الجملة «دخل الطالبُ وهو مبتسمٌ»، ما نوع الحال؟",
 
-      answer: 1,
+ o:[
+  "حال مفردة",
+  "جملة اسمية",
+  "جملة فعلية",
+  "شبه جملة"
+ ],
 
-      explanation:
-        "«خائفًا» حال مفردة، و«يترقب» جملة فعلية تبيّن هيئة موسى عليه السلام أيضًا."
-    },
+ a:1,
 
-    {
-      question:
-        "10- في الجملة «رأيتُ الطائرَ محلّقًا»، من صاحب الحال؟",
+ ok:
+ "رائعة 👏 «وهو مبتسم» جملة اسمية في محل نصب حال.",
 
-      choices: [
-        "التاء في رأيت",
-        "محلّقًا",
-        "الطائر",
-        "الفعل رأى"
-      ],
+ bad:
+ "الجملة تبدأ بالضمير «هو»، فهي جملة اسمية، وقد جاءت لتبين هيئة الطالب."
+},
 
-      answer: 2,
+{
+ q:"٤- في الجملة «خرج الطفلُ يركض»، ما نوع الحال؟",
 
-      explanation:
-        "«محلّقًا» تبيّن هيئة «الطائر» وقت الرؤية؛ لذلك الطائر هو صاحب الحال."
-    }
+ o:[
+  "جملة فعلية",
+  "جملة اسمية",
+  "حال مفردة",
+  "نعت"
+ ],
 
-  ];
+ a:0,
 
-  let currentQuestion = 0;
-  let score = 0;
-  let answered = false;
+ ok:
+ "صحيح جدًا 💜 «يركض» جملة فعلية تبيّن هيئة الطفل وقت الخروج.",
 
-  const questionNumber =
-    document.getElementById("questionNumber");
+ bad:
+ "وجود الفعل المضارع «يركض» يدل على أن الحال جاءت جملة فعلية."
+},
 
-  const liveScore =
-    document.getElementById("liveScore");
+{
+ q:"٥- أي الجمل الآتية تحتوي كلمة منصوبة ليست حالًا؟",
 
-  const progressBar =
-    document.getElementById("progressBar");
+ o:[
+  "عاد المسافرُ مسرورًا",
+  "شاهدتُ الطائرَ محلّقًا",
+  "ازداد الطالبُ علمًا",
+  "دخل الطفلُ ضاحكًا"
+ ],
 
-  const questionText =
-    document.getElementById("questionText");
+ a:2,
 
-  const choicesBox =
-    document.getElementById("choices");
+ ok:
+ "أحسنتِ 🎯 «علمًا» تمييز؛ لأنه يوضح جهة الزيادة، وليس هيئة الطالب.",
 
-  const feedback =
-    document.getElementById("feedback");
+ bad:
+ "فرّقي بين بيان الهيئة وإزالة الإبهام: «علمًا» يوضح جهة الزيادة، فهو تمييز."
+},
 
-  const nextBtn =
-    document.getElementById("nextBtn");
+{
+ q:"٦- ما الفرق الأدق بين الحال والنعت؟",
 
-  const questionCard =
-    document.getElementById("questionCard");
+ o:[
+  "كلاهما يبيّن هيئة مؤقتة",
+  "الحال يبيّن الهيئة وقت الفعل، والنعت يصف الاسم ويتبعه",
+  "الحال معرفة دائمًا والنعت نكرة دائمًا",
+  "النعت منصوب دائمًا والحال مرفوع دائمًا"
+ ],
 
+ a:1,
 
-  function playTone(correct = true) {
+ ok:
+ "ممتازة 🌟 الحال يبيّن هيئة صاحبه وقت الفعل، أما النعت فيصف الاسم ويتبعه.",
 
-    try {
+ bad:
+ "الحال مرتبط بالهيئة وقت وقوع الفعل، أما النعت فيصف الاسم ويتبعه في الإعراب."
+},
 
-      const AudioContext =
-        window.AudioContext ||
-        window.webkitAudioContext;
+{
+ q:"٧- في الجملة «عاد المسافرُ وهو سعيدٌ»، ما الرابط في جملة الحال؟",
 
-      const ctx =
-        new AudioContext();
+ o:[
+  "واو العطف فقط",
+  "الضمير فقط",
+  "واو الحال والضمير «هو»",
+  "حرف الجر"
+ ],
 
-      const oscillator =
-        ctx.createOscillator();
+ a:2,
 
-      const gain =
-        ctx.createGain();
+ ok:
+ "إجابة دقيقة 👏 الرابط هو واو الحال والضمير «هو» العائد على المسافر.",
 
-      oscillator.connect(gain);
-      gain.connect(ctx.destination);
+ bad:
+ "اجتمع في الجملة رابطان: واو الحال والضمير «هو»."
+},
 
-      oscillator.type =
-        correct ? "sine" : "triangle";
+{
+ q:"٨- أي الجمل الآتية اشتملت على حال جامدة مؤولة بمشتق؟",
 
-      oscillator.frequency.value =
-        correct ? 720 : 220;
+ o:[
+  "عاد الطالبُ فرحًا",
+  "انطلق العداءُ سهمًا",
+  "حضر الطالبُ المجتهدُ",
+  "ازداد الطالبُ علمًا"
+ ],
 
-      gain.gain.setValueAtTime(
-        0.12,
-        ctx.currentTime
-      );
+ a:1,
 
-      gain.gain.exponentialRampToValueAtTime(
-        0.001,
-        ctx.currentTime + 0.22
-      );
+ ok:
+ "بطلة ✨ «سهمًا» اسم جامد جاء حالًا بمعنى «مسرعًا كالسهم».",
 
-      oscillator.start();
+ bad:
+ "ابحثي عن اسم جامد استُعمل لتشبيه هيئة صاحبه؛ وهو «سهمًا»."
+},
 
-      oscillator.stop(
-        ctx.currentTime + 0.22
-      );
+{
+ q:"٩- في قوله تعالى ﴿فَخَرَجَ مِنْهَا خَائِفًا يَتَرَقَّبُ﴾، أي العبارات أدق؟",
 
-    } catch (e) {}
+ o:[
+  "«خائفًا» نعت و«يترقب» خبر",
+  "«خائفًا» حال مفردة، و«يترقب» جملة فعلية في محل نصب حال",
+  "«خائفًا» مفعول به و«يترقب» حال",
+  "«خائفًا» تمييز و«يترقب» نعت"
+ ],
 
-  }
+ a:1,
 
+ ok:
+ "رائعة جدًا 🌟 «خائفًا» حال مفردة، و«يترقب» جملة فعلية في محل نصب حال.",
 
-  function renderQuestion() {
+ bad:
+ "في الآية حالان: «خائفًا» حال مفردة، و«يترقب» جملة فعلية في محل نصب حال."
+},
 
-    answered = false;
+{
+ q:"١٠- في الجملة «رأيتُ الطائرَ محلّقًا»، من صاحب الحال؟",
 
-    const q =
-      questions[currentQuestion];
+ o:[
+  "التاء في رأيت",
+  "محلّقًا",
+  "الطائر",
+  "الفعل رأى"
+ ],
 
-    questionNumber.textContent =
-      "السؤال " +
-      (currentQuestion + 1) +
-      " من " +
-      questions.length;
+ a:2,
 
-    liveScore.textContent =
-      "الصحيح: " + score;
+ ok:
+ "إتقان رائع 🏆 «محلّقًا» تبيّن هيئة الطائر وقت الرؤية؛ لذلك الطائر هو صاحب الحال.",
 
-    progressBar.style.width =
-      (((currentQuestion + 1) /
-      questions.length) * 100) + "%";
+ bad:
+ "صاحب الحال هو الاسم الذي تبيّن الحال هيئته، وهنا هو «الطائر»."
+}
 
-    questionText.textContent =
-      q.question;
+];
 
-    choicesBox.innerHTML = "";
+let index = 0;
+let score = 0;
+let answered = false;
 
-    feedback.textContent = "";
-    feedback.className = "feedback";
+const arabicDigits = n =>
+ String(n).replace(
+  /\d/g,
+  d => '٠١٢٣٤٥٦٧٨٩'[d]
+ );
 
-    nextBtn.style.display = "none";
+function tone(ok){
 
-    questionCard.classList.remove("pop");
+ try{
 
-    void questionCard.offsetWidth;
+  const AC =
+   window.AudioContext ||
+   window.webkitAudioContext;
 
-    questionCard.classList.add("pop");
+  const c =
+   new AC();
 
-    q.choices.forEach(
-      (choice, index) => {
+  const o =
+   c.createOscillator();
 
-        const button =
-          document.createElement("button");
+  const g =
+   c.createGain();
 
-        button.type = "button";
+  o.connect(g);
+  g.connect(c.destination);
 
-        button.className =
-          "choice";
+  o.type =
+   ok ? 'sine' : 'triangle';
 
-        button.textContent =
-          choice;
-
-        button.addEventListener(
-          "click",
-          () => {
-            checkAnswer(
-              index,
-              button
-            );
-          }
-        );
-
-        choicesBox.appendChild(
-          button
-        );
-
-      }
-    );
-
-  }
-
-
-  function checkAnswer(
-    selectedIndex,
-    selectedButton
-  ) {
-
-    if (answered) return;
-
-    answered = true;
-
-    const q =
-      questions[currentQuestion];
-
-    const buttons =
-      document.querySelectorAll(
-        ".choice"
-      );
-
-    buttons.forEach(
-      button => {
-        button.disabled = true;
-      }
-    );
-
-    if (
-      selectedIndex ===
-      q.answer
-    ) {
-
-      score++;
-
-      selectedButton.classList.add(
-        "correct"
-      );
-
-      feedback.textContent =
-        "أحسنتِ 🌟 " +
-        q.explanation;
-
-      feedback.className =
-        "feedback correct-feedback";
-
-      playTone(true);
-
-      miniCelebration();
-
-    } else {
-
-      selectedButton.classList.add(
-        "wrong"
-      );
-
-      buttons[q.answer].classList.add(
-        "correct"
-      );
-
-      feedback.textContent =
-        "قريبة 🌷 الإجابة الصحيحة موضحة بالأخضر. " +
-        q.explanation;
-
-      feedback.className =
-        "feedback wrong-feedback";
-
-      playTone(false);
-
-      if (navigator.vibrate) {
-        navigator.vibrate(100);
-      }
-
-    }
-
-    liveScore.textContent =
-      "الصحيح: " + score;
-
-    nextBtn.style.display =
-      "block";
-
-    if (
-      currentQuestion ===
-      questions.length - 1
-    ) {
-
-      nextBtn.textContent =
-        "عرض النتيجة 🎉";
-
-    } else {
-
-      nextBtn.textContent =
-        "السؤال التالي ←";
-
-    }
-
-  }
-
-
-  nextBtn.addEventListener(
-    "click",
-    () => {
-
-      if (!answered) return;
-
-      if (
-        currentQuestion <
-        questions.length - 1
-      ) {
-
-        currentQuestion++;
-
-        renderQuestion();
-
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth"
-        });
-
-      } else {
-
-        showResult();
-
-      }
-
-    }
+  o.frequency.setValueAtTime(
+   ok ? 660 : 220,
+   c.currentTime
   );
 
+  if(ok){
 
-  function showResult() {
+   o.frequency.exponentialRampToValueAtTime(
+    920,
+    c.currentTime + .16
+   );
 
-    document.getElementById(
-      "quizArea"
-    ).style.display = "none";
+  }else{
 
-    const resultCard =
-      document.getElementById(
-        "resultCard"
-      );
-
-    resultCard.style.display =
-      "block";
-
-    const percentage =
-      Math.round(
-        (score /
-        questions.length) *
-        100
-      );
-
-    document.getElementById(
-      "finalScore"
-    ).textContent =
-      score +
-      " / " +
-      questions.length +
-      " — " +
-      percentage +
-      "%";
-
-    let message = "";
-    let icon = "";
-
-    if (percentage === 100) {
-
-      icon = "🏆";
-
-      message =
-        "مذهلة! أتقنتِ درس الحال إتقانًا كاملًا 🌟";
-
-      launchConfetti();
-
-    } else if (
-      percentage >= 80
-    ) {
-
-      icon = "🌟";
-
-      message =
-        "رائعة جدًا! فهمك للحال قوي، وبقيت لمسات بسيطة للوصول إلى الإتقان.";
-
-      launchConfetti();
-
-    } else if (
-      percentage >= 60
-    ) {
-
-      icon = "🌷";
-
-      message =
-        "أداء جيد. راجعي الأسئلة التي أخطأتِ فيها ثم أعيدي التحدي.";
-
-    } else {
-
-      icon = "💜";
-
-      message =
-        "المحاولة جزء من التعلّم. راجعي ملف الدرس والنافذة اللغوية ثم جربي مرة أخرى.";
-
-    }
-
-    document.getElementById(
-      "resultIcon"
-    ).textContent = icon;
-
-    document.getElementById(
-      "resultMessage"
-    ).textContent = message;
-
-    document.getElementById(
-      "restartBtn"
-    ).style.display = "block";
-
-    resultCard.scrollIntoView({
-      behavior: "smooth"
-    });
+   o.frequency.exponentialRampToValueAtTime(
+    170,
+    c.currentTime + .16
+   );
 
   }
 
-
-  document.getElementById(
-    "restartBtn"
-  ).addEventListener(
-    "click",
-    () => {
-
-      currentQuestion = 0;
-      score = 0;
-      answered = false;
-
-      document.getElementById(
-        "resultCard"
-      ).style.display = "none";
-
-      document.getElementById(
-        "quizArea"
-      ).style.display = "block";
-
-      renderQuestion();
-
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-
-    }
+  g.gain.setValueAtTime(
+   .07,
+   c.currentTime
   );
 
+  g.gain.exponentialRampToValueAtTime(
+   .001,
+   c.currentTime + .23
+  );
 
-  function miniCelebration() {
+  o.start();
 
-    const symbols =
-      ["✨", "⭐", "💜", "💛"];
+  o.stop(
+   c.currentTime + .24
+  );
 
-    for (
-      let i = 0;
-      i < 8;
-      i++
-    ) {
+ }catch(e){}
 
-      const piece =
-        document.createElement(
-          "div"
-        );
+}
 
-      piece.className =
-        "confetti";
+function confetti(){
 
-      piece.textContent =
-        symbols[
-          Math.floor(
-            Math.random() *
-            symbols.length
-          )
-        ];
+ const burst =
+  document.getElementById('burst');
 
-      piece.style.left =
-        Math.random() *
-        100 +
-        "vw";
+ burst.innerHTML = '';
 
-      piece.style.fontSize =
-        15 +
-        Math.random() *
-        10 +
-        "px";
+ const colors = [
+  '#5b4677',
+  '#776094',
+  '#b69750',
+  '#d8c28a',
+  '#eee5f5'
+ ];
 
-      piece.style.animationDuration =
-        1.6 +
-        Math.random() *
-        1.4 +
-        "s";
+ for(let i=0;i<26;i++){
 
-      document.body.appendChild(
-        piece
-      );
+  const s =
+   document.createElement('i');
 
-      setTimeout(
-        () => {
-          piece.remove();
-        },
-        3200
-      );
+  s.className =
+   'confetti';
 
-    }
+  s.style.left =
+   (Math.random()*100) + 'vw';
+
+  s.style.top =
+   '-10px';
+
+  s.style.background =
+   colors[i % colors.length];
+
+  s.style.animationDelay =
+   (Math.random()*170) + 'ms';
+
+  burst.appendChild(s);
+
+ }
+
+ setTimeout(
+  () => burst.innerHTML = '',
+  1200
+ );
+
+}
+
+function render(){
+
+ answered = false;
+
+ const x =
+  questions[index];
+
+ document
+  .getElementById('qnum')
+  .textContent =
+  'السؤال ' +
+  arabicDigits(index+1);
+
+ document
+  .getElementById('counter')
+  .textContent =
+  'السؤال ' +
+  arabicDigits(index+1) +
+  ' من ' +
+  arabicDigits(questions.length);
+
+ document
+  .getElementById('correctCount')
+  .textContent =
+  'الصحيح: ' +
+  arabicDigits(score);
+
+ document
+  .getElementById('bar')
+  .style.width =
+  ((index + 1) /
+  questions.length *
+  100) + '%';
+
+ document
+  .getElementById('question')
+  .textContent =
+  x.q;
+
+ const options =
+  document.getElementById('options');
+
+ const feedback =
+  document.getElementById('feedback');
+
+ const next =
+  document.getElementById('next');
+
+ const card =
+  document.getElementById('card');
+
+ options.innerHTML = '';
+
+ feedback.className =
+  'feedback';
+
+ feedback.innerHTML =
+  '';
+
+ next.style.display =
+  'none';
+
+ card.classList.remove(
+  'pop'
+ );
+
+ x.o.forEach((t,j)=>{
+
+  const b =
+   document.createElement('button');
+
+  b.className =
+   'opt';
+
+  b.textContent =
+   t;
+
+  b.onclick =
+   () => choose(j,b);
+
+  options.appendChild(b);
+
+ });
+
+}
+
+function choose(choice,button){
+
+ if(answered) return;
+
+ answered = true;
+
+ const x =
+  questions[index];
+
+ const btns =
+  [...document.querySelectorAll('.opt')];
+
+ btns.forEach(
+  b => b.disabled = true
+ );
+
+ btns[x.a]
+  .classList
+  .add('correct');
+
+ const feedback =
+  document.getElementById('feedback');
+
+ if(choice === x.a){
+
+  score++;
+
+  button
+   .classList
+   .add('correct');
+
+  feedback.className =
+   'feedback show good';
+
+  feedback.textContent =
+   x.ok;
+
+  tone(true);
+
+  confetti();
+
+  if(navigator.vibrate){
+   navigator.vibrate(45);
+  }
+
+ }else{
+
+  button
+   .classList
+   .add('wrong');
+
+  feedback.className =
+   'feedback show bad';
+
+  feedback.innerHTML =
+   '<b>راجعي الفكرة 👀</b><br>' +
+   x.bad;
+
+  tone(false);
+
+  if(navigator.vibrate){
+   navigator.vibrate(
+    [70,40,70]
+   );
+  }
+
+ }
+
+ document
+  .getElementById('correctCount')
+  .textContent =
+  'الصحيح: ' +
+  arabicDigits(score);
+
+ document
+  .getElementById('card')
+  .classList
+  .add('pop');
+
+ const next =
+  document.getElementById('next');
+
+ next.textContent =
+  index === questions.length-1
+  ? 'شوفي نتيجتك ✨'
+  : 'كمّلي التحدي ←';
+
+ next.style.display =
+  'block';
+
+}
+
+document
+ .getElementById('next')
+ .onclick = () => {
+
+  index++;
+
+  if(index < questions.length){
+
+   render();
+
+  }else{
+
+   finish();
 
   }
 
+ };
 
-  function launchConfetti() {
+function finish(){
 
-    const symbols =
-      [
-        "✨",
-        "⭐",
-        "🌟",
-        "🎉",
-        "💜",
-        "💛",
-        "🎈"
-      ];
+ document
+  .getElementById('bar')
+  .style.width =
+  '100%';
 
-    for (
-      let i = 0;
-      i < 40;
-      i++
-    ) {
+ document
+  .getElementById('card')
+  .style.display =
+  'none';
 
-      const piece =
-        document.createElement(
-          "div"
-        );
+ document
+  .querySelector('.top')
+  .style.display =
+  'none';
 
-      piece.className =
-        "confetti";
+ document
+  .querySelector('.progress')
+  .style.display =
+  'none';
 
-      piece.textContent =
-        symbols[
-          Math.floor(
-            Math.random() *
-            symbols.length
-          )
-        ];
+ const result =
+  document.getElementById('result');
 
-      piece.style.left =
-        Math.random() *
-        100 +
-        "vw";
+ result.classList.add(
+  'show'
+ );
 
-      piece.style.fontSize =
-        17 +
-        Math.random() *
-        18 +
-        "px";
+ document
+  .getElementById('score')
+  .textContent =
+  arabicDigits(score) +
+  ' / ' +
+  arabicDigits(questions.length);
 
-      piece.style.animationDuration =
-        2.5 +
-        Math.random() *
-        2 +
-        "s";
+ const pct =
+  score /
+  questions.length;
 
-      document.body.appendChild(
-        piece
-      );
+ document
+  .getElementById('message')
+  .textContent =
 
-      setTimeout(
-        () => {
-          piece.remove();
-        },
-        5000
-      );
+  pct === 1
+  ? 'إتقان كامل! بطلة الحال 🏆'
 
-    }
+  : pct >= .8
+  ? 'ممتازة جدًا 🌟 أتقنتِ أنواع الحال والتمييز بينها وبين التراكيب المشابهة.'
 
-  }
+  : pct >= .6
+  ? 'أداء جميل 👏 راجعي أنواع الحال والرابط وصاحب الحال ثم أعيدي التحدي.'
 
+  : 'راجعي ملف درس الحال والنافذة اللغوية، ثم عودي للتحدي بثقة.';
 
-  renderQuestion();
+ if(pct >= .8){
+  confetti();
+ }
+
+}
+
+function restartQuiz(){
+
+ index = 0;
+ score = 0;
+ answered = false;
+
+ document
+  .getElementById('card')
+  .style.display =
+  'flex';
+
+ document
+  .querySelector('.top')
+  .style.display =
+  'flex';
+
+ document
+  .querySelector('.progress')
+  .style.display =
+  'block';
+
+ document
+  .getElementById('result')
+  .classList
+  .remove('show');
+
+ render();
+
+}
+
+render();
 
 </script>
 
 </body>
-
 </html>
