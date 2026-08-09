@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>اختبار أسلوب الاستثناء | منصة آفاق</title>
+
+<title>تحدي المستثنى | منصة آفاق</title>
 
 <style>
 :root{
@@ -275,6 +276,7 @@ footer{
   transform:translateY(-20px) rotate(0);
   opacity:1;
  }
+
  100%{
   transform:translateY(105vh) rotate(540deg);
   opacity:0;
@@ -292,6 +294,7 @@ footer{
 }
 
 @media(max-height:650px){
+
  header{
   padding:5px 10px 4px;
  }
@@ -346,6 +349,7 @@ footer{
   padding:6px;
   margin-top:4px;
  }
+
 }
 </style>
 </head>
@@ -355,16 +359,33 @@ footer{
 <div class="app">
 
 <header>
- <span class="tag">منصة آفاق التعليمية</span>
- <h1>تحدي أسلوب الاستثناء</h1>
- <p>١٠ أسئلة • سؤال واحد في كل شاشة • تعقيب فوري ✨</p>
+
+ <span class="tag">
+  الوظيفة النحوية
+ </span>
+
+ <h1>
+  🎯 تحدي المستثنى
+ </h1>
+
+ <p>
+  ١٠ أسئلة • اختاري الإجابة الأدق • تعقيب فوري ✨
+ </p>
+
 </header>
 
 <main>
 
  <div class="top">
-  <span id="counter">السؤال ١ من ١٠</span>
-  <span id="correctCount">الصحيح: ٠</span>
+
+  <span id="counter">
+   السؤال ١ من ١٠
+  </span>
+
+  <span id="correctCount">
+   الصحيح: ٠
+  </span>
+
  </div>
 
  <div class="progress">
@@ -389,22 +410,28 @@ footer{
 
  <section class="result" id="result">
 
-  <h2>انتهى التحدي ✨</h2>
+  <h2>
+   🎉 انتهى تحدي المستثنى
+  </h2>
 
   <div class="score" id="score"></div>
 
   <p id="message"></p>
 
   <button class="restart" onclick="restartQuiz()">
-   أعيدي التحدي
+   🔄 أعيدي التحدي
   </button>
 
   <a class="lesson" href="exception-style-file.html">
-   راجعي ملف الدرس
+   📘 راجعي ملف الدرس
+  </a>
+
+  <a class="lesson" href="exception-language-window.html">
+   🔬 النافذة اللغوية
   </a>
 
   <a class="lesson" href="mustathna.html">
-   العودة إلى درس المستثنى
+   ↩ العودة إلى درس المستثنى
   </a>
 
  </section>
@@ -412,7 +439,7 @@ footer{
 </main>
 
 <footer>
- منصة آفاق التعليمية | لغتي الخالدة | الصف الثالث المتوسط
+ منصة آفاق اللغة | لغتي الخالدة | الصف الثالث المتوسط
 </footer>
 
 </div>
@@ -424,133 +451,193 @@ footer{
 const questions = [
 
 {
- q:"ما المستثنى في الجملة: «حضر الطلابُ إلا خالدًا»؟",
+ q:"١- ما المستثنى في الجملة: «حضر الطلابُ إلا خالدًا»؟",
+
  o:[
   "حضر",
   "الطلابُ",
   "إلا",
   "خالدًا"
  ],
+
  a:3,
- ok:"أحسنتِ 🌟 «خالدًا» هو المستثنى؛ لأنه أُخرج من حكم ما قبله.",
- bad:"ابحثي عن الاسم الواقع بعد «إلا» والمخالف لما قبله في الحكم."
+
+ ok:
+ "أحسنتِ 🌟 «خالدًا» هو المستثنى؛ لأنه أُخرج من حكم ما قبله.",
+
+ bad:
+ "ابحثي عن الاسم الذي جاء بعد «إلا» وأُخرج من حكم المستثنى منه."
 },
 
 {
- q:"الجملة «نجح الطلابُ إلا طالبًا» تُعدُّ:",
+ q:"٢- الجملة «نجح الطلابُ إلا طالبًا» تمثل استثناءً:",
+
  o:[
-  "تامة مثبتة",
-  "تامة منفية",
-  "ناقصة منفية",
-  "أسلوب تعجب"
+  "تامًا مثبتًا",
+  "تامًا منفيًا",
+  "ناقصًا منفيًا",
+  "منقطعًا منفيًا"
  ],
+
  a:0,
- ok:"ممتازة ✨ المستثنى منه مذكور، ولا يوجد نفي؛ لذلك هي تامة مثبتة.",
- bad:"وجود «الطلاب» يجعل الأسلوب تامًا، وعدم وجود نفي يجعله مثبتًا."
+
+ ok:
+ "ممتازة ✨ المستثنى منه «الطلاب» مذكور، ولا يوجد نفي؛ لذلك الاستثناء تام مثبت.",
+
+ bad:
+ "المستثنى منه مذكور، والجملة غير منفية؛ إذن الاستثناء تام مثبت."
 },
 
 {
- q:"ما حكم المستثنى بـ«إلا» في الاستثناء التام المثبت؟",
+ q:"٣- ما حكم المستثنى بـ«إلا» في الاستثناء التام المثبت؟",
+
  o:[
   "يجب نصبه",
   "يجب رفعه",
-  "يجوز نصبه أو إتباعه",
-  "يعرب حسب موقعه"
+  "يجوز نصبه أو إتباعه لما قبله",
+  "يعرب حسب موقعه في الجملة"
  ],
+
  a:0,
- ok:"رائعة 👏 في الاستثناء التام المثبت يجب نصب المستثنى.",
- bad:"القاعدة: التام المثبت بـ«إلا» يجب فيه نصب المستثنى."
+
+ ok:
+ "رائعة 👏 في الاستثناء التام المثبت يجب نصب المستثنى.",
+
+ bad:
+ "تذكري: التام المثبت مع «إلا» يجب فيه نصب المستثنى."
 },
 
 {
- q:"إذا كان الاستثناء تامًا منفيًا بـ«إلا»، فما حكم المستثنى؟",
+ q:"٤- في الجملة «ما حضر الطلابُ إلا خالدٌ»، ما الوجه الإعرابي الجائز لكلمة «خالدٌ»؟",
+
  o:[
-  "يجب نصبه فقط",
-  "يجوز نصبه على الاستثناء أو إتباعه على البدلية",
-  "يجب جره",
-  "يعرب دائمًا فاعلًا"
+  "فاعل فقط",
+  "بدل مرفوع من الطلاب",
+  "مضاف إليه",
+  "خبر مرفوع"
  ],
+
  a:1,
- ok:"صحيح جدًا 💜 في التام المنفي يجوز النصب على الاستثناء أو الإتباع على البدلية.",
- bad:"في الاستثناء التام المنفي يجوز في المستثنى وجهان: النصب أو الإتباع."
+
+ ok:
+ "أحسنتِ 💜 في التام المنفي يجوز إتباع المستثنى للمستثنى منه، وهنا «خالدٌ» بدل مرفوع.",
+
+ bad:
+ "لأن الأسلوب تام منفي، يجوز إتباع المستثنى للمستثنى منه على البدلية."
 },
 
 {
- q:"ما نوع الاستثناء في الجملة: «ما حضر إلا خالدٌ»؟",
+ q:"٥- أي الجمل الآتية تمثل استثناءً ناقصًا منفيًا؟",
+
  o:[
-  "تام مثبت",
-  "تام منفي",
-  "ناقص منفي «مفرغ»",
-  "استثناء بغير"
+  "حضر الطلابُ إلا خالدًا",
+  "ما حضر الطلابُ إلا خالدٌ",
+  "ما حضر إلا خالدٌ",
+  "حضر الطلابُ غيرَ خالدٍ"
  ],
+
  a:2,
- ok:"أحسنتِ 🎯 المستثنى منه محذوف والجملة منفية، فهو استثناء ناقص منفي.",
- bad:"إذا حُذف المستثنى منه وسبق الأسلوب بنفي فهو ناقص منفي «مفرغ»."
+
+ ok:
+ "صحيح 🎯 في «ما حضر إلا خالدٌ» حُذف المستثنى منه وسبق الأسلوب بنفي، فهو ناقص منفي.",
+
+ bad:
+ "ابحثي عن جملة منفية لا يظهر فيها المستثنى منه."
 },
 
 {
- q:"كيف نعرب «خالدٌ» في: «ما حضر إلا خالدٌ»؟",
+ q:"٦- ما إعراب «خالدٌ» في الجملة «ما حضر إلا خالدٌ»؟",
+
  o:[
   "مستثنى منصوب",
   "فاعل مرفوع",
-  "مضاف إليه",
-  "مفعول به"
+  "مفعول به منصوب",
+  "مضاف إليه مجرور"
  ],
+
  a:1,
- ok:"ممتازة 🌟 في الاستثناء المفرغ يُعرب ما بعد «إلا» حسب موقعه؛ وهنا «خالدٌ» فاعل.",
- bad:"احذفي «إلا» ذهنيًا: «ما حضر خالدٌ»؛ إذن خالد فاعل مرفوع."
+
+ ok:
+ "ممتازة 🌟 في الاستثناء الناقص المنفي يعرب ما بعد «إلا» حسب موقعه، وهنا «خالدٌ» فاعل مرفوع.",
+
+ bad:
+ "احذفي «إلا» ذهنيًا: «ما حضر خالدٌ»؛ يتضح أن خالدًا فاعل."
 },
 
 {
- q:"أيُّ عبارة صحيحة عن «غير» و«سوى»؟",
- o:[
-  "حرفان لا محل لهما",
-  "اسمان يأخذان حكم المستثنى بـ«إلا»، وما بعدهما مضاف إليه",
-  "فعلان ماضيان",
-  "ما بعدهما فاعل دائمًا"
- ],
- a:1,
- ok:"بطلة 👏 «غير» و«سوى» اسمان، وما بعدهما مضاف إليه مجرور.",
- bad:"تذكري: «غير» و«سوى» اسمان، والاسم بعدهما مضاف إليه."
-},
+ q:"٧- في الجملة «حضرت الطالباتُ غيرَ طالبةٍ»، ما إعراب «طالبةٍ»؟",
 
-{
- q:"في الجملة «حضر الطلابُ غيرَ خالدٍ»، ما إعراب «خالدٍ»؟",
  o:[
   "مستثنى منصوب",
   "مضاف إليه مجرور",
   "فاعل مرفوع",
-  "بدل مرفوع"
+  "بدل منصوب"
  ],
+
  a:1,
- ok:"صحيح ✨ «خالدٍ» مضاف إليه مجرور؛ لأنه جاء بعد «غير».",
- bad:"الاسم الواقع بعد «غير» أو «سوى» يُعرب مضافًا إليه مجرورًا."
+
+ ok:
+ "رائعة 👏 الاسم بعد «غير» يكون مضافًا إليه مجرورًا.",
+
+ bad:
+ "تذكري أن «غير» اسم مضاف، وما بعدها مضاف إليه مجرور."
 },
 
 {
- q:"أيُّ جملة تمثل استثناءً ناقصًا منفيًا؟",
+ q:"٨- أي العبارات الآتية صحيحة عن «غير» و«سوى»؟",
+
  o:[
-  "حضر القومُ إلا رجلًا",
-  "ما حضر القومُ إلا رجلٌ",
-  "ما حضر إلا رجلٌ",
-  "حضر القومُ غيرَ رجلٍ"
+  "حرفا استثناء لا محل لهما",
+  "اسمان، وما بعدهما مضاف إليه مجرور",
+  "فعلان ماضيان",
+  "يكون الاسم بعدهما منصوبًا دائمًا"
  ],
- a:2,
- ok:"إتقان رائع 🏆 «ما حضر إلا رجلٌ» ناقص منفي؛ لأن المستثنى منه محذوف.",
- bad:"ابحثي عن جملة منفية لا يظهر فيها المستثنى منه."
+
+ a:1,
+
+ ok:
+ "إجابة دقيقة ✨ «غير» و«سوى» اسمان، وما بعدهما مضاف إليه مجرور.",
+
+ bad:
+ "«غير» و«سوى» اسمان، والاسم الواقع بعدهما مضاف إليه."
 },
 
 {
- q:"في الجملة «حضر الطلابُ ما عدا خالدًا»، ما إعراب «خالدًا»؟",
+ q:"٩- في الجملة «ما قرأتُ إلا كتابًا»، ما إعراب «كتابًا»؟",
+
+ o:[
+  "مستثنى منصوب",
+  "مفعول به منصوب",
+  "حال منصوب",
+  "تمييز منصوب"
+ ],
+
+ a:1,
+
+ ok:
+ "بطلة 🏆 الجملة ناقصة منفية، لذلك يعرب ما بعد «إلا» حسب موقعه، و«كتابًا» مفعول به.",
+
+ bad:
+ "احذفي النفي و«إلا» ذهنيًا: «قرأتُ كتابًا»؛ إذن «كتابًا» مفعول به."
+},
+
+{
+ q:"١٠- في الجملة «حضر الطلابُ ما عدا خالدًا»، ما إعراب «خالدًا»؟",
+
  o:[
   "فاعل مرفوع",
   "مفعول به منصوب",
   "مضاف إليه مجرور",
   "بدل مرفوع"
  ],
+
  a:1,
- ok:"رائعة جدًا 🌟 بعد «ما عدا» يكون الاسم مفعولًا به منصوبًا.",
- bad:"إذا سبقت «عدا» بـ«ما» فهي فعل، والاسم بعدها مفعول به منصوب."
+
+ ok:
+ "رائعة جدًا 🌟 بعد «ما عدا» يكون الاسم مفعولًا به منصوبًا.",
+
+ bad:
+ "إذا سبقت «عدا» بـ«ما» كانت فعلًا، وما بعدها مفعول به منصوب."
 }
 
 ];
@@ -560,22 +647,33 @@ let score = 0;
 let answered = false;
 
 const arabicDigits = n =>
- String(n).replace(/\d/g,d=>'٠١٢٣٤٥٦٧٨٩'[d]);
+ String(n).replace(
+  /\d/g,
+  d => '٠١٢٣٤٥٦٧٨٩'[d]
+ );
 
 function tone(ok){
+
  try{
+
   const AC =
    window.AudioContext ||
    window.webkitAudioContext;
 
-  const c = new AC();
-  const o = c.createOscillator();
-  const g = c.createGain();
+  const c =
+   new AC();
+
+  const o =
+   c.createOscillator();
+
+  const g =
+   c.createGain();
 
   o.connect(g);
   g.connect(c.destination);
 
-  o.type = ok ? 'sine' : 'triangle';
+  o.type =
+   ok ? 'sine' : 'triangle';
 
   o.frequency.setValueAtTime(
    ok ? 660 : 220,
@@ -583,15 +681,19 @@ function tone(ok){
   );
 
   if(ok){
+
    o.frequency.exponentialRampToValueAtTime(
     920,
     c.currentTime + .16
    );
+
   }else{
+
    o.frequency.exponentialRampToValueAtTime(
     170,
     c.currentTime + .16
    );
+
   }
 
   g.gain.setValueAtTime(
@@ -611,6 +713,7 @@ function tone(ok){
   );
 
  }catch(e){}
+
 }
 
 function confetti(){
@@ -633,12 +736,14 @@ function confetti(){
   const s =
    document.createElement('i');
 
-  s.className = 'confetti';
+  s.className =
+   'confetti';
 
   s.style.left =
    (Math.random()*100) + 'vw';
 
-  s.style.top = '-10px';
+  s.style.top =
+   '-10px';
 
   s.style.background =
    colors[i % colors.length];
@@ -647,19 +752,22 @@ function confetti(){
    (Math.random()*170) + 'ms';
 
   burst.appendChild(s);
+
  }
 
  setTimeout(
   () => burst.innerHTML = '',
   1200
  );
+
 }
 
 function render(){
 
  answered = false;
 
- const x = questions[index];
+ const x =
+  questions[index];
 
  document
   .getElementById('qnum')
@@ -684,11 +792,14 @@ function render(){
  document
   .getElementById('bar')
   .style.width =
-  (index/questions.length*100) + '%';
+  ((index + 1) /
+  questions.length *
+  100) + '%';
 
  document
   .getElementById('question')
-  .textContent = x.q;
+  .textContent =
+  x.q;
 
  const options =
   document.getElementById('options');
@@ -704,22 +815,29 @@ function render(){
 
  options.innerHTML = '';
 
- feedback.className = 'feedback';
+ feedback.className =
+  'feedback';
 
- feedback.innerHTML = '';
+ feedback.innerHTML =
+  '';
 
- next.style.display = 'none';
+ next.style.display =
+  'none';
 
- card.classList.remove('pop');
+ card.classList.remove(
+  'pop'
+ );
 
  x.o.forEach((t,j)=>{
 
   const b =
    document.createElement('button');
 
-  b.className = 'opt';
+  b.className =
+   'opt';
 
-  b.textContent = t;
+  b.textContent =
+   t;
 
   b.onclick =
    () => choose(j,b);
@@ -727,6 +845,7 @@ function render(){
   options.appendChild(b);
 
  });
+
 }
 
 function choose(choice,button){
@@ -790,8 +909,11 @@ function choose(choice,button){
   tone(false);
 
   if(navigator.vibrate){
-   navigator.vibrate([70,40,70]);
+   navigator.vibrate(
+    [70,40,70]
+   );
   }
+
  }
 
  document
@@ -813,7 +935,9 @@ function choose(choice,button){
   ? 'شوفي نتيجتك ✨'
   : 'كمّلي التحدي ←';
 
- next.style.display = 'block';
+ next.style.display =
+  'block';
+
 }
 
 document
@@ -823,34 +947,45 @@ document
   index++;
 
   if(index < questions.length){
+
    render();
+
   }else{
+
    finish();
+
   }
+
  };
 
 function finish(){
 
  document
   .getElementById('bar')
-  .style.width = '100%';
+  .style.width =
+  '100%';
 
  document
   .getElementById('card')
-  .style.display = 'none';
+  .style.display =
+  'none';
 
  document
   .querySelector('.top')
-  .style.display = 'none';
+  .style.display =
+  'none';
 
  document
   .querySelector('.progress')
-  .style.display = 'none';
+  .style.display =
+  'none';
 
  const result =
   document.getElementById('result');
 
- result.classList.add('show');
+ result.classList.add(
+  'show'
+ );
 
  document
   .getElementById('score')
@@ -860,22 +995,28 @@ function finish(){
   arabicDigits(questions.length);
 
  const pct =
-  score/questions.length;
+  score /
+  questions.length;
 
  document
   .getElementById('message')
   .textContent =
+
   pct === 1
-  ? 'إتقان كامل! بطلة أسلوب الاستثناء 🏆'
+  ? 'إتقان كامل! بطلة المستثنى 🏆'
+
   : pct >= .8
-  ? 'ممتازة جدًا 🌟 أتقنتِ أنواع الاستثناء وأحكام المستثنى.'
+  ? 'ممتازة جدًا 🌟 أتقنتِ أحكام المستثنى والفروق بين أنواعه.'
+
   : pct >= .6
-  ? 'أداء جميل 👏 راجعي التام المثبت والتام المنفي والاستثناء المفرغ ثم أعيدي التحدي.'
-  : 'راجعي ملف الدرس، ثم عودي للتحدي بثقة.';
+  ? 'أداء جميل 👏 راجعي التام المثبت والتام المنفي والناقص المنفي ثم أعيدي التحدي.'
+
+  : 'راجعي ملف درس المستثنى والنافذة اللغوية، ثم عودي للتحدي بثقة.';
 
  if(pct >= .8){
   confetti();
  }
+
 }
 
 function restartQuiz(){
@@ -886,15 +1027,18 @@ function restartQuiz(){
 
  document
   .getElementById('card')
-  .style.display = 'flex';
+  .style.display =
+  'flex';
 
  document
   .querySelector('.top')
-  .style.display = 'flex';
+  .style.display =
+  'flex';
 
  document
   .querySelector('.progress')
-  .style.display = 'block';
+  .style.display =
+  'block';
 
  document
   .getElementById('result')
@@ -902,6 +1046,7 @@ function restartQuiz(){
   .remove('show');
 
  render();
+
 }
 
 render();
