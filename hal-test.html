@@ -54,11 +54,11 @@
       margin: 25px auto;
     }
 
-    .progress-info {
+    .top-info {
       display: flex;
       justify-content: space-between;
       gap: 10px;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       color: #5d4374;
       font-weight: bold;
     }
@@ -74,7 +74,7 @@
     }
 
     .progress-bar {
-      width: 0;
+      width: 10%;
       height: 100%;
       background: linear-gradient(90deg, #c9a85c, #8668a0);
       border-radius: 20px;
@@ -88,13 +88,26 @@
       border: 2px solid #c9a85c;
       border-radius: 20px;
       box-shadow: 0 7px 18px rgba(91, 63, 111, 0.12);
+      animation: appear 0.35s ease;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .question-card h2 {
       margin: 0 0 20px;
       color: #5d4374;
       font-size: 22px;
-      line-height: 1.8;
+      line-height: 1.9;
     }
 
     .choices {
@@ -108,6 +121,7 @@
       color: #4b3a57;
       font-family: Tahoma, Arial, sans-serif;
       font-size: 17px;
+      line-height: 1.7;
       text-align: right;
       cursor: pointer;
       background: linear-gradient(135deg, #f7effb, #fffaf2);
@@ -139,29 +153,34 @@
     }
 
     .feedback {
-      min-height: 52px;
+      display: none;
       margin-top: 18px;
-      padding: 12px 14px;
+      padding: 14px;
       font-weight: bold;
+      line-height: 1.9;
       text-align: center;
-      border-radius: 12px;
+      border-radius: 13px;
     }
 
     .feedback.correct-feedback {
+      display: block;
       color: #21683a;
       background: #eef8f1;
+      border: 1px solid #8dc59d;
     }
 
     .feedback.wrong-feedback {
+      display: block;
       color: #9c3344;
       background: #fff0f2;
+      border: 1px solid #dfa3ad;
     }
 
     .next-btn,
     .restart-btn {
       display: none;
       width: 100%;
-      margin-top: 15px;
+      margin-top: 16px;
       padding: 15px;
       color: white;
       font-family: Tahoma, Arial, sans-serif;
@@ -183,7 +202,13 @@
       text-align: center;
     }
 
+    .result-icon {
+      font-size: 50px;
+      margin-bottom: 5px;
+    }
+
     .result-card h2 {
+      margin: 5px 0 10px;
       color: #5d4374;
       font-size: 28px;
     }
@@ -200,16 +225,28 @@
       line-height: 2;
     }
 
+    .result-links {
+      display: grid;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .result-link,
     .back {
       display: block;
-      width: fit-content;
-      margin: 25px auto;
-      padding: 12px 22px;
+      padding: 12px 20px;
       color: white;
       font-weight: bold;
+      text-align: center;
       text-decoration: none;
       background: #6f5288;
       border: 2px solid #c9a85c;
+      border-radius: 18px;
+    }
+
+    .back {
+      width: fit-content;
+      margin: 25px auto;
       border-radius: 22px;
     }
 
@@ -224,7 +261,7 @@
 
     .confetti {
       position: fixed;
-      top: -20px;
+      top: -30px;
       z-index: 9999;
       pointer-events: none;
       animation: fall linear forwards;
@@ -234,6 +271,24 @@
       to {
         transform: translateY(110vh) rotate(720deg);
         opacity: 0.9;
+      }
+    }
+
+    .pop {
+      animation: pop 0.3s ease;
+    }
+
+    @keyframes pop {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.03);
+      }
+
+      100% {
+        transform: scale(1);
       }
     }
 
@@ -264,461 +319,779 @@
 
 <body>
 
-  <header>
-    <h1>✅ اختبار درس الحال</h1>
-    <p>اختاري الإجابة الأدق، وتابعي تقدمك حتى النهاية 🌟</p>
-  </header>
+<header>
+  <h1>🎯 تحدي الحال</h1>
+  <p>10 أسئلة... اختاري الإجابة الأدق واكتشفي مستوى إتقانك 🌟</p>
+</header>
 
-  <main class="container">
+<main class="container">
 
-    <div id="quizArea">
+  <div id="quizArea">
 
-      <div class="progress-info">
-        <span id="questionNumber"></span>
-        <span id="liveScore">الدرجة: 0</span>
-      </div>
-
-      <div class="progress-wrap">
-        <div class="progress-bar" id="progressBar"></div>
-      </div>
-
-      <div class="question-card">
-        <h2 id="questionText"></h2>
-
-        <div class="choices" id="choices"></div>
-
-        <div class="feedback" id="feedback"></div>
-
-        <button class="next-btn" id="nextBtn" type="button">
-          السؤال التالي ←
-        </button>
-      </div>
-
+    <div class="top-info">
+      <span id="questionNumber"></span>
+      <span id="liveScore">الصحيح: 0</span>
     </div>
 
-    <div class="result-card" id="resultCard">
-      <h2>🎉 انتهى الاختبار</h2>
+    <div class="progress-wrap">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
 
-      <div class="score" id="finalScore"></div>
+    <div class="question-card" id="questionCard">
 
-      <div class="message" id="resultMessage"></div>
+      <h2 id="questionText"></h2>
 
-      <button class="restart-btn" id="restartBtn" type="button">
-        إعادة الاختبار
+      <div class="choices" id="choices"></div>
+
+      <div class="feedback" id="feedback"></div>
+
+      <button class="next-btn" id="nextBtn" type="button">
+        السؤال التالي ←
       </button>
+
     </div>
 
-    <a class="back" href="hal.html">
-      العودة إلى درس الحال
-    </a>
+  </div>
 
-  </main>
+  <div class="result-card" id="resultCard">
 
-  <footer>
-    جميع الحقوق محفوظة © 2026
-  </footer>
+    <div class="result-icon" id="resultIcon">🎉</div>
 
-  <script>
-    const questions = [
-      {
-        question: "1- الحال هو:",
-        choices: [
-          "وصف يبيّن هيئة صاحبه وقت حدوث الفعل، ويأتي مفردًا أو جملة أو شبه جملة",
-          "اسم معرفة مرفوع يصف اسمًا قبله",
-          "فعل مضارع يدل على الحاضر"
-        ],
-        answer: 0,
-        explanation: "الحال يبيّن هيئة صاحبه وقت حدوث الفعل."
-      },
-      {
-        question: "2- صاحب الحال هو:",
-        choices: [
-          "الفعل الذي وقع في الجملة",
-          "الحرف الذي يسبق الحال",
-          "الاسم الذي تبيّن الحال هيئته"
-        ],
-        answer: 2,
-        explanation: "صاحب الحال هو الاسم الذي توضّح الحال هيئته."
-      },
-      {
-        question: "3- في الجملة «عاد الطالب مسرورًا»، الحال هي:",
-        choices: [
-          "مسرورًا",
-          "الطالب",
-          "عاد"
-        ],
-        answer: 0,
-        explanation: "مسرورًا بيّنت هيئة الطالب عند عودته."
-      },
-      {
-        question: "4- للتعرّف على الحال نسأل عن هيئة صاحبها بـ:",
-        choices: [
-          "متى؟",
-          "كيف؟",
-          "أين؟"
-        ],
-        answer: 1,
-        explanation: "السؤال «كيف؟» يساعد على تحديد هيئة صاحب الحال."
-      },
-      {
-        question: "5- نوع الحال في «عاد المسافر سعيدًا» هو:",
-        choices: [
-          "جملة اسمية",
-          "جملة فعلية",
-          "حال مفردة"
-        ],
-        answer: 2,
-        explanation: "سعيدًا ليست جملة ولا شبه جملة؛ فهي حال مفردة."
-      },
-      {
-        question: "6- نوع الحال في «عاد المسافر وهو سعيد» هو:",
-        choices: [
-          "جملة اسمية",
-          "حال مفردة",
-          "شبه جملة"
-        ],
-        answer: 0,
-        explanation: "«هو سعيد» جملة اسمية في محل نصب حال."
-      },
-      {
-        question: "7- نوع الحال في «دخل الطالب يبتسم» هو:",
-        choices: [
-          "جملة اسمية",
-          "جملة فعلية",
-          "حال مفردة"
-        ],
-        answer: 1,
-        explanation: "«يبتسم» جملة فعلية في محل نصب حال."
-      },
-      {
-        question: "8- نوع الحال في «رأيت الطائر على الغصن» هو:",
-        choices: [
-          "حال مفردة",
-          "جملة فعلية",
-          "شبه جملة"
-        ],
-        answer: 2,
-        explanation: "«على الغصن» جار ومجرور، فهو شبه جملة في محل نصب حال."
-      },
-      {
-        question: "9- الحال المفردة تكون غالبًا:",
-        choices: [
-          "نكرة منصوبة مشتقة",
-          "معرفة مرفوعة",
-          "فعلًا ماضيًا"
-        ],
-        answer: 0,
-        explanation: "الأصل في الحال المفردة أن تكون نكرة منصوبة ومشتقة غالبًا."
-      },
-      {
-        question: "10- صاحب الحال يكون غالبًا:",
-        choices: [
-          "نكرة",
-          "معرفة",
-          "حرفًا"
-        ],
-        answer: 1,
-        explanation: "الأصل أن يكون صاحب الحال معرفة."
-      },
-      {
-        question: "11- الرابط في جملة الحال قد يكون:",
-        choices: [
-          "حرف جر فقط",
-          "أداة استفهام",
-          "ضميرًا أو واو الحال أو كليهما"
-        ],
-        answer: 2,
-        explanation: "يربط جملة الحال بصاحبها ضمير أو واو الحال أو كلاهما."
-      },
-      {
-        question: "12- في «عاد المسافر وهو سعيد»، الرابط هو:",
-        choices: [
-          "واو الحال والضمير «هو»",
-          "حرف الجر",
-          "اسم الإشارة"
-        ],
-        answer: 0,
-        explanation: "اجتمع في الجملة واو الحال والضمير العائد على صاحب الحال."
-      },
-      {
-        question: "13- الجملة التي تحتوي حالًا هي:",
-        choices: [
-          "حضر الطالب المجتهد",
-          "حضر الطالب مسرعًا",
-          "قرأت الكتاب المفيد"
-        ],
-        answer: 1,
-        explanation: "مسرعًا حال؛ لأنها تصف هيئة الطالب وقت الحضور."
-      },
-      {
-        question: "14- أي العبارات الآتية صحيحة؟",
-        choices: [
-          "الحال معرفة دائمًا",
-          "النعت لا يتبع ما قبله",
-          "الحال يبيّن الهيئة، والنعت الحقيقي يصف ما قبله ويتبعه"
-        ],
-        answer: 2,
-        explanation: "الحال يبيّن الهيئة، أما النعت الحقيقي فيصف منعوته ويتبعه."
-      },
-      {
-        question: "15- إعراب «مسرورًا» في «عاد الطالب مسرورًا» هو:",
-        choices: [
-          "حال منصوبة وعلامة نصبها الفتحة",
-          "فاعل مرفوع",
-          "مفعول به منصوب"
-        ],
-        answer: 0,
-        explanation: "مسرورًا حال منصوبة وعلامة نصبها الفتحة الظاهرة."
-      }
-    ];
+    <h2>انتهى التحدي</h2>
 
-    let currentQuestion = 0;
-    let score = 0;
-    let answered = false;
+    <div class="score" id="finalScore"></div>
 
-    const questionNumber = document.getElementById("questionNumber");
-    const liveScore = document.getElementById("liveScore");
-    const progressBar = document.getElementById("progressBar");
-    const questionText = document.getElementById("questionText");
-    const choicesBox = document.getElementById("choices");
-    const feedback = document.getElementById("feedback");
-    const nextBtn = document.getElementById("nextBtn");
+    <div class="message" id="resultMessage"></div>
 
-    function playTone(correct = true) {
-      try {
-        const AudioContext =
-          window.AudioContext || window.webkitAudioContext;
+    <button class="restart-btn" id="restartBtn" type="button">
+      🔄 إعادة التحدي
+    </button>
 
-        const ctx = new AudioContext();
-        const oscillator = ctx.createOscillator();
-        const gain = ctx.createGain();
+    <div class="result-links">
 
-        oscillator.connect(gain);
-        gain.connect(ctx.destination);
+      <a class="result-link" href="hal-file.html">
+        📘 مراجعة ملف الدرس
+      </a>
 
-        oscillator.type = "sine";
-        oscillator.frequency.value = correct ? 700 : 220;
+      <a class="result-link" href="hal-language-window.html">
+        🔬 النافذة اللغوية
+      </a>
 
-        gain.gain.setValueAtTime(0.12, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(
-          0.001,
-          ctx.currentTime + 0.22
-        );
+      <a class="result-link" href="hal.html">
+        ↩ العودة إلى درس الحال
+      </a>
 
-        oscillator.start();
-        oscillator.stop(ctx.currentTime + 0.22);
-      } catch (e) {
-        // يعمل الاختبار حتى لو لم يدعم الجهاز الصوت
-      }
+    </div>
+
+  </div>
+
+  <a class="back" href="hal.html">
+    العودة إلى درس الحال
+  </a>
+
+</main>
+
+<footer>
+  جميع الحقوق محفوظة © 2026
+</footer>
+
+<script>
+
+  const questions = [
+
+    {
+      question:
+        "1- في الجملة «عاد المسافرُ متعبًا بعد رحلة طويلة»، ما الوظيفة النحوية لكلمة «متعبًا»؟",
+
+      choices: [
+        "نعت منصوب للمسافر",
+        "حال منصوب يبيّن هيئة المسافر وقت العودة",
+        "مفعول به منصوب",
+        "تمييز منصوب يزيل إبهام الجملة"
+      ],
+
+      answer: 1,
+
+      explanation:
+        "«متعبًا» تبيّن هيئة المسافر وقت عودته؛ لذلك فهي حال منصوبة."
+    },
+
+    {
+      question:
+        "2- أي الجمل الآتية اشتملت على حال مفردة؟",
+
+      choices: [
+        "عاد الطالب وهو مسرور",
+        "دخل الطالب يبتسم",
+        "عاد الطالب مسرورًا",
+        "وقف الطالب عند الباب"
+      ],
+
+      answer: 2,
+
+      explanation:
+        "«مسرورًا» كلمة واحدة وليست جملة ولا شبه جملة، ولذلك فهي حال مفردة."
+    },
+
+    {
+      question:
+        "3- في الجملة «دخل الطالبُ وهو مبتسمٌ»، ما نوع الحال؟",
+
+      choices: [
+        "حال مفردة",
+        "جملة اسمية",
+        "جملة فعلية",
+        "شبه جملة"
+      ],
+
+      answer: 1,
+
+      explanation:
+        "«وهو مبتسم» جملة اسمية في محل نصب حال، والرابط واو الحال والضمير «هو»."
+    },
+
+    {
+      question:
+        "4- في الجملة «خرج الطفلُ يركض»، ما نوع الحال؟",
+
+      choices: [
+        "جملة فعلية",
+        "جملة اسمية",
+        "حال مفردة",
+        "نعت"
+      ],
+
+      answer: 0,
+
+      explanation:
+        "«يركض» جملة فعلية تبيّن هيئة الطفل وقت الخروج، فهي جملة فعلية في محل نصب حال."
+    },
+
+    {
+      question:
+        "5- أي الجمل الآتية تحتوي كلمة منصوبة ليست حالًا؟",
+
+      choices: [
+        "عاد المسافرُ مسرورًا",
+        "شاهدتُ الطائرَ محلّقًا",
+        "ازداد الطالبُ علمًا",
+        "دخل الطفلُ ضاحكًا"
+      ],
+
+      answer: 2,
+
+      explanation:
+        "«علمًا» تمييز؛ لأنها توضّح جهة الزيادة، بينما بقية الكلمات تبيّن هيئة أصحابها."
+    },
+
+    {
+      question:
+        "6- ما الفرق الأدق بين الحال والنعت في الجملتين: «جاء الطالبُ مسرعًا» و«جاء الطالبُ المجتهدُ»؟",
+
+      choices: [
+        "كلاهما يبيّن هيئة مؤقتة",
+        "الحال يبيّن الهيئة وقت الفعل، والنعت يصف الاسم ويتبعه",
+        "الحال معرفة والنعت نكرة دائمًا",
+        "النعت منصوب دائمًا والحال مرفوع دائمًا"
+      ],
+
+      answer: 1,
+
+      explanation:
+        "«مسرعًا» حال تبيّن الهيئة وقت المجيء، و«المجتهد» نعت يصف الطالب ويتبعه."
+    },
+
+    {
+      question:
+        "7- في الجملة «عاد المسافرُ وهو سعيدٌ»، ما الرابط الذي ربط جملة الحال بصاحبها؟",
+
+      choices: [
+        "واو العطف فقط",
+        "الضمير فقط",
+        "واو الحال والضمير «هو»",
+        "حرف الجر"
+      ],
+
+      answer: 2,
+
+      explanation:
+        "جملة الحال ارتبطت بصاحبها بواو الحال وبالضمير «هو» العائد على المسافر."
+    },
+
+    {
+      question:
+        "8- أي الجمل الآتية تدل على حال جامدة مؤولة بمشتق؟",
+
+      choices: [
+        "عاد الطالبُ فرحًا",
+        "انطلق العداءُ سهمًا",
+        "حضر الطالبُ المجتهدُ",
+        "ازداد الطالبُ علمًا"
+      ],
+
+      answer: 1,
+
+      explanation:
+        "«سهمًا» اسم جامد جاء حالًا بمعنى «مسرعًا كالسهم»، فهو مؤول بمشتق."
+    },
+
+    {
+      question:
+        "9- في قوله تعالى ﴿فَخَرَجَ مِنْهَا خَائِفًا يَتَرَقَّبُ﴾، أي العبارات أدق؟",
+
+      choices: [
+        "«خائفًا» نعت و«يترقب» خبر",
+        "«خائفًا» حال مفردة، و«يترقب» جملة فعلية في محل نصب حال",
+        "«خائفًا» مفعول به و«يترقب» حال",
+        "«خائفًا» تمييز و«يترقب» نعت"
+      ],
+
+      answer: 1,
+
+      explanation:
+        "«خائفًا» حال مفردة، و«يترقب» جملة فعلية تبيّن هيئة موسى عليه السلام أيضًا."
+    },
+
+    {
+      question:
+        "10- في الجملة «رأيتُ الطائرَ محلّقًا»، من صاحب الحال؟",
+
+      choices: [
+        "التاء في رأيت",
+        "محلّقًا",
+        "الطائر",
+        "الفعل رأى"
+      ],
+
+      answer: 2,
+
+      explanation:
+        "«محلّقًا» تبيّن هيئة «الطائر» وقت الرؤية؛ لذلك الطائر هو صاحب الحال."
     }
 
-    function renderQuestion() {
-      answered = false;
+  ];
 
-      const q = questions[currentQuestion];
+  let currentQuestion = 0;
+  let score = 0;
+  let answered = false;
 
-      questionNumber.textContent =
-        "السؤال " +
-        (currentQuestion + 1) +
-        " من " +
-        questions.length;
+  const questionNumber =
+    document.getElementById("questionNumber");
 
-      liveScore.textContent = "الدرجة: " + score;
+  const liveScore =
+    document.getElementById("liveScore");
 
-      progressBar.style.width =
-        ((currentQuestion) / questions.length) * 100 + "%";
+  const progressBar =
+    document.getElementById("progressBar");
 
-      questionText.textContent = q.question;
+  const questionText =
+    document.getElementById("questionText");
 
-      choicesBox.innerHTML = "";
-      feedback.textContent = "";
-      feedback.className = "feedback";
+  const choicesBox =
+    document.getElementById("choices");
 
-      nextBtn.style.display = "none";
+  const feedback =
+    document.getElementById("feedback");
 
-      q.choices.forEach((choice, index) => {
-        const button = document.createElement("button");
+  const nextBtn =
+    document.getElementById("nextBtn");
+
+  const questionCard =
+    document.getElementById("questionCard");
+
+
+  function playTone(correct = true) {
+
+    try {
+
+      const AudioContext =
+        window.AudioContext ||
+        window.webkitAudioContext;
+
+      const ctx =
+        new AudioContext();
+
+      const oscillator =
+        ctx.createOscillator();
+
+      const gain =
+        ctx.createGain();
+
+      oscillator.connect(gain);
+      gain.connect(ctx.destination);
+
+      oscillator.type =
+        correct ? "sine" : "triangle";
+
+      oscillator.frequency.value =
+        correct ? 720 : 220;
+
+      gain.gain.setValueAtTime(
+        0.12,
+        ctx.currentTime
+      );
+
+      gain.gain.exponentialRampToValueAtTime(
+        0.001,
+        ctx.currentTime + 0.22
+      );
+
+      oscillator.start();
+
+      oscillator.stop(
+        ctx.currentTime + 0.22
+      );
+
+    } catch (e) {}
+
+  }
+
+
+  function renderQuestion() {
+
+    answered = false;
+
+    const q =
+      questions[currentQuestion];
+
+    questionNumber.textContent =
+      "السؤال " +
+      (currentQuestion + 1) +
+      " من " +
+      questions.length;
+
+    liveScore.textContent =
+      "الصحيح: " + score;
+
+    progressBar.style.width =
+      (((currentQuestion + 1) /
+      questions.length) * 100) + "%";
+
+    questionText.textContent =
+      q.question;
+
+    choicesBox.innerHTML = "";
+
+    feedback.textContent = "";
+    feedback.className = "feedback";
+
+    nextBtn.style.display = "none";
+
+    questionCard.classList.remove("pop");
+
+    void questionCard.offsetWidth;
+
+    questionCard.classList.add("pop");
+
+    q.choices.forEach(
+      (choice, index) => {
+
+        const button =
+          document.createElement("button");
 
         button.type = "button";
-        button.className = "choice";
-        button.textContent = choice;
 
-        button.addEventListener("click", () => {
-          checkAnswer(index, button);
-        });
+        button.className =
+          "choice";
 
-        choicesBox.appendChild(button);
-      });
-    }
+        button.textContent =
+          choice;
 
-    function checkAnswer(selectedIndex, selectedButton) {
-      if (answered) return;
+        button.addEventListener(
+          "click",
+          () => {
+            checkAnswer(
+              index,
+              button
+            );
+          }
+        );
 
-      answered = true;
+        choicesBox.appendChild(
+          button
+        );
 
-      const q = questions[currentQuestion];
-      const buttons = document.querySelectorAll(".choice");
+      }
+    );
 
-      buttons.forEach(button => {
+  }
+
+
+  function checkAnswer(
+    selectedIndex,
+    selectedButton
+  ) {
+
+    if (answered) return;
+
+    answered = true;
+
+    const q =
+      questions[currentQuestion];
+
+    const buttons =
+      document.querySelectorAll(
+        ".choice"
+      );
+
+    buttons.forEach(
+      button => {
         button.disabled = true;
-      });
+      }
+    );
 
-      if (selectedIndex === q.answer) {
-        score++;
+    if (
+      selectedIndex ===
+      q.answer
+    ) {
 
-        selectedButton.classList.add("correct");
+      score++;
 
-        feedback.textContent =
-          "أحسنتِ 🌟 " + q.explanation;
+      selectedButton.classList.add(
+        "correct"
+      );
 
-        feedback.className =
-          "feedback correct-feedback";
+      feedback.textContent =
+        "أحسنتِ 🌟 " +
+        q.explanation;
 
-        playTone(true);
-      } else {
-        selectedButton.classList.add("wrong");
-        buttons[q.answer].classList.add("correct");
+      feedback.className =
+        "feedback correct-feedback";
 
-        feedback.textContent =
-          "ليست هذه الإجابة الأدق. الإجابة الصحيحة موضحة بالأخضر. " +
-          q.explanation;
+      playTone(true);
 
-        feedback.className =
-          "feedback wrong-feedback";
+      miniCelebration();
 
-        playTone(false);
+    } else {
 
-        if (navigator.vibrate) {
-          navigator.vibrate(120);
-        }
+      selectedButton.classList.add(
+        "wrong"
+      );
+
+      buttons[q.answer].classList.add(
+        "correct"
+      );
+
+      feedback.textContent =
+        "قريبة 🌷 الإجابة الصحيحة موضحة بالأخضر. " +
+        q.explanation;
+
+      feedback.className =
+        "feedback wrong-feedback";
+
+      playTone(false);
+
+      if (navigator.vibrate) {
+        navigator.vibrate(100);
       }
 
-      liveScore.textContent = "الدرجة: " + score;
-
-      nextBtn.style.display = "block";
-
-      if (currentQuestion === questions.length - 1) {
-        nextBtn.textContent = "عرض النتيجة 🎉";
-      } else {
-        nextBtn.textContent = "السؤال التالي ←";
-      }
     }
 
-    nextBtn.addEventListener("click", () => {
+    liveScore.textContent =
+      "الصحيح: " + score;
+
+    nextBtn.style.display =
+      "block";
+
+    if (
+      currentQuestion ===
+      questions.length - 1
+    ) {
+
+      nextBtn.textContent =
+        "عرض النتيجة 🎉";
+
+    } else {
+
+      nextBtn.textContent =
+        "السؤال التالي ←";
+
+    }
+
+  }
+
+
+  nextBtn.addEventListener(
+    "click",
+    () => {
+
       if (!answered) return;
 
-      if (currentQuestion < questions.length - 1) {
+      if (
+        currentQuestion <
+        questions.length - 1
+      ) {
+
         currentQuestion++;
+
         renderQuestion();
 
         window.scrollTo({
           top: 0,
           behavior: "smooth"
         });
+
       } else {
+
         showResult();
+
       }
+
+    }
+  );
+
+
+  function showResult() {
+
+    document.getElementById(
+      "quizArea"
+    ).style.display = "none";
+
+    const resultCard =
+      document.getElementById(
+        "resultCard"
+      );
+
+    resultCard.style.display =
+      "block";
+
+    const percentage =
+      Math.round(
+        (score /
+        questions.length) *
+        100
+      );
+
+    document.getElementById(
+      "finalScore"
+    ).textContent =
+      score +
+      " / " +
+      questions.length +
+      " — " +
+      percentage +
+      "%";
+
+    let message = "";
+    let icon = "";
+
+    if (percentage === 100) {
+
+      icon = "🏆";
+
+      message =
+        "مذهلة! أتقنتِ درس الحال إتقانًا كاملًا 🌟";
+
+      launchConfetti();
+
+    } else if (
+      percentage >= 80
+    ) {
+
+      icon = "🌟";
+
+      message =
+        "رائعة جدًا! فهمك للحال قوي، وبقيت لمسات بسيطة للوصول إلى الإتقان.";
+
+      launchConfetti();
+
+    } else if (
+      percentage >= 60
+    ) {
+
+      icon = "🌷";
+
+      message =
+        "أداء جيد. راجعي الأسئلة التي أخطأتِ فيها ثم أعيدي التحدي.";
+
+    } else {
+
+      icon = "💜";
+
+      message =
+        "المحاولة جزء من التعلّم. راجعي ملف الدرس والنافذة اللغوية ثم جربي مرة أخرى.";
+
+    }
+
+    document.getElementById(
+      "resultIcon"
+    ).textContent = icon;
+
+    document.getElementById(
+      "resultMessage"
+    ).textContent = message;
+
+    document.getElementById(
+      "restartBtn"
+    ).style.display = "block";
+
+    resultCard.scrollIntoView({
+      behavior: "smooth"
     });
 
-    function showResult() {
-      document.getElementById("quizArea").style.display = "none";
+  }
 
-      const resultCard =
-        document.getElementById("resultCard");
 
-      resultCard.style.display = "block";
+  document.getElementById(
+    "restartBtn"
+  ).addEventListener(
+    "click",
+    () => {
 
-      const percentage =
-        Math.round((score / questions.length) * 100);
+      currentQuestion = 0;
+      score = 0;
+      answered = false;
 
-      document.getElementById("finalScore").textContent =
-        score +
-        " من " +
-        questions.length +
-        " — " +
-        percentage +
-        "%";
+      document.getElementById(
+        "resultCard"
+      ).style.display = "none";
 
-      let message = "";
+      document.getElementById(
+        "quizArea"
+      ).style.display = "block";
 
-      if (percentage === 100) {
-        message =
-          "مبهرة! أتقنتِ درس الحال كاملًا 🌟👏";
-        launchConfetti();
-      } else if (percentage >= 80) {
-        message =
-          "رائعة جدًا! فهمك للحال قوي، وبقيت لك لمسات بسيطة للوصول إلى الإتقان 🌷";
-        launchConfetti();
-      } else if (percentage >= 60) {
-        message =
-          "أداء جيد 🌸 راجعي الأسئلة التي أخطأتِ فيها ثم أعيدي المحاولة.";
-      } else {
-        message =
-          "المحاولة بداية التعلّم 💜 عودي إلى ملف الدرس وخريطة المفاهيم ثم جربي مرة أخرى.";
-      }
+      renderQuestion();
 
-      document.getElementById("resultMessage").textContent =
-        message;
-
-      progressBar.style.width = "100%";
-
-      document.getElementById("restartBtn").style.display =
-        "block";
-
-      resultCard.scrollIntoView({
+      window.scrollTo({
+        top: 0,
         behavior: "smooth"
       });
+
     }
+  );
 
-    document
-      .getElementById("restartBtn")
-      .addEventListener("click", () => {
-        currentQuestion = 0;
-        score = 0;
 
-        document.getElementById("resultCard").style.display =
-          "none";
+  function miniCelebration() {
 
-        document.getElementById("quizArea").style.display =
-          "block";
+    const symbols =
+      ["✨", "⭐", "💜", "💛"];
 
-        renderQuestion();
+    for (
+      let i = 0;
+      i < 8;
+      i++
+    ) {
 
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth"
-        });
-      });
+      const piece =
+        document.createElement(
+          "div"
+        );
 
-    function launchConfetti() {
-      const symbols = ["✨", "⭐", "🌟", "🎉", "💜", "💛"];
+      piece.className =
+        "confetti";
 
-      for (let i = 0; i < 35; i++) {
-        const piece = document.createElement("div");
+      piece.textContent =
+        symbols[
+          Math.floor(
+            Math.random() *
+            symbols.length
+          )
+        ];
 
-        piece.className = "confetti";
-        piece.textContent =
-          symbols[Math.floor(Math.random() * symbols.length)];
+      piece.style.left =
+        Math.random() *
+        100 +
+        "vw";
 
-        piece.style.left =
-          Math.random() * 100 + "vw";
+      piece.style.fontSize =
+        15 +
+        Math.random() *
+        10 +
+        "px";
 
-        piece.style.fontSize =
-          16 + Math.random() * 18 + "px";
+      piece.style.animationDuration =
+        1.6 +
+        Math.random() *
+        1.4 +
+        "s";
 
-        piece.style.animationDuration =
-          2.5 + Math.random() * 2 + "s";
+      document.body.appendChild(
+        piece
+      );
 
-        document.body.appendChild(piece);
-
-        setTimeout(() => {
+      setTimeout(
+        () => {
           piece.remove();
-        }, 5000);
-      }
+        },
+        3200
+      );
+
     }
 
-    renderQuestion();
-  </script>
+  }
+
+
+  function launchConfetti() {
+
+    const symbols =
+      [
+        "✨",
+        "⭐",
+        "🌟",
+        "🎉",
+        "💜",
+        "💛",
+        "🎈"
+      ];
+
+    for (
+      let i = 0;
+      i < 40;
+      i++
+    ) {
+
+      const piece =
+        document.createElement(
+          "div"
+        );
+
+      piece.className =
+        "confetti";
+
+      piece.textContent =
+        symbols[
+          Math.floor(
+            Math.random() *
+            symbols.length
+          )
+        ];
+
+      piece.style.left =
+        Math.random() *
+        100 +
+        "vw";
+
+      piece.style.fontSize =
+        17 +
+        Math.random() *
+        18 +
+        "px";
+
+      piece.style.animationDuration =
+        2.5 +
+        Math.random() *
+        2 +
+        "s";
+
+      document.body.appendChild(
+        piece
+      );
+
+      setTimeout(
+        () => {
+          piece.remove();
+        },
+        5000
+      );
+
+    }
+
+  }
+
+
+  renderQuestion();
+
+</script>
 
 </body>
 
