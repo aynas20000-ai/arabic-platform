@@ -161,55 +161,80 @@
       font-weight: bold;
     }
 
-    .secret-grid {
+    .compare-grid {
       display: grid;
-      gap: 17px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
     }
 
-    .secret-item {
+    .compare-item {
       padding: 20px;
       border-radius: 22px;
       background: #edf7ff;
       border-right: 8px solid #4298c6;
     }
 
-    .secret-item:nth-child(2) {
+    .compare-item:nth-child(2) {
       background: #fff0e2;
       border-right-color: #e58f42;
     }
 
-    .secret-item:nth-child(3) {
+    .compare-item:nth-child(3) {
       background: #f2ecff;
       border-right-color: #825eb0;
     }
 
-    .secret-item:nth-child(4) {
+    .compare-item:nth-child(4) {
       background: #eaf9ef;
       border-right-color: #50ad73;
     }
 
-    .secret-item h3 {
+    .compare-item h3 {
       margin: 0 0 10px;
       color: #604481;
       font-size: 21px;
     }
 
-    .wrong {
-      margin-top: 11px;
-      padding: 12px 14px;
+    .example {
+      margin-top: 12px;
+      padding: 13px;
+      text-align: center;
       border-radius: 15px;
-      color: #9a3446;
-      background: #ffe5e9;
+      background: rgba(255,255,255,.82);
+      color: #5a4074;
       font-weight: bold;
     }
 
-    .correct {
-      margin-top: 9px;
-      padding: 12px 14px;
-      border-radius: 15px;
-      color: #176844;
-      background: #e4f8ec;
+    .lens {
+      margin: 15px 0;
+      padding: 17px;
+      border-radius: 18px;
+      background: #f7f1fb;
+      border-right: 7px solid #765891;
+    }
+
+    .lens strong {
+      color: #5d4374;
+    }
+
+    details {
+      margin: 14px 0;
+      overflow: hidden;
+      border-radius: 17px;
+      border: 1px solid #ddc98d;
+      background: #fffdf8;
+    }
+
+    summary {
+      padding: 16px 18px;
+      cursor: pointer;
+      color: #5d4374;
       font-weight: bold;
+      background: #f5ecfb;
+    }
+
+    details div {
+      padding: 16px 18px;
     }
 
     .final-note {
@@ -256,6 +281,7 @@
     }
 
     @media (max-width: 650px) {
+
       header h1 {
         font-size: 29px;
       }
@@ -275,246 +301,469 @@
       .ayah {
         font-size: 19px;
       }
+
+      .compare-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <header>
+<header>
 
-    <div class="header-icon">
-      ✨
+  <div class="header-icon">
+    ✨
+  </div>
+
+  <h1>
+    روائع اسم التفضيل
+  </h1>
+
+  <p>
+    لمحات قرآنية وفروق تركيبية
+    تساعدكِ على قراءة اسم التفضيل بذكاء
+  </p>
+
+</header>
+
+<main>
+
+  <section class="wonder-card">
+
+    <h2>
+      اسم التفضيل في القرآن الكريم
+    </h2>
+
+    <div class="intro">
+      تأملي كيف يضيف اسم التفضيل
+      قوة إلى المعنى ويبرز قيمة المفضَّل.
     </div>
 
-    <h1>
-      روائع الأسلوب اللغوي
-    </h1>
+    <div class="quran-grid">
 
-    <p>
-      لمحات قرآنية وأسرار لغوية جديدة
-      تثري فهمكِ لاسم التفضيل.
-    </p>
+      <div class="ayah-box">
 
-  </header>
+        <div class="ayah">
+          ﴿وَالْآخِرَةُ خَيْرٌ وَأَبْقَىٰ﴾
 
-  <main>
-
-    <section class="wonder-card">
-
-      <h2>
-        اسم التفضيل في القرآن الكريم
-      </h2>
-
-      <div class="intro">
-        جاء اسم التفضيل في القرآن الكريم
-        ليبرز عظمة المعنى ويقوي أثره في النفس.
-      </div>
-
-      <div class="quran-grid">
-
-        <div class="ayah-box">
-
-          <div class="ayah">
-            ﴿وَالْآخِرَةُ خَيْرٌ وَأَبْقَىٰ﴾
-
-            <span class="surah">
-              سورة الأعلى: 17
-            </span>
-          </div>
-
-          <div class="language-note">
-            جاءت كلمة
-            <span class="highlight">خير</span>
-            لتبين أن الآخرة أعظم نفعًا من الدنيا،
-            وجاءت
-            <span class="highlight">أبقى</span>
-            لتدل على دوامها.
-          </div>
-
+          <span class="surah">
+            سورة الأعلى: 17
+          </span>
         </div>
 
-        <div class="ayah-box">
-
-          <div class="ayah">
-            ﴿وَرِضْوَانٌ مِنَ اللَّهِ أَكْبَرُ﴾
-
-            <span class="surah">
-              سورة التوبة: 72
-            </span>
-          </div>
-
-          <div class="language-note">
-            بيّن اسم التفضيل
-            <span class="highlight">أكبر</span>
-            أن رضوان الله أعظم من كل نعيم.
-          </div>
-
-        </div>
-
-        <div class="ayah-box">
-
-          <div class="ayah">
-            ﴿وَاللَّهُ خَيْرُ الرَّازِقِينَ﴾
-
-            <span class="surah">
-              سورة الجمعة: 11
-            </span>
-          </div>
-
-          <div class="language-note">
-            كلمة
-            <span class="highlight">خير</span>
-            اسم تفضيل، ومعناها أن عطاء الله
-            ورزقه أفضل وأكمل من كل عطاء.
-          </div>
-
-        </div>
-
-        <div class="ayah-box">
-
-          <div class="ayah">
-            ﴿ذَٰلِكُمْ أَزْكَىٰ لَكُمْ وَأَطْهَرُ﴾
-
-            <span class="surah">
-              سورة البقرة: 232
-            </span>
-          </div>
-
-          <div class="language-note">
-            اجتمع اسما التفضيل
-            <span class="highlight">أزكى</span>
-            و
-            <span class="highlight">أطهر</span>
-            لتأكيد سمو العمل وأثره الطيب.
-          </div>
-
+        <div class="language-note">
+          اجتمع في الآية لفظا
+          <span class="highlight">خير</span>
+          و
+          <span class="highlight">أبقى</span>،
+          فزاد المعنى قوة؛
+          فالآخرة أفضل وأدوم.
         </div>
 
       </div>
 
-      <div class="final-note">
-        🌿 لمحة جميلة:
-        لا يأتي اسم التفضيل في القرآن لمجرد المقارنة،
-        بل لتقوية المعنى وترسيخه في النفس.
-      </div>
 
-    </section>
+      <div class="ayah-box">
 
+        <div class="ayah">
+          ﴿وَرِضْوَانٌ مِنَ اللَّهِ أَكْبَرُ﴾
 
-    <section class="wonder-card">
-
-      <h2>
-        أسرار لغوية وانتبهي لهذه الأخطاء
-      </h2>
-
-      <div class="secret-grid">
-
-        <div class="secret-item">
-
-          <h3>
-            💎 «خير» اسم تفضيل
-          </h3>
-
-          قد يأتي اسم التفضيل من غير وزن
-          «أفعل»، ومن أشهر ذلك:
-          <strong>خير وشر</strong>.
-
-          <div class="wrong">
-            ❌ كلمة «خير» ليست اسم تفضيل
-            لأنها ليست على وزن أفعل.
-          </div>
-
-          <div class="correct">
-            ✅ «خير» اسم تفضيل سماعي،
-            ويُعرف معناه من السياق.
-          </div>
-
+          <span class="surah">
+            سورة التوبة: 72
+          </span>
         </div>
 
-        <div class="secret-item">
-
-          <h3>
-            🎨 ليس كل «أفعل» اسم تفضيل
-          </h3>
-
-          قد تأتي كلمة على وزن «أفعل»
-          ولا تدل على المفاضلة، مثل:
-          <strong>أحمر، أعور، أعرج</strong>.
-
-          <div class="wrong">
-            ❌ كل كلمة على وزن «أفعل»
-            اسم تفضيل.
-          </div>
-
-          <div class="correct">
-            ✅ لا بد أن تدل الكلمة على زيادة
-            أحد الشيئين في صفة مشتركة.
-          </div>
-
-        </div>
-
-        <div class="secret-item">
-
-          <h3>
-            🔍 قد يُحذف المفضَّل عليه
-          </h3>
-
-          أحيانًا يُفهم المفضَّل عليه من السياق
-          ولا يُذكر صراحة، مثل:
-
-          <div class="correct">
-            العلم أنفعُ.
-          </div>
-
-          فالمعنى: العلم أنفع من غيره،
-          وقد فهمنا المقارنة من السياق.
-        </div>
-
-        <div class="secret-item">
-
-          <h3>
-            🌟 التفضيل ليس انتقاصًا
-          </h3>
-
-          قد يأتي اسم التفضيل لتقوية المعنى
-          ورفع شأن المفضَّل، وليس لمجرد الانتقاص
-          من الطرف الآخر.
-
-          <div class="correct">
-            ✅ افهمي معنى الجملة كاملًا،
-            ولا تكتفي بالنظر إلى شكل الكلمة.
-          </div>
-
+        <div class="language-note">
+          جاء
+          <span class="highlight">أكبر</span>
+          ليبرز عظم رضوان الله
+          بالنسبة إلى ما ذُكر من النعيم.
         </div>
 
       </div>
 
-      <div class="final-note">
-        🏆 قاعدة آفاق:
-        السياق هو المفتاح؛ فمنه نعرف هل الكلمة
-        اسم تفضيل حقًا، وما المعنى الذي أضافته.
+
+      <div class="ayah-box">
+
+        <div class="ayah">
+          ﴿وَاللَّهُ خَيْرُ الرَّازِقِينَ﴾
+
+          <span class="surah">
+            سورة الجمعة: 11
+          </span>
+        </div>
+
+        <div class="language-note">
+          جاء اسم التفضيل
+          <span class="highlight">خير</span>
+          مضافًا إلى
+          <strong>الرازقين</strong>.
+        </div>
+
       </div>
 
-    </section>
 
+      <div class="ayah-box">
 
-    <div class="back-box">
+        <div class="ayah">
+          ﴿ذَٰلِكُمْ أَزْكَىٰ لَكُمْ وَأَطْهَرُ﴾
 
-      <a
-        class="back-button"
-        href="detail-style.html"
-      >
-        العودة إلى درس اسم التفضيل
-      </a>
+          <span class="surah">
+            سورة البقرة: 232
+          </span>
+        </div>
+
+        <div class="language-note">
+          جاء اسما التفضيل
+          <span class="highlight">أزكى</span>
+          و
+          <span class="highlight">أطهر</span>
+          ليؤكدا زيادة المعنى في الزكاء والطهارة.
+        </div>
+
+      </div>
 
     </div>
 
-  </main>
+  </section>
 
-  <footer>
-    منصة آفاق اللغة — إعداد المعلمة إيناس محمد يحيى مدخلي
-  </footer>
+
+  <section class="wonder-card">
+
+    <h2>
+      ثلاث صور لاسم التفضيل
+    </h2>
+
+    <div class="intro">
+      قد يبقى معنى التفضيل واحدًا،
+      لكن صورة التركيب تتغير.
+    </div>
+
+    <div class="compare-grid">
+
+      <div class="compare-item">
+
+        <h3>
+          ١- مع «مِن»
+        </h3>
+
+        يظهر الطرفان بوضوح.
+
+        <div class="example">
+          العلمُ أنفعُ من المال.
+        </div>
+
+        المفضَّل:
+        العلم.
+
+        <br>
+
+        المفضَّل عليه:
+        المال.
+
+      </div>
+
+
+      <div class="compare-item">
+
+        <h3>
+          ٢- مضافًا
+        </h3>
+
+        يأتي اسم التفضيل
+        مضافًا إلى اسم بعده.
+
+        <div class="example">
+          خالدٌ أفضلُ الطلابِ.
+        </div>
+
+        «أفضل» اسم تفضيل،
+        و«الطلاب» مضاف إليه.
+
+      </div>
+
+
+      <div class="compare-item">
+
+        <h3>
+          ٣- مقرونًا بـ«أل»
+        </h3>
+
+        قد يأتي اسم التفضيل
+        معرفًا بـ«أل».
+
+        <div class="example">
+          خالدٌ هو الطالبُ الأفضلُ.
+        </div>
+
+        هنا جاء «الأفضل»
+        معرفًا بـ«أل».
+      </div>
+
+
+      <div class="compare-item">
+
+        <h3>
+          🔍 انتبهي
+        </h3>
+
+        لا تبحثي دائمًا عن كلمة «مِن».
+
+        <div class="example">
+          يوسفُ أفضلُ الطلابِ.
+        </div>
+
+        يوجد تفضيل،
+        مع أن «مِن» غير موجودة.
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="wonder-card">
+
+    <h2>
+      ماذا تغيّر في الجملة؟
+    </h2>
+
+    <div class="lens">
+
+      <strong>
+        خالدٌ أكبرُ من سعيدٍ.
+      </strong>
+
+      <br><br>
+
+      المقارنة هنا صريحة؛
+      لأن المفضَّل عليه جاء بعد «مِن».
+    </div>
+
+
+    <div class="lens">
+
+      <strong>
+        خالدٌ أكبرُ الطلابِ.
+      </strong>
+
+      <br><br>
+
+      اسم التفضيل مضاف إلى «الطلاب»،
+      والمعنى أن خالدًا يفوقهم في الصفة المقصودة.
+    </div>
+
+
+    <div class="lens">
+
+      <strong>
+        خالدٌ هو الأكبرُ.
+      </strong>
+
+      <br><br>
+
+      جاء اسم التفضيل معرفًا بـ«أل»،
+      ويُفهم من السياق المجموعة
+      التي تجري بينها المفاضلة.
+    </div>
+
+    <div class="final-note">
+      ⭐ لا تحصري اسم التفضيل
+      في صورة واحدة؛
+      فقد يأتي مع «مِن»،
+      أو مضافًا،
+      أو معرفًا بـ«أل».
+    </div>
+
+  </section>
+
+
+  <section class="wonder-card">
+
+    <h2>
+      عدسة السياق
+    </h2>
+
+    <div class="intro">
+      الكلمة نفسها قد تبدو واضحة،
+      لكن السياق هو الذي يكشف
+      كيفية استعمالها.
+    </div>
+
+    <details>
+
+      <summary>
+        «محمدٌ أفضلُ من خالدٍ» — أين المفضَّل عليه؟
+      </summary>
+
+      <div>
+        المفضَّل عليه هو
+        <strong>خالد</strong>؛
+        لأنه جاء بعد «مِن».
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        «محمدٌ أفضلُ الطلابِ» — هل نحتاج إلى «مِن»؟
+      </summary>
+
+      <div>
+        لا.
+        جاء اسم التفضيل هنا مضافًا،
+        و«الطلاب» مضاف إليه.
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        «محمدٌ هو الأفضلُ» — أين الطرف الآخر؟
+      </summary>
+
+      <div>
+        لا يُذكر صراحة في الجملة،
+        وإنما يُفهم من السياق
+        أو من المجموعة التي يدور عنها الحديث.
+      </div>
+
+    </details>
+
+  </section>
+
+
+  <section class="wonder-card">
+
+    <h2>
+      فخاخ ذكية
+    </h2>
+
+    <details>
+
+      <summary>
+        هل يجب أن توجد «مِن» في كل أسلوب تفضيل؟
+      </summary>
+
+      <div>
+        لا.
+        قد يأتي اسم التفضيل مضافًا،
+        أو معرفًا بـ«أل».
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        في «خالدٌ أفضلُ الطلابِ» ما إعراب «الطلاب» من حيث التركيب؟
+      </summary>
+
+      <div>
+        «الطلاب» مضاف إليه مجرور؛
+        لأن اسم التفضيل «أفضل» جاء مضافًا إليه.
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        في «خالدٌ أفضلُ من سعيدٍ» ما وظيفة «من»؟
+      </summary>
+
+      <div>
+        تدخل على المفضَّل عليه،
+        وهو هنا «سعيد».
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        هل «الأفضل» في «هذا هو الحل الأفضل» يدل على تفضيل؟
+      </summary>
+
+      <div>
+        نعم، إذا دل السياق على المفاضلة
+        بين هذا الحل وغيره من الحلول.
+        فالسياق هو الذي يكشف المعنى المقصود.
+      </div>
+
+    </details>
+
+  </section>
+
+
+  <section class="wonder-card">
+
+    <h2>
+      قارئة ذكية
+    </h2>
+
+    <div class="final-note">
+
+      عندما تجدين اسم تفضيل،
+      لا تسألي فقط:
+      «ما الكلمة؟»
+
+      <br><br>
+
+      بل اسألي:
+
+      <br>
+
+      هل جاء بعدها «مِن»؟
+
+      <br>
+
+      أم جاء اسم التفضيل مضافًا؟
+
+      <br>
+
+      أم عُرِّف بـ«أل»؟
+
+      <br>
+
+      وما الطرف أو المجموعة
+      التي تدور حولها المفاضلة؟
+
+      <br><br>
+
+      بهذه الطريقة تنتقلين
+      من حفظ القاعدة
+      إلى فهم التركيب.
+    </div>
+
+  </section>
+
+
+  <div class="back-box">
+
+    <a
+      class="back-button"
+      href="detail-style.html"
+    >
+      العودة إلى درس اسم التفضيل
+    </a>
+
+  </div>
+
+</main>
+
+<footer>
+  منصة آفاق اللغة | لغتي الخالدة | الصف الثالث المتوسط
+</footer>
 
 </body>
 
