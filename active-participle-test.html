@@ -3,258 +3,354 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <title>الاختبار التجريبي - اسم الفاعل</title>
+  <title>اختبار اسم الفاعل | منصة آفاق</title>
 
   <style>
-    * {
-      box-sizing: border-box;
+    :root{
+      --p:#5b4677;
+      --p2:#776094;
+      --pd:#453457;
+      --g:#b69750;
+      --g2:#d8c28a;
+      --lav:#eee5f5;
+      --paper:#fffdf9;
+      --text:#403448;
+    }
+
+    *{
+      box-sizing:border-box;
     }
 
     html,
-    body {
-      width: 100%;
-      max-width: 100%;
-      margin: 0;
-      overflow-x: hidden;
+    body{
+      height:100%;
+      margin:0;
     }
 
-    body {
-      min-height: 100vh;
-      font-family: Tahoma, Arial, sans-serif;
-      color: #4b3a57;
-      line-height: 1.8;
-      background: linear-gradient(180deg, #fffaf2, #f8f0fb);
+    body{
+      font-family:Tahoma,Arial,sans-serif;
+      color:var(--text);
+      background:linear-gradient(180deg,#f5f0fa,#fbf9fd,#f1ebf7);
+      overflow:hidden;
     }
 
-    header {
-      padding: 38px 20px;
-      color: white;
-      text-align: center;
-      background: linear-gradient(135deg, #776094, #5b4677);
-      border-bottom: 4px solid #c9a85c;
+    .app{
+      height:100dvh;
+      display:grid;
+      grid-template-rows:auto 1fr auto;
     }
 
-    header h1 {
-      margin: 0 0 10px;
-      color: #fffdf8;
-      font-size: 32px;
-      line-height: 1.6;
+    header{
+      text-align:center;
+      color:#fff;
+      padding:10px 12px 8px;
+      background:linear-gradient(145deg,var(--p2),var(--p),var(--pd));
+      border-bottom:4px solid var(--g);
     }
 
-    header p {
-      margin: 0;
-      color: #f7effb;
-      font-size: 17px;
+    .tag{
+      display:inline-block;
+      padding:3px 10px;
+      border-radius:999px;
+      border:1px solid var(--g2);
+      color:#fff2c6;
+      background:rgba(182,151,80,.13);
+      font-size:11px;
+      font-weight:bold;
     }
 
-    .container {
-      width: 90%;
-      max-width: 850px;
-      margin: 30px auto;
+    header h1{
+      margin:4px 0 0;
+      font-size:clamp(19px,4.8vw,28px);
     }
 
-    .intro {
-      margin-bottom: 25px;
-      padding: 18px;
-      color: #5d4374;
-      font-size: 18px;
-      text-align: center;
-      background: #fffdf8;
-      border: 2px solid #c9a85c;
-      border-radius: 18px;
-      box-shadow: 0 5px 14px rgba(91, 63, 111, 0.09);
+    header p{
+      margin:0;
+      color:#f2ebf6;
+      font-size:11px;
     }
 
-    .question {
-      margin: 18px 0;
-      padding: 20px;
-      color: #4b3a57;
-      background: #fffdf8;
-      border: 2px solid #c9a85c;
-      border-radius: 18px;
-      box-shadow: 0 5px 14px rgba(91, 63, 111, 0.09);
+    main{
+      min-height:0;
+      width:min(760px,94%);
+      margin:0 auto;
+      padding:7px 0;
+      display:flex;
+      flex-direction:column;
     }
 
-    .question h3 {
-      margin-top: 0;
-      color: #5d4374;
-      font-size: 21px;
-      line-height: 1.7;
+    .top{
+      display:flex;
+      justify-content:space-between;
+      gap:8px;
+      margin-bottom:5px;
+      color:var(--p);
+      font-size:13px;
+      font-weight:bold;
     }
 
-    label {
-      display: block;
-      margin: 10px 0;
-      padding: 13px;
-      color: #4b3a57;
-      cursor: pointer;
-      background: linear-gradient(135deg, #f5ecfb, #fffaf2);
-      border: 2px solid transparent;
-      border-radius: 12px;
-      transition:
-        transform 0.2s ease,
-        background 0.2s ease;
+    .progress{
+      height:8px;
+      margin-bottom:7px;
+      overflow:hidden;
+      background:#e9e0ef;
+      border-radius:999px;
     }
 
-    label:hover,
-    label:active {
-      background: #f1e5f8;
-      transform: translateY(-2px);
+    .progress>div{
+      width:0;
+      height:100%;
+      background:linear-gradient(90deg,var(--g),#dfca8f);
+      transition:.3s;
     }
 
-    input[type="radio"] {
-      margin-left: 8px;
-      accent-color: #6f5288;
-      transform: scale(1.2);
+    .card,
+    .result{
+      flex:1;
+      min-height:0;
+      padding:12px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      background:var(--paper);
+      border:1px solid var(--g2);
+      border-radius:22px;
+      box-shadow:0 14px 30px rgba(73,54,92,.12);
     }
 
-    .buttons {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin-top: 30px;
+    .qnum{
+      margin-bottom:2px;
+      color:var(--g);
+      font-size:12px;
+      font-weight:bold;
     }
 
-    button {
-      flex: 1;
-      max-width: 280px;
-      padding: 14px 20px;
-      color: white;
-      font-family: Tahoma, Arial, sans-serif;
-      font-size: 17px;
-      font-weight: bold;
-      cursor: pointer;
-      border: 2px solid #c9a85c;
-      border-radius: 14px;
+    h2{
+      margin:2px 0 8px;
+      color:var(--pd);
+      font-size:clamp(16px,4.3vw,21px);
+      line-height:1.5;
     }
 
-    .check {
-      background: #6f5288;
+    .options{
+      display:grid;
+      gap:6px;
     }
 
-    .reset {
-      background: #8b6b25;
+    .opt{
+      width:100%;
+      padding:8px 10px;
+      color:var(--text);
+      font:inherit;
+      font-size:clamp(13px,3.4vw,16px);
+      line-height:1.35;
+      text-align:right;
+      cursor:pointer;
+      background:#fff;
+      border:2px solid #e4dbe9;
+      border-radius:13px;
     }
 
-    .check:hover,
-    .check:active {
-      background: #5b4677;
+    .opt.correct{
+      color:#25663c;
+      background:#eaf6ee;
+      border-color:#4d9b64;
     }
 
-    .reset:hover,
-    .reset:active {
-      background: #73571e;
+    .opt.wrong{
+      color:#9c3547;
+      background:#fff0f2;
+      border-color:#c95c70;
     }
 
-    #result {
-      display: none;
-      margin-top: 25px;
-      padding: 20px;
-      font-size: 21px;
-      font-weight: bold;
-      line-height: 1.8;
-      text-align: center;
-      border-radius: 18px;
+    .opt:disabled{
+      cursor:default;
     }
 
-    .correct {
-      color: #25663c;
-      background: #e5f6e9;
-      border: 2px solid #4d9b64;
+    .feedback{
+      display:none;
+      margin-top:7px;
+      padding:8px 10px;
+      font-size:clamp(12px,3.2vw,14px);
+      line-height:1.5;
+      border-radius:13px;
     }
 
-    .medium {
-      color: #76510a;
-      background: #fff7df;
-      border: 2px solid #c9a85c;
+    .feedback.show{
+      display:block;
     }
 
-    .weak {
-      color: #8e3d4c;
-      background: #fff1f3;
-      border: 2px solid #c95c70;
+    .feedback.good{
+      color:#25663c;
+      background:#eaf6ee;
+      border:1px solid #4d9b64;
     }
 
-    .answer-correct {
-      color: #25663c !important;
-      background: #e5f6e9 !important;
-      border: 2px solid #4d9b64 !important;
+    .feedback.bad{
+      color:#9c3547;
+      background:#fff0f2;
+      border:1px solid #c95c70;
     }
 
-    .answer-wrong {
-      color: #8e3d4c !important;
-      background: #fff1f3 !important;
-      border: 2px solid #c95c70 !important;
+    .next{
+      display:none;
+      width:100%;
+      margin-top:7px;
+      padding:9px;
+      color:#fff;
+      font:inherit;
+      font-size:14px;
+      font-weight:bold;
+      cursor:pointer;
+      background:linear-gradient(145deg,var(--p2),var(--p));
+      border:0;
+      border-radius:13px;
     }
 
-    .back {
-      display: block;
-      width: fit-content;
-      margin: 35px auto 10px;
-      padding: 12px 24px;
-      color: white;
-      font-weight: bold;
-      text-align: center;
-      text-decoration: none;
-      background: #6f5288;
-      border: 2px solid #c9a85c;
-      border-radius: 22px;
+    .result{
+      display:none;
+      text-align:center;
     }
 
-    .back:hover,
-    .back:active {
-      background: #5b4677;
+    .result.show{
+      display:flex;
     }
 
-    footer {
-      margin-top: 30px;
-      padding: 20px;
-      color: #fffdf8;
-      text-align: center;
-      background: #49385c;
-      border-top: 3px solid #c9a85c;
+    .score{
+      margin:10px 0;
+      color:var(--g);
+      font-size:40px;
+      font-weight:bold;
     }
 
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 27px;
+    .restart,
+    .lesson{
+      display:block;
+      width:100%;
+      margin-top:8px;
+      padding:10px;
+      font-weight:bold;
+      text-decoration:none;
+      border-radius:13px;
+    }
+
+    .restart{
+      color:#fff;
+      font:inherit;
+      font-weight:bold;
+      cursor:pointer;
+      background:linear-gradient(145deg,var(--p2),var(--p));
+      border:0;
+    }
+
+    .lesson{
+      color:var(--pd);
+      background:var(--lav);
+      border:1px solid #d6c7df;
+    }
+
+    footer{
+      padding:5px;
+      color:#73697a;
+      font-size:9px;
+      text-align:center;
+    }
+
+    .burst{
+      position:fixed;
+      inset:0;
+      z-index:20;
+      overflow:hidden;
+      pointer-events:none;
+    }
+
+    .confetti{
+      position:absolute;
+      top:-10px;
+      width:8px;
+      height:8px;
+      border-radius:2px;
+      animation:fall 900ms ease-out forwards;
+    }
+
+    @keyframes fall{
+      0%{
+        transform:translateY(-20px) rotate(0);
+        opacity:1;
       }
 
-      .container {
-        width: 94%;
+      100%{
+        transform:translateY(105vh) rotate(540deg);
+        opacity:0;
+      }
+    }
+
+    .pop{
+      animation:pop .25s ease;
+    }
+
+    @keyframes pop{
+      50%{
+        transform:scale(1.018);
+      }
+    }
+
+    @media(max-height:650px){
+      header{
+        padding:5px 10px 4px;
       }
 
-      .intro,
-      .question {
-        padding: 17px 14px;
+      header h1{
+        font-size:17px;
       }
 
-      .question h3 {
-        font-size: 18px;
+      header p{
+        font-size:9px;
       }
 
-      label {
-        padding: 12px 10px;
-        font-size: 16px;
+      main{
+        padding:3px 0;
       }
 
-      .buttons {
-        flex-direction: column;
+      .top{
+        margin-bottom:3px;
+        font-size:11px;
       }
 
-      button {
-        width: 100%;
-        max-width: none;
+      .progress{
+        height:6px;
+        margin-bottom:4px;
       }
 
-      #result {
-        font-size: 18px;
+      .card{
+        padding:7px;
+      }
+
+      h2{
+        margin-bottom:5px;
+        font-size:15px;
+      }
+
+      .options{
+        gap:4px;
+      }
+
+      .opt{
+        padding:5px 7px;
+        font-size:12px;
+      }
+
+      .feedback{
+        margin-top:4px;
+        padding:5px 7px;
+        font-size:11px;
+      }
+
+      .next{
+        margin-top:4px;
+        padding:6px;
       }
     }
   </style>
@@ -262,381 +358,504 @@
 
 <body>
 
+<div class="app">
+
   <header>
-    <h1>📝 الاختبار التجريبي لاسم الفاعل</h1>
-    <p>اختاري الإجابة الصحيحة، ثم شاهدي نتيجتك</p>
+    <span class="tag">منصة آفاق</span>
+    <h1>تحدي اسم الفاعل</h1>
+    <p>١٠ أسئلة • سؤال واحد في كل شاشة • تعقيب فوري ✨</p>
   </header>
 
-  <div class="container">
+  <main>
 
-    <div class="intro">
-      اختاري الإجابة الصحيحة، ثم اضغطي زر
-      <strong>إظهار النتيجة</strong>.
+    <div class="top">
+      <span id="counter">السؤال ١ من ١٠</span>
+      <span id="correctCount">الصحيح: ٠</span>
     </div>
 
-    <form id="quiz">
-
-      <div class="question" data-answer="b">
-        <h3>1. اسم الفاعل اسم مشتق يدل على:</h3>
-
-        <label>
-          <input type="radio" name="q1" value="a">
-          من وقع عليه الفعل
-        </label>
-
-        <label>
-          <input type="radio" name="q1" value="b">
-          من قام بالفعل أو اتصف به
-        </label>
-
-        <label>
-          <input type="radio" name="q1" value="c">
-          مكان وقوع الفعل
-        </label>
-      </div>
-
-      <div class="question" data-answer="a">
-        <h3>2. اسم الفاعل من الفعل «كتب» هو:</h3>
-
-        <label>
-          <input type="radio" name="q2" value="a">
-          كاتب
-        </label>
-
-        <label>
-          <input type="radio" name="q2" value="b">
-          مكتوب
-        </label>
-
-        <label>
-          <input type="radio" name="q2" value="c">
-          كتاب
-        </label>
-      </div>
-
-      <div class="question" data-answer="c">
-        <h3>3. يُصاغ اسم الفاعل من الفعل الثلاثي على وزن:</h3>
-
-        <label>
-          <input type="radio" name="q3" value="a">
-          مفعول
-        </label>
-
-        <label>
-          <input type="radio" name="q3" value="b">
-          فعّال
-        </label>
-
-        <label>
-          <input type="radio" name="q3" value="c">
-          فاعل
-        </label>
-      </div>
-
-      <div class="question" data-answer="b">
-        <h3>4. اسم الفاعل من الفعل «حفظ» هو:</h3>
-
-        <label>
-          <input type="radio" name="q4" value="a">
-          محفوظ
-        </label>
-
-        <label>
-          <input type="radio" name="q4" value="b">
-          حافظ
-        </label>
-
-        <label>
-          <input type="radio" name="q4" value="c">
-          حفيظ
-        </label>
-      </div>
-
-      <div class="question" data-answer="a">
-        <h3>5. اسم الفاعل من الفعل «أكرم» هو:</h3>
-
-        <label>
-          <input type="radio" name="q5" value="a">
-          مُكرِم
-        </label>
-
-        <label>
-          <input type="radio" name="q5" value="b">
-          مُكرَم
-        </label>
-
-        <label>
-          <input type="radio" name="q5" value="c">
-          كريم
-        </label>
-      </div>
-
-      <div class="question" data-answer="c">
-        <h3>6. اسم الفاعل من الفعل «استخرج» هو:</h3>
-
-        <label>
-          <input type="radio" name="q6" value="a">
-          مُستخرَج
-        </label>
-
-        <label>
-          <input type="radio" name="q6" value="b">
-          استخراج
-        </label>
-
-        <label>
-          <input type="radio" name="q6" value="c">
-          مُستخرِج
-        </label>
-      </div>
-
-      <div class="question" data-answer="b">
-        <h3>7. عند صياغة اسم الفاعل من غير الثلاثي:</h3>
-
-        <label>
-          <input type="radio" name="q7" value="a">
-          نفتح ما قبل الآخر
-        </label>
-
-        <label>
-          <input type="radio" name="q7" value="b">
-          نكسر ما قبل الآخر
-        </label>
-
-        <label>
-          <input type="radio" name="q7" value="c">
-          نحذف الحرف الأخير
-        </label>
-      </div>
-
-      <div class="question" data-answer="a">
-        <h3>
-          8. الكلمة التي تعد اسم فاعل في الجملة
-          «الطالب مجتهد في دروسه» هي:
-        </h3>
-
-        <label>
-          <input type="radio" name="q8" value="a">
-          مجتهد
-        </label>
-
-        <label>
-          <input type="radio" name="q8" value="b">
-          الطالب
-        </label>
-
-        <label>
-          <input type="radio" name="q8" value="c">
-          دروسه
-        </label>
-      </div>
-
-      <div class="question" data-answer="c">
-        <h3>9. اسم الفاعل من الفعل «قال» هو:</h3>
-
-        <label>
-          <input type="radio" name="q9" value="a">
-          مقول
-        </label>
-
-        <label>
-          <input type="radio" name="q9" value="b">
-          قول
-        </label>
-
-        <label>
-          <input type="radio" name="q9" value="c">
-          قائل
-        </label>
-      </div>
-
-      <div class="question" data-answer="b">
-        <h3>
-          10. في الجملة «المعلم شارحٌ الدرسَ»، كلمة «الدرسَ»:
-        </h3>
-
-        <label>
-          <input type="radio" name="q10" value="a">
-          فاعل
-        </label>
-
-        <label>
-          <input type="radio" name="q10" value="b">
-          مفعول به لاسم الفاعل
-        </label>
-
-        <label>
-          <input type="radio" name="q10" value="c">
-          مبتدأ
-        </label>
-      </div>
-
-    </form>
-
-    <div class="buttons">
-
-      <button
-        class="check"
-        type="button"
-        onclick="checkAnswers()"
-      >
-        إظهار النتيجة
-      </button>
-
-      <button
-        class="reset"
-        type="button"
-        onclick="resetQuiz()"
-      >
-        إعادة الاختبار
-      </button>
-
+    <div class="progress">
+      <div id="bar"></div>
     </div>
 
-    <div id="result"></div>
+    <section class="card" id="card">
 
-    <a
-      class="back"
-      href="active-participle.html"
-    >
-      العودة إلى درس اسم الفاعل
-    </a>
+      <div class="qnum" id="qnum"></div>
 
-  </div>
+      <h2 id="question"></h2>
+
+      <div class="options" id="options"></div>
+
+      <div class="feedback" id="feedback"></div>
+
+      <button class="next" id="next">
+        السؤال التالي
+      </button>
+
+    </section>
+
+    <section class="result" id="result">
+
+      <h2>انتهى التحدي ✨</h2>
+
+      <div class="score" id="score"></div>
+
+      <p id="message"></p>
+
+      <button class="restart" onclick="restartQuiz()">
+        أعيدي التحدي
+      </button>
+
+      <a class="lesson" href="active-participle-file.html">
+        راجعي ملف الدرس
+      </a>
+
+      <a class="lesson" href="active-participle.html">
+        العودة إلى درس اسم الفاعل
+      </a>
+
+    </section>
+
+  </main>
 
   <footer>
-    جميع الحقوق محفوظة © 2026
+    منصة آفاق | لغتي الخالدة | الصف الثالث المتوسط
   </footer>
 
-  <script>
-    function checkAnswers() {
-      const questions =
-        document.querySelectorAll(".question");
+</div>
 
-      let score = 0;
-      let answered = 0;
+<div class="burst" id="burst"></div>
 
-      questions.forEach(function (question) {
-        const correctAnswer =
-          question.dataset.answer;
+<script>
 
-        const selected =
-          question.querySelector(
-            'input[type="radio"]:checked'
-          );
+const questions = [
 
-        const labels =
-          question.querySelectorAll("label");
+{
+  q:"اسم الفاعل اسم مشتق يدل على:",
+  o:[
+    "من وقع عليه الفعل",
+    "من قام بالفعل أو اتصف به",
+    "مكان وقوع الفعل",
+    "زمن وقوع الفعل"
+  ],
+  a:1,
+  ok:"أحسنتِ 🌟 اسم الفاعل يدل على من قام بالفعل أو اتصف به.",
+  bad:"تذكري: الكاتب هو من كتب، والحافظ هو من حفظ."
+},
 
-        labels.forEach(function (label) {
-          label.classList.remove(
-            "answer-correct",
-            "answer-wrong"
-          );
+{
+  q:"اسم الفاعل من الفعل «كتب» هو:",
+  o:[
+    "كاتب",
+    "مكتوب",
+    "كتاب",
+    "كتابة"
+  ],
+  a:0,
+  ok:"رائعة ✨ «كاتب» على وزن فاعل.",
+  bad:"الفعل الثلاثي «كتب» نصوغ اسم الفاعل منه على وزن فاعل: كاتب."
+},
 
-          const input =
-            label.querySelector("input");
+{
+  q:"يُصاغ اسم الفاعل من الفعل الثلاثي غالبًا على وزن:",
+  o:[
+    "مفعول",
+    "فعّال",
+    "فاعل",
+    "مِفعال"
+  ],
+  a:2,
+  ok:"صحيح 👏 وزن اسم الفاعل من الثلاثي هو «فاعل».",
+  bad:"مثل: كتب ← كاتب، وحفظ ← حافظ."
+},
 
-          if (input.value === correctAnswer) {
-            label.classList.add(
-              "answer-correct"
-            );
-          }
-        });
+{
+  q:"اسم الفاعل من الفعل «حفظ» هو:",
+  o:[
+    "محفوظ",
+    "حافظ",
+    "حفيظ",
+    "حفظ"
+  ],
+  a:1,
+  ok:"ممتازة 🌷 حفظ ← حافظ.",
+  bad:"نضع الفعل الثلاثي «حفظ» على وزن فاعل: حافظ."
+},
 
-        if (selected) {
-          answered++;
+{
+  q:"اسم الفاعل من الفعل «أكرم» هو:",
+  o:[
+    "مُكرِم",
+    "مُكرَم",
+    "كريم",
+    "إكرام"
+  ],
+  a:0,
+  ok:"إجابة دقيقة 💜 «مُكرِم» اسم فاعل، أما «مُكرَم» فاسم مفعول.",
+  bad:"من المضارع «يُكرِم» نستبدل حرف المضارعة ميمًا مضمومة ونكسر ما قبل الآخر: مُكرِم."
+},
 
-          if (selected.value === correctAnswer) {
-            score++;
-          } else {
-            selected.parentElement.classList.add(
-              "answer-wrong"
-            );
-          }
-        }
-      });
+{
+  q:"اسم الفاعل من الفعل «استخرج» هو:",
+  o:[
+    "مُستخرَج",
+    "استخراج",
+    "مُستخرِج",
+    "خارِج"
+  ],
+  a:2,
+  ok:"أحسنتِ 🎯 استخرج ← يستخرِج ← مُستخرِج.",
+  bad:"في غير الثلاثي نكسر ما قبل الآخر: مُستخرِج، وليس مُستخرَج."
+},
 
-      const result =
-        document.getElementById("result");
+{
+  q:"عند صياغة اسم الفاعل من غير الثلاثي فإننا:",
+  o:[
+    "نفتح ما قبل الآخر",
+    "نأتي بالمضارع ونبدل حرف المضارعة ميمًا مضمومة ونكسر ما قبل الآخر",
+    "نحذف الحرف الأخير",
+    "نضع الفعل على وزن فاعل دائمًا"
+  ],
+  a:1,
+  ok:"ممتازة 🧠 هذه هي قاعدة صياغة اسم الفاعل من غير الثلاثي.",
+  bad:"ابدئي بالمضارع، ثم ميم مضمومة بدل حرف المضارعة، مع كسر ما قبل الآخر."
+},
 
-      result.style.display = "block";
-      result.className = "";
+{
+  q:"ما اسم الفاعل في الجملة «الطالبُ مجتهدٌ في دروسه»؟",
+  o:[
+    "مجتهد",
+    "الطالب",
+    "دروسه",
+    "في"
+  ],
+  a:0,
+  ok:"رائعة 🌟 «مجتهد» اسم فاعل مشتق من الفعل «اجتهد».",
+  bad:"ابحثي عن الكلمة التي تدل على من قام بالفعل أو اتصف به: مجتهد."
+},
 
-      if (answered < questions.length) {
-        result.textContent =
-          "أجبتِ عن " +
-          answered +
-          " أسئلة من أصل " +
-          questions.length +
-          ". نتيجتك: " +
-          score +
-          " من " +
-          questions.length;
+{
+  q:"اسم الفاعل من الفعل «قال» هو:",
+  o:[
+    "مقول",
+    "قول",
+    "قائل",
+    "مقال"
+  ],
+  a:2,
+  ok:"أحسنتِ 👏 قال ← قائل.",
+  bad:"اسم الفاعل من «قال» هو «قائل»."
+},
 
-        result.classList.add("medium");
-        return;
-      }
+{
+  q:"في الجملة «المعلمُ شارحٌ الدرسَ الآن»، ما إعراب «الدرسَ»؟",
+  o:[
+    "فاعل مرفوع",
+    "مفعول به منصوب لاسم الفاعل",
+    "مبتدأ مرفوع",
+    "مضاف إليه مجرور"
+  ],
+  a:1,
+  ok:"ممتازة جدًا 🏆 «شارح» اسم فاعل عامل، و«الدرسَ» مفعول به منصوب له.",
+  bad:"اسم الفاعل «شارح» اعتمد على مبتدأ ودل على الحال، فعمل عمل فعله ونصب «الدرسَ» مفعولًا به."
+}
 
-      if (score >= 8) {
-        result.textContent =
-          "ممتازة جدًا 🌟 نتيجتك: " +
-          score +
-          " من " +
-          questions.length;
+];
 
-        result.classList.add("correct");
-      } else if (score >= 5) {
-        result.textContent =
-          "نتيجة جيدة 👍 نتيجتك: " +
-          score +
-          " من " +
-          questions.length +
-          ". راجعي الأخطاء ثم أعيدي المحاولة.";
+let index=0;
+let score=0;
+let answered=false;
 
-        result.classList.add("medium");
-      } else {
-        result.textContent =
-          "تحتاجين إلى مراجعة الدرس 📘 نتيجتك: " +
-          score +
-          " من " +
-          questions.length;
+const arabicDigits=n =>
+  String(n).replace(/\d/g,d=>'٠١٢٣٤٥٦٧٨٩'[d]);
 
-        result.classList.add("weak");
-      }
+function tone(ok){
+  try{
+    const AC=
+      window.AudioContext ||
+      window.webkitAudioContext;
 
-      result.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-      });
+    const c=new AC();
+    const o=c.createOscillator();
+    const g=c.createGain();
+
+    o.connect(g);
+    g.connect(c.destination);
+
+    o.type=ok?'sine':'triangle';
+
+    o.frequency.setValueAtTime(
+      ok?660:220,
+      c.currentTime
+    );
+
+    if(ok){
+      o.frequency.exponentialRampToValueAtTime(
+        920,
+        c.currentTime+.16
+      );
+    }else{
+      o.frequency.exponentialRampToValueAtTime(
+        170,
+        c.currentTime+.16
+      );
     }
 
-    function resetQuiz() {
-      document.getElementById("quiz").reset();
+    g.gain.setValueAtTime(
+      .07,
+      c.currentTime
+    );
 
-      const labels =
-        document.querySelectorAll("label");
+    g.gain.exponentialRampToValueAtTime(
+      .001,
+      c.currentTime+.23
+    );
 
-      labels.forEach(function (label) {
-        label.classList.remove(
-          "answer-correct",
-          "answer-wrong"
-        );
-      });
+    o.start();
+    o.stop(c.currentTime+.24);
 
-      const result =
-        document.getElementById("result");
+  }catch(e){}
+}
 
-      result.style.display = "none";
-      result.textContent = "";
+function confetti(){
 
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
+  const burst=
+    document.getElementById('burst');
+
+  burst.innerHTML='';
+
+  const colors=[
+    '#5b4677',
+    '#776094',
+    '#b69750',
+    '#d8c28a',
+    '#eee5f5'
+  ];
+
+  for(let i=0;i<28;i++){
+
+    const s=
+      document.createElement('i');
+
+    s.className='confetti';
+
+    s.style.left=
+      (Math.random()*100)+'vw';
+
+    s.style.background=
+      colors[i%colors.length];
+
+    s.style.animationDelay=
+      (Math.random()*170)+'ms';
+
+    burst.appendChild(s);
+  }
+
+  setTimeout(
+    ()=>burst.innerHTML='',
+    1200
+  );
+}
+
+function render(){
+
+  answered=false;
+
+  const x=questions[index];
+
+  document.getElementById('qnum').textContent=
+    'السؤال '+arabicDigits(index+1);
+
+  document.getElementById('counter').textContent=
+    'السؤال '+
+    arabicDigits(index+1)+
+    ' من '+
+    arabicDigits(questions.length);
+
+  document.getElementById('correctCount').textContent=
+    'الصحيح: '+arabicDigits(score);
+
+  document.getElementById('bar').style.width=
+    (index/questions.length*100)+'%';
+
+  document.getElementById('question').textContent=
+    x.q;
+
+  const options=
+    document.getElementById('options');
+
+  const feedback=
+    document.getElementById('feedback');
+
+  const next=
+    document.getElementById('next');
+
+  const card=
+    document.getElementById('card');
+
+  options.innerHTML='';
+
+  feedback.className='feedback';
+  feedback.textContent='';
+
+  next.style.display='none';
+
+  card.classList.remove('pop');
+
+  x.o.forEach((text,j)=>{
+
+    const b=
+      document.createElement('button');
+
+    b.className='opt';
+    b.textContent=text;
+
+    b.onclick=()=>choose(j,b);
+
+    options.appendChild(b);
+  });
+}
+
+function choose(choice,button){
+
+  if(answered)return;
+
+  answered=true;
+
+  const x=questions[index];
+
+  const btns=[
+    ...document.querySelectorAll('.opt')
+  ];
+
+  btns.forEach(
+    b=>b.disabled=true
+  );
+
+  btns[x.a].classList.add('correct');
+
+  const feedback=
+    document.getElementById('feedback');
+
+  if(choice===x.a){
+
+    score++;
+
+    button.classList.add('correct');
+
+    feedback.className=
+      'feedback show good';
+
+    feedback.textContent=
+      x.ok;
+
+    tone(true);
+    confetti();
+
+    if(navigator.vibrate){
+      navigator.vibrate(45);
     }
-  </script>
+
+  }else{
+
+    button.classList.add('wrong');
+
+    feedback.className=
+      'feedback show bad';
+
+    feedback.textContent=
+      'راجعي القاعدة 👀 '+x.bad;
+
+    tone(false);
+
+    if(navigator.vibrate){
+      navigator.vibrate([70,40,70]);
+    }
+  }
+
+  document.getElementById('correctCount').textContent=
+    'الصحيح: '+arabicDigits(score);
+
+  document.getElementById('card').classList.add('pop');
+
+  const next=
+    document.getElementById('next');
+
+  next.textContent=
+    index===questions.length-1
+      ?'شوفي نتيجتك ✨'
+      :'كمّلي التحدي ←';
+
+  next.style.display='block';
+}
+
+document.getElementById('next').onclick=()=>{
+
+  index++;
+
+  if(index<questions.length){
+    render();
+  }else{
+    finish();
+  }
+};
+
+function finish(){
+
+  document.getElementById('bar').style.width='100%';
+
+  document.getElementById('card').style.display='none';
+
+  document.querySelector('.top').style.display='none';
+
+  document.querySelector('.progress').style.display='none';
+
+  const result=
+    document.getElementById('result');
+
+  result.classList.add('show');
+
+  document.getElementById('score').textContent=
+    arabicDigits(score)+
+    ' / '+
+    arabicDigits(questions.length);
+
+  const pct=
+    score/questions.length;
+
+  document.getElementById('message').textContent=
+    pct===1
+      ?'إتقان كامل! بطلة اسم الفاعل 🏆'
+      :pct>=.8
+      ?'ممتازة جدًا 🌟 أتقنتِ صياغة اسم الفاعل واستعماله.'
+      :pct>=.6
+      ?'أداء جميل 👏 راجعي صياغة اسم الفاعل من غير الثلاثي ثم أعيدي التحدي.'
+      :'راجعي ملف الدرس، وركزي على الفرق بين الثلاثي وغير الثلاثي، ثم عودي للتحدي.';
+
+  if(pct>=.8){
+    confetti();
+  }
+}
+
+function restartQuiz(){
+
+  index=0;
+  score=0;
+  answered=false;
+
+  document.getElementById('card').style.display='flex';
+
+  document.querySelector('.top').style.display='flex';
+
+  document.querySelector('.progress').style.display='block';
+
+  document.getElementById('result').classList.remove('show');
+
+  render();
+}
+
+render();
+
+</script>
 
 </body>
-
 </html>
