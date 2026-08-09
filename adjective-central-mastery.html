@@ -1,0 +1,1712 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
+  <title>إتقان الاختبار المركزي | النعت</title>
+
+  <style>
+    :root {
+      --purple: #5b4677;
+      --purple2: #776094;
+      --purple3: #6f5288;
+      --gold: #c9a85c;
+      --cream: #fffaf2;
+      --paper: #fffdf9;
+      --text: #473a52;
+      --green: #34775a;
+      --blue: #52779b;
+      --rose: #a05a75;
+      --shadow: rgba(82, 60, 101, .12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Tahoma, Arial, sans-serif;
+      color: var(--text);
+
+      background:
+        radial-gradient(
+          circle at 10% 5%,
+          rgba(255, 226, 150, .24),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 90% 10%,
+          rgba(190, 164, 220, .22),
+          transparent 30%
+        ),
+        linear-gradient(
+          180deg,
+          #fffaf2,
+          #f8f0fb
+        );
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .page {
+      width: min(1050px, 94%);
+      margin: auto;
+      padding: 16px 0 28px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 24px 18px;
+      text-align: center;
+      color: white;
+
+      background:
+        linear-gradient(
+          135deg,
+          #776094,
+          #5b4677
+        );
+
+      border: 2px solid #c9a85c;
+      border-radius: 26px;
+
+      box-shadow:
+        0 12px 30px
+        rgba(73, 56, 92, .18);
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+
+      background:
+        rgba(255, 255, 255, .08);
+    }
+
+    .hero::before {
+      top: -70px;
+      right: -50px;
+    }
+
+    .hero::after {
+      bottom: -90px;
+      left: -40px;
+    }
+
+    .badge {
+      position: relative;
+      z-index: 1;
+
+      display: inline-block;
+      padding: 5px 13px;
+
+      color: #fff3cc;
+      font-size: 12px;
+      font-weight: bold;
+
+      border:
+        1px solid
+        rgba(255, 231, 174, .85);
+
+      border-radius: 999px;
+
+      background:
+        rgba(255, 255, 255, .1);
+    }
+
+    .hero h1 {
+      position: relative;
+      z-index: 1;
+
+      margin: 8px 0 5px;
+      color: #fff9e6;
+
+      font-size:
+        clamp(
+          23px,
+          5vw,
+          35px
+        );
+    }
+
+    .hero p {
+      position: relative;
+      z-index: 1;
+
+      max-width: 760px;
+      margin: auto;
+
+      color: #f8efff;
+
+      font-size:
+        clamp(
+          13px,
+          3vw,
+          16px
+        );
+
+      line-height: 1.8;
+    }
+
+    .confidence {
+      margin-top: 12px;
+      padding: 11px 13px;
+
+      color: #64491a;
+      font-size: 14px;
+      font-weight: bold;
+      line-height: 1.7;
+
+      border:
+        1px solid #dfc87e;
+
+      border-radius: 16px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #fff8dc,
+          #fffdf6
+        );
+    }
+
+    .section-title {
+      margin: 20px 0 10px;
+      color: #5b4677;
+
+      font-size:
+        clamp(
+          19px,
+          4vw,
+          25px
+        );
+
+      text-align: center;
+    }
+
+    .section-subtitle {
+      max-width: 720px;
+      margin: -3px auto 12px;
+
+      text-align: center;
+      color: #776b7f;
+
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 12px;
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+
+      padding: 15px;
+      min-height: 145px;
+
+      border:
+        1px solid
+        rgba(201, 168, 92, .7);
+
+      border-radius: 20px;
+
+      box-shadow:
+        0 7px 20px var(--shadow);
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,.97),
+          rgba(255,250,242,.95)
+        );
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+
+      width: 85px;
+      height: 85px;
+
+      top: -34px;
+      left: -30px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(201, 168, 92, .09);
+    }
+
+    .card-purple {
+      background:
+        linear-gradient(
+          145deg,
+          #fbf7ff,
+          #f2e9fb
+        );
+    }
+
+    .card-gold {
+      background:
+        linear-gradient(
+          145deg,
+          #fffdf6,
+          #fff4d7
+        );
+    }
+
+    .card-green {
+      background:
+        linear-gradient(
+          145deg,
+          #f5fff9,
+          #e8f7ee
+        );
+    }
+
+    .card-blue {
+      background:
+        linear-gradient(
+          145deg,
+          #f7fbff,
+          #e9f3fb
+        );
+    }
+
+    .card-rose {
+      background:
+        linear-gradient(
+          145deg,
+          #fff8fa,
+          #faeaf0
+        );
+    }
+
+    .card h3 {
+      position: relative;
+      z-index: 1;
+
+      margin: 0 0 7px;
+
+      color: #5d4374;
+      font-size: 16px;
+    }
+
+    .card p,
+    .card li {
+      position: relative;
+      z-index: 1;
+
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .card ul {
+      margin: 6px 0 0;
+      padding-right: 19px;
+    }
+
+    .formula {
+      margin-top: 8px;
+      padding: 8px 10px;
+
+      text-align: center;
+
+      color: #5b4677;
+      font-weight: bold;
+
+      border-radius: 12px;
+
+      background:
+        rgba(255,255,255,.75);
+    }
+
+    .study-map {
+      display: grid;
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
+      gap: 10px;
+    }
+
+    .step {
+      padding: 13px 10px;
+
+      text-align: center;
+
+      border:
+        1px solid #dcc58a;
+
+      border-radius: 18px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #ffffff,
+          #f7effd
+        );
+
+      box-shadow:
+        0 6px 16px
+        rgba(83, 61, 102, .09);
+    }
+
+    .step strong {
+      display: block;
+      margin-bottom: 5px;
+
+      color: #6b4d84;
+      font-size: 15px;
+    }
+
+    .step span {
+      color: #625a68;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .warning {
+      margin-top: 12px;
+      padding: 12px 14px;
+
+      color: #7a4e26;
+
+      font-size: 13px;
+      font-weight: bold;
+      line-height: 1.7;
+
+      border-right:
+        5px solid #c9a85c;
+
+      border-radius: 14px;
+
+      background: #fff8e8;
+    }
+
+    .worksheet {
+      margin-top: 16px;
+      padding: 18px;
+
+      border:
+        2px solid #c9a85c;
+
+      border-radius: 24px;
+
+      background:
+        linear-gradient(
+          180deg,
+          #fffefb,
+          #fffaf3
+        );
+
+      box-shadow:
+        0 10px 24px
+        rgba(81, 59, 98, .11);
+    }
+
+    .worksheet-head {
+      text-align: center;
+      margin-bottom: 13px;
+    }
+
+    .worksheet-head h2 {
+      margin: 0 0 5px;
+
+      color: #5b4677;
+      font-size: 23px;
+    }
+
+    .worksheet-head p {
+      margin: 0;
+
+      color: #756b7c;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .questions-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 11px;
+    }
+
+    .question-card {
+      padding: 13px;
+
+      border:
+        1px solid #dfcf9d;
+
+      border-radius: 17px;
+
+      background: white;
+    }
+
+    .question-card strong {
+      display: block;
+      margin-bottom: 6px;
+
+      color: #664a7e;
+      font-size: 14px;
+    }
+
+    .question-card p {
+      margin: 0;
+
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .choice-list {
+      margin: 7px 0 0;
+      padding-right: 18px;
+
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .answer-lines {
+      margin-top: 9px;
+    }
+
+    .line {
+      height: 20px;
+
+      border-bottom:
+        1px dashed #c8b9ce;
+    }
+
+    .self-check {
+      display: grid;
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
+      gap: 9px;
+
+      margin-top: 12px;
+    }
+
+    .check {
+      padding: 10px;
+
+      color: #5b4677;
+      text-align: center;
+
+      font-size: 12px;
+      font-weight: bold;
+      line-height: 1.6;
+
+      border:
+        1px solid #d8c38d;
+
+      border-radius: 14px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #fff,
+          #f5effa
+        );
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+
+      justify-content: center;
+
+      margin-top: 18px;
+    }
+
+    .btn {
+      display: inline-block;
+
+      padding: 10px 15px;
+
+      color: white;
+
+      font-size: 13px;
+      font-weight: bold;
+
+      text-decoration: none;
+
+      border:
+        1px solid #c9a85c;
+
+      border-radius: 13px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #776094,
+          #5b4677
+        );
+    }
+
+    .btn.print {
+      cursor: pointer;
+
+      background:
+        linear-gradient(
+          135deg,
+          #c9a85c,
+          #aa873a
+        );
+    }
+
+    footer {
+      margin-top: 18px;
+      padding: 10px;
+
+      text-align: center;
+
+      color: #746b79;
+      font-size: 11px;
+    }
+
+    @media (max-width: 800px) {
+
+      .grid {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+      .study-map {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+      .questions-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .self-check {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+
+      .page {
+        width: 95%;
+        padding-top: 10px;
+      }
+
+      .hero {
+        padding: 18px 13px;
+        border-radius: 21px;
+      }
+
+      .grid {
+        grid-template-columns:
+          1fr 1fr;
+
+        gap: 8px;
+      }
+
+      .card {
+        min-height: 125px;
+        padding: 11px;
+        border-radius: 16px;
+      }
+
+      .card h3 {
+        font-size: 14px;
+      }
+
+      .card p,
+      .card li {
+        font-size: 11.5px;
+        line-height: 1.65;
+      }
+
+      .study-map {
+        gap: 7px;
+      }
+
+      .step {
+        padding: 10px 7px;
+      }
+
+      .step strong {
+        font-size: 13px;
+      }
+
+      .step span {
+        font-size: 11px;
+      }
+
+      .worksheet {
+        padding: 12px;
+      }
+
+      .question-card p,
+      .choice-list {
+        font-size: 12px;
+      }
+    }
+
+    @media print {
+
+      body {
+        background: white;
+      }
+
+      .page {
+        width: 100%;
+        padding: 0;
+      }
+
+      .hero,
+      .confidence,
+      .study-section,
+      .actions,
+      footer {
+        display: none !important;
+      }
+
+      .worksheet {
+        margin: 0;
+        border: 0;
+        box-shadow: none;
+        padding: 0;
+      }
+
+      .worksheet-head h2 {
+        color: black;
+      }
+
+      .questions-grid {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+      .question-card {
+        break-inside: avoid;
+
+        border:
+          1px solid #999;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page">
+
+    <section class="hero">
+
+      <span class="badge">
+        🎯 إتقان الاختبار المركزي
+      </span>
+
+      <h1>
+        النعت
+      </h1>
+
+      <p>
+        لا تحفظي السؤال؛ افهمي المهارة.
+        قد تتغير الجملة والخيارات في الاختبار،
+        لكن طريقة اكتشاف النعت تبقى نفسها.
+      </p>
+
+    </section>
+
+
+    <div class="confidence">
+      🌷 المركزي ليس مخيفًا:
+      عندما تعرفين ماذا تبحثين عنه في الجملة،
+      يصبح السؤال أقصر وأسهل مما يبدو.
+    </div>
+
+
+    <section class="study-section">
+
+      <h2 class="section-title">
+        🧠 كيف تذاكرين النعت عن فهم؟
+      </h2>
+
+      <p class="section-subtitle">
+        لا تعيدي قراءة الدرس مرات كثيرة.
+        افهمي الفكرة، ثم استرجعيها من ذاكرتك،
+        وبعدها طبقيها على جمل جديدة.
+      </p>
+
+
+      <div class="study-map">
+
+        <div class="step">
+          <strong>١ ـ حددي المنعوت</strong>
+          <span>
+            ابحثي أولًا عن الاسم الذي ستصفه كلمة أخرى.
+          </span>
+        </div>
+
+        <div class="step">
+          <strong>٢ ـ اسألي: ما صفته؟</strong>
+          <span>
+            ابحثي عن الكلمة التي توضح صفة هذا الاسم.
+          </span>
+        </div>
+
+        <div class="step">
+          <strong>٣ ـ افحصي المطابقة</strong>
+          <span>
+            تأكدي من موافقة النعت لمنعوته في المواضع التي درستِها.
+          </span>
+        </div>
+
+        <div class="step">
+          <strong>٤ ـ طبقي على مثال جديد</strong>
+          <span>
+            لا تكتفي بالمثال المحفوظ؛ جرّبي جملة لم تريها من قبل.
+          </span>
+        </div>
+
+      </div>
+
+
+      <h2 class="section-title">
+        🔍 مفاتيح تكشف لكِ النعت
+      </h2>
+
+
+      <div class="grid">
+
+        <article class="card card-purple">
+
+          <h3>
+            🔑 المفتاح الأول
+          </h3>
+
+          <p>
+            النعت تابع يصف اسمًا قبله يسمى
+            <strong>المنعوت</strong>.
+          </p>
+
+          <div class="formula">
+            منعوت + نعت
+          </div>
+
+        </article>
+
+
+        <article class="card card-gold">
+
+          <h3>
+            👀 لا تنظري للمعنى فقط
+          </h3>
+
+          <p>
+            قد تكون الكلمة صفة في معناها،
+            لكنها ليست نعتًا في إعراب الجملة.
+            لذلك افهمي موقعها أولًا.
+          </p>
+
+        </article>
+
+
+        <article class="card card-green">
+
+          <h3>
+            🧩 المطابقة دليل قوي
+          </h3>
+
+          <p>
+            النعت يتبع منعوته في الإعراب،
+            ويطابقه في التعريف والتنكير،
+            والتذكير والتأنيث،
+            والإفراد والتثنية والجمع بحسب القاعدة المدروسة.
+          </p>
+
+        </article>
+
+
+        <article class="card card-blue">
+
+          <h3>
+            🎯 السؤال قد يتنكر
+          </h3>
+
+          <p>
+            قد لا يقول لكِ:
+            «استخرجي النعت».
+            قد يطلب الضبط الصحيح،
+            أو الجملة الصحيحة،
+            أو سبب الإعراب.
+          </p>
+
+        </article>
+
+
+        <article class="card card-rose">
+
+          <h3>
+            ⚠️ الفخ الأشهر
+          </h3>
+
+          <p>
+            لا تختاري الكلمة لمجرد أنها جاءت بعد اسم.
+            اسألي:
+            هل تصفه فعلًا؟
+            وهل تتبعه في الإعراب؟
+          </p>
+
+        </article>
+
+
+        <article class="card">
+
+          <h3>
+            🧠 اختبار الفهم الحقيقي
+          </h3>
+
+          <p>
+            إذا استطعتِ إنشاء جملة جديدة،
+            وتحديد المنعوت والنعت فيها،
+            وشرح السبب،
+            فأنتِ فهمتِ المهارة.
+          </p>
+
+        </article>
+
+      </div>
+
+
+      <div class="warning">
+        ⭐ طريقة المذاكرة الأقوى:
+        اقرئي القاعدة مرة، ثم أغلقي الصفحة،
+        واكتبي من ذاكرتك:
+        ما النعت؟ وما علاماته؟
+        ثم طبقي على مثال جديد.
+        الاسترجاع من الذاكرة أقوى من القراءة المتكررة.
+      </div>
+
+
+      <h2 class="section-title">
+        ⚡ حلّي سؤال النعت بسرعة
+      </h2>
+
+
+      <div class="study-map">
+
+        <div class="step">
+          <strong>١</strong>
+          <span>
+            اقرئي الجملة كاملة.
+          </span>
+        </div>
+
+        <div class="step">
+          <strong>٢</strong>
+          <span>
+            حددي الاسم الموصوف.
+          </span>
+        </div>
+
+        <div class="step">
+          <strong>٣</strong>
+          <span>
+            ابحثي عن الكلمة التي تصفه.
+          </span>
+        </div>
+
+        <div class="step">
+          <strong>٤</strong>
+          <span>
+            افحصي المطابقة والإعراب.
+          </span>
+        </div>
+
+      </div>
+
+
+      <h2 class="section-title">
+        🎯 كيف يمكن أن يأتي السؤال؟
+      </h2>
+
+
+      <div class="grid">
+
+        <article class="card card-gold">
+          <h3>① اختيار من متعدد</h3>
+          <p>
+            تحديد النعت أو المنعوت أو الجملة الصحيحة.
+          </p>
+        </article>
+
+        <article class="card card-purple">
+          <h3>② استخراج</h3>
+          <p>
+            استخراج النعت والمنعوت من جملة جديدة.
+          </p>
+        </article>
+
+        <article class="card card-green">
+          <h3>③ تعليل</h3>
+          <p>
+            تفسير سبب عدّ كلمة ما نعتًا.
+          </p>
+        </article>
+
+        <article class="card card-blue">
+          <h3>④ تصحيح</h3>
+          <p>
+            اكتشاف خطأ المطابقة أو الإعراب وتصحيحه.
+          </p>
+        </article>
+
+        <article class="card card-rose">
+          <h3>⑤ إعراب</h3>
+          <p>
+            إعراب النعت اعتمادًا على موقع منعوته.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>⑥ إنشاء</h3>
+          <p>
+            تكوين جملة صحيحة فيها نعت ومنعوت.
+          </p>
+        </article>
+
+      </div>
+
+
+      <h2 class="section-title">
+        🧠 قبل ورقة التدريب
+      </h2>
+
+      <p class="section-subtitle">
+        لا تنظري في ملف الدرس أثناء الحل.
+        حاولي أولًا من ذاكرتك،
+        ثم ارجعي للمراجعة بعد أن تنتهي.
+      </p>
+
+
+      <div class="grid">
+
+        <article class="card card-green">
+
+          <h3>
+            🌱 المستوى الأول
+          </h3>
+
+          <p>
+            أعرف النعت والمنعوت
+            وأستطيع تحديدهما.
+          </p>
+
+        </article>
+
+
+        <article class="card card-gold">
+
+          <h3>
+            🔎 المستوى الثاني
+          </h3>
+
+          <p>
+            أفسر المطابقة
+            وأضبط النعت إعرابيًا.
+          </p>
+
+        </article>
+
+
+        <article class="card card-purple">
+
+          <h3>
+            🏆 المستوى الثالث
+          </h3>
+
+          <p>
+            أتعامل مع صياغة جديدة
+            وأعلل إجابتي من غير حفظ.
+          </p>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <section class="worksheet">
+
+      <div class="worksheet-head">
+
+        <h2>
+          📝 ورقة تدريب | النعت
+        </h2>
+
+        <p>
+          اطبعيها أو انقلي الأسئلة في دفترك.
+          أجيبي بقلمك أولًا، ثم راجعي إجاباتك بعد الانتهاء.
+        </p>
+
+      </div>
+            <div class="questions-grid">
+
+        <article class="question-card">
+
+          <strong>
+            ١ ـ استخرجي وفسّري
+          </strong>
+
+          <p>
+            قرأتُ قصةً ممتعةً في المكتبة.
+          </p>
+
+          <p>
+            استخرجي المنعوت والنعت،
+            ثم اذكري علامة واحدة تدل على صحة اختيارك.
+          </p>
+
+          <div class="answer-lines">
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+
+        </article>
+
+
+        <article class="question-card">
+
+          <strong>
+            ٢ ـ اختيار من متعدد
+          </strong>
+
+          <p>
+            أي الجمل الآتية اشتملت على نعت؟
+          </p>
+
+          <ol class="choice-list">
+            <li>
+              عاد المسافرُ مساءً.
+            </li>
+
+            <li>
+              اشتريتُ كتابًا مفيدًا.
+            </li>
+
+            <li>
+              السماءُ صافيةٌ.
+            </li>
+
+            <li>
+              جلس الطالبُ أمام المعلم.
+            </li>
+          </ol>
+
+          <p>
+            اكتبي سبب اختيارك:
+          </p>
+
+          <div class="answer-lines">
+            <div class="line"></div>
+          </div>
+
+        </article>
+
+
+        <article class="question-card">
+
+          <strong>
+            ٣ ـ عللي
+          </strong>
+
+          <p>
+            في الجملة:
+            «شاهدتُ الحديقةَ الجميلةَ»
+          </p>
+
+          <p>
+            لماذا تُعرب كلمة
+            «الجميلةَ»
+            نعتًا؟
+          </p>
+
+          <div class="answer-lines">
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+
+        </article>
+
+
+        <article class="question-card">
+
+          <strong>
+            ٤ ـ اكتشفي الخطأ وصححيه
+          </strong>
+
+          <p>
+            «مررتُ بطالبةٍ مجتهدةٌ».
+          </p>
+
+          <p>
+            اكتبي الجملة صحيحة،
+            ثم فسري سبب التغيير.
+          </p>
+
+          <div class="answer-lines">
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+
+        </article>
+
+
+        <article class="question-card">
+
+          <strong>
+            ٥ ـ أعربي
+          </strong>
+
+          <p>
+            «كرّمت المدرسةُ
+            الطالبةَ المتفوقةَ».
+          </p>
+
+          <p>
+            أعربي كلمة
+            «المتفوقةَ»
+            إعرابًا كاملًا.
+          </p>
+
+          <div class="answer-lines">
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+
+        </article>
+
+
+        <article class="question-card">
+
+          <strong>
+            ٦ ـ أكملي عن فهم
+          </strong>
+
+          <p>
+            أكملي بنعت مناسب مضبوط:
+          </p>
+
+          <p>
+            «استمعتُ إلى نصيحةٍ ............»
+          </p>
+
+          <p>
+            ثم اكتبي:
+            لماذا اخترتِ هذه الحركة الإعرابية؟
+          </p>
+
+          <div class="answer-lines">
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+
+        </article>
+                <article class="question-card">
+
+          <strong>
+            ٧ ـ ميّزي بين الوظائف
+          </strong>
+
+          <p>
+            تأملي الجملتين:
+          </p>
+
+          <p>
+            أ ـ «هذا طالبٌ مجتهدٌ».
+          </p>
+
+          <p>
+            ب ـ «الطالبُ مجتهدٌ».
+          </p>
+
+          <p>
+            في أي الجملتين تعد كلمة
+            «مجتهد»
+            نعتًا؟
+            ولماذا؟
+          </p>
+
+          <div class="answer-lines">
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+
+        </article>
+
+
+        <article class="question-card">
+
+          <strong>
+            ٨ ـ حوّلي واضبطي
+          </strong>
+
+          <p>
+            حوّلي الجملة الآتية إلى المثنى:
+          </p>
+
+          <p>
+            «حضر الطالبُ المجتهدُ».
+          </p>
+
+          <p>
+            ثم اكتبي المنعوت والنعت بعد التحويل.
+          </p>
+
+          <div class="answer-lines">
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+
+        </article>
+
+
+        <article class="question-card">
+
+          <strong>
+            ٩ ـ اختاري وعللي
+          </strong>
+
+          <p>
+            اختاري الضبط الصحيح:
+          </p>
+
+          <p>
+            «مررتُ بالطالبِ ............»
+          </p>
+
+          <ol class="choice-list">
+            <li>المجتهدُ</li>
+            <li>المجتهدَ</li>
+            <li>المجتهدِ</li>
+            <li>المجتهدةِ</li>
+          </ol>
+
+          <p>
+            ثم اكتبي سبب اختيارك.
+          </p>
+
+          <div class="answer-lines">
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+
+        </article>
+
+
+        <article class="question-card">
+
+          <strong>
+            ١٠ ـ سؤال مركزي
+          </strong>
+
+          <p>
+            أي الجمل الآتية روعي فيها
+            التوافق الإعرابي بين النعت والمنعوت؟
+          </p>
+
+          <ol class="choice-list">
+            <li>
+              رأيتُ منظرًا جميلٌ.
+            </li>
+
+            <li>
+              رأيتُ منظرٌ جميلًا.
+            </li>
+
+            <li>
+              رأيتُ منظرًا جميلًا.
+            </li>
+
+            <li>
+              رأيتُ منظرٍ جميلٍ.
+            </li>
+          </ol>
+
+          <p>
+            لا تكتفي بالاختيار؛
+            اكتبي لماذا رفضتِ بقية الخيارات.
+          </p>
+
+          <div class="answer-lines">
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+
+        </article>
+
+
+        <article class="question-card">
+
+          <strong>
+            ١١ ـ اكتشفي العلاقة
+          </strong>
+
+          <p>
+            «سلّمتُ على المعلمةِ المخلصةِ».
+          </p>
+
+          <p>
+            أجيبي عن الآتي:
+          </p>
+
+          <ol class="choice-list">
+            <li>
+              ما المنعوت؟
+            </li>
+
+            <li>
+              ما النعت؟
+            </li>
+
+            <li>
+              ما الحالة الإعرابية لهما؟
+            </li>
+
+            <li>
+              ما علامة الجر؟
+            </li>
+          </ol>
+
+          <div class="answer-lines">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+
+        </article>
+
+
+        <article class="question-card">
+
+          <strong>
+            ١٢ ـ صح أم خطأ؟ مع التعليل
+          </strong>
+
+          <p>
+            «كل كلمة تأتي بعد اسم
+            وتدل على صفة تُعرب نعتًا».
+          </p>
+
+          <p>
+            هل العبارة صحيحة أم خطأ؟
+            عللي إجابتك.
+          </p>
+
+          <div class="answer-lines">
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+
+        </article>
+
+
+        <article class="question-card">
+
+          <strong>
+            ١٣ ـ قارني
+          </strong>
+
+          <p>
+            قارني بين الجملتين:
+          </p>
+
+          <p>
+            أ ـ «رأيتُ طالبًا متفوقًا».
+          </p>
+
+          <p>
+            ب ـ «رأيتُ الطالبَ متفوقًا».
+          </p>
+
+          <p>
+            هل كلمة «متفوقًا»
+            تؤدي الوظيفة نفسها في الجملتين؟
+            فسري إجابتك.
+          </p>
+
+          <div class="answer-lines">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+
+        </article>
+
+
+        <article class="question-card">
+
+          <strong>
+            ١٤ ـ اصنعي السؤال بنفسك
+          </strong>
+
+          <p>
+            اكتبي جملة من إنشائك
+            تحتوي على اسم مجرور
+            ونعت مجرور.
+          </p>
+
+          <p>
+            ثم ضعي خطًا تحت النعت
+            ودائرة حول المنعوت.
+          </p>
+
+          <div class="answer-lines">
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+
+        </article>
+
+
+        <article class="question-card">
+
+          <strong>
+            ١٥ ـ تحدي الفهم
+          </strong>
+
+          <p>
+            في الجملة:
+          </p>
+
+          <p>
+            «دخلتِ الطالبتانِ المجتهدتانِ الفصلَ».
+          </p>
+
+          <p>
+            ما الدليل على أن
+            «المجتهدتان»
+            نعت؟
+          </p>
+
+          <p>
+            اذكري أكثر من علامة.
+          </p>
+
+          <div class="answer-lines">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+
+        </article>
+
+
+        <article class="question-card">
+
+          <strong>
+            ١٦ ـ سؤال من نمط المركزي
+          </strong>
+
+          <p>
+            أي الجمل الآتية
+            تحتوي على نعت مرفوع؟
+          </p>
+
+          <ol class="choice-list">
+            <li>
+              شاهدتُ منظرًا رائعًا.
+            </li>
+
+            <li>
+              مررتُ بطريقٍ طويلٍ.
+            </li>
+
+            <li>
+              حضر الطالبُ المجتهدُ.
+            </li>
+
+            <li>
+              قرأتُ قصةً جميلةً.
+            </li>
+          </ol>
+
+          <p>
+            اكتبي الكلمة التي دلتكِ
+            على الإجابة.
+          </p>
+
+          <div class="answer-lines">
+            <div class="line"></div>
+          </div>
+
+        </article>
+
+
+        <article class="question-card">
+
+          <strong>
+            ١٧ ـ أصلحي القاعدة
+          </strong>
+
+          <p>
+            قالت طالبة:
+          </p>
+
+          <p>
+            «النعت دائمًا منصوب».
+          </p>
+
+          <p>
+            صححي كلامها بجملة واحدة،
+            ثم اكتبي مثالًا يثبت تصحيحك.
+          </p>
+
+          <div class="answer-lines">
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+
+        </article>
+
+
+        <article class="question-card">
+
+          <strong>
+            ١٨ ـ السؤال الأهم
+          </strong>
+
+          <p>
+            لو تغيّرت عليكِ الجملة في الاختبار
+            ولم تريها من قبل،
+            ما الخطوات التي ستستخدمينها
+            للتأكد من وجود نعت؟
+          </p>
+
+          <div class="answer-lines">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+
+        </article>
+
+            </div>
+                  <h2 class="section-title">
+        ✅ هل أتقنتِ النعت؟
+      </h2>
+
+      <p class="section-subtitle">
+        لا تحكمي على نفسك من عدد الإجابات فقط.
+        الإتقان الحقيقي يعني أنكِ تستطيعين تفسير الإجابة
+        وتطبيق القاعدة على جملة جديدة.
+      </p>
+
+
+      <div class="self-check">
+
+        <div class="check">
+          أستطيع تحديد
+          المنعوت والنعت
+          في جملة جديدة
+        </div>
+
+        <div class="check">
+          أستطيع معرفة
+          إعراب النعت
+          من إعراب منعوته
+        </div>
+
+        <div class="check">
+          أستطيع تمييز
+          النعت من الخبر
+          والحال
+        </div>
+
+        <div class="check">
+          أستطيع تفسير
+          سبب اختياري
+          وليس التخمين فقط
+        </div>
+
+      </div>
+
+
+      <div class="warning">
+        🌟 إذا وجدتِ سؤالًا أخطأتِ فيه:
+        لا تحفظي إجابته.
+        اكتبي بجانبه:
+        «لماذا أخطأت؟»
+        ثم حاولي حل جملة أخرى تشبه فكرته.
+        بهذه الطريقة يتحول الخطأ إلى تعلم حقيقي.
+      </div>
+
+
+      <div class="confidence">
+        🎯 قبل الاختبار المركزي:
+        لا تحتاجين إلى حفظ عشرات الجمل.
+        تحتاجين أن تعرفي كيف تكشفين النعت،
+        وكيف تتحققين من المطابقة والإعراب،
+        وكيف تفسرين اختيارك.
+        عندها تتغير صياغة السؤال، لكن المهارة تبقى معك.
+      </div>
+
+    </section>
+
+
+    <div class="actions">
+
+      <button
+        class="btn print"
+        type="button"
+        onclick="window.print()"
+      >
+        🖨️ طباعة ورقة التدريب
+      </button>
+
+      <a
+        class="btn"
+        href="adjective.html"
+      >
+        ↩ العودة إلى درس النعت
+      </a>
+
+    </div>
+
+
+    <footer>
+      منصة آفاق اللغة | لغتي الخالدة | الصف الثالث المتوسط
+    </footer>
+
+  </div>
+
+</body>
+
+</html>
