@@ -3,9 +3,15 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>ملف درس رسم بعض الكلمات الموصولة خطًّا</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    ملف درس رسم بعض الكلمات الموصولة خطًّا | منصة آفاق اللغة
+  </title>
 
   <style>
     * {
@@ -14,111 +20,206 @@
 
     html,
     body {
+      width: 100%;
+      max-width: 100%;
       margin: 0;
       overflow-x: hidden;
     }
 
     body {
-      padding: 14px;
+      min-height: 100vh;
       font-family: Tahoma, Arial, sans-serif;
-      background: linear-gradient(180deg, #fffaf2, #f8f0fb);
       color: #4b3a57;
       line-height: 1.9;
+
+      background:
+        linear-gradient(
+          145deg,
+          #fffaf2,
+          #f8f0fb
+        );
     }
 
-    .container {
-      width: 100%;
-      max-width: 850px;
-      margin: auto;
-    }
-
-    .hero {
-      padding: 28px 18px;
-      margin-bottom: 22px;
+    header {
+      padding: 38px 16px 44px;
       text-align: center;
-      color: #ffffff;
-      background: linear-gradient(135deg, #d4c0e8, #bca0d8);
-      border: 2px solid #c9a85c;
-      border-radius: 24px;
-      box-shadow: 0 7px 18px rgba(91, 63, 111, 0.12);
+      color: white;
+
+      border-radius:
+        0 0 34px 34px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #776094,
+          #5b4677
+        );
+
+      box-shadow:
+        0 12px 28px
+        rgba(73, 56, 92, .22);
     }
 
-    .hero h1 {
-      margin: 0 0 8px;
-      color: #5d4374;
-      font-size: 28px;
+    .header-icon {
+      width: 82px;
+      height: 82px;
+      margin: 0 auto 13px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 23px;
+      font-size: 42px;
+
+      background:
+        rgba(255, 255, 255, .14);
+
+      border:
+        2px solid
+        rgba(255, 255, 255, .38);
+    }
+
+    header h1 {
+      max-width: 760px;
+      margin: 0 auto;
+
+      color: #fff8df;
+      font-size: 31px;
       line-height: 1.6;
     }
 
-    .hero p {
-      margin: 0;
-      color: #ffffff;
-      font-size: 17px;
+    header p {
+      max-width: 680px;
+      margin: 9px auto 0;
+
+      color: #f7effb;
+      font-size: 16px;
+      line-height: 1.8;
     }
 
-    .title {
-      margin-top: 24px;
-      padding: 13px;
-      text-align: center;
-      color: #5d4374;
-      background: #f5ecfb;
-      border: 2px solid #c9a85c;
-      border-radius: 17px;
-      font-size: 22px;
+    main {
+      width: 94%;
+      max-width: 900px;
+      margin: 28px auto 42px;
     }
 
-    .card {
-      margin: 14px 0;
-      padding: 16px;
+    .lesson-card {
+      margin-bottom: 23px;
+      padding: 23px;
+
+      border-radius: 25px;
       background: #fffdf8;
-      border: 2px solid #c9a85c;
+
+      border:
+        1px solid
+        rgba(93, 67, 116, .15);
+
+      box-shadow:
+        0 10px 25px
+        rgba(73, 56, 92, .1);
+    }
+
+    .lesson-card h2 {
+      margin: 0 0 19px;
+      padding: 13px 16px;
+
+      text-align: center;
+      color: white;
+
+      border-radius: 17px;
+      font-size: 23px;
+
+      background: #6f5288;
+    }
+
+    .definition {
+      padding: 18px;
+
+      text-align: center;
       border-radius: 18px;
-      box-shadow: 0 4px 13px rgba(91, 63, 111, 0.10);
-    }
 
-    .rule,
-    .example,
-    .warning,
-    .memory {
-      margin: 12px 0;
-      padding: 14px;
-      border-radius: 14px;
-    }
-
-    .rule {
-      background: #fff7df;
-      border-right: 5px solid #c9a85c;
-    }
-
-    .example {
       background: #f5ecfb;
-      border-right: 5px solid #b69ad6;
-    }
+      border-right: 6px solid #776094;
 
-    .warning {
-      background: #fff0f4;
-      border-right: 5px solid #d79aad;
-    }
-
-    .memory {
-      background: #eaf8f2;
-      border-right: 5px solid #8fbea7;
-    }
-
-    .correct {
-      color: #26734d;
       font-weight: bold;
-      font-size: 19px;
     }
 
-    .wrong {
-      color: #a43d4b;
+    .group-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 14px;
+      margin-top: 17px;
+    }
+
+    .group-box {
+      padding: 18px;
+      border-radius: 18px;
+
+      background: #f5ecfb;
+      border-right: 6px solid #776094;
+    }
+
+    .group-box:nth-child(even) {
+      background: #fff5d9;
+      border-right-color: #c9a85c;
+    }
+
+    .group-box h3 {
+      margin: 0 0 10px;
+      text-align: center;
+
+      color: #5d4374;
+      font-size: 20px;
+    }
+
+    .word-example {
+      margin: 9px 0;
+      padding: 11px 12px;
+
+      text-align: center;
+      border-radius: 13px;
+      background: white;
+
       font-weight: bold;
     }
 
     .arrow {
       padding: 0 6px;
       color: #6f5288;
+      font-weight: bold;
+    }
+
+    .correct {
+      color: #28704a;
+      font-weight: bold;
+    }
+
+    .note {
+      margin-top: 16px;
+      padding: 15px;
+
+      border-radius: 16px;
+
+      background: #eaf8ef;
+      border-right: 6px solid #63ad7d;
+
+      color: #286847;
+      font-weight: bold;
+    }
+
+    .gold-note {
+      margin-top: 16px;
+      padding: 15px;
+
+      border-radius: 16px;
+
+      background: #fff5d9;
+      border-right: 6px solid #c9a85c;
+
+      color: #6c5428;
       font-weight: bold;
     }
 
@@ -129,71 +230,96 @@
 
     table {
       width: 100%;
-      min-width: 520px;
+      min-width: 540px;
       border-collapse: collapse;
-      background: #fffdf8;
+      background: white;
     }
 
     th,
     td {
       padding: 11px;
       text-align: center;
-      border: 1px solid #d8c28a;
+
+      border:
+        1px solid #ded1e6;
     }
 
     th {
-      color: #5d4374;
-      background: #eadcf4;
+      color: white;
+      background: #6f5288;
     }
 
     tr:nth-child(even) td {
-      background: #fffaf2;
+      background: #faf6fc;
     }
 
-    details {
-      margin-top: 14px;
-      padding: 12px;
-      background: #f5ecfb;
-      border: 2px solid #c9a85c;
-      border-radius: 14px;
-    }
-
-    summary {
-      color: #6f5288;
-      font-weight: bold;
-      cursor: pointer;
+    .back-box {
+      margin-top: 28px;
+      text-align: center;
     }
 
     .back {
-      display: block;
-      width: fit-content;
-      max-width: 100%;
-      margin: 30px auto 10px;
-      padding: 13px 22px;
-      color: #ffffff;
-      text-align: center;
-      text-decoration: none;
-      font-weight: bold;
+      display: inline-block;
+      min-width: 240px;
+      padding: 13px 23px;
+
+      color: white;
       background: #6f5288;
-      border: 2px solid #c9a85c;
-      border-radius: 22px;
+
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: bold;
+
+      border-radius: 16px;
+
+      box-shadow:
+        0 8px 18px
+        rgba(73, 56, 92, .17);
     }
 
-    @media (max-width: 600px) {
-      body {
-        padding: 10px;
+    footer {
+      padding: 20px 12px;
+      text-align: center;
+
+      color: white;
+      background: #49385c;
+    }
+
+    @media (max-width: 650px) {
+
+      header {
+        padding: 31px 14px 37px;
       }
 
-      .hero h1 {
-        font-size: 24px;
+      .header-icon {
+        width: 74px;
+        height: 74px;
+        font-size: 38px;
       }
 
-      .title {
+      header h1 {
+        font-size: 26px;
+      }
+
+      header p {
+        font-size: 14px;
+      }
+
+      main {
+        width: 92%;
+        margin-top: 22px;
+      }
+
+      .lesson-card {
+        padding: 17px;
+      }
+
+      .lesson-card h2 {
         font-size: 20px;
       }
 
-      .card {
-        padding: 14px;
+      .group-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -201,398 +327,841 @@
 
 <body>
 
-  <div class="container">
+  <header>
 
-    <div class="hero">
-      <h1>📄 رسم بعض الكلمات الموصولة خطًّا</h1>
-      <p>
-        تعرّفي إلى الكلمات التي تتكوّن من كلمتين
-        وتُكتب في صورة كلمة واحدة
-      </p>
+    <div class="header-icon">
+      🔗
     </div>
 
-    <h2 class="title">فكرة الدرس</h2>
+    <h1>
+      ملف درس رسم بعض الكلمات
+      الموصولة خطًّا
+    </h1>
 
-    <div class="card">
+    <p>
+      تعرّفي إلى بعض الكلمات
+      التي تتصل في الكتابة
+      فتظهر في صورة كلمة واحدة.
+    </p>
 
-      <div class="rule">
-        توجد كلمات تتكوّن في الأصل من كلمتين،
-        لكنهما عند الكتابة تُوصلان لتصبحا كلمة واحدة.
+  </header>
+
+
+  <main>
+
+    <section class="lesson-card">
+
+      <h2>
+        فكرة الدرس
+      </h2>
+
+      <div class="definition">
+        توجد كلمات تتكوّن من جزأين،
+        لكنهما عند الكتابة يتصلان
+        ويظهران في صورة كلمة واحدة.
       </div>
 
-      <div class="example">
-        وقت + إذ
-        <span class="arrow">←</span>
-        <span class="correct">وقتئذٍ</span>
+
+      <div class="group-grid">
+
+        <div class="group-box">
+
+          <h3>
+            مثال مع «إذ»
+          </h3>
+
+          <div class="word-example">
+            وقت + إذ
+            <span class="arrow">
+              ←
+            </span>
+            <span class="correct">
+              وقتئذٍ
+            </span>
+          </div>
+
+        </div>
+
+
+        <div class="group-box">
+
+          <h3>
+            مثال مع «مَن»
+          </h3>
+
+          <div class="word-example">
+            من + مَن
+            <span class="arrow">
+              ←
+            </span>
+            <span class="correct">
+              ممّن
+            </span>
+          </div>
+
+        </div>
+
+
+        <div class="group-box">
+
+          <h3>
+            مثال مع «ما»
+          </h3>
+
+          <div class="word-example">
+            في + ما
+            <span class="arrow">
+              ←
+            </span>
+            <span class="correct">
+              فيما
+            </span>
+          </div>
+
+        </div>
+
+
+        <div class="group-box">
+
+          <h3>
+            مثال مع «لا»
+          </h3>
+
+          <div class="word-example">
+            أن + لا
+            <span class="arrow">
+              ←
+            </span>
+            <span class="correct">
+              ألّا
+            </span>
+          </div>
+
+        </div>
+
       </div>
 
-      <div class="example">
-        من + مَن
-        <span class="arrow">←</span>
-        <span class="correct">ممّن</span>
+    </section>
+
+
+    <section class="lesson-card">
+
+      <h2>
+        الكلمات المتصلة بـ «إذ»
+      </h2>
+
+      <div class="definition">
+        تتصل «إذ» ببعض الكلمات
+        التي تسبقها، فتكتبان معًا
+        في صورة كلمة واحدة.
       </div>
 
-      <div class="example">
-        أن + لا
-        <span class="arrow">←</span>
-        <span class="correct">ألّا</span>
+
+      <div class="group-grid">
+
+        <div class="group-box">
+
+          <div class="word-example">
+            يوم + إذ
+            <span class="arrow">
+              ←
+            </span>
+            <span class="correct">
+              يومئذٍ
+            </span>
+          </div>
+
+        </div>
+
+
+        <div class="group-box">
+
+          <div class="word-example">
+            حين + إذ
+            <span class="arrow">
+              ←
+            </span>
+            <span class="correct">
+              حينئذٍ
+            </span>
+          </div>
+
+        </div>
+
+
+        <div class="group-box">
+
+          <div class="word-example">
+            وقت + إذ
+            <span class="arrow">
+              ←
+            </span>
+            <span class="correct">
+              وقتئذٍ
+            </span>
+          </div>
+
+        </div>
+
       </div>
 
-    </div>
 
-    <h2 class="title">أولًا: الكلمات المتصلة بـ «إذ»</h2>
-
-    <div class="card">
-
-      <div class="rule">
-        تتصل «إذ» ببعض الكلمات قبلها،
-        وتكتب الكلمتان كلمة واحدة.
+      <div class="note">
+        💡 لاحظي صورة الهمزة
+        في الكلمات:
+        يومئذٍ، حينئذٍ، وقتئذٍ.
       </div>
 
-      <div class="example">
-        يوم + إذ
-        <span class="arrow">←</span>
-        <span class="correct">يومئذٍ</span>
+    </section>
+
+
+    <section class="lesson-card">
+
+      <h2>
+        الكلمات المتصلة بـ «مَن»
+      </h2>
+
+      <div class="definition">
+        تتصل «مَن» ببعض الكلمات
+        التي تسبقها،
+        وقد يتغير الرسم بعد الاتصال.
       </div>
 
-      <div class="example">
-        حين + إذ
-        <span class="arrow">←</span>
-        <span class="correct">حينئذٍ</span>
+
+      <div class="group-grid">
+
+        <div class="group-box">
+
+          <div class="word-example">
+            من + مَن
+            <span class="arrow">
+              ←
+            </span>
+            <span class="correct">
+              ممّن
+            </span>
+          </div>
+
+        </div>
+
+
+        <div class="group-box">
+
+          <div class="word-example">
+            عن + مَن
+            <span class="arrow">
+              ←
+            </span>
+            <span class="correct">
+              عمّن
+            </span>
+          </div>
+
+        </div>
+
+
+        <div class="group-box">
+
+          <div class="word-example">
+            في + مَن
+            <span class="arrow">
+              ←
+            </span>
+            <span class="correct">
+              فيمَن
+            </span>
+          </div>
+
+        </div>
+
+
+        <div class="group-box">
+
+          <div class="word-example">
+            بـ + مَن
+            <span class="arrow">
+              ←
+            </span>
+            <span class="correct">
+              بمَن
+            </span>
+          </div>
+
+        </div>
+
       </div>
 
-      <div class="example">
-        وقت + إذ
-        <span class="arrow">←</span>
-        <span class="correct">وقتئذٍ</span>
+
+      <div class="gold-note">
+        ⭐ في «ممّن» و«عمّن»
+        تظهر الشدة على الميم
+        في الرسم المشكول.
       </div>
 
-      <div class="memory">
-        انتبهي إلى كتابة الهمزة على نبرة:
-        <strong>ئ</strong>.
+    </section>
+
+
+    <section class="lesson-card">
+
+      <h2>
+        الكلمات المتصلة بـ «ما»
+      </h2>
+
+      <div class="definition">
+        تتصل «ما» ببعض الكلمات
+        التي تسبقها، وتكتب معها
+        في صورة واحدة.
       </div>
 
-    </div>
 
-    <h2 class="title">ثانيًا: الكلمات المتصلة بـ «مَن»</h2>
+      <div class="group-grid">
 
-    <div class="card">
+        <div class="group-box">
 
-      <div class="rule">
-        تتصل «مَن» ببعض حروف الجر،
-        وقد يحدث إدغام أو حذف في بعض الحروف.
+          <div class="word-example">
+            في + ما
+            <span class="arrow">
+              ←
+            </span>
+            <span class="correct">
+              فيما
+            </span>
+          </div>
+
+        </div>
+
+
+        <div class="group-box">
+
+          <div class="word-example">
+            عن + ما
+            <span class="arrow">
+              ←
+            </span>
+            <span class="correct">
+              عمّا
+            </span>
+          </div>
+
+        </div>
+
+
+        <div class="group-box">
+
+          <div class="word-example">
+            كل + ما
+            <span class="arrow">
+              ←
+            </span>
+            <span class="correct">
+              كلما
+            </span>
+          </div>
+
+        </div>
+
+
+        <div class="group-box">
+
+          <div class="word-example">
+            حيث + ما
+            <span class="arrow">
+              ←
+            </span>
+            <span class="correct">
+              حيثما
+            </span>
+          </div>
+
+        </div>
+
+
+        <div class="group-box">
+
+          <div class="word-example">
+            حين + ما
+            <span class="arrow">
+              ←
+            </span>
+            <span class="correct">
+              حينما
+            </span>
+          </div>
+
+        </div>
+
       </div>
 
-      <div class="example">
-        من + مَن
-        <span class="arrow">←</span>
-        <span class="correct">ممّن</span>
-      </div>
+    </section>
 
-      <div class="example">
-        عن + مَن
-        <span class="arrow">←</span>
-        <span class="correct">عمّن</span>
-      </div>
 
-      <div class="example">
-        في + مَن
-        <span class="arrow">←</span>
-        <span class="correct">فيمَن</span>
-      </div>
+    <section class="lesson-card">
 
-      <div class="example">
-        بـ + مَن
-        <span class="arrow">←</span>
-        <span class="correct">بمَن</span>
-      </div>
+      <h2>
+        الكلمات المتصلة بـ «لا»
+      </h2>
 
-      <div class="memory">
-        في «ممّن» و«عمّن» توضع الشدة على الميم.
-      </div>
-
-    </div>
-
-    <h2 class="title">ثالثًا: الكلمات المتصلة بـ «ما»</h2>
-
-    <div class="card">
-
-      <div class="rule">
-        تتصل «ما» ببعض حروف الجر والظروف
-        والكلمات الأخرى.
-      </div>
-
-      <div class="example">
-        في + ما
-        <span class="arrow">←</span>
-        <span class="correct">فيما</span>
-      </div>
-
-      <div class="example">
-        عن + ما
-        <span class="arrow">←</span>
-        <span class="correct">عمّا</span>
-      </div>
-
-      <div class="example">
-        كل + ما
-        <span class="arrow">←</span>
-        <span class="correct">كلما</span>
-      </div>
-
-      <div class="example">
-        حيث + ما
-        <span class="arrow">←</span>
-        <span class="correct">حيثما</span>
-      </div>
-
-      <div class="example">
-        حين + ما
-        <span class="arrow">←</span>
-        <span class="correct">حينما</span>
-      </div>
-
-    </div>
-
-    <h2 class="title">رابعًا: الكلمات المتصلة بـ «لا»</h2>
-
-    <div class="card">
-
-      <div class="rule">
+      <div class="definition">
         تتصل «لا» ببعض الكلمات،
-        وقد يتغير رسم الكلمة بعد الوصل.
+        وقد يتغير الرسم بعد اتصالها.
       </div>
 
-      <div class="example">
-        أن + لا
-        <span class="arrow">←</span>
-        <span class="correct">ألّا</span>
+
+      <div class="group-grid">
+
+        <div class="group-box">
+
+          <div class="word-example">
+            أن + لا
+            <span class="arrow">
+              ←
+            </span>
+            <span class="correct">
+              ألّا
+            </span>
+          </div>
+
+        </div>
+
+
+        <div class="group-box">
+
+          <div class="word-example">
+            كي + لا
+            <span class="arrow">
+              ←
+            </span>
+            <span class="correct">
+              كيلا
+            </span>
+          </div>
+
+        </div>
+
+
+        <div class="group-box">
+
+          <div class="word-example">
+            لِـ + أن + لا
+            <span class="arrow">
+              ←
+            </span>
+            <span class="correct">
+              لئلّا
+            </span>
+          </div>
+
+        </div>
+
       </div>
 
-      <div class="example">
-        كي + لا
-        <span class="arrow">←</span>
-        <span class="correct">كيلا</span>
+    </section>
+        <section class="lesson-card">
+
+      <h2>
+        كلمات تحفظ موصولة
+      </h2>
+
+      <div class="definition">
+        توجد كلمات شائعة تُكتب موصولة،
+        ويُفضَّل تثبيت صورتها الإملائية
+        في الذاكرة.
       </div>
 
-      <div class="example">
-        لِـ + أن + لا
-        <span class="arrow">←</span>
-        <span class="correct">لئلّا</span>
+
+      <div class="group-grid">
+
+        <div class="group-box">
+
+          <div class="word-example">
+            حب + ذا
+            <span class="arrow">
+              ←
+            </span>
+            <span class="correct">
+              حبّذا
+            </span>
+          </div>
+
+        </div>
+
+
+        <div class="group-box">
+
+          <div class="word-example">
+            نعم + ما
+            <span class="arrow">
+              ←
+            </span>
+            <span class="correct">
+              نِعْمَما
+            </span>
+          </div>
+
+        </div>
+
+
+        <div class="group-box">
+
+          <div class="word-example">
+            بئس + ما
+            <span class="arrow">
+              ←
+            </span>
+            <span class="correct">
+              بِئْسَما
+            </span>
+          </div>
+
+        </div>
+
       </div>
 
-      <div class="warning">
-        لا تكتبي:
-        <span class="wrong">لأن لا</span>
-        عندما يكون المقصود منع حدوث الشيء،
-        بل اكتبي:
-        <span class="correct">لئلّا</span>.
+
+      <div class="gold-note">
+        ⭐ احفظي الرسم الموصـول لهذه الكلمات،
+        ولا تفصلي أجزاءها عند الكتابة.
       </div>
 
-    </div>
+    </section>
 
-    <h2 class="title">خامسًا: كلمات تحفظ موصولة</h2>
 
-    <div class="card">
+    <section class="lesson-card">
 
-      <div class="example">
-        حب + ذا
-        <span class="arrow">←</span>
-        <span class="correct">حبّذا</span>
-      </div>
-
-      <div class="example">
-        نعم + ما
-        <span class="arrow">←</span>
-        <span class="correct">نِعْمَما</span>
-      </div>
-
-      <div class="example">
-        بئس + ما
-        <span class="arrow">←</span>
-        <span class="correct">بِئْسَما</span>
-      </div>
-
-      <div class="memory">
-        هذه الكلمات تُحفظ في صورتها الإملائية الموصولة.
-      </div>
-
-    </div>
-
-    <h2 class="title">جدول التلخيص</h2>
-
-    <div class="card">
+      <h2>
+        أمثلة في سياق
+      </h2>
 
       <div class="table-wrap">
 
         <table>
 
           <tr>
-            <th>قبل الوصل</th>
-            <th>بعد الوصل</th>
+            <th>
+              الكلمة
+            </th>
+
+            <th>
+              مثال في جملة
+            </th>
           </tr>
 
           <tr>
-            <td>يوم + إذ</td>
-            <td>يومئذٍ</td>
+            <td>
+              يومئذٍ
+            </td>
+
+            <td>
+              أدركتُ يومئذٍ أهميةَ الاجتهاد.
+            </td>
           </tr>
 
           <tr>
-            <td>حين + إذ</td>
-            <td>حينئذٍ</td>
+            <td>
+              حينئذٍ
+            </td>
+
+            <td>
+              حينئذٍ ظهر أثرُ العمل الجاد.
+            </td>
           </tr>
 
           <tr>
-            <td>وقت + إذ</td>
-            <td>وقتئذٍ</td>
+            <td>
+              ممّن
+            </td>
+
+            <td>
+              تعلّمتُ ممّن سبقني خبرةً.
+            </td>
           </tr>
 
           <tr>
-            <td>من + مَن</td>
-            <td>ممّن</td>
+            <td>
+              عمّن
+            </td>
+
+            <td>
+              سألتُ عمّن شارك في النشاط.
+            </td>
           </tr>
 
           <tr>
-            <td>عن + مَن</td>
-            <td>عمّن</td>
+            <td>
+              فيما
+            </td>
+
+            <td>
+              فكّرتُ فيما قرأتُه.
+            </td>
           </tr>
 
           <tr>
-            <td>في + ما</td>
-            <td>فيما</td>
+            <td>
+              كلما
+            </td>
+
+            <td>
+              كلما اجتهدتِ ازددتِ تقدّمًا.
+            </td>
           </tr>
 
           <tr>
-            <td>عن + ما</td>
-            <td>عمّا</td>
+            <td>
+              كيلا
+            </td>
+
+            <td>
+              راجعتُ الدرس كيلا أنسى القاعدة.
+            </td>
           </tr>
 
           <tr>
-            <td>أن + لا</td>
-            <td>ألّا</td>
+            <td>
+              لئلّا
+            </td>
+
+            <td>
+              نظّمتُ وقتي لئلّا تتراكم واجباتي.
+            </td>
           </tr>
 
           <tr>
-            <td>كي + لا</td>
-            <td>كيلا</td>
-          </tr>
+            <td>
+              حبّذا
+            </td>
 
-          <tr>
-            <td>لِـ + أن + لا</td>
-            <td>لئلّا</td>
-          </tr>
-
-          <tr>
-            <td>حب + ذا</td>
-            <td>حبّذا</td>
+            <td>
+              حبّذا الصدقُ في القول والعمل.
+            </td>
           </tr>
 
         </table>
 
       </div>
 
+    </section>
+
+
+    <section class="lesson-card">
+
+      <h2>
+        ملخّص الكلمات
+      </h2>
+
+      <div class="table-wrap">
+
+        <table>
+
+          <tr>
+            <th>
+              قبل الوصل
+            </th>
+
+            <th>
+              الرسم الموصـول
+            </th>
+          </tr>
+
+          <tr>
+            <td>
+              يوم + إذ
+            </td>
+
+            <td>
+              يومئذٍ
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              حين + إذ
+            </td>
+
+            <td>
+              حينئذٍ
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              وقت + إذ
+            </td>
+
+            <td>
+              وقتئذٍ
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              من + مَن
+            </td>
+
+            <td>
+              ممّن
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              عن + مَن
+            </td>
+
+            <td>
+              عمّن
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              في + ما
+            </td>
+
+            <td>
+              فيما
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              عن + ما
+            </td>
+
+            <td>
+              عمّا
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              كل + ما
+            </td>
+
+            <td>
+              كلما
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              حيث + ما
+            </td>
+
+            <td>
+              حيثما
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              حين + ما
+            </td>
+
+            <td>
+              حينما
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              أن + لا
+            </td>
+
+            <td>
+              ألّا
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              كي + لا
+            </td>
+
+            <td>
+              كيلا
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              لِـ + أن + لا
+            </td>
+
+            <td>
+              لئلّا
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              حب + ذا
+            </td>
+
+            <td>
+              حبّذا
+            </td>
+          </tr>
+
+        </table>
+
+      </div>
+
+    </section>
+
+
+    <section class="lesson-card">
+
+      <h2>
+        خلاصة الدرس
+      </h2>
+
+      <div class="note">
+        ⭐ بعض الكلمات تتكوّن من جزأين
+        لكنهما يُكتبان موصولين
+        في صورة كلمة واحدة.
+      </div>
+
+      <div class="gold-note">
+        من أهم الصور التي تعلّمناها:
+        <br>
+        يومئذٍ — حينئذٍ — وقتئذٍ
+        <br>
+        ممّن — عمّن
+        <br>
+        فيما — عمّا — كلما — حيثما — حينما
+        <br>
+        ألّا — كيلا — لئلّا
+        <br>
+        حبّذا
+      </div>
+
+      <div class="definition">
+        💡 أفضل طريقة لإتقان هذه الكلمات:
+        تعرّفي إلى صورتها الصحيحة،
+        ثم استخدميها في جملة.
+      </div>
+
+    </section>
+
+
+    <div class="back-box">
+
+      <a
+        class="back"
+        href="connected-words.html"
+      >
+        العودة إلى الدرس
+      </a>
+
     </div>
 
-    <h2 class="title">أخطاء شائعة</h2>
+  </main>
 
-    <div class="card">
 
-      <div class="warning">
-        <span class="wrong">يوم إذ</span>
-        <span class="arrow">✖</span>
-        <span class="correct">يومئذٍ</span>
-      </div>
-
-      <div class="warning">
-        <span class="wrong">من من</span>
-        <span class="arrow">✖</span>
-        <span class="correct">ممّن</span>
-      </div>
-
-      <div class="warning">
-        <span class="wrong">عن من</span>
-        <span class="arrow">✖</span>
-        <span class="correct">عمّن</span>
-      </div>
-
-      <div class="warning">
-        <span class="wrong">في ما</span>
-        <span class="arrow">✖</span>
-        <span class="correct">فيما</span>
-      </div>
-
-      <div class="warning">
-        <span class="wrong">أن لا</span>
-        <span class="arrow">✖</span>
-        <span class="correct">ألّا</span>
-      </div>
-
-      <div class="warning">
-        <span class="wrong">حب ذا</span>
-        <span class="arrow">✖</span>
-        <span class="correct">حبّذا</span>
-      </div>
-
-    </div>
-
-    <h2 class="title">تدريب سريع</h2>
-
-    <div class="card">
-
-      <div class="example">
-        اختاري الرسم الصحيح:
-        <br>
-        وقت إذٍ — وقتئذٍ
-      </div>
-
-      <div class="example">
-        اختاري الرسم الصحيح:
-        <br>
-        عن من — عمّن
-      </div>
-
-      <div class="example">
-        اختاري الرسم الصحيح:
-        <br>
-        في ما — فيما
-      </div>
-
-      <div class="example">
-        اختاري الرسم الصحيح:
-        <br>
-        كي لا — كيلا
-      </div>
-
-      <div class="example">
-        اختاري الرسم الصحيح:
-        <br>
-        حب ذا — حبّذا
-      </div>
-
-      <details>
-        <summary>اضغطي لإظهار الإجابات</summary>
-
-        <p>
-          وقتئذٍ، عمّن، فيما، كيلا، حبّذا.
-        </p>
-
-      </details>
-
-    </div>
-
-    <div class="memory">
-      ⭐ الخلاصة:
-      <br>
-      بعض الكلمات تتكوّن من جزأين،
-      لكنها تُكتب في الرسم الإملائي كلمة واحدة.
-      احفظي صورتها الصحيحة وتدرّبي على استخدامها في جملة.
-    </div>
-
-    <a class="back" href="connected-words.html">
-      العودة إلى الدرس
-    </a>
-
-  </div>
+  <footer>
+    جميع الحقوق محفوظة © 2026
+  </footer>
 
 </body>
 
