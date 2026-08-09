@@ -125,13 +125,13 @@
       border-radius: 16px;
     }
 
-    .ma-grid {
+    .grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 15px;
     }
 
-    .ma-item {
+    .item {
       padding: 19px;
       color: #4b3a57;
       line-height: 1.9;
@@ -141,24 +141,24 @@
       border-radius: 18px;
     }
 
-    .ma-item:nth-child(2) {
+    .item.gold {
       background: #fff8df;
       border-right-color: #c9a85c;
     }
 
-    .ma-item:nth-child(3) {
-      color: #7f303b;
-      background: #fff0f3;
-      border-right-color: #c86274;
-    }
-
-    .ma-item:nth-child(4) {
+    .item.green {
       color: #185b3c;
       background: #e8f7ef;
       border-right-color: #198754;
     }
 
-    .ma-item h3 {
+    .item.pink {
+      color: #7f303b;
+      background: #fff0f3;
+      border-right-color: #c86274;
+    }
+
+    .item h3 {
       margin: 0 0 9px;
       color: #5d4374;
       font-size: 21px;
@@ -171,7 +171,7 @@
       color: #5d4374;
       font-weight: bold;
       text-align: center;
-      background: rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.75);
       border: 1px solid #ddd2e5;
       border-radius: 13px;
     }
@@ -188,40 +188,55 @@
       border-radius: 17px;
     }
 
-    .mistakes-grid {
+    .compare {
       display: grid;
-      gap: 17px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
     }
 
-    .mistake-item {
-      padding: 19px;
-      background: #fffdf8;
+    .compare-box {
+      padding: 18px;
+      background: #f5ecfb;
       border: 1px solid #c9a85c;
-      border-radius: 18px;
-      box-shadow:
-        0 5px 14px
-        rgba(91, 63, 111, 0.08);
+      border-radius: 17px;
     }
 
-    .wrong-line {
-      margin-bottom: 12px;
-      padding: 14px;
-      color: #8f1f1f;
-      font-weight: bold;
-      line-height: 1.9;
-      background: #fdecec;
-      border-right: 5px solid #c62828;
-      border-radius: 14px;
+    .compare-box h3 {
+      margin-top: 0;
+      color: #5d4374;
+      text-align: center;
     }
 
-    .correct-line {
-      padding: 14px;
-      color: #0d5b37;
+    .lens {
+      margin: 13px 0;
+      padding: 15px;
+      background: #fffdf8;
+      border: 2px solid #c9a85c;
+      border-radius: 16px;
+    }
+
+    .lens strong {
+      color: #5d4374;
+    }
+
+    details {
+      margin: 14px 0;
+      overflow: hidden;
+      background: #fffdf8;
+      border: 2px solid #c9a85c;
+      border-radius: 16px;
+    }
+
+    summary {
+      padding: 16px 18px;
+      color: #5d4374;
       font-weight: bold;
-      line-height: 1.9;
-      background: #e8f7ef;
-      border-right: 5px solid #198754;
-      border-radius: 14px;
+      cursor: pointer;
+      background: #f5ecfb;
+    }
+
+    details div {
+      padding: 16px 18px;
     }
 
     .final-note {
@@ -270,6 +285,7 @@
     }
 
     @media (max-width: 650px) {
+
       header {
         padding: 32px 14px 27px;
       }
@@ -307,11 +323,12 @@
         font-size: 16px;
       }
 
-      .ma-grid {
+      .grid,
+      .compare {
         grid-template-columns: 1fr;
       }
 
-      .ma-item {
+      .item {
         padding: 17px 14px;
       }
 
@@ -324,202 +341,559 @@
 
 <body>
 
-  <header>
+<header>
 
-    <div class="header-icon">
-      ✨
+  <div class="header-icon">
+    ✨
+  </div>
+
+  <h1>
+    روائع أسلوب الشرط
+  </h1>
+
+  <p>
+    فروق دقيقة وأسرار لغوية تساعدكِ
+    على فهم الشرط من خلال المعنى والسياق
+  </p>
+
+</header>
+
+<main>
+
+  <!-- أسرار ما -->
+
+  <section class="wonder-card">
+
+    <h2>
+      🔍 أسرار كلمة «ما»
+    </h2>
+
+    <div class="intro">
+      الكلمة واحدة،
+      لكن معناها يتغيّر بتغيّر السياق.
     </div>
 
-    <h1>
-      روائع الأسلوب اللغوي
-    </h1>
+    <div class="grid">
 
-    <p>
-      لمسات لغوية مختصرة تساعدكِ على التمييز،
-      وتجنّب الأخطاء الشائعة في أسلوب الشرط.
-    </p>
+      <div class="item">
 
-  </header>
+        <h3>
+          ما الشرطية
+        </h3>
 
-  <main>
+        تفيد تعليق نتيجة على شرط.
 
-    <section class="wonder-card">
-
-      <h2>
-        البطاقة الأولى: أسرار كلمة «ما»
-      </h2>
-
-      <div class="intro">
-        كلمة «ما» واحدة في شكلها،
-        لكن معناها يختلف بحسب السياق
-        الذي وردت فيه.
-      </div>
-
-      <div class="ma-grid">
-
-        <div class="ma-item">
-
-          <h3>
-            ما الشرطية
-          </h3>
-
-          تربط فعل الشرط بجوابه،
-          وتجزم فعلين مضارعين.
-
-          <div class="example">
-            ما تزرعْ تحصدْ.
-          </div>
-
+        <div class="example">
+          ما تزرعْ تحصدْ.
         </div>
 
-        <div class="ma-item">
-
-          <h3>
-            ما الاستفهامية
-          </h3>
-
-          تستخدم للسؤال،
-          وتحتاج إلى إجابة.
-
-          <div class="example">
-            ما هدفُكِ؟
-          </div>
-
-        </div>
-
-        <div class="ma-item">
-
-          <h3>
-            ما النافية
-          </h3>
-
-          تنفي حدوث الفعل
-          أو ثبوت المعنى.
-
-          <div class="example">
-            ما أهملتُ واجبي.
-          </div>
-
-        </div>
-
-        <div class="ma-item">
-
-          <h3>
-            ما الموصولة
-          </h3>
-
-          تأتي بمعنى «الذي».
-
-          <div class="example">
-            أحبُّ ما ينفعُ الناس.
-          </div>
-
-        </div>
+        هنا يمكن أن نفهم المعنى:
+        أيَّ شيء تزرعْه تحصدْه.
 
       </div>
 
-      <div class="golden-note">
-        🗝️ السر الذهبي:
-        لا تحددي نوع «ما» من شكلها،
-        بل من معناها وسياق الجملة.
-      </div>
 
-    </section>
+      <div class="item gold">
 
-    <section class="wonder-card">
+        <h3>
+          ما الاستفهامية
+        </h3>
 
-      <h2>
-        البطاقة الثانية: انتبهي لهذه الأخطاء
-      </h2>
+        تأتي للسؤال عن شيء مجهول.
 
-      <div class="mistakes-grid">
-
-        <div class="mistake-item">
-
-          <div class="wrong-line">
-            ❌ أظن أن كل «ما» شرطية.
-          </div>
-
-          <div class="correct-line">
-            ✅ ليست كل «ما» شرطية؛
-            فقد تكون استفهامية،
-            أو نافية، أو موصولة.
-          </div>
-
+        <div class="example">
+          ما هدفُكِ؟
         </div>
 
-        <div class="mistake-item">
-
-          <div class="wrong-line">
-            ❌ أخلط بين فعل الشرط
-            وجواب الشرط.
-          </div>
-
-          <div class="correct-line">
-            ✅ فعل الشرط يأتي بعد الأداة،
-            وجواب الشرط هو النتيجة
-            المترتبة عليه.
-          </div>
-
-        </div>
-
-        <div class="mistake-item">
-
-          <div class="wrong-line">
-            ❌ أظن أن علامة الجزم
-            دائمًا السكون.
-          </div>
-
-          <div class="correct-line">
-            ✅ قد تكون علامة الجزم السكون،
-            أو حذف حرف العلة،
-            أو حذف النون.
-          </div>
-
-        </div>
-
-        <div class="mistake-item">
-
-          <div class="wrong-line">
-            ❌ أحدد علامة الجزم
-            قبل معرفة نوع الفعل.
-          </div>
-
-          <div class="correct-line">
-            ✅ أحدد أولًا هل الفعل
-            صحيح الآخر،
-            أم معتل الآخر،
-            أم من الأفعال الخمسة.
-          </div>
-
-        </div>
+        لو كانت الجملة تنتظر جوابًا،
+        فهذه قرينة قوية على الاستفهام.
 
       </div>
 
-      <div class="final-note">
-        🌷 تذكري:
-        الفهم الصحيح يبدأ من ملاحظة السياق،
-        ونوع الفعل قبل إصدار الحكم.
+
+      <div class="item pink">
+
+        <h3>
+          ما النافية
+        </h3>
+
+        تنفي حدوث الفعل
+        أو ثبوت المعنى.
+
+        <div class="example">
+          ما أهملتُ واجبي.
+        </div>
+
+        لا توجد هنا علاقة
+        شرط ونتيجة.
+
       </div>
 
-    </section>
 
-    <div class="back-box">
+      <div class="item green">
 
-      <a
-        class="back-button"
-        href="conditional-style.html"
-      >
-        العودة إلى درس أسلوب الشرط
-      </a>
+        <h3>
+          ما الموصولة
+        </h3>
+
+        تأتي بمعنى «الذي».
+
+        <div class="example">
+          أحبُّ ما ينفعُ الناس.
+        </div>
+
+        المعنى:
+        أحبُّ الذي ينفع الناس.
+
+      </div>
 
     </div>
 
-  </main>
+    <div class="golden-note">
+      🗝️ لا تحكمي على «ما» من شكلها،
+      بل اسألي:
+      هل تسأل؟ هل تنفي؟ هل تعني «الذي»؟
+      أم تربط شرطًا بنتيجة؟
+    </div>
 
-  <footer>
-    جميع الحقوق محفوظة © 2026
-  </footer>
+  </section>
+
+
+  <!-- أسرار من -->
+
+  <section class="wonder-card">
+
+    <h2>
+      🧠 كلمة «مَن»... شرط أم سؤال؟
+    </h2>
+
+    <div class="compare">
+
+      <div class="compare-box">
+
+        <h3>
+          مَن الشرطية
+        </h3>
+
+        <div class="example">
+          مَن يصدقْ يُحترمْ.
+        </div>
+
+        لا تسأل الجملة عن شخص معين،
+        وإنما تقرر معنى عامًا:
+        كل من يصدق ينل الاحترام.
+
+      </div>
+
+
+      <div class="compare-box">
+
+        <h3>
+          مَن الاستفهامية
+        </h3>
+
+        <div class="example">
+          مَن حضر اليوم؟
+        </div>
+
+        الجملة هنا سؤال
+        وتنتظر اسم شخص جوابًا عنها.
+
+      </div>
+
+    </div>
+
+    <div class="golden-note">
+      ⭐ الاختبار السريع:
+      إذا كان الكلام ينتظر اسمًا جوابًا،
+      فـ«مَن» استفهامية.
+      وإذا كان يربط فعلًا بنتيجة،
+      فهي شرطية.
+    </div>
+
+  </section>
+
+
+  <!-- إن وإذا -->
+
+  <section class="wonder-card">
+
+    <h2>
+      🌿 «إنْ» و«إذا»... ليستا شيئًا واحدًا
+    </h2>
+
+    <div class="compare">
+
+      <div class="compare-box">
+
+        <h3>
+          إنْ
+        </h3>
+
+        تستعمل في الشرط،
+        وقد يكون وقوع الأمر
+        ممكنًا أو غير متحقق بعد.
+
+        <div class="example">
+          إنْ تجتهدْ تنجحْ.
+        </div>
+
+      </div>
+
+
+      <div class="compare-box">
+
+        <h3>
+          إذا
+        </h3>
+
+        تستعمل غالبًا
+        فيما يُتوقّع وقوعه
+        أو يُنظر إليه على أنه أقرب للتحقق.
+
+        <div class="example">
+          إذا أشرقت الشمس بدأ النهار.
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="golden-note">
+      💡 الفرق هنا ليس في الشكل فقط،
+      بل في نظرة المتكلم
+      إلى احتمال وقوع الحدث.
+    </div>
+
+  </section>
+
+
+  <!-- إن ولو -->
+
+  <section class="wonder-card">
+
+    <h2>
+      ⚖️ الفرق بين «إنْ» و«لو»
+    </h2>
+
+    <div class="compare">
+
+      <div class="compare-box">
+
+        <h3>
+          إنْ
+        </h3>
+
+        تدل على شرط
+        يمكن أن يقع.
+
+        <div class="example">
+          إنْ تجتهدْ تنجحْ.
+        </div>
+
+        النجاح ممكن
+        إذا تحقق الاجتهاد.
+
+      </div>
+
+
+      <div class="compare-box">
+
+        <h3>
+          لو
+        </h3>
+
+        تدل غالبًا
+        على امتناع الجواب
+        لامتناع الشرط.
+
+        <div class="example">
+          لو اجتهدتِ لنجحتِ.
+        </div>
+
+        يفهم من السياق
+        أن الاجتهاد لم يقع،
+        ولذلك لم يقع النجاح.
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- العدسة الدلالية -->
+
+  <section class="wonder-card">
+
+    <h2>
+      🔎 عدسة المعنى
+    </h2>
+
+    <div class="intro">
+      أحيانًا لا يكفي أن تعرفي الأداة،
+      بل عليكِ أن تفهمي العلاقة
+      بين الجملتين.
+    </div>
+
+    <div class="lens">
+
+      <strong>
+        مَن يحافظْ على وقته ينجحْ في أعماله.
+      </strong>
+
+      <br><br>
+
+      العلاقة هنا واضحة:
+      المحافظة على الوقت
+      سبب يساعد على النجاح.
+
+    </div>
+
+
+    <div class="lens">
+
+      <strong>
+        مَن يزرعْ خيرًا يحصدْ محبةً.
+      </strong>
+
+      <br><br>
+
+      العلاقة ليست زراعةً حقيقية،
+      بل تعبير عن أن فعل الخير
+      يؤدي إلى أثر طيب.
+
+    </div>
+
+
+    <div class="lens">
+
+      <strong>
+        ما تقدّمْ من معروفٍ تجدْ أثره.
+      </strong>
+
+      <br><br>
+
+      الشرط هنا يربط العمل
+      بما يترتب عليه من نتيجة.
+    </div>
+
+  </section>
+
+
+  <!-- فخاخ -->
+
+  <section class="wonder-card">
+
+    <h2>
+      🎯 فخاخ لغوية ذكية
+    </h2>
+
+    <details>
+
+      <summary>
+        «مَن حضر الحفل؟» هل «مَن» شرطية؟
+      </summary>
+
+      <div>
+        لا.
+        هي استفهامية؛
+        لأن المتكلم يسأل عن الشخص
+        الذي حضر وينتظر جوابًا.
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        «ما أجمل الصدق!» هل «ما» شرطية؟
+      </summary>
+
+      <div>
+        لا.
+        هذه «ما» تعجبية،
+        والجملة أسلوب تعجب.
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        «ما أحبُّ الكذب.» هل «ما» شرطية؟
+      </summary>
+
+      <div>
+        لا.
+        «ما» هنا نافية؛
+        لأنها نفت المحبة.
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        «أحبُّ ما ينفع الناس.» هل «ما» شرطية؟
+      </summary>
+
+      <div>
+        لا.
+        هي موصولة،
+        وتقدير الكلام:
+        أحبُّ الذي ينفع الناس.
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        «ما تزرعْ تحصدْ.» لماذا تعد «ما» شرطية؟
+      </summary>
+
+      <div>
+        لأن الجملة تربط
+        ما يُزرع بما يُحصد،
+        أي تربط شرطًا بنتيجته.
+      </div>
+
+    </details>
+
+  </section>
+
+
+  <!-- قارني -->
+
+  <section class="wonder-card">
+
+    <h2>
+      ✨ قارني بين الجمل
+    </h2>
+
+    <div class="lens">
+
+      <strong>
+        مَن يحافظْ على الأمانة يُحترمْ.
+      </strong>
+
+      <br>
+
+      «مَن» شرطية؛
+      لأن احترام الشخص
+      مرتبط بالمحافظة على الأمانة.
+
+    </div>
+
+
+    <div class="lens">
+
+      <strong>
+        مَن يحافظ على الأمانة؟
+      </strong>
+
+      <br>
+
+      «مَن» استفهامية؛
+      لأن الجملة تسأل عن شخص.
+    </div>
+
+
+    <div class="lens">
+
+      <strong>
+        ما تعملْ من خيرٍ تجدْه.
+      </strong>
+
+      <br>
+
+      «ما» شرطية؛
+      لوجود علاقة بين العمل والنتيجة.
+
+    </div>
+
+
+    <div class="lens">
+
+      <strong>
+        ما العملُ الذي تحبينه؟
+      </strong>
+
+      <br>
+
+      «ما» استفهامية؛
+      لأن الجملة تنتظر جوابًا.
+    </div>
+
+  </section>
+
+
+  <!-- الخلاصة -->
+
+  <section class="wonder-card">
+
+    <h2>
+      🌟 سرّ الإتقان
+    </h2>
+
+    <div class="final-note">
+
+      في أسلوب الشرط،
+      لا تعتمدي على حفظ الكلمات وحدها.
+
+      <br><br>
+
+      اسألي دائمًا:
+
+      <br>
+
+      هل الجملة تسأل؟
+
+      <br>
+
+      هل تنفي؟
+
+      <br>
+
+      هل توجد علاقة
+      بين شرط ونتيجة؟
+
+      <br>
+
+      وما المعنى الذي أراده المتكلم؟
+
+      <br><br>
+
+      عندما تفهمين السياق،
+      يصبح تحديد نوع الأداة
+      أسهل بكثير.
+
+    </div>
+
+  </section>
+
+
+  <div class="back-box">
+
+    <a
+      class="back-button"
+      href="conditional-style.html"
+    >
+      العودة إلى درس أسلوب الشرط
+    </a>
+
+  </div>
+
+</main>
+
+<footer>
+  جميع الحقوق محفوظة © 2026
+</footer>
 
 </body>
 
