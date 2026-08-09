@@ -3,9 +3,15 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>مفاتيح الكتابة بلا أخطاء</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    كتابة بلا أخطاء | رسم بعض الكلمات الموصولة خطًّا
+  </title>
 
   <style>
     * {
@@ -21,174 +27,351 @@
     }
 
     body {
-      padding: 12px;
+      min-height: 100vh;
       font-family: Tahoma, Arial, sans-serif;
-      background: linear-gradient(180deg, #fffaf2, #f8f0fb);
       color: #4b3a57;
       line-height: 1.9;
+
+      background:
+        linear-gradient(
+          145deg,
+          #fffaf2,
+          #f8f0fb
+        );
     }
 
-    .container {
-      width: 100%;
-      max-width: 850px;
-      margin: auto;
-    }
-
-    .hero {
-      margin-bottom: 20px;
-      padding: 28px 18px;
+    header {
+      padding: 38px 16px 44px;
       text-align: center;
       color: white;
-      background: linear-gradient(135deg, #d4c0e8, #bca0d8);
-      border: 2px solid #c9a85c;
-      border-radius: 24px;
-      box-shadow: 0 7px 18px rgba(91, 63, 111, 0.12);
+
+      border-radius:
+        0 0 34px 34px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #776094,
+          #5b4677
+        );
+
+      box-shadow:
+        0 12px 28px
+        rgba(73, 56, 92, .22);
     }
 
-    .hero h1 {
-      margin: 0 0 8px;
-      color: #5d4374;
-      font-size: 28px;
+    .header-icon {
+      width: 82px;
+      height: 82px;
+      margin: 0 auto 13px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 23px;
+      font-size: 42px;
+
+      background:
+        rgba(255,255,255,.14);
+
+      border:
+        2px solid
+        rgba(255,255,255,.38);
+    }
+
+    header h1 {
+      margin: 0;
+      color: #fff8df;
+      font-size: 31px;
       line-height: 1.6;
     }
 
-    .hero p {
-      margin: 0;
-      color: white;
-      font-size: 17px;
+    header p {
+      max-width: 690px;
+      margin: 9px auto 0;
+
+      color: #f7effb;
+      font-size: 16px;
+      line-height: 1.8;
     }
 
-    .title {
-      margin-top: 24px;
-      padding: 13px;
-      text-align: center;
-      color: #5d4374;
-      background: #f5ecfb;
-      border: 2px solid #c9a85c;
-      border-radius: 17px;
-      font-size: 21px;
+    main {
+      width: 94%;
+      max-width: 900px;
+      margin: 28px auto 42px;
     }
 
     .card {
-      margin: 14px 0;
-      padding: 16px;
+      margin-bottom: 22px;
+      padding: 22px;
+
+      border-radius: 24px;
       background: #fffdf8;
-      border: 2px solid #c9a85c;
+
+      border:
+        1px solid
+        rgba(93,67,116,.15);
+
+      box-shadow:
+        0 10px 24px
+        rgba(73,56,92,.1);
+    }
+
+    .card h2 {
+      margin: 0 0 18px;
+      padding: 13px 16px;
+
+      text-align: center;
+      color: white;
+
+      border-radius: 17px;
+      background: #6f5288;
+
+      font-size: 23px;
+    }
+
+    .intro {
+      padding: 17px;
+      text-align: center;
+
       border-radius: 18px;
-      box-shadow: 0 4px 13px rgba(91, 63, 111, 0.10);
-    }
 
-    .step,
-    .example,
-    .tip,
-    .warning,
-    .activity {
-      margin: 12px 0;
-      padding: 14px;
-      border-radius: 14px;
-    }
+      background: #fff5d9;
+      border-right:
+        6px solid #c9a85c;
 
-    .step {
-      background: #fff7df;
-      border-right: 5px solid #c9a85c;
-    }
-
-    .example {
-      background: #f5ecfb;
-      border-right: 5px solid #b69ad6;
-    }
-
-    .tip {
-      background: #eaf8f2;
-      border-right: 5px solid #8fbea7;
-    }
-
-    .warning {
-      background: #fff0f4;
-      border-right: 5px solid #d79aad;
-    }
-
-    .activity {
-      background: #edf6fd;
-      border-right: 5px solid #9abbd7;
-    }
-
-    .correct {
-      color: #26734d;
+      color: #674f25;
       font-weight: bold;
-      font-size: 19px;
+    }
+
+    .error-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 14px;
+    }
+
+    .error-box {
+      padding: 17px;
+
+      border-radius: 18px;
+
+      background: #faf6fc;
+      border-right:
+        6px solid #776094;
+    }
+
+    .error-box:nth-child(even) {
+      background: #fff7df;
+      border-right-color: #c9a85c;
     }
 
     .wrong {
-      color: #a43d4b;
+      margin-bottom: 7px;
+
+      color: #9f3f4e;
       font-weight: bold;
     }
 
-    .arrow {
-      padding: 0 7px;
-      color: #6f5288;
+    .correct {
+      margin-bottom: 7px;
+
+      color: #28704a;
       font-weight: bold;
     }
 
-    .word-box {
+    .reason {
+      color: #695d70;
+      font-size: 14px;
+    }
+
+    .compare {
+      display: grid;
+      gap: 12px;
+    }
+
+    .compare-box {
+      padding: 16px;
+
+      border-radius: 17px;
+
+      background: #f5ecfb;
+      border-right:
+        6px solid #776094;
+    }
+
+    .compare-box:nth-child(even) {
+      background: #fff5d9;
+      border-right-color: #c9a85c;
+    }
+
+    .word {
       display: inline-block;
-      margin: 4px;
-      padding: 5px 10px;
+      margin: 3px;
+      padding: 4px 9px;
+
       color: #5d4374;
+      background: white;
+
+      border:
+        1px solid #dac9e4;
+
+      border-radius: 9px;
       font-weight: bold;
-      background: #fffdf8;
-      border: 2px solid #c9a85c;
-      border-radius: 10px;
     }
 
-    .checklist {
-      margin: 14px 0;
-      padding: 14px;
-      background: #eef8f4;
-      border: 2px dashed #8fbea7;
+    .steps {
+      display: grid;
+      gap: 11px;
+    }
+
+    .step {
+      padding: 14px 16px;
+
       border-radius: 15px;
+
+      background: #f5ecfb;
+      border-right:
+        5px solid #776094;
+
+      font-weight: bold;
+    }
+
+    .step:nth-child(even) {
+      background: #fff5d9;
+      border-right-color: #c9a85c;
     }
 
     details {
-      margin-top: 14px;
-      padding: 12px;
-      background: #f5ecfb;
-      border: 2px solid #c9a85c;
-      border-radius: 14px;
+      margin: 12px 0;
+
+      overflow: hidden;
+
+      border-radius: 16px;
+
+      border:
+        1px solid #ddcfe5;
+
+      background: #fffdf8;
     }
 
     summary {
-      color: #6f5288;
-      font-weight: bold;
+      padding: 14px 16px;
+
       cursor: pointer;
+
+      color: #5d4374;
+      background: #f5ecfb;
+
+      font-weight: bold;
+    }
+
+    details div {
+      padding: 15px 17px;
+    }
+
+    .checklist {
+      display: grid;
+      gap: 9px;
+    }
+
+    .check-item {
+      padding: 12px 14px;
+
+      border-radius: 13px;
+
+      background: #eaf8ef;
+      border-right:
+        5px solid #63ad7d;
+
+      color: #286847;
+      font-weight: bold;
+    }
+
+    .final-note {
+      padding: 18px;
+      text-align: center;
+
+      border-radius: 18px;
+
+      background: #eaf8ef;
+      border-right:
+        6px solid #63ad7d;
+
+      color: #286847;
+      font-weight: bold;
+    }
+
+    .back-box {
+      margin-top: 28px;
+      text-align: center;
     }
 
     .back {
-      display: block;
-      width: fit-content;
-      max-width: 100%;
-      margin: 30px auto 10px;
-      padding: 13px 22px;
+      display: inline-block;
+      min-width: 240px;
+
+      padding: 13px 23px;
+
       color: white;
-      text-align: center;
       text-decoration: none;
+
+      font-size: 16px;
       font-weight: bold;
+
+      border-radius: 16px;
       background: #6f5288;
-      border: 2px solid #c9a85c;
-      border-radius: 22px;
+
+      box-shadow:
+        0 8px 18px
+        rgba(73,56,92,.17);
     }
 
-    @media (max-width: 600px) {
-      .hero h1 {
-        font-size: 24px;
+    footer {
+      padding: 20px 12px;
+
+      text-align: center;
+
+      color: white;
+      background: #49385c;
+    }
+
+    @media (max-width:650px) {
+
+      header {
+        padding: 31px 14px 37px;
       }
 
-      .title {
-        font-size: 19px;
+      .header-icon {
+        width: 74px;
+        height: 74px;
+        font-size: 38px;
+      }
+
+      header h1 {
+        font-size: 26px;
+      }
+
+      header p {
+        font-size: 14px;
+      }
+
+      main {
+        width: 92%;
       }
 
       .card {
-        padding: 14px;
+        padding: 17px;
+      }
+
+      .card h2 {
+        font-size: 20px;
+      }
+
+      .error-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -196,336 +379,545 @@
 
 <body>
 
-  <div class="container">
+  <header>
 
-    <div class="hero">
-      <h1>✍️ مفاتيح الكتابة بلا أخطاء</h1>
-      <p>
-        استراتيجيات عملية تساعدك على ملاحظة الخطأ
-        وتصحيحه قبل تسليم كتابتك
-      </p>
+    <div class="header-icon">
+      ✍️
     </div>
 
-    <h2 class="title">المفتاح الأول: افهمي قبل أن تكتبي</h2>
+    <h1>
+      كتابة بلا أخطاء
+    </h1>
 
-    <div class="card">
+    <p>
+      رسم بعض الكلمات الموصولة خطًّا:
+      درّبي عينكِ على ملاحظة الرسم الصحيح
+      وتجنّب الأخطاء الشائعة.
+    </p>
 
-      <div class="step">
-        لا تكتبي الكلمة مباشرة.
-        اسألي نفسك:
-        هل هي كلمة واحدة، أم كلمتان أصبحتا موصولتين؟
+  </header>
+
+
+  <main>
+
+    <section class="card">
+
+      <div class="intro">
+        هنا لن نعيد شرح مجموعات الكلمات،
+        بل سنتدرّب على ملاحظة
+        صورتها الإملائية الصحيحة.
       </div>
 
-      <div class="example">
-        يوم + إذ
-        <span class="arrow">←</span>
-        كلمتان في الأصل
-        <span class="arrow">←</span>
-        <span class="correct">يومئذٍ</span>
+    </section>
+
+
+    <section class="card">
+
+      <h2>
+        اكتشفي الخطأ
+      </h2>
+
+      <div class="error-grid">
+
+        <div class="error-box">
+
+          <div class="wrong">
+            ❌ أدركتُ يوم إذٍ أهميةَ الوقت.
+          </div>
+
+          <div class="correct">
+            ✅ أدركتُ يومئذٍ أهميةَ الوقت.
+          </div>
+
+          <div class="reason">
+            في الصورة الموصولة المدروسة
+            تتصل «إذ» بما قبلها:
+            يومئذٍ.
+          </div>
+
+        </div>
+
+
+        <div class="error-box">
+
+          <div class="wrong">
+            ❌ سألتُ عن من شارك في النشاط.
+          </div>
+
+          <div class="correct">
+            ✅ سألتُ عمّن شارك في النشاط.
+          </div>
+
+          <div class="reason">
+            تتصل «عن» بـ«مَن»
+            في هذا التركيب، فتكتب:
+            عمّن.
+          </div>
+
+        </div>
+
+
+        <div class="error-box">
+
+          <div class="wrong">
+            ❌ هذا الطالب من من تفوقوا.
+          </div>
+
+          <div class="correct">
+            ✅ هذا الطالب ممّن تفوقوا.
+          </div>
+
+          <div class="reason">
+            تتصل «من» بـ«مَن»،
+            ويكون الرسم:
+            ممّن.
+          </div>
+
+        </div>
+
+
+        <div class="error-box">
+
+          <div class="wrong">
+            ❌ فكرتُ في ما قرأتُه.
+          </div>
+
+          <div class="correct">
+            ✅ فكرتُ فيما قرأتُه.
+          </div>
+
+          <div class="reason">
+            في الصورة المقررة في هذا الدرس
+            تتصل «في» بـ«ما»:
+            فيما.
+          </div>
+
+        </div>
+
       </div>
 
-      <div class="example">
-        من + مَن
-        <span class="arrow">←</span>
-        التقت الميمان
-        <span class="arrow">←</span>
-        <span class="correct">ممّن</span>
+    </section>
+
+
+    <section class="card">
+
+      <h2>
+        راقبي ما يتغير عند الوصل
+      </h2>
+
+      <div class="compare">
+
+        <div class="compare-box">
+          <span class="word">
+            يوم
+          </span>
+
+          +
+
+          <span class="word">
+            إذ
+          </span>
+
+          ←
+
+          <strong>
+            يومئذٍ
+          </strong>
+
+          <br>
+
+          انتبهي إلى صورة الهمزة
+          في الكلمة بعد الوصل.
+        </div>
+
+
+        <div class="compare-box">
+          <span class="word">
+            من
+          </span>
+
+          +
+
+          <span class="word">
+            مَن
+          </span>
+
+          ←
+
+          <strong>
+            ممّن
+          </strong>
+
+          <br>
+
+          التقت الميمان،
+          وتظهر الشدة في الرسم المشكول.
+        </div>
+
+
+        <div class="compare-box">
+          <span class="word">
+            عن
+          </span>
+
+          +
+
+          <span class="word">
+            مَن
+          </span>
+
+          ←
+
+          <strong>
+            عمّن
+          </strong>
+
+          <br>
+
+          لا نكتبها في هذا التركيب:
+          «عن من».
+        </div>
+
+
+        <div class="compare-box">
+          <span class="word">
+            أن
+          </span>
+
+          +
+
+          <span class="word">
+            لا
+          </span>
+
+          ←
+
+          <strong>
+            ألّا
+          </strong>
+
+          <br>
+
+          راقبي صورة الكلمة
+          بعد الوصل.
+        </div>
+
       </div>
 
-      <div class="tip">
-        عندما تفهمين أصل الكلمة، يصبح رسمها أسهل
-        ولا تعتمدين على الحفظ وحده.
+    </section>
+
+
+    <section class="card">
+
+      <h2>
+        انتبهي للسياق
+      </h2>
+
+      <div class="compare">
+
+        <div class="compare-box">
+          لا يكفي أن نرى كلمتين
+          متجاورتين فنصلهما أو نوصلهما
+          آليًّا؛ بل ننتبه إلى التركيب
+          الذي نتعلم رسمه.
+        </div>
+
+
+        <div class="compare-box">
+          في هذا الدرس نتدرّب على صور مثل:
+
+          <br>
+
+          <strong>
+            يومئذٍ – ممّن – عمّن – فيما
+          </strong>
+
+          <br>
+
+          <strong>
+            ألّا – كيلا – لئلّا – حبّذا
+          </strong>
+        </div>
+
       </div>
 
-    </div>
+    </section>
 
-    <h2 class="title">المفتاح الثاني: استراتيجية انظري – غطّي – اكتبي – تحققي</h2>
 
-    <div class="card">
+    <section class="card">
 
-      <div class="step">
-        1. انظري إلى الكلمة الصحيحة خمس ثوانٍ.
-        <br>
-        2. غطّيها.
-        <br>
-        3. اكتبيها من الذاكرة.
-        <br>
-        4. اكشفي الكلمة وقارني.
+      <h2>
+        ماذا أفعل إذا ترددت؟
+      </h2>
+
+      <div class="steps">
+
+        <div class="step">
+          ١- اقرئي الجملة كاملة
+          وافهمي معناها.
+        </div>
+
+        <div class="step">
+          ٢- حددي الكلمة
+          التي يُحتمل أن تكون
+          من الكلمات الموصولة.
+        </div>
+
+        <div class="step">
+          ٣- استحضري صورتها
+          التي تعلمتِها في الدرس.
+        </div>
+
+        <div class="step">
+          ٤- راقبي الحروف
+          التي تغير رسمها عند الوصل.
+        </div>
+
+        <div class="step">
+          ٥- أعيدي قراءة الكلمة
+          داخل الجملة بعد كتابتها.
+        </div>
+
       </div>
 
-      <div class="activity">
-        انظري:
-        <span class="word-box">لئلّا</span>
-        <br>
-        غطّيها، ثم اكتبيها.
-        <br>
-        تحققي:
-        هل كتبتِ الهمزة والشدة والألف المقصورة؟
-      </div>
+    </section>
 
-      <div class="tip">
-        هذه الطريقة تدرب الذاكرة البصرية،
-        وهي مفيدة للكلمات التي يكثر الخطأ فيها.
-      </div>
 
-    </div>
+    <section class="card">
 
-    <h2 class="title">المفتاح الثالث: اكتبي الكلمة داخل جملة</h2>
-
-    <div class="card">
-
-      <div class="step">
-        لا تحفظي الكلمة وحدها؛
-        اكتبيها في جملة مفيدة.
-      </div>
-
-      <div class="example">
-        <span class="correct">حينئذٍ</span>
-        أدركتُ قيمة الوقت.
-      </div>
-
-      <div class="example">
-        اجتهدتُ
-        <span class="correct">كيلا</span>
-        أندم.
-      </div>
-
-      <div class="example">
-        أحبُّ
-        <span class="correct">ممّن</span>
-        ينصحني بصدق.
-      </div>
-
-      <div class="tip">
-        الجملة تربط شكل الكلمة بمعناها،
-        فيثبت رسمها في الذاكرة.
-      </div>
-
-    </div>
-
-    <h2 class="title">المفتاح الرابع: استخدمي أسهم التحويل</h2>
-
-    <div class="card">
-
-      <div class="example">
-        وقت + إذ
-        <span class="arrow">←</span>
-        وقتئذ
-        <span class="arrow">←</span>
-        <span class="correct">وقتئذٍ</span>
-      </div>
-
-      <div class="example">
-        عن + مَن
-        <span class="arrow">←</span>
-        عنمن
-        <span class="arrow">←</span>
-        <span class="correct">عمّن</span>
-      </div>
-
-      <div class="example">
-        أن + لا
-        <span class="arrow">←</span>
-        أنلا
-        <span class="arrow">←</span>
-        <span class="correct">ألّا</span>
-      </div>
-
-      <div class="example">
-        في + ما
-        <span class="arrow">←</span>
-        <span class="correct">فيما</span>
-      </div>
-
-      <div class="tip">
-        السهم يساعدك على رؤية التغيير الذي حدث
-        عند وصل الكلمتين.
-      </div>
-
-    </div>
-
-    <h2 class="title">المفتاح الخامس: صيد الخطأ</h2>
-
-    <div class="card">
-
-      <div class="step">
-        ابحثي عن الخطأ كأنك محققة،
-        ولا تكتفي بقراءة الجملة بسرعة.
-      </div>
-
-      <div class="warning">
-        <span class="wrong">ذهبت يوم إذٍ إلى المدرسة.</span>
-        <br>
-        الصواب:
-        <span class="correct">ذهبت يومئذٍ إلى المدرسة.</span>
-      </div>
-
-      <div class="warning">
-        <span class="wrong">سأراجع كي لا أنسى.</span>
-        <br>
-        في درس الكلمات الموصولة تكتب:
-        <span class="correct">كيلا أنسى.</span>
-      </div>
-
-      <div class="warning">
-        <span class="wrong">هذا الطالب من من تفوقوا.</span>
-        <br>
-        الصواب:
-        <span class="correct">هذا الطالب ممّن تفوقوا.</span>
-      </div>
-
-    </div>
-
-    <h2 class="title">المفتاح السادس: قارني بين الخطأ والصواب</h2>
-
-    <div class="card">
-
-      <div class="example">
-        <span class="wrong">حين إذ</span>
-        <span class="arrow">✖</span>
-        <span class="correct">حينئذٍ</span>
-      </div>
-
-      <div class="example">
-        <span class="wrong">عن من</span>
-        <span class="arrow">✖</span>
-        <span class="correct">عمّن</span>
-      </div>
-
-      <div class="example">
-        <span class="wrong">أن لا</span>
-        <span class="arrow">✖</span>
-        <span class="correct">ألّا</span>
-      </div>
-
-      <div class="example">
-        <span class="wrong">حب ذا</span>
-        <span class="arrow">✖</span>
-        <span class="correct">حبّذا</span>
-      </div>
-
-      <div class="tip">
-        رؤية الخطأ بجانب الصواب تجعل الفرق أوضح
-        وتمنع تكرار الغلط.
-      </div>
-
-    </div>
-
-    <h2 class="title">المفتاح السابع: قائمة الفحص قبل التسليم</h2>
-
-    <div class="card">
-
-      <div class="checklist">
-        ✅ هل فصلتُ كلمة يجب أن تكون موصولة؟
-        <br>
-        ✅ هل كتبتُ الشدة في «ممّن» و«عمّن»؟
-        <br>
-        ✅ هل كتبتُ الهمزة في «يومئذٍ» و«لئلّا»؟
-        <br>
-        ✅ هل راجعتُ الألف اللينة والهمزات؟
-        <br>
-        ✅ هل قرأتُ الجملة مرة أخيرة ببطء؟
-      </div>
-
-      <div class="tip">
-        لا تسلّمي كتابتك قبل تطبيق هذه القائمة.
-      </div>
-
-    </div>
-
-    <h2 class="title">المفتاح الثامن: دفتر أخطائي</h2>
-
-    <div class="card">
-
-      <div class="step">
-        خصصي صفحة للكلمات التي تخطئين فيها.
-        واكتبي لكل كلمة:
-      </div>
-
-      <div class="activity">
-        1. الكلمة الخاطئة:
-        <span class="wrong">من من</span>
-        <br>
-        2. الكلمة الصحيحة:
-        <span class="correct">ممّن</span>
-        <br>
-        3. جملة:
-        أحبُّ ممّن يساعد الآخرين.
-        <br>
-        4. أعيد كتابتها ثلاث مرات:
-        ممّن – ممّن – ممّن.
-      </div>
-
-      <div class="tip">
-        الخطأ الذي تسجلينه وتصححينه
-        يقل احتمال تكراره.
-      </div>
-
-    </div>
-
-    <h2 class="title">المفتاح التاسع: الإملاء المتدرج</h2>
-
-    <div class="card">
-
-      <div class="step">
-        تدربي على ثلاث مراحل:
-      </div>
-
-      <div class="example">
-        المرحلة الأولى:
-        انسخي الكلمة وأنت تنظرين إليها.
-      </div>
-
-      <div class="example">
-        المرحلة الثانية:
-        شاهدي الكلمة ثم اكتبيها بعد إخفائها.
-      </div>
-
-      <div class="example">
-        المرحلة الثالثة:
-        اكتبي الكلمة عند سماعها داخل جملة.
-      </div>
-
-      <div class="tip">
-        الانتقال بالتدرج من الرؤية إلى الذاكرة
-        ثم إلى السماع يثبت الكتابة الصحيحة.
-      </div>
-
-    </div>
-
-    <h2 class="title">تحدي المراجعة</h2>
-
-    <div class="card">
-
-      <div class="activity">
-        صححي الكلمات الآتية:
-        <br>
-        يوم إذ – عن من – أن لا – في ما – حب ذا
-      </div>
+      <h2>
+        فخاخ إملائية
+      </h2>
 
       <details>
-        <summary>إظهار التصحيح</summary>
 
-        <p>
-          يومئذٍ – عمّن – ألّا – فيما – حبّذا
-        </p>
+        <summary>
+          أيهما الصحيح في الدرس:
+          «يوم إذٍ» أم «يومئذٍ»؟
+        </summary>
+
+        <div>
+          ✅ الصورة الموصولة:
+          <strong>
+            يومئذٍ
+          </strong>.
+        </div>
 
       </details>
 
+
+      <details>
+
+        <summary>
+          أيهما الصحيح:
+          «من من» أم «ممّن»؟
+        </summary>
+
+        <div>
+          ✅ الصواب في هذا التركيب:
+          <strong>
+            ممّن
+          </strong>.
+        </div>
+
+      </details>
+
+
+      <details>
+
+        <summary>
+          أيهما الصحيح:
+          «عن من» أم «عمّن»؟
+        </summary>
+
+        <div>
+          ✅ الصواب في الصورة المدروسة:
+          <strong>
+            عمّن
+          </strong>.
+        </div>
+
+      </details>
+
+
+      <details>
+
+        <summary>
+          كيف تكتب «حب + ذا»؟
+        </summary>
+
+        <div>
+          ✅ تكتب موصولة:
+          <strong>
+            حبّذا
+          </strong>.
+        </div>
+
+      </details>
+
+
+      <details>
+
+        <summary>
+          كيف تكتب «لِـ + أن + لا»؟
+        </summary>
+
+        <div>
+          ✅ تكتب في الصورة المدروسة:
+          <strong>
+            لئلّا
+          </strong>.
+        </div>
+
+      </details>
+
+    </section>
+
+
+    <section class="card">
+
+      <h2>
+        اختبار عينك الإملائية
+      </h2>
+
+      <details>
+
+        <summary>
+          اختاري:
+          وقت إذٍ / وقتئذٍ
+        </summary>
+
+        <div>
+          ✅
+          <strong>
+            وقتئذٍ
+          </strong>
+        </div>
+
+      </details>
+
+
+      <details>
+
+        <summary>
+          اختاري:
+          عن من / عمّن
+        </summary>
+
+        <div>
+          ✅
+          <strong>
+            عمّن
+          </strong>
+        </div>
+
+      </details>
+
+
+      <details>
+
+        <summary>
+          اختاري:
+          في ما / فيما
+        </summary>
+
+        <div>
+          ✅
+          <strong>
+            فيما
+          </strong>
+        </div>
+
+      </details>
+
+
+      <details>
+
+        <summary>
+          اختاري:
+          حب ذا / حبّذا
+        </summary>
+
+        <div>
+          ✅
+          <strong>
+            حبّذا
+          </strong>
+        </div>
+
+      </details>
+
+    </section>
+
+
+    <section class="card">
+
+      <h2>
+        قائمة الفحص قبل التسليم
+      </h2>
+
+      <div class="checklist">
+
+        <div class="check-item">
+          ✅ هل فصلتُ كلمة
+          تعلمتُ أنها تكتب موصولة؟
+        </div>
+
+        <div class="check-item">
+          ✅ هل راجعتُ رسم
+          «يومئذٍ» و«حينئذٍ» و«وقتئذٍ»؟
+        </div>
+
+        <div class="check-item">
+          ✅ هل ميّزتُ
+          «ممّن» و«عمّن»؟
+        </div>
+
+        <div class="check-item">
+          ✅ هل راجعتُ
+          «ألّا» و«لئلّا»؟
+        </div>
+
+        <div class="check-item">
+          ✅ هل قرأتُ الجملة
+          كاملة بعد التصحيح؟
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section class="card">
+
+      <div class="final-note">
+        ⭐ مفتاح الإتقان:
+        <br>
+        لاحظي الصورة الموصولة،
+        اربطيها بالسياق،
+        ثم راجعي رسمها قبل التسليم.
+      </div>
+
+    </section>
+
+
+    <div class="back-box">
+
+      <a
+        class="back"
+        href="connected-words.html"
+      >
+        العودة إلى الدرس
+      </a>
+
     </div>
 
-    <div class="tip">
-      ⭐ قاعدة الكاتبة الذكية:
-      <br>
-      أفهم الكلمة، ألاحظ شكلها، أكتبها في جملة،
-      ثم أراجعها قبل التسليم.
-    </div>
+  </main>
 
-    <a class="back" href="connected-words.html">
-      العودة إلى الدرس
-    </a>
 
-  </div>
+  <footer>
+    جميع الحقوق محفوظة © 2026
+  </footer>
 
 </body>
 
