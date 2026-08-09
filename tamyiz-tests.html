@@ -24,11 +24,12 @@
       min-height: 100vh;
       font-family: Tahoma, Arial, sans-serif;
       color: #4b3a57;
+      line-height: 1.8;
       background: linear-gradient(180deg, #fffaf2, #f8f0fb);
     }
 
     header {
-      padding: 38px 20px;
+      padding: 34px 18px;
       color: white;
       text-align: center;
       background: linear-gradient(135deg, #776094, #5b4677);
@@ -36,35 +37,24 @@
     }
 
     header h1 {
-      margin: 0 0 10px;
+      margin: 0 0 8px;
       color: #fffdf8;
-      font-size: 32px;
-      line-height: 1.6;
+      font-size: 31px;
     }
 
     header p {
       margin: 0;
       color: #f7effb;
-      font-size: 18px;
-      line-height: 1.8;
+      font-size: 16px;
     }
 
-    main {
-      width: 90%;
-      max-width: 750px;
+    .container {
+      width: 92%;
+      max-width: 760px;
       margin: 25px auto;
     }
 
-    .progress-box {
-      margin-bottom: 20px;
-      padding: 16px;
-      background: #fffdf8;
-      border: 2px solid #c9a85c;
-      border-radius: 18px;
-      box-shadow: 0 6px 16px rgba(91, 63, 111, 0.11);
-    }
-
-    .progress-text {
+    .top-info {
       display: flex;
       justify-content: space-between;
       gap: 10px;
@@ -73,163 +63,191 @@
       font-weight: bold;
     }
 
-    .progress {
+    .progress-wrap {
+      width: 100%;
       height: 14px;
+      margin-bottom: 22px;
       overflow: hidden;
-      background: #eadff0;
+      background: #eee3f2;
+      border: 1px solid #c9a85c;
       border-radius: 20px;
     }
 
     .progress-bar {
-      width: 0;
+      width: 10%;
       height: 100%;
-      background: linear-gradient(90deg, #776094, #c9a85c);
-      transition: width 0.4s ease;
+      background: linear-gradient(90deg, #c9a85c, #8668a0);
+      border-radius: 20px;
+      transition: width 0.35s ease;
     }
 
-    .quiz-card,
-    .result {
+    .question-card,
+    .result-card {
       padding: 24px;
       background: #fffdf8;
       border: 2px solid #c9a85c;
-      border-radius: 22px;
+      border-radius: 20px;
       box-shadow: 0 7px 18px rgba(91, 63, 111, 0.12);
+      animation: appear 0.35s ease;
     }
 
-    .question-number {
-      margin-bottom: 10px;
-      color: #8b6b25;
-      font-weight: bold;
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    .question {
-      margin-bottom: 20px;
+    .question-card h2 {
+      margin: 0 0 20px;
       color: #5d4374;
       font-size: 22px;
-      font-weight: bold;
-      line-height: 1.8;
+      line-height: 1.9;
     }
 
-    .answers {
+    .choices {
       display: grid;
       gap: 12px;
     }
 
-    .answer {
+    .choice {
       width: 100%;
-      padding: 15px;
+      padding: 15px 16px;
       color: #4b3a57;
       font-family: Tahoma, Arial, sans-serif;
-      font-size: 18px;
+      font-size: 17px;
       line-height: 1.7;
       text-align: right;
       cursor: pointer;
-      background: linear-gradient(135deg, #f5ecfb, #fffaf2);
-      border: 2px solid #c9a85c;
-      border-radius: 15px;
-      transition: transform 0.2s ease, background 0.2s ease;
+      background: linear-gradient(135deg, #f7effb, #fffaf2);
+      border: 2px solid #d8c48a;
+      border-radius: 14px;
+      transition: 0.2s ease;
     }
 
-    .answer:hover,
-    .answer:active {
-      background: #f1e5f8;
+    .choice:hover,
+    .choice:active {
       transform: translateY(-2px);
+      border-color: #8e72a4;
     }
 
-    .answer:disabled {
+    .choice.correct {
+      color: #21683a;
+      background: #eaf7ee;
+      border-color: #54a66f;
+    }
+
+    .choice.wrong {
+      color: #9c3344;
+      background: #fff0f2;
+      border-color: #cf6f7d;
+    }
+
+    .choice:disabled {
       cursor: default;
     }
 
-    .answer.correct {
-      color: #25663c;
-      background: #e5f6e9;
-      border-color: #4d9b64;
-    }
-
-    .answer.wrong {
-      color: #9c3547;
-      background: #fde8ec;
-      border-color: #c95c70;
-    }
-
-    .message {
-      min-height: 55px;
+    .feedback {
+      display: none;
       margin-top: 18px;
-      padding: 12px;
-      font-size: 17px;
+      padding: 14px;
       font-weight: bold;
-      line-height: 1.8;
+      line-height: 1.9;
       text-align: center;
-      border-radius: 14px;
+      border-radius: 13px;
     }
 
-    .message.success {
-      color: #25663c;
-      background: #e5f6e9;
-      border: 1px solid #4d9b64;
+    .feedback.correct-feedback {
+      display: block;
+      color: #21683a;
+      background: #eef8f1;
+      border: 1px solid #8dc59d;
     }
 
-    .message.error {
-      color: #9c3547;
-      background: #fde8ec;
-      border: 1px solid #c95c70;
+    .feedback.wrong-feedback {
+      display: block;
+      color: #9c3344;
+      background: #fff0f2;
+      border: 1px solid #dfa3ad;
     }
 
     .next-btn,
-    .restart-btn,
-    .back-btn {
-      display: block;
+    .restart-btn {
+      display: none;
       width: 100%;
-      margin-top: 15px;
+      margin-top: 16px;
       padding: 15px;
       color: white;
       font-family: Tahoma, Arial, sans-serif;
-      font-size: 19px;
+      font-size: 18px;
       font-weight: bold;
-      text-align: center;
-      text-decoration: none;
       cursor: pointer;
       background: #6f5288;
       border: 2px solid #c9a85c;
-      border-radius: 15px;
-    }
-
-    .next-btn {
-      display: none;
+      border-radius: 14px;
     }
 
     .next-btn:hover,
-    .restart-btn:hover,
-    .back-btn:hover {
+    .restart-btn:hover {
       background: #5b4677;
     }
 
-    .result {
+    .result-card {
       display: none;
       text-align: center;
     }
 
     .result-icon {
-      font-size: 70px;
+      margin-bottom: 5px;
+      font-size: 50px;
     }
 
-    .result h2 {
-      margin: 10px 0;
+    .result-card h2 {
+      margin: 5px 0 10px;
       color: #5d4374;
-      font-size: 30px;
+      font-size: 28px;
     }
 
     .score {
-      margin: 20px 0;
+      margin: 18px 0;
       color: #8b6b25;
-      font-size: 26px;
+      font-size: 36px;
       font-weight: bold;
     }
 
-    .result p {
-      color: #4b3a57;
-      font-size: 18px;
-      line-height: 1.8;
+    .message {
+      font-size: 19px;
+      line-height: 2;
+    }
+
+    .result-links {
+      display: grid;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .result-link,
+    .back {
+      display: block;
+      padding: 12px 20px;
+      color: white;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      background: #6f5288;
+      border: 2px solid #c9a85c;
+      border-radius: 18px;
+    }
+
+    .back {
+      width: fit-content;
+      margin: 25px auto;
+      border-radius: 22px;
     }
 
     footer {
@@ -241,21 +259,9 @@
       border-top: 3px solid #c9a85c;
     }
 
-    .shake {
-      animation: shake 0.35s;
-    }
-
-    @keyframes shake {
-      0% { transform: translateX(0); }
-      25% { transform: translateX(8px); }
-      50% { transform: translateX(-8px); }
-      75% { transform: translateX(6px); }
-      100% { transform: translateX(0); }
-    }
-
     .confetti {
       position: fixed;
-      top: -20px;
+      top: -30px;
       z-index: 9999;
       pointer-events: none;
       animation: fall linear forwards;
@@ -268,35 +274,44 @@
       }
     }
 
+    .pop {
+      animation: pop 0.3s ease;
+    }
+
+    @keyframes pop {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.03);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
     @media (max-width: 600px) {
       header h1 {
-        font-size: 27px;
+        font-size: 26px;
       }
 
-      header p {
-        font-size: 16px;
+      .question-card,
+      .result-card {
+        padding: 19px 14px;
       }
 
-      main {
-        width: 94%;
-      }
-
-      .quiz-card,
-      .result {
-        padding: 20px 14px;
-      }
-
-      .question {
+      .question-card h2 {
         font-size: 19px;
       }
 
-      .answer {
-        padding: 14px 12px;
+      .choice {
         font-size: 16px;
       }
 
-      .message {
-        font-size: 16px;
+      .score {
+        font-size: 30px;
       }
     }
   </style>
@@ -304,497 +319,780 @@
 
 <body>
 
-  <header>
-    <h1>🧠 اختبار درس التمييز</h1>
-    <p>اختبري فهمك واجمعي أكبر عدد من النجوم ⭐</p>
-  </header>
+<header>
+  <h1>🎯 تحدي التمييز</h1>
+  <p>10 أسئلة... دققي في المعنى قبل أن تختاري الإجابة 🌟</p>
+</header>
 
-  <main>
+<main class="container">
 
-    <div id="quizArea">
+  <div id="quizArea">
 
-      <div class="progress-box">
-        <div class="progress-text">
-          <span id="progressText"></span>
-          <span id="scoreText">الدرجة: 0</span>
-        </div>
-
-        <div class="progress">
-          <div class="progress-bar" id="progressBar"></div>
-        </div>
-      </div>
-
-      <div class="quiz-card" id="quizCard">
-
-        <div class="question-number" id="questionNumber"></div>
-        <div class="question" id="question"></div>
-        <div class="answers" id="answers"></div>
-        <div class="message" id="message"></div>
-
-        <button
-          type="button"
-          class="next-btn"
-          id="nextBtn"
-          onclick="nextQuestion()">
-          السؤال التالي ←
-        </button>
-
-      </div>
+    <div class="top-info">
+      <span id="questionNumber"></span>
+      <span id="liveScore">الصحيح: 0</span>
     </div>
 
-    <div class="result" id="result">
+    <div class="progress-wrap">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
 
-      <div class="result-icon" id="resultIcon">🏆</div>
+    <div class="question-card" id="questionCard">
 
-      <h2 id="resultTitle"></h2>
+      <h2 id="questionText"></h2>
 
-      <div class="score" id="finalScore"></div>
+      <div class="choices" id="choices"></div>
 
-      <p id="resultMessage"></p>
+      <div class="feedback" id="feedback"></div>
 
-      <button
-        type="button"
-        class="restart-btn"
-        onclick="restartQuiz()">
-        🔄 إعادة الاختبار
+      <button class="next-btn" id="nextBtn" type="button">
+        السؤال التالي ←
       </button>
 
-      <a class="back-btn" href="tamyiz.html">
-        العودة إلى درس التمييز
+    </div>
+
+  </div>
+
+  <div class="result-card" id="resultCard">
+
+    <div class="result-icon" id="resultIcon">🎉</div>
+
+    <h2>انتهى التحدي</h2>
+
+    <div class="score" id="finalScore"></div>
+
+    <div class="message" id="resultMessage"></div>
+
+    <button class="restart-btn" id="restartBtn" type="button">
+      🔄 إعادة التحدي
+    </button>
+
+    <div class="result-links">
+
+      <a class="result-link" href="tamyiz-file.html">
+        📘 مراجعة ملف الدرس
+      </a>
+
+      <a class="result-link" href="tamyiz-language-window.html">
+        🔬 النافذة اللغوية
+      </a>
+
+      <a class="result-link" href="tamyiz.html">
+        ↩ العودة إلى درس التمييز
       </a>
 
     </div>
 
-  </main>
+  </div>
 
-  <footer>
-    جميع الحقوق محفوظة © 2026
-  </footer>
+  <a class="back" href="tamyiz.html">
+    العودة إلى درس التمييز
+  </a>
 
-  <script>
-    const questions = [
-      {
-        question: "1- ما تعريف التمييز؟",
-        answers: [
-          "اسم معرفة يصف ما قبله",
-          "اسم نكرة يزيل إبهام اسم قبله أو معنى في الجملة",
-          "فعل يوضح زمن الجملة",
-          "حرف يربط بين كلمتين"
-        ],
-        correct: 1,
-        explanation: "التمييز اسم نكرة يزيل الإبهام ويوضح المقصود."
-      },
-      {
-        question: "2- ما المميَّز في جملة «اشتريتُ عشرين كتابًا»؟",
-        answers: [
-          "اشتريتُ",
-          "عشرين",
-          "كتابًا",
-          "التاء"
-        ],
-        correct: 1,
-        explanation: "العدد «عشرين» هو المميَّز، و«كتابًا» وضح المقصود منه."
-      },
-      {
-        question: "3- ما التمييز في جملة «اشتريتُ عشرين كتابًا»؟",
-        answers: [
-          "اشتريتُ",
-          "عشرين",
-          "كتابًا",
-          "التاء"
-        ],
-        correct: 2,
-        explanation: "«كتابًا» تمييز؛ لأنه أزال الإبهام عن العدد عشرين."
-      },
-      {
-        question: "4- ما التمييز في جملة «شربتُ لترًا ماءً»؟",
-        answers: [
-          "شربتُ",
-          "لترًا",
-          "ماءً",
-          "التاء"
-        ],
-        correct: 2,
-        explanation: "«ماءً» وضح المقصود من مقدار اللتر."
-      },
-      {
-        question: "5- تمييز المفرد يسمى أيضًا:",
-        answers: [
-          "تمييز النسبة",
-          "تمييز الجملة",
-          "تمييز الذات أو الملفوظ",
-          "الحال"
-        ],
-        correct: 2,
-        explanation: "تمييز المفرد يسمى تمييز الذات أو التمييز الملفوظ."
-      },
-      {
-        question: "6- تمييز الجملة يسمى أيضًا:",
-        answers: [
-          "تمييز الذات",
-          "تمييز النسبة أو الملحوظ",
-          "تمييز العدد",
-          "المفعول به"
-        ],
-        correct: 1,
-        explanation: "تمييز الجملة يسمى تمييز النسبة أو التمييز الملحوظ."
-      },
-      {
-        question: "7- أي الجمل الآتية تحتوي على تمييز عدد؟",
-        answers: [
-          "ازداد الطالب علمًا",
-          "اشتريتُ عشرين قلمًا",
-          "طاب المكان هواءً",
-          "امتلأ الإناء ماءً"
-        ],
-        correct: 1,
-        explanation: "«قلمًا» تمييز للعدد «عشرين»."
-      },
-      {
-        question: "8- في جملة «اشتريتُ كيلو تمرًا»، كلمة «تمرًا» تمييز:",
-        answers: [
-          "عدد",
-          "وزن",
-          "مساحة",
-          "جملة"
-        ],
-        correct: 1,
-        explanation: "الكيلو من ألفاظ الوزن، و«تمرًا» تمييز له."
-      },
-      {
-        question: "9- ما التمييز في جملة «زرعتُ هكتارًا قمحًا»؟",
-        answers: [
-          "زرعتُ",
-          "هكتارًا",
-          "قمحًا",
-          "التاء"
-        ],
-        correct: 2,
-        explanation: "«قمحًا» وضح المقصود من المساحة «هكتارًا»."
-      },
-      {
-        question: "10- أي الجمل الآتية تحتوي على تمييز جملة؟",
-        answers: [
-          "قرأتُ عشرين صفحةً",
-          "اشتريتُ كيلو تمرًا",
-          "ازداد الطالب علمًا",
-          "شربتُ لترًا حليبًا"
-        ],
-        correct: 2,
-        explanation: "«علمًا» يوضح معنى الجملة كلها؛ لذلك هو تمييز جملة."
-      },
-      {
-        question: "11- ما إعراب «علمًا» في «ازداد الطالب علمًا»؟",
-        answers: [
-          "فاعل مرفوع",
-          "مفعول به منصوب",
-          "تمييز منصوب",
-          "حال منصوب"
-        ],
-        correct: 2,
-        explanation: "«علمًا» تمييز منصوب وعلامة نصبه الفتحة الظاهرة."
-      },
-      {
-        question: "12- إذا كان التمييز مفردًا صحيح الآخر ومنصوبًا، فما علامة نصبه؟",
-        answers: [
-          "الضمة",
-          "الكسرة",
-          "الفتحة",
-          "السكون"
-        ],
-        correct: 2,
-        explanation: "علامة نصبه في هذه الحالة الفتحة الظاهرة."
-      },
-      {
-        question: "13- ما التمييز في «محمد أكثر الطلاب اجتهادًا»؟",
-        answers: [
-          "محمد",
-          "أكثر",
-          "الطلاب",
-          "اجتهادًا"
-        ],
-        correct: 3,
-        explanation: "«اجتهادًا» تمييز يوضح جهة الزيادة في معنى «أكثر»."
-      },
-      {
-        question: "14- المميَّز الملحوظ يُفهم من:",
-        answers: [
-          "كلمة واحدة فقط",
-          "معنى الجملة كلها",
-          "الفعل وحده",
-          "الحرف الأخير"
-        ],
-        correct: 1,
-        explanation: "المميَّز الملحوظ لا يكون اسمًا محددًا، بل يُفهم من معنى الجملة."
-      },
-      {
-        question: "15- أي إعراب مما يأتي صحيح؟",
-        answers: [
-          "ماءً: فاعل مرفوع",
-          "كتابًا: تمييز منصوب",
-          "علمًا: مبتدأ مرفوع",
-          "اجتهادًا: مضاف إليه"
-        ],
-        correct: 1,
-        explanation: "«كتابًا» في «اشتريت عشرين كتابًا» تمييز منصوب."
-      }
-    ];
+</main>
 
-    const encouragements = [
-      "إجابة لامعة! ⭐",
-      "مذهلة يا بطلة! 🎉",
-      "أحسنتِ، أنتِ تتقدمين بسرعة 🚀",
-      "إجابة ذكية جدًا 🧠",
-      "رائعة! واصلي التألق 🌟",
-      "يا سلام عليكِ! 👏"
-    ];
+<footer>
+  جميع الحقوق محفوظة © 2026
+</footer>
 
-    let currentQuestion = 0;
-    let score = 0;
-    let answered = false;
+<script>
 
-    const questionElement = document.getElementById("question");
-    const answersElement = document.getElementById("answers");
-    const messageElement = document.getElementById("message");
-    const nextBtn = document.getElementById("nextBtn");
-    const quizCard = document.getElementById("quizCard");
+  const questions = [
 
-    function loadQuestion() {
-      answered = false;
+    {
+      question:
+        "1- في الجملة «اشتريتُ عشرين كتابًا»، ما إعراب «كتابًا»؟",
 
-      const item = questions[currentQuestion];
+      choices: [
+        "حال منصوب",
+        "مفعول به منصوب",
+        "تمييز منصوب",
+        "نعت منصوب"
+      ],
 
-      document.getElementById("questionNumber").textContent =
-        "السؤال رقم " + (currentQuestion + 1);
+      answer: 2,
 
-      document.getElementById("progressText").textContent =
-        "السؤال " + (currentQuestion + 1) + " من " + questions.length;
+      explanation:
+        "«كتابًا» أزال الإبهام عن العدد «عشرين»، لذلك فهو تمييز منصوب."
+    },
 
-      document.getElementById("scoreText").textContent =
-        "الدرجة: " + score;
+    {
+      question:
+        "2- ما المميَّز في الجملة «اشتريتُ عشرين كتابًا»؟",
 
-      document.getElementById("progressBar").style.width =
-        (currentQuestion / questions.length) * 100 + "%";
+      choices: [
+        "اشتريتُ",
+        "عشرين",
+        "كتابًا",
+        "التاء"
+      ],
 
-      questionElement.textContent = item.question;
+      answer: 1,
 
-      answersElement.innerHTML = "";
-      messageElement.textContent = "";
-      messageElement.className = "message";
-      nextBtn.style.display = "none";
+      explanation:
+        "«عشرين» هو المميَّز؛ لأن «كتابًا» جاء ليوضح المقصود من العدد."
+    },
 
-      item.answers.forEach((answer, index) => {
-        const button = document.createElement("button");
+    {
+      question:
+        "3- أي الجمل الآتية تحتوي على تمييز يوضح مقدارًا؟",
+
+      choices: [
+        "عاد المسافرُ مسرورًا",
+        "اشتريتُ لترًا حليبًا",
+        "رأيتُ الطالبَ المجتهدَ",
+        "قرأ الطالبُ القصةَ"
+      ],
+
+      answer: 1,
+
+      explanation:
+        "«حليبًا» تمييز؛ لأنه أوضح المقصود من مقدار «لترًا»."
+    },
+
+    {
+      question:
+        "4- في الجملة «زرعتُ هكتارًا قمحًا»، ما التمييز؟",
+
+      choices: [
+        "زرعتُ",
+        "هكتارًا",
+        "قمحًا",
+        "التاء"
+      ],
+
+      answer: 2,
+
+      explanation:
+        "«قمحًا» أوضح المقصود من المساحة «هكتارًا»، لذلك فهو التمييز."
+    },
+
+    {
+      question:
+        "5- أي الجمل الآتية تحتوي على تمييز نسبة؟",
+
+      choices: [
+        "اشتريت عشرين قلمًا",
+        "شربت لترًا ماءً",
+        "ازداد الطالبُ علمًا",
+        "زرعت هكتارًا قمحًا"
+      ],
+
+      answer: 2,
+
+      explanation:
+        "«علمًا» يوضح معنى الجملة ويبين جهة الزيادة؛ لذلك هو تمييز نسبة."
+    },
+
+    {
+      question:
+        "6- في الجملة «عاد الطالبُ مسرورًا» و«ازداد الطالبُ سرورًا»، ما إعراب الكلمتين بالترتيب؟",
+
+      choices: [
+        "تمييز ثم حال",
+        "حال ثم تمييز",
+        "مفعول به ثم حال",
+        "نعت ثم مفعول به"
+      ],
+
+      answer: 1,
+
+      explanation:
+        "«مسرورًا» تبيّن هيئة الطالب فهي حال، أما «سرورًا» فتوضح جهة الزيادة فهي تمييز."
+    },
+
+    {
+      question:
+        "7- في قوله تعالى ﴿وَاشْتَعَلَ الرَّأْسُ شَيْبًا﴾، ما نوع «شيبًا»؟",
+
+      choices: [
+        "حال",
+        "مفعول به",
+        "تمييز نسبة محوَّل عن فاعل",
+        "نعت"
+      ],
+
+      answer: 2,
+
+      explanation:
+        "«شيبًا» تمييز نسبة محوَّل عن فاعل؛ والأصل: اشتعل شيبُ الرأس."
+    },
+
+    {
+      question:
+        "8- أي الكلمات الآتية ليست تمييزًا؟",
+
+      choices: [
+        "علمًا في «ازداد الطالب علمًا»",
+        "ماءً في «امتلأ الإناء ماءً»",
+        "مسرعًا في «عاد الطالب مسرعًا»",
+        "اجتهادًا في «محمد أكثر الطلاب اجتهادًا»"
+      ],
+
+      answer: 2,
+
+      explanation:
+        "«مسرعًا» حال؛ لأنها تبيّن هيئة الطالب وقت عودته، وليست تمييزًا."
+    },
+
+    {
+      question:
+        "9- في الجملة «محمدٌ أكثرُ الطلابِ اجتهادًا»، ما وظيفة «اجتهادًا»؟",
+
+      choices: [
+        "بيان هيئة محمد",
+        "بيان جهة الزيادة في «أكثر»",
+        "بيان من وقع عليه الفعل",
+        "وصف كلمة الطلاب"
+      ],
+
+      answer: 1,
+
+      explanation:
+        "«اجتهادًا» تمييز يوضح الجهة التي كان فيها محمد أكثر من غيره."
+    },
+
+    {
+      question:
+        "10- أي العبارات الآتية أدق؟",
+
+      choices: [
+        "كل اسم منصوب تمييز",
+        "كل اسم يأتي بعد عدد يكون منصوبًا دائمًا",
+        "التمييز يزيل إبهامًا في اسم قبله أو في معنى الجملة",
+        "التمييز يصف هيئة صاحبه وقت وقوع الفعل"
+      ],
+
+      answer: 2,
+
+      explanation:
+        "وظيفة التمييز الأساسية إزالة الإبهام، أما بيان الهيئة فهو من وظيفة الحال."
+    }
+
+  ];
+
+
+  let currentQuestion = 0;
+  let score = 0;
+  let answered = false;
+
+  const questionNumber =
+    document.getElementById("questionNumber");
+
+  const liveScore =
+    document.getElementById("liveScore");
+
+  const progressBar =
+    document.getElementById("progressBar");
+
+  const questionText =
+    document.getElementById("questionText");
+
+  const choicesBox =
+    document.getElementById("choices");
+
+  const feedback =
+    document.getElementById("feedback");
+
+  const nextBtn =
+    document.getElementById("nextBtn");
+
+  const questionCard =
+    document.getElementById("questionCard");
+
+
+  function playTone(correct = true) {
+
+    try {
+
+      const AudioContext =
+        window.AudioContext ||
+        window.webkitAudioContext;
+
+      const ctx =
+        new AudioContext();
+
+      const oscillator =
+        ctx.createOscillator();
+
+      const gain =
+        ctx.createGain();
+
+      oscillator.connect(gain);
+      gain.connect(ctx.destination);
+
+      oscillator.type =
+        correct ? "sine" : "triangle";
+
+      oscillator.frequency.value =
+        correct ? 720 : 220;
+
+      gain.gain.setValueAtTime(
+        0.12,
+        ctx.currentTime
+      );
+
+      gain.gain.exponentialRampToValueAtTime(
+        0.001,
+        ctx.currentTime + 0.22
+      );
+
+      oscillator.start();
+
+      oscillator.stop(
+        ctx.currentTime + 0.22
+      );
+
+    } catch (e) {}
+
+  }
+
+
+  function renderQuestion() {
+
+    answered = false;
+
+    const q =
+      questions[currentQuestion];
+
+    questionNumber.textContent =
+      "السؤال " +
+      (currentQuestion + 1) +
+      " من " +
+      questions.length;
+
+    liveScore.textContent =
+      "الصحيح: " + score;
+
+    progressBar.style.width =
+      (((currentQuestion + 1) /
+      questions.length) * 100) + "%";
+
+    questionText.textContent =
+      q.question;
+
+    choicesBox.innerHTML = "";
+
+    feedback.textContent = "";
+    feedback.className = "feedback";
+
+    nextBtn.style.display = "none";
+
+    questionCard.classList.remove("pop");
+
+    void questionCard.offsetWidth;
+
+    questionCard.classList.add("pop");
+
+    q.choices.forEach(
+      (choice, index) => {
+
+        const button =
+          document.createElement("button");
 
         button.type = "button";
-        button.className = "answer";
-        button.textContent = answer;
 
-        button.onclick = () => selectAnswer(index, button);
+        button.className =
+          "choice";
 
-        answersElement.appendChild(button);
-      });
-    }
+        button.textContent =
+          choice;
 
-    function selectAnswer(index, selectedButton) {
-      if (answered) return;
-
-      answered = true;
-
-      const item = questions[currentQuestion];
-      const buttons = document.querySelectorAll(".answer");
-
-      buttons.forEach(button => {
-        button.disabled = true;
-      });
-
-      if (index === item.correct) {
-        score++;
-
-        selectedButton.classList.add("correct");
-
-        const praise =
-          encouragements[
-            Math.floor(Math.random() * encouragements.length)
-          ];
-
-        messageElement.textContent =
-          praise + " " + item.explanation;
-
-        messageElement.className = "message success";
-
-        playSound(true);
-      } else {
-        selectedButton.classList.add("wrong");
-        buttons[item.correct].classList.add("correct");
-
-        messageElement.textContent =
-          "محاولة جميلة 🌷 الإجابة الصحيحة موضحة بالأخضر. " +
-          item.explanation;
-
-        messageElement.className = "message error";
-
-        quizCard.classList.add("shake");
-
-        setTimeout(() => {
-          quizCard.classList.remove("shake");
-        }, 400);
-
-        if ("vibrate" in navigator) {
-          navigator.vibrate(120);
-        }
-
-        playSound(false);
-      }
-
-      document.getElementById("scoreText").textContent =
-        "الدرجة: " + score;
-
-      nextBtn.style.display = "block";
-
-      if (currentQuestion === questions.length - 1) {
-        nextBtn.textContent = "عرض النتيجة 🏆";
-      } else {
-        nextBtn.textContent = "السؤال التالي ←";
-      }
-    }
-
-    function playSound(correct) {
-      try {
-        const AudioContext =
-          window.AudioContext || window.webkitAudioContext;
-
-        const audioContext = new AudioContext();
-        const oscillator = audioContext.createOscillator();
-        const gain = audioContext.createGain();
-
-        oscillator.connect(gain);
-        gain.connect(audioContext.destination);
-
-        oscillator.frequency.value = correct ? 720 : 220;
-
-        gain.gain.setValueAtTime(0.12, audioContext.currentTime);
-        gain.gain.exponentialRampToValueAtTime(
-          0.001,
-          audioContext.currentTime + 0.25
+        button.addEventListener(
+          "click",
+          () => {
+            checkAnswer(
+              index,
+              button
+            );
+          }
         );
 
-        oscillator.start();
-        oscillator.stop(audioContext.currentTime + 0.25);
-      } catch (error) {
-        // يستمر الاختبار دون صوت إذا لم يدعمه الجهاز
+        choicesBox.appendChild(
+          button
+        );
+
       }
+    );
+
+  }
+
+
+  function checkAnswer(
+    selectedIndex,
+    selectedButton
+  ) {
+
+    if (answered) return;
+
+    answered = true;
+
+    const q =
+      questions[currentQuestion];
+
+    const buttons =
+      document.querySelectorAll(
+        ".choice"
+      );
+
+    buttons.forEach(
+      button => {
+        button.disabled = true;
+      }
+    );
+
+    if (
+      selectedIndex ===
+      q.answer
+    ) {
+
+      score++;
+
+      selectedButton.classList.add(
+        "correct"
+      );
+
+      feedback.textContent =
+        "أحسنتِ 🌟 " +
+        q.explanation;
+
+      feedback.className =
+        "feedback correct-feedback";
+
+      playTone(true);
+
+      miniCelebration();
+
+    } else {
+
+      selectedButton.classList.add(
+        "wrong"
+      );
+
+      buttons[q.answer].classList.add(
+        "correct"
+      );
+
+      feedback.textContent =
+        "قريبة 🌷 الإجابة الصحيحة موضحة بالأخضر. " +
+        q.explanation;
+
+      feedback.className =
+        "feedback wrong-feedback";
+
+      playTone(false);
+
+      if (navigator.vibrate) {
+        navigator.vibrate(100);
+      }
+
     }
 
-    function nextQuestion() {
-      currentQuestion++;
+    liveScore.textContent =
+      "الصحيح: " + score;
 
-      if (currentQuestion < questions.length) {
-        loadQuestion();
+    nextBtn.style.display =
+      "block";
+
+    if (
+      currentQuestion ===
+      questions.length - 1
+    ) {
+
+      nextBtn.textContent =
+        "عرض النتيجة 🎉";
+
+    } else {
+
+      nextBtn.textContent =
+        "السؤال التالي ←";
+
+    }
+
+  }
+
+
+  nextBtn.addEventListener(
+    "click",
+    () => {
+
+      if (!answered) return;
+
+      if (
+        currentQuestion <
+        questions.length - 1
+      ) {
+
+        currentQuestion++;
+
+        renderQuestion();
 
         window.scrollTo({
           top: 0,
           behavior: "smooth"
         });
+
       } else {
+
         showResult();
-      }
-    }
 
-    function showResult() {
-      document.getElementById("quizArea").style.display = "none";
-      document.getElementById("result").style.display = "block";
-
-      const percentage =
-        Math.round((score / questions.length) * 100);
-
-      document.getElementById("finalScore").textContent =
-        "درجتك: " +
-        score +
-        " من " +
-        questions.length +
-        " — " +
-        percentage +
-        "%";
-
-      const icon = document.getElementById("resultIcon");
-      const title = document.getElementById("resultTitle");
-      const resultMessage =
-        document.getElementById("resultMessage");
-
-      if (percentage >= 90) {
-        icon.textContent = "🏆";
-        title.textContent = "بطلة التمييز!";
-        resultMessage.textContent =
-          "إتقان رائع جدًا، تستحقين وسام التميز الذهبي 🌟";
-        launchConfetti();
-      } else if (percentage >= 70) {
-        icon.textContent = "🌟";
-        title.textContent = "أداء رائع!";
-        resultMessage.textContent =
-          "فهمك ممتاز، راجعي الأخطاء البسيطة وستصلين إلى الإتقان.";
-        launchConfetti();
-      } else if (percentage >= 50) {
-        icon.textContent = "🌱";
-        title.textContent = "بداية جميلة";
-        resultMessage.textContent =
-          "راجعي أنواع التمييز والأمثلة ثم أعيدي المحاولة.";
-      } else {
-        icon.textContent = "💪";
-        title.textContent = "واصلي المحاولة";
-        resultMessage.textContent =
-          "راجعي ملف الدرس وخريطة المفاهيم، ثم عودي للاختبار بثقة.";
       }
 
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
+    }
+  );
+
+
+  function showResult() {
+
+    document.getElementById(
+      "quizArea"
+    ).style.display = "none";
+
+    const resultCard =
+      document.getElementById(
+        "resultCard"
+      );
+
+    resultCard.style.display =
+      "block";
+
+    const percentage =
+      Math.round(
+        (score /
+        questions.length) *
+        100
+      );
+
+    document.getElementById(
+      "finalScore"
+    ).textContent =
+      score +
+      " / " +
+      questions.length +
+      " — " +
+      percentage +
+      "%";
+
+    let message = "";
+    let icon = "";
+
+    if (percentage === 100) {
+
+      icon = "🏆";
+
+      message =
+        "مذهلة! أتقنتِ درس التمييز إتقانًا كاملًا 🌟";
+
+      launchConfetti();
+
+    } else if (
+      percentage >= 80
+    ) {
+
+      icon = "🌟";
+
+      message =
+        "رائعة جدًا! تمييزك بين التراكيب قوي، وبقيت لمسات بسيطة للوصول إلى الإتقان.";
+
+      launchConfetti();
+
+    } else if (
+      percentage >= 60
+    ) {
+
+      icon = "🌷";
+
+      message =
+        "أداء جيد. راجعي الأسئلة التي أخطأتِ فيها ثم أعيدي التحدي.";
+
+    } else {
+
+      icon = "💜";
+
+      message =
+        "راجعي ملف الدرس والنافذة اللغوية، ثم جربي التحدي مرة أخرى بثقة.";
+
     }
 
-    function restartQuiz() {
+    document.getElementById(
+      "resultIcon"
+    ).textContent = icon;
+
+    document.getElementById(
+      "resultMessage"
+    ).textContent = message;
+
+    document.getElementById(
+      "restartBtn"
+    ).style.display = "block";
+
+    resultCard.scrollIntoView({
+      behavior: "smooth"
+    });
+
+  }
+
+
+  document.getElementById(
+    "restartBtn"
+  ).addEventListener(
+    "click",
+    () => {
+
       currentQuestion = 0;
       score = 0;
       answered = false;
 
-      document.getElementById("quizArea").style.display = "block";
-      document.getElementById("result").style.display = "none";
+      document.getElementById(
+        "resultCard"
+      ).style.display = "none";
 
-      loadQuestion();
+      document.getElementById(
+        "quizArea"
+      ).style.display = "block";
+
+      renderQuestion();
 
       window.scrollTo({
         top: 0,
         behavior: "smooth"
       });
+
     }
+  );
 
-    function launchConfetti() {
-      const symbols = ["✨", "⭐", "🌟", "🎉", "💜", "💛"];
 
-      for (let i = 0; i < 35; i++) {
-        const piece = document.createElement("div");
+  function miniCelebration() {
 
-        piece.className = "confetti";
-        piece.textContent =
-          symbols[Math.floor(Math.random() * symbols.length)];
+    const symbols =
+      ["✨", "⭐", "💜", "💛"];
 
-        piece.style.left = Math.random() * 100 + "vw";
-        piece.style.fontSize =
-          16 + Math.random() * 18 + "px";
+    for (
+      let i = 0;
+      i < 8;
+      i++
+    ) {
 
-        piece.style.animationDuration =
-          2.5 + Math.random() * 2 + "s";
+      const piece =
+        document.createElement(
+          "div"
+        );
 
-        document.body.appendChild(piece);
+      piece.className =
+        "confetti";
 
-        setTimeout(() => {
+      piece.textContent =
+        symbols[
+          Math.floor(
+            Math.random() *
+            symbols.length
+          )
+        ];
+
+      piece.style.left =
+        Math.random() *
+        100 +
+        "vw";
+
+      piece.style.fontSize =
+        15 +
+        Math.random() *
+        10 +
+        "px";
+
+      piece.style.animationDuration =
+        1.6 +
+        Math.random() *
+        1.4 +
+        "s";
+
+      document.body.appendChild(
+        piece
+      );
+
+      setTimeout(
+        () => {
           piece.remove();
-        }, 5000);
-      }
+        },
+        3200
+      );
+
     }
 
-    loadQuestion();
-  </script>
+  }
+
+
+  function launchConfetti() {
+
+    const symbols =
+      [
+        "✨",
+        "⭐",
+        "🌟",
+        "🎉",
+        "💜",
+        "💛",
+        "🎈"
+      ];
+
+    for (
+      let i = 0;
+      i < 40;
+      i++
+    ) {
+
+      const piece =
+        document.createElement(
+          "div"
+        );
+
+      piece.className =
+        "confetti";
+
+      piece.textContent =
+        symbols[
+          Math.floor(
+            Math.random() *
+            symbols.length
+          )
+        ];
+
+      piece.style.left =
+        Math.random() *
+        100 +
+        "vw";
+
+      piece.style.fontSize =
+        17 +
+        Math.random() *
+        18 +
+        "px";
+
+      piece.style.animationDuration =
+        2.5 +
+        Math.random() *
+        2 +
+        "s";
+
+      document.body.appendChild(
+        piece
+      );
+
+      setTimeout(
+        () => {
+          piece.remove();
+        },
+        5000
+      );
+
+    }
+
+  }
+
+
+  renderQuestion();
+
+</script>
 
 </body>
 
