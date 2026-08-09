@@ -127,9 +127,7 @@
       background: linear-gradient(135deg, #f5ecfb, #fffaf2);
       border: 2px solid #c9a85c;
       border-radius: 15px;
-      transition:
-        transform 0.2s ease,
-        background 0.2s ease;
+      transition: transform 0.2s ease, background 0.2s ease;
     }
 
     .answer:hover,
@@ -158,9 +156,9 @@
       min-height: 55px;
       margin-top: 18px;
       padding: 12px;
-      font-size: 18px;
+      font-size: 17px;
       font-weight: bold;
-      line-height: 1.7;
+      line-height: 1.8;
       text-align: center;
       border-radius: 14px;
     }
@@ -201,11 +199,8 @@
     }
 
     .next-btn:hover,
-    .next-btn:active,
     .restart-btn:hover,
-    .restart-btn:active,
-    .back-btn:hover,
-    .back-btn:active {
+    .back-btn:hover {
       background: #5b4677;
     }
 
@@ -227,7 +222,7 @@
     .score {
       margin: 20px 0;
       color: #8b6b25;
-      font-size: 24px;
+      font-size: 26px;
       font-weight: bold;
     }
 
@@ -251,24 +246,25 @@
     }
 
     @keyframes shake {
-      0% {
-        transform: translateX(0);
-      }
+      0% { transform: translateX(0); }
+      25% { transform: translateX(8px); }
+      50% { transform: translateX(-8px); }
+      75% { transform: translateX(6px); }
+      100% { transform: translateX(0); }
+    }
 
-      25% {
-        transform: translateX(8px);
-      }
+    .confetti {
+      position: fixed;
+      top: -20px;
+      z-index: 9999;
+      pointer-events: none;
+      animation: fall linear forwards;
+    }
 
-      50% {
-        transform: translateX(-8px);
-      }
-
-      75% {
-        transform: translateX(6px);
-      }
-
-      100% {
-        transform: translateX(0);
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0.9;
       }
     }
 
@@ -290,10 +286,6 @@
         padding: 20px 14px;
       }
 
-      .progress-text {
-        font-size: 14px;
-      }
-
       .question {
         font-size: 19px;
       }
@@ -306,12 +298,6 @@
       .message {
         font-size: 16px;
       }
-
-      .next-btn,
-      .restart-btn,
-      .back-btn {
-        font-size: 17px;
-      }
     }
   </style>
 </head>
@@ -320,7 +306,7 @@
 
   <header>
     <h1>🧠 اختبار درس التمييز</h1>
-    <p>اختبري فهمك واجمعي أكبر عدد من النجوم</p>
+    <p>اختبري فهمك واجمعي أكبر عدد من النجوم ⭐</p>
   </header>
 
   <main>
@@ -328,26 +314,21 @@
     <div id="quizArea">
 
       <div class="progress-box">
-
         <div class="progress-text">
-          <span id="progressText">السؤال 1 من 15</span>
+          <span id="progressText"></span>
           <span id="scoreText">الدرجة: 0</span>
         </div>
 
         <div class="progress">
           <div class="progress-bar" id="progressBar"></div>
         </div>
-
       </div>
 
       <div class="quiz-card" id="quizCard">
 
         <div class="question-number" id="questionNumber"></div>
-
         <div class="question" id="question"></div>
-
         <div class="answers" id="answers"></div>
-
         <div class="message" id="message"></div>
 
         <button
@@ -359,14 +340,13 @@
         </button>
 
       </div>
-
     </div>
 
     <div class="result" id="result">
 
       <div class="result-icon" id="resultIcon">🏆</div>
 
-      <h2 id="resultTitle">أحسنتِ</h2>
+      <h2 id="resultTitle"></h2>
 
       <div class="score" id="finalScore"></div>
 
@@ -394,159 +374,174 @@
   <script>
     const questions = [
       {
-        question: "ما تعريف التمييز؟",
+        question: "1- ما تعريف التمييز؟",
         answers: [
           "اسم معرفة يصف ما قبله",
-          "اسم نكرة يوضح اسمًا أو معنى مبهمًا قبله",
+          "اسم نكرة يزيل إبهام اسم قبله أو معنى في الجملة",
           "فعل يوضح زمن الجملة",
           "حرف يربط بين كلمتين"
         ],
-        correct: 1
+        correct: 1,
+        explanation: "التمييز اسم نكرة يزيل الإبهام ويوضح المقصود."
       },
       {
-        question: "ما المميَّز في جملة: اشتريتُ عشرين كتابًا؟",
+        question: "2- ما المميَّز في جملة «اشتريتُ عشرين كتابًا»؟",
         answers: [
           "اشتريتُ",
           "عشرين",
           "كتابًا",
           "التاء"
         ],
-        correct: 1
+        correct: 1,
+        explanation: "العدد «عشرين» هو المميَّز، و«كتابًا» وضح المقصود منه."
       },
       {
-        question: "ما التمييز في جملة: اشتريتُ عشرين كتابًا؟",
+        question: "3- ما التمييز في جملة «اشتريتُ عشرين كتابًا»؟",
         answers: [
           "اشتريتُ",
           "عشرين",
           "كتابًا",
           "التاء"
         ],
-        correct: 2
+        correct: 2,
+        explanation: "«كتابًا» تمييز؛ لأنه أزال الإبهام عن العدد عشرين."
       },
       {
-        question: "ما التمييز في جملة: شربتُ لترًا ماءً؟",
+        question: "4- ما التمييز في جملة «شربتُ لترًا ماءً»؟",
         answers: [
           "شربتُ",
           "لترًا",
           "ماءً",
           "التاء"
         ],
-        correct: 2
+        correct: 2,
+        explanation: "«ماءً» وضح المقصود من مقدار اللتر."
       },
       {
-        question: "تمييز المفرد يسمى أيضًا:",
+        question: "5- تمييز المفرد يسمى أيضًا:",
         answers: [
           "تمييز النسبة",
           "تمييز الجملة",
           "تمييز الذات أو الملفوظ",
           "الحال"
         ],
-        correct: 2
+        correct: 2,
+        explanation: "تمييز المفرد يسمى تمييز الذات أو التمييز الملفوظ."
       },
       {
-        question: "تمييز الجملة يسمى أيضًا:",
+        question: "6- تمييز الجملة يسمى أيضًا:",
         answers: [
           "تمييز الذات",
           "تمييز النسبة أو الملحوظ",
           "تمييز العدد",
           "المفعول به"
         ],
-        correct: 1
+        correct: 1,
+        explanation: "تمييز الجملة يسمى تمييز النسبة أو التمييز الملحوظ."
       },
       {
-        question: "أي الجمل الآتية تحتوي على تمييز عدد؟",
+        question: "7- أي الجمل الآتية تحتوي على تمييز عدد؟",
         answers: [
           "ازداد الطالب علمًا",
           "اشتريتُ عشرين قلمًا",
           "طاب المكان هواءً",
           "امتلأ الإناء ماءً"
         ],
-        correct: 1
+        correct: 1,
+        explanation: "«قلمًا» تمييز للعدد «عشرين»."
       },
       {
-        question: "في جملة: اشتريتُ كيلو تمرًا، كلمة تمرًا تمييز:",
+        question: "8- في جملة «اشتريتُ كيلو تمرًا»، كلمة «تمرًا» تمييز:",
         answers: [
           "عدد",
           "وزن",
           "مساحة",
           "جملة"
         ],
-        correct: 1
+        correct: 1,
+        explanation: "الكيلو من ألفاظ الوزن، و«تمرًا» تمييز له."
       },
       {
-        question: "ما الضبط الصحيح لكلمة ورد في الجملة: زرعتُ مترًا مربعًا وردًا؟",
+        question: "9- ما التمييز في جملة «زرعتُ هكتارًا قمحًا»؟",
         answers: [
-          "وردٌ",
-          "وردٍ",
-          "وردًا",
-          "وردْ"
+          "زرعتُ",
+          "هكتارًا",
+          "قمحًا",
+          "التاء"
         ],
-        correct: 2
+        correct: 2,
+        explanation: "«قمحًا» وضح المقصود من المساحة «هكتارًا»."
       },
       {
-        question: "أي الجمل الآتية تحتوي على تمييز جملة؟",
+        question: "10- أي الجمل الآتية تحتوي على تمييز جملة؟",
         answers: [
           "قرأتُ عشرين صفحةً",
           "اشتريتُ كيلو تمرًا",
           "ازداد الطالب علمًا",
           "شربتُ لترًا حليبًا"
         ],
-        correct: 2
+        correct: 2,
+        explanation: "«علمًا» يوضح معنى الجملة كلها؛ لذلك هو تمييز جملة."
       },
       {
-        question: "ما إعراب كلمة علمًا في: ازداد الطالب علمًا؟",
+        question: "11- ما إعراب «علمًا» في «ازداد الطالب علمًا»؟",
         answers: [
           "فاعل مرفوع",
           "مفعول به منصوب",
           "تمييز منصوب",
           "حال منصوب"
         ],
-        correct: 2
+        correct: 2,
+        explanation: "«علمًا» تمييز منصوب وعلامة نصبه الفتحة الظاهرة."
       },
       {
-        question: "ما علامة نصب التمييز غالبًا؟",
+        question: "12- إذا كان التمييز مفردًا صحيح الآخر ومنصوبًا، فما علامة نصبه؟",
         answers: [
           "الضمة",
           "الكسرة",
           "الفتحة",
           "السكون"
         ],
-        correct: 2
+        correct: 2,
+        explanation: "علامة نصبه في هذه الحالة الفتحة الظاهرة."
       },
       {
-        question: "ما التمييز في جملة: محمد أكثر الطلاب اجتهادًا؟",
+        question: "13- ما التمييز في «محمد أكثر الطلاب اجتهادًا»؟",
         answers: [
           "محمد",
           "أكثر",
           "الطلاب",
           "اجتهادًا"
         ],
-        correct: 3
+        correct: 3,
+        explanation: "«اجتهادًا» تمييز يوضح جهة الزيادة في معنى «أكثر»."
       },
       {
-        question: "المميَّز الملحوظ يُفهم من:",
+        question: "14- المميَّز الملحوظ يُفهم من:",
         answers: [
           "كلمة واحدة فقط",
           "معنى الجملة كلها",
           "الفعل وحده",
           "الحرف الأخير"
         ],
-        correct: 1
+        correct: 1,
+        explanation: "المميَّز الملحوظ لا يكون اسمًا محددًا، بل يُفهم من معنى الجملة."
       },
       {
-        question: "أي إعراب مما يأتي صحيح؟",
+        question: "15- أي إعراب مما يأتي صحيح؟",
         answers: [
           "ماءً: فاعل مرفوع",
           "كتابًا: تمييز منصوب",
           "علمًا: مبتدأ مرفوع",
           "اجتهادًا: مضاف إليه"
         ],
-        correct: 1
+        correct: 1,
+        explanation: "«كتابًا» في «اشتريت عشرين كتابًا» تمييز منصوب."
       }
     ];
 
     const encouragements = [
-      "إجابة لامعة! أضيفت نجمة إلى رصيدك ⭐",
+      "إجابة لامعة! ⭐",
       "مذهلة يا بطلة! 🎉",
       "أحسنتِ، أنتِ تتقدمين بسرعة 🚀",
       "إجابة ذكية جدًا 🧠",
@@ -554,32 +549,15 @@
       "يا سلام عليكِ! 👏"
     ];
 
-    const tryAgainMessages = [
-      "لا بأس، الخطأ يساعدنا على التعلم 🌱",
-      "قريبة جدًا، ركزي في الكلمة التي تزيل الإبهام 🔍",
-      "محاولة جميلة، السؤال القادم فرصتك 💪",
-      "لا تتوقفي، البطلات يتعلمن من الخطأ 🌷",
-      "راجعي نوع التمييز ثم واصلي بثقة ✨"
-    ];
-
     let currentQuestion = 0;
     let score = 0;
     let answered = false;
 
-    const questionElement =
-      document.getElementById("question");
-
-    const answersElement =
-      document.getElementById("answers");
-
-    const messageElement =
-      document.getElementById("message");
-
-    const nextBtn =
-      document.getElementById("nextBtn");
-
-    const quizCard =
-      document.getElementById("quizCard");
+    const questionElement = document.getElementById("question");
+    const answersElement = document.getElementById("answers");
+    const messageElement = document.getElementById("message");
+    const nextBtn = document.getElementById("nextBtn");
+    const quizCard = document.getElementById("quizCard");
 
     function loadQuestion() {
       answered = false;
@@ -590,16 +568,13 @@
         "السؤال رقم " + (currentQuestion + 1);
 
       document.getElementById("progressText").textContent =
-        "السؤال " +
-        (currentQuestion + 1) +
-        " من " +
-        questions.length;
+        "السؤال " + (currentQuestion + 1) + " من " + questions.length;
 
       document.getElementById("scoreText").textContent =
         "الدرجة: " + score;
 
       document.getElementById("progressBar").style.width =
-        ((currentQuestion / questions.length) * 100) + "%";
+        (currentQuestion / questions.length) * 100 + "%";
 
       questionElement.textContent = item.question;
 
@@ -622,51 +597,42 @@
     }
 
     function selectAnswer(index, selectedButton) {
-      if (answered) {
-        return;
-      }
+      if (answered) return;
 
       answered = true;
 
-      const correctIndex =
-        questions[currentQuestion].correct;
-
-      const buttons =
-        document.querySelectorAll(".answer");
+      const item = questions[currentQuestion];
+      const buttons = document.querySelectorAll(".answer");
 
       buttons.forEach(button => {
         button.disabled = true;
       });
 
-      if (index === correctIndex) {
+      if (index === item.correct) {
         score++;
 
         selectedButton.classList.add("correct");
 
-        messageElement.textContent =
+        const praise =
           encouragements[
-            Math.floor(
-              Math.random() * encouragements.length
-            )
+            Math.floor(Math.random() * encouragements.length)
           ];
 
-        messageElement.className =
-          "message success";
+        messageElement.textContent =
+          praise + " " + item.explanation;
+
+        messageElement.className = "message success";
 
         playSound(true);
       } else {
         selectedButton.classList.add("wrong");
-        buttons[correctIndex].classList.add("correct");
+        buttons[item.correct].classList.add("correct");
 
         messageElement.textContent =
-          tryAgainMessages[
-            Math.floor(
-              Math.random() * tryAgainMessages.length
-            )
-          ];
+          "محاولة جميلة 🌷 الإجابة الصحيحة موضحة بالأخضر. " +
+          item.explanation;
 
-        messageElement.className =
-          "message error";
+        messageElement.className = "message error";
 
         quizCard.classList.add("shake");
 
@@ -675,7 +641,7 @@
         }, 400);
 
         if ("vibrate" in navigator) {
-          navigator.vibrate([120, 60, 120]);
+          navigator.vibrate(120);
         }
 
         playSound(false);
@@ -695,61 +661,28 @@
 
     function playSound(correct) {
       try {
-        const audioContext =
-          new (
-            window.AudioContext ||
-            window.webkitAudioContext
-          )();
+        const AudioContext =
+          window.AudioContext || window.webkitAudioContext;
 
-        const oscillator =
-          audioContext.createOscillator();
-
-        const gain =
-          audioContext.createGain();
+        const audioContext = new AudioContext();
+        const oscillator = audioContext.createOscillator();
+        const gain = audioContext.createGain();
 
         oscillator.connect(gain);
         gain.connect(audioContext.destination);
 
-        if (correct) {
-          oscillator.frequency.setValueAtTime(
-            700,
-            audioContext.currentTime
-          );
+        oscillator.frequency.value = correct ? 720 : 220;
 
-          oscillator.frequency.setValueAtTime(
-            950,
-            audioContext.currentTime + 0.12
-          );
-        } else {
-          oscillator.frequency.setValueAtTime(
-            220,
-            audioContext.currentTime
-          );
-
-          oscillator.frequency.setValueAtTime(
-            160,
-            audioContext.currentTime + 0.12
-          );
-        }
-
-        gain.gain.setValueAtTime(
-          0.15,
-          audioContext.currentTime
-        );
-
+        gain.gain.setValueAtTime(0.12, audioContext.currentTime);
         gain.gain.exponentialRampToValueAtTime(
-          0.01,
-          audioContext.currentTime + 0.3
+          0.001,
+          audioContext.currentTime + 0.25
         );
 
         oscillator.start();
-        oscillator.stop(
-          audioContext.currentTime + 0.3
-        );
+        oscillator.stop(audioContext.currentTime + 0.25);
       } catch (error) {
-        console.log(
-          "الصوت غير مدعوم في هذا الجهاز"
-        );
+        // يستمر الاختبار دون صوت إذا لم يدعمه الجهاز
       }
     }
 
@@ -769,16 +702,11 @@
     }
 
     function showResult() {
-      document.getElementById("quizArea").style.display =
-        "none";
-
-      document.getElementById("result").style.display =
-        "block";
+      document.getElementById("quizArea").style.display = "none";
+      document.getElementById("result").style.display = "block";
 
       const percentage =
-        Math.round(
-          (score / questions.length) * 100
-        );
+        Math.round((score / questions.length) * 100);
 
       document.getElementById("finalScore").textContent =
         "درجتك: " +
@@ -789,52 +717,33 @@
         percentage +
         "%";
 
-      const icon =
-        document.getElementById("resultIcon");
-
-      const title =
-        document.getElementById("resultTitle");
-
+      const icon = document.getElementById("resultIcon");
+      const title = document.getElementById("resultTitle");
       const resultMessage =
         document.getElementById("resultMessage");
 
       if (percentage >= 90) {
         icon.textContent = "🏆";
         title.textContent = "بطلة التمييز!";
-
         resultMessage.textContent =
-          "إتقان رائع جدًا، تستحقين وسام التميز الذهبي.";
+          "إتقان رائع جدًا، تستحقين وسام التميز الذهبي 🌟";
+        launchConfetti();
       } else if (percentage >= 70) {
         icon.textContent = "🌟";
         title.textContent = "أداء رائع!";
-
         resultMessage.textContent =
-          "فهمك ممتاز، راجعي الأخطاء البسيطة وستصلين إلى الدرجة الكاملة.";
+          "فهمك ممتاز، راجعي الأخطاء البسيطة وستصلين إلى الإتقان.";
+        launchConfetti();
       } else if (percentage >= 50) {
         icon.textContent = "🌱";
         title.textContent = "بداية جميلة";
-
         resultMessage.textContent =
           "راجعي أنواع التمييز والأمثلة ثم أعيدي المحاولة.";
       } else {
         icon.textContent = "💪";
-        title.textContent = "لا تستسلمي";
-
+        title.textContent = "واصلي المحاولة";
         resultMessage.textContent =
-          "شاهدي الفيديو واقرئي ملف الدرس، ثم عودي للاختبار بثقة.";
-      }
-
-      if (
-        "vibrate" in navigator &&
-        percentage >= 70
-      ) {
-        navigator.vibrate([
-          100,
-          70,
-          100,
-          70,
-          200
-        ]);
+          "راجعي ملف الدرس وخريطة المفاهيم، ثم عودي للاختبار بثقة.";
       }
 
       window.scrollTo({
@@ -848,13 +757,40 @@
       score = 0;
       answered = false;
 
-      document.getElementById("quizArea").style.display =
-        "block";
-
-      document.getElementById("result").style.display =
-        "none";
+      document.getElementById("quizArea").style.display = "block";
+      document.getElementById("result").style.display = "none";
 
       loadQuestion();
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+
+    function launchConfetti() {
+      const symbols = ["✨", "⭐", "🌟", "🎉", "💜", "💛"];
+
+      for (let i = 0; i < 35; i++) {
+        const piece = document.createElement("div");
+
+        piece.className = "confetti";
+        piece.textContent =
+          symbols[Math.floor(Math.random() * symbols.length)];
+
+        piece.style.left = Math.random() * 100 + "vw";
+        piece.style.fontSize =
+          16 + Math.random() * 18 + "px";
+
+        piece.style.animationDuration =
+          2.5 + Math.random() * 2 + "s";
+
+        document.body.appendChild(piece);
+
+        setTimeout(() => {
+          piece.remove();
+        }, 5000);
+      }
     }
 
     loadQuestion();
