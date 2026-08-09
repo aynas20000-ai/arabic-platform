@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
+  <title>
+    استعدادك الذكي للاختبار المركزي | خط الرقعة
+  </title>
+
+  <style>
+    :root {
+      --purple: #5b4677;
+      --purple2: #776094;
+      --gold: #c9a85c;
+      --cream: #fffaf2;
+      --paper: #fffdf9;
+      --text: #473a52;
+      --green: #34775a;
+      --blue: #52779b;
+      --rose: #a05a75;
+      --shadow: rgba(82, 60, 101, .12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+
+      font-family:
+        Tahoma,
+        Arial,
+        sans-serif;
+
+      color: var(--text);
+
+      background:
+        radial-gradient(
+          circle at 8% 4%,
+          rgba(255, 226, 150, .25),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 92% 8%,
+          rgba(190, 164, 220, .22),
+          transparent 30%
+        ),
+        linear-gradient(
+          180deg,
+          #fffaf2,
+          #f8f0fb
+        );
+    }
+
+    .page {
+      width: min(1000px, 94%);
+      margin: auto;
+      padding: 16px 0 28px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+
+      padding: 24px 18px;
+
+      text-align: center;
+      color: white;
+
+      background:
+        linear-gradient(
+          135deg,
+          #776094,
+          #5b4677
+        );
+
+      border: 2px solid #c9a85c;
+      border-radius: 26px;
+
+      box-shadow:
+        0 12px 30px
+        rgba(73, 56, 92, .18);
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+
+      position: absolute;
+
+      width: 150px;
+      height: 150px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(255, 255, 255, .08);
+    }
+
+    .hero::before {
+      top: -70px;
+      right: -50px;
+    }
+
+    .hero::after {
+      bottom: -90px;
+      left: -40px;
+    }
+
+    .badge {
+      position: relative;
+      z-index: 1;
+
+      display: inline-block;
+
+      padding: 5px 13px;
+
+      color: #fff3cc;
+
+      font-size: 12px;
+      font-weight: bold;
+
+      border:
+        1px solid
+        rgba(255, 231, 174, .85);
+
+      border-radius: 999px;
+
+      background:
+        rgba(255, 255, 255, .1);
+    }
+
+    .hero h1 {
+      position: relative;
+      z-index: 1;
+
+      margin: 8px 0 5px;
+
+      color: #fff9e6;
+
+      font-size:
+        clamp(
+          23px,
+          5vw,
+          35px
+        );
+    }
+
+    .hero p {
+      position: relative;
+      z-index: 1;
+
+      max-width: 720px;
+      margin: auto;
+
+      color: #f8efff;
+
+      font-size:
+        clamp(
+          13px,
+          3vw,
+          16px
+        );
+
+      line-height: 1.8;
+    }
+
+    .intro {
+      margin-top: 12px;
+
+      padding: 12px 14px;
+
+      color: #64491a;
+
+      font-size: 14px;
+      font-weight: bold;
+
+      line-height: 1.8;
+
+      border:
+        1px solid #dfc87e;
+
+      border-radius: 16px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #fff8dc,
+          #fffdf6
+        );
+    }
+
+    .section-title {
+      margin: 22px 0 10px;
+
+      color: #5b4677;
+
+      font-size:
+        clamp(
+          20px,
+          4vw,
+          26px
+        );
+
+      text-align: center;
+    }
+
+    .section-subtitle {
+      max-width: 720px;
+
+      margin:
+        -3px auto 14px;
+
+      color: #756b7c;
+
+      text-align: center;
+
+      font-size: 13px;
+
+      line-height: 1.8;
+    }
+
+    .rules-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 12px;
+    }
+
+    .rule-card {
+      position: relative;
+      overflow: hidden;
+
+      min-height: 145px;
+
+      padding: 16px 16px 15px;
+
+      border:
+        1px solid
+        rgba(201, 168, 92, .72);
+
+      border-radius: 20px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #ffffff,
+          #fffaf3
+        );
+
+      box-shadow:
+        0 7px 20px
+        var(--shadow);
+    }
+
+    .rule-card::after {
+      content: "";
+
+      position: absolute;
+
+      top: -36px;
+      left: -32px;
+
+      width: 90px;
+      height: 90px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(201, 168, 92, .09);
+    }
+
+    .rule-purple {
+      background:
+        linear-gradient(
+          145deg,
+          #fbf7ff,
+          #f1e8fb
+        );
+    }
+
+    .rule-gold {
+      background:
+        linear-gradient(
+          145deg,
+          #fffdf6,
+          #fff3d1
+        );
+    }
+
+    .rule-green {
+      background:
+        linear-gradient(
+          145deg,
+          #f5fff9,
+          #e7f6ed
+        );
+    }
+
+    .rule-blue {
+      background:
+        linear-gradient(
+          145deg,
+          #f7fbff,
+          #e9f3fb
+        );
+    }
+
+    .rule-rose {
+      background:
+        linear-gradient(
+          145deg,
+          #fff8fa,
+          #faeaf0
+        );
+    }
+
+    .number {
+      position: relative;
+      z-index: 1;
+
+      display: inline-flex;
+
+      width: 32px;
+      height: 32px;
+
+      align-items: center;
+      justify-content: center;
+
+      margin-bottom: 7px;
+
+      color: white;
+
+      font-size: 14px;
+      font-weight: bold;
+
+      border-radius: 50%;
+
+      background:
+        linear-gradient(
+          135deg,
+          #776094,
+          #5b4677
+        );
+
+      border:
+        1px solid #c9a85c;
+    }
+
+    .rule-card h3 {
+      position: relative;
+      z-index: 1;
+
+      display: inline;
+
+      margin-right: 5px;
+
+      color: #5d4374;
+
+      font-size: 16px;
+    }
+
+    .rule-card p {
+      position: relative;
+      z-index: 1;
+
+      margin: 8px 0 0;
+
+      font-size: 13px;
+      line-height: 1.85;
+    }
+
+    .memory-box {
+      margin-top: 16px;
+
+      padding: 16px;
+
+      text-align: center;
+
+      color: #5d4374;
+
+      border:
+        2px solid #c9a85c;
+
+      border-radius: 20px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #fff6cf,
+          #f2e8fb,
+          #fffdf8
+        );
+
+      box-shadow:
+        0 8px 22px
+        rgba(91, 63, 111, .11);
+    }
+
+    .memory-box h3 {
+      margin: 0 0 7px;
+
+      color: #5b4677;
+
+      font-size: 18px;
+    }
+
+    .memory-word {
+      display: inline-block;
+
+      margin: 5px 0;
+
+      padding: 6px 18px;
+
+      color: #6d4f1f;
+
+      font-size: 23px;
+      font-weight: bold;
+
+      letter-spacing: 4px;
+
+      border-radius: 12px;
+
+      background:
+        rgba(255, 255, 255, .75);
+    }
+
+    .focus-box {
+      margin-top: 14px;
+
+      padding: 14px;
+
+      color: #714d22;
+
+      font-size: 13px;
+      font-weight: bold;
+
+      line-height: 1.9;
+
+      border-right:
+        5px solid #c9a85c;
+
+      border-radius: 16px;
+
+      background: #fff7e4;
+    }
+
+    .question-types {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 10px;
+    }
+
+    .question-type {
+      padding: 13px 10px;
+
+      text-align: center;
+
+      border:
+        1px solid #ddca96;
+
+      border-radius: 16px;
+
+      background: #fff;
+    }
+
+    .question-type strong {
+      display: block;
+
+      margin-bottom: 5px;
+
+      color: #654b7d;
+
+      font-size: 14px;
+    }
+
+    .question-type span {
+      color: #675e6c;
+
+      font-size: 12px;
+
+      line-height: 1.7;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 8px;
+
+      justify-content: center;
+
+      margin-top: 18px;
+    }
+
+    .btn {
+      display: inline-block;
+
+      padding: 10px 16px;
+
+      color: white;
+
+      font-size: 13px;
+      font-weight: bold;
+
+      text-decoration: none;
+
+      border:
+        1px solid #c9a85c;
+
+      border-radius: 14px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #776094,
+          #5b4677
+        );
+    }
+
+    footer {
+      margin-top: 18px;
+
+      padding: 10px;
+
+      color: #746b79;
+
+      font-size: 11px;
+
+      text-align: center;
+    }
+
+    @media (max-width: 700px) {
+
+      .rules-grid {
+        grid-template-columns:
+          1fr 1fr;
+
+        gap: 8px;
+      }
+
+      .rule-card {
+        min-height: 150px;
+
+        padding: 12px 10px;
+      }
+
+      .rule-card h3 {
+        font-size: 14px;
+      }
+
+      .rule-card p {
+        font-size: 11.5px;
+        line-height: 1.7;
+      }
+
+      .question-types {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 430px) {
+
+      .page {
+        width: 95%;
+        padding-top: 10px;
+      }
+
+      .hero {
+        padding: 18px 12px;
+
+        border-radius: 21px;
+      }
+
+      .number {
+        width: 28px;
+        height: 28px;
+
+        font-size: 12px;
+      }
+
+      .memory-word {
+        font-size: 20px;
+      }
+    }
+  </style>
+
+</head>
+<body>
+
+  <div class="page">
+
+    <section class="hero">
+
+      <span class="badge">
+        ✨ استعدادك الذكي للاختبار المركزي
+      </span>
+
+      <h1>
+        خط الرقعة
+      </h1>
+
+      <p>
+        راجعي الخصائص الأهم التي يكثر السؤال عنها،
+        ثم انتقلي إلى النماذج التدريبية.
+      </p>
+
+    </section>
+
+
+    <div class="intro">
+      🌷 الفكرة ليست حفظ قائمة فقط.
+      اربطي كل خاصية بشكل الخط وطريقة كتابته،
+      لأن السؤال قد يأتي بصياغة مباشرة أو غير مباشرة.
+    </div>
+
+
+    <h2 class="section-title">
+      ⭐ أهم خصائص خط الرقعة
+    </h2>
+
+    <p class="section-subtitle">
+      رتّبناها لكِ بالأرقام حتى تكون أسرع في المراجعة وأسهل في التذكر.
+    </p>
+
+
+    <div class="rules-grid">
+
+
+      <article class="rule-card rule-purple">
+
+        <span class="number">
+          ١
+        </span>
+
+        <h3>
+          السرعة والسهولة
+        </h3>
+
+        <p>
+          يمتاز خط الرقعة بسهولة الكتابة وسرعتها؛
+          لذلك يكثر استخدامه في الكتابة اليومية.
+        </p>
+
+      </article>
+
+
+      <article class="rule-card rule-gold">
+
+        <span class="number">
+          ٢
+        </span>
+
+        <h3>
+          البساطة وقلة الزخرفة
+        </h3>
+
+        <p>
+          حروفه بسيطة وقصيرة وواضحة،
+          ويبتعد عن التعقيد وكثرة الزخرفة.
+        </p>
+
+      </article>
+
+
+      <article class="rule-card rule-green">
+
+        <span class="number">
+          ٣
+        </span>
+
+        <h3>
+          الطمس
+        </h3>
+
+        <p>
+          تُطمس بعض الحروف ذات التجاويف
+          في خط الرقعة بحسب شكل الحرف
+          وموضعه في الكلمة.
+        </p>
+
+      </article>
+
+
+      <article class="rule-card rule-blue">
+
+        <span class="number">
+          ٤
+        </span>
+
+        <h3>
+          انتبهي للفاء والقاف
+        </h3>
+
+        <p>
+          من المواضع المهمة في المراجعة:
+          تبقى عين الفاء والقاف مفتوحة
+          إذا جاءتا في وسط الكلمة.
+        </p>
+
+      </article>
+
+
+      <article class="rule-card rule-rose">
+
+        <span class="number">
+          ٥
+        </span>
+
+        <h3>
+          قاعدة السطر
+        </h3>
+
+        <p>
+          تستقر معظم حروف خط الرقعة
+          على السطر،
+          وتنزل أجزاء من بعض الحروف تحته.
+        </p>
+
+      </article>
+
+
+      <article class="rule-card rule-purple">
+
+        <span class="number">
+          ٦
+        </span>
+
+        <h3>
+          مجموعة «جمعة»
+        </h3>
+
+        <p>
+          تذكّري مجموعة
+          <strong>«جمعة»</strong>
+          للحروف التي ينزل جزء منها
+          أسفل السطر كما دُرست في المقرر.
+        </p>
+
+      </article>
+
+
+      <article class="rule-card rule-gold">
+
+        <span class="number">
+          ٧
+        </span>
+
+        <h3>
+          التشكيل
+        </h3>
+
+        <p>
+          لا يكثر استخدام الحركات
+          والتشكيل في خط الرقعة
+          إلا عند الحاجة.
+        </p>
+
+      </article>
+
+
+      <article class="rule-card rule-green">
+
+        <span class="number">
+          ٨
+        </span>
+
+        <h3>
+          مظهر الحروف
+        </h3>
+
+        <p>
+          يغلب على حروف الرقعة
+          القِصر والبساطة والاستقامة،
+          بما يساعد على سرعة الكتابة.
+        </p>
+
+      </article>
+
+    </div>
+
+
+    <div class="memory-box">
+
+      <h3>
+        🧠 مفتاح سريع للحروف النازلة
+      </h3>
+
+      <div class="memory-word">
+        جمعة
+      </div>
+
+      <p>
+        احفظيها كمفتاح تذكّر،
+        ثم اربطيها بشكل الحرف عند الكتابة،
+        ولا تكتفي بحفظ الكلمة وحدها.
+      </p>
+
+    </div>
+
+
+    <div class="focus-box">
+      🎯 ركزي خصوصًا على:
+      سرعة الكتابة،
+      وقلة الزخرفة،
+      والطمس،
+      وقاعدة السطر،
+      ومجموعة «جمعة»،
+      وموضع الفاء والقاف في وسط الكلمة.
+    </div>
+
+
+    <h2 class="section-title">
+      🔍 كيف قد يأتي السؤال في الاختبار؟
+    </h2>
+
+    <p class="section-subtitle">
+      قد يقيس السؤال الخاصية نفسها بأكثر من صياغة.
+    </p>
+
+
+    <div class="question-types">
+
+      <div class="question-type">
+
+        <strong>
+          اختيار من متعدد
+        </strong>
+
+        <span>
+          اختاري الخاصية الصحيحة
+          من بين عبارات متقاربة.
+        </span>
+
+      </div>
+
+
+      <div class="question-type">
+
+        <strong>
+          صح أو خطأ
+        </strong>
+
+        <span>
+          قد تُعطى عبارة عن السطر
+          أو الطمس ويُطلب الحكم عليها.
+        </span>
+
+      </div>
+
+
+      <div class="question-type">
+
+        <strong>
+          تحديد الحرف
+        </strong>
+
+        <span>
+          اختاري حرفًا ينزل جزء منه
+          عن السطر.
+        </span>
+
+      </div>
+
+
+      <div class="question-type">
+
+        <strong>
+          تحديد الخاصية
+        </strong>
+
+        <span>
+          تُعرض كلمة أو صورة خطية
+          ويُطلب تحديد الخاصية الظاهرة.
+        </span>
+
+      </div>
+
+
+      <div class="question-type">
+
+        <strong>
+          تصحيح عبارة
+        </strong>
+
+        <span>
+          مثل:
+          «جميع حروف الرقعة تستقر على السطر».
+        </span>
+
+      </div>
+
+
+      <div class="question-type">
+
+        <strong>
+          تعليل
+        </strong>
+
+        <span>
+          لماذا يُعد خط الرقعة
+          مناسبًا للكتابة اليومية؟
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="focus-box">
+      💡 لا تحفظي العبارة فقط:
+      إذا جاءك السؤال بصياغة مختلفة،
+      اسألي نفسك:
+      هل يتحدث عن السرعة؟
+      أم الطمس؟
+      أم السطر؟
+      أم شكل الحروف؟
+    </div>
+
+
+    <div class="actions">
+
+      <a
+        class="btn"
+        href="handwriting-term2.html"
+      >
+        ↩ العودة إلى الرسم الكتابي
+      </a>
+
+    </div>
+
+
+    <footer>
+      منصة آفاق اللغة | لغتي الخالدة | الصف الثالث المتوسط
+    </footer>
+
+  </div>
+
+</body>
+
+</html>
