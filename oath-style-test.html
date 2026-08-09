@@ -3,385 +3,372 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 
-  <title>الاختبار التجريبي لأسلوب القسم</title>
+  <title>اختبري مهارتك | أسلوب القسم</title>
 
   <style>
-    * {
-      box-sizing: border-box;
+    :root{
+      --p:#5b4677;
+      --p2:#776094;
+      --pd:#453457;
+      --g:#b69750;
+      --g2:#d8c28a;
+      --lav:#eee5f5;
+      --paper:#fffdf9;
+      --text:#403448;
+    }
+
+    *{
+      box-sizing:border-box;
     }
 
     html,
-    body {
-      width: 100%;
-      max-width: 100%;
-      margin: 0;
-      overflow-x: hidden;
+    body{
+      height:100%;
+      margin:0;
     }
 
-    body {
-      min-height: 100vh;
-      padding: 20px 12px;
-      font-family: Tahoma, Arial, sans-serif;
-      color: #4b3a57;
-      background: linear-gradient(180deg, #fffaf2, #f8f0fb);
+    body{
+      font-family:Tahoma,Arial,sans-serif;
+      color:var(--text);
+      background:linear-gradient(180deg,#f5f0fa,#fbf9fd,#f1ebf7);
+      overflow:hidden;
     }
 
-    .container {
-      width: 94%;
-      max-width: 760px;
-      margin: auto;
+    .app{
+      height:100dvh;
+      display:grid;
+      grid-template-rows:auto 1fr auto;
     }
 
-    .hero {
-      margin-bottom: 18px;
-      padding: 30px 16px;
-      color: #fffdf8;
-      text-align: center;
-      background: linear-gradient(135deg, #776094, #5b4677);
-      border: 3px solid #c9a85c;
-      border-radius: 24px;
-      box-shadow: 0 8px 20px rgba(91, 70, 119, 0.18);
+    header{
+      text-align:center;
+      color:#fff;
+      padding:10px 12px 8px;
+      background:linear-gradient(145deg,var(--p2),var(--p),var(--pd));
+      border-bottom:4px solid var(--g);
     }
 
-    .hero h1 {
-      margin: 0 0 8px;
-      font-size: 30px;
-      line-height: 1.6;
+    .tag{
+      display:inline-block;
+      padding:3px 10px;
+      border-radius:999px;
+      border:1px solid var(--g2);
+      color:#fff2c6;
+      background:rgba(182,151,80,.13);
+      font-size:11px;
+      font-weight:bold;
     }
 
-    .hero p {
-      margin: 0;
-      color: #f7effb;
-      font-size: 18px;
+    header h1{
+      margin:4px 0 0;
+      font-size:clamp(19px,4.8vw,28px);
     }
 
-    .progress-card {
-      margin-bottom: 18px;
-      padding: 15px;
-      background: #fffdf8;
-      border: 2px solid #c9a85c;
-      border-radius: 18px;
-      box-shadow: 0 5px 14px rgba(91, 63, 111, 0.09);
+    header p{
+      margin:0;
+      color:#f2ebf6;
+      font-size:11px;
     }
 
-    .progress-info {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 10px;
-      color: #5d4374;
-      font-weight: bold;
+    main{
+      min-height:0;
+      width:min(760px,94%);
+      margin:0 auto;
+      padding:7px 0;
+      display:flex;
+      flex-direction:column;
     }
 
-    .track {
-      height: 13px;
-      overflow: hidden;
-      background: #eee7f2;
-      border-radius: 20px;
+    .top{
+      display:flex;
+      justify-content:space-between;
+      gap:8px;
+      font-weight:bold;
+      color:var(--p);
+      font-size:13px;
+      margin-bottom:5px;
     }
 
-    .bar {
-      width: 0;
-      height: 100%;
-      background: linear-gradient(90deg, #c9a85c, #776094);
-      border-radius: 20px;
-      transition: width 0.4s ease;
+    .progress{
+      height:8px;
+      background:#e9e0ef;
+      border-radius:999px;
+      overflow:hidden;
+      margin-bottom:7px;
     }
 
-    .quiz-card {
-      position: relative;
-      padding: 22px 16px;
-      overflow: hidden;
-      background: #fffdf8;
-      border: 2px solid #c9a85c;
-      border-radius: 24px;
-      box-shadow: 0 8px 22px rgba(91, 63, 111, 0.11);
-      transition: background 0.4s ease;
+    .progress>div{
+      height:100%;
+      width:0;
+      background:linear-gradient(90deg,var(--g),#dfca8f);
+      transition:.3s;
     }
 
-    .theme-1 {
-      background: linear-gradient(145deg, #fffdf8, #f5ecfb);
+    .card,
+    .result{
+      flex:1;
+      min-height:0;
+      background:var(--paper);
+      border:1px solid var(--g2);
+      border-radius:22px;
+      box-shadow:0 14px 30px rgba(73,54,92,.12);
+      padding:12px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
     }
 
-    .theme-2 {
-      background: linear-gradient(145deg, #fffdf8, #fff7df);
+    .qnum{
+      color:var(--g);
+      font-weight:bold;
+      font-size:12px;
+      margin-bottom:2px;
     }
 
-    .theme-3 {
-      background: linear-gradient(145deg, #fffdf8, #f8f0fb);
+    h2{
+      font-size:clamp(16px,4.3vw,21px);
+      margin:2px 0 8px;
+      color:var(--pd);
+      line-height:1.5;
     }
 
-    .theme-4 {
-      background: linear-gradient(145deg, #fffdf8, #edf8ef);
+    .sentence{
+      display:none;
+      margin:3px 0 8px;
+      padding:8px 10px;
+      text-align:center;
+      font-weight:bold;
+      color:var(--p);
+      background:#f5ecfb;
+      border:1px dashed var(--g2);
+      border-radius:12px;
+      line-height:1.5;
+      font-size:13px;
     }
 
-    .theme-5 {
-      background: linear-gradient(145deg, #fffdf8, #fff1f3);
+    .options{
+      display:grid;
+      gap:6px;
     }
 
-    .question-number {
-      display: inline-block;
-      margin-bottom: 14px;
-      padding: 7px 14px;
-      color: #5d4374;
-      font-weight: bold;
-      background: #f1e5f8;
-      border: 1px solid #c9a85c;
-      border-radius: 20px;
+    .opt{
+      width:100%;
+      padding:8px 10px;
+      border-radius:13px;
+      border:2px solid #e4dbe9;
+      background:#fff;
+      color:var(--text);
+      font:inherit;
+      font-size:clamp(13px,3.4vw,16px);
+      text-align:right;
+      cursor:pointer;
+      line-height:1.35;
     }
 
-    .question {
-      margin: 8px 0 18px;
-      color: #4b3a57;
-      font-size: 22px;
-      font-weight: bold;
-      line-height: 1.7;
-      text-align: center;
+    .opt.correct{
+      background:#f0ecf6;
+      border-color:var(--p2);
+      color:var(--pd);
     }
 
-    .sentence {
-      margin-bottom: 16px;
-      padding: 14px;
-      color: #5d4374;
-      font-size: 19px;
-      font-weight: bold;
-      text-align: center;
-      background: #fffdf8;
-      border: 2px dashed #c9a85c;
-      border-radius: 15px;
+    .opt.wrong{
+      background:#fff8ec;
+      border-color:var(--g2);
+      color:#66522e;
     }
 
-    .answers {
-      display: grid;
-      gap: 11px;
+    .opt:disabled{
+      cursor:default;
     }
 
-    .answer {
-      width: 100%;
-      padding: 14px 11px;
-      color: #4b3a57;
-      font-family: inherit;
-      font-size: 18px;
-      cursor: pointer;
-      background: linear-gradient(135deg, #f5ecfb, #fffaf2);
-      border: 2px solid #d8c7e4;
-      border-radius: 16px;
-      transition:
-        transform 0.18s ease,
-        background 0.18s ease;
+    .feedback{
+      display:none;
+      margin-top:7px;
+      padding:8px 10px;
+      border-radius:13px;
+      font-size:clamp(12px,3.2vw,14px);
+      line-height:1.45;
     }
 
-    .answer:hover,
-    .answer:active {
-      background: #f1e5f8;
-      transform: scale(0.99);
+    .feedback.show{
+      display:block;
     }
 
-    .answer.correct {
-      color: #25663c;
-      background: #e5f6e9;
-      border-color: #4d9b64;
-      animation: pop 0.45s ease;
+    .feedback.good{
+      background:#f3edf8;
+      border:1px solid #c9b8d4;
+      color:var(--pd);
     }
 
-    .answer.wrong {
-      color: #8e3d4c;
-      background: #fff1f3;
-      border-color: #c95c70;
-      animation: shake 0.4s ease;
+    .feedback.bad{
+      background:#fff9ec;
+      border:1px solid var(--g2);
+      color:#66522e;
     }
 
-    .feedback {
-      display: none;
-      margin-top: 15px;
-      padding: 14px;
-      font-weight: bold;
-      line-height: 1.7;
-      text-align: center;
-      border-radius: 15px;
+    .next{
+      display:none;
+      width:100%;
+      margin-top:7px;
+      padding:8px;
+      border:0;
+      border-radius:13px;
+      background:linear-gradient(145deg,var(--p2),var(--p));
+      color:#fff;
+      font:inherit;
+      font-weight:bold;
+      cursor:pointer;
+      font-size:14px;
     }
 
-    .feedback.success {
-      display: block;
-      color: #25663c;
-      background: #e5f6e9;
-      border: 2px solid #4d9b64;
+    .result{
+      display:none;
+      text-align:center;
     }
 
-    .feedback.error {
-      display: block;
-      color: #8e3d4c;
-      background: #fff1f3;
-      border: 2px solid #c95c70;
+    .result.show{
+      display:flex;
     }
 
-    .next-button {
-      display: none;
-      width: 100%;
-      margin-top: 14px;
-      padding: 14px;
-      color: white;
-      font-family: inherit;
-      font-size: 18px;
-      font-weight: bold;
-      cursor: pointer;
-      background: #6f5288;
-      border: 2px solid #c9a85c;
-      border-radius: 16px;
-    }
-
-    .next-button:hover,
-    .next-button:active {
-      background: #5b4677;
-    }
-
-    .result {
-      display: none;
-      padding: 24px 16px;
-      text-align: center;
-      background: #fffdf8;
-      border: 2px solid #c9a85c;
-      border-radius: 24px;
-      box-shadow: 0 8px 22px rgba(91, 63, 111, 0.11);
-    }
-
-    .result h2 {
-      margin-top: 0;
-      color: #5d4374;
-      font-size: 27px;
-    }
-
-    .score-circle {
-      display: flex;
-      width: 145px;
-      height: 145px;
-      margin: 18px auto;
-      color: white;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, #c9a85c, #776094);
-      border: 4px solid #fffdf8;
-      border-radius: 50%;
-      box-shadow: 0 8px 18px rgba(91, 63, 111, 0.2);
-    }
-
-    .score-circle strong {
-      font-size: 38px;
+    .score{
+      font-size:40px;
+      color:var(--g);
+      font-weight:bold;
     }
 
     .restart,
-    .back {
-      display: block;
-      width: 100%;
-      margin-top: 12px;
-      padding: 13px;
-      font-family: inherit;
-      font-size: 17px;
-      font-weight: bold;
-      text-align: center;
-      cursor: pointer;
-      border-radius: 15px;
+    .lesson{
+      display:block;
+      text-decoration:none;
+      width:100%;
+      padding:10px;
+      margin-top:8px;
+      border-radius:13px;
+      font-weight:bold;
     }
 
-    .restart {
-      color: white;
-      background: #6f5288;
-      border: 2px solid #c9a85c;
+    .restart{
+      border:0;
+      background:linear-gradient(145deg,var(--p2),var(--p));
+      color:#fff;
+      font:inherit;
+      cursor:pointer;
     }
 
-    .back {
-      color: white;
-      text-decoration: none;
-      background: #49385c;
-      border: 2px solid #c9a85c;
+    .lesson{
+      background:var(--lav);
+      color:var(--pd);
+      border:1px solid #d6c7df;
     }
 
-    .restart:hover,
-    .restart:active,
-    .back:hover,
-    .back:active {
-      background: #5b4677;
+    footer{
+      text-align:center;
+      padding:5px;
+      color:#73697a;
+      font-size:9px;
     }
 
-    .confetti {
-      position: fixed;
-      top: -25px;
-      width: 10px;
-      height: 18px;
-      z-index: 9999;
-      pointer-events: none;
-      border-radius: 3px;
-      animation: fall linear forwards;
+    .burst{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      overflow:hidden;
+      z-index:20;
     }
 
-    @keyframes pop {
-      0%,
-      100% {
-        transform: scale(1);
+    .confetti{
+      position:absolute;
+      width:8px;
+      height:8px;
+      border-radius:2px;
+      animation:fall 900ms ease-out forwards;
+    }
+
+    @keyframes fall{
+      0%{
+        transform:translateY(-20px) rotate(0);
+        opacity:1;
       }
 
-      50% {
-        transform: scale(1.05);
-      }
-    }
-
-    @keyframes shake {
-      0%,
-      100% {
-        transform: translateX(0);
-      }
-
-      25% {
-        transform: translateX(-8px);
-      }
-
-      50% {
-        transform: translateX(8px);
-      }
-
-      75% {
-        transform: translateX(-5px);
+      100%{
+        transform:translateY(105vh) rotate(540deg);
+        opacity:0;
       }
     }
 
-    @keyframes fall {
-      from {
-        opacity: 1;
-        transform: translateY(-30px) rotate(0deg);
-      }
+    .pop{
+      animation:pop .25s ease;
+    }
 
-      to {
-        opacity: 0.8;
-        transform: translateY(110vh) rotate(760deg);
+    @keyframes pop{
+      50%{
+        transform:scale(1.018);
       }
     }
 
-    @media (max-width: 600px) {
-      body {
-        padding: 12px 8px;
+    @media(max-height:650px){
+
+      header{
+        padding:5px 10px 4px;
       }
 
-      .container {
-        width: 96%;
+      header h1{
+        font-size:17px;
       }
 
-      .hero h1 {
-        font-size: 24px;
+      header p{
+        font-size:9px;
       }
 
-      .question {
-        font-size: 20px;
+      main{
+        padding:3px 0;
       }
 
-      .answer {
-        font-size: 17px;
+      .top{
+        font-size:11px;
+        margin-bottom:3px;
       }
 
-      .progress-info {
-        font-size: 15px;
+      .progress{
+        height:6px;
+        margin-bottom:4px;
+      }
+
+      .card{
+        padding:7px;
+      }
+
+      h2{
+        font-size:15px;
+        margin-bottom:5px;
+      }
+
+      .sentence{
+        padding:5px 7px;
+        margin-bottom:4px;
+        font-size:11px;
+      }
+
+      .options{
+        gap:4px;
+      }
+
+      .opt{
+        padding:5px 7px;
+        font-size:12px;
+      }
+
+      .feedback{
+        padding:5px 7px;
+        margin-top:4px;
+        font-size:11px;
+      }
+
+      .next{
+        padding:6px;
+        margin-top:4px;
       }
     }
   </style>
@@ -389,533 +376,735 @@
 
 <body>
 
-  <div class="container">
+<div class="app">
 
-    <div class="hero">
-      <h1>✅ الاختبار التجريبي</h1>
-      <p>أسلوب القسم</p>
-    </div>
+<header>
 
-    <div class="progress-card">
+  <span class="tag">
+    الأسلوب اللغوي
+  </span>
 
-      <div class="progress-info">
-        <span id="progressText">السؤال 1 من 10</span>
-        <span id="scoreText">النقاط: 0</span>
-      </div>
+  <h1>
+    ✨ اختبري مهارتك | أسلوب القسم
+  </h1>
 
-      <div class="track">
-        <div class="bar" id="progressBar"></div>
-      </div>
+  <p>
+    ١٠ أسئلة • اختاري الإجابة الأدق • تعقيب فوري 🌟
+  </p>
 
-    </div>
+</header>
 
-    <div class="quiz-card theme-1" id="quizCard">
+<main>
 
-      <div class="question-number" id="questionNumber">
-        السؤال 1
-      </div>
+  <div class="top">
 
-      <div class="question" id="question">
-        جاري تحميل السؤال...
-      </div>
+    <span id="counter">
+      السؤال ١ من ١٠
+    </span>
 
-      <div class="sentence" id="sentence"></div>
-
-      <div class="answers" id="answers"></div>
-
-      <div class="feedback" id="feedback"></div>
-
-      <button class="next-button" id="nextButton">
-        السؤال التالي ←
-      </button>
-
-    </div>
-
-    <div class="result" id="result">
-
-      <h2>🎉 أنهيتِ الاختبار</h2>
-
-      <div class="score-circle">
-        <strong id="finalScore">0/10</strong>
-        <span>درجتك</span>
-      </div>
-
-      <p id="resultMessage"></p>
-
-      <button class="restart" onclick="restartQuiz()">
-        إعادة الاختبار
-      </button>
-
-      <a class="back" href="oath-style.html">
-        العودة إلى درس أسلوب القسم
-      </a>
-
-    </div>
+    <span id="correctCount">
+      الصحيح: ٠
+    </span>
 
   </div>
 
-  <script>
-    const questions = [
-      {
-        question: "ما الغرض الأساسي من أسلوب القسم؟",
-        sentence: "",
-        answers: [
-          "التوكيد وتقوية المعنى",
-          "الاستفهام",
-          "النداء"
-        ],
-        correct: "التوكيد وتقوية المعنى",
-        explanation:
-          "يُستخدم أسلوب القسم لتأكيد الخبر وتقوية معناه."
-      },
-      {
-        question: "ما أداة القسم في الجملة؟",
-        sentence: "واللهِ لأحافظنَّ على الأمانة.",
-        answers: [
-          "الله",
-          "الواو",
-          "لأحافظنَّ"
-        ],
-        correct: "الواو",
-        explanation:
-          "الواو أداة القسم، ولفظ الجلالة هو المقسم به."
-      },
-      {
-        question: "ما المقسم به في الجملة؟",
-        sentence: "باللهِ لن أكذب.",
-        answers: [
-          "الباء",
-          "الله",
-          "لن أكذب"
-        ],
-        correct: "الله",
-        explanation:
-          "المقسم به في الجملة هو لفظ الجلالة «الله»."
-      },
-      {
-        question: "حددي جواب القسم:",
-        sentence: "تاللهِ لأساعدنَّ المحتاج.",
-        answers: [
-          "التاء",
-          "الله",
-          "لأساعدنَّ المحتاج"
-        ],
-        correct: "لأساعدنَّ المحتاج",
-        explanation:
-          "جواب القسم هو الجملة التي توضّح الأمر الذي أقسم عليه المتكلم."
-      },
-      {
-        question: "أي الكلمات الآتية فعل قسم؟",
-        sentence: "",
-        answers: [
-          "أقسم",
-          "لعلَّ",
-          "ليت"
-        ],
-        correct: "أقسم",
-        explanation:
-          "من أفعال القسم: أقسم، وأحلف."
-      },
-      {
-        question: "أي الجمل الآتية أسلوب قسم صحيح؟",
-        sentence: "",
-        answers: [
-          "واللهِ لأقولنَّ الحق.",
-          "يا طالبُ قل الحق.",
-          "لعلّي أقول الحق."
-        ],
-        correct: "واللهِ لأقولنَّ الحق.",
-        explanation:
-          "هذه الجملة تحتوي على أداة قسم ومقسم به وجواب قسم."
-      },
-      {
-        question: "أي الصيغ الآتية من صيغ القسم؟",
-        sentence: "",
-        answers: [
-          "يمينُ الله",
-          "هل تفعل؟",
-          "ما أجمل الصدق!"
-        ],
-        correct: "يمينُ الله",
-        explanation:
-          "«يمينُ الله» من صيغ القسم."
-      },
-      {
-        question: "اختاري الصياغة الأقوى في التوكيد:",
-        sentence: "",
-        answers: [
-          "سأجتهد.",
-          "واللهِ لأجتهدنَّ.",
-          "ربما أجتهد."
-        ],
-        correct: "واللهِ لأجتهدنَّ.",
-        explanation:
-          "لام القسم ونون التوكيد تزيدان الجملة قوة وتوكيدًا."
-      },
-      {
-        question: "ما حكم الحلف بغير الله؟",
-        sentence: "وحياتي لأصدقنَّ.",
-        answers: [
-          "صحيح",
-          "غير صحيح",
-          "أسلوب تعجب"
-        ],
-        correct: "غير صحيح",
-        explanation:
-          "الإنسان لا يحلف إلا بالله، أو باسم من أسمائه، أو صفة من صفاته."
-      },
-      {
-        question: "اختاري الجملة الصحيحة:",
-        sentence: "",
-        answers: [
-          "والأمانة لن أكذب.",
-          "واللهِ لن أكذب.",
-          "وحياة أمي لن أكذب."
-        ],
-        correct: "واللهِ لن أكذب.",
-        explanation:
-          "الصحيح أن يكون الحلف بالله وحده."
-      }
-    ];
+  <div class="progress">
+    <div id="bar"></div>
+  </div>
 
-    const encouragements = [
-      "رائعة! إجابة صحيحة 🌟",
-      "أحسنتِ يا بطلة 👏",
-      "ممتازة جدًا 🎉",
-      "إجابة موفقة 💫",
-      "استمري، أداؤك جميل ✅"
-    ];
+  <section class="card" id="card">
 
-    const themes = [
-      "theme-1",
-      "theme-2",
-      "theme-3",
-      "theme-4",
-      "theme-5"
-    ];
+    <div class="qnum" id="qnum"></div>
 
-    let currentQuestion = 0;
-    let score = 0;
-    let answered = false;
+    <h2 id="question"></h2>
 
-    const questionElement =
-      document.getElementById("question");
+    <div class="sentence" id="sentence"></div>
 
-    const sentenceElement =
-      document.getElementById("sentence");
+    <div class="options" id="options"></div>
 
-    const answersElement =
-      document.getElementById("answers");
+    <div class="feedback" id="feedback"></div>
 
-    const feedbackElement =
-      document.getElementById("feedback");
+    <button class="next" id="next">
+      السؤال التالي
+    </button>
 
-    const nextButton =
-      document.getElementById("nextButton");
+  </section>
 
-    const progressText =
-      document.getElementById("progressText");
+  <section class="result" id="result">
 
-    const scoreText =
-      document.getElementById("scoreText");
+    <h2>
+      🎉 اكتمل اختبار أسلوب القسم
+    </h2>
 
-    const progressBar =
-      document.getElementById("progressBar");
+    <div class="score" id="score"></div>
 
-    const questionNumber =
-      document.getElementById("questionNumber");
+    <p id="message"></p>
 
-    const quizCard =
-      document.getElementById("quizCard");
+    <button class="restart" onclick="restartQuiz()">
+      🔄 أعيدي الاختبار
+    </button>
 
-    const result =
-      document.getElementById("result");
+    <a class="lesson" href="oath-style-file.html">
+      📘 راجعي ملف الدرس
+    </a>
 
-    function loadQuestion() {
-      answered = false;
+    <a class="lesson" href="oath-style.html">
+      ↩ العودة إلى درس أسلوب القسم
+    </a>
 
-      const item = questions[currentQuestion];
+  </section>
 
-      questionElement.textContent = item.question;
-      sentenceElement.textContent = item.sentence;
-      answersElement.innerHTML = "";
+</main>
 
-      sentenceElement.style.display =
-        item.sentence === "" ? "none" : "block";
+<footer>
+  منصة آفاق اللغة | لغتي الخالدة | الصف الثالث المتوسط
+</footer>
 
-      feedbackElement.className = "feedback";
-      feedbackElement.textContent = "";
-      nextButton.style.display = "none";
+</div>
 
-      progressText.textContent =
-        `السؤال ${currentQuestion + 1} من ${questions.length}`;
+<div class="burst" id="burst"></div>
 
-      questionNumber.textContent =
-        `السؤال ${currentQuestion + 1}`;
+<script>
 
-      scoreText.textContent =
-        `النقاط: ${score}`;
+const questions = [
 
-      progressBar.style.width =
-        `${(currentQuestion / questions.length) * 100}%`;
+{
+  q:"١- ما الغرض الرئيس من أسلوب القسم؟",
 
-      themes.forEach(function (theme) {
-        quizCard.classList.remove(theme);
-      });
+  s:"",
 
-      quizCard.classList.add(
-        themes[currentQuestion % themes.length]
+  o:[
+    "توكيد الخبر وتقوية المعنى",
+    "طلب الإجابة عن شيء مجهول",
+    "التعبير عن التعجب",
+    "نداء شخص أو شيء"
+  ],
+
+  a:0,
+
+  ok:
+  "أحسنتِ 🌟 الغرض الرئيس من القسم هو توكيد الخبر وتقوية معناه.",
+
+  bad:
+  "فكري في سبب استخدام المتكلم للقسم: يريد أن يجعل خبره أقوى وأشد توكيدًا."
+},
+
+{
+  q:"٢- ما أداة القسم في الجملة الآتية؟",
+
+  s:"واللهِ لأحافظنَّ على الأمانة.",
+
+  o:[
+    "الله",
+    "الواو",
+    "اللام",
+    "نون التوكيد"
+  ],
+
+  a:1,
+
+  ok:
+  "ممتازة ✨ الواو هي أداة القسم، ولفظ الجلالة هو المقسَم به.",
+
+  bad:
+  "في «واللهِ»: الواو أداة القسم، أما «اللهِ» فهو المقسَم به."
+},
+
+{
+  q:"٣- ما المقسَم به في الجملة الآتية؟",
+
+  s:"باللهِ لن أكذبَ.",
+
+  o:[
+    "الباء",
+    "الله",
+    "لن",
+    "أكذب"
+  ],
+
+  a:1,
+
+  ok:
+  "رائعة 👏 لفظ الجلالة «الله» هو المقسَم به.",
+
+  bad:
+  "الباء هي أداة القسم، والاسم الذي وقع عليه القسم هو «الله»."
+},
+
+{
+  q:"٤- حددي جواب القسم في الجملة:",
+
+  s:"تاللهِ لأساعدنَّ المحتاجَ.",
+
+  o:[
+    "التاء",
+    "الله",
+    "لأساعدنَّ المحتاجَ",
+    "المحتاجَ"
+  ],
+
+  a:2,
+
+  ok:
+  "إجابة دقيقة 💜 «لأساعدنَّ المحتاجَ» هي الجملة التي بيّنت ما أقسم عليه المتكلم.",
+
+  bad:
+  "جواب القسم هو الكلام الذي يوضح الأمر الذي أقسم المتكلم على فعله."
+},
+
+{
+  q:"٥- أي الكلمات الآتية تدل على فعل قسم؟",
+
+  s:"",
+
+  o:[
+    "أقسم",
+    "أرجو",
+    "ليت",
+    "لعل"
+  ],
+
+  a:0,
+
+  ok:
+  "أحسنتِ 🎯 «أقسم» من الأفعال الدالة على القسم، ومثله «أحلف».",
+
+  bad:
+  "ابحثي عن فعل يدل صراحة على الحلف."
+},
+
+{
+  q:"٦- أي الجمل الآتية اشتملت على قسم صحيح من حيث التركيب؟",
+
+  s:"",
+
+  o:[
+    "واللهِ لأقولنَّ الحق.",
+    "يا طالبُ قل الحق.",
+    "لعلّي أقول الحق.",
+    "هل تقول الحق؟"
+  ],
+
+  a:0,
+
+  ok:
+  "ممتازة 🌟 فيها أداة قسم ومقسَم به وجواب للقسم.",
+
+  bad:
+  "ابحثي عن تركيب يبدأ بحرف قسم ويتبعه مقسَم به ثم جواب للقسم."
+},
+
+{
+  q:"٧- ما إعراب لفظ الجلالة في «واللهِ لأصدقنَّ»؟",
+
+  s:"",
+
+  o:[
+    "مقسَم به مجرور",
+    "فاعل مرفوع",
+    "مفعول به منصوب",
+    "مبتدأ مرفوع"
+  ],
+
+  a:0,
+
+  ok:
+  "إجابة رائعة 👏 واو القسم حرف جر، ولذلك لفظ الجلالة مقسَم به مجرور.",
+
+  bad:
+  "حروف القسم من حروف الجر، لذا يجر الاسم بعدها."
+},
+
+{
+  q:"٨- في «واللهِ لأجتهدنَّ»، ما الذي زاد جواب القسم توكيدًا؟",
+
+  s:"",
+
+  o:[
+    "لام جواب القسم ونون التوكيد",
+    "واو العطف فقط",
+    "أل التعريف",
+    "حرف الاستفهام"
+  ],
+
+  a:0,
+
+  ok:
+  "بطلة ✨ اللام في أول الفعل ونون التوكيد في آخره زادتا المعنى توكيدًا.",
+
+  bad:
+  "انظري إلى أول «لأجتهدنَّ» وآخرها: لام في البداية ونون مشددة في النهاية."
+},
+
+{
+  q:"٩- أي الجمل الآتية اشتملت على واو عطف لا واو قسم؟",
+
+  s:"",
+
+  o:[
+    "واللهِ لأصدقنَّ.",
+    "حضر محمدٌ وعليٌّ.",
+    "واللهِ لن أكذبَ.",
+    "واللهِ لأحفظنَّ العهد."
+  ],
+
+  a:1,
+
+  ok:
+  "رائعة جدًا 🌟 الواو في «محمدٌ وعليٌّ» عطفت عليًّا على محمد، فهي واو عطف.",
+
+  bad:
+  "واو القسم تدخل على المقسَم به، أما هنا فقد ربطت بين اسمين."
+},
+
+{
+  q:"١٠- أي العبارات الآتية أدق؟",
+
+  s:"",
+
+  o:[
+    "المقسَم به هو حرف القسم نفسه",
+    "كل واو في بداية الكلمة واو قسم",
+    "جواب القسم يبيّن الأمر الذي أقسم عليه المتكلم",
+    "المقسَم به بعد حرف القسم يكون مرفوعًا"
+  ],
+
+  a:2,
+
+  ok:
+  "إتقان رائع 🏆 جواب القسم هو الجملة التي توضّح الأمر الذي وقع عليه القسم.",
+
+  bad:
+  "فرّقي بين الأداة والمقسَم به والجواب: الجواب هو ما يبين الشيء الذي أقسم عليه المتكلم."
+}
+
+];
+
+let index = 0;
+let score = 0;
+let answered = false;
+
+const arabicDigits = n =>
+  String(n).replace(
+    /\d/g,
+    d => '٠١٢٣٤٥٦٧٨٩'[d]
+  );
+
+function tone(ok){
+
+  try{
+
+    const AC =
+      window.AudioContext ||
+      window.webkitAudioContext;
+
+    const c =
+      new AC();
+
+    const o =
+      c.createOscillator();
+
+    const g =
+      c.createGain();
+
+    o.connect(g);
+    g.connect(c.destination);
+
+    o.type =
+      ok ? 'sine' : 'triangle';
+
+    o.frequency.setValueAtTime(
+      ok ? 660 : 220,
+      c.currentTime
+    );
+
+    if(ok){
+
+      o.frequency.exponentialRampToValueAtTime(
+        920,
+        c.currentTime + .16
       );
 
-      item.answers.forEach(function (answer) {
-        const button =
-          document.createElement("button");
+    }else{
 
-        button.type = "button";
-        button.className = "answer";
-        button.textContent = answer;
+      o.frequency.exponentialRampToValueAtTime(
+        170,
+        c.currentTime + .16
+      );
 
-        button.addEventListener("click", function () {
-          checkAnswer(button, answer);
-        });
-
-        answersElement.appendChild(button);
-      });
     }
 
-    function checkAnswer(button, selectedAnswer) {
-      if (answered) {
-        return;
-      }
+    g.gain.setValueAtTime(
+      .07,
+      c.currentTime
+    );
 
-      answered = true;
+    g.gain.exponentialRampToValueAtTime(
+      .001,
+      c.currentTime + .23
+    );
 
-      const item = questions[currentQuestion];
-      const buttons =
-        document.querySelectorAll(".answer");
+    o.start();
 
-      buttons.forEach(function (answerButton) {
-        answerButton.disabled = true;
+    o.stop(
+      c.currentTime + .24
+    );
 
-        if (answerButton.textContent === item.correct) {
-          answerButton.classList.add("correct");
-        }
-      });
+  }catch(e){}
 
-      if (selectedAnswer === item.correct) {
-        score++;
-        button.classList.add("correct");
+}
 
-        const message =
-          encouragements[
-            Math.floor(
-              Math.random() * encouragements.length
-            )
-          ];
+function confetti(){
 
-        feedbackElement.className =
-          "feedback success";
+  const burst =
+    document.getElementById('burst');
 
-        feedbackElement.innerHTML =
-          `${message}<br>${item.explanation}`;
+  burst.innerHTML = '';
 
-        scoreText.textContent =
-          `النقاط: ${score}`;
+  const colors = [
+    '#5b4677',
+    '#776094',
+    '#b69750',
+    '#d8c28a',
+    '#eee5f5'
+  ];
 
-        celebrate(55);
-        playSuccessSound();
-      } else {
-        button.classList.add("wrong");
+  for(let i=0;i<26;i++){
 
-        feedbackElement.className =
-          "feedback error";
+    const s =
+      document.createElement('i');
 
-        feedbackElement.innerHTML =
-          `محاولة جميلة 🌷<br>${item.explanation}`;
+    s.className =
+      'confetti';
 
-        playWrongSound();
-      }
+    s.style.left =
+      (Math.random()*100) + 'vw';
 
-      nextButton.style.display = "block";
+    s.style.top =
+      '-10px';
 
-      if (currentQuestion === questions.length - 1) {
-        nextButton.textContent = "عرض النتيجة 🎯";
-      } else {
-        nextButton.textContent = "السؤال التالي ←";
-      }
+    s.style.background =
+      colors[i % colors.length];
+
+    s.style.animationDelay =
+      (Math.random()*170) + 'ms';
+
+    burst.appendChild(s);
+
+  }
+
+  setTimeout(
+    () => burst.innerHTML = '',
+    1200
+  );
+
+}
+
+function render(){
+
+  answered = false;
+
+  const x =
+    questions[index];
+
+  document
+    .getElementById('qnum')
+    .textContent =
+    'السؤال ' +
+    arabicDigits(index+1);
+
+  document
+    .getElementById('counter')
+    .textContent =
+    'السؤال ' +
+    arabicDigits(index+1) +
+    ' من ' +
+    arabicDigits(questions.length);
+
+  document
+    .getElementById('correctCount')
+    .textContent =
+    'الصحيح: ' +
+    arabicDigits(score);
+
+  document
+    .getElementById('bar')
+    .style.width =
+    ((index + 1) /
+    questions.length *
+    100) + '%';
+
+  document
+    .getElementById('question')
+    .textContent =
+    x.q;
+
+  const sentence =
+    document.getElementById('sentence');
+
+  if(x.s){
+
+    sentence.textContent = x.s;
+    sentence.style.display = 'block';
+
+  }else{
+
+    sentence.textContent = '';
+    sentence.style.display = 'none';
+
+  }
+
+  const options =
+    document.getElementById('options');
+
+  const feedback =
+    document.getElementById('feedback');
+
+  const next =
+    document.getElementById('next');
+
+  const card =
+    document.getElementById('card');
+
+  options.innerHTML = '';
+
+  feedback.className =
+    'feedback';
+
+  feedback.innerHTML =
+    '';
+
+  next.style.display =
+    'none';
+
+  card.classList.remove(
+    'pop'
+  );
+
+  x.o.forEach((t,j)=>{
+
+    const b =
+      document.createElement('button');
+
+    b.className =
+      'opt';
+
+    b.textContent =
+      t;
+
+    b.onclick =
+      () => choose(j,b);
+
+    options.appendChild(b);
+
+  });
+
+}
+
+function choose(choice,button){
+
+  if(answered) return;
+
+  answered = true;
+
+  const x =
+    questions[index];
+
+  const btns =
+    [...document.querySelectorAll('.opt')];
+
+  btns.forEach(
+    b => b.disabled = true
+  );
+
+  btns[x.a]
+    .classList
+    .add('correct');
+
+  const feedback =
+    document.getElementById('feedback');
+
+  if(choice === x.a){
+
+    score++;
+
+    button
+      .classList
+      .add('correct');
+
+    feedback.className =
+      'feedback show good';
+
+    feedback.textContent =
+      x.ok;
+
+    tone(true);
+
+    confetti();
+
+    if(navigator.vibrate){
+      navigator.vibrate(45);
     }
 
-    nextButton.addEventListener("click", function () {
-      currentQuestion++;
+  }else{
 
-      if (currentQuestion < questions.length) {
-        loadQuestion();
-      } else {
-        showResult();
-      }
-    });
+    button
+      .classList
+      .add('wrong');
 
-    function showResult() {
-      quizCard.style.display = "none";
-      result.style.display = "block";
+    feedback.className =
+      'feedback show bad';
 
-      progressBar.style.width = "100%";
-      progressText.textContent = "اكتمل الاختبار";
-      scoreText.textContent = `النقاط: ${score}`;
+    feedback.innerHTML =
+      '<b>راجعي الفكرة 👀</b><br>' +
+      x.bad;
 
-      document.getElementById(
-        "finalScore"
-      ).textContent =
-        `${score}/${questions.length}`;
+    tone(false);
 
-      const resultMessage =
-        document.getElementById("resultMessage");
-
-      if (score === questions.length) {
-        resultMessage.textContent =
-          "مذهلة! أتقنتِ أسلوب القسم بالكامل 🏆";
-
-        celebrate(130);
-        playSuccessSound();
-      } else if (score >= 8) {
-        resultMessage.textContent =
-          "نتيجة رائعة جدًا، بقيت لمسات بسيطة 🌟";
-
-        celebrate(95);
-      } else if (score >= 6) {
-        resultMessage.textContent =
-          "أداء جميل، راجعي الأسئلة التي أخطأتِ فيها 💛";
-
-        celebrate(65);
-      } else {
-        resultMessage.textContent =
-          "بداية طيبة، أعيدي المحاولة وستتحسن النتيجة 🌷";
-
-        celebrate(40);
-      }
-
-      result.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-      });
+    if(navigator.vibrate){
+      navigator.vibrate(
+        [70,40,70]
+      );
     }
 
-    function restartQuiz() {
-      currentQuestion = 0;
-      score = 0;
-      answered = false;
+  }
 
-      result.style.display = "none";
-      quizCard.style.display = "block";
+  document
+    .getElementById('correctCount')
+    .textContent =
+    'الصحيح: ' +
+    arabicDigits(score);
 
-      loadQuestion();
+  document
+    .getElementById('card')
+    .classList
+    .add('pop');
 
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
+  const next =
+    document.getElementById('next');
+
+  next.textContent =
+    index === questions.length-1
+    ? 'شوفي نتيجتك ✨'
+    : 'كمّلي الاختبار ←';
+
+  next.style.display =
+    'block';
+
+}
+
+document
+  .getElementById('next')
+  .onclick = () => {
+
+    index++;
+
+    if(index < questions.length){
+
+      render();
+
+    }else{
+
+      finish();
+
     }
 
-    function celebrate(amount) {
-      const colors = [
-        "#776094",
-        "#c9a85c",
-        "#6f5288",
-        "#4d9b64",
-        "#c95c70",
-        "#49385c"
-      ];
+  };
 
-      for (let i = 0; i < amount; i++) {
-        const piece =
-          document.createElement("span");
+function finish(){
 
-        piece.className = "confetti";
+  document
+    .getElementById('bar')
+    .style.width =
+    '100%';
 
-        piece.style.left =
-          `${Math.random() * 100}vw`;
+  document
+    .getElementById('card')
+    .style.display =
+    'none';
 
-        piece.style.background =
-          colors[
-            Math.floor(
-              Math.random() * colors.length
-            )
-          ];
+  document
+    .querySelector('.top')
+    .style.display =
+    'none';
 
-        piece.style.animationDuration =
-          `${2.2 + Math.random() * 2.2}s`;
+  document
+    .querySelector('.progress')
+    .style.display =
+    'none';
 
-        piece.style.animationDelay =
-          `${Math.random() * 0.35}s`;
+  const result =
+    document.getElementById('result');
 
-        document.body.appendChild(piece);
+  result.classList.add(
+    'show'
+  );
 
-        setTimeout(function () {
-          piece.remove();
-        }, 5000);
-      }
-    }
+  document
+    .getElementById('score')
+    .textContent =
+    arabicDigits(score) +
+    ' / ' +
+    arabicDigits(questions.length);
 
-    function playSuccessSound() {
-      playTone(620, 0.12);
+  const pct =
+    score /
+    questions.length;
 
-      setTimeout(function () {
-        playTone(820, 0.16);
-      }, 130);
-    }
+  document
+    .getElementById('message')
+    .textContent =
 
-    function playWrongSound() {
-      playTone(220, 0.18);
-    }
+    pct === 1
+    ? 'إتقان كامل لأسلوب القسم 🏆'
 
-    function playTone(frequency, duration) {
-      try {
-        const AudioContextClass =
-          window.AudioContext ||
-          window.webkitAudioContext;
+    : pct >= .8
+    ? 'ممتازة جدًا 🌟 أتقنتِ أركان القسم وأدواته وجوابه.'
 
-        if (!AudioContextClass) {
-          return;
-        }
+    : pct >= .6
+    ? 'أداء جميل 👏 راجعي أداة القسم والمقسَم به وجواب القسم ثم أعيدي الاختبار.'
 
-        const audioContext =
-          new AudioContextClass();
+    : 'راجعي ملف درس أسلوب القسم، ثم عودي للاختبار بثقة.';
 
-        const oscillator =
-          audioContext.createOscillator();
+  if(pct >= .8){
+    confetti();
+  }
 
-        const gain =
-          audioContext.createGain();
+}
 
-        oscillator.connect(gain);
-        gain.connect(audioContext.destination);
+function restartQuiz(){
 
-        oscillator.frequency.value = frequency;
-        oscillator.type = "sine";
+  index = 0;
+  score = 0;
+  answered = false;
 
-        gain.gain.setValueAtTime(
-          0.08,
-          audioContext.currentTime
-        );
+  document
+    .getElementById('card')
+    .style.display =
+    'flex';
 
-        gain.gain.exponentialRampToValueAtTime(
-          0.001,
-          audioContext.currentTime + duration
-        );
+  document
+    .querySelector('.top')
+    .style.display =
+    'flex';
 
-        oscillator.start();
+  document
+    .querySelector('.progress')
+    .style.display =
+    'block';
 
-        oscillator.stop(
-          audioContext.currentTime + duration
-        );
-      } catch (error) {
-        console.log("تعذر تشغيل الصوت.");
-      }
-    }
+  document
+    .getElementById('result')
+    .classList
+    .remove('show');
 
-    loadQuestion();
-  </script>
+  render();
+
+}
+
+render();
+
+</script>
 
 </body>
-
 </html>
