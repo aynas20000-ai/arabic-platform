@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>استعدادك الذكي | اسما الزمان والمكان</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --purple: #776094;
+      --dark-purple: #5b4677;
+      --gold: #c9a85c;
+      --cream: #fffaf2;
+      --light-purple: #f3eafa;
+      --text: #4b3a57;
+      --green: #5f846b;
+      --pink: #fff0f5;
+      --yellow: #fff8d9;
+      --blue: #eef7ff;
+    }
+
+    html,
+    body {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Tahoma, Arial, sans-serif;
+      color: var(--text);
+      line-height: 1.9;
+      background: linear-gradient(180deg, #fffaf2, #f8f0fb);
+    }
+
+    .page {
+      width: 92%;
+      max-width: 1050px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      margin: 25px auto;
+      padding: 30px 20px;
+      text-align: center;
+      color: white;
+      background: linear-gradient(135deg, #776094, #5b4677);
+      border: 3px solid #c9a85c;
+      border-radius: 24px;
+      box-shadow: 0 10px 25px rgba(91, 70, 119, .18);
+    }
+
+    .badge {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 8px 18px;
+      color: #5a3f72;
+      font-weight: bold;
+      background: linear-gradient(135deg, #fff7cf, #fffdf8);
+      border: 2px solid #c9a85c;
+      border-radius: 30px;
+    }
+
+    .hero h1 {
+      margin: 5px 0;
+      font-size: 34px;
+    }
+
+    .hero p {
+      max-width: 800px;
+      margin: 7px auto 0;
+      color: #fffaf2;
+      font-size: 18px;
+    }
+
+    .confidence {
+      margin: 20px 0;
+      padding: 18px;
+      text-align: center;
+      color: #5a3f72;
+      font-size: 19px;
+      font-weight: bold;
+      background: #fffdf8;
+      border-right: 6px solid #c9a85c;
+      border-radius: 15px;
+      box-shadow: 0 5px 14px rgba(91, 70, 119, .07);
+    }
+
+    .section {
+      margin: 24px 0;
+      padding: 22px;
+      background: #fffdf8;
+      border: 2px solid #e4d2a2;
+      border-radius: 20px;
+      box-shadow: 0 6px 16px rgba(91, 70, 119, .08);
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #5b4677;
+      font-size: 25px;
+    }
+
+    h3 {
+      margin-top: 0;
+      color: #6f5288;
+    }
+
+    .smart-box {
+      position: relative;
+      overflow: hidden;
+      color: #5a3f72;
+      background: linear-gradient(135deg, #fff7cf, #f2e7fb, #fffdf8);
+      border: 2px solid #c9a85c;
+      border-radius: 18px;
+      box-shadow:
+        0 8px 22px rgba(201,168,92,.22),
+        0 0 18px rgba(119,96,148,.12);
+    }
+
+    .smart-box::before {
+      content: "";
+      position: absolute;
+      top: -35px;
+      left: -35px;
+      width: 95px;
+      height: 95px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.55);
+    }
+
+    .study-map {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .step {
+      padding: 15px 8px;
+      text-align: center;
+      font-weight: bold;
+      background: #f5ecfb;
+      border: 1px solid #d8c4e5;
+      border-radius: 14px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .card {
+      padding: 18px;
+      background: white;
+      border: 2px solid #e1d1aa;
+      border-radius: 17px;
+    }
+
+    .card strong {
+      color: #5b4677;
+    }
+
+    .place {
+      background: #eef7ff;
+    }
+
+    .time {
+      background: #fff8d9;
+    }
+
+    .rule {
+      background: #f5ecfb;
+    }
+
+    .warning {
+      background: #fff0f5;
+      border-color: #dfa8b9;
+    }
+
+    .success {
+      background: #eef8ef;
+      border-color: #a9c8ad;
+    }
+
+    .formula {
+      margin: 12px 0;
+      padding: 14px;
+      text-align: center;
+      color: #5b4677;
+      font-size: 20px;
+      font-weight: bold;
+      background: white;
+      border: 2px dashed #c9a85c;
+      border-radius: 14px;
+    }
+
+    .golden {
+      margin: 14px 0;
+      padding: 20px;
+      text-align: center;
+      color: #5a3f72;
+      font-size: 20px;
+      font-weight: bold;
+      background: linear-gradient(135deg, #fff7cf, #f2e7fb, #fffdf8);
+      border: 2px solid #c9a85c;
+      border-radius: 18px;
+    }
+
+    .word {
+      color: #8a3f68;
+      font-weight: bold;
+    }
+
+    .key {
+      color: #4f765b;
+      font-weight: bold;
+    }
+
+    table {
+      width: 100%;
+      margin-top: 15px;
+      border-collapse: collapse;
+      background: white;
+    }
+
+    th,
+    td {
+      padding: 12px 8px;
+      text-align: center;
+      border: 1px solid #d9cba9;
+    }
+
+    th {
+      color: white;
+      background: #6f5288;
+    }
+
+    .worksheet {
+      margin-top: 28px;
+      padding: 24px;
+      background: white;
+      border: 3px solid #c9a85c;
+      border-radius: 22px;
+    }
+
+    .worksheet h2 {
+      text-align: center;
+    }
+
+    .questions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .question {
+      padding: 16px;
+      background: #fffdf8;
+      border: 1px solid #dccca7;
+      border-radius: 14px;
+    }
+
+    .line {
+      display: block;
+      height: 25px;
+      margin-top: 12px;
+      border-bottom: 1px dashed #9b8ba5;
+    }
+
+    .self-check {
+      margin: 25px 0;
+      padding: 20px;
+      background: #eef8ef;
+      border: 2px solid #a6c8ac;
+      border-radius: 18px;
+    }
+
+    .actions {
+      margin: 25px 0;
+      text-align: center;
+    }
+
+    button,
+    .back {
+      display: inline-block;
+      margin: 6px;
+      padding: 12px 22px;
+      color: white;
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+      background: #6f5288;
+      border: 2px solid #c9a85c;
+      border-radius: 25px;
+    }
+
+    footer {
+      margin-top: 35px;
+      padding: 20px;
+      text-align: center;
+      color: white;
+      background: #49385c;
+      border-top: 3px solid #c9a85c;
+    }
+
+    @media (max-width: 700px) {
+      .hero h1 {
+        font-size: 27px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .study-map {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .grid,
+      .grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 9px;
+      }
+
+      .card {
+        padding: 13px;
+        font-size: 14px;
+      }
+
+      .section,
+      .worksheet {
+        padding: 17px;
+      }
+
+      h2 {
+        font-size: 21px;
+      }
+
+      .questions {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media print {
+      body {
+        background: white;
+      }
+
+      .hero,
+      .confidence,
+      .study-section,
+      .actions,
+      footer {
+        display: none !important;
+      }
+
+      .page {
+        width: 100%;
+        max-width: none;
+      }
+
+      .worksheet {
+        border: none;
+        box-shadow: none;
+      }
+
+      .questions {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page">
+        <div class="hero">
+
+      <div class="badge">
+        ✨ استعدادك الذكي للاختبار المركزي
+      </div>
+
+      <h1>اسما الزمان والمكان</h1>
+
+      <p>
+        افهمي المعنى أولًا، ثم اربطي الكلمة بالفعل والمضارع والوزن؛
+        عندها تصبح القاعدة واضحة حتى لو تغيّرت صياغة السؤال.
+      </p>
+
+    </div>
+
+    <div class="confidence">
+      القاعدة التي لا تنسينها:
+      <br>
+      🌟 <strong>السياق يحدد: زمان أم مكان.</strong>
+      <br>
+      🌟 <strong>والمضارع يحدد: مَفْعَل أم مَفْعِل.</strong>
+    </div>
+
+
+    <div class="section study-section">
+
+      <h2>🧠 كيف تذاكرين الدرس عن فهم؟</h2>
+
+      <div class="study-map">
+
+        <div class="step">
+          1️⃣ أستخرج الاسم
+        </div>
+
+        <div class="step">
+          2️⃣ أفهم معناه في الجملة
+        </div>
+
+        <div class="step">
+          3️⃣ أرده إلى فعله
+        </div>
+
+        <div class="step">
+          4️⃣ آتي بالمضارع
+        </div>
+
+        <div class="step">
+          5️⃣ أحدد الوزن
+        </div>
+
+      </div>
+
+      <div class="golden">
+        الاسم ← السياق ← الفعل ← المضارع ← حركة عين المضارع ← الوزن
+      </div>
+
+    </div>
+
+
+    <div class="section study-section">
+
+      <h2>📌 أولًا: ما اسما الزمان والمكان؟</h2>
+
+      <div class="grid">
+
+        <div class="card time">
+
+          <h3>⏰ اسم الزمان</h3>
+
+          اسم مشتق يدل على
+          <strong>زمان حدوث الفعل.</strong>
+
+          <div class="formula">
+            اسألي: مَتَى حدث الفعل؟
+          </div>
+
+          مثال:
+
+          <div class="formula">
+            مَوْعِدُ الرحلةِ صباحًا
+          </div>
+
+          كلمة <strong>مَوْعِد</strong> تدل على
+          <strong>زمان</strong> وقوع الفعل.
+
+        </div>
+
+
+        <div class="card place">
+
+          <h3>📍 اسم المكان</h3>
+
+          اسم مشتق يدل على
+          <strong>مكان حدوث الفعل.</strong>
+
+          <div class="formula">
+            اسألي: أَيْن حدث الفعل؟
+          </div>
+
+          مثال:
+
+          <div class="formula">
+            مَجْلِسُ الضيوفِ واسعٌ
+          </div>
+
+          كلمة <strong>مَجْلِس</strong> تدل على
+          <strong>مكان</strong> الجلوس.
+
+        </div>
+
+      </div>
+
+      <div class="smart-box" style="padding:20px; margin-top:18px; text-align:center;">
+        <strong>
+          لا تنظري إلى شكل الكلمة وحده.
+          <br>
+          افهمي ما تدل عليه داخل الجملة.
+        </strong>
+      </div>
+
+    </div>
+
+
+    <div class="section study-section">
+
+      <h2>🔍 كيف أعرف: اسم زمان أم اسم مكان؟</h2>
+
+      <div class="grid">
+
+        <div class="card time">
+
+          إذا دل الاسم على
+          <strong>وقت حدوث الفعل</strong>
+          فهو اسم زمان.
+
+          <div class="formula">
+            حضرتُ عند مَطْلَعِ الشمس.
+          </div>
+
+          السؤال:
+
+          <strong>متى حضرتُ؟</strong>
+
+          <br>
+
+          عند طلوع الشمس.
+
+          <br><br>
+
+          إذن:
+          <span class="word">مَطْلَع = اسم زمان.</span>
+
+        </div>
+
+
+        <div class="card place">
+
+          إذا دل الاسم على
+          <strong>موضع حدوث الفعل</strong>
+          فهو اسم مكان.
+
+          <div class="formula">
+            جلستُ في مَجْلِسِ الأسرة.
+          </div>
+
+          السؤال:
+
+          <strong>أين جلستُ؟</strong>
+
+          <br>
+
+          في مجلس الأسرة.
+
+          <br><br>
+
+          إذن:
+          <span class="word">مَجْلِس = اسم مكان.</span>
+
+        </div>
+
+      </div>
+
+      <div class="golden">
+        «متى؟» ← زمان
+        <br>
+        «أين؟» ← مكان
+      </div>
+
+    </div>
+
+
+    <div class="section study-section">
+
+      <h2>⚠️ هل يمكن أن تأتي الكلمة نفسها للزمان أو المكان؟</h2>
+
+      <div class="card warning">
+
+        نعم.
+
+        <br><br>
+
+        لأن اسمي الزمان والمكان قد يتشابهان في الصيغة،
+        ولذلك لا يمكن تحديد الدلالة من الوزن وحده.
+
+        <br><br>
+
+        <strong>السياق هو الذي يحسم.</strong>
+
+      </div>
+
+      <div class="grid">
+
+        <div class="card time">
+
+          <strong>
+            انتظرتُ مَطْلَعَ الفجر.
+          </strong>
+
+          <br><br>
+
+          المقصود:
+          <strong>وقت الطلوع.</strong>
+
+          <br>
+
+          إذن الدلالة:
+          <span class="word">زمان.</span>
+
+        </div>
+
+
+        <div class="card place">
+
+          <strong>
+            وقفتُ عند مَطْلَعِ الطريق.
+          </strong>
+
+          <br><br>
+
+          المقصود:
+          <strong>موضع الطلوع أو البداية.</strong>
+
+          <br>
+
+          إذن الدلالة:
+          <span class="word">مكان.</span>
+
+        </div>
+
+      </div>
+
+      <div class="smart-box" style="padding:20px; margin-top:18px; text-align:center;">
+
+        <strong>
+          لا تقولي:
+          «هذه الكلمة مَفْعِل، إذن هي مكان».
+        </strong>
+
+        <br><br>
+
+        الصحيح:
+
+        <br>
+
+        <strong>
+          الوزن يبيّن صيغة الاشتقاق،
+          أما الزمان والمكان فيحددهما المعنى في السياق.
+        </strong>
+
+      </div>
+
+    </div>
+
+
+    <div class="section study-section">
+
+      <h2>⚖️ ثانيًا: كيف أصوغ من الفعل الثلاثي؟</h2>
+
+      <div class="card rule">
+
+        في الفعل الثلاثي الصحيح الأول والآخر،
+        لا تحفظي الاسم وحده.
+
+        <br><br>
+
+        طبقي هذه السلسلة:
+
+        <div class="formula">
+          الماضي ← المضارع ← حركة عين المضارع ← مَفْعَل أو مَفْعِل
+        </div>
+
+      </div>
+
+      <h3>ما المقصود بعين الفعل؟</h3>
+
+      <div class="card">
+
+        مثال:
+
+        <div class="formula">
+          كَتَبَ
+        </div>
+
+        الكاف = فاء الفعل
+
+        <br>
+
+        <strong>التاء = عين الفعل</strong>
+
+        <br>
+
+        الباء = لام الفعل
+
+        <br><br>
+
+        فإذا قلنا:
+
+        <strong>انظري إلى حركة عين المضارع</strong>
+
+        <br>
+
+        فنحن ننظر إلى حركة
+        <strong>الحرف الثاني الأصلي</strong>
+        في المضارع.
+
+      </div>
+
+    </div>
+
+
+    <div class="section study-section">
+
+      <h2>🟣 متى نصوغ على مَفْعَل؟</h2>
+
+      <div class="card rule">
+
+        يصاغ اسم الزمان والمكان من الفعل الثلاثي الصحيح الأول والآخر
+        على وزن:
+
+        <div class="formula">
+          مَفْعَل
+        </div>
+
+        إذا كانت عين المضارع:
+
+        <strong>مفتوحة أو مضمومة.</strong>
+
+      </div>
+
+      <div class="grid">
+
+        <div class="card">
+
+          مثال على
+          <strong>ضم عين المضارع:</strong>
+
+          <div class="formula">
+            كَتَبَ ← يَكْتُبُ ← مَكْتَب
+          </div>
+
+          عين المضارع:
+          <strong>التاء مضمومة.</strong>
+
+          <br>
+
+          إذن:
+
+          <strong>مَكْتَب على وزن مَفْعَل.</strong>
+
+        </div>
+
+
+        <div class="card">
+
+          مثال على
+          <strong>فتح عين المضارع:</strong>
+
+          <div class="formula">
+            ذَهَبَ ← يَذْهَبُ ← مَذْهَب
+          </div>
+
+          عين المضارع:
+          <strong>الهاء مفتوحة.</strong>
+
+          <br>
+
+          إذن:
+
+          <strong>مَذْهَب على وزن مَفْعَل.</strong>
+
+        </div>
+
+      </div>
+
+      <div class="golden">
+        فتحة أو ضمة في عين المضارع
+        <br>
+        ⬇
+        <br>
+        مَفْعَل بالفتح
+      </div>
+
+    </div>
+
+
+    <div class="section study-section">
+
+      <h2>🟡 متى نصوغ على مَفْعِل؟</h2>
+
+      <div class="card rule">
+
+        يصاغ اسم الزمان والمكان من الفعل الثلاثي الصحيح الأول والآخر
+        على وزن:
+
+        <div class="formula">
+          مَفْعِل
+        </div>
+
+        إذا كانت عين المضارع:
+
+        <strong>مكسورة.</strong>
+
+      </div>
+
+      <div class="card">
+
+        مثال:
+
+        <div class="formula">
+          جَلَسَ ← يَجْلِسُ ← مَجْلِس
+        </div>
+
+        عين المضارع هي:
+
+        <strong>اللام.</strong>
+
+        <br>
+
+        وهي مكسورة في:
+
+        <strong>يَجْلِسُ</strong>
+
+        <br><br>
+
+        إذن:
+
+        <strong>مَجْلِس على وزن مَفْعِل.</strong>
+
+      </div>
+
+      <div class="golden">
+        كسرة في عين المضارع
+        <br>
+        ⬇
+        <br>
+        مَفْعِل بالكسر
+      </div>
+
+    </div>
+
+
+    <div class="section study-section">
+
+      <h2>🔐 القاعدة التي تثبت في الذاكرة</h2>
+
+      <div class="smart-box" style="padding:22px; text-align:center; font-size:19px;">
+
+        لا تخمني الوزن من الماضي.
+
+        <br><br>
+
+        <strong>
+          هاتي المضارع أولًا.
+        </strong>
+
+        <br><br>
+
+        ثم انظري إلى عين المضارع:
+
+        <div class="formula">
+          فتحة أو ضمة ← مَفْعَل
+        </div>
+
+        <div class="formula">
+          كسرة ← مَفْعِل
+        </div>
+
+      </div>
+
+    </div>
+        <div class="section study-section">
+
+      <h2>⚠️ ثالثًا: ألفاظ سماعية لا تُقاس عليها</h2>
+
+      <div class="card warning">
+
+        الأصل أن نطبّق القاعدة القياسية.
+
+        <br><br>
+
+        لكن توجد ألفاظ وردت عن العرب على
+        <strong>مَفْعِل</strong>
+        مع أن القياس فيها يقتضي
+        <strong>مَفْعَل</strong>.
+
+        <br><br>
+
+        لذلك نحفظها كما وردت، ولا نغيّرها لتوافق القياس.
+
+      </div>
+
+      <div class="card" style="margin-top:15px;">
+
+        <h3>مثال مهم جدًا</h3>
+
+        <div class="formula">
+          طَلَعَ ← يَطْلُعُ
+        </div>
+
+        عين المضارع مضمومة.
+
+        <br><br>
+
+        إذن القياس:
+
+        <div class="formula">
+          مَطْلَع
+          <br>
+          على وزن مَفْعَل
+        </div>
+
+        لكن ورد أيضًا عن العرب:
+
+        <div class="formula">
+          مَطْلِع
+          <br>
+          على وزن مَفْعِل
+        </div>
+
+        <strong>
+          وهذا استعمال سماعي يُحفظ كما ورد.
+        </strong>
+
+      </div>
+
+      <div class="golden">
+        طبّقي القاعدة أولًا
+        <br>
+        ثم انتبهي للكلمة السماعية المحفوظة.
+      </div>
+
+    </div>
+
+
+    <div class="section study-section">
+
+      <h2>🧠 لا تخلطي بين القياسي والسماعي</h2>
+
+      <div class="grid">
+
+        <div class="card success">
+
+          <h3>✅ قياسي</h3>
+
+          <div class="formula">
+            كَتَبَ ← يَكْتُبُ ← مَكْتَب
+          </div>
+
+          لأن عين المضارع مضمومة.
+
+          <br>
+
+          إذن الوزن:
+          <strong>مَفْعَل.</strong>
+
+        </div>
+
+
+        <div class="card warning">
+
+          <h3>⚠️ سماعي</h3>
+
+          <div class="formula">
+            طَلَعَ ← يَطْلُعُ ← مَطْلِع
+          </div>
+
+          القياس يقتضي مَفْعَل،
+          لكن الكلمة وردت بالكسر سماعًا.
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="section study-section">
+
+      <h2>📚 رابعًا: الصياغة من غير الثلاثي</h2>
+
+      <div class="card rule">
+
+        إذا كان الفعل
+        <strong>غير ثلاثي</strong>
+        فلا نبحث عن مَفْعَل أو مَفْعِل.
+
+        <br><br>
+
+        بل نصوغ اسم الزمان أو المكان
+        على صورة المضارع مع:
+
+        <div class="formula">
+          إبدال حرف المضارعة ميمًا مضمومة
+          <br>
+          وفتح ما قبل الآخر
+        </div>
+
+      </div>
+
+      <div class="grid">
+
+        <div class="card">
+
+          <strong>استودع</strong>
+
+          <div class="formula">
+            يستودِع
+            <br>
+            ↓
+            <br>
+            مُسْتَوْدَع
+          </div>
+
+        </div>
+
+        <div class="card">
+
+          <strong>افتتح</strong>
+
+          <div class="formula">
+            يفتتح
+            <br>
+            ↓
+            <br>
+            مُفْتَتَح
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="golden">
+        غير الثلاثي:
+        <br>
+        نبدأ من المضارع، لا من وزن مَفْعَل أو مَفْعِل.
+      </div>
+
+    </div>
+
+
+    <div class="section study-section">
+
+      <h2>🎯 كيف يمكن أن يأتي السؤال؟</h2>
+
+      <div class="grid-3">
+
+        <div class="card">
+          <strong>استخرجي</strong>
+          <br>
+          اسم زمان أو اسم مكان من الجملة.
+        </div>
+
+        <div class="card">
+          <strong>حددي</strong>
+          <br>
+          أهو اسم زمان أم اسم مكان؟
+        </div>
+
+        <div class="card">
+          <strong>زِني</strong>
+          <br>
+          الكلمة المعطاة.
+        </div>
+
+        <div class="card">
+          <strong>هاتِ الفعل</strong>
+          <br>
+          الذي اشتق منه الاسم.
+        </div>
+
+        <div class="card">
+          <strong>هاتِ المضارع</strong>
+          <br>
+          وحددي حركة عين المضارع.
+        </div>
+
+        <div class="card">
+          <strong>عللي</strong>
+          <br>
+          مجيء الكلمة على مَفْعَل أو مَفْعِل.
+        </div>
+
+        <div class="card">
+          <strong>صوغي</strong>
+          <br>
+          اسم زمان أو مكان من فعل معطى.
+        </div>
+
+        <div class="card">
+          <strong>ميزي</strong>
+          <br>
+          بين القياسي والسماعي.
+        </div>
+
+        <div class="card">
+          <strong>استدلي بالسياق</strong>
+          <br>
+          كيف عرفتِ أنه زمان أو مكان؟
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="section study-section">
+
+      <h2>🚨 فخاخ واضع السؤال</h2>
+
+      <div class="grid">
+
+        <div class="card warning">
+
+          <strong>الفخ الأول:</strong>
+
+          <br>
+
+          تحديد زمان أو مكان من الوزن فقط.
+
+          <br><br>
+
+          الصحيح:
+
+          <strong>
+            أقرأ الجملة وأفهم الدلالة أولًا.
+          </strong>
+
+        </div>
+
+
+        <div class="card warning">
+
+          <strong>الفخ الثاني:</strong>
+
+          <br>
+
+          اختيار مَفْعَل أو مَفْعِل من الماضي مباشرة.
+
+          <br><br>
+
+          الصحيح:
+
+          <strong>
+            آتي بالمضارع وأحدد حركة عينه.
+          </strong>
+
+        </div>
+
+
+        <div class="card warning">
+
+          <strong>الفخ الثالث:</strong>
+
+          <br>
+
+          نسيان اللفظ السماعي ومحاولة تغييره.
+
+          <br><br>
+
+          الصحيح:
+
+          <strong>
+            ما ورد سماعًا يُحفظ كما ورد.
+          </strong>
+
+        </div>
+
+
+        <div class="card warning">
+
+          <strong>الفخ الرابع:</strong>
+
+          <br>
+
+          تطبيق قاعدة الثلاثي على غير الثلاثي.
+
+          <br><br>
+
+          الصحيح:
+
+          <strong>
+            أحدد أولًا: ثلاثي أم غير ثلاثي؟
+          </strong>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="section study-section">
+
+      <h2>🧠 فكّري مثل واضع السؤال</h2>
+
+      <div class="smart-box" style="padding:22px;">
+
+        إذا أعطاك السؤال كلمة مثل:
+
+        <div class="formula">
+          مَجْلِس
+        </div>
+
+        فقد لا يكتفي بسؤالك عن وزنها.
+
+        <br><br>
+
+        قد ينتقل بك إلى سلسلة كاملة:
+
+        <div class="formula">
+          مَجْلِس
+          ← جَلَسَ
+          ← يَجْلِسُ
+          ← عين المضارع مكسورة
+          ← مَفْعِل
+        </div>
+
+        وقد يضعها بعد ذلك داخل جملة ويسألك:
+
+        <strong>
+          هل تدل على زمان أم مكان؟
+        </strong>
+
+        <br><br>
+
+        وهنا ترجعين إلى:
+
+        <strong>السياق.</strong>
+
+      </div>
+
+      <div class="golden">
+        لا تحفظي جواب سؤال واحد.
+        <br>
+        افهمي رحلة الكلمة كاملة.
+      </div>
+
+    </div>
+
+
+    <div class="section study-section">
+
+      <h2>🔄 استرجاع ذكي قبل التدريب</h2>
+
+      <div class="card success">
+
+        اقرئي القاعدة مرة واحدة.
+
+        <br><br>
+
+        ثم أغلقيها وحاولي أن تقولي من ذاكرتك:
+
+        <br>
+        ✓ كيف أعرف اسم الزمان؟
+        <br>
+        ✓ كيف أعرف اسم المكان؟
+        <br>
+        ✓ متى أستخدم مَفْعَل؟
+        <br>
+        ✓ متى أستخدم مَفْعِل؟
+        <br>
+        ✓ ماذا أفعل إذا كان الفعل غير ثلاثي؟
+        <br>
+        ✓ ماذا أفعل مع اللفظ السماعي؟
+
+        <br><br>
+
+        إذا استطعتِ شرحها بكلماتك،
+        فأنتِ جاهزة للتطبيق.
+
+      </div>
+
+    </div>
+
+
+    <div class="worksheet">
+
+      <h2>📝 ورقة تدريب | اسما الزمان والمكان</h2>
+
+      <div class="questions">
+
+        <div class="question">
+          <strong>1.</strong>
+          استخرجي اسم المكان من الجملة:
+          <br>
+          اتجه اللاعبون إلى ملعب المدرسة.
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>2.</strong>
+          استخرجي اسم الزمان من الجملة:
+          <br>
+          جاء الضيف في موعده المحدد.
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>3.</strong>
+          حددي دلالة الكلمة:
+          <br>
+          جلست الأسرة في مَجْلِس واسع.
+          <br>
+          اسم زمان أم اسم مكان؟
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>4.</strong>
+          حددي دلالة الكلمة من السياق:
+          <br>
+          انتظرتُ مَطْلَعَ الفجر.
+          <br>
+          اسم زمان أم اسم مكان؟
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>5.</strong>
+          زِني الكلمة:
+          <br>
+          مَجْلِس
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>6.</strong>
+          زِني الكلمة:
+          <br>
+          مَكْتَب
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>7.</strong>
+          هاتي الفعل الذي اشتق منه:
+          <br>
+          مَجْلِس
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>8.</strong>
+          هاتي الفعل الذي اشتق منه:
+          <br>
+          مَكْتَب
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>9.</strong>
+          هاتي مضارع الفعل:
+          <br>
+          جَلَسَ
+          <span class="line"></span>
+        </div>
+                <div class="question">
+          <strong>10.</strong>
+          حددي حركة عين المضارع، ثم اختاري الوزن:
+          <br>
+          كَتَبَ ← يَكْتُبُ
+          <br>
+          مَفْعَل أم مَفْعِل؟
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>11.</strong>
+          عللي:
+          <br>
+          جاءت كلمة «مَجْلِس» على وزن مَفْعِل.
+          <span class="line"></span>
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>12.</strong>
+          عللي:
+          <br>
+          جاءت كلمة «مَكْتَب» على وزن مَفْعَل.
+          <span class="line"></span>
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>13.</strong>
+          صوغي اسم مكان من الفعل:
+          <br>
+          جَلَسَ
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>14.</strong>
+          صوغي اسم مكان من الفعل:
+          <br>
+          كَتَبَ
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>15.</strong>
+          تأملي:
+          <br>
+          طَلَعَ ← يَطْلُعُ
+          <br><br>
+          ما الوزن القياسي لاسم الزمان أو المكان منه؟
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>16.</strong>
+          فسري:
+          <br>
+          لماذا تعد كلمة «مَطْلِع» من الألفاظ السماعية
+          إذا كان مضارع الفعل «يَطْلُعُ»؟
+          <span class="line"></span>
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>17.</strong>
+          صوغي اسم زمان أو مكان من الفعل غير الثلاثي:
+          <br>
+          استودع
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>18.</strong>
+          طبقي خطة الحل كاملة على كلمة:
+          <br>
+          مَجْلِس
+          <br><br>
+          اكتبي:
+          الفعل ← المضارع ← حركة عين المضارع ← الوزن ←
+          دلالته في جملة من إنشائك.
+          <span class="line"></span>
+          <span class="line"></span>
+          <span class="line"></span>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="self-check">
+
+      <h2>✅ تحققي من استعدادك</h2>
+
+      هل أستطيع الآن أن:
+
+      <br>
+      ✓ أستخرج اسم الزمان واسم المكان من الجملة؟
+      <br>
+      ✓ أحدد الدلالة من السياق، لا من شكل الكلمة فقط؟
+      <br>
+      ✓ أميز بين معنى «متى؟» ومعنى «أين؟»؟
+      <br>
+      ✓ أرد الاسم إلى فعله؟
+      <br>
+      ✓ آتي بالمضارع وأحدد عين المضارع؟
+      <br>
+      ✓ أعرف متى يكون الوزن مَفْعَل؟
+      <br>
+      ✓ أعرف متى يكون الوزن مَفْعِل؟
+      <br>
+      ✓ أعلل سبب الوزن؟
+      <br>
+      ✓ أميز اللفظ القياسي من السماعي؟
+      <br>
+      ✓ أصوغ اسم الزمان أو المكان من غير الثلاثي؟
+
+    </div>
+
+
+    <div class="smart-box"
+         style="padding:22px; margin:25px 0; text-align:center; font-size:19px;">
+
+      <strong>✨ خلاصة الدرس في سطرين</strong>
+
+      <br><br>
+
+      <strong>
+        المعنى والسياق يحددان:
+        زمان أم مكان.
+      </strong>
+
+      <br>
+
+      <strong>
+        والمضارع يساعدك في تحديد:
+        مَفْعَل أم مَفْعِل.
+      </strong>
+
+    </div>
+
+
+    <div class="actions">
+
+      <button onclick="window.print()">
+        🖨️ طباعة ورقة التدريب
+      </button>
+
+      <a class="back" href="linguistic-class-term2.html">
+        العودة إلى الصنف اللغوي
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <footer>
+    منصة آفاق اللغة | لغتي الخالدة | الصف الثالث المتوسط
+  </footer>
+
+</body>
+
+</html>
