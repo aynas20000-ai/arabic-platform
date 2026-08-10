@@ -1,0 +1,1909 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>استعدادك الذكي | رسم بعض الكلمات المحذوف بعض أحرفها</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --purple: #776094;
+      --dark-purple: #5b4677;
+      --gold: #c9a85c;
+      --cream: #fffaf2;
+      --text: #4b3a57;
+      --green: #eef8ef;
+      --pink: #fff0f5;
+      --yellow: #fff8d9;
+      --blue: #eef7ff;
+    }
+
+    html,
+    body {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Tahoma, Arial, sans-serif;
+      color: var(--text);
+      line-height: 1.9;
+      background: linear-gradient(180deg, #fffaf2, #f8f0fb);
+    }
+
+    .page {
+      width: 92%;
+      max-width: 1050px;
+      margin: auto;
+    }
+
+    .hero {
+      margin: 25px 0;
+      padding: 30px 20px;
+      text-align: center;
+      color: white;
+      background: linear-gradient(135deg, #776094, #5b4677);
+      border: 3px solid #c9a85c;
+      border-radius: 24px;
+      box-shadow: 0 10px 25px rgba(91,70,119,.18);
+    }
+
+    .badge {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 8px 18px;
+      color: #5a3f72;
+      font-weight: bold;
+      background: linear-gradient(135deg,#fff7cf,#fffdf8);
+      border: 2px solid #c9a85c;
+      border-radius: 30px;
+    }
+
+    .hero h1 {
+      margin: 6px 0;
+      font-size: 30px;
+    }
+
+    .hero p {
+      max-width: 850px;
+      margin: auto;
+      font-size: 17px;
+    }
+
+    .section {
+      margin: 24px 0;
+      padding: 22px;
+      background: #fffdf8;
+      border: 2px solid #e4d2a2;
+      border-radius: 20px;
+      box-shadow: 0 6px 16px rgba(91,70,119,.08);
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #5b4677;
+      font-size: 24px;
+    }
+
+    h3 {
+      color: #6f5288;
+    }
+
+    .smart-box {
+      position: relative;
+      overflow: hidden;
+      color: #5a3f72;
+      background: linear-gradient(135deg,#fff7cf,#f2e7fb,#fffdf8);
+      border: 2px solid #c9a85c;
+      border-radius: 18px;
+      box-shadow:
+        0 8px 22px rgba(201,168,92,.22),
+        0 0 18px rgba(119,96,148,.12);
+    }
+
+    .smart-box::before {
+      content: "";
+      position: absolute;
+      top: -35px;
+      left: -35px;
+      width: 95px;
+      height: 95px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.55);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .card {
+      padding: 17px;
+      background: white;
+      border: 2px solid #e1d1aa;
+      border-radius: 16px;
+    }
+
+    .green {
+      background: var(--green);
+    }
+
+    .yellow {
+      background: var(--yellow);
+    }
+
+    .blue {
+      background: var(--blue);
+    }
+
+    .warning {
+      background: var(--pink);
+      border-color: #dfa8b9;
+    }
+
+    .formula {
+      margin: 12px 0;
+      padding: 13px;
+      text-align: center;
+      color: #5b4677;
+      font-size: 19px;
+      font-weight: bold;
+      background: white;
+      border: 2px dashed #c9a85c;
+      border-radius: 14px;
+    }
+
+    .golden {
+      margin: 15px 0;
+      padding: 18px;
+      text-align: center;
+      color: #5a3f72;
+      font-size: 19px;
+      font-weight: bold;
+      background: linear-gradient(135deg,#fff7cf,#f2e7fb,#fffdf8);
+      border: 2px solid #c9a85c;
+      border-radius: 18px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 10px;
+    }
+
+    .step {
+      padding: 15px 9px;
+      text-align: center;
+      font-weight: bold;
+      background: #f5ecfb;
+      border: 1px solid #d8c4e5;
+      border-radius: 14px;
+    }
+
+    .check-list {
+      margin: 12px 0;
+      padding: 15px;
+      background: #f8f3fb;
+      border-right: 5px solid #776094;
+      border-radius: 12px;
+    }
+
+    .worksheet {
+      margin: 28px 0;
+      padding: 23px;
+      background: white;
+      border: 3px solid #c9a85c;
+      border-radius: 22px;
+    }
+
+    .questions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .question {
+      padding: 15px;
+      background: #fffdf8;
+      border: 1px solid #dccca7;
+      border-radius: 14px;
+    }
+
+    .line {
+      display: block;
+      height: 25px;
+      margin-top: 10px;
+      border-bottom: 1px dashed #9b8ba5;
+    }
+
+    .self-check {
+      margin: 25px 0;
+      padding: 20px;
+      background: #eef8ef;
+      border: 2px solid #a6c8ac;
+      border-radius: 18px;
+    }
+
+    .actions {
+      margin: 25px 0;
+      text-align: center;
+    }
+
+    button,
+    .back {
+      display: inline-block;
+      margin: 6px;
+      padding: 12px 22px;
+      color: white;
+      font-family: inherit;
+      font-weight: bold;
+      text-decoration: none;
+      background: #6f5288;
+      border: 2px solid #c9a85c;
+      border-radius: 25px;
+      cursor: pointer;
+    }
+
+    footer {
+      margin-top: 35px;
+      padding: 20px;
+      text-align: center;
+      color: white;
+      background: #49385c;
+      border-top: 3px solid #c9a85c;
+    }
+
+    @media (max-width: 700px) {
+      .hero h1 {
+        font-size: 24px;
+      }
+
+      .grid,
+      .grid-3 {
+        grid-template-columns: repeat(2,1fr);
+        gap: 9px;
+      }
+
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        padding: 13px;
+        font-size: 14px;
+      }
+
+      .questions {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media print {
+      body {
+        background: white;
+      }
+
+      .hero,
+      .study-section,
+      .actions,
+      footer {
+        display: none !important;
+      }
+
+      .worksheet {
+        border: none;
+      }
+
+      .questions {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="page">
+
+  <div class="hero">
+
+    <div class="badge">
+      ✨ استعدادك الذكي للاختبار المركزي
+    </div>
+
+    <h1>
+      رسم بعض الكلمات المحذوف بعض أحرفها
+    </h1>
+
+    <p>
+      في هذا الدرس قد تسمعين حرفًا في النطق،
+      لكنك لا تكتبينه.
+      والسر ليس في الحفظ فقط؛
+      بل في معرفة الكلمة وموضع الحذف وسببه.
+    </p>
+
+  </div>
+
+
+  <div class="section study-section">
+
+    <h2>🧠 أول فكرة يجب أن أفهمها</h2>
+
+    <div class="smart-box"
+         style="padding:20px; text-align:center;">
+
+      بعض الكلمات تحتوي على حرف:
+
+      <div class="formula">
+        يُنطق ← لكنه لا يُكتب
+      </div>
+
+      مثل:
+
+      <div class="formula">
+        هذا
+      </div>
+
+      نحن نسمع في النطق ألفًا بعد الهاء،
+      لكننا لا نكتب ألفًا ظاهرة بعد الهاء.
+
+      <br><br>
+
+      لذلك لا نعتمد على السماع وحده،
+      بل نتعلم
+      <strong>الرسم الإملائي الصحيح للكلمة.</strong>
+
+    </div>
+
+  </div>
+
+
+  <div class="section study-section">
+
+    <h2>🗺️ خريطة الدرس كما نظمها الكتاب</h2>
+
+    <div class="steps">
+
+      <div class="step">
+        حذف من
+        <br>
+        <strong>أول الكلمة</strong>
+      </div>
+
+      <div class="step">
+        حذف من
+        <br>
+        <strong>وسط الكلمة</strong>
+      </div>
+
+      <div class="step">
+        حذف من
+        <br>
+        <strong>آخر الكلمة</strong>
+      </div>
+
+    </div>
+
+    <div class="golden">
+      أول سؤال في الاختبار:
+      أين وقع الحرف المحذوف؟
+      <br>
+      في أول الكلمة؟ وسطها؟ أم آخرها؟
+    </div>
+
+  </div>
+
+
+  <div class="section study-section">
+
+    <h2>🔍 أمثلة تحفظ شكل الفكرة</h2>
+
+    <div class="grid">
+
+      <div class="card green">
+        <strong>هذا</strong>
+        <br>
+        فيها ألف تُنطق ولا تكتب.
+      </div>
+
+      <div class="card green">
+        <strong>هذه</strong>
+        <br>
+        فيها حرف يُسمع في النطق ولا يكتب ألفًا ظاهرة.
+      </div>
+
+      <div class="card green">
+        <strong>لكن</strong>
+        <br>
+        تُنطق الألف بعد اللام،
+        ولا تكتب ألفًا.
+      </div>
+
+      <div class="card green">
+        <strong>ذلك</strong>
+        <br>
+        من الكلمات التي ينبغي تثبيت رسمها الصحيح.
+      </div>
+
+    </div>
+
+    <div class="card warning" style="margin-top:15px;">
+
+      <strong>خطأ شائع:</strong>
+
+      <br><br>
+
+      أكتب كل حرف أسمعه.
+
+      <br><br>
+
+      هذا لا يصلح في هذا الدرس؛
+      فبعض الحروف
+      <strong>تُنطق ولا تُكتب.</strong>
+
+    </div>
+
+  </div>
+    <div class="section study-section">
+
+    <h2>🟣 أولًا: الحذف من أول الكلمة</h2>
+
+    <div class="card blue">
+
+      من المواضع التي يركز عليها الكتاب:
+
+      <div class="formula">
+        ألف «ابن»
+      </div>
+
+      لكن انتبهي:
+      <strong>لا تحذفي ألف «ابن» كلما جاءت بين اسمين!</strong>
+
+      <br><br>
+
+      قبل الحذف يجب أن تتحقق الشروط.
+
+    </div>
+
+  </div>
+
+
+  <div class="section study-section">
+
+    <h2>🔐 متى تحذف ألف «ابن»؟</h2>
+
+    <div class="smart-box"
+         style="padding:20px; text-align:center;">
+
+      تحذف ألف «ابن» إذا تحققت الشروط الآتية:
+
+    </div>
+
+
+    <div class="grid">
+
+      <div class="card green">
+        <strong>1️⃣ أن تقع بين عَلَمين</strong>
+        <br><br>
+        أي بين اسم شخص واسم شخص.
+      </div>
+
+
+      <div class="card green">
+        <strong>2️⃣ أن يكون الثاني أبًا للأول</strong>
+        <br><br>
+        فلا يكفي أن يكونا اسمين فقط.
+      </div>
+
+
+      <div class="card green">
+        <strong>3️⃣ ألا يفصل بينهما فاصل</strong>
+        <br><br>
+        يأتي الاسم الأول ثم «بن» ثم اسم الأب مباشرة.
+      </div>
+
+
+      <div class="card green">
+        <strong>4️⃣ أن تكون «ابن» مفردة</strong>
+        <br><br>
+        وليست مثناة أو مجموعة.
+      </div>
+
+
+      <div class="card green">
+        <strong>5️⃣ ألا تقع في أول السطر</strong>
+        <br><br>
+        فإن وقعت في أول السطر تثبت ألفها.
+      </div>
+
+    </div>
+
+
+    <div class="formula">
+      سلمان + ابن + عبدالعزيز
+      <br>
+      ↓
+      <br>
+      سلمان بن عبدالعزيز
+    </div>
+
+
+    <div class="golden">
+      بين عَلَمين + الثاني أب للأول + بلا فاصل
+      + مفردة + ليست أول السطر
+      <br>
+      = تحذف ألف «ابن»
+    </div>
+
+  </div>
+
+
+  <div class="section study-section">
+
+    <h2>🚨 متى لا أحذف ألف «ابن»؟</h2>
+
+    <div class="grid">
+
+      <div class="card warning">
+
+        إذا لم تقع بين علمين:
+
+        <div class="formula">
+          هذا ابنُ رجلٍ كريم.
+        </div>
+
+        تكتب:
+        <strong>ابن</strong>
+        بالألف.
+
+      </div>
+
+
+      <div class="card warning">
+
+        إذا لم يكن الثاني أبًا للأول:
+
+        <br><br>
+
+        فلا تطبقي قاعدة الحذف
+        لمجرد وجود اسمين حولها.
+
+      </div>
+
+
+      <div class="card warning">
+
+        إذا وجد فاصل بين العلمين:
+
+        <br><br>
+
+        لا تتحقق صورة القاعدة
+        التي ذكرها الكتاب.
+
+      </div>
+
+
+      <div class="card warning">
+
+        إذا وقعت في
+        <strong>أول السطر</strong>:
+
+        <div class="formula">
+          ابنُ عبدالعزيز ...
+        </div>
+
+        تثبت الألف.
+
+      </div>
+
+    </div>
+
+
+    <div class="golden">
+      لا تحفظي:
+      «بين اسمين = بن»
+      <br>
+      بل افحصي الشروط كلها.
+    </div>
+
+  </div>
+
+
+  <div class="section study-section">
+
+    <h2>🎯 كيف قد يخدعك سؤال «ابن»؟</h2>
+
+    <div class="card warning">
+
+      قد يكتب واضع السؤال:
+
+      <div class="formula">
+        الملك سلمان ابن عبدالعزيز
+      </div>
+
+      ويطلب:
+      <strong>صححي الخطأ الإملائي.</strong>
+
+      <br><br>
+
+      حللي:
+
+      <div class="check-list">
+        سلمان ← علم ✓
+        <br>
+        عبدالعزيز ← علم ✓
+        <br>
+        عبدالعزيز أب لسلمان ✓
+        <br>
+        لا يوجد فاصل ✓
+        <br>
+        «ابن» مفردة ✓
+        <br>
+        ليست في أول السطر ✓
+      </div>
+
+      إذن:
+
+      <div class="formula">
+        الملك سلمان بن عبدالعزيز
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="section study-section">
+
+    <h2>🟣 حذف همزة الوصل بعد همزة الاستفهام</h2>
+
+    <div class="card blue">
+
+      من مواضع الحذف من أول الكلمة أيضًا:
+
+      <strong>
+        همزة الوصل إذا سبقتها همزة الاستفهام.
+      </strong>
+
+      <br><br>
+
+      أي أن همزة الاستفهام تدخل على كلمة
+      مبدوءة بهمزة وصل،
+      فتحذف همزة الوصل من الرسم.
+
+    </div>
+
+
+    <div class="formula">
+      همزة استفهام + كلمة مبدوءة بهمزة وصل
+      <br>
+      ↓
+      <br>
+      تحذف همزة الوصل
+    </div>
+
+
+    <div class="card warning">
+
+      <strong>⚠️ استثناء الكتاب المهم:</strong>
+
+      <br><br>
+
+      إذا دخلت همزة الاستفهام على كلمة مبدوءة بـ:
+
+      <div class="formula">
+        ألـ التعريف
+      </div>
+
+      فلا تعامل كالحالة السابقة،
+      وإنما ترسم ألفًا عليها مدة.
+
+      <br><br>
+
+      لذلك هذه حالة خاصة
+      يجب ألا تختلط عليكِ مع بقية همزات الوصل.
+
+    </div>
+
+
+    <div class="golden">
+      همزة استفهام + همزة وصل
+      ← تحذف همزة الوصل
+      <br><br>
+      لكن مع «أل» التعريف
+      ← انتبهي للاستثناء.
+    </div>
+
+  </div>
+
+
+  <div class="section study-section">
+
+    <h2>🟡 ثانيًا: الحذف من وسط الكلمة</h2>
+
+    <div class="card blue">
+
+      خريطة الكتاب ذكرت مثالين مهمين
+      للحذف من وسط الكلمة:
+
+      <div class="formula">
+        داود
+        &nbsp; ـ &nbsp;
+        الرحمن
+      </div>
+
+    </div>
+
+
+    <div class="grid">
+
+      <div class="card green">
+
+        <h3>داود</h3>
+
+        تحذف واو من رسم الكلمة.
+
+        <div class="formula">
+          داود
+        </div>
+
+        لذلك لا تكتبيها على صورة:
+
+        <div class="formula">
+          داوود ✗
+        </div>
+
+        في الرسم الإملائي المقرر.
+
+      </div>
+
+
+      <div class="card green">
+
+        <h3>الرحمن</h3>
+
+        تحذف الألف من وسطها
+        إذا كانت:
+
+        <strong>
+          عَلَمًا مقرونًا بـ«أل».
+        </strong>
+
+        <div class="formula">
+          الرحمن
+        </div>
+
+        لا:
+
+        <div class="formula">
+          الرحمان ✗
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="section study-section">
+
+    <h2>🧠 وهناك كلمات تثبت كما ورد رسمها</h2>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="formula">هذا</div>
+        ألف تنطق ولا تكتب.
+      </div>
+
+      <div class="card">
+        <div class="formula">هذه</div>
+        تثبت على هذا الرسم.
+      </div>
+
+      <div class="card">
+        <div class="formula">ذلك</div>
+        تثبت على هذا الرسم.
+      </div>
+
+      <div class="card">
+        <div class="formula">أولئك</div>
+        فيها ألف محذوفة من وسط الرسم.
+      </div>
+
+      <div class="card">
+        <div class="formula">لكن</div>
+        ألف تنطق بعد اللام ولا تكتب.
+      </div>
+
+      <div class="card">
+        <div class="formula">الرحمن</div>
+        ألف محذوفة من وسط الكلمة.
+      </div>
+
+    </div>
+
+
+    <div class="golden">
+      في الكلمات السماعية المشهورة:
+      ثبتي شكل الكلمة الصحيح بصريًا،
+      ولا تكتبي كل حرف تسمعينه.
+    </div>
+
+  </div>
+
+
+  <div class="section study-section">
+
+    <h2>🟠 ثالثًا: الحذف من آخر الكلمة</h2>
+
+    <div class="card blue">
+
+      هنا عندنا ثلاث قواعد مهمة في خريطة الكتاب:
+
+      <br><br>
+
+      <strong>1. حذف ألف «ما» الاستفهامية.</strong>
+
+      <br>
+
+      <strong>2. حذف نون من «عن» و«من» إذا دخلتا على «مَن».</strong>
+
+      <br>
+
+      <strong>3. حذف نون «أنْ» الناصبة إذا جاء بعدها «لا» النافية.</strong>
+
+    </div>
+
+  </div>
+
+
+  <div class="section study-section">
+
+    <h2>🔵 القاعدة الأولى: «ما» الاستفهامية</h2>
+
+    <div class="card">
+
+      إذا دخل حرف جر على:
+
+      <strong>ما الاستفهامية</strong>
+
+      فإن ألف «ما» تحذف.
+
+    </div>
+
+
+    <div class="grid-3">
+
+      <div class="card green">
+        <div class="formula">
+          في + ما
+          <br>
+          ↓
+          <br>
+          فيمَ؟
+        </div>
+      </div>
+
+      <div class="card green">
+        <div class="formula">
+          لـ + ما
+          <br>
+          ↓
+          <br>
+          لِمَ؟
+        </div>
+      </div>
+
+      <div class="card green">
+        <div class="formula">
+          بـ + ما
+          <br>
+          ↓
+          <br>
+          بِمَ؟
+        </div>
+      </div>
+
+      <div class="card green">
+        <div class="formula">
+          عن + ما
+          <br>
+          ↓
+          <br>
+          عَمَّ؟
+        </div>
+      </div>
+
+      <div class="card green">
+        <div class="formula">
+          مِن + ما
+          <br>
+          ↓
+          <br>
+          مِمَّ؟
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="formula">
+      عَمَّ تتحدثين؟
+    </div>
+
+    <div class="golden">
+      حرف جر + «ما» الاستفهامية
+      <br>
+      ← احذفي ألف «ما»
+    </div>
+
+  </div>
+
+
+  <div class="section study-section">
+
+    <h2>🚨 انتبهي: لا تحذفي ألف كل «ما»</h2>
+
+    <div class="card warning">
+
+      مفتاح القاعدة هو:
+
+      <div class="formula">
+        ما الاستفهامية
+      </div>
+
+      أي التي نسأل بها عن شيء.
+
+      <br><br>
+
+      لذلك قبل الحذف اسألي:
+
+      <strong>هل «ما» هنا للاستفهام؟</strong>
+
+      <br><br>
+
+      إذا نعم ودخل عليها حرف جر
+      ← احذفي الألف.
+
+    </div>
+
+  </div>
+
+
+  <div class="section study-section">
+
+    <h2>🔵 القاعدة الثانية: عن / من + مَن</h2>
+
+    <div class="card">
+
+      إذا دخلت:
+
+      <strong>عن</strong>
+      أو
+      <strong>من</strong>
+
+      على كلمة:
+
+      <strong>مَن</strong>
+
+      تحذف إحدى النونين،
+      وتكتب الكلمتان موصولتين.
+
+    </div>
+
+
+    <div class="grid">
+
+      <div class="card green">
+
+        <div class="formula">
+          عن + مَن
+          <br>
+          ↓
+          <br>
+          عمَّن
+        </div>
+
+      </div>
+
+
+      <div class="card green">
+
+        <div class="formula">
+          مِن + مَن
+          <br>
+          ↓
+          <br>
+          ممَّن
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="golden">
+      عن + مَن ← عمَّن
+      <br>
+      مِن + مَن ← ممَّن
+    </div>
+
+  </div>
+
+
+  <div class="section study-section">
+
+    <h2>⚠️ لا تخلطي بين «عَمَّ» و«عمَّن»</h2>
+
+    <div class="grid">
+
+      <div class="card yellow">
+
+        <strong>عَمَّ تتحدثين؟</strong>
+
+        <div class="formula">
+          عن + ما الاستفهامية
+        </div>
+
+        المحذوف:
+        <strong>ألف «ما».</strong>
+
+      </div>
+
+
+      <div class="card yellow">
+
+        <strong>عمَّن تتحدثين؟</strong>
+
+        <div class="formula">
+          عن + مَن
+        </div>
+
+        المحذوف:
+        <strong>نون.</strong>
+
+      </div>
+
+    </div>
+
+
+    <div class="golden">
+      عَمَّ ← عن ماذا؟
+      <br>
+      عمَّن ← عن مَن؟
+    </div>
+
+  </div>
+
+
+  <div class="section study-section">
+
+    <h2>🔵 القاعدة الثالثة: أنْ + لا النافية</h2>
+
+    <div class="card blue">
+
+      يذكر الكتاب حذف النون من:
+
+      <strong>
+        «أنْ» المصدرية الناصبة للفعل المضارع
+      </strong>
+
+      إذا جاء بعدها:
+
+      <strong>«لا» النافية.</strong>
+
+    </div>
+
+
+    <div class="formula">
+      أنْ + لا
+      <br>
+      ↓
+      <br>
+      أَلَّا
+    </div>
+
+
+    <div class="card green">
+
+      مثال:
+
+      <div class="formula">
+        أنصحك أَلَّا تهمل واجبك.
+      </div>
+
+      التحليل:
+
+      <div class="check-list">
+        أنْ ← حرف مصدري ناصب
+        <br>
+        لا ← نافية
+        <br>
+        بعدها فعل مضارع: تهمل
+        <br>
+        ↓
+        <br>
+        تكتب: أَلَّا
+      </div>
+
+    </div>
+
+
+    <div class="golden">
+      أنْ الناصبة + لا النافية + فعل مضارع
+      <br>
+      ← أَلَّا
+    </div>
+
+  </div>
+    <div class="section study-section">
+
+    <h2>🎯 كيف يمكن أن يأتي السؤال في الاختبار؟</h2>
+
+    <div class="grid-3">
+
+      <div class="card">
+        <strong>✍️ إملاء</strong>
+        <br>
+        اكتبي الكلمات أو الجمل كتابة صحيحة.
+      </div>
+
+      <div class="card">
+        <strong>✅ صح أو خطأ</strong>
+        <br>
+        حددي صحة الرسم ثم صححي الخطأ.
+      </div>
+
+      <div class="card">
+        <strong>🧩 حللي</strong>
+        <br>
+        فككي الكلمة وحددي الحرف المحذوف.
+      </div>
+
+      <div class="card">
+        <strong>💡 عللي</strong>
+        <br>
+        اذكري سبب حذف الحرف.
+      </div>
+
+      <div class="card">
+        <strong>🔍 اختاري</strong>
+        <br>
+        اختاري الرسم الإملائي الصحيح.
+      </div>
+
+      <div class="card">
+        <strong>📝 صححي</strong>
+        <br>
+        أعيدي كتابة الكلمة بعد تطبيق القاعدة.
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="section study-section">
+
+    <h2>🚨 أهم فخ في الدرس: عَمَّ / عمَّن</h2>
+
+    <div class="grid">
+
+      <div class="card yellow">
+
+        <h3>عَمَّ؟</h3>
+
+        أصلها:
+
+        <div class="formula">
+          عن + ما الاستفهامية
+        </div>
+
+        الذي حُذف:
+
+        <strong>ألف «ما».</strong>
+
+        <br><br>
+
+        مثال:
+
+        <div class="formula">
+          عَمَّ تبحثين؟
+        </div>
+
+        المعنى:
+
+        <strong>عن ماذا؟</strong>
+
+      </div>
+
+
+      <div class="card yellow">
+
+        <h3>عمَّن؟</h3>
+
+        أصلها:
+
+        <div class="formula">
+          عن + مَن
+        </div>
+
+        الذي حُذف:
+
+        <strong>إحدى النونين.</strong>
+
+        <br><br>
+
+        مثال:
+
+        <div class="formula">
+          عمَّن تسألين؟
+        </div>
+
+        المعنى:
+
+        <strong>عن مَن؟</strong>
+
+      </div>
+
+    </div>
+
+
+    <div class="golden">
+      اسألي عن المعنى أولًا:
+      <br>
+      عن ماذا؟ ← عَمَّ
+      <br>
+      عن مَن؟ ← عمَّن
+    </div>
+
+  </div>
+
+
+  <div class="section study-section">
+
+    <h2>🚨 وكذلك: مِمَّ / ممَّن</h2>
+
+    <div class="grid">
+
+      <div class="card blue">
+
+        <h3>مِمَّ؟</h3>
+
+        أصلها:
+
+        <div class="formula">
+          مِن + ما الاستفهامية
+        </div>
+
+        حُذفت ألف «ما».
+
+        <br><br>
+
+        مثال:
+
+        <div class="formula">
+          مِمَّ صنعتِ المجسم؟
+        </div>
+
+        أي:
+
+        <strong>من ماذا؟</strong>
+
+      </div>
+
+
+      <div class="card blue">
+
+        <h3>ممَّن؟</h3>
+
+        أصلها:
+
+        <div class="formula">
+          مِن + مَن
+        </div>
+
+        حُذفت إحدى النونين.
+
+        <br><br>
+
+        مثال:
+
+        <div class="formula">
+          ممَّن تعلمتِ هذه المهارة؟
+        </div>
+
+        أي:
+
+        <strong>من مَن؟</strong>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="section study-section">
+
+    <h2>🕵️ فكّري مثل واضع السؤال في «ابن»</h2>
+
+    <div class="card warning">
+
+      قد يضع لك أكثر من جملة، وبعضها فيه «ابن» بين كلمتين،
+      لكن الحذف لا يصح إلا بعد فحص الشروط.
+
+      <br><br>
+
+      طبقي هذه القائمة:
+
+      <div class="check-list">
+        ① هل الأول عَلَم؟
+        <br>
+        ② هل الثاني عَلَم؟
+        <br>
+        ③ هل الثاني أب للأول؟
+        <br>
+        ④ هل جاءت «ابن» بينهما مباشرة؟
+        <br>
+        ⑤ هل «ابن» مفردة؟
+        <br>
+        ⑥ هل هي ليست في أول السطر؟
+      </div>
+
+      إذا تحققت الشروط:
+
+      <div class="formula">
+        ابن ← بن
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="section study-section">
+
+    <h2>💡 كيف أعلل؟</h2>
+
+    <div class="grid">
+
+      <div class="card green">
+
+        <strong>سلمان بن عبدالعزيز</strong>
+
+        <div class="formula">
+          حذفت ألف «ابن»؛
+          لأنها وقعت بين علمين،
+          الثاني أب للأول،
+          ولم يفصل بينهما فاصل.
+        </div>
+
+      </div>
+
+
+      <div class="card green">
+
+        <strong>فيمَ تفكرين؟</strong>
+
+        <div class="formula">
+          حذفت ألف «ما» الاستفهامية؛
+          لأنها سبقت بحرف الجر «في».
+        </div>
+
+      </div>
+
+
+      <div class="card green">
+
+        <strong>عمَّن تسألين؟</strong>
+
+        <div class="formula">
+          حذفت إحدى النونين؛
+          لاتصال «عن» بـ«مَن».
+        </div>
+
+      </div>
+
+
+      <div class="card green">
+
+        <strong>أَلَّا تهمل</strong>
+
+        <div class="formula">
+          حذفت نون «أنْ» عند اتصالها بـ«لا» النافية.
+        </div>
+
+      </div>
+
+
+      <div class="card green">
+
+        <strong>الرحمن</strong>
+
+        <div class="formula">
+          حذفت الألف من وسط الكلمة
+          في رسمها المقرر.
+        </div>
+
+      </div>
+
+
+      <div class="card green">
+
+        <strong>داود</strong>
+
+        <div class="formula">
+          حذفت إحدى الواوين من رسم الكلمة.
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="section study-section">
+
+    <h2>🧠 لا تحفظي الكلمات متفرقة</h2>
+
+    <div class="smart-box"
+         style="padding:22px; text-align:center;">
+
+      رتبيها في ذهنك حسب
+      <strong>موضع الحذف:</strong>
+
+      <br><br>
+
+      <strong>من الأول:</strong>
+      <div class="formula">
+        ابن ـ همزة الوصل بعد همزة الاستفهام
+      </div>
+
+      <strong>من الوسط:</strong>
+      <div class="formula">
+        هذا ـ هذه ـ ذلك ـ لكن ـ أولئك ـ الرحمن ـ داود
+      </div>
+
+      <strong>من الآخر:</strong>
+      <div class="formula">
+        فيمَ ـ لِمَ ـ بِمَ ـ عَمَّ ـ مِمَّ
+        <br>
+        عمَّن ـ ممَّن ـ أَلَّا
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="section study-section">
+
+    <h2>🔄 استرجاع ذكي قبل التدريب</h2>
+
+    <div class="card green">
+
+      أغلقي الشرح ثم حاولي الإجابة:
+
+      <br>
+      ✓ متى تحذف ألف «ابن»؟
+      <br>
+      ✓ متى تثبت ألف «ابن»؟
+      <br>
+      ✓ ماذا يحدث لهمزة الوصل بعد همزة الاستفهام؟
+      <br>
+      ✓ ما الاستثناء عند دخول الاستفهام على «أل»؟
+      <br>
+      ✓ ما الحرف المحذوف في «داود»؟
+      <br>
+      ✓ ما الحرف المحذوف في «الرحمن»؟
+      <br>
+      ✓ متى تحذف ألف «ما» الاستفهامية؟
+      <br>
+      ✓ ما الفرق بين «عَمَّ» و«عمَّن»؟
+      <br>
+      ✓ ما الفرق بين «مِمَّ» و«ممَّن»؟
+      <br>
+      ✓ كيف تحللين «أَلَّا»؟
+
+    </div>
+
+  </div>
+
+
+  <div class="worksheet">
+
+    <h2 style="text-align:center;">
+      📝 ورقة تدريب | حذف بعض الأحرف
+    </h2>
+
+    <div class="questions">
+
+      <div class="question">
+        <strong>1.</strong>
+        اختاري الرسم الصحيح:
+        <br>
+        الملك سلمان (ابن / بن) عبدالعزيز.
+        <span class="line"></span>
+      </div>
+
+      <div class="question">
+        <strong>2.</strong>
+        عللي حذف ألف «ابن» في:
+        <br>
+        خالد بن الوليد.
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+
+      <div class="question">
+        <strong>3.</strong>
+        صح أم خطأ:
+        <br>
+        تحذف ألف «ابن» كلما وقعت بين اسمين.
+        <span class="line"></span>
+      </div>
+
+      <div class="question">
+        <strong>4.</strong>
+        اكتبي الرسم الصحيح:
+        <br>
+        (في + ما الاستفهامية)
+        <span class="line"></span>
+      </div>
+
+      <div class="question">
+        <strong>5.</strong>
+        اكتبي الرسم الصحيح:
+        <br>
+        (عن + ما الاستفهامية)
+        <span class="line"></span>
+      </div>
+
+      <div class="question">
+        <strong>6.</strong>
+        اكتبي الرسم الصحيح:
+        <br>
+        (عن + مَن)
+        <span class="line"></span>
+      </div>
+
+      <div class="question">
+        <strong>7.</strong>
+        اكتبي الرسم الصحيح:
+        <br>
+        (مِن + مَن)
+        <span class="line"></span>
+      </div>
+
+      <div class="question">
+        <strong>8.</strong>
+        حددي المحذوف في:
+        <br>
+        «عَمَّ؟»
+        <span class="line"></span>
+      </div>
+
+      <div class="question">
+        <strong>9.</strong>
+        حددي المحذوف في:
+        <br>
+        «عمَّن؟»
+        <span class="line"></span>
+      </div>
+            <div class="question">
+        <strong>10.</strong>
+        اختاري الرسم الصحيح:
+        <br>
+        (عَمَّ / عمَّن) تبحثين؟
+        <span class="line"></span>
+      </div>
+
+      <div class="question">
+        <strong>11.</strong>
+        اختاري الرسم الصحيح:
+        <br>
+        (مِمَّ / ممَّن) تعلمتِ هذه المهارة؟
+        <span class="line"></span>
+      </div>
+
+      <div class="question">
+        <strong>12.</strong>
+        حللي:
+        <br>
+        «أَلَّا»
+        <br>
+        إلى أصلها، ثم حددي الحرف المحذوف.
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+
+      <div class="question">
+        <strong>13.</strong>
+        صححي الرسم الإملائي:
+        <br>
+        «الرحمان اسم من أسماء الله الحسنى».
+        <span class="line"></span>
+      </div>
+
+      <div class="question">
+        <strong>14.</strong>
+        صححي الرسم الإملائي:
+        <br>
+        «داوود نبي من أنبياء الله».
+        <span class="line"></span>
+      </div>
+
+      <div class="question">
+        <strong>15.</strong>
+        حددي موضع الحذف:
+        <br>
+        أول الكلمة أم وسطها أم آخرها؟
+        <br><br>
+        بن ـ الرحمن ـ فيمَ
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+
+      <div class="question">
+        <strong>16.</strong>
+        إملاء:
+        <br>
+        اكتبي الكلمات الآتية كتابة صحيحة:
+        <br>
+        هذا ـ هذه ـ لكن ـ ذلك ـ الرحمن ـ داود ـ أولئك
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+
+      <div class="question">
+        <strong>17.</strong>
+        صححي الأخطاء الإملائية:
+        <br>
+        «هذا خالد ابن الوليد، وقد عُرف بالشجاعة».
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+
+      <div class="question">
+        <strong>18.</strong>
+        حللي الكلمات الآتية تحليلًا إملائيًا:
+        <br>
+        عَمَّ ـ عمَّن ـ مِمَّ ـ ممَّن
+        <br><br>
+        اكتبي أصل كل كلمة،
+        ثم حددي الحرف المحذوف.
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="self-check">
+
+    <h2>✅ تحققي من استعدادك</h2>
+
+    هل أستطيع الآن أن:
+
+    <br>
+    ✓ أشرح معنى الحرف الذي يُنطق ولا يُكتب؟
+    <br>
+    ✓ أحدد هل الحذف في أول الكلمة أو وسطها أو آخرها؟
+    <br>
+    ✓ أذكر شروط حذف ألف «ابن»؟
+    <br>
+    ✓ أعرف متى تثبت ألف «ابن»؟
+    <br>
+    ✓ أميز حذف همزة الوصل بعد همزة الاستفهام؟
+    <br>
+    ✓ أنتبه للحالة الخاصة عند الاستفهام مع «أل»؟
+    <br>
+    ✓ أكتب «داود» و«الرحمن» كتابة صحيحة؟
+    <br>
+    ✓ أكتب «هذا، هذه، ذلك، لكن، أولئك» كتابة صحيحة؟
+    <br>
+    ✓ أحذف ألف «ما» الاستفهامية بعد حرف الجر؟
+    <br>
+    ✓ أميز بين «عَمَّ» و«عمَّن»؟
+    <br>
+    ✓ أميز بين «مِمَّ» و«ممَّن»؟
+    <br>
+    ✓ أحلل «أَلَّا» إلى أصلها؟
+    <br>
+    ✓ أعلل سبب الحذف بدل أن أحفظ الشكل فقط؟
+    <br>
+    ✓ أصحح كلمة جديدة حتى لو لم أرَ المثال نفسه من قبل؟
+
+  </div>
+
+
+  <div class="smart-box"
+       style="padding:22px; margin:25px 0; text-align:center; font-size:18px;">
+
+    <strong>✨ الخلاصة الذكية</strong>
+
+    <br><br>
+
+    لا تحفظي الكلمات كلها في قائمة واحدة.
+
+    <br><br>
+
+    صنفي الحذف أولًا:
+
+    <div class="formula">
+      من أول الكلمة
+      <br>
+      من وسط الكلمة
+      <br>
+      من آخر الكلمة
+    </div>
+
+    ثم حللي السبب.
+
+    <br><br>
+
+    <strong>ابن:</strong>
+    <br>
+    لا تحذفي ألفها حتى تتحققي من الشروط.
+
+    <br><br>
+
+    <strong>ما الاستفهامية:</strong>
+    <br>
+    إذا سبقها حرف جر ← تحذف ألفها.
+
+    <div class="formula">
+      فيمَ ـ لِمَ ـ بِمَ ـ عَمَّ ـ مِمَّ
+    </div>
+
+    <strong>عن / من + مَن:</strong>
+
+    <div class="formula">
+      عن + مَن ← عمَّن
+      <br>
+      مِن + مَن ← ممَّن
+    </div>
+
+    <strong>أنْ + لا:</strong>
+
+    <div class="formula">
+      أنْ + لا ← أَلَّا
+    </div>
+
+  </div>
+
+
+  <div class="section study-section">
+
+    <h2>🎓 قبل الاختبار بدقيقة</h2>
+
+    <div class="golden">
+      هذا ـ هذه ـ ذلك ـ لكن
+      <br>
+      ← لا تكتبي كل ألف تسمعينها
+      <br><br>
+
+      سلمان بن عبدالعزيز
+      <br>
+      ← افحصي شروط «ابن»
+      <br><br>
+
+      داود
+      <br>
+      ← لا تكتبي «داوود»
+      <br><br>
+
+      الرحمن
+      <br>
+      ← لا تكتبي «الرحمان»
+      <br><br>
+
+      عَمَّ؟
+      <br>
+      ← عن + ما
+      <br><br>
+
+      عمَّن؟
+      <br>
+      ← عن + مَن
+      <br><br>
+
+      مِمَّ؟
+      <br>
+      ← مِن + ما
+      <br><br>
+
+      ممَّن؟
+      <br>
+      ← مِن + مَن
+    </div>
+
+  </div>
+
+
+  <div class="section study-section">
+
+    <h2>🚨 آخر فخ قبل أن تدخلي الاختبار</h2>
+
+    <div class="card warning">
+
+      الكلمات قد تتشابه جدًا في الرسم:
+
+      <div class="formula">
+        عَمَّ ـ عمَّن
+        <br>
+        مِمَّ ـ ممَّن
+      </div>
+
+      لكن واضع السؤال لا يريد منكِ النظر إلى الشكل فقط.
+
+      <br><br>
+
+      اسألي عن المعنى:
+
+      <strong>هل السؤال عن شيء؟</strong>
+      <br>
+      ← «ما» الاستفهامية.
+
+      <br><br>
+
+      <strong>أم السؤال عن شخص؟</strong>
+      <br>
+      ← «مَن».
+
+      <br><br>
+
+      ثم فككي الكلمة،
+      وحددي الحرف الذي حُذف،
+      وبعدها اكتبي الرسم الصحيح.
+
+    </div>
+
+  </div>
+
+
+  <div class="actions">
+
+    <button onclick="window.print()">
+      🖨️ طباعة ورقة التدريب
+    </button>
+
+    <a class="back" href="spelling-term2.html">
+      العودة إلى الرسم الإملائي
+    </a>
+
+  </div>
+
+</div>
+
+
+<footer>
+  منصة آفاق اللغة | لغتي الخالدة | الصف الثالث المتوسط
+</footer>
+
+</body>
+
+</html>
