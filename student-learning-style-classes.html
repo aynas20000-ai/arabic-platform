@@ -160,11 +160,6 @@
       border:1px solid #ded3e7;
     }
 
-    .card-a .letter{
-      background:#eee7f5;
-      border-color:#ded3e7;
-    }
-
     .card-b .letter{
       background:#f6efd9;
       border-color:#d8c28a;
@@ -190,12 +185,20 @@
     .start{
       display:block;
       width:100%;
-      text-decoration:none;
+      border:none;
       border-radius:15px;
       padding:12px 14px;
+      font-family:inherit;
+      font-size:16px;
       font-weight:bold;
       color:#fff;
       background:linear-gradient(145deg,#776094,#5b4677);
+      cursor:pointer;
+    }
+
+    .start:disabled{
+      opacity:.65;
+      cursor:default;
     }
 
     .note{
@@ -206,6 +209,15 @@
       border:1px solid #d8c28a;
       border-radius:18px;
       font-size:14px;
+    }
+
+    #status{
+      margin-top:16px;
+      text-align:center;
+      font-size:14px;
+      min-height:24px;
+      color:#5b4677;
+      font-weight:bold;
     }
 
     .back{
@@ -253,8 +265,7 @@
     <section class="intro">
       <h2>اختاري فصلكِ</h2>
       <p>
-        لكل فصل نموذج مستقل حتى تُحفظ الردود
-        وتظهر النتائج بصورة منظمة.
+        سيُحفظ اختيار فصلكِ في حسابكِ، ثم يُفتح لكِ الاستبيان.
       </p>
     </section>
 
@@ -264,42 +275,44 @@
         <div class="letter">أ</div>
         <h3>ثالث متوسط أ</h3>
         <p>استبيان اكتشاف أسلوب التعلّم لطالبات الفصل أ.</p>
-        <a
+
+        <button
           class="start"
-          href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=63amB9ouB0OwpxhE7cWhWKdNi2jjBM9DtjdEoIqHPjhURUFNTFNKTTZaTjIyQ1RGRlE1RDVPMjdZWSQlQCNjPTEu"
-          target="_blank"
-          rel="noopener noreferrer">
+          data-class="ثالث متوسط أ"
+          data-url="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=63amB9ouB0OwpxhE7cWhWKdNi2jjBM9DtjdEoIqHPjhURUFNTFNKTTZaTjIyQ1RGRlE1RDVPMjdZWSQlQCNjPTEu">
           ابدئي الآن
-        </a>
+        </button>
       </article>
 
       <article class="class-card card-b">
         <div class="letter">ب</div>
         <h3>ثالث متوسط ب</h3>
         <p>استبيان اكتشاف أسلوب التعلّم لطالبات الفصل ب.</p>
-        <a
+
+        <button
           class="start"
-          href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=63amB9ouB0OwpxhE7cWhWKdNi2jjBM9DtjdEoIqHPjhUOENWRFBGQ1dUQVdSOVNBUE8xQkxUMTg2MC4u"
-          target="_blank"
-          rel="noopener noreferrer">
+          data-class="ثالث متوسط ب"
+          data-url="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=63amB9ouB0OwpxhE7cWhWKdNi2jjBM9DtjdEoIqHPjhUOENWRFBGQ1dUQVdSOVNBUE8xQkxUMTg2MC4u">
           ابدئي الآن
-        </a>
+        </button>
       </article>
 
       <article class="class-card card-c">
         <div class="letter">ج</div>
         <h3>ثالث متوسط ج</h3>
         <p>استبيان اكتشاف أسلوب التعلّم لطالبات الفصل ج.</p>
-        <a
+
+        <button
           class="start"
-          href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=63amB9ouB0OwpxhE7cWhWKdNi2jjBM9DtjdEoIqHPjhUQVdVSkhDM0o5WU1FVU1aNjhBWU1IT1FFMi4u"
-          target="_blank"
-          rel="noopener noreferrer">
+          data-class="ثالث متوسط ج"
+          data-url="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=63amB9ouB0OwpxhE7cWhWKdNi2jjBM9DtjdEoIqHPjhUQVdVSkhDM0o5WU1FVU1aNjhBWU1IT1FFMi4u">
           ابدئي الآن
-        </a>
+        </button>
       </article>
 
     </section>
+
+    <div id="status"></div>
 
     <div class="note">
       أجيبي بعفوية؛ لا توجد إجابة صحيحة أو خاطئة،
@@ -315,6 +328,139 @@
   <footer>
     منصة آفاق التعليمية — لأن لكل طالبة طريقة تميزها
   </footer>
+
+
+  <script type="module">
+
+    import { initializeApp }
+      from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+
+    import {
+      getAuth,
+      onAuthStateChanged
+    }
+      from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+    import {
+      getFirestore,
+      doc,
+      setDoc,
+      serverTimestamp
+    }
+      from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyB48av9gx4jzFyYoUQtcLwaR52qETevKGs",
+      authDomain: "afaq-language-platform.firebaseapp.com",
+      projectId: "afaq-language-platform",
+      storageBucket: "afaq-language-platform.firebasestorage.app",
+      messagingSenderId: "362601061474",
+      appId: "1:362601061474:web:bc405291332b9e4ef9453b"
+    };
+
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    const status = document.getElementById("status");
+    const buttons = document.querySelectorAll(".start");
+
+    let currentUser = null;
+
+
+    onAuthStateChanged(auth, (user) => {
+
+      currentUser = user;
+
+      if (!user) {
+        status.textContent =
+          "سجّلي الدخول أولًا حتى يُحفظ فصلكِ ونشاطكِ.";
+      }
+
+    });
+
+
+    buttons.forEach((button) => {
+
+      button.addEventListener("click", async () => {
+
+        const className =
+          button.dataset.class;
+
+        const formUrl =
+          button.dataset.url;
+
+
+        if (!currentUser) {
+
+          status.textContent =
+            "يجب تسجيل الدخول أولًا.";
+
+          setTimeout(() => {
+            window.location.href = "login.html";
+          }, 700);
+
+          return;
+        }
+
+
+        button.disabled = true;
+
+        status.textContent =
+          "جاري حفظ فصلكِ...";
+
+
+        try {
+
+          const studentRef =
+            doc(db, "students", currentUser.uid);
+
+          await setDoc(
+            studentRef,
+            {
+              className: className,
+
+              learningStyleSurveyStarted: true,
+
+              learningStyleSurveyStartedAt:
+                serverTimestamp()
+            },
+            {
+              merge: true
+            }
+          );
+
+
+          status.textContent =
+            "تم حفظ فصلكِ، جاري فتح الاستبيان...";
+
+
+          setTimeout(() => {
+
+            window.location.href =
+              formUrl;
+
+          }, 500);
+
+
+        } catch (error) {
+
+          console.error(error);
+
+          button.disabled = false;
+
+          status.textContent =
+            "تعذر حفظ البيانات. حاولي مرة أخرى.";
+
+        }
+
+      });
+
+    });
+
+  </script>
 
 </body>
 </html>
