@@ -1,0 +1,1645 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>استعدادك الذكي | المصادر</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --purple: #776094;
+      --dark-purple: #5b4677;
+      --gold: #c9a85c;
+      --cream: #fffaf2;
+      --light-purple: #f3eafa;
+      --text: #4b3a57;
+      --green: #5f846b;
+      --pink: #fff0f5;
+      --yellow: #fff8d9;
+      --blue: #eef7ff;
+    }
+
+    html,
+    body {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Tahoma, Arial, sans-serif;
+      color: var(--text);
+      line-height: 1.9;
+      background: linear-gradient(180deg, #fffaf2, #f8f0fb);
+    }
+
+    .page {
+      width: 92%;
+      max-width: 1050px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      margin: 25px auto;
+      padding: 30px 20px;
+      text-align: center;
+      color: white;
+      background: linear-gradient(135deg, #776094, #5b4677);
+      border: 3px solid #c9a85c;
+      border-radius: 24px;
+      box-shadow: 0 10px 25px rgba(91, 70, 119, .18);
+    }
+
+    .badge {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 8px 18px;
+      color: #5a3f72;
+      font-weight: bold;
+      background: linear-gradient(135deg, #fff7cf, #fffdf8);
+      border: 2px solid #c9a85c;
+      border-radius: 30px;
+    }
+
+    .hero h1 {
+      margin: 5px 0;
+      font-size: 34px;
+    }
+
+    .hero p {
+      max-width: 820px;
+      margin: 7px auto 0;
+      color: #fffaf2;
+      font-size: 18px;
+    }
+
+    .confidence {
+      margin: 20px 0;
+      padding: 18px;
+      text-align: center;
+      color: #5a3f72;
+      font-size: 19px;
+      font-weight: bold;
+      background: #fffdf8;
+      border-right: 6px solid #c9a85c;
+      border-radius: 15px;
+      box-shadow: 0 5px 14px rgba(91, 70, 119, .07);
+    }
+
+    .section {
+      margin: 24px 0;
+      padding: 22px;
+      background: #fffdf8;
+      border: 2px solid #e4d2a2;
+      border-radius: 20px;
+      box-shadow: 0 6px 16px rgba(91, 70, 119, .08);
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #5b4677;
+      font-size: 25px;
+    }
+
+    h3 {
+      margin-top: 0;
+      color: #6f5288;
+    }
+
+    .smart-box {
+      position: relative;
+      overflow: hidden;
+      color: #5a3f72;
+      background: linear-gradient(135deg, #fff7cf, #f2e7fb, #fffdf8);
+      border: 2px solid #c9a85c;
+      border-radius: 18px;
+      box-shadow:
+        0 8px 22px rgba(201,168,92,.22),
+        0 0 18px rgba(119,96,148,.12);
+    }
+
+    .smart-box::before {
+      content: "";
+      position: absolute;
+      top: -35px;
+      left: -35px;
+      width: 95px;
+      height: 95px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.55);
+    }
+
+    .study-map {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .step {
+      padding: 15px 8px;
+      text-align: center;
+      font-weight: bold;
+      background: #f5ecfb;
+      border: 1px solid #d8c4e5;
+      border-radius: 14px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .card {
+      padding: 18px;
+      background: white;
+      border: 2px solid #e1d1aa;
+      border-radius: 17px;
+    }
+
+    .card strong {
+      color: #5b4677;
+    }
+
+    .rule {
+      background: #f5ecfb;
+    }
+
+    .warning {
+      background: #fff0f5;
+      border-color: #dfa8b9;
+    }
+
+    .success {
+      background: #eef8ef;
+      border-color: #a9c8ad;
+    }
+
+    .blue {
+      background: #eef7ff;
+    }
+
+    .yellow {
+      background: #fff8d9;
+    }
+
+    .formula {
+      margin: 12px 0;
+      padding: 14px;
+      text-align: center;
+      color: #5b4677;
+      font-size: 20px;
+      font-weight: bold;
+      background: white;
+      border: 2px dashed #c9a85c;
+      border-radius: 14px;
+    }
+
+    .golden {
+      margin: 14px 0;
+      padding: 20px;
+      text-align: center;
+      color: #5a3f72;
+      font-size: 20px;
+      font-weight: bold;
+      background: linear-gradient(135deg, #fff7cf, #f2e7fb, #fffdf8);
+      border: 2px solid #c9a85c;
+      border-radius: 18px;
+    }
+
+    .word {
+      color: #8a3f68;
+      font-weight: bold;
+    }
+
+    .key {
+      color: #4f765b;
+      font-weight: bold;
+    }
+
+    table {
+      width: 100%;
+      margin-top: 15px;
+      border-collapse: collapse;
+      background: white;
+    }
+
+    th,
+    td {
+      padding: 12px 8px;
+      text-align: center;
+      border: 1px solid #d9cba9;
+    }
+
+    th {
+      color: white;
+      background: #6f5288;
+    }
+
+    .mini-title {
+      margin: 18px 0 10px;
+      padding: 10px;
+      color: #5b4677;
+      font-weight: bold;
+      text-align: center;
+      background: #f5ecfb;
+      border-radius: 12px;
+    }
+
+    .worksheet {
+      margin-top: 28px;
+      padding: 24px;
+      background: white;
+      border: 3px solid #c9a85c;
+      border-radius: 22px;
+    }
+
+    .worksheet h2 {
+      text-align: center;
+    }
+
+    .questions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .question {
+      padding: 16px;
+      background: #fffdf8;
+      border: 1px solid #dccca7;
+      border-radius: 14px;
+    }
+
+    .line {
+      display: block;
+      height: 25px;
+      margin-top: 12px;
+      border-bottom: 1px dashed #9b8ba5;
+    }
+
+    .self-check {
+      margin: 25px 0;
+      padding: 20px;
+      background: #eef8ef;
+      border: 2px solid #a6c8ac;
+      border-radius: 18px;
+    }
+
+    .actions {
+      margin: 25px 0;
+      text-align: center;
+    }
+
+    button,
+    .back {
+      display: inline-block;
+      margin: 6px;
+      padding: 12px 22px;
+      color: white;
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+      background: #6f5288;
+      border: 2px solid #c9a85c;
+      border-radius: 25px;
+    }
+
+    footer {
+      margin-top: 35px;
+      padding: 20px;
+      text-align: center;
+      color: white;
+      background: #49385c;
+      border-top: 3px solid #c9a85c;
+    }
+
+    @media (max-width: 700px) {
+      .hero h1 {
+        font-size: 27px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .study-map {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .grid,
+      .grid-3,
+      .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 9px;
+      }
+
+      .card {
+        padding: 13px;
+        font-size: 14px;
+      }
+
+      .section,
+      .worksheet {
+        padding: 17px;
+      }
+
+      h2 {
+        font-size: 21px;
+      }
+
+      .questions {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media print {
+      body {
+        background: white;
+      }
+
+      .hero,
+      .confidence,
+      .study-section,
+      .actions,
+      footer {
+        display: none !important;
+      }
+
+      .page {
+        width: 100%;
+        max-width: none;
+      }
+
+      .worksheet {
+        border: none;
+        box-shadow: none;
+      }
+
+      .questions {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page">
+        <div class="hero">
+
+      <div class="badge">
+        ✨ استعدادك الذكي للاختبار المركزي
+      </div>
+
+      <h1>المصادر</h1>
+
+      <p>
+        لا تحفظي المصدر كلمة منفصلة؛
+        اربطيه بالفعل، وعدد حروف الفعل، ووزنه،
+        ثم حددي طريقة صياغته.
+      </p>
+
+    </div>
+
+
+    <div class="confidence">
+
+      القاعدة التي تنظّم لك الدرس:
+
+      <br>
+
+      🌟 المصدر يدل على الحدث من غير زمن.
+
+      <br>
+
+      🌟 حددي فعل المصدر أولًا.
+
+      <br>
+
+      🌟 ثم اسألي:
+      ثلاثي أم رباعي أم خماسي؟
+
+    </div>
+
+
+    <div class="section study-section">
+
+      <h2>🧠 كيف تذاكرين المصادر عن فهم؟</h2>
+
+      <div class="study-map">
+
+        <div class="step">
+          1️⃣ أستخرج المصدر
+        </div>
+
+        <div class="step">
+          2️⃣ أردّه إلى فعله
+        </div>
+
+        <div class="step">
+          3️⃣ أعدّ حروف الفعل
+        </div>
+
+        <div class="step">
+          4️⃣ أحدد نوع المصدر
+        </div>
+
+        <div class="step">
+          5️⃣ أحدد الوزن
+        </div>
+
+      </div>
+
+      <div class="golden">
+        المصدر ← الفعل ← عدد حروف الفعل ← القاعدة ← الوزن
+      </div>
+
+    </div>
+
+
+    <div class="section study-section">
+
+      <h2>📌 أولًا: ما المصدر؟</h2>
+
+      <div class="card rule">
+
+        <strong>المصدر:</strong>
+
+        اسم يدل على
+        <strong>حدثٍ مجردٍ من الزمن.</strong>
+
+        <br><br>
+
+        قارني:
+
+        <div class="grid">
+
+          <div class="card blue">
+
+            <strong>استقبلَ</strong>
+
+            <br><br>
+
+            فعل يدل على:
+            <strong>حدث + زمن.</strong>
+
+          </div>
+
+          <div class="card yellow">
+
+            <strong>استقبال</strong>
+
+            <br><br>
+
+            مصدر يدل على:
+            <strong>الحدث فقط دون زمن.</strong>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="smart-box"
+           style="padding:20px; margin-top:18px; text-align:center;">
+
+        <strong>
+          إذا وجدتِ حدثًا بلا زمن
+          ففكّري في المصدر.
+        </strong>
+
+      </div>
+
+    </div>
+
+
+    <div class="section study-section">
+
+      <h2>🔍 كيف أفرق بين الفعل والمصدر؟</h2>
+
+      <div class="grid">
+
+        <div class="card warning">
+
+          <h3>الفعل</h3>
+
+          يدل على:
+
+          <div class="formula">
+            حدث + زمن
+          </div>
+
+          مثال:
+
+          <strong>أبدعَ</strong>
+
+          <br>
+
+          حدث الإبداع في زمن ماضٍ.
+
+        </div>
+
+
+        <div class="card success">
+
+          <h3>المصدر</h3>
+
+          يدل على:
+
+          <div class="formula">
+            الحدث فقط
+          </div>
+
+          مثال:
+
+          <strong>إبداع</strong>
+
+          <br>
+
+          يدل على الحدث دون تحديد زمن.
+
+        </div>
+
+      </div>
+
+      <div class="golden">
+        فعل = حدث + زمن
+        <br>
+        مصدر = حدث بلا زمن
+      </div>
+
+    </div>
+
+
+    <div class="section study-section">
+
+      <h2>🧩 ثانيًا: كيف أحدد نوع المصدر؟</h2>
+
+      <div class="card rule">
+
+        لا تنظري إلى المصدر وحده.
+
+        <br><br>
+
+        <strong>ردّيه إلى فعله أولًا، ثم عُدّي حروف الفعل.</strong>
+
+      </div>
+
+      <div class="grid-3">
+
+        <div class="card">
+
+          <strong>ثلاثي</strong>
+
+          <div class="formula">
+            طَبَعَ ← طِباعة
+          </div>
+
+          الفعل:
+          ثلاثة أحرف.
+
+        </div>
+
+        <div class="card">
+
+          <strong>رباعي</strong>
+
+          <div class="formula">
+            أبدعَ ← إبداع
+          </div>
+
+          الفعل:
+          أربعة أحرف.
+
+        </div>
+
+        <div class="card">
+
+          <strong>خماسي</strong>
+
+          <div class="formula">
+            اعتمدَ ← اعتماد
+          </div>
+
+          الفعل:
+          خمسة أحرف.
+
+        </div>
+
+      </div>
+
+      <div class="smart-box"
+           style="padding:20px; margin-top:18px; text-align:center;">
+
+        <strong>
+          لا أعدّ حروف المصدر.
+          <br>
+          أعدّ حروف الفعل الذي اشتق منه المصدر.
+        </strong>
+
+      </div>
+
+    </div>
+
+
+    <div class="section study-section">
+
+      <h2>🌿 ثالثًا: مصادر الأفعال الثلاثية</h2>
+
+      <div class="card rule">
+
+        مصادر الأفعال الثلاثية منها:
+
+        <div class="formula">
+          قياسي
+          &nbsp;&nbsp; و &nbsp;&nbsp;
+          سماعي
+        </div>
+
+        ولذلك لا نعتمد في جميع مصادر الثلاثي
+        على وزن واحد محفوظ.
+
+      </div>
+
+      <div class="grid-3">
+
+        <div class="card">
+
+          <strong>الإباء</strong>
+
+          <div class="formula">
+            أَبَى ← إِباء
+          </div>
+
+          الوزن:
+
+          <strong>فِعال</strong>
+
+        </div>
+
+
+        <div class="card">
+
+          <strong>الطباعة</strong>
+
+          <div class="formula">
+            طَبَعَ ← طِباعة
+          </div>
+
+          الوزن:
+
+          <strong>فِعالة</strong>
+
+        </div>
+
+
+        <div class="card">
+
+          <strong>الزُّرقة</strong>
+
+          <div class="formula">
+            زَرِقَ ← زُرقة
+          </div>
+
+          الوزن:
+
+          <strong>فُعلة</strong>
+
+        </div>
+
+
+        <div class="card">
+
+          <strong>الرَّحيل</strong>
+
+          <div class="formula">
+            رَحَلَ ← رَحيل
+          </div>
+
+          الوزن:
+
+          <strong>فَعيل</strong>
+
+        </div>
+
+
+        <div class="card">
+
+          <strong>الثَّوران</strong>
+
+          <div class="formula">
+            ثارَ ← ثَوَران
+          </div>
+
+          الوزن:
+
+          <strong>فَعَلان</strong>
+
+        </div>
+
+
+        <div class="card">
+
+          <strong>الصُّراخ</strong>
+
+          <div class="formula">
+            صَرَخَ ← صُراخ
+          </div>
+
+          الوزن:
+
+          <strong>فُعال</strong>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="section study-section">
+
+      <h2>⚠️ ماذا يعني «سماعي» في مصدر الثلاثي؟</h2>
+
+      <div class="card warning">
+
+        بعض مصادر الفعل الثلاثي
+        <strong>سُمعت عن العرب كما هي</strong>،
+
+        ولذلك تُحفظ بصورتها الواردة.
+
+        <br><br>
+
+        من أمثلة الكتاب:
+
+        <div class="formula">
+          أَخَذَ ← أَخْذ
+        </div>
+
+        <div class="formula">
+          بَثَّ ← بَثّ
+        </div>
+
+      </div>
+
+      <div class="golden">
+        إذا كان المصدر الثلاثي سماعيًا:
+        <br>
+        أحفظه مع فعله، ولا أخترع له وزنًا من عندي.
+      </div>
+
+    </div>
+
+
+    <div class="section study-section">
+
+      <h2>🟣 رابعًا: مصادر الأفعال الرباعية</h2>
+
+      <div class="card rule">
+
+        مصادر الأفعال الرباعية
+        <strong>قياسية</strong>.
+
+        <br><br>
+
+        وهذا يعني أن وزن الفعل
+        يقودك إلى وزن مصدره.
+
+      </div>
+
+      <div class="grid-4">
+
+        <div class="card">
+
+          <strong>أَفْعَلَ</strong>
+
+          <div class="formula">
+            أَبْدَعَ
+            <br>
+            ↓
+            <br>
+            إِبْداع
+          </div>
+
+          المصدر على وزن:
+
+          <strong>إِفْعال</strong>
+
+        </div>
+
+
+        <div class="card">
+
+          <strong>فَعَّلَ</strong>
+
+          <div class="formula">
+            سَدَّدَ
+            <br>
+            ↓
+            <br>
+            تَسْديد
+          </div>
+
+          المصدر على وزن:
+
+          <strong>تَفْعيل</strong>
+
+        </div>
+
+
+        <div class="card">
+
+          <strong>فاعَلَ</strong>
+
+          <div class="formula">
+            جاهَدَ
+            <br>
+            ↓
+            <br>
+            جِهاد
+          </div>
+
+          ومنه أيضًا:
+
+          <div class="formula">
+            بادَرَ
+            <br>
+            ↓
+            <br>
+            مُبادَرَة
+          </div>
+
+        </div>
+
+
+        <div class="card">
+
+          <strong>فَعْلَلَ</strong>
+
+          <div class="formula">
+            سَيْطَرَ
+            <br>
+            ↓
+            <br>
+            سَيْطَرَة
+          </div>
+
+          المصدر على وزن:
+
+          <strong>فَعْلَلَة</strong>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="section study-section">
+
+      <h2>🔐 مفتاح الرباعي الذي لا تنسينه</h2>
+
+      <div class="smart-box"
+           style="padding:22px; text-align:center;">
+
+        لا تحفظي المصادر متفرقة.
+
+        <br><br>
+
+        اربطي وزن الفعل بوزن المصدر:
+
+        <div class="formula">
+          أَفْعَلَ ← إِفْعال
+        </div>
+
+        <div class="formula">
+          فَعَّلَ ← تَفْعيل
+        </div>
+
+        <div class="formula">
+          فاعَلَ ← فِعال / مُفاعَلَة
+        </div>
+
+        <div class="formula">
+          فَعْلَلَ ← فَعْلَلَة
+        </div>
+
+      </div>
+
+    </div>
+        <div class="section study-section">
+
+      <h2>🟢 خامسًا: مصادر الأفعال الخماسية</h2>
+
+      <div class="card rule">
+
+        مصادر الأفعال الخماسية
+        <strong>قياسية</strong> كذلك.
+
+        <br><br>
+
+        لذلك إذا عرفتِ وزن الفعل،
+        استطعتِ الوصول إلى مصدره.
+
+      </div>
+
+      <div class="grid">
+
+        <div class="card">
+
+          <strong>افْتَعَلَ</strong>
+
+          <div class="formula">
+            اعتمدَ
+            <br>
+            ↓
+            <br>
+            اعتماد
+          </div>
+
+          المصدر على وزن:
+
+          <strong>افْتِعال</strong>
+
+        </div>
+
+
+        <div class="card">
+
+          <strong>اسْتَفْعَلَ</strong>
+
+          <div class="formula">
+            استخرجَ
+            <br>
+            ↓
+            <br>
+            استخراج
+          </div>
+
+          المصدر على وزن:
+
+          <strong>اسْتِفْعال</strong>
+
+        </div>
+
+
+        <div class="card">
+
+          <strong>تَفَعَّلَ</strong>
+
+          <div class="formula">
+            تَصَفَّحَ
+            <br>
+            ↓
+            <br>
+            تَصَفُّح
+          </div>
+
+          المصدر على وزن:
+
+          <strong>تَفَعُّل</strong>
+
+        </div>
+
+
+        <div class="card">
+
+          <strong>تَفاعَلَ</strong>
+
+          <div class="formula">
+            تَعاوَنَ
+            <br>
+            ↓
+            <br>
+            تَعاوُن
+          </div>
+
+          المصدر على وزن:
+
+          <strong>تَفاعُل</strong>
+
+        </div>
+
+      </div>
+
+      <div class="golden">
+        في الخماسي:
+        <br>
+        حددي وزن الفعل أولًا، ثم اصنعي المصدر على الوزن المقابل.
+      </div>
+
+    </div>
+
+
+    <div class="section study-section">
+
+      <h2>✍️ كيف أصوغ المصدر من الفعل؟</h2>
+
+      <div class="card rule">
+
+        لا تبدئي بالمصدر مباشرة.
+
+        <br><br>
+
+        اتبعي هذه الخطوات:
+
+        <div class="formula">
+          أحدد الفعل ← أعد حروفه ← أحدد وزنه ← أكتب وزن المصدر ← أصوغ المصدر
+        </div>
+
+      </div>
+
+      <div class="grid">
+
+        <div class="card">
+
+          الفعل:
+
+          <strong>أَبْدَعَ</strong>
+
+          <br><br>
+
+          عدد حروفه:
+          <strong>أربعة</strong>
+
+          <br>
+
+          وزنه:
+          <strong>أَفْعَلَ</strong>
+
+          <br>
+
+          مصدره:
+
+          <div class="formula">
+            إِبْداع
+          </div>
+
+        </div>
+
+
+        <div class="card">
+
+          الفعل:
+
+          <strong>اسْتَخْرَجَ</strong>
+
+          <br><br>
+
+          نوعه:
+          <strong>غير ثلاثي</strong>
+
+          <br>
+
+          وزنه:
+          <strong>اسْتَفْعَلَ</strong>
+
+          <br>
+
+          مصدره:
+
+          <div class="formula">
+            اسْتِخْراج
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="section study-section">
+
+      <h2>⚖️ كيف أزن المصدر؟</h2>
+
+      <div class="grid">
+
+        <div class="card">
+
+          <strong>إِبْداع</strong>
+
+          <div class="formula">
+            إِبْداع ← إِفْعال
+          </div>
+
+        </div>
+
+
+        <div class="card">
+
+          <strong>تَسْديد</strong>
+
+          <div class="formula">
+            تَسْديد ← تَفْعيل
+          </div>
+
+        </div>
+
+
+        <div class="card">
+
+          <strong>مُبادَرَة</strong>
+
+          <div class="formula">
+            مُبادَرَة ← مُفاعَلَة
+          </div>
+
+        </div>
+
+
+        <div class="card">
+
+          <strong>اعتماد</strong>
+
+          <div class="formula">
+            اعتماد ← افْتِعال
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="section study-section">
+
+      <h2>🎯 كيف يمكن أن يأتي السؤال؟</h2>
+
+      <div class="grid-3">
+
+        <div class="card">
+          <strong>استخرجي</strong>
+          <br>
+          المصدر من الجملة.
+        </div>
+
+        <div class="card">
+          <strong>هاتِ فعله</strong>
+          <br>
+          ما الفعل الذي اشتق منه المصدر؟
+        </div>
+
+        <div class="card">
+          <strong>حددي</strong>
+          <br>
+          ثلاثي أم رباعي أم خماسي؟
+        </div>
+
+        <div class="card">
+          <strong>صوغي</strong>
+          <br>
+          مصدر الفعل المعطى.
+        </div>
+
+        <div class="card">
+          <strong>زِني</strong>
+          <br>
+          المصدر.
+        </div>
+
+        <div class="card">
+          <strong>اختاري</strong>
+          <br>
+          المصدر الصحيح من البدائل.
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="section study-section">
+
+      <h2>🚨 فخاخ واضع السؤال</h2>
+
+      <div class="grid">
+
+        <div class="card warning">
+
+          <strong>الفخ الأول:</strong>
+
+          <br>
+
+          أعدّ حروف المصدر بدل الفعل.
+
+          <br><br>
+
+          الصحيح:
+
+          <strong>
+            أرد المصدر إلى فعله أولًا، ثم أعد حروف الفعل.
+          </strong>
+
+        </div>
+
+
+        <div class="card warning">
+
+          <strong>الفخ الثاني:</strong>
+
+          <br>
+
+          أظن أن كل مصادر الثلاثي قياسية.
+
+          <br><br>
+
+          الصحيح:
+
+          <strong>
+            مصادر الثلاثي منها قياسي ومنها سماعي.
+          </strong>
+
+        </div>
+
+
+        <div class="card warning">
+
+          <strong>الفخ الثالث:</strong>
+
+          <br>
+
+          أخلط بين المصدر والفعل.
+
+          <br><br>
+
+          الصحيح:
+
+          <strong>
+            المصدر يدل على الحدث مجردًا من الزمن.
+          </strong>
+
+        </div>
+
+
+        <div class="card warning">
+
+          <strong>الفخ الرابع:</strong>
+
+          <br>
+
+          أحفظ المصدر منفردًا.
+
+          <br><br>
+
+          الصحيح:
+
+          <strong>
+            أربطه دائمًا بفعله ووزنه.
+          </strong>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="section study-section">
+
+      <h2>🧠 فكّري مثل واضع السؤال</h2>
+
+      <div class="smart-box" style="padding:22px;">
+
+        إذا أعطاك كلمة مثل:
+
+        <div class="formula">
+          إِبْداع
+        </div>
+
+        فقد يسألك بعدها:
+
+        <strong>
+          ما فعلها؟
+          كم عدد حروف الفعل؟
+          ما وزن الفعل؟
+          ما وزن المصدر؟
+        </strong>
+
+        <br><br>
+
+        ففكّري بالسلسلة:
+
+        <div class="formula">
+          إِبْداع
+          ← أَبْدَعَ
+          ← فعل رباعي
+          ← أَفْعَلَ
+          ← إِفْعال
+        </div>
+
+      </div>
+
+      <div class="golden">
+        لا تحفظي المصدر وحده؛
+        <br>
+        اربطيه بالفعل والوزن والنوع.
+      </div>
+
+    </div>
+
+
+    <div class="worksheet">
+
+      <h2>📝 ورقة تدريب | المصادر</h2>
+
+      <div class="questions">
+
+        <div class="question">
+          <strong>1.</strong>
+          استخرجي المصدر:
+          <br>
+          أعجبني إبداعُ الطالبة.
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>2.</strong>
+          هاتي الفعل الذي اشتق منه:
+          <br>
+          إبداع
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>3.</strong>
+          حددي نوع الفعل الذي اشتق منه:
+          <br>
+          اعتماد
+          <br>
+          ثلاثي أم رباعي أم خماسي؟
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>4.</strong>
+          صوغي مصدر الفعل:
+          <br>
+          أبدعَ
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>5.</strong>
+          صوغي مصدر الفعل:
+          <br>
+          سدَّدَ
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>6.</strong>
+          صوغي مصدر الفعل:
+          <br>
+          استخرجَ
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>7.</strong>
+          زِني المصدر:
+          <br>
+          إبداع
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>8.</strong>
+          زِني المصدر:
+          <br>
+          تسديد
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>9.</strong>
+          زِني المصدر:
+          <br>
+          اعتماد
+          <span class="line"></span>
+        </div>
+                <div class="question">
+          <strong>10.</strong>
+          اختاري المصدر الصحيح للفعل:
+          <br>
+          استخرجَ
+          <br>
+          أ- استخراج
+          <br>
+          ب- إخراج
+          <br>
+          ج- خُروج
+          <br>
+          د- مَخْرَج
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>11.</strong>
+          اختاري المصدر الصحيح للفعل:
+          <br>
+          أبدعَ
+          <br>
+          أ- بديع
+          <br>
+          ب- إبداع
+          <br>
+          ج- مُبدِع
+          <br>
+          د- مبدَع
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>12.</strong>
+          حددي:
+          <br>
+          مصدر الفعل الثلاثي قد يكون:
+          <br>
+          أ- قياسيًا فقط
+          <br>
+          ب- سماعيًا فقط
+          <br>
+          ج- قياسيًا أو سماعيًا
+          <br>
+          د- لا شيء مما سبق
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>13.</strong>
+          حددي نوع المصدر:
+          <br>
+          أَخَذَ ← أَخْذ
+          <br>
+          أهو قياسي أم سماعي؟
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>14.</strong>
+          أكملِي السلسلة:
+          <br>
+          أَبْدَعَ ← .......... ← إِفْعال
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>15.</strong>
+          أكملِي السلسلة:
+          <br>
+          اسْتَخْرَجَ ← .......... ← اسْتِفْعال
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>16.</strong>
+          قارني بين الكلمتين:
+          <br>
+          أبدعَ ـ إبداع
+          <br><br>
+          أيهما فعل؟ وأيهما مصدر؟
+          وما الفرق في الدلالة؟
+          <span class="line"></span>
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>17.</strong>
+          طبقي خطة الحل على:
+          <br>
+          اعتماد
+          <br><br>
+          اكتبي:
+          المصدر ← الفعل ← عدد حروف الفعل ← وزن المصدر.
+          <span class="line"></span>
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>18.</strong>
+          اكتبي قاعدة الدرس بأسلوبك:
+          <br>
+          كيف تعرفين نوع المصدر؟
+          وكيف تصلين إلى وزنه؟
+          <span class="line"></span>
+          <span class="line"></span>
+          <span class="line"></span>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="self-check">
+
+      <h2>✅ تحققي من استعدادك</h2>
+
+      هل أستطيع الآن أن:
+
+      <br>
+      ✓ أميز المصدر من الفعل؟
+      <br>
+      ✓ أعرف أن المصدر يدل على حدث مجرد من الزمن؟
+      <br>
+      ✓ أرد المصدر إلى فعله؟
+      <br>
+      ✓ أحدد عدد حروف الفعل الذي اشتق منه المصدر؟
+      <br>
+      ✓ أميز بين مصادر الثلاثي والرباعي والخماسي؟
+      <br>
+      ✓ أعرف أن مصادر الثلاثي منها قياسي ومنها سماعي؟
+      <br>
+      ✓ أصوغ مصدر الفعل الرباعي؟
+      <br>
+      ✓ أصوغ مصدر الفعل الخماسي؟
+      <br>
+      ✓ أزن المصدر؟
+      <br>
+      ✓ أختار المصدر الصحيح من بين بدائل متقاربة؟
+
+    </div>
+
+
+    <div class="smart-box"
+         style="padding:22px; margin:25px 0; text-align:center; font-size:19px;">
+
+      <strong>✨ الخلاصة التي تثبت القاعدة</strong>
+
+      <br><br>
+
+      المصدر:
+
+      <strong>
+        حدث بلا زمن.
+      </strong>
+
+      <br><br>
+
+      ولحل السؤال:
+
+      <div class="formula">
+        المصدر ← الفعل ← عدد حروفه ← وزنه ← وزن المصدر
+      </div>
+
+      <strong>
+        الثلاثي: منه قياسي ومنه سماعي.
+      </strong>
+
+      <br>
+
+      <strong>
+        والرباعي والخماسي: مصادرهما قياسية بحسب أوزان الأفعال.
+      </strong>
+
+    </div>
+
+
+    <div class="actions">
+
+      <button onclick="window.print()">
+        🖨️ طباعة ورقة التدريب
+      </button>
+
+      <a class="back" href="linguistic-term2.html">
+        العودة إلى الصنف اللغوي
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <footer>
+    منصة آفاق اللغة | لغتي الخالدة | الصف الثالث المتوسط
+  </footer>
+
+</body>
+
+</html>
