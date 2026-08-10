@@ -65,6 +65,11 @@
       cursor: pointer;
     }
 
+    .google-btn:disabled {
+      opacity: .65;
+      cursor: default;
+    }
+
     .google-btn:active {
       transform: scale(.98);
     }
@@ -133,6 +138,16 @@
     }
       from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
 
+    import {
+      getFirestore,
+      doc,
+      getDoc,
+      setDoc,
+      serverTimestamp
+    }
+      from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+
     const firebaseConfig = {
       apiKey: "AIzaSyB48av9gx4jzFyYoUQtcLwaR52qETevKGs",
       authDomain: "afaq-language-platform.firebaseapp.com",
@@ -142,52 +157,178 @@
       appId: "1:362601061474:web:bc405291332b9e4ef9453b"
     };
 
+
     const app = initializeApp(firebaseConfig);
+
     const auth = getAuth(app);
+
+    const db = getFirestore(app);
 
     const provider = new GoogleAuthProvider();
 
-    const loginBtn = document.getElementById("googleLogin");
-    const status = document.getElementById("status");
 
-    loginBtn.addEventListener("click", async () => {
+    const loginBtn =
+      document.getElementById("googleLogin");
 
-      status.textContent = "جاري تسجيل الدخول...";
-      status.className = "status";
+    const status =
+      document.getElementById("status");
 
-      try {
 
-        await signInWithPopup(auth, provider);
+    let processingUser = false;
 
-      } catch (error) {
 
-        console.error(error);
+    async function saveStudent(user) {
 
-        status.textContent =
-          "تعذر تسجيل الدخول. حاولي مرة أخرى.";
+      const studentRef =
+        doc(db, "students", user.uid);
 
-        status.className = "status error";
+      const studentSnap =
+        await getDoc(studentRef);
+
+
+      if (!studentSnap.exists()) {
+
+        await setDoc(studentRef, {
+
+          uid: user.uid,
+
+          name:
+            user.displayName || "",
+
+          email:
+            user.email || "",
+
+          photo:
+            user.photoURL || "",
+
+          className: "",
+
+          firstLoginAt:
+            serverTimestamp(),
+
+          lastLoginAt:
+            serverTimestamp()
+
+        });
+
+      } else {
+
+        await setDoc(
+          studentRef,
+          {
+
+            name:
+              user.displayName || "",
+
+            email:
+              user.email || "",
+
+            photo:
+              user.photoURL || "",
+
+            lastLoginAt:
+              serverTimestamp()
+
+          },
+          {
+            merge: true
+          }
+        );
 
       }
 
-    });
+    }
 
-    onAuthStateChanged(auth, (user) => {
 
-      if (user) {
+    loginBtn.addEventListener(
+      "click",
+      async () => {
+
+        loginBtn.disabled = true;
 
         status.textContent =
-          "تم تسجيل الدخول بنجاح، جاري فتح المنصة...";
+          "جاري تسجيل الدخول...";
 
-        status.className = "status success";
+        status.className = "status";
 
-        setTimeout(() => {
-          window.location.href = "index.html";
-        }, 900);
+
+        try {
+
+          await signInWithPopup(
+            auth,
+            provider
+          );
+
+        } catch (error) {
+
+          console.error(error);
+
+          loginBtn.disabled = false;
+
+          status.textContent =
+            "تعذر تسجيل الدخول. حاولي مرة أخرى.";
+
+          status.className =
+            "status error";
+
+        }
 
       }
+    );
 
-    });
+
+    onAuthStateChanged(
+      auth,
+      async (user) => {
+
+        if (!user || processingUser) {
+          return;
+        }
+
+        processingUser = true;
+
+        loginBtn.disabled = true;
+
+        status.textContent =
+          "تم تسجيل الدخول، جاري تسجيل بياناتك...";
+
+        status.className =
+          "status success";
+
+
+        try {
+
+          await saveStudent(user);
+
+          status.textContent =
+            "تم تسجيل الدخول بنجاح، جاري فتح المنصة...";
+
+          setTimeout(() => {
+
+            window.location.href =
+              "index.html";
+
+          }, 800);
+
+
+        } catch (error) {
+
+          console.error(error);
+
+          processingUser = false;
+
+          loginBtn.disabled = false;
+
+          status.textContent =
+            "تم تسجيل الدخول، لكن تعذر حفظ بياناتك. حاولي مرة أخرى.";
+
+          status.className =
+            "status error";
+
+        }
+
+      }
+    );
 
   </script>
 
