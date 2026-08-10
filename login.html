@@ -70,10 +70,6 @@
       cursor: default;
     }
 
-    .google-btn:active {
-      transform: scale(.98);
-    }
-
     .status {
       margin-top: 18px;
       min-height: 28px;
@@ -126,6 +122,7 @@
 
   </div>
 
+
   <script type="module">
 
     import { initializeApp }
@@ -144,7 +141,9 @@
       doc,
       getDoc,
       setDoc,
-      serverTimestamp
+      updateDoc,
+      serverTimestamp,
+      deleteField
     }
       from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 
@@ -160,20 +159,15 @@
 
 
     const app = initializeApp(firebaseConfig);
-
     const auth = getAuth(app);
-
     const db = getFirestore(app);
-
     const provider = new GoogleAuthProvider();
-
 
     const loginBtn =
       document.getElementById("googleLogin");
 
     const status =
       document.getElementById("status");
-
 
     let processingUser = false;
 
@@ -191,41 +185,64 @@
 
         await setDoc(studentRef, {
 
-          uid: user.uid,
+          "معرف_المستخدم": user.uid,
 
-          name: user.displayName || "",
+          "الاسم": user.displayName || "",
 
-          email: user.email || "",
+          "البريد_الإلكتروني": user.email || "",
 
-          photo: user.photoURL || "",
+          "الصورة": user.photoURL || "",
 
-          className: "",
+          "الفصل": "",
 
-          firstLoginAt: serverTimestamp(),
+          "أول_دخول": serverTimestamp(),
 
-          lastLoginAt: serverTimestamp()
+          "آخر_دخول": serverTimestamp()
 
         });
 
       } else {
 
+        const oldData = studentSnap.data();
+
         await setDoc(
           studentRef,
           {
 
-            name: user.displayName || "",
+            "معرف_المستخدم": user.uid,
 
-            email: user.email || "",
+            "الاسم": user.displayName || "",
 
-            photo: user.photoURL || "",
+            "البريد_الإلكتروني": user.email || "",
 
-            lastLoginAt: serverTimestamp()
+            "الصورة": user.photoURL || "",
+
+            "الفصل":
+              oldData["الفصل"] ||
+              oldData.className ||
+              "",
+
+            "آخر_دخول":
+              serverTimestamp()
 
           },
           {
             merge: true
           }
         );
+
+
+        await updateDoc(studentRef, {
+
+          uid: deleteField(),
+          name: deleteField(),
+          email: deleteField(),
+          photo: deleteField(),
+          className: deleteField(),
+          firstLoginAt: deleteField(),
+          lastLoginAt: deleteField()
+
+        });
 
       }
 
@@ -284,7 +301,7 @@
         loginBtn.disabled = true;
 
         status.textContent =
-          "تم تسجيل الدخول، جاري تسجيل بياناتك...";
+          "تم تسجيل الدخول، جاري حفظ بياناتك...";
 
         status.className =
           "status success";
@@ -328,5 +345,4 @@
   </script>
 
 </body>
-
 </html>
