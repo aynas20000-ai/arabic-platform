@@ -79,6 +79,7 @@
       min-height: 28px;
       font-size: 15px;
       line-height: 1.8;
+      word-break: break-word;
     }
 
     .success {
@@ -192,22 +193,17 @@
 
           uid: user.uid,
 
-          name:
-            user.displayName || "",
+          name: user.displayName || "",
 
-          email:
-            user.email || "",
+          email: user.email || "",
 
-          photo:
-            user.photoURL || "",
+          photo: user.photoURL || "",
 
           className: "",
 
-          firstLoginAt:
-            serverTimestamp(),
+          firstLoginAt: serverTimestamp(),
 
-          lastLoginAt:
-            serverTimestamp()
+          lastLoginAt: serverTimestamp()
 
         });
 
@@ -217,17 +213,13 @@
           studentRef,
           {
 
-            name:
-              user.displayName || "",
+            name: user.displayName || "",
 
-            email:
-              user.email || "",
+            email: user.email || "",
 
-            photo:
-              user.photoURL || "",
+            photo: user.photoURL || "",
 
-            lastLoginAt:
-              serverTimestamp()
+            lastLoginAt: serverTimestamp()
 
           },
           {
@@ -249,7 +241,8 @@
         status.textContent =
           "جاري تسجيل الدخول...";
 
-        status.className = "status";
+        status.className =
+          "status";
 
 
         try {
@@ -266,7 +259,8 @@
           loginBtn.disabled = false;
 
           status.textContent =
-            "تعذر تسجيل الدخول. حاولي مرة أخرى.";
+            "خطأ تسجيل الدخول: " +
+            (error.code || "غير معروف");
 
           status.className =
             "status error";
@@ -320,7 +314,8 @@
           loginBtn.disabled = false;
 
           status.textContent =
-            "تم تسجيل الدخول، لكن تعذر حفظ بياناتك. حاولي مرة أخرى.";
+            "خطأ حفظ البيانات: " +
+            (error.code || "غير معروف");
 
           status.className =
             "status error";
