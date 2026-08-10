@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>استعدادك الذكي | اسم الآلة</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --purple: #776094;
+      --dark-purple: #5b4677;
+      --gold: #c9a85c;
+      --cream: #fffaf2;
+      --light-purple: #f3eafa;
+      --text: #4b3a57;
+      --green: #5f846b;
+      --pink: #fff0f5;
+      --yellow: #fff8d9;
+      --blue: #eef7ff;
+    }
+
+    html,
+    body {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Tahoma, Arial, sans-serif;
+      color: var(--text);
+      line-height: 1.9;
+      background: linear-gradient(180deg, #fffaf2, #f8f0fb);
+    }
+
+    .page {
+      width: 92%;
+      max-width: 1050px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      margin: 25px auto;
+      padding: 30px 20px;
+      text-align: center;
+      color: white;
+      background: linear-gradient(135deg, #776094, #5b4677);
+      border: 3px solid #c9a85c;
+      border-radius: 24px;
+      box-shadow: 0 10px 25px rgba(91, 70, 119, .18);
+    }
+
+    .badge {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 8px 18px;
+      color: #5a3f72;
+      font-weight: bold;
+      background: linear-gradient(135deg, #fff7cf, #fffdf8);
+      border: 2px solid #c9a85c;
+      border-radius: 30px;
+    }
+
+    .hero h1 {
+      margin: 5px 0;
+      font-size: 34px;
+    }
+
+    .hero p {
+      max-width: 800px;
+      margin: 7px auto 0;
+      color: #fffaf2;
+      font-size: 18px;
+    }
+
+    .confidence {
+      margin: 20px 0;
+      padding: 18px;
+      text-align: center;
+      color: #5a3f72;
+      font-size: 19px;
+      font-weight: bold;
+      background: #fffdf8;
+      border-right: 6px solid #c9a85c;
+      border-radius: 15px;
+      box-shadow: 0 5px 14px rgba(91, 70, 119, .07);
+    }
+
+    .section {
+      margin: 24px 0;
+      padding: 22px;
+      background: #fffdf8;
+      border: 2px solid #e4d2a2;
+      border-radius: 20px;
+      box-shadow: 0 6px 16px rgba(91, 70, 119, .08);
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #5b4677;
+      font-size: 25px;
+    }
+
+    h3 {
+      margin-top: 0;
+      color: #6f5288;
+    }
+
+    .smart-box {
+      position: relative;
+      overflow: hidden;
+      color: #5a3f72;
+      background: linear-gradient(135deg,#fff7cf,#f2e7fb,#fffdf8);
+      border: 2px solid #c9a85c;
+      border-radius: 18px;
+      box-shadow:
+        0 8px 22px rgba(201,168,92,.22),
+        0 0 18px rgba(119,96,148,.12);
+    }
+
+    .smart-box::before {
+      content: "";
+      position: absolute;
+      top: -35px;
+      left: -35px;
+      width: 95px;
+      height: 95px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.55);
+    }
+
+    .study-map {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .step {
+      padding: 15px 8px;
+      text-align: center;
+      font-weight: bold;
+      background: #f5ecfb;
+      border: 1px solid #d8c4e5;
+      border-radius: 14px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .card {
+      padding: 18px;
+      background: white;
+      border: 2px solid #e1d1aa;
+      border-radius: 17px;
+    }
+
+    .card strong {
+      color: #5b4677;
+    }
+
+    .rule {
+      background: #f5ecfb;
+    }
+
+    .warning {
+      background: #fff0f5;
+      border-color: #dfa8b9;
+    }
+
+    .success {
+      background: #eef8ef;
+      border-color: #a9c8ad;
+    }
+
+    .blue {
+      background: #eef7ff;
+    }
+
+    .yellow {
+      background: #fff8d9;
+    }
+
+    .formula {
+      margin: 12px 0;
+      padding: 14px;
+      text-align: center;
+      color: #5b4677;
+      font-size: 20px;
+      font-weight: bold;
+      background: white;
+      border: 2px dashed #c9a85c;
+      border-radius: 14px;
+    }
+
+    .golden {
+      margin: 14px 0;
+      padding: 20px;
+      text-align: center;
+      color: #5a3f72;
+      font-size: 20px;
+      font-weight: bold;
+      background: linear-gradient(135deg,#fff7cf,#f2e7fb,#fffdf8);
+      border: 2px solid #c9a85c;
+      border-radius: 18px;
+    }
+
+    .word {
+      color: #8a3f68;
+      font-weight: bold;
+    }
+
+    .key {
+      color: #4f765b;
+      font-weight: bold;
+    }
+
+    table {
+      width: 100%;
+      margin-top: 15px;
+      border-collapse: collapse;
+      background: white;
+    }
+
+    th,
+    td {
+      padding: 12px 8px;
+      text-align: center;
+      border: 1px solid #d9cba9;
+    }
+
+    th {
+      color: white;
+      background: #6f5288;
+    }
+
+    .worksheet {
+      margin-top: 28px;
+      padding: 24px;
+      background: white;
+      border: 3px solid #c9a85c;
+      border-radius: 22px;
+    }
+
+    .worksheet h2 {
+      text-align: center;
+    }
+
+    .questions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .question {
+      padding: 16px;
+      background: #fffdf8;
+      border: 1px solid #dccca7;
+      border-radius: 14px;
+    }
+
+    .line {
+      display: block;
+      height: 25px;
+      margin-top: 12px;
+      border-bottom: 1px dashed #9b8ba5;
+    }
+
+    .self-check {
+      margin: 25px 0;
+      padding: 20px;
+      background: #eef8ef;
+      border: 2px solid #a6c8ac;
+      border-radius: 18px;
+    }
+
+    .actions {
+      margin: 25px 0;
+      text-align: center;
+    }
+
+    button,
+    .back {
+      display: inline-block;
+      margin: 6px;
+      padding: 12px 22px;
+      color: white;
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+      background: #6f5288;
+      border: 2px solid #c9a85c;
+      border-radius: 25px;
+    }
+
+    footer {
+      margin-top: 35px;
+      padding: 20px;
+      text-align: center;
+      color: white;
+      background: #49385c;
+      border-top: 3px solid #c9a85c;
+    }
+
+    @media (max-width: 700px) {
+      .hero h1 {
+        font-size: 27px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .study-map {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .grid,
+      .grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 9px;
+      }
+
+      .card {
+        padding: 13px;
+        font-size: 14px;
+      }
+
+      .section,
+      .worksheet {
+        padding: 17px;
+      }
+
+      h2 {
+        font-size: 21px;
+      }
+
+      .questions {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media print {
+      body {
+        background: white;
+      }
+
+      .hero,
+      .confidence,
+      .study-section,
+      .actions,
+      footer {
+        display: none !important;
+      }
+
+      .page {
+        width: 100%;
+        max-width: none;
+      }
+
+      .worksheet {
+        border: none;
+        box-shadow: none;
+      }
+
+      .questions {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page">
+        <div class="hero">
+
+      <div class="badge">
+        ✨ استعدادك الذكي للاختبار المركزي
+      </div>
+
+      <h1>اسم الآلة</h1>
+
+      <p>
+        لا تحفظي الأوزان وحدها؛
+        ابدئي من معنى الكلمة، ثم حددي هل هي مشتقة أم جامدة،
+        وبعدها اربطي المشتق بفعله ووزنه.
+      </p>
+
+    </div>
+
+
+    <div class="confidence">
+      القاعدة التي تسهّل عليك الدرس:
+      <br>
+      🌟 هل تدل الكلمة على أداة؟
+      <br>
+      🌟 هل اشتُقت من فعل؟
+      <br>
+      🌟 إن كانت مشتقة: ما فعلها؟ وما وزنها؟
+    </div>
+
+
+    <div class="section study-section">
+
+      <h2>🧠 كيف تذاكرين اسم الآلة عن فهم؟</h2>
+
+      <div class="study-map">
+
+        <div class="step">
+          1️⃣ أحدد معنى الكلمة
+        </div>
+
+        <div class="step">
+          2️⃣ أتأكد أنها أداة
+        </div>
+
+        <div class="step">
+          3️⃣ أحدد مشتق أم جامد
+        </div>
+
+        <div class="step">
+          4️⃣ أرد المشتق إلى فعله
+        </div>
+
+        <div class="step">
+          5️⃣ أزن الكلمة
+        </div>
+
+      </div>
+
+      <div class="golden">
+        أداة ← مشتق أم جامد؟ ← الفعل ← الوزن
+      </div>
+
+    </div>
+
+
+    <div class="section study-section">
+
+      <h2>📌 أولًا: ما اسم الآلة؟</h2>
+
+      <div class="card rule">
+
+        <strong>اسم الآلة:</strong>
+        اسم يدل على
+        <strong>الأداة التي يكون بها الفعل.</strong>
+
+        <div class="formula">
+          فَتَحَ بالمِفْتَاح
+        </div>
+
+        كلمة:
+
+        <strong class="word">مِفْتَاح</strong>
+
+        اسم آلة؛ لأنها تدل على الأداة التي يتم بها الفتح.
+
+      </div>
+
+      <div class="grid">
+
+        <div class="card blue">
+
+          <strong>مِجْهَر</strong>
+
+          <br><br>
+
+          أداة يُجهر أو يُكبَّر بها ما يُرى.
+
+          <div class="formula">
+            جَهَرَ ← مِجْهَر
+          </div>
+
+        </div>
+
+        <div class="card yellow">
+
+          <strong>مِطْرَقَة</strong>
+
+          <br><br>
+
+          أداة يُطرق بها.
+
+          <div class="formula">
+            طَرَقَ ← مِطْرَقَة
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="section study-section">
+
+      <h2>🔍 ثانيًا: مشتق أم جامد؟</h2>
+
+      <div class="grid">
+
+        <div class="card success">
+
+          <h3>✅ اسم آلة مشتق</h3>
+
+          هو اسم آلة
+          <strong>أُخذ من فعل.</strong>
+
+          <div class="formula">
+            فَتَحَ ← مِفْتَاح
+          </div>
+
+          إذن:
+
+          <strong>
+            مِفْتَاح اسم آلة مشتق؛
+            لأنه اشتق من الفعل فَتَحَ.
+          </strong>
+
+        </div>
+
+
+        <div class="card warning">
+
+          <h3>⚠️ اسم آلة جامد</h3>
+
+          اسم آلة
+          <strong>لم يؤخذ من فعل.</strong>
+
+          <div class="formula">
+            فَأْس
+          </div>
+
+          إذن:
+
+          <strong>
+            فَأْس اسم آلة جامد؛
+            لأنه لم يشتق من فعل.
+          </strong>
+
+        </div>
+
+      </div>
+
+      <div class="smart-box"
+           style="padding:20px; margin-top:18px; text-align:center;">
+
+        <strong>
+          لا تحكمي من شكل الكلمة وحده.
+        </strong>
+
+        <br><br>
+
+        اسألي:
+
+        <strong>
+          هل يوجد فعل أُخذ منه اسم الآلة؟
+        </strong>
+
+        <br><br>
+
+        نعم ← مشتق
+        <br>
+        لا ← جامد
+
+      </div>
+
+    </div>
+
+
+    <div class="section study-section">
+
+      <h2>⚖️ ثالثًا: الأوزان المشهورة لاسم الآلة المشتق</h2>
+
+      <div class="grid-3">
+
+        <div class="card">
+
+          <h3>مِفْعَل</h3>
+
+          <div class="formula">
+            مِجْهَر
+          </div>
+
+          الفعل:
+
+          <strong>جَهَرَ</strong>
+
+        </div>
+
+
+        <div class="card">
+
+          <h3>مِفْعَال</h3>
+
+          <div class="formula">
+            مِفْتَاح
+          </div>
+
+          الفعل:
+
+          <strong>فَتَحَ</strong>
+
+        </div>
+
+
+        <div class="card">
+
+          <h3>مِفْعَلَة</h3>
+
+          <div class="formula">
+            مِطْرَقَة
+          </div>
+
+          الفعل:
+
+          <strong>طَرَقَ</strong>
+
+        </div>
+
+      </div>
+
+      <div class="golden">
+        مِفْعَل
+        ـ
+        مِفْعَال
+        ـ
+        مِفْعَلَة
+        <br>
+        أشهر الأوزان التي يركز عليها الدرس
+      </div>
+
+    </div>
+
+
+    <div class="section study-section">
+
+      <h2>✍️ كيف أزن اسم الآلة؟</h2>
+
+      <div class="card rule">
+
+        قارني حروف الكلمة بحروف الميزان:
+
+        <div class="formula">
+          ف ـ ع ـ ل
+        </div>
+
+        ثم حافظي على الحروف الزائدة في مواضعها.
+
+      </div>
+
+      <div class="grid">
+
+        <div class="card">
+
+          <strong>مِفْتَاح</strong>
+
+          <div class="formula">
+            مِفْتَاح ← مِفْعَال
+          </div>
+
+        </div>
+
+
+        <div class="card">
+
+          <strong>مِطْرَقَة</strong>
+
+          <div class="formula">
+            مِطْرَقَة ← مِفْعَلَة
+          </div>
+
+        </div>
+
+
+        <div class="card">
+
+          <strong>مِجْهَر</strong>
+
+          <div class="formula">
+            مِجْهَر ← مِفْعَل
+          </div>
+
+        </div>
+
+
+        <div class="card">
+
+          <strong>مِبْرَد</strong>
+
+          <div class="formula">
+            مِبْرَد ← مِفْعَل
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="section study-section">
+
+      <h2>🛠️ كيف أصوغ اسم آلة؟</h2>
+
+      <div class="card rule">
+
+        إذا أعطاك السؤال فعلًا،
+        فالمطلوب أن تصوغي منه اسم آلة مناسبًا.
+
+        <br><br>
+
+        الفكرة:
+
+        <div class="formula">
+          الفعل ← أداة يحدث بها الفعل ← اسم الآلة
+        </div>
+
+      </div>
+
+      <div class="grid">
+
+        <div class="card">
+
+          الفعل:
+
+          <strong>فَتَحَ</strong>
+
+          <div class="formula">
+            فَتَحَ ← مِفْتَاح
+          </div>
+
+        </div>
+
+
+        <div class="card">
+
+          الفعل:
+
+          <strong>طَرَقَ</strong>
+
+          <div class="formula">
+            طَرَقَ ← مِطْرَقَة
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="warning card" style="margin-top:15px;">
+
+        لا يكفي أن تأتي بكلمة تدل على أداة.
+
+        <br><br>
+
+        إذا طلب السؤال:
+
+        <strong>«صوغي اسم آلة من الفعل»</strong>
+
+        <br>
+
+        فلابد أن يكون الاسم مرتبطًا بالفعل المعطى.
+
+      </div>
+
+    </div>
+
+
+    <div class="section study-section">
+
+      <h2>💡 كيف أذكر السبب؟</h2>
+
+      <div class="grid">
+
+        <div class="card success">
+
+          إذا كان الاسم مشتقًا، فقولي:
+
+          <div class="formula">
+            اسم آلة مشتق؛
+            لأنه اشتق من الفعل ........
+          </div>
+
+          مثال:
+
+          <strong>
+            مِفْتَاح اسم آلة مشتق؛
+            لأنه اشتق من الفعل فَتَحَ.
+          </strong>
+
+        </div>
+
+
+        <div class="card warning">
+
+          إذا كان الاسم جامدًا، فقولي:
+
+          <div class="formula">
+            اسم آلة جامد؛
+            لأنه لم يشتق من فعل.
+          </div>
+
+          مثال:
+
+          <strong>
+            فَأْس اسم آلة جامد؛
+            لأنه لم يشتق من فعل.
+          </strong>
+
+        </div>
+
+      </div>
+
+    </div>
+        <div class="section study-section">
+
+      <h2>🧩 كيف أُمثّل لاسم الآلة؟</h2>
+
+      <div class="card rule">
+
+        إذا قال السؤال:
+
+        <strong>«مثّلي لاسم آلة مشتق»</strong>
+
+        فاختاري اسمًا يدل على أداة
+        وله فعل اشتق منه.
+
+        <div class="formula">
+          مِفْتَاح ← فَتَحَ
+        </div>
+
+      </div>
+
+      <div class="grid">
+
+        <div class="card success">
+
+          <strong>مثال صحيح لاسم آلة مشتق:</strong>
+
+          <div class="formula">
+            مِطْرَقَة
+          </div>
+
+          لأنها مشتقة من:
+
+          <strong>طَرَقَ</strong>
+
+        </div>
+
+
+        <div class="card warning">
+
+          <strong>مثال لاسم آلة جامد:</strong>
+
+          <div class="formula">
+            فَأْس
+          </div>
+
+          لأنه لم يشتق من فعل.
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="section study-section">
+
+      <h2>🎯 كيف يمكن أن يأتي السؤال؟</h2>
+
+      <div class="grid-3">
+
+        <div class="card">
+          <strong>أُمثّل</strong>
+          <br>
+          لاسم آلة مشتق أو جامد.
+        </div>
+
+        <div class="card">
+          <strong>أصوغ</strong>
+          <br>
+          اسم آلة من فعل معطى.
+        </div>
+
+        <div class="card">
+          <strong>أَزِن</strong>
+          <br>
+          اسم الآلة.
+        </div>
+
+        <div class="card">
+          <strong>أذكر النوع</strong>
+          <br>
+          مشتق أم جامد؟
+        </div>
+
+        <div class="card">
+          <strong>أختار</strong>
+          <br>
+          الإجابة الصحيحة من بين البدائل.
+        </div>
+
+        <div class="card">
+          <strong>أذكر السبب</strong>
+          <br>
+          لماذا هو مشتق أو جامد؟
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="section study-section">
+
+      <h2>🚨 فخاخ واضع السؤال</h2>
+
+      <div class="grid">
+
+        <div class="card warning">
+
+          <strong>الفخ الأول:</strong>
+
+          <br>
+
+          كل كلمة تدل على أداة أعدها مشتقة.
+
+          <br><br>
+
+          الصحيح:
+
+          <strong>
+            قد يكون اسم الآلة مشتقًا، وقد يكون جامدًا.
+          </strong>
+
+        </div>
+
+
+        <div class="card warning">
+
+          <strong>الفخ الثاني:</strong>
+
+          <br>
+
+          أحكم على الاشتقاق من الوزن فقط.
+
+          <br><br>
+
+          الصحيح:
+
+          <strong>
+            أبحث أولًا عن الفعل الذي اشتقت منه الكلمة.
+          </strong>
+
+        </div>
+
+
+        <div class="card warning">
+
+          <strong>الفخ الثالث:</strong>
+
+          <br>
+
+          أخلط بين اسم الآلة واسم الفاعل.
+
+          <br><br>
+
+          الصحيح:
+
+          <strong>
+            اسم الآلة يدل على الأداة التي يتم بها الفعل.
+          </strong>
+
+        </div>
+
+
+        <div class="card warning">
+
+          <strong>الفخ الرابع:</strong>
+
+          <br>
+
+          أحفظ مِفْعَل ومِفْعَال ومِفْعَلَة فقط،
+          وأظن أن كل اسم آلة لا بد أن يأتي عليها.
+
+          <br><br>
+
+          الصحيح:
+
+          <strong>
+            هذه أوزان مشهورة، لكن توجد أسماء آلة على أوزان أخرى،
+            ويوجد منها الجامد أيضًا.
+          </strong>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="section study-section">
+
+      <h2>🧠 فكّري مثل واضع السؤال</h2>
+
+      <div class="smart-box" style="padding:22px;">
+
+        قد يعطيك كلمة مثل:
+
+        <div class="formula">
+          حاسوب
+        </div>
+
+        ثم يسألك:
+
+        <strong>
+          هل هي اسم آلة؟
+          وهل هي مشتقة أم جامدة؟
+          وما السبب؟
+        </strong>
+
+        <br><br>
+
+        لا تقولي:
+        «ليست على مِفْعَل أو مِفْعَال أو مِفْعَلَة، إذن ليست مشتقة».
+
+        <br><br>
+
+        بل ابحثي عن أصلها:
+
+        <div class="formula">
+          حَسَبَ ← حاسوب
+        </div>
+
+        ولذلك تُعد اسم آلة مشتقًا.
+
+      </div>
+
+      <div class="golden">
+        الوزن يساعدني،
+        <br>
+        لكن وجود الفعل هو المفتاح في الحكم على الاشتقاق.
+      </div>
+
+    </div>
+
+
+    <div class="section study-section">
+
+      <h2>🔄 استرجاع ذكي قبل التدريب</h2>
+
+      <div class="card success">
+
+        أغلقي القاعدة وحاولي الإجابة من ذاكرتك:
+
+        <br>
+        ✓ ما تعريف اسم الآلة؟
+        <br>
+        ✓ ما الفرق بين المشتق والجامد؟
+        <br>
+        ✓ ما الأوزان الثلاثة المشهورة؟
+        <br>
+        ✓ كيف أزن مِفْتَاح؟
+        <br>
+        ✓ كيف أصوغ اسم آلة من فعل؟
+        <br>
+        ✓ كيف أذكر سبب كونه مشتقًا أو جامدًا؟
+
+      </div>
+
+    </div>
+
+
+    <div class="worksheet">
+
+      <h2>📝 ورقة تدريب | اسم الآلة</h2>
+
+      <div class="questions">
+
+        <div class="question">
+          <strong>1.</strong>
+          استخرجي اسم الآلة من الجملة:
+          <br>
+          شاهدتُ الخلايا بالمِجْهَر.
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>2.</strong>
+          مثّلي لاسم آلة مشتق.
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>3.</strong>
+          مثّلي لاسم آلة جامد.
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>4.</strong>
+          صوغي اسم آلة من الفعل:
+          <br>
+          فَتَحَ
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>5.</strong>
+          صوغي اسم آلة من الفعل:
+          <br>
+          طَرَقَ
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>6.</strong>
+          زِني الكلمة:
+          <br>
+          مِفْتَاح
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>7.</strong>
+          زِني الكلمة:
+          <br>
+          مِطْرَقَة
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>8.</strong>
+          زِني الكلمة:
+          <br>
+          مِجْهَر
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>9.</strong>
+          حددي نوع كلمة:
+          <br>
+          مِفْتَاح
+          <br>
+          مشتق أم جامد؟
+          <span class="line"></span>
+        </div>
+                <div class="question">
+          <strong>10.</strong>
+          حددي نوع الكلمة:
+          <br>
+          فَأْس
+          <br>
+          مشتق أم جامد؟
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>11.</strong>
+          اذكري السبب:
+          <br>
+          لماذا تُعد كلمة «مِفْتَاح» اسم آلة مشتقًا؟
+          <span class="line"></span>
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>12.</strong>
+          اذكري السبب:
+          <br>
+          لماذا تُعد كلمة «فَأْس» اسم آلة جامدًا؟
+          <span class="line"></span>
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>13.</strong>
+          اختاري الإجابة الصحيحة:
+          <br>
+          الوزن الصرفي لكلمة «مِفْتَاح» هو:
+          <br>
+          أ- مِفْعَل
+          <br>
+          ب- مِفْعَال
+          <br>
+          ج- مِفْعَلَة
+          <br>
+          د- فَعَّال
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>14.</strong>
+          اختاري الإجابة الصحيحة:
+          <br>
+          اسم الآلة المشتق من الفعل «طَرَقَ» هو:
+          <br>
+          أ- طَرْق
+          <br>
+          ب- مِطْرَقَة
+          <br>
+          ج- طارق
+          <br>
+          د- مطروق
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>15.</strong>
+          اختاري الكلمة المختلفة من حيث النوع:
+          <br>
+          مِفْتَاح ـ مِجْهَر ـ فَأْس ـ مِطْرَقَة
+          <br><br>
+          ثم اذكري السبب.
+          <span class="line"></span>
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>16.</strong>
+          تأملي كلمة:
+          <br>
+          حاسوب
+          <br><br>
+          هل هي اسم آلة مشتق أم جامد؟
+          <br>
+          اذكري السبب.
+          <span class="line"></span>
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>17.</strong>
+          مثّلي في جملة مفيدة لاسم آلة مشتق،
+          ثم اكتبي الفعل الذي اشتق منه.
+          <span class="line"></span>
+          <span class="line"></span>
+        </div>
+
+        <div class="question">
+          <strong>18.</strong>
+          طبقي خطة الحل كاملة على كلمة:
+          <br>
+          مِطْرَقَة
+          <br><br>
+          اكتبي:
+          <br>
+          هل تدل على آلة؟ ← مشتق أم جامد؟ ← الفعل ← الوزن ← السبب.
+          <span class="line"></span>
+          <span class="line"></span>
+          <span class="line"></span>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="self-check">
+
+      <h2>✅ تحققي من استعدادك</h2>
+
+      هل أستطيع الآن أن:
+
+      <br>
+      ✓ أتعرف اسم الآلة في الجملة؟
+      <br>
+      ✓ أُمثّل لاسم آلة مشتق؟
+      <br>
+      ✓ أُمثّل لاسم آلة جامد؟
+      <br>
+      ✓ أصوغ اسم آلة من فعل معطى؟
+      <br>
+      ✓ أزن اسم الآلة؟
+      <br>
+      ✓ أميز بين مِفْعَل ومِفْعَال ومِفْعَلَة؟
+      <br>
+      ✓ أحدد هل الاسم مشتق أم جامد؟
+      <br>
+      ✓ أذكر السبب الذي بنيت عليه حكمي؟
+      <br>
+      ✓ أتعامل مع سؤال الاختيار دون الاعتماد على شكل الكلمة وحده؟
+
+    </div>
+
+
+    <div class="smart-box"
+         style="padding:22px; margin:25px 0; text-align:center; font-size:19px;">
+
+      <strong>✨ الخلاصة التي لا تنسينها</strong>
+
+      <br><br>
+
+      اسم الآلة يدل على
+      <strong>الأداة التي يتم بها الفعل.</strong>
+
+      <br><br>
+
+      ثم أسأل:
+
+      <div class="formula">
+        هل اشتُق من فعل؟
+      </div>
+
+      نعم ← <strong>مشتق</strong>
+      <br>
+      لا ← <strong>جامد</strong>
+
+      <br><br>
+
+      وإذا كان مشتقًا:
+
+      <div class="formula">
+        أرده إلى فعله ← ثم أزنه
+      </div>
+
+    </div>
+
+
+    <div class="actions">
+
+      <button onclick="window.print()">
+        🖨️ طباعة ورقة التدريب
+      </button>
+
+      <a class="back" href="linguistic-term2.html">
+        العودة إلى الصنف اللغوي
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <footer>
+    منصة آفاق اللغة | لغتي الخالدة | الصف الثالث المتوسط
+  </footer>
+
+</body>
+
+</html>
