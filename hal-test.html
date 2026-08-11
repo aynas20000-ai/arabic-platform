@@ -223,6 +223,30 @@ h2{
  font-weight:bold;
 }
 
+.save-status{
+ min-height:26px;
+ margin:4px 0 2px;
+ padding:5px 8px;
+ border-radius:11px;
+ font-size:12px;
+ font-weight:bold;
+}
+
+.save-status.saved{
+ color:#2e6f42;
+ background:#edf8f0;
+}
+
+.save-status.waiting{
+ color:#66522e;
+ background:#fff8e8;
+}
+
+.save-status.error{
+ color:#8a3d3d;
+ background:#fff0f0;
+}
+
 .restart,
 .lesson{
  display:block;
@@ -418,6 +442,11 @@ footer{
 
   <p id="message"></p>
 
+  <div
+   class="save-status"
+   id="saveStatus">
+  </div>
+
   <button class="restart" onclick="restartQuiz()">
    🔄 أعيدي التحدي
   </button>
@@ -446,7 +475,49 @@ footer{
 
 <div class="burst" id="burst"></div>
 
-<script>
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+
+import {
+ getAuth,
+ onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+import {
+ getFirestore,
+ doc,
+ getDoc,
+ updateDoc,
+ FieldPath,
+ serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+
+const firebaseConfig = {
+ apiKey: "AIzaSyB48av9gx4jzFyYoUQtcLwaR52qETevKGs",
+ authDomain: "afaq-language-platform.firebaseapp.com",
+ projectId: "afaq-language-platform",
+ storageBucket: "afaq-language-platform.firebasestorage.app",
+ messagingSenderId: "362601061474",
+ appId: "1:362601061474:web:bc405291332b9e4ef9453b"
+};
+
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+let currentUser = null;
+
+onAuthStateChanged(auth,(user)=>{
+ currentUser = user;
+});
+
 
 const questions = [
 
@@ -642,15 +713,18 @@ const questions = [
 
 ];
 
+
 let index = 0;
 let score = 0;
 let answered = false;
+
 
 const arabicDigits = n =>
  String(n).replace(
   /\d/g,
   d => '٠١٢٣٤٥٦٧٨٩'[d]
  );
+
 
 function tone(ok){
 
@@ -716,6 +790,7 @@ function tone(ok){
 
 }
 
+
 function confetti(){
 
  const burst =
@@ -761,6 +836,7 @@ function confetti(){
  );
 
 }
+
 
 function render(){
 
@@ -847,6 +923,7 @@ function render(){
  });
 
 }
+
 
 function choose(choice,button){
 
@@ -940,6 +1017,7 @@ function choose(choice,button){
 
 }
 
+
 document
  .getElementById('next')
  .onclick = () => {
@@ -957,6 +1035,158 @@ document
   }
 
  };
+
+
+async function saveResult(){
+
+ const saveStatus =
+  document.getElementById('saveStatus');
+
+ if(!currentUser){
+
+  saveStatus.className =
+   'save-status waiting';
+
+  saveStatus.textContent =
+   'ℹ️ النتيجة لم تُحفظ؛ يلزم تسجيل الدخول للرصد.';
+
+  return;
+
+ }
+
+
+ saveStatus.className =
+  'save-status waiting';
+
+ saveStatus.textContent =
+  'جاري حفظ نتيجتك في سجلّك...';
+
+
+ try{
+
+  const studentRef =
+   doc(
+    db,
+    "students",
+    currentUser.uid
+   );
+
+  const studentSnap =
+   await getDoc(studentRef);
+
+
+  if(!studentSnap.exists()){
+
+   throw new Error(
+    "student-document-not-found"
+   );
+
+  }
+
+
+  const data =
+   studentSnap.data();
+
+  const oldTest =
+   data?.["اختبارات_الفصل_الأول"]?.["الحال"] || {};
+
+  const oldAttempts =
+   Number(
+    oldTest["عدد_المحاولات"] || 0
+   );
+
+  const oldBest =
+   Number(
+    oldTest["أعلى_درجة"] || 0
+   );
+
+  const percentage =
+   Math.round(
+    (score / questions.length) * 100
+   );
+
+  const bestScore =
+   Math.max(
+    oldBest,
+    score
+   );
+
+
+  await updateDoc(
+   studentRef,
+
+   new FieldPath(
+    "اختبارات_الفصل_الأول",
+    "الحال",
+    "اسم_الاختبار"
+   ),
+   "تحدي الحال",
+
+   new FieldPath(
+    "اختبارات_الفصل_الأول",
+    "الحال",
+    "الدرجة"
+   ),
+   score,
+
+   new FieldPath(
+    "اختبارات_الفصل_الأول",
+    "الحال",
+    "الدرجة_من"
+   ),
+   questions.length,
+
+   new FieldPath(
+    "اختبارات_الفصل_الأول",
+    "الحال",
+    "النسبة"
+   ),
+   percentage,
+
+   new FieldPath(
+    "اختبارات_الفصل_الأول",
+    "الحال",
+    "عدد_المحاولات"
+   ),
+   oldAttempts + 1,
+
+   new FieldPath(
+    "اختبارات_الفصل_الأول",
+    "الحال",
+    "أعلى_درجة"
+   ),
+   bestScore,
+
+   new FieldPath(
+    "اختبارات_الفصل_الأول",
+    "الحال",
+    "آخر_محاولة"
+   ),
+   serverTimestamp()
+  );
+
+
+  saveStatus.className =
+   'save-status saved';
+
+  saveStatus.textContent =
+   '✅ تم حفظ نتيجتك في سجل الفصل الدراسي الأول.';
+
+
+ }catch(error){
+
+  console.error(error);
+
+  saveStatus.className =
+   'save-status error';
+
+  saveStatus.textContent =
+   'تعذر حفظ النتيجة، لكن نتيجتك في الاختبار لم تتأثر.';
+
+ }
+
+}
+
 
 function finish(){
 
@@ -1017,9 +1247,12 @@ function finish(){
   confetti();
  }
 
+ saveResult();
+
 }
 
-function restartQuiz(){
+
+window.restartQuiz = function(){
 
  index = 0;
  score = 0;
@@ -1045,9 +1278,15 @@ function restartQuiz(){
   .classList
   .remove('show');
 
+ document
+  .getElementById('saveStatus')
+  .textContent =
+  '';
+
  render();
 
-}
+};
+
 
 render();
 
