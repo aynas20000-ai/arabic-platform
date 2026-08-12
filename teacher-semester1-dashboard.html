@@ -9,9 +9,10 @@
     content="width=device-width, initial-scale=1.0"
   >
 
-  <title>لوحة المعلمة | الفصل الدراسي الأول</title>
+  <title>لوحة المعلمة | منصة آفاق</title>
 
   <style>
+
     :root{
       --purple:#5b4677;
       --purple-light:#776094;
@@ -24,6 +25,8 @@
       --green-bg:#eaf7ef;
       --red:#96394a;
       --red-bg:#fff0f2;
+      --yellow:#8b6a18;
+      --yellow-bg:#fff7df;
     }
 
     *{
@@ -38,8 +41,13 @@
     }
 
     body{
-      font-family:Tahoma,Arial,sans-serif;
+      font-family:
+        Tahoma,
+        Arial,
+        sans-serif;
+
       color:var(--text);
+
       background:
         linear-gradient(
           145deg,
@@ -49,41 +57,51 @@
     }
 
     header{
-      padding:28px 16px 24px;
+      padding:
+        28px 16px 24px;
+
       text-align:center;
       color:white;
 
       background:
         linear-gradient(
           135deg,
-          #776094,
-          #5b4677
+          var(--purple-light),
+          var(--purple)
         );
 
-      border-bottom:4px solid var(--gold);
+      border-bottom:
+        4px solid var(--gold);
     }
 
     header .badge{
       display:inline-block;
+
       margin-bottom:8px;
       padding:5px 14px;
 
       color:#fff4ce;
+
       font-size:12px;
       font-weight:bold;
 
-      border:1px solid rgba(255,255,255,.45);
+      border:
+        1px solid
+        rgba(255,255,255,.45);
+
       border-radius:999px;
 
-      background:rgba(255,255,255,.1);
+      background:
+        rgba(255,255,255,.1);
     }
 
     header h1{
-      margin:0 0 6px;
+      margin:
+        0 0 6px;
 
       font-size:
         clamp(
-          24px,
+          25px,
           6vw,
           38px
         );
@@ -92,19 +110,26 @@
     }
 
     header p{
-      margin:0;
+      max-width:700px;
+
+      margin:
+        0 auto;
+
       color:#f4edf8;
+
       font-size:14px;
       line-height:1.8;
     }
 
     .container{
-      width:min(
-        1180px,
-        calc(100% - 24px)
-      );
+      width:
+        min(
+          1180px,
+          calc(100% - 24px)
+        );
 
-      margin:22px auto 45px;
+      margin:
+        22px auto 45px;
     }
 
     .status-box{
@@ -112,12 +137,14 @@
       padding:14px;
 
       text-align:center;
+
       font-size:14px;
       font-weight:bold;
       line-height:1.8;
 
       border-radius:16px;
-      border:1px solid #dec98d;
+      border:
+        1px solid #dec98d;
 
       background:#fffdf8;
     }
@@ -137,9 +164,67 @@
       background:#edf8f1;
     }
 
+    .tabs{
+      display:grid;
+
+      grid-template-columns:
+        repeat(
+          3,
+          minmax(0,1fr)
+        );
+
+      gap:9px;
+
+      margin-bottom:18px;
+
+      padding:8px;
+
+      border:
+        2px solid #dec98d;
+
+      border-radius:20px;
+
+      background:#fffdf8;
+    }
+
+    .tab-button{
+      min-height:58px;
+
+      padding:10px 8px;
+
+      border:none;
+      border-radius:15px;
+
+      font-family:inherit;
+      font-size:14px;
+      font-weight:bold;
+
+      color:#5b4677;
+
+      background:#f4edf8;
+
+      cursor:pointer;
+    }
+
+    .tab-button.active{
+      color:white;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--purple-light),
+          var(--purple)
+        );
+
+      box-shadow:
+        0 5px 13px
+        rgba(91,70,119,.2);
+    }
+
     .filters{
       display:flex;
       flex-wrap:wrap;
+
       gap:10px;
 
       margin-bottom:18px;
@@ -147,18 +232,23 @@
 
       background:#fffdf8;
 
-      border:1px solid #dec98d;
+      border:
+        1px solid #dec98d;
+
       border-radius:18px;
     }
 
     .filters label{
-      flex:1 1 190px;
+      flex:
+        1 1 190px;
 
       display:flex;
       flex-direction:column;
+
       gap:6px;
 
       color:#5c4771;
+
       font-size:12px;
       font-weight:bold;
     }
@@ -166,12 +256,16 @@
     .filters select,
     .filters input{
       width:100%;
-      padding:11px 12px;
+
+      padding:
+        11px 12px;
 
       font-family:inherit;
       font-size:14px;
 
-      border:1px solid #ccb8dc;
+      border:
+        1px solid #ccb8dc;
+
       border-radius:12px;
 
       background:white;
@@ -188,14 +282,19 @@
         );
 
       gap:12px;
+
       margin-bottom:20px;
     }
 
     .stat-card{
-      padding:18px 10px;
+      padding:
+        18px 10px;
+
       text-align:center;
 
-      border:2px solid #dec98d;
+      border:
+        2px solid #dec98d;
+
       border-radius:20px;
 
       background:#fffdf8;
@@ -207,6 +306,7 @@
 
     .stat-icon{
       margin-bottom:6px;
+
       font-size:26px;
     }
 
@@ -214,15 +314,18 @@
       display:block;
 
       color:#5b4677;
+
       font-size:27px;
       font-weight:bold;
     }
 
     .stat-label{
       display:block;
+
       margin-top:5px;
 
       color:#72647a;
+
       font-size:12px;
       font-weight:bold;
       line-height:1.5;
@@ -230,11 +333,14 @@
 
     .section{
       margin-top:20px;
+
       padding:16px;
 
       background:#fffdf8;
 
-      border:2px solid #dec98d;
+      border:
+        2px solid #dec98d;
+
       border-radius:21px;
 
       box-shadow:
@@ -243,15 +349,30 @@
     }
 
     .section-title{
-      margin:0 0 14px;
+      margin:
+        0 0 14px;
 
       color:#5b4677;
+
       font-size:20px;
       text-align:center;
     }
 
+    .section-note{
+      margin:
+        -5px 0 16px;
+
+      color:#776b7c;
+
+      text-align:center;
+
+      font-size:12px;
+      line-height:1.8;
+    }
+
     .table-wrap{
       width:100%;
+
       overflow-x:auto;
 
       border-radius:14px;
@@ -259,36 +380,42 @@
 
     table{
       width:100%;
-      min-width:850px;
+
+      min-width:920px;
 
       border-collapse:collapse;
+
       background:white;
     }
 
     th,
     td{
-      padding:11px 9px;
+      padding:
+        11px 9px;
 
       text-align:center;
       vertical-align:middle;
 
-      border-bottom:1px solid #eee5f1;
+      border-bottom:
+        1px solid #eee5f1;
     }
 
     th{
       color:white;
+
       font-size:12px;
 
       background:
         linear-gradient(
           135deg,
-          #776094,
-          #5b4677
+          var(--purple-light),
+          var(--purple)
         );
     }
 
     td{
       color:#4d4352;
+
       font-size:12px;
       line-height:1.6;
     }
@@ -302,16 +429,51 @@
       font-weight:bold;
     }
 
+    .tag{
+      display:inline-block;
+
+      padding:
+        4px 8px;
+
+      border-radius:999px;
+
+      font-size:11px;
+      font-weight:bold;
+    }
+
+    .tag.yes{
+      color:#286a43;
+      background:#e8f7ed;
+    }
+
+    .tag.no{
+      color:#815764;
+      background:#f8edf1;
+    }
+
+    .tag.pending{
+      color:#765d27;
+      background:#fff5dd;
+    }
+
+    .tag.cup{
+      color:#745414;
+      background:#fff1bf;
+    }
+
     .score-good,
     .score-mid,
     .score-low{
       display:inline-block;
 
       min-width:55px;
-      padding:4px 7px;
+
+      padding:
+        4px 7px;
+
+      border-radius:999px;
 
       font-weight:bold;
-      border-radius:999px;
     }
 
     .score-good{
@@ -329,70 +491,47 @@
       background:#ffecef;
     }
 
-    .tag{
-      display:inline-block;
-
-      padding:4px 8px;
-
-      font-size:11px;
-      font-weight:bold;
-
-      border-radius:999px;
-    }
-
-    .tag.done{
-      color:#286a43;
-      background:#e8f7ed;
-    }
-
-    .tag.pending{
-      color:#765d27;
-      background:#fff5dd;
-    }
-
-    .tag.cert{
-      color:#745414;
-      background:#fff1bf;
-    }
-
-    .tag.no-cert{
-      color:#815764;
-      background:#f8edf1;
-    }
-
     .empty{
-      padding:25px 10px;
+      padding:
+        25px 10px;
 
       text-align:center;
 
       color:#75697a;
+
       font-size:14px;
       font-weight:bold;
     }
 
     .footer{
       margin-top:24px;
+
       text-align:center;
     }
 
     .back-button{
       display:inline-block;
 
-      padding:11px 20px;
+      padding:
+        11px 20px;
 
       color:white;
+
       font-size:13px;
       font-weight:bold;
+
       text-decoration:none;
 
-      border:2px solid #c9a85c;
+      border:
+        2px solid var(--gold);
+
       border-radius:999px;
 
       background:
         linear-gradient(
           135deg,
-          #776094,
-          #5b4677
+          var(--purple-light),
+          var(--purple)
         );
     }
 
@@ -408,43 +547,15 @@
 
     }
 
-    @media print{
+    @media(max-width:600px){
 
-      body{
-        background:white;
-      }
-
-      .filters,
-      .status-box,
-      .footer{
-        display:none !important;
-      }
-
-      .container{
-        width:100%;
-        margin:12px auto;
-      }
-
-      .stat-card,
-      .section{
-        box-shadow:none;
-      }
-
-      .table-wrap{
-        overflow:visible;
-      }
-
-      table{
-        min-width:0;
-      }
-
-      th,
-      td{
-        padding:6px 4px;
-        font-size:9px;
+      .tab-button{
+        min-height:64px;
+        font-size:12px;
       }
 
     }
+
   </style>
 </head>
 <body>
@@ -455,12 +566,13 @@
       لوحة المعلمة
     </div>
 
-    <h1>
-      📊 متابعة الفصل الدراسي الأول
+    <h1 id="pageTitle">
+      📘 متابعة الفصل الدراسي الأول
     </h1>
 
-    <p>
-      ملخص أداء الطالبات ونتائج الاختبارات والنتيجة النهائية.
+    <p id="pageDescription">
+      متابعة أداء الطالبات ونتائج الاختبارات
+      والإنجاز خلال الفصل الدراسي الأول.
     </p>
 
   </header>
@@ -481,9 +593,42 @@
       style="display:none;"
     >
 
+      <div class="tabs">
+
+        <button
+          class="tab-button active"
+          id="semester1Tab"
+          type="button"
+          data-view="semester1"
+        >
+          📘 الفصل الأول
+        </button>
+
+        <button
+          class="tab-button"
+          id="semester2Tab"
+          type="button"
+          data-view="semester2"
+        >
+          📗 الفصل الثاني
+        </button>
+
+        <button
+          class="tab-button"
+          id="nafesTab"
+          type="button"
+          data-view="nafes"
+        >
+          🎯 نافس
+        </button>
+
+      </div>
+
+
       <div class="filters">
 
         <label>
+
           الفصل
 
           <select id="classFilter">
@@ -505,31 +650,35 @@
             </option>
 
           </select>
+
         </label>
 
 
-        <label>
+        <label id="statusFilterLabel">
+
           حالة الإكمال
 
-          <select id="completionFilter">
+          <select id="statusFilter">
 
             <option value="all">
               الجميع
             </option>
 
             <option value="completed">
-              أكملت التقييم
+              مكتمل
             </option>
 
             <option value="pending">
-              لم تكمل التقييم
+              غير مكتمل
             </option>
 
           </select>
+
         </label>
 
 
         <label>
+
           البحث باسم الطالبة
 
           <input
@@ -552,13 +701,16 @@
           </div>
 
           <span
-            id="studentsCount"
+            id="stat1"
             class="stat-number"
           >
             ٠
           </span>
 
-          <span class="stat-label">
+          <span
+            id="statLabel1"
+            class="stat-label"
+          >
             عدد الطالبات
           </span>
 
@@ -572,13 +724,16 @@
           </div>
 
           <span
-            id="completedCount"
+            id="stat2"
             class="stat-number"
           >
             ٠
           </span>
 
-          <span class="stat-label">
+          <span
+            id="statLabel2"
+            class="stat-label"
+          >
             أكملن التقييم
           </span>
 
@@ -592,13 +747,16 @@
           </div>
 
           <span
-            id="averageScore"
+            id="stat3"
             class="stat-number"
           >
             ٠٪
           </span>
 
-          <span class="stat-label">
+          <span
+            id="statLabel3"
+            class="stat-label"
+          >
             متوسط النتائج
           </span>
 
@@ -608,17 +766,20 @@
         <div class="stat-card">
 
           <div class="stat-icon">
-            🎓
+            🏆
           </div>
 
           <span
-            id="certificateCount"
+            id="stat4"
             class="stat-number"
           >
             ٠
           </span>
 
-          <span class="stat-label">
+          <span
+            id="statLabel4"
+            class="stat-label"
+          >
             استحققن الشهادة
           </span>
 
@@ -632,13 +793,16 @@
           </div>
 
           <span
-            id="testsCount"
+            id="stat5"
             class="stat-number"
           >
             ٠
           </span>
 
-          <span class="stat-label">
+          <span
+            id="statLabel5"
+            class="stat-label"
+          >
             اختبارات مسجلة
           </span>
 
@@ -649,16 +813,27 @@
 
       <section class="section">
 
-        <h2 class="section-title">
-          نتائج الطالبات
+        <h2
+          id="tableTitle"
+          class="section-title"
+        >
+          نتائج طالبات الفصل الدراسي الأول
         </h2>
+
+        <p
+          id="tableNote"
+          class="section-note"
+        >
+          تعرض هذه الصفحة نتائج الطالبات
+          المسجلة في منصة آفاق.
+        </p>
 
 
         <div class="table-wrap">
 
           <table>
 
-            <thead>
+            <thead id="tableHead">
 
               <tr>
 
@@ -679,7 +854,7 @@
                 </th>
 
                 <th>
-                  النتيجة النهائية
+                  النتيجة
                 </th>
 
                 <th>
@@ -819,39 +994,39 @@
       );
 
 
+    const pageTitle =
+      document.getElementById(
+        "pageTitle"
+      );
+
+
+    const pageDescription =
+      document.getElementById(
+        "pageDescription"
+      );
+
+
+    const tableTitle =
+      document.getElementById(
+        "tableTitle"
+      );
+
+
+    const tableNote =
+      document.getElementById(
+        "tableNote"
+      );
+
+
+    const tableHead =
+      document.getElementById(
+        "tableHead"
+      );
+
+
     const studentsTable =
       document.getElementById(
         "studentsTable"
-      );
-
-
-    const studentsCount =
-      document.getElementById(
-        "studentsCount"
-      );
-
-
-    const completedCount =
-      document.getElementById(
-        "completedCount"
-      );
-
-
-    const averageScore =
-      document.getElementById(
-        "averageScore"
-      );
-
-
-    const certificateCount =
-      document.getElementById(
-        "certificateCount"
-      );
-
-
-    const testsCount =
-      document.getElementById(
-        "testsCount"
       );
 
 
@@ -861,9 +1036,15 @@
       );
 
 
-    const completionFilter =
+    const statusFilter =
       document.getElementById(
-        "completionFilter"
+        "statusFilter"
+      );
+
+
+    const statusFilterLabel =
+      document.getElementById(
+        "statusFilterLabel"
       );
 
 
@@ -873,19 +1054,91 @@
       );
 
 
-    let allStudents = [];
+    const stat1 =
+      document.getElementById(
+        "stat1"
+      );
+
+
+    const stat2 =
+      document.getElementById(
+        "stat2"
+      );
+
+
+    const stat3 =
+      document.getElementById(
+        "stat3"
+      );
+
+
+    const stat4 =
+      document.getElementById(
+        "stat4"
+      );
+
+
+    const stat5 =
+      document.getElementById(
+        "stat5"
+      );
+
+
+    const statLabel1 =
+      document.getElementById(
+        "statLabel1"
+      );
+
+
+    const statLabel2 =
+      document.getElementById(
+        "statLabel2"
+      );
+
+
+    const statLabel3 =
+      document.getElementById(
+        "statLabel3"
+      );
+
+
+    const statLabel4 =
+      document.getElementById(
+        "statLabel4"
+      );
+
+
+    const statLabel5 =
+      document.getElementById(
+        "statLabel5"
+      );
+
+
+    const tabButtons =
+      document.querySelectorAll(
+        ".tab-button"
+      );
+
+
+    let currentView =
+      "semester1";
+
+
+    let allStudents =
+      [];
 
 
     function toArabicNumber(
       value
     ){
 
-      return String(value)
-        .replace(
-          /\d/g,
-          digit =>
-            "٠١٢٣٤٥٦٧٨٩"[digit]
-        );
+      return String(
+        value
+      ).replace(
+        /\d/g,
+        digit =>
+          "٠١٢٣٤٥٦٧٨٩"[digit]
+      );
 
     }
 
@@ -895,9 +1148,13 @@
     ){
 
       const number =
-        Number(value);
+        Number(
+          value
+        );
 
-      return Number.isFinite(number)
+      return Number.isFinite(
+        number
+      )
         ? number
         : 0;
 
@@ -913,7 +1170,10 @@
           value || ""
         )
         .trim()
-        .replace(/\s+/g," ");
+        .replace(
+          /\s+/g,
+          " "
+        );
 
 
       if(!text){
@@ -926,7 +1186,8 @@
         text === "ا" ||
         text === "ألف" ||
         text.includes("متوسط أ") ||
-        text.includes("متوسط ا")
+        text.includes("متوسط ا") ||
+        text.includes("ثالث أ")
       ){
         return "ثالث متوسط أ";
       }
@@ -935,7 +1196,8 @@
       if(
         text === "ب" ||
         text === "باء" ||
-        text.includes("متوسط ب")
+        text.includes("متوسط ب") ||
+        text.includes("ثالث ب")
       ){
         return "ثالث متوسط ب";
       }
@@ -944,7 +1206,8 @@
       if(
         text === "ج" ||
         text === "جيم" ||
-        text.includes("متوسط ج")
+        text.includes("متوسط ج") ||
+        text.includes("ثالث ج")
       ){
         return "ثالث متوسط ج";
       }
@@ -955,7 +1218,7 @@
     }
 
 
-    function formatDate(
+    function formatDateTime(
       timestamp
     ){
 
@@ -982,7 +1245,9 @@
         else{
 
           date =
-            new Date(timestamp);
+            new Date(
+              timestamp
+            );
 
         }
 
@@ -992,18 +1257,18 @@
             date.getTime()
           )
         ){
-
           return "—";
-
         }
 
 
-        return date.toLocaleDateString(
+        return date.toLocaleString(
           "ar-SA",
           {
             year:"numeric",
             month:"short",
-            day:"numeric"
+            day:"numeric",
+            hour:"numeric",
+            minute:"2-digit"
           }
         );
 
@@ -1014,366 +1279,6 @@
         return "—";
 
       }
-
-    }
-
-
-    function prepareStudentData(
-      id,
-      data
-    ){
-
-      const finalResult =
-        data?.["نتيجة_الفصل_الأول"] ||
-        {};
-
-
-      const tests =
-        data?.["اختبارات_الفصل_الأول"] ||
-        {};
-
-
-      const testEntries =
-        Object.values(
-          tests
-        );
-
-
-      const recordedTests =
-        testEntries.filter(
-          item =>
-            item &&
-            typeof item === "object"
-        ).length;
-
-
-      const completed =
-        finalResult["مكتمل"] ===
-        true;
-
-
-      const score =
-        safeNumber(
-          finalResult["الدرجة"]
-        );
-
-
-      const certificate =
-        finalResult["استحقت_الشهادة"] ===
-        true;
-
-
-      return {
-
-        id,
-
-        name:
-          data?.["الاسم"] ||
-          "طالبة غير مسماة",
-
-        className:
-          normalizeClassName(
-            data?.["الفصل"]
-          ),
-
-        recordedTests,
-
-        completed,
-
-        score,
-
-        certificate,
-
-        lastLogin:
-          data?.["آخر_دخول"] ||
-          null
-
-      };
-
-    }
-
-
-    async function loadStudents(){
-
-      try{
-
-        statusBox.style.display =
-          "block";
-
-
-        statusBox.className =
-          "status-box loading";
-
-
-        statusBox.textContent =
-          "جارٍ تحميل سجلات الطالبات...";
-
-
-        const snapshot =
-          await getDocs(
-            collection(
-              db,
-              "students"
-            )
-          );
-
-
-        allStudents = [];
-
-
-        snapshot.forEach(
-          documentSnapshot => {
-
-            const data =
-              documentSnapshot.data();
-
-
-            if(
-              !data?.["الاسم"] &&
-              !data?.["الفصل"] &&
-              !data?.["معرف_المستخدم"]
-            ){
-
-              return;
-
-            }
-
-
-            allStudents.push(
-              prepareStudentData(
-                documentSnapshot.id,
-                data
-              )
-            );
-
-          }
-        );
-
-
-        applyFilters();
-
-
-        statusBox.className =
-          "status-box success";
-
-
-        statusBox.textContent =
-          "✅ تم تحميل بيانات الطالبات بنجاح.";
-
-
-        setTimeout(
-          () => {
-
-            statusBox.style.display =
-              "none";
-
-          },
-          1800
-        );
-
-      }
-
-      catch(error){
-
-        console.error(
-          "Firestore error:",
-          error
-        );
-
-
-        statusBox.className =
-          "status-box error";
-
-
-        statusBox.textContent =
-          "تعذّر تحميل بيانات الطالبات. تحققي من تسجيل الدخول بحساب المعلمة ومن صلاحيات Firestore.";
-
-      }
-
-    }
-          function applyFilters(){
-
-      const selectedClass =
-        classFilter.value;
-
-
-      const selectedCompletion =
-        completionFilter.value;
-
-
-      const searchValue =
-        searchInput.value
-          .trim()
-          .toLowerCase();
-
-
-      const filtered =
-        allStudents.filter(
-          student => {
-
-            const classMatches =
-              selectedClass === "all" ||
-              student.className ===
-                selectedClass;
-
-
-            const completionMatches =
-              selectedCompletion === "all" ||
-
-              (
-                selectedCompletion ===
-                  "completed" &&
-                student.completed
-              ) ||
-
-              (
-                selectedCompletion ===
-                  "pending" &&
-                !student.completed
-              );
-
-
-            const searchMatches =
-              !searchValue ||
-              student.name
-                .toLowerCase()
-                .includes(
-                  searchValue
-                );
-
-
-            return (
-              classMatches &&
-              completionMatches &&
-              searchMatches
-            );
-
-          }
-        );
-
-
-      updateStatistics(
-        filtered
-      );
-
-
-      renderTable(
-        filtered
-      );
-
-    }
-
-
-    function updateStatistics(
-      students
-    ){
-
-      const totalStudents =
-        students.length;
-
-
-      const completedStudents =
-        students.filter(
-          student =>
-            student.completed
-        );
-
-
-      const certificateStudents =
-        students.filter(
-          student =>
-            student.certificate
-        );
-
-
-      const totalRecordedTests =
-        students.reduce(
-          (
-            total,
-            student
-          ) =>
-            total +
-            student.recordedTests,
-          0
-        );
-
-
-      let average = 0;
-
-
-      if(
-        completedStudents.length > 0
-      ){
-
-        const totalScores =
-          completedStudents.reduce(
-            (
-              total,
-              student
-            ) =>
-              total +
-              student.score,
-            0
-          );
-
-
-        average =
-          Math.round(
-            totalScores /
-            completedStudents.length
-          );
-
-      }
-
-
-      studentsCount.textContent =
-        toArabicNumber(
-          totalStudents
-        );
-
-
-      completedCount.textContent =
-        toArabicNumber(
-          completedStudents.length
-        );
-
-
-      averageScore.textContent =
-        toArabicNumber(
-          average
-        ) +
-        "٪";
-
-
-      certificateCount.textContent =
-        toArabicNumber(
-          certificateStudents.length
-        );
-
-
-      testsCount.textContent =
-        toArabicNumber(
-          totalRecordedTests
-        );
-
-    }
-
-
-    function scoreClass(
-      score
-    ){
-
-      if(score >= 80){
-        return "score-good";
-      }
-
-
-      if(score >= 60){
-        return "score-mid";
-      }
-
-
-      return "score-low";
 
     }
 
@@ -1409,8 +1314,833 @@
     }
 
 
-    function renderTable(
+    function scoreClass(
+      score
+    ){
+
+      if(score >= 80){
+        return "score-good";
+      }
+
+      if(score >= 60){
+        return "score-mid";
+      }
+
+      return "score-low";
+
+    }
+          function prepareStudentData(
+      id,
+      data
+    ){
+
+      const semester1Result =
+        data?.["نتيجة_الفصل_الأول"] ||
+        {};
+
+
+      const semester1Tests =
+        data?.["اختبارات_الفصل_الأول"] ||
+        {};
+
+
+      const semester2Result =
+        data?.["نتيجة_الفصل_الثاني"] ||
+        {};
+
+
+      const semester2Tests =
+        data?.["اختبارات_الفصل_الثاني"] ||
+        {};
+
+
+      const nafes =
+        data?.["نافس_المتابعة"] ||
+        {};
+
+
+      const semester1TestCount =
+        Object.values(
+          semester1Tests
+        )
+        .filter(
+          item =>
+            item &&
+            typeof item === "object"
+        )
+        .length;
+
+
+      const semester2TestCount =
+        Object.values(
+          semester2Tests
+        )
+        .filter(
+          item =>
+            item &&
+            typeof item === "object"
+        )
+        .length;
+
+
+      const openedSections =
+        Array.isArray(
+          nafes["الأقسام_المفتوحة"]
+        )
+        ? nafes["الأقسام_المفتوحة"]
+        : [];
+
+
+      const challengeResults =
+        nafes["نتائج_التحديات"] &&
+        typeof nafes["نتائج_التحديات"] ===
+          "object"
+
+        ? nafes["نتائج_التحديات"]
+        : {};
+
+
+      const challengeEntries =
+        Object.values(
+          challengeResults
+        )
+        .filter(
+          item =>
+            item &&
+            typeof item === "object"
+        );
+
+
+      let nafesAverage =
+        0;
+
+
+      if(
+        challengeEntries.length > 0
+      ){
+
+        const total =
+          challengeEntries.reduce(
+            (
+              sum,
+              item
+            ) => {
+
+              return sum +
+                safeNumber(
+                  item["النسبة"] ??
+                  item["percentage"] ??
+                  item["score"]
+                );
+
+            },
+            0
+          );
+
+
+        nafesAverage =
+          Math.round(
+            total /
+            challengeEntries.length
+          );
+
+      }
+
+
+      return {
+
+        id,
+
+        name:
+          data?.["الاسم"] ||
+          data?.["اسم_الطالبة"] ||
+          "طالبة غير مسماة",
+
+        className:
+          normalizeClassName(
+            data?.["الفصل"]
+          ),
+
+        lastLogin:
+          data?.["آخر_دخول"] ||
+          null,
+
+
+        semester1:{
+          testCount:
+            semester1TestCount,
+
+          completed:
+            semester1Result["مكتمل"] ===
+            true,
+
+          score:
+            safeNumber(
+              semester1Result["الدرجة"]
+            ),
+
+          certificate:
+            semester1Result[
+              "استحقت_الشهادة"
+            ] === true
+        },
+
+
+        semester2:{
+          testCount:
+            semester2TestCount,
+
+          completed:
+            semester2Result["مكتمل"] ===
+            true,
+
+          score:
+            safeNumber(
+              semester2Result["الدرجة"]
+            ),
+
+          certificate:
+            semester2Result[
+              "استحقت_الشهادة"
+            ] === true
+        },
+
+
+        nafes:{
+          viewed:
+            nafes["اطلعت"] ===
+            true,
+
+          firstVisit:
+            nafes["أول_دخول"] ||
+            null,
+
+          lastVisit:
+            nafes["آخر_دخول"] ||
+            null,
+
+          lastInteraction:
+            nafes["آخر_تفاعل"] ||
+            null,
+
+          visitCount:
+            safeNumber(
+              nafes["عدد_مرات_الدخول"]
+            ),
+
+          openedSections:
+            openedSections,
+
+          sectionCount:
+            openedSections.length,
+
+          lastSection:
+            nafes["آخر_قسم"] ||
+            "—",
+
+          challengeCount:
+            challengeEntries.length,
+
+          challengeAverage:
+            nafesAverage,
+
+          cup:
+            challengeEntries.length >= 20 &&
+            nafesAverage >= 80
+        }
+
+      };
+
+    }
+
+
+    async function loadStudents(){
+
+      try{
+
+        statusBox.style.display =
+          "block";
+
+
+        statusBox.className =
+          "status-box loading";
+
+
+        statusBox.textContent =
+          "جارٍ تحميل سجلات الطالبات...";
+
+
+        const snapshot =
+          await getDocs(
+            collection(
+              db,
+              "students"
+            )
+          );
+
+
+        allStudents =
+          [];
+
+
+        snapshot.forEach(
+          documentSnapshot => {
+
+            const data =
+              documentSnapshot.data();
+
+
+            if(
+              !data?.["الاسم"] &&
+              !data?.["الفصل"] &&
+              !data?.["معرف_المستخدم"]
+            ){
+              return;
+            }
+
+
+            allStudents.push(
+              prepareStudentData(
+                documentSnapshot.id,
+                data
+              )
+            );
+
+          }
+        );
+
+
+        renderCurrentView();
+
+
+        statusBox.className =
+          "status-box success";
+
+
+        statusBox.textContent =
+          "✅ تم تحميل بيانات الطالبات بنجاح.";
+
+
+        setTimeout(
+          () => {
+
+            statusBox.style.display =
+              "none";
+
+          },
+          1600
+        );
+
+      }
+
+      catch(error){
+
+        console.error(
+          "Firestore error:",
+          error
+        );
+
+
+        statusBox.className =
+          "status-box error";
+
+
+        statusBox.textContent =
+          "تعذّر تحميل بيانات الطالبات. تحققي من تسجيل الدخول وصلاحيات Firestore.";
+
+      }
+
+    }
+
+
+    function getFilteredStudents(){
+
+      const selectedClass =
+        classFilter.value;
+
+
+      const selectedStatus =
+        statusFilter.value;
+
+
+      const searchValue =
+        searchInput.value
+          .trim()
+          .toLowerCase();
+
+
+      return allStudents.filter(
+        student => {
+
+          const classMatches =
+            selectedClass === "all" ||
+            student.className ===
+              selectedClass;
+
+
+          const searchMatches =
+            !searchValue ||
+            student.name
+              .toLowerCase()
+              .includes(
+                searchValue
+              );
+
+
+          let statusMatches =
+            true;
+
+
+          if(
+            selectedStatus !== "all"
+          ){
+
+            if(
+              currentView ===
+              "semester1"
+            ){
+
+              statusMatches =
+                selectedStatus ===
+                  "completed"
+
+                ? student.semester1.completed
+                : !student.semester1.completed;
+
+            }
+
+
+            else if(
+              currentView ===
+              "semester2"
+            ){
+
+              statusMatches =
+                selectedStatus ===
+                  "completed"
+
+                ? student.semester2.completed
+                : !student.semester2.completed;
+
+            }
+
+
+            else{
+
+              statusMatches =
+                selectedStatus ===
+                  "completed"
+
+                ? student.nafes.viewed
+                : !student.nafes.viewed;
+
+            }
+
+          }
+
+
+          return (
+            classMatches &&
+            searchMatches &&
+            statusMatches
+          );
+
+        }
+      );
+
+    }
+
+
+    function setActiveTab(){
+
+      tabButtons.forEach(
+        button => {
+
+          button.classList.toggle(
+            "active",
+            button.dataset.view ===
+              currentView
+          );
+
+        }
+      );
+
+    }
+
+
+    function configureView(){
+
+      statusFilter.innerHTML =
+        "";
+
+
+      if(
+        currentView ===
+        "semester1"
+      ){
+
+        pageTitle.textContent =
+          "📘 متابعة الفصل الدراسي الأول";
+
+
+        pageDescription.textContent =
+          "متابعة أداء الطالبات ونتائج اختبارات الفصل الدراسي الأول.";
+
+
+        tableTitle.textContent =
+          "نتائج طالبات الفصل الدراسي الأول";
+
+
+        tableNote.textContent =
+          "النتائج المسجلة في اختبارات الفصل الدراسي الأول.";
+
+
+        statusFilterLabel.childNodes[0].textContent =
+          "حالة الإكمال";
+
+
+        statusFilter.innerHTML = `
+          <option value="all">
+            الجميع
+          </option>
+
+          <option value="completed">
+            أكملت التقييم
+          </option>
+
+          <option value="pending">
+            لم تكمل التقييم
+          </option>
+        `;
+
+
+        tableHead.innerHTML = `
+          <tr>
+            <th>الطالبة</th>
+            <th>الفصل</th>
+            <th>الاختبارات المسجلة</th>
+            <th>الإكمال</th>
+            <th>النتيجة</th>
+            <th>الشهادة</th>
+            <th>آخر دخول</th>
+          </tr>
+        `;
+
+      }
+
+
+      else if(
+        currentView ===
+        "semester2"
+      ){
+
+        pageTitle.textContent =
+          "📗 متابعة الفصل الدراسي الثاني";
+
+
+        pageDescription.textContent =
+          "متابعة أداء الطالبات ونتائج اختبارات الفصل الدراسي الثاني.";
+
+
+        tableTitle.textContent =
+          "نتائج طالبات الفصل الدراسي الثاني";
+
+
+        tableNote.textContent =
+          "ستظهر هنا نتائج اختبارات الفصل الثاني فور حفظها في المنصة.";
+
+
+        statusFilter.innerHTML = `
+          <option value="all">
+            الجميع
+          </option>
+
+          <option value="completed">
+            أكملت التقييم
+          </option>
+
+          <option value="pending">
+            لم تكمل التقييم
+          </option>
+        `;
+
+
+        tableHead.innerHTML = `
+          <tr>
+            <th>الطالبة</th>
+            <th>الفصل</th>
+            <th>الاختبارات المسجلة</th>
+            <th>الإكمال</th>
+            <th>النتيجة</th>
+            <th>الشهادة</th>
+            <th>آخر دخول</th>
+          </tr>
+        `;
+
+      }
+
+
+      else{
+
+        pageTitle.textContent =
+          "🎯 متابعة نافس";
+
+
+        pageDescription.textContent =
+          "متابعة اطلاع الطالبات على محتوى نافس وتفاعلهن مع أقسام المكتبة.";
+
+
+        tableTitle.textContent =
+          "متابعة اطلاع الطالبات على نافس";
+
+
+        tableNote.textContent =
+          "يظهر هنا من دخلت نافس، وعدد الأقسام التي فتحتها، وآخر قسم اطلعت عليه.";
+
+
+        statusFilter.innerHTML = `
+          <option value="all">
+            الجميع
+          </option>
+
+          <option value="completed">
+            اطلعت على نافس
+          </option>
+
+          <option value="pending">
+            لم تطلع على نافس
+          </option>
+        `;
+
+
+        tableHead.innerHTML = `
+          <tr>
+            <th>الطالبة</th>
+            <th>الفصل</th>
+            <th>الاطلاع</th>
+            <th>الأقسام المفتوحة</th>
+            <th>آخر قسم</th>
+            <th>مرات الدخول</th>
+            <th>آخر دخول لنافس</th>
+            <th>تحديات نافس</th>
+            <th>المتوسط</th>
+          </tr>
+        `;
+
+      }
+
+    }
+          function updateStats(
       students
+    ){
+
+      stat1.textContent =
+        toArabicNumber(
+          students.length
+        );
+
+
+      statLabel1.textContent =
+        "عدد الطالبات";
+
+
+      if(
+        currentView ===
+        "nafes"
+      ){
+
+        const viewedStudents =
+          students.filter(
+            student =>
+              student.nafes.viewed
+          );
+
+
+        const totalSections =
+          students.reduce(
+            (
+              total,
+              student
+            ) =>
+              total +
+              student.nafes.sectionCount,
+            0
+          );
+
+
+        const totalVisits =
+          students.reduce(
+            (
+              total,
+              student
+            ) =>
+              total +
+              student.nafes.visitCount,
+            0
+          );
+
+
+        const totalChallenges =
+          students.reduce(
+            (
+              total,
+              student
+            ) =>
+              total +
+              student.nafes.challengeCount,
+            0
+          );
+
+
+        stat2.textContent =
+          toArabicNumber(
+            viewedStudents.length
+          );
+
+
+        statLabel2.textContent =
+          "اطلعن على نافس";
+
+
+        stat3.textContent =
+          toArabicNumber(
+            totalSections
+          );
+
+
+        statLabel3.textContent =
+          "أقسام تم فتحها";
+
+
+        stat4.textContent =
+          toArabicNumber(
+            totalVisits
+          );
+
+
+        statLabel4.textContent =
+          "مرات دخول نافس";
+
+
+        stat5.textContent =
+          toArabicNumber(
+            totalChallenges
+          );
+
+
+        statLabel5.textContent =
+          "تحديات مكتملة";
+
+        return;
+
+      }
+
+
+      const key =
+        currentView ===
+        "semester1"
+
+        ? "semester1"
+        : "semester2";
+
+
+      const completed =
+        students.filter(
+          student =>
+            student[key].completed
+        );
+
+
+      const certificates =
+        students.filter(
+          student =>
+            student[key].certificate
+        );
+
+
+      const totalTests =
+        students.reduce(
+          (
+            total,
+            student
+          ) =>
+            total +
+            student[key].testCount,
+          0
+        );
+
+
+      let average =
+        0;
+
+
+      if(
+        completed.length > 0
+      ){
+
+        average =
+          Math.round(
+            completed.reduce(
+              (
+                total,
+                student
+              ) =>
+                total +
+                student[key].score,
+              0
+            ) /
+            completed.length
+          );
+
+      }
+
+
+      stat2.textContent =
+        toArabicNumber(
+          completed.length
+        );
+
+
+      statLabel2.textContent =
+        "أكملن التقييم";
+
+
+      stat3.textContent =
+        toArabicNumber(
+          average
+        ) +
+        "٪";
+
+
+      statLabel3.textContent =
+        "متوسط النتائج";
+
+
+      stat4.textContent =
+        toArabicNumber(
+          certificates.length
+        );
+
+
+      statLabel4.textContent =
+        "استحققن الشهادة";
+
+
+      stat5.textContent =
+        toArabicNumber(
+          totalTests
+        );
+
+
+      statLabel5.textContent =
+        "اختبارات مسجلة";
+
+    }
+
+
+    function renderSemesterRows(
+      students,
+      key
     ){
 
       studentsTable.innerHTML =
@@ -1422,18 +2152,14 @@
       ){
 
         studentsTable.innerHTML = `
-
           <tr>
-
             <td
               colspan="7"
               class="empty"
             >
-              لا توجد بيانات مطابقة للبحث أو التصفية.
+              لا توجد بيانات مطابقة.
             </td>
-
           </tr>
-
         `;
 
         return;
@@ -1441,39 +2167,18 @@
       }
 
 
-      const sortedStudents =
-        [...students].sort(
-          (
-            first,
-            second
-          ) =>
-
-            first.className.localeCompare(
-              second.className,
-              "ar"
-            ) ||
-
-            first.name.localeCompare(
-              second.name,
-              "ar"
-            )
-        );
-
-
-      sortedStudents.forEach(
+      students.forEach(
         student => {
 
-          const row =
-            document.createElement(
-              "tr"
-            );
+          const data =
+            student[key];
 
 
-          const completionText =
-            student.completed
+          const completion =
+            data.completed
 
             ? `
-              <span class="tag done">
+              <span class="tag yes">
                 مكتمل
               </span>
             `
@@ -1485,38 +2190,40 @@
             `;
 
 
-          const certificateText =
-            student.certificate
+          const certificate =
+            data.certificate
 
             ? `
-              <span class="tag cert">
+              <span class="tag cup">
                 مستحقة
               </span>
             `
 
-            : `
-              <span class="tag no-cert">
-                —
-              </span>
-            `;
+            : "—";
 
 
-          const scoreText =
-            student.completed
+          const score =
+            data.completed
 
             ? `
               <span
                 class="${scoreClass(
-                  student.score
+                  data.score
                 )}"
               >
                 ${toArabicNumber(
-                  student.score
+                  data.score
                 )}٪
               </span>
             `
 
             : "—";
+
+
+          const row =
+            document.createElement(
+              "tr"
+            );
 
 
           row.innerHTML = `
@@ -1535,24 +2242,24 @@
 
             <td>
               ${toArabicNumber(
-                student.recordedTests
+                data.testCount
               )}
             </td>
 
             <td>
-              ${completionText}
+              ${completion}
             </td>
 
             <td>
-              ${scoreText}
+              ${score}
             </td>
 
             <td>
-              ${certificateText}
+              ${certificate}
             </td>
 
             <td>
-              ${formatDate(
+              ${formatDateTime(
                 student.lastLogin
               )}
             </td>
@@ -1570,21 +2277,256 @@
     }
 
 
-    classFilter.addEventListener(
-      "change",
-      applyFilters
+    function renderNafesRows(
+      students
+    ){
+
+      studentsTable.innerHTML =
+        "";
+
+
+      if(
+        students.length === 0
+      ){
+
+        studentsTable.innerHTML = `
+          <tr>
+            <td
+              colspan="9"
+              class="empty"
+            >
+              لا توجد بيانات مطابقة.
+            </td>
+          </tr>
+        `;
+
+        return;
+
+      }
+
+
+      students.forEach(
+        student => {
+
+          const nafes =
+            student.nafes;
+
+
+          const viewedText =
+            nafes.viewed
+
+            ? `
+              <span class="tag yes">
+                اطلعت ✅
+              </span>
+            `
+
+            : `
+              <span class="tag no">
+                لم تطلع
+              </span>
+            `;
+
+
+          const challengeAverage =
+            nafes.challengeCount > 0
+
+            ? `
+              <span
+                class="${scoreClass(
+                  nafes.challengeAverage
+                )}"
+              >
+                ${toArabicNumber(
+                  nafes.challengeAverage
+                )}٪
+              </span>
+            `
+
+            : "—";
+
+
+          const row =
+            document.createElement(
+              "tr"
+            );
+
+
+          row.innerHTML = `
+
+            <td class="student-name">
+              ${escapeHtml(
+                student.name
+              )}
+            </td>
+
+            <td>
+              ${escapeHtml(
+                student.className
+              )}
+            </td>
+
+            <td>
+              ${viewedText}
+            </td>
+
+            <td>
+              ${toArabicNumber(
+                nafes.sectionCount
+              )}
+              من ١١
+            </td>
+
+            <td>
+              ${escapeHtml(
+                nafes.lastSection
+              )}
+            </td>
+
+            <td>
+              ${toArabicNumber(
+                nafes.visitCount
+              )}
+            </td>
+
+            <td>
+              ${formatDateTime(
+                nafes.lastVisit
+              )}
+            </td>
+
+            <td>
+              ${toArabicNumber(
+                nafes.challengeCount
+              )}
+              من ٢٠
+            </td>
+
+            <td>
+              ${challengeAverage}
+            </td>
+
+          `;
+
+
+          studentsTable.appendChild(
+            row
+          );
+
+        }
+      );
+
+    }
+
+
+    function renderCurrentView(){
+
+      configureView();
+
+      setActiveTab();
+
+
+      const students =
+        getFilteredStudents()
+        .sort(
+          (
+            first,
+            second
+          ) =>
+
+            first.className.localeCompare(
+              second.className,
+              "ar"
+            ) ||
+
+            first.name.localeCompare(
+              second.name,
+              "ar"
+            )
+        );
+
+
+      updateStats(
+        students
+      );
+
+
+      if(
+        currentView ===
+        "semester1"
+      ){
+
+        renderSemesterRows(
+          students,
+          "semester1"
+        );
+
+      }
+
+
+      else if(
+        currentView ===
+        "semester2"
+      ){
+
+        renderSemesterRows(
+          students,
+          "semester2"
+        );
+
+      }
+
+
+      else{
+
+        renderNafesRows(
+          students
+        );
+
+      }
+
+    }
+
+
+    tabButtons.forEach(
+      button => {
+
+        button.addEventListener(
+          "click",
+          () => {
+
+            currentView =
+              button.dataset.view;
+
+
+            statusFilter.value =
+              "all";
+
+
+            renderCurrentView();
+
+          }
+        );
+
+      }
     );
 
 
-    completionFilter.addEventListener(
+    classFilter.addEventListener(
       "change",
-      applyFilters
+      renderCurrentView
+    );
+
+
+    statusFilter.addEventListener(
+      "change",
+      renderCurrentView
     );
 
 
     searchInput.addEventListener(
       "input",
-      applyFilters
+      renderCurrentView
     );
 
 
