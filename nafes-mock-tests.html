@@ -1627,5 +1627,527 @@
   </script>
 
 
-</body>
+</body><script type="module">
+
+import {
+  initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+
+import {
+  initializeAuth,
+  browserLocalPersistence,
+  onAuthStateChanged
+}
+from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  updateDoc,
+  serverTimestamp
+}
+from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+
+const firebaseConfig = {
+
+  apiKey:
+    "AIzaSyB48av9gx4jzFyYoUQtcLwaR52qETevKGs",
+
+  authDomain:
+    "afaq-language-platform.firebaseapp.com",
+
+  projectId:
+    "afaq-language-platform",
+
+  storageBucket:
+    "afaq-language-platform.firebasestorage.app",
+
+  messagingSenderId:
+    "362601061474",
+
+  appId:
+    "1:362601061474:web:bc405291332b9e4ef9453b"
+
+};
+
+
+const app =
+  initializeApp(
+    firebaseConfig
+  );
+
+
+const auth =
+  initializeAuth(
+    app,
+    {
+      persistence:
+        browserLocalPersistence
+    }
+  );
+
+
+const db =
+  getFirestore(
+    app
+  );
+
+
+function candidateKeys(
+  number
+){
+
+  const padded =
+    String(number)
+      .padStart(
+        2,
+        "0"
+      );
+
+
+  return [
+
+    `nafesChallenge${padded}Result`,
+
+    `nafesChallenge${number}Result`,
+
+    `nafesChallenge${padded}`,
+
+    `nafesChallenge${number}`,
+
+    `challenge${padded}Result`,
+
+    `challenge${number}Result`
+
+  ];
+
+}
+
+
+function normalizeSavedResult(
+  raw
+){
+
+  if(
+    raw === null ||
+    raw === ""
+  ){
+    return null;
+  }
+
+
+  let value =
+    raw;
+
+
+  try{
+
+    value =
+      JSON.parse(
+        raw
+      );
+
+  }
+
+  catch(error){
+
+    const numeric =
+      Number(
+        String(raw)
+          .replace(
+            "%",
+            ""
+          )
+          .trim()
+      );
+
+
+    if(
+      Number.isFinite(
+        numeric
+      )
+    ){
+
+      return {
+        الدرجة:numeric,
+        المجموع:100,
+        النسبة:numeric
+      };
+
+    }
+
+
+    return null;
+
+  }
+
+
+  if(
+    typeof value ===
+    "number"
+  ){
+
+    return {
+      الدرجة:value,
+      المجموع:100,
+      النسبة:value
+    };
+
+  }
+
+
+  if(
+    !value ||
+    typeof value !==
+    "object"
+  ){
+
+    return null;
+
+  }
+
+
+  let score =
+    Number(
+      value.score ??
+      value.correct ??
+      value.correctAnswers ??
+      value.points ??
+      NaN
+    );
+
+
+  let total =
+    Number(
+      value.total ??
+      value.totalQuestions ??
+      value.maxScore ??
+      value.questionsCount ??
+      NaN
+    );
+
+
+  let percentage =
+    Number(
+      value.percentage ??
+      value.percent ??
+      value.average ??
+      value.result ??
+      NaN
+    );
+
+
+  if(
+    !Number.isFinite(
+      percentage
+    )
+  ){
+
+    if(
+      Number.isFinite(score) &&
+      Number.isFinite(total) &&
+      total > 0
+    ){
+
+      percentage =
+        Math.round(
+          (
+            score /
+            total
+          ) *
+          100
+        );
+
+    }
+
+    else if(
+      Number.isFinite(score) &&
+      score >= 0 &&
+      score <= 100
+    ){
+
+      percentage =
+        score;
+
+      total =
+        100;
+
+    }
+
+    else{
+
+      return null;
+
+    }
+
+  }
+
+
+  if(
+    !Number.isFinite(
+      score
+    )
+  ){
+
+    score =
+      percentage;
+
+  }
+
+
+  if(
+    !Number.isFinite(
+      total
+    ) ||
+    total <= 0
+  ){
+
+    total =
+      100;
+
+  }
+
+
+  percentage =
+    Math.max(
+      0,
+      Math.min(
+        100,
+        Math.round(
+          percentage
+        )
+      )
+    );
+
+
+  return {
+
+    الدرجة:
+      score,
+
+    المجموع:
+      total,
+
+    النسبة:
+      percentage
+
+  };
+
+}
+
+
+function collectNafesResults(){
+
+  const results =
+    {};
+
+
+  let completed =
+    0;
+
+
+  let totalPercentage =
+    0;
+
+
+  for(
+    let number = 1;
+    number <= 20;
+    number += 1
+  ){
+
+    let result =
+      null;
+
+
+    for(
+      const key of
+      candidateKeys(
+        number
+      )
+    ){
+
+      const raw =
+        localStorage.getItem(
+          key
+        );
+
+
+      result =
+        normalizeSavedResult(
+          raw
+        );
+
+
+      if(result){
+        break;
+      }
+
+    }
+
+
+    if(!result){
+      continue;
+    }
+
+
+    completed +=
+      1;
+
+
+    totalPercentage +=
+      Number(
+        result["النسبة"] ||
+        0
+      );
+
+
+    results[
+      `challenge${number}`
+    ] = {
+
+      رقم_التحدي:
+        number,
+
+      الدرجة:
+        result["الدرجة"],
+
+      المجموع:
+        result["المجموع"],
+
+      النسبة:
+        result["النسبة"]
+
+    };
+
+  }
+
+
+  const average =
+    completed > 0
+
+    ? Math.round(
+        totalPercentage /
+        completed
+      )
+
+    : 0;
+
+
+  return {
+
+    results,
+
+    completed,
+
+    average,
+
+    cup:
+      completed === 20 &&
+      average >= 80
+
+  };
+
+}
+
+
+async function saveNafesResults(
+  user
+){
+
+  const nafes =
+    collectNafesResults();
+
+
+  const studentRef =
+    doc(
+      db,
+      "students",
+      user.uid
+    );
+
+
+  await setDoc(
+    studentRef,
+    {
+      "معرف_المستخدم":
+        user.uid,
+
+      "البريد":
+        user.email ||
+        ""
+    },
+    {
+      merge:true
+    }
+  );
+
+
+  await updateDoc(
+    studentRef,
+    {
+
+      "نافس_المتابعة.نتائج_التحديات":
+        nafes.results,
+
+      "نافس_المتابعة.عدد_التحديات_المكتملة":
+        nafes.completed,
+
+      "نافس_المتابعة.متوسط_التحديات":
+        nafes.average,
+
+      "نافس_المتابعة.الكأس_مستحق":
+        nafes.cup,
+
+      "نافس_المتابعة.آخر_تحديث_للتحديات":
+        serverTimestamp()
+
+    }
+  );
+
+}
+
+
+onAuthStateChanged(
+  auth,
+  async user => {
+
+    if(!user){
+      return;
+    }
+
+
+    try{
+
+      await saveNafesResults(
+        user
+      );
+
+
+      console.log(
+        "✅ تم حفظ نتائج نافس في Firebase"
+      );
+
+    }
+
+    catch(error){
+
+      console.error(
+        "تعذر حفظ نتائج نافس:",
+        error
+      );
+
+    }
+
+  }
+);
+
+</script>
+  
 </html>
