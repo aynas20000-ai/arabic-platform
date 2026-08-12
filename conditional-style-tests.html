@@ -9,7 +9,7 @@
     content="width=device-width, initial-scale=1, viewport-fit=cover"
   >
 
-  <title>اختبري مهارتك | أسلوب الشرط</title>
+  <title>اختبار أسلوب الشرط | منصة آفاق</title>
 
   <style>
     :root {
@@ -291,6 +291,31 @@
       border-radius: 14px;
     }
 
+    .save-status {
+      min-height: 26px;
+      margin: 4px 0 2px;
+      padding: 6px 9px;
+      font-size: 12px;
+      font-weight: bold;
+      line-height: 1.5;
+      border-radius: 11px;
+    }
+
+    .save-status.saved {
+      color: #2e6f42;
+      background: #edf8f0;
+    }
+
+    .save-status.waiting {
+      color: #66522e;
+      background: #fff8e8;
+    }
+
+    .save-status.error {
+      color: #8a3d3d;
+      background: #fff0f0;
+    }
+
     .result-button,
     .back-button {
       display: block;
@@ -351,6 +376,7 @@
     }
 
     @media (max-height: 650px) {
+
       header {
         padding: 5px 10px 4px;
       }
@@ -424,7 +450,7 @@
       </h1>
 
       <p>
-        ١٠ أسئلة • أربعة خيارات • تعقيب فوري 🌟
+        ١٠ أسئلة • أربعة خيارات • تغذية راجعة فورية 🌟
       </p>
 
     </header>
@@ -439,17 +465,19 @@
         </span>
 
         <span id="scoreText">
-          الصحيح: ٠
+          الإجابات الصحيحة: ٠
         </span>
 
       </div>
 
 
       <div class="progress">
+
         <div
           id="progressBar"
           class="progress-bar"
         ></div>
+
       </div>
 
 
@@ -501,7 +529,7 @@
         </div>
 
         <h2>
-          🎉 اكتمل الاختبار
+          🎉 اكتمل اختبار أسلوب الشرط
         </h2>
 
         <div
@@ -516,18 +544,23 @@
           class="result-message"
         ></div>
 
+        <div
+          id="saveStatus"
+          class="save-status"
+        ></div>
+
         <button
           class="result-button"
           onclick="restartQuiz()"
         >
-          🔄 إعادة الاختبار
+          🔄 أعيدي الاختبار
         </button>
 
         <a
           class="back-button"
           href="conditional-style-file.html"
         >
-          📘 مراجعة ملف الدرس
+          📘 راجعي ملف الدرس
         </a>
 
         <a
@@ -554,773 +587,1022 @@
     </footer>
 
   </div>
+  <script type="module">
 
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
 
-  <script>
+import {
+  getAuth,
+  onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
 
-    const questions = [
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  updateDoc,
+  serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 
-      {
-        question:
-          "أيُّ الجمل الآتية اشتملت على أسلوب شرط؟",
 
-        answers: [
-          "ما أجملَ الصدقَ!",
-          "إنْ تجتهدي تنجحي.",
-          "هل أنجزتِ واجبكِ؟",
-          "العلمُ طريقُ النجاح."
-        ],
+const firebaseConfig = {
+  apiKey: "AIzaSyB48av9gx4jzFyYoUQtcLwaR52qETevKGs",
+  authDomain: "afaq-language-platform.firebaseapp.com",
+  projectId: "afaq-language-platform",
+  storageBucket: "afaq-language-platform.firebasestorage.app",
+  messagingSenderId: "362601061474",
+  appId: "1:362601061474:web:bc405291332b9e4ef9453b"
+};
 
-        correct: 1,
 
-        explanation:
-          "الجملة «إنْ تجتهدي تنجحي» ربطت الاجتهاد بالنجاح باستخدام أداة الشرط «إنْ»."
-      },
+const app =
+  initializeApp(firebaseConfig);
 
+const auth =
+  getAuth(app);
 
-      {
-        question:
-          "ما أداة الشرط في الجملة: «مَن يحفظْ وقتَه يحققْ أهدافَه»؟",
+const db =
+  getFirestore(app);
 
-        answers: [
-          "يحفظْ",
-          "وقتَه",
-          "مَن",
-          "يحققْ"
-        ],
+let currentUser = null;
 
-        correct: 2,
+onAuthStateChanged(
+  auth,
+  (user) => {
+    currentUser = user;
+  }
+);
 
-        explanation:
-          "«مَن» أداة شرط جازمة تدل على العاقل."
-      },
 
+const questions = [
 
-      {
-        question:
-          "ما فعل الشرط في الجملة: «إنْ تحسني إلى الناس يحبّوكِ»؟",
+  {
+    question:
+      "أيُّ الجمل الآتية اشتملت على أسلوب شرط؟",
 
-        answers: [
-          "إنْ",
-          "تحسني",
-          "الناس",
-          "يحبّوكِ"
-        ],
+    answers: [
+      "ما أجملَ الصدقَ!",
+      "إنْ تجتهدي تنجحي.",
+      "هل أنجزتِ واجبكِ؟",
+      "العلمُ طريقُ النجاح."
+    ],
 
-        correct: 1,
+    correct: 1,
 
-        explanation:
-          "الفعل «تحسني» هو فعل الشرط؛ لأنه وقع بعد أداة الشرط «إنْ»."
-      },
+    explanation:
+      "الجملة «إنْ تجتهدي تنجحي» ربطت الاجتهاد بالنجاح باستخدام أداة الشرط «إنْ»."
+  },
 
 
-      {
-        question:
-          "ما جواب الشرط في الجملة: «متى تنظّمي وقتكِ تنجزي أعمالكِ»؟",
+  {
+    question:
+      "ما أداة الشرط في الجملة: «مَن يحفظْ وقتَه يحققْ أهدافَه»؟",
 
-        answers: [
-          "متى",
-          "تنظّمي",
-          "وقتكِ",
-          "تنجزي أعمالكِ"
-        ],
+    answers: [
+      "يحفظْ",
+      "وقتَه",
+      "مَن",
+      "يحققْ"
+    ],
 
-        correct: 3,
+    correct: 2,
 
-        explanation:
-          "«تنجزي أعمالكِ» هي النتيجة المترتبة على تنظيم الوقت، ولذلك هي جواب الشرط."
-      },
+    explanation:
+      "«مَن» أداة شرط جازمة تدل على العاقل."
+  },
 
 
-      {
-        question:
-          "ما نوع «ما» في الجملة: «ما تزرعْ تحصدْ»؟",
+  {
+    question:
+      "ما فعل الشرط في الجملة: «إنْ تحسني إلى الناس يحبّوكِ»؟",
 
-        answers: [
-          "استفهامية",
-          "نافية",
-          "شرطية",
-          "تعجبية"
-        ],
+    answers: [
+      "إنْ",
+      "تحسني",
+      "الناس",
+      "يحبّوكِ"
+    ],
 
-        correct: 2,
+    correct: 1,
 
-        explanation:
-          "«ما» شرطية؛ لأنها ربطت فعل الشرط «تزرعْ» بجوابه «تحصدْ»."
-      },
+    explanation:
+      "الفعل «تحسني» هو فعل الشرط؛ لأنه وقع بعد أداة الشرط «إنْ»."
+  },
 
 
-      {
-        question:
-          "ما نوع «ما» في الجملة: «ما هدفُكِ في المستقبل؟»",
+  {
+    question:
+      "ما جواب الشرط في الجملة: «متى تنظّمي وقتكِ تنجزي أعمالكِ»؟",
 
-        answers: [
-          "موصولة",
-          "استفهامية",
-          "شرطية",
-          "نافية"
-        ],
+    answers: [
+      "متى",
+      "تنظّمي",
+      "وقتكِ",
+      "تنجزي أعمالكِ"
+    ],
 
-        correct: 1,
+    correct: 3,
 
-        explanation:
-          "«ما» استفهامية؛ لأنها استُخدمت للسؤال وتحتاج إلى إجابة."
-      },
+    explanation:
+      "«تنجزي أعمالكِ» هي النتيجة المترتبة على تنظيم الوقت؛ لذلك فهي جواب الشرط."
+  },
 
 
-      {
-        question:
-          "قال تعالى: ﴿إِنْ تَنْصُرُوا اللَّهَ يَنْصُرْكُمْ﴾، ما جواب الشرط؟",
+  {
+    question:
+      "ما نوع «ما» في الجملة: «ما تزرعْ تحصدْ»؟",
 
-        answers: [
-          "إنْ",
-          "تنصروا",
-          "الله",
-          "ينصركم"
-        ],
+    answers: [
+      "استفهامية",
+      "نافية",
+      "شرطية",
+      "تعجبية"
+    ],
 
-        correct: 3,
+    correct: 2,
 
-        explanation:
-          "«ينصركم» جواب الشرط؛ لأنه النتيجة المترتبة على الشرط."
-      },
+    explanation:
+      "«ما» شرطية؛ لأنها ربطت فعل الشرط «تزرعْ» بجوابه «تحصدْ»."
+  },
 
 
-      {
-        question:
-          "قال تعالى: ﴿مَنْ يَتَّقِ اللَّهَ يَجْعَلْ لَهُ مَخْرَجًا﴾، ما فعل الشرط؟",
+  {
+    question:
+      "ما نوع «ما» في الجملة: «ما هدفُكِ في المستقبل؟»",
 
-        answers: [
-          "مَن",
-          "يتقِ",
-          "يجعلْ",
-          "مخرجًا"
-        ],
+    answers: [
+      "موصولة",
+      "استفهامية",
+      "شرطية",
+      "نافية"
+    ],
 
-        correct: 1,
+    correct: 1,
 
-        explanation:
-          "«يتقِ» فعل الشرط، وعلامة جزمه حذف حرف العلة."
-      },
+    explanation:
+      "«ما» استفهامية؛ لأنها استُخدمت للسؤال وتحتاج إلى إجابة."
+  },
 
 
-      {
-        question:
-          "ما علامة جزم الفعل «يسعَ» في: «مَن يسعَ للخير يلقَ أثره»؟",
+  {
+    question:
+      "قال تعالى: ﴿إِنْ تَنْصُرُوا اللَّهَ يَنْصُرْكُمْ﴾، ما جواب الشرط؟",
 
-        answers: [
-          "السكون",
-          "حذف حرف العلة",
-          "حذف النون",
-          "الضمة"
-        ],
+    answers: [
+      "إنْ",
+      "تنصروا",
+      "الله",
+      "ينصركم"
+    ],
 
-        correct: 1,
+    correct: 3,
 
-        explanation:
-          "أصل الفعل «يسعى»، وهو معتل الآخر، وعند جزمه يُحذف حرف العلة فيصبح «يسعَ»."
-      },
+    explanation:
+      "«ينصركم» جواب الشرط؛ لأنه النتيجة المترتبة على الشرط."
+  },
 
 
-      {
-        question:
-          "أيُّ الجمل الآتية ضُبط فيها فعلا الشرط والجواب ضبطًا صحيحًا؟",
+  {
+    question:
+      "قال تعالى: ﴿مَنْ يَتَّقِ اللَّهَ يَجْعَلْ لَهُ مَخْرَجًا﴾، ما فعل الشرط؟",
 
-        answers: [
-          "مَن يجتهدُ ينجحُ.",
-          "مَن يجتهدْ ينجحْ.",
-          "مَن يجتهدَ ينجحَ.",
-          "مَن يجتهدْ ينجحُ."
-        ],
+    answers: [
+      "مَن",
+      "يتقِ",
+      "يجعلْ",
+      "مخرجًا"
+    ],
 
-        correct: 1,
+    correct: 1,
 
-        explanation:
-          "«مَن» أداة شرط جازمة، والفعلان صحيحا الآخر؛ لذلك جُزما بالسكون."
-      }
+    explanation:
+      "«يتقِ» فعل الشرط، وعلامة جزمه حذف حرف العلة."
+  },
 
-    ];
 
+  {
+    question:
+      "ما علامة جزم الفعل «يسعَ» في: «مَن يسعَ للخير يلقَ أثره»؟",
 
-    let currentQuestion = 0;
-    let score = 0;
-    let answered = false;
+    answers: [
+      "السكون",
+      "حذف حرف العلة",
+      "حذف النون",
+      "الضمة"
+    ],
 
+    correct: 1,
 
-    const arabicDigits = number =>
-      String(number).replace(
-        /\d/g,
-        digit => "٠١٢٣٤٥٦٧٨٩"[digit]
-      );
+    explanation:
+      "أصل الفعل «يسعى»، وهو معتل الآخر، وعند جزمه يُحذف حرف العلة فيصبح «يسعَ»."
+  },
 
 
-    function showQuestion() {
+  {
+    question:
+      "أيُّ الجمل الآتية ضُبط فيها فعلا الشرط والجواب ضبطًا صحيحًا؟",
 
-      answered = false;
+    answers: [
+      "مَن يجتهدُ ينجحُ.",
+      "مَن يجتهدْ ينجحْ.",
+      "مَن يجتهدَ ينجحَ.",
+      "مَن يجتهدْ ينجحُ."
+    ],
 
-      const item =
-        questions[currentQuestion];
+    correct: 1,
 
-      document
-        .getElementById("questionCounter")
-        .textContent =
-        "السؤال " +
-        arabicDigits(currentQuestion + 1) +
-        " من " +
-        arabicDigits(questions.length);
+    explanation:
+      "«مَن» أداة شرط جازمة، والفعلان صحيحا الآخر؛ لذلك جُزما بالسكون."
+  }
 
-      document
-        .getElementById("questionNumber")
-        .textContent =
-        "السؤال " +
-        arabicDigits(currentQuestion + 1);
+];
 
-      document
-        .getElementById("scoreText")
-        .textContent =
-        "الصحيح: " +
-        arabicDigits(score);
 
-      document
-        .getElementById("questionText")
-        .textContent =
-        item.question;
+let currentQuestion = 0;
+let score = 0;
+let answered = false;
 
-      document
-        .getElementById("progressBar")
-        .style.width =
-        (
-          (currentQuestion + 1) /
-          questions.length *
-          100
-        ) + "%";
 
-      const answersBox =
-        document.getElementById("answersBox");
+const arabicDigits = number =>
+  String(number).replace(
+    /\d/g,
+    digit => "٠١٢٣٤٥٦٧٨٩"[digit]
+  );
 
-      answersBox.innerHTML = "";
 
-      const feedback =
-        document.getElementById("feedback");
+function showQuestion() {
 
-      feedback.className =
-        "feedback";
+  answered = false;
 
-      feedback.textContent = "";
+  const item =
+    questions[currentQuestion];
 
-      const nextButton =
-        document.getElementById("nextButton");
 
-      nextButton.style.display =
-        "none";
+  document
+    .getElementById("questionCounter")
+    .textContent =
+    "السؤال " +
+    arabicDigits(currentQuestion + 1) +
+    " من " +
+    arabicDigits(questions.length);
 
 
-      item.answers.forEach(
-        (answer, index) => {
+  document
+    .getElementById("questionNumber")
+    .textContent =
+    "السؤال " +
+    arabicDigits(currentQuestion + 1);
 
-          const button =
-            document.createElement("button");
 
-          button.type =
-            "button";
+  document
+    .getElementById("scoreText")
+    .textContent =
+    "الإجابات الصحيحة: " +
+    arabicDigits(score);
 
-          button.className =
-            "answer-button";
 
-          button.textContent =
-            answer;
+  document
+    .getElementById("questionText")
+    .textContent =
+    item.question;
 
-          button.onclick =
-            () =>
-              selectAnswer(
-                index,
-                button
-              );
 
-          answersBox.appendChild(
+  document
+    .getElementById("progressBar")
+    .style.width =
+    (
+      (currentQuestion + 1) /
+      questions.length *
+      100
+    ) + "%";
+
+
+  const answersBox =
+    document.getElementById(
+      "answersBox"
+    );
+
+  answersBox.innerHTML = "";
+
+
+  const feedback =
+    document.getElementById(
+      "feedback"
+    );
+
+  feedback.className =
+    "feedback";
+
+  feedback.textContent = "";
+
+
+  const nextButton =
+    document.getElementById(
+      "nextButton"
+    );
+
+  nextButton.style.display =
+    "none";
+
+
+  item.answers.forEach(
+    (answer, index) => {
+
+      const button =
+        document.createElement(
+          "button"
+        );
+
+      button.type =
+        "button";
+
+      button.className =
+        "answer-button";
+
+      button.textContent =
+        answer;
+
+      button.onclick =
+        () =>
+          selectAnswer(
+            index,
             button
           );
 
-        }
+      answersBox.appendChild(
+        button
       );
 
     }
+  );
+
+}
 
 
-    function selectAnswer(
-      selectedIndex,
-      selectedButton
+function selectAnswer(
+  selectedIndex,
+  selectedButton
+) {
+
+  if (answered) {
+    return;
+  }
+
+  answered = true;
+
+
+  const item =
+    questions[currentQuestion];
+
+
+  const buttons =
+    [
+      ...document.querySelectorAll(
+        ".answer-button"
+      )
+    ];
+
+
+  buttons.forEach(
+    button =>
+      button.disabled = true
+  );
+
+
+  buttons[item.correct]
+    .classList
+    .add("correct");
+
+
+  const feedback =
+    document.getElementById(
+      "feedback"
+    );
+
+
+  if (
+    selectedIndex ===
+    item.correct
+  ) {
+
+    score++;
+
+    selectedButton
+      .classList
+      .add("correct");
+
+    feedback.className =
+      "feedback good";
+
+    feedback.innerHTML =
+      "🌟 أحسنتِ، إجابة صحيحة.<br>" +
+      item.explanation;
+
+    playCorrectSound();
+
+    celebrate(30);
+
+    if (
+      navigator.vibrate
     ) {
-
-      if (answered) {
-        return;
-      }
-
-      answered = true;
-
-      const item =
-        questions[currentQuestion];
-
-      const buttons =
-        [
-          ...document.querySelectorAll(
-            ".answer-button"
-          )
-        ];
-
-      buttons.forEach(
-        button =>
-          button.disabled = true
-      );
-
-      buttons[item.correct]
-        .classList
-        .add("correct");
-
-
-      const feedback =
-        document.getElementById(
-          "feedback"
-        );
-
-
-      if (
-        selectedIndex ===
-        item.correct
-      ) {
-
-        score++;
-
-        selectedButton
-          .classList
-          .add("correct");
-
-        feedback.className =
-          "feedback good";
-
-        feedback.innerHTML =
-          "🌟 أحسنتِ، إجابة صحيحة.<br>" +
-          item.explanation;
-
-        playCorrectSound();
-
-        celebrate(30);
-
-        if (
-          navigator.vibrate
-        ) {
-          navigator.vibrate(45);
-        }
-
-      } else {
-
-        selectedButton
-          .classList
-          .add("wrong");
-
-        feedback.className =
-          "feedback bad";
-
-        feedback.innerHTML =
-          "🌷 راجعي الفكرة.<br>" +
-          item.explanation;
-
-        playWrongSound();
-
-        if (
-          navigator.vibrate
-        ) {
-          navigator.vibrate(
-            [70, 40, 70]
-          );
-        }
-
-      }
-
-
-      document
-        .getElementById("scoreText")
-        .textContent =
-        "الصحيح: " +
-        arabicDigits(score);
-
-
-      const nextButton =
-        document.getElementById(
-          "nextButton"
-        );
-
-      nextButton.style.display =
-        "block";
-
-      if (
-        currentQuestion ===
-        questions.length - 1
-      ) {
-
-        nextButton.textContent =
-          "شوفي نتيجتك ✨";
-
-      } else {
-
-        nextButton.textContent =
-          "كمّلي الاختبار ←";
-
-      }
-
+      navigator.vibrate(45);
     }
 
+  } else {
 
-    document
-      .getElementById("nextButton")
-      .onclick =
-      function () {
+    selectedButton
+      .classList
+      .add("wrong");
 
-        currentQuestion++;
+    feedback.className =
+      "feedback bad";
 
-        if (
-          currentQuestion <
-          questions.length
-        ) {
+    feedback.innerHTML =
+      "🌷 راجعي الفكرة.<br>" +
+      item.explanation;
 
-          showQuestion();
+    playWrongSound();
 
-        } else {
-
-          showResult();
-
-        }
-
-      };
-
-
-    function showResult() {
-
-      document
-        .getElementById("quizCard")
-        .style.display =
-        "none";
-
-      document
-        .querySelector(".top-info")
-        .style.display =
-        "none";
-
-      document
-        .querySelector(".progress")
-        .style.display =
-        "none";
-
-
-      const resultCard =
-        document.getElementById(
-          "resultCard"
-        );
-
-      resultCard.classList.add(
-        "show"
+    if (
+      navigator.vibrate
+    ) {
+      navigator.vibrate(
+        [70, 40, 70]
       );
-
-
-      document
-        .getElementById("finalScore")
-        .textContent =
-        arabicDigits(score) +
-        " / " +
-        arabicDigits(
-          questions.length
-        );
-
-
-      const percentage =
-        score /
-        questions.length;
-
-      const resultIcon =
-        document.getElementById(
-          "resultIcon"
-        );
-
-      const resultMessage =
-        document.getElementById(
-          "resultMessage"
-        );
-
-
-      if (
-        score ===
-        questions.length
-      ) {
-
-        resultIcon.textContent =
-          "👑";
-
-        resultMessage.textContent =
-          "إتقان كامل لأسلوب الشرط 🏆";
-
-        celebrate(100);
-
-        playVictorySound();
-
-      } else if (
-        percentage >= 0.8
-      ) {
-
-        resultIcon.textContent =
-          "🏆";
-
-        resultMessage.textContent =
-          "نتيجة رائعة جدًا 🌟 فهمكِ لأسلوب الشرط مميز.";
-
-        celebrate(75);
-
-        playVictorySound();
-
-      } else if (
-        percentage >= 0.6
-      ) {
-
-        resultIcon.textContent =
-          "🌷";
-
-        resultMessage.textContent =
-          "أداء جميل 👏 راجعي النقاط التي أخطأتِ فيها ثم أعيدي الاختبار.";
-
-        celebrate(45);
-
-      } else {
-
-        resultIcon.textContent =
-          "📘";
-
-        resultMessage.textContent =
-          "راجعي ملف الدرس وروائع أسلوب الشرط، ثم عودي للاختبار مرة أخرى.";
-
-      }
-
     }
 
+  }
 
-    function restartQuiz() {
 
-      currentQuestion = 0;
-      score = 0;
-      answered = false;
+  document
+    .getElementById("scoreText")
+    .textContent =
+    "الإجابات الصحيحة: " +
+    arabicDigits(score);
 
-      document
-        .getElementById("resultCard")
-        .classList
-        .remove("show");
 
-      document
-        .getElementById("quizCard")
-        .style.display =
-        "flex";
+  const nextButton =
+    document.getElementById(
+      "nextButton"
+    );
 
-      document
-        .querySelector(".top-info")
-        .style.display =
-        "flex";
+  nextButton.style.display =
+    "block";
 
-      document
-        .querySelector(".progress")
-        .style.display =
-        "block";
+
+  if (
+    currentQuestion ===
+    questions.length - 1
+  ) {
+
+    nextButton.textContent =
+      "شاهدي نتيجتكِ ✨";
+
+  } else {
+
+    nextButton.textContent =
+      "تابعي الاختبار ←";
+
+  }
+
+}
+
+
+document
+  .getElementById("nextButton")
+  .onclick =
+  function () {
+
+    currentQuestion++;
+
+    if (
+      currentQuestion <
+      questions.length
+    ) {
 
       showQuestion();
 
+    } else {
+
+      showResult();
+
+    }
+
+  };
+    async function saveResult(){
+
+  const saveStatus =
+    document.getElementById(
+      "saveStatus"
+    );
+
+
+  if(!currentUser){
+
+    saveStatus.className =
+      "save-status waiting";
+
+    saveStatus.textContent =
+      "ℹ️ لم تُحفظ النتيجة؛ يلزم تسجيل الدخول لإضافتها إلى سجلّكِ.";
+
+    return;
+  }
+
+
+  saveStatus.className =
+    "save-status waiting";
+
+  saveStatus.textContent =
+    "جارٍ حفظ نتيجتكِ في سجلّكِ...";
+
+
+  try{
+
+    const studentRef =
+      doc(
+        db,
+        "students",
+        currentUser.uid
+      );
+
+
+    const studentSnap =
+      await getDoc(
+        studentRef
+      );
+
+
+    if(!studentSnap.exists()){
+
+      throw new Error(
+        "student-document-not-found"
+      );
+
     }
 
 
-    function celebrate(amount) {
+    const data =
+      studentSnap.data();
 
-      const colors = [
-        "#776094",
-        "#5b4677",
-        "#c9a85c",
-        "#ead69e",
-        "#6f5288"
-      ];
 
-      for (
-        let i = 0;
-        i < amount;
-        i++
-      ) {
+    const oldTest =
+      data?.["اختبارات_الفصل_الأول"]?.["أسلوب_الشرط"] || {};
 
-        const piece =
-                    document.createElement(
-            "span"
-          );
 
-        piece.className =
-          "confetti";
+    const oldAttempts =
+      Number(
+        oldTest["عدد_المحاولات"] || 0
+      );
 
-        piece.style.left =
-          Math.random() *
-          100 +
-          "vw";
 
-        piece.style.background =
-          colors[
-            Math.floor(
-              Math.random() *
-              colors.length
-            )
-          ];
+    const oldBest =
+      Number(
+        oldTest["أعلى_درجة"] || 0
+      );
 
-        piece.style.animationDuration =
-          (
-            2.1 +
-            Math.random() *
-            2.3
-          ) +
-          "s";
 
-        piece.style.animationDelay =
-          (
-            Math.random() *
-            0.4
-          ) +
-          "s";
+    const percentage =
+      Math.round(
+        (score / questions.length) *
+        100
+      );
 
-        document.body.appendChild(
-          piece
-        );
 
-        setTimeout(
-          () => piece.remove(),
-          5000
-        );
+    const bestScore =
+      Math.max(
+        oldBest,
+        score
+      );
+
+
+    await updateDoc(
+      studentRef,
+      {
+
+        "اختبارات_الفصل_الأول.أسلوب_الشرط.اسم_الاختبار":
+          "اختبار أسلوب الشرط",
+
+        "اختبارات_الفصل_الأول.أسلوب_الشرط.الدرجة":
+          score,
+
+        "اختبارات_الفصل_الأول.أسلوب_الشرط.الدرجة_من":
+          questions.length,
+
+        "اختبارات_الفصل_الأول.أسلوب_الشرط.النسبة":
+          percentage,
+
+        "اختبارات_الفصل_الأول.أسلوب_الشرط.عدد_المحاولات":
+          oldAttempts + 1,
+
+        "اختبارات_الفصل_الأول.أسلوب_الشرط.أعلى_درجة":
+          bestScore,
+
+        "اختبارات_الفصل_الأول.أسلوب_الشرط.آخر_محاولة":
+          serverTimestamp()
 
       }
+    );
 
-    }
+
+    saveStatus.className =
+      "save-status saved";
+
+    saveStatus.textContent =
+      "✅ حُفظت نتيجتكِ في سجل الفصل الدراسي الأول.";
 
 
+  }catch(error){
+
+    console.error(error);
+
+    saveStatus.className =
+      "save-status error";
+
+    saveStatus.textContent =
+      "تعذّر حفظ النتيجة، ولكن نتيجتكِ في الاختبار لم تتأثر.";
+
+  }
+
+}
+
+
+function showResult() {
+
+  document
+    .getElementById("quizCard")
+    .style.display =
+    "none";
+
+
+  document
+    .querySelector(".top-info")
+    .style.display =
+    "none";
+
+
+  document
+    .querySelector(".progress")
+    .style.display =
+    "none";
+
+
+  const resultCard =
+    document.getElementById(
+      "resultCard"
+    );
+
+
+  resultCard.classList.add(
+    "show"
+  );
+
+
+  document
+    .getElementById("finalScore")
+    .textContent =
+    arabicDigits(score) +
+    " / " +
+    arabicDigits(
+      questions.length
+    );
+
+
+  const percentage =
+    score /
+    questions.length;
+
+
+  const resultIcon =
+    document.getElementById(
+      "resultIcon"
+    );
+
+
+  const resultMessage =
+    document.getElementById(
+      "resultMessage"
+    );
+
+
+  if (
+    score ===
+    questions.length
+  ) {
+
+    resultIcon.textContent =
+      "👑";
+
+    resultMessage.textContent =
+      "أحسنتِ! أتقنتِ أسلوب الشرط إتقانًا كاملًا 🏆";
+
+    celebrate(100);
+
+    playVictorySound();
+
+
+  } else if (
+    percentage >= 0.8
+  ) {
+
+    resultIcon.textContent =
+      "🏆";
+
+    resultMessage.textContent =
+      "ممتاز جدًا 🌟 أتقنتِ أركان أسلوب الشرط وأدواته وعلامات الجزم.";
+
+    celebrate(75);
+
+    playVictorySound();
+
+
+  } else if (
+    percentage >= 0.6
+  ) {
+
+    resultIcon.textContent =
+      "🌷";
+
+    resultMessage.textContent =
+      "أداء جيد 👏 راجعي أداة الشرط، وفعل الشرط، وجواب الشرط، وعلامات الجزم، ثم أعيدي الاختبار.";
+
+    celebrate(45);
+
+
+  } else {
+
+    resultIcon.textContent =
+      "📘";
+
+    resultMessage.textContent =
+      "راجعي ملف درس أسلوب الشرط، ثم أعيدي الاختبار بثقة.";
+
+  }
+
+
+  saveResult();
+
+}
+
+
+window.restartQuiz =
+function () {
+
+  currentQuestion = 0;
+  score = 0;
+  answered = false;
+
+
+  document
+    .getElementById("resultCard")
+    .classList
+    .remove("show");
+
+
+  document
+    .getElementById("quizCard")
+    .style.display =
+    "flex";
+
+
+  document
+    .querySelector(".top-info")
+    .style.display =
+    "flex";
+
+
+  document
+    .querySelector(".progress")
+    .style.display =
+    "block";
+
+
+  document
+    .getElementById("saveStatus")
+    .textContent =
+    "";
+
+
+  showQuestion();
+
+};
+
+
+function celebrate(amount) {
+
+  const colors = [
+    "#776094",
+    "#5b4677",
+    "#c9a85c",
+    "#ead69e",
+    "#6f5288"
+  ];
+
+
+  for (
+    let i = 0;
+    i < amount;
+    i++
+  ) {
+
+    const piece =
+      document.createElement(
+        "span"
+      );
+
+
+    piece.className =
+      "confetti";
+
+
+    piece.style.left =
+      Math.random() *
+      100 +
+      "vw";
+
+
+    piece.style.background =
+      colors[
+        Math.floor(
+          Math.random() *
+          colors.length
+        )
+      ];
+
+
+    piece.style.animationDuration =
+      (
+        2.1 +
+        Math.random() *
+        2.3
+      ) +
+      "s";
+
+
+    piece.style.animationDelay =
+      (
+        Math.random() *
+        0.4
+      ) +
+      "s";
+
+
+    document.body.appendChild(
+      piece
+    );
+
+
+    setTimeout(
+      () => piece.remove(),
+      5000
+    );
+
+  }
+
+}
     function playTone(
-      frequency,
-      duration
+  frequency,
+  duration
+) {
+
+  try {
+
+    const AudioContextClass =
+      window.AudioContext ||
+      window.webkitAudioContext;
+
+
+    if (
+      !AudioContextClass
     ) {
-
-      try {
-
-        const AudioContextClass =
-          window.AudioContext ||
-          window.webkitAudioContext;
-
-        if (
-          !AudioContextClass
-        ) {
-          return;
-        }
-
-        const context =
-          new AudioContextClass();
-
-        const oscillator =
-          context.createOscillator();
-
-        const gain =
-          context.createGain();
-
-        oscillator.connect(gain);
-
-        gain.connect(
-          context.destination
-        );
-
-        oscillator.type =
-          "sine";
-
-        oscillator.frequency.value =
-          frequency;
-
-        gain.gain.setValueAtTime(
-          0.07,
-          context.currentTime
-        );
-
-        gain.gain.exponentialRampToValueAtTime(
-          0.001,
-          context.currentTime +
-          duration
-        );
-
-        oscillator.start();
-
-        oscillator.stop(
-          context.currentTime +
-          duration
-        );
-
-      } catch (error) {}
-
+      return;
     }
 
 
-    function playCorrectSound() {
+    const context =
+      new AudioContextClass();
 
+
+    const oscillator =
+      context.createOscillator();
+
+
+    const gain =
+      context.createGain();
+
+
+    oscillator.connect(
+      gain
+    );
+
+
+    gain.connect(
+      context.destination
+    );
+
+
+    oscillator.type =
+      "sine";
+
+
+    oscillator.frequency.value =
+      frequency;
+
+
+    gain.gain.setValueAtTime(
+      0.07,
+      context.currentTime
+    );
+
+
+    gain.gain.exponentialRampToValueAtTime(
+      0.001,
+      context.currentTime +
+      duration
+    );
+
+
+    oscillator.start();
+
+
+    oscillator.stop(
+      context.currentTime +
+      duration
+    );
+
+
+  } catch (error) {}
+
+}
+
+
+function playCorrectSound() {
+
+  playTone(
+    620,
+    0.12
+  );
+
+
+  setTimeout(
+    () =>
       playTone(
-        620,
-        0.12
-      );
+        820,
+        0.16
+      ),
+    130
+  );
 
-      setTimeout(
-        () =>
-          playTone(
-            820,
-            0.16
-          ),
-        130
-      );
-
-    }
+}
 
 
-    function playWrongSound() {
+function playWrongSound() {
 
+  playTone(
+    220,
+    0.18
+  );
+
+}
+
+
+function playVictorySound() {
+
+  playTone(
+    523,
+    0.18
+  );
+
+
+  setTimeout(
+    () =>
       playTone(
-        220,
-        0.18
-      );
+        659,
+        0.2
+      ),
+    150
+  );
 
-    }
 
-
-    function playVictorySound() {
-
+  setTimeout(
+    () =>
       playTone(
-        523,
-        0.18
-      );
+        784,
+        0.26
+      ),
+    300
+  );
 
-      setTimeout(
-        () =>
-          playTone(
-            659,
-            0.2
-          ),
-        150
-      );
-
-      setTimeout(
-        () =>
-          playTone(
-            784,
-            0.26
-          ),
-        300
-      );
-
-    }
+}
 
 
-    showQuestion();
+showQuestion();
 
-  </script>
+</script>
 
 </body>
 
 </html>
-  
+    
