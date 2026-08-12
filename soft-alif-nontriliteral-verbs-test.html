@@ -10,7 +10,7 @@
   >
 
   <title>
-    اختبري مهارتك | الألف اللينة في الأفعال غير الثلاثية
+    اختبار الألف اللينة في الأفعال غير الثلاثية | منصة آفاق
   </title>
 
   <style>
@@ -263,10 +263,6 @@
       border-radius: 13px;
 
       background: #eef6ff;
-
-      transition:
-        transform .15s ease,
-        border-color .15s ease;
     }
 
     .option:nth-child(2) {
@@ -281,10 +277,6 @@
       background: #f3edff;
     }
 
-    .option:active {
-      transform: scale(.99);
-    }
-
     .option:disabled {
       cursor: default;
     }
@@ -293,34 +285,12 @@
       color: #176642;
       background: #dff7e8;
       border-color: #47ab72;
-      animation: correctPop .35s ease;
     }
 
     .option.wrong {
       color: #983a4a;
       background: #ffe3e8;
       border-color: #dc6377;
-      animation: wrongShake .35s ease;
-    }
-
-    @keyframes correctPop {
-      50% {
-        transform: scale(1.025);
-      }
-    }
-
-    @keyframes wrongShake {
-      25% {
-        transform: translateX(5px);
-      }
-
-      50% {
-        transform: translateX(-5px);
-      }
-
-      75% {
-        transform: translateX(3px);
-      }
     }
 
     .feedback {
@@ -394,20 +364,6 @@
 
     .result-card.show {
       display: flex;
-      animation:
-        resultAppear .5s ease;
-    }
-
-    @keyframes resultAppear {
-      from {
-        opacity: 0;
-        transform: scale(.9);
-      }
-
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
     }
 
     .result-icon {
@@ -442,6 +398,31 @@
 
       border-radius: 13px;
       background: #f2ecff;
+    }
+
+    .save-status {
+      min-height: 26px;
+      margin-top: 5px;
+      padding: 6px 9px;
+      font-size: 12px;
+      font-weight: bold;
+      line-height: 1.5;
+      border-radius: 11px;
+    }
+
+    .save-status.saved {
+      color: #2e6f42;
+      background: #edf8f0;
+    }
+
+    .save-status.waiting {
+      color: #66522e;
+      background: #fff8e8;
+    }
+
+    .save-status.error {
+      color: #8a3d3d;
+      background: #fff0f0;
     }
 
     .result-actions {
@@ -537,11 +518,6 @@
         font-size: 15px;
       }
 
-      header p,
-      .badge {
-        font-size: 9px;
-      }
-
       main {
         padding: 3px 0;
       }
@@ -561,20 +537,10 @@
         padding: 6px;
       }
 
-      .question-number {
-        margin-bottom: 3px;
-        padding: 2px 8px;
-        font-size: 9px;
-      }
-
       .question-text {
         margin-bottom: 4px;
         padding: 5px;
         font-size: 13px;
-      }
-
-      .options {
-        gap: 3px;
       }
 
       .option {
@@ -612,7 +578,7 @@
     </h1>
 
     <p>
-      الأفعال غير الثلاثية • ١٠ أسئلة • تعقيب فوري
+      الأفعال غير الثلاثية • ١٠ أسئلة • تغذية راجعة فورية
     </p>
 
   </header>
@@ -632,7 +598,7 @@
         </span>
 
         <span>
-          الصحيح:
+          الإجابات الصحيحة:
           <span id="score">
             ٠
           </span>
@@ -711,7 +677,7 @@
       </div>
 
       <h2>
-        اكتمل الاختبار
+        اكتمل اختبار الألف اللينة في الأفعال غير الثلاثية
       </h2>
 
       <div
@@ -724,6 +690,11 @@
         id="resultMessage"
       ></div>
 
+      <div
+        class="save-status"
+        id="saveStatus"
+      ></div>
+
 
       <div class="result-actions">
 
@@ -732,14 +703,14 @@
           id="restartButton"
           type="button"
         >
-          🔄 إعادة الاختبار
+          🔄 أعيدي الاختبار
         </button>
 
         <a
           class="back-button"
           href="soft-alif-nontriliteral-verbs-file.html"
         >
-          📘 ملف الدرس
+          📘 راجعي ملف الدرس
         </a>
 
         <a
@@ -770,858 +741,1070 @@
 </div>
 
 
-<script>
-    const questions = [
+<script type="module">
 
-    {
-      question:
-        "اختاري الرسم الصحيح للفعل غير الثلاثي:",
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
 
-      options: [
-        "ارتقا",
-        "ارتقى",
-        "ارتقي",
-        "ارتقو"
-      ],
+import {
+  getAuth,
+  onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
 
-      answer: 1,
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  updateDoc,
+  serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 
-      explanation:
-        "الصواب «ارتقى»؛ لأنه فعل غير ثلاثي ولم تسبق ألفه بياء."
-    },
 
+const firebaseConfig = {
+  apiKey: "AIzaSyB48av9gx4jzFyYoUQtcLwaR52qETevKGs",
+  authDomain: "afaq-language-platform.firebaseapp.com",
+  projectId: "afaq-language-platform",
+  storageBucket: "afaq-language-platform.firebasestorage.app",
+  messagingSenderId: "362601061474",
+  appId: "1:362601061474:web:bc405291332b9e4ef9453b"
+};
 
-    {
-      question:
-        "ما الرسم الصحيح للفعل؟",
 
-      options: [
-        "استوفا",
-        "استوفى",
-        "استوفي",
-        "استوفو"
-      ],
+const app =
+  initializeApp(firebaseConfig);
 
-      answer: 1,
+const auth =
+  getAuth(app);
 
-      explanation:
-        "الصواب «استوفى»؛ لأنه فعل غير ثلاثي ولم تسبق ألفه بياء."
-    },
+const db =
+  getFirestore(app);
 
+let currentUser = null;
 
-    {
-      question:
-        "اختاري الكلمة الصحيحة في الجملة: «___ الطالبُ النجاحَ بالاجتهاد»",
+onAuthStateChanged(
+  auth,
+  user => {
+    currentUser = user;
+  }
+);
 
-      options: [
-        "ابتغى",
-        "ابتغا",
-        "ابتغي",
-        "ابتغو"
-      ],
 
-      answer: 0,
+const questions = [
 
-      explanation:
-        "الصواب «ابتغى»؛ لأنه فعل غير ثلاثي ولم تسبق ألفه بياء."
-    },
+  {
+    question:
+      "اختاري الرسم الصحيح للفعل غير الثلاثي:",
 
+    options: [
+      "ارتقا",
+      "ارتقى",
+      "ارتقي",
+      "ارتقو"
+    ],
 
-    {
-      question:
-        "ما الرسم الصحيح للفعل؟",
+    answer: 1,
 
-      options: [
-        "استدعا",
-        "استدعى",
-        "استدعي",
-        "استدعو"
-      ],
+    explanation:
+      "الصواب «ارتقى»؛ لأنه فعل غير ثلاثي ولم تسبق ألفه بياء."
+  },
 
-      answer: 1,
 
-      explanation:
-        "الصواب «استدعى»؛ لأنه فعل غير ثلاثي ولم تسبق ألفه بياء."
-    },
+  {
+    question:
+      "ما الرسم الصحيح للفعل؟",
 
+    options: [
+      "استوفا",
+      "استوفى",
+      "استوفي",
+      "استوفو"
+    ],
 
-    {
-      question:
-        "اختاري الكتابة الصحيحة:",
+    answer: 1,
 
-      options: [
-        "أعطا المعلمُ الطالبَ جائزةً.",
-        "أعطى المعلمُ الطالبَ جائزةً.",
-        "أعطي المعلمُ الطالبَ جائزةً.",
-        "أعطو المعلمُ الطالبَ جائزةً."
-      ],
+    explanation:
+      "الصواب «استوفى»؛ لأنه فعل غير ثلاثي ولم تسبق ألفه بياء."
+  },
 
-      answer: 1,
 
-      explanation:
-        "الصواب «أعطى»؛ لأنه فعل غير ثلاثي ولم تسبق ألفه بياء."
-    },
+  {
+    question:
+      "اختاري الكلمة الصحيحة في الجملة: «___ الطالبُ النجاحَ بالاجتهاد»",
 
+    options: [
+      "ابتغى",
+      "ابتغا",
+      "ابتغي",
+      "ابتغو"
+    ],
 
-    {
-      question:
-        "في الفعل غير الثلاثي، إذا لم تسبق الألف اللينة بياء فإنها تُكتب:",
+    answer: 0,
 
-      options: [
-        "ألفًا قائمة «ا»",
-        "على صورة الياء «ى»",
-        "ياءً منقوطة «ي»",
-        "واوًا «و»"
-      ],
+    explanation:
+      "الصواب «ابتغى»؛ لأنه فعل غير ثلاثي ولم تسبق ألفه بياء."
+  },
 
-      answer: 1,
 
-      explanation:
-        "الأصل في آخر الفعل غير الثلاثي أن تكتب الألف اللينة على صورة الياء «ى»."
-    },
+  {
+    question:
+      "ما الرسم الصحيح للفعل؟",
 
+    options: [
+      "استدعا",
+      "استدعى",
+      "استدعي",
+      "استدعو"
+    ],
 
-    {
-      question:
-        "إذا سبقت الألف اللينة في الفعل غير الثلاثي بحرف الياء فإنها تُكتب:",
+    answer: 1,
 
-      options: [
-        "على صورة الياء «ى»",
-        "ياءً «ي»",
-        "ألفًا قائمة «ا»",
-        "واوًا «و»"
-      ],
+    explanation:
+      "الصواب «استدعى»؛ لأنه فعل غير ثلاثي ولم تسبق ألفه بياء."
+  },
 
-      answer: 2,
 
-      explanation:
-        "إذا سبقت الألف اللينة بياء، تُكتب ألفًا قائمة «ا»."
-    },
+  {
+    question:
+      "اختاري الكتابة الصحيحة:",
 
+    options: [
+      "أعطا المعلمُ الطالبَ جائزةً.",
+      "أعطى المعلمُ الطالبَ جائزةً.",
+      "أعطي المعلمُ الطالبَ جائزةً.",
+      "أعطو المعلمُ الطالبَ جائزةً."
+    ],
 
-    {
-      question:
-        "اختاري الرسم الصحيح في الجملة: «___ المطرُ الأرضَ بعد جفافها»",
+    answer: 1,
 
-      options: [
-        "أحيى",
-        "أحيا",
-        "أحيي",
-        "أحيو"
-      ],
+    explanation:
+      "الصواب «أعطى»؛ لأنه فعل غير ثلاثي ولم تسبق ألفه بياء."
+  },
 
-      answer: 1,
 
-      explanation:
-        "الصواب «أحيا»؛ لأن الألف اللينة سبقتها ياء، فكتبت قائمة."
-    },
+  {
+    question:
+      "في الفعل غير الثلاثي، إذا لم تسبق الألف اللينة بياء فإنها تُكتب:",
 
+    options: [
+      "ألفًا قائمة «ا»",
+      "على صورة الياء «ى»",
+      "ياءً منقوطة «ي»",
+      "واوًا «و»"
+    ],
 
-    {
-      question:
-        "أيُّ الكلمات الآتية مكتوبة كتابة صحيحة؟",
+    answer: 1,
 
-      options: [
-        "استحيى",
-        "استحيا",
-        "استحيي",
-        "استحيو"
-      ],
-
-      answer: 1,
+    explanation:
+      "الأصل في آخر الفعل غير الثلاثي أن تُكتب الألف اللينة على صورة الياء «ى»."
+  },
 
-      explanation:
-        "الصواب «استحيا»؛ لأن الألف اللينة سبقتها ياء."
-    },
 
+  {
+    question:
+      "إذا سبقت الألف اللينة في الفعل غير الثلاثي بحرف الياء فإنها تُكتب:",
 
-    {
-      question:
-        "أيُّ الأفعال الآتية يختلف في رسم ألفه عن بقية الأفعال؟",
+    options: [
+      "على صورة الياء «ى»",
+      "ياءً «ي»",
+      "ألفًا قائمة «ا»",
+      "واوًا «و»"
+    ],
 
-      options: [
-        "اهتدى",
-        "اصطفى",
-        "استدعى",
-        "أحيا"
-      ],
-
-      answer: 3,
-
-      explanation:
-        "«أحيا» يختلف؛ لأن الألف سبقتها ياء، لذلك كُتبت ألفًا قائمة."
-    }
-
-  ];
-
-
-  const arabicNames = [
-    "الأول",
-    "الثاني",
-    "الثالث",
-    "الرابع",
-    "الخامس",
-    "السادس",
-    "السابع",
-    "الثامن",
-    "التاسع",
-    "العاشر"
-  ];
-
-
-  const toArabic =
-    value =>
-      String(value).replace(
-        /\d/g,
-        digit =>
-          "٠١٢٣٤٥٦٧٨٩"[digit]
-      );
-
-
-  let currentQuestion = 0;
-  let score = 0;
-  let answered = false;
-
-
-  const questionCounter =
-    document.getElementById(
-      "questionCounter"
-    );
-
-  const scoreElement =
-    document.getElementById(
-      "score"
-    );
-
-  const stars =
-    document.getElementById(
-      "stars"
-    );
-
-  const progressFill =
-    document.getElementById(
-      "progressFill"
-    );
-
-  const questionNumber =
-    document.getElementById(
-      "questionNumber"
-    );
-
-  const questionText =
-    document.getElementById(
-      "questionText"
-    );
-
-  const options =
-    document.getElementById(
-      "options"
-    );
-
-  const feedback =
-    document.getElementById(
-      "feedback"
-    );
-
-  const nextButton =
-    document.getElementById(
-      "nextButton"
-    );
-
-  const quizCard =
-    document.getElementById(
-      "quizCard"
-    );
-
-  const topPanel =
-    document.getElementById(
-      "topPanel"
-    );
-
-  const resultCard =
-    document.getElementById(
-      "resultCard"
-    );
-
-  const finalScore =
-    document.getElementById(
-      "finalScore"
-    );
-
-  const resultMessage =
-    document.getElementById(
-      "resultMessage"
-    );
-
-  const resultIcon =
-    document.getElementById(
-      "resultIcon"
-    );
-
-  const restartButton =
-    document.getElementById(
-      "restartButton"
+    answer: 2,
+
+    explanation:
+      "إذا سبقت الألف اللينة بياء، تُكتب ألفًا قائمة «ا»."
+  },
+
+
+  {
+    question:
+      "اختاري الرسم الصحيح في الجملة: «___ المطرُ الأرضَ بعد جفافها»",
+
+    options: [
+      "أحيى",
+      "أحيا",
+      "أحيي",
+      "أحيو"
+    ],
+
+    answer: 1,
+
+    explanation:
+      "الصواب «أحيا»؛ لأن الألف اللينة سبقتها ياء، فكتبت قائمة."
+  },
+
+
+  {
+    question:
+      "أيُّ الكلمات الآتية مكتوبة كتابة صحيحة؟",
+
+    options: [
+      "استحيى",
+      "استحيا",
+      "استحيي",
+      "استحيو"
+    ],
+
+    answer: 1,
+
+    explanation:
+      "الصواب «استحيا»؛ لأن الألف اللينة سبقتها ياء."
+  },
+
+
+  {
+    question:
+      "أيُّ الأفعال الآتية يختلف في رسم ألفه عن بقية الأفعال؟",
+
+    options: [
+      "اهتدى",
+      "اصطفى",
+      "استدعى",
+      "أحيا"
+    ],
+
+    answer: 3,
+
+    explanation:
+      "«أحيا» يختلف؛ لأن الألف سبقتها ياء، لذلك كُتبت ألفًا قائمة."
+  }
+
+];
+
+
+const arabicNames = [
+  "الأول",
+  "الثاني",
+  "الثالث",
+  "الرابع",
+  "الخامس",
+  "السادس",
+  "السابع",
+  "الثامن",
+  "التاسع",
+  "العاشر"
+];
+
+
+const toArabic =
+  value =>
+    String(value).replace(
+      /\d/g,
+      digit =>
+        "٠١٢٣٤٥٦٧٨٩"[digit]
     );
 
 
-  function loadQuestion() {
-
-    answered = false;
-
-    const current =
-      questions[currentQuestion];
+let currentQuestion = 0;
+let score = 0;
+let answered = false;
 
 
-    questionCounter.textContent =
-      "السؤال " +
-      toArabic(
-        currentQuestion + 1
-      ) +
-      " من " +
-      toArabic(
-        questions.length
-      );
+const questionCounter =
+  document.getElementById(
+    "questionCounter"
+  );
+
+const scoreElement =
+  document.getElementById(
+    "score"
+  );
+
+const stars =
+  document.getElementById(
+    "stars"
+  );
+
+const progressFill =
+  document.getElementById(
+    "progressFill"
+  );
+
+const questionNumber =
+  document.getElementById(
+    "questionNumber"
+  );
+
+const questionText =
+  document.getElementById(
+    "questionText"
+  );
+
+const options =
+  document.getElementById(
+    "options"
+  );
+
+const feedback =
+  document.getElementById(
+    "feedback"
+  );
+
+const nextButton =
+  document.getElementById(
+    "nextButton"
+  );
+
+const quizCard =
+  document.getElementById(
+    "quizCard"
+  );
+
+const topPanel =
+  document.getElementById(
+    "topPanel"
+  );
+
+const resultCard =
+  document.getElementById(
+    "resultCard"
+  );
+
+const finalScore =
+  document.getElementById(
+    "finalScore"
+  );
+
+const resultMessage =
+  document.getElementById(
+    "resultMessage"
+  );
+
+const resultIcon =
+  document.getElementById(
+    "resultIcon"
+  );
+
+const restartButton =
+  document.getElementById(
+    "restartButton"
+  );
+
+const saveStatus =
+  document.getElementById(
+    "saveStatus"
+  );
 
 
-    scoreElement.textContent =
-      toArabic(score);
+function loadQuestion() {
 
-    stars.textContent =
-      toArabic(score);
+  answered = false;
+
+  const current =
+    questions[currentQuestion];
 
 
-    progressFill.style.width =
+  questionCounter.textContent =
+    "السؤال " +
+    toArabic(
+      currentQuestion + 1
+    ) +
+    " من " +
+    toArabic(
+      questions.length
+    );
+
+
+  scoreElement.textContent =
+    toArabic(score);
+
+  stars.textContent =
+    toArabic(score);
+
+
+  progressFill.style.width =
+    (
       (
-        (
-          currentQuestion + 1
-        ) /
-        questions.length *
-        100
-      ) +
-      "%";
+        currentQuestion + 1
+      ) /
+      questions.length *
+      100
+    ) +
+    "%";
 
 
-    questionNumber.textContent =
-      "السؤال " +
-      arabicNames[
-        currentQuestion
-      ];
+  questionNumber.textContent =
+    "السؤال " +
+    arabicNames[
+      currentQuestion
+    ];
 
 
-    questionText.textContent =
-      current.question;
+  questionText.textContent =
+    current.question;
 
 
-    options.innerHTML = "";
+  options.innerHTML = "";
 
-    feedback.className =
-      "feedback";
+  feedback.className =
+    "feedback";
 
-    feedback.textContent = "";
+  feedback.textContent = "";
 
-    nextButton.classList.remove(
-      "show"
-    );
+  nextButton.classList.remove(
+    "show"
+  );
 
 
-    current.options.forEach(
-      (option, index) => {
+  current.options.forEach(
+    (option, index) => {
 
-        const button =
-          document.createElement(
-            "button"
+      const button =
+        document.createElement(
+          "button"
+        );
+
+      button.type =
+        "button";
+
+      button.className =
+        "option";
+
+      button.textContent =
+        option;
+
+
+      button.onclick =
+        event => {
+
+          chooseAnswer(
+            index,
+            button,
+            event
           );
 
-        button.type =
-          "button";
-
-        button.className =
-          "option";
-
-        button.textContent =
-          option;
+        };
 
 
-        button.onclick =
-          event => {
+      options.appendChild(
+        button
+      );
 
-            chooseAnswer(
-              index,
-              button,
-              event
-            );
+    }
+  );
 
-          };
+}
 
 
-        options.appendChild(
-          button
-        );
+function chooseAnswer(
+  selectedIndex,
+  selectedButton,
+  event
+) {
 
-      }
-    );
-
+  if (answered) {
+    return;
   }
 
+  answered = true;
 
-  function chooseAnswer(
-    selectedIndex,
-    selectedButton,
-    event
+
+  const current =
+    questions[currentQuestion];
+
+
+  const buttons =
+    document.querySelectorAll(
+      ".option"
+    );
+
+
+  buttons.forEach(
+    button => {
+      button.disabled = true;
+    }
+  );
+
+
+  buttons[
+    current.answer
+  ].classList.add(
+    "correct"
+  );
+
+
+  if (
+    selectedIndex ===
+    current.answer
   ) {
 
-    if (answered) {
-      return;
-    }
+    score++;
 
-    answered = true;
+    feedback.className =
+      "feedback good";
 
-    const current =
-      questions[currentQuestion];
+    feedback.innerHTML =
+      "🌟 أحسنتِ، إجابة صحيحة.<br>" +
+      current.explanation;
 
-    const buttons =
-      document.querySelectorAll(
-        ".option"
-      );
+    playCorrectSound();
 
-
-    buttons.forEach(
-      button => {
-        button.disabled = true;
-      }
+    celebrate(
+      24,
+      event.clientX,
+      event.clientY
     );
-
-
-    buttons[
-      current.answer
-    ].classList.add(
-      "correct"
-    );
-
 
     if (
-      selectedIndex ===
-      current.answer
+      navigator.vibrate
     ) {
-
-      score++;
-
-      feedback.className =
-        "feedback good";
-
-      feedback.innerHTML =
-        "🌟 أحسنتِ، إجابة صحيحة.<br>" +
-        current.explanation;
-
-      playCorrectSound();
-
-      celebrate(
-        24,
-        event.clientX,
-        event.clientY
-      );
-
-      if (
-        navigator.vibrate
-      ) {
-        navigator.vibrate(45);
-      }
-
-    } else {
-
-      selectedButton.classList.add(
-        "wrong"
-      );
-
-      feedback.className =
-        "feedback bad";
-
-      feedback.innerHTML =
-        "🌷 راجعي القاعدة.<br>" +
-        current.explanation;
-
-      playWrongSound();
-
-      if (
-        navigator.vibrate
-      ) {
-        navigator.vibrate(
-          [70,40,70]
-        );
-      }
-
+      navigator.vibrate(45);
     }
 
 
-    scoreElement.textContent =
-      toArabic(score);
+  } else {
 
-    stars.textContent =
-      toArabic(score);
-
-
-    nextButton.textContent =
-      currentQuestion ===
-      questions.length - 1
-        ? "شوفي نتيجتك ✨"
-        : "السؤال التالي ←";
-
-
-    nextButton.classList.add(
-      "show"
+    selectedButton.classList.add(
+      "wrong"
     );
+
+    feedback.className =
+      "feedback bad";
+
+    feedback.innerHTML =
+      "🌷 راجعي القاعدة.<br>" +
+      current.explanation;
+
+    playWrongSound();
+
+    if (
+      navigator.vibrate
+    ) {
+      navigator.vibrate(
+        [70,40,70]
+      );
+    }
 
   }
 
 
-  nextButton.onclick =
-    function () {
+  scoreElement.textContent =
+    toArabic(score);
 
-      currentQuestion++;
-
-      if (
-        currentQuestion <
-        questions.length
-      ) {
-
-        loadQuestion();
-
-      } else {
-
-        showResult();
-
-      }
-
-    };
+  stars.textContent =
+    toArabic(score);
 
 
-  function showResult() {
-
-    quizCard.style.display =
-      "none";
-
-    topPanel.style.display =
-      "none";
-
-    resultCard.classList.add(
-      "show"
-    );
+  nextButton.textContent =
+    currentQuestion ===
+    questions.length - 1
+      ? "شاهدي نتيجتكِ ✨"
+      : "تابعي الاختبار ←";
 
 
-    finalScore.textContent =
-      toArabic(score) +
-      " / " +
-      toArabic(
-        questions.length
-      );
+  nextButton.classList.add(
+    "show"
+  );
 
+}
+
+
+nextButton.onclick =
+  function () {
+
+    currentQuestion++;
 
     if (
-      score ===
+      currentQuestion <
       questions.length
     ) {
 
-      resultIcon.textContent =
-        "👑";
-
-      resultMessage.textContent =
-        "إتقان كامل! أتقنتِ كتابة الألف اللينة في الأفعال غير الثلاثية.";
-
-      celebrate(90);
-
-      playVictorySound();
-
-    } else if (
-      score >= 8
-    ) {
-
-      resultIcon.textContent =
-        "🏆";
-
-      resultMessage.textContent =
-        "رائعة جدًا! أتقنتِ القاعدة والاستثناء الخاص بسبق الألف بالياء.";
-
-      celebrate(65);
-
-      playVictorySound();
-
-    } else if (
-      score >= 6
-    ) {
-
-      resultIcon.textContent =
-        "🌟";
-
-      resultMessage.textContent =
-        "أداء جميل. راجعي متى نكتب «ى» ومتى نكتب «ا»، ثم أعيدي الاختبار.";
-
-      celebrate(35);
+      loadQuestion();
 
     } else {
 
-      resultIcon.textContent =
-        "📘";
-
-      resultMessage.textContent =
-        "راجعي ملف الدرس و«كتابة بلا أخطاء»، ثم حاولي مرة أخرى.";
+      showResult();
 
     }
+
+  };
+  async function saveResult() {
+
+  if (!currentUser) {
+
+    saveStatus.className =
+      "save-status waiting";
+
+    saveStatus.textContent =
+      "ℹ️ لم تُحفظ النتيجة؛ يلزم تسجيل الدخول لإضافتها إلى سجلّكِ.";
+
+    return;
+  }
+
+
+  saveStatus.className =
+    "save-status waiting";
+
+  saveStatus.textContent =
+    "جارٍ حفظ نتيجتكِ في سجلّكِ...";
+
+
+  try {
+
+    const studentRef =
+      doc(
+        db,
+        "students",
+        currentUser.uid
+      );
+
+
+    const studentSnap =
+      await getDoc(
+        studentRef
+      );
+
+
+    if (!studentSnap.exists()) {
+
+      throw new Error(
+        "student-document-not-found"
+      );
+
+    }
+
+
+    const data =
+      studentSnap.data();
+
+
+    const oldTest =
+      data?.["اختبارات_الفصل_الأول"]?.["الألف_اللينة_في_الأفعال_غير_الثلاثية"] || {};
+
+
+    const oldAttempts =
+      Number(
+        oldTest["عدد_المحاولات"] || 0
+      );
+
+
+    const oldBest =
+      Number(
+        oldTest["أعلى_درجة"] || 0
+      );
+
+
+    const percentage =
+      Math.round(
+        (score / questions.length) *
+        100
+      );
+
+
+    const bestScore =
+      Math.max(
+        oldBest,
+        score
+      );
+
+
+    await updateDoc(
+      studentRef,
+      {
+
+        "اختبارات_الفصل_الأول.الألف_اللينة_في_الأفعال_غير_الثلاثية.اسم_الاختبار":
+          "اختبار الألف اللينة في الأفعال غير الثلاثية",
+
+        "اختبارات_الفصل_الأول.الألف_اللينة_في_الأفعال_غير_الثلاثية.الدرجة":
+          score,
+
+        "اختبارات_الفصل_الأول.الألف_اللينة_في_الأفعال_غير_الثلاثية.الدرجة_من":
+          questions.length,
+
+        "اختبارات_الفصل_الأول.الألف_اللينة_في_الأفعال_غير_الثلاثية.النسبة":
+          percentage,
+
+        "اختبارات_الفصل_الأول.الألف_اللينة_في_الأفعال_غير_الثلاثية.عدد_المحاولات":
+          oldAttempts + 1,
+
+        "اختبارات_الفصل_الأول.الألف_اللينة_في_الأفعال_غير_الثلاثية.أعلى_درجة":
+          bestScore,
+
+        "اختبارات_الفصل_الأول.الألف_اللينة_في_الأفعال_غير_الثلاثية.آخر_محاولة":
+          serverTimestamp()
+
+      }
+    );
+
+
+    saveStatus.className =
+      "save-status saved";
+
+    saveStatus.textContent =
+      "✅ حُفظت نتيجتكِ في سجل الفصل الدراسي الأول.";
+
+
+  } catch (error) {
+
+    console.error(error);
+
+    saveStatus.className =
+      "save-status error";
+
+    saveStatus.textContent =
+      "تعذّر حفظ النتيجة، ولكن نتيجتكِ في الاختبار لم تتأثر.";
+
+  }
+
+}
+
+
+function showResult() {
+
+  quizCard.style.display =
+    "none";
+
+  topPanel.style.display =
+    "none";
+
+  resultCard.classList.add(
+    "show"
+  );
+
+
+  finalScore.textContent =
+    toArabic(score) +
+    " / " +
+    toArabic(
+      questions.length
+    );
+
+
+  if (
+    score ===
+    questions.length
+  ) {
+
+    resultIcon.textContent =
+      "👑";
+
+    resultMessage.textContent =
+      "أحسنتِ! أتقنتِ كتابة الألف اللينة في الأفعال غير الثلاثية إتقانًا كاملًا 🏆";
+
+    celebrate(90);
+
+    playVictorySound();
+
+
+  } else if (
+    score >= 8
+  ) {
+
+    resultIcon.textContent =
+      "🏆";
+
+    resultMessage.textContent =
+      "ممتاز جدًا 🌟 أتقنتِ قاعدة الألف اللينة والاستثناء المتعلق بسبقها بالياء.";
+
+    celebrate(65);
+
+    playVictorySound();
+
+
+  } else if (
+    score >= 6
+  ) {
+
+    resultIcon.textContent =
+      "🌟";
+
+    resultMessage.textContent =
+      "أداء جيد 👏 راجعي متى تُكتب الألف اللينة على صورة الياء «ى»، ومتى تُكتب ألفًا قائمة «ا»، ثم أعيدي الاختبار.";
+
+    celebrate(35);
+
+
+  } else {
+
+    resultIcon.textContent =
+      "📘";
+
+    resultMessage.textContent =
+      "راجعي ملف الدرس و«كتابة بلا أخطاء»، ثم أعيدي الاختبار.";
 
   }
 
 
-  restartButton.onclick =
-    function () {
+  saveResult();
 
-      currentQuestion = 0;
-      score = 0;
-      answered = false;
-
-      resultCard.classList.remove(
-        "show"
-      );
-
-      quizCard.style.display =
-        "flex";
-
-      topPanel.style.display =
-        "block";
-
-      loadQuestion();
-
-    };
+}
 
 
-  function celebrate(
-    amount,
-    x,
-    y
+restartButton.onclick =
+  function () {
+
+    currentQuestion = 0;
+    score = 0;
+    answered = false;
+
+
+    resultCard.classList.remove(
+      "show"
+    );
+
+
+    quizCard.style.display =
+      "flex";
+
+
+    topPanel.style.display =
+      "block";
+
+
+    saveStatus.textContent =
+      "";
+
+
+    loadQuestion();
+
+  };
+
+
+function celebrate(
+  amount,
+  x,
+  y
+) {
+
+  const colors = [
+    "#776094",
+    "#5b4677",
+    "#c9a85c",
+    "#ead69e",
+    "#6f5288"
+  ];
+
+
+  for (
+    let i = 0;
+    i < amount;
+    i++
   ) {
 
-    const colors = [
-      "#776094",
-      "#5b4677",
-      "#c9a85c",
-      "#ead69e",
-      "#6f5288"
-    ];
+    const piece =
+      document.createElement(
+        "span"
+      );
 
 
-    for (
-      let i = 0;
-      i < amount;
-      i++
+    piece.className =
+      "confetti";
+
+
+    if (
+      typeof x ===
+      "number"
     ) {
 
-      const piece =
-        document.createElement(
-          "span"
-        );
-
-      piece.className =
-        "confetti";
-
-
-      if (
-        typeof x ===
-        "number"
-      ) {
-
-        piece.style.left =
-          (
-            x +
-            Math.random() * 120 -
-            60
-          ) +
-          "px";
-
-        piece.style.top =
-          (
-            y +
-            Math.random() * 30 -
-            15
-          ) +
-          "px";
-
-      } else {
-
-        piece.style.left =
-          Math.random() *
-          100 +
-          "vw";
-
-      }
-
-
-      piece.style.background =
-        colors[
-          Math.floor(
-            Math.random() *
-            colors.length
-          )
-        ];
-
-
-      piece.style.animationDuration =
+      piece.style.left =
         (
-          2 +
-          Math.random() *
-          2
+          x +
+          Math.random() * 120 -
+          60
         ) +
-        "s";
+        "px";
 
 
-      document.body.appendChild(
-        piece
-      );
+      piece.style.top =
+        (
+          y +
+          Math.random() * 30 -
+          15
+        ) +
+        "px";
 
 
-      setTimeout(
-        () => piece.remove(),
-        4500
-      );
+    } else {
+
+      piece.style.left =
+        Math.random() *
+        100 +
+        "vw";
 
     }
 
-  }
+
+    piece.style.background =
+      colors[
+        Math.floor(
+          Math.random() *
+          colors.length
+        )
+      ];
 
 
-  function playTone(
-    frequency,
-    duration,
-    type = "sine"
-  ) {
-
-    try {
-
-      const AudioContextClass =
-        window.AudioContext ||
-        window.webkitAudioContext;
-
-      if (
-        !AudioContextClass
-      ) {
-        return;
-      }
+    piece.style.animationDuration =
+      (
+        2 +
+        Math.random() *
+        2
+      ) +
+      "s";
 
 
-      const context =
-        new AudioContextClass();
-
-      const oscillator =
-        context.createOscillator();
-
-      const gain =
-        context.createGain();
-
-
-      oscillator.type =
-        type;
-
-      oscillator.frequency.value =
-        frequency;
-
-
-      oscillator.connect(gain);
-
-      gain.connect(
-        context.destination
-      );
-
-
-      gain.gain.setValueAtTime(
-        0.08,
-        context.currentTime
-      );
-
-
-      gain.gain.exponentialRampToValueAtTime(
-        0.001,
-        context.currentTime +
-        duration
-      );
-
-
-      oscillator.start();
-
-      oscillator.stop(
-        context.currentTime +
-        duration
-      );
-
-    } catch (error) {}
-
-  }
-
-
-  function playCorrectSound() {
-
-    playTone(
-      523,
-      .14
+    document.body.appendChild(
+      piece
     );
+
 
     setTimeout(
-      () =>
-        playTone(
-          659,
-          .16
-        ),
-      120
-    );
-
-    setTimeout(
-      () =>
-        playTone(
-          784,
-          .2
-        ),
-      230
+      () => piece.remove(),
+      4500
     );
 
   }
 
+}
 
-  function playWrongSound() {
 
-    playTone(
-      220,
-      .28,
-      "triangle"
+function playTone(
+  frequency,
+  duration,
+  type = "sine"
+) {
+
+  try {
+
+    const AudioContextClass =
+      window.AudioContext ||
+      window.webkitAudioContext;
+
+
+    if (
+      !AudioContextClass
+    ) {
+      return;
+    }
+
+
+    const context =
+      new AudioContextClass();
+
+
+    const oscillator =
+      context.createOscillator();
+
+
+    const gain =
+      context.createGain();
+
+
+    oscillator.type =
+      type;
+
+
+    oscillator.frequency.value =
+      frequency;
+
+
+    oscillator.connect(gain);
+
+
+    gain.connect(
+      context.destination
     );
 
-  }
 
-
-  function playVictorySound() {
-
-    const notes = [
-      523,
-      659,
-      784,
-      1046
-    ];
-
-
-    notes.forEach(
-      (note, index) => {
-
-        setTimeout(
-          () =>
-            playTone(
-              note,
-              .22
-            ),
-          index * 130
-        );
-
-      }
+    gain.gain.setValueAtTime(
+      0.08,
+      context.currentTime
     );
 
-  }
+
+    gain.gain.exponentialRampToValueAtTime(
+      0.001,
+      context.currentTime +
+      duration
+    );
 
 
-  loadQuestion();
+    oscillator.start();
+
+
+    oscillator.stop(
+      context.currentTime +
+      duration
+    );
+
+
+  } catch (error) {}
+
+}
+
+
+function playCorrectSound() {
+
+  playTone(
+    523,
+    .14
+  );
+
+
+  setTimeout(
+    () =>
+      playTone(
+        659,
+        .16
+      ),
+    120
+  );
+
+
+  setTimeout(
+    () =>
+      playTone(
+        784,
+        .2
+      ),
+    230
+  );
+
+}
+
+
+function playWrongSound() {
+
+  playTone(
+    220,
+    .28,
+    "triangle"
+  );
+
+}
+
+
+function playVictorySound() {
+
+  const notes = [
+    523,
+    659,
+    784,
+    1046
+  ];
+
+
+  notes.forEach(
+    (note, index) => {
+
+      setTimeout(
+        () =>
+          playTone(
+            note,
+            .22
+          ),
+        index * 130
+      );
+
+    }
+  );
+
+}
+
+
+loadQuestion();
 
 </script>
 
