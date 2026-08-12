@@ -2,1466 +2,1035 @@
 <html lang="ar" dir="rtl">
 
 <head>
-  <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <title>تحدي القدية | منصة آفاق</title>
-
-  <style>
-    :root {
-      --purple: #d47a42;
-      --dark: #8f4f2d;
-      --gold: #c9a85c;
-      --paper: #fffaf6;
-      --text: #51372b;
-      --light: #f7e5d8;
-      --green: #43835d;
-      --green-light: #eaf6ee;
-      --red: #bd4040;
-      --red-light: #fff0f0;
-      --shadow:
-        0 14px 34px rgba(143, 79, 45, 0.17);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      overflow-x: hidden;
-      color: var(--text);
-      background:
-        linear-gradient(
-          180deg,
-          #fffdfb,
-          #f9eee6
-        );
-      font-family:
-        Tahoma,
-        Arial,
-        sans-serif;
-    }
-
-    button,
-    input,
-    a {
-      font-family: inherit;
-    }
-
-    button {
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .hero {
-      padding: 24px 14px 18px;
-      text-align: center;
-      color: white;
-      background:
-        linear-gradient(
-          135deg,
-          var(--dark),
-          var(--purple)
-        );
-      border-bottom:
-        6px solid var(--gold);
-    }
-
-    .hero h1 {
-      margin: 0 0 8px;
-      font-size:
-        clamp(
-          28px,
-          7vw,
-          44px
-        );
-    }
-
-    .hero p {
-      max-width: 800px;
-      margin: 0 auto;
-      font-size:
-        clamp(
-          16px,
-          4vw,
-          21px
-        );
-      line-height: 1.8;
-    }
-
-    .top-panel {
-      width:
-        min(
-          94%,
-          900px
-        );
-      margin: 14px auto;
-      padding: 14px;
-      border:
-        2px solid #edd8c9;
-      border-radius: 24px;
-      background: #fffdfb;
-      box-shadow:
-        var(--shadow);
-    }
-
-    .top-row,
-    .status-row {
-      display: flex;
-      align-items: center;
-      justify-content:
-        space-between;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .status-row {
-      margin-top: 13px;
-      font-size: 17px;
-      font-weight: bold;
-    }
-
-    .library-link,
-    .sound-button {
-      min-height: 48px;
-      padding: 10px 15px;
-      border: 0;
-      border-radius: 15px;
-      font-size: 16px;
-      font-weight: bold;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    .library-link {
-      color: var(--dark);
-      background: var(--gold);
-    }
-
-    .sound-button {
-      color: white;
-      background: var(--purple);
-    }
-
-    .progress-track {
-      height: 13px;
-      margin-top: 9px;
-      overflow: hidden;
-      border-radius: 999px;
-      background: var(--light);
-    }
-
-    .progress-bar {
-      width: 10%;
-      height: 100%;
-      border-radius: inherit;
-      background:
-        linear-gradient(
-          90deg,
-          var(--gold),
-          var(--purple)
-        );
-      transition:
-        width 0.35s ease;
-    }
-
-    main {
-      width:
-        min(
-          94%,
-          900px
-        );
-      margin: 0 auto;
-      padding-bottom: 28px;
-    }
-
-    .screen {
-      display: none;
-    }
-
-    .screen.active {
-      display: block;
-    }
-
-    .start-card,
-    .result-card {
-      width:
-        min(
-          100%,
-          680px
-        );
-      margin: 18px auto;
-      padding: 24px;
-      text-align: center;
-      border:
-        3px solid #ecd6c6;
-      border-radius: 30px;
-      background: #fffdfb;
-      box-shadow:
-        var(--shadow);
-    }
-
-    .start-icon,
-    .result-icon {
-      font-size: 65px;
-    }
-
-    .start-card h2,
-    .result-card h2 {
-      margin: 8px 0 12px;
-      color: var(--purple);
-      font-size: 32px;
-    }
-
-    .start-card p,
-    .result-message {
-      font-size: 18px;
-      line-height: 1.9;
-    }
-
-    .student-input {
-      width: 100%;
-      min-height: 58px;
-      padding: 13px 15px;
-      border:
-        2px solid #e1c5b2;
-      border-radius: 16px;
-      color: var(--text);
-      background: white;
-      text-align: right;
-      font-size: 18px;
-    }
-
-    .warning {
-      display: none;
-      margin-top: 10px;
-      padding: 11px;
-      border-radius: 13px;
-      color: #7d2929;
-      background:
-        var(--red-light);
-      font-weight: bold;
-    }
-
-    .warning.show {
-      display: block;
-    }
-
-    .primary-button,
-    .result-button {
-      min-height: 54px;
-      padding: 12px 19px;
-      border: 0;
-      border-radius: 17px;
-      font-size: 18px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .primary-button {
-      margin-top: 16px;
-      color: white;
-      background: var(--purple);
-    }
-
-    .book-wrap {
-      margin: 14px auto;
-      perspective: 1500px;
-    }
-
-    .book {
-      position: relative;
-      width: 100%;
-      min-height: 610px;
-      overflow: hidden;
-      border:
-        3px solid #e4c7b3;
-      border-radius: 30px;
-      background: var(--paper);
-      box-shadow:
-        var(--shadow);
-      transform-style:
-        preserve-3d;
-    }
-
-    .page {
-      min-height: 610px;
-      padding: 22px;
-      background:
-        linear-gradient(
-          180deg,
-          #fffdfb,
-          #fff6ef
-        );
-      transform-origin:
-        right center;
-      backface-visibility:
-        hidden;
-    }
-
-    .page.flip-next {
-      animation:
-        flipNext
-        0.46s ease;
-    }
-
-    .page.flip-previous {
-      animation:
-        flipPrevious
-        0.46s ease;
-    }
-
-    @keyframes flipNext {
-      0% {
-        transform:
-          rotateY(0deg);
-        opacity: 1;
-      }
-
-      50% {
-        transform:
-          rotateY(-12deg);
-        opacity: 0.55;
-      }
-
-      100% {
-        transform:
-          rotateY(0deg);
-        opacity: 1;
-      }
-    }
-
-    @keyframes flipPrevious {
-      0% {
-        transform:
-          rotateY(0deg);
-        opacity: 1;
-      }
-
-      50% {
-        transform:
-          rotateY(12deg);
-        opacity: 0.55;
-      }
-
-      100% {
-        transform:
-          rotateY(0deg);
-        opacity: 1;
-      }
-    }
-
-    .question-number {
-      width: fit-content;
-      margin: 0 auto 10px;
-      padding: 8px 16px;
-      border-radius: 999px;
-      color: white;
-      background: var(--purple);
-      font-weight: bold;
-    }
-
-    .question-skill {
-      margin: 0 0 12px;
-      text-align: center;
-      color: var(--purple);
-      font-size:
-        clamp(
-          24px,
-          6vw,
-          34px
-        );
-    }
-
-    .page-scroll {
-      max-height: 470px;
-      overflow-y: auto;
-      padding:
-        4px 5px 10px;
-      scrollbar-width: thin;
-    }
-
-    .passage-card {
-      padding: 18px;
-      border:
-        2px solid #ead4c5;
-      border-radius: 20px;
-      background:
-        rgba(
-          255,
-          255,
-          255,
-          0.8
-        );
-      font-size:
-        clamp(
-          17px,
-          4.2vw,
-          21px
-        );
-      line-height: 2;
-      text-align: justify;
-    }
-
-    .passage-card h3 {
-      margin-top: 0;
-      color: var(--dark);
-      text-align: center;
-    }
-
-    .question-text {
-      margin-top: 16px;
-      padding: 15px;
-      border-radius: 17px;
-      color: var(--dark);
-      background: #f7e8dc;
-      text-align: center;
-      font-size:
-        clamp(
-          18px,
-          4.6vw,
-          23px
-        );
-      line-height: 1.8;
-      font-weight: bold;
-    }
-
-    .answers {
-      display: grid;
-      grid-template-columns:
-        1fr;
-      gap: 11px;
-      margin-top: 14px;
-    }
-
-    .answer-button {
-      width: 100%;
-      min-height: 64px;
-      padding: 13px;
-      border:
-        2px solid var(--gold);
-      border-radius: 18px;
-      color: var(--text);
-      background: white;
-      font-size:
-        clamp(
-          16px,
-          4vw,
-          20px
-        );
-      line-height: 1.65;
-      cursor: pointer;
-    }
-
-    .answer-button.correct {
-      color: #245b3b;
-      border-color: var(--green);
-      background:
-        var(--green-light);
-    }
-
-    .answer-button.wrong {
-      color: #7d2929;
-      border-color: var(--red);
-      background:
-        var(--red-light);
-    }
-
-    .feedback {
-      display: none;
-      margin-top: 14px;
-      padding: 15px;
-      border-radius: 18px;
-      text-align: center;
-      font-size: 17px;
-      line-height: 1.85;
-      font-weight: bold;
-    }
-
-    .feedback.show {
-      display: block;
-    }
-
-    .feedback.correct {
-      color: #245b3b;
-      border:
-        2px solid #8dbb9d;
-      background:
-        var(--green-light);
-    }
-
-    .feedback.wrong {
-      color: #7d2929;
-      border:
-        2px solid #d6a1a1;
-      background:
-        var(--red-light);
-    }
-
-    .navigation {
-      display: flex;
-      gap: 12px;
-      margin-top: 16px;
-    }
-
-    .nav-button {
-      flex: 1;
-      min-height: 58px;
-      border: 0;
-      border-radius: 18px;
-      font-size: 20px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .previous-button {
-      color: var(--dark);
-      background: var(--light);
-    }
-
-    .next-button {
-      color: white;
-      background: var(--purple);
-    }
-
-    .nav-button:disabled {
-      opacity: 0.42;
-      cursor: not-allowed;
-    }
-
-    .result-score {
-      margin: 16px auto;
-      padding: 14px;
-      border-radius: 18px;
-      color: white;
-      background: var(--purple);
-      font-size: 24px;
-      font-weight: bold;
-    }
-
-    .result-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 16px;
-    }
-
-    .certificate-button {
-      color: white;
-      background: var(--green);
-    }
-
-    .restart-button {
-      color: white;
-      background: var(--purple);
-    }
-
-    .next-challenge-button {
-      color: var(--dark);
-      background: var(--gold);
-    }
-
-    .print-button {
-      margin-top: 14px;
-      color: white;
-      background: var(--dark);
-    }
-
-    .certificate-shell {
-      display: none;
-      margin-top: 20px;
-    }
-
-    .certificate-shell.show {
-      display: block;
-    }
-
-    .certificate {
-      position: relative;
-      width:
-        min(
-          100%,
-          640px
-        );
-      aspect-ratio:
-        1100 / 775;
-      margin: 0 auto;
-      overflow: hidden;
-      border-radius: 16px;
-      background:
-        white
-        url("99.jpg")
-        center / contain
-        no-repeat;
-      box-shadow:
-        0 10px 25px
-        rgba(0, 0, 0, 0.14);
-    }
-
-    .certificate-content {
-      position: absolute;
-      top: 42%;
-      right: 18%;
-      left: 18%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      text-align: center;
-      color: #111;
-    }
-
-    .certificate-name {
-      max-width: 100%;
-      font-size:
-        clamp(
-          17px,
-          4vw,
-          27px
-        );
-      line-height: 1.25;
-      font-weight: 900;
-    }
-
-    .certificate-achievement {
-      margin-top: 6px;
-      font-size:
-        clamp(
-          13px,
-          3.2vw,
-          20px
-        );
-      color: var(--purple);
-      font-weight: bold;
-    }
-
-    .answer-mark {
-      position: fixed;
-      z-index: 9999;
-      top: 50%;
-      left: 50%;
-      display: grid;
-      place-items: center;
-      width: 110px;
-      height: 110px;
-      transform:
-        translate(
-          -50%,
-          -50%
-        );
-      color: white;
-      border-radius: 50%;
-      font-size: 72px;
-      font-weight: bold;
-      pointer-events: none;
-      animation:
-        answerMark
-        0.7s ease
-        forwards;
-    }
-
-    .correct-mark {
-      background:
-        rgba(
-          63,
-          139,
-          87,
-          0.95
-        );
-    }
-
-    .wrong-mark {
-      background:
-        rgba(
-          190,
-          56,
-          56,
-          0.95
-        );
-    }
-
-    @keyframes answerMark {
-      0% {
-        opacity: 0;
-        transform:
-          translate(
-            -50%,
-            -50%
-          )
-          scale(0.4);
-      }
-
-      35% {
-        opacity: 1;
-        transform:
-          translate(
-            -50%,
-            -50%
-          )
-          scale(1.08);
-      }
-
-      100% {
-        opacity: 0;
-        transform:
-          translate(
-            -50%,
-            -50%
-          )
-          scale(0.9);
-      }
-    }
-
-    .confetti-piece {
-      position: fixed;
-      z-index: 9998;
-      top: -40px;
-      pointer-events: none;
-      animation:
-        confettiFall
-        3.2s linear
-        forwards;
-    }
-
-    @keyframes confettiFall {
-      to {
-        transform:
-          translateY(110vh)
-          rotate(720deg);
-        opacity: 0;
-      }
-    }
-
-    footer {
-      padding: 20px 14px;
-      text-align: center;
-      color: white;
-      background: var(--dark);
-      border-top:
-        6px solid var(--gold);
-    }
-
-    @media (min-width: 700px) {
-      .answers {
-        grid-template-columns:
-          repeat(2, 1fr);
-      }
-
-      .page {
-        padding: 28px;
-      }
-    }
-
-    @media print {
-      @page {
-        size: landscape;
-        margin: 0;
-      }
-
-      body * {
-        visibility: hidden;
-      }
-
-      #certificate,
-      #certificate * {
-        visibility: visible;
-      }
-
-      #certificate {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        max-width: none;
-        border-radius: 0;
-        box-shadow: none;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>تحدي القدية | منصة آفاق</title>
+
+<style>
+
+:root{
+  --p:#d47a42;
+  --d:#8f4f2d;
+  --g:#c9a85c;
+  --paper:#fffaf6;
+  --text:#51372b;
+  --light:#f7e5d8;
+  --green:#43835d;
+  --red:#bd4040;
+  --shadow:0 14px 34px rgba(143,79,45,.17);
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  min-height:100vh;
+  overflow-x:hidden;
+  color:var(--text);
+  font-family:Tahoma,Arial,sans-serif;
+  background:linear-gradient(180deg,#fffdfb,#f9eee6);
+}
+
+button,input,a{
+  font-family:inherit;
+}
+
+.hero{
+  padding:24px 14px 18px;
+  text-align:center;
+  color:#fff;
+  background:linear-gradient(135deg,var(--d),var(--p));
+  border-bottom:6px solid var(--g);
+}
+
+.hero h1{
+  margin:0 0 8px;
+  font-size:clamp(28px,7vw,44px);
+}
+
+.hero p{
+  max-width:800px;
+  margin:auto;
+  font-size:clamp(16px,4vw,21px);
+  line-height:1.8;
+}
+
+.top-panel{
+  width:min(94%,900px);
+  margin:14px auto;
+  padding:14px;
+  border:2px solid #edd8c9;
+  border-radius:24px;
+  background:#fffdfb;
+  box-shadow:var(--shadow);
+}
+
+.top-row,
+.status-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.status-row{
+  margin-top:13px;
+  font-size:17px;
+  font-weight:bold;
+}
+
+.library-link,
+.sound-button{
+  min-height:48px;
+  padding:10px 15px;
+  border:0;
+  border-radius:15px;
+  font-size:16px;
+  font-weight:bold;
+  text-decoration:none;
+  cursor:pointer;
+}
+
+.library-link{
+  color:var(--d);
+  background:var(--g);
+}
+
+.sound-button{
+  color:#fff;
+  background:var(--p);
+}
+
+.progress-track{
+  height:13px;
+  margin-top:9px;
+  overflow:hidden;
+  border-radius:999px;
+  background:var(--light);
+}
+
+.progress-bar{
+  width:10%;
+  height:100%;
+  border-radius:inherit;
+  background:linear-gradient(90deg,var(--g),var(--p));
+  transition:width .35s ease;
+}
+
+main{
+  width:min(94%,900px);
+  margin:auto;
+  padding-bottom:28px;
+}
+
+.screen{
+  display:none;
+}
+
+.screen.active{
+  display:block;
+}
+
+.start-card,
+.result-card{
+  width:min(100%,680px);
+  margin:18px auto;
+  padding:24px;
+  text-align:center;
+  border:3px solid #ecd6c6;
+  border-radius:30px;
+  background:#fffdfb;
+  box-shadow:var(--shadow);
+}
+
+.start-icon,
+.result-icon{
+  font-size:65px;
+}
+
+.start-card h2,
+.result-card h2{
+  color:var(--p);
+  font-size:32px;
+}
+
+.start-card p,
+.result-message{
+  font-size:18px;
+  line-height:1.9;
+}
+
+.student-input{
+  width:100%;
+  min-height:58px;
+  padding:13px 15px;
+  border:2px solid #e1c5b2;
+  border-radius:16px;
+  font-size:18px;
+}
+
+.warning{
+  display:none;
+  margin-top:10px;
+  padding:11px;
+  border-radius:13px;
+  color:#7d2929;
+  background:#fff0f0;
+  font-weight:bold;
+}
+
+.warning.show{
+  display:block;
+}
+
+.primary-button,
+.result-button{
+  min-height:54px;
+  padding:12px 19px;
+  border:0;
+  border-radius:17px;
+  font-size:18px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.primary-button{
+  margin-top:16px;
+  color:#fff;
+  background:var(--p);
+}
+
+.book{
+  min-height:610px;
+  margin:14px auto;
+  overflow:hidden;
+  border:3px solid #e4c7b3;
+  border-radius:30px;
+  background:var(--paper);
+  box-shadow:var(--shadow);
+}
+
+.page{
+  min-height:610px;
+  padding:22px;
+  background:linear-gradient(180deg,#fffdfb,#fff6ef);
+}
+
+.question-number{
+  width:fit-content;
+  margin:0 auto 10px;
+  padding:8px 16px;
+  color:#fff;
+  background:var(--p);
+  border-radius:999px;
+  font-weight:bold;
+}
+
+.question-skill{
+  text-align:center;
+  color:var(--p);
+  font-size:clamp(24px,6vw,34px);
+}
+
+.page-scroll{
+  max-height:470px;
+  overflow-y:auto;
+}
+
+.passage-card{
+  padding:18px;
+  border:2px solid #ead4c5;
+  border-radius:20px;
+  background:rgba(255,255,255,.8);
+  font-size:clamp(17px,4.2vw,21px);
+  line-height:2;
+  text-align:justify;
+}
+
+.passage-card h3{
+  text-align:center;
+  color:var(--d);
+}
+
+.question-text{
+  margin-top:16px;
+  padding:15px;
+  border-radius:17px;
+  background:#f7e8dc;
+  text-align:center;
+  font-size:clamp(18px,4.6vw,23px);
+  line-height:1.8;
+  font-weight:bold;
+}
+
+.answers{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:11px;
+  margin-top:14px;
+}
+
+.answer-button{
+  width:100%;
+  min-height:64px;
+  padding:13px;
+  border:2px solid var(--g);
+  border-radius:18px;
+  background:#fff;
+  font-size:clamp(16px,4vw,20px);
+  line-height:1.65;
+  cursor:pointer;
+}
+
+.answer-button.correct{
+  color:#245b3b;
+  border-color:var(--green);
+  background:#eaf6ee;
+}
+
+.answer-button.wrong{
+  color:#7d2929;
+  border-color:var(--red);
+  background:#fff0f0;
+}
+
+.feedback{
+  display:none;
+  margin-top:14px;
+  padding:15px;
+  border-radius:18px;
+  text-align:center;
+  line-height:1.85;
+  font-weight:bold;
+}
+
+.feedback.show{
+  display:block;
+}
+
+.feedback.correct{
+  color:#245b3b;
+  background:#eaf6ee;
+}
+
+.feedback.wrong{
+  color:#7d2929;
+  background:#fff0f0;
+}
+
+.navigation{
+  display:flex;
+  gap:12px;
+  margin-top:16px;
+}
+
+.nav-button{
+  flex:1;
+  min-height:58px;
+  border:0;
+  border-radius:18px;
+  font-size:20px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.previous-button{
+  color:var(--d);
+  background:var(--light);
+}
+
+.next-button{
+  color:#fff;
+  background:var(--p);
+}
+
+.nav-button:disabled{
+  opacity:.42;
+}
+
+.result-score{
+  margin:16px auto;
+  padding:14px;
+  border-radius:18px;
+  color:#fff;
+  background:var(--p);
+  font-size:24px;
+  font-weight:bold;
+}
+
+.result-buttons{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.certificate-button{
+  color:#fff;
+  background:var(--green);
+}
+
+.restart-button{
+  color:#fff;
+  background:var(--p);
+}
+
+.next-challenge-button{
+  color:var(--d);
+  background:var(--g);
+}
+
+.certificate-shell{
+  display:none;
+  margin-top:20px;
+}
+
+.certificate-shell.show{
+  display:block;
+}
+
+.certificate{
+  position:relative;
+  width:min(100%,640px);
+  aspect-ratio:1100/775;
+  margin:auto;
+  border-radius:16px;
+  background:#fff url("99.jpg") center/contain no-repeat;
+}
+
+.certificate-content{
+  position:absolute;
+  top:42%;
+  right:18%;
+  left:18%;
+  text-align:center;
+}
+
+.certificate-name{
+  font-size:clamp(17px,4vw,27px);
+  font-weight:900;
+}
+
+.certificate-achievement{
+  margin-top:10px;
+  color:var(--p);
+  font-weight:bold;
+}
+
+.print-button{
+  margin-top:14px;
+  color:#fff;
+  background:var(--d);
+}
+
+.answer-mark{
+  position:fixed;
+  z-index:9999;
+  top:50%;
+  left:50%;
+  width:110px;
+  height:110px;
+  display:grid;
+  place-items:center;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  color:#fff;
+  font-size:72px;
+  pointer-events:none;
+  animation:fadeMark .7s forwards;
+}
+
+.correct-mark{
+  background:rgba(63,139,87,.95);
+}
+
+.wrong-mark{
+  background:rgba(190,56,56,.95);
+}
+
+@keyframes fadeMark{
+  0%{opacity:0;transform:translate(-50%,-50%) scale(.4)}
+  35%{opacity:1;transform:translate(-50%,-50%) scale(1.08)}
+  100%{opacity:0}
+}
+
+footer{
+  padding:20px;
+  text-align:center;
+  color:#fff;
+  background:var(--d);
+}
+
+@media(min-width:700px){
+  .answers{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media print{
+  body *{
+    visibility:hidden;
+  }
+
+  #certificate,
+  #certificate *{
+    visibility:visible;
+  }
+
+  #certificate{
+    position:absolute;
+    inset:0;
+    width:100%;
+  }
+}
+
+</style>
 </head>
-
 <body>
 
-  <header class="hero">
+<header class="hero">
 
-    <h1>
-      🎢 تحدي القدية
-    </h1>
+  <h1>
+    🎢 تحدي القدية
+  </h1>
+
+  <p>
+    اقرئي النص بوعي، ثم أجيبي عن عشرة أسئلة
+    تقيس فهم الأفكار، وتحليل العلاقات،
+    والاستنتاج، وتقويم الأدلة.
+  </p>
+
+</header>
+
+
+<section class="top-panel">
+
+  <div class="top-row">
+
+    <a
+      class="library-link"
+      href="nafes-mock-tests.html"
+    >
+      العودة إلى تحديات نافس
+    </a>
+
+    <button
+      id="soundBtn"
+      class="sound-button"
+      type="button"
+    >
+      🔊 الصوت مفعّل
+    </button>
+
+  </div>
+
+  <div class="status-row">
+
+    <span id="questionCounter">
+      السؤال ١ من ١٠
+    </span>
+
+    <span id="liveScore">
+      الدرجة: ٠
+    </span>
+
+  </div>
+
+  <div class="progress-track">
+
+    <div
+      id="progressBar"
+      class="progress-bar"
+    ></div>
+
+  </div>
+
+</section>
+
+
+<main>
+
+<section
+  id="startScreen"
+  class="screen active"
+>
+
+  <div class="start-card">
+
+    <div class="start-icon">
+      🎡
+    </div>
+
+    <h2>
+      استعدي للتحدي
+    </h2>
 
     <p>
-      اقرئي النص بوعي، ثم أجيبي عن عشرة أسئلة
-      تقيس فهم الأفكار، وتحليل العلاقات،
-      والاستنتاج، وتقويم الأدلة.
+      اكتبي اسمكِ الرباعي ليظهر تلقائيًا
+      في شهادة اجتياز التحدي.
     </p>
 
-  </header>
-
-  <section class="top-panel">
-
-    <div class="top-row">
-
-      <a
-        class="library-link"
-        href="nafes-mock-tests.html"
-      >
-        العودة إلى تحديات نافس
-      </a>
-
-      <button
-        id="soundBtn"
-        class="sound-button"
-        type="button"
-      >
-        🔊 الصوت مفعّل
-      </button>
-
-    </div>
-
-    <div class="status-row">
-
-      <span id="questionCounter">
-        السؤال 1 من 10
-      </span>
-
-      <span id="liveScore">
-        الدرجة: 0
-      </span>
-
-    </div>
-
-    <div class="progress-track">
-
-      <div
-        id="progressBar"
-        class="progress-bar"
-      ></div>
-
-    </div>
-
-  </section>
-
-  <main>
-
-    <section
-      id="startScreen"
-      class="screen active"
+    <input
+      id="studentNameInput"
+      class="student-input"
+      type="text"
+      placeholder="اكتبي الاسم الرباعي"
     >
 
-      <div class="start-card">
+    <div
+      id="nameWarning"
+      class="warning"
+    ></div>
 
-        <div class="start-icon">
-          🎡
-        </div>
+    <button
+      id="startButton"
+      class="primary-button"
+      type="button"
+    >
+      ابدئي تحدي القدية
+    </button>
 
-        <h2>
-          استعدي للتحدي
-        </h2>
+  </div>
 
-        <p>
-          اكتبي اسمكِ الرباعي ليظهر تلقائيًا
-          في شهادة اجتياز التحدي.
-        </p>
+</section>
 
-        <input
-          id="studentNameInput"
-          class="student-input"
-          type="text"
-          placeholder="اكتبي الاسم الرباعي"
-          autocomplete="name"
-        >
+
+<section
+  id="quizScreen"
+  class="screen"
+>
+
+  <article class="book">
+
+    <div
+      id="page"
+      class="page"
+    >
+
+      <div
+        id="questionNumber"
+        class="question-number"
+      ></div>
+
+      <h2
+        id="questionSkill"
+        class="question-skill"
+      ></h2>
+
+      <div class="page-scroll">
 
         <div
-          id="nameWarning"
-          class="warning"
+          id="passageCard"
+          class="passage-card"
         ></div>
 
+        <div
+          id="questionText"
+          class="question-text"
+        ></div>
+
+        <div
+          id="answersContainer"
+          class="answers"
+        ></div>
+
+        <div
+          id="feedback"
+          class="feedback"
+        ></div>
+
+      </div>
+
+      <div class="navigation">
+
         <button
-          id="startButton"
-          class="primary-button"
-          type="button"
+          id="previousButton"
+          class="nav-button previous-button"
+          disabled
         >
-          ابدئي تحدي القدية
+          السابق
+        </button>
+
+        <button
+          id="nextButton"
+          class="nav-button next-button"
+          disabled
+        >
+          التالي
         </button>
 
       </div>
 
-    </section>
+    </div>
 
-    <section
-      id="quizScreen"
-      class="screen"
+  </article>
+
+</section>
+
+
+<section
+  id="resultScreen"
+  class="screen"
+>
+
+  <div class="result-card">
+
+    <div
+      id="resultIcon"
+      class="result-icon"
+    >
+      🎢
+    </div>
+
+    <h2 id="resultTitle">
+      اكتمل التحدي
+    </h2>
+
+    <div
+      id="resultScore"
+      class="result-score"
+    ></div>
+
+    <p
+      id="resultMessage"
+      class="result-message"
+    ></p>
+
+    <div class="result-buttons">
+
+      <button
+        id="showCertificateButton"
+        class="result-button certificate-button"
+      >
+        🎓 عرض الشهادة
+      </button>
+
+      <button
+        id="restartButton"
+        class="result-button restart-button"
+      >
+        إعادة التحدي
+      </button>
+
+      <button
+        id="nextChallengeButton"
+        class="result-button next-challenge-button"
+      >
+        التحدي التالي
+      </button>
+
+    </div>
+
+    <div
+      id="certificateShell"
+      class="certificate-shell"
     >
 
-      <div class="book-wrap">
+      <div
+        id="certificate"
+        class="certificate"
+      >
 
-        <article class="book">
-
-          <div
-            id="page"
-            class="page"
-          >
-
-            <div
-              id="questionNumber"
-              class="question-number"
-            ></div>
-
-            <h2
-              id="questionSkill"
-              class="question-skill"
-            ></h2>
-
-            <div class="page-scroll">
-
-              <div
-                id="passageCard"
-                class="passage-card"
-              ></div>
-
-              <div
-                id="questionText"
-                class="question-text"
-              ></div>
-
-              <div
-                id="answersContainer"
-                class="answers"
-              ></div>
-
-              <div
-                id="feedback"
-                class="feedback"
-              ></div>
-
-            </div>
-
-            <div class="navigation">
-
-              <button
-                id="previousButton"
-                class="nav-button previous-button"
-                type="button"
-                disabled
-              >
-                السابق
-              </button>
-
-              <button
-                id="nextButton"
-                class="nav-button next-button"
-                type="button"
-                disabled
-              >
-                التالي
-              </button>
-
-            </div>
-
-          </div>
-
-        </article>
-
-      </div>
-
-    </section>
-
-    <section
-      id="resultScreen"
-      class="screen"
-    >
-
-      <div class="result-card">
-
-        <div
-          id="resultIcon"
-          class="result-icon"
-        >
-          🎢
-        </div>
-
-        <h2 id="resultTitle">
-          اكتمل التحدي
-        </h2>
-
-        <div
-          id="resultScore"
-          class="result-score"
-        ></div>
-
-        <p
-          id="resultMessage"
-          class="result-message"
-        ></p>
-
-        <div class="result-buttons">
-
-          <button
-            id="showCertificateButton"
-            class="result-button certificate-button"
-            type="button"
-          >
-            🎓 عرض الشهادة
-          </button>
-
-          <button
-            id="restartButton"
-            class="result-button restart-button"
-            type="button"
-          >
-            البدء من جديد
-          </button>
-
-          <button
-            id="nextChallengeButton"
-            class="result-button next-challenge-button"
-            type="button"
-          >
-            التحدي التالي
-          </button>
-
-        </div>
-
-        <div
-          id="certificateShell"
-          class="certificate-shell"
-        >
+        <div class="certificate-content">
 
           <div
-            id="certificate"
-            class="certificate"
-          >
+            id="certificateName"
+            class="certificate-name"
+          ></div>
 
-            <div class="certificate-content">
-
-              <div
-                id="certificateName"
-                class="certificate-name"
-              ></div>
-
-              <div class="certificate-achievement">
-                لاجتيازها تحدي القدية بنجاح
-              </div>
-
-            </div>
-
+          <div class="certificate-achievement">
+            لاجتيازها تحدي القدية بنجاح
           </div>
-
-          <button
-            id="printButton"
-            class="result-button print-button"
-            type="button"
-          >
-            🖨️ طباعة أو حفظ الشهادة
-          </button>
 
         </div>
 
       </div>
 
-    </section>
+      <button
+        id="printButton"
+        class="result-button print-button"
+      >
+        🖨️ طباعة أو حفظ الشهادة
+      </button>
 
-  </main>
+    </div>
 
-  <footer>
-    جميع الحقوق محفوظة © 2026
-  </footer>
+  </div>
 
-  <script>
-    const challengeName = "القدية";
+</section>
+
+</main>
+
+
+<footer>
+  منصة آفاق التعليمية 🌸
+  <br>
+  جميع الحقوق محفوظة © 2026
+</footer>
+
+
+<script>
+
+const challengeName =
+  "القدية";
+
 
 const mainPassage = `
-  <h3>
-    القدية... حين يصبح الترفيه جزءًا من التنمية
-  </h3>
 
-  <p>
-    لم يعد الترفيه في المدن الحديثة نشاطًا هامشيًا يُنظر إليه
-    بوصفه وقتًا منفصلًا عن العمل والتعليم، بل أصبح في كثير من
-    التجارب عنصرًا مؤثرًا في جودة الحياة، وجذب الزوار،
-    وتنشيط قطاعات اقتصادية متعددة. ومن هذا المنطلق ظهرت القدية
-    بوصفها مشروعًا يسعى إلى الجمع بين الترفيه والرياضة والثقافة
-    في مساحة واحدة، مع بناء مرافق تستهدف السكان والزوار.
-  </p>
+<h3>
+القدية... حين يصبح الترفيه جزءًا من التنمية
+</h3>
 
-  <p>
-    غير أن نجاح أي مدينة ترفيهية لا يُقاس بعدد الألعاب أو ضخامة
-    المنشآت وحدها، بل بقدرتها على خلق تجربة متكاملة تبدأ من
-    سهولة الوصول، وتمتد إلى جودة الخدمات، وتنوع الخيارات،
-    ومستوى الأمان، وانتهاءً بالأثر الاقتصادي والاجتماعي.
-    وقد تبدو المنشأة مبهرة في صورها، لكنها لا تحقق أهدافها
-    إذا كانت صعبة الوصول أو مرتفعة التكلفة أو محدودة الفائدة.
-  </p>
+<p>
+لم يعد الترفيه في المدن الحديثة نشاطًا هامشيًا يُنظر إليه
+بوصفه وقتًا منفصلًا عن العمل والتعليم، بل أصبح في كثير من
+التجارب عنصرًا مؤثرًا في جودة الحياة، وجذب الزوار،
+وتنشيط قطاعات اقتصادية متعددة. ومن هذا المنطلق ظهرت القدية
+بوصفها مشروعًا يسعى إلى الجمع بين الترفيه والرياضة والثقافة
+في مساحة واحدة، مع بناء مرافق تستهدف السكان والزوار.
+</p>
 
-  <p>
-    ويرى مؤيدو مشروعات الترفيه الكبرى أنها تسهم في إيجاد وظائف،
-    وتشجع قطاعات الضيافة والنقل والتجزئة، وتمنح الأسر والشباب
-    خيارات أوسع لقضاء أوقاتهم. وفي المقابل، يشير بعض المختصين
-    إلى أن الأثر الحقيقي يحتاج إلى قياس مستمر؛ لأن كثرة الزوار
-    في موسم واحد لا تكفي للحكم على النجاح الطويل، كما أن
-    ارتفاع الإيرادات لا يعني بالضرورة وصول الفائدة إلى
-    المجتمع كله.
-  </p>
+<p>
+غير أن نجاح أي مدينة ترفيهية لا يُقاس بعدد الألعاب أو ضخامة
+المنشآت وحدها، بل بقدرتها على خلق تجربة متكاملة تبدأ من
+سهولة الوصول، وتمتد إلى جودة الخدمات، وتنوع الخيارات،
+ومستوى الأمان، وانتهاءً بالأثر الاقتصادي والاجتماعي.
+وقد تبدو المنشأة مبهرة في صورها، لكنها لا تحقق أهدافها
+إذا كانت صعبة الوصول أو مرتفعة التكلفة أو محدودة الفائدة.
+</p>
 
-  <p>
-    وتزداد أهمية التخطيط حين تجتمع الأنشطة الرياضية والثقافية
-    والترفيهية في مكان واحد؛ فالتنوع قد يجذب فئات متعددة،
-    لكنه يتطلب إدارة دقيقة للحشود، وخدمات نقل فعالة،
-    ومساحات تراعي احتياجات الأعمار المختلفة.
-    كما يحتاج المشروع إلى التوازن بين الجاذبية التجارية
-    والمحافظة على الهوية الثقافية، حتى لا تتحول التجربة
-    إلى نسخة مكررة من مدن أخرى.
-  </p>
+<p>
+ويرى مؤيدو مشروعات الترفيه الكبرى أنها تسهم في إيجاد وظائف،
+وتشجع قطاعات الضيافة والنقل والتجزئة، وتمنح الأسر والشباب
+خيارات أوسع لقضاء أوقاتهم. وفي المقابل، يشير بعض المختصين
+إلى أن الأثر الحقيقي يحتاج إلى قياس مستمر؛ لأن كثرة الزوار
+في موسم واحد لا تكفي للحكم على النجاح الطويل، كما أن
+ارتفاع الإيرادات لا يعني بالضرورة وصول الفائدة إلى
+المجتمع كله.
+</p>
 
-  <p>
-    ومن ثم فإن تقويم مشروع مثل القدية لا ينبغي أن يتوقف عند
-    الإعجاب بالتصميمات أو كثرة الفعاليات، بل يجب أن ينظر إلى
-    جودة التجربة، واستدامة الوظائف، وسهولة الوصول،
-    ومدى تنوع المستفيدين، وقدرة المشروع على تقديم قيمة
-    اجتماعية واقتصادية وثقافية حقيقية.
-  </p>
+<p>
+وتزداد أهمية التخطيط حين تجتمع الأنشطة الرياضية والثقافية
+والترفيهية في مكان واحد؛ فالتنوع قد يجذب فئات متعددة،
+لكنه يتطلب إدارة دقيقة للحشود، وخدمات نقل فعالة،
+ومساحات تراعي احتياجات الأعمار المختلفة.
+كما يحتاج المشروع إلى التوازن بين الجاذبية التجارية
+والمحافظة على الهوية الثقافية، حتى لا تتحول التجربة
+إلى نسخة مكررة من مدن أخرى.
+</p>
+
+<p>
+ومن ثم فإن تقويم مشروع مثل القدية لا ينبغي أن يتوقف عند
+الإعجاب بالتصميمات أو كثرة الفعاليات، بل يجب أن ينظر إلى
+جودة التجربة، واستدامة الوظائف، وسهولة الوصول،
+ومدى تنوع المستفيدين، وقدرة المشروع على تقديم قيمة
+اجتماعية واقتصادية وثقافية حقيقية.
+</p>
+
 `;
+  const questions = [
 
-const questions = [
+{
+  skill:"المفردات في السياق",
+  question:"ما المعنى الأدق لعبارة «نشاطًا هامشيًا» في الفقرة الأولى؟",
+  options:[
+    "نشاطًا لا يُعد جزءًا مهمًا من الحياة العامة.",
+    "نشاطًا مرتبطًا بالمناسبات الرسمية فقط.",
+    "نشاطًا يتطلب ميزانية مرتفعة دائمًا.",
+    "نشاطًا يقتصر على فئة الشباب."
+  ],
+  correct:0,
+  explanation:"السياق يقابل بين النظرة القديمة إلى الترفيه بوصفه أمرًا ثانويًا، والنظرة الحديثة التي تراه عنصرًا في جودة الحياة والتنمية."
+},
 
-  {
-    skill:
-      "المفردات في السياق",
+{
+  skill:"الفكرة الرئيسة",
+  question:"ما الفكرة الرئيسة التي ينتظم حولها النص كله؟",
+  options:[
+    "نجاح القدية يعتمد على كثرة الألعاب فقط.",
+    "القدية مشروع يجمع الترفيه بالتنمية، ويحتاج إلى تقويم أثره وفق معايير متعددة.",
+    "الترفيه أهم من التعليم والعمل في المدن الحديثة.",
+    "المشروعات الترفيهية لا تحقق أي فائدة اجتماعية."
+  ],
+  correct:1,
+  explanation:"الخيار الثاني هو الأشمل؛ لأنه يجمع هدف المشروع ومعايير النجاح الاقتصادية والاجتماعية والثقافية."
+},
 
-    question:
-      "ما المعنى الأدق لعبارة «نشاطًا هامشيًا» في الفقرة الأولى؟",
+{
+  skill:"الاستنتاج",
+  question:"ماذا يمكن أن نستنتج من قول الكاتب إن كثرة الزوار في موسم واحد لا تكفي للحكم على النجاح الطويل؟",
+  options:[
+    "أن عدد الزوار لا قيمة له مطلقًا.",
+    "أن النجاح المستدام يحتاج إلى مؤشرات زمنية متعددة.",
+    "أن المواسم القصيرة أكثر نجاحًا من المشروعات الدائمة.",
+    "أن الإيرادات الموسمية دليل كافٍ على الفشل."
+  ],
+  correct:1,
+  explanation:"الكاتب يميز بين النجاح المؤقت والنجاح المستدام؛ لذلك لا بد من متابعة النتائج عبر مدة أطول."
+},
 
-    options: [
-      "نشاطًا لا يُعد جزءًا مهمًا من الحياة العامة.",
-      "نشاطًا مرتبطًا بالمناسبات الرسمية فقط.",
-      "نشاطًا يتطلب ميزانية مرتفعة دائمًا.",
-      "نشاطًا يقتصر على فئة الشباب."
-    ],
+{
+  skill:"العلاقة بين الأفكار",
+  question:"ما العلاقة بين الفقرة الثانية والفقرة الخامسة؟",
+  options:[
+    "الثانية تعرض معايير نجاح التجربة، والخامسة تعيد جمعها في حكم تقويمي شامل.",
+    "الثانية تنفي أهمية الخدمات، والخامسة تؤكدها.",
+    "الفقرتان تصفان فعاليات بعينها.",
+    "الخامسة تناقض جميع أفكار الثانية."
+  ],
+  correct:0,
+  explanation:"الفقرة الثانية تذكر عناصر مثل الوصول والخدمات والأثر، ثم تجمع الفقرة الخامسة هذه المعايير في خاتمة تقويمية."
+},
 
-    correct: 0,
+{
+  skill:"الحقيقة والرأي",
+  question:"أي العبارات الآتية تمثل رأيًا تفسيريًا أكثر من كونها معلومة مباشرة؟",
+  options:[
+    "تجمع القدية أنشطة رياضية وثقافية وترفيهية.",
+    "تحتاج إدارة الحشود إلى تخطيط دقيق.",
+    "ارتفاع الإيرادات لا يعني بالضرورة وصول الفائدة إلى المجتمع كله.",
+    "تستهدف المرافق السكان والزوار."
+  ],
+  correct:2,
+  explanation:"العبارة الثالثة حكم تحليلي يفسر العلاقة بين الإيراد وتوزيع الفائدة، وليست مجرد وصف مباشر."
+},
 
-    explanation:
-      "السياق يقابل بين النظرة القديمة إلى الترفيه بوصفه أمرًا ثانويًا، والنظرة الحديثة التي تراه عنصرًا في جودة الحياة والتنمية."
-  },
+{
+  skill:"تقويم الدليل",
+  question:"أي دليل سيكون الأقوى لإثبات أن القدية أسهمت في تحسين جودة الحياة؟",
+  options:[
+    "صور جميلة للمرافق والمنشآت.",
+    "زيادة عدد الإعلانات عن المشروع.",
+    "رأي زائر واحد أعجبته التجربة.",
+    "بيانات تقارن رضا السكان واستخدام المرافق وتنوع المستفيدين قبل التشغيل وبعده."
+  ],
+  correct:3,
+  explanation:"المقارنة بين مؤشرات واضحة قبل التشغيل وبعده تقيس الأثر الفعلي على جودة الحياة."
+},
 
-  {
-    skill:
-      "الفكرة الرئيسة",
+{
+  skill:"الغرض من النص",
+  question:"ما الغرض الرئيس للكاتب؟",
+  options:[
+    "وصف المشروع بوصفه ناجحًا دون شروط.",
+    "رفض الترفيه بوصفه نشاطًا غير ضروري.",
+    "تعريف القارئ بالقدية ودعوته إلى تقويمها وفق أثرها الحقيقي.",
+    "المقارنة بين القدية ومدن أجنبية محددة."
+  ],
+  correct:2,
+  explanation:"النص يقدم المشروع ثم يضع معايير للحكم عليه، فلا يكتفي بالمدح أو الرفض."
+},
 
-    question:
-      "ما الفكرة الرئيسة التي ينتظم حولها النص كله؟",
+{
+  skill:"التطبيق",
+  question:"افتُتح مرفق ترفيهي ضخم لكنه صعب الوصول ومرتفع التكلفة. أي حكم ينسجم أكثر مع النص؟",
+  options:[
+    "يُعد ناجحًا لأن تصميمه مميز.",
+    "يحتاج إلى تقويم أشمل؛ لأن جودة التجربة لا تعتمد على الشكل وحده.",
+    "يجب إغلاقه فورًا دون دراسة.",
+    "لا علاقة للوصول والتكلفة بنجاح المرفق."
+  ],
+  correct:1,
+  explanation:"النص يؤكد أن سهولة الوصول والتكلفة والخدمات عناصر أساسية في تقويم النجاح."
+},
 
-    options: [
-      "نجاح القدية يعتمد على كثرة الألعاب فقط.",
-      "القدية مشروع يجمع الترفيه بالتنمية، ويحتاج إلى تقويم أثره وفق معايير متعددة.",
-      "الترفيه أهم من التعليم والعمل في المدن الحديثة.",
-      "المشروعات الترفيهية لا تحقق أي فائدة اجتماعية."
-    ],
+{
+  skill:"التلخيص",
+  question:"أي الملخصات الآتية هو الأدق؟",
+  options:[
+    "القدية مشروع ترفيهي يعتمد نجاحه على كثرة الزوار.",
+    "المشروعات الترفيهية تنجح كلما زادت منشآتها.",
+    "القدية تجمع الترفيه بالتنمية، ويقاس نجاحها بجودة التجربة واستدامة أثرها وتنوع المستفيدين.",
+    "القدية مشروع ثقافي فقط."
+  ],
+  correct:2,
+  explanation:"الخيار الثالث يجمع هدف المشروع ومعايير تقويمه دون اختزال."
+},
 
-    correct: 1,
-
-    explanation:
-      "الخيار الثاني هو الأشمل؛ لأنه يجمع هدف المشروع ومعايير النجاح الاقتصادية والاجتماعية والثقافية."
-  },
-
-  {
-    skill:
-      "الاستنتاج",
-
-    question:
-      "ماذا يمكن أن نستنتج من قول الكاتب إن كثرة الزوار في موسم واحد لا تكفي للحكم على النجاح الطويل؟",
-
-    options: [
-      "أن عدد الزوار لا قيمة له مطلقًا.",
-      "أن النجاح المستدام يحتاج إلى مؤشرات زمنية متعددة.",
-      "أن المواسم القصيرة أكثر نجاحًا من المشروعات الدائمة.",
-      "أن الإيرادات الموسمية دليل كافٍ على الفشل."
-    ],
-
-    correct: 1,
-
-    explanation:
-      "الكاتب يميز بين النجاح المؤقت والنجاح المستدام؛ لذلك لا بد من متابعة النتائج عبر مدة أطول."
-  },
-
-  {
-    skill:
-      "العلاقة بين الأفكار",
-
-    question:
-      "ما العلاقة بين الفقرة الثانية والفقرة الخامسة؟",
-
-    options: [
-      "الثانية تعرض معايير نجاح التجربة، والخامسة تعيد جمعها في حكم تقويمي شامل.",
-      "الثانية تنفي أهمية الخدمات، والخامسة تؤكدها.",
-      "الفقرتان تصفان فعاليات بعينها.",
-      "الخامسة تناقض جميع أفكار الثانية."
-    ],
-
-    correct: 0,
-
-    explanation:
-      "الفقرة الثانية تذكر عناصر مثل الوصول والخدمات والأثر، ثم تجمع الفقرة الخامسة هذه المعايير في خاتمة تقويمية."
-  },
-
-  {
-    skill:
-      "الحقيقة والرأي",
-
-    question:
-      "أي العبارات الآتية تمثل رأيًا تفسيريًا أكثر من كونها معلومة مباشرة؟",
-
-    options: [
-      "تجمع القدية أنشطة رياضية وثقافية وترفيهية.",
-      "تحتاج إدارة الحشود إلى تخطيط دقيق.",
-      "ارتفاع الإيرادات لا يعني بالضرورة وصول الفائدة إلى المجتمع كله.",
-      "تستهدف المرافق السكان والزوار."
-    ],
-
-    correct: 2,
-
-    explanation:
-      "العبارة الثالثة حكم تحليلي يفسر العلاقة بين الإيراد وتوزيع الفائدة، وليست مجرد وصف مباشر."
-  },
-
-  {
-    skill:
-      "تقويم الدليل",
-
-    question:
-      "أي دليل سيكون الأقوى لإثبات أن القدية أسهمت في تحسين جودة الحياة؟",
-
-    options: [
-      "صور جميلة للمرافق والمنشآت.",
-      "زيادة عدد الإعلانات عن المشروع.",
-      "رأي زائر واحد أعجبته التجربة.",
-      "بيانات تقارن رضا السكان واستخدام المرافق وتنوع المستفيدين قبل التشغيل وبعده."
-    ],
-
-    correct: 3,
-
-    explanation:
-      "المقارنة بين مؤشرات واضحة قبل التشغيل وبعده تقيس الأثر الفعلي على جودة الحياة."
-  },
-
-  {
-    skill:
-      "الغرض من النص",
-
-    question:
-      "ما الغرض الرئيس للكاتب؟",
-
-    options: [
-      "وصف المشروع بوصفه ناجحًا دون شروط.",
-      "رفض الترفيه بوصفه نشاطًا غير ضروري.",
-      "تعريف القارئ بالقدية ودعوته إلى تقويمها وفق أثرها الحقيقي.",
-      "المقارنة بين القدية ومدن أجنبية محددة."
-    ],
-
-    correct: 2,
-
-    explanation:
-      "النص يقدم المشروع ثم يضع معايير للحكم عليه، فلا يكتفي بالمدح أو الرفض."
-  },
-
-  {
-    skill:
-      "التطبيق",
-
-    question:
-      "افتُتح مرفق ترفيهي ضخم لكنه صعب الوصول ومرتفع التكلفة. أي حكم ينسجم أكثر مع النص؟",
-
-    options: [
-      "يُعد ناجحًا لأن تصميمه مميز.",
-      "يحتاج إلى تقويم أشمل؛ لأن جودة التجربة لا تعتمد على الشكل وحده.",
-      "يجب إغلاقه فورًا دون دراسة.",
-      "لا علاقة للوصول والتكلفة بنجاح المرفق."
-    ],
-
-    correct: 1,
-
-    explanation:
-      "النص يؤكد أن سهولة الوصول والتكلفة والخدمات عناصر أساسية في تقويم النجاح."
-  },
-
-  {
-    skill:
-      "التلخيص",
-
-    question:
-      "أي الملخصات الآتية هو الأدق؟",
-
-    options: [
-      "القدية مشروع ترفيهي يعتمد نجاحه على كثرة الزوار.",
-      "المشروعات الترفيهية تنجح كلما زادت منشآتها.",
-      "القدية تجمع الترفيه بالتنمية، ويقاس نجاحها بجودة التجربة واستدامة أثرها وتنوع المستفيدين.",
-      "القدية مشروع ثقافي فقط."
-    ],
-
-    correct: 2,
-
-    explanation:
-      "الخيار الثالث يجمع هدف المشروع ومعايير تقويمه دون اختزال."
-  },
-
-  {
-    skill:
-      "الحكم النقدي",
-
-    question:
-      "أي حكم نقدي يعبر عن موقف النص بأكبر قدر من الدقة؟",
-
-    options: [
-      "النص يرفض المشروعات الترفيهية الكبيرة.",
-      "النص يربط نجاح القدية بالمظهر المعماري فقط.",
-      "النص يبالغ في أهمية عدد الزوار.",
-      "النص يتبنى موقفًا متوازنًا؛ يعترف بالفرص ويشترط أثرًا قابلًا للقياس."
-    ],
-
-    correct: 3,
-
-    explanation:
-      "الكاتب لا يرفض المشروع ولا يمدحه بلا شروط، بل يوازن بين الإمكانات وضرورة قياس الأثر الحقيقي."
-  }
+{
+  skill:"الحكم النقدي",
+  question:"أي حكم نقدي يعبر عن موقف النص بأكبر قدر من الدقة؟",
+  options:[
+    "النص يرفض المشروعات الترفيهية الكبيرة.",
+    "النص يربط نجاح القدية بالمظهر المعماري فقط.",
+    "النص يبالغ في أهمية عدد الزوار.",
+    "النص يتبنى موقفًا متوازنًا؛ يعترف بالفرص ويشترط أثرًا قابلًا للقياس."
+  ],
+  correct:3,
+  explanation:"الكاتب لا يرفض المشروع ولا يمدحه بلا شروط، بل يوازن بين الإمكانات وضرورة قياس الأثر الحقيقي."
+}
 
 ];
-    const startScreen =
-  document.getElementById("startScreen");
 
-const quizScreen =
-  document.getElementById("quizScreen");
 
-const resultScreen =
-  document.getElementById("resultScreen");
+const $ =
+  id =>
+    document.getElementById(id);
 
-const studentNameInput =
-  document.getElementById("studentNameInput");
-
-const nameWarning =
-  document.getElementById("nameWarning");
-
-const startButton =
-  document.getElementById("startButton");
-
-const soundBtn =
-  document.getElementById("soundBtn");
-
-const questionCounter =
-  document.getElementById("questionCounter");
-
-const liveScore =
-  document.getElementById("liveScore");
-
-const progressBar =
-  document.getElementById("progressBar");
-
-const questionNumber =
-  document.getElementById("questionNumber");
-
-const questionSkill =
-  document.getElementById("questionSkill");
-
-const passageCard =
-  document.getElementById("passageCard");
-
-const questionText =
-  document.getElementById("questionText");
-
-const answersContainer =
-  document.getElementById("answersContainer");
-
-const feedback =
-  document.getElementById("feedback");
-
-const previousButton =
-  document.getElementById("previousButton");
-
-const nextButton =
-  document.getElementById("nextButton");
-
-const page =
-  document.getElementById("page");
-
-const resultIcon =
-  document.getElementById("resultIcon");
-
-const resultTitle =
-  document.getElementById("resultTitle");
-
-const resultScore =
-  document.getElementById("resultScore");
-
-const resultMessage =
-  document.getElementById("resultMessage");
-
-const showCertificateButton =
-  document.getElementById(
-    "showCertificateButton"
-  );
-
-const restartButton =
-  document.getElementById(
-    "restartButton"
-  );
-
-const nextChallengeButton =
-  document.getElementById(
-    "nextChallengeButton"
-  );
-
-const certificateShell =
-  document.getElementById(
-    "certificateShell"
-  );
-
-const certificateName =
-  document.getElementById(
-    "certificateName"
-  );
-
-const printButton =
-  document.getElementById(
-    "printButton"
-  );
+const startScreen = $("startScreen");
+const quizScreen = $("quizScreen");
+const resultScreen = $("resultScreen");
+const studentNameInput = $("studentNameInput");
+const nameWarning = $("nameWarning");
+const startButton = $("startButton");
+const soundBtn = $("soundBtn");
+const questionCounter = $("questionCounter");
+const liveScore = $("liveScore");
+const progressBar = $("progressBar");
+const questionNumber = $("questionNumber");
+const questionSkill = $("questionSkill");
+const passageCard = $("passageCard");
+const questionText = $("questionText");
+const answersContainer = $("answersContainer");
+const feedback = $("feedback");
+const previousButton = $("previousButton");
+const nextButton = $("nextButton");
+const resultIcon = $("resultIcon");
+const resultTitle = $("resultTitle");
+const resultScore = $("resultScore");
+const resultMessage = $("resultMessage");
+const showCertificateButton = $("showCertificateButton");
+const restartButton = $("restartButton");
+const nextChallengeButton = $("nextChallengeButton");
+const certificateShell = $("certificateShell");
+const certificateName = $("certificateName");
+const printButton = $("printButton");
 
 let studentName = "";
-
 let currentQuestion = 0;
-
 let score = 0;
 
 let soundOn =
-  localStorage.getItem(
-    "nafesSound"
-  ) !== "off";
+  localStorage.getItem("nafesSound") !== "off";
 
 const selectedAnswers =
-  new Array(
-    questions.length
-  ).fill(null);
+  new Array(questions.length).fill(null);
 
-function updateSoundButton() {
+
+function updateSoundButton(){
+
   soundBtn.textContent =
     soundOn
       ? "🔊 الصوت مفعّل"
       : "🔇 الصوت مكتوم";
+
 }
 
-function playTone(isCorrect) {
-  if (!soundOn) return;
 
-  try {
-    const AudioContextClass =
+function playTone(correct){
+
+  if(!soundOn) return;
+
+  try{
+
+    const AC =
       window.AudioContext ||
       window.webkitAudioContext;
 
     const context =
-      new AudioContextClass();
+      new AC();
 
     const oscillator =
       context.createOscillator();
@@ -1469,157 +1038,69 @@ function playTone(isCorrect) {
     const gain =
       context.createGain();
 
-    oscillator.type =
-      isCorrect
-        ? "sine"
-        : "triangle";
-
     oscillator.frequency.value =
-      isCorrect
-        ? 720
-        : 190;
+      correct ? 720 : 190;
 
-    gain.gain.setValueAtTime(
-      isCorrect
-        ? 0.13
-        : 0.1,
-      context.currentTime
-    );
-
-    gain.gain.exponentialRampToValueAtTime(
-      0.001,
-      context.currentTime +
-      (
-        isCorrect
-          ? 0.35
-          : 0.28
-      )
-    );
+    gain.gain.value =
+      .1;
 
     oscillator.connect(gain);
-
-    gain.connect(
-      context.destination
-    );
+    gain.connect(context.destination);
 
     oscillator.start();
 
-    oscillator.stop(
-      context.currentTime +
-      (
-        isCorrect
-          ? 0.35
-          : 0.28
-      )
+    setTimeout(
+      () => {
+
+        oscillator.stop();
+        context.close();
+
+      },
+      300
     );
 
-  } catch (error) {
-    console.log(error);
-  }
+  }catch(error){}
+
 }
 
-function showAnswerMark(
-  isCorrect
-) {
+
+function showMark(correct){
+
   const mark =
-    document.createElement(
-      "div"
-    );
+    document.createElement("div");
 
   mark.className =
-    isCorrect
+    correct
       ? "answer-mark correct-mark"
       : "answer-mark wrong-mark";
 
   mark.textContent =
-    isCorrect
-      ? "✓"
-      : "✕";
+    correct ? "✓" : "✕";
 
-  document.body
-    .appendChild(mark);
+  document.body.appendChild(mark);
 
   setTimeout(
-    () => {
-      mark.remove();
-    },
+    () => mark.remove(),
     720
   );
+
 }
 
-function celebrate() {
-  const symbols = [
-    "🎉",
-    "⭐",
-    "✨",
-    "🎡",
-    "🎢",
-    "🎈"
-  ];
 
-  for (
-    let j = 0;
-    j < 34;
-    j++
-  ) {
-    const piece =
-      document.createElement(
-        "span"
-      );
+function startChallenge(){
 
-    piece.className =
-      "confetti-piece";
-
-    piece.textContent =
-      symbols[
-        Math.floor(
-          Math.random() *
-          symbols.length
-        )
-      ];
-
-    piece.style.left =
-      Math.random() *
-      100 +
-      "vw";
-
-    piece.style.fontSize =
-      18 +
-      Math.random() *
-      22 +
-      "px";
-
-    piece.style.animationDelay =
-      Math.random() *
-      0.7 +
-      "s";
-
-    document.body
-      .appendChild(piece);
-
-    setTimeout(
-      () => {
-        piece.remove();
-      },
-      4100
-    );
-  }
-}
-
-function startChallenge() {
-  const enteredName =
+  const name =
     studentNameInput
       .value
       .trim();
 
-  const nameParts =
-    enteredName
+  if(
+    name
       .split(/\s+/)
-      .filter(Boolean);
+      .filter(Boolean)
+      .length < 4
+  ){
 
-  if (
-    nameParts.length < 4
-  ) {
     nameWarning.textContent =
       "اكتبي اسمكِ الرباعي كاملًا.";
 
@@ -1628,10 +1109,16 @@ function startChallenge() {
       .add("show");
 
     return;
+
   }
 
   studentName =
-    enteredName;
+    name;
+
+  localStorage.setItem(
+    "nafesStudentName",
+    studentName
+  );
 
   nameWarning
     .classList
@@ -1646,42 +1133,26 @@ function startChallenge() {
     .add("active");
 
   renderQuestion();
+
 }
 
-function updateTopStatus() {
+
+function renderQuestion(){
+
+  const item =
+    questions[currentQuestion];
+
   questionCounter.textContent =
-    `السؤال ${
-      currentQuestion + 1
-    } من ${
-      questions.length
-    }`;
+    `السؤال ${currentQuestion + 1} من ${questions.length}`;
 
   liveScore.textContent =
     `الدرجة: ${score}`;
 
   progressBar.style.width =
-    `${
-      (
-        (
-          currentQuestion + 1
-        ) /
-        questions.length
-      ) * 100
-    }%`;
-}
-
-function renderQuestion() {
-  const item =
-    questions[
-      currentQuestion
-    ];
-
-  updateTopStatus();
+    `${((currentQuestion + 1) / questions.length) * 100}%`;
 
   questionNumber.textContent =
-    `السؤال ${
-      currentQuestion + 1
-    }`;
+    `السؤال ${currentQuestion + 1}`;
 
   questionSkill.textContent =
     item.skill;
@@ -1702,38 +1173,23 @@ function renderQuestion() {
     "";
 
   item.options.forEach(
-    (
-      optionText,
-      optionIndex
-    ) => {
-      const button =
-        document.createElement(
-          "button"
-        );
+    (option,index) => {
 
-      button.type =
-        "button";
+      const button =
+        document.createElement("button");
 
       button.className =
         "answer-button";
 
       button.textContent =
-        optionText;
+        option;
 
-      button.addEventListener(
-        "click",
-        () => {
-          chooseAnswer(
-            optionIndex,
-            button
-          );
-        }
-      );
+      button.onclick =
+        () => chooseAnswer(index);
 
       answersContainer
-        .appendChild(
-          button
-        );
+        .appendChild(button);
+
     }
   );
 
@@ -1741,65 +1197,42 @@ function renderQuestion() {
     currentQuestion === 0;
 
   nextButton.disabled =
-    selectedAnswers[
-      currentQuestion
-    ] === null;
+    selectedAnswers[currentQuestion] === null;
 
   nextButton.textContent =
-    currentQuestion ===
-    questions.length - 1
+    currentQuestion === questions.length - 1
       ? "عرض النتيجة"
       : "التالي";
 
   restoreAnswer();
 
-  const pageScroll =
-    document.querySelector(
-      ".page-scroll"
-    );
-
-  if (pageScroll) {
-    pageScroll.scrollTop =
-      0;
-  }
 }
+  function restoreAnswer(){
 
-function restoreAnswer() {
   const selected =
-    selectedAnswers[
-      currentQuestion
-    ];
+    selectedAnswers[currentQuestion];
 
-  if (
-    selected === null
-  ) {
+  if(selected === null)
     return;
-  }
 
   const item =
-    questions[
-      currentQuestion
-    ];
+    questions[currentQuestion];
 
   const buttons =
-    Array.from(
-      answersContainer
-        .querySelectorAll(
-          ".answer-button"
-        )
+    answersContainer.querySelectorAll(
+      ".answer-button"
     );
 
   buttons.forEach(
-    button => {
-      button.disabled =
-        true;
-    }
+    button =>
+      button.disabled = true
   );
 
-  if (
+  if(
     selected ===
     item.correct
-  ) {
+  ){
+
     buttons[selected]
       .classList
       .add("correct");
@@ -1807,16 +1240,13 @@ function restoreAnswer() {
     feedback.className =
       "feedback correct show";
 
-    feedback.innerHTML = `
-      <strong>
-        ✅ إجابة صحيحة
-      </strong>
+    feedback.innerHTML =
+      `✅ إجابة صحيحة
+       <br>
+       ${item.explanation}`;
 
-      <br>
+  }else{
 
-      ${item.explanation}
-    `;
-  } else {
     buttons[selected]
       .classList
       .add("wrong");
@@ -1828,281 +1258,161 @@ function restoreAnswer() {
     feedback.className =
       "feedback wrong show";
 
-    feedback.innerHTML = `
-      <strong>
-        ❌ الإجابة غير صحيحة
-      </strong>
+    feedback.innerHTML =
+      `❌ الإجابة غير صحيحة
+       <br>
+       <b>الإجابة الصحيحة:</b>
+       ${item.options[item.correct]}
+       <br><br>
+       ${item.explanation}`;
 
-      <br>
-
-      <b>
-        الإجابة الصحيحة:
-      </b>
-
-      ${
-        item.options[
-          item.correct
-        ]
-      }
-
-      <br><br>
-
-      ${item.explanation}
-    `;
   }
+
 }
 
-function chooseAnswer(
-  selectedIndex,
-  selectedButton
-) {
-  if (
-    selectedAnswers[
-      currentQuestion
-    ] !== null
-  ) {
+
+function chooseAnswer(index){
+
+  if(
+    selectedAnswers[currentQuestion] !== null
+  ){
     return;
   }
 
   const item =
-    questions[
-      currentQuestion
-    ];
+    questions[currentQuestion];
 
-  const buttons =
-    Array.from(
-      answersContainer
-        .querySelectorAll(
-          ".answer-button"
-        )
-    );
+  selectedAnswers[currentQuestion] =
+    index;
 
-  selectedAnswers[
-    currentQuestion
-  ] =
-    selectedIndex;
-
-  buttons.forEach(
-    button => {
-      button.disabled =
-        true;
-    }
-  );
-
-  if (
-    selectedIndex ===
+  if(
+    index ===
     item.correct
-  ) {
+  ){
+
     score++;
 
-    selectedButton
-      .classList
-      .add("correct");
-
-    feedback.className =
-      "feedback correct show";
-
-    feedback.innerHTML = `
-      <strong>
-        ✅ أحسنتِ، اختياركِ هو الأدق
-      </strong>
-
-      <br>
-
-      ${item.explanation}
-    `;
-
-    showAnswerMark(true);
-
+    showMark(true);
     playTone(true);
 
-  } else {
-    selectedButton
-      .classList
-      .add("wrong");
+  }else{
 
-    buttons[item.correct]
-      .classList
-      .add("correct");
-
-    feedback.className =
-      "feedback wrong show";
-
-    feedback.innerHTML = `
-      <strong>
-        ❌ الإجابة غير صحيحة
-      </strong>
-
-      <br>
-
-      <b>
-        الإجابة الصحيحة:
-      </b>
-
-      ${
-        item.options[
-          item.correct
-        ]
-      }
-
-      <br><br>
-
-      ${item.explanation}
-    `;
-
-    showAnswerMark(false);
-
+    showMark(false);
     playTone(false);
+
   }
 
-  liveScore.textContent =
-    `الدرجة: ${score}`;
+  renderQuestion();
 
   nextButton.disabled =
     false;
+
 }
 
-function animatePage(
-  direction,
-  callback
-) {
-  page.classList.remove(
-    "flip-next",
-    "flip-previous"
-  );
 
-  void page.offsetWidth;
+previousButton.onclick =
+  () => {
 
-  page.classList.add(
-    direction === "next"
-      ? "flip-next"
-      : "flip-previous"
-  );
+    if(
+      currentQuestion > 0
+    ){
 
-  setTimeout(
-    () => {
-      callback();
-
-      page.classList.remove(
-        "flip-next",
-        "flip-previous"
-      );
-    },
-    220
-  );
-}
-
-function showPreviousQuestion() {
-  if (
-    currentQuestion === 0
-  ) {
-    return;
-  }
-
-  animatePage(
-    "previous",
-    () => {
       currentQuestion--;
 
       renderQuestion();
+
     }
-  );
-}
 
-function showNextQuestion() {
-  if (
-    selectedAnswers[
-      currentQuestion
-    ] === null
-  ) {
-    return;
-  }
+  };
 
-  if (
-    currentQuestion <
-    questions.length - 1
-  ) {
-    animatePage(
-      "next",
-      () => {
-        currentQuestion++;
 
-        renderQuestion();
-      }
-    );
+nextButton.onclick =
+  () => {
 
-    return;
-  }
+    if(
+      selectedAnswers[currentQuestion] === null
+    ){
+      return;
+    }
 
-  finishChallenge();
-        }
-    function getResultMessage() {
+    if(
+      currentQuestion <
+      questions.length - 1
+    ){
+
+      currentQuestion++;
+
+      renderQuestion();
+
+    }else{
+
+      finishChallenge();
+
+    }
+
+  };
+
+
+function getResultMessage(){
+
   const percentage =
     Math.round(
-      (
-        score /
-        questions.length
-      ) * 100
+      score /
+      questions.length *
+      100
     );
 
-  if (
-    percentage === 100
-  ) {
-    return {
-      icon: "👑",
-      title:
-        "إتقان كامل",
-      message:
-        "أداء استثنائي ودقة عالية في مهارات الفهم والتحليل والنقد."
+  if(percentage === 100){
+
+    return{
+      icon:"👑",
+      title:"إتقان كامل",
+      message:"أداء استثنائي ودقة عالية في مهارات الفهم والتحليل والنقد."
     };
+
   }
 
-  if (
-    percentage >= 90
-  ) {
-    return {
-      icon: "🏆",
-      title:
-        "أداء متميز",
-      message:
-        "نتيجة متميزة جدًا واختيار دقيق للإجابات."
+  if(percentage >= 90){
+
+    return{
+      icon:"🏆",
+      title:"أداء متميز",
+      message:"نتيجة متميزة جدًا واختيار دقيق للإجابات."
     };
+
   }
 
-  if (
-    percentage >= 80
-  ) {
-    return {
-      icon: "⭐",
-      title:
-        "أداء متقن",
-      message:
-        "إتقان واضح لمهارات الفهم القرائي."
+  if(percentage >= 80){
+
+    return{
+      icon:"⭐",
+      title:"أداء متقن",
+      message:"إتقان واضح لمهارات الفهم القرائي."
     };
+
   }
 
-  if (
-    percentage >= 70
-  ) {
-    return {
-      icon: "🌟",
-      title:
-        "إنجاز جيد",
-      message:
-        "إنجاز جميل، ومع مزيد من التدريب تصلين إلى مستوى أعلى."
+  if(percentage >= 70){
+
+    return{
+      icon:"🌟",
+      title:"إنجاز جيد",
+      message:"إنجاز جميل، ومع مزيد من التدريب تصلين إلى مستوى أعلى."
     };
+
   }
 
-  return {
-    icon: "🌷",
-    title:
-      "محاولة جيدة",
-    message:
-      "راجعي التفسيرات، ثم أعيدي التحدي لترتفع نتيجتك."
+  return{
+    icon:"🌷",
+    title:"محاولة جيدة",
+    message:"راجعي التفسيرات، ثم أعيدي التحدي لترتفع نتيجتك."
   };
+
 }
 
-function finishChallenge() {
+
+async function finishChallenge(){
+
   quizScreen
     .classList
     .remove("active");
@@ -2110,6 +1420,13 @@ function finishChallenge() {
   resultScreen
     .classList
     .add("active");
+
+  const percentage =
+    Math.round(
+      score /
+      questions.length *
+      100
+    );
 
   const result =
     getResultMessage();
@@ -2121,61 +1438,117 @@ function finishChallenge() {
     result.title;
 
   resultScore.textContent =
-    `${score} من ${questions.length}`;
+    `${score} من ${questions.length} — ${percentage}٪`;
 
-  resultMessage.innerHTML = `
-    <strong>
-      ${studentName}
-    </strong>
-
-    <br>
-
-    ${result.message}
-  `;
+  resultMessage.innerHTML =
+    `<strong>${studentName}</strong>
+     <br>
+     ${result.message}`;
 
   certificateName.textContent =
     studentName;
 
+
+  const savedResult = {
+
+    name:
+      studentName,
+
+    challenge:
+      challengeName,
+
+    score:
+      score,
+
+    total:
+      questions.length,
+
+    percentage:
+      percentage,
+
+    certificate:
+      percentage >= 80
+
+  };
+
+
   localStorage.setItem(
     "nafesChallenge04Result",
-    JSON.stringify({
+    JSON.stringify(savedResult)
+  );
+
+
+  localStorage.setItem(
+    "nafesChallenge4Result",
+    JSON.stringify(savedResult)
+  );
+
+
+  localStorage.setItem(
+    "nafesStudentName",
+    studentName
+  );
+
+
+  if(
+    window.saveNafesChallenge
+  ){
+
+    await window.saveNafesChallenge({
+
+      number:4,
+
+      title:
+        "تحدي القدية",
+
       name:
         studentName,
-
-      challenge:
-        challengeName,
 
       score:
         score,
 
       total:
         questions.length
-    })
-  );
 
-  
-    
-  
- if (score >= 8) {
-  showCertificateButton.style.display = "inline-flex";
-  celebrate();
-  playTone(true);
-} else {
-  showCertificateButton.style.display = "none";
+    });
+
+  }
+
+
+  if(
+    percentage >= 80
+  ){
+
+    showCertificateButton.style.display =
+      "inline-flex";
+
+    playTone(true);
+
+  }else{
+
+    showCertificateButton.style.display =
+      "none";
+
+    certificateShell
+      .classList
+      .remove("show");
+
+  }
+
 }
-  } 
-  
 
 
-function restartChallenge() {
+function restartChallenge(){
+
   currentQuestion =
     0;
 
   score =
     0;
 
-  selectedAnswers
-    .fill(null);
+  selectedAnswers.fill(
+    null
+  );
 
   certificateShell
     .classList
@@ -2190,90 +1563,89 @@ function restartChallenge() {
     .add("active");
 
   renderQuestion();
+
 }
 
-function showCertificate() {
-  certificateShell
-    .classList
-    .add("show");
 
-  celebrate();
+showCertificateButton.onclick =
+  () => {
+
+    certificateShell
+      .classList
+      .add("show");
+
+  };
+
+
+restartButton.onclick =
+  restartChallenge;
+
+
+nextChallengeButton.onclick =
+  () => {
+
+    window.location.href =
+      "nafes-challenge-05.html";
+
+  };
+
+
+printButton.onclick =
+  () => window.print();
+
+
+soundBtn.onclick =
+  () => {
+
+    soundOn =
+      !soundOn;
+
+    localStorage.setItem(
+      "nafesSound",
+      soundOn
+        ? "on"
+        : "off"
+    );
+
+    updateSoundButton();
+
+    if(soundOn){
+      playTone(true);
+    }
+
+  };
+
+
+startButton.onclick =
+  startChallenge;
+
+
+const rememberedName =
+  localStorage.getItem(
+    "nafesStudentName"
+  );
+
+
+if(
+  rememberedName
+){
+
+  studentNameInput.value =
+    rememberedName;
+
 }
 
-startButton
-  .addEventListener(
-    "click",
-    startChallenge
-  );
-
-previousButton
-  .addEventListener(
-    "click",
-    showPreviousQuestion
-  );
-
-nextButton
-  .addEventListener(
-    "click",
-    showNextQuestion
-  );
-
-showCertificateButton
-  .addEventListener(
-    "click",
-    showCertificate
-  );
-
-restartButton
-  .addEventListener(
-    "click",
-    restartChallenge
-  );
-
-nextChallengeButton
-  .addEventListener(
-    "click",
-    () => {
-      window.location.href =
-        "nafes-challenge-05.html";
-    }
-  );
-
-printButton
-  .addEventListener(
-    "click",
-    () => {
-      window.print();
-    }
-  );
-
-soundBtn
-  .addEventListener(
-    "click",
-    () => {
-      soundOn =
-        !soundOn;
-
-      localStorage.setItem(
-        "nafesSound",
-        soundOn
-          ? "on"
-          : "off"
-      );
-
-      updateSoundButton();
-
-      if (
-        soundOn
-      ) {
-        playTone(true);
-      }
-    }
-  );
 
 updateSoundButton();
 
 </script>
+
+
+<script
+  type="module"
+  src="nafes-challenge-tracker.js"
+></script>
+
 
 </body>
 </html>
