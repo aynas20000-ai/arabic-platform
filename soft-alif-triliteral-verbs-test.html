@@ -10,7 +10,7 @@
   >
 
   <title>
-    اختبري مهارتك | الألف اللينة في الأفعال الثلاثية
+    اختبار الألف اللينة في الأفعال الثلاثية | منصة آفاق
   </title>
 
   <style>
@@ -100,11 +100,13 @@
     header h1 {
       margin: 4px 0 1px;
       color: #fff8df;
+
       font-size: clamp(
         18px,
         4.8vw,
         26px
       );
+
       line-height: 1.4;
     }
 
@@ -132,6 +134,7 @@
         1px solid #ddc98d;
 
       border-radius: 15px;
+
       background:
         rgba(255,255,255,.95);
     }
@@ -238,6 +241,7 @@
       padding: 8px 10px;
 
       color: #3f3745;
+
       font-size: clamp(
         12px,
         3.3vw,
@@ -256,10 +260,6 @@
       border-radius: 13px;
 
       background: #eef6ff;
-
-      transition:
-        transform .15s ease,
-        border-color .15s ease;
     }
 
     .option:nth-child(2) {
@@ -274,10 +274,6 @@
       background: #f3edff;
     }
 
-    .option:active {
-      transform: scale(.99);
-    }
-
     .option:disabled {
       cursor: default;
     }
@@ -286,34 +282,12 @@
       color: #176642;
       background: #dff7e8;
       border-color: #47ab72;
-      animation: correctPop .35s ease;
     }
 
     .option.wrong {
       color: #983a4a;
       background: #ffe3e8;
       border-color: #dc6377;
-      animation: wrongShake .35s ease;
-    }
-
-    @keyframes correctPop {
-      50% {
-        transform: scale(1.025);
-      }
-    }
-
-    @keyframes wrongShake {
-      25% {
-        transform: translateX(5px);
-      }
-
-      50% {
-        transform: translateX(-5px);
-      }
-
-      75% {
-        transform: translateX(3px);
-      }
     }
 
     .feedback {
@@ -322,6 +296,7 @@
       padding: 7px 9px;
 
       text-align: center;
+
       font-size: clamp(
         11px,
         3vw,
@@ -385,20 +360,6 @@
 
     .result-card.show {
       display: flex;
-      animation:
-        resultAppear .5s ease;
-    }
-
-    @keyframes resultAppear {
-      from {
-        opacity: 0;
-        transform: scale(.9);
-      }
-
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
     }
 
     .result-icon {
@@ -432,6 +393,31 @@
 
       border-radius: 13px;
       background: #f2ecff;
+    }
+
+    .save-status {
+      min-height: 26px;
+      margin-top: 5px;
+      padding: 6px 9px;
+      font-size: 12px;
+      font-weight: bold;
+      line-height: 1.5;
+      border-radius: 11px;
+    }
+
+    .save-status.saved {
+      color: #2e6f42;
+      background: #edf8f0;
+    }
+
+    .save-status.waiting {
+      color: #66522e;
+      background: #fff8e8;
+    }
+
+    .save-status.error {
+      color: #8a3d3d;
+      background: #fff0f0;
     }
 
     .result-actions {
@@ -473,10 +459,6 @@
           #c9a85c,
           #a7863e
         );
-    }
-
-    .wide {
-      grid-column: 1 / -1;
     }
 
     .confetti {
@@ -529,11 +511,6 @@
         font-size: 16px;
       }
 
-      header p,
-      .badge {
-        font-size: 9px;
-      }
-
       main {
         padding: 3px 0;
       }
@@ -553,36 +530,14 @@
         padding: 6px;
       }
 
-      .question-number {
-        margin-bottom: 3px;
-        padding: 2px 8px;
-        font-size: 9px;
-      }
-
       .question-text {
         margin-bottom: 4px;
         padding: 5px;
         font-size: 13px;
       }
 
-      .options {
-        gap: 3px;
-      }
-
       .option {
         padding: 5px 7px;
-        font-size: 11px;
-      }
-
-      .feedback {
-        margin-top: 3px;
-        padding: 4px 6px;
-        font-size: 10px;
-      }
-
-      .next-button {
-        margin-top: 3px;
-        padding: 5px;
         font-size: 11px;
       }
     }
@@ -604,11 +559,10 @@
     </h1>
 
     <p>
-      الأفعال الثلاثية • ١٠ أسئلة • تعقيب فوري
+      الأفعال الثلاثية • ١٠ أسئلة • تغذية راجعة فورية
     </p>
 
   </header>
-
 
   <main>
 
@@ -624,7 +578,7 @@
         </span>
 
         <span>
-          الصحيح:
+          الإجابات الصحيحة:
           <span id="score">
             ٠
           </span>
@@ -639,7 +593,6 @@
 
       </div>
 
-
       <div class="progress-track">
 
         <div
@@ -650,7 +603,6 @@
       </div>
 
     </div>
-
 
     <section
       class="quiz-card"
@@ -689,7 +641,6 @@
 
     </section>
 
-
     <section
       class="result-card"
       id="resultCard"
@@ -703,7 +654,7 @@
       </div>
 
       <h2>
-        اكتمل الاختبار
+        اكتمل اختبار الألف اللينة في الأفعال الثلاثية
       </h2>
 
       <div
@@ -716,6 +667,10 @@
         id="resultMessage"
       ></div>
 
+      <div
+        class="save-status"
+        id="saveStatus"
+      ></div>
 
       <div class="result-actions">
 
@@ -724,14 +679,14 @@
           id="restartButton"
           type="button"
         >
-          🔄 إعادة الاختبار
+          🔄 أعيدي الاختبار
         </button>
 
         <a
           class="back-button"
           href="soft-alif-triliteral-verbs-file.html"
         >
-          📘 ملف الدرس
+          📘 راجعي ملف الدرس
         </a>
 
         <a
@@ -754,869 +709,1077 @@
 
   </main>
 
-
   <footer>
     منصة آفاق اللغة | لغتي الخالدة | الصف الثالث المتوسط
   </footer>
 
 </div>
+<script type="module">
 
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
 
-<script>
+import {
+  getAuth,
+  onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
 
-  const questions = [
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  updateDoc,
+  serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 
-    {
-      question:
-        "ما الرسم الصحيح للفعل؟",
 
-      options: [
-        "دعى",
-        "دعا",
-        "دعي",
-        "دعو"
-      ],
+const firebaseConfig = {
+  apiKey: "AIzaSyB48av9gx4jzFyYoUQtcLwaR52qETevKGs",
+  authDomain: "afaq-language-platform.firebaseapp.com",
+  projectId: "afaq-language-platform",
+  storageBucket: "afaq-language-platform.firebasestorage.app",
+  messagingSenderId: "362601061474",
+  appId: "1:362601061474:web:bc405291332b9e4ef9453b"
+};
 
-      answer: 1,
 
-      explanation:
-        "الصواب «دعا»؛ لأن مضارعه «يدعو»، فأصل الألف واو."
-    },
+const app =
+  initializeApp(firebaseConfig);
 
+const auth =
+  getAuth(app);
 
-    {
-      question:
-        "كُتبت الألف في «دعا» قائمة لأن مضارعه:",
+const db =
+  getFirestore(app);
 
-      options: [
-        "يدعو",
-        "يدعي",
-        "يدعى",
-        "يدعا"
-      ],
+let currentUser = null;
 
-      answer: 0,
+onAuthStateChanged(
+  auth,
+  user => {
+    currentUser = user;
+  }
+);
 
-      explanation:
-        "مضارع «دعا» هو «يدعو»، فظهرت الواو أصلًا للألف."
-    },
 
+const questions = [
 
-    {
-      question:
-        "ما الرسم الصحيح للفعل؟",
+  {
+    question:
+      "ما الرسم الصحيح للفعل؟",
 
-      options: [
-        "رما",
-        "رمي",
-        "رمى",
-        "رمو"
-      ],
+    options: [
+      "دعى",
+      "دعا",
+      "دعي",
+      "دعو"
+    ],
 
-      answer: 2,
+    answer: 1,
 
-      explanation:
-        "الصواب «رمى»؛ لأن مضارعه «يرمي»، فأصل الألف ياء."
-    },
+    explanation:
+      "الصواب «دعا»؛ لأن مضارعه «يدعو»، فأصل الألف واو."
+  },
 
 
-    {
-      question:
-        "كُتبت الألف في «رمى» على صورة الياء لأن مضارعه:",
+  {
+    question:
+      "كُتبت الألف في «دعا» قائمة لأن مضارعه:",
 
-      options: [
-        "يرمو",
-        "يرمي",
-        "يرمى",
-        "يرما"
-      ],
+    options: [
+      "يدعو",
+      "يدعي",
+      "يدعى",
+      "يدعا"
+    ],
 
-      answer: 1,
+    answer: 0,
 
-      explanation:
-        "مضارع «رمى» هو «يرمي»، فظهر أن أصل الألف ياء."
-    },
+    explanation:
+      "مضارع «دعا» هو «يدعو»، فظهرت الواو أصلًا للألف."
+  },
 
 
-    {
-      question:
-        "إذا كان أصل الألف في الفعل الثلاثي واوًا فإنها تُكتب:",
+  {
+    question:
+      "ما الرسم الصحيح للفعل؟",
 
-      options: [
-        "ألفًا قائمة «ا»",
-        "على صورة الياء «ى»",
-        "ياءً «ي»",
-        "واوًا «و»"
-      ],
+    options: [
+      "رما",
+      "رمي",
+      "رمى",
+      "رمو"
+    ],
 
-      answer: 0,
+    answer: 2,
 
-      explanation:
-        "إذا كان أصل الألف واوًا كُتبت ألفًا قائمة «ا»."
-    },
+    explanation:
+      "الصواب «رمى»؛ لأن مضارعه «يرمي»، فأصل الألف ياء."
+  },
 
 
-    {
-      question:
-        "إذا كان أصل الألف في الفعل الثلاثي ياءً فإنها تُكتب:",
+  {
+    question:
+      "كُتبت الألف في «رمى» على صورة الياء لأن مضارعه:",
 
-      options: [
-        "ألفًا قائمة «ا»",
-        "واوًا «و»",
-        "على صورة الياء «ى»",
-        "ياءً منقوطة «ي»"
-      ],
+    options: [
+      "يرمو",
+      "يرمي",
+      "يرمى",
+      "يرما"
+    ],
 
-      answer: 2,
+    answer: 1,
 
-      explanation:
-        "إذا كان أصل الألف ياءً كُتبت على صورة الياء «ى»."
-    },
+    explanation:
+      "مضارع «رمى» هو «يرمي»، فظهر أن أصل الألف ياء."
+  },
 
 
-    {
-      question:
-        "اختاري الرسم الصحيح: «... الطالبُ إلى النجاح»",
+  {
+    question:
+      "إذا كان أصل الألف في الفعل الثلاثي واوًا فإنها تُكتب:",
 
-      options: [
-        "سعا",
-        "سعى",
-        "سعي",
-        "سعو"
-      ],
+    options: [
+      "ألفًا قائمة «ا»",
+      "على صورة الياء «ى»",
+      "ياءً «ي»",
+      "واوًا «و»"
+    ],
 
-      answer: 1,
+    answer: 0,
 
-      explanation:
-        "الصواب «سعى». ويمكن كشف الأصل من «سعيتُ» أو المصدر «سعي»."
-    },
+    explanation:
+      "إذا كان أصل الألف واوًا كُتبت ألفًا قائمة «ا»."
+  },
 
 
-    {
-      question:
-        "كيف نكشف أصل الألف في «سعى» إذا لم يظهر بوضوح في المضارع؟",
+  {
+    question:
+      "إذا كان أصل الألف في الفعل الثلاثي ياءً فإنها تُكتب:",
 
-      options: [
-        "سعيتُ أو سعي",
-        "يسعو",
-        "سعاة",
-        "ساعٍ فقط"
-      ],
+    options: [
+      "ألفًا قائمة «ا»",
+      "واوًا «و»",
+      "على صورة الياء «ى»",
+      "ياءً منقوطة «ي»"
+    ],
 
-      answer: 0,
+    answer: 2,
 
-      explanation:
-        "نقول «سعيتُ» أو نرجع إلى المصدر «سعي»، فتظهر الياء."
-    },
+    explanation:
+      "إذا كان أصل الألف ياءً كُتبت على صورة الياء «ى»."
+  },
 
-
-    {
-      question:
-        "أي الجمل الآتية مكتوبة كتابة صحيحة؟",
-
-      options: [
-        "قضا القاضي بالعدل.",
-        "قضي القاضي بالعدل.",
-        "قضى القاضي بالعدل.",
-        "قضو القاضي بالعدل."
-      ],
-
-      answer: 2,
-
-      explanation:
-        "الصواب «قضى»؛ لأن مضارعه «يقضي»، فأصل الألف ياء."
-    },
-
-
-    {
-      question:
-        "أي الأفعال الآتية تُكتب ألفه الأخيرة قائمة؟",
-
-      options: [
-        "بكى",
-        "سما",
-        "مشى",
-        "قضى"
-      ],
-
-      answer: 1,
-
-      explanation:
-        "«سما» تُكتب بألف قائمة؛ لأن مضارعها «يسمو»، فأصل الألف واو."
-    }
-
-  ];
-
-
-  const arabicNames = [
-    "الأول",
-    "الثاني",
-    "الثالث",
-    "الرابع",
-    "الخامس",
-    "السادس",
-    "السابع",
-    "الثامن",
-    "التاسع",
-    "العاشر"
-  ];
-
-
-  const toArabic =
-    value =>
-      String(value).replace(
-        /\d/g,
-        digit =>
-          "٠١٢٣٤٥٦٧٨٩"[digit]
-      );
-
-
-  let currentQuestion = 0;
-  let score = 0;
-  let answered = false;
-
-
-  const questionCounter =
-    document.getElementById(
-      "questionCounter"
-    );
-
-  const scoreElement =
-    document.getElementById(
-      "score"
-    );
-
-  const stars =
-    document.getElementById(
-      "stars"
-    );
-
-  const progressFill =
-    document.getElementById(
-      "progressFill"
-    );
-
-  const questionNumber =
-    document.getElementById(
-      "questionNumber"
-    );
-
-  const questionText =
-    document.getElementById(
-      "questionText"
-    );
-
-  const options =
-    document.getElementById(
-      "options"
-    );
-
-  const feedback =
-    document.getElementById(
-      "feedback"
-    );
-
-  const nextButton =
-    document.getElementById(
-      "nextButton"
-    );
-
-  const quizCard =
-    document.getElementById(
-      "quizCard"
-    );
-
-  const topPanel =
-    document.getElementById(
-      "topPanel"
-    );
-
-  const resultCard =
-    document.getElementById(
-      "resultCard"
-    );
-
-  const finalScore =
-    document.getElementById(
-      "finalScore"
-    );
-
-  const resultMessage =
-    document.getElementById(
-      "resultMessage"
-    );
-
-  const resultIcon =
-    document.getElementById(
-      "resultIcon"
-    );
-
-  const restartButton =
-    document.getElementById(
-      "restartButton"
+
+  {
+    question:
+      "اختاري الرسم الصحيح: «... الطالبُ إلى النجاح»",
+
+    options: [
+      "سعا",
+      "سعى",
+      "سعي",
+      "سعو"
+    ],
+
+    answer: 1,
+
+    explanation:
+      "الصواب «سعى». ويمكن كشف الأصل من «سعيتُ» أو المصدر «سعي»."
+  },
+
+
+  {
+    question:
+      "كيف نكشف أصل الألف في «سعى» إذا لم يظهر بوضوح في المضارع؟",
+
+    options: [
+      "سعيتُ أو سعي",
+      "يسعو",
+      "سعاة",
+      "ساعٍ فقط"
+    ],
+
+    answer: 0,
+
+    explanation:
+      "نقول «سعيتُ» أو نرجع إلى المصدر «سعي»، فتظهر الياء."
+  },
+
+
+  {
+    question:
+      "أي الجمل الآتية مكتوبة كتابة صحيحة؟",
+
+    options: [
+      "قضا القاضي بالعدل.",
+      "قضي القاضي بالعدل.",
+      "قضى القاضي بالعدل.",
+      "قضو القاضي بالعدل."
+    ],
+
+    answer: 2,
+
+    explanation:
+      "الصواب «قضى»؛ لأن مضارعه «يقضي»، فأصل الألف ياء."
+  },
+
+
+  {
+    question:
+      "أي الأفعال الآتية تُكتب ألفه الأخيرة قائمة؟",
+
+    options: [
+      "بكى",
+      "سما",
+      "مشى",
+      "قضى"
+    ],
+
+    answer: 1,
+
+    explanation:
+      "«سما» تُكتب بألف قائمة؛ لأن مضارعها «يسمو»، فأصل الألف واو."
+  }
+
+];
+
+
+const arabicNames = [
+  "الأول",
+  "الثاني",
+  "الثالث",
+  "الرابع",
+  "الخامس",
+  "السادس",
+  "السابع",
+  "الثامن",
+  "التاسع",
+  "العاشر"
+];
+
+
+const toArabic =
+  value =>
+    String(value).replace(
+      /\d/g,
+      digit =>
+        "٠١٢٣٤٥٦٧٨٩"[digit]
     );
 
 
-  function loadQuestion() {
-
-    answered = false;
-
-    const current =
-      questions[currentQuestion];
+let currentQuestion = 0;
+let score = 0;
+let answered = false;
 
 
-    questionCounter.textContent =
-      "السؤال " +
-      toArabic(
-        currentQuestion + 1
-      ) +
-      " من " +
-      toArabic(
-        questions.length
-      );
+const questionCounter =
+  document.getElementById(
+    "questionCounter"
+  );
+
+const scoreElement =
+  document.getElementById(
+    "score"
+  );
+
+const stars =
+  document.getElementById(
+    "stars"
+  );
+
+const progressFill =
+  document.getElementById(
+    "progressFill"
+  );
+
+const questionNumber =
+  document.getElementById(
+    "questionNumber"
+  );
+
+const questionText =
+  document.getElementById(
+    "questionText"
+  );
+
+const options =
+  document.getElementById(
+    "options"
+  );
+
+const feedback =
+  document.getElementById(
+    "feedback"
+  );
+
+const nextButton =
+  document.getElementById(
+    "nextButton"
+  );
+
+const quizCard =
+  document.getElementById(
+    "quizCard"
+  );
+
+const topPanel =
+  document.getElementById(
+    "topPanel"
+  );
+
+const resultCard =
+  document.getElementById(
+    "resultCard"
+  );
+
+const finalScore =
+  document.getElementById(
+    "finalScore"
+  );
+
+const resultMessage =
+  document.getElementById(
+    "resultMessage"
+  );
+
+const resultIcon =
+  document.getElementById(
+    "resultIcon"
+  );
+
+const restartButton =
+  document.getElementById(
+    "restartButton"
+  );
+
+const saveStatus =
+  document.getElementById(
+    "saveStatus"
+  );
 
 
-    scoreElement.textContent =
-      toArabic(score);
+function loadQuestion() {
 
-    stars.textContent =
-      toArabic(score);
+  answered = false;
+
+  const current =
+    questions[currentQuestion];
 
 
-    progressFill.style.width =
+  questionCounter.textContent =
+    "السؤال " +
+    toArabic(
+      currentQuestion + 1
+    ) +
+    " من " +
+    toArabic(
+      questions.length
+    );
+
+
+  scoreElement.textContent =
+    toArabic(score);
+
+  stars.textContent =
+    toArabic(score);
+
+
+  progressFill.style.width =
+    (
       (
-        (
-          currentQuestion + 1
-        ) /
-        questions.length *
-        100
-      ) +
-      "%";
+        currentQuestion + 1
+      ) /
+      questions.length *
+      100
+    ) +
+    "%";
 
 
-    questionNumber.textContent =
-      "السؤال " +
-      arabicNames[
-        currentQuestion
-      ];
+  questionNumber.textContent =
+    "السؤال " +
+    arabicNames[
+      currentQuestion
+    ];
 
 
-    questionText.textContent =
-      current.question;
+  questionText.textContent =
+    current.question;
 
 
-    options.innerHTML = "";
+  options.innerHTML = "";
 
-    feedback.className =
-      "feedback";
+  feedback.className =
+    "feedback";
 
-    feedback.textContent = "";
+  feedback.textContent = "";
 
-    nextButton.classList.remove(
-      "show"
-    );
+  nextButton.classList.remove(
+    "show"
+  );
 
 
-    current.options.forEach(
-      (option, index) => {
+  current.options.forEach(
+    (option, index) => {
 
-        const button =
-          document.createElement(
-            "button"
+      const button =
+        document.createElement(
+          "button"
+        );
+
+      button.type =
+        "button";
+
+      button.className =
+        "option";
+
+      button.textContent =
+        option;
+
+
+      button.onclick =
+        event => {
+
+          chooseAnswer(
+            index,
+            button,
+            event
           );
 
-        button.type =
-          "button";
-
-        button.className =
-          "option";
-
-        button.textContent =
-          option;
+        };
 
 
-        button.onclick =
-          event => {
+      options.appendChild(
+        button
+      );
 
-            chooseAnswer(
-              index,
-              button,
-              event
-            );
+    }
+  );
 
-          };
+}
 
 
-        options.appendChild(
-          button
-        );
+function chooseAnswer(
+  selectedIndex,
+  selectedButton,
+  event
+) {
 
-      }
-    );
-
+  if (answered) {
+    return;
   }
 
+  answered = true;
 
-  function chooseAnswer(
-    selectedIndex,
-    selectedButton,
-    event
+
+  const current =
+    questions[currentQuestion];
+
+
+  const buttons =
+    document.querySelectorAll(
+      ".option"
+    );
+
+
+  buttons.forEach(
+    button => {
+      button.disabled = true;
+    }
+  );
+
+
+  buttons[
+    current.answer
+  ].classList.add(
+    "correct"
+  );
+
+
+  if (
+    selectedIndex ===
+    current.answer
   ) {
 
-    if (answered) {
-      return;
-    }
+    score++;
 
-    answered = true;
+    feedback.className =
+      "feedback good";
 
-    const current =
-      questions[currentQuestion];
+    feedback.innerHTML =
+      "🌟 أحسنتِ، إجابة صحيحة.<br>" +
+      current.explanation;
 
-    const buttons =
-      document.querySelectorAll(
-        ".option"
-      );
+    playCorrectSound();
 
-
-    buttons.forEach(
-      button => {
-        button.disabled = true;
-      }
+    celebrate(
+      24,
+      event.clientX,
+      event.clientY
     );
-
-
-    buttons[
-      current.answer
-    ].classList.add(
-      "correct"
-    );
-
 
     if (
-      selectedIndex ===
-      current.answer
+      navigator.vibrate
     ) {
-
-      score++;
-
-      feedback.className =
-        "feedback good";
-
-      feedback.innerHTML =
-        "🌟 أحسنتِ، إجابة صحيحة.<br>" +
-        current.explanation;
-
-      playCorrectSound();
-
-      celebrate(
-        24,
-        event.clientX,
-        event.clientY
-      );
-
-      if (
-        navigator.vibrate
-      ) {
-        navigator.vibrate(45);
-      }
-
-    } else {
-
-      selectedButton.classList.add(
-        "wrong"
-      );
-
-      feedback.className =
-        "feedback bad";
-
-      feedback.innerHTML =
-        "🌷 راجعي أصل الألف.<br>" +
-        current.explanation;
-
-      playWrongSound();
-
-      if (
-        navigator.vibrate
-      ) {
-        navigator.vibrate(
-          [70, 40, 70]
-        );
-      }
-
+      navigator.vibrate(45);
     }
 
+  } else {
 
-    scoreElement.textContent =
-      toArabic(score);
-
-    stars.textContent =
-      toArabic(score);
-
-
-    nextButton.textContent =
-      currentQuestion ===
-      questions.length - 1
-        ? "شوفي نتيجتك ✨"
-        : "السؤال التالي ←";
-
-
-    nextButton.classList.add(
-      "show"
+    selectedButton.classList.add(
+      "wrong"
     );
+
+    feedback.className =
+      "feedback bad";
+
+    feedback.innerHTML =
+      "🌷 راجعي أصل الألف.<br>" +
+      current.explanation;
+
+    playWrongSound();
+
+    if (
+      navigator.vibrate
+    ) {
+      navigator.vibrate(
+        [70, 40, 70]
+      );
+    }
 
   }
 
 
-  nextButton.onclick =
-    function () {
+  scoreElement.textContent =
+    toArabic(score);
 
-      currentQuestion++;
-
-      if (
-        currentQuestion <
-        questions.length
-      ) {
-
-        loadQuestion();
-
-      } else {
-
-        showResult();
-
-      }
-
-    };
+  stars.textContent =
+    toArabic(score);
 
 
-  function showResult() {
-
-    quizCard.style.display =
-      "none";
-
-    topPanel.style.display =
-      "none";
-
-    resultCard.classList.add(
-      "show"
-    );
+  nextButton.textContent =
+    currentQuestion ===
+    questions.length - 1
+      ? "شاهدي نتيجتكِ ✨"
+      : "تابعي الاختبار ←";
 
 
-    finalScore.textContent =
-      toArabic(score) +
-      " / " +
-      toArabic(
-        questions.length
-      );
+  nextButton.classList.add(
+    "show"
+  );
 
+}
+
+
+nextButton.onclick =
+  function () {
+
+    currentQuestion++;
 
     if (
-      score ===
+      currentQuestion <
       questions.length
     ) {
 
-      resultIcon.textContent =
-        "👑";
-      resultMessage.textContent =
-        "إتقان كامل! أتقنتِ كتابة الألف اللينة في الأفعال الثلاثية.";
-
-      celebrate(90);
-
-      playVictorySound();
-
-    } else if (
-      score >= 8
-    ) {
-
-      resultIcon.textContent =
-        "🏆";
-
-      resultMessage.textContent =
-        "رائعة جدًا! تمييزكِ بين الألف القائمة و«ى» ممتاز.";
-
-      celebrate(65);
-
-      playVictorySound();
-
-    } else if (
-      score >= 6
-    ) {
-
-      resultIcon.textContent =
-        "🌟";
-
-      resultMessage.textContent =
-        "أداء جميل. راجعي طريقة معرفة أصل الألف ثم أعيدي الاختبار.";
-
-      celebrate(35);
+      loadQuestion();
 
     } else {
 
-      resultIcon.textContent =
-        "📘";
-
-      resultMessage.textContent =
-        "راجعي ملف الدرس و«كتابة بلا أخطاء»، ثم حاولي مرة أخرى.";
+      showResult();
 
     }
+
+  };
+  async function saveResult() {
+
+  if (!currentUser) {
+
+    saveStatus.className =
+      "save-status waiting";
+
+    saveStatus.textContent =
+      "ℹ️ لم تُحفظ النتيجة؛ يلزم تسجيل الدخول لإضافتها إلى سجلّكِ.";
+
+    return;
+  }
+
+
+  saveStatus.className =
+    "save-status waiting";
+
+  saveStatus.textContent =
+    "جارٍ حفظ نتيجتكِ في سجلّكِ...";
+
+
+  try {
+
+    const studentRef =
+      doc(
+        db,
+        "students",
+        currentUser.uid
+      );
+
+
+    const studentSnap =
+      await getDoc(
+        studentRef
+      );
+
+
+    if (!studentSnap.exists()) {
+
+      throw new Error(
+        "student-document-not-found"
+      );
+
+    }
+
+
+    const data =
+      studentSnap.data();
+
+
+    const oldTest =
+      data?.["اختبارات_الفصل_الأول"]?.["الألف_اللينة_في_الأفعال_الثلاثية"] || {};
+
+
+    const oldAttempts =
+      Number(
+        oldTest["عدد_المحاولات"] || 0
+      );
+
+
+    const oldBest =
+      Number(
+        oldTest["أعلى_درجة"] || 0
+      );
+
+
+    const percentage =
+      Math.round(
+        (score / questions.length) *
+        100
+      );
+
+
+    const bestScore =
+      Math.max(
+        oldBest,
+        score
+      );
+
+
+    await updateDoc(
+      studentRef,
+      {
+
+        "اختبارات_الفصل_الأول.الألف_اللينة_في_الأفعال_الثلاثية.اسم_الاختبار":
+          "اختبار الألف اللينة في الأفعال الثلاثية",
+
+        "اختبارات_الفصل_الأول.الألف_اللينة_في_الأفعال_الثلاثية.الدرجة":
+          score,
+
+        "اختبارات_الفصل_الأول.الألف_اللينة_في_الأفعال_الثلاثية.الدرجة_من":
+          questions.length,
+
+        "اختبارات_الفصل_الأول.الألف_اللينة_في_الأفعال_الثلاثية.النسبة":
+          percentage,
+
+        "اختبارات_الفصل_الأول.الألف_اللينة_في_الأفعال_الثلاثية.عدد_المحاولات":
+          oldAttempts + 1,
+
+        "اختبارات_الفصل_الأول.الألف_اللينة_في_الأفعال_الثلاثية.أعلى_درجة":
+          bestScore,
+
+        "اختبارات_الفصل_الأول.الألف_اللينة_في_الأفعال_الثلاثية.آخر_محاولة":
+          serverTimestamp()
+
+      }
+    );
+
+
+    saveStatus.className =
+      "save-status saved";
+
+    saveStatus.textContent =
+      "✅ حُفظت نتيجتكِ في سجل الفصل الدراسي الأول.";
+
+
+  } catch (error) {
+
+    console.error(error);
+
+    saveStatus.className =
+      "save-status error";
+
+    saveStatus.textContent =
+      "تعذّر حفظ النتيجة، ولكن نتيجتكِ في الاختبار لم تتأثر.";
+
+  }
+
+}
+
+
+function showResult() {
+
+  quizCard.style.display =
+    "none";
+
+  topPanel.style.display =
+    "none";
+
+  resultCard.classList.add(
+    "show"
+  );
+
+
+  finalScore.textContent =
+    toArabic(score) +
+    " / " +
+    toArabic(
+      questions.length
+    );
+
+
+  if (
+    score ===
+    questions.length
+  ) {
+
+    resultIcon.textContent =
+      "👑";
+
+    resultMessage.textContent =
+      "أحسنتِ! أتقنتِ كتابة الألف اللينة في الأفعال الثلاثية إتقانًا كاملًا 🏆";
+
+    celebrate(90);
+
+    playVictorySound();
+
+
+  } else if (
+    score >= 8
+  ) {
+
+    resultIcon.textContent =
+      "🏆";
+
+    resultMessage.textContent =
+      "ممتاز جدًا 🌟 أتقنتِ التمييز بين الألف القائمة والألف على صورة الياء بدرجة عالية.";
+
+    celebrate(65);
+
+    playVictorySound();
+
+
+  } else if (
+    score >= 6
+  ) {
+
+    resultIcon.textContent =
+      "🌟";
+
+    resultMessage.textContent =
+      "أداء جيد 👏 راجعي طريقة معرفة أصل الألف، ثم أعيدي الاختبار.";
+
+    celebrate(35);
+
+
+  } else {
+
+    resultIcon.textContent =
+      "📘";
+
+    resultMessage.textContent =
+      "راجعي ملف الدرس و«كتابة بلا أخطاء»، ثم أعيدي الاختبار.";
 
   }
 
 
-  restartButton.onclick =
-    function () {
+  saveResult();
 
-      currentQuestion = 0;
-      score = 0;
-      answered = false;
-
-      resultCard.classList.remove(
-        "show"
-      );
-
-      quizCard.style.display =
-        "flex";
-
-      topPanel.style.display =
-        "block";
-
-      loadQuestion();
-
-    };
+}
 
 
-  function celebrate(
-    amount,
-    x,
-    y
+restartButton.onclick =
+  function () {
+
+    currentQuestion = 0;
+    score = 0;
+    answered = false;
+
+
+    resultCard.classList.remove(
+      "show"
+    );
+
+
+    quizCard.style.display =
+      "flex";
+
+
+    topPanel.style.display =
+      "block";
+
+
+    saveStatus.textContent =
+      "";
+
+
+    loadQuestion();
+
+  };
+
+
+function celebrate(
+  amount,
+  x,
+  y
+) {
+
+  const colors = [
+    "#776094",
+    "#5b4677",
+    "#c9a85c",
+    "#ead69e",
+    "#6f5288"
+  ];
+
+
+  for (
+    let i = 0;
+    i < amount;
+    i++
   ) {
 
-    const colors = [
-      "#776094",
-      "#5b4677",
-      "#c9a85c",
-      "#ead69e",
-      "#6f5288"
-    ];
+    const piece =
+      document.createElement(
+        "span"
+      );
 
 
-    for (
-      let i = 0;
-      i < amount;
-      i++
+    piece.className =
+      "confetti";
+
+
+    if (
+      typeof x ===
+      "number"
     ) {
 
-      const piece =
-        document.createElement(
-          "span"
-        );
-
-      piece.className =
-        "confetti";
-
-
-      if (
-        typeof x ===
-        "number"
-      ) {
-
-        piece.style.left =
-          (
-            x +
-            Math.random() * 120 -
-            60
-          ) +
-          "px";
-
-        piece.style.top =
-          (
-            y +
-            Math.random() * 30 -
-            15
-          ) +
-          "px";
-
-      } else {
-
-        piece.style.left =
-          Math.random() *
-          100 +
-          "vw";
-
-      }
-
-
-      piece.style.background =
-        colors[
-          Math.floor(
-            Math.random() *
-            colors.length
-          )
-        ];
-
-
-      piece.style.animationDuration =
+      piece.style.left =
         (
-          2 +
-          Math.random() *
-          2
+          x +
+          Math.random() * 120 -
+          60
         ) +
-        "s";
+        "px";
 
 
-      document.body.appendChild(
-        piece
-      );
+      piece.style.top =
+        (
+          y +
+          Math.random() * 30 -
+          15
+        ) +
+        "px";
 
 
-      setTimeout(
-        () => piece.remove(),
-        4500
-      );
+    } else {
+
+      piece.style.left =
+        Math.random() *
+        100 +
+        "vw";
 
     }
 
-  }
+
+    piece.style.background =
+      colors[
+        Math.floor(
+          Math.random() *
+          colors.length
+        )
+      ];
 
 
-  function playTone(
-    frequency,
-    duration,
-    type = "sine"
-  ) {
-
-    try {
-
-      const AudioContextClass =
-        window.AudioContext ||
-        window.webkitAudioContext;
-
-      if (
-        !AudioContextClass
-      ) {
-        return;
-      }
+    piece.style.animationDuration =
+      (
+        2 +
+        Math.random() *
+        2
+      ) +
+      "s";
 
 
-      const context =
-        new AudioContextClass();
-
-      const oscillator =
-        context.createOscillator();
-
-      const gain =
-        context.createGain();
-
-
-      oscillator.type = type;
-
-      oscillator.frequency.value =
-        frequency;
-
-
-      oscillator.connect(gain);
-
-      gain.connect(
-        context.destination
-      );
-
-
-      gain.gain.setValueAtTime(
-        0.08,
-        context.currentTime
-      );
-
-
-      gain.gain.exponentialRampToValueAtTime(
-        0.001,
-        context.currentTime +
-        duration
-      );
-
-
-      oscillator.start();
-
-      oscillator.stop(
-        context.currentTime +
-        duration
-      );
-
-    } catch (error) {}
-
-  }
-
-
-  function playCorrectSound() {
-
-    playTone(
-      523,
-      .14
+    document.body.appendChild(
+      piece
     );
+
 
     setTimeout(
-      () =>
-        playTone(
-          659,
-          .16
-        ),
-      120
-    );
-
-    setTimeout(
-      () =>
-        playTone(
-          784,
-          .2
-        ),
-      230
+      () => piece.remove(),
+      4500
     );
 
   }
 
+}function playTone(
+  frequency,
+  duration,
+  type = "sine"
+) {
 
-  function playWrongSound() {
+  try {
 
-    playTone(
-      220,
-      .28,
-      "triangle"
+    const AudioContextClass =
+      window.AudioContext ||
+      window.webkitAudioContext;
+
+
+    if (
+      !AudioContextClass
+    ) {
+      return;
+    }
+
+
+    const context =
+      new AudioContextClass();
+
+
+    const oscillator =
+      context.createOscillator();
+
+
+    const gain =
+      context.createGain();
+
+
+    oscillator.type =
+      type;
+
+
+    oscillator.frequency.value =
+      frequency;
+
+
+    oscillator.connect(
+      gain
     );
 
-  }
 
-
-  function playVictorySound() {
-
-    const notes = [
-      523,
-      659,
-      784,
-      1046
-    ];
-
-
-    notes.forEach(
-      (note, index) => {
-
-        setTimeout(
-          () =>
-            playTone(
-              note,
-              .22
-            ),
-          index * 130
-        );
-
-      }
+    gain.connect(
+      context.destination
     );
 
-  }
+
+    gain.gain.setValueAtTime(
+      0.08,
+      context.currentTime
+    );
 
 
-  loadQuestion();
+    gain.gain.exponentialRampToValueAtTime(
+      0.001,
+      context.currentTime +
+      duration
+    );
+
+
+    oscillator.start();
+
+
+    oscillator.stop(
+      context.currentTime +
+      duration
+    );
+
+
+  } catch (error) {}
+
+}
+
+
+function playCorrectSound() {
+
+  playTone(
+    523,
+    .14
+  );
+
+
+  setTimeout(
+    () =>
+      playTone(
+        659,
+        .16
+      ),
+    120
+  );
+
+
+  setTimeout(
+    () =>
+      playTone(
+        784,
+        .2
+      ),
+    230
+  );
+
+}
+
+
+function playWrongSound() {
+
+  playTone(
+    220,
+    .28,
+    "triangle"
+  );
+
+}
+
+
+function playVictorySound() {
+
+  const notes = [
+    523,
+    659,
+    784,
+    1046
+  ];
+
+
+  notes.forEach(
+    (note, index) => {
+
+      setTimeout(
+        () =>
+          playTone(
+            note,
+            .22
+          ),
+        index * 130
+      );
+
+    }
+  );
+
+}
+
+
+loadQuestion();
 
 </script>
 
 </body>
 
 </html>
-   
+  
