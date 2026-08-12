@@ -184,6 +184,34 @@
       border-radius: 16px;
     }
 
+    .save-status {
+      width: 100%;
+      max-width: 660px;
+      min-height: 28px;
+      margin: 12px auto 0;
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: bold;
+      line-height: 1.7;
+      text-align: center;
+      border-radius: 13px;
+    }
+
+    .save-status.waiting {
+      color: #66522e;
+      background: #fff8e8;
+    }
+
+    .save-status.saved {
+      color: #2e6f42;
+      background: #edf8f0;
+    }
+
+    .save-status.error {
+      color: #8a3d3d;
+      background: #fff0f0;
+    }
+
     .certificate-section {
       display: none;
       margin-top: 38px;
@@ -282,7 +310,8 @@
       .tests-grid,
       .footer,
       .certificate-heading-outside,
-      .print-button {
+      .print-button,
+      .save-status {
         display: none !important;
       }
 
@@ -339,8 +368,8 @@
 
       <p>
         يتكوّن التقييم من خمسة أقسام،
-        وتُحفظ درجة كل قسم حتى يتم جمع الدرجات
-        وإظهار الشهادة.
+        وتُحفظ درجة كل قسم حتى تُجمع الدرجات
+        وتظهر النتيجة النهائية.
       </p>
 
     </section>
@@ -348,52 +377,110 @@
     <div class="tests-grid">
 
       <section class="card">
-        <h2>📖 الوظيفة النحوية</h2>
-        <p>٣٠ درجة</p>
 
-        <a class="btn" href="grammar-test.html">
+        <h2>
+          📖 الوظيفة النحوية
+        </h2>
+
+        <p>
+          ٣٠ درجة
+        </p>
+
+        <a
+          class="btn"
+          href="grammar-test.html"
+        >
           ابدئي الاختبار
         </a>
+
       </section>
+
 
       <section class="card">
-        <h2>📝 الصنف اللغوي</h2>
-        <p>٢٠ درجة</p>
 
-        <a class="btn" href="language-test.html">
+        <h2>
+          📝 الصنف اللغوي
+        </h2>
+
+        <p>
+          ٢٠ درجة
+        </p>
+
+        <a
+          class="btn"
+          href="language-test.html"
+        >
           ابدئي الاختبار
         </a>
+
       </section>
+
 
       <section class="card">
-        <h2>✍️ الرسم الإملائي</h2>
-        <p>٢٠ درجة</p>
 
-        <a class="btn" href="spelling-test.html">
+        <h2>
+          ✍️ الرسم الإملائي
+        </h2>
+
+        <p>
+          ٢٠ درجة
+        </p>
+
+        <a
+          class="btn"
+          href="spelling-test.html"
+        >
           ابدئي الاختبار
         </a>
+
       </section>
+
 
       <section class="card">
-        <h2>🖋️ الرسم الكتابي</h2>
-        <p>١٠ درجات</p>
 
-        <a class="btn" href="ruqah-test.html">
+        <h2>
+          🖋️ الرسم الكتابي
+        </h2>
+
+        <p>
+          ١٠ درجات
+        </p>
+
+        <a
+          class="btn"
+          href="ruqah-test.html"
+        >
           ابدئي الاختبار
         </a>
+
       </section>
+
 
       <section class="card">
-        <h2>📚 الأسلوب اللغوي</h2>
-        <p>٢٠ درجة</p>
 
-        <a class="btn" href="styles.html">
+        <h2>
+          📚 الأسلوب اللغوي
+        </h2>
+
+        <p>
+          ٢٠ درجة
+        </p>
+
+        <a
+          class="btn"
+          href="styles.html"
+        >
           ابدئي الاختبار
         </a>
+
       </section>
+
 
       <section class="card result-card">
-        <h2>🏆 النتيجة النهائية</h2>
+
+        <h2>
+          🏆 النتيجة النهائية
+        </h2>
 
         <p>
           تظهر بعد إكمال الاختبارات الخمسة
@@ -404,9 +491,16 @@
           id="finalResult"
           class="lock"
         ></div>
+
+        <div
+          id="saveStatus"
+          class="save-status"
+        ></div>
+
       </section>
 
     </div>
+
 
     <section
       id="certificateSection"
@@ -434,10 +528,11 @@
         type="button"
         onclick="window.print()"
       >
-        🖨️ طباعة الشهادة أو حفظها PDF
+        🖨️ طباعة الشهادة أو حفظها بصيغة PDF
       </button>
 
     </section>
+
 
     <div class="footer">
 
@@ -449,160 +544,463 @@
 
   </main>
 
-  <script>
-    function getScore(...keys) {
-      for (const key of keys) {
-        const value = localStorage.getItem(key);
 
-        if (value !== null && value !== "") {
+  <script type="module">
+
+    import {
+      initializeApp
+    }
+    from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+
+
+    import {
+      getAuth,
+      onAuthStateChanged
+    }
+    from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+
+    import {
+      getFirestore,
+      doc,
+      getDoc,
+      updateDoc,
+      serverTimestamp
+    }
+    from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyB48av9gx4jzFyYoUQtcLwaR52qETevKGs",
+      authDomain: "afaq-language-platform.firebaseapp.com",
+      projectId: "afaq-language-platform",
+      storageBucket: "afaq-language-platform.firebasestorage.app",
+      messagingSenderId: "362601061474",
+      appId: "1:362601061474:web:bc405291332b9e4ef9453b"
+    };
+
+
+    const app =
+      initializeApp(firebaseConfig);
+
+    const auth =
+      getAuth(app);
+
+    const db =
+      getFirestore(app);
+
+
+    let currentUser = null;
+
+    let currentStudentName =
+      "اسم الطالبة";
+
+
+    function getScore(...keys) {
+
+      for (const key of keys) {
+
+        const value =
+          localStorage.getItem(key);
+
+        if (
+          value !== null &&
+          value !== ""
+        ) {
+
           return Number(value) || 0;
+
         }
+
       }
 
       return 0;
+
     }
 
+
     function getCompleted(...keys) {
+
       for (const key of keys) {
-        const value = localStorage.getItem(key);
+
+        const value =
+          localStorage.getItem(key);
 
         if (value === "true") {
           return true;
         }
+
       }
 
       return false;
+
     }
+
 
     function toArabicNumber(number) {
+
       return String(number).replace(
         /\d/g,
-        digit => "٠١٢٣٤٥٦٧٨٩"[digit]
+        digit =>
+          "٠١٢٣٤٥٦٧٨٩"[digit]
       );
+
     }
 
 
-    async function renderCertificate(studentName, totalScore) {
-      const canvas = document.getElementById("certificateCanvas");
-      const context = canvas.getContext("2d");
-      const image = new Image();
+    function roundRect(
+      context,
+      x,
+      y,
+      width,
+      height,
+      radius
+    ) {
 
-      image.src = "77.png";
-      await image.decode();
+      const r =
+        Math.min(
+          radius,
+          width / 2,
+          height / 2
+        );
 
-      context.clearRect(0, 0, canvas.width, canvas.height);
-      context.drawImage(image, 0, 0, canvas.width, canvas.height);
+      context.beginPath();
 
-      if (document.fonts && document.fonts.ready) {
-        await document.fonts.ready;
+      context.moveTo(
+        x + r,
+        y
+      );
+
+      context.arcTo(
+        x + width,
+        y,
+        x + width,
+        y + height,
+        r
+      );
+
+      context.arcTo(
+        x + width,
+        y + height,
+        x,
+        y + height,
+        r
+      );
+
+      context.arcTo(
+        x,
+        y + height,
+        x,
+        y,
+        r
+      );
+
+      context.arcTo(
+        x,
+        y,
+        x + width,
+        y,
+        r
+      );
+
+      context.closePath();
+
+    }
+
+
+    async function renderCertificate(
+      studentName,
+      totalScore
+    ) {
+
+      const canvas =
+        document.getElementById(
+          "certificateCanvas"
+        );
+
+      const context =
+        canvas.getContext("2d");
+
+      const image =
+        new Image();
+
+
+      image.src =
+        "77.png";
+
+
+      try {
+
+        await image.decode();
+
+      } catch (error) {
+
+        console.error(
+          "تعذّر تحميل صورة الشهادة:",
+          error
+        );
+
+        return;
+
       }
 
-      context.save();
-      context.direction = "rtl";
-      context.textAlign = "center";
-      context.textBaseline = "middle";
 
-      context.fillStyle = "#b71c1c";
-      context.font = '800 28px "Cairo", Tahoma, Arial, sans-serif';
-      context.fillText(studentName, 728, 282, 520);
-
-      context.fillStyle = "rgba(255,255,255,0.94)";
-      context.strokeStyle = "rgba(183,28,28,0.55)";
-      context.lineWidth = 2;
-      roundRect(context, 570, 392, 315, 58, 22);
-      context.fill();
-      context.stroke();
-
-      context.fillStyle = "#b71c1c";
-      context.font = '800 28px "Cairo", Tahoma, Arial, sans-serif';
-      context.fillText(
-        "الدرجة: " + toArabicNumber(totalScore) + " من ١٠٠",
-        727,
-        421,
-        285
+      context.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
       );
 
+
+      context.drawImage(
+        image,
+        0,
+        0,
+        canvas.width,
+        canvas.height
+      );
+
+
+      if (
+        document.fonts &&
+        document.fonts.ready
+      ) {
+
+        await document.fonts.ready;
+
+      }
+
+
+      context.save();
+
+      context.direction =
+        "rtl";
+
+      context.textAlign =
+        "center";
+
+      context.textBaseline =
+        "middle";
+
+
+      context.fillStyle =
+        "#b71c1c";
+
+      context.font =
+        '800 28px "Cairo", Tahoma, Arial, sans-serif';
+
+
+      context.fillText(
+        studentName,
+        728,
+        282,
+        520
+      );
+
+
+      context.fillStyle =
+        "rgba(255,255,255,0.94)";
+
+      context.strokeStyle =
+        "rgba(183,28,28,0.55)";
+
+      context.lineWidth =
+        2;
+
+
+      roundRect(
+        context,
+        500,
+        392,
+        455,
+        64,
+        22
+      );
+
+
+      context.fill();
+
+      context.stroke();
+
+
+      context.fillStyle =
+        "#b71c1c";
+
+      context.font =
+        '800 25px "Cairo", Tahoma, Arial, sans-serif';
+
+
+      context.fillText(
+        "الدرجة: " +
+        toArabicNumber(totalScore) +
+        " من ١٠٠" +
+        "  •  النسبة: " +
+        toArabicNumber(totalScore) +
+        "٪",
+        727,
+        424,
+        420
+      );
+
+
       context.restore();
+
     }
 
-    function roundRect(context, x, y, width, height, radius) {
-      const r = Math.min(radius, width / 2, height / 2);
-      context.beginPath();
-      context.moveTo(x + r, y);
-      context.arcTo(x + width, y, x + width, y + height, r);
-      context.arcTo(x + width, y + height, x, y + height, r);
-      context.arcTo(x, y + height, x, y, r);
-      context.arcTo(x, y, x + width, y, r);
-      context.closePath();
-    }
 
-    function getStudentName() {
-      return (
+    async function getStudentData(user) {
+
+      if (!user) {
+
+        currentStudentName =
+          localStorage.getItem(
+            "semester1_student_full_name"
+          ) ||
+          localStorage.getItem(
+            "studentFullName"
+          ) ||
+          "اسم الطالبة";
+
+        return null;
+
+      }
+
+
+      try {
+
+        const studentRef =
+          doc(
+            db,
+            "students",
+            user.uid
+          );
+
+
+        const studentSnap =
+          await getDoc(
+            studentRef
+          );
+
+
+        if (
+          studentSnap.exists()
+        ) {
+
+          const data =
+            studentSnap.data();
+
+
+          currentStudentName =
+            data["الاسم"] ||
+            user.displayName ||
+            localStorage.getItem(
+              "semester1_student_full_name"
+            ) ||
+            "اسم الطالبة";
+
+
+          localStorage.setItem(
+            "semester1_student_full_name",
+            currentStudentName
+          );
+
+
+          return {
+            ref: studentRef,
+            data
+          };
+
+        }
+
+
+      } catch (error) {
+
+        console.error(
+          "تعذّر جلب بيانات الطالبة:",
+          error
+        );
+
+      }
+
+
+      currentStudentName =
+        user.displayName ||
         localStorage.getItem(
           "semester1_student_full_name"
         ) ||
-        localStorage.getItem(
-          "studentFullName"
-        ) ||
-        "اسم الطالبة"
-      );
+        "اسم الطالبة";
+
+
+      return null;
+
     }
 
-    function getCertificateDate() {
-      return new Date().toLocaleDateString(
-        "ar-SA-u-ca-islamic-umalqura",
-        {
-          year: "numeric",
-          month: "long",
-          day: "numeric"
-        }
+
+    const grammar =
+      getScore(
+        "semester1_grammar_score",
+        "grammarScore"
       );
-    }
 
-    const grammar = getScore(
-      "semester1_grammar_score",
-      "grammarScore"
-    );
 
-    const spelling = getScore(
-      "semester1_spelling_score",
-      "spellingScore"
-    );
+    const spelling =
+      getScore(
+        "semester1_spelling_score",
+        "spellingScore"
+      );
 
-    const linguistic = getScore(
-      "semester1_linguistic_score",
-      "linguisticScore"
-    );
 
-    const style = getScore(
-      "semester1_style_score",
-      "stylesScore"
-    );
+    const linguistic =
+      getScore(
+        "semester1_linguistic_score",
+        "linguisticScore"
+      );
 
-    const writing = getScore(
-      "semester1_writing_score",
-      "writingScore"
-    );
 
-    const grammarCompleted = getCompleted(
-      "semester1_grammar_completed"
-    );
+    const style =
+      getScore(
+        "semester1_style_score",
+        "stylesScore"
+      );
 
-    const spellingCompleted = getCompleted(
-      "semester1_spelling_completed"
-    );
 
-    const linguisticCompleted = getCompleted(
-      "semester1_linguistic_completed"
-    );
+    const writing =
+      getScore(
+        "semester1_writing_score",
+        "writingScore"
+      );
 
-    const styleCompleted = getCompleted(
-      "semester1_style_completed"
-    );
 
-    const writingCompleted = getCompleted(
-      "semester1_writing_completed"
-    );
+    const grammarCompleted =
+      getCompleted(
+        "semester1_grammar_completed"
+      );
+
+
+    const spellingCompleted =
+      getCompleted(
+        "semester1_spelling_completed"
+      );
+
+
+    const linguisticCompleted =
+      getCompleted(
+        "semester1_linguistic_completed"
+      );
+
+
+    const styleCompleted =
+      getCompleted(
+        "semester1_style_completed"
+      );
+
+
+    const writingCompleted =
+      getCompleted(
+        "semester1_writing_completed"
+      );
+
 
     const allCompleted =
       grammarCompleted &&
@@ -611,6 +1009,7 @@
       styleCompleted &&
       writingCompleted;
 
+
     const total =
       grammar +
       spelling +
@@ -618,111 +1017,344 @@
       style +
       writing;
 
+
     const finalResult =
-      document.getElementById("finalResult");
+      document.getElementById(
+        "finalResult"
+      );
+
 
     const certificateSection =
       document.getElementById(
         "certificateSection"
       );
 
-    if (allCompleted) {
-      finalResult.innerHTML = `
-        الوظيفة النحوية:
-        ${toArabicNumber(grammar)} من ٣٠
-        <br>
 
-        الرسم الإملائي:
-        ${toArabicNumber(spelling)} من ٢٠
-        <br>
+    const saveStatus =
+      document.getElementById(
+        "saveStatus"
+      );
 
-        الصنف اللغوي:
-        ${toArabicNumber(linguistic)} من ٢٠
-        <br>
 
-        الأسلوب اللغوي:
-        ${toArabicNumber(style)} من ٢٠
-        <br>
+    function renderFinalResult() {
 
-        الرسم الكتابي:
-        ${toArabicNumber(writing)} من ١٠
+      if (allCompleted) {
 
-        <br><br>
+        finalResult.innerHTML = `
 
-        <strong>
-          المجموع:
-          ${toArabicNumber(total)} من ١٠٠
-        </strong>
-      `;
+          الوظيفة النحوية:
+          ${toArabicNumber(grammar)}
+          من ٣٠
 
-      if (total >= 80) {
-  certificateSection.classList.add("show");
+          <br>
 
-  renderCertificate(
-    getStudentName(),
-    total
-  );
-} else {
-  certificateSection.classList.remove("show");
+          الرسم الإملائي:
+          ${toArabicNumber(spelling)}
+          من ٢٠
 
-  finalResult.innerHTML += `
-    <br><br>
-    <div style="
-      padding:18px;
-      border-radius:18px;
-      background:#fff1c9;
-      color:#654b3f;
-      font-weight:bold;
-      line-height:1.9;
-    ">
-      🌸 أحسنتِ المحاولة، اقتربتِ من الحصول على الشهادة.
-      <br>
-      يلزم تحقيق ٨٠ من ١٠٠ فأكثر، راجعي المهارات ثم أعيدي المحاولة.
-    </div>
-  `;
+          <br>
+
+          الصنف اللغوي:
+          ${toArabicNumber(linguistic)}
+          من ٢٠
+
+          <br>
+
+          الأسلوب اللغوي:
+          ${toArabicNumber(style)}
+          من ٢٠
+
+          <br>
+
+          الرسم الكتابي:
+          ${toArabicNumber(writing)}
+          من ١٠
+
+          <br><br>
+
+          <strong>
+            المجموع:
+            ${toArabicNumber(total)}
+            من ١٠٠
+          </strong>
+
+          <br>
+
+          <strong>
+            النسبة:
+            ${toArabicNumber(total)}٪
+          </strong>
+        `;
+
+
+        if (
+          total >= 80
+        ) {
+
+          certificateSection
+            .classList
+            .add("show");
+
+
+          renderCertificate(
+            currentStudentName,
+            total
+          );
+
+
+        } else {
+
+          certificateSection
+            .classList
+            .remove("show");
+
+
+          finalResult.innerHTML += `
+
+            <br><br>
+
+            <div style="
+              padding:18px;
+              border-radius:18px;
+              background:#fff1c9;
+              color:#654b3f;
+              font-weight:bold;
+              line-height:1.9;
+            ">
+
+              🌸 أحسنتِ المحاولة، واقتربتِ من الحصول على الشهادة.
+
+              <br>
+
+              يلزم تحقيق ٨٠ من ١٠٠ فأكثر.
+              راجعي المهارات التي تحتاج إلى تعزيز،
+              ثم أعيدي المحاولة.
+
+            </div>
+          `;
+
+        }
+
+
+      } else {
+
+        const remaining = [];
+
+
+        if (!grammarCompleted) {
+          remaining.push(
+            "الوظيفة النحوية"
+          );
+        }
+
+
+        if (!linguisticCompleted) {
+          remaining.push(
+            "الصنف اللغوي"
+          );
+        }
+
+
+        if (!spellingCompleted) {
+          remaining.push(
+            "الرسم الإملائي"
+          );
+        }
+
+
+        if (!writingCompleted) {
+          remaining.push(
+            "الرسم الكتابي"
+          );
+        }
+
+
+        if (!styleCompleted) {
+          remaining.push(
+            "الأسلوب اللغوي"
+          );
+        }
+
+
+        finalResult.innerHTML = `
+
+          🔒 لم تكتمل الاختبارات الخمسة بعد.
+
+          <br><br>
+
+          الاختبارات المتبقية:
+
+          <br>
+
+          ${remaining.join("<br>")}
+
+          <br><br>
+
+          بعد إكمالها ستظهر النتيجة النهائية
+          وشهادة التقدير تلقائيًا.
+        `;
+
+
+        certificateSection
+          .classList
+          .remove("show");
+
       }
 
-    } else {
-      const remaining = [];
-
-      if (!grammarCompleted) {
-        remaining.push("الوظيفة النحوية");
-      }
-
-      if (!linguisticCompleted) {
-        remaining.push("الصنف اللغوي");
-      }
-
-      if (!spellingCompleted) {
-        remaining.push("الرسم الإملائي");
-      }
-
-      if (!writingCompleted) {
-        remaining.push("الرسم الكتابي");
-      }
-
-      if (!styleCompleted) {
-        remaining.push("الأسلوب اللغوي");
-      }
-
-      finalResult.innerHTML = `
-        🔒 لم تكتمل الاختبارات الخمسة بعد.
-
-        <br><br>
-
-        الاختبارات المتبقية:
-
-        <br>
-
-        ${remaining.join("<br>")}
-
-        <br><br>
-
-        بعد إكمالها ستظهر النتيجة النهائية
-        وشهادة التقدير تلقائيًا.
-      `;
     }
-  </script>
+
+
+    async function saveFinalResult() {
+
+      if (!allCompleted) {
+
+        saveStatus.textContent =
+          "";
+
+        return;
+
+      }
+
+
+      if (!currentUser) {
+
+        saveStatus.className =
+          "save-status waiting";
+
+        saveStatus.textContent =
+          "ℹ️ ظهرت نتيجتكِ على هذا الجهاز، ولكن يلزم تسجيل الدخول لحفظها في سجلّكِ.";
+
+        return;
+
+      }
+
+
+      saveStatus.className =
+        "save-status waiting";
+
+      saveStatus.textContent =
+        "جارٍ حفظ نتيجتكِ النهائية في سجلّكِ...";
+
+
+      try {
+
+        const studentRef =
+          doc(
+            db,
+            "st
+            udents",
+  currentUser.uid
+);
+
+
+const studentSnap =
+  await getDoc(
+    studentRef
+  );
+
+
+if (
+  !studentSnap.exists()
+) {
+
+  throw new Error(
+    "student-document-not-found"
+  );
+
+}
+
+
+await updateDoc(
+  studentRef,
+  {
+
+    "نتيجة_الفصل_الأول.الدرجة":
+      total,
+
+    "نتيجة_الفصل_الأول.الدرجة_من":
+      100,
+
+    "نتيجة_الفصل_الأول.النسبة":
+      total,
+
+    "نتيجة_الفصل_الأول.مكتمل":
+      true,
+
+    "نتيجة_الفصل_الأول.استحقت_الشهادة":
+      total >= 80,
+
+    "نتيجة_الفصل_الأول.الوظيفة_النحوية":
+      grammar,
+
+    "نتيجة_الفصل_الأول.الصنف_اللغوي":
+      linguistic,
+
+    "نتيجة_الفصل_الأول.الرسم_الإملائي":
+      spelling,
+
+    "نتيجة_الفصل_الأول.الرسم_الكتابي":
+      writing,
+
+    "نتيجة_الفصل_الأول.الأسلوب_اللغوي":
+      style,
+
+    "نتيجة_الفصل_الأول.آخر_تحديث":
+      serverTimestamp()
+
+  }
+);
+
+
+saveStatus.className =
+  "save-status saved";
+
+saveStatus.textContent =
+  "✅ حُفظت نتيجتكِ النهائية في سجل الفصل الدراسي الأول.";
+
+
+} catch (error) {
+
+  console.error(error);
+
+  saveStatus.className =
+    "save-status error";
+
+  saveStatus.textContent =
+    "تعذّر حفظ النتيجة في السجل، ولكن نتيجتكِ الظاهرة لم تتأثر.";
+
+}
+
+}
+
+
+onAuthStateChanged(
+  auth,
+  async user => {
+
+    currentUser =
+      user;
+
+
+    await getStudentData(
+      user
+    );
+
+
+    renderFinalResult();
+
+
+    if (
+      allCompleted
+    ) {
+
+      await saveFinalResult();
+
+    }
+
+  }
+);
+
+</script>
 
 </body>
 
