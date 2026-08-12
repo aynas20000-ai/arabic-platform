@@ -222,6 +222,30 @@ h2{
  font-weight:bold;
 }
 
+.save-status{
+ min-height:26px;
+ margin:4px 0 2px;
+ padding:5px 8px;
+ border-radius:11px;
+ font-size:12px;
+ font-weight:bold;
+}
+
+.save-status.saved{
+ color:#2e6f42;
+ background:#edf8f0;
+}
+
+.save-status.waiting{
+ color:#66522e;
+ background:#fff8e8;
+}
+
+.save-status.error{
+ color:#8a3d3d;
+ background:#fff0f0;
+}
+
 .restart,
 .lesson{
  display:block;
@@ -359,14 +383,14 @@ footer{
 <header>
  <span class="tag">منصة آفاق</span>
  <h1>تحدي صيغ المبالغة</h1>
- <p>١٠ أسئلة • سؤال واحد في كل شاشة • تعقيب فوري ✨</p>
+ <p>١٠ أسئلة • سؤال واحد في كل شاشة • تغذية راجعة فورية ✨</p>
 </header>
 
 <main>
 
  <div class="top">
   <span id="counter">السؤال ١ من ١٠</span>
-  <span id="correctCount">الصحيح: ٠</span>
+  <span id="correctCount">الإجابات الصحيحة: ٠</span>
  </div>
 
  <div class="progress">
@@ -397,6 +421,8 @@ footer{
 
   <p id="message"></p>
 
+  <div class="save-status" id="saveStatus"></div>
+
   <button class="restart" onclick="restartQuiz()">
    أعيدي التحدي
   </button>
@@ -421,7 +447,47 @@ footer{
 
 <div class="burst" id="burst"></div>
 
-<script>
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+
+import {
+ getAuth,
+ onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+import {
+ getFirestore,
+ doc,
+ getDoc,
+ updateDoc,
+ serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+
+const firebaseConfig = {
+ apiKey: "AIzaSyB48av9gx4jzFyYoUQtcLwaR52qETevKGs",
+ authDomain: "afaq-language-platform.firebaseapp.com",
+ projectId: "afaq-language-platform",
+ storageBucket: "afaq-language-platform.firebasestorage.app",
+ messagingSenderId: "362601061474",
+ appId: "1:362601061474:web:bc405291332b9e4ef9453b"
+};
+
+
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getFirestore(app);
+
+let currentUser=null;
+
+onAuthStateChanged(auth,(user)=>{
+ currentUser=user;
+});
+
 
 const questions=[
 
@@ -435,7 +501,7 @@ const questions=[
  ],
  a:1,
  ok:"أحسنتِ 🌟 صيغة المبالغة تدل على كثرة الفعل أو شدته أو تكراره.",
- bad:"مثل «صبور»؛ فهي تدل على كثرة الصبر."
+ bad:"تذكري أن «صبور» تدل على كثرة الصبر."
 },
 
 {
@@ -447,7 +513,7 @@ const questions=[
   "غفر"
  ],
  a:0,
- ok:"رائعة ✨ «غفّار» صيغة مبالغة على وزن فعّال.",
+ ok:"أحسنتِ ✨ «غفّار» صيغة مبالغة على وزن فعّال.",
  bad:"«غافر» اسم فاعل، و«مغفور» اسم مفعول، أما «غفّار» فصيغة مبالغة."
 },
 
@@ -460,8 +526,8 @@ const questions=[
   "مِفعال"
  ],
  a:2,
- ok:"صحيح 👏 صبور على وزن فعول.",
- bad:"صَبُور = فَعُول."
+ ok:"إجابة صحيحة 👏 «صبور» على وزن فعول.",
+ bad:"«صبور» على وزن «فعول»."
 },
 
 {
@@ -473,7 +539,7 @@ const questions=[
   "فعيل"
  ],
  a:1,
- ok:"ممتازة 🌷 غفّار على وزن فعّال.",
+ ok:"أحسنتِ 🌷 «غفّار» على وزن فعّال.",
  bad:"الشدة في «غفّار» تقابل الحرف المشدد في وزن «فعّال»."
 },
 
@@ -486,8 +552,8 @@ const questions=[
   "فعّال"
  ],
  a:0,
- ok:"إجابة دقيقة 💜 مِقدام على وزن مِفعال.",
- bad:"مِقدام من أشهر أمثلة وزن مِفعال."
+ ok:"إجابة دقيقة 💜 «مِقدام» على وزن مِفعال.",
+ bad:"«مِقدام» من أمثلة صيغة المبالغة على وزن «مِفعال»."
 },
 
 {
@@ -499,8 +565,8 @@ const questions=[
   "فعِل"
  ],
  a:2,
- ok:"أحسنتِ 🎯 رحيم على وزن فعيل.",
- bad:"رَحِيم = فَعِيل."
+ ok:"أحسنتِ 🎯 «رحيم» على وزن فعيل.",
+ bad:"«رحيم» على وزن «فعيل»."
 },
 
 {
@@ -512,8 +578,8 @@ const questions=[
   "مِفعال"
  ],
  a:1,
- ok:"ممتازة 🧠 حذِر على وزن فعِل.",
- bad:"حَذِر = فَعِل."
+ ok:"أحسنتِ 🧠 «حذِر» على وزن فعِل.",
+ bad:"«حذِر» على وزن «فعِل»."
 },
 
 {
@@ -525,8 +591,8 @@ const questions=[
   "على"
  ],
  a:0,
- ok:"رائعة 🌟 «صبور» صيغة مبالغة على وزن فعول.",
- bad:"ابحثي عن الكلمة التي تدل على كثرة الصبر: «صبور»."
+ ok:"إجابة صحيحة 🌟 «صبور» صيغة مبالغة على وزن فعول.",
+ bad:"ابحثي عن الكلمة التي تدل على كثرة الصبر، وهي «صبور»."
 },
 
 {
@@ -538,8 +604,8 @@ const questions=[
   "مِقدام"
  ],
  a:2,
- ok:"أحسنتِ 👏 «نجّار» على وزن فعّال، لكنه اسم مهنة في هذا السياق.",
- bad:"لا يكفي الوزن وحده؛ فـ«نجّار» اسم مهنة."
+ ok:"أحسنتِ 👏 «نجّار» على وزن فعّال، ولكنه اسم مهنة في هذا السياق.",
+ bad:"لا يكفي الوزن وحده للحكم؛ فكلمة «نجّار» اسم مهنة."
 },
 
 {
@@ -551,8 +617,8 @@ const questions=[
   "لا فرق بينهما"
  ],
  a:1,
- ok:"ممتازة جدًا 🏆 صيغة المبالغة تزيد معنى الكثرة أو الشدة أو التكرار.",
- bad:"مثل: صابر اسم فاعل، وصبور صيغة مبالغة."
+ ok:"أحسنتِ جدًا 🏆 صيغة المبالغة تدل على كثرة الفعل أو شدته أو تكراره.",
+ bad:"مثلًا: «صابر» اسم فاعل، و«صبور» صيغة مبالغة."
 }
 
 ];
@@ -671,7 +737,7 @@ function render(){
   arabicDigits(questions.length);
 
  document.getElementById('correctCount').textContent=
-  'الصحيح: '+arabicDigits(score);
+  'الإجابات الصحيحة: '+arabicDigits(score);
 
  document.getElementById('bar').style.width=
   (index/questions.length*100)+'%';
@@ -756,7 +822,7 @@ function choose(choice,button){
  }
 
  document.getElementById('correctCount').textContent=
-  'الصحيح: '+arabicDigits(score);
+  'الإجابات الصحيحة: '+arabicDigits(score);
 
  document.getElementById('card').classList.add('pop');
 
@@ -764,8 +830,8 @@ function choose(choice,button){
 
  next.textContent=
   index===questions.length-1
-   ?'شوفي نتيجتك ✨'
-   :'كمّلي التحدي ←';
+   ?'شاهدي نتيجتكِ ✨'
+   :'تابعي التحدي ←';
 
  next.style.display='block';
 }
@@ -780,6 +846,128 @@ document.getElementById('next').onclick=()=>{
   finish();
  }
 };
+
+
+async function saveResult(){
+
+ const saveStatus=
+  document.getElementById('saveStatus');
+
+ if(!currentUser){
+
+  saveStatus.className=
+   'save-status waiting';
+
+  saveStatus.textContent=
+   'ℹ️ لم تُحفظ النتيجة؛ يلزم تسجيل الدخول لإضافتها إلى سجلّكِ.';
+
+  return;
+ }
+
+ saveStatus.className=
+  'save-status waiting';
+
+ saveStatus.textContent=
+  'جارٍ حفظ نتيجتكِ في سجلّكِ...';
+
+
+ try{
+
+  const studentRef=
+   doc(
+    db,
+    "students",
+    currentUser.uid
+   );
+
+  const studentSnap=
+   await getDoc(studentRef);
+
+  if(!studentSnap.exists()){
+
+   throw new Error(
+    "student-document-not-found"
+   );
+  }
+
+  const data=
+   studentSnap.data();
+
+  const oldTest=
+   data?.["اختبارات_الفصل_الأول"]?.["صيغ_المبالغة"] || {};
+
+  const oldAttempts=
+   Number(
+    oldTest["عدد_المحاولات"] || 0
+   );
+
+  const oldBest=
+   Number(
+    oldTest["أعلى_درجة"] || 0
+   );
+
+  const percentage=
+   Math.round(
+    (score/questions.length)*100
+   );
+
+  const bestScore=
+   Math.max(
+    oldBest,
+    score
+   );
+
+
+  await updateDoc(
+   studentRef,
+   {
+
+    "اختبارات_الفصل_الأول.صيغ_المبالغة.اسم_الاختبار":
+     "اختبار صيغ المبالغة",
+
+    "اختبارات_الفصل_الأول.صيغ_المبالغة.الدرجة":
+     score,
+
+    "اختبارات_الفصل_الأول.صيغ_المبالغة.الدرجة_من":
+     questions.length,
+
+    "اختبارات_الفصل_الأول.صيغ_المبالغة.النسبة":
+     percentage,
+
+    "اختبارات_الفصل_الأول.صيغ_المبالغة.عدد_المحاولات":
+     oldAttempts+1,
+
+    "اختبارات_الفصل_الأول.صيغ_المبالغة.أعلى_درجة":
+     bestScore,
+
+    "اختبارات_الفصل_الأول.صيغ_المبالغة.آخر_محاولة":
+     serverTimestamp()
+
+   }
+  );
+
+
+  saveStatus.className=
+   'save-status saved';
+
+  saveStatus.textContent=
+   '✅ حُفظت نتيجتكِ في سجل الفصل الدراسي الأول.';
+
+
+ }catch(error){
+
+  console.error(error);
+
+  saveStatus.className=
+   'save-status error';
+
+  saveStatus.textContent=
+   'تعذّر حفظ النتيجة، ولكن نتيجتكِ في الاختبار لم تتأثر.';
+
+ }
+
+}
+
 
 function finish(){
 
@@ -804,19 +992,22 @@ function finish(){
 
  document.getElementById('message').textContent=
   pct===1
-  ?'إتقان كامل! بطلة صيغ المبالغة 🏆'
+  ?'أحسنتِ! أتقنتِ صيغ المبالغة إتقانًا كاملًا 🏆'
   :pct>=.8
-  ?'ممتازة جدًا 🌟 أتقنتِ أوزان صيغ المبالغة ومعانيها.'
+  ?'ممتاز جدًا 🌟 أتقنتِ أوزان صيغ المبالغة ومعانيها.'
   :pct>=.6
-  ?'أداء جميل 👏 راجعي الأوزان الخمسة ثم أعيدي التحدي.'
-  :'راجعي ملف الدرس، وركزي على الأوزان: فعّال، مِفعال، فعول، فعيل، فعِل.';
+  ?'أداء جيد 👏 راجعي أوزان صيغ المبالغة الخمسة، ثم أعيدي التحدي.'
+  :'راجعي ملف الدرس، وركزي على الأوزان: فعّال، ومِفعال، وفعول، وفعيل، وفعِل، ثم أعيدي التحدي.';
 
  if(pct>=.8){
   confetti();
  }
+
+ saveResult();
 }
 
-function restartQuiz(){
+
+window.restartQuiz=function(){
 
  index=0;
  score=0;
@@ -830,8 +1021,11 @@ function restartQuiz(){
 
  document.getElementById('result').classList.remove('show');
 
+ document.getElementById('saveStatus').textContent='';
+
  render();
-}
+};
+
 
 render();
 
