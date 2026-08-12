@@ -9,41 +9,37 @@
     content="width=device-width, initial-scale=1.0"
   >
 
-  <title>
-    لوحة المعلمة | الفصل الدراسي الأول
-  </title>
+  <title>لوحة المعلمة | الفصل الدراسي الأول</title>
 
   <style>
-    :root {
-      --purple: #5b4677;
-      --purple-light: #776094;
-      --purple-dark: #49385c;
-      --gold: #c9a85c;
-      --cream: #fffaf2;
-      --paper: #fffdf8;
-      --text: #44384f;
-      --green: #2f7650;
-      --green-bg: #eaf7ef;
-      --red: #96394a;
-      --red-bg: #fff0f2;
-      --blue-bg: #eef5ff;
+    :root{
+      --purple:#5b4677;
+      --purple-light:#776094;
+      --purple-dark:#49385c;
+      --gold:#c9a85c;
+      --cream:#fffaf2;
+      --paper:#fffdf8;
+      --text:#44384f;
+      --green:#2f7650;
+      --green-bg:#eaf7ef;
+      --red:#96394a;
+      --red-bg:#fff0f2;
     }
 
-    * {
-      box-sizing: border-box;
+    *{
+      box-sizing:border-box;
     }
 
     html,
-    body {
-      margin: 0;
-      width: 100%;
-      min-height: 100%;
+    body{
+      margin:0;
+      width:100%;
+      min-height:100%;
     }
 
-    body {
-      font-family: Tahoma, Arial, sans-serif;
-      color: var(--text);
-
+    body{
+      font-family:Tahoma,Arial,sans-serif;
+      color:var(--text);
       background:
         linear-gradient(
           145deg,
@@ -52,10 +48,10 @@
         );
     }
 
-    header {
-      padding: 28px 16px 24px;
-      text-align: center;
-      color: white;
+    header{
+      padding:28px 16px 24px;
+      text-align:center;
+      color:white;
 
       background:
         linear-gradient(
@@ -64,30 +60,27 @@
           #5b4677
         );
 
-      border-bottom:
-        4px solid #c9a85c;
+      border-bottom:4px solid var(--gold);
     }
 
-    header .badge {
-      display: inline-block;
-      margin-bottom: 8px;
-      padding: 5px 14px;
+    header .badge{
+      display:inline-block;
+      margin-bottom:8px;
+      padding:5px 14px;
 
-      color: #fff4ce;
-      font-size: 12px;
-      font-weight: bold;
+      color:#fff4ce;
+      font-size:12px;
+      font-weight:bold;
 
-      border:
-        1px solid rgba(255,255,255,.45);
+      border:1px solid rgba(255,255,255,.45);
+      border-radius:999px;
 
-      border-radius: 999px;
-
-      background:
-        rgba(255,255,255,.1);
+      background:rgba(255,255,255,.1);
     }
 
-    header h1 {
-      margin: 0 0 6px;
+    header h1{
+      margin:0 0 6px;
+
       font-size:
         clamp(
           24px,
@@ -95,208 +88,196 @@
           38px
         );
 
-      color: #fffdf8;
+      color:#fffdf8;
     }
 
-    header p {
-      margin: 0;
-      color: #f4edf8;
-      font-size: 14px;
-      line-height: 1.8;
+    header p{
+      margin:0;
+      color:#f4edf8;
+      font-size:14px;
+      line-height:1.8;
     }
 
-    .container {
-      width:
-        min(
-          1180px,
-          calc(100% - 24px)
-        );
+    .container{
+      width:min(
+        1180px,
+        calc(100% - 24px)
+      );
 
-      margin:
-        22px auto 45px;
+      margin:22px auto 45px;
     }
 
-    .status-box {
-      margin-bottom: 18px;
-      padding: 14px;
+    .status-box{
+      margin-bottom:18px;
+      padding:14px;
 
-      text-align: center;
-      font-size: 14px;
-      font-weight: bold;
-      line-height: 1.8;
+      text-align:center;
+      font-size:14px;
+      font-weight:bold;
+      line-height:1.8;
 
-      border-radius: 16px;
-      border:
-        1px solid #dec98d;
+      border-radius:16px;
+      border:1px solid #dec98d;
 
-      background: #fffdf8;
+      background:#fffdf8;
     }
 
-    .status-box.loading {
-      color: #69552d;
-      background: #fff8e8;
+    .status-box.loading{
+      color:#69552d;
+      background:#fff8e8;
     }
 
-    .status-box.error {
-      color: #8d3748;
-      background: #fff0f2;
+    .status-box.error{
+      color:#8d3748;
+      background:#fff0f2;
     }
 
-    .status-box.success {
-      color: #326d4b;
-      background: #edf8f1;
+    .status-box.success{
+      color:#326d4b;
+      background:#edf8f1;
     }
 
-    .filters {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
+    .filters{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
 
-      margin-bottom: 18px;
-      padding: 14px;
+      margin-bottom:18px;
+      padding:14px;
 
-      background: #fffdf8;
+      background:#fffdf8;
 
-      border:
-        1px solid #dec98d;
-
-      border-radius: 18px;
+      border:1px solid #dec98d;
+      border-radius:18px;
     }
 
-    .filters label {
-      flex: 1 1 190px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
+    .filters label{
+      flex:1 1 190px;
 
-      color: #5c4771;
-      font-size: 12px;
-      font-weight: bold;
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+
+      color:#5c4771;
+      font-size:12px;
+      font-weight:bold;
     }
 
     .filters select,
-    .filters input {
-      width: 100%;
-      padding: 11px 12px;
+    .filters input{
+      width:100%;
+      padding:11px 12px;
 
-      font-family: inherit;
-      font-size: 14px;
+      font-family:inherit;
+      font-size:14px;
 
-      border:
-        1px solid #ccb8dc;
+      border:1px solid #ccb8dc;
+      border-radius:12px;
 
-      border-radius: 12px;
-
-      background: white;
-      color: #49385c;
+      background:white;
+      color:#49385c;
     }
 
-    .stats {
-      display: grid;
+    .stats{
+      display:grid;
 
       grid-template-columns:
-        repeat(2, minmax(0, 1fr));
+        repeat(
+          2,
+          minmax(0,1fr)
+        );
 
-      gap: 12px;
-      margin-bottom: 20px;
+      gap:12px;
+      margin-bottom:20px;
     }
 
-    .stat-card {
-      padding: 18px 10px;
-      text-align: center;
+    .stat-card{
+      padding:18px 10px;
+      text-align:center;
 
-      border:
-        2px solid #dec98d;
+      border:2px solid #dec98d;
+      border-radius:20px;
 
-      border-radius: 20px;
-
-      background: #fffdf8;
+      background:#fffdf8;
 
       box-shadow:
         0 7px 20px
         rgba(91,70,119,.08);
     }
 
-    .stat-icon {
-      margin-bottom: 6px;
-      font-size: 26px;
+    .stat-icon{
+      margin-bottom:6px;
+      font-size:26px;
     }
 
-    .stat-number {
-      display: block;
+    .stat-number{
+      display:block;
 
-      color: #5b4677;
-      font-size: 27px;
-      font-weight: bold;
+      color:#5b4677;
+      font-size:27px;
+      font-weight:bold;
     }
 
-    .stat-label {
-      display: block;
-      margin-top: 5px;
+    .stat-label{
+      display:block;
+      margin-top:5px;
 
-      color: #72647a;
-      font-size: 12px;
-      font-weight: bold;
-      line-height: 1.5;
+      color:#72647a;
+      font-size:12px;
+      font-weight:bold;
+      line-height:1.5;
     }
 
-    .section {
-      margin-top: 20px;
-      padding: 16px;
+    .section{
+      margin-top:20px;
+      padding:16px;
 
-      background: #fffdf8;
+      background:#fffdf8;
 
-      border:
-        2px solid #dec98d;
-
-      border-radius: 21px;
+      border:2px solid #dec98d;
+      border-radius:21px;
 
       box-shadow:
         0 8px 23px
         rgba(91,70,119,.08);
     }
 
-    .section-title {
-      margin: 0 0 14px;
+    .section-title{
+      margin:0 0 14px;
 
-      color: #5b4677;
-      font-size: 20px;
-      text-align: center;
+      color:#5b4677;
+      font-size:20px;
+      text-align:center;
     }
 
-    .table-wrap {
-      width: 100%;
-      overflow-x: auto;
+    .table-wrap{
+      width:100%;
+      overflow-x:auto;
 
-      border-radius: 14px;
+      border-radius:14px;
     }
 
-    table {
-      width: 100%;
-      min-width: 850px;
+    table{
+      width:100%;
+      min-width:850px;
 
-      border-collapse: collapse;
-
-      background: white;
+      border-collapse:collapse;
+      background:white;
     }
 
     th,
-    td {
-      padding: 11px 9px;
+    td{
+      padding:11px 9px;
 
-      text-align: center;
-      vertical-align: middle;
+      text-align:center;
+      vertical-align:middle;
 
-      border-bottom:
-        1px solid #eee5f1;
+      border-bottom:1px solid #eee5f1;
     }
 
-    th {
-      position: sticky;
-      top: 0;
-
-      color: white;
-      font-size: 12px;
+    th{
+      color:white;
+      font-size:12px;
 
       background:
         linear-gradient(
@@ -306,114 +287,106 @@
         );
     }
 
-    td {
-      color: #4d4352;
-      font-size: 12px;
-      line-height: 1.6;
+    td{
+      color:#4d4352;
+      font-size:12px;
+      line-height:1.6;
     }
 
-    tbody tr:nth-child(even) {
-      background: #fcf9ff;
+    tbody tr:nth-child(even){
+      background:#fcf9ff;
     }
 
-    .student-name {
-      color: #5b4677;
-      font-weight: bold;
+    .student-name{
+      color:#5b4677;
+      font-weight:bold;
     }
 
-    .score-good {
-      display: inline-block;
-      min-width: 55px;
-      padding: 4px 7px;
+    .score-good,
+    .score-mid,
+    .score-low{
+      display:inline-block;
 
-      color: #276842;
-      font-weight: bold;
+      min-width:55px;
+      padding:4px 7px;
 
-      border-radius: 999px;
-      background: #e7f7ed;
+      font-weight:bold;
+      border-radius:999px;
     }
 
-    .score-mid {
-      display: inline-block;
-      min-width: 55px;
-      padding: 4px 7px;
-
-      color: #7b5d18;
-      font-weight: bold;
-
-      border-radius: 999px;
-      background: #fff5d9;
+    .score-good{
+      color:#276842;
+      background:#e7f7ed;
     }
 
-    .score-low {
-      display: inline-block;
-      min-width: 55px;
-      padding: 4px 7px;
-
-      color: #923e4e;
-      font-weight: bold;
-
-      border-radius: 999px;
-      background: #ffecef;
+    .score-mid{
+      color:#7b5d18;
+      background:#fff5d9;
     }
 
-    .tag {
-      display: inline-block;
-      padding: 4px 8px;
-
-      font-size: 11px;
-      font-weight: bold;
-
-      border-radius: 999px;
+    .score-low{
+      color:#923e4e;
+      background:#ffecef;
     }
 
-    .tag.done {
-      color: #286a43;
-      background: #e8f7ed;
+    .tag{
+      display:inline-block;
+
+      padding:4px 8px;
+
+      font-size:11px;
+      font-weight:bold;
+
+      border-radius:999px;
     }
 
-    .tag.pending {
-      color: #765d27;
-      background: #fff5dd;
+    .tag.done{
+      color:#286a43;
+      background:#e8f7ed;
     }
 
-    .tag.cert {
-      color: #745414;
-      background: #fff1bf;
+    .tag.pending{
+      color:#765d27;
+      background:#fff5dd;
     }
 
-    .tag.no-cert {
-      color: #815764;
-      background: #f8edf1;
+    .tag.cert{
+      color:#745414;
+      background:#fff1bf;
     }
 
-    .empty {
-      padding: 25px 10px;
-      text-align: center;
-
-      color: #75697a;
-      font-size: 14px;
-      font-weight: bold;
+    .tag.no-cert{
+      color:#815764;
+      background:#f8edf1;
     }
 
-    .footer {
-      margin-top: 24px;
-      text-align: center;
+    .empty{
+      padding:25px 10px;
+
+      text-align:center;
+
+      color:#75697a;
+      font-size:14px;
+      font-weight:bold;
     }
 
-    .back-button {
-      display: inline-block;
-      padding: 11px 20px;
+    .footer{
+      margin-top:24px;
+      text-align:center;
+    }
 
-      color: white;
-      font-size: 13px;
-      font-weight: bold;
-      text-decoration: none;
+    .back-button{
+      display:inline-block;
 
-      border:
-        2px solid #c9a85c;
+      padding:11px 20px;
 
-      border-radius: 999px;
+      color:white;
+      font-size:13px;
+      font-weight:bold;
+      text-decoration:none;
+
+      border:2px solid #c9a85c;
+      border-radius:999px;
 
       background:
         linear-gradient(
@@ -423,59 +396,57 @@
         );
     }
 
-    @media (min-width: 780px) {
+    @media(min-width:780px){
 
-      .stats {
+      .stats{
         grid-template-columns:
-          repeat(5, minmax(0, 1fr));
+          repeat(
+            5,
+            minmax(0,1fr)
+          );
       }
 
     }
 
-    @media print {
+    @media print{
 
-      body {
-        background: white;
-      }
-
-      header {
-        padding: 14px;
+      body{
+        background:white;
       }
 
       .filters,
       .status-box,
-      .footer {
-        display: none !important;
+      .footer{
+        display:none !important;
       }
 
-      .container {
-        width: 100%;
-        margin: 12px auto;
+      .container{
+        width:100%;
+        margin:12px auto;
       }
 
       .stat-card,
-      .section {
-        box-shadow: none;
+      .section{
+        box-shadow:none;
       }
 
-      .table-wrap {
-        overflow: visible;
+      .table-wrap{
+        overflow:visible;
       }
 
-      table {
-        min-width: 0;
+      table{
+        min-width:0;
       }
 
       th,
-      td {
-        padding: 6px 4px;
-        font-size: 9px;
+      td{
+        padding:6px 4px;
+        font-size:9px;
       }
 
     }
   </style>
 </head>
-
 <body>
 
   <header>
@@ -489,8 +460,7 @@
     </h1>
 
     <p>
-      ملخص أداء الطالبات ونتائج الاختبارات
-      والنتيجة النهائية.
+      ملخص أداء الطالبات ونتائج الاختبارات والنتيجة النهائية.
     </p>
 
   </header>
@@ -520,6 +490,18 @@
 
             <option value="all">
               جميع الفصول
+            </option>
+
+            <option value="ثالث متوسط أ">
+              ثالث متوسط أ
+            </option>
+
+            <option value="ثالث متوسط ب">
+              ثالث متوسط ب
+            </option>
+
+            <option value="ثالث متوسط ج">
+              ثالث متوسط ج
             </option>
 
           </select>
@@ -555,6 +537,7 @@
             type="search"
             placeholder="اكتبي الاسم..."
           >
+
         </label>
 
       </div>
@@ -670,6 +653,7 @@
           نتائج الطالبات
         </h2>
 
+
         <div class="table-wrap">
 
           <table>
@@ -747,21 +731,22 @@
     </section>
 
   </main>
-
-
-  <script type="module">
+    <script type="module">
 
     import {
       initializeApp
     }
-    from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+    from
+    "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
 
 
     import {
-      getAuth,
+      initializeAuth,
+      browserLocalPersistence,
       onAuthStateChanged
     }
-    from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+    from
+    "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
 
 
     import {
@@ -769,16 +754,30 @@
       collection,
       getDocs
     }
-    from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+    from
+    "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 
 
     const firebaseConfig = {
-      apiKey: "AIzaSyB48av9gx4jzFyYoUQtcLwaR52qETevKGs",
-      authDomain: "afaq-language-platform.firebaseapp.com",
-      projectId: "afaq-language-platform",
-      storageBucket: "afaq-language-platform.firebasestorage.app",
-      messagingSenderId: "362601061474",
-      appId: "1:362601061474:web:bc405291332b9e4ef9453b"
+
+      apiKey:
+        "AIzaSyB48av9gx4jzFyYoUQtcLwaR52qETevKGs",
+
+      authDomain:
+        "afaq-language-platform.firebaseapp.com",
+
+      projectId:
+        "afaq-language-platform",
+
+      storageBucket:
+        "afaq-language-platform.firebasestorage.app",
+
+      messagingSenderId:
+        "362601061474",
+
+      appId:
+        "1:362601061474:web:bc405291332b9e4ef9453b"
+
     };
 
 
@@ -789,11 +788,19 @@
 
 
     const auth =
-      getAuth(app);
+      initializeAuth(
+        app,
+        {
+          persistence:
+            browserLocalPersistence
+        }
+      );
 
 
     const db =
-      getFirestore(app);
+      getFirestore(
+        app
+      );
 
 
     const TEACHER_UID =
@@ -866,13 +873,12 @@
       );
 
 
-    let allStudents =
-      [];
+    let allStudents = [];
 
 
     function toArabicNumber(
       value
-    ) {
+    ){
 
       return String(value)
         .replace(
@@ -886,7 +892,7 @@
 
     function safeNumber(
       value
-    ) {
+    ){
 
       const number =
         Number(value);
@@ -898,29 +904,82 @@
     }
 
 
+    function normalizeClassName(
+      value
+    ){
+
+      const text =
+        String(
+          value || ""
+        )
+        .trim()
+        .replace(/\s+/g," ");
+
+
+      if(!text){
+        return "غير محدد";
+      }
+
+
+      if(
+        text === "أ" ||
+        text === "ا" ||
+        text === "ألف" ||
+        text.includes("متوسط أ") ||
+        text.includes("متوسط ا")
+      ){
+        return "ثالث متوسط أ";
+      }
+
+
+      if(
+        text === "ب" ||
+        text === "باء" ||
+        text.includes("متوسط ب")
+      ){
+        return "ثالث متوسط ب";
+      }
+
+
+      if(
+        text === "ج" ||
+        text === "جيم" ||
+        text.includes("متوسط ج")
+      ){
+        return "ثالث متوسط ج";
+      }
+
+
+      return text;
+
+    }
+
+
     function formatDate(
       timestamp
-    ) {
+    ){
 
-      if (!timestamp) {
+      if(!timestamp){
         return "—";
       }
 
 
-      try {
+      try{
 
         let date;
 
 
-        if (
+        if(
           typeof timestamp.toDate ===
           "function"
-        ) {
+        ){
 
           date =
             timestamp.toDate();
 
-        } else {
+        }
+
+        else{
 
           date =
             new Date(timestamp);
@@ -928,11 +987,11 @@
         }
 
 
-        if (
+        if(
           Number.isNaN(
             date.getTime()
           )
-        ) {
+        ){
 
           return "—";
 
@@ -942,708 +1001,648 @@
         return date.toLocaleDateString(
           "ar-SA",
           {
-            year: "numeric",
-            month: "short",
-            day: "numeric"
+            year:"numeric",
+            month:"short",
+            day:"numeric"
           }
         );
 
+      }
 
-      } catch (error) {
+      catch(error){
 
         return "—";
 
       }
 
     }
+
+
     function prepareStudentData(
-  id,
-  data
-) {
+      id,
+      data
+    ){
 
-  const finalResult =
-    data?.["نتيجة_الفصل_الأول"] || {};
-
-
-  const tests =
-    data?.["اختبارات_الفصل_الأول"] || {};
+      const finalResult =
+        data?.["نتيجة_الفصل_الأول"] ||
+        {};
 
 
-  const testEntries =
-    Object.values(
-      tests
-    );
+      const tests =
+        data?.["اختبارات_الفصل_الأول"] ||
+        {};
 
 
-  const recordedTests =
-    testEntries.filter(
-      item =>
-        item &&
-        typeof item === "object"
-    ).length;
+      const testEntries =
+        Object.values(
+          tests
+        );
 
 
-  const completed =
-    finalResult["مكتمل"] === true;
+      const recordedTests =
+        testEntries.filter(
+          item =>
+            item &&
+            typeof item === "object"
+        ).length;
 
 
-  const score =
-    safeNumber(
-      finalResult["الدرجة"]
-    );
+      const completed =
+        finalResult["مكتمل"] ===
+        true;
 
 
-  const certificate =
-    finalResult["استحقت_الشهادة"] === true;
+      const score =
+        safeNumber(
+          finalResult["الدرجة"]
+        );
 
 
-  return {
-
-    id,
-
-    name:
-      data?.["الاسم"] ||
-      "طالبة غير مسماة",
-
-    className:
-      data?.["الفصل"] ||
-      "غير محدد",
-
-    recordedTests,
-
-    completed,
-
-    score,
-
-    certificate,
-
-    lastLogin:
-      data?.["آخر_دخول"] ||
-      null
-
-  };
-
-}
+      const certificate =
+        finalResult["استحقت_الشهادة"] ===
+        true;
 
 
-async function loadStudents() {
+      return {
 
-  try {
+        id,
 
-    statusBox.className =
-      "status-box loading";
+        name:
+          data?.["الاسم"] ||
+          "طالبة غير مسماة",
+
+        className:
+          normalizeClassName(
+            data?.["الفصل"]
+          ),
+
+        recordedTests,
+
+        completed,
+
+        score,
+
+        certificate,
+
+        lastLogin:
+          data?.["آخر_دخول"] ||
+          null
+
+      };
+
+    }
 
 
-    statusBox.textContent =
-      "جارٍ تحميل سجلات الطالبات...";
+    async function loadStudents(){
+
+      try{
+
+        statusBox.style.display =
+          "block";
 
 
-    const snapshot =
-      await getDocs(
-        collection(
-          db,
-          "students"
-        )
+        statusBox.className =
+          "status-box loading";
+
+
+        statusBox.textContent =
+          "جارٍ تحميل سجلات الطالبات...";
+
+
+        const snapshot =
+          await getDocs(
+            collection(
+              db,
+              "students"
+            )
+          );
+
+
+        allStudents = [];
+
+
+        snapshot.forEach(
+          documentSnapshot => {
+
+            const data =
+              documentSnapshot.data();
+
+
+            if(
+              !data?.["الاسم"] &&
+              !data?.["الفصل"] &&
+              !data?.["معرف_المستخدم"]
+            ){
+
+              return;
+
+            }
+
+
+            allStudents.push(
+              prepareStudentData(
+                documentSnapshot.id,
+                data
+              )
+            );
+
+          }
+        );
+
+
+        applyFilters();
+
+
+        statusBox.className =
+          "status-box success";
+
+
+        statusBox.textContent =
+          "✅ تم تحميل بيانات الطالبات بنجاح.";
+
+
+        setTimeout(
+          () => {
+
+            statusBox.style.display =
+              "none";
+
+          },
+          1800
+        );
+
+      }
+
+      catch(error){
+
+        console.error(
+          "Firestore error:",
+          error
+        );
+
+
+        statusBox.className =
+          "status-box error";
+
+
+        statusBox.textContent =
+          "تعذّر تحميل بيانات الطالبات. تحققي من تسجيل الدخول بحساب المعلمة ومن صلاحيات Firestore.";
+
+      }
+
+    }
+          function applyFilters(){
+
+      const selectedClass =
+        classFilter.value;
+
+
+      const selectedCompletion =
+        completionFilter.value;
+
+
+      const searchValue =
+        searchInput.value
+          .trim()
+          .toLowerCase();
+
+
+      const filtered =
+        allStudents.filter(
+          student => {
+
+            const classMatches =
+              selectedClass === "all" ||
+              student.className ===
+                selectedClass;
+
+
+            const completionMatches =
+              selectedCompletion === "all" ||
+
+              (
+                selectedCompletion ===
+                  "completed" &&
+                student.completed
+              ) ||
+
+              (
+                selectedCompletion ===
+                  "pending" &&
+                !student.completed
+              );
+
+
+            const searchMatches =
+              !searchValue ||
+              student.name
+                .toLowerCase()
+                .includes(
+                  searchValue
+                );
+
+
+            return (
+              classMatches &&
+              completionMatches &&
+              searchMatches
+            );
+
+          }
+        );
+
+
+      updateStatistics(
+        filtered
       );
 
 
-    allStudents =
-      [];
+      renderTable(
+        filtered
+      );
+
+    }
 
 
-    snapshot.forEach(
-      documentSnapshot => {
+    function updateStatistics(
+      students
+    ){
 
-        const data =
-          documentSnapshot.data();
+      const totalStudents =
+        students.length;
 
 
-        /*
-          نتجاهل السجلات التي لا تحتوي
-          على بيانات طالبة فعلية.
-        */
+      const completedStudents =
+        students.filter(
+          student =>
+            student.completed
+        );
 
-        if (
-          !data?.["الاسم"] &&
-          !data?.["الفصل"] &&
-          !data?.["معرف_المستخدم"]
-        ) {
+
+      const certificateStudents =
+        students.filter(
+          student =>
+            student.certificate
+        );
+
+
+      const totalRecordedTests =
+        students.reduce(
+          (
+            total,
+            student
+          ) =>
+            total +
+            student.recordedTests,
+          0
+        );
+
+
+      let average = 0;
+
+
+      if(
+        completedStudents.length > 0
+      ){
+
+        const totalScores =
+          completedStudents.reduce(
+            (
+              total,
+              student
+            ) =>
+              total +
+              student.score,
+            0
+          );
+
+
+        average =
+          Math.round(
+            totalScores /
+            completedStudents.length
+          );
+
+      }
+
+
+      studentsCount.textContent =
+        toArabicNumber(
+          totalStudents
+        );
+
+
+      completedCount.textContent =
+        toArabicNumber(
+          completedStudents.length
+        );
+
+
+      averageScore.textContent =
+        toArabicNumber(
+          average
+        ) +
+        "٪";
+
+
+      certificateCount.textContent =
+        toArabicNumber(
+          certificateStudents.length
+        );
+
+
+      testsCount.textContent =
+        toArabicNumber(
+          totalRecordedTests
+        );
+
+    }
+
+
+    function scoreClass(
+      score
+    ){
+
+      if(score >= 80){
+        return "score-good";
+      }
+
+
+      if(score >= 60){
+        return "score-mid";
+      }
+
+
+      return "score-low";
+
+    }
+
+
+    function escapeHtml(
+      value
+    ){
+
+      return String(
+        value ?? ""
+      )
+      .replaceAll(
+        "&",
+        "&amp;"
+      )
+      .replaceAll(
+        "<",
+        "&lt;"
+      )
+      .replaceAll(
+        ">",
+        "&gt;"
+      )
+      .replaceAll(
+        '"',
+        "&quot;"
+      )
+      .replaceAll(
+        "'",
+        "&#039;"
+      );
+
+    }
+
+
+    function renderTable(
+      students
+    ){
+
+      studentsTable.innerHTML =
+        "";
+
+
+      if(
+        students.length === 0
+      ){
+
+        studentsTable.innerHTML = `
+
+          <tr>
+
+            <td
+              colspan="7"
+              class="empty"
+            >
+              لا توجد بيانات مطابقة للبحث أو التصفية.
+            </td>
+
+          </tr>
+
+        `;
+
+        return;
+
+      }
+
+
+      const sortedStudents =
+        [...students].sort(
+          (
+            first,
+            second
+          ) =>
+
+            first.className.localeCompare(
+              second.className,
+              "ar"
+            ) ||
+
+            first.name.localeCompare(
+              second.name,
+              "ar"
+            )
+        );
+
+
+      sortedStudents.forEach(
+        student => {
+
+          const row =
+            document.createElement(
+              "tr"
+            );
+
+
+          const completionText =
+            student.completed
+
+            ? `
+              <span class="tag done">
+                مكتمل
+              </span>
+            `
+
+            : `
+              <span class="tag pending">
+                غير مكتمل
+              </span>
+            `;
+
+
+          const certificateText =
+            student.certificate
+
+            ? `
+              <span class="tag cert">
+                مستحقة
+              </span>
+            `
+
+            : `
+              <span class="tag no-cert">
+                —
+              </span>
+            `;
+
+
+          const scoreText =
+            student.completed
+
+            ? `
+              <span
+                class="${scoreClass(
+                  student.score
+                )}"
+              >
+                ${toArabicNumber(
+                  student.score
+                )}٪
+              </span>
+            `
+
+            : "—";
+
+
+          row.innerHTML = `
+
+            <td class="student-name">
+              ${escapeHtml(
+                student.name
+              )}
+            </td>
+
+            <td>
+              ${escapeHtml(
+                student.className
+              )}
+            </td>
+
+            <td>
+              ${toArabicNumber(
+                student.recordedTests
+              )}
+            </td>
+
+            <td>
+              ${completionText}
+            </td>
+
+            <td>
+              ${scoreText}
+            </td>
+
+            <td>
+              ${certificateText}
+            </td>
+
+            <td>
+              ${formatDate(
+                student.lastLogin
+              )}
+            </td>
+
+          `;
+
+
+          studentsTable.appendChild(
+            row
+          );
+
+        }
+      );
+
+    }
+
+
+    classFilter.addEventListener(
+      "change",
+      applyFilters
+    );
+
+
+    completionFilter.addEventListener(
+      "change",
+      applyFilters
+    );
+
+
+    searchInput.addEventListener(
+      "input",
+      applyFilters
+    );
+
+
+    onAuthStateChanged(
+      auth,
+      async user => {
+
+        if(!user){
+
+          statusBox.className =
+            "status-box error";
+
+
+          statusBox.textContent =
+            "🔒 يلزم تسجيل الدخول بحساب المعلمة لفتح لوحة المتابعة.";
+
+
+          dashboardContent.style.display =
+            "none";
+
 
           return;
 
         }
 
 
-        allStudents.push(
-          prepareStudentData(
-            documentSnapshot.id,
-            data
-          )
-        );
+        if(
+          user.uid !==
+          TEACHER_UID
+        ){
+
+          statusBox.className =
+            "status-box error";
+
+
+          statusBox.textContent =
+            "⛔ هذه الصفحة مخصصة لحساب المعلمة فقط.";
+
+
+          dashboardContent.style.display =
+            "none";
+
+
+          return;
+
+        }
+
+
+        dashboardContent.style.display =
+          "block";
+
+
+        await loadStudents();
 
       }
     );
-
-
-    fillClassFilter();
-
-
-    applyFilters();
-
-
-    statusBox.className =
-      "status-box success";
-
-
-    statusBox.textContent =
-      "✅ تم تحميل بيانات الطالبات بنجاح.";
-
-
-    setTimeout(
-      () => {
-
-        statusBox.style.display =
-          "none";
-
-      },
-      1800
-    );
-
-
-  } catch (error) {
-
-    console.error(
-      error
-    );
-
-
-    statusBox.className =
-      "status-box error";
-
-
-    statusBox.textContent =
-      "تعذّر تحميل بيانات الطالبات. تحققي من تسجيل الدخول بحساب المعلمة ومن صلاحيات Firestore.";
-
-  }
-
-}
-
-
-function fillClassFilter() {
-
-  const classes =
-    [
-      ...new Set(
-        allStudents
-          .map(
-            student =>
-              student.className
-          )
-          .filter(
-            value =>
-              value &&
-              value !== "غير محدد"
-          )
-      )
-    ]
-      .sort();
-
-
-  classFilter.innerHTML = `
-
-    <option value="all">
-      جميع الفصول
-    </option>
-
-  `;
-
-
-  classes.forEach(
-    className => {
-
-      const option =
-        document.createElement(
-          "option"
-        );
-
-
-      option.value =
-        className;
-
-
-      option.textContent =
-        className;
-
-
-      classFilter.appendChild(
-        option
-      );
-
-    }
-  );
-
-}
-
-
-function applyFilters() {
-
-  const selectedClass =
-    classFilter.value;
-
-
-  const selectedCompletion =
-    completionFilter.value;
-
-
-  const searchValue =
-    searchInput.value
-      .trim()
-      .toLowerCase();
-
-
-  const filtered =
-    allStudents.filter(
-      student => {
-
-        const classMatches =
-          selectedClass === "all" ||
-          student.className ===
-            selectedClass;
-
-
-        const completionMatches =
-          selectedCompletion === "all" ||
-
-          (
-            selectedCompletion ===
-              "completed" &&
-            student.completed
-          ) ||
-
-          (
-            selectedCompletion ===
-              "pending" &&
-            !student.completed
-          );
-
-
-        const searchMatches =
-          !searchValue ||
-          student.name
-            .toLowerCase()
-            .includes(
-              searchValue
-            );
-
-
-        return (
-          classMatches &&
-          completionMatches &&
-          searchMatches
-        );
-
-      }
-    );
-
-
-  updateStatistics(
-    filtered
-  );
-
-
-  renderTable(
-    filtered
-  );
-
-}
-
-
-function updateStatistics(
-  students
-) {
-
-  const totalStudents =
-    students.length;
-
-
-  const completedStudents =
-    students.filter(
-      student =>
-        student.completed
-    );
-
-
-  const certificateStudents =
-    students.filter(
-      student =>
-        student.certificate
-    );
-
-
-  const totalRecordedTests =
-    students.reduce(
-      (
-        total,
-        student
-      ) =>
-        total +
-        student.recordedTests,
-      0
-    );
-
-
-  let average =
-    0;
-
-
-  if (
-    completedStudents.length > 0
-  ) {
-
-    const totalScores =
-      completedStudents.reduce(
-        (
-          total,
-          student
-        ) =>
-          total +
-          student.score,
-        0
-      );
-
-
-    average =
-      Math.round(
-        totalScores /
-        completedStudents.length
-      );
-
-  }
-
-
-  studentsCount.textContent =
-    toArabicNumber(
-      totalStudents
-    );
-
-
-  completedCount.textContent =
-    toArabicNumber(
-      completedStudents.length
-    );
-
-
-  averageScore.textContent =
-    toArabicNumber(
-      average
-    ) +
-    "٪";
-
-
-  certificateCount.textContent =
-    toArabicNumber(
-      certificateStudents.length
-    );
-
-
-  testsCount.textContent =
-    toArabicNumber(
-      totalRecordedTests
-    );
-
-}
-
-
-function scoreClass(
-  score
-) {
-
-  if (
-    score >= 80
-  ) {
-
-    return "score-good";
-
-  }
-
-
-  if (
-    score >= 60
-  ) {
-
-    return "score-mid";
-
-  }
-
-
-  return "score-low";
-
-}
-
-
-function renderTable(
-  students
-) {
-
-  studentsTable.innerHTML =
-    "";
-
-
-  if (
-    students.length === 0
-  ) {
-
-    studentsTable.innerHTML = `
-
-      <tr>
-
-        <td
-          colspan="7"
-          class="empty"
-        >
-          لا توجد بيانات مطابقة للبحث أو التصفية.
-        </td>
-
-      </tr>
-
-    `;
-
-
-    return;
-
-  }
-
-
-  const sortedStudents =
-    [...students].sort(
-      (
-        first,
-        second
-      ) =>
-
-        first.className.localeCompare(
-          second.className,
-          "ar"
-        ) ||
-
-        first.name.localeCompare(
-          second.name,
-          "ar"
-        )
-    );
-
-
-  sortedStudents.forEach(
-    student => {
-
-      const row =
-        document.createElement(
-          "tr"
-        );
-
-
-      const completionText =
-        student.completed
-          ? `
-            <span class="tag done">
-              مكتمل
-            </span>
-          `
-          : `
-            <span class="tag pending">
-              غير مكتمل
-            </span>
-          `;
-
-
-      const certificateText =
-        student.certificate
-          ? `
-            <span class="tag cert">
-              مستحقة
-            </span>
-          `
-          : `
-            <span class="tag no-cert">
-              —
-            </span>
-          `;
-
-
-      const scoreText =
-        student.completed
-
-          ? `
-            <span
-              class="${scoreClass(
-                student.score
-              )}"
-            >
-              ${toArabicNumber(
-                student.score
-              )}٪
-            </span>
-          `
-
-          : "—";
-
-
-      row.innerHTML = `
-
-        <td class="student-name">
-          ${escapeHtml(
-            student.name
-          )}
-        </td>
-
-        <td>
-          ${escapeHtml(
-            student.className
-          )}
-        </td>
-
-        <td>
-          ${toArabicNumber(
-            student.recordedTests
-          )}
-        </td>
-
-        <td>
-          ${completionText}
-        </td>
-
-        <td>
-          ${scoreText}
-        </td>
-
-        <td>
-          ${certificateText}
-        </td>
-
-        <td>
-          ${formatDate(
-            student.lastLogin
-          )}
-        </td>
-
-      `;
-
-
-      studentsTable.appendChild(
-        row
-      );
-
-    }
-  );
-
-}
-
-
-function escapeHtml(
-  value
-) {
-
-  return String(
-    value ?? ""
-  )
-    .replaceAll(
-      "&",
-      "&amp;"
-    )
-    .replaceAll(
-      "<",
-      "&lt;"
-    )
-    .replaceAll(
-      ">",
-      "&gt;"
-    )
-    .replaceAll(
-      '"',
-      "&quot;"
-    )
-    .replaceAll(
-      "'",
-      "&#039;"
-    );
-
-}
-
-
-classFilter.addEventListener(
-  "change",
-  applyFilters
-);
-
-
-completionFilter.addEventListener(
-  "change",
-  applyFilters
-);
-
-
-searchInput.addEventListener(
-  "input",
-  applyFilters
-);
-
-
-onAuthStateChanged(
-  auth,
-  async user => {
-
-    if (!user) {
-
-      statusBox.className =
-        "status-box error";
-
-
-      statusBox.textContent =
-        "🔒 يلزم تسجيل الدخول بحساب المعلمة لفتح لوحة المتابعة.";
-
-
-      dashboardContent.style.display =
-        "none";
-
-
-      return;
-
-    }
-
-
-    if (
-      user.uid !==
-      TEACHER_UID
-    ) {
-
-      statusBox.className =
-        "status-box error";
-
-
-      statusBox.textContent =
-        "⛔ هذه الصفحة مخصصة لحساب المعلمة فقط.";
-
-
-      dashboardContent.style.display =
-        "none";
-
-
-      return;
-
-    }
-
-
-    dashboardContent.style.display =
-      "block";
-
-
-    await loadStudents();
-
-  }
-);
 
   </script>
 
 </body>
-
 </html>
