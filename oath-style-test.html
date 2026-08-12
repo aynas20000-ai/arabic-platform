@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 
-  <title>اختبري مهارتك | أسلوب القسم</title>
+  <title>اختبار أسلوب القسم | منصة آفاق</title>
 
   <style>
     :root{
@@ -168,15 +168,15 @@
     }
 
     .opt.correct{
-      background:#f0ecf6;
-      border-color:var(--p2);
-      color:var(--pd);
+      color:#25663c;
+      background:#eaf6ee;
+      border-color:#4d9b64;
     }
 
     .opt.wrong{
-      background:#fff8ec;
-      border-color:var(--g2);
-      color:#66522e;
+      color:#9c3547;
+      background:#fff0f2;
+      border-color:#c95c70;
     }
 
     .opt:disabled{
@@ -197,15 +197,15 @@
     }
 
     .feedback.good{
-      background:#f3edf8;
-      border:1px solid #c9b8d4;
-      color:var(--pd);
+      color:#25663c;
+      background:#eaf6ee;
+      border:1px solid #4d9b64;
     }
 
     .feedback.bad{
-      background:#fff9ec;
-      border:1px solid var(--g2);
-      color:#66522e;
+      color:#9c3547;
+      background:#fff0f2;
+      border:1px solid #c95c70;
     }
 
     .next{
@@ -233,9 +233,34 @@
     }
 
     .score{
+      margin:10px 0;
       font-size:40px;
       color:var(--g);
       font-weight:bold;
+    }
+
+    .save-status{
+      min-height:26px;
+      margin:4px 0 2px;
+      padding:5px 8px;
+      border-radius:11px;
+      font-size:12px;
+      font-weight:bold;
+    }
+
+    .save-status.saved{
+      color:#2e6f42;
+      background:#edf8f0;
+    }
+
+    .save-status.waiting{
+      color:#66522e;
+      background:#fff8e8;
+    }
+
+    .save-status.error{
+      color:#8a3d3d;
+      background:#fff0f0;
     }
 
     .restart,
@@ -254,6 +279,7 @@
       background:linear-gradient(145deg,var(--p2),var(--p));
       color:#fff;
       font:inherit;
+      font-weight:bold;
       cursor:pointer;
     }
 
@@ -389,7 +415,7 @@
   </h1>
 
   <p>
-    ١٠ أسئلة • اختاري الإجابة الأدق • تعقيب فوري 🌟
+    ١٠ أسئلة • اختاري الإجابة الأدق • تغذية راجعة فورية 🌟
   </p>
 
 </header>
@@ -403,7 +429,7 @@
     </span>
 
     <span id="correctCount">
-      الصحيح: ٠
+      الإجابات الصحيحة: ٠
     </span>
 
   </div>
@@ -440,6 +466,8 @@
 
     <p id="message"></p>
 
+    <div class="save-status" id="saveStatus"></div>
+
     <button class="restart" onclick="restartQuiz()">
       🔄 أعيدي الاختبار
     </button>
@@ -464,7 +492,47 @@
 
 <div class="burst" id="burst"></div>
 
-<script>
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+
+import {
+  getAuth,
+  onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  updateDoc,
+  serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB48av9gx4jzFyYoUQtcLwaR52qETevKGs",
+  authDomain: "afaq-language-platform.firebaseapp.com",
+  projectId: "afaq-language-platform",
+  storageBucket: "afaq-language-platform.firebasestorage.app",
+  messagingSenderId: "362601061474",
+  appId: "1:362601061474:web:bc405291332b9e4ef9453b"
+};
+
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+let currentUser = null;
+
+onAuthStateChanged(auth,(user)=>{
+  currentUser = user;
+});
+
 
 const questions = [
 
@@ -486,7 +554,7 @@ const questions = [
   "أحسنتِ 🌟 الغرض الرئيس من القسم هو توكيد الخبر وتقوية معناه.",
 
   bad:
-  "فكري في سبب استخدام المتكلم للقسم: يريد أن يجعل خبره أقوى وأشد توكيدًا."
+  "فكري في سبب استخدام المتكلم للقسم؛ فهو يريد أن يجعل خبره أقوى وأشد توكيدًا."
 },
 
 {
@@ -504,10 +572,10 @@ const questions = [
   a:1,
 
   ok:
-  "ممتازة ✨ الواو هي أداة القسم، ولفظ الجلالة هو المقسَم به.",
+  "أحسنتِ ✨ الواو هي أداة القسم، ولفظ الجلالة هو المقسَم به.",
 
   bad:
-  "في «واللهِ»: الواو أداة القسم، أما «اللهِ» فهو المقسَم به."
+  "في «واللهِ»: الواو أداة القسم، أما لفظ الجلالة «اللهِ» فهو المقسَم به."
 },
 
 {
@@ -525,10 +593,10 @@ const questions = [
   a:1,
 
   ok:
-  "رائعة 👏 لفظ الجلالة «الله» هو المقسَم به.",
+  "أحسنتِ 👏 لفظ الجلالة «الله» هو المقسَم به.",
 
   bad:
-  "الباء هي أداة القسم، والاسم الذي وقع عليه القسم هو «الله»."
+  "الباء أداة القسم، والاسم الذي وقع عليه القسم هو لفظ الجلالة «الله»."
 },
 
 {
@@ -546,10 +614,10 @@ const questions = [
   a:2,
 
   ok:
-  "إجابة دقيقة 💜 «لأساعدنَّ المحتاجَ» هي الجملة التي بيّنت ما أقسم عليه المتكلم.",
+  "إجابة دقيقة 💜 «لأساعدنَّ المحتاجَ» هي جملة جواب القسم.",
 
   bad:
-  "جواب القسم هو الكلام الذي يوضح الأمر الذي أقسم المتكلم على فعله."
+  "جواب القسم هو الكلام الذي يبيّن الأمر الذي أقسم المتكلم عليه."
 },
 
 {
@@ -570,7 +638,7 @@ const questions = [
   "أحسنتِ 🎯 «أقسم» من الأفعال الدالة على القسم، ومثله «أحلف».",
 
   bad:
-  "ابحثي عن فعل يدل صراحة على الحلف."
+  "ابحثي عن فعل يدل صراحة على الحلف والقسم."
 },
 
 {
@@ -588,10 +656,10 @@ const questions = [
   a:0,
 
   ok:
-  "ممتازة 🌟 فيها أداة قسم ومقسَم به وجواب للقسم.",
+  "أحسنتِ 🌟 اشتملت الجملة على أداة قسم، ومقسَم به، وجواب للقسم.",
 
   bad:
-  "ابحثي عن تركيب يبدأ بحرف قسم ويتبعه مقسَم به ثم جواب للقسم."
+  "ابحثي عن تركيب يبدأ بحرف قسم، ويتبعه المقسَم به، ثم جواب القسم."
 },
 
 {
@@ -609,10 +677,10 @@ const questions = [
   a:0,
 
   ok:
-  "إجابة رائعة 👏 واو القسم حرف جر، ولذلك لفظ الجلالة مقسَم به مجرور.",
+  "إجابة صحيحة 👏 واو القسم حرف جر، ولفظ الجلالة مقسَم به مجرور.",
 
   bad:
-  "حروف القسم من حروف الجر، لذا يجر الاسم بعدها."
+  "واو القسم من حروف الجر؛ لذلك يُجر الاسم الواقع بعدها."
 },
 
 {
@@ -630,10 +698,10 @@ const questions = [
   a:0,
 
   ok:
-  "بطلة ✨ اللام في أول الفعل ونون التوكيد في آخره زادتا المعنى توكيدًا.",
+  "أحسنتِ ✨ لام جواب القسم في أول الفعل، ونون التوكيد في آخره، زادتا المعنى توكيدًا.",
 
   bad:
-  "انظري إلى أول «لأجتهدنَّ» وآخرها: لام في البداية ونون مشددة في النهاية."
+  "انظري إلى «لأجتهدنَّ»: اللام في أول الفعل، ونون التوكيد المشددة في آخره."
 },
 
 {
@@ -651,10 +719,10 @@ const questions = [
   a:1,
 
   ok:
-  "رائعة جدًا 🌟 الواو في «محمدٌ وعليٌّ» عطفت عليًّا على محمد، فهي واو عطف.",
+  "أحسنتِ جدًا 🌟 الواو في «محمدٌ وعليٌّ» عطفت «عليًّا» على «محمد»، فهي واو عطف.",
 
   bad:
-  "واو القسم تدخل على المقسَم به، أما هنا فقد ربطت بين اسمين."
+  "واو القسم تدخل على المقسَم به، أما الواو هنا فقد ربطت بين اسمين."
 },
 
 {
@@ -672,23 +740,26 @@ const questions = [
   a:2,
 
   ok:
-  "إتقان رائع 🏆 جواب القسم هو الجملة التي توضّح الأمر الذي وقع عليه القسم.",
+  "أحسنتِ 🏆 جواب القسم هو الجملة التي توضّح الأمر الذي وقع عليه القسم.",
 
   bad:
-  "فرّقي بين الأداة والمقسَم به والجواب: الجواب هو ما يبين الشيء الذي أقسم عليه المتكلم."
+  "فرّقي بين أداة القسم، والمقسَم به، وجواب القسم؛ فالجواب هو ما يبيّن الأمر الذي أقسم عليه المتكلم."
 }
 
 ];
 
+
 let index = 0;
 let score = 0;
 let answered = false;
+
 
 const arabicDigits = n =>
   String(n).replace(
     /\d/g,
     d => '٠١٢٣٤٥٦٧٨٩'[d]
   );
+
 
 function tone(ok){
 
@@ -754,6 +825,7 @@ function tone(ok){
 
 }
 
+
 function confetti(){
 
   const burst =
@@ -800,6 +872,7 @@ function confetti(){
 
 }
 
+
 function render(){
 
   answered = false;
@@ -824,7 +897,7 @@ function render(){
   document
     .getElementById('correctCount')
     .textContent =
-    'الصحيح: ' +
+    'الإجابات الصحيحة: ' +
     arabicDigits(score);
 
   document
@@ -901,6 +974,7 @@ function render(){
 
 }
 
+
 function choose(choice,button){
 
   if(answered) return;
@@ -972,7 +1046,7 @@ function choose(choice,button){
   document
     .getElementById('correctCount')
     .textContent =
-    'الصحيح: ' +
+    'الإجابات الصحيحة: ' +
     arabicDigits(score);
 
   document
@@ -985,13 +1059,14 @@ function choose(choice,button){
 
   next.textContent =
     index === questions.length-1
-    ? 'شوفي نتيجتك ✨'
-    : 'كمّلي الاختبار ←';
+    ? 'شاهدي نتيجتكِ ✨'
+    : 'تابعي الاختبار ←';
 
   next.style.display =
     'block';
 
 }
+
 
 document
   .getElementById('next')
@@ -1010,6 +1085,140 @@ document
     }
 
   };
+
+
+async function saveResult(){
+
+  const saveStatus =
+    document.getElementById('saveStatus');
+
+
+  if(!currentUser){
+
+    saveStatus.className =
+      'save-status waiting';
+
+    saveStatus.textContent =
+      'ℹ️ لم تُحفظ النتيجة؛ يلزم تسجيل الدخول لإضافتها إلى سجلّكِ.';
+
+    return;
+
+  }
+
+
+  saveStatus.className =
+    'save-status waiting';
+
+  saveStatus.textContent =
+    'جارٍ حفظ نتيجتكِ في سجلّكِ...';
+
+
+  try{
+
+    const studentRef =
+      doc(
+        db,
+        "students",
+        currentUser.uid
+      );
+
+
+    const studentSnap =
+      await getDoc(studentRef);
+
+
+    if(!studentSnap.exists()){
+
+      throw new Error(
+        "student-document-not-found"
+      );
+
+    }
+
+
+    const data =
+      studentSnap.data();
+
+
+    const oldTest =
+      data?.["اختبارات_الفصل_الأول"]?.["أسلوب_القسم"] || {};
+
+
+    const oldAttempts =
+      Number(
+        oldTest["عدد_المحاولات"] || 0
+      );
+
+
+    const oldBest =
+      Number(
+        oldTest["أعلى_درجة"] || 0
+      );
+
+
+    const percentage =
+      Math.round(
+        (score / questions.length) * 100
+      );
+
+
+    const bestScore =
+      Math.max(
+        oldBest,
+        score
+      );
+
+
+    await updateDoc(
+      studentRef,
+      {
+
+        "اختبارات_الفصل_الأول.أسلوب_القسم.اسم_الاختبار":
+          "اختبار أسلوب القسم",
+
+        "اختبارات_الفصل_الأول.أسلوب_القسم.الدرجة":
+          score,
+
+        "اختبارات_الفصل_الأول.أسلوب_القسم.الدرجة_من":
+          questions.length,
+
+        "اختبارات_الفصل_الأول.أسلوب_القسم.النسبة":
+          percentage,
+
+        "اختبارات_الفصل_الأول.أسلوب_القسم.عدد_المحاولات":
+          oldAttempts + 1,
+
+        "اختبارات_الفصل_الأول.أسلوب_القسم.أعلى_درجة":
+          bestScore,
+
+        "اختبارات_الفصل_الأول.أسلوب_القسم.آخر_محاولة":
+          serverTimestamp()
+
+      }
+    );
+
+
+    saveStatus.className =
+      'save-status saved';
+
+    saveStatus.textContent =
+      '✅ حُفظت نتيجتكِ في سجل الفصل الدراسي الأول.';
+
+
+  }catch(error){
+
+    console.error(error);
+
+    saveStatus.className =
+      'save-status error';
+
+    saveStatus.textContent =
+      'تعذّر حفظ النتيجة، ولكن نتيجتكِ في الاختبار لم تتأثر.';
+
+  }
+
+}
+
 
 function finish(){
 
@@ -1051,28 +1260,33 @@ function finish(){
     score /
     questions.length;
 
+
   document
     .getElementById('message')
     .textContent =
-
     pct === 1
-    ? 'إتقان كامل لأسلوب القسم 🏆'
+    ? 'أحسنتِ! أتقنتِ أسلوب القسم إتقانًا كاملًا 🏆'
 
     : pct >= .8
-    ? 'ممتازة جدًا 🌟 أتقنتِ أركان القسم وأدواته وجوابه.'
+    ? 'ممتاز جدًا 🌟 أتقنتِ أركان أسلوب القسم وأدواته وجوابه.'
 
     : pct >= .6
-    ? 'أداء جميل 👏 راجعي أداة القسم والمقسَم به وجواب القسم ثم أعيدي الاختبار.'
+    ? 'أداء جيد 👏 راجعي أداة القسم، والمقسَم به، وجواب القسم، ثم أعيدي الاختبار.'
 
-    : 'راجعي ملف درس أسلوب القسم، ثم عودي للاختبار بثقة.';
+    : 'راجعي ملف درس أسلوب القسم، ثم أعيدي الاختبار بثقة.';
+
 
   if(pct >= .8){
     confetti();
   }
 
+
+  saveResult();
+
 }
 
-function restartQuiz(){
+
+window.restartQuiz = function(){
 
   index = 0;
   score = 0;
@@ -1098,9 +1312,15 @@ function restartQuiz(){
     .classList
     .remove('show');
 
+  document
+    .getElementById('saveStatus')
+    .textContent =
+    '';
+
   render();
 
-}
+};
+
 
 render();
 
