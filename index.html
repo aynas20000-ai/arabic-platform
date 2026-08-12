@@ -47,34 +47,49 @@
   const provider =
     new GoogleAuthProvider();
 
+
   provider.setCustomParameters({
     prompt: "select_account"
   });
 
 
   const loginBtn =
-    document.getElementById("googleLoginBtn");
+    document.getElementById(
+      "googleLoginBtn"
+    );
+
 
   const studentStatus =
-    document.getElementById("studentStatus");
+    document.getElementById(
+      "studentStatus"
+    );
+
 
   const teacherDashboardBtn =
-    document.getElementById("teacherDashboardBtn");
+    document.getElementById(
+      "teacherDashboardBtn"
+    );
+
 
   const TEACHER_UID =
     "oIqOvhIaC3TQyr6WcXCW9FZhZio2";
-    function showLoginError(error){
+
+
+  function showLoginError(error){
 
     console.error(
       "Firebase login error:",
       error
     );
 
+
     studentStatus.className =
       "student-status show error";
 
+
     const code =
-      error?.code || "خطأ غير معروف";
+      error?.code ||
+      "خطأ غير معروف";
 
 
     if(
@@ -83,7 +98,7 @@
     ){
 
       studentStatus.textContent =
-        "تعذر فتح نافذة تسجيل الدخول، وسيتم استخدام طريقة أخرى للدخول.";
+        "تعذر فتح نافذة تسجيل الدخول.";
 
     }
 
@@ -113,14 +128,25 @@
     ){
 
       studentStatus.textContent =
-        "تعذّر الاتصال بخدمة تسجيل الدخول. تحققي من الإنترنت ثم حاولي مرة أخرى.";
+        "تعذر الاتصال بخدمة تسجيل الدخول. تحققي من الإنترنت ثم حاولي مرة أخرى.";
+
+    }
+
+    else if(
+      code ===
+      "auth/cancelled-popup-request"
+    ){
+
+      studentStatus.textContent =
+        "تم إلغاء محاولة تسجيل الدخول السابقة. حاولي مرة أخرى.";
 
     }
 
     else{
 
       studentStatus.textContent =
-        "لم يكتمل تسجيل الدخول. رمز الخطأ: " + code;
+        "لم يكتمل تسجيل الدخول. رمز الخطأ: " +
+        code;
 
     }
 
@@ -141,7 +167,10 @@
 
       catch(error){
 
-        console.error(error);
+        console.error(
+          "Logout error:",
+          error
+        );
 
       }
 
@@ -153,11 +182,14 @@
     loginBtn.disabled =
       true;
 
+
     loginBtn.textContent =
       "جارٍ فتح تسجيل الدخول...";
 
+
     studentStatus.textContent =
       "";
+
 
     studentStatus.className =
       "student-status";
@@ -181,9 +213,11 @@
 
 
       if(
-        error?.code === "auth/popup-blocked" ||
-        error?.code === "auth/cancelled-popup-request" ||
-        error?.code === "auth/operation-not-supported-in-this-environment"
+        error?.code ===
+          "auth/popup-blocked" ||
+
+        error?.code ===
+          "auth/operation-not-supported-in-this-environment"
       ){
 
         try{
@@ -191,13 +225,16 @@
           studentStatus.className =
             "student-status show";
 
+
           studentStatus.textContent =
-            "جارٍ تحويلكِ إلى تسجيل Google...";
+            "جارٍ تحويلكِ إلى تسجيل الدخول بحساب Google...";
+
 
           await signInWithRedirect(
             auth,
             provider
           );
+
 
           return;
 
@@ -225,6 +262,7 @@
       loginBtn.disabled =
         false;
 
+
       loginBtn.textContent =
         "🔐 تسجيل الدخول بحساب Google";
 
@@ -237,7 +275,10 @@
     "click",
     loginWithGoogle
   );
-    getRedirectResult(auth)
+
+
+  getRedirectResult(auth)
+
     .then((result) => {
 
       if(result?.user){
@@ -250,6 +291,7 @@
       }
 
     })
+
     .catch((error) => {
 
       showLoginError(error);
