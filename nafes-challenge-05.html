@@ -598,7 +598,7 @@
         white
         url("99.jpg")
         center / contain
-        no-repeat;
+            no-repeat;
       box-shadow:
         0 10px 25px
         rgba(0, 0, 0, 0.14);
@@ -1073,7 +1073,8 @@
   </footer>
 
   <script>
-    const challengeName =
+
+const challengeName =
   "الذكاء الاصطناعي";
 
 const mainPassage = `
@@ -1197,8 +1198,7 @@ const questions = [
 
     question:
       "ما العلاقة بين الفقرة الثالثة والفقرة الرابعة؟",
-
-    options: [
+        options: [
       "الثالثة تناقش أثر التقنية في الوظائف، والرابعة تناقش مسؤولية استخدامها.",
       "الثالثة تعرض بيانات طبية، والرابعة ترفضها.",
       "الفقرتان تتحدثان عن سرعة الأنظمة فقط.",
@@ -1332,7 +1332,8 @@ const questions = [
   }
 
 ];
-    const startScreen =
+
+const startScreen =
   document.getElementById("startScreen");
 
 const quizScreen =
@@ -1635,6 +1636,11 @@ function startChallenge() {
   studentName =
     enteredName;
 
+  localStorage.setItem(
+    "nafesStudentName",
+    studentName
+  );
+
   nameWarning
     .classList
     .remove("show");
@@ -1797,8 +1803,7 @@ function restoreAnswer() {
         true;
     }
   );
-
-  if (
+    if (
     selected ===
     item.correct
   ) {
@@ -2037,8 +2042,9 @@ function showNextQuestion() {
   }
 
   finishChallenge();
-      }
-    function getResultMessage() {
+}
+
+function getResultMessage() {
   const percentage =
     Math.round(
       (
@@ -2104,7 +2110,7 @@ function showNextQuestion() {
   };
 }
 
-function finishChallenge() {
+async function finishChallenge() {
   quizScreen
     .classList
     .remove("active");
@@ -2116,6 +2122,14 @@ function finishChallenge() {
   const result =
     getResultMessage();
 
+  const percentage =
+    Math.round(
+      (
+        score /
+        questions.length
+      ) * 100
+    );
+
   resultIcon.textContent =
     result.icon;
 
@@ -2123,7 +2137,7 @@ function finishChallenge() {
     result.title;
 
   resultScore.textContent =
-    `${score} من ${questions.length}`;
+    `${score} من ${questions.length} — ${percentage}٪`;
 
   resultMessage.innerHTML = `
     <strong>
@@ -2138,30 +2152,79 @@ function finishChallenge() {
   certificateName.textContent =
     studentName;
 
+  const savedResult = {
+    name:
+      studentName,
+
+    challenge:
+      challengeName,
+
+    score:
+      score,
+
+    total:
+      questions.length,
+
+    percentage:
+      percentage,
+
+    certificate:
+      percentage >= 80
+  };
+
   localStorage.setItem(
     "nafesChallenge05Result",
-    JSON.stringify({
+    JSON.stringify(savedResult)
+  );
+
+  localStorage.setItem(
+    "nafesChallenge5Result",
+    JSON.stringify(savedResult)
+  );
+
+  localStorage.setItem(
+    "nafesStudentName",
+    studentName
+  );
+
+  if (
+    window.saveNafesChallenge
+  ) {
+    await window.saveNafesChallenge({
+      number: 5,
+
+      title:
+        "تحدي الذكاء الاصطناعي",
+
       name:
         studentName,
-
-      challenge:
-        challengeName,
 
       score:
         score,
 
       total:
         questions.length
-    })
-  );
+    });
+  }
 
-  if (score >= 8) {
-  showCertificateButton.style.display = "inline-flex";
-  celebrate();
-  playTone(true);
-} else {
-  showCertificateButton.style.display = "none";
-}
+  if (
+    percentage >= 80
+  ) {
+    showCertificateButton.style.display =
+      "inline-flex";
+
+    celebrate();
+
+    playTone(true);
+
+  } else {
+    showCertificateButton.style.display =
+      "none";
+
+    certificateShell
+      .classList
+      .remove("show");
+  }
 }
 
 function restartChallenge() {
@@ -2268,9 +2331,26 @@ soundBtn
     }
   );
 
+const rememberedName =
+  localStorage.getItem(
+    "nafesStudentName"
+  );
+
+if (
+  rememberedName
+) {
+  studentNameInput.value =
+    rememberedName;
+}
+
 updateSoundButton();
 
 </script>
+
+<script
+  type="module"
+  src="nafes-challenge-tracker.js"
+></script>
 
 </body>
 </html>
