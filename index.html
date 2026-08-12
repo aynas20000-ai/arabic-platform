@@ -4,6 +4,7 @@
     initializeApp
   } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
 
+
   import {
     getAuth,
     GoogleAuthProvider,
@@ -41,8 +42,10 @@
   const app =
     initializeApp(firebaseConfig);
 
+
   const auth =
     getAuth(app);
+
 
   const provider =
     new GoogleAuthProvider();
@@ -88,13 +91,11 @@
 
 
     const code =
-      error?.code ||
-      "خطأ غير معروف";
+      error?.code || "unknown";
 
 
     if(
-      code ===
-      "auth/popup-blocked"
+      code === "auth/popup-blocked"
     ){
 
       studentStatus.textContent =
@@ -103,8 +104,7 @@
     }
 
     else if(
-      code ===
-      "auth/popup-closed-by-user"
+      code === "auth/popup-closed-by-user"
     ){
 
       studentStatus.textContent =
@@ -113,8 +113,7 @@
     }
 
     else if(
-      code ===
-      "auth/unauthorized-domain"
+      code === "auth/unauthorized-domain"
     ){
 
       studentStatus.textContent =
@@ -123,8 +122,7 @@
     }
 
     else if(
-      code ===
-      "auth/network-request-failed"
+      code === "auth/network-request-failed"
     ){
 
       studentStatus.textContent =
@@ -133,8 +131,7 @@
     }
 
     else if(
-      code ===
-      "auth/cancelled-popup-request"
+      code === "auth/cancelled-popup-request"
     ){
 
       studentStatus.textContent =
@@ -145,15 +142,12 @@
     else{
 
       studentStatus.textContent =
-        "لم يكتمل تسجيل الدخول. رمز الخطأ: " +
-        code;
+        "لم يكتمل تسجيل الدخول. رمز الخطأ: " + code;
 
     }
 
   }
-
-
-  async function loginWithGoogle(){
+    async function loginWithGoogle(){
 
     if(
       auth.currentUser
@@ -213,11 +207,8 @@
 
 
       if(
-        error?.code ===
-          "auth/popup-blocked" ||
-
-        error?.code ===
-          "auth/operation-not-supported-in-this-environment"
+        error?.code === "auth/popup-blocked" ||
+        error?.code === "auth/operation-not-supported-in-this-environment"
       ){
 
         try{
@@ -278,20 +269,6 @@
 
 
   getRedirectResult(auth)
-
-    .then((result) => {
-
-      if(result?.user){
-
-        console.log(
-          "تم تسجيل الدخول بعد التحويل:",
-          result.user
-        );
-
-      }
-
-    })
-
     .catch((error) => {
 
       showLoginError(error);
@@ -329,8 +306,7 @@
 
 
         if(
-          user.uid ===
-          TEACHER_UID
+          user.uid === TEACHER_UID
         ){
 
           teacherDashboardBtn
