@@ -9,7 +9,7 @@
     content="width=device-width, initial-scale=1, viewport-fit=cover"
   >
 
-  <title>اختبري مهارتك | اسم التفضيل</title>
+  <title>اختبار اسم التفضيل | منصة آفاق</title>
 
   <style>
     :root {
@@ -226,9 +226,6 @@
       cursor: pointer;
       text-align: right;
       background: #eef6ff;
-      transition:
-        transform 0.15s ease,
-        border-color 0.15s ease;
     }
 
     .option:nth-child(2) {
@@ -243,46 +240,20 @@
       background: #f3edff;
     }
 
-    .option:active {
-      transform: scale(0.99);
-    }
-
-    .option:disabled {
-      cursor: default;
-    }
-
     .option.correct {
       color: #176642;
       background: #dff7e8;
       border-color: #47ab72;
-      animation: correctPop 0.35s ease;
     }
 
     .option.wrong {
       color: #983a4a;
       background: #ffe3e8;
       border-color: #dc6377;
-      animation: wrongShake 0.35s ease;
     }
 
-    @keyframes correctPop {
-      50% {
-        transform: scale(1.025);
-      }
-    }
-
-    @keyframes wrongShake {
-      25% {
-        transform: translateX(5px);
-      }
-
-      50% {
-        transform: translateX(-5px);
-      }
-
-      75% {
-        transform: translateX(3px);
-      }
+    .option:disabled {
+      cursor: default;
     }
 
     .feedback {
@@ -342,19 +313,6 @@
 
     .result-card.show {
       display: flex;
-      animation: resultAppear 0.5s ease;
-    }
-
-    @keyframes resultAppear {
-      from {
-        transform: scale(0.9);
-        opacity: 0;
-      }
-
-      to {
-        transform: scale(1);
-        opacity: 1;
-      }
     }
 
     .result-icon {
@@ -395,6 +353,31 @@
       font-weight: bold;
     }
 
+    .save-status {
+      min-height: 26px;
+      margin-top: 5px;
+      padding: 6px 9px;
+      font-size: 12px;
+      font-weight: bold;
+      line-height: 1.5;
+      border-radius: 11px;
+    }
+
+    .save-status.saved {
+      color: #2e6f42;
+      background: #edf8f0;
+    }
+
+    .save-status.waiting {
+      color: #66522e;
+      background: #fff8e8;
+    }
+
+    .save-status.error {
+      color: #8a3d3d;
+      background: #fff0f0;
+    }
+
     .result-actions {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -432,51 +415,6 @@
         );
     }
 
-    .wide-button {
-      grid-column: 1 / -1;
-    }
-
-    .flying-star {
-      position: fixed;
-      z-index: 9999;
-      pointer-events: none;
-      font-size: 27px;
-      animation: flyStar 1.1s ease-out forwards;
-    }
-
-    @keyframes flyStar {
-      from {
-        transform: translateY(0) scale(0.4) rotate(0deg);
-        opacity: 1;
-      }
-
-      to {
-        transform: translateY(-150px) scale(1.4) rotate(300deg);
-        opacity: 0;
-      }
-    }
-
-    .celebration-star {
-      position: fixed;
-      top: -40px;
-      z-index: 9998;
-      pointer-events: none;
-      font-size: 24px;
-      animation: starFall 3s linear forwards;
-    }
-
-    @keyframes starFall {
-      from {
-        transform: translateY(-40px) rotate(0deg);
-        opacity: 1;
-      }
-
-      to {
-        transform: translateY(110vh) rotate(720deg);
-        opacity: 0;
-      }
-    }
-
     footer {
       padding: 4px 8px;
       color: #756b7b;
@@ -494,23 +432,8 @@
         font-size: 17px;
       }
 
-      header p,
-      .badge {
-        font-size: 9px;
-      }
-
       main {
         padding: 3px 0;
-      }
-
-      .top-panel {
-        padding: 4px 7px;
-        margin-bottom: 3px;
-      }
-
-      .score-row {
-        margin-bottom: 3px;
-        font-size: 10px;
       }
 
       .quiz-card,
@@ -518,36 +441,8 @@
         padding: 6px;
       }
 
-      .question-number {
-        margin-bottom: 3px;
-        padding: 2px 8px;
-        font-size: 9px;
-      }
-
-      .question-text {
-        margin-bottom: 4px;
-        padding: 5px;
-        font-size: 13px;
-      }
-
-      .options {
-        gap: 3px;
-      }
-
       .option {
         padding: 5px 7px;
-        font-size: 11px;
-      }
-
-      .feedback {
-        margin-top: 3px;
-        padding: 4px 6px;
-        font-size: 10px;
-      }
-
-      .next-button {
-        margin-top: 3px;
-        padding: 5px;
         font-size: 11px;
       }
     }
@@ -569,11 +464,10 @@
     </h1>
 
     <p>
-      اختاري الإجابة الصحيحة واجمعي نجوم الإتقان ⭐
+      ١٠ أسئلة • اختاري الإجابة الأدق • تغذية راجعة فورية 🌟
     </p>
 
   </header>
-
 
   <main>
 
@@ -592,33 +486,26 @@
         </div>
 
         <div class="score-box">
-          الصحيح:
-          <span id="score">
-            ٠
-          </span>
+          الإجابات الصحيحة:
+          <span id="score">٠</span>
           من ١٠
         </div>
 
         <div class="stars-score">
           ⭐
-          <span id="starScore">
-            ٠
-          </span>
+          <span id="starScore">٠</span>
         </div>
 
       </div>
 
       <div class="progress-track">
-
         <div
           class="progress-fill"
           id="progressFill"
         ></div>
-
       </div>
 
     </div>
-
 
     <section
       class="quiz-card"
@@ -657,7 +544,6 @@
 
     </section>
 
-
     <section
       class="result-card"
       id="resultCard"
@@ -671,7 +557,7 @@
       </div>
 
       <h2>
-        اكتمل الاختبار
+        اكتمل اختبار اسم التفضيل
       </h2>
 
       <div
@@ -689,6 +575,11 @@
         id="resultMessage"
       ></div>
 
+      <div
+        class="save-status"
+        id="saveStatus"
+      ></div>
+
       <div class="result-actions">
 
         <button
@@ -696,14 +587,14 @@
           id="restartButton"
           type="button"
         >
-          🔄 إعادة الاختبار
+          🔄 أعيدي الاختبار
         </button>
 
         <a
           class="back-button"
           href="detail-style-file.html"
         >
-          📘 ملف الدرس
+          📘 راجعي ملف الدرس
         </a>
 
         <a
@@ -726,928 +617,1156 @@
 
   </main>
 
-
   <footer>
     منصة آفاق اللغة | لغتي الخالدة | الصف الثالث المتوسط
   </footer>
 
 </div>
+<script type="module">
 
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
 
-<script>
+import {
+  getAuth,
+  onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
 
-  const questions = [
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  updateDoc,
+  serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 
-    {
-      question:
-        "ما اسم التفضيل في الجملة: «العلم أنفع من المال»؟",
 
-      options: [
-        "العلم",
-        "أنفع",
-        "المال",
-        "من"
-      ],
+const firebaseConfig = {
+  apiKey: "AIzaSyB48av9gx4jzFyYoUQtcLwaR52qETevKGs",
+  authDomain: "afaq-language-platform.firebaseapp.com",
+  projectId: "afaq-language-platform",
+  storageBucket: "afaq-language-platform.firebasestorage.app",
+  messagingSenderId: "362601061474",
+  appId: "1:362601061474:web:bc405291332b9e4ef9453b"
+};
 
-      answer: 1,
 
-      explanation:
-        "«أنفع» اسم تفضيل؛ لأنه يدل على زيادة العلم في صفة النفع."
-    },
+const app =
+  initializeApp(firebaseConfig);
 
+const auth =
+  getAuth(app);
 
-    {
-      question:
-        "ما المفضَّل في الجملة: «المسجد الحرام أطهر بقاع الأرض»؟",
+const db =
+  getFirestore(app);
 
-      options: [
-        "أطهر",
-        "بقاع",
-        "الأرض",
-        "المسجد الحرام"
-      ],
+let currentUser = null;
 
-      answer: 3,
+onAuthStateChanged(
+  auth,
+  user => {
+    currentUser = user;
+  }
+);
 
-      explanation:
-        "المسجد الحرام هو الذي زاد في صفة الطهارة، ولذلك هو المفضَّل."
-    },
 
+const questions = [
 
-    {
-      question:
-        "ما المفضَّل عليه في الجملة: «الصدق أفضل من الكذب»؟",
+  {
+    question:
+      "ما اسم التفضيل في الجملة: «العلم أنفع من المال»؟",
 
-      options: [
-        "الصدق",
-        "أفضل",
-        "الكذب",
-        "من"
-      ],
+    options: [
+      "العلم",
+      "أنفع",
+      "المال",
+      "من"
+    ],
 
-      answer: 2,
+    answer: 1,
 
-      explanation:
-        "الكذب هو الطرف الذي فُضِّل عليه الصدق."
-    },
+    explanation:
+      "«أنفع» اسم تفضيل؛ لأنه يدل على زيادة العلم في صفة النفع."
+  },
 
 
-    {
-      question:
-        "أي الكلمات الآتية اسم تفضيل؟",
+  {
+    question:
+      "ما المفضَّل في الجملة: «المسجد الحرام أطهر بقاع الأرض»؟",
 
-      options: [
-        "أحمر",
-        "أفضل",
-        "أعرج",
-        "أعور"
-      ],
+    options: [
+      "أطهر",
+      "بقاع",
+      "الأرض",
+      "المسجد الحرام"
+    ],
 
-      answer: 1,
+    answer: 3,
 
-      explanation:
-        "«أفضل» يدل على المقارنة وزيادة أحد الطرفين في صفة مشتركة."
-    },
+    explanation:
+      "المسجد الحرام هو الذي زاد في صفة الطهارة، ولذلك هو المفضَّل."
+  },
 
 
-    {
-      question:
-        "أي جملة تشتمل على أسلوب تفضيل؟",
+  {
+    question:
+      "ما المفضَّل عليه في الجملة: «الصدق أفضل من الكذب»؟",
 
-      options: [
-        "السماء صافية",
-        "الحديقة جميلة",
-        "الرياض أكبر من القرية",
-        "حضر الطالب مبكرًا"
-      ],
+    options: [
+      "الصدق",
+      "أفضل",
+      "الكذب",
+      "من"
+    ],
 
-      answer: 2,
+    answer: 2,
 
-      explanation:
-        "في الجملة مقارنة بين الرياض والقرية في صفة الكِبَر."
-    },
+    explanation:
+      "الكذب هو الطرف الذي فُضِّل عليه الصدق."
+  },
 
 
-    {
-      question:
-        "ما وزن اسم التفضيل غالبًا؟",
+  {
+    question:
+      "أي الكلمات الآتية اسم تفضيل؟",
 
-      options: [
-        "فاعل",
-        "مفعول",
-        "أفعل",
-        "فعيل"
-      ],
+    options: [
+      "أحمر",
+      "أفضل",
+      "أعرج",
+      "أعور"
+    ],
 
-      answer: 2,
+    answer: 1,
 
-      explanation:
-        "يُصاغ اسم التفضيل غالبًا على وزن «أفعل»."
-    },
+    explanation:
+      "«أفضل» يدل على المقارنة وزيادة أحد الطرفين في صفة مشتركة."
+  },
 
 
-    {
-      question:
-        "أي الكلمات الآتية تدل على التفضيل مع أنها ليست على وزن «أفعل»؟",
+  {
+    question:
+      "أي جملة تشتمل على أسلوب تفضيل؟",
 
-      options: [
-        "خير",
-        "أكبر",
-        "أجمل",
-        "أوسع"
-      ],
+    options: [
+      "السماء صافية",
+      "الحديقة جميلة",
+      "الرياض أكبر من القرية",
+      "حضر الطالب مبكرًا"
+    ],
 
-      answer: 0,
+    answer: 2,
 
-      explanation:
-        "«خير» اسم تفضيل سماعي، وكذلك كلمة «شر»."
-    },
+    explanation:
+      "في الجملة مقارنة بين الرياض والقرية في صفة الكِبَر."
+  },
 
 
-    {
-      question:
-        "ما الأركان الصحيحة لأسلوب التفضيل؟",
+  {
+    question:
+      "ما وزن اسم التفضيل غالبًا؟",
 
-      options: [
-        "فعل وفاعل ومفعول به",
-        "مبتدأ وخبر فقط",
-        "المفضَّل واسم التفضيل والمفضَّل عليه",
-        "أداة شرط وفعل شرط وجواب شرط"
-      ],
+    options: [
+      "فاعل",
+      "مفعول",
+      "أفعل",
+      "فعيل"
+    ],
 
-      answer: 2,
+    answer: 2,
 
-      explanation:
-        "يتكون أسلوب التفضيل من المفضَّل، واسم التفضيل، والمفضَّل عليه."
-    },
+    explanation:
+      "يُصاغ اسم التفضيل غالبًا على وزن «أفعل»."
+  },
 
 
-    {
-      question:
-        "ما الصفة المشتركة في الجملة: «الطائرة أسرع من السيارة»؟",
-
-      options: [
-        "السرعة",
-        "الحجم",
-        "الجمال",
-        "اللون"
-      ],
+  {
+    question:
+      "أي الكلمات الآتية تدل على التفضيل مع أنها ليست على وزن «أفعل»؟",
 
-      answer: 0,
-
-      explanation:
-        "اشتركت الطائرة والسيارة في صفة السرعة، وزادت الطائرة فيها."
-    },
-
-
-    {
-      question:
-        "كيف نتأكد أن الكلمة اسم تفضيل؟",
-
-      options: [
-        "من شكل الكلمة فقط",
-        "من وجود حرف الألف",
-        "من المقارنة والصفة المشتركة وزيادة أحد الطرفين",
-        "من طول الجملة"
-      ],
-
-      answer: 2,
-
-      explanation:
-        "السياق هو الأساس: مقارنة، وصفة مشتركة، وزيادة أحد الطرفين فيها."
-    }
-
-  ];
-
-
-  const arabicNumbers = [
-    "الأول",
-    "الثاني",
-    "الثالث",
-    "الرابع",
-    "الخامس",
-    "السادس",
-    "السابع",
-    "الثامن",
-    "التاسع",
-    "العاشر"
-  ];
-
-
-  const toArabicDigits = value =>
-    String(value).replace(
-      /\d/g,
-      digit => "٠١٢٣٤٥٦٧٨٩"[digit]
-    );
-
-
-  let currentQuestion = 0;
-  let score = 0;
-  let answered = false;
-
-
-  const questionCounter =
-    document.getElementById(
-      "questionCounter"
-    );
-
-  const scoreElement =
-    document.getElementById(
-      "score"
-    );
-
-  const starScore =
-    document.getElementById(
-      "starScore"
-    );
+    options: [
+      "خير",
+      "أكبر",
+      "أجمل",
+      "أوسع"
+    ],
 
-  const progressFill =
-    document.getElementById(
-      "progressFill"
-    );
+    answer: 0,
 
-  const questionNumber =
-    document.getElementById(
-      "questionNumber"
-    );
+    explanation:
+      "«خير» اسم تفضيل سماعي، وكذلك كلمة «شر»."
+  },
 
-  const questionText =
-    document.getElementById(
-      "questionText"
-    );
 
-  const optionsContainer =
-    document.getElementById(
-      "options"
-    );
+  {
+    question:
+      "ما الأركان الصحيحة لأسلوب التفضيل؟",
 
-  const feedback =
-    document.getElementById(
-      "feedback"
-    );
-
-  const nextButton =
-    document.getElementById(
-      "nextButton"
-    );
+    options: [
+      "فعل وفاعل ومفعول به",
+      "مبتدأ وخبر فقط",
+      "المفضَّل واسم التفضيل والمفضَّل عليه",
+      "أداة شرط وفعل شرط وجواب شرط"
+    ],
 
-  const quizCard =
-    document.getElementById(
-      "quizCard"
-    );
+    answer: 2,
 
-  const resultCard =
-    document.getElementById(
-      "resultCard"
-    );
+    explanation:
+      "يتكون أسلوب التفضيل من المفضَّل، واسم التفضيل، والمفضَّل عليه."
+  },
 
-  const topPanel =
-    document.getElementById(
-      "topPanel"
-    );
 
-  const finalScore =
-    document.getElementById(
-      "finalScore"
-    );
+  {
+    question:
+      "ما الصفة المشتركة في الجملة: «الطائرة أسرع من السيارة»؟",
 
-  const finalStars =
-    document.getElementById(
-      "finalStars"
-    );
+    options: [
+      "السرعة",
+      "الحجم",
+      "الجمال",
+      "اللون"
+    ],
 
-  const resultMessage =
-    document.getElementById(
-      "resultMessage"
-    );
+    answer: 0,
 
-  const resultIcon =
-    document.getElementById(
-      "resultIcon"
-    );
+    explanation:
+      "اشتركت الطائرة والسيارة في صفة السرعة، وزادت الطائرة فيها."
+  },
 
-  const restartButton =
-    document.getElementById(
-      "restartButton"
-    );
 
+  {
+    question:
+      "كيف نتأكد أن الكلمة اسم تفضيل؟",
 
-  function playTone(
-    frequency,
-    duration,
-    type = "sine"
-  ) {
+    options: [
+      "من شكل الكلمة فقط",
+      "من وجود حرف الألف",
+      "من المقارنة والصفة المشتركة وزيادة أحد الطرفين",
+      "من طول الجملة"
+    ],
 
-    try {
+    answer: 2,
 
-      const AudioContextClass =
-        window.AudioContext ||
-        window.webkitAudioContext;
-
-      if (!AudioContextClass) {
-        return;
-      }
-
-      const audio =
-        new AudioContextClass();
-
-      const oscillator =
-        audio.createOscillator();
-
-      const gain =
-        audio.createGain();
-
-      oscillator.type = type;
-
-      oscillator.frequency.value =
-        frequency;
-
-      oscillator.connect(gain);
-
-      gain.connect(
-        audio.destination
-      );
-
-      gain.gain.setValueAtTime(
-        0.1,
-        audio.currentTime
-      );
-
-      gain.gain.exponentialRampToValueAtTime(
-        0.001,
-        audio.currentTime +
-        duration
-      );
-
-      oscillator.start();
-
-      oscillator.stop(
-        audio.currentTime +
-        duration
-      );
-
-    } catch (error) {}
-
+    explanation:
+      "السياق هو الأساس: مقارنة، وصفة مشتركة، وزيادة أحد الطرفين فيها."
   }
 
+];
 
-  function playCorrectSound() {
 
-    playTone(
-      523.25,
-      0.15
+const arabicNumbers = [
+  "الأول",
+  "الثاني",
+  "الثالث",
+  "الرابع",
+  "الخامس",
+  "السادس",
+  "السابع",
+  "الثامن",
+  "التاسع",
+  "العاشر"
+];
+
+
+const toArabicDigits = value =>
+  String(value).replace(
+    /\d/g,
+    digit => "٠١٢٣٤٥٦٧٨٩"[digit]
+  );
+
+
+let currentQuestion = 0;
+let score = 0;
+let answered = false;
+
+
+const questionCounter =
+  document.getElementById(
+    "questionCounter"
+  );
+
+const scoreElement =
+  document.getElementById(
+    "score"
+  );
+
+const starScore =
+  document.getElementById(
+    "starScore"
+  );
+
+const progressFill =
+  document.getElementById(
+    "progressFill"
+  );
+
+const questionNumber =
+  document.getElementById(
+    "questionNumber"
+  );
+
+const questionText =
+  document.getElementById(
+    "questionText"
+  );
+
+const optionsContainer =
+  document.getElementById(
+    "options"
+  );
+
+const feedback =
+  document.getElementById(
+    "feedback"
+  );
+
+const nextButton =
+  document.getElementById(
+    "nextButton"
+  );
+
+const quizCard =
+  document.getElementById(
+    "quizCard"
+  );
+
+const resultCard =
+  document.getElementById(
+    "resultCard"
+  );
+
+const topPanel =
+  document.getElementById(
+    "topPanel"
+  );
+
+const finalScore =
+  document.getElementById(
+    "finalScore"
+  );
+
+const finalStars =
+  document.getElementById(
+    "finalStars"
+  );
+
+const resultMessage =
+  document.getElementById(
+    "resultMessage"
+  );
+
+const resultIcon =
+  document.getElementById(
+    "resultIcon"
+  );
+
+const restartButton =
+  document.getElementById(
+    "restartButton"
+  );
+
+const saveStatus =
+  document.getElementById(
+    "saveStatus"
+  );
+
+
+function loadQuestion() {
+
+  answered = false;
+
+  const current =
+    questions[currentQuestion];
+
+
+  questionCounter.textContent =
+    "السؤال " +
+    toArabicDigits(
+      currentQuestion + 1
+    ) +
+    " من " +
+    toArabicDigits(
+      questions.length
     );
 
-    setTimeout(
-      () =>
-        playTone(
-          659.25,
-          0.18
-        ),
-      120
-    );
 
-    setTimeout(
-      () =>
-        playTone(
-          783.99,
-          0.2
-        ),
-      240
-    );
+  scoreElement.textContent =
+    toArabicDigits(score);
 
-  }
+  starScore.textContent =
+    toArabicDigits(score);
 
 
-  function playWrongSound() {
-
-    playTone(
-      220,
-      0.28,
-      "triangle"
-    );
-
-  }
-
-
-  function playCelebrationSound() {
-
-    const notes = [
-      523.25,
-      659.25,
-      783.99,
-      1046.5
-    ];
-
-    notes.forEach(
-      (frequency, index) => {
-
-        setTimeout(
-          () =>
-            playTone(
-              frequency,
-              0.22
-            ),
-          index * 130
-        );
-
-      }
-    );
-
-  }
-
-
-  function showFlyingStars(x, y) {
-
-    for (
-      let i = 0;
-      i < 7;
-      i++
-    ) {
-
-      const star =
-        document.createElement(
-          "div"
-        );
-
-      star.className =
-        "flying-star";
-
-      star.textContent =
-        i % 2 === 0
-          ? "⭐"
-          : "✨";
-
-      star.style.left =
-        x +
-        (
-          Math.random() * 100 -
-          50
-        ) +
-        "px";
-
-      star.style.top =
-        y +
-        (
-          Math.random() * 40 -
-          20
-        ) +
-        "px";
-
-      document.body.appendChild(
-        star
-      );
-
-      setTimeout(
-        () => star.remove(),
-        1300
-      );
-
-    }
-
-  }
-
-
-  function celebrationStars() {
-
-    const shapes = [
-      "⭐",
-      "✨",
-      "🌟",
-      "💫"
-    ];
-
-    for (
-      let i = 0;
-      i < 45;
-      i++
-    ) {
-
-      setTimeout(
-        () => {
-
-          const star =
-            docume
-                      .createElement(
-              "div"
-            );
-
-          star.className =
-            "celebration-star";
-
-          star.textContent =
-            shapes[
-              Math.floor(
-                Math.random() *
-                shapes.length
-              )
-            ];
-
-          star.style.left =
-            Math.random() *
-            100 +
-            "vw";
-
-          star.style.fontSize =
-            (
-              18 +
-              Math.random() *
-              22
-            ) +
-            "px";
-
-          star.style.animationDuration =
-            (
-              2.2 +
-              Math.random() *
-              1.6
-            ) +
-            "s";
-
-          document.body.appendChild(
-            star
-          );
-
-          setTimeout(
-            () => star.remove(),
-            4200
-          );
-
-        },
-        i * 45
-      );
-
-    }
-
-  }
-
-
-  function loadQuestion() {
-
-    answered = false;
-
-    const current =
-      questions[currentQuestion];
-
-
-    questionCounter.textContent =
-      "السؤال " +
-      toArabicDigits(
-        currentQuestion + 1
-      ) +
-      " من " +
-      toArabicDigits(
-        questions.length
-      );
-
-
-    scoreElement.textContent =
-      toArabicDigits(score);
-
-    starScore.textContent =
-      toArabicDigits(score);
-
-
-    progressFill.style.width =
+  progressFill.style.width =
+    (
       (
-        (
-          currentQuestion + 1
-        ) /
-        questions.length *
-        100
-      ) +
-      "%";
+        currentQuestion + 1
+      ) /
+      questions.length *
+      100
+    ) +
+    "%";
 
 
-    questionNumber.textContent =
-      "السؤال " +
-      arabicNumbers[
-        currentQuestion
-      ];
+  questionNumber.textContent =
+    "السؤال " +
+    arabicNumbers[
+      currentQuestion
+    ];
 
 
-    questionText.textContent =
-      current.question;
+  questionText.textContent =
+    current.question;
 
 
-    optionsContainer.innerHTML =
-      "";
-
-    feedback.className =
-      "feedback";
-
-    feedback.textContent =
-      "";
-
-    nextButton.classList.remove(
-      "show"
-    );
+  optionsContainer.innerHTML =
+    "";
 
 
-    current.options.forEach(
-      (option, index) => {
+  feedback.className =
+    "feedback";
 
-        const button =
-          document.createElement(
-            "button"
+  feedback.textContent =
+    "";
+
+
+  nextButton.classList.remove(
+    "show"
+  );
+
+
+  current.options.forEach(
+    (option, index) => {
+
+      const button =
+        document.createElement(
+          "button"
+        );
+
+      button.type =
+        "button";
+
+      button.className =
+        "option";
+
+      button.textContent =
+        option;
+
+
+      button.addEventListener(
+        "click",
+        event => {
+
+          chooseAnswer(
+            index,
+            button,
+            event
           );
 
-        button.type =
-          "button";
-
-        button.className =
-          "option";
-
-        button.textContent =
-          option;
-
-
-        button.addEventListener(
-          "click",
-          event => {
-
-            chooseAnswer(
-              index,
-              button,
-              event
-            );
-
-          }
-        );
-
-
-        optionsContainer.appendChild(
-          button
-        );
-
-      }
-    );
-
-  }
-
-
-  function chooseAnswer(
-    selectedIndex,
-    selectedButton,
-    event
-  ) {
-
-    if (answered) {
-      return;
-    }
-
-    answered = true;
-
-    const current =
-      questions[currentQuestion];
-
-    const buttons =
-      document.querySelectorAll(
-        ".option"
+        }
       );
 
 
-    buttons.forEach(
-      button => {
-        button.disabled = true;
-      }
-    );
-
-
-    buttons[
-      current.answer
-    ].classList.add(
-      "correct"
-    );
-
-
-    if (
-      selectedIndex ===
-      current.answer
-    ) {
-
-      score++;
-
-      feedback.className =
-        "feedback correct-feedback";
-
-      feedback.innerHTML =
-        "⭐ إجابة صحيحة!<br>" +
-        current.explanation;
-
-      playCorrectSound();
-
-      showFlyingStars(
-        event.clientX,
-        event.clientY
+      optionsContainer.appendChild(
+        button
       );
-
-      if (
-        navigator.vibrate
-      ) {
-        navigator.vibrate(45);
-      }
-
-    } else {
-
-      selectedButton.classList.add(
-        "wrong"
-      );
-
-      feedback.className =
-        "feedback wrong-feedback";
-
-      feedback.innerHTML =
-        "🌷 الإجابة غير صحيحة.<br>" +
-        current.explanation;
-
-      playWrongSound();
-
-      if (
-        navigator.vibrate
-      ) {
-        navigator.vibrate(
-          [70, 40, 70]
-        );
-      }
-
-    }
-
-
-    scoreElement.textContent =
-      toArabicDigits(score);
-
-    starScore.textContent =
-      toArabicDigits(score);
-
-
-    nextButton.textContent =
-      currentQuestion ===
-      questions.length - 1
-        ? "شوفي نتيجتك 🌟"
-        : "السؤال التالي ⭐";
-
-
-    nextButton.classList.add(
-      "show"
-    );
-
-  }
-
-
-  nextButton.addEventListener(
-    "click",
-    () => {
-
-      currentQuestion++;
-
-      if (
-        currentQuestion <
-        questions.length
-      ) {
-
-        loadQuestion();
-
-      } else {
-
-        showResult();
-
-      }
 
     }
   );
 
+}
 
-  function showResult() {
 
-    quizCard.style.display =
-      "none";
+function chooseAnswer(
+  selectedIndex,
+  selectedButton,
+  event
+) {
 
-    topPanel.style.display =
-      "none";
+  if (answered) {
+    return;
+  }
 
-    resultCard.classList.add(
-      "show"
+  answered = true;
+
+
+  const current =
+    questions[currentQuestion];
+
+
+  const buttons =
+    document.querySelectorAll(
+      ".option"
     );
 
 
-    finalScore.textContent =
-      "حصلتِ على " +
-      toArabicDigits(score) +
-      " من " +
-      toArabicDigits(
-        questions.length
-      ) +
-      " نجوم";
+  buttons.forEach(
+    button => {
+      button.disabled = true;
+    }
+  );
 
 
-    let starsCount = 1;
-    let message = "";
+  buttons[
+    current.answer
+  ].classList.add(
+    "correct"
+  );
 
+
+  if (
+    selectedIndex ===
+    current.answer
+  ) {
+
+    score++;
+
+    feedback.className =
+      "feedback correct-feedback";
+
+    feedback.innerHTML =
+      "⭐ أحسنتِ، إجابة صحيحة.<br>" +
+      current.explanation;
+
+    playCorrectSound();
+
+    showFlyingStars(
+      event.clientX,
+      event.clientY
+    );
 
     if (
-      score ===
+      navigator.vibrate
+    ) {
+      navigator.vibrate(45);
+    }
+
+  } else {
+
+    selectedButton.classList.add(
+      "wrong"
+    );
+
+    feedback.className =
+      "feedback wrong-feedback";
+
+    feedback.innerHTML =
+      "🌷 راجعي الفكرة.<br>" +
+      current.explanation;
+
+    playWrongSound();
+
+    if (
+      navigator.vibrate
+    ) {
+      navigator.vibrate(
+        [70, 40, 70]
+      );
+    }
+
+  }
+
+
+  scoreElement.textContent =
+    toArabicDigits(score);
+
+  starScore.textContent =
+    toArabicDigits(score);
+
+
+  nextButton.textContent =
+    currentQuestion ===
+    questions.length - 1
+      ? "شاهدي نتيجتكِ 🌟"
+      : "تابعي الاختبار ⭐";
+
+
+  nextButton.classList.add(
+    "show"
+  );
+
+}
+
+
+nextButton.addEventListener(
+  "click",
+  () => {
+
+    currentQuestion++;
+
+    if (
+      currentQuestion <
       questions.length
     ) {
 
-      starsCount = 5;
-
-      resultIcon.textContent =
-        "👑";
-
-      message =
-        "إتقان كامل! أبدعتِ في اسم التفضيل وأركانه ومعناه.";
-
-    } else if (
-      score >= 8
-    ) {
-
-      starsCount = 4;
-
-      resultIcon.textContent =
-        "🏆";
-
-      message =
-        "رائعة جدًا! فهمكِ لاسم التفضيل ممتاز.";
-
-    } else if (
-      score >= 6
-    ) {
-
-      starsCount = 3;
-
-      resultIcon.textContent =
-        "🌟";
-
-      message =
-        "أداء جميل! راجعي بعض النقاط وستصلين إلى الإتقان.";
-
-    } else if (
-      score >= 4
-    ) {
-
-      starsCount = 2;
-
-      resultIcon.textContent =
-        "✨";
-
-      message =
-        "بداية طيبة، راجعي ملف الدرس ثم حاولي مرة أخرى.";
+      loadQuestion();
 
     } else {
 
-      starsCount = 1;
+      showResult();
 
-      resultIcon.textContent =
-        "📘";
+    }
 
-      message =
-        "راجعي ملف الدرس وروائع اسم التفضيل، ثم أعيدي الاختبار.";
+  }
+);
+  async function saveResult() {
+
+  if (!currentUser) {
+
+    saveStatus.className =
+      "save-status waiting";
+
+    saveStatus.textContent =
+      "ℹ️ لم تُحفظ النتيجة؛ يلزم تسجيل الدخول لإضافتها إلى سجلّكِ.";
+
+    return;
+  }
+
+
+  saveStatus.className =
+    "save-status waiting";
+
+  saveStatus.textContent =
+    "جارٍ حفظ نتيجتكِ في سجلّكِ...";
+
+
+  try {
+
+    const studentRef =
+      doc(
+        db,
+        "students",
+        currentUser.uid
+      );
+
+
+    const studentSnap =
+      await getDoc(
+        studentRef
+      );
+
+
+    if (!studentSnap.exists()) {
+
+      throw new Error(
+        "student-document-not-found"
+      );
 
     }
 
 
-    finalStars.textContent =
-      "⭐".repeat(
-        starsCount
+    const data =
+      studentSnap.data();
+
+
+    const oldTest =
+      data?.["اختبارات_الفصل_الأول"]?.["اسم_التفضيل"] || {};
+
+
+    const oldAttempts =
+      Number(
+        oldTest["عدد_المحاولات"] || 0
       );
 
-    resultMessage.textContent =
-      message;
+
+    const oldBest =
+      Number(
+        oldTest["أعلى_درجة"] || 0
+      );
 
 
-    playCelebrationSound();
+    const percentage =
+      Math.round(
+        (score / questions.length) *
+        100
+      );
 
-    celebrationStars();
+
+    const bestScore =
+      Math.max(
+        oldBest,
+        score
+      );
+
+
+    await updateDoc(
+      studentRef,
+      {
+
+        "اختبارات_الفصل_الأول.اسم_التفضيل.اسم_الاختبار":
+          "اختبار اسم التفضيل",
+
+        "اختبارات_الفصل_الأول.اسم_التفضيل.الدرجة":
+          score,
+
+        "اختبارات_الفصل_الأول.اسم_التفضيل.الدرجة_من":
+          questions.length,
+
+        "اختبارات_الفصل_الأول.اسم_التفضيل.النسبة":
+          percentage,
+
+        "اختبارات_الفصل_الأول.اسم_التفضيل.عدد_المحاولات":
+          oldAttempts + 1,
+
+        "اختبارات_الفصل_الأول.اسم_التفضيل.أعلى_درجة":
+          bestScore,
+
+        "اختبارات_الفصل_الأول.اسم_التفضيل.آخر_محاولة":
+          serverTimestamp()
+
+      }
+    );
+
+
+    saveStatus.className =
+      "save-status saved";
+
+    saveStatus.textContent =
+      "✅ حُفظت نتيجتكِ في سجل الفصل الدراسي الأول.";
+
+
+  } catch (error) {
+
+    console.error(error);
+
+    saveStatus.className =
+      "save-status error";
+
+    saveStatus.textContent =
+      "تعذّر حفظ النتيجة، ولكن نتيجتكِ في الاختبار لم تتأثر.";
+
+  }
+
+}
+
+
+function showResult() {
+
+  quizCard.style.display =
+    "none";
+
+  topPanel.style.display =
+    "none";
+
+  resultCard.classList.add(
+    "show"
+  );
+
+
+  finalScore.textContent =
+    "حصلتِ على " +
+    toArabicDigits(score) +
+    " من " +
+    toArabicDigits(
+      questions.length
+    ) +
+    " نجوم";
+
+
+  let starsCount = 1;
+  let message = "";
+
+
+  if (
+    score ===
+    questions.length
+  ) {
+
+    starsCount = 5;
+
+    resultIcon.textContent =
+      "👑";
+
+    message =
+      "أحسنتِ! أتقنتِ اسم التفضيل وأركانه ومعناه إتقانًا كاملًا 🏆";
+
+
+  } else if (
+    score >= 8
+  ) {
+
+    starsCount = 4;
+
+    resultIcon.textContent =
+      "🏆";
+
+    message =
+      "ممتاز جدًا 🌟 أتقنتِ اسم التفضيل وأركانه ومعناه بدرجة عالية.";
+
+
+  } else if (
+    score >= 6
+  ) {
+
+    starsCount = 3;
+
+    resultIcon.textContent =
+      "🌟";
+
+    message =
+      "أداء جيد 👏 راجعي بعض النقاط، ثم أعيدي الاختبار لتعزيز إتقانكِ.";
+
+
+  } else if (
+    score >= 4
+  ) {
+
+    starsCount = 2;
+
+    resultIcon.textContent =
+      "✨";
+
+    message =
+      "راجعي ملف الدرس، ثم أعيدي الاختبار بعد تثبيت أركان اسم التفضيل ومعناه.";
+
+
+  } else {
+
+    starsCount = 1;
+
+    resultIcon.textContent =
+      "📘";
+
+    message =
+      "راجعي ملف درس اسم التفضيل وروائعه، ثم أعيدي الاختبار.";
 
   }
 
 
-  restartButton.addEventListener(
-    "click",
-    () => {
+  finalStars.textContent =
+    "⭐".repeat(
+      starsCount
+    );
 
-      currentQuestion = 0;
-      score = 0;
-      answered = false;
 
-      resultCard.classList.remove(
-        "show"
+  resultMessage.textContent =
+    message;
+
+
+  playCelebrationSound();
+
+  celebrationStars();
+
+  saveResult();
+
+}
+
+
+restartButton.addEventListener(
+  "click",
+  () => {
+
+    currentQuestion = 0;
+    score = 0;
+    answered = false;
+
+
+    resultCard.classList.remove(
+      "show"
+    );
+
+
+    quizCard.style.display =
+      "flex";
+
+
+    topPanel.style.display =
+      "block";
+
+
+    saveStatus.textContent =
+      "";
+
+
+    loadQuestion();
+
+  }
+);
+
+
+function playTone(
+  frequency,
+  duration,
+  type = "sine"
+) {
+
+  try {
+
+    const AudioContextClass =
+      window.AudioContext ||
+      window.webkitAudioContext;
+
+
+    if (!AudioContextClass) {
+      return;
+    }
+
+
+    const audio =
+      new AudioContextClass();
+
+
+    const oscillator =
+      audio.createOscillator();
+
+
+    const gain =
+      audio.createGain();
+
+
+    oscillator.type =
+      type;
+
+
+    oscillator.frequency.value =
+      frequency;
+
+
+    oscillator.connect(
+      gain
+    );
+
+
+    gain.connect(
+      audio.destination
+    );
+
+
+    gain.gain.setValueAtTime(
+      0.1,
+      audio.currentTime
+    );
+
+
+    gain.gain.exponentialRampToValueAtTime(
+      0.001,
+      audio.currentTime +
+      duration
+    );
+
+
+    oscillator.start();
+
+
+    oscillator.stop(
+      audio.currentTime +
+      duration
+    );
+
+
+  } catch (error) {}
+
+}
+
+
+function playCorrectSound() {
+
+  playTone(
+    523.25,
+    0.15
+  );
+
+
+  setTimeout(
+    () =>
+      playTone(
+        659.25,
+        0.18
+      ),
+    120
+  );
+
+
+  setTimeout(
+    () =>
+      playTone(
+        783.99,
+        0.2
+      ),
+    240
+  );
+
+}
+
+
+function playWrongSound() {
+
+  playTone(
+    220,
+    0.28,
+    "triangle"
+  );
+
+}
+
+
+function playCelebrationSound() {
+
+  const notes = [
+    523.25,
+    659.25,
+    783.99,
+    1046.5
+  ];
+
+
+  notes.forEach(
+    (frequency, index) => {
+
+      setTimeout(
+        () =>
+          playTone(
+            frequency,
+            0.22
+          ),
+        index * 130
       );
-
-      quizCard.style.display =
-        "flex";
-
-      topPanel.style.display =
-        "block";
-
-      loadQuestion();
 
     }
   );
 
+}
+  function showFlyingStars(x, y) {
 
-  loadQuestion();
+  for (
+    let i = 0;
+    i < 7;
+    i++
+  ) {
+
+    const star =
+      document.createElement(
+        "div"
+      );
+
+
+    star.className =
+      "flying-star";
+
+
+    star.textContent =
+      i % 2 === 0
+        ? "⭐"
+        : "✨";
+
+
+    star.style.left =
+      x +
+      (
+        Math.random() * 100 -
+        50
+      ) +
+      "px";
+
+
+    star.style.top =
+      y +
+      (
+        Math.random() * 40 -
+        20
+      ) +
+      "px";
+
+
+    document.body.appendChild(
+      star
+    );
+
+
+    setTimeout(
+      () => star.remove(),
+      1300
+    );
+
+  }
+
+}
+
+
+function celebrationStars() {
+
+  const shapes = [
+    "⭐",
+    "✨",
+    "🌟",
+    "💫"
+  ];
+
+
+  for (
+    let i = 0;
+    i < 45;
+    i++
+  ) {
+
+    setTimeout(
+      () => {
+
+        const star =
+          document.createElement(
+            "div"
+          );
+
+
+        star.className =
+          "celebration-star";
+
+
+        star.textContent =
+          shapes[
+            Math.floor(
+              Math.random() *
+              shapes.length
+            )
+          ];
+
+
+        star.style.left =
+          Math.random() *
+          100 +
+          "vw";
+
+
+        star.style.fontSize =
+          (
+            18 +
+            Math.random() *
+            22
+          ) +
+          "px";
+
+
+        star.style.animationDuration =
+          (
+            2.2 +
+            Math.random() *
+            1.6
+          ) +
+          "s";
+
+
+        document.body.appendChild(
+          star
+        );
+
+
+        setTimeout(
+          () => star.remove(),
+          4200
+        );
+
+      },
+      i * 45
+    );
+
+  }
+
+}
+
+
+loadQuestion();
 
 </script>
 
