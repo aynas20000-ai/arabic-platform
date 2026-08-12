@@ -14,6 +14,7 @@
   </title>
 
   <style>
+
     *{
       box-sizing:border-box;
     }
@@ -283,15 +284,21 @@
     }
 
 
+    .login-btn:disabled{
+      opacity:.7;
+      cursor:wait;
+    }
+
+
     .student-status{
       display:none;
 
       margin-top:10px;
 
       padding:
-        8px 10px;
+        9px 10px;
 
-      font-size:14px;
+      font-size:13px;
       line-height:1.7;
       font-weight:700;
 
@@ -314,13 +321,31 @@
     }
 
 
-    /* روابط الطالبة والمعلمة */
+    .student-status.error{
+      color:#fff4f4;
+
+      background:
+        rgba(
+          130,
+          20,
+          40,
+          .30
+        );
+
+      border:
+        1px solid
+        rgba(
+          255,
+          220,
+          225,
+          .35
+        );
+    }
+
 
     .user-links{
       display:none;
-
       gap:8px;
-
       margin-top:10px;
     }
 
@@ -357,32 +382,6 @@
           #776094,
           #5b4677
         );
-
-      box-shadow:
-        0 5px 12px
-        rgba(
-          0,
-          0,
-          0,
-          .10
-        );
-    }
-
-
-    .teacher-link{
-      display:none;
-
-      background:
-        linear-gradient(
-          135deg,
-          #c9a85c,
-          #a7863e
-        );
-    }
-
-
-    .teacher-link.show{
-      display:block;
     }
 
 
@@ -470,7 +469,6 @@
 
     .section-heading{
       margin-bottom:26px;
-
       text-align:center;
     }
 
@@ -613,6 +611,57 @@
     }
 
 
+    .progress-card{
+      background:
+        linear-gradient(
+          135deg,
+          #fff7cf,
+          #f2e7fb,
+          #fffdf8
+        );
+
+      border:
+        2px solid #c9a85c;
+
+      box-shadow:
+        0 8px 22px
+        rgba(
+          201,
+          168,
+          92,
+          .22
+        ),
+        0 0 18px
+        rgba(
+          119,
+          96,
+          148,
+          .12
+        );
+    }
+
+
+    .teacher-card{
+      display:none;
+
+      background:
+        linear-gradient(
+          135deg,
+          #f2e7fb,
+          #fff7cf,
+          #fffdf8
+        );
+
+      border:
+        2px solid #c9a85c;
+    }
+
+
+    .teacher-card.show{
+      display:block;
+    }
+
+
     .icon-box{
       width:76px;
       height:76px;
@@ -621,7 +670,6 @@
         0 auto 16px;
 
       display:flex;
-
       align-items:center;
       justify-content:center;
 
@@ -776,9 +824,7 @@
     }
 
 
-    @media(
-      max-width:850px
-    ){
+    @media(max-width:850px){
 
       .cards{
         grid-template-columns:
@@ -791,9 +837,7 @@
     }
 
 
-    @media(
-      max-width:600px
-    ){
+    @media(max-width:600px){
 
       .hero{
         padding:
@@ -818,17 +862,13 @@
 
       .teacher-name{
         margin-top:10px;
-
         font-size:16px;
-        font-weight:400;
       }
 
 
       .login-area{
         max-width:330px;
-
         margin-top:15px;
-
         padding:12px;
       }
 
@@ -857,24 +897,13 @@
       }
 
 
-      .intro-card p{
-        font-size:15px;
-      }
-
-
-      .section-heading span{
-        font-size:15px;
-      }
-
-
       .section-heading h2{
         font-size:25px;
       }
 
 
       .cards{
-        grid-template-columns:
-          1fr;
+        grid-template-columns:1fr;
       }
 
 
@@ -889,37 +918,11 @@
       .icon-box{
         width:70px;
         height:70px;
-
         font-size:36px;
       }
 
-
-      .card h3{
-        font-size:20px;
-      }
-
-
-      .card p{
-        font-size:14px;
-      }
-
-
-      .closing-card{
-        padding:
-          27px 17px;
-      }
-
-
-      .closing-card h2{
-        font-size:23px;
-      }
-
-
-      .closing-card p{
-        font-size:14px;
-      }
-
     }
+
   </style>
 
 </head>
@@ -975,16 +978,7 @@
           class="user-link"
           href="student-progress.html"
         >
-          📈 تقدّمي
-        </a>
-
-
-        <a
-          id="teacherDashboardLink"
-          class="user-link teacher-link"
-          href="teacher-semester1-dashboard.html"
-        >
-          📊 لوحة المعلمة
+          📈 عرض تقدّمي
         </a>
 
       </div>
@@ -1028,6 +1022,51 @@
 
 
     <div class="cards">
+
+
+      <a
+        class="card progress-card"
+        href="student-progress.html"
+      >
+
+        <div class="icon-box">
+          📈
+        </div>
+
+        <h3>
+          تقدّمي
+        </h3>
+
+        <p>
+          تابعي نتائجكِ وإنجازكِ في الاختبارات،
+          واطّلعي على رسالة معلمتكِ
+          وتقدّمكِ في الفصل الدراسي.
+        </p>
+
+      </a>
+
+
+      <a
+        id="teacherDashboardCard"
+        class="card teacher-card"
+        href="teacher-semester1-dashboard.html"
+      >
+
+        <div class="icon-box">
+          📊
+        </div>
+
+        <h3>
+          لوحة المعلمة
+        </h3>
+
+        <p>
+          متابعة نتائج الطالبات
+          ومستوى الإنجاز والتقدّم.
+        </p>
+
+      </a>
+
 
       <a
         class="card"
@@ -1108,8 +1147,8 @@
         </h3>
 
         <p>
-          اختبري معلوماتك
-          وتابعي تقدّمك خطوة بخطوة.
+          اختبري معلوماتكِ
+          وتابعي تقدّمكِ خطوة بخطوة.
         </p>
 
       </a>
@@ -1130,7 +1169,7 @@
 
         <p>
           استعدّي للتحدي
-          وارفعي مستوى مهاراتك اللغوية.
+          وارفعي مستوى مهاراتكِ اللغوية.
         </p>
 
       </a>
@@ -1154,7 +1193,8 @@
           وصنعن نجاحًا جميلًا.
         </p>
 
-      </a>      <a
+      </a>
+            <a
         class="card"
         href="enrichment.html"
       >
@@ -1189,7 +1229,7 @@
         </h3>
 
         <p>
-          شاركي برأيك ومقترحاتك
+          شاركي برأيكِ ومقترحاتكِ
           لتطوير المنصة.
         </p>
 
@@ -1332,6 +1372,11 @@
       new GoogleAuthProvider();
 
 
+    provider.setCustomParameters({
+      prompt: "select_account"
+    });
+
+
     const loginBtn =
       document.getElementById(
         "googleLoginBtn"
@@ -1350,14 +1395,83 @@
       );
 
 
-    const teacherDashboardLink =
+    const teacherDashboardCard =
       document.getElementById(
-        "teacherDashboardLink"
+        "teacherDashboardCard"
       );
 
 
     const TEACHER_UID =
       "oIqOvhIaC3TQyr6WcXCW9FZhZio2";
+
+
+    function showLoginError(
+      error
+    ) {
+
+      console.error(
+        "Firebase login error:",
+        error
+      );
+
+
+      studentStatus.className =
+        "student-status show error";
+
+
+      if (
+        error?.code ===
+        "auth/popup-blocked"
+      ) {
+
+        studentStatus.textContent =
+          "تعذّر فتح نافذة تسجيل الدخول. اسمحي بالنوافذ المنبثقة لهذا الموقع ثم حاولي مرة أخرى.";
+
+
+      } else if (
+        error?.code ===
+        "auth/popup-closed-by-user"
+      ) {
+
+        studentStatus.textContent =
+          "أُغلقت نافذة تسجيل الدخول قبل اكتمال العملية. حاولي مرة أخرى.";
+
+
+      } else if (
+        error?.code ===
+        "auth/unauthorized-domain"
+      ) {
+
+        studentStatus.textContent =
+          "تعذّر تسجيل الدخول لأن نطاق الموقع غير مصرح به في إعدادات Firebase.";
+
+
+      } else if (
+        error?.code ===
+        "auth/cancelled-popup-request"
+      ) {
+
+        studentStatus.textContent =
+          "أُلغيت محاولة تسجيل الدخول السابقة. اضغطي زر تسجيل الدخول مرة أخرى.";
+
+
+      } else if (
+        error?.code ===
+        "auth/network-request-failed"
+      ) {
+
+        studentStatus.textContent =
+          "تعذّر الاتصال بخدمة تسجيل الدخول. تحققي من اتصال الإنترنت ثم حاولي مرة أخرى.";
+
+
+      } else {
+
+        studentStatus.textContent =
+          "تعذّر تسجيل الدخول. حاولي مرة أخرى.";
+
+      }
+
+    }
 
 
     loginBtn.addEventListener(
@@ -1399,6 +1513,14 @@
           "جارٍ فتح تسجيل الدخول...";
 
 
+        studentStatus.textContent =
+          "";
+
+
+        studentStatus.className =
+          "student-status";
+
+
         try {
 
           await signInWithPopup(
@@ -1411,17 +1533,8 @@
           error
         ) {
 
-          console.error(
+          showLoginError(
             error
-          );
-
-
-          studentStatus.textContent =
-            "تعذّر تسجيل الدخول، حاولي مرة أخرى.";
-
-
-          studentStatus.classList.add(
-            "show"
           );
 
 
@@ -1455,15 +1568,14 @@
             "طالبتنا";
 
 
+          studentStatus.className =
+            "student-status show";
+
+
           studentStatus.textContent =
             "🌷 أهلًا " +
             studentName +
-            "، تم تسجيل دخولك بنجاح.";
-
-
-          studentStatus.classList.add(
-            "show"
-          );
+            "، تم تسجيل دخولكِ بنجاح.";
 
 
           loginBtn.textContent =
@@ -1480,7 +1592,7 @@
             TEACHER_UID
           ) {
 
-            teacherDashboardLink
+            teacherDashboardCard
               .classList
               .add(
                 "show"
@@ -1488,7 +1600,7 @@
 
           } else {
 
-            teacherDashboardLink
+            teacherDashboardCard
               .classList
               .remove(
                 "show"
@@ -1503,9 +1615,8 @@
             "";
 
 
-          studentStatus.classList.remove(
-            "show"
-          );
+          studentStatus.className =
+            "student-status";
 
 
           loginBtn.textContent =
@@ -1517,7 +1628,7 @@
           );
 
 
-          teacherDashboardLink
+          teacherDashboardCard
             .classList
             .remove(
               "show"
@@ -1533,4 +1644,3 @@
 </body>
 
 </html>
-      
