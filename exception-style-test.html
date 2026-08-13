@@ -18,12 +18,9 @@
  --text:#403448;
 }
 
-*{
- box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
-html,
-body{
+html,body{
  height:100%;
  margin:0;
 }
@@ -105,8 +102,7 @@ main{
  transition:.3s;
 }
 
-.card,
-.result{
+.card,.result{
  flex:1;
  min-height:0;
  background:var(--paper);
@@ -164,9 +160,7 @@ h2{
  border-color:#c95c70;
 }
 
-.opt:disabled{
- cursor:default;
-}
+.opt:disabled{cursor:default}
 
 .feedback{
  display:none;
@@ -177,9 +171,7 @@ h2{
  line-height:1.5;
 }
 
-.feedback.show{
- display:block;
-}
+.feedback.show{display:block}
 
 .feedback.good{
  color:#25663c;
@@ -213,9 +205,7 @@ h2{
  text-align:center;
 }
 
-.result.show{
- display:flex;
-}
+.result.show{display:flex}
 
 .score{
  margin:10px 0;
@@ -248,8 +238,7 @@ h2{
  background:#fff0f0;
 }
 
-.restart,
-.lesson{
+.restart,.lesson{
  display:block;
  text-decoration:none;
  width:100%;
@@ -264,7 +253,6 @@ h2{
  background:linear-gradient(145deg,var(--p2),var(--p));
  color:#fff;
  font:inherit;
- font-weight:bold;
  cursor:pointer;
 }
 
@@ -309,72 +297,25 @@ footer{
  }
 }
 
-.pop{
- animation:pop .25s ease;
-}
+.pop{animation:pop .25s ease}
 
 @keyframes pop{
- 50%{
-  transform:scale(1.018);
- }
+ 50%{transform:scale(1.018)}
 }
 
 @media(max-height:650px){
-
- header{
-  padding:5px 10px 4px;
- }
-
- header h1{
-  font-size:17px;
- }
-
- header p{
-  font-size:9px;
- }
-
- main{
-  padding:3px 0;
- }
-
- .top{
-  font-size:11px;
-  margin-bottom:3px;
- }
-
- .progress{
-  height:6px;
-  margin-bottom:4px;
- }
-
- .card{
-  padding:7px;
- }
-
- h2{
-  font-size:15px;
-  margin-bottom:5px;
- }
-
- .options{
-  gap:4px;
- }
-
- .opt{
-  padding:5px 7px;
-  font-size:12px;
- }
-
- .feedback{
-  padding:5px 7px;
-  margin-top:4px;
-  font-size:11px;
- }
-
- .next{
-  padding:6px;
-  margin-top:4px;
- }
+ header{padding:5px 10px 4px}
+ header h1{font-size:17px}
+ header p{font-size:9px}
+ main{padding:3px 0}
+ .top{font-size:11px;margin-bottom:3px}
+ .progress{height:6px;margin-bottom:4px}
+ .card{padding:7px}
+ h2{font-size:15px;margin-bottom:5px}
+ .options{gap:4px}
+ .opt{padding:5px 7px;font-size:12px}
+ .feedback{padding:5px 7px;margin-top:4px;font-size:11px}
+ .next{padding:6px;margin-top:4px}
 }
 </style>
 </head>
@@ -384,33 +325,16 @@ footer{
 <div class="app">
 
 <header>
-
- <span class="tag">
-  الوظيفة النحوية
- </span>
-
- <h1>
-  🎯 تحدي المستثنى
- </h1>
-
- <p>
-  ١٠ أسئلة • اختاري الإجابة الأدق • تغذية راجعة فورية ✨
- </p>
-
+ <span class="tag">الوظيفة النحوية</span>
+ <h1>🎯 تحدي المستثنى</h1>
+ <p>١٠ أسئلة • اختاري الإجابة الأدق • تغذية راجعة فورية ✨</p>
 </header>
 
 <main>
 
  <div class="top">
-
-  <span id="counter">
-   السؤال ١ من ١٠
-  </span>
-
-  <span id="correctCount">
-   الإجابات الصحيحة: ٠
-  </span>
-
+  <span id="counter">السؤال ١ من ١٠</span>
+  <span id="correctCount">الإجابات الصحيحة: ٠</span>
  </div>
 
  <div class="progress">
@@ -427,7 +351,11 @@ footer{
 
   <div class="feedback" id="feedback"></div>
 
-  <button class="next" id="next">
+  <button
+   class="next"
+   id="next"
+   type="button"
+  >
    السؤال التالي
   </button>
 
@@ -435,29 +363,45 @@ footer{
 
  <section class="result" id="result">
 
-  <h2>
-   🎉 انتهى تحدي المستثنى
-  </h2>
+  <h2>🎉 انتهى تحدي المستثنى</h2>
 
   <div class="score" id="score"></div>
 
   <p id="message"></p>
 
-  <div class="save-status" id="saveStatus"></div>
+  <div
+   class="save-status"
+   id="saveStatus"
+  >
+   ستُحفظ نتيجتكِ في سجل الفصل الدراسي الثاني.
+  </div>
 
-  <button class="restart" onclick="restartQuiz()">
+  <button
+   class="restart"
+   type="button"
+   onclick="restartQuiz()"
+  >
    🔄 أعيدي التحدي
   </button>
 
-  <a class="lesson" href="exception-style-file.html">
+  <a
+   class="lesson"
+   href="exception-style-file.html"
+  >
    📘 راجعي ملف الدرس
   </a>
 
-  <a class="lesson" href="exception-language-window.html">
+  <a
+   class="lesson"
+   href="exception-language-window.html"
+  >
    🔬 النافذة اللغوية
   </a>
 
-  <a class="lesson" href="mustathna.html">
+  <a
+   class="lesson"
+   href="mustathna.html"
+  >
    ↩ العودة إلى درس المستثنى
   </a>
 
@@ -466,24 +410,30 @@ footer{
 </main>
 
 <footer>
- منصة آفاق اللغة | لغتي الخالدة | الصف الثالث المتوسط
+ منصة آفاق التعليمية | لغتي الخالدة | الصف الثالث المتوسط
 </footer>
 
 </div>
 
 <div class="burst" id="burst"></div>
-
-
 <script type="module">
 
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+import {
+ initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+
 
 import {
- getAuth,
+ initializeAuth,
+ browserLocalPersistence,
+ browserPopupRedirectResolver,
  onAuthStateChanged
 }
-from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
 
 import {
  getFirestore,
@@ -492,31 +442,70 @@ import {
  updateDoc,
  serverTimestamp
 }
-from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 
 
-const firebaseConfig = {
- apiKey: "AIzaSyB48av9gx4jzFyYoUQtcLwaR52qETevKGs",
- authDomain: "afaq-language-platform.firebaseapp.com",
- projectId: "afaq-language-platform",
- storageBucket: "afaq-language-platform.firebasestorage.app",
- messagingSenderId: "362601061474",
- appId: "1:362601061474:web:bc405291332b9e4ef9453b"
+const firebaseConfig={
+
+ apiKey:
+ "AIzaSyB48av9gx4jzFyYoUQtcLwaR52qETevKGs",
+
+ authDomain:
+ "afaq-language-platform.firebaseapp.com",
+
+ projectId:
+ "afaq-language-platform",
+
+ storageBucket:
+ "afaq-language-platform.firebasestorage.app",
+
+ messagingSenderId:
+ "362601061474",
+
+ appId:
+ "1:362601061474:web:bc405291332b9e4ef9453b"
+
 };
 
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-
-let currentUser = null;
-
-onAuthStateChanged(auth,(user)=>{
- currentUser = user;
-});
+const app=
+ initializeApp(
+  firebaseConfig
+ );
 
 
-const questions = [
+const auth=
+ initializeAuth(
+  app,
+  {
+   persistence:
+    browserLocalPersistence,
+
+   popupRedirectResolver:
+    browserPopupRedirectResolver
+  }
+ );
+
+
+const db=
+ getFirestore(
+  app
+ );
+
+
+let currentUser=null;
+
+
+onAuthStateChanged(
+ auth,
+ user=>{
+  currentUser=user||null;
+ }
+);
+
+
+const questions=[
 
 {
  q:"١- ما المستثنى في الجملة: «حضر الطلابُ إلا خالدًا»؟",
@@ -711,43 +700,48 @@ const questions = [
 ];
 
 
-let index = 0;
-let score = 0;
-let answered = false;
+let index=0;
+let score=0;
+let answered=false;
 
 
-const arabicDigits = n =>
- String(n).replace(
-  /\d/g,
-  d => '٠١٢٣٤٥٦٧٨٩'[d]
- );
+const arabicDigits=
+ n=>
+  String(n).replace(
+   /\d/g,
+   d=>"٠١٢٣٤٥٦٧٨٩"[d]
+  );
 
 
 function tone(ok){
 
  try{
 
-  const AC =
-   window.AudioContext ||
+  const AC=
+   window.AudioContext||
    window.webkitAudioContext;
 
-  const c =
-   new AC();
+  const c=new AC();
 
-  const o =
+  const o=
    c.createOscillator();
 
-  const g =
+  const g=
    c.createGain();
 
   o.connect(g);
-  g.connect(c.destination);
 
-  o.type =
-   ok ? 'sine' : 'triangle';
+  g.connect(
+   c.destination
+  );
+
+  o.type=
+   ok
+   ?"sine"
+   :"triangle";
 
   o.frequency.setValueAtTime(
-   ok ? 660 : 220,
+   ok?660:220,
    c.currentTime
   );
 
@@ -755,14 +749,14 @@ function tone(ok){
 
    o.frequency.exponentialRampToValueAtTime(
     920,
-    c.currentTime + .16
+    c.currentTime+.16
    );
 
   }else{
 
    o.frequency.exponentialRampToValueAtTime(
     170,
-    c.currentTime + .16
+    c.currentTime+.16
    );
 
   }
@@ -774,13 +768,13 @@ function tone(ok){
 
   g.gain.exponentialRampToValueAtTime(
    .001,
-   c.currentTime + .23
+   c.currentTime+.23
   );
 
   o.start();
 
   o.stop(
-   c.currentTime + .24
+   c.currentTime+.24
   );
 
  }catch(e){}
@@ -790,178 +784,244 @@ function tone(ok){
 
 function confetti(){
 
- const burst =
-  document.getElementById('burst');
+ const burst=
+  document.getElementById(
+   "burst"
+  );
 
- burst.innerHTML = '';
+ burst.innerHTML="";
 
- const colors = [
-  '#5b4677',
-  '#776094',
-  '#b69750',
-  '#d8c28a',
-  '#eee5f5'
+ const colors=[
+  "#5b4677",
+  "#776094",
+  "#b69750",
+  "#d8c28a",
+  "#eee5f5"
  ];
 
- for(let i=0;i<26;i++){
+ for(
+  let i=0;
+  i<26;
+  i++
+ ){
 
-  const s =
-   document.createElement('i');
+  const s=
+   document.createElement(
+    "i"
+   );
 
-  s.className =
-   'confetti';
+  s.className=
+   "confetti";
 
-  s.style.left =
-   (Math.random()*100) + 'vw';
+  s.style.left=
+   Math.random()*100+"vw";
 
-  s.style.top =
-   '-10px';
+  s.style.top=
+   "-10px";
 
-  s.style.background =
-   colors[i % colors.length];
+  s.style.background=
+   colors[
+    i%colors.length
+   ];
 
-  s.style.animationDelay =
-   (Math.random()*170) + 'ms';
+  s.style.animationDelay=
+   Math.random()*170+"ms";
 
   burst.appendChild(s);
 
  }
 
  setTimeout(
-  () => burst.innerHTML = '',
+  ()=>burst.innerHTML="",
   1200
  );
 
 }
+ function render(){
 
+ answered=false;
 
-function render(){
-
- answered = false;
-
- const x =
+ const x=
   questions[index];
 
- document
-  .getElementById('qnum')
-  .textContent =
-  'السؤال ' +
+
+ document.getElementById(
+  "qnum"
+ ).textContent=
+  "السؤال "+
   arabicDigits(index+1);
 
- document
-  .getElementById('counter')
-  .textContent =
-  'السؤال ' +
-  arabicDigits(index+1) +
-  ' من ' +
-  arabicDigits(questions.length);
 
- document
-  .getElementById('correctCount')
-  .textContent =
-  'الإجابات الصحيحة: ' +
+ document.getElementById(
+  "counter"
+ ).textContent=
+  "السؤال "+
+  arabicDigits(index+1)+
+  " من "+
+  arabicDigits(
+   questions.length
+  );
+
+
+ document.getElementById(
+  "correctCount"
+ ).textContent=
+  "الإجابات الصحيحة: "+
   arabicDigits(score);
 
- document
-  .getElementById('bar')
-  .style.width =
-  ((index + 1) /
-  questions.length *
-  100) + '%';
 
- document
-  .getElementById('question')
-  .textContent =
+ document.getElementById(
+  "bar"
+ ).style.width=
+  (
+   (index+1)/
+   questions.length*
+   100
+  )+"%";
+
+
+ document.getElementById(
+  "question"
+ ).textContent=
   x.q;
 
- const options =
-  document.getElementById('options');
 
- const feedback =
-  document.getElementById('feedback');
+ const options=
+  document.getElementById(
+   "options"
+  );
 
- const next =
-  document.getElementById('next');
 
- const card =
-  document.getElementById('card');
+ const feedback=
+  document.getElementById(
+   "feedback"
+  );
 
- options.innerHTML = '';
 
- feedback.className =
-  'feedback';
+ const next=
+  document.getElementById(
+   "next"
+  );
 
- feedback.innerHTML =
-  '';
 
- next.style.display =
-  'none';
+ const card=
+  document.getElementById(
+   "card"
+  );
+
+
+ options.innerHTML="";
+
+ feedback.className=
+  "feedback";
+
+ feedback.innerHTML="";
+
+ next.style.display=
+  "none";
 
  card.classList.remove(
-  'pop'
+  "pop"
  );
 
- x.o.forEach((t,j)=>{
 
-  const b =
-   document.createElement('button');
+ x.o.forEach(
+  (text,choiceIndex)=>{
 
-  b.className =
-   'opt';
+   const button=
+    document.createElement(
+     "button"
+    );
 
-  b.textContent =
-   t;
+   button.className=
+    "opt";
 
-  b.onclick =
-   () => choose(j,b);
+   button.type=
+    "button";
 
-  options.appendChild(b);
+   button.textContent=
+    text;
 
- });
+   button.onclick=
+    ()=>choose(
+     choiceIndex,
+     button
+    );
+
+   options.appendChild(
+    button
+   );
+
+  }
+ );
 
 }
 
 
-function choose(choice,button){
+function choose(
+ choice,
+ button
+){
 
- if(answered) return;
+ if(answered){
+  return;
+ }
 
- answered = true;
 
- const x =
+ answered=true;
+
+
+ const x=
   questions[index];
 
- const btns =
-  [...document.querySelectorAll('.opt')];
 
- btns.forEach(
-  b => b.disabled = true
+ const buttons=[
+  ...document.querySelectorAll(
+   ".opt"
+  )
+ ];
+
+
+ buttons.forEach(
+  item=>
+   item.disabled=true
  );
 
- btns[x.a]
-  .classList
-  .add('correct');
 
- const feedback =
-  document.getElementById('feedback');
+ buttons[x.a]
+  .classList.add(
+   "correct"
+  );
 
- if(choice === x.a){
+
+ const feedback=
+  document.getElementById(
+   "feedback"
+  );
+
+
+ if(choice===x.a){
 
   score++;
 
-  button
-   .classList
-   .add('correct');
 
-  feedback.className =
-   'feedback show good';
+  button.classList.add(
+   "correct"
+  );
 
-  feedback.textContent =
+
+  feedback.className=
+   "feedback show good";
+
+
+  feedback.textContent=
    x.ok;
+
 
   tone(true);
 
   confetti();
+
 
   if(navigator.vibrate){
    navigator.vibrate(45);
@@ -969,100 +1029,126 @@ function choose(choice,button){
 
  }else{
 
-  button
-   .classList
-   .add('wrong');
+  button.classList.add(
+   "wrong"
+  );
 
-  feedback.className =
-   'feedback show bad';
 
-  feedback.innerHTML =
-   '<b>راجعي القاعدة 👀</b><br>' +
+  feedback.className=
+   "feedback show bad";
+
+
+  feedback.innerHTML=
+   "<b>راجعي القاعدة 👀</b><br>"+
    x.bad;
+
 
   tone(false);
 
+
   if(navigator.vibrate){
+
    navigator.vibrate(
     [70,40,70]
    );
+
   }
 
  }
 
- document
-  .getElementById('correctCount')
-  .textContent =
-  'الإجابات الصحيحة: ' +
+
+ document.getElementById(
+  "correctCount"
+ ).textContent=
+  "الإجابات الصحيحة: "+
   arabicDigits(score);
 
- document
-  .getElementById('card')
-  .classList
-  .add('pop');
 
- const next =
-  document.getElementById('next');
+ document.getElementById(
+  "card"
+ ).classList.add(
+  "pop"
+ );
 
- next.textContent =
-  index === questions.length-1
-  ? 'شاهدي نتيجتكِ ✨'
-  : 'تابعي التحدي ←';
 
- next.style.display =
-  'block';
+ const next=
+  document.getElementById(
+   "next"
+  );
+
+
+ next.textContent=
+  index===
+  questions.length-1
+
+   ? "شاهدي نتيجتكِ ✨"
+
+   : "تابعي التحدي ←";
+
+
+ next.style.display=
+  "block";
 
 }
 
 
-document
- .getElementById('next')
- .onclick = () => {
+document.getElementById(
+ "next"
+).onclick=()=>{
 
-  index++;
+ index++;
 
-  if(index < questions.length){
 
-   render();
+ if(
+  index<
+  questions.length
+ ){
 
-  }else{
+  render();
 
-   finish();
+ }else{
 
-  }
+  finish();
 
- };
+ }
+
+};
 
 
 async function saveResult(){
 
- const saveStatus =
-  document.getElementById('saveStatus');
+ const saveStatus=
+  document.getElementById(
+   "saveStatus"
+  );
 
 
  if(!currentUser){
 
-  saveStatus.className =
-   'save-status waiting';
+  saveStatus.className=
+   "save-status waiting";
 
-  saveStatus.textContent =
-   'ℹ️ لم تُحفظ النتيجة؛ يلزم تسجيل الدخول لإضافتها إلى سجلّكِ.';
+
+  saveStatus.textContent=
+   "ℹ️ لم تُحفظ النتيجة؛ يلزم تسجيل الدخول لإضافتها إلى سجلّكِ.";
+
 
   return;
 
  }
 
 
- saveStatus.className =
-  'save-status waiting';
+ saveStatus.className=
+  "save-status waiting";
 
- saveStatus.textContent =
-  'جارٍ حفظ نتيجتكِ في سجلّكِ...';
+
+ saveStatus.textContent=
+  "جارٍ حفظ نتيجتكِ في سجل الفصل الدراسي الثاني...";
 
 
  try{
 
-  const studentRef =
+  const studentRef=
    doc(
     db,
     "students",
@@ -1070,8 +1156,10 @@ async function saveResult(){
    );
 
 
-  const studentSnap =
-   await getDoc(studentRef);
+  const studentSnap=
+   await getDoc(
+    studentRef
+   );
 
 
   if(!studentSnap.exists()){
@@ -1083,36 +1171,46 @@ async function saveResult(){
   }
 
 
-  const data =
+  const data=
    studentSnap.data();
 
 
-  const oldTest =
-   data?.["اختبارات_الفصل_الأول"]?.["المستثنى"] || {};
+  const oldTest=
+   data?.[
+    "اختبارات_الفصل_الثاني"
+   ]?.[
+    "المستثنى"
+   ] || {};
 
 
-  const oldAttempts =
+  const oldAttempts=
    Number(
-    oldTest["عدد_المحاولات"] || 0
+    oldTest[
+     "عدد_المحاولات"
+    ] || 0
    );
 
 
-  const oldBest =
+  const oldBestPercentage=
    Number(
-    oldTest["أعلى_درجة"] || 0
+    oldTest[
+     "أفضل_نسبة"
+    ] || 0
    );
 
 
-  const percentage =
+  const percentage=
    Math.round(
-    (score / questions.length) * 100
+    score/
+    questions.length*
+    100
    );
 
 
-  const bestScore =
+  const bestPercentage=
    Math.max(
-    oldBest,
-    score
+    oldBestPercentage,
+    percentage
    );
 
 
@@ -1120,154 +1218,206 @@ async function saveResult(){
    studentRef,
    {
 
-    "اختبارات_الفصل_الأول.المستثنى.اسم_الاختبار":
-     "اختبار المستثنى",
+    "اختبارات_الفصل_الثاني.المستثنى":
+    {
 
-    "اختبارات_الفصل_الأول.المستثنى.الدرجة":
-     score,
+     "اسم_الاختبار":
+      "اختبار المستثنى",
 
-    "اختبارات_الفصل_الأول.المستثنى.الدرجة_من":
-     questions.length,
+     "الدرجة":
+      score,
 
-    "اختبارات_الفصل_الأول.المستثنى.النسبة":
-     percentage,
+     "المجموع":
+      questions.length,
 
-    "اختبارات_الفصل_الأول.المستثنى.عدد_المحاولات":
-     oldAttempts + 1,
+     "النسبة":
+      percentage,
 
-    "اختبارات_الفصل_الأول.المستثنى.أعلى_درجة":
-     bestScore,
+     "أفضل_نسبة":
+      bestPercentage,
 
-    "اختبارات_الفصل_الأول.المستثنى.آخر_محاولة":
-     serverTimestamp()
+     "مكتمل":
+      true,
+
+     "عدد_الأسئلة":
+      questions.length,
+
+     "عدد_المحاولات":
+      oldAttempts+1,
+
+     "استحقت_الإتقان":
+      percentage>=80,
+
+     "آخر_محاولة":
+      serverTimestamp()
+
+    }
 
    }
   );
 
 
-  saveStatus.className =
-   'save-status saved';
+  saveStatus.className=
+   "save-status saved";
 
-  saveStatus.textContent =
-   '✅ حُفظت نتيجتكِ في سجل الفصل الدراسي الأول.';
+
+  saveStatus.textContent=
+   "✅ حُفظت نتيجتكِ بنجاح في سجل الفصل الدراسي الثاني.";
 
 
  }catch(error){
 
-  console.error(error);
+  console.error(
+   "خطأ في حفظ اختبار المستثنى:",
+   error
+  );
 
-  saveStatus.className =
-   'save-status error';
 
-  saveStatus.textContent =
-   'تعذّر حفظ النتيجة، ولكن نتيجتكِ في الاختبار لم تتأثر.';
+  saveStatus.className=
+   "save-status error";
+
+
+  saveStatus.textContent=
+   "تعذّر حفظ النتيجة الآن. أعيدي المحاولة بعد التأكد من تسجيل الدخول.";
 
  }
 
 }
 
 
-function finish(){
+async function finish(){
 
- document
-  .getElementById('bar')
-  .style.width =
-  '100%';
+ document.getElementById(
+  "bar"
+ ).style.width=
+  "100%";
 
- document
-  .getElementById('card')
-  .style.display =
-  'none';
 
- document
-  .querySelector('.top')
-  .style.display =
-  'none';
+ document.getElementById(
+  "card"
+ ).style.display=
+  "none";
 
- document
-  .querySelector('.progress')
-  .style.display =
-  'none';
 
- const result =
-  document.getElementById('result');
+ document.querySelector(
+  ".top"
+ ).style.display=
+  "none";
+
+
+ document.querySelector(
+  ".progress"
+ ).style.display=
+  "none";
+
+
+ const result=
+  document.getElementById(
+   "result"
+  );
+
 
  result.classList.add(
-  'show'
+  "show"
  );
 
- document
-  .getElementById('score')
-  .textContent =
-  arabicDigits(score) +
-  ' / ' +
-  arabicDigits(questions.length);
 
- const pct =
-  score /
+ document.getElementById(
+  "score"
+ ).textContent=
+  arabicDigits(score)+
+  " / "+
+  arabicDigits(
+   questions.length
+  );
+
+
+ const pct=
+  score/
   questions.length;
 
 
- document
-  .getElementById('message')
-  .textContent =
+ document.getElementById(
+  "message"
+ ).textContent=
 
-  pct === 1
-  ? 'أحسنتِ! أتقنتِ درس المستثنى إتقانًا كاملًا 🏆'
+  pct===1
 
-  : pct >= .8
-  ? 'ممتاز جدًا 🌟 أتقنتِ أحكام المستثنى والتمييز بين أنواعه.'
+   ? "أحسنتِ! أتقنتِ درس المستثنى إتقانًا كاملًا 🏆"
 
-  : pct >= .6
-  ? 'أداء جيد 👏 راجعي الاستثناء التام المثبت، والتام المنفي، والناقص المنفي، ثم أعيدي التحدي.'
+   : pct>=.8
 
-  : 'راجعي ملف درس المستثنى والنافذة اللغوية، ثم أعيدي التحدي بثقة.';
+    ? "أداء ممتاز جدًا 🌟 أتقنتِ أحكام المستثنى والتمييز بين أنواعه."
+
+    : pct>=.6
+
+     ? "أداء جيد 👏 راجعي الاستثناء التام المثبت، والتام المنفي، والناقص المنفي، ثم أعيدي التحدي."
+
+     : "راجعي ملف درس المستثنى والنافذة اللغوية، ثم أعيدي التحدي بثقة.";
 
 
- if(pct >= .8){
+ if(pct>=.8){
   confetti();
  }
 
 
- saveResult();
+ await saveResult();
 
 }
 
 
-window.restartQuiz = function(){
+window.restartQuiz=
+ function(){
 
- index = 0;
- score = 0;
- answered = false;
+  index=0;
 
- document
-  .getElementById('card')
-  .style.display =
-  'flex';
+  score=0;
 
- document
-  .querySelector('.top')
-  .style.display =
-  'flex';
+  answered=false;
 
- document
-  .querySelector('.progress')
-  .style.display =
-  'block';
 
- document
-  .getElementById('result')
-  .classList
-  .remove('show');
+  document.getElementById(
+   "card"
+  ).style.display=
+   "flex";
 
- document
-  .getElementById('saveStatus')
-  .textContent =
-  '';
 
- render();
+  document.querySelector(
+   ".top"
+  ).style.display=
+   "flex";
 
-};
+
+  document.querySelector(
+   ".progress"
+  ).style.display=
+   "block";
+
+
+  document.getElementById(
+   "result"
+  ).classList.remove(
+   "show"
+  );
+
+
+  const saveStatus=
+   document.getElementById(
+    "saveStatus"
+   );
+
+
+  saveStatus.className=
+   "save-status";
+
+
+  saveStatus.textContent=
+   "ستُحفظ نتيجتكِ في سجل الفصل الدراسي الثاني.";
+
+
+  render();
+
+ };
 
 
 render();
