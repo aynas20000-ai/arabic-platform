@@ -2,2508 +2,2926 @@
 <html lang="ar" dir="rtl">
 
 <head>
-  <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <title>لوحة المعلمة | منصة آفاق</title>
-
-  <style>
-
-    :root{
-      --purple:#5b4677;
-      --purple-light:#776094;
-      --purple-dark:#49385c;
-      --gold:#c9a85c;
-      --cream:#fffaf2;
-      --paper:#fffdf8;
-      --text:#44384f;
-      --green:#2f7650;
-      --green-bg:#eaf7ef;
-      --red:#96394a;
-      --red-bg:#fff0f2;
-      --yellow:#8b6a18;
-      --yellow-bg:#fff7df;
-    }
-
-    *{
-      box-sizing:border-box;
-    }
-
-    html,
-    body{
-      margin:0;
-      width:100%;
-      min-height:100%;
-    }
-
-    body{
-      font-family:
-        Tahoma,
-        Arial,
-        sans-serif;
-
-      color:var(--text);
-
-      background:
-        linear-gradient(
-          145deg,
-          #fffaf2,
-          #f8f0fb
-        );
-    }
-
-    header{
-      padding:
-        28px 16px 24px;
-
-      text-align:center;
-      color:white;
-
-      background:
-        linear-gradient(
-          135deg,
-          var(--purple-light),
-          var(--purple)
-        );
-
-      border-bottom:
-        4px solid var(--gold);
-    }
-
-    header .badge{
-      display:inline-block;
-
-      margin-bottom:8px;
-      padding:5px 14px;
-
-      color:#fff4ce;
-
-      font-size:12px;
-      font-weight:bold;
-
-      border:
-        1px solid
-        rgba(255,255,255,.45);
-
-      border-radius:999px;
 
-      background:
-        rgba(255,255,255,.1);
-    }
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>لوحة المعلمة | منصة آفاق</title>
+
+<style>
+
+:root{
+  --purple:#5b4677;
+  --purple-light:#776094;
+  --purple-dark:#49385c;
+  --gold:#c9a85c;
+  --cream:#fffaf2;
+  --paper:#fffdf8;
+  --text:#44384f;
+  --green:#2f7650;
+  --green-bg:#eaf7ef;
+  --red:#96394a;
+  --red-bg:#fff0f2;
+  --yellow:#8b6a18;
+  --yellow-bg:#fff7df;
+  --shadow:0 8px 23px rgba(91,70,119,.08);
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html,
+body{
+  margin:0;
+  width:100%;
+  min-height:100%;
+}
+
+body{
+  font-family:
+    Tahoma,
+    Arial,
+    sans-serif;
+
+  color:var(--text);
+
+  background:
+    linear-gradient(
+      145deg,
+      #fffaf2,
+      #f8f0fb
+    );
+}
+
+button,
+input,
+select,
+a{
+  font-family:inherit;
+}
+
+header{
+  padding:
+    28px 16px 24px;
+
+  text-align:center;
+  color:white;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--purple-light),
+      var(--purple)
+    );
+
+  border-bottom:
+    4px solid var(--gold);
+}
+
+header .badge{
+  display:inline-block;
+
+  margin-bottom:8px;
+
+  padding:
+    5px 14px;
 
-    header h1{
-      margin:
-        0 0 6px;
+  color:#fff4ce;
 
-      font-size:
-        clamp(
-          25px,
-          6vw,
-          38px
-        );
+  font-size:12px;
+  font-weight:bold;
 
-      color:#fffdf8;
-    }
+  border:
+    1px solid rgba(255,255,255,.45);
 
-    header p{
-      max-width:700px;
+  border-radius:999px;
 
-      margin:
-        0 auto;
+  background:
+    rgba(255,255,255,.1);
+}
 
-      color:#f4edf8;
+header h1{
+  margin:
+    0 0 6px;
 
-      font-size:14px;
-      line-height:1.8;
-    }
+  color:#fffdf8;
 
-    .container{
-      width:
-        min(
-          1180px,
-          calc(100% - 24px)
-        );
+  font-size:
+    clamp(
+      25px,
+      6vw,
+      38px
+    );
+}
 
-      margin:
-        22px auto 45px;
-    }
+header p{
+  max-width:760px;
 
-    .status-box{
-      margin-bottom:18px;
-      padding:14px;
+  margin:
+    0 auto;
 
-      text-align:center;
+  color:#f4edf8;
 
-      font-size:14px;
-      font-weight:bold;
-      line-height:1.8;
+  font-size:14px;
+  line-height:1.8;
+}
 
-      border-radius:16px;
-      border:
-        1px solid #dec98d;
+.container{
+  width:
+    min(
+      1220px,
+      calc(100% - 24px)
+    );
 
-      background:#fffdf8;
-    }
+  margin:
+    22px auto 45px;
+}
 
-    .status-box.loading{
-      color:#69552d;
-      background:#fff8e8;
-    }
+.status-box{
+  margin-bottom:18px;
 
-    .status-box.error{
-      color:#8d3748;
-      background:#fff0f2;
-    }
+  padding:14px;
 
-    .status-box.success{
-      color:#326d4b;
-      background:#edf8f1;
-    }
+  text-align:center;
 
-    .tabs{
-      display:grid;
+  font-size:14px;
+  font-weight:bold;
+  line-height:1.8;
 
-      grid-template-columns:
-        repeat(
-          3,
-          minmax(0,1fr)
-        );
+  border-radius:16px;
 
-      gap:9px;
+  border:
+    1px solid #dec98d;
 
-      margin-bottom:18px;
+  background:#fffdf8;
+}
 
-      padding:8px;
+.status-box.loading{
+  color:#69552d;
+  background:#fff8e8;
+}
 
-      border:
-        2px solid #dec98d;
+.status-box.error{
+  color:#8d3748;
+  background:#fff0f2;
+}
 
-      border-radius:20px;
+.status-box.success{
+  color:#326d4b;
+  background:#edf8f1;
+}
 
-      background:#fffdf8;
-    }
+.tabs{
+  display:grid;
 
-    .tab-button{
-      min-height:58px;
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(0,1fr)
+    );
 
-      padding:10px 8px;
+  gap:9px;
 
-      border:none;
-      border-radius:15px;
+  margin-bottom:18px;
 
-      font-family:inherit;
-      font-size:14px;
-      font-weight:bold;
+  padding:8px;
 
-      color:#5b4677;
+  border:
+    2px solid #dec98d;
 
-      background:#f4edf8;
+  border-radius:20px;
 
-      cursor:pointer;
-    }
+  background:#fffdf8;
+}
 
-    .tab-button.active{
-      color:white;
+.tab-button{
+  min-height:58px;
 
-      background:
-        linear-gradient(
-          135deg,
-          var(--purple-light),
-          var(--purple)
-        );
+  padding:
+    10px 8px;
 
-      box-shadow:
-        0 5px 13px
-        rgba(91,70,119,.2);
-    }
+  border:none;
+  border-radius:15px;
 
-    .filters{
-      display:flex;
-      flex-wrap:wrap;
+  font-size:14px;
+  font-weight:bold;
 
-      gap:10px;
+  color:#5b4677;
 
-      margin-bottom:18px;
-      padding:14px;
+  background:#f4edf8;
 
-      background:#fffdf8;
+  cursor:pointer;
+}
 
-      border:
-        1px solid #dec98d;
+.tab-button.active{
+  color:white;
 
-      border-radius:18px;
-    }
+  background:
+    linear-gradient(
+      135deg,
+      var(--purple-light),
+      var(--purple)
+    );
 
-    .filters label{
-      flex:
-        1 1 190px;
+  box-shadow:
+    0 5px 13px
+    rgba(91,70,119,.2);
+}
 
-      display:flex;
-      flex-direction:column;
+.filters{
+  display:flex;
+  flex-wrap:wrap;
 
-      gap:6px;
+  gap:10px;
 
-      color:#5c4771;
+  margin-bottom:18px;
+  padding:14px;
 
-      font-size:12px;
-      font-weight:bold;
-    }
+  background:#fffdf8;
 
-    .filters select,
-    .filters input{
-      width:100%;
+  border:
+    1px solid #dec98d;
 
-      padding:
-        11px 12px;
+  border-radius:18px;
+}
 
-      font-family:inherit;
-      font-size:14px;
+.filters label{
+  flex:
+    1 1 190px;
 
-      border:
-        1px solid #ccb8dc;
+  display:flex;
+  flex-direction:column;
 
-      border-radius:12px;
+  gap:6px;
 
-      background:white;
-      color:#49385c;
-    }
+  color:#5c4771;
 
-    .stats{
-      display:grid;
+  font-size:12px;
+  font-weight:bold;
+}
 
-      grid-template-columns:
-        repeat(
-          2,
-          minmax(0,1fr)
-        );
+.filters select,
+.filters input{
+  width:100%;
 
-      gap:12px;
+  padding:
+    11px 12px;
 
-      margin-bottom:20px;
-    }
+  font-size:14px;
 
-    .stat-card{
-      padding:
-        18px 10px;
+  border:
+    1px solid #ccb8dc;
 
-      text-align:center;
+  border-radius:12px;
 
-      border:
-        2px solid #dec98d;
+  background:white;
+  color:#49385c;
+}
 
-      border-radius:20px;
+.stats{
+  display:grid;
 
-      background:#fffdf8;
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0,1fr)
+    );
 
-      box-shadow:
-        0 7px 20px
-        rgba(91,70,119,.08);
-    }
+  gap:12px;
 
-    .stat-icon{
-      margin-bottom:6px;
+  margin-bottom:20px;
+}
 
-      font-size:26px;
-    }
+.stat-card{
+  padding:
+    18px 10px;
 
-    .stat-number{
-      display:block;
+  text-align:center;
 
-      color:#5b4677;
+  border:
+    2px solid #dec98d;
 
-      font-size:27px;
-      font-weight:bold;
-    }
+  border-radius:20px;
 
-    .stat-label{
-      display:block;
+  background:#fffdf8;
 
-      margin-top:5px;
+  box-shadow:
+    0 7px 20px
+    rgba(91,70,119,.08);
+}
 
-      color:#72647a;
+.stat-icon{
+  margin-bottom:6px;
 
-      font-size:12px;
-      font-weight:bold;
-      line-height:1.5;
-    }
+  font-size:26px;
+}
 
-    .section{
-      margin-top:20px;
+.stat-number{
+  display:block;
 
-      padding:16px;
+  color:#5b4677;
 
-      background:#fffdf8;
+  font-size:27px;
+  font-weight:bold;
+}
 
-      border:
-        2px solid #dec98d;
+.stat-label{
+  display:block;
 
-      border-radius:21px;
+  margin-top:5px;
 
-      box-shadow:
-        0 8px 23px
-        rgba(91,70,119,.08);
-    }
+  color:#72647a;
 
-    .section-title{
-      margin:
-        0 0 14px;
+  font-size:12px;
+  font-weight:bold;
+  line-height:1.5;
+}
 
-      color:#5b4677;
+.section{
+  margin-top:20px;
 
-      font-size:20px;
-      text-align:center;
-    }
+  padding:16px;
 
-    .section-note{
-      margin:
-        -5px 0 16px;
+  background:#fffdf8;
 
-      color:#776b7c;
+  border:
+    2px solid #dec98d;
 
-      text-align:center;
+  border-radius:21px;
 
-      font-size:12px;
-      line-height:1.8;
-    }
+  box-shadow:var(--shadow);
+}
 
-    .table-wrap{
-      width:100%;
+.section-title{
+  margin:
+    0 0 14px;
 
-      overflow-x:auto;
+  color:#5b4677;
 
-      border-radius:14px;
-    }
+  font-size:20px;
+  text-align:center;
+}
 
-    table{
-      width:100%;
+.section-note{
+  margin:
+    -5px 0 16px;
 
-      min-width:920px;
+  color:#776b7c;
 
-      border-collapse:collapse;
+  text-align:center;
 
-      background:white;
-    }
+  font-size:12px;
+  line-height:1.8;
+}
 
-    th,
-    td{
-      padding:
-        11px 9px;
+.table-wrap{
+  width:100%;
 
-      text-align:center;
-      vertical-align:middle;
+  overflow-x:auto;
 
-      border-bottom:
-        1px solid #eee5f1;
-    }
+  border-radius:14px;
+}
 
-    th{
-      color:white;
+table{
+  width:100%;
 
-      font-size:12px;
+  min-width:980px;
 
-      background:
-        linear-gradient(
-          135deg,
-          var(--purple-light),
-          var(--purple)
-        );
-    }
+  border-collapse:collapse;
 
-    td{
-      color:#4d4352;
+  background:white;
+}
 
-      font-size:12px;
-      line-height:1.6;
-    }
+th,
+td{
+  padding:
+    11px 8px;
 
-    tbody tr:nth-child(even){
-      background:#fcf9ff;
-    }
+  text-align:center;
+  vertical-align:middle;
 
-    .student-name{
-      color:#5b4677;
-      font-weight:bold;
-    }
+  border-bottom:
+    1px solid #eee5f1;
+}
 
-    .tag{
-      display:inline-block;
+th{
+  color:white;
 
-      padding:
-        4px 8px;
+  font-size:12px;
 
-      border-radius:999px;
+  background:
+    linear-gradient(
+      135deg,
+      var(--purple-light),
+      var(--purple)
+    );
+}
 
-      font-size:11px;
-      font-weight:bold;
-    }
+td{
+  color:#4d4352;
 
-    .tag.yes{
-      color:#286a43;
-      background:#e8f7ed;
-    }
+  font-size:12px;
+  line-height:1.6;
+}
 
-    .tag.no{
-      color:#815764;
-      background:#f8edf1;
-    }
+tbody tr:nth-child(even){
+  background:#fcf9ff;
+}
 
-    .tag.pending{
-      color:#765d27;
-      background:#fff5dd;
-    }
+.student-name{
+  color:#5b4677;
+  font-weight:bold;
+}
 
-    .tag.cup{
-      color:#745414;
-      background:#fff1bf;
-    }
+.tag{
+  display:inline-block;
 
-    .score-good,
-    .score-mid,
-    .score-low{
-      display:inline-block;
+  padding:
+    4px 8px;
 
-      min-width:55px;
+  border-radius:999px;
 
-      padding:
-        4px 7px;
+  font-size:11px;
+  font-weight:bold;
+}
 
-      border-radius:999px;
+.tag.yes{
+  color:#286a43;
+  background:#e8f7ed;
+}
 
-      font-weight:bold;
-    }
+.tag.no{
+  color:#815764;
+  background:#f8edf1;
+}
 
-    .score-good{
-      color:#276842;
-      background:#e7f7ed;
-    }
+.tag.pending{
+  color:#765d27;
+  background:#fff5dd;
+}
 
-    .score-mid{
-      color:#7b5d18;
-      background:#fff5d9;
-    }
+.tag.cup{
+  color:#745414;
+  background:#fff1bf;
+}
 
-    .score-low{
-      color:#923e4e;
-      background:#ffecef;
-    }
+.tag.lock{
+  color:#745d68;
+  background:#f3eaf0;
+}
 
-    .empty{
-      padding:
-        25px 10px;
+.score-good,
+.score-mid,
+.score-low{
+  display:inline-block;
 
-      text-align:center;
+  min-width:55px;
 
-      color:#75697a;
+  padding:
+    4px 7px;
 
-      font-size:14px;
-      font-weight:bold;
-    }
+  border-radius:999px;
 
-    .footer{
-      margin-top:24px;
+  font-weight:bold;
+}
 
-      text-align:center;
-    }
+.score-good{
+  color:#276842;
+  background:#e7f7ed;
+}
 
-    .back-button{
-      display:inline-block;
+.score-mid{
+  color:#7b5d18;
+  background:#fff5d9;
+}
 
-      padding:
-        11px 20px;
+.score-low{
+  color:#923e4e;
+  background:#ffecef;
+}
 
-      color:white;
+.details-button{
+  min-height:37px;
 
-      font-size:13px;
-      font-weight:bold;
+  padding:
+    7px 11px;
 
-      text-decoration:none;
+  border:none;
+  border-radius:11px;
 
-      border:
-        2px solid var(--gold);
+  color:white;
 
-      border-radius:999px;
+  background:
+    linear-gradient(
+      135deg,
+      var(--purple-light),
+      var(--purple)
+    );
 
-      background:
-        linear-gradient(
-          135deg,
-          var(--purple-light),
-          var(--purple)
-        );
-    }
+  font-size:11px;
+  font-weight:bold;
 
-    @media(min-width:780px){
+  cursor:pointer;
+}
 
-      .stats{
-        grid-template-columns:
-          repeat(
-            5,
-            minmax(0,1fr)
-          );
-      }
+.empty{
+  padding:
+    25px 10px;
 
-    }
+  text-align:center;
 
-    @media(max-width:600px){
+  color:#75697a;
 
-      .tab-button{
-        min-height:64px;
-        font-size:12px;
-      }
+  font-size:14px;
+  font-weight:bold;
+}
 
-    }
+.footer{
+  margin-top:24px;
 
-  </style>
+  text-align:center;
+}
+
+.back-button{
+  display:inline-block;
+
+  padding:
+    11px 20px;
+
+  color:white;
+
+  font-size:13px;
+  font-weight:bold;
+
+  text-decoration:none;
+
+  border:
+    2px solid var(--gold);
+
+  border-radius:999px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--purple-light),
+      var(--purple)
+    );
+}
+
+/* نافذة التفاصيل */
+
+.modal{
+  display:none;
+
+  position:fixed;
+
+  z-index:9999;
+
+  inset:0;
+
+  padding:16px;
+
+  background:
+    rgba(40,30,48,.6);
+
+  overflow-y:auto;
+}
+
+.modal.show{
+  display:block;
+}
+
+.modal-card{
+  width:
+    min(
+      100%,
+      920px
+    );
+
+  margin:
+    25px auto;
+
+  overflow:hidden;
+
+  border:
+    3px solid var(--gold);
+
+  border-radius:24px;
+
+  background:#fffdf8;
+
+  box-shadow:
+    0 20px 55px
+    rgba(0,0,0,.25);
+}
+
+.modal-head{
+  display:flex;
+
+  align-items:center;
+  justify-content:space-between;
+
+  gap:10px;
+
+  padding:
+    16px 18px;
+
+  color:white;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--purple-light),
+      var(--purple)
+    );
+
+  border-bottom:
+    4px solid var(--gold);
+}
+
+.modal-head h2{
+  margin:0;
+
+  font-size:
+    clamp(
+      18px,
+      5vw,
+      25px
+    );
+}
+
+.modal-close{
+  width:42px;
+  height:42px;
+
+  border:none;
+  border-radius:50%;
+
+  color:#5b4677;
+  background:#fff7dc;
+
+  font-size:20px;
+  font-weight:bold;
+
+  cursor:pointer;
+}
+
+.modal-body{
+  padding:18px;
+}
+
+.modal-summary{
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      4,
+      minmax(0,1fr)
+    );
+
+  gap:10px;
+
+  margin-bottom:17px;
+}
+
+.modal-stat{
+  padding:13px 8px;
+
+  text-align:center;
+
+  border:
+    1px solid #ddc98e;
+
+  border-radius:16px;
+
+  background:#faf5fb;
+}
+
+.modal-stat strong{
+  display:block;
+
+  margin-top:4px;
+
+  color:var(--purple);
+
+  font-size:20px;
+}
+
+.challenge-details-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0,1fr)
+    );
+
+  gap:10px;
+}
+
+.challenge-detail{
+  padding:13px;
+
+  border:
+    2px solid #e5d8e4;
+
+  border-radius:17px;
+
+  background:white;
+}
+
+.challenge-detail.earned{
+  border-color:var(--gold);
+
+  background:#fff9e7;
+}
+
+.challenge-detail.done{
+  border-color:#9cc5aa;
+
+  background:#f1faf4;
+}
+
+.challenge-detail.pending{
+  opacity:.7;
+
+  background:#faf7fa;
+}
+
+.challenge-detail h3{
+  margin:
+    0 0 8px;
+
+  color:#5b4677;
+
+  font-size:14px;
+  line-height:1.6;
+}
+
+.challenge-detail p{
+  margin:4px 0;
+
+  font-size:12px;
+  line-height:1.6;
+}
+
+@media(min-width:780px){
+
+  .stats{
+    grid-template-columns:
+      repeat(
+        5,
+        minmax(0,1fr)
+      );
+  }
+
+}
+
+@media(max-width:700px){
+
+  .tab-button{
+    min-height:64px;
+    font-size:12px;
+  }
+
+  .modal-summary{
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0,1fr)
+      );
+  }
+
+  .challenge-details-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+</style>
+
 </head>
+
 <body>
 
-  <header>
+<header>
 
-    <div class="badge">
-      لوحة المعلمة
+  <div class="badge">
+    لوحة المعلمة
+  </div>
+
+  <h1 id="pageTitle">
+    📘 متابعة الفصل الدراسي الأول
+  </h1>
+
+  <p id="pageDescription">
+    متابعة أداء الطالبات ونتائج الاختبارات
+    والإنجاز خلال الفصل الدراسي الأول.
+  </p>
+
+</header>
+
+
+<main class="container">
+
+  <div
+    id="statusBox"
+    class="status-box loading"
+  >
+    جارٍ التحقق من صلاحية الدخول...
+  </div>
+
+
+  <section
+    id="dashboardContent"
+    style="display:none;"
+  >
+
+    <div class="tabs">
+
+      <button
+        class="tab-button active"
+        type="button"
+        data-view="semester1"
+      >
+        📘 الفصل الأول
+      </button>
+
+      <button
+        class="tab-button"
+        type="button"
+        data-view="semester2"
+      >
+        📗 الفصل الثاني
+      </button>
+
+      <button
+        class="tab-button"
+        type="button"
+        data-view="nafes"
+      >
+        🎯 نافس
+      </button>
+
     </div>
 
-    <h1 id="pageTitle">
-      📘 متابعة الفصل الدراسي الأول
-    </h1>
 
-    <p id="pageDescription">
-      متابعة أداء الطالبات ونتائج الاختبارات
-      والإنجاز خلال الفصل الدراسي الأول.
-    </p>
+    <div class="filters">
 
-  </header>
+      <label>
+
+        الفصل
+
+        <select id="classFilter">
+
+          <option value="all">
+            جميع الفصول
+          </option>
+
+          <option value="ثالث متوسط أ">
+            ثالث متوسط أ
+          </option>
+
+          <option value="ثالث متوسط ب">
+            ثالث متوسط ب
+          </option>
+
+          <option value="ثالث متوسط ج">
+            ثالث متوسط ج
+          </option>
+
+        </select>
+
+      </label>
 
 
-  <main class="container">
+      <label id="statusFilterLabel">
 
-    <div
-      id="statusBox"
-      class="status-box loading"
-    >
-      جارٍ التحقق من صلاحية الدخول...
+        حالة الإكمال
+
+        <select id="statusFilter">
+
+          <option value="all">
+            الجميع
+          </option>
+
+          <option value="completed">
+            مكتمل
+          </option>
+
+          <option value="pending">
+            غير مكتمل
+          </option>
+
+        </select>
+
+      </label>
+
+
+      <label>
+
+        البحث باسم الطالبة
+
+        <input
+          id="searchInput"
+          type="search"
+          placeholder="اكتبي الاسم..."
+        >
+
+      </label>
+
     </div>
 
 
-    <section
-      id="dashboardContent"
-      style="display:none;"
-    >
+    <section class="stats">
 
-      <div class="tabs">
+      <div class="stat-card">
 
-        <button
-          class="tab-button active"
-          id="semester1Tab"
-          type="button"
-          data-view="semester1"
+        <div class="stat-icon">
+          👩‍🎓
+        </div>
+
+        <span
+          id="stat1"
+          class="stat-number"
         >
-          📘 الفصل الأول
-        </button>
+          ٠
+        </span>
 
-        <button
-          class="tab-button"
-          id="semester2Tab"
-          type="button"
-          data-view="semester2"
+        <span
+          id="statLabel1"
+          class="stat-label"
         >
-          📗 الفصل الثاني
-        </button>
-
-        <button
-          class="tab-button"
-          id="nafesTab"
-          type="button"
-          data-view="nafes"
-        >
-          🎯 نافس
-        </button>
+          عدد الطالبات
+        </span>
 
       </div>
 
 
-      <div class="filters">
+      <div class="stat-card">
 
-        <label>
+        <div class="stat-icon">
+          ✅
+        </div>
 
-          الفصل
+        <span
+          id="stat2"
+          class="stat-number"
+        >
+          ٠
+        </span>
 
-          <select id="classFilter">
-
-            <option value="all">
-              جميع الفصول
-            </option>
-
-            <option value="ثالث متوسط أ">
-              ثالث متوسط أ
-            </option>
-
-            <option value="ثالث متوسط ب">
-              ثالث متوسط ب
-            </option>
-
-            <option value="ثالث متوسط ج">
-              ثالث متوسط ج
-            </option>
-
-          </select>
-
-        </label>
-
-
-        <label id="statusFilterLabel">
-
-          حالة الإكمال
-
-          <select id="statusFilter">
-
-            <option value="all">
-              الجميع
-            </option>
-
-            <option value="completed">
-              مكتمل
-            </option>
-
-            <option value="pending">
-              غير مكتمل
-            </option>
-
-          </select>
-
-        </label>
-
-
-        <label>
-
-          البحث باسم الطالبة
-
-          <input
-            id="searchInput"
-            type="search"
-            placeholder="اكتبي الاسم..."
-          >
-
-        </label>
+        <span
+          id="statLabel2"
+          class="stat-label"
+        >
+          أكملن التقييم
+        </span>
 
       </div>
 
 
-      <section class="stats">
+      <div class="stat-card">
 
-        <div class="stat-card">
-
-          <div class="stat-icon">
-            👩‍🎓
-          </div>
-
-          <span
-            id="stat1"
-            class="stat-number"
-          >
-            ٠
-          </span>
-
-          <span
-            id="statLabel1"
-            class="stat-label"
-          >
-            عدد الطالبات
-          </span>
-
+        <div class="stat-icon">
+          📈
         </div>
 
-
-        <div class="stat-card">
-
-          <div class="stat-icon">
-            ✅
-          </div>
-
-          <span
-            id="stat2"
-            class="stat-number"
-          >
-            ٠
-          </span>
-
-          <span
-            id="statLabel2"
-            class="stat-label"
-          >
-            أكملن التقييم
-          </span>
-
-        </div>
-
-
-        <div class="stat-card">
-
-          <div class="stat-icon">
-            📈
-          </div>
-
-          <span
-            id="stat3"
-            class="stat-number"
-          >
-            ٠٪
-          </span>
-
-          <span
-            id="statLabel3"
-            class="stat-label"
-          >
-            متوسط النتائج
-          </span>
-
-        </div>
-
-
-        <div class="stat-card">
-
-          <div class="stat-icon">
-            🏆
-          </div>
-
-          <span
-            id="stat4"
-            class="stat-number"
-          >
-            ٠
-          </span>
-
-          <span
-            id="statLabel4"
-            class="stat-label"
-          >
-            استحققن الشهادة
-          </span>
-
-        </div>
-
-
-        <div class="stat-card">
-
-          <div class="stat-icon">
-            📝
-          </div>
-
-          <span
-            id="stat5"
-            class="stat-number"
-          >
-            ٠
-          </span>
-
-          <span
-            id="statLabel5"
-            class="stat-label"
-          >
-            اختبارات مسجلة
-          </span>
-
-        </div>
-
-      </section>
-
-
-      <section class="section">
-
-        <h2
-          id="tableTitle"
-          class="section-title"
+        <span
+          id="stat3"
+          class="stat-number"
         >
-          نتائج طالبات الفصل الدراسي الأول
-        </h2>
+          ٠٪
+        </span>
 
-        <p
-          id="tableNote"
-          class="section-note"
+        <span
+          id="statLabel3"
+          class="stat-label"
         >
-          تعرض هذه الصفحة نتائج الطالبات
-          المسجلة في منصة آفاق.
-        </p>
+          متوسط النتائج
+        </span>
+
+      </div>
 
 
-        <div class="table-wrap">
+      <div class="stat-card">
 
-          <table>
-
-            <thead id="tableHead">
-
-              <tr>
-
-                <th>
-                  الطالبة
-                </th>
-
-                <th>
-                  الفصل
-                </th>
-
-                <th>
-                  الاختبارات المسجلة
-                </th>
-
-                <th>
-                  الإكمال
-                </th>
-
-                <th>
-                  النتيجة
-                </th>
-
-                <th>
-                  الشهادة
-                </th>
-
-                <th>
-                  آخر دخول
-                </th>
-
-              </tr>
-
-            </thead>
-
-
-            <tbody id="studentsTable">
-
-              <tr>
-
-                <td
-                  colspan="7"
-                  class="empty"
-                >
-                  جارٍ تحميل بيانات الطالبات...
-                </td>
-
-              </tr>
-
-            </tbody>
-
-          </table>
-
+        <div class="stat-icon">
+          🎓
         </div>
 
-      </section>
-
-
-      <div class="footer">
-
-        <a
-          class="back-button"
-          href="index.html"
+        <span
+          id="stat4"
+          class="stat-number"
         >
-          ↩ العودة إلى المنصة
-        </a>
+          ٠
+        </span>
+
+        <span
+          id="statLabel4"
+          class="stat-label"
+        >
+          الشهادات
+        </span>
+
+      </div>
+
+
+      <div class="stat-card">
+
+        <div class="stat-icon">
+          🏆
+        </div>
+
+        <span
+          id="stat5"
+          class="stat-number"
+        >
+          ٠
+        </span>
+
+        <span
+          id="statLabel5"
+          class="stat-label"
+        >
+          الإنجازات
+        </span>
 
       </div>
 
     </section>
 
-  </main>
-    <script type="module">
 
-    import {
-      initializeApp
+    <section class="section">
+
+      <h2
+        id="tableTitle"
+        class="section-title"
+      >
+        نتائج طالبات الفصل الدراسي الأول
+      </h2>
+
+      <p
+        id="tableNote"
+        class="section-note"
+      >
+        تعرض هذه الصفحة نتائج الطالبات المسجلة في منصة آفاق.
+      </p>
+
+
+      <div class="table-wrap">
+
+        <table>
+
+          <thead id="tableHead"></thead>
+
+          <tbody id="studentsTable">
+
+            <tr>
+
+              <td
+                colspan="10"
+                class="empty"
+              >
+                جارٍ تحميل بيانات الطالبات...
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </section>
+
+
+    <div class="footer">
+
+      <a
+        class="back-button"
+        href="index.html"
+      >
+        ↩ العودة إلى المنصة
+      </a>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<div
+  id="detailsModal"
+  class="modal"
+>
+
+  <div class="modal-card">
+
+    <div class="modal-head">
+
+      <h2 id="modalTitle">
+        تفاصيل تقدم الطالبة
+      </h2>
+
+      <button
+        id="modalClose"
+        class="modal-close"
+        type="button"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <div class="modal-body">
+
+      <div
+        id="modalSummary"
+        class="modal-summary"
+      ></div>
+
+      <div
+        id="challengeDetailsGrid"
+        class="challenge-details-grid"
+      ></div>
+
+    </div>
+
+  </div>
+
+</div>
+<script type="module">
+
+import {
+  initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+
+
+import {
+  initializeAuth,
+  browserLocalPersistence,
+  browserPopupRedirectResolver,
+  onAuthStateChanged
+}
+from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+
+import {
+  getFirestore,
+  collection,
+  getDocs
+}
+from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+
+const firebaseConfig = {
+
+  apiKey:
+    "AIzaSyB48av9gx4jzFyYoUQtcLwaR52qETevKGs",
+
+  authDomain:
+    "afaq-language-platform.firebaseapp.com",
+
+  projectId:
+    "afaq-language-platform",
+
+  storageBucket:
+    "afaq-language-platform.firebasestorage.app",
+
+  messagingSenderId:
+    "362601061474",
+
+  appId:
+    "1:362601061474:web:bc405291332b9e4ef9453b"
+
+};
+
+
+const app =
+  initializeApp(
+    firebaseConfig
+  );
+
+
+const auth =
+  initializeAuth(
+    app,
+    {
+      persistence:
+        browserLocalPersistence,
+
+      popupRedirectResolver:
+        browserPopupRedirectResolver
     }
-    from
-    "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+  );
 
 
-    import {
-      initializeAuth,
-      browserLocalPersistence,
-      onAuthStateChanged
+const db =
+  getFirestore(
+    app
+  );
+
+
+const TEACHER_UID =
+  "oIqOvhIaC3TQyr6WcXCW9FZhZio2";
+
+
+const TOTAL_CHALLENGES =
+  20;
+
+
+const challengeNames = {
+
+  1:"تحدي بوصلة الفهم",
+  2:"تحدي الأمن السيبراني",
+  3:"تحدي مشروع نيوم",
+  4:"تحدي القدية",
+  5:"تحدي الذكاء الاصطناعي",
+  6:"تحدي الفضاء السعودي",
+  7:"تحدي البحر الأحمر",
+  8:"تحدي الطاقة المتجددة",
+  9:"تحدي رؤية المملكة 2030",
+  10:"تحدي التراث السعودي",
+  11:"تحدي طريق الحرير",
+  12:"تحدي العلماء المسلمين",
+  13:"تحدي الرسالة القديمة",
+  14:"تحدي النوم والذاكرة",
+  15:"تحدي الإدمان الرقمي",
+  16:"تحدي الهندسة الوراثية",
+  17:"تحدي الشعاب المرجانية",
+  18:"تحدي الطاقة المتجددة",
+  19:"تحدي استكشاف الفضاء",
+  20:"تحدي المدن الذكية"
+
+};
+
+
+const el =
+  id =>
+    document.getElementById(
+      id
+    );
+
+
+const statusBox =
+  el("statusBox");
+
+const dashboardContent =
+  el("dashboardContent");
+
+const pageTitle =
+  el("pageTitle");
+
+const pageDescription =
+  el("pageDescription");
+
+const tableTitle =
+  el("tableTitle");
+
+const tableNote =
+  el("tableNote");
+
+const tableHead =
+  el("tableHead");
+
+const studentsTable =
+  el("studentsTable");
+
+const classFilter =
+  el("classFilter");
+
+const statusFilter =
+  el("statusFilter");
+
+const statusFilterLabel =
+  el("statusFilterLabel");
+
+const searchInput =
+  el("searchInput");
+
+const stat1 =
+  el("stat1");
+
+const stat2 =
+  el("stat2");
+
+const stat3 =
+  el("stat3");
+
+const stat4 =
+  el("stat4");
+
+const stat5 =
+  el("stat5");
+
+const statLabel1 =
+  el("statLabel1");
+
+const statLabel2 =
+  el("statLabel2");
+
+const statLabel3 =
+  el("statLabel3");
+
+const statLabel4 =
+  el("statLabel4");
+
+const statLabel5 =
+  el("statLabel5");
+
+const tabButtons =
+  document.querySelectorAll(
+    ".tab-button"
+  );
+
+const detailsModal =
+  el("detailsModal");
+
+const modalClose =
+  el("modalClose");
+
+const modalTitle =
+  el("modalTitle");
+
+const modalSummary =
+  el("modalSummary");
+
+const challengeDetailsGrid =
+  el("challengeDetailsGrid");
+
+
+let currentView =
+  "semester1";
+
+
+let allStudents =
+  [];
+
+
+function toArabicNumber(
+  value
+){
+
+  return String(
+    value
+  ).replace(
+    /\d/g,
+    digit =>
+      "٠١٢٣٤٥٦٧٨٩"[digit]
+  );
+
+}
+
+
+function safeNumber(
+  value
+){
+
+  const number =
+    Number(
+      value
+    );
+
+
+  return Number.isFinite(
+    number
+  )
+    ? number
+    : 0;
+
+}
+
+
+function normalizeClassName(
+  value
+){
+
+  const text =
+    String(
+      value || ""
+    )
+      .trim()
+      .replace(
+        /\s+/g,
+        " "
+      );
+
+
+  if(!text){
+    return "غير محدد";
+  }
+
+
+  if(
+    text === "أ" ||
+    text === "ا" ||
+    text === "ألف" ||
+    text.includes("متوسط أ") ||
+    text.includes("متوسط ا") ||
+    text.includes("ثالث أ")
+  ){
+    return "ثالث متوسط أ";
+  }
+
+
+  if(
+    text === "ب" ||
+    text === "باء" ||
+    text.includes("متوسط ب") ||
+    text.includes("ثالث ب")
+  ){
+    return "ثالث متوسط ب";
+  }
+
+
+  if(
+    text === "ج" ||
+    text === "جيم" ||
+    text.includes("متوسط ج") ||
+    text.includes("ثالث ج")
+  ){
+    return "ثالث متوسط ج";
+  }
+
+
+  return text;
+
+}
+
+
+function formatDateTime(
+  timestamp
+){
+
+  if(!timestamp){
+    return "—";
+  }
+
+
+  try{
+
+    let date;
+
+
+    if(
+      typeof timestamp.toDate ===
+      "function"
+    ){
+
+      date =
+        timestamp.toDate();
+
     }
-    from
-    "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
 
+    else{
 
-    import {
-      getFirestore,
-      collection,
-      getDocs
+      date =
+        new Date(
+          timestamp
+        );
+
     }
-    from
-    "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 
 
-    const firebaseConfig = {
-
-      apiKey:
-        "AIzaSyB48av9gx4jzFyYoUQtcLwaR52qETevKGs",
-
-      authDomain:
-        "afaq-language-platform.firebaseapp.com",
-
-      projectId:
-        "afaq-language-platform",
-
-      storageBucket:
-        "afaq-language-platform.firebasestorage.app",
-
-      messagingSenderId:
-        "362601061474",
-
-      appId:
-        "1:362601061474:web:bc405291332b9e4ef9453b"
-
-    };
+    if(
+      Number.isNaN(
+        date.getTime()
+      )
+    ){
+      return "—";
+    }
 
 
-    const app =
-      initializeApp(
-        firebaseConfig
+    return date.toLocaleString(
+      "ar-SA",
+      {
+        year:"numeric",
+        month:"short",
+        day:"numeric",
+        hour:"numeric",
+        minute:"2-digit"
+      }
+    );
+
+  }
+
+  catch(error){
+
+    return "—";
+
+  }
+
+}
+
+
+function escapeHtml(
+  value
+){
+
+  return String(
+    value ?? ""
+  )
+    .replaceAll(
+      "&",
+      "&amp;"
+    )
+    .replaceAll(
+      "<",
+      "&lt;"
+    )
+    .replaceAll(
+      ">",
+      "&gt;"
+    )
+    .replaceAll(
+      '"',
+      "&quot;"
+    )
+    .replaceAll(
+      "'",
+      "&#039;"
+    );
+
+}
+
+
+function scoreClass(
+  score
+){
+
+  if(score >= 80){
+    return "score-good";
+  }
+
+  if(score >= 60){
+    return "score-mid";
+  }
+
+  return "score-low";
+
+}
+
+
+function normalizeChallenge(
+  item,
+  number
+){
+
+  if(
+    !item ||
+    typeof item !==
+      "object"
+  ){
+
+    return null;
+
+  }
+
+
+  const score =
+    safeNumber(
+      item["الدرجة"] ??
+      item.score
+    );
+
+
+  const total =
+    safeNumber(
+      item["المجموع"] ??
+      item.total ??
+      10
+    );
+
+
+  let percentage =
+    Number(
+      item["النسبة"] ??
+      item.percentage
+    );
+
+
+  if(
+    !Number.isFinite(
+      percentage
+    )
+  ){
+
+    percentage =
+      total > 0
+        ? Math.round(
+            (
+              score /
+              total
+            ) *
+            100
+          )
+        : 0;
+
+  }
+
+
+  percentage =
+    Math.max(
+      0,
+      Math.min(
+        100,
+        Math.round(
+          percentage
+        )
+      )
+    );
+
+
+  const certificate =
+    item["الشهادة"] === true ||
+    item.certificate === true ||
+    percentage >= 80;
+
+
+  return {
+
+    number,
+
+    title:
+      item["اسم_التحدي"] ||
+      item.title ||
+      challengeNames[number],
+
+    score,
+
+    total,
+
+    percentage,
+
+    certificate
+
+  };
+
+}
+
+
+function prepareStudentData(
+  id,
+  data
+){
+
+  const semester1Result =
+    data?.["نتيجة_الفصل_الأول"] ||
+    {};
+
+
+  const semester1Tests =
+    data?.["اختبارات_الفصل_الأول"] ||
+    {};
+
+
+  const semester2Result =
+    data?.["نتيجة_الفصل_الثاني"] ||
+    {};
+
+
+  const semester2Tests =
+    data?.["اختبارات_الفصل_الثاني"] ||
+    {};
+
+
+  const nafes =
+    data?.["نافس_المتابعة"] ||
+    {};
+
+
+  const semester1TestCount =
+    Object.values(
+      semester1Tests
+    )
+      .filter(
+        item =>
+          item &&
+          typeof item ===
+            "object"
+      )
+      .length;
+
+
+  const semester2TestCount =
+    Object.values(
+      semester2Tests
+    )
+      .filter(
+        item =>
+          item &&
+          typeof item ===
+            "object"
+      )
+      .length;
+
+
+  const openedSections =
+    Array.isArray(
+      nafes["الأقسام_المفتوحة"]
+    )
+      ? nafes["الأقسام_المفتوحة"]
+      : [];
+
+
+  const challengeResults =
+    nafes["نتائج_التحديات"] &&
+    typeof nafes[
+      "نتائج_التحديات"
+    ] === "object"
+
+      ? nafes["نتائج_التحديات"]
+      : {};
+
+
+  const challenges =
+    [];
+
+
+  for(
+    let number=1;
+    number<=TOTAL_CHALLENGES;
+    number++
+  ){
+
+    const raw =
+      challengeResults[
+        `challenge${number}`
+      ] ||
+      challengeResults[
+        `challenge${String(number).padStart(2,"0")}`
+      ];
+
+
+    const result =
+      normalizeChallenge(
+        raw,
+        number
       );
 
 
-    const auth =
-      initializeAuth(
-        app,
-        {
-          persistence:
-            browserLocalPersistence
-        }
+    if(result){
+
+      challenges.push(
+        result
+      );
+
+    }
+
+  }
+
+
+  const challengeCount =
+    challenges.length;
+
+
+  const challengeAverage =
+    challengeCount > 0
+
+      ? Math.round(
+          challenges.reduce(
+            (
+              total,
+              item
+            ) =>
+              total +
+              item.percentage,
+            0
+          ) /
+          challengeCount
+        )
+
+      : 0;
+
+
+  const certificateCount =
+    challenges.filter(
+      item =>
+        item.certificate
+    ).length;
+
+
+  const cup =
+    nafes["الكأس_مستحق"] === true ||
+    (
+      challengeCount ===
+        TOTAL_CHALLENGES &&
+      challengeAverage >= 80
+    );
+
+
+  return {
+
+    id,
+
+    name:
+      data?.["الاسم"] ||
+      data?.["اسم_الطالبة"] ||
+      "طالبة غير مسماة",
+
+    className:
+      normalizeClassName(
+        data?.["الفصل"]
+      ),
+
+    lastLogin:
+      data?.["آخر_دخول"] ||
+      null,
+
+
+    semester1:{
+
+      testCount:
+        semester1TestCount,
+
+      completed:
+        semester1Result[
+          "مكتمل"
+        ] === true,
+
+      score:
+        safeNumber(
+          semester1Result[
+            "الدرجة"
+          ]
+        ),
+
+      certificate:
+        semester1Result[
+          "استحقت_الشهادة"
+        ] === true
+
+    },
+
+
+    semester2:{
+
+      testCount:
+        semester2TestCount,
+
+      completed:
+        semester2Result[
+          "مكتمل"
+        ] === true,
+
+      score:
+        safeNumber(
+          semester2Result[
+            "الدرجة"
+          ]
+        ),
+
+      certificate:
+        semester2Result[
+          "استحقت_الشهادة"
+        ] === true
+
+    },
+
+
+    nafes:{
+
+      viewed:
+        nafes["اطلعت"] === true,
+
+      firstVisit:
+        nafes["أول_دخول"] ||
+        null,
+
+      lastVisit:
+        nafes["آخر_دخول"] ||
+        null,
+
+      lastInteraction:
+        nafes["آخر_تفاعل"] ||
+        null,
+
+      visitCount:
+        safeNumber(
+          nafes["عدد_مرات_الدخول"]
+        ),
+
+      openedSections,
+
+      sectionCount:
+        openedSections.length,
+
+      lastSection:
+        nafes["آخر_قسم"] ||
+        "—",
+
+      challengeCount,
+
+      challengeAverage,
+
+      certificateCount,
+
+      cup,
+
+      challenges
+
+    }
+
+  };
+
+}
+
+
+async function loadStudents(){
+
+  try{
+
+    statusBox.style.display =
+      "block";
+
+
+    statusBox.className =
+      "status-box loading";
+
+
+    statusBox.textContent =
+      "جارٍ تحميل سجلات الطالبات...";
+
+
+    const snapshot =
+      await getDocs(
+        collection(
+          db,
+          "students"
+        )
       );
 
 
-    const db =
-      getFirestore(
-        app
-      );
-
-
-    const TEACHER_UID =
-      "oIqOvhIaC3TQyr6WcXCW9FZhZio2";
-
-
-    const statusBox =
-      document.getElementById(
-        "statusBox"
-      );
-
-
-    const dashboardContent =
-      document.getElementById(
-        "dashboardContent"
-      );
-
-
-    const pageTitle =
-      document.getElementById(
-        "pageTitle"
-      );
-
-
-    const pageDescription =
-      document.getElementById(
-        "pageDescription"
-      );
-
-
-    const tableTitle =
-      document.getElementById(
-        "tableTitle"
-      );
-
-
-    const tableNote =
-      document.getElementById(
-        "tableNote"
-      );
-
-
-    const tableHead =
-      document.getElementById(
-        "tableHead"
-      );
-
-
-    const studentsTable =
-      document.getElementById(
-        "studentsTable"
-      );
-
-
-    const classFilter =
-      document.getElementById(
-        "classFilter"
-      );
-
-
-    const statusFilter =
-      document.getElementById(
-        "statusFilter"
-      );
-
-
-    const statusFilterLabel =
-      document.getElementById(
-        "statusFilterLabel"
-      );
-
-
-    const searchInput =
-      document.getElementById(
-        "searchInput"
-      );
-
-
-    const stat1 =
-      document.getElementById(
-        "stat1"
-      );
-
-
-    const stat2 =
-      document.getElementById(
-        "stat2"
-      );
-
-
-    const stat3 =
-      document.getElementById(
-        "stat3"
-      );
-
-
-    const stat4 =
-      document.getElementById(
-        "stat4"
-      );
-
-
-    const stat5 =
-      document.getElementById(
-        "stat5"
-      );
-
-
-    const statLabel1 =
-      document.getElementById(
-        "statLabel1"
-      );
-
-
-    const statLabel2 =
-      document.getElementById(
-        "statLabel2"
-      );
-
-
-    const statLabel3 =
-      document.getElementById(
-        "statLabel3"
-      );
-
-
-    const statLabel4 =
-      document.getElementById(
-        "statLabel4"
-      );
-
-
-    const statLabel5 =
-      document.getElementById(
-        "statLabel5"
-      );
-
-
-    const tabButtons =
-      document.querySelectorAll(
-        ".tab-button"
-      );
-
-
-    let currentView =
-      "semester1";
-
-
-    let allStudents =
+    allStudents =
       [];
 
 
-    function toArabicNumber(
-      value
-    ){
+    snapshot.forEach(
+      documentSnapshot => {
 
-      return String(
-        value
-      ).replace(
-        /\d/g,
-        digit =>
-          "٠١٢٣٤٥٦٧٨٩"[digit]
-      );
+        /*
+          لا نظهر حساب المعلمة
+          ضمن قائمة الطالبات.
+        */
 
-    }
-
-
-    function safeNumber(
-      value
-    ){
-
-      const number =
-        Number(
-          value
-        );
-
-      return Number.isFinite(
-        number
-      )
-        ? number
-        : 0;
-
-    }
+        if(
+          documentSnapshot.id ===
+          TEACHER_UID
+        ){
+          return;
+        }
 
 
-    function normalizeClassName(
-      value
-    ){
-
-      const text =
-        String(
-          value || ""
-        )
-        .trim()
-        .replace(
-          /\s+/g,
-          " "
-        );
-
-
-      if(!text){
-        return "غير محدد";
-      }
-
-
-      if(
-        text === "أ" ||
-        text === "ا" ||
-        text === "ألف" ||
-        text.includes("متوسط أ") ||
-        text.includes("متوسط ا") ||
-        text.includes("ثالث أ")
-      ){
-        return "ثالث متوسط أ";
-      }
-
-
-      if(
-        text === "ب" ||
-        text === "باء" ||
-        text.includes("متوسط ب") ||
-        text.includes("ثالث ب")
-      ){
-        return "ثالث متوسط ب";
-      }
-
-
-      if(
-        text === "ج" ||
-        text === "جيم" ||
-        text.includes("متوسط ج") ||
-        text.includes("ثالث ج")
-      ){
-        return "ثالث متوسط ج";
-      }
-
-
-      return text;
-
-    }
-
-
-    function formatDateTime(
-      timestamp
-    ){
-
-      if(!timestamp){
-        return "—";
-      }
-
-
-      try{
-
-        let date;
+        const data =
+          documentSnapshot.data();
 
 
         if(
-          typeof timestamp.toDate ===
-          "function"
+          !data?.["الاسم"] &&
+          !data?.["الفصل"] &&
+          !data?.["معرف_المستخدم"]
+        ){
+          return;
+        }
+
+
+        allStudents.push(
+          prepareStudentData(
+            documentSnapshot.id,
+            data
+          )
+        );
+
+      }
+    );
+
+
+    renderCurrentView();
+
+
+    statusBox.className =
+      "status-box success";
+
+
+    statusBox.textContent =
+      "✅ تم تحميل بيانات الطالبات بنجاح.";
+
+
+    setTimeout(
+      () => {
+
+        statusBox.style.display =
+          "none";
+
+      },
+      1600
+    );
+
+  }
+
+  catch(error){
+
+    console.error(
+      "Firestore error:",
+      error
+    );
+
+
+    statusBox.className =
+      "status-box error";
+
+
+    statusBox.textContent =
+      "تعذّر تحميل بيانات الطالبات. تحققي من تسجيل الدخول وصلاحيات Firestore.";
+
+  }
+
+}
+
+
+function getFilteredStudents(){
+
+  const selectedClass =
+    classFilter.value;
+
+
+  const selectedStatus =
+    statusFilter.value;
+
+
+  const searchValue =
+    searchInput.value
+      .trim()
+      .toLowerCase();
+
+
+  return allStudents.filter(
+    student => {
+
+      const classMatches =
+        selectedClass === "all" ||
+        student.className ===
+          selectedClass;
+
+
+      const searchMatches =
+        !searchValue ||
+        student.name
+          .toLowerCase()
+          .includes(
+            searchValue
+          );
+
+
+      let statusMatches =
+        true;
+
+
+      if(
+        selectedStatus !==
+          "all"
+      ){
+
+        if(
+          currentView ===
+            "semester1"
         ){
 
-          date =
-            timestamp.toDate();
+          statusMatches =
+            selectedStatus ===
+              "completed"
+
+              ? student.semester1.completed
+
+              : !student.semester1.completed;
+
+        }
+
+        else if(
+          currentView ===
+            "semester2"
+        ){
+
+          statusMatches =
+            selectedStatus ===
+              "completed"
+
+              ? student.semester2.completed
+
+              : !student.semester2.completed;
 
         }
 
         else{
 
-          date =
-            new Date(
-              timestamp
-            );
-
-        }
-
-
-        if(
-          Number.isNaN(
-            date.getTime()
-          )
-        ){
-          return "—";
-        }
-
-
-        return date.toLocaleString(
-          "ar-SA",
-          {
-            year:"numeric",
-            month:"short",
-            day:"numeric",
-            hour:"numeric",
-            minute:"2-digit"
-          }
-        );
-
-      }
-
-      catch(error){
-
-        return "—";
-
-      }
-
-    }
-
-
-    function escapeHtml(
-      value
-    ){
-
-      return String(
-        value ?? ""
-      )
-      .replaceAll(
-        "&",
-        "&amp;"
-      )
-      .replaceAll(
-        "<",
-        "&lt;"
-      )
-      .replaceAll(
-        ">",
-        "&gt;"
-      )
-      .replaceAll(
-        '"',
-        "&quot;"
-      )
-      .replaceAll(
-        "'",
-        "&#039;"
-      );
-
-    }
-
-
-    function scoreClass(
-      score
-    ){
-
-      if(score >= 80){
-        return "score-good";
-      }
-
-      if(score >= 60){
-        return "score-mid";
-      }
-
-      return "score-low";
-
-    }
-          function prepareStudentData(
-      id,
-      data
-    ){
-
-      const semester1Result =
-        data?.["نتيجة_الفصل_الأول"] ||
-        {};
-
-
-      const semester1Tests =
-        data?.["اختبارات_الفصل_الأول"] ||
-        {};
-
-
-      const semester2Result =
-        data?.["نتيجة_الفصل_الثاني"] ||
-        {};
-
-
-      const semester2Tests =
-        data?.["اختبارات_الفصل_الثاني"] ||
-        {};
-
-
-      const nafes =
-        data?.["نافس_المتابعة"] ||
-        {};
-
-
-      const semester1TestCount =
-        Object.values(
-          semester1Tests
-        )
-        .filter(
-          item =>
-            item &&
-            typeof item === "object"
-        )
-        .length;
-
-
-      const semester2TestCount =
-        Object.values(
-          semester2Tests
-        )
-        .filter(
-          item =>
-            item &&
-            typeof item === "object"
-        )
-        .length;
-
-
-      const openedSections =
-        Array.isArray(
-          nafes["الأقسام_المفتوحة"]
-        )
-        ? nafes["الأقسام_المفتوحة"]
-        : [];
-
-
-      const challengeResults =
-        nafes["نتائج_التحديات"] &&
-        typeof nafes["نتائج_التحديات"] ===
-          "object"
-
-        ? nafes["نتائج_التحديات"]
-        : {};
-
-
-      const challengeEntries =
-        Object.values(
-          challengeResults
-        )
-        .filter(
-          item =>
-            item &&
-            typeof item === "object"
-        );
-
-
-      let nafesAverage =
-        0;
-
-
-      if(
-        challengeEntries.length > 0
-      ){
-
-        const total =
-          challengeEntries.reduce(
-            (
-              sum,
-              item
-            ) => {
-
-              return sum +
-                safeNumber(
-                  item["النسبة"] ??
-                  item["percentage"] ??
-                  item["score"]
-                );
-
-            },
-            0
-          );
-
-
-        nafesAverage =
-          Math.round(
-            total /
-            challengeEntries.length
-          );
-
-      }
-
-
-      return {
-
-        id,
-
-        name:
-          data?.["الاسم"] ||
-          data?.["اسم_الطالبة"] ||
-          "طالبة غير مسماة",
-
-        className:
-          normalizeClassName(
-            data?.["الفصل"]
-          ),
-
-        lastLogin:
-          data?.["آخر_دخول"] ||
-          null,
-
-
-        semester1:{
-          testCount:
-            semester1TestCount,
-
-          completed:
-            semester1Result["مكتمل"] ===
-            true,
-
-          score:
-            safeNumber(
-              semester1Result["الدرجة"]
-            ),
-
-          certificate:
-            semester1Result[
-              "استحقت_الشهادة"
-            ] === true
-        },
-
-
-        semester2:{
-          testCount:
-            semester2TestCount,
-
-          completed:
-            semester2Result["مكتمل"] ===
-            true,
-
-          score:
-            safeNumber(
-              semester2Result["الدرجة"]
-            ),
-
-          certificate:
-            semester2Result[
-              "استحقت_الشهادة"
-            ] === true
-        },
-
-
-        nafes:{
-          viewed:
-            nafes["اطلعت"] ===
-            true,
-
-          firstVisit:
-            nafes["أول_دخول"] ||
-            null,
-
-          lastVisit:
-            nafes["آخر_دخول"] ||
-            null,
-
-          lastInteraction:
-            nafes["آخر_تفاعل"] ||
-            null,
-
-          visitCount:
-            safeNumber(
-              nafes["عدد_مرات_الدخول"]
-            ),
-
-          openedSections:
-            openedSections,
-
-          sectionCount:
-            openedSections.length,
-
-          lastSection:
-            nafes["آخر_قسم"] ||
-            "—",
-
-          challengeCount:
-            challengeEntries.length,
-
-          challengeAverage:
-            nafesAverage,
-
-          cup:
-            challengeEntries.length >= 20 &&
-            nafesAverage >= 80
-        }
-
-      };
-
-    }
-
-
-    async function loadStudents(){
-
-      try{
-
-        statusBox.style.display =
-          "block";
-
-
-        statusBox.className =
-          "status-box loading";
-
-
-        statusBox.textContent =
-          "جارٍ تحميل سجلات الطالبات...";
-
-
-        const snapshot =
-          await getDocs(
-            collection(
-              db,
-              "students"
-            )
-          );
-
-
-        allStudents =
-          [];
-
-
-        snapshot.forEach(
-          documentSnapshot => {
-
-            const data =
-              documentSnapshot.data();
-
-
-            if(
-              !data?.["الاسم"] &&
-              !data?.["الفصل"] &&
-              !data?.["معرف_المستخدم"]
-            ){
-              return;
-            }
-
-
-            allStudents.push(
-              prepareStudentData(
-                documentSnapshot.id,
-                data
-              )
-            );
-
-          }
-        );
-
-
-        renderCurrentView();
-
-
-        statusBox.className =
-          "status-box success";
-
-
-        statusBox.textContent =
-          "✅ تم تحميل بيانات الطالبات بنجاح.";
-
-
-        setTimeout(
-          () => {
-
-            statusBox.style.display =
-              "none";
-
-          },
-          1600
-        );
-
-      }
-
-      catch(error){
-
-        console.error(
-          "Firestore error:",
-          error
-        );
-
-
-        statusBox.className =
-          "status-box error";
-
-
-        statusBox.textContent =
-          "تعذّر تحميل بيانات الطالبات. تحققي من تسجيل الدخول وصلاحيات Firestore.";
-
-      }
-
-    }
-
-
-    function getFilteredStudents(){
-
-      const selectedClass =
-        classFilter.value;
-
-
-      const selectedStatus =
-        statusFilter.value;
-
-
-      const searchValue =
-        searchInput.value
-          .trim()
-          .toLowerCase();
-
-
-      return allStudents.filter(
-        student => {
-
-          const classMatches =
-            selectedClass === "all" ||
-            student.className ===
-              selectedClass;
-
-
-          const searchMatches =
-            !searchValue ||
-            student.name
-              .toLowerCase()
-              .includes(
-                searchValue
-              );
-
-
-          let statusMatches =
-            true;
-
-
           if(
-            selectedStatus !== "all"
+            selectedStatus ===
+              "completed"
           ){
 
-            if(
-              currentView ===
-              "semester1"
-            ){
-
-              statusMatches =
-                selectedStatus ===
-                  "completed"
-
-                ? student.semester1.completed
-                : !student.semester1.completed;
-
-            }
-
-
-            else if(
-              currentView ===
-              "semester2"
-            ){
-
-              statusMatches =
-                selectedStatus ===
-                  "completed"
-
-                ? student.semester2.completed
-                : !student.semester2.completed;
-
-            }
-
-
-            else{
-
-              statusMatches =
-                selectedStatus ===
-                  "completed"
-
-                ? student.nafes.viewed
-                : !student.nafes.viewed;
-
-            }
+            statusMatches =
+              student.nafes.challengeCount ===
+              TOTAL_CHALLENGES;
 
           }
 
+          else{
 
-          return (
-            classMatches &&
-            searchMatches &&
-            statusMatches
-          );
+            statusMatches =
+              student.nafes.challengeCount <
+              TOTAL_CHALLENGES;
+
+          }
 
         }
+
+      }
+
+
+      return (
+        classMatches &&
+        searchMatches &&
+        statusMatches
       );
 
     }
+  );
 
+}
+  function setActiveTab(){
 
-    function setActiveTab(){
+  tabButtons.forEach(
+    button => {
 
-      tabButtons.forEach(
-        button => {
-
-          button.classList.toggle(
-            "active",
-            button.dataset.view ===
-              currentView
-          );
-
-        }
+      button.classList.toggle(
+        "active",
+        button.dataset.view ===
+          currentView
       );
 
     }
+  );
+
+}
 
 
-    function configureView(){
+function configureView(){
 
-      statusFilter.innerHTML =
-        "";
+  if(
+    currentView ===
+      "semester1"
+  ){
 
-
-      if(
-        currentView ===
-        "semester1"
-      ){
-
-        pageTitle.textContent =
-          "📘 متابعة الفصل الدراسي الأول";
+    pageTitle.textContent =
+      "📘 متابعة الفصل الدراسي الأول";
 
 
-        pageDescription.textContent =
-          "متابعة أداء الطالبات ونتائج اختبارات الفصل الدراسي الأول.";
+    pageDescription.textContent =
+      "متابعة أداء الطالبات ونتائج اختبارات الفصل الدراسي الأول.";
 
 
-        tableTitle.textContent =
-          "نتائج طالبات الفصل الدراسي الأول";
+    tableTitle.textContent =
+      "نتائج طالبات الفصل الدراسي الأول";
 
 
-        tableNote.textContent =
-          "النتائج المسجلة في اختبارات الفصل الدراسي الأول.";
+    tableNote.textContent =
+      "النتائج المسجلة في اختبارات الفصل الدراسي الأول.";
 
 
-        statusFilterLabel.childNodes[0].textContent =
-          "حالة الإكمال";
+    statusFilterLabel
+      .childNodes[0]
+      .textContent =
+        "حالة الإكمال";
 
 
-        statusFilter.innerHTML = `
-          <option value="all">
-            الجميع
-          </option>
+    statusFilter.innerHTML = `
+      <option value="all">
+        الجميع
+      </option>
 
-          <option value="completed">
-            أكملت التقييم
-          </option>
+      <option value="completed">
+        أكملت التقييم
+      </option>
 
-          <option value="pending">
-            لم تكمل التقييم
-          </option>
-        `;
-
-
-        tableHead.innerHTML = `
-          <tr>
-            <th>الطالبة</th>
-            <th>الفصل</th>
-            <th>الاختبارات المسجلة</th>
-            <th>الإكمال</th>
-            <th>النتيجة</th>
-            <th>الشهادة</th>
-            <th>آخر دخول</th>
-          </tr>
-        `;
-
-      }
+      <option value="pending">
+        لم تكمل التقييم
+      </option>
+    `;
 
 
-      else if(
-        currentView ===
-        "semester2"
-      ){
+    tableHead.innerHTML = `
+      <tr>
+        <th>الطالبة</th>
+        <th>الفصل</th>
+        <th>الاختبارات المسجلة</th>
+        <th>الإكمال</th>
+        <th>النتيجة</th>
+        <th>الشهادة</th>
+        <th>آخر دخول</th>
+      </tr>
+    `;
 
-        pageTitle.textContent =
-          "📗 متابعة الفصل الدراسي الثاني";
-
-
-        pageDescription.textContent =
-          "متابعة أداء الطالبات ونتائج اختبارات الفصل الدراسي الثاني.";
-
-
-        tableTitle.textContent =
-          "نتائج طالبات الفصل الدراسي الثاني";
+  }
 
 
-        tableNote.textContent =
-          "ستظهر هنا نتائج اختبارات الفصل الثاني فور حفظها في المنصة.";
+  else if(
+    currentView ===
+      "semester2"
+  ){
+
+    pageTitle.textContent =
+      "📗 متابعة الفصل الدراسي الثاني";
 
 
-        statusFilter.innerHTML = `
-          <option value="all">
-            الجميع
-          </option>
-
-          <option value="completed">
-            أكملت التقييم
-          </option>
-
-          <option value="pending">
-            لم تكمل التقييم
-          </option>
-        `;
+    pageDescription.textContent =
+      "متابعة أداء الطالبات ونتائج اختبارات الفصل الدراسي الثاني.";
 
 
-        tableHead.innerHTML = `
-          <tr>
-            <th>الطالبة</th>
-            <th>الفصل</th>
-            <th>الاختبارات المسجلة</th>
-            <th>الإكمال</th>
-            <th>النتيجة</th>
-            <th>الشهادة</th>
-            <th>آخر دخول</th>
-          </tr>
-        `;
-
-      }
+    tableTitle.textContent =
+      "نتائج طالبات الفصل الدراسي الثاني";
 
 
-      else{
-
-        pageTitle.textContent =
-          "🎯 متابعة نافس";
+    tableNote.textContent =
+      "ستظهر هنا نتائج اختبارات الفصل الثاني فور حفظها في المنصة.";
 
 
-        pageDescription.textContent =
-          "متابعة اطلاع الطالبات على محتوى نافس وتفاعلهن مع أقسام المكتبة.";
+    statusFilterLabel
+      .childNodes[0]
+      .textContent =
+        "حالة الإكمال";
 
 
-        tableTitle.textContent =
-          "متابعة اطلاع الطالبات على نافس";
+    statusFilter.innerHTML = `
+      <option value="all">
+        الجميع
+      </option>
+
+      <option value="completed">
+        أكملت التقييم
+      </option>
+
+      <option value="pending">
+        لم تكمل التقييم
+      </option>
+    `;
 
 
-        tableNote.textContent =
-          "يظهر هنا من دخلت نافس، وعدد الأقسام التي فتحتها، وآخر قسم اطلعت عليه.";
+    tableHead.innerHTML = `
+      <tr>
+        <th>الطالبة</th>
+        <th>الفصل</th>
+        <th>الاختبارات المسجلة</th>
+        <th>الإكمال</th>
+        <th>النتيجة</th>
+        <th>الشهادة</th>
+        <th>آخر دخول</th>
+      </tr>
+    `;
+
+  }
 
 
-        statusFilter.innerHTML = `
-          <option value="all">
-            الجميع
-          </option>
+  else{
 
-          <option value="completed">
-            اطلعت على نافس
-          </option>
-
-          <option value="pending">
-            لم تطلع على نافس
-          </option>
-        `;
+    pageTitle.textContent =
+      "🎯 متابعة نافس";
 
 
-        tableHead.innerHTML = `
-          <tr>
-            <th>الطالبة</th>
-            <th>الفصل</th>
-            <th>الاطلاع</th>
-            <th>الأقسام المفتوحة</th>
-            <th>آخر قسم</th>
-            <th>مرات الدخول</th>
-            <th>آخر دخول لنافس</th>
-            <th>تحديات نافس</th>
-            <th>المتوسط</th>
-          </tr>
-        `;
-
-      }
-
-    }
-          function updateStats(
-      students
-    ){
-
-      stat1.textContent =
-        toArabicNumber(
-          students.length
-        );
+    pageDescription.textContent =
+      "متابعة تقدم الطالبات في محتوى نافس والتحديات والشهادات وكأس نافس.";
 
 
-      statLabel1.textContent =
-        "عدد الطالبات";
+    tableTitle.textContent =
+      "متابعة تقدم الطالبات في نافس";
 
 
-      if(
-        currentView ===
-        "nafes"
-      ){
-
-        const viewedStudents =
-          students.filter(
-            student =>
-              student.nafes.viewed
-          );
+    tableNote.textContent =
+      "يظهر هنا اطلاع الطالبة، وعدد تحدياتها، ومتوسطها، وشهاداتها، وحالة كأس نافس، ويمكن فتح التفاصيل لكل طالبة.";
 
 
-        const totalSections =
-          students.reduce(
+    statusFilterLabel
+      .childNodes[0]
+      .textContent =
+        "حالة التحديات";
+
+
+    statusFilter.innerHTML = `
+      <option value="all">
+        الجميع
+      </option>
+
+      <option value="completed">
+        أتمت ٢٠ تحديًا
+      </option>
+
+      <option value="pending">
+        لم تكمل ٢٠ تحديًا
+      </option>
+    `;
+
+
+    tableHead.innerHTML = `
+      <tr>
+        <th>الطالبة</th>
+        <th>الفصل</th>
+        <th>الاطلاع</th>
+        <th>الأقسام المفتوحة</th>
+        <th>مرات الدخول</th>
+        <th>التحديات</th>
+        <th>المتوسط</th>
+        <th>الشهادات</th>
+        <th>كأس نافس</th>
+        <th>التفاصيل</th>
+        <th>آخر دخول لنافس</th>
+      </tr>
+    `;
+
+  }
+
+}
+
+
+function updateStats(
+  students
+){
+
+  stat1.textContent =
+    toArabicNumber(
+      students.length
+    );
+
+
+  statLabel1.textContent =
+    "عدد الطالبات";
+
+
+  if(
+    currentView ===
+      "nafes"
+  ){
+
+    const viewedStudents =
+      students.filter(
+        student =>
+          student.nafes.viewed
+      );
+
+
+    const completedStudents =
+      students.filter(
+        student =>
+          student.nafes.challengeCount ===
+          TOTAL_CHALLENGES
+      );
+
+
+    const studentsWithChallenges =
+      students.filter(
+        student =>
+          student.nafes.challengeCount > 0
+      );
+
+
+    const average =
+      studentsWithChallenges.length > 0
+
+      ? Math.round(
+          studentsWithChallenges.reduce(
             (
               total,
               student
             ) =>
               total +
-              student.nafes.sectionCount,
+              student.nafes.challengeAverage,
             0
-          );
+          ) /
+          studentsWithChallenges.length
+        )
+
+      : 0;
 
 
-        const totalVisits =
-          students.reduce(
-            (
-              total,
-              student
-            ) =>
-              total +
-              student.nafes.visitCount,
-            0
-          );
+    const totalCertificates =
+      students.reduce(
+        (
+          total,
+          student
+        ) =>
+          total +
+          student.nafes.certificateCount,
+        0
+      );
 
 
-        const totalChallenges =
-          students.reduce(
-            (
-              total,
-              student
-            ) =>
-              total +
-              student.nafes.challengeCount,
-            0
-          );
+    const cupStudents =
+      students.filter(
+        student =>
+          student.nafes.cup
+      );
 
 
-        stat2.textContent =
-          toArabicNumber(
-            viewedStudents.length
-          );
+    stat2.textContent =
+      toArabicNumber(
+        completedStudents.length
+      );
 
 
-        statLabel2.textContent =
-          "اطلعن على نافس";
+    statLabel2.textContent =
+      "أكملن ٢٠ تحديًا";
 
 
-        stat3.textContent =
-          toArabicNumber(
-            totalSections
-          );
+    stat3.textContent =
+      toArabicNumber(
+        average
+      ) +
+      "٪";
 
 
-        statLabel3.textContent =
-          "أقسام تم فتحها";
+    statLabel3.textContent =
+      "متوسط تحديات نافس";
 
 
-        stat4.textContent =
-          toArabicNumber(
-            totalVisits
-          );
+    stat4.textContent =
+      toArabicNumber(
+        totalCertificates
+      );
 
 
-        statLabel4.textContent =
-          "مرات دخول نافس";
+    statLabel4.textContent =
+      "شهادات التحديات";
 
 
-        stat5.textContent =
-          toArabicNumber(
-            totalChallenges
-          );
+    stat5.textContent =
+      toArabicNumber(
+        cupStudents.length
+      );
 
 
-        statLabel5.textContent =
-          "تحديات مكتملة";
-
-        return;
-
-      }
+    statLabel5.textContent =
+      "استحققن كأس نافس";
 
 
-      const key =
-        currentView ===
-        "semester1"
+    return;
 
-        ? "semester1"
-        : "semester2";
+  }
 
 
-      const completed =
-        students.filter(
-          student =>
-            student[key].completed
-        );
+  const key =
+    currentView ===
+      "semester1"
+
+      ? "semester1"
+      : "semester2";
 
 
-      const certificates =
-        students.filter(
-          student =>
-            student[key].certificate
-        );
+  const completed =
+    students.filter(
+      student =>
+        student[key].completed
+    );
 
 
-      const totalTests =
-        students.reduce(
+  const certificates =
+    students.filter(
+      student =>
+        student[key].certificate
+    );
+
+
+  const totalTests =
+    students.reduce(
+      (
+        total,
+        student
+      ) =>
+        total +
+        student[key].testCount,
+      0
+    );
+
+
+  let average =
+    0;
+
+
+  if(
+    completed.length > 0
+  ){
+
+    average =
+      Math.round(
+        completed.reduce(
           (
             total,
             student
           ) =>
             total +
-            student[key].testCount,
+            student[key].score,
           0
-        );
+        ) /
+        completed.length
+      );
+
+  }
 
 
-      let average =
-        0;
+  stat2.textContent =
+    toArabicNumber(
+      completed.length
+    );
 
 
-      if(
-        completed.length > 0
-      ){
-
-        average =
-          Math.round(
-            completed.reduce(
-              (
-                total,
-                student
-              ) =>
-                total +
-                student[key].score,
-              0
-            ) /
-            completed.length
-          );
-
-      }
+  statLabel2.textContent =
+    "أكملن التقييم";
 
 
-      stat2.textContent =
-        toArabicNumber(
-          completed.length
-        );
+  stat3.textContent =
+    toArabicNumber(
+      average
+    ) +
+    "٪";
 
 
-      statLabel2.textContent =
-        "أكملن التقييم";
+  statLabel3.textContent =
+    "متوسط النتائج";
 
 
-      stat3.textContent =
-        toArabicNumber(
-          average
-        ) +
-        "٪";
+  stat4.textContent =
+    toArabicNumber(
+      certificates.length
+    );
 
 
-      statLabel3.textContent =
-        "متوسط النتائج";
+  statLabel4.textContent =
+    "استحققن الشهادة";
 
 
-      stat4.textContent =
-        toArabicNumber(
-          certificates.length
-        );
+  stat5.textContent =
+    toArabicNumber(
+      totalTests
+    );
 
 
-      statLabel4.textContent =
-        "استحققن الشهادة";
+  statLabel5.textContent =
+    "اختبارات مسجلة";
+
+}
 
 
-      stat5.textContent =
-        toArabicNumber(
-          totalTests
-        );
+function renderSemesterRows(
+  students,
+  key
+){
+
+  studentsTable.innerHTML =
+    "";
 
 
-      statLabel5.textContent =
-        "اختبارات مسجلة";
+  if(
+    students.length === 0
+  ){
 
-    }
+    studentsTable.innerHTML = `
+      <tr>
+        <td
+          colspan="7"
+          class="empty"
+        >
+          لا توجد بيانات مطابقة.
+        </td>
+      </tr>
+    `;
+
+    return;
+
+  }
 
 
-    function renderSemesterRows(
-      students,
-      key
-    ){
+  students.forEach(
+    student => {
 
-      studentsTable.innerHTML =
-        "";
+      const data =
+        student[key];
 
 
-      if(
-        students.length === 0
-      ){
+      const completion =
+        data.completed
 
-        studentsTable.innerHTML = `
-          <tr>
-            <td
-              colspan="7"
-              class="empty"
-            >
-              لا توجد بيانات مطابقة.
-            </td>
-          </tr>
+        ? `
+          <span class="tag yes">
+            مكتمل
+          </span>
+        `
+
+        : `
+          <span class="tag pending">
+            غير مكتمل
+          </span>
         `;
 
-        return;
 
-      }
+      const certificate =
+        data.certificate
 
+        ? `
+          <span class="tag cup">
+            مستحقة
+          </span>
+        `
 
-      students.forEach(
-        student => {
-
-          const data =
-            student[key];
-
-
-          const completion =
-            data.completed
-
-            ? `
-              <span class="tag yes">
-                مكتمل
-              </span>
-            `
-
-            : `
-              <span class="tag pending">
-                غير مكتمل
-              </span>
-            `;
+        : "—";
 
 
-          const certificate =
-            data.certificate
+      const score =
+        data.completed
 
-            ? `
-              <span class="tag cup">
-                مستحقة
-              </span>
-            `
+        ? `
+          <span
+            class="${scoreClass(
+              data.score
+            )}"
+          >
+            ${toArabicNumber(
+              data.score
+            )}٪
+          </span>
+        `
 
-            : "—";
-
-
-          const score =
-            data.completed
-
-            ? `
-              <span
-                class="${scoreClass(
-                  data.score
-                )}"
-              >
-                ${toArabicNumber(
-                  data.score
-                )}٪
-              </span>
-            `
-
-            : "—";
+        : "—";
 
 
-          const row =
-            document.createElement(
-              "tr"
-            );
+      const row =
+        document.createElement(
+          "tr"
+        );
 
 
-          row.innerHTML = `
+      row.innerHTML = `
 
-            <td class="student-name">
-              ${escapeHtml(
-                student.name
-              )}
-            </td>
+        <td class="student-name">
+          ${escapeHtml(
+            student.name
+          )}
+        </td>
 
-            <td>
-              ${escapeHtml(
-                student.className
-              )}
-            </td>
+        <td>
+          ${escapeHtml(
+            student.className
+          )}
+        </td>
 
-            <td>
-              ${toArabicNumber(
-                data.testCount
-              )}
-            </td>
+        <td>
+          ${toArabicNumber(
+            data.testCount
+          )}
+        </td>
 
-            <td>
-              ${completion}
-            </td>
+        <td>
+          ${completion}
+        </td>
 
-            <td>
-              ${score}
-            </td>
+        <td>
+          ${score}
+        </td>
 
-            <td>
-              ${certificate}
-            </td>
+        <td>
+          ${certificate}
+        </td>
 
-            <td>
-              ${formatDateTime(
-                student.lastLogin
-              )}
-            </td>
+        <td>
+          ${formatDateTime(
+            student.lastLogin
+          )}
+        </td>
 
-          `;
+      `;
 
 
-          studentsTable.appendChild(
-            row
-          );
-
-        }
+      studentsTable.appendChild(
+        row
       );
 
     }
+  );
+
+}
 
 
-    function renderNafesRows(
-      students
-    ){
+function renderNafesRows(
+  students
+){
 
-      studentsTable.innerHTML =
-        "";
+  studentsTable.innerHTML =
+    "";
 
 
-      if(
-        students.length === 0
-      ){
+  if(
+    students.length === 0
+  ){
 
-        studentsTable.innerHTML = `
-          <tr>
-            <td
-              colspan="9"
-              class="empty"
-            >
-              لا توجد بيانات مطابقة.
-            </td>
-          </tr>
+    studentsTable.innerHTML = `
+      <tr>
+
+        <td
+          colspan="11"
+          class="empty"
+        >
+          لا توجد بيانات مطابقة.
+        </td>
+
+      </tr>
+    `;
+
+    return;
+
+  }
+
+
+  students.forEach(
+    student => {
+
+      const nafes =
+        student.nafes;
+
+
+      const viewedText =
+        nafes.viewed
+
+        ? `
+          <span class="tag yes">
+            اطلعت ✅
+          </span>
+        `
+
+        : `
+          <span class="tag no">
+            لم تطلع
+          </span>
         `;
 
-        return;
 
-      }
+      const challengeAverage =
+        nafes.challengeCount > 0
 
+        ? `
+          <span
+            class="${scoreClass(
+              nafes.challengeAverage
+            )}"
+          >
+            ${toArabicNumber(
+              nafes.challengeAverage
+            )}٪
+          </span>
+        `
 
-      students.forEach(
-        student => {
-
-          const nafes =
-            student.nafes;
-
-
-          const viewedText =
-            nafes.viewed
-
-            ? `
-              <span class="tag yes">
-                اطلعت ✅
-              </span>
-            `
-
-            : `
-              <span class="tag no">
-                لم تطلع
-              </span>
-            `;
+        : "—";
 
 
-          const challengeAverage =
-            nafes.challengeCount > 0
+      const cupText =
+        nafes.cup
 
-            ? `
-              <span
-                class="${scoreClass(
-                  nafes.challengeAverage
-                )}"
-              >
-                ${toArabicNumber(
-                  nafes.challengeAverage
-                )}٪
-              </span>
-            `
+        ? `
+          <span class="tag cup">
+            🏆 مستحق
+          </span>
+        `
 
-            : "—";
+        : `
+          <span class="tag lock">
+            🔒 غير مستحق
+          </span>
+        `;
 
 
-          const row =
-            document.createElement(
-              "tr"
-            );
+      const row =
+        document.createElement(
+          "tr"
+        );
 
 
-          row.innerHTML = `
+      row.innerHTML = `
 
-            <td class="student-name">
-              ${escapeHtml(
-                student.name
-              )}
-            </td>
+        <td class="student-name">
+          ${escapeHtml(
+            student.name
+          )}
+        </td>
 
-            <td>
-              ${escapeHtml(
-                student.className
-              )}
-            </td>
+        <td>
+          ${escapeHtml(
+            student.className
+          )}
+        </td>
 
-            <td>
-              ${viewedText}
-            </td>
+        <td>
+          ${viewedText}
+        </td>
 
-            <td>
-              ${toArabicNumber(
-                nafes.sectionCount
-              )}
-              من ١١
-            </td>
+        <td>
+          ${toArabicNumber(
+            nafes.sectionCount
+          )}
+        </td>
 
-            <td>
-              ${escapeHtml(
-                nafes.lastSection
-              )}
-            </td>
+        <td>
+          ${toArabicNumber(
+            nafes.visitCount
+          )}
+        </td>
 
-            <td>
-              ${toArabicNumber(
-                nafes.visitCount
-              )}
-            </td>
+        <td>
+          ${toArabicNumber(
+            nafes.challengeCount
+          )}
+          من ٢٠
+        </td>
 
-            <td>
-              ${formatDateTime(
-                nafes.lastVisit
-              )}
-            </td>
+        <td>
+          ${challengeAverage}
+        </td>
 
-            <td>
-              ${toArabicNumber(
-                nafes.challengeCount
-              )}
-              من ٢٠
-            </td>
+        <td>
+          🎓
+          ${toArabicNumber(
+            nafes.certificateCount
+          )}
+        </td>
 
-            <td>
-              ${challengeAverage}
-            </td>
+        <td>
+          ${cupText}
+        </td>
 
-          `;
+        <td>
+          <button
+            class="details-button"
+            type="button"
+            data-student-id="${escapeHtml(
+              student.id
+            )}"
+          >
+            📊 عرض التفاصيل
+          </button>
+        </td>
+
+        <td>
+          ${formatDateTime(
+            nafes.lastVisit
+          )}
+        </td>
+
+      `;
 
 
-          studentsTable.appendChild(
-            row
-          );
-
-        }
+      studentsTable.appendChild(
+        row
       );
 
     }
+  );
 
 
-    function renderCurrentView(){
-
-      configureView();
-
-      setActiveTab();
-
-
-      const students =
-        getFilteredStudents()
-        .sort(
-          (
-            first,
-            second
-          ) =>
-
-            first.className.localeCompare(
-              second.className,
-              "ar"
-            ) ||
-
-            first.name.localeCompare(
-              second.name,
-              "ar"
-            )
-        );
-
-
-      updateStats(
-        students
-      );
-
-
-      if(
-        currentView ===
-        "semester1"
-      ){
-
-        renderSemesterRows(
-          students,
-          "semester1"
-        );
-
-      }
-
-
-      else if(
-        currentView ===
-        "semester2"
-      ){
-
-        renderSemesterRows(
-          students,
-          "semester2"
-        );
-
-      }
-
-
-      else{
-
-        renderNafesRows(
-          students
-        );
-
-      }
-
-    }
-
-
-    tabButtons.forEach(
+  document
+    .querySelectorAll(
+      ".details-button"
+    )
+    .forEach(
       button => {
 
         button.addEventListener(
           "click",
           () => {
 
-            currentView =
-              button.dataset.view;
+            const id =
+              button.dataset.studentId;
 
 
-            statusFilter.value =
-              "all";
+            const student =
+              allStudents.find(
+                item =>
+                  item.id === id
+              );
 
 
-            renderCurrentView();
+            if(student){
+
+              openStudentDetails(
+                student
+              );
+
+            }
 
           }
         );
@@ -2511,80 +2929,401 @@
       }
     );
 
-
-    classFilter.addEventListener(
-      "change",
-      renderCurrentView
-    );
+}
 
 
-    statusFilter.addEventListener(
-      "change",
-      renderCurrentView
-    );
+function openStudentDetails(
+  student
+){
+
+  const nafes =
+    student.nafes;
 
 
-    searchInput.addEventListener(
-      "input",
-      renderCurrentView
-    );
+  modalTitle.textContent =
+    `📊 تقدم ${student.name} في نافس`;
 
 
-    onAuthStateChanged(
-      auth,
-      async user => {
+  modalSummary.innerHTML = `
 
-        if(!user){
+    <div class="modal-stat">
 
-          statusBox.className =
-            "status-box error";
+      التحديات
 
+      <strong>
+        ${toArabicNumber(
+          nafes.challengeCount
+        )}
+        / ٢٠
+      </strong>
 
-          statusBox.textContent =
-            "🔒 يلزم تسجيل الدخول بحساب المعلمة لفتح لوحة المتابعة.";
-
-
-          dashboardContent.style.display =
-            "none";
+    </div>
 
 
-          return;
+    <div class="modal-stat">
 
+      المتوسط
+
+      <strong>
+        ${toArabicNumber(
+          nafes.challengeAverage
+        )}٪
+      </strong>
+
+    </div>
+
+
+    <div class="modal-stat">
+
+      الشهادات
+
+      <strong>
+        ${toArabicNumber(
+          nafes.certificateCount
+        )}
+      </strong>
+
+    </div>
+
+
+    <div class="modal-stat">
+
+      كأس نافس
+
+      <strong>
+        ${
+          nafes.cup
+            ? "🏆"
+            : "🔒"
         }
+      </strong>
+
+    </div>
+
+  `;
 
 
-        if(
-          user.uid !==
-          TEACHER_UID
-        ){
-
-          statusBox.className =
-            "status-box error";
+  challengeDetailsGrid.innerHTML =
+    "";
 
 
-          statusBox.textContent =
-            "⛔ هذه الصفحة مخصصة لحساب المعلمة فقط.";
+  for(
+    let number=1;
+    number<=TOTAL_CHALLENGES;
+    number++
+  ){
+
+    const result =
+      nafes.challenges.find(
+        item =>
+          item.number === number
+      );
 
 
-          dashboardContent.style.display =
-            "none";
+    const card =
+      document.createElement(
+        "article"
+      );
 
 
-          return;
-
-        }
-
-
-        dashboardContent.style.display =
-          "block";
+    card.className =
+      "challenge-detail";
 
 
-        await loadStudents();
+    if(!result){
+
+      card.classList.add(
+        "pending"
+      );
+
+
+      card.innerHTML = `
+
+        <h3>
+          ${toArabicNumber(number)}
+          —
+          ${challengeNames[number]}
+        </h3>
+
+        <p>
+          ⏳ لم يُنجز التحدي بعد
+        </p>
+
+      `;
+
+    }
+
+    else{
+
+      card.classList.add(
+        result.certificate
+          ? "earned"
+          : "done"
+      );
+
+
+      card.innerHTML = `
+
+        <h3>
+          ${toArabicNumber(number)}
+          —
+          ${escapeHtml(
+            result.title
+          )}
+        </h3>
+
+        <p>
+          الدرجة:
+          <strong>
+            ${toArabicNumber(
+              result.score
+            )}
+            من
+            ${toArabicNumber(
+              result.total
+            )}
+          </strong>
+        </p>
+
+        <p>
+          النسبة:
+          <strong>
+            ${toArabicNumber(
+              result.percentage
+            )}٪
+          </strong>
+        </p>
+
+        <p>
+          ${
+            result.certificate
+              ? "🎓 شهادة مستحقة"
+              : "✅ تم الإنجاز دون شهادة"
+          }
+        </p>
+
+      `;
+
+    }
+
+
+    challengeDetailsGrid
+      .appendChild(
+        card
+      );
+
+  }
+
+
+  detailsModal
+    .classList
+    .add(
+      "show"
+    );
+
+}
+
+
+function closeModal(){
+
+  detailsModal
+    .classList
+    .remove(
+      "show"
+    );
+
+}
+
+
+function renderCurrentView(){
+
+  configureView();
+
+  setActiveTab();
+
+
+  const students =
+    getFilteredStudents()
+      .sort(
+        (
+          first,
+          second
+        ) =>
+
+          first.className.localeCompare(
+            second.className,
+            "ar"
+          ) ||
+
+          first.name.localeCompare(
+            second.name,
+            "ar"
+          )
+      );
+
+
+  updateStats(
+    students
+  );
+
+
+  if(
+    currentView ===
+      "semester1"
+  ){
+
+    renderSemesterRows(
+      students,
+      "semester1"
+    );
+
+  }
+
+
+  else if(
+    currentView ===
+      "semester2"
+  ){
+
+    renderSemesterRows(
+      students,
+      "semester2"
+    );
+
+  }
+
+
+  else{
+
+    renderNafesRows(
+      students
+    );
+
+  }
+
+}
+
+
+tabButtons.forEach(
+  button => {
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        currentView =
+          button.dataset.view;
+
+
+        statusFilter.value =
+          "all";
+
+
+        renderCurrentView();
 
       }
     );
 
-  </script>
+  }
+);
+
+
+classFilter.addEventListener(
+  "change",
+  renderCurrentView
+);
+
+
+statusFilter.addEventListener(
+  "change",
+  renderCurrentView
+);
+
+
+searchInput.addEventListener(
+  "input",
+  renderCurrentView
+);
+
+
+modalClose.addEventListener(
+  "click",
+  closeModal
+);
+
+
+detailsModal.addEventListener(
+  "click",
+  event => {
+
+    if(
+      event.target ===
+        detailsModal
+    ){
+
+      closeModal();
+
+    }
+
+  }
+);
+
+
+onAuthStateChanged(
+  auth,
+  async user => {
+
+    if(!user){
+
+      statusBox.className =
+        "status-box error";
+
+
+      statusBox.textContent =
+        "🔒 يلزم تسجيل الدخول بحساب المعلمة لفتح لوحة المتابعة.";
+
+
+      dashboardContent.style.display =
+        "none";
+
+
+      return;
+
+    }
+
+
+    if(
+      user.uid !==
+        TEACHER_UID
+    ){
+
+      statusBox.className =
+        "status-box error";
+
+
+      statusBox.textContent =
+        "⛔ هذه الصفحة مخصصة لحساب المعلمة فقط.";
+
+
+      dashboardContent.style.display =
+        "none";
+
+
+      return;
+
+    }
+
+
+    dashboardContent.style.display =
+      "block";
+
+
+    await loadStudents();
+
+  }
+);
+
+</script>
 
 </body>
 </html>
