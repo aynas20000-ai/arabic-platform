@@ -3,36 +3,73 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+
 <title>اختبار اسمي الزمان والمكان | منصة آفاق</title>
+
 <style>
 :root{
- --p:#5b4677;--p2:#776094;--pd:#453457;--g:#b69750;--gl:#ead9a8;
- --cream:#fffaf2;--paper:#fffdf9;--text:#403448;--green:#3f805d;--red:#a94545;
+ --p:#5b4677;
+ --p2:#776094;
+ --pd:#453457;
+ --g:#b69750;
+ --gl:#ead9a8;
+ --cream:#fffaf2;
+ --paper:#fffdf9;
+ --text:#403448;
+ --green:#3f805d;
+ --red:#a94545;
 }
+
 *{box-sizing:border-box}
-html,body{height:100%;margin:0}
+
+html,body{
+  height:100%;
+  margin:0;
+}
+
 body{
-  font-family:Tahoma,Arial,sans-serif;color:var(--text);
+  font-family:Tahoma,Arial,sans-serif;
+  color:var(--text);
   background:linear-gradient(180deg,#f5f0fa,#fbf9fd,#f1ebf7);
   overflow:hidden;
 }
+
 .app{
   height:100dvh;
   display:grid;
   grid-template-rows:auto 1fr auto;
 }
+
 header{
-  text-align:center;color:#fff;padding:13px 12px 11px;
+  text-align:center;
+  color:#fff;
+  padding:13px 12px 11px;
   background:linear-gradient(145deg,var(--p2),var(--p),var(--pd));
   border-bottom:4px solid var(--g);
 }
+
 header .tag{
-  display:inline-block;padding:3px 10px;border-radius:999px;
-  border:1px solid #d8c28a;color:#fff2c6;background:rgba(182,151,80,.13);
-  font-size:11px;font-weight:bold
+  display:inline-block;
+  padding:3px 10px;
+  border-radius:999px;
+  border:1px solid #d8c28a;
+  color:#fff2c6;
+  background:rgba(182,151,80,.13);
+  font-size:11px;
+  font-weight:bold;
 }
-header h1{margin:4px 0 0;font-size:clamp(21px,5vw,30px)}
-header p{margin:0;font-size:12px;color:#f2ebf6}
+
+header h1{
+  margin:4px 0 0;
+  font-size:clamp(21px,5vw,30px);
+}
+
+header p{
+  margin:0;
+  font-size:12px;
+  color:#f2ebf6;
+}
+
 main{
   min-height:0;
   width:min(760px,94%);
@@ -41,75 +78,249 @@ main{
   display:flex;
   flex-direction:column;
 }
+
 .top{
-  display:flex;justify-content:space-between;gap:8px;
-  font-weight:bold;color:var(--p);font-size:13px;margin-bottom:6px
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+  font-weight:bold;
+  color:var(--p);
+  font-size:13px;
+  margin-bottom:6px;
 }
-.progress{height:8px;background:#e9e0ef;border-radius:999px;overflow:hidden;margin-bottom:8px}
-.progress>div{height:100%;width:0;background:linear-gradient(90deg,var(--g),#dfca8f);transition:.3s}
+
+.progress{
+  height:8px;
+  background:#e9e0ef;
+  border-radius:999px;
+  overflow:hidden;
+  margin-bottom:8px;
+}
+
+.progress>div{
+  height:100%;
+  width:0;
+  background:linear-gradient(90deg,var(--g),#dfca8f);
+  transition:.3s;
+}
+
 .card,.result{
-  flex:1;min-height:0;
-  background:var(--paper);border:1px solid #d8c28a;border-radius:22px;
+  flex:1;
+  min-height:0;
+  background:var(--paper);
+  border:1px solid #d8c28a;
+  border-radius:22px;
   box-shadow:0 14px 30px rgba(73,54,92,.12);
   padding:14px;
-  display:flex;flex-direction:column;justify-content:center;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
 }
-.qnum{color:var(--g);font-weight:bold;font-size:13px;margin-bottom:3px}
-h2{font-size:clamp(17px,4.5vw,22px);margin:3px 0 10px;color:var(--pd);line-height:1.55}
-.options{display:grid;gap:7px}
+
+.qnum{
+  color:var(--g);
+  font-weight:bold;
+  font-size:13px;
+  margin-bottom:3px;
+}
+
+h2{
+  font-size:clamp(17px,4.5vw,22px);
+  margin:3px 0 10px;
+  color:var(--pd);
+  line-height:1.55;
+}
+
+.options{
+  display:grid;
+  gap:7px;
+}
+
 .opt{
-  width:100%;padding:9px 11px;border-radius:13px;border:2px solid #e4dbe9;
-  background:#fff;color:var(--text);font:inherit;font-size:clamp(13px,3.8vw,16px);
-  text-align:right;cursor:pointer;line-height:1.45
+  width:100%;
+  padding:9px 11px;
+  border-radius:13px;
+  border:2px solid #e4dbe9;
+  background:#fff;
+  color:var(--text);
+  font:inherit;
+  font-size:clamp(13px,3.8vw,16px);
+  text-align:right;
+  cursor:pointer;
+  line-height:1.45;
 }
-.opt.correct{background:#e9f6ef;border-color:#70a889;color:#2c6849}
-.opt.wrong{background:#fff0f0;border-color:#d08080;color:#873838}
-.opt:disabled{cursor:default}
+
+.opt.correct{
+  background:#e9f6ef;
+  border-color:#70a889;
+  color:#2c6849;
+}
+
+.opt.wrong{
+  background:#fff0f0;
+  border-color:#d08080;
+  color:#873838;
+}
+
+.opt:disabled{
+  cursor:default;
+}
+
 .feedback{
-  display:none;margin-top:8px;padding:9px 11px;border-radius:13px;
-  font-size:clamp(12px,3.5vw,14px);line-height:1.55
+  display:none;
+  margin-top:8px;
+  padding:9px 11px;
+  border-radius:13px;
+  font-size:clamp(12px,3.5vw,14px);
+  line-height:1.55;
 }
+
 .feedback.show{display:block}
-.feedback.good{background:#e9f6ef;border:1px solid #94bea7;color:#2c6849}
-.feedback.bad{background:#fff0f0;border:1px solid #dfa2a2;color:#873838}
+
+.feedback.good{
+  background:#e9f6ef;
+  border:1px solid #94bea7;
+  color:#2c6849;
+}
+
+.feedback.bad{
+  background:#fff0f0;
+  border:1px solid #dfa2a2;
+  color:#873838;
+}
+
 .next{
-  display:none;width:100%;margin-top:8px;padding:9px;border:0;border-radius:13px;
-  background:linear-gradient(145deg,var(--p2),var(--p));color:#fff;font:inherit;font-weight:bold;
-  cursor:pointer;font-size:14px
+  display:none;
+  width:100%;
+  margin-top:8px;
+  padding:9px;
+  border:0;
+  border-radius:13px;
+  background:linear-gradient(145deg,var(--p2),var(--p));
+  color:#fff;
+  font:inherit;
+  font-weight:bold;
+  cursor:pointer;
+  font-size:14px;
 }
-.result{display:none;text-align:center}
-.result.show{display:flex}
-.score{font-size:40px;color:var(--g);font-weight:bold}
+
+.result{
+  display:none;
+  text-align:center;
+}
+
+.result.show{
+  display:flex;
+}
+
+.score{
+  font-size:40px;
+  color:var(--g);
+  font-weight:bold;
+}
+
+.save-status{
+  margin:7px 0 3px;
+  padding:8px 10px;
+  border-radius:12px;
+  font-size:12px;
+  font-weight:bold;
+  line-height:1.7;
+  background:#f5eff9;
+  color:var(--p);
+}
+
+.save-status.success{
+  background:#edf8f1;
+  color:#2f7650;
+}
+
+.save-status.error{
+  background:#fff2f3;
+  color:#96394a;
+}
+
 .restart,.lesson{
-  display:block;text-decoration:none;width:100%;padding:10px;margin-top:8px;border-radius:13px;font-weight:bold
+  display:block;
+  text-decoration:none;
+  width:100%;
+  padding:10px;
+  margin-top:8px;
+  border-radius:13px;
+  font-weight:bold;
 }
-.restart{border:0;background:linear-gradient(145deg,var(--p2),var(--p));color:#fff;font:inherit;cursor:pointer}
-.lesson{background:#eee5f5;color:var(--pd);border:1px solid #d6c7df}
+
+.restart{
+  border:0;
+  background:linear-gradient(145deg,var(--p2),var(--p));
+  color:#fff;
+  font:inherit;
+  cursor:pointer;
+}
+
+.lesson{
+  background:#eee5f5;
+  color:var(--pd);
+  border:1px solid #d6c7df;
+}
+
 footer{
-  text-align:center;padding:7px;color:#73697a;font-size:10px
+  text-align:center;
+  padding:7px;
+  color:#73697a;
+  font-size:10px;
 }
+
 .burst{
-  position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:20
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+  z-index:20;
 }
+
 .confetti{
-  position:absolute;width:8px;height:8px;border-radius:2px;
-  animation:fall 900ms ease-out forwards
+  position:absolute;
+  width:8px;
+  height:8px;
+  border-radius:2px;
+  animation:fall 900ms ease-out forwards;
 }
+
 @keyframes fall{
-  0%{transform:translateY(-20px) rotate(0);opacity:1}
-  100%{transform:translateY(105vh) rotate(540deg);opacity:0}
+  0%{
+    transform:translateY(-20px) rotate(0);
+    opacity:1
+  }
+
+  100%{
+    transform:translateY(105vh) rotate(540deg);
+    opacity:0
+  }
 }
+
 .pop{animation:pop .25s ease}
-@keyframes pop{50%{transform:scale(1.018)}}
+
+@keyframes pop{
+  50%{transform:scale(1.018)}
+}
+
 @media(max-height:650px){
- header{padding:8px 10px 7px}header h1{font-size:20px}
- main{padding:6px 0}.card{padding:10px}
- .opt{padding:7px 9px}.feedback{padding:7px 9px}.next{padding:7px}
+ header{padding:8px 10px 7px}
+ header h1{font-size:20px}
+ main{padding:6px 0}
+ .card{padding:10px}
+ .opt{padding:7px 9px}
+ .feedback{padding:7px 9px}
+ .next{padding:7px}
 }
 </style>
 </head>
+
 <body>
+
 <div class="app">
+
 <header>
   <span class="tag">منصة آفاق التعليمية</span>
   <h1>اختبار اسمي الزمان والمكان</h1>
@@ -117,153 +328,967 @@ footer{
 </header>
 
 <main>
+
   <div class="top">
     <span id="counter">السؤال ١ من ١٠</span>
-    <span id="correctCount">الصحيح: ٠</span>
+    <span id="correctCount">الإجابات الصحيحة: ٠</span>
   </div>
-  <div class="progress"><div id="bar"></div></div>
+
+  <div class="progress">
+    <div id="bar"></div>
+  </div>
 
   <section class="card" id="card">
+
     <div class="qnum" id="qnum"></div>
+
     <h2 id="question"></h2>
+
     <div class="options" id="options"></div>
+
     <div class="feedback" id="feedback"></div>
-    <button class="next" id="next">السؤال التالي</button>
+
+    <button
+      class="next"
+      id="next"
+      type="button"
+    >
+      السؤال التالي
+    </button>
+
   </section>
+
 
   <section class="result" id="result">
+
     <h2>انتهى التحدي ✨</h2>
+
     <div class="score" id="score"></div>
+
     <p id="message"></p>
-    <button class="restart" onclick="restartQuiz()">أعيدي التحدي</button>
-    <a class="lesson" href="time-place-nouns-file.html">راجعي ملف الدرس</a>
+
+    <div
+      id="saveStatus"
+      class="save-status"
+    >
+      ستُحفظ نتيجتكِ في سجل الفصل الدراسي الثاني.
+    </div>
+
+    <button
+      class="restart"
+      type="button"
+      onclick="restartQuiz()"
+    >
+      أعيدي التحدي
+    </button>
+
+    <a
+      class="lesson"
+      href="time-place-nouns-file.html"
+    >
+      راجعي ملف الدرس
+    </a>
+
   </section>
+
 </main>
 
-<footer>منصة آفاق التعليمية | لغتي الخالدة | الصف الثالث المتوسط</footer>
+<footer>
+  منصة آفاق التعليمية | لغتي الخالدة | الصف الثالث المتوسط
+</footer>
+
 </div>
-<div class="burst" id="burst"></div>
 
-<script>
-const questions = [{"q": "أيُّ الكلمات الآتية اسمُ مكان؟", "o": ["مَلْعَب", "صباحًا", "سريعًا", "كاتب"], "a": 0, "ok": "أحسنتِ 🌟 «مَلْعَب» يدل على مكان وقوع اللعب، فهو اسم مكان.", "bad": "الإجابة الصحيحة: «مَلْعَب». اسألي: أين وقع الفعل؟ إذا دلّت الكلمة على المكان فهي اسم مكان."}, {"q": "يُصاغ اسم الزمان والمكان من الفعل الثلاثي إذا كانت عين مضارعه مفتوحة على وزن:", "o": ["مَفْعِل", "مَفْعَل", "مُفْعَل", "فَعِيل"], "a": 1, "ok": "صحيح 👏 إذا كانت عين المضارع مفتوحة، فالصياغة على وزن «مَفْعَل».", "bad": "راجعي القاعدة: عين المضارع المفتوحة أو المضمومة ⟵ «مَفْعَل»."}, {"q": "الصياغة الصحيحة من «جلس يجلس» هي:", "o": ["مَجْلَس", "مَجْلِس", "مُجْلَس", "جَلِيس"], "a": 1, "ok": "رائعة ✨ «يجلس» عين مضارعه مكسورة، لذلك نقول: «مَجْلِس».", "bad": "الإجابة الصحيحة «مَجْلِس»؛ لأن عين مضارع «يجلس» مكسورة."}, {"q": "الصياغة الصحيحة من «دخل يدخل» هي:", "o": ["مَدْخَل", "مَدْخِل", "مُدْخَل", "دَاخِل"], "a": 0, "ok": "ممتاز 🌿 «يدخل» عين مضارعه مضمومة، لذلك الصياغة «مَدْخَل» على وزن مَفْعَل.", "bad": "عين مضارع «يدخل» مضمومة؛ إذن الصياغة على «مَفْعَل»: مَدْخَل."}, {"q": "أيُّ صياغة صحيحة لاسم المكان من الفعل «رمى»؟", "o": ["مَرْمِي", "مَرْمَى", "مِرْمَاة", "مُرْمَى"], "a": 1, "ok": "أحسنتِ جدًا 🎯 «رمى» فعل ثلاثي معتل الآخر، لذا يصاغ على «مَفْعَل»: «مَرْمَى».", "bad": "هذه هي القاعدة الجديدة المهمة: الثلاثي المعتل الآخر ⟵ «مَفْعَل»، لذلك: رمى ← مَرْمَى."}, {"q": "لماذا نقول «مَجْرَى» من «جرى يجري» ولا نقول «مَجْرِي»؟", "o": ["لأن الفعل رباعي", "لأن الفعل ثلاثي معتل الآخر", "لأن عين المضارع مفتوحة", "لأنه اسم فاعل"], "a": 1, "ok": "صحيح 🔥 «جرى» ثلاثي معتل الآخر، وله حكم خاص: يأتي اسم الزمان أو المكان منه على وزن «مَفْعَل».", "bad": "انتبهي: لا ننظر هنا إلى كسر عين «يجري»، لأن «جرى» فعل ثلاثي معتل الآخر؛ وحكمه «مَفْعَل»."}, {"q": "أيُّ الكلمات الآتية من الفعل المثال الواوي الصحيح الآخر؟", "o": ["مَوْعِد", "مَلْعَب", "مَرْمَى", "مَدْخَل"], "a": 0, "ok": "رائعة 💜 «وَعَدَ يَعِدُ» فعل مثال واوي صحيح الآخر، واسم الزمان/المكان منه «مَوْعِد» على وزن مَفْعِل.", "bad": "الإجابة الصحيحة «مَوْعِد»: من «وعد يعد»، وهو مثال واوي صحيح الآخر."}, {"q": "كيف نصوغ اسم الزمان أو المكان من الفعل غير الثلاثي؟", "o": ["على وزن مَفْعَل دائمًا", "على وزن مَفْعِل دائمًا", "على صورة اسم المفعول: ميم مضمومة وفتح ما قبل الآخر", "نضيف ألفًا في آخر الفعل"], "a": 2, "ok": "ممتازة 👏 غير الثلاثي يُصاغ على صورة اسم المفعول: ميم مضمومة وفتح ما قبل الآخر.", "bad": "القاعدة: غير الثلاثي ⟵ مضارع، ثم ميم مضمومة بدل حرف المضارعة، وفتح ما قبل الآخر."}, {"q": "كلمة «مُسْتَوْدَع» في جملة «وضعتُ الأغراض في المستودع» تدل على:", "o": ["اسم زمان", "اسم مكان", "اسم فاعل", "مصدر"], "a": 1, "ok": "صحيح 🌟 السياق يدل على مكان تُوضَع فيه الأشياء؛ إذن «مستودع» اسم مكان.", "bad": "انظري إلى السياق: «في المستودع» يجيب عن «أين؟»، إذن هو اسم مكان."}, {"q": "أيُّ قاعدة تلخّص الدرس بدقة؟", "o": ["مَفْعَل للمفتوح والمضموم والمعتل الآخر، ومَفْعِل للمكسور والمثال الواوي الصحيح الآخر", "مَفْعِل لكل فعل ثلاثي", "مَفْعَل لكل فعل غير ثلاثي", "لا فرق بين اسم الزمان واسم المكان"], "a": 0, "ok": "إتقان رائع 🏆 هذه هي قاعدة الحسم الصحيحة للثلاثي.", "bad": "الخلاصة: مَفْعَل للمفتوح والمضموم والمعتل الآخر، ومَفْعِل للمكسور والمثال الواوي الصحيح الآخر."}];
-let index=0,score=0,answered=false;
+<div
+  class="burst"
+  id="burst"
+></div>
+<script type="module">
 
-const arabicDigits=n=>String(n).replace(/\d/g,d=>'٠١٢٣٤٥٦٧٨٩'[d]);
-const q=document.getElementById('question');
-const options=document.getElementById('options');
-const feedback=document.getElementById('feedback');
-const next=document.getElementById('next');
-const card=document.getElementById('card');
+import {
+  initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+
+
+import {
+  initializeAuth,
+  browserLocalPersistence,
+  browserPopupRedirectResolver,
+  onAuthStateChanged
+}
+from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  updateDoc,
+  serverTimestamp
+}
+from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+
+const firebaseConfig = {
+
+  apiKey:
+    "AIzaSyB48av9gx4jzFyYoUQtcLwaR52qETevKGs",
+
+  authDomain:
+    "afaq-language-platform.firebaseapp.com",
+
+  projectId:
+    "afaq-language-platform",
+
+  storageBucket:
+    "afaq-language-platform.firebasestorage.app",
+
+  messagingSenderId:
+    "362601061474",
+
+  appId:
+    "1:362601061474:web:bc405291332b9e4ef9453b"
+
+};
+
+
+const app =
+  initializeApp(firebaseConfig);
+
+
+const auth =
+  initializeAuth(
+    app,
+    {
+      persistence:
+        browserLocalPersistence,
+
+      popupRedirectResolver:
+        browserPopupRedirectResolver
+    }
+  );
+
+
+const db =
+  getFirestore(app);
+
+
+let currentUser=null;
+
+
+onAuthStateChanged(
+  auth,
+  user=>{
+    currentUser=user||null;
+  }
+);
+
+
+const questions = [
+
+  {
+    q:"أيُّ الكلمات الآتية اسمُ مكان؟",
+    o:[
+      "مَلْعَب",
+      "صباحًا",
+      "سريعًا",
+      "كاتب"
+    ],
+    a:0,
+    ok:"أحسنتِ 🌟 «مَلْعَب» يدل على مكان وقوع اللعب، فهو اسم مكان.",
+    bad:"الإجابة الصحيحة: «مَلْعَب». اسألي: أين وقع الفعل؟ إذا دلّت الكلمة على المكان فهي اسم مكان."
+  },
+
+  {
+    q:"يُصاغ اسم الزمان والمكان من الفعل الثلاثي إذا كانت عين مضارعه مفتوحة على وزن:",
+    o:[
+      "مَفْعِل",
+      "مَفْعَل",
+      "مُفْعَل",
+      "فَعِيل"
+    ],
+    a:1,
+    ok:"إجابة صحيحة 👏 إذا كانت عين المضارع مفتوحة، فالصياغة على وزن «مَفْعَل».",
+    bad:"راجعي القاعدة: عين المضارع المفتوحة أو المضمومة ⟵ «مَفْعَل»."
+  },
+
+  {
+    q:"الصياغة الصحيحة من «جلس يجلس» هي:",
+    o:[
+      "مَجْلَس",
+      "مَجْلِس",
+      "مُجْلَس",
+      "جَلِيس"
+    ],
+    a:1,
+    ok:"أحسنتِ ✨ «يجلس» عين مضارعه مكسورة، ولذلك نقول: «مَجْلِس».",
+    bad:"الإجابة الصحيحة «مَجْلِس»؛ لأن عين مضارع «يجلس» مكسورة."
+  },
+
+  {
+    q:"الصياغة الصحيحة من «دخل يدخل» هي:",
+    o:[
+      "مَدْخَل",
+      "مَدْخِل",
+      "مُدْخَل",
+      "دَاخِل"
+    ],
+    a:0,
+    ok:"أحسنتِ 🌿 «يدخل» عين مضارعه مضمومة، ولذلك تكون الصياغة «مَدْخَل» على وزن مَفْعَل.",
+    bad:"عين مضارع «يدخل» مضمومة؛ إذن الصياغة على وزن «مَفْعَل»: مَدْخَل."
+  },
+
+  {
+    q:"أيُّ صياغة صحيحة لاسم المكان من الفعل «رمى»؟",
+    o:[
+      "مَرْمِي",
+      "مَرْمَى",
+      "مِرْمَاة",
+      "مُرْمَى"
+    ],
+    a:1,
+    ok:"أحسنتِ جدًا 🎯 «رمى» فعل ثلاثي معتل الآخر، ولذلك يُصاغ على وزن «مَفْعَل»: «مَرْمَى».",
+    bad:"الثلاثي المعتل الآخر يُصاغ على وزن «مَفْعَل»، ولذلك: رمى ← مَرْمَى."
+  },
+
+  {
+    q:"لماذا نقول «مَجْرَى» من «جرى يجري» ولا نقول «مَجْرِي»؟",
+    o:[
+      "لأن الفعل رباعي",
+      "لأن الفعل ثلاثي معتل الآخر",
+      "لأن عين المضارع مفتوحة",
+      "لأنه اسم فاعل"
+    ],
+    a:1,
+    ok:"إجابة صحيحة 🔥 «جرى» فعل ثلاثي معتل الآخر، وله حكم خاص؛ فيأتي اسم الزمان أو المكان منه على وزن «مَفْعَل».",
+    bad:"لا ننظر هنا إلى كسر عين «يجري»، لأن «جرى» فعل ثلاثي معتل الآخر؛ وحكمه «مَفْعَل»."
+  },
+
+  {
+    q:"أيُّ الكلمات الآتية من الفعل المثال الواوي الصحيح الآخر؟",
+    o:[
+      "مَوْعِد",
+      "مَلْعَب",
+      "مَرْمَى",
+      "مَدْخَل"
+    ],
+    a:0,
+    ok:"أحسنتِ 💜 «وَعَدَ يَعِدُ» فعل مثال واوي صحيح الآخر، واسم الزمان أو المكان منه «مَوْعِد» على وزن مَفْعِل.",
+    bad:"الإجابة الصحيحة «مَوْعِد»: من «وعد يعد»، وهو مثال واوي صحيح الآخر."
+  },
+
+  {
+    q:"كيف نصوغ اسم الزمان أو المكان من الفعل غير الثلاثي؟",
+    o:[
+      "على وزن مَفْعَل دائمًا",
+      "على وزن مَفْعِل دائمًا",
+      "على صورة اسم المفعول: ميم مضمومة وفتح ما قبل الآخر",
+      "نضيف ألفًا في آخر الفعل"
+    ],
+    a:2,
+    ok:"أحسنتِ 👏 غير الثلاثي يُصاغ على صورة اسم المفعول: ميم مضمومة وفتح ما قبل الآخر.",
+    bad:"القاعدة: غير الثلاثي يُؤخذ مضارعه، ثم يُستبدل بحرف المضارعة ميم مضمومة، مع فتح ما قبل الآخر."
+  },
+
+  {
+    q:"كلمة «مُسْتَوْدَع» في جملة «وضعتُ الأغراض في المستودع» تدل على:",
+    o:[
+      "اسم زمان",
+      "اسم مكان",
+      "اسم فاعل",
+      "مصدر"
+    ],
+    a:1,
+    ok:"إجابة صحيحة 🌟 السياق يدل على مكان تُوضَع فيه الأشياء؛ إذن «مستودع» اسم مكان.",
+    bad:"انظري إلى السياق: «في المستودع» يجيب عن سؤال «أين؟»، ولذلك فهو اسم مكان."
+  },
+
+  {
+    q:"أيُّ قاعدة تلخّص الدرس بدقة؟",
+    o:[
+      "مَفْعَل للمفتوح والمضموم والمعتل الآخر، ومَفْعِل للمكسور والمثال الواوي الصحيح الآخر",
+      "مَفْعِل لكل فعل ثلاثي",
+      "مَفْعَل لكل فعل غير ثلاثي",
+      "لا فرق بين اسم الزمان واسم المكان"
+    ],
+    a:0,
+    ok:"إتقان رائع 🏆 هذه هي القاعدة الصحيحة لصياغة اسمي الزمان والمكان من الفعل الثلاثي.",
+    bad:"الخلاصة: مَفْعَل للمفتوح والمضموم والمعتل الآخر، ومَفْعِل للمكسور والمثال الواوي الصحيح الآخر."
+  }
+
+];
+
+
+let index=0;
+let score=0;
+let answered=false;
+
+
+const arabicDigits=
+  n=>
+    String(n).replace(
+      /\d/g,
+      d=>"٠١٢٣٤٥٦٧٨٩"[d]
+    );
+
+
+const questionElement=
+  document.getElementById(
+    "question"
+  );
+
+const options=
+  document.getElementById(
+    "options"
+  );
+
+const feedback=
+  document.getElementById(
+    "feedback"
+  );
+
+const next=
+  document.getElementById(
+    "next"
+  );
+
+const card=
+  document.getElementById(
+    "card"
+  );
+
 
 function tone(ok){
+
   try{
-    const AC=window.AudioContext||window.webkitAudioContext;
-    const c=new AC(),o=c.createOscillator(),g=c.createGain();
-    o.connect(g);g.connect(c.destination);
-    o.type=ok?'sine':'triangle';
-    o.frequency.setValueAtTime(ok?660:220,c.currentTime);
-    if(ok)o.frequency.exponentialRampToValueAtTime(880,c.currentTime+.16);
-    g.gain.setValueAtTime(.07,c.currentTime);
-    g.gain.exponentialRampToValueAtTime(.001,c.currentTime+.22);
-    o.start();o.stop(c.currentTime+.23);
-  }catch(e){}
-}
-function confetti(){
-  const burst=document.getElementById('burst');
-  burst.innerHTML='';
-  const colors=['#5b4677','#776094','#b69750','#d8c28a','#d895aa'];
-  for(let i=0;i<24;i++){
-    const s=document.createElement('i');
-    s.className='confetti';
-    s.style.left=(Math.random()*100)+'vw';
-    s.style.top='-10px';
-    s.style.background=colors[i%colors.length];
-    s.style.animationDelay=(Math.random()*180)+'ms';
-    burst.appendChild(s);
+
+    const AC=
+      window.AudioContext||
+      window.webkitAudioContext;
+
+    const c=new AC();
+    const o=c.createOscillator();
+    const g=c.createGain();
+
+    o.connect(g);
+    g.connect(c.destination);
+
+    o.type=
+      ok ? "sine" : "triangle";
+
+    o.frequency.setValueAtTime(
+      ok ? 660 : 220,
+      c.currentTime
+    );
+
+    if(ok){
+
+      o.frequency.exponentialRampToValueAtTime(
+        880,
+        c.currentTime+.16
+      );
+
+    }
+
+    g.gain.setValueAtTime(
+      .07,
+      c.currentTime
+    );
+
+    g.gain.exponentialRampToValueAtTime(
+      .001,
+      c.currentTime+.22
+    );
+
+    o.start();
+
+    o.stop(
+      c.currentTime+.23
+    );
+
   }
-  setTimeout(()=>burst.innerHTML='',1200);
+
+  catch(e){}
+
 }
-function render(){
+
+
+function confetti(){
+
+  const burst=
+    document.getElementById(
+      "burst"
+    );
+
+  burst.innerHTML="";
+
+
+  const colors=[
+    "#5b4677",
+    "#776094",
+    "#b69750",
+    "#d8c28a",
+    "#d895aa"
+  ];
+
+
+  for(
+    let i=0;
+    i<24;
+    i++
+  ){
+
+    const s=
+      document.createElement(
+        "i"
+      );
+
+    s.className=
+      "confetti";
+
+    s.style.left=
+      Math.random()*100+"vw";
+
+    s.style.top=
+      "-10px";
+
+    s.style.background=
+      colors[
+        i%colors.length
+      ];
+
+    s.style.animationDelay=
+      Math.random()*180+"ms";
+
+    burst.appendChild(s);
+
+  }
+
+
+  setTimeout(
+    ()=>burst.innerHTML="",
+    1200
+  );
+
+}
+ function render(){
+
   answered=false;
-  const x=questions[index];
-  document.getElementById('qnum').textContent='السؤال '+arabicDigits(index+1);
-  document.getElementById('counter').textContent='السؤال '+arabicDigits(index+1)+' من '+arabicDigits(questions.length);
-  document.getElementById('correctCount').textContent='الصحيح: '+arabicDigits(score);
-  document.getElementById('bar').style.width=(index/questions.length*100)+'%';
-  q.textContent=x.q;
-  options.innerHTML='';
-  feedback.className='feedback';
-  feedback.innerHTML='';
-  next.style.display='none';
-  card.classList.remove('pop');
-  x.o.forEach((t,j)=>{
-    const b=document.createElement('button');
-    b.className='opt';
-    b.textContent=t;
-    b.onclick=()=>choose(j,b);
-    options.appendChild(b);
-  });
+
+  const x=
+    questions[index];
+
+
+  document.getElementById(
+    "qnum"
+  ).textContent=
+    "السؤال "+
+    arabicDigits(index+1);
+
+
+  document.getElementById(
+    "counter"
+  ).textContent=
+    "السؤال "+
+    arabicDigits(index+1)+
+    " من "+
+    arabicDigits(
+      questions.length
+    );
+
+
+  document.getElementById(
+    "correctCount"
+  ).textContent=
+    "الإجابات الصحيحة: "+
+    arabicDigits(score);
+
+
+  document.getElementById(
+    "bar"
+  ).style.width=
+    (
+      index/
+      questions.length*
+      100
+    )+"%";
+
+
+  questionElement.textContent=
+    x.q;
+
+
+  options.innerHTML="";
+
+  feedback.className=
+    "feedback";
+
+  feedback.innerHTML="";
+
+  next.style.display=
+    "none";
+
+  card.classList.remove(
+    "pop"
+  );
+
+
+  x.o.forEach(
+    (text,choiceIndex)=>{
+
+      const button=
+        document.createElement(
+          "button"
+        );
+
+      button.className=
+        "opt";
+
+      button.type=
+        "button";
+
+      button.textContent=
+        text;
+
+      button.onclick=
+        ()=>choose(
+          choiceIndex,
+          button
+        );
+
+      options.appendChild(
+        button
+      );
+
+    }
+  );
+
 }
-function choose(choice,button){
-  if(answered)return;
+
+
+function choose(
+  choice,
+  button
+){
+
+  if(answered){
+    return;
+  }
+
+
   answered=true;
-  const x=questions[index];
-  const btns=[...document.querySelectorAll('.opt')];
-  btns.forEach(b=>b.disabled=true);
-  btns[x.a].classList.add('correct');
+
+
+  const x=
+    questions[index];
+
+
+  const buttons=[
+    ...document.querySelectorAll(
+      ".opt"
+    )
+  ];
+
+
+  buttons.forEach(
+    item=>
+      item.disabled=true
+  );
+
+
+  buttons[x.a]
+    .classList.add(
+      "correct"
+    );
+
 
   if(choice===x.a){
+
     score++;
-    button.classList.add('correct');
-    feedback.className='feedback show good';
-    feedback.textContent=x.ok;
-    tone(true);confetti();
-    if(navigator.vibrate)navigator.vibrate(45);
-  }else{
-    button.classList.add('wrong');
-    feedback.className='feedback show bad';
-    feedback.innerHTML='<b>مو هذه 👀</b><br>'+x.bad;
-    tone(false);
-    if(navigator.vibrate)navigator.vibrate([70,40,70]);
+
+    button.classList.add(
+      "correct"
+    );
+
+    feedback.className=
+      "feedback show good";
+
+    feedback.textContent=
+      x.ok;
+
+    tone(true);
+
+    confetti();
+
+    if(navigator.vibrate){
+      navigator.vibrate(45);
+    }
+
   }
 
-  document.getElementById('correctCount').textContent='الصحيح: '+arabicDigits(score);
-  card.classList.add('pop');
-  next.textContent=index===questions.length-1?'شوفي نتيجتك ✨':'كمّلي التحدي ←';
-  next.style.display='block';
+  else{
+
+    button.classList.add(
+      "wrong"
+    );
+
+    feedback.className=
+      "feedback show bad";
+
+    feedback.innerHTML=
+      "<b>راجعي الإجابة 👀</b><br>"+
+      x.bad;
+
+    tone(false);
+
+    if(navigator.vibrate){
+
+      navigator.vibrate(
+        [70,40,70]
+      );
+
+    }
+
+  }
+
+
+  document.getElementById(
+    "correctCount"
+  ).textContent=
+    "الإجابات الصحيحة: "+
+    arabicDigits(score);
+
+
+  card.classList.add(
+    "pop"
+  );
+
+
+  next.textContent=
+    index===
+      questions.length-1
+
+      ? "شاهدي نتيجتكِ ✨"
+
+      : "أكملي التحدي ←";
+
+
+  next.style.display=
+    "block";
+
 }
+
+
 next.onclick=()=>{
+
   index++;
-  if(index<questions.length)render();
-  else finish();
+
+
+  if(
+    index<
+    questions.length
+  ){
+
+    render();
+
+  }
+
+  else{
+
+    finish();
+
+  }
+
 };
-function finish(){
-  document.getElementById('bar').style.width='100%';
-  card.style.display='none';
-  document.querySelector('.top').style.display='none';
-  document.querySelector('.progress').style.display='none';
 
-  const result=document.getElementById('result');
-  result.classList.add('show');
-  document.getElementById('score').textContent=arabicDigits(score)+' / '+arabicDigits(questions.length);
 
-  const pct=score/questions.length;
-  document.getElementById('message').textContent=
-    pct===1?'يا سلام! إتقان كامل 🏆':
-    pct>=.8?'ممتازة جدًا 🌟 بقيت لمسات بسيطة فقط.':
-    pct>=.6?'أداء جميل 👏 راجعي القاعدة التي أخطأتِ فيها ثم أعيدي التحدي.':
-    'راجعي ملف الدرس، خاصة «مَفْعَل / مَفْعِل» وقاعدة المعتل الآخر، ثم عودي للتحدي.';
-  if(pct>=.8)confetti();
+async function saveResult(){
+
+  const saveStatus=
+    document.getElementById(
+      "saveStatus"
+    );
+
+
+  if(!currentUser){
+
+    saveStatus.className=
+      "save-status error";
+
+    saveStatus.textContent=
+      "لم تُحفظ النتيجة؛ يلزم تسجيل الدخول إلى المنصة أولًا.";
+
+    return;
+
+  }
+
+
+  try{
+
+    saveStatus.className=
+      "save-status";
+
+    saveStatus.textContent=
+      "جارٍ حفظ نتيجتكِ في الفصل الدراسي الثاني...";
+
+
+    const studentRef=
+      doc(
+        db,
+        "students",
+        currentUser.uid
+      );
+
+
+    const snapshot=
+      await getDoc(
+        studentRef
+      );
+
+
+    let previousBest=0;
+
+
+    if(snapshot.exists()){
+
+      const data=
+        snapshot.data();
+
+
+      previousBest=
+        Number(
+          data?.[
+            "اختبارات_الفصل_الثاني"
+          ]?.[
+            "اسما_الزمان_والمكان"
+          ]?.[
+            "أفضل_نسبة"
+          ] || 0
+        );
+
+    }
+
+
+    const percentage=
+      Math.round(
+        score/
+        questions.length*
+        100
+      );
+
+
+    const bestPercentage=
+      Math.max(
+        previousBest,
+        percentage
+      );
+
+
+    await updateDoc(
+      studentRef,
+      {
+
+        "اختبارات_الفصل_الثاني.اسما_الزمان_والمكان":
+        {
+
+          "اسم_الاختبار":
+            "اختبار اسمي الزمان والمكان",
+
+          "الدرجة":
+            score,
+
+          "المجموع":
+            questions.length,
+
+          "النسبة":
+            percentage,
+
+          "أفضل_نسبة":
+            bestPercentage,
+
+          "مكتمل":
+            true,
+
+          "عدد_الأسئلة":
+            questions.length,
+
+          "استحقت_الإتقان":
+            percentage>=80,
+
+          "آخر_محاولة":
+            serverTimestamp()
+
+        }
+
+      }
+    );
+
+
+    saveStatus.className=
+      "save-status success";
+
+
+    saveStatus.textContent=
+      "✅ حُفظت نتيجتكِ بنجاح في سجل الفصل الدراسي الثاني.";
+
+  }
+
+  catch(error){
+
+    console.error(
+      "خطأ في حفظ اختبار اسمي الزمان والمكان:",
+      error
+    );
+
+
+    saveStatus.className=
+      "save-status error";
+
+
+    saveStatus.textContent=
+      "تعذّر حفظ النتيجة الآن. أعيدي المحاولة بعد التأكد من تسجيل الدخول.";
+
+  }
+
 }
-function restartQuiz(){
-  index=0;score=0;answered=false;
-  card.style.display='flex';
-  document.querySelector('.top').style.display='flex';
-  document.querySelector('.progress').style.display='block';
-  document.getElementById('result').classList.remove('show');
-  render();
+
+
+async function finish(){
+
+  document.getElementById(
+    "bar"
+  ).style.width=
+    "100%";
+
+
+  card.style.display=
+    "none";
+
+
+  document.querySelector(
+    ".top"
+  ).style.display=
+    "none";
+
+
+  document.querySelector(
+    ".progress"
+  ).style.display=
+    "none";
+
+
+  const result=
+    document.getElementById(
+      "result"
+    );
+
+
+  result.classList.add(
+    "show"
+  );
+
+
+  document.getElementById(
+    "score"
+  ).textContent=
+    arabicDigits(score)+
+    " / "+
+    arabicDigits(
+      questions.length
+    );
+
+
+  const pct=
+    score/
+    questions.length;
+
+
+  document.getElementById(
+    "message"
+  ).textContent=
+
+    pct===1
+
+      ? "إتقان كامل لاسمي الزمان والمكان 🏆"
+
+      : pct>=.8
+
+        ? "أداء ممتاز جدًا 🌟 أتقنتِ قواعد صياغة اسمي الزمان والمكان."
+
+        : pct>=.6
+
+          ? "أداء جيد 👏 راجعي القواعد التي أخطأتِ فيها، ثم أعيدي التحدي."
+
+          : "راجعي ملف الدرس، وبخاصة وزني «مَفْعَل» و«مَفْعِل» وقاعدة الفعل المعتل الآخر، ثم عودي إلى التحدي.";
+
+
+  if(pct>=.8){
+    confetti();
+  }
+
+
+  await saveResult();
+
 }
+
+
+window.restartQuiz=
+  function(){
+
+    index=0;
+    score=0;
+    answered=false;
+
+
+    card.style.display=
+      "flex";
+
+
+    document.querySelector(
+      ".top"
+    ).style.display=
+      "flex";
+
+
+    document.querySelector(
+      ".progress"
+    ).style.display=
+      "block";
+
+
+    document.getElementById(
+      "result"
+    ).classList.remove(
+      "show"
+    );
+
+
+    const saveStatus=
+      document.getElementById(
+        "saveStatus"
+      );
+
+
+    saveStatus.className=
+      "save-status";
+
+
+    saveStatus.textContent=
+      "ستُحفظ نتيجتكِ في سجل الفصل الدراسي الثاني.";
+
+
+    render();
+
+  };
+
+
 render();
+
 </script>
+
 </body>
 </html>
