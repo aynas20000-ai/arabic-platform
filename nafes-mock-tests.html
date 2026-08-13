@@ -925,8 +925,7 @@ footer{
 
   #cupImageWrap{
     position:absolute;
-
-    inset:0;
+        inset:0;
 
     width:100%;
 
@@ -1195,6 +1194,7 @@ footer{
   جميع الحقوق محفوظة © 2026
 
 </footer>
+
 <script type="module">
 
 import {
@@ -1377,65 +1377,65 @@ const challenges = [
 
   {
     number:13,
-    title:"تحدي أسرار اللغة العربية",
+    title:"تحدي الرسالة القديمة",
     icon:"📜",
-    description:"تحدٍّ لغوي يكشف جمال العربية ودقة ألفاظها ودلالاتها.",
+    description:"قراءة قصصية تقيس الفهم والاستنتاج وتحليل دلالات النص.",
     file:"nafes-challenge-13.html"
   },
 
   {
     number:14,
-    title:"تحدي القراءة الواعية",
-    icon:"📖",
-    description:"قراءة عميقة تقيس الفهم والاستنتاج والحكم على الأفكار.",
+    title:"تحدي النوم والذاكرة",
+    icon:"🧠",
+    description:"قراءة علمية تقيس فهم العلاقة بين النوم والذاكرة وتحليل الأدلة.",
     file:"nafes-challenge-14.html"
   },
 
   {
     number:15,
-    title:"تحدي البيئة والمناخ",
-    icon:"🌍",
-    description:"تحدٍّ بيئي ينمّي تحليل الأسباب والنتائج وتقويم الحلول.",
+    title:"تحدي الإدمان الرقمي",
+    icon:"📱",
+    description:"قراءة واعية حول أثر الاستخدام الرقمي والعادات المرتبطة بالهاتف الذكي.",
     file:"nafes-challenge-15.html"
   },
 
   {
     number:16,
-    title:"تحدي الأمن المائي",
-    icon:"💧",
-    description:"قراءة توعوية حول المياه والاستدامة ومسؤولية المحافظة عليها.",
+    title:"تحدي الهندسة الوراثية",
+    icon:"🧬",
+    description:"قراءة علمية وأخلاقية تقيس فهم التعديل الوراثي وتحليل مسؤولية استخدامه.",
     file:"nafes-challenge-16.html"
   },
 
   {
     number:17,
-    title:"تحدي الابتكار",
-    icon:"💡",
-    description:"تحدٍّ يدعم التفكير الإبداعي وتحليل الأفكار والحلول الجديدة.",
+    title:"تحدي الشعاب المرجانية",
+    icon:"🪸",
+    description:"قراءة بيئية تقيس فهم الأنظمة البحرية وتحليل أسباب حمايتها.",
     file:"nafes-challenge-17.html"
   },
 
   {
     number:18,
-    title:"تحدي الصحة الذكية",
-    icon:"🩺",
-    description:"قراءة علمية تقيس فهم دور التقنية في تطوير الرعاية الصحية.",
+    title:"تحدي الطاقة المتجددة",
+    icon:"☀️",
+    description:"قراءة علمية تقيس فهم مصادر الطاقة ومتطلبات التخطيط والاستدامة.",
     file:"nafes-challenge-18.html"
   },
 
   {
     number:19,
-    title:"تحدي صفحات من التاريخ الإسلامي",
-    icon:"🕌",
-    description:"تحدٍّ تاريخي يختبر فهم الأحداث ودلالاتها والعبر المستفادة.",
+    title:"تحدي استكشاف الفضاء",
+    icon:"🌌",
+    description:"قراءة علمية تقيس فهم أهداف المهمات الفضائية وتحليل المخاطر والفوائد.",
     file:"nafes-challenge-19.html"
   },
 
   {
     number:20,
-    title:"التحدي الذهبي – كأس نافس",
-    icon:"🏆",
-    description:"المحطة الأخيرة في الرحلة؛ أكمليها لتظهري إنجازكِ النهائي.",
+    title:"تحدي المدن الذكية",
+    icon:"🏙️",
+    description:"التحدي العشرون والأخير؛ يربط التقنية بالخصوصية والعدالة وقياس الأثر.",
     file:"nafes-challenge-20.html",
     golden:true
   }
@@ -1835,7 +1835,9 @@ function normalizeResult(
   };
 
 }
-  function readResult(
+
+
+function readResult(
   number
 ){
 
@@ -1850,9 +1852,7 @@ function normalizeResult(
       localStorage.getItem(
         key
       );
-
-
-    const result =
+        const result =
       normalizeResult(
         raw
       );
@@ -2503,26 +2503,89 @@ async function saveResultsToFirebase(){
         REQUIRED_AVERAGE;
 
 
+    const updates = {
+
+      "نافس_المتابعة.عدد_التحديات_المكتملة":
+        completedChallenges,
+
+      "نافس_المتابعة.متوسط_التحديات":
+        finalAverage,
+
+      "نافس_المتابعة.الكأس_مستحق":
+        cupEligible,
+
+      "نافس_المتابعة.آخر_تحديث_للتحديات":
+        serverTimestamp()
+
+    };
+
+
+    for(
+      const challenge of
+      challenges
+    ){
+
+      if(
+        !challenge.result
+      ){
+        continue;
+      }
+
+
+      const base =
+        `نافس_المتابعة.نتائج_التحديات.challenge${challenge.number}`;
+
+
+      updates[
+        `${base}.رقم_التحدي`
+      ] =
+        challenge.number;
+
+
+      updates[
+        `${base}.اسم_التحدي`
+      ] =
+        challenge.title;
+
+
+      updates[
+        `${base}.الدرجة`
+      ] =
+        challenge.result.score;
+
+
+      updates[
+        `${base}.المجموع`
+      ] =
+        challenge.result.total;
+
+
+      updates[
+        `${base}.النسبة`
+      ] =
+        challenge.result.percentage;
+
+
+      updates[
+        `${base}.الشهادة`
+      ] =
+        challenge.result.percentage >= 80;
+
+
+      updates[
+        `${base}.اسم_الطالبة`
+      ] =
+        challenge.result.name ||
+        savedStudentName ||
+        currentUser.displayName ||
+        "";
+
+    }
+
+
     await updateDoc(
       studentRef,
-      {
-
-        "نافس_المتابعة.نتائج_التحديات":
-          resultsForFirebase,
-
-        "نافس_المتابعة.عدد_التحديات_المكتملة":
-          completedChallenges,
-
-        "نافس_المتابعة.متوسط_التحديات":
-          finalAverage,
-
-        "نافس_المتابعة.الكأس_مستحق":
-          cupEligible,
-
-        "نافس_المتابعة.آخر_تحديث_للتحديات":
-          serverTimestamp()
-
-      }
+      updates
     );
 
 
