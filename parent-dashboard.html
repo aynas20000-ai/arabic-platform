@@ -1,0 +1,2542 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>متابعة ولي الأمر | منصة آفاق</title>
+
+<style>
+
+:root{
+  --purple:#5b4677;
+  --purple-light:#7b6498;
+  --purple-dark:#49385c;
+  --gold:#c9a85c;
+  --cream:#fffaf2;
+  --paper:#fffdf8;
+  --text:#44384f;
+  --green:#2f7650;
+  --green-bg:#eaf7ef;
+  --red:#96394a;
+  --red-bg:#fff0f2;
+  --yellow:#8b6a18;
+  --yellow-bg:#fff7df;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html,
+body{
+  margin:0;
+  width:100%;
+  min-height:100%;
+}
+
+body{
+  font-family:
+    Tahoma,
+    Arial,
+    sans-serif;
+
+  color:var(--text);
+
+  background:
+    linear-gradient(
+      145deg,
+      #fffaf2,
+      #f7eef9
+    );
+}
+
+button,
+a{
+  font-family:inherit;
+}
+
+header{
+  padding:
+    30px 16px 27px;
+
+  text-align:center;
+
+  color:white;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--purple-light),
+      var(--purple-dark)
+    );
+
+  border-bottom:
+    5px solid var(--gold);
+}
+
+header .badge{
+  display:inline-block;
+
+  margin-bottom:8px;
+
+  padding:
+    5px 15px;
+
+  color:#fff3c9;
+
+  font-size:12px;
+  font-weight:bold;
+
+  border:
+    1px solid rgba(255,255,255,.45);
+
+  border-radius:999px;
+
+  background:
+    rgba(255,255,255,.1);
+}
+
+header h1{
+  margin:
+    0 0 7px;
+
+  font-size:
+    clamp(
+      26px,
+      7vw,
+      39px
+    );
+}
+
+header p{
+  max-width:740px;
+
+  margin:auto;
+
+  color:#f5edf8;
+
+  font-size:14px;
+  line-height:1.9;
+}
+
+.container{
+  width:
+    min(
+      94%,
+      920px
+    );
+
+  margin:
+    22px auto 45px;
+}
+
+.status-box{
+  margin-bottom:18px;
+
+  padding:14px;
+
+  text-align:center;
+
+  border:
+    1px solid #dec98d;
+
+  border-radius:17px;
+
+  background:#fffdf8;
+
+  font-size:14px;
+  font-weight:bold;
+  line-height:1.9;
+}
+
+.status-box.loading{
+  color:#6d582a;
+  background:#fff8e7;
+}
+
+.status-box.success{
+  color:#2f7650;
+  background:#edf8f1;
+}
+
+.status-box.error{
+  color:#8d3748;
+  background:#fff0f2;
+}
+
+.student-card{
+  position:relative;
+
+  overflow:hidden;
+
+  margin-bottom:18px;
+
+  padding:
+    20px 16px;
+
+  text-align:center;
+
+  border:
+    2px solid var(--gold);
+
+  border-radius:22px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #fffdf8,
+      #f6eef9
+    );
+
+  box-shadow:
+    0 8px 22px
+    rgba(91,70,119,.08);
+}
+
+.student-card::before{
+  content:"";
+
+  position:absolute;
+
+  top:0;
+  right:0;
+  left:0;
+
+  height:6px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--gold),
+      var(--purple-light),
+      var(--gold)
+    );
+}
+
+.student-icon{
+  font-size:45px;
+}
+
+.student-card h2{
+  margin:
+    5px 0;
+
+  color:var(--purple);
+
+  font-size:
+    clamp(
+      22px,
+      6vw,
+      30px
+    );
+}
+
+.student-class{
+  margin:4px 0;
+
+  color:#6d6074;
+
+  font-weight:bold;
+}
+
+.tabs{
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(0,1fr)
+    );
+
+  gap:8px;
+
+  margin-bottom:18px;
+
+  padding:8px;
+
+  border:
+    2px solid #dec98d;
+
+  border-radius:20px;
+
+  background:#fffdf8;
+}
+
+.tab-button{
+  min-height:58px;
+
+  padding:
+    10px 6px;
+
+  border:none;
+
+  border-radius:15px;
+
+  color:var(--purple);
+
+  background:#f3ecf7;
+
+  font-size:13px;
+  font-weight:bold;
+
+  cursor:pointer;
+}
+
+.tab-button.active{
+  color:white;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--purple-light),
+      var(--purple)
+    );
+}
+
+.stats{
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0,1fr)
+    );
+
+  gap:11px;
+
+  margin-bottom:18px;
+}
+
+.stat-card{
+  padding:
+    16px 9px;
+
+  text-align:center;
+
+  border:
+    2px solid #dec98d;
+
+  border-radius:18px;
+
+  background:#fffdf8;
+
+  box-shadow:
+    0 7px 18px
+    rgba(91,70,119,.07);
+}
+
+.stat-icon{
+  font-size:27px;
+}
+
+.stat-number{
+  display:block;
+
+  margin-top:4px;
+
+  color:var(--purple);
+
+  font-size:
+    clamp(
+      22px,
+      6vw,
+      28px
+    );
+
+  font-weight:bold;
+}
+
+.stat-label{
+  display:block;
+
+  margin-top:5px;
+
+  color:#74687a;
+
+  font-size:12px;
+  font-weight:bold;
+
+  line-height:1.6;
+}
+
+.section{
+  margin-bottom:18px;
+
+  padding:
+    17px;
+
+  border:
+    2px solid #dec98d;
+
+  border-radius:21px;
+
+  background:#fffdf8;
+
+  box-shadow:
+    0 8px 22px
+    rgba(91,70,119,.07);
+}
+
+.section-title{
+  margin:
+    0 0 8px;
+
+  text-align:center;
+
+  color:var(--purple);
+
+  font-size:21px;
+}
+
+.section-note{
+  margin:
+    0 0 14px;
+
+  text-align:center;
+
+  color:#786c7d;
+
+  font-size:12px;
+
+  line-height:1.8;
+}
+
+.result-box{
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0,1fr)
+    );
+
+  gap:10px;
+}
+
+.result-item{
+  padding:13px 9px;
+
+  text-align:center;
+
+  border:
+    1px solid #e1d3df;
+
+  border-radius:15px;
+
+  background:#faf6fb;
+}
+
+.result-item span{
+  display:block;
+
+  color:#766a7a;
+
+  font-size:11px;
+  font-weight:bold;
+}
+
+.result-item strong{
+  display:block;
+
+  margin-top:5px;
+
+  color:var(--purple);
+
+  font-size:18px;
+}
+
+.tag{
+  display:inline-block;
+
+  padding:
+    5px 9px;
+
+  border-radius:999px;
+
+  font-size:11px;
+  font-weight:bold;
+}
+
+.tag.yes{
+  color:#286a43;
+  background:#e8f7ed;
+}
+
+.tag.pending{
+  color:#765d27;
+  background:#fff5dd;
+}
+
+.tag.cup{
+  color:#745414;
+  background:#fff1bf;
+}
+
+.tag.no{
+  color:#875464;
+  background:#f8edf1;
+}
+
+.progress-track{
+  height:18px;
+
+  overflow:hidden;
+
+  margin:
+    12px 0 8px;
+
+  border-radius:999px;
+
+  background:#ece2ec;
+}
+
+.progress-bar{
+  width:0;
+  height:100%;
+
+  border-radius:inherit;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--purple-light),
+      var(--gold)
+    );
+
+  transition:
+    width .7s ease;
+}
+
+.progress-text{
+  margin:0;
+
+  text-align:center;
+
+  color:#695a70;
+
+  font-size:13px;
+  font-weight:bold;
+
+  line-height:1.8;
+}
+
+.details-button{
+  display:block;
+
+  width:100%;
+
+  margin-top:14px;
+
+  padding:
+    12px;
+
+  border:none;
+
+  border-radius:15px;
+
+  color:white;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--purple-light),
+      var(--purple)
+    );
+
+  font-size:14px;
+  font-weight:bold;
+
+  cursor:pointer;
+}
+
+.notes-box{
+  padding:15px;
+
+  border:
+    2px dashed #d1bb78;
+
+  border-radius:17px;
+
+  background:#fffaf0;
+
+  font-size:14px;
+
+  line-height:2;
+}
+
+.notes-box.empty{
+  color:#7a6c79;
+
+  text-align:center;
+}
+
+.footer{
+  margin-top:24px;
+
+  text-align:center;
+}
+
+.back-button{
+  display:inline-block;
+
+  padding:
+    11px 22px;
+
+  color:white;
+
+  text-decoration:none;
+
+  border:
+    2px solid var(--gold);
+
+  border-radius:999px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--purple-light),
+      var(--purple)
+    );
+
+  font-size:13px;
+  font-weight:bold;
+}
+
+/* نافذة تفاصيل نافس */
+
+.modal{
+  display:none;
+
+  position:fixed;
+
+  z-index:9999;
+
+  inset:0;
+
+  padding:16px;
+
+  overflow-y:auto;
+
+  background:
+    rgba(35,27,43,.65);
+}
+
+.modal.show{
+  display:block;
+}
+
+.modal-card{
+  width:
+    min(
+      100%,
+      850px
+    );
+
+  margin:
+    25px auto;
+
+  overflow:hidden;
+
+  border:
+    3px solid var(--gold);
+
+  border-radius:24px;
+
+  background:#fffdf8;
+}
+
+.modal-head{
+  display:flex;
+
+  align-items:center;
+  justify-content:space-between;
+
+  gap:10px;
+
+  padding:
+    16px 18px;
+
+  color:white;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--purple-light),
+      var(--purple)
+    );
+}
+
+.modal-head h2{
+  margin:0;
+
+  font-size:
+    clamp(
+      18px,
+      5vw,
+      24px
+    );
+}
+
+.modal-close{
+  width:42px;
+  height:42px;
+
+  border:none;
+
+  border-radius:50%;
+
+  color:var(--purple);
+
+  background:#fff4c9;
+
+  font-size:20px;
+  font-weight:bold;
+
+  cursor:pointer;
+}
+
+.modal-body{
+  padding:17px;
+}
+
+.challenge-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0,1fr)
+    );
+
+  gap:10px;
+}
+
+.challenge-card{
+  padding:13px;
+
+  border:
+    2px solid #e3d7e1;
+
+  border-radius:16px;
+
+  background:white;
+}
+
+.challenge-card.earned{
+  border-color:var(--gold);
+  background:#fff9e7;
+}
+
+.challenge-card.done{
+  border-color:#9bc5a8;
+  background:#f1faf4;
+}
+
+.challenge-card.pending{
+  opacity:.68;
+  background:#faf7fa;
+}
+
+.challenge-card h3{
+  margin:
+    0 0 7px;
+
+  color:var(--purple);
+
+  font-size:14px;
+  line-height:1.6;
+}
+
+.challenge-card p{
+  margin:4px 0;
+
+  font-size:12px;
+
+  line-height:1.6;
+}
+
+@media(min-width:720px){
+
+  .stats{
+    grid-template-columns:
+      repeat(
+        4,
+        minmax(0,1fr)
+      );
+  }
+
+  .result-box{
+    grid-template-columns:
+      repeat(
+        4,
+        minmax(0,1fr)
+      );
+  }
+
+}
+
+@media(max-width:650px){
+
+  .challenge-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+  <div class="badge">
+    متابعة ولي الأمر
+  </div>
+
+  <h1>
+    👨‍👩‍👧 متابعة ابنتي
+  </h1>
+
+  <p>
+    نافذتك لمتابعة تقدم ابنتك في منصة آفاق
+    ونتائجها وإنجازها في التعلم ومهارات نافس.
+  </p>
+
+</header>
+
+
+<main class="container">
+
+  <div
+    id="statusBox"
+    class="status-box loading"
+  >
+    جارٍ التحقق من حساب ولي الأمر...
+  </div>
+
+
+  <section
+    id="dashboardContent"
+    style="display:none;"
+  >
+
+    <section class="student-card">
+
+      <div class="student-icon">
+        👩🏻‍🎓
+      </div>
+
+      <h2 id="studentName">
+        الطالبة
+      </h2>
+
+      <p
+        id="studentClass"
+        class="student-class"
+      ></p>
+
+    </section>
+
+
+    <div class="tabs">
+
+      <button
+        class="tab-button active"
+        type="button"
+        data-view="semester1"
+      >
+        📘 الفصل الأول
+      </button>
+
+      <button
+        class="tab-button"
+        type="button"
+        data-view="semester2"
+      >
+        📗 الفصل الثاني
+      </button>
+
+      <button
+        class="tab-button"
+        type="button"
+        data-view="nafes"
+      >
+        🎯 نافس
+      </button>
+
+    </div>
+
+
+    <section class="stats">
+
+      <div class="stat-card">
+
+        <div class="stat-icon">
+          ✅
+        </div>
+
+        <span
+          id="stat1"
+          class="stat-number"
+        >
+          —
+        </span>
+
+        <span
+          id="statLabel1"
+          class="stat-label"
+        >
+          حالة الإنجاز
+        </span>
+
+      </div>
+
+
+      <div class="stat-card">
+
+        <div class="stat-icon">
+          📈
+        </div>
+
+        <span
+          id="stat2"
+          class="stat-number"
+        >
+          —
+        </span>
+
+        <span
+          id="statLabel2"
+          class="stat-label"
+        >
+          النتيجة
+        </span>
+
+      </div>
+
+
+      <div class="stat-card">
+
+        <div class="stat-icon">
+          🎓
+        </div>
+
+        <span
+          id="stat3"
+          class="stat-number"
+        >
+          —
+        </span>
+
+        <span
+          id="statLabel3"
+          class="stat-label"
+        >
+          الشهادات
+        </span>
+
+      </div>
+
+
+      <div class="stat-card">
+
+        <div class="stat-icon">
+          🏆
+        </div>
+
+        <span
+          id="stat4"
+          class="stat-number"
+        >
+          —
+        </span>
+
+        <span
+          id="statLabel4"
+          class="stat-label"
+        >
+          الإنجاز
+        </span>
+
+      </div>
+
+    </section>
+
+
+    <section class="section">
+
+      <h2
+        id="sectionTitle"
+        class="section-title"
+      >
+        📘 متابعة الفصل الأول
+      </h2>
+
+      <p
+        id="sectionNote"
+        class="section-note"
+      ></p>
+
+
+      <div
+        id="viewContent"
+      ></div>
+
+    </section>
+
+
+    <section class="section">
+
+      <h2 class="section-title">
+        💌 ملاحظات المعلمة لولي الأمر
+      </h2>
+
+      <p class="section-note">
+        تظهر هنا الملاحظات التي خصصتها المعلمة لولي الأمر فقط.
+      </p>
+
+      <div
+        id="parentNotes"
+        class="notes-box empty"
+      >
+        لا توجد ملاحظات جديدة.
+      </div>
+
+    </section>
+
+
+    <div class="footer">
+
+      <a
+        href="index.html"
+        class="back-button"
+      >
+        ↩ العودة إلى المنصة
+      </a>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<div
+  id="detailsModal"
+  class="modal"
+>
+
+  <div class="modal-card">
+
+    <div class="modal-head">
+
+      <h2>
+        📊 تفاصيل تحديات نافس
+      </h2>
+
+      <button
+        id="modalClose"
+        class="modal-close"
+        type="button"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <div class="modal-body">
+
+      <div
+        id="challengeGrid"
+        class="challenge-grid"
+      ></div>
+
+    </div>
+
+  </div>
+
+</div>
+<script type="module">
+
+import {
+  initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+
+
+import {
+  initializeAuth,
+  browserLocalPersistence,
+  browserPopupRedirectResolver,
+  onAuthStateChanged
+}
+from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+
+import {
+  getFirestore,
+  doc,
+  getDoc
+}
+from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+
+const firebaseConfig = {
+
+  apiKey:
+    "AIzaSyB48av9gx4jzFyYoUQtcLwaR52qETevKGs",
+
+  authDomain:
+    "afaq-language-platform.firebaseapp.com",
+
+  projectId:
+    "afaq-language-platform",
+
+  storageBucket:
+    "afaq-language-platform.firebasestorage.app",
+
+  messagingSenderId:
+    "362601061474",
+
+  appId:
+    "1:362601061474:web:bc405291332b9e4ef9453b"
+
+};
+
+
+const app =
+  initializeApp(
+    firebaseConfig
+  );
+
+
+const auth =
+  initializeAuth(
+    app,
+    {
+      persistence:
+        browserLocalPersistence,
+
+      popupRedirectResolver:
+        browserPopupRedirectResolver
+    }
+  );
+
+
+const db =
+  getFirestore(
+    app
+  );
+
+
+const TOTAL_CHALLENGES =
+  20;
+
+
+const challengeNames = {
+
+  1:"تحدي بوصلة الفهم",
+  2:"تحدي الأمن السيبراني",
+  3:"تحدي مشروع نيوم",
+  4:"تحدي القدية",
+  5:"تحدي الذكاء الاصطناعي",
+  6:"تحدي الفضاء السعودي",
+  7:"تحدي البحر الأحمر",
+  8:"تحدي الطاقة المتجددة",
+  9:"تحدي رؤية المملكة 2030",
+  10:"تحدي التراث السعودي",
+  11:"تحدي طريق الحرير",
+  12:"تحدي العلماء المسلمين",
+  13:"تحدي الرسالة القديمة",
+  14:"تحدي النوم والذاكرة",
+  15:"تحدي الإدمان الرقمي",
+  16:"تحدي الهندسة الوراثية",
+  17:"تحدي الشعاب المرجانية",
+  18:"تحدي الطاقة المتجددة",
+  19:"تحدي استكشاف الفضاء",
+  20:"تحدي المدن الذكية"
+
+};
+
+
+const el =
+  id =>
+    document.getElementById(
+      id
+    );
+
+
+const statusBox =
+  el("statusBox");
+
+const dashboardContent =
+  el("dashboardContent");
+
+const studentName =
+  el("studentName");
+
+const studentClass =
+  el("studentClass");
+
+const stat1 =
+  el("stat1");
+
+const stat2 =
+  el("stat2");
+
+const stat3 =
+  el("stat3");
+
+const stat4 =
+  el("stat4");
+
+const statLabel1 =
+  el("statLabel1");
+
+const statLabel2 =
+  el("statLabel2");
+
+const statLabel3 =
+  el("statLabel3");
+
+const statLabel4 =
+  el("statLabel4");
+
+const sectionTitle =
+  el("sectionTitle");
+
+const sectionNote =
+  el("sectionNote");
+
+const viewContent =
+  el("viewContent");
+
+const parentNotes =
+  el("parentNotes");
+
+const detailsModal =
+  el("detailsModal");
+
+const modalClose =
+  el("modalClose");
+
+const challengeGrid =
+  el("challengeGrid");
+
+const tabButtons =
+  document.querySelectorAll(
+    ".tab-button"
+  );
+
+
+let currentView =
+  "semester1";
+
+
+let currentStudent =
+  null;
+
+
+function toArabicNumber(
+  value
+){
+
+  return String(
+    value
+  ).replace(
+    /\d/g,
+    digit =>
+      "٠١٢٣٤٥٦٧٨٩"[digit]
+  );
+
+}
+
+
+function safeNumber(
+  value
+){
+
+  const number =
+    Number(
+      value
+    );
+
+
+  return Number.isFinite(
+    number
+  )
+    ? number
+    : 0;
+
+}
+
+
+function escapeHtml(
+  value
+){
+
+  return String(
+    value ?? ""
+  )
+    .replaceAll(
+      "&",
+      "&amp;"
+    )
+    .replaceAll(
+      "<",
+      "&lt;"
+    )
+    .replaceAll(
+      ">",
+      "&gt;"
+    )
+    .replaceAll(
+      '"',
+      "&quot;"
+    )
+    .replaceAll(
+      "'",
+      "&#039;"
+    );
+
+}
+
+
+function normalizeClassName(
+  value
+){
+
+  const text =
+    String(
+      value || ""
+    )
+      .trim()
+      .replace(
+        /\s+/g,
+        " "
+      );
+
+
+  if(!text){
+    return "غير محدد";
+  }
+
+
+  if(
+    text === "أ" ||
+    text === "ا" ||
+    text.includes("متوسط أ") ||
+    text.includes("متوسط ا") ||
+    text.includes("ثالث أ")
+  ){
+    return "ثالث متوسط أ";
+  }
+
+
+  if(
+    text === "ب" ||
+    text.includes("متوسط ب") ||
+    text.includes("ثالث ب")
+  ){
+    return "ثالث متوسط ب";
+  }
+
+
+  if(
+    text === "ج" ||
+    text.includes("متوسط ج") ||
+    text.includes("ثالث ج")
+  ){
+    return "ثالث متوسط ج";
+  }
+
+
+  return text;
+
+}
+
+
+function normalizeChallenge(
+  item,
+  number
+){
+
+  if(
+    !item ||
+    typeof item !==
+      "object"
+  ){
+    return null;
+  }
+
+
+  const score =
+    safeNumber(
+      item["الدرجة"] ??
+      item.score
+    );
+
+
+  const total =
+    safeNumber(
+      item["المجموع"] ??
+      item.total ??
+      10
+    );
+
+
+  let percentage =
+    Number(
+      item["النسبة"] ??
+      item.percentage
+    );
+
+
+  if(
+    !Number.isFinite(
+      percentage
+    )
+  ){
+
+    percentage =
+      total > 0
+        ? Math.round(
+            score /
+            total *
+            100
+          )
+        : 0;
+
+  }
+
+
+  percentage =
+    Math.max(
+      0,
+      Math.min(
+        100,
+        Math.round(
+          percentage
+        )
+      )
+    );
+
+
+  return {
+
+    number,
+
+    title:
+      item["اسم_التحدي"] ||
+      item.title ||
+      challengeNames[number],
+
+    score,
+
+    total,
+
+    percentage,
+
+    certificate:
+      item["الشهادة"] === true ||
+      item.certificate === true ||
+      percentage >= 80
+
+  };
+
+}
+
+
+function prepareStudent(
+  id,
+  data
+){
+
+  const semester1Result =
+    data?.["نتيجة_الفصل_الأول"] ||
+    {};
+
+
+  const semester2Result =
+    data?.["نتيجة_الفصل_الثاني"] ||
+    {};
+
+
+  const semester1Tests =
+    data?.["اختبارات_الفصل_الأول"] ||
+    {};
+
+
+  const semester2Tests =
+    data?.["اختبارات_الفصل_الثاني"] ||
+    {};
+
+
+  const nafes =
+    data?.["نافس_المتابعة"] ||
+    {};
+
+
+  const challengeResults =
+    nafes["نتائج_التحديات"] &&
+    typeof nafes[
+      "نتائج_التحديات"
+    ] === "object"
+
+      ? nafes[
+          "نتائج_التحديات"
+        ]
+
+      : {};
+
+
+  const challenges =
+    [];
+
+
+  for(
+    let number=1;
+    number<=TOTAL_CHALLENGES;
+    number++
+  ){
+
+    const raw =
+      challengeResults[
+        `challenge${number}`
+      ] ||
+      challengeResults[
+        `challenge${String(number).padStart(2,"0")}`
+      ];
+
+
+    const result =
+      normalizeChallenge(
+        raw,
+        number
+      );
+
+
+    if(result){
+
+      challenges.push(
+        result
+      );
+
+    }
+
+  }
+
+
+  const challengeCount =
+    challenges.length;
+
+
+  const challengeAverage =
+    challengeCount > 0
+
+      ? Math.round(
+          challenges.reduce(
+            (
+              total,
+              item
+            ) =>
+              total +
+              item.percentage,
+            0
+          ) /
+          challengeCount
+        )
+
+      : 0;
+
+
+  const certificateCount =
+    challenges.filter(
+      item =>
+        item.certificate
+    ).length;
+
+
+  const cup =
+    challengeCount ===
+      TOTAL_CHALLENGES &&
+    challengeAverage >= 80;
+
+
+  return {
+
+    id,
+
+    name:
+      data?.["الاسم"] ||
+      data?.["اسم_الطالبة"] ||
+      "الطالبة",
+
+    className:
+      normalizeClassName(
+        data?.["الفصل"]
+      ),
+
+
+    parentNotes:
+      data?.["ملاحظات_ولي_الأمر"] ||
+      data?.["ملاحظة_لولي_الأمر"] ||
+      "",
+
+
+    semester1:{
+
+      completed:
+        semester1Result[
+          "مكتمل"
+        ] === true,
+
+      score:
+        safeNumber(
+          semester1Result[
+            "الدرجة"
+          ]
+        ),
+
+      certificate:
+        semester1Result[
+          "استحقت_الشهادة"
+        ] === true,
+
+      testCount:
+        Object.values(
+          semester1Tests
+        )
+          .filter(
+            item =>
+              item &&
+              typeof item ===
+                "object"
+          )
+          .length
+
+    },
+
+
+    semester2:{
+
+      completed:
+        semester2Result[
+          "مكتمل"
+        ] === true,
+
+      score:
+        safeNumber(
+          semester2Result[
+            "الدرجة"
+          ]
+        ),
+
+      certificate:
+        semester2Result[
+          "استحقت_الشهادة"
+        ] === true,
+
+      testCount:
+        Object.values(
+          semester2Tests
+        )
+          .filter(
+            item =>
+              item &&
+              typeof item ===
+                "object"
+          )
+          .length
+
+    },
+
+
+    nafes:{
+
+      viewed:
+        nafes["اطلعت"] === true,
+
+      challengeCount,
+
+      challengeAverage,
+
+      certificateCount,
+
+      cup,
+
+      challenges
+
+    }
+
+  };
+
+}
+
+
+/*
+  الربط الآمن:
+
+  لكل ولي أمر سيكون هناك سجل في:
+
+  parent_links
+
+  ورقم السجل يكون UID الخاص بولي الأمر.
+
+  وداخله:
+
+  studentUid: UID الطالبة
+
+  وبذلك لا تبحث الصفحة في جميع الطالبات،
+  بل تفتح سجل الابنة المرتبطة فقط.
+*/
+
+
+async function loadParentStudent(
+  user
+){
+
+  try{
+
+    statusBox.className =
+      "status-box loading";
+
+
+    statusBox.textContent =
+      "جارٍ تحميل بيانات ابنتك...";
+
+
+    const parentLinkRef =
+      doc(
+        db,
+        "parent_links",
+        user.uid
+      );
+
+
+    const parentLinkSnap =
+      await getDoc(
+        parentLinkRef
+      );
+
+
+    if(
+      !parentLinkSnap.exists()
+    ){
+
+      statusBox.className =
+        "status-box error";
+
+
+      statusBox.textContent =
+        "⚙️ حساب ولي الأمر غير مرتبط بطالبة حتى الآن. يرجى الرجوع إلى المعلمة لإتمام الربط.";
+
+
+      dashboardContent.style.display =
+        "none";
+
+
+      return;
+
+    }
+
+
+    const linkData =
+      parentLinkSnap.data();
+
+
+    const studentUid =
+      linkData?.studentUid ||
+      linkData?.["معرف_الطالبة"] ||
+      "";
+
+
+    if(!studentUid){
+
+      statusBox.className =
+        "status-box error";
+
+
+      statusBox.textContent =
+        "تعذر تحديد الطالبة المرتبطة بهذا الحساب.";
+
+
+      dashboardContent.style.display =
+        "none";
+
+
+      return;
+
+    }
+
+
+    const studentRef =
+      doc(
+        db,
+        "students",
+        studentUid
+      );
+
+
+    const studentSnap =
+      await getDoc(
+        studentRef
+      );
+
+
+    if(
+      !studentSnap.exists()
+    ){
+
+      statusBox.className =
+        "status-box error";
+
+
+      statusBox.textContent =
+        "تعذر العثور على سجل الطالبة المرتبطة بهذا الحساب.";
+
+
+      dashboardContent.style.display =
+        "none";
+
+
+      return;
+
+    }
+
+
+    currentStudent =
+      prepareStudent(
+        studentSnap.id,
+        studentSnap.data()
+      );
+
+
+    studentName.textContent =
+      currentStudent.name;
+
+
+    studentClass.textContent =
+      currentStudent.className;
+
+
+    if(
+      currentStudent.parentNotes
+    ){
+
+      parentNotes.className =
+        "notes-box";
+
+
+      parentNotes.textContent =
+        currentStudent.parentNotes;
+
+    }
+
+    else{
+
+      parentNotes.className =
+        "notes-box empty";
+
+
+      parentNotes.textContent =
+        "لا توجد ملاحظات جديدة من المعلمة.";
+
+    }
+
+
+    dashboardContent.style.display =
+      "block";
+
+
+    renderCurrentView();
+
+
+    statusBox.className =
+      "status-box success";
+
+
+    statusBox.textContent =
+      "✅ تم تحميل متابعة ابنتك بنجاح.";
+
+
+    setTimeout(
+      () => {
+
+        statusBox.style.display =
+          "none";
+
+      },
+      1600
+    );
+
+  }
+
+  catch(error){
+
+    console.error(
+      "Parent dashboard error:",
+      error
+    );
+
+
+    statusBox.className =
+      "status-box error";
+
+
+    statusBox.textContent =
+      "تعذر تحميل بيانات المتابعة الآن. تحققي من تسجيل الدخول ثم حاولي مرة أخرى.";
+
+
+    dashboardContent.style.display =
+      "none";
+
+  }
+
+}
+  function renderSemester(
+  key
+){
+
+  const data =
+    currentStudent[key];
+
+
+  const semesterName =
+    key === "semester1"
+      ? "الفصل الدراسي الأول"
+      : "الفصل الدراسي الثاني";
+
+
+  sectionTitle.textContent =
+    key === "semester1"
+      ? "📘 متابعة الفصل الدراسي الأول"
+      : "📗 متابعة الفصل الدراسي الثاني";
+
+
+  sectionNote.textContent =
+    `متابعة نتائج ابنتك في ${semesterName}.`;
+
+
+  stat1.textContent =
+    data.completed
+      ? "✅"
+      : "⏳";
+
+
+  statLabel1.textContent =
+    "حالة الإنجاز";
+
+
+  stat2.textContent =
+    data.completed
+      ? `${toArabicNumber(
+          data.score
+        )}٪`
+      : "—";
+
+
+  statLabel2.textContent =
+    "النتيجة";
+
+
+  stat3.textContent =
+    data.certificate
+      ? "🎓"
+      : "—";
+
+
+  statLabel3.textContent =
+    "الشهادة";
+
+
+  stat4.textContent =
+    toArabicNumber(
+      data.testCount
+    );
+
+
+  statLabel4.textContent =
+    "اختبارات مسجلة";
+
+
+  viewContent.innerHTML = `
+
+    <div class="result-box">
+
+      <div class="result-item">
+
+        <span>
+          الاختبارات المسجلة
+        </span>
+
+        <strong>
+          ${toArabicNumber(
+            data.testCount
+          )}
+        </strong>
+
+      </div>
+
+
+      <div class="result-item">
+
+        <span>
+          حالة الإكمال
+        </span>
+
+        <strong>
+          ${
+            data.completed
+              ? `
+                <span class="tag yes">
+                  مكتمل
+                </span>
+              `
+              : `
+                <span class="tag pending">
+                  غير مكتمل
+                </span>
+              `
+          }
+        </strong>
+
+      </div>
+
+
+      <div class="result-item">
+
+        <span>
+          النتيجة
+        </span>
+
+        <strong>
+          ${
+            data.completed
+              ? `${toArabicNumber(
+                  data.score
+                )}٪`
+              : "—"
+          }
+        </strong>
+
+      </div>
+
+
+      <div class="result-item">
+
+        <span>
+          الشهادة
+        </span>
+
+        <strong>
+          ${
+            data.certificate
+              ? `
+                <span class="tag cup">
+                  🎓 مستحقة
+                </span>
+              `
+              : "—"
+          }
+        </strong>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+function renderNafes(){
+
+  const nafes =
+    currentStudent.nafes;
+
+
+  sectionTitle.textContent =
+    "🎯 متابعة نافس";
+
+
+  sectionNote.textContent =
+    "متابعة تقدم ابنتك في تحديات نافس والشهادات وكأس نافس.";
+
+
+  stat1.textContent =
+    `${toArabicNumber(
+      nafes.challengeCount
+    )}/٢٠`;
+
+
+  statLabel1.textContent =
+    "التحديات المكتملة";
+
+
+  stat2.textContent =
+    nafes.challengeCount > 0
+      ? `${toArabicNumber(
+          nafes.challengeAverage
+        )}٪`
+      : "—";
+
+
+  statLabel2.textContent =
+    "متوسط نافس";
+
+
+  stat3.textContent =
+    toArabicNumber(
+      nafes.certificateCount
+    );
+
+
+  statLabel3.textContent =
+    "شهادات التحديات";
+
+
+  stat4.textContent =
+    nafes.cup
+      ? "🏆"
+      : "🔒";
+
+
+  statLabel4.textContent =
+    "كأس نافس";
+
+
+  const progress =
+    Math.round(
+      nafes.challengeCount /
+      TOTAL_CHALLENGES *
+      100
+    );
+
+
+  viewContent.innerHTML = `
+
+    <div class="result-box">
+
+      <div class="result-item">
+
+        <span>
+          الاطلاع على نافس
+        </span>
+
+        <strong>
+          ${
+            nafes.viewed
+              ? `
+                <span class="tag yes">
+                  اطلعت ✅
+                </span>
+              `
+              : `
+                <span class="tag no">
+                  لم تطلع بعد
+                </span>
+              `
+          }
+        </strong>
+
+      </div>
+
+
+      <div class="result-item">
+
+        <span>
+          التحديات
+        </span>
+
+        <strong>
+          ${toArabicNumber(
+            nafes.challengeCount
+          )}
+          من ٢٠
+        </strong>
+
+      </div>
+
+
+      <div class="result-item">
+
+        <span>
+          المتوسط
+        </span>
+
+        <strong>
+          ${
+            nafes.challengeCount > 0
+              ? `${toArabicNumber(
+                  nafes.challengeAverage
+                )}٪`
+              : "—"
+          }
+        </strong>
+
+      </div>
+
+
+      <div class="result-item">
+
+        <span>
+          الشهادات
+        </span>
+
+        <strong>
+          🎓
+          ${toArabicNumber(
+            nafes.certificateCount
+          )}
+        </strong>
+
+      </div>
+
+    </div>
+
+
+    <div class="progress-track">
+
+      <div
+        class="progress-bar"
+        style="width:${progress}%"
+      ></div>
+
+    </div>
+
+
+    <p class="progress-text">
+
+      أنجزت ابنتك
+      ${toArabicNumber(
+        nafes.challengeCount
+      )}
+      من أصل ٢٠ تحديًا.
+
+    </p>
+
+
+    <div
+      style="
+        margin-top:14px;
+        text-align:center;
+      "
+    >
+
+      ${
+        nafes.cup
+
+          ? `
+            <span class="tag cup">
+              🏆 استحقت كأس نافس
+            </span>
+          `
+
+          : `
+            <span class="tag pending">
+              🔒 لم تستحق كأس نافس بعد
+            </span>
+          `
+      }
+
+    </div>
+
+
+    <button
+      id="showNafesDetails"
+      class="details-button"
+      type="button"
+    >
+      📊 عرض تفاصيل التحديات العشرين
+    </button>
+
+  `;
+
+
+  document
+    .getElementById(
+      "showNafesDetails"
+    )
+    .addEventListener(
+      "click",
+      openNafesDetails
+    );
+
+}
+
+
+function openNafesDetails(){
+
+  const nafes =
+    currentStudent.nafes;
+
+
+  challengeGrid.innerHTML =
+    "";
+
+
+  for(
+    let number=1;
+    number<=TOTAL_CHALLENGES;
+    number++
+  ){
+
+    const result =
+      nafes.challenges.find(
+        item =>
+          item.number ===
+          number
+      );
+
+
+    const card =
+      document.createElement(
+        "article"
+      );
+
+
+    card.className =
+      "challenge-card";
+
+
+    if(!result){
+
+      card.classList.add(
+        "pending"
+      );
+
+
+      card.innerHTML = `
+
+        <h3>
+          ${toArabicNumber(number)}
+          —
+          ${challengeNames[number]}
+        </h3>
+
+        <p>
+          ⏳ لم يُنجز التحدي بعد
+        </p>
+
+      `;
+
+    }
+
+    else{
+
+      card.classList.add(
+        result.certificate
+          ? "earned"
+          : "done"
+      );
+
+
+      card.innerHTML = `
+
+        <h3>
+          ${toArabicNumber(number)}
+          —
+          ${escapeHtml(
+            result.title
+          )}
+        </h3>
+
+        <p>
+          الدرجة:
+          <strong>
+            ${toArabicNumber(
+              result.score
+            )}
+            من
+            ${toArabicNumber(
+              result.total
+            )}
+          </strong>
+        </p>
+
+        <p>
+          النسبة:
+          <strong>
+            ${toArabicNumber(
+              result.percentage
+            )}٪
+          </strong>
+        </p>
+
+        <p>
+          ${
+            result.certificate
+              ? "🎓 شهادة مستحقة"
+              : "✅ تم إنجاز التحدي"
+          }
+        </p>
+
+      `;
+
+    }
+
+
+    challengeGrid.appendChild(
+      card
+    );
+
+  }
+
+
+  detailsModal.classList.add(
+    "show"
+  );
+
+}
+
+
+function closeModal(){
+
+  detailsModal.classList.remove(
+    "show"
+  );
+
+}
+
+
+function renderCurrentView(){
+
+  if(!currentStudent){
+    return;
+  }
+
+
+  tabButtons.forEach(
+    button => {
+
+      button.classList.toggle(
+        "active",
+        button.dataset.view ===
+          currentView
+      );
+
+    }
+  );
+
+
+  if(
+    currentView ===
+      "semester1"
+  ){
+
+    renderSemester(
+      "semester1"
+    );
+
+  }
+
+  else if(
+    currentView ===
+      "semester2"
+  ){
+
+    renderSemester(
+      "semester2"
+    );
+
+  }
+
+  else{
+
+    renderNafes();
+
+  }
+
+}
+
+
+tabButtons.forEach(
+  button => {
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        currentView =
+          button.dataset.view;
+
+
+        renderCurrentView();
+
+      }
+    );
+
+  }
+);
+
+
+modalClose.addEventListener(
+  "click",
+  closeModal
+);
+
+
+detailsModal.addEventListener(
+  "click",
+  event => {
+
+    if(
+      event.target ===
+        detailsModal
+    ){
+
+      closeModal();
+
+    }
+
+  }
+);
+
+
+onAuthStateChanged(
+  auth,
+  async user => {
+
+    if(!user){
+
+      statusBox.className =
+        "status-box error";
+
+
+      statusBox.textContent =
+        "🔒 يلزم تسجيل الدخول بحساب ولي الأمر لعرض متابعة الابنة.";
+
+
+      dashboardContent.style.display =
+        "none";
+
+
+      return;
+
+    }
+
+
+    await loadParentStudent(
+      user
+    );
+
+  }
+);
+
+</script>
+
+</body>
+</html>
