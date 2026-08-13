@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+
 <title>اختبار المصادر | منصة آفاق</title>
 
 <style>
@@ -161,7 +162,9 @@ h2{
   color:#873838;
 }
 
-.opt:disabled{cursor:default}
+.opt:disabled{
+  cursor:default;
+}
 
 .feedback{
   display:none;
@@ -172,7 +175,9 @@ h2{
   line-height:1.55;
 }
 
-.feedback.show{display:block}
+.feedback.show{
+  display:block;
+}
 
 .feedback.good{
   background:#e9f6ef;
@@ -206,12 +211,35 @@ h2{
   text-align:center;
 }
 
-.result.show{display:flex}
+.result.show{
+  display:flex;
+}
 
 .score{
   font-size:40px;
   color:var(--g);
   font-weight:bold;
+}
+
+.save-status{
+  margin:7px 0 3px;
+  padding:8px 10px;
+  border-radius:12px;
+  font-size:12px;
+  font-weight:bold;
+  line-height:1.7;
+  background:#f5eff9;
+  color:var(--p);
+}
+
+.save-status.success{
+  background:#edf8f1;
+  color:#2f7650;
+}
+
+.save-status.error{
+  background:#fff2f3;
+  color:#96394a;
 }
 
 .restart,.lesson{
@@ -262,11 +290,20 @@ footer{
 }
 
 @keyframes fall{
-  0%{transform:translateY(-20px) rotate(0);opacity:1}
-  100%{transform:translateY(105vh) rotate(540deg);opacity:0}
+  0%{
+    transform:translateY(-20px) rotate(0);
+    opacity:1
+  }
+
+  100%{
+    transform:translateY(105vh) rotate(540deg);
+    opacity:0
+  }
 }
 
-.pop{animation:pop .25s ease}
+.pop{
+  animation:pop .25s ease;
+}
 
 @keyframes pop{
   50%{transform:scale(1.018)}
@@ -292,14 +329,14 @@ footer{
 <header>
   <span class="tag">منصة آفاق التعليمية</span>
   <h1>تحدي المصادر</h1>
-  <p>١٠ أسئلة • تعقيب فوري • صوت وحماس ✨</p>
+  <p>١٠ أسئلة • تعقيب فوري • تحدٍّ تفاعلي ✨</p>
 </header>
 
 <main>
 
   <div class="top">
     <span id="counter">السؤال ١ من ١٠</span>
-    <span id="correctCount">الصحيح: ٠</span>
+    <span id="correctCount">الإجابات الصحيحة: ٠</span>
   </div>
 
   <div class="progress">
@@ -307,20 +344,63 @@ footer{
   </div>
 
   <section class="card" id="card">
+
     <div class="qnum" id="qnum"></div>
+
     <h2 id="question"></h2>
+
     <div class="options" id="options"></div>
+
     <div class="feedback" id="feedback"></div>
-    <button class="next" id="next">السؤال التالي</button>
+
+    <button
+      class="next"
+      id="next"
+      type="button"
+    >
+      السؤال التالي
+    </button>
+
   </section>
 
+
   <section class="result" id="result">
+
     <h2>انتهى التحدي ✨</h2>
+
     <div class="score" id="score"></div>
+
     <p id="message"></p>
-    <button class="restart" onclick="restartQuiz()">أعيدي التحدي</button>
-    <a class="lesson" href="verbal-nouns-file.html">راجعي ملف الدرس</a>
-    <a class="lesson" href="verbal-nouns.html">العودة إلى درس المصادر</a>
+
+    <div
+      id="saveStatus"
+      class="save-status"
+    >
+      ستُحفظ نتيجتكِ في سجل الفصل الدراسي الثاني.
+    </div>
+
+    <button
+      class="restart"
+      type="button"
+      onclick="restartQuiz()"
+    >
+      أعيدي التحدي
+    </button>
+
+    <a
+      class="lesson"
+      href="verbal-nouns-file.html"
+    >
+      راجعي ملف الدرس
+    </a>
+
+    <a
+      class="lesson"
+      href="verbal-nouns.html"
+    >
+      العودة إلى درس المصادر
+    </a>
+
   </section>
 
 </main>
@@ -331,199 +411,957 @@ footer{
 
 </div>
 
-<div class="burst" id="burst"></div>
+<div
+  class="burst"
+  id="burst"
+></div>
+<script type="module">
 
-<script>
-const questions = [{"q": "ما التعريف الأدق للمصدر؟", "o": ["اسم يدل على حدث مرتبط بزمن", "اسم يدل على حدث مجرد من الزمن", "اسم يدل على من قام بالفعل", "اسم يدل على مكان وقوع الفعل"], "a": 1, "ok": "أحسنتِ 🌟 المصدر يدل على الحدث فقط دون زمن.", "bad": "تذكري القاعدة: الفعل = حدث + زمن، أما المصدر = حدث فقط."}, {"q": "أيُّ الكلمات الآتية مصدر للفعل «كتب»؟", "o": ["كاتب", "مكتوب", "كتابة", "مكتب"], "a": 2, "ok": "صحيح 👏 «كتابة» مصدر؛ لأنها تدل على الحدث مجردًا من الزمن.", "bad": "الإجابة الصحيحة «كتابة»؛ لأنها تدل على حدث الكتابة دون زمن."}, {"q": "ما حكم مصادر الأفعال الثلاثية في الغالب؟", "o": ["قياسية دائمًا", "سماعية في الغالب", "لا مصدر لها", "تأتي دائمًا على وزن فُعول"], "a": 1, "ok": "ممتازة ✨ مصادر الثلاثي سماعية في الغالب.", "bad": "في الثلاثي لا توجد قاعدة واحدة مطردة؛ لذلك مصادره سماعية في الغالب."}, {"q": "ما وزن مصدر الفعل الرباعي «أكرم»؟", "o": ["تفعيل", "إفعال", "مفاعلة", "فعللة"], "a": 1, "ok": "رائعة 💜 أكرم ← إكرام، ووزن المصدر «إفعال».", "bad": "الفعل على وزن «أفعل»، ومصدره القياسي على وزن «إفعال»: أكرم ← إكرام."}, {"q": "أيُّ زوج صحيح في حالة «أفعل» المعتل العين؟", "o": ["أقام ← إقامة", "أقام ← إقوام", "أعان ← إعان", "أقام ← تقويم"], "a": 0, "ok": "أحسنتِ جدًا 🎯 «أقام» من «أفعل» المعتل العين، ومصدره «إقامة».", "bad": "الحالة الخاصة هنا: أقام ← إقامة، وأعان ← إعانة."}, {"q": "أيُّ زوج يمثل «فعّل» المعتل الآخر؟", "o": ["علّم ← تعليم", "ربّى ← تربية", "شارك ← مشاركة", "دحرج ← دحرجة"], "a": 1, "ok": "صحيح 🌿 «ربّى» على وزن «فعّل» وهو معتل الآخر، ومصدره «تربية».", "bad": "الإجابة الصحيحة: ربّى ← تربية. ومثلها نمّى ← تنمية."}, {"q": "ما مصدر الفعل الرباعي «دحرج»؟", "o": ["تدحرج", "دحرجة", "دحراج", "انطلاق"], "a": 1, "ok": "ممتازة 🔥 «دحرج» على وزن «فعلل»، ومصدره «دحرجة» على وزن «فعللة».", "bad": "«دحرج» ليس مضعفًا رباعيًا؛ هو على وزن «فعلل»، ومصدره «دحرجة»."}, {"q": "أيُّ عبارة صحيحة عن المضعف الرباعي؟", "o": ["مثل دحرج فقط", "مثل زلزل ووسوس، وقد يأتي مصدره على فعللة أو فِعلال", "مصدره دائمًا تفعيل", "لا يُشتق منه مصدر"], "a": 1, "ok": "إتقان رائع 🏆 مثل: زلزل ← زلزلة/زلزال، وسوس ← وسوسة/وسواس.", "bad": "المضعف الرباعي مثل «زلزل، وسوس»، وقد يأتي مصدره على «فعللة» أو «فِعلال»."}, {"q": "إذا بدأ الفعل الخماسي بتاء زائدة، فكيف نصوغ مصدره؟", "o": ["على وزن الماضي مع ضم ما قبل الآخر", "على وزن إفعال", "على وزن مفاعلة", "بكسر الحرف الأول فقط"], "a": 0, "ok": "أحسنتِ ✨ مثل: تعلّم ← تعلُّم، وتعاون ← تعاوُن.", "bad": "القاعدة: الخماسي المبدوء بتاء زائدة يأتي مصدره على وزن الماضي مع ضم ما قبل الآخر."}, {"q": "ما التحليل الصحيح لكلمة «اجتماع»؟", "o": ["مصدر ثلاثي على وزن فِعال", "مصدر رباعي على وزن إفعال", "مصدر خماسي من «اجتمع» على وزن افتعال", "اسم آلة على وزن مفعال"], "a": 2, "ok": "رائعة جدًا 🌟 اجتماع ← اجتمع ← خماسي مبدوء بهمزة وصل ← وزنه «افتعال».", "bad": "ارجعي للماضي أولًا: اجتماع ← اجتمع. إذن هو مصدر خماسي على وزن «افتعال»."}];
-let index=0,score=0,answered=false;
-
-const arabicDigits=n=>String(n).replace(/\d/g,d=>'٠١٢٣٤٥٦٧٨٩'[d]);
-
-const q=document.getElementById('question');
-const options=document.getElementById('options');
-const feedback=document.getElementById('feedback');
-const next=document.getElementById('next');
-const card=document.getElementById('card');
-
-function tone(ok){
-  try{
-    const AC=window.AudioContext||window.webkitAudioContext;
-    const c=new AC();
-    const o=c.createOscillator();
-    const g=c.createGain();
-
-    o.connect(g);
-    g.connect(c.destination);
-
-    o.type=ok?'sine':'triangle';
-    o.frequency.setValueAtTime(ok?660:220,c.currentTime);
-
-    if(ok){
-      o.frequency.exponentialRampToValueAtTime(900,c.currentTime+.16);
-    }
-
-    g.gain.setValueAtTime(.07,c.currentTime);
-    g.gain.exponentialRampToValueAtTime(.001,c.currentTime+.23);
-
-    o.start();
-    o.stop(c.currentTime+.24);
-
-  }catch(e){}
+import {
+  initializeApp
 }
+from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
 
-function confetti(){
-  const burst=document.getElementById('burst');
-  burst.innerHTML='';
 
-  const colors=['#5b4677','#776094','#b69750','#d8c28a','#d895aa'];
+import {
+  initializeAuth,
+  browserLocalPersistence,
+  browserPopupRedirectResolver,
+  onAuthStateChanged
+}
+from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
 
-  for(let i=0;i<24;i++){
-    const s=document.createElement('i');
-    s.className='confetti';
-    s.style.left=(Math.random()*100)+'vw';
-    s.style.top='-10px';
-    s.style.background=colors[i%colors.length];
-    s.style.animationDelay=(Math.random()*180)+'ms';
-    burst.appendChild(s);
+
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  updateDoc,
+  serverTimestamp
+}
+from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+
+const firebaseConfig={
+
+  apiKey:
+    "AIzaSyB48av9gx4jzFyYoUQtcLwaR52qETevKGs",
+
+  authDomain:
+    "afaq-language-platform.firebaseapp.com",
+
+  projectId:
+    "afaq-language-platform",
+
+  storageBucket:
+    "afaq-language-platform.firebasestorage.app",
+
+  messagingSenderId:
+    "362601061474",
+
+  appId:
+    "1:362601061474:web:bc405291332b9e4ef9453b"
+
+};
+
+
+const app=
+  initializeApp(
+    firebaseConfig
+  );
+
+
+const auth=
+  initializeAuth(
+    app,
+    {
+      persistence:
+        browserLocalPersistence,
+
+      popupRedirectResolver:
+        browserPopupRedirectResolver
+    }
+  );
+
+
+const db=
+  getFirestore(
+    app
+  );
+
+
+let currentUser=null;
+
+
+onAuthStateChanged(
+  auth,
+  user=>{
+    currentUser=user||null;
+  }
+);
+
+
+const questions=[
+
+  {
+    q:"ما التعريف الأدق للمصدر؟",
+    o:[
+      "اسم يدل على حدث مرتبط بزمن",
+      "اسم يدل على حدث مجرد من الزمن",
+      "اسم يدل على من قام بالفعل",
+      "اسم يدل على مكان وقوع الفعل"
+    ],
+    a:1,
+    ok:"أحسنتِ 🌟 المصدر يدل على الحدث فقط دون زمن.",
+    bad:"تذكري القاعدة: الفعل يدل على حدث وزمن، أما المصدر فيدل على الحدث مجردًا من الزمن."
+  },
+
+  {
+    q:"أيُّ الكلمات الآتية مصدر للفعل «كتب»؟",
+    o:[
+      "كاتب",
+      "مكتوب",
+      "كتابة",
+      "مكتب"
+    ],
+    a:2,
+    ok:"إجابة صحيحة 👏 «كتابة» مصدر؛ لأنها تدل على الحدث مجردًا من الزمن.",
+    bad:"الإجابة الصحيحة «كتابة»؛ لأنها تدل على حدث الكتابة دون زمن."
+  },
+
+  {
+    q:"ما حكم مصادر الأفعال الثلاثية في الغالب؟",
+    o:[
+      "قياسية دائمًا",
+      "سماعية في الغالب",
+      "لا مصدر لها",
+      "تأتي دائمًا على وزن فُعول"
+    ],
+    a:1,
+    ok:"أحسنتِ ✨ مصادر الأفعال الثلاثية سماعية في الغالب.",
+    bad:"في الفعل الثلاثي لا توجد قاعدة واحدة مطردة، ولذلك تكون مصادره سماعية في الغالب."
+  },
+
+  {
+    q:"ما وزن مصدر الفعل الرباعي «أكرم»؟",
+    o:[
+      "تفعيل",
+      "إفعال",
+      "مفاعلة",
+      "فعللة"
+    ],
+    a:1,
+    ok:"أحسنتِ 💜 أكرم ← إكرام، ووزن المصدر «إفعال».",
+    bad:"الفعل على وزن «أفعل»، ومصدره القياسي على وزن «إفعال»: أكرم ← إكرام."
+  },
+
+  {
+    q:"أيُّ زوج صحيح في حالة «أفعل» المعتل العين؟",
+    o:[
+      "أقام ← إقامة",
+      "أقام ← إقوام",
+      "أعان ← إعان",
+      "أقام ← تقويم"
+    ],
+    a:0,
+    ok:"أحسنتِ جدًا 🎯 «أقام» من «أفعل» المعتل العين، ومصدره «إقامة».",
+    bad:"في هذه الحالة نقول: أقام ← إقامة، وأعان ← إعانة."
+  },
+
+  {
+    q:"أيُّ زوج يمثل «فعّل» المعتل الآخر؟",
+    o:[
+      "علّم ← تعليم",
+      "ربّى ← تربية",
+      "شارك ← مشاركة",
+      "دحرج ← دحرجة"
+    ],
+    a:1,
+    ok:"إجابة صحيحة 🌿 «ربّى» على وزن «فعّل» وهو معتل الآخر، ومصدره «تربية».",
+    bad:"الإجابة الصحيحة: ربّى ← تربية، ومثلها نمّى ← تنمية."
+  },
+
+  {
+    q:"ما مصدر الفعل الرباعي «دحرج»؟",
+    o:[
+      "تدحرج",
+      "دحرجة",
+      "دحراج",
+      "انطلاق"
+    ],
+    a:1,
+    ok:"أحسنتِ 🔥 «دحرج» على وزن «فعلل»، ومصدره «دحرجة» على وزن «فعللة».",
+    bad:"«دحرج» على وزن «فعلل»، ومصدره الصحيح «دحرجة»."
+  },
+
+  {
+    q:"أيُّ عبارة صحيحة عن المضعف الرباعي؟",
+    o:[
+      "مثل دحرج فقط",
+      "مثل زلزل ووسوس، وقد يأتي مصدره على فعللة أو فِعلال",
+      "مصدره دائمًا تفعيل",
+      "لا يُشتق منه مصدر"
+    ],
+    a:1,
+    ok:"إتقان رائع 🏆 مثل: زلزل ← زلزلة أو زلزال، ووسوس ← وسوسة أو وسواس.",
+    bad:"المضعف الرباعي مثل «زلزل، وسوس»، وقد يأتي مصدره على «فعللة» أو «فِعلال»."
+  },
+
+  {
+    q:"إذا بدأ الفعل الخماسي بتاء زائدة، فكيف نصوغ مصدره؟",
+    o:[
+      "على وزن الماضي مع ضم ما قبل الآخر",
+      "على وزن إفعال",
+      "على وزن مفاعلة",
+      "بكسر الحرف الأول فقط"
+    ],
+    a:0,
+    ok:"أحسنتِ ✨ مثل: تعلّم ← تعلُّم، وتعاون ← تعاوُن.",
+    bad:"القاعدة: الفعل الخماسي المبدوء بتاء زائدة يأتي مصدره على وزن الماضي مع ضم ما قبل الآخر."
+  },
+
+  {
+    q:"ما التحليل الصحيح لكلمة «اجتماع»؟",
+    o:[
+      "مصدر ثلاثي على وزن فِعال",
+      "مصدر رباعي على وزن إفعال",
+      "مصدر خماسي من «اجتمع» على وزن افتعال",
+      "اسم آلة على وزن مفعال"
+    ],
+    a:2,
+    ok:"أحسنتِ جدًا 🌟 اجتماع ← اجتمع ← فعل خماسي مبدوء بهمزة وصل، ومصدره على وزن «افتعال».",
+    bad:"ارجعي إلى الفعل الماضي أولًا: اجتماع ← اجتمع؛ إذن هو مصدر خماسي على وزن «افتعال»."
   }
 
-  setTimeout(()=>burst.innerHTML='',1200);
+];
+
+
+let index=0;
+let score=0;
+let answered=false;
+
+
+const arabicDigits=
+  n=>
+    String(n).replace(
+      /\d/g,
+      d=>"٠١٢٣٤٥٦٧٨٩"[d]
+    );
+
+
+const questionElement=
+  document.getElementById(
+    "question"
+  );
+
+
+const options=
+  document.getElementById(
+    "options"
+  );
+
+
+const feedback=
+  document.getElementById(
+    "feedback"
+  );
+
+
+const next=
+  document.getElementById(
+    "next"
+  );
+
+
+const card=
+  document.getElementById(
+    "card"
+  );
+
+
+function tone(ok){
+
+  try{
+
+    const AC=
+      window.AudioContext||
+      window.webkitAudioContext;
+
+
+    const c=new AC();
+
+    const o=
+      c.createOscillator();
+
+    const g=
+      c.createGain();
+
+
+    o.connect(g);
+
+    g.connect(
+      c.destination
+    );
+
+
+    o.type=
+      ok
+        ? "sine"
+        : "triangle";
+
+
+    o.frequency.setValueAtTime(
+      ok ? 660 : 220,
+      c.currentTime
+    );
+
+
+    if(ok){
+
+      o.frequency.exponentialRampToValueAtTime(
+        900,
+        c.currentTime+.16
+      );
+
+    }
+
+
+    g.gain.setValueAtTime(
+      .07,
+      c.currentTime
+    );
+
+
+    g.gain.exponentialRampToValueAtTime(
+      .001,
+      c.currentTime+.23
+    );
+
+
+    o.start();
+
+
+    o.stop(
+      c.currentTime+.24
+    );
+
+  }
+
+  catch(e){}
+
 }
 
-function render(){
+
+function confetti(){
+
+  const burst=
+    document.getElementById(
+      "burst"
+    );
+
+
+  burst.innerHTML="";
+
+
+  const colors=[
+    "#5b4677",
+    "#776094",
+    "#b69750",
+    "#d8c28a",
+    "#d895aa"
+  ];
+
+
+  for(
+    let i=0;
+    i<24;
+    i++
+  ){
+
+    const s=
+      document.createElement(
+        "i"
+      );
+
+
+    s.className=
+      "confetti";
+
+
+    s.style.left=
+      Math.random()*100+"vw";
+
+
+    s.style.top=
+      "-10px";
+
+
+    s.style.background=
+      colors[
+        i%colors.length
+      ];
+
+
+    s.style.animationDelay=
+      Math.random()*180+"ms";
+
+
+    burst.appendChild(
+      s
+    );
+
+  }
+
+
+  setTimeout(
+    ()=>burst.innerHTML="",
+    1200
+  );
+
+}
+  function render(){
+
   answered=false;
-  const x=questions[index];
 
-  document.getElementById('qnum').textContent=
-    'السؤال '+arabicDigits(index+1);
 
-  document.getElementById('counter').textContent=
-    'السؤال '+arabicDigits(index+1)+' من '+arabicDigits(questions.length);
+  const x=
+    questions[index];
 
-  document.getElementById('correctCount').textContent=
-    'الصحيح: '+arabicDigits(score);
 
-  document.getElementById('bar').style.width=
-    (index/questions.length*100)+'%';
+  document.getElementById(
+    "qnum"
+  ).textContent=
+    "السؤال "+
+    arabicDigits(index+1);
 
-  q.textContent=x.q;
-  options.innerHTML='';
-  feedback.className='feedback';
-  feedback.innerHTML='';
-  next.style.display='none';
-  card.classList.remove('pop');
 
-  x.o.forEach((t,j)=>{
-    const b=document.createElement('button');
-    b.className='opt';
-    b.textContent=t;
-    b.onclick=()=>choose(j,b);
-    options.appendChild(b);
-  });
+  document.getElementById(
+    "counter"
+  ).textContent=
+    "السؤال "+
+    arabicDigits(index+1)+
+    " من "+
+    arabicDigits(
+      questions.length
+    );
+
+
+  document.getElementById(
+    "correctCount"
+  ).textContent=
+    "الإجابات الصحيحة: "+
+    arabicDigits(score);
+
+
+  document.getElementById(
+    "bar"
+  ).style.width=
+    (
+      index/
+      questions.length*
+      100
+    )+"%";
+
+
+  questionElement.textContent=
+    x.q;
+
+
+  options.innerHTML="";
+
+
+  feedback.className=
+    "feedback";
+
+
+  feedback.innerHTML="";
+
+
+  next.style.display=
+    "none";
+
+
+  card.classList.remove(
+    "pop"
+  );
+
+
+  x.o.forEach(
+    (text,choiceIndex)=>{
+
+      const button=
+        document.createElement(
+          "button"
+        );
+
+
+      button.className=
+        "opt";
+
+
+      button.type=
+        "button";
+
+
+      button.textContent=
+        text;
+
+
+      button.onclick=
+        ()=>choose(
+          choiceIndex,
+          button
+        );
+
+
+      options.appendChild(
+        button
+      );
+
+    }
+  );
+
 }
 
-function choose(choice,button){
-  if(answered)return;
+
+function choose(
+  choice,
+  button
+){
+
+  if(answered){
+    return;
+  }
+
 
   answered=true;
 
-  const x=questions[index];
-  const btns=[...document.querySelectorAll('.opt')];
 
-  btns.forEach(b=>b.disabled=true);
-  btns[x.a].classList.add('correct');
+  const x=
+    questions[index];
+
+
+  const buttons=[
+    ...document.querySelectorAll(
+      ".opt"
+    )
+  ];
+
+
+  buttons.forEach(
+    item=>
+      item.disabled=true
+  );
+
+
+  buttons[x.a]
+    .classList.add(
+      "correct"
+    );
+
 
   if(choice===x.a){
-    score++;
-    button.classList.add('correct');
 
-    feedback.className='feedback show good';
-    feedback.textContent=x.ok;
+    score++;
+
+
+    button.classList.add(
+      "correct"
+    );
+
+
+    feedback.className=
+      "feedback show good";
+
+
+    feedback.textContent=
+      x.ok;
+
 
     tone(true);
+
+
     confetti();
 
-    if(navigator.vibrate)navigator.vibrate(45);
 
-  }else{
-    button.classList.add('wrong');
+    if(navigator.vibrate){
+      navigator.vibrate(45);
+    }
 
-    feedback.className='feedback show bad';
+  }
+
+  else{
+
+    button.classList.add(
+      "wrong"
+    );
+
+
+    feedback.className=
+      "feedback show bad";
+
+
     feedback.innerHTML=
-      '<b>ركزي على نوع الفعل أولًا 👀</b><br>'+x.bad;
+      "<b>راجعي نوع الفعل أولًا 👀</b><br>"+
+      x.bad;
+
 
     tone(false);
 
+
     if(navigator.vibrate){
-      navigator.vibrate([70,40,70]);
+
+      navigator.vibrate(
+        [70,40,70]
+      );
+
     }
+
   }
 
-  document.getElementById('correctCount').textContent=
-    'الصحيح: '+arabicDigits(score);
 
-  card.classList.add('pop');
+  document.getElementById(
+    "correctCount"
+  ).textContent=
+    "الإجابات الصحيحة: "+
+    arabicDigits(score);
+
+
+  card.classList.add(
+    "pop"
+  );
+
 
   next.textContent=
-    index===questions.length-1
-    ?'شوفي نتيجتك ✨'
-    :'كمّلي التحدي ←';
+    index===
+      questions.length-1
 
-  next.style.display='block';
+      ? "شاهدي نتيجتكِ ✨"
+
+      : "أكملي التحدي ←";
+
+
+  next.style.display=
+    "block";
+
 }
+
 
 next.onclick=()=>{
+
   index++;
 
-  if(index<questions.length){
+
+  if(
+    index<
+    questions.length
+  ){
+
     render();
-  }else{
-    finish();
+
   }
+
+  else{
+
+    finish();
+
+  }
+
 };
 
-function finish(){
-  document.getElementById('bar').style.width='100%';
 
-  card.style.display='none';
-  document.querySelector('.top').style.display='none';
-  document.querySelector('.progress').style.display='none';
+async function saveResult(){
 
-  const result=document.getElementById('result');
-  result.classList.add('show');
+  const saveStatus=
+    document.getElementById(
+      "saveStatus"
+    );
 
-  document.getElementById('score').textContent=
-    arabicDigits(score)+' / '+arabicDigits(questions.length);
 
-  const pct=score/questions.length;
+  if(!currentUser){
 
-  document.getElementById('message').textContent=
+    saveStatus.className=
+      "save-status error";
+
+
+    saveStatus.textContent=
+      "لم تُحفظ النتيجة؛ يلزم تسجيل الدخول إلى المنصة أولًا.";
+
+
+    return;
+
+  }
+
+
+  try{
+
+    saveStatus.className=
+      "save-status";
+
+
+    saveStatus.textContent=
+      "جارٍ حفظ نتيجتكِ في الفصل الدراسي الثاني...";
+
+
+    const studentRef=
+      doc(
+        db,
+        "students",
+        currentUser.uid
+      );
+
+
+    const snapshot=
+      await getDoc(
+        studentRef
+      );
+
+
+    let previousBest=0;
+
+
+    if(snapshot.exists()){
+
+      const data=
+        snapshot.data();
+
+
+      previousBest=
+        Number(
+          data?.[
+            "اختبارات_الفصل_الثاني"
+          ]?.[
+            "المصادر"
+          ]?.[
+            "أفضل_نسبة"
+          ] || 0
+        );
+
+    }
+
+
+    const percentage=
+      Math.round(
+        score/
+        questions.length*
+        100
+      );
+
+
+    const bestPercentage=
+      Math.max(
+        previousBest,
+        percentage
+      );
+
+
+    await updateDoc(
+      studentRef,
+      {
+
+        "اختبارات_الفصل_الثاني.المصادر":
+        {
+
+          "اسم_الاختبار":
+            "اختبار المصادر",
+
+          "الدرجة":
+            score,
+
+          "المجموع":
+            questions.length,
+
+          "النسبة":
+            percentage,
+
+          "أفضل_نسبة":
+            bestPercentage,
+
+          "مكتمل":
+            true,
+
+          "عدد_الأسئلة":
+            questions.length,
+
+          "استحقت_الإتقان":
+            percentage>=80,
+
+          "آخر_محاولة":
+            serverTimestamp()
+
+        }
+
+      }
+    );
+
+
+    saveStatus.className=
+      "save-status success";
+
+
+    saveStatus.textContent=
+      "✅ حُفظت نتيجتكِ بنجاح في سجل الفصل الدراسي الثاني.";
+
+  }
+
+  catch(error){
+
+    console.error(
+      "خطأ في حفظ اختبار المصادر:",
+      error
+    );
+
+
+    saveStatus.className=
+      "save-status error";
+
+
+    saveStatus.textContent=
+      "تعذّر حفظ النتيجة الآن. أعيدي المحاولة بعد التأكد من تسجيل الدخول.";
+
+  }
+
+}
+
+
+async function finish(){
+
+  document.getElementById(
+    "bar"
+  ).style.width=
+    "100%";
+
+
+  card.style.display=
+    "none";
+
+
+  document.querySelector(
+    ".top"
+  ).style.display=
+    "none";
+
+
+  document.querySelector(
+    ".progress"
+  ).style.display=
+    "none";
+
+
+  const result=
+    document.getElementById(
+      "result"
+    );
+
+
+  result.classList.add(
+    "show"
+  );
+
+
+  document.getElementById(
+    "score"
+  ).textContent=
+    arabicDigits(score)+
+    " / "+
+    arabicDigits(
+      questions.length
+    );
+
+
+  const pct=
+    score/
+    questions.length;
+
+
+  document.getElementById(
+    "message"
+  ).textContent=
+
     pct===1
-    ?'إتقان كامل! بطلة المصادر 🏆'
-    :pct>=.8
-    ?'ممتازة جدًا 🌟 أتقنتِ الفرق بين الثلاثي والرباعي والخماسي.'
-    :pct>=.6
-    ?'أداء جميل 👏 راجعي حالات الرباعي والخماسي ثم أعيدي التحدي.'
-    :'راجعي ملف الدرس، خاصة مصادر الرباعي وحالاته، ثم عودي للتحدي.';
 
-  if(pct>=.8)confetti();
+      ? "إتقان كامل للمصادر 🏆"
+
+      : pct>=.8
+
+        ? "أداء ممتاز جدًا 🌟 أتقنتِ مصادر الأفعال الثلاثية والرباعية والخماسية."
+
+        : pct>=.6
+
+          ? "أداء جيد 👏 راجعي حالات مصادر الأفعال الرباعية والخماسية، ثم أعيدي التحدي."
+
+          : "راجعي ملف الدرس، وبخاصة مصادر الأفعال الرباعية وحالاتها، ثم عودي إلى التحدي.";
+
+
+  if(pct>=.8){
+    confetti();
+  }
+
+
+  await saveResult();
+
 }
 
-function restartQuiz(){
-  index=0;
-  score=0;
-  answered=false;
 
-  card.style.display='flex';
-  document.querySelector('.top').style.display='flex';
-  document.querySelector('.progress').style.display='block';
+window.restartQuiz=
+  function(){
 
-  document.getElementById('result').classList.remove('show');
+    index=0;
 
-  render();
-}
+
+    score=0;
+
+
+    answered=false;
+
+
+    card.style.display=
+      "flex";
+
+
+    document.querySelector(
+      ".top"
+    ).style.display=
+      "flex";
+
+
+    document.querySelector(
+      ".progress"
+    ).style.display=
+      "block";
+
+
+    document.getElementById(
+      "result"
+    ).classList.remove(
+      "show"
+    );
+
+
+    const saveStatus=
+      document.getElementById(
+        "saveStatus"
+      );
+
+
+    saveStatus.className=
+      "save-status";
+
+
+    saveStatus.textContent=
+      "ستُحفظ نتيجتكِ في سجل الفصل الدراسي الثاني.";
+
+
+    render();
+
+  };
+
 
 render();
+
 </script>
 
 </body>
