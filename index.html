@@ -2,13 +2,16 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
+
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0"
   >
+
   <title>منصة آفاق اللغة</title>
 
   <style>
+
     *{
       box-sizing:border-box;
     }
@@ -21,8 +24,14 @@
       margin:0;
       min-height:100vh;
       overflow-x:hidden;
-      font-family:Tahoma,Arial,sans-serif;
+
+      font-family:
+        Tahoma,
+        Arial,
+        sans-serif;
+
       color:#3e324b;
+
       background:
         linear-gradient(
           180deg,
@@ -32,12 +41,23 @@
         );
     }
 
+
+    /* =========================
+       رأس الصفحة
+    ========================= */
+
     .hero{
       position:relative;
       overflow:hidden;
       text-align:center;
-      padding:26px 14px 34px;
+
+      padding:
+        26px
+        14px
+        34px;
+
       color:#fffdf8;
+
       background:
         linear-gradient(
           145deg,
@@ -47,130 +67,271 @@
         );
     }
 
+
     .hero::before,
     .hero::after{
       content:"";
       position:absolute;
       border-radius:50%;
-      background:rgba(255,255,255,.07);
+      background:
+        rgba(
+          255,
+          255,
+          255,
+          .07
+        );
     }
+
 
     .hero::before{
       width:240px;
       height:240px;
+
       top:-95px;
       right:-80px;
     }
 
+
     .hero::after{
       width:280px;
       height:280px;
+
       left:-130px;
       bottom:-165px;
     }
 
+
     .brand-logo{
       position:relative;
       z-index:1;
+
       width:320px;
       max-width:88%;
-      margin:0 auto 22px;
+
+      margin:
+        0
+        auto
+        22px;
+
       padding:8px;
-      border:2px solid #d8c28a;
+
+      border:
+        2px
+        solid
+        #d8c28a;
+
       border-radius:24px;
+
       background:#fff;
-      box-shadow:0 12px 28px rgba(30,20,45,.18);
+
+      box-shadow:
+        0
+        12px
+        28px
+        rgba(
+          30,
+          20,
+          45,
+          .18
+        );
     }
+
 
     .brand-logo img{
       display:block;
+
       width:100%;
       height:auto;
+
       object-fit:contain;
+
       border-radius:16px;
     }
+
 
     .hero h1{
       position:relative;
       z-index:1;
+
       margin:0;
+
       font-size:40px;
       line-height:1.45;
       font-weight:700;
+
       color:#e7d39a;
+
       text-shadow:
         0 2px 4px rgba(0,0,0,.18),
         0 0 12px rgba(216,194,138,.20);
     }
 
+
     .teacher-name{
       position:relative;
       z-index:1;
-      margin:12px auto 0;
+
+      margin:
+        12px
+        auto
+        0;
+
       font-size:17px;
       line-height:1.8;
+
       color:#f5edf9;
     }
+
+
+    /* =========================
+       تسجيل الدخول
+    ========================= */
 
     .login-area{
       position:relative;
       z-index:2;
+
       max-width:390px;
-      margin:18px auto 0;
+
+      margin:
+        18px
+        auto
+        0;
+
       padding:14px;
-      border:1px solid rgba(216,194,138,.65);
+
+      border:
+        1px
+        solid
+        rgba(
+          216,
+          194,
+          138,
+          .65
+        );
+
       border-radius:20px;
-      background:rgba(255,255,255,.08);
+
+      background:
+        rgba(
+          255,
+          255,
+          255,
+          .08
+        );
     }
+
 
     .login-btn{
       width:100%;
-      padding:12px 18px;
-      font-family:Tahoma,Arial,sans-serif;
+
+      padding:
+        12px
+        18px;
+
+      font-family:
+        Tahoma,
+        Arial,
+        sans-serif;
+
       font-size:15px;
       font-weight:700;
+
       color:#5b4677;
+
       background:
         linear-gradient(
           135deg,
           #fff7cf,
           #fffdf8
         );
-      border:2px solid #c9a85c;
+
+      border:
+        2px
+        solid
+        #c9a85c;
+
       border-radius:25px;
+
       cursor:pointer;
-      box-shadow:0 6px 16px rgba(0,0,0,.14);
+
+      box-shadow:
+        0
+        6px
+        16px
+        rgba(
+          0,
+          0,
+          0,
+          .14
+        );
     }
+
 
     .login-btn:disabled{
       opacity:.7;
       cursor:wait;
     }
 
+
     .student-status{
       display:none;
+
       margin-top:10px;
-      padding:9px 10px;
+
+      padding:
+        9px
+        10px;
+
       font-size:13px;
       line-height:1.7;
       font-weight:700;
+
       color:#fff7d9;
-      background:rgba(255,255,255,.08);
+
+      background:
+        rgba(
+          255,
+          255,
+          255,
+          .08
+        );
+
       border-radius:14px;
     }
+
 
     .student-status.show{
       display:block;
     }
 
+
     .student-status.error{
       color:#fff4f4;
-      background:rgba(130,20,40,.30);
-      border:1px solid rgba(255,220,225,.35);
+
+      background:
+        rgba(
+          130,
+          20,
+          40,
+          .30
+        );
+
+      border:
+        1px
+        solid
+        rgba(
+          255,
+          220,
+          225,
+          .35
+        );
     }
+
 
     .gold-pattern{
       height:14px;
+
       background:
         repeating-linear-gradient(
           -45deg,
@@ -181,20 +342,45 @@
         );
     }
 
+
+    /* =========================
+       المحتوى
+    ========================= */
+
     main{
       width:100%;
       max-width:1100px;
+
       margin:auto;
-      padding:24px 18px 50px;
+
+      padding:
+        24px
+        18px
+        50px;
     }
+
 
     .intro-card{
       max-width:850px;
-      margin:0 auto 32px;
-      padding:22px 18px;
+
+      margin:
+        0
+        auto
+        32px;
+
+      padding:
+        22px
+        18px;
+
       text-align:center;
-      border:2px solid #b69750;
+
+      border:
+        2px
+        solid
+        #b69750;
+
       border-radius:28px;
+
       background:
         linear-gradient(
           145deg,
@@ -202,74 +388,144 @@
           #f8f2fb 55%,
           #eee5f5 100%
         );
-      box-shadow:0 12px 28px rgba(78,58,97,.12);
+
+      box-shadow:
+        0
+        12px
+        28px
+        rgba(
+          78,
+          58,
+          97,
+          .12
+        );
     }
 
+
     .intro-card h2{
-      margin:0 0 10px;
+      margin:
+        0
+        0
+        10px;
+
       font-size:26px;
+
       color:#4f3c64;
     }
 
+
     .intro-card p{
       margin:0;
+
       font-size:15px;
       line-height:2;
+
       color:#70657a;
     }
+
 
     .section-heading{
       margin-bottom:26px;
       text-align:center;
     }
 
+
     .section-heading span{
       display:inline-block;
+
       margin-bottom:6px;
+
       font-size:16px;
       font-weight:700;
+
       color:#ad8b3f;
     }
 
+
     .section-heading h2{
       margin:0;
+
       font-size:28px;
+
       color:#4c3b65;
     }
 
+
+    /* =========================
+       البطاقات
+       جميعها موحدة بنفس اللون
+    ========================= */
+
     .cards{
       display:grid;
-      grid-template-columns:repeat(3,1fr);
+
+      grid-template-columns:
+        repeat(
+          3,
+          1fr
+        );
+
       gap:20px;
     }
 
-    .card{
+
+    .card,
+    .card.smart-box{
       position:relative;
+
       min-height:205px;
-      padding:25px 17px 22px;
+
+      padding:
+        25px
+        17px
+        22px;
+
       overflow:hidden;
+
       text-align:center;
       text-decoration:none;
-      color:#3d304c;
-      border:1px solid #d8c28a;
+
+      color:#5a3f72;
+
+      border:
+        2px
+        solid
+        #c9a85c;
+
       border-radius:27px;
+
       background:
         linear-gradient(
-          145deg,
-          #fffdf8 0%,
-          #f7f1fb 55%,
-          #eee5f5 100%
+          135deg,
+          #fff7cf 0%,
+          #f2e7fb 55%,
+          #fffdf8 100%
         );
-      box-shadow:0 10px 24px rgba(74,54,92,.12);
+
+      box-shadow:
+        0
+        10px
+        24px
+        rgba(
+          74,
+          54,
+          92,
+          .12
+        );
     }
+
 
     .card::before{
       content:"";
+
       position:absolute;
+
       top:0;
       right:0;
       left:0;
+
       height:6px;
+
       background:
         linear-gradient(
           90deg,
@@ -279,28 +535,30 @@
         );
     }
 
-    .smart-box{
-      color:#5a3f72;
-      background:
-        linear-gradient(
-          135deg,
-          #fff7cf,
-          #f2e7fb,
-          #fffdf8
-        );
-      border:2px solid #c9a85c;
-    }
 
     .icon-box{
       width:76px;
       height:76px;
-      margin:0 auto 16px;
+
+      margin:
+        0
+        auto
+        16px;
+
       display:flex;
+
       align-items:center;
       justify-content:center;
-      border:1px solid #ded3e7;
+
+      border:
+        1px
+        solid
+        #ded3e7;
+
       border-radius:22px;
+
       font-size:39px;
+
       background:
         linear-gradient(
           145deg,
@@ -309,76 +567,134 @@
         );
     }
 
+
     .card h3{
-      margin:0 0 8px;
+      margin:
+        0
+        0
+        8px;
+
       font-size:21px;
+
       color:#4a395d;
     }
 
+
     .card p{
       margin:0;
+
       font-size:14px;
       line-height:1.9;
+
       color:#796f80;
     }
+
 
     .nafes-buttons{
       position:relative;
       z-index:3;
+
       display:grid;
+
       gap:8px;
+
       margin-top:14px;
     }
 
+
     .nafes-btn{
       display:block;
-      padding:9px 12px;
+
+      padding:
+        9px
+        12px;
+
       border-radius:16px;
+
       text-decoration:none;
+
       font-size:13px;
       font-weight:700;
+
       color:#fff;
+
       background:
         linear-gradient(
           135deg,
           #776094,
           #5b4677
         );
-      border:1px solid #c9a85c;
+
+      border:
+        1px
+        solid
+        #c9a85c;
     }
+
 
     .teacher-dashboard-btn{
       display:none;
+
       position:relative;
       z-index:3;
+
       margin-top:15px;
-      padding:10px 15px;
+
+      padding:
+        10px
+        15px;
+
       border-radius:18px;
+
       text-decoration:none;
+
       font-size:14px;
       font-weight:700;
+
       color:#fff;
+
       background:
         linear-gradient(
           135deg,
           #776094,
           #5b4677
         );
-      border:2px solid #c9a85c;
+
+      border:
+        2px
+        solid
+        #c9a85c;
     }
+
 
     .teacher-dashboard-btn.show{
       display:inline-block;
     }
 
+
     .closing-card{
       margin-top:35px;
-      padding:30px 22px;
+
+      padding:
+        30px
+        22px;
+
       text-align:center;
-      border:1px solid #c8aa63;
-      border-bottom:6px solid #b69750;
+
+      border:
+        1px
+        solid
+        #c8aa63;
+
+      border-bottom:
+        6px
+        solid
+        #b69750;
+
       border-radius:30px;
-            color:#fffdf8;
+
+      color:#fffdf8;
+
       background:
         linear-gradient(
           145deg,
@@ -387,74 +703,119 @@
           #382b47 100%
         );
     }
-
-    .closing-card h2{
+        .closing-card h2{
       color:#e1ca8c;
     }
+
 
     .closing-card p{
       color:#fff;
       line-height:1.9;
     }
 
+
     .closing-message{
       padding-top:18px;
-      border-top:1px solid rgba(227,204,143,.55);
+
+      border-top:
+        1px
+        solid
+        rgba(
+          227,
+          204,
+          143,
+          .55
+        );
+
       color:#fff5d9 !important;
+
       font-weight:700;
     }
 
+
     footer{
-      padding:20px 15px;
+      padding:
+        20px
+        15px;
+
       text-align:center;
+
       font-size:13px;
+
       color:#eee8f3;
+
       background:#3d304d;
-      border-top:2px solid #b99b59;
+
+      border-top:
+        2px
+        solid
+        #b99b59;
     }
+
 
     @media(max-width:850px){
+
       .cards{
-        grid-template-columns:repeat(2,1fr);
+        grid-template-columns:
+          repeat(
+            2,
+            1fr
+          );
       }
+
     }
 
+
     @media(max-width:600px){
+
       .hero h1{
         font-size:33px;
       }
+
 
       .brand-logo{
         width:290px;
       }
 
+
       .cards{
         grid-template-columns:1fr;
       }
+
     }
 
   </style>
+
 </head>
+
 <body>
+
 
   <header class="hero">
 
+
     <div class="brand-logo">
+
       <img
         src="300.jpg"
         alt="شعار منصة آفاق اللغة"
       >
+
     </div>
+
 
     <h1>
       منصة آفاق اللغة
     </h1>
 
+
     <p class="teacher-name">
       إعداد المعلمة إيناس محمد يحيى مدخلي
     </p>
 
+
     <div class="login-area">
+
 
       <button
         id="googleLoginBtn"
@@ -464,24 +825,32 @@
         🔐 تسجيل الدخول بحساب Google
       </button>
 
+
       <div
         id="studentStatus"
         class="student-status"
       ></div>
 
+
     </div>
+
 
   </header>
 
+
   <div class="gold-pattern"></div>
+
 
   <main>
 
+
     <section class="intro-card">
+
 
       <h2>
         أهلًا بطالباتي 🌷
       </h2>
+
 
       <p>
         أهلًا بكنّ في منصة آفاق اللغة العربية،
@@ -489,20 +858,34 @@
         فثقن بأنفسكنّ واصنعن نجاحكنّ بكل حب.
       </p>
 
+
     </section>
 
+
     <div class="section-heading">
-      <span>✦ اختاري وجهتك ✦</span>
-      <h2>أقسام منصة آفاق</h2>
+
+      <span>
+        ✦ اختاري وجهتك ✦
+      </span>
+
+      <h2>
+        أقسام منصة آفاق
+      </h2>
+
     </div>
 
+
     <div class="cards">
+
 
       <a
         class="card"
         href="student-learning-style-classes.html"
       >
-        <div class="icon-box">🌟</div>
+
+        <div class="icon-box">
+          🌟
+        </div>
 
         <h3>
           اكتشفي أسلوبك في التعلّم
@@ -513,14 +896,19 @@
           لأتعرّف على أسلوب التعلّم الأقرب إليكِ،
           والطريقة التي تساعدكِ على الفهم والتعلّم بصورة أفضل.
         </p>
+
       </a>
+
 
 
       <a
         class="card"
         href="lessons.html"
       >
-        <div class="icon-box">📖</div>
+
+        <div class="icon-box">
+          📖
+        </div>
 
         <h3>
           الدروس
@@ -529,14 +917,19 @@
         <p>
           تعلّمي دروس اللغة العربية بطريقة واضحة وممتعة.
         </p>
+
       </a>
+
 
 
       <a
         class="card"
         href="tests.html"
       >
-        <div class="icon-box">✅</div>
+
+        <div class="icon-box">
+          ✅
+        </div>
 
         <h3>
           الاختبارات
@@ -545,14 +938,19 @@
         <p>
           اختبري معلوماتكِ وطبّقي ما تعلّمتِه في اختبارات المنصة.
         </p>
+
       </a>
+
 
 
       <a
         class="card"
         href="unit-tasks.html"
       >
-        <div class="icon-box">📚</div>
+
+        <div class="icon-box">
+          📚
+        </div>
 
         <h3>
           مهام أدائية
@@ -562,14 +960,19 @@
           أنجزي مهام الوحدات وطبّقي ما تعلّمتِه،
           واجمعي نقاطكِ نحو التميّز.
         </p>
+
       </a>
 
 
+
       <a
-        class="card smart-box"
+        class="card"
         href="student-progress.html"
       >
-        <div class="icon-box">📈</div>
+
+        <div class="icon-box">
+          📈
+        </div>
 
         <h3>
           إنجازي خلال الفصل الأول
@@ -579,14 +982,19 @@
           تابعي نتائجكِ وإنجازاتكِ خلال الفصل الدراسي الأول،
           واطّلعي على مستوى تقدّمكِ ورسالة معلمتكِ.
         </p>
+
       </a>
 
 
+
       <a
-        class="card smart-box"
+        class="card"
         href="student-progress-semester2.html"
       >
-        <div class="icon-box">📈</div>
+
+        <div class="icon-box">
+          📈
+        </div>
 
         <h3>
           إنجازي خلال الفصل الثاني
@@ -596,25 +1004,32 @@
           تابعي نتائجكِ وإنجازاتكِ خلال الفصل الدراسي الثاني،
           واطّلعي على مستوى تقدّمكِ ورسالة معلمتكِ.
         </p>
+
       </a>
 
 
+
       <div class="card">
+
 
         <div class="icon-box">
           🎯
         </div>
 
+
         <h3>
           نافس
         </h3>
+
 
         <p>
           استعدّي للاختبارات الوطنية،
           وطوّري مهاراتكِ اللغوية خطوة بخطوة.
         </p>
 
+
         <div class="nafes-buttons">
+
 
           <a
             class="nafes-btn"
@@ -623,6 +1038,7 @@
             🎯 الدخول إلى نافس
           </a>
 
+
           <a
             class="nafes-btn"
             href="nafes-progress.html"
@@ -630,16 +1046,22 @@
             📊 تقدّمي في نافس
           </a>
 
+
         </div>
 
+
       </div>
+
 
 
       <a
         class="card"
         href="achievements.html"
       >
-        <div class="icon-box">🏆</div>
+
+        <div class="icon-box">
+          🏆
+        </div>
 
         <h3>
           قصص نجاح
@@ -649,14 +1071,19 @@
           قصص ملهمة لطالبات بدأن بخطوات صغيرة
           وصنعن نجاحًا جميلًا.
         </p>
+
       </a>
+
 
 
       <a
         class="card"
         href="enrichment.html"
       >
-        <div class="icon-box">✨</div>
+
+        <div class="icon-box">
+          ✨
+        </div>
 
         <h3>
           كنوز آفاق
@@ -665,14 +1092,19 @@
         <p>
           اكتشفي كنوز اللغة العربية وقواعدها وأسرارها الجميلة.
         </p>
+
       </a>
+
 
 
       <a
         class="card"
         href="surveys.html"
       >
-        <div class="icon-box">📊</div>
+
+        <div class="icon-box">
+          📊
+        </div>
 
         <h3>
           استطلاع الرأي
@@ -681,14 +1113,19 @@
         <p>
           شاركي برأيكِ ومقترحاتكِ لتطوير المنصة.
         </p>
+
       </a>
+
 
 
       <a
         class="card"
         href="mailto:afaq_edu@outlook.com"
       >
-        <div class="icon-box">💌</div>
+
+        <div class="icon-box">
+          💌
+        </div>
 
         <h3>
           تواصل معنا
@@ -697,14 +1134,19 @@
         <p>
           يسعدنا استقبال آرائكنّ ومقترحاتكنّ لتطوير المنصة.
         </p>
+
       </a>
 
 
+
       <a
-        class="card smart-box"
+        class="card"
         href="principal-dashboard.html"
       >
-        <div class="icon-box">👩‍💼</div>
+
+        <div class="icon-box">
+          👩‍💼
+        </div>
 
         <h3>
           متابعة المديرة
@@ -714,14 +1156,19 @@
           متابعة تقدم الطالبات ونتائجهن وإنجازاتهن
           في منصة آفاق ومهارات نافس.
         </p>
+
       </a>
 
 
+
       <a
-        class="card smart-box"
+        class="card"
         href="parent-dashboard.html"
       >
-        <div class="icon-box">👨‍👩‍👧</div>
+
+        <div class="icon-box">
+          👨‍👩‍👧
+        </div>
 
         <h3>
           متابعة ولي الأمر
@@ -731,24 +1178,30 @@
           متابعة تقدم الابنة ونتائجها وإنجازاتها
           وشهاداتها وتقدمها في نافس.
         </p>
+
       </a>
 
 
-      <div class="card smart-box">
+
+      <div class="card">
+
 
         <div class="icon-box">
           👩‍🏫
         </div>
 
+
         <h3>
           متابعة المعلمة
         </h3>
+
 
         <p>
           تتابع معلمتكِ نتائجكِ وتقدّمكِ في المنصة،
           وقد تضيف لكِ رسالة تشجيع أو ملاحظة
           تساعدكِ على مواصلة التميّز.
         </p>
+
 
         <a
           id="teacherDashboardBtn"
@@ -758,18 +1211,24 @@
           📊 الدخول إلى لوحة المعلمة
         </a>
 
+
       </div>
+
 
     </div>
 
 
+
     <section class="closing-card">
+
 
       <h2>
         منصة آفاق اللغة
       </h2>
 
+
       <p>
+
         <a
           href="mailto:afaq_edu@outlook.com"
           style="
@@ -780,11 +1239,14 @@
         >
           ✉️ afaq_edu@outlook.com
         </a>
+
       </p>
+
 
       <p>
         إعداد المعلمة إيناس محمد يحيى مدخلي
       </p>
+
 
       <p>
         المدرسة:
@@ -792,28 +1254,35 @@
         ومتوسطة وابتدائية خلفة وعلان بصامطة
       </p>
 
+
       <p>
         مديرة المدرسة:
         عائشة يحيى نايف حمدي
       </p>
+
 
       <p class="closing-message">
         كل مهارة تتعلّمينها اليوم
         هي خطوة جديدة نحو مستقبل مشرق.
       </p>
 
+
     </section>
 
+
   </main>
+
 
   <footer>
     منصة آفاق اللغة
   </footer>
     <script type="module">
 
+
     import {
       initializeApp
-    } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+    } from
+    "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
 
 
     import {
@@ -824,50 +1293,76 @@
       signInWithPopup,
       signOut,
       onAuthStateChanged
-    } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+    } from
+    "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
 
 
     const firebaseConfig = {
 
+
       apiKey:
         "AIzaSyB48av9gx4jzFyYoUQtcLwaR52qETevKGs",
+
 
       authDomain:
         "afaq-language-platform.firebaseapp.com",
 
+
       projectId:
         "afaq-language-platform",
+
 
       storageBucket:
         "afaq-language-platform.firebasestorage.app",
 
+
       messagingSenderId:
         "362601061474",
+
 
       appId:
         "1:362601061474:web:bc405291332b9e4ef9453b"
 
+
     };
 
 
+
     const app =
-      initializeApp(firebaseConfig);
+      initializeApp(
+        firebaseConfig
+      );
+
 
 
     const auth =
-      initializeAuth(app, {
-        persistence: browserLocalPersistence,
-        popupRedirectResolver: browserPopupRedirectResolver
-      });
+      initializeAuth(
+        app,
+        {
+
+          persistence:
+            browserLocalPersistence,
+
+          popupRedirectResolver:
+            browserPopupRedirectResolver
+
+        }
+      );
+
 
 
     const provider =
       new GoogleAuthProvider();
 
 
-    provider.setCustomParameters({
-      prompt:"select_account"
-    });
+
+    provider.setCustomParameters(
+      {
+        prompt:"select_account"
+      }
+    );
+
 
 
     const loginBtn =
@@ -876,10 +1371,12 @@
       );
 
 
+
     const studentStatus =
       document.getElementById(
         "studentStatus"
       );
+
 
 
     const teacherDashboardBtn =
@@ -888,16 +1385,22 @@
       );
 
 
+
     const TEACHER_UID =
       "oIqOvhIaC3TQyr6WcXCW9FZhZio2";
 
 
-    function showLoginError(error){
+
+    function showLoginError(
+      error
+    ){
+
 
       console.error(
         "Firebase login error:",
         error
       );
+
 
 
       const code =
@@ -906,13 +1409,16 @@
         "unknown";
 
 
+
       const message =
         error?.message ||
         "";
 
 
+
       studentStatus.className =
         "student-status show error";
+
 
 
       if(
@@ -920,10 +1426,13 @@
         "auth/popup-blocked"
       ){
 
+
         studentStatus.textContent =
           "تعذر فتح نافذة تسجيل الدخول. اسمحي بالنوافذ المنبثقة لهذا الموقع ثم حاولي مرة أخرى.";
 
+
       }
+
 
 
       else if(
@@ -931,10 +1440,13 @@
         "auth/popup-closed-by-user"
       ){
 
+
         studentStatus.textContent =
           "أُغلقت نافذة تسجيل الدخول قبل اكتمال العملية.";
 
+
       }
+
 
 
       else if(
@@ -942,10 +1454,13 @@
         "auth/unauthorized-domain"
       ){
 
+
         studentStatus.textContent =
           "هذا النطاق غير مضاف إلى النطاقات المصرح بها في Firebase.";
 
+
       }
+
 
 
       else if(
@@ -953,93 +1468,129 @@
         "auth/network-request-failed"
       ){
 
+
         studentStatus.textContent =
           "تعذر الاتصال بخدمة تسجيل الدخول. تحققي من الإنترنت ثم حاولي مرة أخرى.";
 
+
       }
+
 
 
       else{
 
+
         studentStatus.textContent =
           "لم يكتمل تسجيل الدخول. رمز الخطأ: " +
           code +
-          (message
-            ? " — " + message
-            : "");
+          (
+            message
+              ? " — " + message
+              : ""
+          );
+
 
       }
+
 
     }
 
 
+
     async function loginWithGoogle(){
+
 
       if(
         auth.currentUser
       ){
 
+
         try{
 
-          await signOut(auth);
+
+          await signOut(
+            auth
+          );
+
 
         }
 
+
         catch(error){
+
 
           console.error(
             "Logout error:",
             error
           );
 
+
         }
+
 
         return;
 
+
       }
+
 
 
       loginBtn.disabled =
         true;
 
 
+
       loginBtn.textContent =
         "جارٍ فتح تسجيل الدخول...";
+
 
 
       studentStatus.textContent =
         "";
 
 
+
       studentStatus.className =
         "student-status";
 
 
+
       try{
+
 
         await signInWithPopup(
           auth,
           provider
         );
 
+
       }
+
 
 
       catch(error){
 
-        showLoginError(error);
+
+        showLoginError(
+          error
+        );
+
 
 
         loginBtn.disabled =
           false;
 
 
+
         loginBtn.textContent =
           "🔐 تسجيل الدخول بحساب Google";
 
+
       }
 
+
     }
+
 
 
     loginBtn.addEventListener(
@@ -1048,23 +1599,32 @@
     );
 
 
+
     onAuthStateChanged(
       auth,
+
       user => {
+
 
         loginBtn.disabled =
           false;
 
 
-        if(user){
+
+        if(
+          user
+        ){
+
 
           const studentName =
             user.displayName ||
             "طالبتنا";
 
 
+
           studentStatus.className =
             "student-status show";
+
 
 
           studentStatus.textContent =
@@ -1073,8 +1633,10 @@
             "، تم تسجيل الدخول بنجاح.";
 
 
+
           loginBtn.textContent =
             "تسجيل الخروج";
+
 
 
           if(
@@ -1082,48 +1644,69 @@
             TEACHER_UID
           ){
 
+
             teacherDashboardBtn
               .classList
-              .add("show");
+              .add(
+                "show"
+              );
+
 
           }
+
 
 
           else{
 
+
             teacherDashboardBtn
               .classList
-              .remove("show");
+              .remove(
+                "show"
+              );
+
 
           }
+
 
         }
 
 
+
         else{
+
 
           studentStatus.textContent =
             "";
+
 
 
           studentStatus.className =
             "student-status";
 
 
+
           loginBtn.textContent =
             "🔐 تسجيل الدخول بحساب Google";
 
 
+
           teacherDashboardBtn
             .classList
-            .remove("show");
+            .remove(
+              "show"
+            );
+
 
         }
+
 
       }
     );
 
+
   </script>
+
 
 </body>
 </html>
