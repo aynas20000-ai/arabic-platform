@@ -28,6 +28,7 @@
   --red-bg:#fff0f2;
   --yellow:#8b6a18;
   --yellow-bg:#fff7df;
+  --shadow:0 8px 24px rgba(91,70,119,.09);
 }
 
 *{
@@ -65,8 +66,7 @@ a{
 }
 
 header{
-  padding:
-    30px 16px 26px;
+  padding:30px 16px 26px;
 
   text-align:center;
 
@@ -86,8 +86,7 @@ header{
 header .badge{
   display:inline-block;
 
-  padding:
-    5px 15px;
+  padding:5px 15px;
 
   margin-bottom:8px;
 
@@ -106,8 +105,7 @@ header .badge{
 }
 
 header h1{
-  margin:
-    0 0 7px;
+  margin:0 0 7px;
 
   font-size:
     clamp(
@@ -191,11 +189,12 @@ header p{
       #fffdf8,
       #f6eef9
     );
+
+  box-shadow:var(--shadow);
 }
 
 .principal-card h2{
-  margin:
-    0 0 5px;
+  margin:0 0 5px;
 
   color:var(--purple);
 
@@ -208,6 +207,7 @@ header p{
   color:#6e6075;
 
   font-size:13px;
+  line-height:1.8;
 }
 
 .tabs{
@@ -260,6 +260,58 @@ header p{
       135deg,
       var(--purple-light),
       var(--purple)
+    );
+}
+
+.report-actions{
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  flex-wrap:wrap;
+
+  gap:10px;
+
+  margin-bottom:18px;
+}
+
+.report-button{
+  min-height:45px;
+
+  padding:9px 16px;
+
+  border:
+    2px solid var(--gold);
+
+  border-radius:14px;
+
+  font-size:13px;
+  font-weight:bold;
+
+  cursor:pointer;
+}
+
+.print-button{
+  color:white;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--purple-light),
+      var(--purple)
+    );
+}
+
+.pdf-button{
+  color:var(--purple);
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff0b8,
+      #fffaf0
     );
 }
 
@@ -343,9 +395,7 @@ header p{
 
   background:#fffdf8;
 
-  box-shadow:
-    0 7px 20px
-    rgba(91,70,119,.08);
+  box-shadow:var(--shadow);
 }
 
 .stat-icon{
@@ -383,6 +433,8 @@ header p{
   border-radius:21px;
 
   background:#fffdf8;
+
+  box-shadow:var(--shadow);
 }
 
 .section-title{
@@ -456,6 +508,10 @@ td{
 
   font-size:12px;
   line-height:1.6;
+}
+
+tbody tr:nth-child(even){
+  background:#fcf9ff;
 }
 
 .student-name{
@@ -591,6 +647,7 @@ td{
   font-weight:bold;
 }
 
+
 /* نافذة التفاصيل */
 
 .modal{
@@ -632,6 +689,10 @@ td{
   border-radius:24px;
 
   background:#fffdf8;
+
+  box-shadow:
+    0 20px 50px
+    rgba(0,0,0,.2);
 }
 
 .modal-head{
@@ -653,6 +714,9 @@ td{
       var(--purple-light),
       var(--purple)
     );
+
+  border-bottom:
+    4px solid var(--gold);
 }
 
 .modal-head h2{
@@ -724,6 +788,55 @@ td{
   font-size:20px;
 }
 
+.student-report-info{
+  margin-bottom:16px;
+
+  padding:14px;
+
+  border:
+    2px solid #dec98d;
+
+  border-radius:17px;
+
+  background:#fffaf0;
+
+  text-align:center;
+
+  line-height:1.9;
+}
+
+.student-report-info strong{
+  color:var(--purple);
+}
+
+.modal-actions{
+  display:flex;
+
+  justify-content:center;
+
+  flex-wrap:wrap;
+
+  gap:9px;
+
+  margin-bottom:17px;
+}
+
+.modal-action-button{
+  min-height:42px;
+
+  padding:8px 14px;
+
+  border:
+    2px solid var(--gold);
+
+  border-radius:13px;
+
+  font-size:12px;
+  font-weight:bold;
+
+  cursor:pointer;
+}
+
 .challenge-grid{
   display:grid;
 
@@ -778,6 +891,121 @@ td{
   margin:4px 0;
 
   font-size:12px;
+
+  line-height:1.7;
+}
+
+.print-meta{
+  display:none;
+}
+
+
+/* الطباعة */
+
+@media print{
+
+  @page{
+    size:A4 landscape;
+    margin:10mm;
+  }
+
+  body{
+    background:white !important;
+
+    -webkit-print-color-adjust:exact;
+
+    print-color-adjust:exact;
+  }
+
+  header,
+  .tabs,
+  .filters,
+  .report-actions,
+  .footer,
+  .status-box,
+  .modal-close,
+  .modal-actions{
+    display:none !important;
+  }
+
+  .container{
+    width:100%;
+
+    margin:0;
+  }
+
+  #dashboardContent{
+    display:block !important;
+  }
+
+  .principal-card,
+  .stat-card,
+  .section,
+  .challenge-card{
+    box-shadow:none !important;
+
+    break-inside:avoid;
+
+    page-break-inside:avoid;
+  }
+
+  .print-meta{
+    display:block !important;
+
+    margin-bottom:12px;
+
+    text-align:center;
+
+    color:#6f6176;
+
+    font-size:11px;
+  }
+
+  table{
+    min-width:0 !important;
+
+    width:100%;
+  }
+
+  th,
+  td{
+    padding:6px 4px;
+
+    font-size:9px;
+  }
+
+  body.print-student-only > header,
+  body.print-student-only > main{
+    display:none !important;
+  }
+
+  body.print-student-only #detailsModal{
+    display:block !important;
+
+    position:static !important;
+
+    inset:auto !important;
+
+    padding:0 !important;
+
+    overflow:visible !important;
+
+    background:white !important;
+  }
+
+  body.print-student-only #detailsModal .modal-card{
+    width:100% !important;
+
+    max-width:none !important;
+
+    margin:0 !important;
+
+    border:
+      2px solid var(--gold) !important;
+
+    box-shadow:none !important;
+  }
+
 }
 
 @media(min-width:780px){
@@ -854,7 +1082,7 @@ td{
       </h2>
 
       <p>
-        عرض إحصائي ومتابعة تقدم الطالبات دون تعديل البيانات.
+        عرض إحصائي لمتابعة تقدم الطالبات دون تعديل البيانات.
       </p>
 
     </div>
@@ -887,6 +1115,33 @@ td{
       </button>
 
     </div>
+
+
+    <div class="report-actions">
+
+      <button
+        id="printDashboardButton"
+        class="report-button print-button"
+        type="button"
+      >
+        🖨️ طباعة تقرير المتابعة
+      </button>
+
+      <button
+        id="pdfDashboardButton"
+        class="report-button pdf-button"
+        type="button"
+      >
+        📄 حفظ تقرير المتابعة PDF
+      </button>
+
+    </div>
+
+
+    <div
+      id="printMeta"
+      class="print-meta"
+    ></div>
 
 
     <div class="filters">
@@ -931,9 +1186,7 @@ td{
       </label>
 
     </div>
-
-
-    <section class="stats">
+        <section class="stats">
 
       <div class="stat-card">
 
@@ -1140,9 +1393,36 @@ td{
     <div class="modal-body">
 
       <div
+        id="studentReportInfo"
+        class="student-report-info"
+      ></div>
+
+
+      <div
         id="modalSummary"
         class="modal-summary"
       ></div>
+
+
+      <div class="modal-actions">
+
+        <button
+          id="printStudentButton"
+          class="modal-action-button print-button"
+          type="button"
+        >
+          🖨️ طباعة تقرير الطالبة
+        </button>
+
+        <button
+          id="pdfStudentButton"
+          class="modal-action-button pdf-button"
+          type="button"
+        >
+          📄 حفظ تقرير الطالبة PDF
+        </button>
+
+      </div>
 
 
       <div
@@ -1155,6 +1435,8 @@ td{
   </div>
 
 </div>
+
+
 <script type="module">
 
 import {
@@ -1216,11 +1498,13 @@ const auth =
   initializeAuth(
     app,
     {
+
       persistence:
         browserLocalPersistence,
 
       popupRedirectResolver:
         browserPopupRedirectResolver
+
     }
   );
 
@@ -1232,8 +1516,8 @@ const db =
 
 
 /*
-  سنضع بريد المديرة هنا
-  في الخطوة التالية.
+  نترك بريد المديرة فارغًا الآن
+  حتى يتم ربط حساب المديرة لاحقًا.
 */
 
 const PRINCIPAL_EMAIL =
@@ -1241,7 +1525,8 @@ const PRINCIPAL_EMAIL =
 
 
 /*
-  نستبعد حساب المعلمة من الطالبات.
+  نستبعد حساب المعلمة
+  من قائمة الطالبات.
 */
 
 const TEACHER_UID =
@@ -1360,6 +1645,24 @@ const modalSummary =
 const challengeGrid =
   el("challengeGrid");
 
+const studentReportInfo =
+  el("studentReportInfo");
+
+const printDashboardButton =
+  el("printDashboardButton");
+
+const pdfDashboardButton =
+  el("pdfDashboardButton");
+
+const printStudentButton =
+  el("printStudentButton");
+
+const pdfStudentButton =
+  el("pdfStudentButton");
+
+const printMeta =
+  el("printMeta");
+
 const tabButtons =
   document.querySelectorAll(
     ".tab-button"
@@ -1372,6 +1675,10 @@ let currentView =
 
 let allStudents =
   [];
+
+
+let selectedStudent =
+  null;
 
 
 function toArabicNumber(
@@ -1435,7 +1742,9 @@ function normalizeClassName(
     text.includes("متوسط ا") ||
     text.includes("ثالث أ")
   ){
+
     return "ثالث متوسط أ";
+
   }
 
 
@@ -1444,7 +1753,9 @@ function normalizeClassName(
     text.includes("متوسط ب") ||
     text.includes("ثالث ب")
   ){
+
     return "ثالث متوسط ب";
+
   }
 
 
@@ -1453,7 +1764,9 @@ function normalizeClassName(
     text.includes("متوسط ج") ||
     text.includes("ثالث ج")
   ){
+
     return "ثالث متوسط ج";
+
   }
 
 
@@ -1510,9 +1823,7 @@ function scoreClass(
   return "score-low";
 
 }
-
-
-function normalizeChallenge(
+  function normalizeChallenge(
   item,
   number
 ){
@@ -1654,7 +1965,7 @@ function prepareStudentData(
 
   for(
     let number=1;
-    number<=20;
+    number<=TOTAL_CHALLENGES;
     number++
   ){
 
@@ -1716,9 +2027,12 @@ function prepareStudentData(
 
 
   const cup =
-    challengeCount ===
-      TOTAL_CHALLENGES &&
-    challengeAverage >= 80;
+    nafes["الكأس_مستحق"] === true ||
+    (
+      challengeCount ===
+        TOTAL_CHALLENGES &&
+      challengeAverage >= 80
+    );
 
 
   return {
@@ -1824,6 +2138,10 @@ function prepareStudentData(
 
 async function loadStudents(){
 
+  statusBox.style.display =
+    "block";
+
+
   statusBox.className =
     "status-box loading";
 
@@ -1904,6 +2222,7 @@ async function loadStudents(){
 
   }
 
+
   catch(error){
 
     console.error(
@@ -1962,7 +2281,9 @@ function getFilteredStudents(){
   );
 
 }
-  function configureView(){
+
+
+function configureView(){
 
   if(
     currentView ===
@@ -2093,7 +2414,7 @@ function updateStats(
       students.filter(
         student =>
           student.nafes.challengeCount ===
-          20
+          TOTAL_CHALLENGES
       );
 
 
@@ -2155,8 +2476,7 @@ function updateStats(
     stat3.textContent =
       toArabicNumber(
         average
-      ) +
-      "٪";
+      ) + "٪";
 
 
     statLabel3.textContent =
@@ -2254,8 +2574,7 @@ function updateStats(
   stat3.textContent =
     toArabicNumber(
       average
-    ) +
-    "٪";
+    ) + "٪";
 
 
   statLabel3.textContent =
@@ -2281,10 +2600,8 @@ function updateStats(
   statLabel5.textContent =
     "اختبارات مسجلة";
 
-}
-
-
-function renderSemesterRows(
+  }
+  function renderSemesterRows(
   students,
   key
 ){
@@ -2601,12 +2918,30 @@ function openDetails(
   student
 ){
 
+  selectedStudent =
+    student;
+
+
   const nafes =
     student.nafes;
 
 
   modalTitle.textContent =
-    `📊 تقدم ${student.name}`;
+    `📊 تقرير تقدم ${student.name}`;
+
+
+  studentReportInfo.innerHTML = `
+    <strong>
+      الطالبة:
+    </strong>
+    ${escapeHtml(student.name)}
+    &nbsp; | &nbsp;
+
+    <strong>
+      الفصل:
+    </strong>
+    ${escapeHtml(student.className)}
+  `;
 
 
   modalSummary.innerHTML = `
@@ -2674,7 +3009,7 @@ function openDetails(
 
   for(
     let number=1;
-    number<=20;
+    number<=TOTAL_CHALLENGES;
     number++
   ){
 
@@ -2682,7 +3017,7 @@ function openDetails(
       nafes.challenges.find(
         item =>
           item.number ===
-          number
+            number
       );
 
 
@@ -2719,6 +3054,7 @@ function openDetails(
 
     }
 
+
     else{
 
       card.classList.add(
@@ -2740,20 +3076,24 @@ function openDetails(
 
         <p>
           الدرجة:
-          ${toArabicNumber(
-            result.score
-          )}
-          من
-          ${toArabicNumber(
-            result.total
-          )}
+          <strong>
+            ${toArabicNumber(
+              result.score
+            )}
+            من
+            ${toArabicNumber(
+              result.total
+            )}
+          </strong>
         </p>
 
         <p>
           النسبة:
-          ${toArabicNumber(
-            result.percentage
-          )}٪
+          <strong>
+            ${toArabicNumber(
+              result.percentage
+            )}٪
+          </strong>
         </p>
 
         <p>
@@ -2787,6 +3127,67 @@ function closeModal(){
 
   detailsModal.classList.remove(
     "show"
+  );
+
+}
+
+
+function updatePrintMeta(){
+
+  const now =
+    new Date();
+
+
+  printMeta.textContent =
+    "تقرير متابعة منصة آفاق — " +
+    pageTitle.textContent +
+    " — تاريخ التقرير: " +
+    now.toLocaleDateString(
+      "ar-SA"
+    );
+
+}
+
+
+function printDashboard(){
+
+  document.body.classList.remove(
+    "print-student-only"
+  );
+
+
+  updatePrintMeta();
+
+
+  window.print();
+
+}
+
+
+function printStudentReport(){
+
+  if(!selectedStudent){
+    return;
+  }
+
+
+  document.body.classList.add(
+    "print-student-only"
+  );
+
+
+  window.print();
+
+
+  setTimeout(
+    () => {
+
+      document.body.classList.remove(
+        "print-student-only"
+      );
+
+    },
+    300
   );
 
 }
@@ -2904,6 +3305,48 @@ searchInput.addEventListener(
 );
 
 
+printDashboardButton.addEventListener(
+  "click",
+  printDashboard
+);
+
+
+pdfDashboardButton.addEventListener(
+  "click",
+  () => {
+
+    alert(
+      "بعد فتح نافذة الطباعة اختاري «حفظ كملف PDF» أو «Save as PDF»."
+    );
+
+
+    printDashboard();
+
+  }
+);
+
+
+printStudentButton.addEventListener(
+  "click",
+  printStudentReport
+);
+
+
+pdfStudentButton.addEventListener(
+  "click",
+  () => {
+
+    alert(
+      "بعد فتح نافذة الطباعة اختاري «حفظ كملف PDF» أو «Save as PDF»."
+    );
+
+
+    printStudentReport();
+
+  }
+);
+
+
 modalClose.addEventListener(
   "click",
   closeModal
@@ -2951,8 +3394,9 @@ onAuthStateChanged(
 
 
     /*
-      لم نربط بريد المديرة بعد.
-      لذلك لا نفتح البيانات لأي حساب بالخطأ.
+      حساب المديرة لم يتم ربطه بعد.
+      لذلك نحافظ على إغلاق الصفحة
+      حتى نربطه لاحقًا.
     */
 
     if(
