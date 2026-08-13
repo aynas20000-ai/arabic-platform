@@ -462,8 +462,7 @@
     .feedback.show {
       display: block;
     }
-
-    .feedback.correct {
+        .feedback.correct {
       color: #245b3b;
       border:
         2px solid #8dbb9d;
@@ -999,8 +998,7 @@
           </button>
 
         </div>
-
-        <div
+                <div
           id="certificateShell"
           class="certificate-shell"
         >
@@ -1047,1201 +1045,1271 @@
 
   <script>
     const challengeName =
-  "الفضاء السعودي";
-
-const mainPassage = `
-  <h3>
-    من الأرض إلى المدار... لماذا نذهب إلى الفضاء؟
-  </h3>
-
-  <p>
-    قد يبدو الفضاء بعيدًا عن حياة الإنسان اليومية، لكن كثيرًا
-    من التقنيات التي نستخدمها تعتمد على أبحاث بدأت خارج الأرض.
-    فالأقمار الصناعية تساعد في الاتصالات، ورصد الطقس،
-    ومتابعة التغيرات البيئية، وتحديد المواقع، كما تسهم
-    البيانات الفضائية في دعم الزراعة وإدارة الكوارث
-    ورسم الخرائط بدقة.
-  </p>
-
-  <p>
-    ولم تعد رحلات الفضاء تقتصر على الوصول إلى المدار،
-    بل أصبحت مختبرات علمية تُجرى فيها تجارب يصعب تنفيذها
-    على الأرض بالطريقة نفسها. ففي بيئة الجاذبية الصغرى
-    تتغير حركة السوائل ونمو الخلايا وسلوك بعض المواد،
-    وهذا يتيح للعلماء فحص الظواهر من زاوية مختلفة،
-    ثم مقارنة النتائج بما يحدث في المختبرات الأرضية.
-  </p>
-
-  <p>
-    وتزداد قيمة المشاركة في مشروعات الفضاء حين ترتبط
-    ببناء خبرات وطنية، وتدريب الباحثين، وتشجيع الطلاب
-    على دراسة العلوم والهندسة. فإرسال رائد فضاء أو تنفيذ
-    تجربة علمية ليس حدثًا منفصلًا، بل قد يكون جزءًا
-    من منظومة أوسع تشمل التعليم، والبحث، والصناعة،
-    وتطوير تقنيات يمكن الاستفادة منها في مجالات أخرى.
-  </p>
-
-  <p>
-    ومع ذلك، فإن ارتفاع تكلفة بعض المشروعات الفضائية
-    يثير سؤالًا مشروعًا: هل تستحق هذه البرامج ما يُنفق عليها؟
-    والإجابة لا تُبنى على الانبهار بالصواريخ أو الصور،
-    بل على مقارنة التكلفة بالفوائد العلمية والتقنية
-    والاقتصادية، ووضوح الأهداف، وإمكان استخدام النتائج
-    في خدمة المجتمع على المدى الطويل.
-  </p>
-
-  <p>
-    ومن هنا فإن تقويم أي برنامج فضائي يحتاج إلى نظرة
-    متوازنة؛ فلا يكفي وصفه بأنه إنجاز كبير،
-    ولا يصح رفضه لأنه مكلف. الأهم هو معرفة ما تعلمه
-    الباحثون، وما التقنيات التي تطورت، وكيف انتقلت المعرفة
-    إلى الجامعات والقطاعات المختلفة، وهل تحولت التجربة
-    إلى قدرة علمية مستمرة أم بقيت حدثًا مؤقتًا.
-  </p>
-`;
-
-const questions = [
-
-  {
-    skill:
-      "المفردات في السياق",
-
-    question:
-      "ما المعنى الأدق لعبارة «منظومة أوسع» في الفقرة الثالثة؟",
-
-    options: [
-      "مجموعة مترابطة من التعليم والبحث والصناعة والتقنية.",
-      "رحلة فضائية طويلة المدة.",
-      "معدات كثيرة داخل محطة الفضاء.",
-      "برنامج منفصل لا يرتبط بقطاعات أخرى."
-    ],
-
-    correct: 0,
-
-    explanation:
-      "السياق يوضح أن الرحلة أو التجربة جزء من شبكة مترابطة تشمل التعليم والبحث والصناعة؛ لذلك فالمقصود مجموعة عناصر تعمل معًا."
-  },
-
-  {
-    skill:
-      "الفكرة الرئيسة",
-
-    question:
-      "ما الفكرة الرئيسة التي ينتظم حولها النص كله؟",
-
-    options: [
-      "رحلات الفضاء مهمة لأنها تلتقط صورًا جميلة للأرض.",
-      "برامج الفضاء تُقوَّم بمدى ما تحققه من معرفة وتقنية وفائدة مستدامة.",
-      "تكلفة المشروعات الفضائية تمنع الاستفادة منها.",
-      "الأقمار الصناعية تستخدم في تحديد المواقع فقط."
-    ],
-
-    correct: 1,
-
-    explanation:
-      "الخيار الثاني هو الأشمل؛ لأنه يجمع البحث العلمي، والتقنيات، وبناء الخبرات، وضرورة قياس الأثر طويل المدى."
-  },
-
-  {
-    skill:
-      "الاستنتاج",
-
-    question:
-      "ماذا نستنتج من قول الكاتب إن التجربة الفضائية قد تكون جزءًا من منظومة أوسع؟",
-
-    options: [
-      "أن نجاحها لا يقاس بالرحلة وحدها بل بما تولده من خبرات وتطبيقات.",
-      "أن جميع تجارب الفضاء تنجح تلقائيًا.",
-      "أن التعليم لا يرتبط بالمشروعات الفضائية.",
-      "أن قيمة الرحلة تعتمد على مدتها فقط."
-    ],
-
-    correct: 0,
-
-    explanation:
-      "النص يربط الرحلات ببناء الباحثين وتطوير الصناعة والتعليم، لذلك لا تُقاس قيمتها بالحدث وحده."
-  },
-
-  {
-    skill:
-      "العلاقة بين الأفكار",
-
-    question:
-      "ما العلاقة بين الفقرة الثانية والفقرة الخامسة؟",
-
-    options: [
-      "الثانية تشرح التجارب، والخامسة تضع معايير للحكم على أثرها.",
-      "الثانية تنفي فائدة البحث، والخامسة تؤيده.",
-      "الفقرتان تصفان رحلة واحدة بالتفصيل.",
-      "الخامسة تكرر الثانية دون إضافة."
-    ],
-
-    correct: 0,
-
-    explanation:
-      "الفقرة الثانية تعرض قيمة التجارب العلمية، ثم تسأل الخامسة عن أثرها واستمرار نتائجها وانتقال المعرفة."
-  },
-
-  {
-    skill:
-      "الحقيقة والرأي",
-
-    question:
-      "أي العبارات الآتية تمثل رأيًا تفسيريًا أكثر من كونها معلومة مباشرة؟",
-
-    options: [
-      "تساعد الأقمار الصناعية في رصد الطقس.",
-      "تتغير حركة السوائل في الجاذبية الصغرى.",
-      "إرسال رائد فضاء قد يكون جزءًا من منظومة تعليمية وبحثية.",
-      "الحدث الفضائي لا يكتسب قيمته الحقيقية إلا إذا تحول إلى قدرة علمية مستمرة."
-    ],
-
-    correct: 3,
-
-    explanation:
-      "العبارة الرابعة حكم تفسيري يلخص معيار الكاتب، أما بقية العبارات فتصف استخدامات أو ظواهر وردت مباشرة."
-  },
-
-  {
-    skill:
-      "تقويم الدليل",
-
-    question:
-      "أي دليل سيكون الأقوى لإثبات أن برنامجًا فضائيًا أفاد المجتمع؟",
-
-    options: [
-      "انتشار صور الرحلة في وسائل التواصل.",
-      "زيادة عدد المتابعين للحساب الرسمي.",
-      "تقارير موثقة عن تقنيات أو أبحاث انتقلت إلى التعليم والصحة والبيئة.",
-      "إعجاب الجمهور بتصميم المركبة."
-    ],
+      "الفضاء السعودي";
+
+    const mainPassage = `
+      <h3>
+        من الأرض إلى المدار... لماذا نذهب إلى الفضاء؟
+      </h3>
+
+      <p>
+        قد يبدو الفضاء بعيدًا عن حياة الإنسان اليومية، لكن كثيرًا
+        من التقنيات التي نستخدمها تعتمد على أبحاث بدأت خارج الأرض.
+        فالأقمار الصناعية تساعد في الاتصالات، ورصد الطقس،
+        ومتابعة التغيرات البيئية، وتحديد المواقع، كما تسهم
+        البيانات الفضائية في دعم الزراعة وإدارة الكوارث
+        ورسم الخرائط بدقة.
+      </p>
+
+      <p>
+        ولم تعد رحلات الفضاء تقتصر على الوصول إلى المدار،
+        بل أصبحت مختبرات علمية تُجرى فيها تجارب يصعب تنفيذها
+        على الأرض بالطريقة نفسها. ففي بيئة الجاذبية الصغرى
+        تتغير حركة السوائل ونمو الخلايا وسلوك بعض المواد،
+        وهذا يتيح للعلماء فحص الظواهر من زاوية مختلفة،
+        ثم مقارنة النتائج بما يحدث في المختبرات الأرضية.
+      </p>
+
+      <p>
+        وتزداد قيمة المشاركة في مشروعات الفضاء حين ترتبط
+        ببناء خبرات وطنية، وتدريب الباحثين، وتشجيع الطلاب
+        على دراسة العلوم والهندسة. فإرسال رائد فضاء أو تنفيذ
+        تجربة علمية ليس حدثًا منفصلًا، بل قد يكون جزءًا
+        من منظومة أوسع تشمل التعليم، والبحث، والصناعة،
+        وتطوير تقنيات يمكن الاستفادة منها في مجالات أخرى.
+      </p>
+
+      <p>
+        ومع ذلك، فإن ارتفاع تكلفة بعض المشروعات الفضائية
+        يثير سؤالًا مشروعًا: هل تستحق هذه البرامج ما يُنفق عليها؟
+        والإجابة لا تُبنى على الانبهار بالصواريخ أو الصور،
+        بل على مقارنة التكلفة بالفوائد العلمية والتقنية
+        والاقتصادية، ووضوح الأهداف، وإمكان استخدام النتائج
+        في خدمة المجتمع على المدى الطويل.
+      </p>
+
+      <p>
+        ومن هنا فإن تقويم أي برنامج فضائي يحتاج إلى نظرة
+        متوازنة؛ فلا يكفي وصفه بأنه إنجاز كبير،
+        ولا يصح رفضه لأنه مكلف. الأهم هو معرفة ما تعلمه
+        الباحثون، وما التقنيات التي تطورت، وكيف انتقلت المعرفة
+        إلى الجامعات والقطاعات المختلفة، وهل تحولت التجربة
+        إلى قدرة علمية مستمرة أم بقيت حدثًا مؤقتًا.
+      </p>
+    `;
+
+    const questions = [
+
+      {
+        skill:
+          "المفردات في السياق",
+
+        question:
+          "ما المعنى الأدق لعبارة «منظومة أوسع» في الفقرة الثالثة؟",
+
+        options: [
+          "مجموعة مترابطة من التعليم والبحث والصناعة والتقنية.",
+          "رحلة فضائية طويلة المدة.",
+          "معدات كثيرة داخل محطة الفضاء.",
+          "برنامج منفصل لا يرتبط بقطاعات أخرى."
+        ],
+
+        correct: 0,
+
+        explanation:
+          "السياق يوضح أن الرحلة أو التجربة جزء من شبكة مترابطة تشمل التعليم والبحث والصناعة؛ لذلك فالمقصود مجموعة عناصر تعمل معًا."
+      },
+
+      {
+        skill:
+          "الفكرة الرئيسة",
+
+        question:
+          "ما الفكرة الرئيسة التي ينتظم حولها النص كله؟",
+
+        options: [
+          "رحلات الفضاء مهمة لأنها تلتقط صورًا جميلة للأرض.",
+          "برامج الفضاء تُقوَّم بمدى ما تحققه من معرفة وتقنية وفائدة مستدامة.",
+          "تكلفة المشروعات الفضائية تمنع الاستفادة منها.",
+          "الأقمار الصناعية تستخدم في تحديد المواقع فقط."
+        ],
+
+        correct: 1,
+
+        explanation:
+          "الخيار الثاني هو الأشمل؛ لأنه يجمع البحث العلمي، والتقنيات، وبناء الخبرات، وضرورة قياس الأثر طويل المدى."
+      },
+
+      {
+        skill:
+          "الاستنتاج",
+
+        question:
+          "ماذا نستنتج من قول الكاتب إن التجربة الفضائية قد تكون جزءًا من منظومة أوسع؟",
+
+        options: [
+          "أن نجاحها لا يقاس بالرحلة وحدها بل بما تولده من خبرات وتطبيقات.",
+          "أن جميع تجارب الفضاء تنجح تلقائيًا.",
+          "أن التعليم لا يرتبط بالمشروعات الفضائية.",
+          "أن قيمة الرحلة تعتمد على مدتها فقط."
+        ],
+
+        correct: 0,
+
+        explanation:
+          "النص يربط الرحلات ببناء الباحثين وتطوير الصناعة والتعليم، لذلك لا تُقاس قيمتها بالحدث وحده."
+      },
+
+      {
+        skill:
+          "العلاقة بين الأفكار",
+
+        question:
+          "ما العلاقة بين الفقرة الثانية والفقرة الخامسة؟",
+
+        options: [
+          "الثانية تشرح التجارب، والخامسة تضع معايير للحكم على أثرها.",
+          "الثانية تنفي فائدة البحث، والخامسة تؤيده.",
+          "الفقرتان تصفان رحلة واحدة بالتفصيل.",
+          "الخامسة تكرر الثانية دون إضافة."
+        ],
+
+        correct: 0,
+
+        explanation:
+          "الفقرة الثانية تعرض قيمة التجارب العلمية، ثم تسأل الخامسة عن أثرها واستمرار نتائجها وانتقال المعرفة."
+      },
+
+      {
+        skill:
+          "الحقيقة والرأي",
+
+        question:
+          "أي العبارات الآتية تمثل رأيًا تفسيريًا أكثر من كونها معلومة مباشرة؟",
+
+        options: [
+          "تساعد الأقمار الصناعية في رصد الطقس.",
+          "تتغير حركة السوائل في الجاذبية الصغرى.",
+          "إرسال رائد فضاء قد يكون جزءًا من منظومة تعليمية وبحثية.",
+          "الحدث الفضائي لا يكتسب قيمته الحقيقية إلا إذا تحول إلى قدرة علمية مستمرة."
+        ],
+
+        correct: 3,
+
+        explanation:
+          "العبارة الرابعة حكم تفسيري يلخص معيار الكاتب، أما بقية العبارات فتصف استخدامات أو ظواهر وردت مباشرة."
+      },
+
+      {
+        skill:
+          "تقويم الدليل",
+
+        question:
+          "أي دليل سيكون الأقوى لإثبات أن برنامجًا فضائيًا أفاد المجتمع؟",
+
+        options: [
+          "انتشار صور الرحلة في وسائل التواصل.",
+          "زيادة عدد المتابعين للحساب الرسمي.",
+          "تقارير موثقة عن تقنيات أو أبحاث انتقلت إلى التعليم والصحة والبيئة.",
+          "إعجاب الجمهور بتصميم المركبة."
+        ],
 
-    correct: 2,
+        correct: 2,
 
-    explanation:
-      "الدليل الأقوى هو ما يثبت انتقال المعرفة والتقنية إلى مجالات تخدم المجتمع فعلًا."
-  },
+        explanation:
+          "الدليل الأقوى هو ما يثبت انتقال المعرفة والتقنية إلى مجالات تخدم المجتمع فعلًا."
+      },
 
-  {
-    skill:
-      "التطبيق",
+      {
+        skill:
+          "التطبيق",
 
-    question:
-      "أعلنت جهة نجاح تجربة فضائية، لكنها لم تنشر أهدافها أو نتائجها. ما التصرف الأكثر اتساقًا مع النص؟",
+        question:
+          "أعلنت جهة نجاح تجربة فضائية، لكنها لم تنشر أهدافها أو نتائجها. ما التصرف الأكثر اتساقًا مع النص؟",
 
-    options: [
-      "قبول الإعلان لأن التجربة أُجريت في الفضاء.",
-      "طلب معلومات عن الهدف والنتائج والأثر قبل الحكم.",
-      "رفض التجربة لأنها مكلفة.",
-      "الحكم عليها من صورها فقط."
-    ],
+        options: [
+          "قبول الإعلان لأن التجربة أُجريت في الفضاء.",
+          "طلب معلومات عن الهدف والنتائج والأثر قبل الحكم.",
+          "رفض التجربة لأنها مكلفة.",
+          "الحكم عليها من صورها فقط."
+        ],
 
-    correct: 1,
+        correct: 1,
 
-    explanation:
-      "النص يدعو إلى تقويم التجارب وفق أهداف واضحة ونتائج قابلة للفحص، لا وفق الانبهار أو الرفض المسبق."
-  },
+        explanation:
+          "النص يدعو إلى تقويم التجارب وفق أهداف واضحة ونتائج قابلة للفحص، لا وفق الانبهار أو الرفض المسبق."
+      },
 
-  {
-    skill:
-      "التلخيص",
+      {
+        skill:
+          "التلخيص",
 
-    question:
-      "أي الملخصات الآتية يحافظ على أفكار النص الأساسية بأكبر دقة؟",
+        question:
+          "أي الملخصات الآتية يحافظ على أفكار النص الأساسية بأكبر دقة؟",
 
-    options: [
-      "الفضاء مجال بعيد لا يرتبط بالحياة اليومية.",
-      "تسهم برامج الفضاء في البحث والتقنية، وتُقوَّم بمدى أثرها واستمرار فائدتها.",
-      "الأقمار الصناعية أهم من جميع وسائل البحث الأخرى.",
-      "تكلفة الفضاء تجعل كل مشروعاته غير مناسبة."
-    ],
+        options: [
+          "الفضاء مجال بعيد لا يرتبط بالحياة اليومية.",
+          "تسهم برامج الفضاء في البحث والتقنية، وتُقوَّم بمدى أثرها واستمرار فائدتها.",
+          "الأقمار الصناعية أهم من جميع وسائل البحث الأخرى.",
+          "تكلفة الفضاء تجعل كل مشروعاته غير مناسبة."
+        ],
 
-    correct: 1,
+        correct: 1,
 
-    explanation:
-      "الخيار الثاني يجمع الاستخدامات العلمية ومعيار التقويم طويل المدى دون مبالغة أو اختزال."
-  },
+        explanation:
+          "الخيار الثاني يجمع الاستخدامات العلمية ومعيار التقويم طويل المدى دون مبالغة أو اختزال."
+      },
 
-  {
-    skill:
-      "الحكم النقدي",
+      {
+        skill:
+          "الحكم النقدي",
 
-    question:
-      "أي حكم نقدي يعبر عن موقف الكاتب بأكبر قدر من الدقة؟",
+        question:
+          "أي حكم نقدي يعبر عن موقف الكاتب بأكبر قدر من الدقة؟",
 
-    options: [
-      "الكاتب يرفض الإنفاق على الفضاء.",
-      "الكاتب يمدح البرامج الفضائية دون شروط.",
-      "الكاتب يتبنى موقفًا متوازنًا يربط قيمة البرامج بنتائجها القابلة للقياس.",
-      "الكاتب يرى أن الشهرة أهم من البحث."
-    ],
+        options: [
+          "الكاتب يرفض الإنفاق على الفضاء.",
+          "الكاتب يمدح البرامج الفضائية دون شروط.",
+          "الكاتب يتبنى موقفًا متوازنًا يربط قيمة البرامج بنتائجها القابلة للقياس.",
+          "الكاتب يرى أن الشهرة أهم من البحث."
+        ],
 
-    correct: 2,
+        correct: 2,
 
-    explanation:
-      "النص لا يرفض البرامج ولا يقبلها بلا شروط، بل يطالب بمقارنة التكلفة بالفائدة وقياس الأثر."
-  },
+        explanation:
+          "النص لا يرفض البرامج ولا يقبلها بلا شروط، بل يطالب بمقارنة التكلفة بالفائدة وقياس الأثر."
+      },
 
-  {
-    skill:
-      "اختيار الإجابة الأدق",
+      {
+        skill:
+          "اختيار الإجابة الأدق",
 
-    question:
-      "أي عبارة تلخص الرسالة الأعمق للنص؟",
+        question:
+          "أي عبارة تلخص الرسالة الأعمق للنص؟",
 
-    options: [
-      "قيمة الرحلات الفضائية في بعدها عن الأرض.",
-      "الإنجاز الفضائي الحقيقي هو ما يتحول إلى معرفة وقدرة مستمرة.",
-      "كل تجربة في المدار أفضل من تجربة أرضية.",
-      "الصور الفضائية تكفي لإثبات نجاح البرامج."
-    ],
+        options: [
+          "قيمة الرحلات الفضائية في بعدها عن الأرض.",
+          "الإنجاز الفضائي الحقيقي هو ما يتحول إلى معرفة وقدرة مستمرة.",
+          "كل تجربة في المدار أفضل من تجربة أرضية.",
+          "الصور الفضائية تكفي لإثبات نجاح البرامج."
+        ],
 
-    correct: 1,
+        correct: 1,
 
-    explanation:
-      "الخيار الثاني هو الأدق؛ لأن النص يركز على انتقال المعرفة وبناء القدرة العلمية المستمرة."
-  }
+        explanation:
+          "الخيار الثاني هو الأدق؛ لأن النص يركز على انتقال المعرفة وبناء القدرة العلمية المستمرة."
+      }
 
-];
-    const startScreen =
-  document.getElementById("startScreen");
+    ];
+        const startScreen =
+      document.getElementById("startScreen");
 
-const quizScreen =
-  document.getElementById("quizScreen");
+    const quizScreen =
+      document.getElementById("quizScreen");
 
-const resultScreen =
-  document.getElementById("resultScreen");
+    const resultScreen =
+      document.getElementById("resultScreen");
 
-const studentNameInput =
-  document.getElementById("studentNameInput");
+    const studentNameInput =
+      document.getElementById("studentNameInput");
 
-const nameWarning =
-  document.getElementById("nameWarning");
+    const nameWarning =
+      document.getElementById("nameWarning");
 
-const startButton =
-  document.getElementById("startButton");
+    const startButton =
+      document.getElementById("startButton");
 
-const soundBtn =
-  document.getElementById("soundBtn");
+    const soundBtn =
+      document.getElementById("soundBtn");
 
-const questionCounter =
-  document.getElementById("questionCounter");
+    const questionCounter =
+      document.getElementById("questionCounter");
 
-const liveScore =
-  document.getElementById("liveScore");
+    const liveScore =
+      document.getElementById("liveScore");
 
-const progressBar =
-  document.getElementById("progressBar");
+    const progressBar =
+      document.getElementById("progressBar");
 
-const questionNumber =
-  document.getElementById("questionNumber");
+    const questionNumber =
+      document.getElementById("questionNumber");
 
-const questionSkill =
-  document.getElementById("questionSkill");
+    const questionSkill =
+      document.getElementById("questionSkill");
 
-const passageCard =
-  document.getElementById("passageCard");
+    const passageCard =
+      document.getElementById("passageCard");
 
-const questionText =
-  document.getElementById("questionText");
+    const questionText =
+      document.getElementById("questionText");
 
-const answersContainer =
-  document.getElementById("answersContainer");
+    const answersContainer =
+      document.getElementById("answersContainer");
 
-const feedback =
-  document.getElementById("feedback");
+    const feedback =
+      document.getElementById("feedback");
 
-const previousButton =
-  document.getElementById("previousButton");
+    const previousButton =
+      document.getElementById("previousButton");
 
-const nextButton =
-  document.getElementById("nextButton");
+    const nextButton =
+      document.getElementById("nextButton");
 
-const page =
-  document.getElementById("page");
+    const page =
+      document.getElementById("page");
 
-const resultIcon =
-  document.getElementById("resultIcon");
+    const resultIcon =
+      document.getElementById("resultIcon");
 
-const resultTitle =
-  document.getElementById("resultTitle");
+    const resultTitle =
+      document.getElementById("resultTitle");
 
-const resultScore =
-  document.getElementById("resultScore");
+    const resultScore =
+      document.getElementById("resultScore");
 
-const resultMessage =
-  document.getElementById("resultMessage");
+    const resultMessage =
+      document.getElementById("resultMessage");
 
-const showCertificateButton =
-  document.getElementById(
-    "showCertificateButton"
-  );
-
-const restartButton =
-  document.getElementById(
-    "restartButton"
-  );
-
-const nextChallengeButton =
-  document.getElementById(
-    "nextChallengeButton"
-  );
-
-const certificateShell =
-  document.getElementById(
-    "certificateShell"
-  );
-
-const certificateName =
-  document.getElementById(
-    "certificateName"
-  );
-
-const printButton =
-  document.getElementById(
-    "printButton"
-  );
-
-let studentName = "";
-
-let currentQuestion = 0;
-
-let score = 0;
-
-let soundOn =
-  localStorage.getItem(
-    "nafesSound"
-  ) !== "off";
-
-const selectedAnswers =
-  new Array(
-    questions.length
-  ).fill(null);
-
-function updateSoundButton() {
-  soundBtn.textContent =
-    soundOn
-      ? "🔊 الصوت مفعّل"
-      : "🔇 الصوت مكتوم";
-}
-
-function playTone(isCorrect) {
-  if (!soundOn) return;
-
-  try {
-    const AudioContextClass =
-      window.AudioContext ||
-      window.webkitAudioContext;
-
-    const context =
-      new AudioContextClass();
-
-    const oscillator =
-      context.createOscillator();
-
-    const gain =
-      context.createGain();
-
-    oscillator.type =
-      isCorrect
-        ? "sine"
-        : "triangle";
-
-    oscillator.frequency.value =
-      isCorrect
-        ? 720
-        : 190;
-
-    gain.gain.setValueAtTime(
-      isCorrect
-        ? 0.13
-        : 0.1,
-      context.currentTime
-    );
-
-    gain.gain.exponentialRampToValueAtTime(
-      0.001,
-      context.currentTime +
-      (
-        isCorrect
-          ? 0.35
-          : 0.28
-      )
-    );
-
-    oscillator.connect(gain);
-
-    gain.connect(
-      context.destination
-    );
-
-    oscillator.start();
-
-    oscillator.stop(
-      context.currentTime +
-      (
-        isCorrect
-          ? 0.35
-          : 0.28
-      )
-    );
-
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-function showAnswerMark(
-  isCorrect
-) {
-  const mark =
-    document.createElement(
-      "div"
-    );
-
-  mark.className =
-    isCorrect
-      ? "answer-mark correct-mark"
-      : "answer-mark wrong-mark";
-
-  mark.textContent =
-    isCorrect
-      ? "✓"
-      : "✕";
-
-  document.body
-    .appendChild(mark);
-
-  setTimeout(
-    () => {
-      mark.remove();
-    },
-    720
-  );
-}
-
-function celebrate() {
-  const symbols = [
-    "🎉",
-    "⭐",
-    "✨",
-    "🚀",
-    "🛰️",
-    "🎈"
-  ];
-
-  for (
-    let j = 0;
-    j < 34;
-    j++
-  ) {
-    const piece =
-      document.createElement(
-        "span"
+    const showCertificateButton =
+      document.getElementById(
+        "showCertificateButton"
       );
 
-    piece.className =
-      "confetti-piece";
+    const restartButton =
+      document.getElementById(
+        "restartButton"
+      );
 
-    piece.textContent =
-      symbols[
-        Math.floor(
-          Math.random() *
-          symbols.length
-        )
-      ];
+    const nextChallengeButton =
+      document.getElementById(
+        "nextChallengeButton"
+      );
 
-    piece.style.left =
-      Math.random() *
-      100 +
-      "vw";
+    const certificateShell =
+      document.getElementById(
+        "certificateShell"
+      );
 
-    piece.style.fontSize =
-      18 +
-      Math.random() *
-      22 +
-      "px";
+    const certificateName =
+      document.getElementById(
+        "certificateName"
+      );
 
-    piece.style.animationDelay =
-      Math.random() *
-      0.7 +
-      "s";
+    const printButton =
+      document.getElementById(
+        "printButton"
+      );
 
-    document.body
-      .appendChild(piece);
+    let studentName = "";
 
-    setTimeout(
-      () => {
-        piece.remove();
-      },
-      4100
-    );
-  }
-}
+    let currentQuestion = 0;
 
-function startChallenge() {
-  const enteredName =
-    studentNameInput
-      .value
-      .trim();
+    let score = 0;
 
-  const nameParts =
-    enteredName
-      .split(/\s+/)
-      .filter(Boolean);
+    let soundOn =
+      localStorage.getItem(
+        "nafesSound"
+      ) !== "off";
 
-  if (
-    nameParts.length < 4
-  ) {
-    nameWarning.textContent =
-      "اكتبي اسمكِ الرباعي كاملًا.";
-
-    nameWarning
-      .classList
-      .add("show");
-
-    return;
-  }
-
-  studentName =
-    enteredName;
-
-  nameWarning
-    .classList
-    .remove("show");
-
-  startScreen
-    .classList
-    .remove("active");
-
-  quizScreen
-    .classList
-    .add("active");
-
-  renderQuestion();
-}
-
-function updateTopStatus() {
-  questionCounter.textContent =
-    `السؤال ${
-      currentQuestion + 1
-    } من ${
-      questions.length
-    }`;
-
-  liveScore.textContent =
-    `الدرجة: ${score}`;
-
-  progressBar.style.width =
-    `${
-      (
-        (
-          currentQuestion + 1
-        ) /
+    const selectedAnswers =
+      new Array(
         questions.length
-      ) * 100
-    }%`;
-}
+      ).fill(null);
 
-function renderQuestion() {
-  const item =
-    questions[
-      currentQuestion
-    ];
+    function updateSoundButton() {
+      soundBtn.textContent =
+        soundOn
+          ? "🔊 الصوت مفعّل"
+          : "🔇 الصوت مكتوم";
+    }
 
-  updateTopStatus();
+    function playTone(isCorrect) {
+      if (!soundOn) return;
 
-  questionNumber.textContent =
-    `السؤال ${
-      currentQuestion + 1
-    }`;
+      try {
+        const AudioContextClass =
+          window.AudioContext ||
+          window.webkitAudioContext;
 
-  questionSkill.textContent =
-    item.skill;
+        const context =
+          new AudioContextClass();
 
-  passageCard.innerHTML =
-    mainPassage;
+        const oscillator =
+          context.createOscillator();
 
-  questionText.textContent =
-    item.question;
+        const gain =
+          context.createGain();
 
-  answersContainer.innerHTML =
-    "";
+        oscillator.type =
+          isCorrect
+            ? "sine"
+            : "triangle";
 
-  feedback.className =
-    "feedback";
+        oscillator.frequency.value =
+          isCorrect
+            ? 720
+            : 190;
 
-  feedback.innerHTML =
-    "";
-
-  item.options.forEach(
-    (
-      optionText,
-      optionIndex
-    ) => {
-      const button =
-        document.createElement(
-          "button"
+        gain.gain.setValueAtTime(
+          isCorrect
+            ? 0.13
+            : 0.1,
+          context.currentTime
         );
 
-      button.type =
-        "button";
+        gain.gain.exponentialRampToValueAtTime(
+          0.001,
+          context.currentTime +
+          (
+            isCorrect
+              ? 0.35
+              : 0.28
+          )
+        );
 
-      button.className =
-        "answer-button";
+        oscillator.connect(gain);
 
-      button.textContent =
-        optionText;
+        gain.connect(
+          context.destination
+        );
 
-      button.addEventListener(
-        "click",
+        oscillator.start();
+
+        oscillator.stop(
+          context.currentTime +
+          (
+            isCorrect
+              ? 0.35
+              : 0.28
+          )
+        );
+
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    function showAnswerMark(
+      isCorrect
+    ) {
+      const mark =
+        document.createElement(
+          "div"
+        );
+
+      mark.className =
+        isCorrect
+          ? "answer-mark correct-mark"
+          : "answer-mark wrong-mark";
+
+      mark.textContent =
+        isCorrect
+          ? "✓"
+          : "✕";
+
+      document.body
+        .appendChild(mark);
+
+      setTimeout(
         () => {
-          chooseAnswer(
-            optionIndex,
-            button
+          mark.remove();
+        },
+        720
+      );
+    }
+
+    function celebrate() {
+      const symbols = [
+        "🎉",
+        "⭐",
+        "✨",
+        "🚀",
+        "🛰️",
+        "🎈"
+      ];
+
+      for (
+        let j = 0;
+        j < 34;
+        j++
+      ) {
+        const piece =
+          document.createElement(
+            "span"
           );
+
+        piece.className =
+          "confetti-piece";
+
+        piece.textContent =
+          symbols[
+            Math.floor(
+              Math.random() *
+              symbols.length
+            )
+          ];
+
+        piece.style.left =
+          Math.random() *
+          100 +
+          "vw";
+
+        piece.style.fontSize =
+          18 +
+          Math.random() *
+          22 +
+          "px";
+
+        piece.style.animationDelay =
+          Math.random() *
+          0.7 +
+          "s";
+
+        document.body
+          .appendChild(piece);
+
+        setTimeout(
+          () => {
+            piece.remove();
+          },
+          4100
+        );
+      }
+    }
+
+    function startChallenge() {
+      const enteredName =
+        studentNameInput
+          .value
+          .trim();
+
+      const nameParts =
+        enteredName
+          .split(/\s+/)
+          .filter(Boolean);
+
+      if (
+        nameParts.length < 4
+      ) {
+        nameWarning.textContent =
+          "اكتبي اسمكِ الرباعي كاملًا.";
+
+        nameWarning
+          .classList
+          .add("show");
+
+        return;
+      }
+
+      studentName =
+        enteredName;
+
+      localStorage.setItem(
+        "nafesStudentName",
+        studentName
+      );
+
+      nameWarning
+        .classList
+        .remove("show");
+
+      startScreen
+        .classList
+        .remove("active");
+
+      quizScreen
+        .classList
+        .add("active");
+
+      renderQuestion();
+    }
+
+    function updateTopStatus() {
+      questionCounter.textContent =
+        `السؤال ${
+          currentQuestion + 1
+        } من ${
+          questions.length
+        }`;
+
+      liveScore.textContent =
+        `الدرجة: ${score}`;
+
+      progressBar.style.width =
+        `${
+          (
+            (
+              currentQuestion + 1
+            ) /
+            questions.length
+          ) * 100
+        }%`;
+    }
+
+    function renderQuestion() {
+      const item =
+        questions[
+          currentQuestion
+        ];
+
+      updateTopStatus();
+
+      questionNumber.textContent =
+        `السؤال ${
+          currentQuestion + 1
+        }`;
+
+      questionSkill.textContent =
+        item.skill;
+
+      passageCard.innerHTML =
+        mainPassage;
+
+      questionText.textContent =
+        item.question;
+
+      answersContainer.innerHTML =
+        "";
+
+      feedback.className =
+        "feedback";
+
+      feedback.innerHTML =
+        "";
+
+      item.options.forEach(
+        (
+          optionText,
+          optionIndex
+        ) => {
+          const button =
+            document.createElement(
+              "button"
+            );
+
+          button.type =
+            "button";
+
+          button.className =
+            "answer-button";
+
+          button.textContent =
+            optionText;
+
+          button.addEventListener(
+            "click",
+            () => {
+              chooseAnswer(
+                optionIndex,
+                button
+              );
+            }
+          );
+
+          answersContainer
+            .appendChild(
+              button
+            );
         }
       );
 
-      answersContainer
-        .appendChild(
-          button
+      previousButton.disabled =
+        currentQuestion === 0;
+
+      nextButton.disabled =
+        selectedAnswers[
+          currentQuestion
+        ] === null;
+
+      nextButton.textContent =
+        currentQuestion ===
+        questions.length - 1
+          ? "عرض النتيجة"
+          : "التالي";
+
+      restoreAnswer();
+
+      const pageScroll =
+        document.querySelector(
+          ".page-scroll"
         );
+
+      if (pageScroll) {
+        pageScroll.scrollTop =
+          0;
+      }
     }
-  );
 
-  previousButton.disabled =
-    currentQuestion === 0;
+    function restoreAnswer() {
+      const selected =
+        selectedAnswers[
+          currentQuestion
+        ];
 
-  nextButton.disabled =
-    selectedAnswers[
-      currentQuestion
-    ] === null;
-
-  nextButton.textContent =
-    currentQuestion ===
-    questions.length - 1
-      ? "عرض النتيجة"
-      : "التالي";
-
-  restoreAnswer();
-
-  const pageScroll =
-    document.querySelector(
-      ".page-scroll"
-    );
-
-  if (pageScroll) {
-    pageScroll.scrollTop =
-      0;
-  }
-}
-
-function restoreAnswer() {
-  const selected =
-    selectedAnswers[
-      currentQuestion
-    ];
-
-  if (
-    selected === null
-  ) {
-    return;
-  }
-
-  const item =
-    questions[
-      currentQuestion
-    ];
-
-  const buttons =
-    Array.from(
-      answersContainer
-        .querySelectorAll(
-          ".answer-button"
-        )
-    );
-
-  buttons.forEach(
-    button => {
-      button.disabled =
-        true;
-    }
-  );
-
-  if (
-    selected ===
-    item.correct
-  ) {
-    buttons[selected]
-      .classList
-      .add("correct");
-
-    feedback.className =
-      "feedback correct show";
-
-    feedback.innerHTML = `
-      <strong>
-        ✅ إجابة صحيحة
-      </strong>
-
-      <br>
-
-      ${item.explanation}
-    `;
-  } else {
-    buttons[selected]
-      .classList
-      .add("wrong");
-
-    buttons[item.correct]
-      .classList
-      .add("correct");
-
-    feedback.className =
-      "feedback wrong show";
-
-    feedback.innerHTML = `
-      <strong>
-        ❌ الإجابة غير صحيحة
-      </strong>
-
-      <br>
-
-      <b>
-        الإجابة الصحيحة:
-      </b>
-
-      ${
-        item.options[
-          item.correct
-        ]
+      if (
+        selected === null
+      ) {
+        return;
       }
 
-      <br><br>
+      const item =
+        questions[
+          currentQuestion
+        ];
 
-      ${item.explanation}
-    `;
-  }
-}
+      const buttons =
+        Array.from(
+          answersContainer
+            .querySelectorAll(
+              ".answer-button"
+            )
+        );
 
-function chooseAnswer(
-  selectedIndex,
-  selectedButton
-) {
-  if (
-    selectedAnswers[
-      currentQuestion
-    ] !== null
-  ) {
-    return;
-  }
+      buttons.forEach(
+        button => {
+          button.disabled =
+            true;
+        }
+      );
 
-  const item =
-    questions[
-      currentQuestion
-    ];
+      if (
+        selected ===
+        item.correct
+      ) {
+        buttons[selected]
+          .classList
+          .add("correct");
 
-  const buttons =
-    Array.from(
-      answersContainer
-        .querySelectorAll(
-          ".answer-button"
-        )
-    );
+        feedback.className =
+          "feedback correct show";
 
-  selectedAnswers[
-    currentQuestion
-  ] =
-    selectedIndex;
+        feedback.innerHTML = `
+          <strong>
+            ✅ إجابة صحيحة
+          </strong>
 
-  buttons.forEach(
-    button => {
-      button.disabled =
-        true;
+          <br>
+
+          ${item.explanation}
+        `;
+      } else {
+        buttons[selected]
+          .classList
+          .add("wrong");
+
+        buttons[item.correct]
+          .classList
+          .add("correct");
+
+        feedback.className =
+          "feedback wrong show";
+
+        feedback.innerHTML = `
+          <strong>
+            ❌ الإجابة غير صحيحة
+          </strong>
+
+          <br>
+
+          <b>
+            الإجابة الصحيحة:
+          </b>
+
+          ${
+            item.options[
+              item.correct
+            ]
+          }
+
+          <br><br>
+
+          ${item.explanation}
+        `;
+      }
     }
-  );
 
-  if (
-    selectedIndex ===
-    item.correct
-  ) {
-    score++;
-
-    selectedButton
-      .classList
-      .add("correct");
-
-    feedback.className =
-      "feedback correct show";
-
-    feedback.innerHTML = `
-      <strong>
-        ✅ أحسنتِ، اختياركِ هو الأدق
-      </strong>
-
-      <br>
-
-      ${item.explanation}
-    `;
-
-    showAnswerMark(true);
-
-    playTone(true);
-
-  } else {
-    selectedButton
-      .classList
-      .add("wrong");
-
-    buttons[item.correct]
-      .classList
-      .add("correct");
-
-    feedback.className =
-      "feedback wrong show";
-
-    feedback.innerHTML = `
-      <strong>
-        ❌ الإجابة غير صحيحة
-      </strong>
-
-      <br>
-
-      <b>
-        الإجابة الصحيحة:
-      </b>
-
-      ${
-        item.options[
-          item.correct
-        ]
+    function chooseAnswer(
+      selectedIndex,
+      selectedButton
+    ) {
+      if (
+        selectedAnswers[
+          currentQuestion
+        ] !== null
+      ) {
+        return;
       }
 
-      <br><br>
+      const item =
+        questions[
+          currentQuestion
+        ];
 
-      ${item.explanation}
-    `;
+      const buttons =
+        Array.from(
+          answersContainer
+            .querySelectorAll(
+              ".answer-button"
+            )
+        );
 
-    showAnswerMark(false);
+      selectedAnswers[
+        currentQuestion
+      ] =
+        selectedIndex;
 
-    playTone(false);
-  }
+      buttons.forEach(
+        button => {
+          button.disabled =
+            true;
+        }
+      );
+            if (
+        selectedIndex ===
+        item.correct
+      ) {
+        score++;
 
-  liveScore.textContent =
-    `الدرجة: ${score}`;
+        selectedButton
+          .classList
+          .add("correct");
 
-  nextButton.disabled =
-    false;
-}
+        feedback.className =
+          "feedback correct show";
 
-function animatePage(
-  direction,
-  callback
-) {
-  page.classList.remove(
-    "flip-next",
-    "flip-previous"
-  );
+        feedback.innerHTML = `
+          <strong>
+            ✅ أحسنتِ، اختياركِ هو الأدق
+          </strong>
 
-  void page.offsetWidth;
+          <br>
 
-  page.classList.add(
-    direction === "next"
-      ? "flip-next"
-      : "flip-previous"
-  );
+          ${item.explanation}
+        `;
 
-  setTimeout(
-    () => {
-      callback();
+        showAnswerMark(true);
 
+        playTone(true);
+
+      } else {
+        selectedButton
+          .classList
+          .add("wrong");
+
+        buttons[item.correct]
+          .classList
+          .add("correct");
+
+        feedback.className =
+          "feedback wrong show";
+
+        feedback.innerHTML = `
+          <strong>
+            ❌ الإجابة غير صحيحة
+          </strong>
+
+          <br>
+
+          <b>
+            الإجابة الصحيحة:
+          </b>
+
+          ${
+            item.options[
+              item.correct
+            ]
+          }
+
+          <br><br>
+
+          ${item.explanation}
+        `;
+
+        showAnswerMark(false);
+
+        playTone(false);
+      }
+
+      liveScore.textContent =
+        `الدرجة: ${score}`;
+
+      nextButton.disabled =
+        false;
+    }
+
+    function animatePage(
+      direction,
+      callback
+    ) {
       page.classList.remove(
         "flip-next",
         "flip-previous"
       );
-    },
-    220
-  );
-}
 
-function showPreviousQuestion() {
-  if (
-    currentQuestion === 0
-  ) {
-    return;
-  }
+      void page.offsetWidth;
 
-  animatePage(
-    "previous",
-    () => {
-      currentQuestion--;
+      page.classList.add(
+        direction === "next"
+          ? "flip-next"
+          : "flip-previous"
+      );
+
+      setTimeout(
+        () => {
+          callback();
+
+          page.classList.remove(
+            "flip-next",
+            "flip-previous"
+          );
+        },
+        220
+      );
+    }
+
+    function showPreviousQuestion() {
+      if (
+        currentQuestion === 0
+      ) {
+        return;
+      }
+
+      animatePage(
+        "previous",
+        () => {
+          currentQuestion--;
+
+          renderQuestion();
+        }
+      );
+    }
+
+    function showNextQuestion() {
+      if (
+        selectedAnswers[
+          currentQuestion
+        ] === null
+      ) {
+        return;
+      }
+
+      if (
+        currentQuestion <
+        questions.length - 1
+      ) {
+        animatePage(
+          "next",
+          () => {
+            currentQuestion++;
+
+            renderQuestion();
+          }
+        );
+
+        return;
+      }
+
+      finishChallenge();
+    }
+
+    function getResultMessage() {
+      const percentage =
+        Math.round(
+          (
+            score /
+            questions.length
+          ) * 100
+        );
+
+      if (
+        percentage === 100
+      ) {
+        return {
+          icon: "👑",
+          title:
+            "إتقان كامل",
+          message:
+            "أداء استثنائي ودقة عالية في مهارات الفهم والتحليل والنقد."
+        };
+      }
+
+      if (
+        percentage >= 90
+      ) {
+        return {
+          icon: "🏆",
+          title:
+            "أداء متميز",
+          message:
+            "نتيجة متميزة جدًا واختيار دقيق للإجابات."
+        };
+      }
+
+      if (
+        percentage >= 80
+      ) {
+        return {
+          icon: "⭐",
+          title:
+            "أداء متقن",
+          message:
+            "إتقان واضح لمهارات الفهم القرائي."
+        };
+      }
+
+      if (
+        percentage >= 70
+      ) {
+        return {
+          icon: "🌟",
+          title:
+            "إنجاز جيد",
+          message:
+            "إنجاز جميل، ومع مزيد من التدريب تصلين إلى مستوى أعلى."
+        };
+      }
+
+      return {
+        icon: "🌷",
+        title:
+          "محاولة جيدة",
+        message:
+          "راجعي التفسيرات، ثم أعيدي التحدي لترتفع نتيجتك."
+      };
+    }
+
+    async function finishChallenge() {
+      quizScreen
+        .classList
+        .remove("active");
+
+      resultScreen
+        .classList
+        .add("active");
+
+      const percentage =
+        Math.round(
+          (
+            score /
+            questions.length
+          ) * 100
+        );
+
+      const certificateEarned =
+        percentage >= 80;
+
+      const result =
+        getResultMessage();
+
+      resultIcon.textContent =
+        result.icon;
+
+      resultTitle.textContent =
+        result.title;
+
+      resultScore.textContent =
+        `${score} من ${questions.length} — ${percentage}٪`;
+
+      resultMessage.innerHTML = `
+        <strong>
+          ${studentName}
+        </strong>
+
+        <br>
+
+        ${result.message}
+      `;
+
+      certificateName.textContent =
+        studentName;
+
+      const savedResult = {
+        name:
+          studentName,
+
+        challenge:
+          challengeName,
+
+        score:
+          score,
+
+        total:
+          questions.length,
+
+        percentage:
+          percentage,
+
+        certificate:
+          certificateEarned
+      };
+
+      localStorage.setItem(
+        "nafesChallenge06Result",
+        JSON.stringify(savedResult)
+      );
+
+      localStorage.setItem(
+        "nafesChallenge6Result",
+        JSON.stringify(savedResult)
+      );
+
+      localStorage.setItem(
+        "nafesStudentName",
+        studentName
+      );
+
+      if (
+        typeof window.saveNafesChallenge ===
+        "function"
+      ) {
+        await window.saveNafesChallenge({
+          number: 6,
+          title: "تحدي الفضاء السعودي",
+          name: studentName,
+          score: score,
+          total: questions.length
+        });
+      }
+
+      if (
+        certificateEarned
+      ) {
+        showCertificateButton.style.display =
+          "inline-flex";
+
+        celebrate();
+
+        playTone(true);
+      } else {
+        showCertificateButton.style.display =
+          "none";
+      }
+    }
+
+    function restartChallenge() {
+      currentQuestion =
+        0;
+
+      score =
+        0;
+
+      selectedAnswers
+        .fill(null);
+
+      certificateShell
+        .classList
+        .remove("show");
+
+      resultScreen
+        .classList
+        .remove("active");
+
+      quizScreen
+        .classList
+        .add("active");
 
       renderQuestion();
     }
-  );
-}
 
-function showNextQuestion() {
-  if (
-    selectedAnswers[
-      currentQuestion
-    ] === null
-  ) {
-    return;
-  }
+    function showCertificate() {
+      certificateShell
+        .classList
+        .add("show");
 
-  if (
-    currentQuestion <
-    questions.length - 1
-  ) {
-    animatePage(
-      "next",
-      () => {
-        currentQuestion++;
-
-        renderQuestion();
-      }
-    );
-
-    return;
-  }
-
-  finishChallenge();
+      celebrate();
     }
-    function getResultMessage() {
-  const percentage =
-    Math.round(
-      (
-        score /
-        questions.length
-      ) * 100
-    );
 
-  if (
-    percentage === 100
-  ) {
-    return {
-      icon: "👑",
-      title:
-        "إتقان كامل",
-      message:
-        "أداء استثنائي ودقة عالية في مهارات الفهم والتحليل والنقد."
-    };
-  }
-
-  if (
-    percentage >= 90
-  ) {
-    return {
-      icon: "🏆",
-      title:
-        "أداء متميز",
-      message:
-        "نتيجة متميزة جدًا واختيار دقيق للإجابات."
-    };
-  }
-
-  if (
-    percentage >= 80
-  ) {
-    return {
-      icon: "⭐",
-      title:
-        "أداء متقن",
-      message:
-        "إتقان واضح لمهارات الفهم القرائي."
-    };
-  }
-
-  if (
-    percentage >= 70
-  ) {
-    return {
-      icon: "🌟",
-      title:
-        "إنجاز جيد",
-      message:
-        "إنجاز جميل، ومع مزيد من التدريب تصلين إلى مستوى أعلى."
-    };
-  }
-
-  return {
-    icon: "🌷",
-    title:
-      "محاولة جيدة",
-    message:
-      "راجعي التفسيرات، ثم أعيدي التحدي لترتفع نتيجتك."
-  };
-}
-
-function finishChallenge() {
-  quizScreen
-    .classList
-    .remove("active");
-
-  resultScreen
-    .classList
-    .add("active");
-
-  const result =
-    getResultMessage();
-
-  resultIcon.textContent =
-    result.icon;
-
-  resultTitle.textContent =
-    result.title;
-
-  resultScore.textContent =
-    `${score} من ${questions.length}`;
-
-  resultMessage.innerHTML = `
-    <strong>
-      ${studentName}
-    </strong>
-
-    <br>
-
-    ${result.message}
-  `;
-
-  certificateName.textContent =
-    studentName;
-
-  localStorage.setItem(
-    "nafesChallenge06Result",
-    JSON.stringify({
-      name:
-        studentName,
-
-      challenge:
-        challengeName,
-
-      score:
-        score,
-
-      total:
-        questions.length
-    })
-  );
-
-  if (score >= 8) {
-  showCertificateButton.style.display = "inline-flex";
-  celebrate();
-  playTone(true);
-} else {
-  showCertificateButton.style.display = "none";
-}
-}
-
-function restartChallenge() {
-  currentQuestion =
-    0;
-
-  score =
-    0;
-
-  selectedAnswers
-    .fill(null);
-
-  certificateShell
-    .classList
-    .remove("show");
-
-  resultScreen
-    .classList
-    .remove("active");
-
-  quizScreen
-    .classList
-    .add("active");
-
-  renderQuestion();
-}
-
-function showCertificate() {
-  certificateShell
-    .classList
-    .add("show");
-
-  celebrate();
-}
-
-startButton
-  .addEventListener(
-    "click",
-    startChallenge
-  );
-
-previousButton
-  .addEventListener(
-    "click",
-    showPreviousQuestion
-  );
-
-nextButton
-  .addEventListener(
-    "click",
-    showNextQuestion
-  );
-
-showCertificateButton
-  .addEventListener(
-    "click",
-    showCertificate
-  );
-
-restartButton
-  .addEventListener(
-    "click",
-    restartChallenge
-  );
-
-nextChallengeButton
-  .addEventListener(
-    "click",
-    () => {
-      window.location.href =
-        "nafes-challenge-07.html";
-    }
-  );
-
-printButton
-  .addEventListener(
-    "click",
-    () => {
-      window.print();
-    }
-  );
-
-soundBtn
-  .addEventListener(
-    "click",
-    () => {
-      soundOn =
-        !soundOn;
-
-      localStorage.setItem(
-        "nafesSound",
-        soundOn
-          ? "on"
-          : "off"
+    startButton
+      .addEventListener(
+        "click",
+        startChallenge
       );
 
-      updateSoundButton();
+    previousButton
+      .addEventListener(
+        "click",
+        showPreviousQuestion
+      );
 
-      if (
-        soundOn
-      ) {
-        playTone(true);
-      }
+    nextButton
+      .addEventListener(
+        "click",
+        showNextQuestion
+      );
+
+    showCertificateButton
+      .addEventListener(
+        "click",
+        showCertificate
+      );
+
+    restartButton
+      .addEventListener(
+        "click",
+        restartChallenge
+      );
+
+    nextChallengeButton
+      .addEventListener(
+        "click",
+        () => {
+          window.location.href =
+            "nafes-challenge-07.html";
+        }
+      );
+
+    printButton
+      .addEventListener(
+        "click",
+        () => {
+          window.print();
+        }
+      );
+
+    soundBtn
+      .addEventListener(
+        "click",
+        () => {
+          soundOn =
+            !soundOn;
+
+          localStorage.setItem(
+            "nafesSound",
+            soundOn
+              ? "on"
+              : "off"
+          );
+
+          updateSoundButton();
+
+          if (
+            soundOn
+          ) {
+            playTone(true);
+          }
+        }
+      );
+
+    const rememberedStudentName =
+      localStorage.getItem(
+        "nafesStudentName"
+      );
+
+    if (
+      rememberedStudentName
+    ) {
+      studentNameInput.value =
+        rememberedStudentName;
     }
-  );
 
-updateSoundButton();
+    updateSoundButton();
 
-</script>
+  </script>
+
+  <script
+    type="module"
+    src="nafes-challenge-tracker.js"
+  ></script>
 
 </body>
 </html>
