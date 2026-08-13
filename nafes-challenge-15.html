@@ -2,1376 +2,1309 @@
 <html lang="ar" dir="rtl">
 
 <head>
-  <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <title>تحدي الإدمان الرقمي | منصة آفاق</title>
-
-  <style>
-    :root {
-      --primary: #4f7f8c;
-      --dark: #31515a;
-      --gold: #c9a85c;
-      --paper: #f8fdff;
-      --text: #30474d;
-      --light: #dfedf1;
-      --green: #43835d;
-      --green-light: #eaf6ee;
-      --red: #bd4040;
-      --red-light: #fff0f0;
-      --shadow:
-        0 14px 34px rgba(49, 81, 90, 0.17);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      overflow-x: hidden;
-      color: var(--text);
-      background:
-        linear-gradient(
-          180deg,
-          #fbfeff,
-          #eaf4f6
-        );
-      font-family:
-        Tahoma,
-        Arial,
-        sans-serif;
-    }
-
-    button,
-    input,
-    a {
-      font-family: inherit;
-    }
-
-    button {
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .hero {
-      padding: 24px 14px 18px;
-      text-align: center;
-      color: white;
-      background:
-        linear-gradient(
-          135deg,
-          var(--dark),
-          var(--primary)
-        );
-      border-bottom: 6px solid var(--gold);
-    }
-
-    .hero h1 {
-      margin: 0 0 8px;
-      font-size:
-        clamp(
-          28px,
-          7vw,
-          44px
-        );
-    }
-
-    .hero p {
-      max-width: 820px;
-      margin: 0 auto;
-      font-size:
-        clamp(
-          16px,
-          4vw,
-          21px
-        );
-      line-height: 1.8;
-    }
-
-    .top-panel {
-      width:
-        min(
-          94%,
-          900px
-        );
-      margin: 14px auto;
-      padding: 14px;
-      border: 2px solid #cfe0e5;
-      border-radius: 24px;
-      background: #fbfeff;
-      box-shadow: var(--shadow);
-    }
-
-    .top-row,
-    .status-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .status-row {
-      margin-top: 13px;
-      font-size: 17px;
-      font-weight: bold;
-    }
-
-    .library-link,
-    .sound-button {
-      min-height: 48px;
-      padding: 10px 15px;
-      border: 0;
-      border-radius: 15px;
-      font-size: 16px;
-      font-weight: bold;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    .library-link {
-      color: var(--dark);
-      background: var(--gold);
-    }
-
-    .sound-button {
-      color: white;
-      background: var(--primary);
-    }
-
-    .progress-track {
-      height: 13px;
-      margin-top: 9px;
-      overflow: hidden;
-      border-radius: 999px;
-      background: var(--light);
-    }
-
-    .progress-bar {
-      width: 10%;
-      height: 100%;
-      border-radius: inherit;
-      background:
-        linear-gradient(
-          90deg,
-          var(--gold),
-          var(--primary)
-        );
-      transition: width 0.35s ease;
-    }
-
-    main {
-      width:
-        min(
-          94%,
-          900px
-        );
-      margin: 0 auto;
-      padding-bottom: 28px;
-    }
-
-    .screen {
-      display: none;
-    }
-
-    .screen.active {
-      display: block;
-    }
-
-    .start-card,
-    .result-card {
-      width:
-        min(
-          100%,
-          680px
-        );
-      margin: 18px auto;
-      padding: 24px;
-      text-align: center;
-      border: 3px solid #cfe0e5;
-      border-radius: 30px;
-      background: #fbfeff;
-      box-shadow: var(--shadow);
-    }
-
-    .start-icon,
-    .result-icon {
-      font-size: 66px;
-    }
-
-    .start-card h2,
-    .result-card h2 {
-      margin: 8px 0 12px;
-      color: var(--primary);
-      font-size: 32px;
-    }
-
-    .start-card p,
-    .result-message {
-      font-size: 18px;
-      line-height: 1.9;
-    }
-
-    .student-input {
-      width: 100%;
-      min-height: 58px;
-      padding: 13px 15px;
-      border: 2px solid #bed3d9;
-      border-radius: 16px;
-      color: var(--text);
-      background: white;
-      text-align: right;
-      font-size: 18px;
-    }
-
-    .warning {
-      display: none;
-      margin-top: 10px;
-      padding: 11px;
-      border-radius: 13px;
-      color: #7d2929;
-      background: var(--red-light);
-      font-weight: bold;
-    }
-
-    .warning.show {
-      display: block;
-    }
-
-    .primary-button,
-    .result-button {
-      min-height: 54px;
-      padding: 12px 19px;
-      border: 0;
-      border-radius: 17px;
-      font-size: 18px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .primary-button {
-      margin-top: 16px;
-      color: white;
-      background: var(--primary);
-    }
-
-    .book-wrap {
-      margin: 14px auto;
-      perspective: 1500px;
-    }
-
-    .book {
-      position: relative;
-      width: 100%;
-      min-height: 610px;
-      overflow: hidden;
-      border: 3px solid #c6dbe0;
-      border-radius: 30px;
-      background: var(--paper);
-      box-shadow: var(--shadow);
-      transform-style: preserve-3d;
-    }
-
-    .page {
-      min-height: 610px;
-      padding: 22px;
-      background:
-        linear-gradient(
-          180deg,
-          #fbfeff,
-          #f0f7f9
-        );
-      transform-origin: right center;
-      backface-visibility: hidden;
-    }
-
-    .page.flip-next {
-      animation: flipNext 0.46s ease;
-    }
-
-    .page.flip-previous {
-      animation: flipPrevious 0.46s ease;
-    }
-
-    @keyframes flipNext {
-      0% {
-        transform: rotateY(0deg);
-        opacity: 1;
-      }
-
-      50% {
-        transform: rotateY(-12deg);
-        opacity: 0.55;
-      }
-
-      100% {
-        transform: rotateY(0deg);
-        opacity: 1;
-      }
-    }
-
-    @keyframes flipPrevious {
-      0% {
-        transform: rotateY(0deg);
-        opacity: 1;
-      }
-
-      50% {
-        transform: rotateY(12deg);
-        opacity: 0.55;
-      }
-
-      100% {
-        transform: rotateY(0deg);
-        opacity: 1;
-      }
-    }
-
-    .question-number {
-      width: fit-content;
-      margin: 0 auto 10px;
-      padding: 8px 16px;
-      border-radius: 999px;
-      color: white;
-      background: var(--primary);
-      font-weight: bold;
-    }
-
-    .question-skill {
-      margin: 0 0 12px;
-      text-align: center;
-      color: var(--primary);
-      font-size:
-        clamp(
-          24px,
-          6vw,
-          34px
-        );
-    }
-
-    .page-scroll {
-      max-height: 470px;
-      overflow-y: auto;
-      padding: 4px 5px 10px;
-      scrollbar-width: thin;
-    }
-
-    .passage-card {
-      padding: 18px;
-      border: 2px solid #cfe0e5;
-      border-radius: 20px;
-      background:
-        rgba(
-          255,
-          255,
-          255,
-          0.84
-        );
-      font-size:
-        clamp(
-          17px,
-          4.2vw,
-          21px
-        );
-      line-height: 2;
-      text-align: justify;
-    }
-
-    .passage-card h3 {
-      margin-top: 0;
-      color: var(--dark);
-      text-align: center;
-    }
-
-    .question-text {
-      margin-top: 16px;
-      padding: 15px;
-      border-radius: 17px;
-      color: var(--dark);
-      background: #e2eef1;
-      text-align: center;
-      font-size:
-        clamp(
-          18px,
-          4.6vw,
-          23px
-        );
-      line-height: 1.8;
-      font-weight: bold;
-    }
-
-    .answers {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 11px;
-      margin-top: 14px;
-    }
-
-    .answer-button {
-      width: 100%;
-      min-height: 64px;
-      padding: 13px;
-      border: 2px solid var(--gold);
-      border-radius: 18px;
-      color: var(--text);
-      background: white;
-      font-size:
-        clamp(
-          16px,
-          4vw,
-          20px
-        );
-      line-height: 1.65;
-      cursor: pointer;
-    }
-
-    .answer-button.correct {
-      color: #245b3b;
-      border-color: var(--green);
-      background: var(--green-light);
-    }
-
-    .answer-button.wrong {
-      color: #7d2929;
-      border-color: var(--red);
-      background: var(--red-light);
-    }
-
-    .feedback {
-      display: none;
-      margin-top: 14px;
-      padding: 15px;
-      border-radius: 18px;
-      text-align: center;
-      font-size: 17px;
-      line-height: 1.85;
-      font-weight: bold;
-    }
-
-    .feedback.show {
-      display: block;
-    }
-
-    .feedback.correct {
-      color: #245b3b;
-      border: 2px solid #8dbb9d;
-      background: var(--green-light);
-    }
-
-    .feedback.wrong {
-      color: #7d2929;
-      border: 2px solid #d6a1a1;
-      background: var(--red-light);
-    }
-
-    .navigation {
-      display: flex;
-      gap: 12px;
-      margin-top: 16px;
-    }
-
-    .nav-button {
-      flex: 1;
-      min-height: 58px;
-      border: 0;
-      border-radius: 18px;
-      font-size: 20px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .previous-button {
-      color: var(--dark);
-      background: var(--light);
-    }
-
-    .next-button {
-      color: white;
-      background: var(--primary);
-    }
-
-    .nav-button:disabled {
-      opacity: 0.42;
-      cursor: not-allowed;
-    }
-
-    .result-score {
-      margin: 16px auto;
-      padding: 14px;
-      border-radius: 18px;
-      color: white;
-      background: var(--primary);
-      font-size: 24px;
-      font-weight: bold;
-    }
-
-    .result-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 16px;
-    }
-
-    .certificate-button {
-      color: white;
-      background: var(--green);
-    }
-
-    .restart-button {
-      color: white;
-      background: var(--primary);
-    }
-
-    .next-challenge-button {
-      color: var(--dark);
-      background: var(--gold);
-    }
-
-    .print-button {
-      margin-top: 14px;
-      color: white;
-      background: var(--dark);
-    }
-
-    .certificate-shell {
-      display: none;
-      margin-top: 20px;
-    }
-
-    .certificate-shell.show {
-      display: block;
-    }
-
-    .certificate {
-      position: relative;
-      width:
-        min(
-          100%,
-          640px
-        );
-      aspect-ratio: 1100 / 775;
-      margin: 0 auto;
-      overflow: hidden;
-      border-radius: 16px;
-      background:
-        white
-        url("99.jpg")
-        center / contain
-        no-repeat;
-      box-shadow:
-        0 10px 25px
-        rgba(0, 0, 0, 0.14);
-    }
-
-    .certificate-content {
-      position: absolute;
-      top: 42%;
-      right: 18%;
-      left: 18%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      text-align: center;
-      color: #111;
-    }
-
-    .certificate-name {
-      max-width: 100%;
-      font-size:
-        clamp(
-          17px,
-          4vw,
-          27px
-        );
-      line-height: 1.25;
-      font-weight: 900;
-    }
-
-    .certificate-achievement {
-      margin-top: 6px;
-      color: var(--primary);
-      font-size:
-        clamp(
-          13px,
-          3.2vw,
-          20px
-        );
-      font-weight: bold;
-    }
-
-    .answer-mark {
-      position: fixed;
-      z-index: 9999;
-      top: 50%;
-      left: 50%;
-      display: grid;
-      place-items: center;
-      width: 110px;
-      height: 110px;
-      transform:
-        translate(
-          -50%,
-          -50%
-        );
-      color: white;
-      border-radius: 50%;
-      font-size: 72px;
-      font-weight: bold;
-      pointer-events: none;
-      animation: answerMark 0.7s ease forwards;
-    }
-
-    .correct-mark {
-      background:
-        rgba(
-          63,
-          139,
-          87,
-          0.95
-        );
-    }
-
-    .wrong-mark {
-      background:
-        rgba(
-          190,
-          56,
-          56,
-          0.95
-        );
-    }
-
-    @keyframes answerMark {
-      0% {
-        opacity: 0;
-        transform:
-          translate(
-            -50%,
-            -50%
-          )
-          scale(0.4);
-      }
-
-      35% {
-        opacity: 1;
-        transform:
-          translate(
-            -50%,
-            -50%
-          )
-          scale(1.08);
-      }
-
-      100% {
-        opacity: 0;
-        transform:
-          translate(
-            -50%,
-            -50%
-          )
-          scale(0.9);
-      }
-    }
-
-    .confetti-piece {
-      position: fixed;
-      z-index: 9998;
-      top: -40px;
-      pointer-events: none;
-      animation:
-        confettiFall
-        3.2s linear
-        forwards;
-    }
-
-    @keyframes confettiFall {
-      to {
-        transform:
-          translateY(110vh)
-          rotate(720deg);
-        opacity: 0;
-      }
-    }
-
-    footer {
-      padding: 20px 14px;
-      text-align: center;
-      color: white;
-      background: var(--dark);
-      border-top: 6px solid var(--gold);
-    }
-
-    @media (min-width: 700px) {
-      .answers {
-        grid-template-columns:
-          repeat(2, 1fr);
-      }
-
-      .page {
-        padding: 28px;
-      }
-    }
-
-    @media print {
-      @page {
-        size: landscape;
-        margin: 0;
-      }
-
-      body * {
-        visibility: hidden;
-      }
-
-      #certificate,
-      #certificate * {
-        visibility: visible;
-      }
-
-      #certificate {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        max-width: none;
-        border-radius: 0;
-        box-shadow: none;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>تحدي الإدمان الرقمي | منصة آفاق</title>
+
+<style>
+
+:root{
+  --primary:#4f7f8c;
+  --dark:#31515a;
+  --gold:#c9a85c;
+  --paper:#f8fdff;
+  --text:#30474d;
+  --light:#dfedf1;
+  --green:#43835d;
+  --green-light:#eaf6ee;
+  --red:#bd4040;
+  --red-light:#fff0f0;
+  --shadow:0 14px 34px rgba(49,81,90,.17);
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  min-height:100vh;
+  overflow-x:hidden;
+  color:var(--text);
+  background:linear-gradient(
+    180deg,
+    #fbfeff,
+    #eaf4f6
+  );
+  font-family:Tahoma,Arial,sans-serif;
+}
+
+button,
+input,
+a{
+  font-family:inherit;
+}
+
+button{
+  -webkit-tap-highlight-color:transparent;
+}
+
+.hero{
+  padding:24px 14px 18px;
+  text-align:center;
+  color:white;
+  background:linear-gradient(
+    135deg,
+    var(--dark),
+    var(--primary)
+  );
+  border-bottom:6px solid var(--gold);
+}
+
+.hero h1{
+  margin:0 0 8px;
+  font-size:clamp(28px,7vw,44px);
+}
+
+.hero p{
+  max-width:820px;
+  margin:0 auto;
+  font-size:clamp(16px,4vw,21px);
+  line-height:1.8;
+}
+
+.top-panel{
+  width:min(94%,900px);
+  margin:14px auto;
+  padding:14px;
+  border:2px solid #cfe0e5;
+  border-radius:24px;
+  background:#fbfeff;
+  box-shadow:var(--shadow);
+}
+
+.top-row,
+.status-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.status-row{
+  margin-top:13px;
+  font-size:17px;
+  font-weight:bold;
+}
+
+.library-link,
+.sound-button{
+  min-height:48px;
+  padding:10px 15px;
+  border:0;
+  border-radius:15px;
+  font-size:16px;
+  font-weight:bold;
+  text-decoration:none;
+  cursor:pointer;
+}
+
+.library-link{
+  color:var(--dark);
+  background:var(--gold);
+}
+
+.sound-button{
+  color:white;
+  background:var(--primary);
+}
+
+.progress-track{
+  height:13px;
+  margin-top:9px;
+  overflow:hidden;
+  border-radius:999px;
+  background:var(--light);
+}
+
+.progress-bar{
+  width:10%;
+  height:100%;
+  border-radius:inherit;
+  background:linear-gradient(
+    90deg,
+    var(--gold),
+    var(--primary)
+  );
+  transition:width .35s ease;
+}
+
+main{
+  width:min(94%,900px);
+  margin:0 auto;
+  padding-bottom:28px;
+}
+
+.screen{
+  display:none;
+}
+
+.screen.active{
+  display:block;
+}
+
+.start-card,
+.result-card{
+  width:min(100%,680px);
+  margin:18px auto;
+  padding:24px;
+  text-align:center;
+  border:3px solid #cfe0e5;
+  border-radius:30px;
+  background:#fbfeff;
+  box-shadow:var(--shadow);
+}
+
+.start-icon,
+.result-icon{
+  font-size:66px;
+}
+
+.start-card h2,
+.result-card h2{
+  margin:8px 0 12px;
+  color:var(--primary);
+  font-size:32px;
+}
+
+.start-card p,
+.result-message{
+  font-size:18px;
+  line-height:1.9;
+}
+
+.student-input{
+  width:100%;
+  min-height:58px;
+  padding:13px 15px;
+  border:2px solid #bed3d9;
+  border-radius:16px;
+  color:var(--text);
+  background:white;
+  text-align:right;
+  font-size:18px;
+}
+
+.warning{
+  display:none;
+  margin-top:10px;
+  padding:11px;
+  border-radius:13px;
+  color:#7d2929;
+  background:var(--red-light);
+  font-weight:bold;
+}
+
+.warning.show{
+  display:block;
+}
+
+.primary-button,
+.result-button{
+  min-height:54px;
+  padding:12px 19px;
+  border:0;
+  border-radius:17px;
+  font-size:18px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.primary-button{
+  margin-top:16px;
+  color:white;
+  background:var(--primary);
+}
+
+.book-wrap{
+  margin:14px auto;
+  perspective:1500px;
+}
+
+.book{
+  position:relative;
+  width:100%;
+  min-height:610px;
+  overflow:hidden;
+  border:3px solid #c6dbe0;
+  border-radius:30px;
+  background:var(--paper);
+  box-shadow:var(--shadow);
+}
+
+.page{
+  min-height:610px;
+  padding:22px;
+  background:linear-gradient(
+    180deg,
+    #fbfeff,
+    #f0f7f9
+  );
+}
+
+.page.flip-next{
+  animation:flipNext .46s ease;
+}
+
+.page.flip-previous{
+  animation:flipPrevious .46s ease;
+}
+
+@keyframes flipNext{
+  0%{
+    transform:rotateY(0);
+    opacity:1;
+  }
+
+  50%{
+    transform:rotateY(-12deg);
+    opacity:.55;
+  }
+
+  100%{
+    transform:rotateY(0);
+    opacity:1;
+  }
+}
+
+@keyframes flipPrevious{
+  0%{
+    transform:rotateY(0);
+    opacity:1;
+  }
+
+  50%{
+    transform:rotateY(12deg);
+    opacity:.55;
+  }
+
+  100%{
+    transform:rotateY(0);
+    opacity:1;
+  }
+}
+
+.question-number{
+  width:fit-content;
+  margin:0 auto 10px;
+  padding:8px 16px;
+  border-radius:999px;
+  color:white;
+  background:var(--primary);
+  font-weight:bold;
+}
+
+.question-skill{
+  margin:0 0 12px;
+  text-align:center;
+  color:var(--primary);
+  font-size:clamp(24px,6vw,34px);
+}
+
+.page-scroll{
+  max-height:470px;
+  overflow-y:auto;
+  padding:4px 5px 10px;
+}
+
+.passage-card{
+  padding:18px;
+  border:2px solid #cfe0e5;
+  border-radius:20px;
+  background:rgba(255,255,255,.84);
+  font-size:clamp(17px,4.2vw,21px);
+  line-height:2;
+  text-align:justify;
+}
+
+.passage-card h3{
+  margin-top:0;
+  color:var(--dark);
+  text-align:center;
+}
+
+.question-text{
+  margin-top:16px;
+  padding:15px;
+  border-radius:17px;
+  color:var(--dark);
+  background:#e2eef1;
+  text-align:center;
+  font-size:clamp(18px,4.6vw,23px);
+  line-height:1.8;
+  font-weight:bold;
+}
+
+.answers{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:11px;
+  margin-top:14px;
+}
+
+.answer-button{
+  width:100%;
+  min-height:64px;
+  padding:13px;
+  border:2px solid var(--gold);
+  border-radius:18px;
+  color:var(--text);
+  background:white;
+  font-size:clamp(16px,4vw,20px);
+  line-height:1.65;
+  cursor:pointer;
+}
+
+.answer-button.correct{
+  color:#245b3b;
+  border-color:var(--green);
+  background:var(--green-light);
+}
+
+.answer-button.wrong{
+  color:#7d2929;
+  border-color:var(--red);
+  background:var(--red-light);
+}
+
+.feedback{
+  display:none;
+  margin-top:14px;
+  padding:15px;
+  border-radius:18px;
+  text-align:center;
+  font-size:17px;
+  line-height:1.85;
+  font-weight:bold;
+}
+
+.feedback.show{
+  display:block;
+}
+
+.feedback.correct{
+  color:#245b3b;
+  border:2px solid #8dbb9d;
+  background:var(--green-light);
+}
+
+.feedback.wrong{
+  color:#7d2929;
+  border:2px solid #d6a1a1;
+  background:var(--red-light);
+}
+
+.navigation{
+  display:flex;
+  gap:12px;
+  margin-top:16px;
+}
+
+.nav-button{
+  flex:1;
+  min-height:58px;
+  border:0;
+  border-radius:18px;
+  font-size:20px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.previous-button{
+  color:var(--dark);
+  background:var(--light);
+}
+
+.next-button{
+  color:white;
+  background:var(--primary);
+}
+
+.nav-button:disabled{
+  opacity:.42;
+  cursor:not-allowed;
+}
+
+.result-score{
+  margin:16px auto;
+  padding:14px;
+  border-radius:18px;
+  color:white;
+  background:var(--primary);
+  font-size:24px;
+  font-weight:bold;
+}
+
+.result-buttons{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:10px;
+  margin-top:16px;
+}
+
+.certificate-button{
+  color:white;
+  background:var(--green);
+}
+
+.restart-button{
+  color:white;
+  background:var(--primary);
+}
+
+.next-challenge-button{
+  color:var(--dark);
+  background:var(--gold);
+}
+
+.print-button{
+  margin-top:14px;
+  color:white;
+  background:var(--dark);
+}
+
+.certificate-shell{
+  display:none;
+  margin-top:20px;
+}
+
+.certificate-shell.show{
+  display:block;
+}
+
+.certificate{
+  position:relative;
+  width:min(100%,640px);
+  aspect-ratio:1100/775;
+  margin:0 auto;
+  overflow:hidden;
+  border-radius:16px;
+  background:
+    white
+    url("99.jpg")
+    center/contain
+    no-repeat;
+  box-shadow:
+    0 10px 25px
+    rgba(0,0,0,.14);
+}
+
+.certificate-content{
+  position:absolute;
+  top:42%;
+  right:18%;
+  left:18%;
+  text-align:center;
+  color:#111;
+}
+
+.certificate-name{
+  max-width:100%;
+  font-size:clamp(17px,4vw,27px);
+  line-height:1.25;
+  font-weight:900;
+}
+
+.certificate-achievement{
+  margin-top:10px;
+  color:var(--primary);
+  font-size:clamp(13px,3.2vw,20px);
+  font-weight:bold;
+}
+
+.answer-mark{
+  position:fixed;
+  z-index:9999;
+  top:50%;
+  left:50%;
+  display:grid;
+  place-items:center;
+  width:110px;
+  height:110px;
+  transform:translate(-50%,-50%);
+  color:white;
+  border-radius:50%;
+  font-size:72px;
+  font-weight:bold;
+  pointer-events:none;
+  animation:answerMark .7s ease forwards;
+}
+
+.correct-mark{
+  background:rgba(63,139,87,.95);
+}
+
+.wrong-mark{
+  background:rgba(190,56,56,.95);
+}
+
+@keyframes answerMark{
+  0%{
+    opacity:0;
+    transform:translate(-50%,-50%) scale(.4);
+  }
+
+  35%{
+    opacity:1;
+    transform:translate(-50%,-50%) scale(1.08);
+  }
+
+  100%{
+    opacity:0;
+    transform:translate(-50%,-50%) scale(.9);
+  }
+}
+
+.confetti-piece{
+  position:fixed;
+  z-index:9998;
+  top:-40px;
+  pointer-events:none;
+  animation:confettiFall 3.2s linear forwards;
+}
+
+@keyframes confettiFall{
+  to{
+    transform:translateY(110vh) rotate(720deg);
+    opacity:0;
+  }
+}
+
+footer{
+  padding:20px 14px;
+  text-align:center;
+  color:white;
+  background:var(--dark);
+  border-top:6px solid var(--gold);
+}
+
+@media(min-width:700px){
+  .answers{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .page{
+    padding:28px;
+  }
+}
+
+@media print{
+  @page{
+    size:landscape;
+    margin:0;
+  }
+
+  body *{
+    visibility:hidden;
+  }
+
+  #certificate,
+  #certificate *{
+    visibility:visible;
+  }
+
+  #certificate{
+    position:absolute;
+    inset:0;
+    width:100%;
+    max-width:none;
+    border-radius:0;
+    box-shadow:none;
+  }
+}
+
+</style>
 </head>
 
 <body>
 
-  <header class="hero">
+<header class="hero">
 
-    <h1>
-      📱 تحدي الإدمان الرقمي
-    </h1>
+<h1>
+  📱 تحدي الإدمان الرقمي
+</h1>
 
-    <p>
-      اقرئي النص بوعي، ثم أجيبي عن عشرة أسئلة
-      تقيس فهم النص التوعوي، وتحليل الأسباب،
-      والاستنتاج، وتقويم السلوك والأدلة.
-    </p>
+<p>
+  اقرئي النص بوعي، ثم أجيبي عن عشرة أسئلة
+  تقيس فهم النص التوعوي، وتحليل الأسباب،
+  والاستنتاج، وتقويم السلوك والأدلة.
+</p>
 
-  </header>
+</header>
 
-  <section class="top-panel">
+<section class="top-panel">
 
-    <div class="top-row">
+<div class="top-row">
 
-      <a
-        class="library-link"
-        href="nafes-mock-tests.html"
-      >
-        العودة إلى تحديات نافس
-      </a>
+<a
+  class="library-link"
+  href="nafes-mock-tests.html"
+>
+  العودة إلى تحديات نافس
+</a>
 
-      <button
-        id="soundBtn"
-        class="sound-button"
-        type="button"
-      >
-        🔊 الصوت مفعّل
-      </button>
+<button
+  id="soundBtn"
+  class="sound-button"
+  type="button"
+>
+  🔊 الصوت مفعّل
+</button>
 
-    </div>
+</div>
 
-    <div class="status-row">
+<div class="status-row">
 
-      <span id="questionCounter">
-        السؤال 1 من 10
-      </span>
+<span id="questionCounter">
+  السؤال 1 من 10
+</span>
 
-      <span id="liveScore">
-        الدرجة: 0
-      </span>
+<span id="liveScore">
+  الدرجة: 0
+</span>
 
-    </div>
+</div>
 
-    <div class="progress-track">
+<div class="progress-track">
 
-      <div
-        id="progressBar"
-        class="progress-bar"
-      ></div>
+<div
+  id="progressBar"
+  class="progress-bar"
+></div>
 
-    </div>
+</div>
 
-  </section>
+</section>
 
-  <main>
+<main>
 
-    <section
-      id="startScreen"
-      class="screen active"
-    >
+<section
+  id="startScreen"
+  class="screen active"
+>
 
-      <div class="start-card">
+<div class="start-card">
 
-        <div class="start-icon">
-          ⏳
-        </div>
-
-        <h2>
-          استعدي للتحدي
-        </h2>
-
-        <p>
-          اكتبي اسمكِ الرباعي ليظهر تلقائيًا
-          في شهادة اجتياز التحدي.
-        </p>
+<div class="start-icon">
+  ⏳
+</div>
+
+<h2>
+  استعدي للتحدي
+</h2>
+
+<p>
+  اكتبي اسمكِ الرباعي ليظهر تلقائيًا
+  في شهادة اجتياز التحدي.
+</p>
 
-        <input
-          id="studentNameInput"
-          class="student-input"
-          type="text"
-          placeholder="اكتبي الاسم الرباعي"
-          autocomplete="name"
-        >
+<input
+  id="studentNameInput"
+  class="student-input"
+  type="text"
+  placeholder="اكتبي الاسم الرباعي"
+  autocomplete="name"
+>
 
-        <div
-          id="nameWarning"
-          class="warning"
-        ></div>
+<div
+  id="nameWarning"
+  class="warning"
+></div>
 
-        <button
-          id="startButton"
-          class="primary-button"
-          type="button"
-        >
-          ابدئي تحدي الإدمان الرقمي
-        </button>
+<button
+  id="startButton"
+  class="primary-button"
+  type="button"
+>
+  ابدئي تحدي الإدمان الرقمي
+</button>
 
-      </div>
+</div>
 
-    </section>
+</section>
 
-    <section
-      id="quizScreen"
-      class="screen"
-    >
+<section
+  id="quizScreen"
+  class="screen"
+>
+
+<div class="book-wrap">
 
-      <div class="book-wrap">
+<article class="book">
 
-        <article class="book">
+<div
+  id="page"
+  class="page"
+>
+
+<div
+  id="questionNumber"
+  class="question-number"
+></div>
+
+<h2
+  id="questionSkill"
+  class="question-skill"
+></h2>
+
+<div class="page-scroll">
+
+<div
+  id="passageCard"
+  class="passage-card"
+></div>
+
+<div
+  id="questionText"
+  class="question-text"
+></div>
+
+<div
+  id="answersContainer"
+  class="answers"
+></div>
+
+<div
+  id="feedback"
+  class="feedback"
+></div>
+
+</div>
+
+<div class="navigation">
+
+<button
+  id="previousButton"
+  class="nav-button previous-button"
+  type="button"
+  disabled
+>
+  السابق
+</button>
+
+<button
+  id="nextButton"
+  class="nav-button next-button"
+  type="button"
+  disabled
+>
+  التالي
+</button>
+
+</div>
+
+</div>
+
+</article>
+
+</div>
 
-          <div
-            id="page"
-            class="page"
-          >
+</section>
+<section
+  id="resultScreen"
+  class="screen"
+>
 
-            <div
-              id="questionNumber"
-              class="question-number"
-            ></div>
+<div class="result-card">
 
-            <h2
-              id="questionSkill"
-              class="question-skill"
-            ></h2>
-
-            <div class="page-scroll">
-
-              <div
-                id="passageCard"
-                class="passage-card"
-              ></div>
-
-              <div
-                id="questionText"
-                class="question-text"
-              ></div>
-
-              <div
-                id="answersContainer"
-                class="answers"
-              ></div>
-
-              <div
-                id="feedback"
-                class="feedback"
-              ></div>
-
-            </div>
-
-            <div class="navigation">
-
-              <button
-                id="previousButton"
-                class="nav-button previous-button"
-                type="button"
-                disabled
-              >
-                السابق
-              </button>
-
-              <button
-                id="nextButton"
-                class="nav-button next-button"
-                type="button"
-                disabled
-              >
-                التالي
-              </button>
-
-            </div>
-
-          </div>
+<div
+  id="resultIcon"
+  class="result-icon"
+>
+  📱
+</div>
 
-        </article>
+<h2 id="resultTitle">
+  اكتمل التحدي
+</h2>
 
-      </div>
+<div
+  id="resultScore"
+  class="result-score"
+></div>
 
-    </section>
+<p
+  id="resultMessage"
+  class="result-message"
+></p>
 
-    <section
-      id="resultScreen"
-      class="screen"
-    >
+<div class="result-buttons">
 
-      <div class="result-card">
+<button
+  id="showCertificateButton"
+  class="result-button certificate-button"
+  type="button"
+>
+  🎓 عرض الشهادة
+</button>
 
-        <div
-          id="resultIcon"
-          class="result-icon"
-        >
-          📱
-        </div>
+<button
+  id="restartButton"
+  class="result-button restart-button"
+  type="button"
+>
+  البدء من جديد
+</button>
 
-        <h2 id="resultTitle">
-          اكتمل التحدي
-        </h2>
+<button
+  id="nextChallengeButton"
+  class="result-button next-challenge-button"
+  type="button"
+>
+  التحدي التالي
+</button>
 
-        <div
-          id="resultScore"
-          class="result-score"
-        ></div>
+</div>
 
-        <p
-          id="resultMessage"
-          class="result-message"
-        ></p>
+<div
+  id="certificateShell"
+  class="certificate-shell"
+>
 
-        <div class="result-buttons">
+<div
+  id="certificate"
+  class="certificate"
+>
 
-          <button
-            id="showCertificateButton"
-            class="result-button certificate-button"
-            type="button"
-          >
-            🎓 عرض الشهادة
-          </button>
+<div class="certificate-content">
 
-          <button
-            id="restartButton"
-            class="result-button restart-button"
-            type="button"
-          >
-            البدء من جديد
-          </button>
+<div
+  id="certificateName"
+  class="certificate-name"
+></div>
 
-          <button
-            id="nextChallengeButton"
-            class="result-button next-challenge-button"
-            type="button"
-          >
-            التحدي التالي
-          </button>
+<div class="certificate-achievement">
+  لاجتيازها تحدي الإدمان الرقمي بنجاح
+</div>
 
-        </div>
+</div>
 
-        <div
-          id="certificateShell"
-          class="certificate-shell"
-        >
+</div>
 
-          <div
-            id="certificate"
-            class="certificate"
-          >
+<button
+  id="printButton"
+  class="result-button print-button"
+  type="button"
+>
+  🖨️ طباعة أو حفظ الشهادة
+</button>
 
-            <div class="certificate-content">
+</div>
 
-              <div
-                id="certificateName"
-                class="certificate-name"
-              ></div>
+</div>
 
-              <div class="certificate-achievement">
-                لاجتيازها تحدي الإدمان الرقمي بنجاح
-              </div>
+</section>
 
-            </div>
+</main>
 
-          </div>
+<footer>
+  جميع الحقوق محفوظة © 2026
+</footer>
 
-          <button
-            id="printButton"
-            class="result-button print-button"
-            type="button"
-          >
-            🖨️ طباعة أو حفظ الشهادة
-          </button>
+<script>
 
-        </div>
-
-      </div>
-
-    </section>
-
-  </main>
-
-  <footer>
-    جميع الحقوق محفوظة © 2026
-  </footer>
-
-  <script>
-    const challengeName =
+const challengeName =
   "الإدمان الرقمي";
 
 const mainPassage = `
-  <h3>
-    الهاتف الذكي... حين تتحول الأداة إلى عادة
-  </h3>
+<h3>
+  الهاتف الذكي... حين تتحول الأداة إلى عادة
+</h3>
 
-  <p>
-    أصبح الهاتف الذكي جزءًا من تفاصيل الحياة اليومية؛
-    فهو وسيلة للتواصل، والتعلم، والوصول إلى المعلومات،
-    وإنجاز كثير من المهام بسرعة.
-    غير أن كثرة الاستخدام لا تعني دائمًا وجود إدمان،
-    فالمشكلة لا تقاس بعدد الساعات وحده،
-    بل بمدى قدرة الإنسان على التحكم في استخدامه،
-    وتأثيره في النوم والدراسة والعلاقات والواجبات.
-  </p>
+<p>
+  أصبح الهاتف الذكي جزءًا من تفاصيل الحياة اليومية؛
+  فهو وسيلة للتواصل، والتعلم، والوصول إلى المعلومات،
+  وإنجاز كثير من المهام بسرعة.
+  غير أن كثرة الاستخدام لا تعني دائمًا وجود إدمان،
+  فالمشكلة لا تقاس بعدد الساعات وحده،
+  بل بمدى قدرة الإنسان على التحكم في استخدامه،
+  وتأثيره في النوم والدراسة والعلاقات والواجبات.
+</p>
 
-  <p>
-    وقد تبدأ العادة الرقمية بتصرف بسيط،
-    كفتح الهاتف عند سماع إشعار،
-    ثم تتحول مع الوقت إلى استجابة تلقائية
-    حتى من دون وجود حاجة واضحة.
-    وتساعد بعض التطبيقات على استمرار التصفح
-    من خلال التحديث المتواصل،
-    والمقاطع القصيرة،
-    والتنبيهات التي تدفع المستخدم
-    إلى العودة مرة بعد أخرى.
-  </p>
+<p>
+  وقد تبدأ العادة الرقمية بتصرف بسيط،
+  كفتح الهاتف عند سماع إشعار،
+  ثم تتحول مع الوقت إلى استجابة تلقائية
+  حتى من دون وجود حاجة واضحة.
+  وتساعد بعض التطبيقات على استمرار التصفح
+  من خلال التحديث المتواصل،
+  والمقاطع القصيرة،
+  والتنبيهات التي تدفع المستخدم
+  إلى العودة مرة بعد أخرى.
+</p>
 
-  <p>
-    ويظن بعض الناس أن إغلاق الهاتف يومًا كاملًا
-    هو الحل الأفضل،
-    لكن التغيير المفاجئ قد لا يستمر
-    إذا لم يفهم الشخص سبب استخدامه المفرط.
-    فقد يلجأ إلى الهاتف بسبب الملل،
-    أو القلق،
-    أو الهروب من مهمة صعبة،
-    أو الخوف من فوات ما ينشره الآخرون.
-    ولذلك تختلف الخطة المناسبة باختلاف السبب.
-  </p>
+<p>
+  ويظن بعض الناس أن إغلاق الهاتف يومًا كاملًا
+  هو الحل الأفضل،
+  لكن التغيير المفاجئ قد لا يستمر
+  إذا لم يفهم الشخص سبب استخدامه المفرط.
+  فقد يلجأ إلى الهاتف بسبب الملل،
+  أو القلق،
+  أو الهروب من مهمة صعبة،
+  أو الخوف من فوات ما ينشره الآخرون.
+  ولذلك تختلف الخطة المناسبة باختلاف السبب.
+</p>
 
-  <p>
-    ويمكن تقليل الاستخدام بوسائل عملية،
-    مثل إيقاف التنبيهات غير الضرورية،
-    وتحديد أوقات خالية من الهاتف،
-    وإبعاد الجهاز عن مكان النوم،
-    ومتابعة الوقت الفعلي الذي يقضيه المستخدم
-    في كل تطبيق.
-    كما يفيد استبدال بعض أوقات التصفح
-    بنشاط محدد،
-    كالمشي أو القراءة أو الحديث مع الأسرة.
-  </p>
+<p>
+  ويمكن تقليل الاستخدام بوسائل عملية،
+  مثل إيقاف التنبيهات غير الضرورية،
+  وتحديد أوقات خالية من الهاتف،
+  وإبعاد الجهاز عن مكان النوم،
+  ومتابعة الوقت الفعلي الذي يقضيه المستخدم
+  في كل تطبيق.
+  كما يفيد استبدال بعض أوقات التصفح
+  بنشاط محدد،
+  كالمشي أو القراءة أو الحديث مع الأسرة.
+</p>
 
-  <p>
-    ومع ذلك، لا ينبغي أن يتحول التنظيم
-    إلى كراهية للتقنية؛
-    فالهاتف أداة نافعة حين يستخدم بوعي.
-    والمطلوب ليس الانقطاع الكامل،
-    بل أن يبقى القرار بيد المستخدم،
-    فلا تقوده الإشعارات،
-    ولا يسرق التصفح وقت نومه ودراسته،
-    ولا يصبح حضوره في العالم الرقمي
-    على حساب حياته الواقعية.
-  </p>
+<p>
+  ومع ذلك، لا ينبغي أن يتحول التنظيم
+  إلى كراهية للتقنية؛
+  فالهاتف أداة نافعة حين يستخدم بوعي.
+  والمطلوب ليس الانقطاع الكامل،
+  بل أن يبقى القرار بيد المستخدم،
+  فلا تقوده الإشعارات،
+  ولا يسرق التصفح وقت نومه ودراسته،
+  ولا يصبح حضوره في العالم الرقمي
+  على حساب حياته الواقعية.
+</p>
 `;
 
 const questions = [
 
-  {
-    skill:
-      "المفردات في السياق",
+{
+  skill:
+    "المفردات في السياق",
 
-    question:
-      "ما المعنى الأدق لعبارة «استجابة تلقائية» في الفقرة الثانية؟",
+  question:
+    "ما المعنى الأدق لعبارة «استجابة تلقائية» في الفقرة الثانية؟",
 
-    options: [
-      "تصرف يحدث من غير تفكير واعٍ كل مرة.",
-      "رد مكتوب يرسله الهاتف وحده.",
-      "استخدام الجهاز في حالات الطوارئ.",
-      "استجابة سريعة لاتصال مهم."
-    ],
+  options:[
+    "تصرف يحدث من غير تفكير واعٍ كل مرة.",
+    "رد مكتوب يرسله الهاتف وحده.",
+    "استخدام الجهاز في حالات الطوارئ.",
+    "استجابة سريعة لاتصال مهم."
+  ],
 
-    correct: 0,
+  correct:0,
 
-    explanation:
-      "السياق يوضح أن فتح الهاتف قد يصبح عادة تحدث حتى من دون حاجة واضحة؛ لذلك فالمقصود تصرف شبه آلي."
-  },
+  explanation:
+    "السياق يوضح أن فتح الهاتف قد يصبح عادة تحدث حتى من دون حاجة واضحة؛ لذلك فالمقصود تصرف شبه آلي."
+},
 
-  {
-    skill:
-      "الفكرة الرئيسة",
+{
+  skill:
+    "الفكرة الرئيسة",
 
-    question:
-      "ما الفكرة الرئيسة التي ينتظم حولها النص كله؟",
+  question:
+    "ما الفكرة الرئيسة التي ينتظم حولها النص كله؟",
 
-    options: [
-      "الهواتف الذكية ضارة ويجب تركها نهائيًا.",
-      "الإدمان الرقمي يقاس بعدد ساعات الاستخدام فقط.",
-      "الاستخدام الرقمي يحتاج إلى وعي بالأسباب وتنظيم يحافظ على السيطرة والتوازن.",
-      "أفضل علاج هو إغلاق الهاتف ليوم كامل."
-    ],
+  options:[
+    "الهواتف الذكية ضارة ويجب تركها نهائيًا.",
+    "الإدمان الرقمي يقاس بعدد ساعات الاستخدام فقط.",
+    "الاستخدام الرقمي يحتاج إلى وعي بالأسباب وتنظيم يحافظ على السيطرة والتوازن.",
+    "أفضل علاج هو إغلاق الهاتف ليوم كامل."
+  ],
 
-    correct: 2,
+  correct:2,
 
-    explanation:
-      "الخيار الثالث هو الأشمل؛ لأنه يجمع فهم أسباب الاستخدام المفرط ووضع تنظيم عملي دون رفض التقنية."
-  },
+  explanation:
+    "الخيار الثالث هو الأشمل؛ لأنه يجمع فهم أسباب الاستخدام المفرط ووضع تنظيم عملي دون رفض التقنية."
+},
 
-  {
-    skill:
-      "الاستنتاج",
+{
+  skill:
+    "الاستنتاج",
 
-    question:
-      "ماذا نستنتج من قول الكاتب إن كثرة الساعات لا تكفي وحدها للحكم على الإدمان؟",
+  question:
+    "ماذا نستنتج من قول الكاتب إن كثرة الساعات لا تكفي وحدها للحكم على الإدمان؟",
 
-    options: [
-      "أن الوقت لا علاقة له بالاستخدام الرقمي.",
-      "أن أثر الاستخدام والقدرة على التحكم معياران مهمان أيضًا.",
-      "أن كل استخدام طويل مفيد.",
-      "أن الإدمان لا يؤثر في الدراسة أو النوم."
-    ],
+  options:[
+    "أن الوقت لا علاقة له بالاستخدام الرقمي.",
+    "أن أثر الاستخدام والقدرة على التحكم معياران مهمان أيضًا.",
+    "أن كل استخدام طويل مفيد.",
+    "أن الإدمان لا يؤثر في الدراسة أو النوم."
+  ],
 
-    correct: 1,
+  correct:1,
 
-    explanation:
-      "النص يربط المشكلة بالتحكم وبالأثر في النوم والدراسة والعلاقات، لا بعدد الساعات فقط."
-  },
+  explanation:
+    "النص يربط المشكلة بالتحكم وبالأثر في النوم والدراسة والعلاقات، لا بعدد الساعات فقط."
+},
 
-  {
-    skill:
-      "العلاقة بين الأفكار",
+{
+  skill:
+    "العلاقة بين الأفكار",
 
-    question:
-      "ما العلاقة بين الفقرة الثالثة والفقرة الرابعة؟",
+  question:
+    "ما العلاقة بين الفقرة الثالثة والفقرة الرابعة؟",
 
-    options: [
-      "الثالثة تشرح أسباب الاستخدام المفرط، والرابعة تقترح وسائل عملية لتنظيمه.",
-      "الثالثة ترفض الهاتف، والرابعة تمدحه.",
-      "الفقرتان تتحدثان عن الإشعارات فقط.",
-      "الرابعة تكرر الثالثة دون إضافة."
-    ],
+  options:[
+    "الثالثة تشرح أسباب الاستخدام المفرط، والرابعة تقترح وسائل عملية لتنظيمه.",
+    "الثالثة ترفض الهاتف، والرابعة تمدحه.",
+    "الفقرتان تتحدثان عن الإشعارات فقط.",
+    "الرابعة تكرر الثالثة دون إضافة."
+  ],
 
-    correct: 0,
+  correct:0,
 
-    explanation:
-      "تعرض الفقرة الثالثة الدوافع المحتملة، ثم تنتقل الرابعة إلى خطوات قابلة للتطبيق."
-  },
+  explanation:
+    "تعرض الفقرة الثالثة الدوافع المحتملة، ثم تنتقل الرابعة إلى خطوات قابلة للتطبيق."
+},
 
-  {
-    skill:
-      "الحقيقة والرأي",
+{
+  skill:
+    "الحقيقة والرأي",
 
-    question:
-      "أي العبارات الآتية تمثل حكمًا تفسيريًا أكثر من كونها معلومة مباشرة؟",
+  question:
+    "أي العبارات الآتية تمثل حكمًا تفسيريًا أكثر من كونها معلومة مباشرة؟",
 
-    options: [
-      "تستخدم بعض التطبيقات التنبيهات والمقاطع القصيرة.",
-      "يمكن متابعة الوقت المستهلك في التطبيقات.",
-      "قد يؤثر الهاتف في النوم والدراسة.",
-      "المشكلة تبدأ حين يفقد المستخدم السيطرة على قراره."
-    ],
+  options:[
+    "تستخدم بعض التطبيقات التنبيهات والمقاطع القصيرة.",
+    "يمكن متابعة الوقت المستهلك في التطبيقات.",
+    "قد يؤثر الهاتف في النوم والدراسة.",
+    "المشكلة تبدأ حين يفقد المستخدم السيطرة على قراره."
+  ],
 
-    correct: 3,
+  correct:3,
 
-    explanation:
-      "العبارة الرابعة حكم تحليلي يلخص موقف الكاتب، بينما بقية العبارات تصف ممارسات أو آثارًا مباشرة."
-  },
+  explanation:
+    "العبارة الرابعة حكم تحليلي يلخص موقف الكاتب، بينما بقية العبارات تصف ممارسات أو آثارًا مباشرة."
+},
 
-  {
-    skill:
-      "تقويم الدليل",
+{
+  skill:
+    "تقويم الدليل",
 
-    question:
-      "أي دليل سيكون الأقوى لإثبات أن خطة تنظيم الهاتف نجحت؟",
+  question:
+    "أي دليل سيكون الأقوى لإثبات أن خطة تنظيم الهاتف نجحت؟",
 
-    options: [
-      "إعجاب المستخدم بفكرة الخطة.",
-      "انخفاض وقت الاستخدام وتحسن النوم والإنجاز خلال مدة واضحة.",
-      "حذف تطبيق واحد فقط.",
-      "شراء هاتف جديد."
-    ],
+  options:[
+    "إعجاب المستخدم بفكرة الخطة.",
+    "انخفاض وقت الاستخدام وتحسن النوم والإنجاز خلال مدة واضحة.",
+    "حذف تطبيق واحد فقط.",
+    "شراء هاتف جديد."
+  ],
 
-    correct: 1,
+  correct:1,
 
-    explanation:
-      "القياس قبل الخطة وبعدها في أكثر من مؤشر يثبت الأثر بصورة أقوى من الانطباع أو التغيير الشكلي."
-  },
+  explanation:
+    "القياس قبل الخطة وبعدها في أكثر من مؤشر يثبت الأثر بصورة أقوى من الانطباع أو التغيير الشكلي."
+},
 
-  {
-    skill:
-      "تحليل السبب والنتيجة",
+{
+  skill:
+    "تحليل السبب والنتيجة",
 
-    question:
-      "ما النتيجة الأقرب لكثرة التنبيهات غير الضرورية؟",
+  question:
+    "ما النتيجة الأقرب لكثرة التنبيهات غير الضرورية؟",
 
-    options: [
-      "زيادة القدرة على التركيز.",
-      "تقليل العودة إلى الهاتف.",
-      "تحفيز المستخدم على فتح الهاتف مرات متكررة.",
-      "تحسين جودة النوم."
-    ],
+  options:[
+    "زيادة القدرة على التركيز.",
+    "تقليل العودة إلى الهاتف.",
+    "تحفيز المستخدم على فتح الهاتف مرات متكررة.",
+    "تحسين جودة النوم."
+  ],
 
-    correct: 2,
+  correct:2,
 
-    explanation:
-      "النص يوضح أن التنبيهات تدفع المستخدم إلى العودة للتطبيقات مرة بعد أخرى."
-  },
+  explanation:
+    "النص يوضح أن التنبيهات تدفع المستخدم إلى العودة للتطبيقات مرة بعد أخرى."
+},
 
-  {
-    skill:
-      "التطبيق",
+{
+  skill:
+    "التطبيق",
 
-    question:
-      "طالبة تفتح الهاتف كلما بدأت مهمة صعبة. ما الخطوة الأكثر اتساقًا مع النص؟",
+  question:
+    "طالبة تفتح الهاتف كلما بدأت مهمة صعبة. ما الخطوة الأكثر اتساقًا مع النص؟",
 
-    options: [
-      "إلغاء جميع الأجهزة من حياتها.",
-      "تحديد سبب الهروب، وإبعاد الهاتف أثناء المهمة، وتقسيم العمل إلى خطوات.",
-      "الاستمرار في التصفح حتى يزول القلق.",
-      "زيادة عدد التطبيقات الترفيهية."
-    ],
+  options:[
+    "إلغاء جميع الأجهزة من حياتها.",
+    "تحديد سبب الهروب، وإبعاد الهاتف أثناء المهمة، وتقسيم العمل إلى خطوات.",
+    "الاستمرار في التصفح حتى يزول القلق.",
+    "زيادة عدد التطبيقات الترفيهية."
+  ],
 
-    correct: 1,
+  correct:1,
 
-    explanation:
-      "النص يدعو إلى فهم السبب ثم استخدام تنظيم عملي، لا إلى حل مفاجئ لا يعالج الدافع الحقيقي."
-  },
+  explanation:
+    "النص يدعو إلى فهم السبب ثم استخدام تنظيم عملي، لا إلى حل مفاجئ لا يعالج الدافع الحقيقي."
+},
 
-  {
-    skill:
-      "التلخيص",
+{
+  skill:
+    "التلخيص",
 
-    question:
-      "أي الملخصات الآتية يحافظ على أفكار النص الأساسية بأكبر دقة؟",
+  question:
+    "أي الملخصات الآتية يحافظ على أفكار النص الأساسية بأكبر دقة؟",
 
-    options: [
-      "الهاتف ضار في جميع الحالات.",
-      "تنظيم الاستخدام الرقمي يتطلب فهم دوافعه ووضع حدود عملية دون رفض التقنية.",
-      "عدد الساعات هو المعيار الوحيد للإدمان.",
-      "الحل الأفضل هو الانقطاع الكامل."
-    ],
+  options:[
+    "الهاتف ضار في جميع الحالات.",
+    "تنظيم الاستخدام الرقمي يتطلب فهم دوافعه ووضع حدود عملية دون رفض التقنية.",
+    "عدد الساعات هو المعيار الوحيد للإدمان.",
+    "الحل الأفضل هو الانقطاع الكامل."
+  ],
 
-    correct: 1,
+  correct:1,
 
-    explanation:
-      "الخيار الثاني يجمع الفكرة الأساسية: وعي بالدوافع، وتنظيم عملي، واستخدام متوازن."
-  },
+  explanation:
+    "الخيار الثاني يجمع الفكرة الأساسية: وعي بالدوافع، وتنظيم عملي، واستخدام متوازن."
+},
 
-  {
-    skill:
-      "الحكم النقدي",
+{
+  skill:
+    "الحكم النقدي",
 
-    question:
-      "أي حكم نقدي يعبر عن موقف الكاتب بأكبر قدر من الدقة؟",
+  question:
+    "أي حكم نقدي يعبر عن موقف الكاتب بأكبر قدر من الدقة؟",
 
-    options: [
-      "النص يدعو إلى الخوف من التقنية.",
-      "النص يبرر الاستخدام المفرط.",
-      "النص يتبنى موقفًا متوازنًا يفرق بين الأداة النافعة والعادة المسيطرة.",
-      "النص يرى أن الحلول المفاجئة تنجح دائمًا."
-    ],
+  options:[
+    "النص يدعو إلى الخوف من التقنية.",
+    "النص يبرر الاستخدام المفرط.",
+    "النص يتبنى موقفًا متوازنًا يفرق بين الأداة النافعة والعادة المسيطرة.",
+    "النص يرى أن الحلول المفاجئة تنجح دائمًا."
+  ],
 
-    correct: 2,
+  correct:2,
 
-    explanation:
-      "الكاتب لا يرفض الهاتف، لكنه يشترط أن يبقى القرار بيد المستخدم وألا يطغى العالم الرقمي على الحياة الواقعية."
-  }
+  explanation:
+    "الكاتب لا يرفض الهاتف، لكنه يشترط أن يبقى القرار بيد المستخدم وألا يطغى العالم الرقمي على الحياة الواقعية."
+}
 
 ];
-    const startScreen =
-  document.getElementById("startScreen");
+
+const startScreen =
+  document.getElementById(
+    "startScreen"
+  );
 
 const quizScreen =
-  document.getElementById("quizScreen");
+  document.getElementById(
+    "quizScreen"
+  );
 
 const resultScreen =
-  document.getElementById("resultScreen");
+  document.getElementById(
+    "resultScreen"
+  );
 
 const studentNameInput =
-  document.getElementById("studentNameInput");
+  document.getElementById(
+    "studentNameInput"
+  );
 
 const nameWarning =
-  document.getElementById("nameWarning");
+  document.getElementById(
+    "nameWarning"
+  );
 
 const startButton =
-  document.getElementById("startButton");
+  document.getElementById(
+    "startButton"
+  );
 
 const soundBtn =
-  document.getElementById("soundBtn");
+  document.getElementById(
+    "soundBtn"
+  );
 
 const questionCounter =
-  document.getElementById("questionCounter");
+  document.getElementById(
+    "questionCounter"
+  );
 
 const liveScore =
-  document.getElementById("liveScore");
+  document.getElementById(
+    "liveScore"
+  );
 
 const progressBar =
-  document.getElementById("progressBar");
+  document.getElementById(
+    "progressBar"
+  );
 
 const questionNumber =
-  document.getElementById("questionNumber");
+  document.getElementById(
+    "questionNumber"
+  );
 
 const questionSkill =
-  document.getElementById("questionSkill");
+  document.getElementById(
+    "questionSkill"
+  );
 
 const passageCard =
-  document.getElementById("passageCard");
+  document.getElementById(
+    "passageCard"
+  );
 
 const questionText =
-  document.getElementById("questionText");
+  document.getElementById(
+    "questionText"
+  );
 
 const answersContainer =
-  document.getElementById("answersContainer");
+  document.getElementById(
+    "answersContainer"
+  );
 
 const feedback =
-  document.getElementById("feedback");
+  document.getElementById(
+    "feedback"
+  );
 
 const previousButton =
-  document.getElementById("previousButton");
+  document.getElementById(
+    "previousButton"
+  );
 
 const nextButton =
-  document.getElementById("nextButton");
+  document.getElementById(
+    "nextButton"
+  );
 
 const page =
-  document.getElementById("page");
+  document.getElementById(
+    "page"
+  );
 
 const resultIcon =
-  document.getElementById("resultIcon");
+  document.getElementById(
+    "resultIcon"
+  );
 
 const resultTitle =
-  document.getElementById("resultTitle");
+  document.getElementById(
+    "resultTitle"
+  );
 
 const resultScore =
-  document.getElementById("resultScore");
+  document.getElementById(
+    "resultScore"
+  );
 
 const resultMessage =
-  document.getElementById("resultMessage");
+  document.getElementById(
+    "resultMessage"
+  );
 
 const showCertificateButton =
   document.getElementById(
@@ -1404,9 +1337,7 @@ const printButton =
   );
 
 let studentName = "";
-
 let currentQuestion = 0;
-
 let score = 0;
 
 let soundOn =
@@ -1418,18 +1349,23 @@ const selectedAnswers =
   new Array(
     questions.length
   ).fill(null);
+  function updateSoundButton(){
 
-function updateSoundButton() {
   soundBtn.textContent =
     soundOn
       ? "🔊 الصوت مفعّل"
       : "🔇 الصوت مكتوم";
+
 }
 
-function playTone(isCorrect) {
-  if (!soundOn) return;
+function playTone(isCorrect){
 
-  try {
+  if(!soundOn){
+    return;
+  }
+
+  try{
+
     const AudioContextClass =
       window.AudioContext ||
       window.webkitAudioContext;
@@ -1454,21 +1390,15 @@ function playTone(isCorrect) {
         : 190;
 
     gain.gain.setValueAtTime(
-      isCorrect
-        ? 0.13
-        : 0.1,
+      isCorrect ? .13 : .1,
       context.currentTime
     );
 
-    gain.gain.exponentialRampToValueAtTime(
-      0.001,
-      context.currentTime +
-      (
-        isCorrect
-          ? 0.35
-          : 0.28
-      )
-    );
+    gain.gain
+      .exponentialRampToValueAtTime(
+        .001,
+        context.currentTime + .35
+      );
 
     oscillator.connect(gain);
 
@@ -1479,21 +1409,23 @@ function playTone(isCorrect) {
     oscillator.start();
 
     oscillator.stop(
-      context.currentTime +
-      (
-        isCorrect
-          ? 0.35
-          : 0.28
-      )
+      context.currentTime + .35
     );
-  } catch (error) {
+
+  }catch(error){
+
     console.log(error);
+
   }
+
 }
 
-function showAnswerMark(isCorrect) {
+function showAnswerMark(isCorrect){
+
   const mark =
-    document.createElement("div");
+    document.createElement(
+      "div"
+    );
 
   mark.className =
     isCorrect
@@ -1505,7 +1437,9 @@ function showAnswerMark(isCorrect) {
       ? "✓"
       : "✕";
 
-  document.body.appendChild(mark);
+  document.body.appendChild(
+    mark
+  );
 
   setTimeout(
     () => {
@@ -1513,9 +1447,11 @@ function showAnswerMark(isCorrect) {
     },
     720
   );
+
 }
 
-function celebrate() {
+function celebrate(){
+
   const symbols = [
     "🎉",
     "⭐",
@@ -1525,13 +1461,16 @@ function celebrate() {
     "🎈"
   ];
 
-  for (
-    let j = 0;
-    j < 34;
+  for(
+    let j=0;
+    j<34;
     j++
-  ) {
+  ){
+
     const piece =
-      document.createElement("span");
+      document.createElement(
+        "span"
+      );
 
     piece.className =
       "confetti-piece";
@@ -1557,10 +1496,12 @@ function celebrate() {
 
     piece.style.animationDelay =
       Math.random() *
-      0.7 +
+      .7 +
       "s";
 
-    document.body.appendChild(piece);
+    document.body.appendChild(
+      piece
+    );
 
     setTimeout(
       () => {
@@ -1568,10 +1509,13 @@ function celebrate() {
       },
       4100
     );
+
   }
+
 }
 
-function startChallenge() {
+function startChallenge(){
+
   const enteredName =
     studentNameInput
       .value
@@ -1582,9 +1526,10 @@ function startChallenge() {
       .split(/\s+/)
       .filter(Boolean);
 
-  if (
+  if(
     nameParts.length < 4
-  ) {
+  ){
+
     nameWarning.textContent =
       "اكتبي اسمكِ الرباعي كاملًا.";
 
@@ -1593,10 +1538,16 @@ function startChallenge() {
       .add("show");
 
     return;
+
   }
 
   studentName =
     enteredName;
+
+  localStorage.setItem(
+    "nafesStudentName",
+    studentName
+  );
 
   nameWarning
     .classList
@@ -1611,9 +1562,11 @@ function startChallenge() {
     .add("active");
 
   renderQuestion();
+
 }
 
-function updateTopStatus() {
+function updateTopStatus(){
+
   questionCounter.textContent =
     `السؤال ${
       currentQuestion + 1
@@ -1633,9 +1586,11 @@ function updateTopStatus() {
         questions.length
       ) * 100
     }%`;
+
 }
 
-function renderQuestion() {
+function renderQuestion(){
+
   const item =
     questions[
       currentQuestion
@@ -1671,6 +1626,7 @@ function renderQuestion() {
       optionText,
       optionIndex
     ) => {
+
       const button =
         document.createElement(
           "button"
@@ -1688,15 +1644,20 @@ function renderQuestion() {
       button.addEventListener(
         "click",
         () => {
+
           chooseAnswer(
             optionIndex,
             button
           );
+
         }
       );
 
       answersContainer
-        .appendChild(button);
+        .appendChild(
+          button
+        );
+
     }
   );
 
@@ -1721,20 +1682,25 @@ function renderQuestion() {
       ".page-scroll"
     );
 
-  if (pageScroll) {
-    pageScroll.scrollTop = 0;
+  if(pageScroll){
+
+    pageScroll.scrollTop =
+      0;
+
   }
+
 }
 
-function restoreAnswer() {
+function restoreAnswer(){
+
   const selected =
     selectedAnswers[
       currentQuestion
     ];
 
-  if (
+  if(
     selected === null
-  ) {
+  ){
     return;
   }
 
@@ -1753,14 +1719,18 @@ function restoreAnswer() {
 
   buttons.forEach(
     button => {
-      button.disabled = true;
+
+      button.disabled =
+        true;
+
     }
   );
 
-  if (
+  if(
     selected ===
     item.correct
-  ) {
+  ){
+
     buttons[selected]
       .classList
       .add("correct");
@@ -1777,7 +1747,9 @@ function restoreAnswer() {
 
       ${item.explanation}
     `;
-  } else {
+
+  }else{
+
     buttons[selected]
       .classList
       .add("wrong");
@@ -1810,18 +1782,21 @@ function restoreAnswer() {
 
       ${item.explanation}
     `;
+
   }
+
 }
 
 function chooseAnswer(
   selectedIndex,
   selectedButton
-) {
-  if (
+){
+
+  if(
     selectedAnswers[
       currentQuestion
     ] !== null
-  ) {
+  ){
     return;
   }
 
@@ -1845,14 +1820,18 @@ function chooseAnswer(
 
   buttons.forEach(
     button => {
-      button.disabled = true;
+
+      button.disabled =
+        true;
+
     }
   );
 
-  if (
+  if(
     selectedIndex ===
     item.correct
-  ) {
+  ){
+
     score++;
 
     selectedButton
@@ -1875,7 +1854,9 @@ function chooseAnswer(
     showAnswerMark(true);
 
     playTone(true);
-  } else {
+
+  }else{
+
     selectedButton
       .classList
       .add("wrong");
@@ -1912,6 +1893,7 @@ function chooseAnswer(
     showAnswerMark(false);
 
     playTone(false);
+
   }
 
   liveScore.textContent =
@@ -1919,12 +1901,14 @@ function chooseAnswer(
 
   nextButton.disabled =
     false;
+
 }
 
 function animatePage(
   direction,
   callback
-) {
+){
+
   page.classList.remove(
     "flip-next",
     "flip-previous"
@@ -1940,62 +1924,77 @@ function animatePage(
 
   setTimeout(
     () => {
+
       callback();
 
       page.classList.remove(
         "flip-next",
         "flip-previous"
       );
+
     },
     220
   );
+
 }
 
-function showPreviousQuestion() {
-  if (
+function showPreviousQuestion(){
+
+  if(
     currentQuestion === 0
-  ) {
+  ){
     return;
   }
 
   animatePage(
     "previous",
     () => {
+
       currentQuestion--;
 
       renderQuestion();
+
     }
   );
+
 }
 
-function showNextQuestion() {
-  if (
+function showNextQuestion(){
+
+  if(
     selectedAnswers[
       currentQuestion
     ] === null
-  ) {
+  ){
     return;
   }
 
-  if (
+  if(
     currentQuestion <
     questions.length - 1
-  ) {
+  ){
+
     animatePage(
       "next",
       () => {
+
         currentQuestion++;
 
         renderQuestion();
+
       }
     );
 
     return;
+
   }
 
   finishChallenge();
-    }
-    function getResultMessage() {
+
+}
+
+function getResultMessage(){
+
   const percentage =
     Math.round(
       (
@@ -2004,59 +2003,69 @@ function showNextQuestion() {
       ) * 100
     );
 
-  if (
+  if(
     percentage === 100
-  ) {
-    return {
-      icon: "👑",
-      title: "إتقان كامل",
+  ){
+
+    return{
+      icon:"👑",
+      title:"إتقان كامل",
       message:
         "أداء استثنائي ووعي عالٍ في فهم السلوك الرقمي وتحليل أسبابه."
     };
+
   }
 
-  if (
+  if(
     percentage >= 90
-  ) {
-    return {
-      icon: "🏆",
-      title: "أداء متميز",
+  ){
+
+    return{
+      icon:"🏆",
+      title:"أداء متميز",
       message:
         "نتيجة متميزة جدًا وفهم دقيق للتوازن في استخدام التقنية."
     };
+
   }
 
-  if (
+  if(
     percentage >= 80
-  ) {
-    return {
-      icon: "⭐",
-      title: "أداء متقن",
+  ){
+
+    return{
+      icon:"⭐",
+      title:"أداء متقن",
       message:
         "إتقان واضح لمهارات الفهم والاستنتاج وتقويم السلوك."
     };
+
   }
 
-  if (
+  if(
     percentage >= 70
-  ) {
-    return {
-      icon: "🌟",
-      title: "إنجاز جيد",
+  ){
+
+    return{
+      icon:"🌟",
+      title:"إنجاز جيد",
       message:
         "إنجاز جميل، ومع مزيد من التدريب تصلين إلى مستوى أعلى."
     };
+
   }
 
-  return {
-    icon: "🌷",
-    title: "محاولة جيدة",
+  return{
+    icon:"🌷",
+    title:"محاولة جيدة",
     message:
       "راجعي التفسيرات، ثم أعيدي التحدي لترتفع نتيجتك."
   };
+
 }
 
-function finishChallenge() {
+async function finishChallenge(){
+
   quizScreen
     .classList
     .remove("active");
@@ -2064,6 +2073,17 @@ function finishChallenge() {
   resultScreen
     .classList
     .add("active");
+
+  const percentage =
+    Math.round(
+      (
+        score /
+        questions.length
+      ) * 100
+    );
+
+  const certificateEarned =
+    percentage >= 80;
 
   const result =
     getResultMessage();
@@ -2075,7 +2095,7 @@ function finishChallenge() {
     result.title;
 
   resultScore.textContent =
-    `${score} من ${questions.length}`;
+    `${score} من ${questions.length} — ${percentage}٪`;
 
   resultMessage.innerHTML = `
     <strong>
@@ -2090,28 +2110,111 @@ function finishChallenge() {
   certificateName.textContent =
     studentName;
 
+  const savedResult = {
+
+    name:
+      studentName,
+
+    challenge:
+      challengeName,
+
+    score:
+      score,
+
+    total:
+      questions.length,
+
+    percentage:
+      percentage,
+
+    certificate:
+      certificateEarned
+
+  };
+
   localStorage.setItem(
     "nafesChallenge15Result",
-    JSON.stringify({
-      name: studentName,
-      challenge: challengeName,
-      score: score,
-      total: questions.length
-    })
+    JSON.stringify(
+      savedResult
+    )
   );
 
-  if (score >= 8) {
-  showCertificateButton.style.display = "inline-flex";
-  celebrate();
-  playTone(true);
-} else {
-  showCertificateButton.style.display = "none";
-}
+  localStorage.setItem(
+    "nafesStudentName",
+    studentName
+  );
+
+  if(
+    typeof window.saveNafesChallenge ===
+    "function"
+  ){
+
+    try{
+
+      await window.saveNafesChallenge({
+
+        number:15,
+
+        title:
+          "تحدي الإدمان الرقمي",
+
+        name:
+          studentName,
+
+        score:
+          score,
+
+        total:
+          questions.length
+
+      });
+
+    }catch(error){
+
+      console.error(
+        "تعذر حفظ نتيجة التحدي 15:",
+        error
+      );
+
+    }
+
+  }
+
+  if(
+    certificateEarned
+  ){
+
+    showCertificateButton
+      .style
+      .display =
+      "inline-flex";
+
+    celebrate();
+
+    playTone(true);
+
+  }else{
+
+    showCertificateButton
+      .style
+      .display =
+      "none";
+
+    certificateShell
+      .classList
+      .remove("show");
+
+  }
+
 }
 
-function restartChallenge() {
-  currentQuestion = 0;
-  score = 0;
+function restartChallenge(){
+
+  currentQuestion =
+    0;
+
+  score =
+    0;
 
   selectedAnswers
     .fill(null);
@@ -2129,14 +2232,17 @@ function restartChallenge() {
     .add("active");
 
   renderQuestion();
+
 }
 
-function showCertificate() {
+function showCertificate(){
+
   certificateShell
     .classList
     .add("show");
 
   celebrate();
+
 }
 
 startButton
@@ -2173,8 +2279,10 @@ nextChallengeButton
   .addEventListener(
     "click",
     () => {
+
       window.location.href =
         "nafes-challenge-16.html";
+
     }
   );
 
@@ -2182,7 +2290,9 @@ printButton
   .addEventListener(
     "click",
     () => {
+
       window.print();
+
     }
   );
 
@@ -2190,6 +2300,7 @@ soundBtn
   .addEventListener(
     "click",
     () => {
+
       soundOn =
         !soundOn;
 
@@ -2202,17 +2313,39 @@ soundBtn
 
       updateSoundButton();
 
-      if (
+      if(
         soundOn
-      ) {
+      ){
+
         playTone(true);
+
       }
+
     }
   );
+
+const rememberedStudentName =
+  localStorage.getItem(
+    "nafesStudentName"
+  );
+
+if(
+  rememberedStudentName
+){
+
+  studentNameInput.value =
+    rememberedStudentName;
+
+}
 
 updateSoundButton();
 
 </script>
+
+<script
+  type="module"
+  src="nafes-challenge-tracker.js"
+></script>
 
 </body>
 </html>
