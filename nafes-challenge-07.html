@@ -12,770 +12,542 @@
   <title>تحدي البحر الأحمر | منصة آفاق</title>
 
   <style>
-    :root {
-      --primary: #278ca4;
-      --dark: #185668;
-      --gold: #c9a85c;
-      --paper: #f7fdff;
-      --text: #294650;
-      --light: #def2f6;
-      --green: #43835d;
-      --green-light: #eaf6ee;
-      --red: #bd4040;
-      --red-light: #fff0f0;
-      --shadow:
-        0 14px 34px rgba(24, 86, 104, 0.17);
+    :root{
+      --primary:#278ca4;
+      --dark:#185668;
+      --gold:#c9a85c;
+      --paper:#f7fdff;
+      --text:#294650;
+      --light:#def2f6;
+      --green:#43835d;
+      --green-light:#eaf6ee;
+      --red:#bd4040;
+      --red-light:#fff0f0;
+      --shadow:0 14px 34px rgba(24,86,104,.17);
     }
 
-    * {
-      box-sizing: border-box;
+    *{
+      box-sizing:border-box;
     }
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      overflow-x: hidden;
-      color: var(--text);
-      background:
-        linear-gradient(
-          180deg,
-          #fbfeff,
-          #e8f7fa
-        );
-      font-family:
-        Tahoma,
-        Arial,
-        sans-serif;
+    body{
+      margin:0;
+      min-height:100vh;
+      overflow-x:hidden;
+      color:var(--text);
+      background:linear-gradient(180deg,#fbfeff,#e8f7fa);
+      font-family:Tahoma,Arial,sans-serif;
     }
 
     button,
     input,
-    a {
-      font-family: inherit;
+    a{
+      font-family:inherit;
     }
 
-    button {
-      -webkit-tap-highlight-color: transparent;
+    button{
+      -webkit-tap-highlight-color:transparent;
     }
 
-    .hero {
-      padding: 24px 14px 18px;
-      text-align: center;
-      color: white;
-      background:
-        linear-gradient(
-          135deg,
-          var(--dark),
-          var(--primary)
-        );
-      border-bottom:
-        6px solid var(--gold);
+    .hero{
+      padding:24px 14px 18px;
+      text-align:center;
+      color:#fff;
+      background:linear-gradient(135deg,var(--dark),var(--primary));
+      border-bottom:6px solid var(--gold);
     }
 
-    .hero h1 {
-      margin: 0 0 8px;
-      font-size:
-        clamp(
-          28px,
-          7vw,
-          44px
-        );
+    .hero h1{
+      margin:0 0 8px;
+      font-size:clamp(28px,7vw,44px);
     }
 
-    .hero p {
-      max-width: 820px;
-      margin: 0 auto;
-      font-size:
-        clamp(
-          16px,
-          4vw,
-          21px
-        );
-      line-height: 1.8;
+    .hero p{
+      max-width:820px;
+      margin:auto;
+      font-size:clamp(16px,4vw,21px);
+      line-height:1.8;
     }
 
-    .top-panel {
-      width:
-        min(
-          94%,
-          900px
-        );
-      margin: 14px auto;
-      padding: 14px;
-      border:
-        2px solid #cce6ec;
-      border-radius: 24px;
-      background: #fbfeff;
-      box-shadow: var(--shadow);
+    .top-panel{
+      width:min(94%,900px);
+      margin:14px auto;
+      padding:14px;
+      border:2px solid #cce6ec;
+      border-radius:24px;
+      background:#fbfeff;
+      box-shadow:var(--shadow);
     }
 
     .top-row,
-    .status-row {
-      display: flex;
-      align-items: center;
-      justify-content:
-        space-between;
-      gap: 10px;
-      flex-wrap: wrap;
+    .status-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
     }
 
-    .status-row {
-      margin-top: 13px;
-      font-size: 17px;
-      font-weight: bold;
+    .status-row{
+      margin-top:13px;
+      font-size:17px;
+      font-weight:bold;
     }
 
     .library-link,
-    .sound-button {
-      min-height: 48px;
-      padding: 10px 15px;
-      border: 0;
-      border-radius: 15px;
-      font-size: 16px;
-      font-weight: bold;
-      text-decoration: none;
-      cursor: pointer;
+    .sound-button{
+      min-height:48px;
+      padding:10px 15px;
+      border:0;
+      border-radius:15px;
+      font-size:16px;
+      font-weight:bold;
+      text-decoration:none;
+      cursor:pointer;
     }
 
-    .library-link {
-      color: var(--dark);
-      background: var(--gold);
+    .library-link{
+      color:var(--dark);
+      background:var(--gold);
     }
 
-    .sound-button {
-      color: white;
-      background: var(--primary);
+    .sound-button{
+      color:#fff;
+      background:var(--primary);
     }
 
-    .progress-track {
-      height: 13px;
-      margin-top: 9px;
-      overflow: hidden;
-      border-radius: 999px;
-      background: var(--light);
+    .progress-track{
+      height:13px;
+      margin-top:9px;
+      overflow:hidden;
+      border-radius:999px;
+      background:var(--light);
     }
 
-    .progress-bar {
-      width: 10%;
-      height: 100%;
-      border-radius: inherit;
-      background:
-        linear-gradient(
-          90deg,
-          var(--gold),
-          var(--primary)
-        );
-      transition:
-        width 0.35s ease;
+    .progress-bar{
+      width:10%;
+      height:100%;
+      border-radius:inherit;
+      background:linear-gradient(90deg,var(--gold),var(--primary));
+      transition:.35s;
     }
 
-    main {
-      width:
-        min(
-          94%,
-          900px
-        );
-      margin: 0 auto;
-      padding-bottom: 28px;
+    main{
+      width:min(94%,900px);
+      margin:auto;
+      padding-bottom:28px;
     }
 
-    .screen {
-      display: none;
+    .screen{
+      display:none;
     }
 
-    .screen.active {
-      display: block;
+    .screen.active{
+      display:block;
     }
 
     .start-card,
-    .result-card {
-      width:
-        min(
-          100%,
-          680px
-        );
-      margin: 18px auto;
-      padding: 24px;
-      text-align: center;
-      border:
-        3px solid #cce6ec;
-      border-radius: 30px;
-      background: #fbfeff;
-      box-shadow: var(--shadow);
+    .result-card{
+      width:min(100%,680px);
+      margin:18px auto;
+      padding:24px;
+      text-align:center;
+      border:3px solid #cce6ec;
+      border-radius:30px;
+      background:#fbfeff;
+      box-shadow:var(--shadow);
     }
 
     .start-icon,
-    .result-icon {
-      font-size: 66px;
+    .result-icon{
+      font-size:66px;
     }
 
     .start-card h2,
-    .result-card h2 {
-      margin: 8px 0 12px;
-      color: var(--primary);
-      font-size: 32px;
+    .result-card h2{
+      margin:8px 0 12px;
+      color:var(--primary);
+      font-size:32px;
     }
 
     .start-card p,
-    .result-message {
-      font-size: 18px;
-      line-height: 1.9;
+    .result-message{
+      font-size:18px;
+      line-height:1.9;
     }
 
-    .student-input {
-      width: 100%;
-      min-height: 58px;
-      padding: 13px 15px;
-      border:
-        2px solid #bcdbe2;
-      border-radius: 16px;
-      color: var(--text);
-      background: white;
-      text-align: right;
-      font-size: 18px;
+    .student-input{
+      width:100%;
+      min-height:58px;
+      padding:13px 15px;
+      border:2px solid #bcdbe2;
+      border-radius:16px;
+      color:var(--text);
+      background:#fff;
+      text-align:right;
+      font-size:18px;
     }
 
-    .warning {
-      display: none;
-      margin-top: 10px;
-      padding: 11px;
-      border-radius: 13px;
-      color: #7d2929;
-      background:
-        var(--red-light);
-      font-weight: bold;
+    .warning{
+      display:none;
+      margin-top:10px;
+      padding:11px;
+      border-radius:13px;
+      color:#7d2929;
+      background:var(--red-light);
+      font-weight:bold;
     }
 
-    .warning.show {
-      display: block;
+    .warning.show{
+      display:block;
     }
 
     .primary-button,
-    .result-button {
-      min-height: 54px;
-      padding: 12px 19px;
-      border: 0;
-      border-radius: 17px;
-      font-size: 18px;
-      font-weight: bold;
-      cursor: pointer;
+    .result-button{
+      min-height:54px;
+      padding:12px 19px;
+      border:0;
+      border-radius:17px;
+      font-size:18px;
+      font-weight:bold;
+      cursor:pointer;
     }
 
-    .primary-button {
-      margin-top: 16px;
-      color: white;
-      background: var(--primary);
+    .primary-button{
+      margin-top:16px;
+      color:#fff;
+      background:var(--primary);
     }
 
-    .book-wrap {
-      margin: 14px auto;
-      perspective: 1500px;
+    .book{
+      min-height:610px;
+      margin:14px auto;
+      padding:22px;
+      border:3px solid #c3e0e7;
+      border-radius:30px;
+      background:linear-gradient(180deg,#fbfeff,#eef9fb);
+      box-shadow:var(--shadow);
     }
 
-    .book {
-      position: relative;
-      width: 100%;
-      min-height: 610px;
-      overflow: hidden;
-      border:
-        3px solid #c3e0e7;
-      border-radius: 30px;
-      background: var(--paper);
-      box-shadow: var(--shadow);
-      transform-style: preserve-3d;
+    .question-number{
+      width:fit-content;
+      margin:0 auto 10px;
+      padding:8px 16px;
+      border-radius:999px;
+      color:#fff;
+      background:var(--primary);
+      font-weight:bold;
     }
 
-    .page {
-      min-height: 610px;
-      padding: 22px;
-      background:
-        linear-gradient(
-          180deg,
-          #fbfeff,
-          #eef9fb
-        );
-      transform-origin:
-        right center;
-      backface-visibility:
-        hidden;
+    .question-skill{
+      margin:0 0 12px;
+      text-align:center;
+      color:var(--primary);
+      font-size:clamp(24px,6vw,34px);
     }
 
-    .page.flip-next {
-      animation:
-        flipNext
-        0.46s ease;
+    .page-scroll{
+      max-height:470px;
+      overflow-y:auto;
+      padding:4px 5px 10px;
     }
 
-    .page.flip-previous {
-      animation:
-        flipPrevious
-        0.46s ease;
+    .passage-card{
+      padding:18px;
+      border:2px solid #cce5eb;
+      border-radius:20px;
+      background:rgba(255,255,255,.82);
+      font-size:clamp(17px,4.2vw,21px);
+      line-height:2;
+      text-align:justify;
     }
 
-    @keyframes flipNext {
-      0% {
-        transform:
-          rotateY(0deg);
-        opacity: 1;
+    .passage-card h3{
+      margin-top:0;
+      color:var(--dark);
+      text-align:center;
+    }
+
+    .question-text{
+      margin-top:16px;
+      padding:15px;
+      border-radius:17px;
+      color:var(--dark);
+      background:#e2f3f6;
+      text-align:center;
+      font-size:clamp(18px,4.6vw,23px);
+      line-height:1.8;
+      font-weight:bold;
+    }
+
+    .answers{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:11px;
+      margin-top:14px;
+    }
+
+    .answer-button{
+      width:100%;
+      min-height:64px;
+      padding:13px;
+      border:2px solid var(--gold);
+      border-radius:18px;
+      color:var(--text);
+      background:#fff;
+      font-size:clamp(16px,4vw,20px);
+      line-height:1.65;
+      cursor:pointer;
+    }
+
+    .answer-button.correct{
+      color:#245b3b;
+      border-color:var(--green);
+      background:var(--green-light);
+    }
+
+    .answer-button.wrong{
+      color:#7d2929;
+      border-color:var(--red);
+      background:var(--red-light);
+    }
+
+    .feedback{
+      display:none;
+      margin-top:14px;
+      padding:15px;
+      border-radius:18px;
+      text-align:center;
+      font-size:17px;
+      line-height:1.85;
+      font-weight:bold;
+    }
+
+    .feedback.show{
+      display:block;
+    }
+
+    .feedback.correct{
+      color:#245b3b;
+      border:2px solid #8dbb9d;
+      background:var(--green-light);
+    }
+
+    .feedback.wrong{
+      color:#7d2929;
+      border:2px solid #d6a1a1;
+      background:var(--red-light);
+    }
+
+    .navigation{
+      display:flex;
+      gap:12px;
+      margin-top:16px;
+    }
+
+    .nav-button{
+      flex:1;
+      min-height:58px;
+      border:0;
+      border-radius:18px;
+      font-size:20px;
+      font-weight:bold;
+      cursor:pointer;
+    }
+
+    .previous-button{
+      color:var(--dark);
+      background:var(--light);
+    }
+
+    .next-button{
+      color:#fff;
+      background:var(--primary);
+    }
+
+    .nav-button:disabled{
+      opacity:.42;
+      cursor:not-allowed;
+    }
+
+    .result-score{
+      margin:16px auto;
+      padding:14px;
+      border-radius:18px;
+      color:#fff;
+      background:var(--primary);
+      font-size:24px;
+      font-weight:bold;
+    }
+
+    .result-buttons{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:10px;
+      margin-top:16px;
+    }
+
+    .certificate-button{
+      color:#fff;
+      background:var(--green);
+    }
+
+    .restart-button{
+      color:#fff;
+      background:var(--primary);
+    }
+
+    .next-challenge-button{
+      color:var(--dark);
+      background:var(--gold);
+    }
+
+    .print-button{
+      margin-top:14px;
+      color:#fff;
+      background:var(--dark);
+    }
+
+    .certificate-shell{
+      display:none;
+      margin-top:20px;
+    }
+
+    .certificate-shell.show{
+      display:block;
+    }
+
+    .certificate{
+      position:relative;
+      width:min(100%,640px);
+      aspect-ratio:1100/775;
+      margin:auto;
+      overflow:hidden;
+      border-radius:16px;
+      background:white url("99.jpg") center/contain no-repeat;
+      box-shadow:0 10px 25px rgba(0,0,0,.14);
+    }
+
+    .certificate-content{
+      position:absolute;
+      top:42%;
+      right:18%;
+      left:18%;
+      text-align:center;
+      color:#111;
+    }
+
+    .certificate-name{
+      font-size:clamp(17px,4vw,27px);
+      font-weight:900;
+    }
+
+    .certificate-achievement{
+      margin-top:10px;
+      color:var(--primary);
+      font-size:clamp(13px,3.2vw,20px);
+      font-weight:bold;
+    }
+
+    .answer-mark{
+      position:fixed;
+      z-index:9999;
+      top:50%;
+      left:50%;
+      display:grid;
+      place-items:center;
+      width:110px;
+      height:110px;
+      transform:translate(-50%,-50%);
+      color:#fff;
+      border-radius:50%;
+      font-size:72px;
+      font-weight:bold;
+      pointer-events:none;
+      animation:answerMark .7s ease forwards;
+    }
+
+    .correct-mark{
+      background:rgba(63,139,87,.95);
+    }
+
+    .wrong-mark{
+      background:rgba(190,56,56,.95);
+    }
+
+    @keyframes answerMark{
+      0%{
+        opacity:0;
+        transform:translate(-50%,-50%) scale(.4);
       }
 
-      50% {
-        transform:
-          rotateY(-12deg);
-        opacity: 0.55;
+      35%{
+        opacity:1;
+        transform:translate(-50%,-50%) scale(1.08);
       }
 
-      100% {
-        transform:
-          rotateY(0deg);
-        opacity: 1;
-      }
-    }
-
-    @keyframes flipPrevious {
-      0% {
-        transform:
-          rotateY(0deg);
-        opacity: 1;
-      }
-
-      50% {
-        transform:
-          rotateY(12deg);
-        opacity: 0.55;
-      }
-
-      100% {
-        transform:
-          rotateY(0deg);
-        opacity: 1;
-      }
-    }
-
-    .question-number {
-      width: fit-content;
-      margin: 0 auto 10px;
-      padding: 8px 16px;
-      border-radius: 999px;
-      color: white;
-      background: var(--primary);
-      font-weight: bold;
-    }
-
-    .question-skill {
-      margin: 0 0 12px;
-      text-align: center;
-      color: var(--primary);
-      font-size:
-        clamp(
-          24px,
-          6vw,
-          34px
-        );
-    }
-
-    .page-scroll {
-      max-height: 470px;
-      overflow-y: auto;
-      padding:
-        4px 5px 10px;
-      scrollbar-width: thin;
-    }
-
-    .passage-card {
-      padding: 18px;
-      border:
-        2px solid #cce5eb;
-      border-radius: 20px;
-      background:
-        rgba(
-          255,
-          255,
-          255,
-          0.82
-        );
-      font-size:
-        clamp(
-          17px,
-          4.2vw,
-          21px
-        );
-      line-height: 2;
-      text-align: justify;
-    }
-
-    .passage-card h3 {
-      margin-top: 0;
-      color: var(--dark);
-      text-align: center;
-    }
-
-    .question-text {
-      margin-top: 16px;
-      padding: 15px;
-      border-radius: 17px;
-      color: var(--dark);
-      background: #e2f3f6;
-      text-align: center;
-      font-size:
-        clamp(
-          18px,
-          4.6vw,
-          23px
-        );
-      line-height: 1.8;
-      font-weight: bold;
-    }
-
-    .answers {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 11px;
-      margin-top: 14px;
-    }
-
-    .answer-button {
-      width: 100%;
-      min-height: 64px;
-      padding: 13px;
-      border:
-        2px solid var(--gold);
-      border-radius: 18px;
-      color: var(--text);
-      background: white;
-      font-size:
-        clamp(
-          16px,
-          4vw,
-          20px
-        );
-      line-height: 1.65;
-      cursor: pointer;
-    }
-
-    .answer-button.correct {
-      color: #245b3b;
-      border-color: var(--green);
-      background:
-        var(--green-light);
-    }
-
-    .answer-button.wrong {
-      color: #7d2929;
-      border-color: var(--red);
-      background:
-        var(--red-light);
-    }
-
-    .feedback {
-      display: none;
-      margin-top: 14px;
-      padding: 15px;
-      border-radius: 18px;
-      text-align: center;
-      font-size: 17px;
-      line-height: 1.85;
-      font-weight: bold;
-    }
-
-    .feedback.show {
-      display: block;
-    }
-
-    .feedback.correct {
-      color: #245b3b;
-      border:
-        2px solid #8dbb9d;
-      background:
-        var(--green-light);
-    }
-
-    .feedback.wrong {
-      color: #7d2929;
-      border:
-        2px solid #d6a1a1;
-      background:
-        var(--red-light);
-    }
-
-    .navigation {
-      display: flex;
-      gap: 12px;
-      margin-top: 16px;
-    }
-
-    .nav-button {
-      flex: 1;
-      min-height: 58px;
-      border: 0;
-      border-radius: 18px;
-      font-size: 20px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .previous-button {
-      color: var(--dark);
-      background: var(--light);
-    }
-
-    .next-button {
-      color: white;
-      background: var(--primary);
-    }
-
-    .nav-button:disabled {
-      opacity: 0.42;
-      cursor: not-allowed;
-    }
-
-    .result-score {
-      margin: 16px auto;
-      padding: 14px;
-      border-radius: 18px;
-      color: white;
-      background: var(--primary);
-      font-size: 24px;
-      font-weight: bold;
-    }
-
-    .result-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 16px;
-    }
-
-    .certificate-button {
-      color: white;
-      background: var(--green);
-    }
-
-    .restart-button {
-      color: white;
-      background: var(--primary);
-    }
-
-    .next-challenge-button {
-      color: var(--dark);
-      background: var(--gold);
-    }
-
-    .print-button {
-      margin-top: 14px;
-      color: white;
-      background: var(--dark);
-    }
-
-    .certificate-shell {
-      display: none;
-      margin-top: 20px;
-    }
-
-    .certificate-shell.show {
-      display: block;
-    }
-
-    .certificate {
-      position: relative;
-      width:
-        min(
-          100%,
-          640px
-        );
-      aspect-ratio:
-        1100 / 775;
-      margin: 0 auto;
-      overflow: hidden;
-      border-radius: 16px;
-      background:
-        white
-        url("99.jpg")
-        center / contain
-        no-repeat;
-      box-shadow:
-        0 10px 25px
-        rgba(0, 0, 0, 0.14);
-    }
-
-    .certificate-content {
-      position: absolute;
-      top: 42%;
-      right: 18%;
-      left: 18%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      text-align: center;
-      color: #111;
-    }
-
-    .certificate-name {
-      max-width: 100%;
-      font-size:
-        clamp(
-          17px,
-          4vw,
-          27px
-        );
-      line-height: 1.25;
-      font-weight: 900;
-    }
-
-    .certificate-achievement {
-      margin-top: 6px;
-      color: var(--primary);
-      font-size:
-        clamp(
-          13px,
-          3.2vw,
-          20px
-        );
-      font-weight: bold;
-    }
-
-    .answer-mark {
-      position: fixed;
-      z-index: 9999;
-      top: 50%;
-      left: 50%;
-      display: grid;
-      place-items: center;
-      width: 110px;
-      height: 110px;
-      transform:
-        translate(
-          -50%,
-          -50%
-        );
-      color: white;
-      border-radius: 50%;
-      font-size: 72px;
-      font-weight: bold;
-      pointer-events: none;
-      animation:
-        answerMark
-        0.7s ease
-        forwards;
-    }
-
-    .correct-mark {
-      background:
-        rgba(
-          63,
-          139,
-          87,
-          0.95
-        );
-    }
-
-    .wrong-mark {
-      background:
-        rgba(
-          190,
-          56,
-          56,
-          0.95
-        );
-    }
-
-    @keyframes answerMark {
-      0% {
-        opacity: 0;
-        transform:
-          translate(
-            -50%,
-            -50%
-          )
-          scale(0.4);
-      }
-
-      35% {
-        opacity: 1;
-        transform:
-          translate(
-            -50%,
-            -50%
-          )
-          scale(1.08);
-      }
-
-      100% {
-        opacity: 0;
-        transform:
-          translate(
-            -50%,
-            -50%
-          )
-          scale(0.9);
+      100%{
+        opacity:0;
+        transform:translate(-50%,-50%) scale(.9);
       }
     }
 
-    .confetti-piece {
-      position: fixed;
-      z-index: 9998;
-      top: -40px;
-      pointer-events: none;
-      animation:
-        confettiFall
-        3.2s linear
-        forwards;
+    .confetti-piece{
+      position:fixed;
+      z-index:9998;
+      top:-40px;
+      pointer-events:none;
+      animation:confettiFall 3.2s linear forwards;
     }
 
-    @keyframes confettiFall {
-      to {
-        transform:
-          translateY(110vh)
-          rotate(720deg);
-        opacity: 0;
+    @keyframes confettiFall{
+      to{
+        transform:translateY(110vh) rotate(720deg);
+        opacity:0;
       }
     }
 
-    footer {
-      padding: 20px 14px;
-      text-align: center;
-      color: white;
-      background: var(--dark);
-      border-top:
-        6px solid var(--gold);
+    footer{
+      padding:20px 14px;
+      text-align:center;
+      color:#fff;
+      background:var(--dark);
+      border-top:6px solid var(--gold);
     }
 
-    @media (min-width: 700px) {
-      .answers {
-        grid-template-columns:
-          repeat(2, 1fr);
+    @media(min-width:700px){
+      .answers{
+        grid-template-columns:repeat(2,1fr);
       }
 
-      .page {
-        padding: 28px;
+      .book{
+        padding:28px;
       }
     }
 
-    @media print {
-      @page {
-        size: landscape;
-        margin: 0;
+    @media print{
+      @page{
+        size:landscape;
+        margin:0;
       }
 
-      body * {
-        visibility: hidden;
+      body *{
+        visibility:hidden;
       }
 
       #certificate,
-      #certificate * {
-        visibility: visible;
+      #certificate *{
+        visibility:visible;
       }
 
-      #certificate {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        max-width: none;
-        border-radius: 0;
-        box-shadow: none;
+      #certificate{
+        position:absolute;
+        inset:0;
+        width:100%;
+        max-width:none;
+        border-radius:0;
+        box-shadow:none;
       }
     }
   </style>
@@ -783,292 +555,272 @@
 
 <body>
 
-  <header class="hero">
+<header class="hero">
+  <h1>🌊 تحدي البحر الأحمر</h1>
 
-    <h1>
-      🌊 تحدي البحر الأحمر
-    </h1>
+  <p>
+    اقرئي النص بوعي، ثم أجيبي عن عشرة أسئلة
+    تقيس فهم النص البيئي، والاستنتاج،
+    وتحليل الأدلة، والتوازن بين التنمية وحماية الطبيعة.
+  </p>
+</header>
 
-    <p>
-      اقرئي النص بوعي، ثم أجيبي عن عشرة أسئلة
-      تقيس فهم النص البيئي، والاستنتاج،
-      وتحليل الأدلة، والتوازن بين التنمية وحماية الطبيعة.
-    </p>
+<section class="top-panel">
 
-  </header>
+  <div class="top-row">
 
-  <section class="top-panel">
+    <a
+      class="library-link"
+      href="nafes-mock-tests.html"
+    >
+      العودة إلى تحديات نافس
+    </a>
 
-    <div class="top-row">
+    <button
+      id="soundBtn"
+      class="sound-button"
+      type="button"
+    >
+      🔊 الصوت مفعّل
+    </button>
 
-      <a
-        class="library-link"
-        href="nafes-mock-tests.html"
+  </div>
+
+  <div class="status-row">
+    <span id="questionCounter">
+      السؤال 1 من 10
+    </span>
+
+    <span id="liveScore">
+      الدرجة: 0
+    </span>
+  </div>
+
+  <div class="progress-track">
+    <div
+      id="progressBar"
+      class="progress-bar"
+    ></div>
+  </div>
+
+</section>
+
+<main>
+
+  <section
+    id="startScreen"
+    class="screen active"
+  >
+
+    <div class="start-card">
+
+      <div class="start-icon">
+        🐠
+      </div>
+
+      <h2>
+        استعدي للتحدي
+      </h2>
+
+      <p>
+        اكتبي اسمكِ الرباعي ليظهر تلقائيًا
+        في شهادة اجتياز التحدي.
+      </p>
+
+      <input
+        id="studentNameInput"
+        class="student-input"
+        type="text"
+        placeholder="اكتبي الاسم الرباعي"
+        autocomplete="name"
       >
-        العودة إلى تحديات نافس
-      </a>
-
-      <button
-        id="soundBtn"
-        class="sound-button"
-        type="button"
-      >
-        🔊 الصوت مفعّل
-      </button>
-
-    </div>
-
-    <div class="status-row">
-
-      <span id="questionCounter">
-        السؤال 1 من 10
-      </span>
-
-      <span id="liveScore">
-        الدرجة: 0
-      </span>
-
-    </div>
-
-    <div class="progress-track">
 
       <div
-        id="progressBar"
-        class="progress-bar"
+        id="nameWarning"
+        class="warning"
       ></div>
+
+      <button
+        id="startButton"
+        class="primary-button"
+        type="button"
+      >
+        ابدئي تحدي البحر الأحمر
+      </button>
 
     </div>
 
   </section>
 
-  <main>
+  <section
+    id="quizScreen"
+    class="screen"
+  >
 
-    <section
-      id="startScreen"
-      class="screen active"
-    >
+    <article class="book">
 
-      <div class="start-card">
+      <div
+        id="questionNumber"
+        class="question-number"
+      ></div>
 
-        <div class="start-icon">
-          🐠
-        </div>
+      <h2
+        id="questionSkill"
+        class="question-skill"
+      ></h2>
 
-        <h2>
-          استعدي للتحدي
-        </h2>
-
-        <p>
-          اكتبي اسمكِ الرباعي ليظهر تلقائيًا
-          في شهادة اجتياز التحدي.
-        </p>
-
-        <input
-          id="studentNameInput"
-          class="student-input"
-          type="text"
-          placeholder="اكتبي الاسم الرباعي"
-          autocomplete="name"
-        >
+      <div class="page-scroll">
 
         <div
-          id="nameWarning"
-          class="warning"
+          id="passageCard"
+          class="passage-card"
         ></div>
 
+        <div
+          id="questionText"
+          class="question-text"
+        ></div>
+
+        <div
+          id="answersContainer"
+          class="answers"
+        ></div>
+
+        <div
+          id="feedback"
+          class="feedback"
+        ></div>
+
+      </div>
+
+      <div class="navigation">
+
         <button
-          id="startButton"
-          class="primary-button"
+          id="previousButton"
+          class="nav-button previous-button"
           type="button"
+          disabled
         >
-          ابدئي تحدي البحر الأحمر
+          السابق
+        </button>
+
+        <button
+          id="nextButton"
+          class="nav-button next-button"
+          type="button"
+          disabled
+        >
+          التالي
         </button>
 
       </div>
 
-    </section>
+    </article>
 
+  </section>
     <section
-      id="quizScreen"
-      class="screen"
-    >
+    id="resultScreen"
+    class="screen"
+  >
 
-      <div class="book-wrap">
+    <div class="result-card">
 
-        <article class="book">
+      <div
+        id="resultIcon"
+        class="result-icon"
+      >
+        🌊
+      </div>
 
-          <div
-            id="page"
-            class="page"
-          >
+      <h2 id="resultTitle">
+        اكتمل التحدي
+      </h2>
+
+      <div
+        id="resultScore"
+        class="result-score"
+      ></div>
+
+      <p
+        id="resultMessage"
+        class="result-message"
+      ></p>
+
+      <div class="result-buttons">
+
+        <button
+          id="showCertificateButton"
+          class="result-button certificate-button"
+          type="button"
+        >
+          🎓 عرض الشهادة
+        </button>
+
+        <button
+          id="restartButton"
+          class="result-button restart-button"
+          type="button"
+        >
+          البدء من جديد
+        </button>
+
+        <button
+          id="nextChallengeButton"
+          class="result-button next-challenge-button"
+          type="button"
+        >
+          التحدي التالي
+        </button>
+
+      </div>
+
+      <div
+        id="certificateShell"
+        class="certificate-shell"
+      >
+
+        <div
+          id="certificate"
+          class="certificate"
+        >
+
+          <div class="certificate-content">
 
             <div
-              id="questionNumber"
-              class="question-number"
+              id="certificateName"
+              class="certificate-name"
             ></div>
 
-            <h2
-              id="questionSkill"
-              class="question-skill"
-            ></h2>
-
-            <div class="page-scroll">
-
-              <div
-                id="passageCard"
-                class="passage-card"
-              ></div>
-
-              <div
-                id="questionText"
-                class="question-text"
-              ></div>
-
-              <div
-                id="answersContainer"
-                class="answers"
-              ></div>
-
-              <div
-                id="feedback"
-                class="feedback"
-              ></div>
-
-            </div>
-
-            <div class="navigation">
-
-              <button
-                id="previousButton"
-                class="nav-button previous-button"
-                type="button"
-                disabled
-              >
-                السابق
-              </button>
-
-              <button
-                id="nextButton"
-                class="nav-button next-button"
-                type="button"
-                disabled
-              >
-                التالي
-              </button>
-
+            <div class="certificate-achievement">
+              لاجتيازها تحدي البحر الأحمر بنجاح
             </div>
 
           </div>
 
-        </article>
+        </div>
+
+        <button
+          id="printButton"
+          class="result-button print-button"
+          type="button"
+        >
+          🖨️ طباعة أو حفظ الشهادة
+        </button>
 
       </div>
 
-    </section>
+    </div>
 
-    <section
-      id="resultScreen"
-      class="screen"
-    >
+  </section>
 
-      <div class="result-card">
+</main>
 
-        <div
-          id="resultIcon"
-          class="result-icon"
-        >
-          🌊
-        </div>
+<footer>
+  جميع الحقوق محفوظة © 2026
+</footer>
 
-        <h2 id="resultTitle">
-          اكتمل التحدي
-        </h2>
-
-        <div
-          id="resultScore"
-          class="result-score"
-        ></div>
-
-        <p
-          id="resultMessage"
-          class="result-message"
-        ></p>
-
-        <div class="result-buttons">
-
-          <button
-            id="showCertificateButton"
-            class="result-button certificate-button"
-            type="button"
-          >
-            🎓 عرض الشهادة
-          </button>
-
-          <button
-            id="restartButton"
-            class="result-button restart-button"
-            type="button"
-          >
-            البدء من جديد
-          </button>
-
-          <button
-            id="nextChallengeButton"
-            class="result-button next-challenge-button"
-            type="button"
-          >
-            التحدي التالي
-          </button>
-
-        </div>
-
-        <div
-          id="certificateShell"
-          class="certificate-shell"
-        >
-
-          <div
-            id="certificate"
-            class="certificate"
-          >
-
-            <div class="certificate-content">
-
-              <div
-                id="certificateName"
-                class="certificate-name"
-              ></div>
-
-              <div class="certificate-achievement">
-                لاجتيازها تحدي البحر الأحمر بنجاح
-              </div>
-
-            </div>
-
-          </div>
-
-          <button
-            id="printButton"
-            class="result-button print-button"
-            type="button"
-          >
-            🖨️ طباعة أو حفظ الشهادة
-          </button>
-
-        </div>
-
-      </div>
-
-    </section>
-
-  </main>
-
-  <footer>
-    جميع الحقوق محفوظة © 2026
-  </footer>
-
-  <script>
-    const challengeName =
+<script>
+const challengeName =
   "البحر الأحمر";
 
 const mainPassage = `
@@ -1142,7 +894,7 @@ const questions = [
       "وسائل اتصال تستخدم في مراقبة البحر."
     ],
 
-    correct: 2,
+    correct:2,
 
     explanation:
       "السياق يوضح أن التأثير في عنصر واحد قد يمتد إلى كائنات وعلاقات أخرى؛ لذلك فالمقصود منظومة بيئية مترابطة."
@@ -1162,7 +914,7 @@ const questions = [
       "عدد الزوار هو المعيار الأهم لنجاح المشروعات."
     ],
 
-    correct: 0,
+    correct:0,
 
     explanation:
       "الخيار الأول هو الأشمل؛ لأنه يجمع بين التنمية السياحية، وقياس الأثر، وتنظيم الاستخدام، وحماية البيئة."
@@ -1182,7 +934,7 @@ const questions = [
       "أن نشر البيانات يمنع جميع الأضرار."
     ],
 
-    correct: 1,
+    correct:1,
 
     explanation:
       "النص لا يرفض التقنية، لكنه يؤكد أن فائدتها تعتمد على الإدارة الجيدة والقياس والرقابة والاستجابة للمشكلات."
@@ -1202,7 +954,7 @@ const questions = [
       "الثانية تذكر معايير تقويم المشروع، والرابعة تؤكد ضرورة القياس والإدارة."
     ],
 
-    correct: 3,
+    correct:3,
 
     explanation:
       "الفقرة الثانية تطلب بيانات عن الاستهلاك والنفايات والنقل، ثم تؤكد الرابعة أهمية القياس والرقابة وعدم الاكتفاء بالتقنية."
@@ -1222,7 +974,7 @@ const questions = [
       "تستخدم بعض المشروعات تقنيات لمراقبة البيئة."
     ],
 
-    correct: 2,
+    correct:2,
 
     explanation:
       "العبارة الثالثة حكم فكري يلخص معيار الاستدامة، أما بقية العبارات فتعرض معلومات أو ممارسات مباشرة."
@@ -1242,7 +994,7 @@ const questions = [
       "زيادة الحجوزات خلال الموسم."
     ],
 
-    correct: 0,
+    correct:0,
 
     explanation:
       "المقارنة العلمية قبل التشغيل وبعده تقيس التغير الفعلي في البيئة، بينما الإعلان والصور والحجوزات لا تثبت عدم الضرر."
@@ -1262,7 +1014,7 @@ const questions = [
       "إيقاف السبب مؤقتًا، وقياس الضرر، وتعديل الخطة."
     ],
 
-    correct: 3,
+    correct:3,
 
     explanation:
       "النص يؤكد ضرورة المراقبة والاستجابة السريعة وتعديل الخطط عند ظهور نتائج غير متوقعة."
@@ -1282,7 +1034,7 @@ const questions = [
       "الشعاب المرجانية تتأثر بالتلوث المباشر فقط."
     ],
 
-    correct: 1,
+    correct:1,
 
     explanation:
       "الخيار الثاني يجمع الفكرة الأساسية: التنمية ممكنة، لكنها مشروطة بالتنظيم وقياس الأثر وحماية البيئة."
@@ -1302,7 +1054,7 @@ const questions = [
       "الكاتب يهتم بالعائد الاقتصادي أكثر من البيئة."
     ],
 
-    correct: 0,
+    correct:0,
 
     explanation:
       "النص لا يرفض التنمية ولا يقبلها بلا شروط، بل يطالب بحدود واضحة ومراقبة مستمرة وحماية قدرة البيئة على التجدد."
@@ -1322,14 +1074,15 @@ const questions = [
       "المشروعات البيئية تنجح بمجرد استخدام أجهزة حديثة."
     ],
 
-    correct: 2,
+    correct:2,
 
     explanation:
       "الخيار الثالث هو الأدق؛ لأن النص يجعل بقاء البيئة وقدرتها على التجدد معيارًا أساسيًا لنجاح التنمية."
   }
 
 ];
-    const startScreen =
+
+const startScreen =
   document.getElementById("startScreen");
 
 const quizScreen =
@@ -1383,9 +1136,6 @@ const previousButton =
 const nextButton =
   document.getElementById("nextButton");
 
-const page =
-  document.getElementById("page");
-
 const resultIcon =
   document.getElementById("resultIcon");
 
@@ -1399,62 +1149,43 @@ const resultMessage =
   document.getElementById("resultMessage");
 
 const showCertificateButton =
-  document.getElementById(
-    "showCertificateButton"
-  );
+  document.getElementById("showCertificateButton");
 
 const restartButton =
-  document.getElementById(
-    "restartButton"
-  );
+  document.getElementById("restartButton");
 
 const nextChallengeButton =
-  document.getElementById(
-    "nextChallengeButton"
-  );
+  document.getElementById("nextChallengeButton");
 
 const certificateShell =
-  document.getElementById(
-    "certificateShell"
-  );
+  document.getElementById("certificateShell");
 
 const certificateName =
-  document.getElementById(
-    "certificateName"
-  );
+  document.getElementById("certificateName");
 
 const printButton =
-  document.getElementById(
-    "printButton"
-  );
+  document.getElementById("printButton");
 
 let studentName = "";
-
 let currentQuestion = 0;
-
 let score = 0;
 
 let soundOn =
-  localStorage.getItem(
-    "nafesSound"
-  ) !== "off";
+  localStorage.getItem("nafesSound") !== "off";
 
 const selectedAnswers =
-  new Array(
-    questions.length
-  ).fill(null);
-
-function updateSoundButton() {
+  new Array(questions.length).fill(null);
+  function updateSoundButton(){
   soundBtn.textContent =
     soundOn
       ? "🔊 الصوت مفعّل"
       : "🔇 الصوت مكتوم";
 }
 
-function playTone(isCorrect) {
-  if (!soundOn) return;
+function playTone(isCorrect){
+  if(!soundOn) return;
 
-  try {
+  try{
     const AudioContextClass =
       window.AudioContext ||
       window.webkitAudioContext;
@@ -1469,61 +1200,37 @@ function playTone(isCorrect) {
       context.createGain();
 
     oscillator.type =
-      isCorrect
-        ? "sine"
-        : "triangle";
+      isCorrect ? "sine" : "triangle";
 
     oscillator.frequency.value =
-      isCorrect
-        ? 720
-        : 190;
+      isCorrect ? 720 : 190;
 
     gain.gain.setValueAtTime(
-      isCorrect
-        ? 0.13
-        : 0.1,
+      isCorrect ? .13 : .1,
       context.currentTime
     );
 
     gain.gain.exponentialRampToValueAtTime(
-      0.001,
-      context.currentTime +
-      (
-        isCorrect
-          ? 0.35
-          : 0.28
-      )
+      .001,
+      context.currentTime + .35
     );
 
     oscillator.connect(gain);
-
-    gain.connect(
-      context.destination
-    );
+    gain.connect(context.destination);
 
     oscillator.start();
-
     oscillator.stop(
-      context.currentTime +
-      (
-        isCorrect
-          ? 0.35
-          : 0.28
-      )
+      context.currentTime + .35
     );
 
-  } catch (error) {
+  }catch(error){
     console.log(error);
   }
 }
 
-function showAnswerMark(
-  isCorrect
-) {
+function showAnswerMark(isCorrect){
   const mark =
-    document.createElement(
-      "div"
-    );
+    document.createElement("div");
 
   mark.className =
     isCorrect
@@ -1531,22 +1238,17 @@ function showAnswerMark(
       : "answer-mark wrong-mark";
 
   mark.textContent =
-    isCorrect
-      ? "✓"
-      : "✕";
+    isCorrect ? "✓" : "✕";
 
-  document.body
-    .appendChild(mark);
+  document.body.appendChild(mark);
 
   setTimeout(
-    () => {
-      mark.remove();
-    },
+    () => mark.remove(),
     720
   );
 }
 
-function celebrate() {
+function celebrate(){
   const symbols = [
     "🎉",
     "⭐",
@@ -1556,15 +1258,9 @@ function celebrate() {
     "🎈"
   ];
 
-  for (
-    let j = 0;
-    j < 34;
-    j++
-  ) {
+  for(let j=0;j<34;j++){
     const piece =
-      document.createElement(
-        "span"
-      );
+      document.createElement("span");
 
     piece.className =
       "confetti-piece";
@@ -1578,109 +1274,80 @@ function celebrate() {
       ];
 
     piece.style.left =
-      Math.random() *
-      100 +
-      "vw";
+      Math.random()*100 + "vw";
 
     piece.style.fontSize =
       18 +
-      Math.random() *
-      22 +
+      Math.random()*22 +
       "px";
 
     piece.style.animationDelay =
-      Math.random() *
-      0.7 +
-      "s";
+      Math.random()*.7 + "s";
 
-    document.body
-      .appendChild(piece);
+    document.body.appendChild(piece);
 
     setTimeout(
-      () => {
-        piece.remove();
-      },
+      () => piece.remove(),
       4100
     );
   }
 }
 
-function startChallenge() {
+function startChallenge(){
   const enteredName =
-    studentNameInput
-      .value
-      .trim();
+    studentNameInput.value.trim();
 
   const nameParts =
     enteredName
       .split(/\s+/)
       .filter(Boolean);
 
-  if (
-    nameParts.length < 4
-  ) {
+  if(nameParts.length < 4){
     nameWarning.textContent =
       "اكتبي اسمكِ الرباعي كاملًا.";
 
-    nameWarning
-      .classList
-      .add("show");
-
+    nameWarning.classList.add("show");
     return;
   }
 
   studentName =
     enteredName;
 
-  nameWarning
-    .classList
-    .remove("show");
+  localStorage.setItem(
+    "nafesStudentName",
+    studentName
+  );
 
-  startScreen
-    .classList
-    .remove("active");
+  nameWarning.classList.remove("show");
 
-  quizScreen
-    .classList
-    .add("active");
+  startScreen.classList.remove("active");
+  quizScreen.classList.add("active");
 
   renderQuestion();
 }
 
-function updateTopStatus() {
+function updateTopStatus(){
   questionCounter.textContent =
-    `السؤال ${
-      currentQuestion + 1
-    } من ${
-      questions.length
-    }`;
+    `السؤال ${currentQuestion+1} من ${questions.length}`;
 
   liveScore.textContent =
     `الدرجة: ${score}`;
 
   progressBar.style.width =
     `${
-      (
-        (
-          currentQuestion + 1
-        ) /
-        questions.length
-      ) * 100
+      ((currentQuestion+1) /
+      questions.length) * 100
     }%`;
 }
 
-function renderQuestion() {
+function renderQuestion(){
   const item =
-    questions[
-      currentQuestion
-    ];
+    questions[currentQuestion];
 
   updateTopStatus();
 
   questionNumber.textContent =
-    `السؤال ${
-      currentQuestion + 1
-    }`;
+    `السؤال ${currentQuestion+1}`;
 
   questionSkill.textContent =
     item.skill;
@@ -1691,24 +1358,18 @@ function renderQuestion() {
   questionText.textContent =
     item.question;
 
-  answersContainer.innerHTML =
-    "";
+  answersContainer.innerHTML = "";
 
   feedback.className =
     "feedback";
 
-  feedback.innerHTML =
-    "";
+  feedback.innerHTML = "";
 
   item.options.forEach(
-    (
-      optionText,
-      optionIndex
-    ) => {
+    (optionText,optionIndex) => {
+
       const button =
-        document.createElement(
-          "button"
-        );
+        document.createElement("button");
 
       button.type =
         "button";
@@ -1721,18 +1382,15 @@ function renderQuestion() {
 
       button.addEventListener(
         "click",
-        () => {
-          chooseAnswer(
-            optionIndex,
-            button
-          );
-        }
+        () => chooseAnswer(
+          optionIndex,
+          button
+        )
       );
 
-      answersContainer
-        .appendChild(
-          button
-        );
+      answersContainer.appendChild(
+        button
+      );
     }
   );
 
@@ -1752,56 +1410,44 @@ function renderQuestion() {
 
   restoreAnswer();
 
-  const pageScroll =
+  const scroll =
     document.querySelector(
       ".page-scroll"
     );
 
-  if (pageScroll) {
-    pageScroll.scrollTop =
-      0;
+  if(scroll){
+    scroll.scrollTop = 0;
   }
 }
 
-function restoreAnswer() {
+function restoreAnswer(){
   const selected =
     selectedAnswers[
       currentQuestion
     ];
 
-  if (
-    selected === null
-  ) {
+  if(selected === null){
     return;
   }
 
   const item =
-    questions[
-      currentQuestion
-    ];
+    questions[currentQuestion];
 
   const buttons =
     Array.from(
-      answersContainer
-        .querySelectorAll(
-          ".answer-button"
-        )
+      answersContainer.querySelectorAll(
+        ".answer-button"
+      )
     );
 
   buttons.forEach(
-    button => {
-      button.disabled =
-        true;
-    }
+    button => button.disabled = true
   );
 
-  if (
-    selected ===
-    item.correct
-  ) {
+  if(selected === item.correct){
+
     buttons[selected]
-      .classList
-      .add("correct");
+      .classList.add("correct");
 
     feedback.className =
       "feedback correct show";
@@ -1815,14 +1461,14 @@ function restoreAnswer() {
 
       ${item.explanation}
     `;
-  } else {
+
+  }else{
+
     buttons[selected]
-      .classList
-      .add("wrong");
+      .classList.add("wrong");
 
     buttons[item.correct]
-      .classList
-      .add("correct");
+      .classList.add("correct");
 
     feedback.className =
       "feedback wrong show";
@@ -1838,11 +1484,7 @@ function restoreAnswer() {
         الإجابة الصحيحة:
       </b>
 
-      ${
-        item.options[
-          item.correct
-        ]
-      }
+      ${item.options[item.correct]}
 
       <br><br>
 
@@ -1854,49 +1496,39 @@ function restoreAnswer() {
 function chooseAnswer(
   selectedIndex,
   selectedButton
-) {
-  if (
+){
+  if(
     selectedAnswers[
       currentQuestion
     ] !== null
-  ) {
+  ){
     return;
   }
 
   const item =
-    questions[
-      currentQuestion
-    ];
+    questions[currentQuestion];
 
   const buttons =
     Array.from(
-      answersContainer
-        .querySelectorAll(
-          ".answer-button"
-        )
+      answersContainer.querySelectorAll(
+        ".answer-button"
+      )
     );
 
   selectedAnswers[
     currentQuestion
-  ] =
-    selectedIndex;
+  ] = selectedIndex;
 
   buttons.forEach(
-    button => {
-      button.disabled =
-        true;
-    }
+    button => button.disabled = true
   );
 
-  if (
-    selectedIndex ===
-    item.correct
-  ) {
+  if(selectedIndex === item.correct){
+
     score++;
 
     selectedButton
-      .classList
-      .add("correct");
+      .classList.add("correct");
 
     feedback.className =
       "feedback correct show";
@@ -1912,17 +1544,15 @@ function chooseAnswer(
     `;
 
     showAnswerMark(true);
-
     playTone(true);
 
-  } else {
+  }else{
+
     selectedButton
-      .classList
-      .add("wrong");
+      .classList.add("wrong");
 
     buttons[item.correct]
-      .classList
-      .add("correct");
+      .classList.add("correct");
 
     feedback.className =
       "feedback wrong show";
@@ -1938,11 +1568,7 @@ function chooseAnswer(
         الإجابة الصحيحة:
       </b>
 
-      ${
-        item.options[
-          item.correct
-        ]
-      }
+      ${item.options[item.correct]}
 
       <br><br>
 
@@ -1950,7 +1576,6 @@ function chooseAnswer(
     `;
 
     showAnswerMark(false);
-
     playTone(false);
   }
 
@@ -1961,81 +1586,37 @@ function chooseAnswer(
     false;
 }
 
-function animatePage(
-  direction,
-  callback
-) {
-  page.classList.remove(
-    "flip-next",
-    "flip-previous"
-  );
-
-  void page.offsetWidth;
-
-  page.classList.add(
-    direction === "next"
-      ? "flip-next"
-      : "flip-previous"
-  );
-
-  setTimeout(
-    () => {
-      callback();
-
-      page.classList.remove(
-        "flip-next",
-        "flip-previous"
-      );
-    },
-    220
-  );
-}
-
-function showPreviousQuestion() {
-  if (
-    currentQuestion === 0
-  ) {
+function showPreviousQuestion(){
+  if(currentQuestion === 0){
     return;
   }
 
-  animatePage(
-    "previous",
-    () => {
-      currentQuestion--;
-
-      renderQuestion();
-    }
-  );
+  currentQuestion--;
+  renderQuestion();
 }
 
-function showNextQuestion() {
-  if (
+function showNextQuestion(){
+  if(
     selectedAnswers[
       currentQuestion
     ] === null
-  ) {
+  ){
     return;
   }
 
-  if (
+  if(
     currentQuestion <
     questions.length - 1
-  ) {
-    animatePage(
-      "next",
-      () => {
-        currentQuestion++;
-
-        renderQuestion();
-      }
-    );
-
+  ){
+    currentQuestion++;
+    renderQuestion();
     return;
   }
 
   finishChallenge();
-        }
-    function getResultMessage() {
+}
+
+function getResultMessage(){
   const percentage =
     Math.round(
       (
@@ -2044,71 +1625,70 @@ function showNextQuestion() {
       ) * 100
     );
 
-  if (
-    percentage === 100
-  ) {
-    return {
-      icon: "👑",
-      title:
-        "إتقان كامل",
+  if(percentage === 100){
+    return{
+      icon:"👑",
+      title:"إتقان كامل",
       message:
         "أداء استثنائي ودقة عالية في مهارات الفهم والتحليل والنقد."
     };
   }
 
-  if (
-    percentage >= 90
-  ) {
-    return {
-      icon: "🏆",
-      title:
-        "أداء متميز",
+  if(percentage >= 90){
+    return{
+      icon:"🏆",
+      title:"أداء متميز",
       message:
         "نتيجة متميزة جدًا واختيار دقيق للإجابات."
     };
   }
 
-  if (
-    percentage >= 80
-  ) {
-    return {
-      icon: "⭐",
-      title:
-        "أداء متقن",
+  if(percentage >= 80){
+    return{
+      icon:"⭐",
+      title:"أداء متقن",
       message:
         "إتقان واضح لمهارات الفهم القرائي."
     };
   }
 
-  if (
-    percentage >= 70
-  ) {
-    return {
-      icon: "🌟",
-      title:
-        "إنجاز جيد",
+  if(percentage >= 70){
+    return{
+      icon:"🌟",
+      title:"إنجاز جيد",
       message:
         "إنجاز جميل، ومع مزيد من التدريب تصلين إلى مستوى أعلى."
     };
   }
 
-  return {
-    icon: "🌷",
-    title:
-      "محاولة جيدة",
+  return{
+    icon:"🌷",
+    title:"محاولة جيدة",
     message:
       "راجعي التفسيرات، ثم أعيدي التحدي لترتفع نتيجتك."
   };
 }
 
-function finishChallenge() {
-  quizScreen
-    .classList
-    .remove("active");
+async function finishChallenge(){
 
-  resultScreen
-    .classList
-    .add("active");
+  quizScreen.classList.remove(
+    "active"
+  );
+
+  resultScreen.classList.add(
+    "active"
+  );
+
+  const percentage =
+    Math.round(
+      (
+        score /
+        questions.length
+      ) * 100
+    );
+
+  const certificateEarned =
+    percentage >= 80;
 
   const result =
     getResultMessage();
@@ -2120,7 +1700,7 @@ function finishChallenge() {
     result.title;
 
   resultScore.textContent =
-    `${score} من ${questions.length}`;
+    `${score} من ${questions.length} — ${percentage}٪`;
 
   resultMessage.innerHTML = `
     <strong>
@@ -2135,139 +1715,165 @@ function finishChallenge() {
   certificateName.textContent =
     studentName;
 
+  const savedResult = {
+    name:studentName,
+    challenge:challengeName,
+    score:score,
+    total:questions.length,
+    percentage:percentage,
+    certificate:certificateEarned
+  };
+
   localStorage.setItem(
     "nafesChallenge07Result",
-    JSON.stringify({
-      name:
-        studentName,
-
-      challenge:
-        challengeName,
-
-      score:
-        score,
-
-      total:
-        questions.length
-    })
+    JSON.stringify(savedResult)
   );
 
-  if (score >= 8) {
-  showCertificateButton.style.display = "inline-flex";
-  celebrate();
-  playTone(true);
-} else {
-  showCertificateButton.style.display = "none";
+  localStorage.setItem(
+    "nafesChallenge7Result",
+    JSON.stringify(savedResult)
+  );
+
+  localStorage.setItem(
+    "nafesStudentName",
+    studentName
+  );
+
+  if(
+    typeof window.saveNafesChallenge ===
+    "function"
+  ){
+    await window.saveNafesChallenge({
+      number:7,
+      title:"تحدي البحر الأحمر",
+      name:studentName,
+      score:score,
+      total:questions.length
+    });
+  }
+
+  if(certificateEarned){
+
+    showCertificateButton.style.display =
+      "inline-flex";
+
+    celebrate();
+    playTone(true);
+
+  }else{
+
+    showCertificateButton.style.display =
+      "none";
+  }
 }
-}
 
-function restartChallenge() {
-  currentQuestion =
-    0;
+function restartChallenge(){
 
-  score =
-    0;
+  currentQuestion = 0;
+  score = 0;
 
-  selectedAnswers
-    .fill(null);
+  selectedAnswers.fill(null);
 
-  certificateShell
-    .classList
-    .remove("show");
+  certificateShell.classList.remove(
+    "show"
+  );
 
-  resultScreen
-    .classList
-    .remove("active");
+  resultScreen.classList.remove(
+    "active"
+  );
 
-  quizScreen
-    .classList
-    .add("active");
+  quizScreen.classList.add(
+    "active"
+  );
 
   renderQuestion();
 }
 
-function showCertificate() {
-  certificateShell
-    .classList
-    .add("show");
+function showCertificate(){
+
+  certificateShell.classList.add(
+    "show"
+  );
 
   celebrate();
 }
 
-startButton
-  .addEventListener(
-    "click",
-    startChallenge
-  );
+startButton.addEventListener(
+  "click",
+  startChallenge
+);
 
-previousButton
-  .addEventListener(
-    "click",
-    showPreviousQuestion
-  );
+previousButton.addEventListener(
+  "click",
+  showPreviousQuestion
+);
 
-nextButton
-  .addEventListener(
-    "click",
-    showNextQuestion
-  );
+nextButton.addEventListener(
+  "click",
+  showNextQuestion
+);
 
-showCertificateButton
-  .addEventListener(
-    "click",
-    showCertificate
-  );
+showCertificateButton.addEventListener(
+  "click",
+  showCertificate
+);
 
-restartButton
-  .addEventListener(
-    "click",
-    restartChallenge
-  );
+restartButton.addEventListener(
+  "click",
+  restartChallenge
+);
 
-nextChallengeButton
-  .addEventListener(
-    "click",
-    () => {
-      window.location.href =
-        "nafes-challenge-08.html";
+nextChallengeButton.addEventListener(
+  "click",
+  () => {
+    window.location.href =
+      "nafes-challenge-08.html";
+  }
+);
+
+printButton.addEventListener(
+  "click",
+  () => window.print()
+);
+
+soundBtn.addEventListener(
+  "click",
+  () => {
+
+    soundOn =
+      !soundOn;
+
+    localStorage.setItem(
+      "nafesSound",
+      soundOn ? "on" : "off"
+    );
+
+    updateSoundButton();
+
+    if(soundOn){
+      playTone(true);
     }
+  }
+);
+
+const rememberedStudentName =
+  localStorage.getItem(
+    "nafesStudentName"
   );
 
-printButton
-  .addEventListener(
-    "click",
-    () => {
-      window.print();
-    }
-  );
-
-soundBtn
-  .addEventListener(
-    "click",
-    () => {
-      soundOn =
-        !soundOn;
-
-      localStorage.setItem(
-        "nafesSound",
-        soundOn
-          ? "on"
-          : "off"
-      );
-
-      updateSoundButton();
-
-      if (
-        soundOn
-      ) {
-        playTone(true);
-      }
-    }
-  );
+if(rememberedStudentName){
+  studentNameInput.value =
+    rememberedStudentName;
+}
 
 updateSoundButton();
 
 </script>
+
+<script
+  type="module"
+  src="nafes-challenge-tracker.js"
+></script>
 
 </body>
 </html>
