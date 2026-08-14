@@ -74,7 +74,7 @@ main{
 }
 
 .intro{
-  background:var(--paper);
+  background:#fff;
   border:1px solid #eadff0;
   border-radius:22px;
   padding:20px;
@@ -101,7 +101,7 @@ main{
 .test-card{
   position:relative;
   overflow:hidden;
-  background:var(--paper);
+  background:#fff;
   border:1px solid #eadff0;
   border-radius:24px;
   padding:22px;
@@ -150,10 +150,10 @@ main{
 .open-btn{
   display:block;
   width:100%;
-  text-decoration:none;
-  text-align:center;
   padding:12px 15px;
   border-radius:14px;
+  text-align:center;
+  text-decoration:none;
   background:linear-gradient(
     135deg,
     var(--purple),
@@ -161,7 +161,6 @@ main{
   );
   color:#fff;
   font-weight:bold;
-  font-size:16px;
 }
 
 .final-card{
@@ -219,14 +218,8 @@ main{
   display:none;
   margin-top:22px;
   padding:25px;
-  position:relative;
-  overflow:hidden;
   text-align:center;
-  background:linear-gradient(
-    135deg,
-    #f8fff9,
-    #edf8f0
-  );
+  background:#edf8f0;
   border:2px solid #a7cdb0;
   border-radius:26px;
   box-shadow:var(--shadow);
@@ -234,21 +227,6 @@ main{
 
 .certificate-card.show{
   display:block;
-}
-
-.certificate-card::before{
-  content:"";
-  position:absolute;
-  top:0;
-  right:0;
-  left:0;
-  height:7px;
-  background:linear-gradient(
-    90deg,
-    var(--gold),
-    var(--green),
-    var(--gold)
-  );
 }
 
 .certificate-icon{
@@ -272,14 +250,49 @@ main{
   padding:13px 18px;
   border-radius:15px;
   text-decoration:none;
-  background:linear-gradient(
-    135deg,
-    #2f6f43,
-    #214e31
-  );
+  background:#2f6f43;
   color:#fff;
   font-weight:bold;
+}
+
+
+/* زر التنظيف المؤقت */
+
+.cleanup-box{
+  margin-top:24px;
+  padding:20px;
+  text-align:center;
+  background:#fff8e7;
+  border:2px dashed #c9a85c;
+  border-radius:22px;
+}
+
+.cleanup-box h3{
+  margin:0 0 6px;
+  color:#795d20;
+}
+
+.cleanup-box p{
+  margin:0 0 14px;
+  color:#665a42;
+}
+
+.cleanup-btn{
+  border:0;
+  width:min(420px,100%);
+  padding:13px 18px;
+  border-radius:15px;
+  background:#a87927;
+  color:#fff;
+  font-family:inherit;
   font-size:17px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.cleanup-status{
+  margin-top:12px;
+  font-weight:bold;
 }
 
 .back{
@@ -311,10 +324,6 @@ footer{
 
   .final-card{
     grid-column:auto;
-  }
-
-  .test-card{
-    padding:19px;
   }
 
 }
@@ -454,10 +463,7 @@ footer{
 </section>
 
 
-<section
-  class="result-box"
-  id="resultBox"
->
+<section class="result-box">
 
   <h2>
     نتيجة الفصل الدراسي الثاني
@@ -507,6 +513,33 @@ footer{
 </section>
 
 
+<section class="cleanup-box">
+
+  <h3>
+    🧹 تنظيف النتائج التجريبية
+  </h3>
+
+  <p>
+    هذا الزر يحذف نتائج تجربة ٩٠٪ فقط،
+    ولا يحذف الاختبارات الحقيقية.
+  </p>
+
+  <button
+    id="cleanupBtn"
+    class="cleanup-btn"
+    type="button"
+  >
+    حذف نتائج التجربة
+  </button>
+
+  <div
+    id="cleanupStatus"
+    class="cleanup-status"
+  ></div>
+
+</section>
+
+
 <a
   class="back"
   href="tests.html"
@@ -544,6 +577,7 @@ import {
   doc,
   getDoc,
   updateDoc,
+  deleteField,
   serverTimestamp
 }
 from
@@ -622,6 +656,18 @@ const certificateText =
   );
 
 
+const cleanupBtn =
+  document.getElementById(
+    "cleanupBtn"
+  );
+
+
+const cleanupStatus =
+  document.getElementById(
+    "cleanupStatus"
+  );
+
+
 function arabicDigits(value){
 
   return String(value).replace(
@@ -692,17 +738,13 @@ async function calculateTerm2Result(user){
     );
 
 
-  if(
-    !snapshot.exists()
-  ){
+  if(!snapshot.exists()){
 
     resultNumber.textContent =
       "—";
 
-
     resultNote.textContent =
       "تعذّر العثور على سجل الطالبة.";
-
 
     return;
 
@@ -714,27 +756,21 @@ async function calculateTerm2Result(user){
 
 
   const tests =
-    data[
-      "اختبارات_الفصل_الثاني"
-    ] || {};
+    data["اختبارات_الفصل_الثاني"] || {};
 
 
   const modelKeys = [
 
     "النموذج_الأول",
-
     "النموذج_الثاني",
-
     "النموذج_الثالث",
-
     "النموذج_الرابع",
-
     "النموذج_الخامس"
 
   ];
 
 
-  const completedModels =
+  const completed =
     modelKeys.filter(
       key =>
         tests[key] &&
@@ -742,20 +778,14 @@ async function calculateTerm2Result(user){
     );
 
 
-  const completedCount =
-    completedModels.length;
-
-
-  if(
-    completedCount < 5
-  ){
+  if(completed.length < 5){
 
     resultNumber.textContent =
-      `${arabicDigits(completedCount)} / ٥`;
+      `${arabicDigits(completed.length)} / ٥`;
 
 
     resultNote.textContent =
-      `أكملتِ ${arabicDigits(completedCount)} من أصل ٥ نماذج. أكملي النماذج المتبقية لإظهار النتيجة النهائية والشهادة.`;
+      `أكملتِ ${arabicDigits(completed.length)} من أصل ٥ نماذج.`;
 
 
     certificateCard.classList.remove(
@@ -777,17 +807,13 @@ async function calculateTerm2Result(user){
     );
 
 
-  const total =
-    percentages.reduce(
-      (sum,value) =>
-        sum + value,
-      0
-    );
-
-
   const finalPercentage =
     Math.round(
-      total / 5
+      percentages.reduce(
+        (sum,value) =>
+          sum + value,
+        0
+      ) / 5
     );
 
 
@@ -803,9 +829,11 @@ async function calculateTerm2Result(user){
 
         "مكتمل":true,
 
-        "الدرجة":finalPercentage,
+        "الدرجة":
+          finalPercentage,
 
-        "استحقت_الشهادة":eligible,
+        "استحقت_الشهادة":
+          eligible,
 
         "عدد_النماذج":5,
 
@@ -825,9 +853,7 @@ async function calculateTerm2Result(user){
     `${arabicDigits(finalPercentage)}٪`;
 
 
-  if(
-    eligible
-  ){
+  if(eligible){
 
     resultNote.textContent =
       "أحسنتِ، اكتملت النماذج الخمسة وحققتِ نسبة استحقاق الشهادة.";
@@ -846,7 +872,7 @@ async function calculateTerm2Result(user){
 
 
     resultNote.textContent =
-      `اكتملت النماذج الخمسة، ومتوسطكِ النهائي ${arabicDigits(finalPercentage)}٪. يلزم تحقيق ٨٠٪ فأعلى لاستحقاق الشهادة.`;
+      `اكتملت النماذج الخمسة، ومتوسطكِ النهائي ${arabicDigits(finalPercentage)}٪.`;
 
 
     certificateCard.classList.remove(
@@ -856,6 +882,203 @@ async function calculateTerm2Result(user){
   }
 
 }
+
+
+/* ==========================
+   تنظيف تجربة 90٪ فقط
+========================== */
+
+async function cleanupTemporaryResults(){
+
+  const user =
+    auth.currentUser;
+
+
+  if(!user){
+
+    cleanupStatus.textContent =
+      "سجلي الدخول بالحساب أولًا.";
+
+    return;
+
+  }
+
+
+  cleanupBtn.disabled =
+    true;
+
+
+  cleanupStatus.textContent =
+    "جارٍ تنظيف النتائج التجريبية...";
+
+
+  try{
+
+    const studentRef =
+      doc(
+        db,
+        "students",
+        user.uid
+      );
+
+
+    const snapshot =
+      await getDoc(
+        studentRef
+      );
+
+
+    if(!snapshot.exists()){
+
+      cleanupStatus.textContent =
+        "تعذّر العثور على سجل الطالبة.";
+
+      cleanupBtn.disabled =
+        false;
+
+      return;
+
+    }
+
+
+    const data =
+      snapshot.data();
+
+
+    const tests =
+      data["اختبارات_الفصل_الثاني"] || {};
+
+
+    const modelKeys = [
+
+      "النموذج_الأول",
+      "النموذج_الثاني",
+      "النموذج_الثالث",
+      "النموذج_الرابع",
+      "النموذج_الخامس"
+
+    ];
+
+
+    const updates = {};
+
+    let removedCount = 0;
+
+
+    modelKeys.forEach(
+      key => {
+
+        const test =
+          tests[key];
+
+
+        if(!test){
+          return;
+        }
+
+
+        /*
+          هذه هي مواصفات البيانات
+          التي أنشأها زر التجربة القديم.
+          الاختبار الحقيقي يحتوي عادة
+          على آخر_محاولة.
+        */
+
+        const experimental =
+          test["مكتمل"] === true &&
+          Number(test["الدرجة"]) === 36 &&
+          Number(test["المجموع"]) === 40 &&
+          Number(test["النسبة"]) === 90 &&
+          Number(test["أفضل_نسبة"]) === 90 &&
+          Number(test["عدد_المحاولات"]) === 1 &&
+          !test["آخر_محاولة"];
+
+
+        if(experimental){
+
+          updates[
+            `اختبارات_الفصل_الثاني.${key}`
+          ] = deleteField();
+
+
+          removedCount++;
+
+        }
+
+      }
+    );
+
+
+    /*
+      إذا وجدنا عدة نتائج من التجربة،
+      نحذف النتيجة النهائية التي نتجت عنها أيضًا.
+    */
+
+    if(removedCount >= 4){
+
+      updates[
+        "نتيجة_الفصل_الثاني"
+      ] = deleteField();
+
+    }
+
+
+    if(removedCount === 0){
+
+      cleanupStatus.textContent =
+        "لم أجد نتائج تجريبية من نوع ٩٠٪ للحذف.";
+
+      cleanupBtn.disabled =
+        false;
+
+      return;
+
+    }
+
+
+    await updateDoc(
+      studentRef,
+      updates
+    );
+
+
+    cleanupStatus.textContent =
+      `تم حذف ${arabicDigits(removedCount)} نتائج تجريبية بنجاح ✅`;
+
+
+    setTimeout(
+      () => {
+
+        location.reload();
+
+      },
+      1200
+    );
+
+
+  }catch(error){
+
+    console.error(
+      "خطأ في التنظيف:",
+      error
+    );
+
+
+    cleanupStatus.textContent =
+      "تعذّر تنظيف النتائج التجريبية.";
+
+    cleanupBtn.disabled =
+      false;
+
+  }
+
+}
+
+
+cleanupBtn.addEventListener(
+  "click",
+  cleanupTemporaryResults
+);
 
 
 onAuthStateChanged(
@@ -872,14 +1095,17 @@ onAuthStateChanged(
         "سجلي الدخول إلى المنصة لعرض نتيجتكِ.";
 
 
-      certificateCard.classList.remove(
-        "show"
-      );
+      cleanupBtn.disabled =
+        true;
 
 
       return;
 
     }
+
+
+    cleanupBtn.disabled =
+      false;
 
 
     try{
@@ -888,22 +1114,11 @@ onAuthStateChanged(
         user
       );
 
-
     }catch(error){
 
-
       console.error(
-        "خطأ في حساب نتيجة الفصل الثاني:",
         error
       );
-
-
-      resultNumber.textContent =
-        "—";
-
-
-      resultNote.textContent =
-        "تعذّر حساب النتيجة النهائية الآن.";
 
     }
 
