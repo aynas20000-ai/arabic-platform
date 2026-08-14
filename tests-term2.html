@@ -25,8 +25,8 @@
   --cream:#fffaf2;
   --paper:#fff;
   --text:#403347;
-  --green:#2f8a5b;
-  --green-light:#e8f7ef;
+  --green:#2f6f43;
+  --green-light:#edf8f0;
   --shadow:0 15px 35px rgba(79,55,99,.14);
 }
 
@@ -47,7 +47,11 @@ header{
   padding:38px 18px 30px;
   text-align:center;
   color:#fff;
-  background:linear-gradient(135deg,var(--purple),var(--purple-dark));
+  background:linear-gradient(
+    135deg,
+    var(--purple),
+    var(--purple-dark)
+  );
   border-bottom:5px solid var(--gold);
 }
 
@@ -108,7 +112,11 @@ main{
   right:0;
   width:100%;
   height:6px;
-  background:linear-gradient(90deg,var(--gold),var(--purple));
+  background:linear-gradient(
+    90deg,
+    var(--gold),
+    var(--purple)
+  );
 }
 
 .number{
@@ -143,7 +151,11 @@ main{
   text-align:center;
   padding:12px 15px;
   border-radius:14px;
-  background:linear-gradient(135deg,var(--purple),var(--purple-dark));
+  background:linear-gradient(
+    135deg,
+    var(--purple),
+    var(--purple-dark)
+  );
   color:#fff;
   font-weight:bold;
   font-size:16px;
@@ -151,7 +163,11 @@ main{
 
 .final-card{
   grid-column:1/-1;
-  background:linear-gradient(180deg,#fffdf7,#fff8e6);
+  background:linear-gradient(
+    180deg,
+    #fffdf7,
+    #fff8e6
+  );
   border-color:#e7d39b;
 }
 
@@ -162,20 +178,55 @@ main{
 }
 
 .final-card .open-btn{
-  background:linear-gradient(135deg,var(--gold),#ad8736);
+  background:linear-gradient(
+    135deg,
+    var(--gold),
+    #ad8736
+  );
+}
+
+.result-box{
+  margin-top:24px;
+  padding:22px;
+  background:#fff;
+  border:1px solid #eadff0;
+  border-radius:24px;
+  text-align:center;
+  box-shadow:var(--shadow);
+}
+
+.result-box h2{
+  margin:0 0 7px;
+  color:var(--purple-dark);
+}
+
+.result-number{
+  margin:10px 0 4px;
+  font-size:34px;
+  font-weight:bold;
+  color:var(--purple-dark);
+}
+
+.result-note{
+  margin:0;
+  color:#706276;
 }
 
 .certificate-card{
   display:none;
-  margin-top:24px;
-  background:linear-gradient(135deg,#f8fff9,#edf8f0);
-  border:2px solid #a7cdb0;
-  border-radius:26px;
-  padding:24px;
-  text-align:center;
-  box-shadow:var(--shadow);
+  margin-top:22px;
+  padding:25px;
   position:relative;
   overflow:hidden;
+  text-align:center;
+  background:linear-gradient(
+    135deg,
+    #f8fff9,
+    #edf8f0
+  );
+  border:2px solid #a7cdb0;
+  border-radius:26px;
+  box-shadow:var(--shadow);
 }
 
 .certificate-card.show{
@@ -189,22 +240,25 @@ main{
   right:0;
   left:0;
   height:7px;
-  background:linear-gradient(90deg,#c9a85c,#2f6f43,#c9a85c);
+  background:linear-gradient(
+    90deg,
+    var(--gold),
+    var(--green),
+    var(--gold)
+  );
 }
 
 .certificate-icon{
   font-size:54px;
-  margin-bottom:4px;
 }
 
 .certificate-card h2{
-  margin:0 0 8px;
+  margin:0 0 7px;
   color:#285f39;
-  font-size:27px;
 }
 
 .certificate-card p{
-  margin:0 0 17px;
+  margin:0 0 16px;
   color:#526257;
 }
 
@@ -215,20 +269,14 @@ main{
   padding:13px 18px;
   border-radius:15px;
   text-decoration:none;
-  background:linear-gradient(135deg,#2f6f43,#214e31);
+  background:linear-gradient(
+    135deg,
+    #2f6f43,
+    #214e31
+  );
   color:#fff;
   font-weight:bold;
   font-size:17px;
-}
-
-.certificate-wait{
-  margin-top:22px;
-  padding:15px;
-  border-radius:18px;
-  text-align:center;
-  background:#fff;
-  border:1px solid #eadff0;
-  color:#75687c;
 }
 
 .back{
@@ -424,6 +472,32 @@ footer{
 
 
 <section
+  class="result-box"
+  id="resultBox"
+>
+
+  <h2>
+    نتيجة الفصل الدراسي الثاني
+  </h2>
+
+  <div
+    class="result-number"
+    id="resultNumber"
+  >
+    —
+  </div>
+
+  <p
+    class="result-note"
+    id="resultNote"
+  >
+    جارٍ قراءة نتائج النماذج...
+  </p>
+
+</section>
+
+
+<section
   class="certificate-card"
   id="certificateCard"
 >
@@ -433,11 +507,11 @@ footer{
   </div>
 
   <h2>
-    شهادة الفصل الدراسي الثاني
+    شهادة إتقان وتميّز
   </h2>
 
-  <p>
-    أحسنتِ، لقد حققتِ شرط استحقاق شهادة الإتقان والتميز.
+  <p id="certificateText">
+    أحسنتِ، لقد استحققتِ شهادة الفصل الدراسي الثاني.
   </p>
 
   <a
@@ -450,21 +524,12 @@ footer{
 </section>
 
 
-<div
-  class="certificate-wait"
-  id="certificateWait"
->
-  جارٍ التحقق من استحقاق شهادة الفصل الدراسي الثاني...
-</div>
-
-
 <a
   class="back"
   href="tests.html"
 >
   العودة إلى صفحة الاختبارات
 </a>
-
 
 </main>
 
@@ -494,7 +559,9 @@ from
 import {
   getFirestore,
   doc,
-  getDoc
+  getDoc,
+  updateDoc,
+  serverTimestamp
 }
 from
 "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
@@ -548,27 +615,92 @@ const db =
   );
 
 
+const resultNumber =
+  document.getElementById(
+    "resultNumber"
+  );
+
+
+const resultNote =
+  document.getElementById(
+    "resultNote"
+  );
+
+
 const certificateCard =
   document.getElementById(
     "certificateCard"
   );
 
 
-const certificateWait =
+const certificateText =
   document.getElementById(
-    "certificateWait"
+    "certificateText"
   );
+
+
+function arabicDigits(value){
+
+  return String(value).replace(
+    /\d/g,
+    d => "٠١٢٣٤٥٦٧٨٩"[d]
+  );
+
+}
+
+
+function getBestPercentage(test){
+
+  if(!test){
+    return 0;
+  }
+
+
+  const best =
+    Number(
+      test["أفضل_نسبة"]
+    );
+
+
+  if(
+    Number.isFinite(best) &&
+    best >= 0
+  ){
+    return best;
+  }
+
+
+  const percentage =
+    Number(
+      test["النسبة"]
+    );
+
+
+  if(
+    Number.isFinite(percentage) &&
+    percentage >= 0
+  ){
+    return percentage;
+  }
+
+
+  return 0;
+
+}
 
 
 onAuthStateChanged(
   auth,
   async user => {
 
-
     if(!user){
 
-      certificateWait.textContent =
-        "سجلي الدخول إلى المنصة لعرض حالة استحقاق الشهادة.";
+      resultNumber.textContent =
+        "—";
+
+
+      resultNote.textContent =
+        "سجلي الدخول إلى المنصة لعرض نتيجتكِ.";
 
       return;
 
@@ -585,17 +717,17 @@ onAuthStateChanged(
         );
 
 
-      const studentSnap =
+      const snapshot =
         await getDoc(
           studentRef
         );
 
 
       if(
-        !studentSnap.exists()
+        !snapshot.exists()
       ){
 
-        certificateWait.textContent =
+        resultNote.textContent =
           "تعذّر العثور على سجل الطالبة.";
 
         return;
@@ -604,51 +736,52 @@ onAuthStateChanged(
 
 
       const data =
-        studentSnap.data();
+        snapshot.data();
 
 
-      const term2Result =
+      const tests =
         data[
-          "نتيجة_الفصل_الثاني"
+          "اختبارات_الفصل_الثاني"
         ] || {};
 
 
-      const completed =
-        term2Result[
-          "مكتمل"
-        ] === true;
+      const modelKeys = [
+
+        "النموذج_الأول",
+
+        "النموذج_الثاني",
+
+        "النموذج_الثالث",
+
+        "النموذج_الرابع",
+
+        "النموذج_الخامس"
+
+      ];
 
 
-      const percentage =
-        Number(
-          term2Result[
-            "الدرجة"
-          ] || 0
+      const completedModels =
+        modelKeys.filter(
+          key =>
+            tests[key] &&
+            tests[key]["مكتمل"] === true
         );
 
 
-      const eligible =
-        term2Result[
-          "استحقت_الشهادة"
-        ] === true;
+      const completedCount =
+        completedModels.length;
 
 
       if(
-        completed &&
-        eligible &&
-        percentage >= 80
+        completedCount < 5
       ){
 
-        certificateCard.classList.add(
-          "show"
-        );
+        resultNumber.textContent =
+          `${arabicDigits(completedCount)} / ٥`;
 
 
-        certificateWait.style.display =
-          "none";
-
-
-      }else{
+        resultNote.textContent =
+          `أكملتِ ${arabicDigits(completedCount)} من أصل ٥ نماذج. أكملي النماذج المتبقية لإظهار النتيجة النهائية والشهادة.`;
 
 
         certificateCard.classList.remove(
@@ -656,8 +789,95 @@ onAuthStateChanged(
         );
 
 
-        certificateWait.textContent =
-          "ستظهر شهادة الفصل الدراسي الثاني هنا عند اكتمال متطلبات الاستحقاق.";
+        return;
+
+      }
+
+
+      const percentages =
+        modelKeys.map(
+          key =>
+            getBestPercentage(
+              tests[key]
+            )
+        );
+
+
+      const total =
+        percentages.reduce(
+          (sum,value) =>
+            sum + value,
+          0
+        );
+
+
+      const finalPercentage =
+        Math.round(
+          total / 5
+        );
+
+
+      const eligible =
+        finalPercentage >= 80;
+
+
+      await updateDoc(
+        studentRef,
+        {
+
+          "نتيجة_الفصل_الثاني":{
+
+            "مكتمل":true,
+
+            "الدرجة":finalPercentage,
+
+            "استحقت_الشهادة":eligible,
+
+            "عدد_النماذج":5,
+
+            "طريقة_الحساب":
+              "متوسط أفضل نسبة في النماذج الخمسة",
+
+            "آخر_تحديث":
+              serverTimestamp()
+
+          }
+
+        }
+      );
+
+
+      resultNumber.textContent =
+        `${arabicDigits(finalPercentage)}٪`;
+
+
+      if(
+        eligible
+      ){
+
+        resultNote.textContent =
+          "أحسنتِ، اكتملت النماذج الخمسة وحققتِ نسبة استحقاق الشهادة.";
+
+
+        certificateText.textContent =
+          `أحسنتِ، بلغ متوسطكِ النهائي ${arabicDigits(finalPercentage)}٪ واستحققتِ شهادة الإتقان والتميّز.`;
+
+
+        certificateCard.classList.add(
+          "show"
+        );
+
+
+      }else{
+
+
+        resultNote.textContent =
+          `اكتملت النماذج الخمسة، ومتوسطكِ النهائي ${arabicDigits(finalPercentage)}٪. يلزم تحقيق ٨٠٪ فأعلى لاستحقاق الشهادة.`;
+
+
+        certificateCard.classList.remove(
+          "show"
+        );
 
       }
 
@@ -666,13 +886,17 @@ onAuthStateChanged(
 
 
       console.error(
-        "خطأ في التحقق من الشهادة:",
+        "خطأ في حساب نتيجة الفصل الثاني:",
         error
       );
 
 
-      certificateWait.textContent =
-        "تعذّر التحقق من حالة الشهادة الآن.";
+      resultNumber.textContent =
+        "—";
+
+
+      resultNote.textContent =
+        "تعذّر حساب النتيجة النهائية الآن.";
 
     }
 
