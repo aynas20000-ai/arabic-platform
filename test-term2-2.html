@@ -4,71 +4,2080 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>النموذج الثاني | اختبارات الفصل الدراسي الثاني</title>
+
 <style>
-:root{--p:#76548f;--pd:#4f3763;--pl:#eee5f4;--g:#c9a85c;--gl:#f6e9bd;--bg:#fffaf2;--text:#403347;--green:#2f8a5b;--greenl:#e8f7ef;--red:#b74848;--redl:#fff0f0;--shadow:0 14px 35px rgba(79,55,99,.14)}
-*{box-sizing:border-box}body{margin:0;font-family:Tahoma,Arial,sans-serif;color:var(--text);background:linear-gradient(180deg,var(--bg),#f7eff9);line-height:1.9;min-height:100vh}header{padding:34px 18px 26px;text-align:center;color:#fff;background:linear-gradient(135deg,var(--p),var(--pd));border-bottom:5px solid var(--g)}header h1{margin:0;font-size:clamp(26px,6vw,39px)}header p{margin:8px 0 0}.wrap{width:min(950px,92%);margin:24px auto 50px}.top-card,.quiz-card,.result-card{background:#fff;border:1px solid #eadff0;border-radius:24px;box-shadow:var(--shadow)}.top-card{padding:18px;margin-bottom:18px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{text-align:center;background:var(--pl);border:1px solid #dfcfe8;border-radius:16px;padding:10px 8px;font-weight:bold}.stat span{display:block;font-size:19px;color:var(--pd)}.progress-shell{height:13px;border-radius:999px;background:#eee8f0;overflow:hidden;margin-top:15px}.progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--g),#e3c575);border-radius:999px;transition:width .35s}.reading{background:linear-gradient(180deg,#fffdfa,#fff9ed);border:1px solid #ead8ad;border-right:6px solid var(--g);border-radius:20px;padding:20px;margin-bottom:18px}.reading h2{margin:0 0 10px;color:var(--pd);font-size:22px}.reading p{margin:0;text-align:justify}.poem{text-align:center;font-weight:bold;line-height:2.2;white-space:pre-line}.quiz-card{padding:24px}.section-label{display:inline-flex;background:var(--gl);color:#6c5520;border:1px solid #e4cb80;border-radius:999px;padding:5px 13px;font-weight:bold;font-size:14px;margin-bottom:12px}.question-number{color:var(--p);font-weight:bold;margin-bottom:6px}.question{font-size:21px;font-weight:bold;margin:0 0 19px}.options{display:grid;gap:11px}.option{width:100%;border:2px solid #e6dceb;background:#fff;color:var(--text);border-radius:16px;padding:14px 15px;font-size:17px;font-family:inherit;text-align:right;cursor:pointer;display:flex;align-items:center;gap:11px}.option:disabled{cursor:default}.choice-letter{flex:0 0 35px;height:35px;display:grid;place-items:center;border-radius:50%;background:var(--pl);color:var(--pd);font-weight:bold}.option.correct{border-color:var(--green);background:var(--greenl)}.option.wrong{border-color:var(--red);background:var(--redl)}.option.correct .choice-letter{background:var(--green);color:#fff}.option.wrong .choice-letter{background:var(--red);color:#fff}.feedback{display:none;margin-top:17px;padding:14px 16px;border-radius:15px;font-weight:bold}.feedback.show{display:block}.feedback.good{background:var(--greenl);border:1px solid #a9d8be;color:#1f6842}.feedback.bad{background:var(--redl);border:1px solid #e4b7b7;color:#8c3333}.explain{display:block;font-weight:normal;margin-top:4px}.controls{display:flex;justify-content:flex-end;margin-top:20px}.nav,.nav-link{border:0;border-radius:14px;padding:12px 20px;font-family:inherit;font-size:16px;font-weight:bold;cursor:pointer;text-decoration:none;text-align:center;display:inline-block}.next{background:linear-gradient(135deg,var(--p),var(--pd));color:#fff;min-width:145px;display:none}.result-card{display:none;padding:28px 20px;text-align:center}.result-card.show{display:block}.result-icon{font-size:68px}.score-big{font-size:44px;color:var(--g);font-weight:bold;margin:10px 0}.result-nav{display:grid;gap:10px;margin-top:18px}.home{background:#76548f;color:#fff}.tests{background:#c9a85c;color:#4f3763}.nexttest{background:#eee5f4;color:#4f3763;border:1px solid #d8c5e3}.restart{background:var(--gl);color:#5c481a;border:1px solid #ddc26d;width:100%}.review{margin-top:20px;text-align:right;display:grid;gap:12px}.review-item{padding:13px;border-radius:14px;border:1px solid #eadff0}.footer{text-align:center;color:#776b7e;margin-top:20px;font-size:14px}.confetti{position:fixed;top:-20px;z-index:9999;pointer-events:none;animation:fall linear forwards}@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:.95}}@media(max-width:600px){.stat{font-size:12px}.stat span{font-size:17px}.quiz-card{padding:19px 15px}.question{font-size:18px}.option{font-size:16px;padding:12px}.nav,.nav-link{width:100%}}
+:root{
+  --p:#76548f;
+  --pd:#4f3763;
+  --pl:#eee5f4;
+  --g:#c9a85c;
+  --gl:#f6e9bd;
+  --bg:#fffaf2;
+  --text:#403347;
+  --green:#2f8a5b;
+  --greenl:#e8f7ef;
+  --red:#b74848;
+  --redl:#fff0f0;
+  --shadow:0 14px 35px rgba(79,55,99,.14);
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Tahoma,Arial,sans-serif;
+  color:var(--text);
+  background:linear-gradient(180deg,var(--bg),#f7eff9);
+  line-height:1.9;
+  min-height:100vh;
+}
+
+header{
+  padding:34px 18px 26px;
+  text-align:center;
+  color:#fff;
+  background:linear-gradient(135deg,var(--p),var(--pd));
+  border-bottom:5px solid var(--g);
+}
+
+header h1{
+  margin:0;
+  font-size:clamp(26px,6vw,39px);
+}
+
+header p{
+  margin:8px 0 0;
+}
+
+.wrap{
+  width:min(950px,92%);
+  margin:24px auto 50px;
+}
+
+.top-card,
+.quiz-card,
+.result-card{
+  background:#fff;
+  border:1px solid #eadff0;
+  border-radius:24px;
+  box-shadow:var(--shadow);
+}
+
+.top-card{
+  padding:18px;
+  margin-bottom:18px;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+
+.stat{
+  text-align:center;
+  background:var(--pl);
+  border:1px solid #dfcfe8;
+  border-radius:16px;
+  padding:10px 8px;
+  font-weight:bold;
+}
+
+.stat span{
+  display:block;
+  font-size:19px;
+  color:var(--pd);
+}
+
+.progress-shell{
+  height:13px;
+  border-radius:999px;
+  background:#eee8f0;
+  overflow:hidden;
+  margin-top:15px;
+}
+
+.progress-bar{
+  height:100%;
+  width:0;
+  background:linear-gradient(90deg,var(--g),#e3c575);
+  border-radius:999px;
+  transition:width .35s;
+}
+
+.reading{
+  background:linear-gradient(180deg,#fffdfa,#fff9ed);
+  border:1px solid #ead8ad;
+  border-right:6px solid var(--g);
+  border-radius:20px;
+  padding:20px;
+  margin-bottom:18px;
+}
+
+.reading h2{
+  margin:0 0 10px;
+  color:var(--pd);
+  font-size:22px;
+}
+
+.reading p{
+  margin:0;
+  text-align:justify;
+}
+
+.poem{
+  text-align:center;
+  font-weight:bold;
+  line-height:2.2;
+  white-space:pre-line;
+}
+
+.quiz-card{
+  padding:24px;
+}
+
+.section-label{
+  display:inline-flex;
+  background:var(--gl);
+  color:#6c5520;
+  border:1px solid #e4cb80;
+  border-radius:999px;
+  padding:5px 13px;
+  font-weight:bold;
+  font-size:14px;
+  margin-bottom:12px;
+}
+
+.question-number{
+  color:var(--p);
+  font-weight:bold;
+  margin-bottom:6px;
+}
+
+.question{
+  font-size:21px;
+  font-weight:bold;
+  margin:0 0 19px;
+}
+
+.options{
+  display:grid;
+  gap:11px;
+}
+
+.option{
+  width:100%;
+  border:2px solid #e6dceb;
+  background:#fff;
+  color:var(--text);
+  border-radius:16px;
+  padding:14px 15px;
+  font-size:17px;
+  font-family:inherit;
+  text-align:right;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  gap:11px;
+}
+
+.option:disabled{
+  cursor:default;
+}
+
+.choice-letter{
+  flex:0 0 35px;
+  height:35px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:var(--pl);
+  color:var(--pd);
+  font-weight:bold;
+}
+
+.option.correct{
+  border-color:var(--green);
+  background:var(--greenl);
+}
+
+.option.wrong{
+  border-color:var(--red);
+  background:var(--redl);
+}
+
+.option.correct .choice-letter{
+  background:var(--green);
+  color:#fff;
+}
+
+.option.wrong .choice-letter{
+  background:var(--red);
+  color:#fff;
+}
+
+.feedback{
+  display:none;
+  margin-top:17px;
+  padding:14px 16px;
+  border-radius:15px;
+  font-weight:bold;
+}
+
+.feedback.show{
+  display:block;
+}
+
+.feedback.good{
+  background:var(--greenl);
+  border:1px solid #a9d8be;
+  color:#1f6842;
+}
+
+.feedback.bad{
+  background:var(--redl);
+  border:1px solid #e4b7b7;
+  color:#8c3333;
+}
+
+.explain{
+  display:block;
+  font-weight:normal;
+  margin-top:4px;
+}
+
+.controls{
+  display:flex;
+  justify-content:flex-end;
+  margin-top:20px;
+}
+
+.nav,
+.nav-link{
+  border:0;
+  border-radius:14px;
+  padding:12px 20px;
+  font-family:inherit;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+  text-decoration:none;
+  text-align:center;
+  display:inline-block;
+}
+
+.next{
+  background:linear-gradient(135deg,var(--p),var(--pd));
+  color:#fff;
+  min-width:145px;
+  display:none;
+}
+
+.result-card{
+  display:none;
+  padding:28px 20px;
+  text-align:center;
+}
+
+.result-card.show{
+  display:block;
+}
+
+.result-icon{
+  font-size:68px;
+}
+
+.score-big{
+  font-size:44px;
+  color:var(--g);
+  font-weight:bold;
+  margin:10px 0;
+}
+
+.save-status{
+  margin:10px 0 4px;
+  padding:10px 12px;
+  border-radius:14px;
+  font-size:14px;
+  font-weight:bold;
+  background:#f5eff9;
+  color:var(--pd);
+  border:1px solid #dfcfe8;
+}
+
+.save-status.success{
+  background:#e8f7ef;
+  color:#1f6842;
+  border-color:#a9d8be;
+}
+
+.save-status.error{
+  background:#fff0f0;
+  color:#8c3333;
+  border-color:#e4b7b7;
+}
+
+.result-nav{
+  display:grid;
+  gap:10px;
+  margin-top:18px;
+}
+
+.home{
+  background:#76548f;
+  color:#fff;
+}
+
+.tests{
+  background:#c9a85c;
+  color:#4f3763;
+}
+
+.nexttest{
+  background:#eee5f4;
+  color:#4f3763;
+  border:1px solid #d8c5e3;
+}
+
+.restart{
+  background:var(--gl);
+  color:#5c481a;
+  border:1px solid #ddc26d;
+  width:100%;
+}
+
+.review{
+  margin-top:20px;
+  text-align:right;
+  display:grid;
+  gap:12px;
+}
+
+.review-item{
+  padding:13px;
+  border-radius:14px;
+  border:1px solid #eadff0;
+}
+
+.footer{
+  text-align:center;
+  color:#776b7e;
+  margin-top:20px;
+  font-size:14px;
+}
+
+.confetti{
+  position:fixed;
+  top:-20px;
+  z-index:9999;
+  pointer-events:none;
+  animation:fall linear forwards;
+}
+
+@keyframes fall{
+  to{
+    transform:translateY(110vh) rotate(720deg);
+    opacity:.95;
+  }
+}
+
+@media(max-width:600px){
+
+  .stat{
+    font-size:12px;
+  }
+
+  .stat span{
+    font-size:17px;
+  }
+
+  .quiz-card{
+    padding:19px 15px;
+  }
+
+  .question{
+    font-size:18px;
+  }
+
+  .option{
+    font-size:16px;
+    padding:12px;
+  }
+
+  .nav,
+  .nav-link{
+    width:100%;
+  }
+}
 </style>
 </head>
+
 <body>
-<header><h1>النموذج الثاني</h1><p>اختبار لغتي الخالدة – الفصل الدراسي الثاني</p></header>
+
+<header>
+  <h1>النموذج الثاني</h1>
+  <p>اختبار لغتي الخالدة – الفصل الدراسي الثاني</p>
+</header>
+
 <main class="wrap">
-<section class="top-card" id="topCard"><div class="stats"><div class="stat">السؤال<span id="currentStat">١ / ٤٠</span></div><div class="stat">الصحيح<span id="correctStat">٠</span></div><div class="stat">الدرجة<span id="scoreStat">٠ / ٤٠</span></div></div><div class="progress-shell"><div class="progress-bar" id="progressBar"></div></div></section>
-<section class="reading" id="readingBox"><h2>النص القرائي: الوعي الرقمي</h2><p>أصبحت الثورة الرقمية واقعًا يمس كل جانب من جوانب حياتنا، مما يجعل امتلاك الوعي الرقمي ضرورة حتمية وليس رفاهية. فالوعي الرقمي لا يعني مجرد القدرة على استخدام الأجهزة الحديثة، بل يشمل الفهم العميق لكيفية عملها، وتأثيرها على الفرد والمجتمع، واستخدامها بطرق مسؤولة وآمنة. ومن أهم ركائز الوعي الرقمي حماية الخصوصية والأمان على الإنترنت، وهذا يتطلب منا تجنب مشاركة المعلومات الشخصية على المنصات غير الموثوقة، واستخدام كلمات مرور قوية، والتمييز بين المحتوى المفيد والضار. كما أن المواطنة الرقمية المسؤولة تفرض على المستخدم الالتزام بآداب التواصل، وعدم نشر الشائعات، واحترام الرأي الآخر في الفضاء الإلكتروني. وفي ظل هذا الفيض الهائل من المعلومات، تبرز مهارة التمييز بين ما هو حقيقي وما هو مزيف كإحدى أهم مهارات العصر؛ لذا يجب أن نعمل على تطوير قدراتنا النقدية، ونتعلم كيفية التحقق من المصادر قبل تصديق أو نشر أي خبر، فالتكنولوجيا سلاح ذو حدين، يمكن أن تكون أداة للبناء والتقدم، أو هدمًا للقيم وضياعًا للوقت، والفرق يكمن في درجة وعينا.</p></section>
-<section class="reading" id="poemBox" style="display:none"><h2>النص الشعري</h2><div class="poem">يا صرعاهم بكل طريقٍ
+
+<section class="top-card" id="topCard">
+
+  <div class="stats">
+
+    <div class="stat">
+      السؤال
+      <span id="currentStat">١ / ٤٠</span>
+    </div>
+
+    <div class="stat">
+      الإجابات الصحيحة
+      <span id="correctStat">٠</span>
+    </div>
+
+    <div class="stat">
+      الدرجة
+      <span id="scoreStat">٠ / ٤٠</span>
+    </div>
+
+  </div>
+
+  <div class="progress-shell">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+</section>
+
+
+<section class="reading" id="readingBox">
+
+  <h2>النص القرائي: الوعي الرقمي</h2>
+
+  <p>
+    أصبحت الثورة الرقمية واقعًا يمس كل جانب من جوانب حياتنا، مما يجعل امتلاك الوعي الرقمي ضرورة حتمية وليس رفاهية.
+    فالوعي الرقمي لا يعني مجرد القدرة على استخدام الأجهزة الحديثة، بل يشمل الفهم العميق لكيفية عملها، وتأثيرها على الفرد والمجتمع،
+    واستخدامها بطرق مسؤولة وآمنة. ومن أهم ركائز الوعي الرقمي حماية الخصوصية والأمان على الإنترنت، وهذا يتطلب منا تجنب مشاركة
+    المعلومات الشخصية على المنصات غير الموثوقة، واستخدام كلمات مرور قوية، والتمييز بين المحتوى المفيد والضار.
+    كما أن المواطنة الرقمية المسؤولة تفرض على المستخدم الالتزام بآداب التواصل، وعدم نشر الشائعات، واحترام الرأي الآخر في الفضاء الإلكتروني.
+    وفي ظل هذا الفيض الهائل من المعلومات، تبرز مهارة التمييز بين ما هو حقيقي وما هو مزيف كإحدى أهم مهارات العصر؛ لذا يجب أن نعمل على
+    تطوير قدراتنا النقدية، ونتعلم كيفية التحقق من المصادر قبل تصديق أو نشر أي خبر، فالتكنولوجيا سلاح ذو حدين، يمكن أن تكون أداة للبناء
+    والتقدم، أو هدمًا للقيم وضياعًا للوقت، والفرق يكمن في درجة وعينا.
+  </p>
+
+</section>
+
+
+<section
+  class="reading"
+  id="poemBox"
+  style="display:none"
+>
+
+  <h2>النص الشعري</h2>
+
+  <div class="poem">
+يا صرعاهم بكل طريقٍ
 حاملاتٍ أكفانها في الظلام
 
 ترى خَلْقًا كأشباح ليلٍ
 غارقاتٍ في غاية الأوهام
 
 أين منها الشباب؟ أين الأماني؟
-وانتظار الآباء والأرحام؟</div></section>
-<section class="quiz-card" id="quizCard"><div class="section-label" id="sectionLabel"></div><div class="question-number" id="questionNumber"></div><h2 class="question" id="questionText"></h2><div class="options" id="options"></div><div class="feedback" id="feedback"></div><div class="controls"><button class="nav next" id="nextBtn" type="button">السؤال التالي</button></div></section>
-<section class="result-card" id="resultCard"><div class="result-icon" id="resultIcon">🏆</div><h2>اكتمل النموذج الثاني</h2><div class="score-big" id="finalScore"></div><div id="resultNote"></div><button class="nav restart" id="resultRestart" type="button">إعادة المحاولة</button><div class="result-nav"><a class="nav-link home" href="index.html">العودة إلى الصفحة الرئيسية</a><a class="nav-link tests" href="tests-term2.html">العودة إلى صفحة الاختبارات</a><a class="nav-link nexttest" href="test-term2-3.html">الانتقال إلى الاختبار التالي</a></div><div class="review" id="review"></div></section>
-<div class="footer">منصة آفاق التعليمية</div>
+وانتظار الآباء والأرحام؟
+  </div>
+
+</section>
+
+
+<section class="quiz-card" id="quizCard">
+
+  <div
+    class="section-label"
+    id="sectionLabel"
+  ></div>
+
+  <div
+    class="question-number"
+    id="questionNumber"
+  ></div>
+
+  <h2
+    class="question"
+    id="questionText"
+  ></h2>
+
+  <div
+    class="options"
+    id="options"
+  ></div>
+
+  <div
+    class="feedback"
+    id="feedback"
+  ></div>
+
+  <div class="controls">
+
+    <button
+      class="nav next"
+      id="nextBtn"
+      type="button"
+    >
+      السؤال التالي
+    </button>
+
+  </div>
+
+</section>
+
+
+<section
+  class="result-card"
+  id="resultCard"
+>
+
+  <div
+    class="result-icon"
+    id="resultIcon"
+  >
+    🏆
+  </div>
+
+  <h2>
+    اكتمل النموذج الثاني
+  </h2>
+
+  <div
+    class="score-big"
+    id="finalScore"
+  ></div>
+
+  <div id="resultNote"></div>
+
+  <div
+    class="save-status"
+    id="saveStatus"
+  >
+    ستُحفظ نتيجتكِ في سجل الفصل الدراسي الثاني.
+  </div>
+
+  <button
+    class="nav restart"
+    id="resultRestart"
+    type="button"
+  >
+    إعادة المحاولة
+  </button>
+
+  <div class="result-nav">
+
+    <a
+      class="nav-link home"
+      href="index.html"
+    >
+      العودة إلى الصفحة الرئيسية
+    </a>
+
+    <a
+      class="nav-link tests"
+      href="tests-term2.html"
+    >
+      العودة إلى صفحة الاختبارات
+    </a>
+
+    <a
+      class="nav-link nexttest"
+      href="test-term2-3.html"
+    >
+      الانتقال إلى الاختبار التالي
+    </a>
+
+  </div>
+
+  <div
+    class="review"
+    id="review"
+  ></div>
+
+</section>
+
+<div class="footer">
+  منصة آفاق التعليمية
+</div>
+
 </main>
-<script>
-const Q=[
-["الفهم القرائي","مرادف كلمة «مسؤولة» في عبارة «المواطنة الرقمية المسؤولة»:",["مفرطة","مرتفعة","ملتزمة","مشهورة"],2,"«مسؤولة» بمعنى ملتزمة."],
-["الفهم القرائي","ضد كلمة «الهائل» في عبارة «الفيض الهائل من المعلومات»:",["الضئيل","المعقد","السريع","الضخم"],0,"ضد «الهائل» هو «الضئيل»."],
-["الفهم القرائي","المقصود بالوعي الرقمي هو:",["القدرة على تشغيل الأجهزة فقط","استخدام التقنية للترفيه","فهم التقنية وآثارها واستخدامها بصورة مسؤولة وآمنة","امتلاك عدد كبير من الأجهزة"],2,"الوعي الرقمي فهم التقنية واستخدامها بمسؤولية وأمان."],
-["الفهم القرائي","من وسائل حماية الخصوصية والأمان على الإنترنت:",["مشاركة المعلومات الشخصية مع الجميع","استخدام كلمة مرور واحدة لجميع الحسابات","استخدام كلمات مرور قوية","فتح الروابط المجهولة"],2,"استخدام كلمات مرور قوية من وسائل الحماية."],
-["الفهم القرائي","أي التصرفات الآتية يمثل مواطنة رقمية مسؤولة؟",["نشر الأخبار فور وصولها","احترام الرأي الآخر وعدم نشر الشائعات","مشاركة البيانات الشخصية","الإساءة إلى الآخرين"],1,"المواطنة الرقمية تتطلب احترام الآخرين وعدم نشر الشائعات."],
-["الفهم القرائي","ماذا يجب على المستخدم أن يفعل قبل تصديق الخبر أو نشره؟",["يرسله إلى أكبر عدد من الأشخاص","يعتمد على عنوان الخبر فقط","يتحقق من مصدره","يتجاهل جميع الأخبار"],2,"يجب التحقق من المصدر."],
-["الفهم القرائي","المقصود بعبارة «التكنولوجيا سلاح ذو حدين»:",["لا فائدة منها مطلقًا","تستخدم في الحروب فقط","قد تكون نافعة أو ضارة بحسب طريقة استخدامها","لا يستطيع الجميع استخدامها"],2,"قد تكون التقنية نافعة أو ضارة وفق طريقة استخدامها."],
-["الفهم القرائي","المصطلح الذي يدل على الالتزام بآداب التواصل وعدم نشر الشائعات هو:",["الأمن المعلوماتي","المواطنة الرقمية","الثورة الصناعية","الذكاء الاصطناعي"],1,"هذا السلوك من المواطنة الرقمية."],
-["الفهم القرائي","لماذا تعد مهارة التمييز بين الخبر الحقيقي والمزيف من أهم مهارات العصر؟",["لقلة الأخبار المتداولة","لأن جميع الأخبار صحيحة","لكثرة المعلومات وسرعة انتشارها","لأن الإنترنت لا يحتوي معلومات"],2,"بسبب كثرة المعلومات وسرعة انتشارها."],
-["الفهم القرائي","الفكرة العامة للنص:",["أنواع الأجهزة الحديثة","أهمية الوعي الرقمي والاستخدام المسؤول والآمن للتقنية","تاريخ ظهور الإنترنت","أضرار الأجهزة فقط"],1,"يدور النص حول الوعي الرقمي."],
-["النص الشعري","بمَ وصف الشاعر مدمني المخدرات؟",["بالشباب الطموح","بأشباح الليل الغارقة في الأوهام","بالناجحين في حياتهم","بالأقوياء الشجعان"],1,"صوّرهم كأشباح ليل غارقة في الأوهام."],
-["النص الشعري","العاطفة الغالبة على الشاعر في البيت الثالث:",["الفرح","الفخر","الحزن والأسى","السخرية"],2,"غلب على الشاعر الحزن والأسى."],
-["النص الشعري","توحي عبارة «حاملات أكفانها في الظلام» بـ:",["الأمل والتفاؤل","قرب الهلاك وضياع الحياة","القوة والنشاط","الاستقرار النفسي"],1,"توحي بالهلاك وضياع الحياة."],
-["النص الشعري","شبّه الشاعر مدمني المخدرات بـ:",["النجوم","الأبطال","أشباح الليل","الطيور"],2,"شبّههم بأشباح الليل."],
-["النص الشعري","الغرض من الاستفهام في قوله «أين منها الشباب؟ أين الأماني؟»:",["طلب معرفة المكان","التعجب والتحسر","النهي","الأمر"],1,"الاستفهام للتعجب والتحسر."],
-["النص الشعري","الفكرة الرئيسة للأبيات:",["وصف جمال الليل","التحذير من المخدرات وتصوير ما تسببه من ضياع","الحديث عن انتظار الآباء","مدح الشباب"],1,"تحذر الأبيات من المخدرات."],
-["الأسلوب اللغوي","أداة الاستثناء التي تُعَدُّ اسمًا هي:",["إلا","عدا","غير","خلا"],2,"«غير» اسم من أسماء الاستثناء."],
-["الأسلوب اللغوي","صيغة التعجب في الجملة «أقبح بالبخل!»:",["ما أفعل","أفعل به","تعجب سماعي","أسلوب نداء"],1,"الجملة على صيغة «أفعل به»."],
-["الأسلوب اللغوي","المعدود في الجملة «اشتريت خمسة عشر قلمًا»:",["اشتريت","خمسة عشر","قلمًا","خمسة"],2,"المعدود هو «قلمًا»."],
-["الأسلوب اللغوي","الصياغة الصحيحة للعدد في الجملة «قرأت ٧ صفحات من الكتاب»:",["قرأت سبع صفحات من الكتاب.","قرأت سبعة صفحات من الكتاب.","قرأت سبعًا صفحة من الكتاب.","قرأت سبعة صفحة من الكتاب."],0,"الصواب «سبع صفحات»."],
-["الوظيفة النحوية","النعت في الجملة «رأى محمد بيتًا جميلًا»:",["محمد","بيتًا","جميلًا","رأى"],2,"«جميلًا» نعت."],
-["الوظيفة النحوية","معنى حرف العطف في الجملة «زرت مدينتي العلا ونيوم في الإجازة»:",["الترتيب مع التعقيب","الجمع والمشاركة","التخيير","الغاية"],1,"الواو تفيد الجمع والمشاركة."],
-["الوظيفة النحوية","المبدل منه في الجملة «لن ينسى السعوديون فضل الملك عبدالعزيز في توحيد البلاد»:",["السعوديون","فضل","الملك","عبدالعزيز"],2,"«الملك» هو المبدل منه."],
-["الوظيفة النحوية","أي الجمل الآتية اشتملت على بدل بعض من كل؟",["قرأت الكتاب نصفه.","جاء الطالب المجتهد.","حضر المعلم والطالب.","رأيت بيتًا جميلًا."],0,"«نصفه» بدل بعض من كل."],
-["الوظيفة النحوية","حرف العطف الذي يفيد الغاية هو:",["الواو","الفاء","حتى","أو"],2,"«حتى» تفيد الغاية."],
-["الوظيفة النحوية","إعراب كلمة «الأخضر» في الجملة «يرفرف العلم الأخضر عاليًا»:",["نعت مرفوع","حال منصوب","بدل مرفوع","مفعول به"],0,"«الأخضر» نعت مرفوع."],
-["الصنف اللغوي","جاء اسم المكان «مَصنع» على هذه الصيغة؛ لأن فعله ثلاثي صحيح وعين مضارعه:",["مكسورة","مضمومة","مفتوحة","ساكنة"],2,"الفعل «صنع يصنع» وعين مضارعه مفتوحة."],
-["الصنف اللغوي","اسم الزمان المشتق من الفعل «وعد»:",["مَوعد","موعود","واعد","وعود"],0,"اسم الزمان هو «موعد»."],
-["الصنف اللغوي","اسم الآلة في الجملة «يستخدم النجار المنشار في عمله» على وزن:",["مِفعل","فاعول","مِفعال","مِفعلة"],2,"«منشار» على وزن «مِفعال»."],
-["الصنف اللغوي","اسم الآلة الجامد من بين الكلمات الآتية:",["مفتاح","رمح","مطحنة","مجهر"],1,"«رمح» اسم آلة جامد."],
-["الصنف اللغوي","المصدران «غليان — سُعال» على الترتيب:",["قياسي — سماعي","سماعي — سماعي","سماعي — قياسي","قياسي — قياسي"],3,"كلاهما مصدر قياسي."],
-["الصنف اللغوي","أي الكلمات الآتية تُعَدُّ مصدرًا لفعل ثلاثي سماعي؟",["تربية","إقبال","سجود","رحيل"],2,"«سجود» مصدر ثلاثي سماعي."],
-["الرسم الإملائي","عند اتصال حرف الجر بـ«ما» الاستفهامية تُحذف ألف «ما».",["صح","خطأ"],0,"مثل: «بِمَ كتبتِ؟»."],
-["أسئلة إضافية","نوع البدل في الجملة «أعجبني الكتاب أسلوبه»:",["بدل كل من كل","بدل بعض من كل","بدل اشتمال","بدل مباين"],2,"«أسلوبه» بدل اشتمال."],
-["أسئلة إضافية","نوع النعت في الجملة «جاء الرجل الحسنُ خلقُه»:",["نعت حقيقي","نعت سببي","نعت جملة","شبه جملة"],1,"«الحسن» نعت سببي."],
-["أسئلة إضافية","في الجملة «شاهدتُ الطالبتينِ المجتهدتينِ» طابق النعت «المجتهدتين» منعوته «الطالبتين» في:",["الإعراب فقط","التعريف والتنكير فقط","النوع والعدد فقط","الإعراب، والتعريف والتنكير، والنوع، والعدد"],3,"كلاهما منصوب، ومعرفة، ومؤنث، ومثنى."],
-["أسئلة إضافية","أي الجمل الآتية اشتملت على نعت جملة؟",["قرأت كتابًا مفيدًا.","رأيت منزلًا أمام المدرسة.","جاء طالبٌ أخلاقه حسنة.","شاهدت الطالب المجتهد."],2,"«أخلاقه حسنة» جملة اسمية في محل نعت."],
-["أسئلة إضافية","الضبط الصحيح للمعطوف في الجملة «حضر المعلمُ والطلاب...»:",["والطلابَ","والطلابُ","والطلابِ","والطلابْ"],1,"المعطوف يتبع المعطوف عليه في الرفع."],
-["أسئلة إضافية","أي الجمل الآتية اشتملت على بدل كل من كل؟",["أكلت الرغيف نصفه.","أعجبني الكتاب أسلوبه.","حضر الخليفة عمرُ.","جاء الطالب المجتهد."],2,"«عمرُ» بدل كل من كل."],
-["أسئلة إضافية","المستثنى بـ«غير» و«سوى» يكون إعرابه:",["مضافًا إليه مجرورًا","مستثنى منصوبًا دائمًا","فاعلًا مرفوعًا","نعتًا مجرورًا"],0,"الاسم بعد «غير» و«سوى» مضاف إليه مجرور."]
+<script type="module">
+
+import {
+  initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+
+
+import {
+  initializeAuth,
+  browserLocalPersistence,
+  browserPopupRedirectResolver,
+  onAuthStateChanged
+}
+from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  updateDoc,
+  serverTimestamp
+}
+from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+
+const firebaseConfig = {
+
+  apiKey:
+    "AIzaSyB48av9gx4jzFyYoUQtcLwaR52qETevKGs",
+
+  authDomain:
+    "afaq-language-platform.firebaseapp.com",
+
+  projectId:
+    "afaq-language-platform",
+
+  storageBucket:
+    "afaq-language-platform.firebasestorage.app",
+
+  messagingSenderId:
+    "362601061474",
+
+  appId:
+    "1:362601061474:web:bc405291332b9e4ef9453b"
+
+};
+
+
+const app =
+  initializeApp(
+    firebaseConfig
+  );
+
+
+const auth =
+  initializeAuth(
+    app,
+    {
+      persistence:
+        browserLocalPersistence,
+
+      popupRedirectResolver:
+        browserPopupRedirectResolver
+    }
+  );
+
+
+const db =
+  getFirestore(app);
+
+
+let currentUser = null;
+
+
+onAuthStateChanged(
+  auth,
+  user => {
+    currentUser =
+      user || null;
+  }
+);
+
+
+const Q = [
+
+[
+"الفهم القرائي",
+"مرادف كلمة «مسؤولة» في عبارة «المواطنة الرقمية المسؤولة»:",
+["مفرطة","مرتفعة","ملتزمة","مشهورة"],
+2,
+"«مسؤولة» بمعنى ملتزمة."
+],
+
+[
+"الفهم القرائي",
+"ضد كلمة «الهائل» في عبارة «الفيض الهائل من المعلومات»:",
+["الضئيل","المعقد","السريع","الضخم"],
+0,
+"ضد «الهائل» هو «الضئيل»."
+],
+
+[
+"الفهم القرائي",
+"المقصود بالوعي الرقمي هو:",
+[
+"القدرة على تشغيل الأجهزة فقط",
+"استخدام التقنية للترفيه",
+"فهم التقنية وآثارها واستخدامها بصورة مسؤولة وآمنة",
+"امتلاك عدد كبير من الأجهزة"
+],
+2,
+"الوعي الرقمي فهم التقنية واستخدامها بمسؤولية وأمان."
+],
+
+[
+"الفهم القرائي",
+"من وسائل حماية الخصوصية والأمان على الإنترنت:",
+[
+"مشاركة المعلومات الشخصية مع الجميع",
+"استخدام كلمة مرور واحدة لجميع الحسابات",
+"استخدام كلمات مرور قوية",
+"فتح الروابط المجهولة"
+],
+2,
+"استخدام كلمات مرور قوية من وسائل الحماية."
+],
+
+[
+"الفهم القرائي",
+"أي التصرفات الآتية يمثل مواطنة رقمية مسؤولة؟",
+[
+"نشر الأخبار فور وصولها",
+"احترام الرأي الآخر وعدم نشر الشائعات",
+"مشاركة البيانات الشخصية",
+"الإساءة إلى الآخرين"
+],
+1,
+"المواطنة الرقمية تتطلب احترام الآخرين وعدم نشر الشائعات."
+],
+
+[
+"الفهم القرائي",
+"ماذا يجب على المستخدم أن يفعل قبل تصديق الخبر أو نشره؟",
+[
+"يرسله إلى أكبر عدد من الأشخاص",
+"يعتمد على عنوان الخبر فقط",
+"يتحقق من مصدره",
+"يتجاهل جميع الأخبار"
+],
+2,
+"يجب التحقق من المصدر."
+],
+
+[
+"الفهم القرائي",
+"المقصود بعبارة «التكنولوجيا سلاح ذو حدين»:",
+[
+"لا فائدة منها مطلقًا",
+"تستخدم في الحروب فقط",
+"قد تكون نافعة أو ضارة بحسب طريقة استخدامها",
+"لا يستطيع الجميع استخدامها"
+],
+2,
+"قد تكون التقنية نافعة أو ضارة وفق طريقة استخدامها."
+],
+
+[
+"الفهم القرائي",
+"المصطلح الذي يدل على الالتزام بآداب التواصل وعدم نشر الشائعات هو:",
+[
+"الأمن المعلوماتي",
+"المواطنة الرقمية",
+"الثورة الصناعية",
+"الذكاء الاصطناعي"
+],
+1,
+"هذا السلوك من المواطنة الرقمية."
+],
+
+[
+"الفهم القرائي",
+"لماذا تعد مهارة التمييز بين الخبر الحقيقي والمزيف من أهم مهارات العصر؟",
+[
+"لقلة الأخبار المتداولة",
+"لأن جميع الأخبار صحيحة",
+"لكثرة المعلومات وسرعة انتشارها",
+"لأن الإنترنت لا يحتوي معلومات"
+],
+2,
+"بسبب كثرة المعلومات وسرعة انتشارها."
+],
+
+[
+"الفهم القرائي",
+"الفكرة العامة للنص:",
+[
+"أنواع الأجهزة الحديثة",
+"أهمية الوعي الرقمي والاستخدام المسؤول والآمن للتقنية",
+"تاريخ ظهور الإنترنت",
+"أضرار الأجهزة فقط"
+],
+1,
+"يدور النص حول الوعي الرقمي."
+],
+
+
+[
+"النص الشعري",
+"بمَ وصف الشاعر مدمني المخدرات؟",
+[
+"بالشباب الطموح",
+"بأشباح الليل الغارقة في الأوهام",
+"بالناجحين في حياتهم",
+"بالأقوياء الشجعان"
+],
+1,
+"صوّرهم كأشباح ليل غارقة في الأوهام."
+],
+
+[
+"النص الشعري",
+"العاطفة الغالبة على الشاعر في البيت الثالث:",
+[
+"الفرح",
+"الفخر",
+"الحزن والأسى",
+"السخرية"
+],
+2,
+"غلب على الشاعر الحزن والأسى."
+],
+
+[
+"النص الشعري",
+"توحي عبارة «حاملات أكفانها في الظلام» بـ:",
+[
+"الأمل والتفاؤل",
+"قرب الهلاك وضياع الحياة",
+"القوة والنشاط",
+"الاستقرار النفسي"
+],
+1,
+"توحي بالهلاك وضياع الحياة."
+],
+
+[
+"النص الشعري",
+"شبّه الشاعر مدمني المخدرات بـ:",
+[
+"النجوم",
+"الأبطال",
+"أشباح الليل",
+"الطيور"
+],
+2,
+"شبّههم بأشباح الليل."
+],
+
+[
+"النص الشعري",
+"الغرض من الاستفهام في قوله «أين منها الشباب؟ أين الأماني؟»:",
+[
+"طلب معرفة المكان",
+"التعجب والتحسر",
+"النهي",
+"الأمر"
+],
+1,
+"الاستفهام للتعجب والتحسر."
+],
+
+[
+"النص الشعري",
+"الفكرة الرئيسة للأبيات:",
+[
+"وصف جمال الليل",
+"التحذير من المخدرات وتصوير ما تسببه من ضياع",
+"الحديث عن انتظار الآباء",
+"مدح الشباب"
+],
+1,
+"تحذر الأبيات من المخدرات."
+],
+
+
+[
+"الأسلوب اللغوي",
+"أداة الاستثناء التي تُعَدُّ اسمًا هي:",
+[
+"إلا",
+"عدا",
+"غير",
+"خلا"
+],
+2,
+"«غير» اسم من أسماء الاستثناء."
+],
+
+[
+"الأسلوب اللغوي",
+"صيغة التعجب في الجملة «أقبح بالبخل!»:",
+[
+"ما أفعل",
+"أفعل به",
+"تعجب سماعي",
+"أسلوب نداء"
+],
+1,
+"الجملة على صيغة «أفعل به»."
+],
+
+[
+"الأسلوب اللغوي",
+"المعدود في الجملة «اشتريت خمسة عشر قلمًا»:",
+[
+"اشتريت",
+"خمسة عشر",
+"قلمًا",
+"خمسة"
+],
+2,
+"المعدود هو «قلمًا»."
+],
+
+[
+"الأسلوب اللغوي",
+"الصياغة الصحيحة للعدد في الجملة «قرأت ٧ صفحات من الكتاب»:",
+[
+"قرأت سبع صفحات من الكتاب.",
+"قرأت سبعة صفحات من الكتاب.",
+"قرأت سبعًا صفحة من الكتاب.",
+"قرأت سبعة صفحة من الكتاب."
+],
+0,
+"الصواب «سبع صفحات»."
+],
+
+
+[
+"الوظيفة النحوية",
+"النعت في الجملة «رأى محمد بيتًا جميلًا»:",
+[
+"محمد",
+"بيتًا",
+"جميلًا",
+"رأى"
+],
+2,
+"«جميلًا» نعت."
+],
+
+[
+"الوظيفة النحوية",
+"معنى حرف العطف في الجملة «زرت مدينتي العلا ونيوم في الإجازة»:",
+[
+"الترتيب مع التعقيب",
+"الجمع والمشاركة",
+"التخيير",
+"الغاية"
+],
+1,
+"الواو تفيد الجمع والمشاركة."
+],
+
+[
+"الوظيفة النحوية",
+"المبدل منه في الجملة «لن ينسى السعوديون فضل الملك عبدالعزيز في توحيد البلاد»:",
+[
+"السعوديون",
+"فضل",
+"الملك",
+"عبدالعزيز"
+],
+2,
+"«الملك» هو المبدل منه."
+],
+
+[
+"الوظيفة النحوية",
+"أي الجمل الآتية اشتملت على بدل بعض من كل؟",
+[
+"قرأت الكتاب نصفه.",
+"جاء الطالب المجتهد.",
+"حضر المعلم والطالب.",
+"رأيت بيتًا جميلًا."
+],
+0,
+"«نصفه» بدل بعض من كل."
+],
+
+[
+"الوظيفة النحوية",
+"حرف العطف الذي يفيد الغاية هو:",
+[
+"الواو",
+"الفاء",
+"حتى",
+"أو"
+],
+2,
+"«حتى» تفيد الغاية."
+],
+
+[
+"الوظيفة النحوية",
+"إعراب كلمة «الأخضر» في الجملة «يرفرف العلم الأخضر عاليًا»:",
+[
+"نعت مرفوع",
+"حال منصوب",
+"بدل مرفوع",
+"مفعول به"
+],
+0,
+"«الأخضر» نعت مرفوع."
+],
+
+
+[
+"الصنف اللغوي",
+"جاء اسم المكان «مَصنع» على هذه الصيغة؛ لأن فعله ثلاثي صحيح وعين مضارعه:",
+[
+"مكسورة",
+"مضمومة",
+"مفتوحة",
+"ساكنة"
+],
+2,
+"الفعل «صنع يصنع» وعين مضارعه مفتوحة."
+],
+
+[
+"الصنف اللغوي",
+"اسم الزمان المشتق من الفعل «وعد»:",
+[
+"مَوعد",
+"موعود",
+"واعد",
+"وعود"
+],
+0,
+"اسم الزمان هو «موعد»."
+],
+
+[
+"الصنف اللغوي",
+"اسم الآلة في الجملة «يستخدم النجار المنشار في عمله» على وزن:",
+[
+"مِفعل",
+"فاعول",
+"مِفعال",
+"مِفعلة"
+],
+2,
+"«منشار» على وزن «مِفعال»."
+],
+
+[
+"الصنف اللغوي",
+"اسم الآلة الجامد من بين الكلمات الآتية:",
+[
+"مفتاح",
+"رمح",
+"مطحنة",
+"مجهر"
+],
+1,
+"«رمح» اسم آلة جامد."
+],
+
+[
+"الصنف اللغوي",
+"المصدران «غليان — سُعال» على الترتيب:",
+[
+"قياسي — سماعي",
+"سماعي — سماعي",
+"سماعي — قياسي",
+"قياسي — قياسي"
+],
+3,
+"كلاهما مصدر قياسي."
+],
+
+[
+"الصنف اللغوي",
+"أي الكلمات الآتية تُعَدُّ مصدرًا لفعل ثلاثي سماعي؟",
+[
+"تربية",
+"إقبال",
+"سجود",
+"رحيل"
+],
+2,
+"«سجود» مصدر ثلاثي سماعي."
+],
+
+
+[
+"الرسم الإملائي",
+"عند اتصال حرف الجر بـ«ما» الاستفهامية تُحذف ألف «ما».",
+[
+"صحيحة",
+"خاطئة"
+],
+0,
+"مثل: «بِمَ كتبتِ؟»."
+],
+
+
+[
+"أسئلة إضافية",
+"نوع البدل في الجملة «أعجبني الكتاب أسلوبه»:",
+[
+"بدل كل من كل",
+"بدل بعض من كل",
+"بدل اشتمال",
+"بدل مباين"
+],
+2,
+"«أسلوبه» بدل اشتمال."
+],
+
+[
+"أسئلة إضافية",
+"نوع النعت في الجملة «جاء الرجل الحسنُ خلقُه»:",
+[
+"نعت حقيقي",
+"نعت سببي",
+"نعت جملة",
+"شبه جملة"
+],
+1,
+"«الحسن» نعت سببي."
+],
+
+[
+"أسئلة إضافية",
+"في الجملة «شاهدتُ الطالبتينِ المجتهدتينِ» طابق النعت «المجتهدتين» منعوته «الطالبتين» في:",
+[
+"الإعراب فقط",
+"التعريف والتنكير فقط",
+"النوع والعدد فقط",
+"الإعراب، والتعريف والتنكير، والنوع، والعدد"
+],
+3,
+"كلاهما منصوب، ومعرفة، ومؤنث، ومثنى."
+],
+
+[
+"أسئلة إضافية",
+"أي الجمل الآتية اشتملت على نعت جملة؟",
+[
+"قرأت كتابًا مفيدًا.",
+"رأيت منزلًا أمام المدرسة.",
+"جاء طالبٌ أخلاقه حسنة.",
+"شاهدت الطالب المجتهد."
+],
+2,
+"«أخلاقه حسنة» جملة اسمية في محل نعت."
+],
+
+[
+"أسئلة إضافية",
+"الضبط الصحيح للمعطوف في الجملة «حضر المعلمُ والطلاب...»:",
+[
+"والطلابَ",
+"والطلابُ",
+"والطلابِ",
+"والطلابْ"
+],
+1,
+"المعطوف يتبع المعطوف عليه في الرفع."
+],
+
+[
+"أسئلة إضافية",
+"أي الجمل الآتية اشتملت على بدل كل من كل؟",
+[
+"أكلت الرغيف نصفه.",
+"أعجبني الكتاب أسلوبه.",
+"حضر الخليفة عمرُ.",
+"جاء الطالب المجتهد."
+],
+2,
+"«عمرُ» بدل كل من كل."
+],
+
+[
+"أسئلة إضافية",
+"المستثنى بـ«غير» و«سوى» يكون إعرابه:",
+[
+"مضافًا إليه مجرورًا",
+"مستثنى منصوبًا دائمًا",
+"فاعلًا مرفوعًا",
+"نعتًا مجرورًا"
+],
+0,
+"الاسم بعد «غير» و«سوى» مضاف إليه مجرور."
+]
+
 ];
-const ar=n=>String(n).replace(/\d/g,d=>"٠١٢٣٤٥٦٧٨٩"[d]);let i=0,score=0,answered=false,answers=[];const $=id=>document.getElementById(id),qt=$("questionText"),qn=$("questionNumber"),sl=$("sectionLabel"),op=$("options"),fb=$("feedback"),next=$("nextBtn"),quiz=$("quizCard"),result=$("resultCard"),topc=$("topCard"),read=$("readingBox"),poem=$("poemBox");function tone(ok){try{const A=window.AudioContext||window.webkitAudioContext,c=new A,o=c.createOscillator(),g=c.createGain();o.connect(g);g.connect(c.destination);o.frequency.value=ok?660:220;g.gain.value=.1;o.start();g.gain.exponentialRampToValueAtTime(.001,c.currentTime+.25);o.stop(c.currentTime+.26)}catch(e){}}function confetti(){for(let x=0;x<22;x++){const e=document.createElement("span");e.className="confetti";e.textContent=["●","■","▲","★"][Math.floor(Math.random()*4)];e.style.left=Math.random()*100+"vw";e.style.color=["#76548f","#c9a85c","#d895aa","#4e8a68"][Math.floor(Math.random()*4)];e.style.animationDuration=1.5+Math.random()*1.5+"s";document.body.appendChild(e);setTimeout(()=>e.remove(),3200)}}function stats(){$("currentStat").textContent=`${ar(Math.min(i+1,Q.length))} / ${ar(Q.length)}`;$("correctStat").textContent=ar(score);$("scoreStat").textContent=`${ar(score)} / ${ar(Q.length)}`;$("progressBar").style.width=(i/Q.length*100)+"%"}function render(){answered=false;fb.className="feedback";fb.innerHTML="";next.style.display="none";const q=Q[i];sl.textContent=q[0];qn.textContent=`السؤال ${ar(i+1)} من ${ar(Q.length)}`;qt.textContent=q[1];op.innerHTML="";["أ","ب","ج","د"].slice(0,q[2].length).forEach((l,x)=>{const b=document.createElement("button");b.className="option";b.innerHTML=`<span class="choice-letter">${l}</span><span>${q[2][x]}</span>`;b.onclick=()=>choose(x,b);op.appendChild(b)});read.style.display=i<10?"block":"none";poem.style.display=i>=10&&i<16?"block":"none";stats()}function choose(x,b){if(answered)return;answered=true;const q=Q[i],bs=[...document.querySelectorAll(".option")];bs.forEach(v=>v.disabled=true);bs[q[3]].classList.add("correct");answers[i]=x;if(x===q[3]){score++;b.classList.add("correct");fb.className="feedback show good";fb.innerHTML=`أحسنتِ! إجابة صحيحة 🌟<span class="explain">${q[4]}</span>`;tone(true);if(navigator.vibrate)navigator.vibrate([60,35,60]);confetti()}else{b.classList.add("wrong");fb.className="feedback show bad";fb.innerHTML=`الإجابة غير صحيحة.<span class="explain">الإجابة الصحيحة: ${q[2][q[3]]} — ${q[4]}</span>`;tone(false);if(navigator.vibrate)navigator.vibrate(160)}stats();next.textContent=i===Q.length-1?"عرض النتيجة":"السؤال التالي";next.style.display="inline-block"}next.onclick=()=>{if(!answered)return;i++;i<Q.length?render():showResult()};function showResult(){quiz.style.display=topc.style.display=read.style.display=poem.style.display="none";result.classList.add("show");$("finalScore").textContent=`${ar(score)} / ${ar(Q.length)}`;const p=Math.round(score/Q.length*100);$("resultIcon").textContent=p>=90?"🏆":p>=75?"🌟":p>=60?"👏":"📚";$("resultNote").textContent=p>=90?"ممتازة! أداء رائع وإتقان مميز.":p>=75?"أداء جميل جدًا، واصلي التقدم.":p>=60?"نتيجة جيدة، وتحتاج بعض المهارات إلى مراجعة.":"راجعي المهارات ثم أعيدي المحاولة؛ تستطيعين التحسن.";const r=$("review");r.innerHTML="<h3>مراجعة الإجابات غير الصحيحة</h3>";let m=0;Q.forEach((q,x)=>{if(answers[x]!==q[3]){m++;const d=document.createElement("div");d.className="review-item";d.innerHTML=`<strong>السؤال ${ar(x+1)}:</strong> ${q[1]}<br>إجابتك: ${answers[x]==null?"لم تُجب":q[2][answers[x]]}<br>الصحيح: ${q[2][q[3]]}`;r.appendChild(d)}});if(!m)r.innerHTML="<h3>رائعة! جميع الإجابات صحيحة 🎉</h3>"}$("resultRestart").onclick=()=>{i=0;score=0;answered=false;answers=[];result.classList.remove("show");quiz.style.display=topc.style.display="block";render()};render();window.scrollTo=function(){};
+  const ar =
+  n =>
+    String(n).replace(
+      /\d/g,
+      d => "٠١٢٣٤٥٦٧٨٩"[d]
+    );
+
+
+let i = 0;
+let score = 0;
+let answered = false;
+let answers = [];
+
+
+const $ =
+  id =>
+    document.getElementById(id);
+
+
+const qt = $("questionText");
+const qn = $("questionNumber");
+const sl = $("sectionLabel");
+const op = $("options");
+const fb = $("feedback");
+const next = $("nextBtn");
+const quiz = $("quizCard");
+const result = $("resultCard");
+const topc = $("topCard");
+const read = $("readingBox");
+const poem = $("poemBox");
+
+
+function tone(ok){
+
+  try{
+
+    const A =
+      window.AudioContext ||
+      window.webkitAudioContext;
+
+
+    const c =
+      new A();
+
+
+    const o =
+      c.createOscillator();
+
+
+    const g =
+      c.createGain();
+
+
+    o.connect(g);
+
+    g.connect(
+      c.destination
+    );
+
+
+    o.frequency.value =
+      ok ? 660 : 220;
+
+
+    g.gain.value =
+      .1;
+
+
+    o.start();
+
+
+    g.gain.exponentialRampToValueAtTime(
+      .001,
+      c.currentTime + .25
+    );
+
+
+    o.stop(
+      c.currentTime + .26
+    );
+
+
+  }catch(e){}
+
+}
+
+
+function confetti(){
+
+  for(
+    let x = 0;
+    x < 22;
+    x++
+  ){
+
+    const e =
+      document.createElement(
+        "span"
+      );
+
+
+    e.className =
+      "confetti";
+
+
+    e.textContent =
+      ["●","■","▲","★"][
+        Math.floor(
+          Math.random() * 4
+        )
+      ];
+
+
+    e.style.left =
+      Math.random() *
+      100 +
+      "vw";
+
+
+    e.style.color =
+      [
+        "#76548f",
+        "#c9a85c",
+        "#d895aa",
+        "#4e8a68"
+      ][
+        Math.floor(
+          Math.random() * 4
+        )
+      ];
+
+
+    e.style.animationDuration =
+      1.5 +
+      Math.random() *
+      1.5 +
+      "s";
+
+
+    document.body.appendChild(
+      e
+    );
+
+
+    setTimeout(
+      () => e.remove(),
+      3200
+    );
+
+  }
+
+}
+
+
+function stats(){
+
+  $("currentStat").textContent =
+    `${ar(
+      Math.min(
+        i + 1,
+        Q.length
+      )
+    )} / ${ar(Q.length)}`;
+
+
+  $("correctStat").textContent =
+    ar(score);
+
+
+  $("scoreStat").textContent =
+    `${ar(score)} / ${ar(Q.length)}`;
+
+
+  $("progressBar").style.width =
+    (
+      i /
+      Q.length *
+      100
+    ) +
+    "%";
+
+}
+
+
+function render(){
+
+  answered =
+    false;
+
+
+  fb.className =
+    "feedback";
+
+
+  fb.innerHTML =
+    "";
+
+
+  next.style.display =
+    "none";
+
+
+  const q =
+    Q[i];
+
+
+  sl.textContent =
+    q[0];
+
+
+  qn.textContent =
+    `السؤال ${ar(i+1)} من ${ar(Q.length)}`;
+
+
+  qt.textContent =
+    q[1];
+
+
+  op.innerHTML =
+    "";
+
+
+  ["أ","ب","ج","د"]
+    .slice(
+      0,
+      q[2].length
+    )
+    .forEach(
+      (letter,x)=>{
+
+
+        const b =
+          document.createElement(
+            "button"
+          );
+
+
+        b.className =
+          "option";
+
+
+        b.type =
+          "button";
+
+
+        b.innerHTML = `
+
+          <span class="choice-letter">
+            ${letter}
+          </span>
+
+          <span>
+            ${q[2][x]}
+          </span>
+
+        `;
+
+
+        b.onclick =
+          () =>
+            choose(
+              x,
+              b
+            );
+
+
+        op.appendChild(
+          b
+        );
+
+      }
+    );
+
+
+  read.style.display =
+    i < 10
+      ? "block"
+      : "none";
+
+
+  poem.style.display =
+    i >= 10 &&
+    i < 16
+
+      ? "block"
+      : "none";
+
+
+  stats();
+
+}
+
+
+function choose(
+  x,
+  b
+){
+
+  if(answered){
+    return;
+  }
+
+
+  answered =
+    true;
+
+
+  const q =
+    Q[i];
+
+
+  const bs = [
+    ...document.querySelectorAll(
+      ".option"
+    )
+  ];
+
+
+  bs.forEach(
+    v =>
+      v.disabled =
+        true
+  );
+
+
+  bs[
+    q[3]
+  ]
+  .classList
+  .add(
+    "correct"
+  );
+
+
+  answers[i] =
+    x;
+
+
+  if(
+    x === q[3]
+  ){
+
+
+    score++;
+
+
+    b.classList.add(
+      "correct"
+    );
+
+
+    fb.className =
+      "feedback show good";
+
+
+    fb.innerHTML = `
+
+      أحسنتِ! إجابة صحيحة 🌟
+
+      <span class="explain">
+        ${q[4]}
+      </span>
+
+    `;
+
+
+    tone(true);
+
+
+    if(
+      navigator.vibrate
+    ){
+
+      navigator.vibrate(
+        [60,35,60]
+      );
+
+    }
+
+
+    confetti();
+
+
+  }else{
+
+
+    b.classList.add(
+      "wrong"
+    );
+
+
+    fb.className =
+      "feedback show bad";
+
+
+    fb.innerHTML = `
+
+      الإجابة غير صحيحة.
+
+      <span class="explain">
+
+        الإجابة الصحيحة:
+        ${q[2][q[3]]}
+
+        —
+
+        ${q[4]}
+
+      </span>
+
+    `;
+
+
+    tone(false);
+
+
+    if(
+      navigator.vibrate
+    ){
+
+      navigator.vibrate(
+        160
+      );
+
+    }
+
+  }
+
+
+  stats();
+
+
+  next.textContent =
+
+    i ===
+    Q.length - 1
+
+      ? "عرض النتيجة"
+
+      : "السؤال التالي";
+
+
+  next.style.display =
+    "inline-block";
+
+}
+
+
+next.onclick =
+  () => {
+
+
+    if(!answered){
+      return;
+    }
+
+
+    i++;
+
+
+    if(
+      i < Q.length
+    ){
+
+      render();
+
+    }else{
+
+      showResult();
+
+    }
+
+  };
+
+
+async function showResult(){
+
+
+  quiz.style.display =
+    "none";
+
+
+  topc.style.display =
+    "none";
+
+
+  read.style.display =
+    "none";
+
+
+  poem.style.display =
+    "none";
+
+
+  result.classList.add(
+    "show"
+  );
+
+
+  $("finalScore").textContent =
+    `${ar(score)} / ${ar(Q.length)}`;
+
+
+  const percent =
+    Math.round(
+      score /
+      Q.length *
+      100
+    );
+
+
+  $("resultIcon").textContent =
+
+    percent >= 90
+
+      ? "🏆"
+
+      : percent >= 75
+
+        ? "🌟"
+
+        : percent >= 60
+
+          ? "👏"
+
+          : "📚";
+
+
+  $("resultNote").textContent =
+
+    percent >= 90
+
+      ? "أداء ممتاز وإتقان مميز 🌟"
+
+      : percent >= 75
+
+        ? "أداء متميز، واصلي التقدم."
+
+        : percent >= 60
+
+          ? "نتيجة جيدة، وتحتاج بعض المهارات إلى مراجعة."
+
+          : "راجعي المهارات، ثم أعيدي المحاولة لتحسين مستواكِ.";
+
+
+  const r =
+    $("review");
+
+
+  r.innerHTML =
+    "<h3>مراجعة الإجابات غير الصحيحة</h3>";
+
+
+  let mistakes =
+    0;
+
+
+  Q.forEach(
+    (
+      q,
+      x
+    ) => {
+
+
+      if(
+        answers[x] !==
+        q[3]
+      ){
+
+
+        mistakes++;
+
+
+        const d =
+          document.createElement(
+            "div"
+          );
+
+
+        d.className =
+          "review-item";
+
+
+        const chosen =
+
+          answers[x] == null
+
+            ? "لم تُجيبي"
+
+            : q[2][
+                answers[x]
+              ];
+
+
+        d.innerHTML = `
+
+          <strong>
+            السؤال ${ar(x+1)}:
+          </strong>
+
+          ${q[1]}
+
+          <br>
+
+          إجابتكِ:
+          ${chosen}
+
+          <br>
+
+          الإجابة الصحيحة:
+          ${q[2][q[3]]}
+
+        `;
+
+
+        r.appendChild(
+          d
+        );
+
+      }
+
+    }
+  );
+
+
+  if(
+    mistakes === 0
+  ){
+
+    r.innerHTML =
+      "<h3>أحسنتِ! جميع الإجابات صحيحة 🎉</h3>";
+
+  }
+
+
+  await saveResult(
+    percent
+  );
+
+}
+
+
+async function saveResult(
+  percent
+){
+
+
+  const saveStatus =
+    $("saveStatus");
+
+
+  const user =
+    auth.currentUser ||
+    currentUser;
+
+
+  if(!user){
+
+
+    saveStatus.className =
+      "save-status error";
+
+
+    saveStatus.textContent =
+      "لم تُحفظ النتيجة؛ يلزم تسجيل الدخول إلى المنصة أولًا.";
+
+
+    return;
+
+  }
+
+
+  try{
+
+
+    saveStatus.className =
+      "save-status";
+
+
+    saveStatus.textContent =
+      "جارٍ حفظ نتيجة النموذج الثاني في سجل الفصل الدراسي الثاني...";
+
+
+    const studentRef =
+      doc(
+        db,
+        "students",
+        user.uid
+      );
+
+
+    const studentSnap =
+      await getDoc(
+        studentRef
+      );
+
+
+    if(
+      !studentSnap.exists()
+    ){
+
+      throw new Error(
+        "student-document-not-found"
+      );
+
+    }
+
+
+    const data =
+      studentSnap.data();
+
+
+    const oldTest =
+      data?.[
+        "اختبارات_الفصل_الثاني"
+      ]?.[
+        "النموذج_الثاني"
+      ] || {};
+
+
+    const oldAttempts =
+      Number(
+        oldTest[
+          "عدد_المحاولات"
+        ] || 0
+      );
+
+
+    const oldBest =
+      Number(
+        oldTest[
+          "أفضل_نسبة"
+        ] || 0
+      );
+
+
+    const bestPercentage =
+      Math.max(
+        oldBest,
+        percent
+      );
+
+
+    await updateDoc(
+      studentRef,
+      {
+
+        "اختبارات_الفصل_الثاني.النموذج_الثاني":
+        {
+
+          "اسم_الاختبار":
+            "النموذج الثاني للفصل الدراسي الثاني",
+
+          "الدرجة":
+            score,
+
+          "المجموع":
+            Q.length,
+
+          "النسبة":
+            percent,
+
+          "أفضل_نسبة":
+            bestPercentage,
+
+          "مكتمل":
+            true,
+
+          "عدد_الأسئلة":
+            Q.length,
+
+          "عدد_المحاولات":
+            oldAttempts + 1,
+
+          "استحقت_الإتقان":
+            percent >= 80,
+
+          "آخر_محاولة":
+            serverTimestamp()
+
+        }
+
+      }
+    );
+
+
+    saveStatus.className =
+      "save-status success";
+
+
+    saveStatus.textContent =
+      "✅ حُفظت نتيجة النموذج الثاني بنجاح في سجل الفصل الدراسي الثاني.";
+
+
+  }catch(error){
+
+
+    console.error(
+      "خطأ في حفظ نتيجة النموذج الثاني:",
+      error
+    );
+
+
+    saveStatus.className =
+      "save-status error";
+
+
+    saveStatus.textContent =
+      "تعذّر حفظ النتيجة الآن. أعيدي المحاولة بعد التأكد من تسجيل الدخول.";
+
+  }
+
+}
+
+
+$("resultRestart").onclick =
+  () => {
+
+
+    i = 0;
+
+    score = 0;
+
+    answered = false;
+
+    answers = [];
+
+
+    result.classList.remove(
+      "show"
+    );
+
+
+    quiz.style.display =
+      "block";
+
+
+    topc.style.display =
+      "block";
+
+
+    const saveStatus =
+      $("saveStatus");
+
+
+    saveStatus.className =
+      "save-status";
+
+
+    saveStatus.textContent =
+      "ستُحفظ نتيجتكِ في سجل الفصل الدراسي الثاني.";
+
+
+    render();
+
+  };
+
+
+render();
+
+
+window.scrollTo =
+  function(){};
+
 </script>
-</body></html>
+
+</body>
+</html>
