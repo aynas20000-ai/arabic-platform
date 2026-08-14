@@ -1,265 +1,686 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>اختبارات الفصل الدراسي الثاني | منصة آفاق</title>
 
-  <style>
-    :root{
-      --purple:#76548f;
-      --purple-dark:#4f3763;
-      --purple-light:#eee5f4;
-      --gold:#c9a85c;
-      --gold-light:#f6e9bd;
-      --cream:#fffaf2;
-      --paper:#fff;
-      --text:#403347;
-      --shadow:0 15px 35px rgba(79,55,99,.14);
-    }
+<meta charset="UTF-8">
 
-    *{box-sizing:border-box}
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
-    body{
-      margin:0;
-      font-family:Tahoma,Arial,sans-serif;
-      color:var(--text);
-      background:linear-gradient(180deg,var(--cream),#f7eff9);
-      min-height:100vh;
-      line-height:1.8;
-    }
+<title>
+اختبارات الفصل الدراسي الثاني | منصة آفاق
+</title>
 
-    header{
-      padding:38px 18px 30px;
-      text-align:center;
-      color:#fff;
-      background:linear-gradient(135deg,var(--purple),var(--purple-dark));
-      border-bottom:5px solid var(--gold);
-    }
+<style>
 
-    header h1{
-      margin:0;
-      font-size:clamp(28px,7vw,42px);
-    }
+:root{
+  --purple:#76548f;
+  --purple-dark:#4f3763;
+  --purple-light:#eee5f4;
+  --gold:#c9a85c;
+  --gold-light:#f6e9bd;
+  --cream:#fffaf2;
+  --paper:#fff;
+  --text:#403347;
+  --green:#2f8a5b;
+  --green-light:#e8f7ef;
+  --shadow:0 15px 35px rgba(79,55,99,.14);
+}
 
-    header p{
-      margin:8px 0 0;
-      font-size:17px;
-    }
+*{
+  box-sizing:border-box;
+}
 
-    main{
-      width:min(1000px,92%);
-      margin:28px auto 50px;
-    }
+body{
+  margin:0;
+  font-family:Tahoma,Arial,sans-serif;
+  color:var(--text);
+  background:linear-gradient(180deg,var(--cream),#f7eff9);
+  min-height:100vh;
+  line-height:1.8;
+}
 
-    .intro{
-      background:var(--paper);
-      border:1px solid #eadff0;
-      border-radius:22px;
-      padding:20px;
-      text-align:center;
-      box-shadow:var(--shadow);
-      margin-bottom:22px;
-    }
+header{
+  padding:38px 18px 30px;
+  text-align:center;
+  color:#fff;
+  background:linear-gradient(135deg,var(--purple),var(--purple-dark));
+  border-bottom:5px solid var(--gold);
+}
 
-    .intro h2{
-      margin:0 0 6px;
-      color:var(--purple-dark);
-    }
+header h1{
+  margin:0;
+  font-size:clamp(28px,7vw,42px);
+}
 
-    .intro p{
-      margin:0;
-    }
+header p{
+  margin:8px 0 0;
+  font-size:17px;
+}
 
-    .tests-grid{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:18px;
-    }
+main{
+  width:min(1000px,92%);
+  margin:28px auto 50px;
+}
 
-    .test-card{
-      position:relative;
-      overflow:hidden;
-      background:var(--paper);
-      border:1px solid #eadff0;
-      border-radius:24px;
-      padding:22px;
-      box-shadow:var(--shadow);
-    }
+.intro{
+  background:var(--paper);
+  border:1px solid #eadff0;
+  border-radius:22px;
+  padding:20px;
+  text-align:center;
+  box-shadow:var(--shadow);
+  margin-bottom:22px;
+}
 
-    .test-card::before{
-      content:"";
-      position:absolute;
-      top:0;
-      right:0;
-      width:100%;
-      height:6px;
-      background:linear-gradient(90deg,var(--gold),var(--purple));
-    }
+.intro h2{
+  margin:0 0 6px;
+  color:var(--purple-dark);
+}
 
-    .number{
-      width:52px;
-      height:52px;
-      display:grid;
-      place-items:center;
-      border-radius:50%;
-      background:var(--purple-light);
-      color:var(--purple-dark);
-      font-weight:bold;
-      font-size:23px;
-      margin-bottom:12px;
-      border:1px solid #dccae6;
-    }
+.intro p{
+  margin:0;
+}
 
-    .test-card h3{
-      margin:0 0 8px;
-      color:var(--purple-dark);
-      font-size:22px;
-    }
+.tests-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:18px;
+}
 
-    .test-card p{
-      margin:0 0 17px;
-      color:#6e6274;
-    }
+.test-card{
+  position:relative;
+  overflow:hidden;
+  background:var(--paper);
+  border:1px solid #eadff0;
+  border-radius:24px;
+  padding:22px;
+  box-shadow:var(--shadow);
+}
 
-    .open-btn{
-      display:block;
-      width:100%;
-      text-decoration:none;
-      text-align:center;
-      padding:12px 15px;
-      border-radius:14px;
-      background:linear-gradient(135deg,var(--purple),var(--purple-dark));
-      color:#fff;
-      font-weight:bold;
-      font-size:16px;
-    }
+.test-card::before{
+  content:"";
+  position:absolute;
+  top:0;
+  right:0;
+  width:100%;
+  height:6px;
+  background:linear-gradient(90deg,var(--gold),var(--purple));
+}
 
-    .final-card{
-      grid-column:1/-1;
-      background:linear-gradient(180deg,#fffdf7,#fff8e6);
-      border-color:#e7d39b;
-    }
+.number{
+  width:52px;
+  height:52px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:var(--purple-light);
+  color:var(--purple-dark);
+  font-weight:bold;
+  font-size:23px;
+  margin-bottom:12px;
+  border:1px solid #dccae6;
+}
 
-    .final-card .number{
-      background:var(--gold-light);
-      border-color:#dfc777;
-      color:#6b531b;
-    }
+.test-card h3{
+  margin:0 0 8px;
+  color:var(--purple-dark);
+  font-size:22px;
+}
 
-    .final-card .open-btn{
-      background:linear-gradient(135deg,var(--gold),#ad8736);
-    }
+.test-card p{
+  margin:0 0 17px;
+  color:#6e6274;
+}
 
-    .back{
-      display:block;
-      width:min(340px,100%);
-      margin:26px auto 0;
-      padding:12px 16px;
-      text-align:center;
-      text-decoration:none;
-      color:var(--purple-dark);
-      background:var(--purple-light);
-      border:1px solid #dccae6;
-      border-radius:14px;
-      font-weight:bold;
-    }
+.open-btn{
+  display:block;
+  width:100%;
+  text-decoration:none;
+  text-align:center;
+  padding:12px 15px;
+  border-radius:14px;
+  background:linear-gradient(135deg,var(--purple),var(--purple-dark));
+  color:#fff;
+  font-weight:bold;
+  font-size:16px;
+}
 
-    footer{
-      text-align:center;
-      color:#786d7e;
-      padding:0 15px 25px;
-      font-size:14px;
-    }
+.final-card{
+  grid-column:1/-1;
+  background:linear-gradient(180deg,#fffdf7,#fff8e6);
+  border-color:#e7d39b;
+}
 
-    @media(max-width:700px){
-      .tests-grid{
-        grid-template-columns:1fr;
-      }
+.final-card .number{
+  background:var(--gold-light);
+  border-color:#dfc777;
+  color:#6b531b;
+}
 
-      .final-card{
-        grid-column:auto;
-      }
+.final-card .open-btn{
+  background:linear-gradient(135deg,var(--gold),#ad8736);
+}
 
-      .test-card{
-        padding:19px;
-      }
-    }
-  </style>
+.certificate-card{
+  display:none;
+  margin-top:24px;
+  background:linear-gradient(135deg,#f8fff9,#edf8f0);
+  border:2px solid #a7cdb0;
+  border-radius:26px;
+  padding:24px;
+  text-align:center;
+  box-shadow:var(--shadow);
+  position:relative;
+  overflow:hidden;
+}
+
+.certificate-card.show{
+  display:block;
+}
+
+.certificate-card::before{
+  content:"";
+  position:absolute;
+  top:0;
+  right:0;
+  left:0;
+  height:7px;
+  background:linear-gradient(90deg,#c9a85c,#2f6f43,#c9a85c);
+}
+
+.certificate-icon{
+  font-size:54px;
+  margin-bottom:4px;
+}
+
+.certificate-card h2{
+  margin:0 0 8px;
+  color:#285f39;
+  font-size:27px;
+}
+
+.certificate-card p{
+  margin:0 0 17px;
+  color:#526257;
+}
+
+.certificate-btn{
+  display:block;
+  width:min(420px,100%);
+  margin:auto;
+  padding:13px 18px;
+  border-radius:15px;
+  text-decoration:none;
+  background:linear-gradient(135deg,#2f6f43,#214e31);
+  color:#fff;
+  font-weight:bold;
+  font-size:17px;
+}
+
+.certificate-wait{
+  margin-top:22px;
+  padding:15px;
+  border-radius:18px;
+  text-align:center;
+  background:#fff;
+  border:1px solid #eadff0;
+  color:#75687c;
+}
+
+.back{
+  display:block;
+  width:min(340px,100%);
+  margin:26px auto 0;
+  padding:12px 16px;
+  text-align:center;
+  text-decoration:none;
+  color:var(--purple-dark);
+  background:var(--purple-light);
+  border:1px solid #dccae6;
+  border-radius:14px;
+  font-weight:bold;
+}
+
+footer{
+  text-align:center;
+  color:#786d7e;
+  padding:0 15px 25px;
+  font-size:14px;
+}
+
+@media(max-width:700px){
+
+  .tests-grid{
+    grid-template-columns:1fr;
+  }
+
+  .final-card{
+    grid-column:auto;
+  }
+
+  .test-card{
+    padding:19px;
+  }
+
+}
+
+</style>
+
 </head>
 
 <body>
 
-  <header>
-    <h1>📗 اختبارات الفصل الدراسي الثاني</h1>
-    <p>خمسة نماذج شاملة لمراجعة مهارات مادة لغتي الخالدة</p>
-  </header>
+<header>
 
-  <main>
+  <h1>
+    📗 اختبارات الفصل الدراسي الثاني
+  </h1>
 
-    <section class="intro">
-      <h2>اختاري النموذج وابدئي الاختبار</h2>
-      <p>يتكوّن كل نموذج من ٤٠ سؤالًا، مع التصحيح الفوري وإظهار النتيجة النهائية.</p>
-    </section>
+  <p>
+    خمسة نماذج شاملة لمراجعة مهارات مادة لغتي الخالدة
+  </p>
 
-    <section class="tests-grid">
+</header>
 
-      <article class="test-card">
-        <div class="number">١</div>
-        <h3>النموذج الأول</h3>
-        <p>مراجعة شاملة لمهارات الفصل الدراسي الثاني.</p>
-        <a class="open-btn" href="test-term2-1.html">
-          ابدئي الاختبار
-        </a>
-      </article>
+<main>
 
-      <article class="test-card">
-        <div class="number">٢</div>
-        <h3>النموذج الثاني</h3>
-        <p>أسئلة متنوعة في الفهم القرائي والمهارات اللغوية.</p>
-        <a class="open-btn" href="test-term2-2.html">
-          ابدئي الاختبار
-        </a>
-      </article>
+<section class="intro">
 
-      <article class="test-card">
-        <div class="number">٣</div>
-        <h3>النموذج الثالث</h3>
-        <p>تدريب إضافي على التراكيب والرسم الإملائي.</p>
-        <a class="open-btn" href="test-term2-3.html">
-          ابدئي الاختبار
-        </a>
-      </article>
+  <h2>
+    اختاري النموذج وابدئي الاختبار
+  </h2>
 
-      <article class="test-card">
-        <div class="number">٤</div>
-        <h3>النموذج الرابع</h3>
-        <p>اختبار شامل يتضمن نصوصًا وأسئلة تطبيقية متنوعة.</p>
-        <a class="open-btn" href="test-term2-4.html">
-          ابدئي الاختبار
-        </a>
-      </article>
+  <p>
+    يتكوّن كل نموذج من ٤٠ سؤالًا، مع التصحيح الفوري وإظهار النتيجة النهائية.
+  </p>
 
-      <article class="test-card final-card">
-        <div class="number">٥</div>
-        <h3>النموذج الخامس الختامي</h3>
-        <p>النموذج الأخير لإكمال المراجعة الشاملة والاستعداد للاختبار.</p>
-        <a class="open-btn" href="test-term2-5.html">
-          ابدئي الاختبار الختامي
-        </a>
-      </article>
+</section>
+<section class="tests-grid">
 
-    </section>
+  <article class="test-card">
 
-    <a class="back" href="tests.html">
-      العودة إلى صفحة الاختبارات
+    <div class="number">
+      ١
+    </div>
+
+    <h3>
+      النموذج الأول
+    </h3>
+
+    <p>
+      مراجعة شاملة لمهارات الفصل الدراسي الثاني.
+    </p>
+
+    <a
+      class="open-btn"
+      href="test-term2-1.html"
+    >
+      ابدئي الاختبار
     </a>
 
-  </main>
+  </article>
 
-  <footer>
-    جميع الحقوق محفوظة © 2026 — منصة آفاق التعليمية
-  </footer>
+
+  <article class="test-card">
+
+    <div class="number">
+      ٢
+    </div>
+
+    <h3>
+      النموذج الثاني
+    </h3>
+
+    <p>
+      أسئلة متنوعة في الفهم القرائي والمهارات اللغوية.
+    </p>
+
+    <a
+      class="open-btn"
+      href="test-term2-2.html"
+    >
+      ابدئي الاختبار
+    </a>
+
+  </article>
+
+
+  <article class="test-card">
+
+    <div class="number">
+      ٣
+    </div>
+
+    <h3>
+      النموذج الثالث
+    </h3>
+
+    <p>
+      تدريب إضافي على التراكيب والرسم الإملائي.
+    </p>
+
+    <a
+      class="open-btn"
+      href="test-term2-3.html"
+    >
+      ابدئي الاختبار
+    </a>
+
+  </article>
+
+
+  <article class="test-card">
+
+    <div class="number">
+      ٤
+    </div>
+
+    <h3>
+      النموذج الرابع
+    </h3>
+
+    <p>
+      اختبار شامل يتضمن نصوصًا وأسئلة تطبيقية متنوعة.
+    </p>
+
+    <a
+      class="open-btn"
+      href="test-term2-4.html"
+    >
+      ابدئي الاختبار
+    </a>
+
+  </article>
+
+
+  <article class="test-card final-card">
+
+    <div class="number">
+      ٥
+    </div>
+
+    <h3>
+      النموذج الخامس الختامي
+    </h3>
+
+    <p>
+      النموذج الأخير لإكمال المراجعة الشاملة والاستعداد للاختبار.
+    </p>
+
+    <a
+      class="open-btn"
+      href="test-term2-5.html"
+    >
+      ابدئي الاختبار الختامي
+    </a>
+
+  </article>
+
+</section>
+
+
+<section
+  class="certificate-card"
+  id="certificateCard"
+>
+
+  <div class="certificate-icon">
+    🏆
+  </div>
+
+  <h2>
+    شهادة الفصل الدراسي الثاني
+  </h2>
+
+  <p>
+    أحسنتِ، لقد حققتِ شرط استحقاق شهادة الإتقان والتميز.
+  </p>
+
+  <a
+    class="certificate-btn"
+    href="term2-certificate.html"
+  >
+    عرض الشهادة وطباعتها
+  </a>
+
+</section>
+
+
+<div
+  class="certificate-wait"
+  id="certificateWait"
+>
+  جارٍ التحقق من استحقاق شهادة الفصل الدراسي الثاني...
+</div>
+
+
+<a
+  class="back"
+  href="tests.html"
+>
+  العودة إلى صفحة الاختبارات
+</a>
+
+
+</main>
+
+
+<footer>
+  جميع الحقوق محفوظة © 2026 — منصة آفاق التعليمية
+</footer>
+<script type="module">
+
+import {
+  initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+
+
+import {
+  initializeAuth,
+  browserLocalPersistence,
+  browserPopupRedirectResolver,
+  onAuthStateChanged
+}
+from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+
+import {
+  getFirestore,
+  doc,
+  getDoc
+}
+from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+
+const firebaseConfig = {
+
+  apiKey:
+    "AIzaSyB48av9gx4jzFyYoUQtcLwaR52qETevKGs",
+
+  authDomain:
+    "afaq-language-platform.firebaseapp.com",
+
+  projectId:
+    "afaq-language-platform",
+
+  storageBucket:
+    "afaq-language-platform.firebasestorage.app",
+
+  messagingSenderId:
+    "362601061474",
+
+  appId:
+    "1:362601061474:web:bc405291332b9e4ef9453b"
+
+};
+
+
+const app =
+  initializeApp(
+    firebaseConfig
+  );
+
+
+const auth =
+  initializeAuth(
+    app,
+    {
+      persistence:
+        browserLocalPersistence,
+
+      popupRedirectResolver:
+        browserPopupRedirectResolver
+    }
+  );
+
+
+const db =
+  getFirestore(
+    app
+  );
+
+
+const certificateCard =
+  document.getElementById(
+    "certificateCard"
+  );
+
+
+const certificateWait =
+  document.getElementById(
+    "certificateWait"
+  );
+
+
+onAuthStateChanged(
+  auth,
+  async user => {
+
+
+    if(!user){
+
+      certificateWait.textContent =
+        "سجلي الدخول إلى المنصة لعرض حالة استحقاق الشهادة.";
+
+      return;
+
+    }
+
+
+    try{
+
+      const studentRef =
+        doc(
+          db,
+          "students",
+          user.uid
+        );
+
+
+      const studentSnap =
+        await getDoc(
+          studentRef
+        );
+
+
+      if(
+        !studentSnap.exists()
+      ){
+
+        certificateWait.textContent =
+          "تعذّر العثور على سجل الطالبة.";
+
+        return;
+
+      }
+
+
+      const data =
+        studentSnap.data();
+
+
+      const term2Result =
+        data[
+          "نتيجة_الفصل_الثاني"
+        ] || {};
+
+
+      const completed =
+        term2Result[
+          "مكتمل"
+        ] === true;
+
+
+      const percentage =
+        Number(
+          term2Result[
+            "الدرجة"
+          ] || 0
+        );
+
+
+      const eligible =
+        term2Result[
+          "استحقت_الشهادة"
+        ] === true;
+
+
+      if(
+        completed &&
+        eligible &&
+        percentage >= 80
+      ){
+
+        certificateCard.classList.add(
+          "show"
+        );
+
+
+        certificateWait.style.display =
+          "none";
+
+
+      }else{
+
+
+        certificateCard.classList.remove(
+          "show"
+        );
+
+
+        certificateWait.textContent =
+          "ستظهر شهادة الفصل الدراسي الثاني هنا عند اكتمال متطلبات الاستحقاق.";
+
+      }
+
+
+    }catch(error){
+
+
+      console.error(
+        "خطأ في التحقق من الشهادة:",
+        error
+      );
+
+
+      certificateWait.textContent =
+        "تعذّر التحقق من حالة الشهادة الآن.";
+
+    }
+
+  }
+);
+
+</script>
 
 </body>
+
 </html>
