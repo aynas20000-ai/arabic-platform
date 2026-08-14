@@ -38,7 +38,11 @@ body{
   margin:0;
   font-family:Tahoma,Arial,sans-serif;
   color:var(--text);
-  background:linear-gradient(180deg,var(--cream),#f7eff9);
+  background:linear-gradient(
+    180deg,
+    var(--cream),
+    #f7eff9
+  );
   min-height:100vh;
   line-height:1.8;
 }
@@ -277,6 +281,47 @@ main{
   color:#fff;
   font-weight:bold;
   font-size:17px;
+}
+
+.test-tools{
+  margin-top:22px;
+  padding:20px;
+  text-align:center;
+  background:#fff8e8;
+  border:2px dashed #d7b45d;
+  border-radius:22px;
+}
+
+.test-tools h3{
+  margin:0 0 6px;
+  color:#7a5b17;
+}
+
+.test-tools p{
+  margin:0 0 14px;
+  color:#705f3d;
+}
+
+.test-now-btn{
+  border:0;
+  width:min(420px,100%);
+  padding:13px 18px;
+  border-radius:15px;
+  background:linear-gradient(
+    135deg,
+    #c9a85c,
+    #a98232
+  );
+  color:#fff;
+  font-family:inherit;
+  font-size:17px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.test-status{
+  margin-top:12px;
+  font-weight:bold;
 }
 
 .back{
@@ -524,6 +569,32 @@ footer{
 </section>
 
 
+<section class="test-tools">
+
+  <h3>
+    🧪 تجربة مؤقتة
+  </h3>
+
+  <p>
+    هذا الزر مخصص لنا فقط للتأكد من أن النتيجة والشهادة تعملان دون حل ٢٠٠ سؤال.
+  </p>
+
+  <button
+    class="test-now-btn"
+    id="temporaryTestBtn"
+    type="button"
+  >
+    تشغيل تجربة الشهادة
+  </button>
+
+  <div
+    class="test-status"
+    id="temporaryTestStatus"
+  ></div>
+
+</section>
+
+
 <a
   class="back"
   href="tests.html"
@@ -639,6 +710,18 @@ const certificateText =
   );
 
 
+const temporaryTestBtn =
+  document.getElementById(
+    "temporaryTestBtn"
+  );
+
+
+const temporaryTestStatus =
+  document.getElementById(
+    "temporaryTestStatus"
+  );
+
+
 function arabicDigits(value){
 
   return String(value).replace(
@@ -689,6 +772,188 @@ function getBestPercentage(test){
 }
 
 
+async function calculateTerm2Result(user){
+
+  const studentRef =
+    doc(
+      db,
+      "students",
+      user.uid
+    );
+
+
+  const snapshot =
+    await getDoc(
+      studentRef
+    );
+
+
+  if(
+    !snapshot.exists()
+  ){
+
+    resultNumber.textContent =
+      "—";
+
+
+    resultNote.textContent =
+      "تعذّر العثور على سجل الطالبة.";
+
+
+    return;
+
+  }
+
+
+  const data =
+    snapshot.data();
+
+
+  const tests =
+    data[
+      "اختبارات_الفصل_الثاني"
+    ] || {};
+
+
+  const modelKeys = [
+
+    "النموذج_الأول",
+
+    "النموذج_الثاني",
+
+    "النموذج_الثالث",
+
+    "النموذج_الرابع",
+
+    "النموذج_الخامس"
+
+  ];
+
+
+  const completedModels =
+    modelKeys.filter(
+      key =>
+        tests[key] &&
+        tests[key]["مكتمل"] === true
+    );
+
+
+  const completedCount =
+    completedModels.length;
+
+
+  if(
+    completedCount < 5
+  ){
+
+    resultNumber.textContent =
+      `${arabicDigits(completedCount)} / ٥`;
+
+
+    resultNote.textContent =
+      `أكملتِ ${arabicDigits(completedCount)} من أصل ٥ نماذج. أكملي النماذج المتبقية لإظهار النتيجة النهائية والشهادة.`;
+
+
+    certificateCard.classList.remove(
+      "show"
+    );
+
+
+    return;
+
+  }
+
+
+  const percentages =
+    modelKeys.map(
+      key =>
+        getBestPercentage(
+          tests[key]
+        )
+    );
+
+
+  const total =
+    percentages.reduce(
+      (sum,value) =>
+        sum + value,
+      0
+    );
+
+
+  const finalPercentage =
+    Math.round(
+      total / 5
+    );
+
+
+  const eligible =
+    finalPercentage >= 80;
+
+
+  await updateDoc(
+    studentRef,
+    {
+
+      "نتيجة_الفصل_الثاني":{
+
+        "مكتمل":true,
+
+        "الدرجة":finalPercentage,
+
+        "استحقت_الشهادة":eligible,
+
+        "عدد_النماذج":5,
+
+        "طريقة_الحساب":
+          "متوسط أفضل نسبة في النماذج الخمسة",
+
+        "آخر_تحديث":
+          serverTimestamp()
+
+      }
+
+    }
+  );
+
+
+  resultNumber.textContent =
+    `${arabicDigits(finalPercentage)}٪`;
+
+
+  if(
+    eligible
+  ){
+
+    resultNote.textContent =
+      "أحسنتِ، اكتملت النماذج الخمسة وحققتِ نسبة استحقاق الشهادة.";
+
+
+    certificateText.textContent =
+      `أحسنتِ، بلغ متوسطكِ النهائي ${arabicDigits(finalPercentage)}٪ واستحققتِ شهادة الإتقان والتميّز.`;
+
+
+    certificateCard.classList.add(
+      "show"
+    );
+
+
+  }else{
+
+
+    resultNote.textContent =
+      `اكتملت النماذج الخمسة، ومتوسطكِ النهائي ${arabicDigits(finalPercentage)}٪. يلزم تحقيق ٨٠٪ فأعلى لاستحقاق الشهادة.`;
+
+
+    certificateCard.classList.remove(
+      "show"
+    );
+
+  }
+
+}
+
+
 onAuthStateChanged(
   auth,
   async user => {
@@ -702,9 +967,77 @@ onAuthStateChanged(
       resultNote.textContent =
         "سجلي الدخول إلى المنصة لعرض نتيجتكِ.";
 
+
+      temporaryTestBtn.disabled =
+        true;
+
+
+      temporaryTestStatus.textContent =
+        "يلزم تسجيل الدخول بحساب الطالبة التجريبي أولًا.";
+
+
       return;
 
     }
+
+
+    temporaryTestBtn.disabled =
+      false;
+
+
+    try{
+
+      await calculateTerm2Result(
+        user
+      );
+
+
+    }catch(error){
+
+
+      console.error(
+        "خطأ في حساب نتيجة الفصل الثاني:",
+        error
+      );
+
+
+      resultNumber.textContent =
+        "—";
+
+
+      resultNote.textContent =
+        "تعذّر حساب النتيجة النهائية الآن.";
+
+    }
+
+  }
+);
+
+
+temporaryTestBtn.addEventListener(
+  "click",
+  async () => {
+
+    const user =
+      auth.currentUser;
+
+
+    if(!user){
+
+      temporaryTestStatus.textContent =
+        "سجلي الدخول بحساب الطالبة التجريبي أولًا.";
+
+      return;
+
+    }
+
+
+    temporaryTestBtn.disabled =
+      true;
+
+
+    temporaryTestStatus.textContent =
+      "جارٍ إضافة النتائج التجريبية...";
 
 
     try{
@@ -727,176 +1060,125 @@ onAuthStateChanged(
         !snapshot.exists()
       ){
 
-        resultNote.textContent =
+        temporaryTestStatus.textContent =
           "تعذّر العثور على سجل الطالبة.";
 
-        return;
-
-      }
-
-
-      const data =
-        snapshot.data();
-
-
-      const tests =
-        data[
-          "اختبارات_الفصل_الثاني"
-        ] || {};
-
-
-      const modelKeys = [
-
-        "النموذج_الأول",
-
-        "النموذج_الثاني",
-
-        "النموذج_الثالث",
-
-        "النموذج_الرابع",
-
-        "النموذج_الخامس"
-
-      ];
-
-
-      const completedModels =
-        modelKeys.filter(
-          key =>
-            tests[key] &&
-            tests[key]["مكتمل"] === true
-        );
-
-
-      const completedCount =
-        completedModels.length;
-
-
-      if(
-        completedCount < 5
-      ){
-
-        resultNumber.textContent =
-          `${arabicDigits(completedCount)} / ٥`;
-
-
-        resultNote.textContent =
-          `أكملتِ ${arabicDigits(completedCount)} من أصل ٥ نماذج. أكملي النماذج المتبقية لإظهار النتيجة النهائية والشهادة.`;
-
-
-        certificateCard.classList.remove(
-          "show"
-        );
-
+        temporaryTestBtn.disabled =
+          false;
 
         return;
 
       }
-
-
-      const percentages =
-        modelKeys.map(
-          key =>
-            getBestPercentage(
-              tests[key]
-            )
-        );
-
-
-      const total =
-        percentages.reduce(
-          (sum,value) =>
-            sum + value,
-          0
-        );
-
-
-      const finalPercentage =
-        Math.round(
-          total / 5
-        );
-
-
-      const eligible =
-        finalPercentage >= 80;
 
 
       await updateDoc(
         studentRef,
         {
 
-          "نتيجة_الفصل_الثاني":{
-
+          "اختبارات_الفصل_الثاني.النموذج_الأول":{
+            "اسم_الاختبار":
+              "النموذج الأول للفصل الدراسي الثاني",
+            "الدرجة":36,
+            "المجموع":40,
+            "النسبة":90,
+            "أفضل_نسبة":90,
             "مكتمل":true,
+            "عدد_الأسئلة":40,
+            "عدد_المحاولات":1,
+            "استحقت_الإتقان":true
+          },
 
-            "الدرجة":finalPercentage,
 
-            "استحقت_الشهادة":eligible,
+          "اختبارات_الفصل_الثاني.النموذج_الثاني":{
+            "اسم_الاختبار":
+              "النموذج الثاني للفصل الدراسي الثاني",
+            "الدرجة":36,
+            "المجموع":40,
+            "النسبة":90,
+            "أفضل_نسبة":90,
+            "مكتمل":true,
+            "عدد_الأسئلة":40,
+            "عدد_المحاولات":1,
+            "استحقت_الإتقان":true
+          },
 
-            "عدد_النماذج":5,
 
-            "طريقة_الحساب":
-              "متوسط أفضل نسبة في النماذج الخمسة",
+          "اختبارات_الفصل_الثاني.النموذج_الثالث":{
+            "اسم_الاختبار":
+              "النموذج الثالث للفصل الدراسي الثاني",
+            "الدرجة":36,
+            "المجموع":40,
+            "النسبة":90,
+            "أفضل_نسبة":90,
+            "مكتمل":true,
+            "عدد_الأسئلة":40,
+            "عدد_المحاولات":1,
+            "استحقت_الإتقان":true
+          },
 
-            "آخر_تحديث":
-              serverTimestamp()
 
+          "اختبارات_الفصل_الثاني.النموذج_الرابع":{
+            "اسم_الاختبار":
+              "النموذج الرابع للفصل الدراسي الثاني",
+            "الدرجة":36,
+            "المجموع":40,
+            "النسبة":90,
+            "أفضل_نسبة":90,
+            "مكتمل":true,
+            "عدد_الأسئلة":40,
+            "عدد_المحاولات":1,
+            "استحقت_الإتقان":true
+          },
+
+
+          "اختبارات_الفصل_الثاني.النموذج_الخامس":{
+            "اسم_الاختبار":
+              "النموذج الخامس الختامي للفصل الدراسي الثاني",
+            "الدرجة":36,
+            "المجموع":40,
+            "النسبة":90,
+            "أفضل_نسبة":90,
+            "مكتمل":true,
+            "عدد_الأسئلة":40,
+            "عدد_المحاولات":1,
+            "استحقت_الإتقان":true
           }
 
         }
       );
 
 
-      resultNumber.textContent =
-        `${arabicDigits(finalPercentage)}٪`;
+      temporaryTestStatus.textContent =
+        "تمت إضافة النتائج التجريبية ✅";
 
 
-      if(
-        eligible
-      ){
-
-        resultNote.textContent =
-          "أحسنتِ، اكتملت النماذج الخمسة وحققتِ نسبة استحقاق الشهادة.";
+      await calculateTerm2Result(
+        user
+      );
 
 
-        certificateText.textContent =
-          `أحسنتِ، بلغ متوسطكِ النهائي ${arabicDigits(finalPercentage)}٪ واستحققتِ شهادة الإتقان والتميّز.`;
-
-
-        certificateCard.classList.add(
-          "show"
-        );
-
-
-      }else{
-
-
-        resultNote.textContent =
-          `اكتملت النماذج الخمسة، ومتوسطكِ النهائي ${arabicDigits(finalPercentage)}٪. يلزم تحقيق ٨٠٪ فأعلى لاستحقاق الشهادة.`;
-
-
-        certificateCard.classList.remove(
-          "show"
-        );
-
-      }
+      temporaryTestStatus.textContent =
+        "نجحت التجربة ✅ يجب أن تظهر الآن نتيجة ٩٠٪ وزر الشهادة.";
 
 
     }catch(error){
 
 
       console.error(
-        "خطأ في حساب نتيجة الفصل الثاني:",
+        "خطأ في التجربة:",
         error
       );
 
 
-      resultNumber.textContent =
-        "—";
+      temporaryTestStatus.textContent =
+        "تعذّر تشغيل التجربة.";
 
 
-      resultNote.textContent =
-        "تعذّر حساب النتيجة النهائية الآن.";
+    }finally{
+
+
+      temporaryTestBtn.disabled =
+        false;
 
     }
 
