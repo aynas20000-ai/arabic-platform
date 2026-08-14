@@ -63,7 +63,6 @@ body{
 
 .print-btn:disabled{
   opacity:.5;
-  cursor:not-allowed;
 }
 
 .back-btn{
@@ -77,23 +76,15 @@ body{
   margin:auto;
 }
 
-
-/* =========================
-   الشهادة
-========================= */
-
 .certificate{
   position:relative;
-
   width:100%;
-
-  /* مهم: نفس أبعاد صورة 500 */
   aspect-ratio:3 / 2;
 
   background-image:url("500.png");
-  background-repeat:no-repeat;
-  background-position:center;
   background-size:100% 100%;
+  background-position:center;
+  background-repeat:no-repeat;
 
   overflow:hidden;
 
@@ -102,47 +93,59 @@ body{
 }
 
 
-/* عبارة تُمنح */
+/* ===========================
+   صندوق النص كاملًا
+=========================== */
 
-.award-intro{
+.certificate-content{
   position:absolute;
 
-  top:39.5%;
-  left:29%;
+  top:38.8%;
+  left:27%;
 
-  width:57%;
+  width:62%;
+  height:29%;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  align-items:center;
 
   text-align:center;
-
-  font-size:clamp(12px,1.45vw,21px);
-
-  font-weight:700;
-
-  line-height:1.2;
-
-  color:#333;
 }
 
 
-/* الاسم الرباعي */
+/* تمنح */
+
+.award-intro{
+  margin:0 0 7px;
+
+  font-size:
+    clamp(12px,1.35vw,20px);
+
+  font-weight:700;
+
+  color:#333;
+
+  line-height:1.25;
+}
+
+
+/* الاسم */
 
 .student-name{
-  position:absolute;
+  width:100%;
 
-  top:44.5%;
-  left:25%;
+  margin:0 0 9px;
 
-  width:65%;
-
-  text-align:center;
-
-  font-size:clamp(20px,2.7vw,39px);
+  font-size:
+    clamp(20px,2.65vw,38px);
 
   font-weight:900;
 
-  line-height:1.2;
-
   color:#34752e;
+
+  line-height:1.2;
 
   white-space:nowrap;
 }
@@ -151,45 +154,37 @@ body{
 /* الديباجة */
 
 .award-text{
-  position:absolute;
+  width:92%;
 
-  top:52.5%;
-  left:28%;
+  margin:0 0 9px;
 
-  width:59%;
-
-  text-align:center;
-
-  font-size:clamp(10px,1.15vw,17px);
+  font-size:
+    clamp(10px,1.08vw,16px);
 
   font-weight:600;
 
-  line-height:1.65;
-
   color:#333;
+
+  line-height:1.65;
 }
 
 
 /* النسبة والتقدير */
 
 .result-line{
-  position:absolute;
-
-  top:63.8%;
-  left:29%;
-
-  width:57%;
+  width:100%;
 
   display:flex;
 
   justify-content:center;
   align-items:center;
 
-  gap:10px 26px;
+  gap:8px 24px;
 
-  text-align:center;
+  margin:0;
 
-  font-size:clamp(10px,1.15vw,17px);
+  font-size:
+    clamp(10px,1.05vw,16px);
 
   font-weight:bold;
 }
@@ -203,7 +198,7 @@ body{
 }
 
 
-/* الرسائل */
+/* رسالة أسفل الشهادة */
 
 .status{
   width:min(900px,94%);
@@ -241,9 +236,7 @@ body{
 }
 
 
-/* =========================
-   الجوال
-========================= */
+/* الجوال */
 
 @media(max-width:700px){
 
@@ -255,45 +248,49 @@ body{
     box-shadow:none;
   }
 
+  .certificate-content{
+    top:38.5%;
+    left:26%;
+    width:64%;
+    height:30%;
+  }
+
   .award-intro{
-    top:39%;
-    font-size:clamp(10px,2.6vw,16px);
+    margin-bottom:3px;
+
+    font-size:
+      clamp(9px,2.5vw,14px);
   }
 
   .student-name{
-    top:44%;
-    left:24%;
-    width:67%;
+    margin-bottom:4px;
 
-    font-size:clamp(15px,4.4vw,27px);
+    font-size:
+      clamp(15px,4vw,25px);
   }
 
   .award-text{
-    top:52%;
-    left:27%;
-    width:61%;
+    width:94%;
 
-    font-size:clamp(8px,2.25vw,14px);
+    margin-bottom:4px;
 
-    line-height:1.55;
+    font-size:
+      clamp(7px,2vw,12px);
+
+    line-height:1.5;
   }
 
   .result-line{
-    top:63%;
-    left:28%;
-    width:59%;
+    gap:3px 10px;
 
-    gap:4px 12px;
-
-    font-size:clamp(8px,2.2vw,14px);
+    font-size:
+      clamp(7px,1.95vw,12px);
   }
 
 }
 
 
-/* =========================
-   الطباعة
-========================= */
+/* الطباعة */
 
 @media print{
 
@@ -312,7 +309,6 @@ body{
 
   .page{
     padding:0;
-    min-height:auto;
   }
 
   .toolbar,
@@ -327,13 +323,8 @@ body{
 
   .certificate{
     width:100vw;
-    height:auto;
-
     aspect-ratio:3 / 2;
-
     box-shadow:none;
-
-    background-size:100% 100%;
 
     -webkit-print-color-adjust:exact;
     print-color-adjust:exact;
@@ -377,38 +368,39 @@ body{
 
     <div class="certificate">
 
-      <div class="award-intro">
-        تُمنح هذه الشهادة للطالبة
-      </div>
+      <div class="certificate-content">
 
+        <div class="award-intro">
+          تُمنح هذه الشهادة للطالبة
+        </div>
 
-      <div
-        id="studentName"
-        class="student-name"
-      ></div>
+        <div
+          id="studentName"
+          class="student-name"
+        ></div>
 
+        <div class="award-text">
 
-      <div class="award-text">
+          تقديرًا لتميّزها واجتهادها في مادة لغتي الخالدة،
+          وإتمامها متطلبات الفصل الدراسي الثاني بنجاح.<br>
 
-        تقديرًا لتميّزها واجتهادها في مادة لغتي الخالدة،
-        وإتمامها متطلبات الفصل الدراسي الثاني بنجاح.<br>
+          مع أطيب الأمنيات لها بدوام التميز والتوفيق.
 
-        مع أطيب الأمنيات لها بدوام التميز والتوفيق.
+        </div>
 
-      </div>
+        <div class="result-line">
 
+          <span
+            id="studentPercent"
+            class="percent"
+          ></span>
 
-      <div class="result-line">
+          <span
+            id="studentGrade"
+            class="grade"
+          ></span>
 
-        <span
-          id="studentPercent"
-          class="percent"
-        ></span>
-
-        <span
-          id="studentGrade"
-          class="grade"
-        ></span>
+        </div>
 
       </div>
 
@@ -572,8 +564,6 @@ function getGrade(percent){
 }
 
 
-/* الاسم الرباعي */
-
 function getStudentName(
   data,
   user
@@ -608,7 +598,7 @@ function getStudentName(
     String(name).trim();
 
 
-  /* الحساب التجريبي الحالي */
+  /* الحساب التجريبي */
 
   if(
     name === "إيناس محمد يحيى"
