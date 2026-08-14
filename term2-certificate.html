@@ -2,6 +2,7 @@
 <html lang="ar" dir="rtl">
 
 <head>
+
 <meta charset="UTF-8">
 
 <meta
@@ -9,7 +10,9 @@
   content="width=device-width, initial-scale=1.0"
 >
 
-<title>شهادة الفصل الدراسي الثاني | منصة آفاق</title>
+<title>
+شهادة الفصل الدراسي الثاني | منصة آفاق
+</title>
 
 <style>
 
@@ -31,12 +34,13 @@ body{
 
 .page{
   min-height:100vh;
-  padding:18px 7px 30px;
+  padding:18px 7px 32px;
 }
 
 .toolbar{
   display:flex;
   justify-content:center;
+  align-items:center;
   flex-wrap:wrap;
   gap:10px;
   margin-bottom:16px;
@@ -48,15 +52,21 @@ body{
   border-radius:14px;
   padding:12px 18px;
   font-family:inherit;
-  font-weight:bold;
   font-size:15px;
+  font-weight:bold;
   text-decoration:none;
   text-align:center;
 }
 
 .print-btn{
   background:#2f7449;
-  color:white;
+  color:#fff;
+  cursor:pointer;
+}
+
+.print-btn:disabled{
+  opacity:.5;
+  cursor:not-allowed;
 }
 
 .back-btn{
@@ -72,7 +82,9 @@ body{
 
 .certificate{
   position:relative;
+
   width:100%;
+
   aspect-ratio:1440 / 1024;
 
   background-image:url("500.png");
@@ -81,101 +93,118 @@ body{
   background-size:100% 100%;
 
   overflow:hidden;
-  box-shadow:0 15px 40px rgba(0,0,0,.15);
+
+  box-shadow:
+    0 15px 40px rgba(0,0,0,.15);
 }
 
 
-/* عبارة البداية */
+/* =========================
+   عبارة تُمنح
+========================= */
 
 .award-intro{
   position:absolute;
 
-  top:42.5%;
+  top:38.8%;
   left:29%;
 
   width:57%;
 
   text-align:center;
 
+  font-size:
+    clamp(13px,1.55vw,22px);
+
+  font-weight:700;
+
+  line-height:1.3;
+
   color:#333;
-
-  font-size:clamp(13px,1.55vw,22px);
-
-  font-weight:bold;
 }
 
 
-/* الاسم */
+/* =========================
+   اسم الطالبة
+========================= */
 
 .student-name{
   position:absolute;
 
-  top:47%;
+  top:43.7%;
   left:27%;
 
   width:61%;
 
   text-align:center;
 
-  color:#34752e;
-
-  font-size:clamp(22px,3vw,42px);
+  font-size:
+    clamp(23px,3vw,42px);
 
   font-weight:900;
 
-  line-height:1.2;
+  line-height:1.25;
+
+  color:#34752e;
+
+  white-space:nowrap;
 }
 
 
-/* الديباجة */
+/* =========================
+   الديباجة
+========================= */
 
 .award-text{
   position:absolute;
 
-  top:53.5%;
-  left:29%;
+  top:51.3%;
+  left:30%;
 
-  width:57%;
+  width:55%;
 
   text-align:center;
 
-  color:#333;
-
-  font-size:clamp(11px,1.35vw,19px);
+  font-size:
+    clamp(11px,1.28vw,18px);
 
   font-weight:600;
 
-  line-height:1.7;
+  line-height:1.75;
+
+  color:#333;
 }
 
 
-/* النتيجة */
+/* =========================
+   النتيجة
+========================= */
 
 .result-line{
   position:absolute;
 
-  top:65.5%;
-  left:29%;
+  top:65.3%;
+  left:30%;
 
-  width:57%;
+  width:55%;
 
   display:flex;
-
   justify-content:center;
-
-  gap:22px;
-
+  align-items:center;
   flex-wrap:wrap;
+
+  gap:8px 22px;
 
   text-align:center;
 
-  font-size:clamp(11px,1.3vw,18px);
+  font-size:
+    clamp(11px,1.25vw,18px);
 
   font-weight:bold;
 }
 
 .percent{
-  color:#864a1d;
+  color:#874a1d;
 }
 
 .grade{
@@ -183,32 +212,19 @@ body{
 }
 
 
-/* التاريخ */
-
-.student-date{
-  position:absolute;
-
-  top:70.5%;
-  left:29%;
-
-  width:57%;
-
-  text-align:center;
-
-  color:#444;
-
-  font-size:clamp(10px,1.2vw,17px);
-
-  font-weight:bold;
-}
-
+/* =========================
+   رسائل الصفحة
+========================= */
 
 .status{
   width:min(900px,94%);
   margin:16px auto 0;
-  padding:15px;
+  padding:15px 18px;
+
   text-align:center;
+
   border-radius:18px;
+
   font-weight:bold;
 }
 
@@ -234,6 +250,10 @@ body{
 }
 
 
+/* =========================
+   الجوال
+========================= */
+
 @media(max-width:700px){
 
   .page{
@@ -245,29 +265,30 @@ body{
   }
 
   .award-intro{
-    top:42%;
+    top:38.5%;
   }
 
   .student-name{
-    top:46.5%;
+    top:43.5%;
+    font-size:clamp(16px,5vw,28px);
   }
 
   .award-text{
-    top:53%;
-    line-height:1.55;
+    top:51%;
+    line-height:1.6;
   }
 
   .result-line{
     top:65%;
-    gap:8px;
-  }
-
-  .student-date{
-    top:70%;
+    gap:3px 9px;
   }
 
 }
 
+
+/* =========================
+   الطباعة
+========================= */
 
 @media print{
 
@@ -285,6 +306,7 @@ body{
 
   .page{
     padding:0;
+    min-height:auto;
   }
 
   .toolbar,
@@ -294,13 +316,18 @@ body{
 
   .certificate-wrap{
     width:100%;
+    margin:0;
   }
 
   .certificate{
     width:100vw;
     height:100vh;
+
     aspect-ratio:auto;
+
     box-shadow:none;
+
+    background-size:100% 100%;
 
     -webkit-print-color-adjust:exact;
     print-color-adjust:exact;
@@ -309,6 +336,7 @@ body{
 }
 
 </style>
+
 </head>
 
 <body>
@@ -347,16 +375,23 @@ body{
         تُمنح هذه الشهادة للطالبة
       </div>
 
+
       <div
         id="studentName"
         class="student-name"
       ></div>
 
+
       <div class="award-text">
-        تقديرًا لتميّزها واجتهادها في مادة لغتي الخالدة،
-        وإتمامها متطلبات الفصل الدراسي الثاني بنجاح،
+
+        تقديرًا لتميّزها واجتهادها في مادة لغتي الخالدة،<br>
+
+        وإتمامها متطلبات الفصل الدراسي الثاني بنجاح،<br>
+
         مع أطيب الأمنيات لها بمزيد من التميز والتوفيق.
+
       </div>
+
 
       <div class="result-line">
 
@@ -371,11 +406,6 @@ body{
         ></span>
 
       </div>
-
-      <div
-        id="studentDate"
-        class="student-date"
-      ></div>
 
     </div>
 
@@ -498,12 +528,6 @@ const studentGrade =
   );
 
 
-const studentDate =
-  document.getElementById(
-    "studentDate"
-  );
-
-
 const printBtn =
   document.getElementById(
     "printBtn"
@@ -543,20 +567,6 @@ function getGrade(percent){
 }
 
 
-function formatDate(){
-
-  return new Date().toLocaleDateString(
-    "ar-SA",
-    {
-      year:"numeric",
-      month:"long",
-      day:"numeric"
-    }
-  );
-
-}
-
-
 function getStudentName(
   data,
   user
@@ -568,13 +578,13 @@ function getStudentName(
 
     data["الاسم الرباعي"] ||
 
-    data["الاسم_الكامل"] ||
-
-    data["الاسم الكامل"] ||
-
     data["اسم_الطالبة_الرباعي"] ||
 
     data["اسم الطالبة الرباعي"] ||
+
+    data["الاسم_الكامل"] ||
+
+    data["الاسم الكامل"] ||
 
     data["اسم_الطالبة"] ||
 
@@ -590,12 +600,6 @@ function getStudentName(
   name =
     String(name).trim();
 
-
-  /*
-    للحساب التجريبي الحالي فقط:
-    إذا ظهر الاسم الثلاثي هذا
-    نكمله إلى الرباعي.
-  */
 
   if(
     name ===
@@ -621,12 +625,19 @@ function getStudentName(
       statusBox.className =
         "status error";
 
+
       statusBox.textContent =
         "يلزم تسجيل الدخول أولًا لعرض الشهادة.";
+
 
       certificateWrap.classList.add(
         "hidden"
       );
+
+
+      printBtn.disabled =
+        true;
+
 
       return;
 
@@ -697,8 +708,19 @@ function getStudentName(
         statusBox.className =
           "status error";
 
+
         statusBox.textContent =
           "لم تكتمل نتيجة الفصل الدراسي الثاني بعد.";
+
+
+        certificateWrap.classList.add(
+          "hidden"
+        );
+
+
+        printBtn.disabled =
+          true;
+
 
         return;
 
@@ -713,8 +735,19 @@ function getStudentName(
         statusBox.className =
           "status error";
 
+
         statusBox.textContent =
           "لم يتحقق شرط استحقاق الشهادة بعد.";
+
+
+        certificateWrap.classList.add(
+          "hidden"
+        );
+
+
+        printBtn.disabled =
+          true;
+
 
         return;
 
@@ -740,10 +773,6 @@ function getStudentName(
         `التقدير: ${getGrade(percent)}`;
 
 
-      studentDate.textContent =
-        `التاريخ: ${formatDate()}`;
-
-
       certificateWrap.classList.remove(
         "hidden"
       );
@@ -763,9 +792,20 @@ function getStudentName(
 
     }catch(error){
 
+
       console.error(
+        "خطأ في تحميل الشهادة:",
         error
       );
+
+
+      certificateWrap.classList.add(
+        "hidden"
+      );
+
+
+      printBtn.disabled =
+        true;
 
 
       statusBox.className =
