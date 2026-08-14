@@ -4,88 +4,262 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>اختبارات الفصل الدراسي الثاني | منصة آفاق</title>
+
   <style>
     :root{
-      --purple:#76548f;--purple-dark:#4f3763;--purple-light:#eee5f4;
-      --gold:#c9a85c;--gold-light:#f6e9bd;--cream:#fffaf2;
-      --paper:#fff;--text:#403347;--shadow:0 15px 35px rgba(79,55,99,.14)
+      --purple:#76548f;
+      --purple-dark:#4f3763;
+      --purple-light:#eee5f4;
+      --gold:#c9a85c;
+      --gold-light:#f6e9bd;
+      --cream:#fffaf2;
+      --paper:#fff;
+      --text:#403347;
+      --shadow:0 15px 35px rgba(79,55,99,.14);
     }
+
     *{box-sizing:border-box}
-    body{margin:0;font-family:Tahoma,Arial,sans-serif;color:var(--text);background:linear-gradient(180deg,var(--cream),#f7eff9);min-height:100vh;line-height:1.8}
-    header{padding:38px 18px 30px;text-align:center;color:#fff;background:linear-gradient(135deg,var(--purple),var(--purple-dark));border-bottom:5px solid var(--gold)}
-    header h1{margin:0;font-size:clamp(28px,7vw,42px)}
-    header p{margin:8px 0 0;font-size:17px}
-    main{width:min(1000px,92%);margin:28px auto 50px}
-    .intro{background:var(--paper);border:1px solid #eadff0;border-radius:22px;padding:20px;text-align:center;box-shadow:var(--shadow);margin-bottom:22px}
-    .intro h2{margin:0 0 6px;color:var(--purple-dark)}
-    .intro p{margin:0}
-    .tests-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
-    .test-card{position:relative;overflow:hidden;background:var(--paper);border:1px solid #eadff0;border-radius:24px;padding:22px;box-shadow:var(--shadow)}
-    .test-card::before{content:"";position:absolute;top:0;right:0;width:100%;height:6px;background:linear-gradient(90deg,var(--gold),var(--purple))}
-    .number{width:52px;height:52px;display:grid;place-items:center;border-radius:50%;background:var(--purple-light);color:var(--purple-dark);font-weight:bold;font-size:23px;margin-bottom:12px;border:1px solid #dccae6}
-    .test-card h3{margin:0 0 8px;color:var(--purple-dark);font-size:22px}
-    .test-card p{margin:0 0 17px;color:#6e6274}
-    .open-btn{display:block;width:100%;text-decoration:none;text-align:center;padding:12px 15px;border-radius:14px;background:linear-gradient(135deg,var(--purple),var(--purple-dark));color:#fff;font-weight:bold;font-size:16px}
-    .final-card{grid-column:1/-1;background:linear-gradient(180deg,#fffdf7,#fff8e6);border-color:#e7d39b}
-    .final-card .number{background:var(--gold-light);border-color:#dfc777;color:#6b531b}
-    .final-card .open-btn{background:linear-gradient(135deg,var(--gold),#ad8736)}
-    .back{display:block;width:min(340px,100%);margin:26px auto 0;padding:12px 16px;text-align:center;text-decoration:none;color:var(--purple-dark);background:var(--purple-light);border:1px solid #dccae6;border-radius:14px;font-weight:bold}
-    footer{text-align:center;color:#786d7e;padding:0 15px 25px;font-size:14px}
-    @media(max-width:700px){.tests-grid{grid-template-columns:1fr}.final-card{grid-column:auto}.test-card{padding:19px}}
+
+    body{
+      margin:0;
+      font-family:Tahoma,Arial,sans-serif;
+      color:var(--text);
+      background:linear-gradient(180deg,var(--cream),#f7eff9);
+      min-height:100vh;
+      line-height:1.8;
+    }
+
+    header{
+      padding:38px 18px 30px;
+      text-align:center;
+      color:#fff;
+      background:linear-gradient(135deg,var(--purple),var(--purple-dark));
+      border-bottom:5px solid var(--gold);
+    }
+
+    header h1{
+      margin:0;
+      font-size:clamp(28px,7vw,42px);
+    }
+
+    header p{
+      margin:8px 0 0;
+      font-size:17px;
+    }
+
+    main{
+      width:min(1000px,92%);
+      margin:28px auto 50px;
+    }
+
+    .intro{
+      background:var(--paper);
+      border:1px solid #eadff0;
+      border-radius:22px;
+      padding:20px;
+      text-align:center;
+      box-shadow:var(--shadow);
+      margin-bottom:22px;
+    }
+
+    .intro h2{
+      margin:0 0 6px;
+      color:var(--purple-dark);
+    }
+
+    .intro p{
+      margin:0;
+    }
+
+    .tests-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:18px;
+    }
+
+    .test-card{
+      position:relative;
+      overflow:hidden;
+      background:var(--paper);
+      border:1px solid #eadff0;
+      border-radius:24px;
+      padding:22px;
+      box-shadow:var(--shadow);
+    }
+
+    .test-card::before{
+      content:"";
+      position:absolute;
+      top:0;
+      right:0;
+      width:100%;
+      height:6px;
+      background:linear-gradient(90deg,var(--gold),var(--purple));
+    }
+
+    .number{
+      width:52px;
+      height:52px;
+      display:grid;
+      place-items:center;
+      border-radius:50%;
+      background:var(--purple-light);
+      color:var(--purple-dark);
+      font-weight:bold;
+      font-size:23px;
+      margin-bottom:12px;
+      border:1px solid #dccae6;
+    }
+
+    .test-card h3{
+      margin:0 0 8px;
+      color:var(--purple-dark);
+      font-size:22px;
+    }
+
+    .test-card p{
+      margin:0 0 17px;
+      color:#6e6274;
+    }
+
+    .open-btn{
+      display:block;
+      width:100%;
+      text-decoration:none;
+      text-align:center;
+      padding:12px 15px;
+      border-radius:14px;
+      background:linear-gradient(135deg,var(--purple),var(--purple-dark));
+      color:#fff;
+      font-weight:bold;
+      font-size:16px;
+    }
+
+    .final-card{
+      grid-column:1/-1;
+      background:linear-gradient(180deg,#fffdf7,#fff8e6);
+      border-color:#e7d39b;
+    }
+
+    .final-card .number{
+      background:var(--gold-light);
+      border-color:#dfc777;
+      color:#6b531b;
+    }
+
+    .final-card .open-btn{
+      background:linear-gradient(135deg,var(--gold),#ad8736);
+    }
+
+    .back{
+      display:block;
+      width:min(340px,100%);
+      margin:26px auto 0;
+      padding:12px 16px;
+      text-align:center;
+      text-decoration:none;
+      color:var(--purple-dark);
+      background:var(--purple-light);
+      border:1px solid #dccae6;
+      border-radius:14px;
+      font-weight:bold;
+    }
+
+    footer{
+      text-align:center;
+      color:#786d7e;
+      padding:0 15px 25px;
+      font-size:14px;
+    }
+
+    @media(max-width:700px){
+      .tests-grid{
+        grid-template-columns:1fr;
+      }
+
+      .final-card{
+        grid-column:auto;
+      }
+
+      .test-card{
+        padding:19px;
+      }
+    }
   </style>
 </head>
+
 <body>
+
   <header>
     <h1>📗 اختبارات الفصل الدراسي الثاني</h1>
-    <p>خمسة نماذج شاملة لمراجعة مهارات لغتي الخالدة</p>
+    <p>خمسة نماذج شاملة لمراجعة مهارات مادة لغتي الخالدة</p>
   </header>
 
   <main>
+
     <section class="intro">
-      <h2>اختاري النموذج وابدئي</h2>
-      <p>كل نموذج يتكون من ٤٠ سؤالًا مع التصحيح الفوري والنتيجة النهائية.</p>
+      <h2>اختاري النموذج وابدئي الاختبار</h2>
+      <p>يتكوّن كل نموذج من ٤٠ سؤالًا، مع التصحيح الفوري وإظهار النتيجة النهائية.</p>
     </section>
 
     <section class="tests-grid">
+
       <article class="test-card">
         <div class="number">١</div>
         <h3>النموذج الأول</h3>
         <p>مراجعة شاملة لمهارات الفصل الدراسي الثاني.</p>
-        <a class="open-btn" href="test-term2-1.html">ابدئي الاختبار</a>
+        <a class="open-btn" href="test-term2-1.html">
+          ابدئي الاختبار
+        </a>
       </article>
 
       <article class="test-card">
         <div class="number">٢</div>
         <h3>النموذج الثاني</h3>
         <p>أسئلة متنوعة في الفهم القرائي والمهارات اللغوية.</p>
-        <a class="open-btn" href="test-term2-2.html">ابدئي الاختبار</a>
+        <a class="open-btn" href="test-term2-2.html">
+          ابدئي الاختبار
+        </a>
       </article>
 
       <article class="test-card">
         <div class="number">٣</div>
         <h3>النموذج الثالث</h3>
         <p>تدريب إضافي على التراكيب والرسم الإملائي.</p>
-        <a class="open-btn" href="test-term2-3.html">ابدئي الاختبار</a>
+        <a class="open-btn" href="test-term2-3.html">
+          ابدئي الاختبار
+        </a>
       </article>
 
       <article class="test-card">
         <div class="number">٤</div>
         <h3>النموذج الرابع</h3>
-        <p>اختبار شامل مع نصوص وأسئلة تطبيقية متنوعة.</p>
-        <a class="open-btn" href="test-term2-4.html">ابدئي الاختبار</a>
+        <p>اختبار شامل يتضمن نصوصًا وأسئلة تطبيقية متنوعة.</p>
+        <a class="open-btn" href="test-term2-4.html">
+          ابدئي الاختبار
+        </a>
       </article>
 
       <article class="test-card final-card">
         <div class="number">٥</div>
         <h3>النموذج الخامس الختامي</h3>
         <p>النموذج الأخير لإكمال المراجعة الشاملة والاستعداد للاختبار.</p>
-        <a class="open-btn" href="test-term2-5.html">ابدئي الاختبار الختامي</a>
+        <a class="open-btn" href="test-term2-5.html">
+          ابدئي الاختبار الختامي
+        </a>
       </article>
+
     </section>
 
-    <a class="back" href="tests.html">العودة إلى صفحة الاختبارات</a>
+    <a class="back" href="tests.html">
+      العودة إلى صفحة الاختبارات
+    </a>
+
   </main>
 
-  <footer>جميع الحقوق محفوظة © 2026 — منصة آفاق التعليمية</footer>
+  <footer>
+    جميع الحقوق محفوظة © 2026 — منصة آفاق التعليمية
+  </footer>
+
 </body>
 </html>
