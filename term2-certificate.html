@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+شهادة الفصل الدراسي الثاني | منصة آفاق
+</title>
+
+<style>
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Tahoma,Arial,sans-serif;
+  background:#f3f0e9;
+  color:#2f2f2f;
+}
+
+.page{
+  min-height:100vh;
+  padding:22px 12px 40px;
+}
+
+.toolbar{
+  width:min(1100px,96%);
+  margin:0 auto 18px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  justify-content:center;
+}
+
+.toolbar button,
+.toolbar a{
+  border:0;
+  border-radius:14px;
+  padding:12px 18px;
+  font-family:inherit;
+  font-size:15px;
+  font-weight:bold;
+  cursor:pointer;
+  text-decoration:none;
+  text-align:center;
+}
+
+.print-btn{
+  background:#2f6f43;
+  color:#fff;
+}
+
+.back-btn{
+  background:#efe5c5;
+  color:#574419;
+  border:1px solid #d7be78 !important;
+}
+
+.certificate-wrap{
+  width:min(1100px,96%);
+  margin:auto;
+}
+
+.certificate{
+  position:relative;
+  width:100%;
+  aspect-ratio:1440 / 1024;
+  background-image:url("500.png");
+  background-size:100% 100%;
+  background-repeat:no-repeat;
+  background-position:center;
+  overflow:hidden;
+  box-shadow:0 18px 45px rgba(0,0,0,.18);
+}
+
+.student-name{
+  position:absolute;
+  top:46.5%;
+  left:33%;
+  width:50%;
+  text-align:center;
+  font-size:clamp(18px,2.5vw,34px);
+  font-weight:bold;
+  color:#1f4f28;
+  line-height:1.4;
+}
+
+.student-percent{
+  position:absolute;
+  top:55.5%;
+  left:33%;
+  width:50%;
+  text-align:center;
+  font-size:clamp(17px,2.2vw,30px);
+  font-weight:bold;
+  color:#6d421a;
+}
+
+.student-grade{
+  position:absolute;
+  top:60.7%;
+  left:33%;
+  width:50%;
+  text-align:center;
+  font-size:clamp(15px,1.9vw,26px);
+  font-weight:bold;
+  color:#2f5c32;
+}
+
+.student-date{
+  position:absolute;
+  top:66%;
+  left:33%;
+  width:50%;
+  text-align:center;
+  font-size:clamp(14px,1.7vw,23px);
+  font-weight:bold;
+  color:#444;
+}
+
+.status{
+  width:min(900px,94%);
+  margin:18px auto 0;
+  text-align:center;
+  background:#fff;
+  border-radius:18px;
+  padding:16px;
+  box-shadow:0 8px 22px rgba(0,0,0,.08);
+}
+
+.status.loading{
+  color:#5a4a30;
+}
+
+.status.error{
+  color:#8d2f2f;
+  background:#fff1f1;
+  border:1px solid #e1b1b1;
+}
+
+.status.success{
+  color:#24653d;
+  background:#eef9f2;
+  border:1px solid #acd2b8;
+}
+
+.hidden{
+  display:none !important;
+}
+
+@media(max-width:700px){
+
+  .page{
+    padding:12px 6px 30px;
+  }
+
+  .certificate-wrap{
+    width:100%;
+  }
+
+  .certificate{
+    box-shadow:none;
+  }
+
+  .student-name{
+    top:46%;
+  }
+
+  .student-percent{
+    top:55%;
+  }
+
+  .student-grade{
+    top:60%;
+  }
+
+  .student-date{
+    top:65.5%;
+  }
+}
+
+@media print{
+
+  @page{
+    size:landscape;
+    margin:0;
+  }
+
+  body{
+    background:#fff;
+  }
+
+  .page{
+    padding:0;
+  }
+
+  .toolbar,
+  .status{
+    display:none !important;
+  }
+
+  .certificate-wrap{
+    width:100%;
+    margin:0;
+  }
+
+  .certificate{
+    width:100vw;
+    height:100vh;
+    aspect-ratio:auto;
+    box-shadow:none;
+    print-color-adjust:exact;
+    -webkit-print-color-adjust:exact;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="page">
+
+  <div class="toolbar">
+
+    <button
+      class="print-btn"
+      id="printBtn"
+      type="button"
+      disabled
+    >
+      طباعة الشهادة / حفظها PDF
+    </button>
+
+    <a
+      class="back-btn"
+      href="tests-term2.html"
+    >
+      العودة إلى اختبارات الفصل الثاني
+    </a>
+
+  </div>
+
+
+  <div
+    class="certificate-wrap hidden"
+    id="certificateWrap"
+  >
+
+    <div
+      class="certificate"
+      id="certificate"
+    >
+
+      <div
+        class="student-name"
+        id="studentName"
+      ></div>
+
+      <div
+        class="student-percent"
+        id="studentPercent"
+      ></div>
+
+      <div
+        class="student-grade"
+        id="studentGrade"
+      ></div>
+
+      <div
+        class="student-date"
+        id="studentDate"
+      ></div>
+
+    </div>
+
+  </div>
+
+
+  <div
+    class="status loading"
+    id="status"
+  >
+    جارٍ التحقق من استحقاق الشهادة...
+  </div>
+
+</div>
+
+
+<script type="module">
+
+import {
+  initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+
+
+import {
+  initializeAuth,
+  browserLocalPersistence,
+  browserPopupRedirectResolver,
+  onAuthStateChanged
+}
+from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+
+import {
+  getFirestore,
+  doc,
+  getDoc
+}
+from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+
+const firebaseConfig = {
+
+  apiKey:
+    "AIzaSyB48av9gx4jzFyYoUQtcLwaR52qETevKGs",
+
+  authDomain:
+    "afaq-language-platform.firebaseapp.com",
+
+  projectId:
+    "afaq-language-platform",
+
+  storageBucket:
+    "afaq-language-platform.firebasestorage.app",
+
+  messagingSenderId:
+    "362601061474",
+
+  appId:
+    "1:362601061474:web:bc405291332b9e4ef9453b"
+
+};
+
+
+const app =
+  initializeApp(
+    firebaseConfig
+  );
+
+
+const auth =
+  initializeAuth(
+    app,
+    {
+      persistence:
+        browserLocalPersistence,
+
+      popupRedirectResolver:
+        browserPopupRedirectResolver
+    }
+  );
+
+
+const db =
+  getFirestore(
+    app
+  );
+
+
+const statusBox =
+  document.getElementById(
+    "status"
+  );
+
+
+const certificateWrap =
+  document.getElementById(
+    "certificateWrap"
+  );
+
+
+const studentName =
+  document.getElementById(
+    "studentName"
+  );
+
+
+const studentPercent =
+  document.getElementById(
+    "studentPercent"
+  );
+
+
+const studentGrade =
+  document.getElementById(
+    "studentGrade"
+  );
+
+
+const studentDate =
+  document.getElementById(
+    "studentDate"
+  );
+
+
+const printBtn =
+  document.getElementById(
+    "printBtn"
+  );
+
+
+function arabicDigits(value){
+
+  return String(value).replace(
+    /\d/g,
+    digit =>
+      "٠١٢٣٤٥٦٧٨٩"[digit]
+  );
+
+}
+
+
+function getGrade(
+  percent
+){
+
+  if(percent >= 90){
+    return "ممتاز";
+  }
+
+  if(percent >= 80){
+    return "جيد جدًا";
+  }
+
+  if(percent >= 70){
+    return "جيد";
+  }
+
+  if(percent >= 60){
+    return "مقبول";
+  }
+
+  return "تحتاج إلى مزيد من المراجعة";
+
+}
+
+
+function formatDate(){
+
+  const now =
+    new Date();
+
+
+  return now.toLocaleDateString(
+    "ar-SA",
+    {
+      year:"numeric",
+      month:"long",
+      day:"numeric"
+    }
+  );
+
+}
+
+
+onAuthStateChanged(
+  auth,
+  async user => {
+
+    if(!user){
+
+      statusBox.className =
+        "status error";
+
+
+      statusBox.textContent =
+        "يلزم تسجيل الدخول إلى المنصة أولًا لعرض الشهادة.";
+
+
+      return;
+
+    }
+
+
+    try{
+
+      const studentRef =
+        doc(
+          db,
+          "students",
+          user.uid
+        );
+
+
+      const snapshot =
+        await getDoc(
+          studentRef
+        );
+
+
+      if(
+        !snapshot.exists()
+      ){
+
+        throw new Error(
+          "student-not-found"
+        );
+
+      }
+
+
+      const data =
+        snapshot.data();
+
+
+      const result =
+        data[
+          "نتيجة_الفصل_الثاني"
+        ] || {};
+
+
+      const completed =
+        result[
+          "مكتمل"
+        ] === true;
+
+
+      const percent =
+        Number(
+          result[
+            "الدرجة"
+          ] || 0
+        );
+
+
+      const certificateEligible =
+        result[
+          "استحقت_الشهادة"
+        ] === true;
+
+
+      if(
+        !completed
+      ){
+
+        statusBox.className =
+          "status error";
+
+
+        statusBox.textContent =
+          "لم تكتمل نتيجة الفصل الدراسي الثاني بعد.";
+
+
+        return;
+
+      }
+
+
+      if(
+        !certificateEligible ||
+        percent < 80
+      ){
+
+        statusBox.className =
+          "status error";
+
+
+        statusBox.textContent =
+          "لم يتحقق شرط استحقاق شهادة الفصل الدراسي الثاني بعد. يلزم تحقيق نسبة ٨٠٪ فأعلى.";
+
+
+        return;
+
+      }
+
+
+      const name =
+        data[
+          "الاسم"
+        ] ||
+        data[
+          "اسم_الطالبة"
+        ] ||
+        data[
+          "name"
+        ] ||
+        "الطالبة";
+
+
+      studentName.textContent =
+        name;
+
+
+      studentPercent.textContent =
+        `النسبة: ${arabicDigits(percent)}٪`;
+
+
+      studentGrade.textContent =
+        `التقدير: ${getGrade(percent)}`;
+
+
+      studentDate.textContent =
+        `التاريخ: ${formatDate()}`;
+
+
+      certificateWrap.classList.remove(
+        "hidden"
+      );
+
+
+      statusBox.className =
+        "status success";
+
+
+      statusBox.textContent =
+        "أحسنتِ، لقد استحققتِ شهادة الفصل الدراسي الثاني 🌟";
+
+
+      printBtn.disabled =
+        false;
+
+
+    }catch(error){
+
+
+      console.error(
+        "خطأ في تحميل الشهادة:",
+        error
+      );
+
+
+      statusBox.className =
+        "status error";
+
+
+      statusBox.textContent =
+        "تعذّر تحميل بيانات الشهادة الآن.";
+
+    }
+
+  }
+);
+
+
+printBtn.addEventListener(
+  "click",
+  () => {
+
+    window.print();
+
+  }
+);
+
+</script>
+
+</body>
+
+</html>
