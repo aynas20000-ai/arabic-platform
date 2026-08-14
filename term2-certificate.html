@@ -24,18 +24,17 @@ html,
 body{
   margin:0;
   padding:0;
-  min-height:100%;
 }
 
 body{
   font-family:Tahoma,Arial,sans-serif;
   background:#f5f1e8;
-  color:#2d2d2d;
+  color:#2c2c2c;
 }
 
 .page{
   min-height:100vh;
-  padding:18px 10px 32px;
+  padding:18px 8px 35px;
 }
 
 .toolbar{
@@ -45,7 +44,6 @@ body{
   flex-wrap:wrap;
   gap:10px;
   justify-content:center;
-  align-items:center;
 }
 
 .toolbar button,
@@ -56,24 +54,24 @@ body{
   font-family:inherit;
   font-size:15px;
   font-weight:bold;
+  text-align:center;
   text-decoration:none;
   cursor:pointer;
-  text-align:center;
 }
 
 .print-btn{
-  background:#2d6f43;
+  background:#2f7449;
   color:#fff;
 }
 
 .print-btn:disabled{
-  opacity:.55;
+  opacity:.5;
   cursor:not-allowed;
 }
 
 .back-btn{
-  background:#eee6d3;
-  color:#5a4722;
+  background:#efe7d4;
+  color:#5c4822;
   border:1px solid #d4bd82 !important;
 }
 
@@ -86,69 +84,158 @@ body{
   position:relative;
   width:100%;
   aspect-ratio:1440 / 1024;
+
   background-image:url("500.png");
   background-size:100% 100%;
   background-position:center;
   background-repeat:no-repeat;
+
   overflow:hidden;
-  box-shadow:0 18px 44px rgba(0,0,0,.17);
+
+  box-shadow:
+    0 18px 44px rgba(0,0,0,.16);
 }
+
+
+/* =========================
+   محتوى الشهادة
+========================= */
+
+.certificate-content{
+  position:absolute;
+
+  top:42%;
+  left:27%;
+
+  width:61%;
+  height:37%;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-start;
+
+  text-align:center;
+}
+
+
+/* عبارة تمنح */
+
+.award-intro{
+  margin:0 0 5px;
+
+  font-size:
+    clamp(14px,1.65vw,23px);
+
+  font-weight:bold;
+
+  color:#4a4a4a;
+}
+
+
+/* اسم الطالبة */
 
 .student-name{
-  position:absolute;
-  top:48%;
-  left:29%;
-  width:58%;
-  text-align:center;
-  font-size:clamp(22px,3vw,42px);
-  line-height:1.4;
-  font-weight:bold;
-  color:#2f6f2a;
-  text-shadow:0 1px 0 rgba(255,255,255,.8);
+  margin:0 0 10px;
+
+  width:100%;
+
+  font-size:
+    clamp(23px,3.2vw,44px);
+
+  font-weight:900;
+
+  color:#317629;
+
+  line-height:1.35;
+
+  text-shadow:
+    0 1px 0 rgba(255,255,255,.9);
 }
 
-.student-percent{
-  position:absolute;
-  top:56.5%;
-  left:31%;
-  width:54%;
-  text-align:center;
-  font-size:clamp(18px,2.2vw,30px);
-  font-weight:bold;
-  color:#8a4f1f;
+
+/* الديباجة */
+
+.award-text{
+  width:88%;
+
+  margin:0 auto 12px;
+
+  font-size:
+    clamp(12px,1.48vw,21px);
+
+  line-height:1.85;
+
+  font-weight:600;
+
+  color:#333;
 }
 
-.student-grade{
-  position:absolute;
-  top:61.5%;
-  left:31%;
-  width:54%;
-  text-align:center;
-  font-size:clamp(17px,2vw,27px);
+
+/* النتيجة */
+
+.result-line{
+  display:flex;
+
+  justify-content:center;
+  align-items:center;
+
+  flex-wrap:wrap;
+
+  gap:10px 22px;
+
+  width:100%;
+
+  margin-top:2px;
+
+  font-size:
+    clamp(13px,1.5vw,21px);
+
   font-weight:bold;
-  color:#2f5f31;
 }
+
+.percent{
+  color:#8a4d1b;
+}
+
+.grade{
+  color:#2f6b35;
+}
+
+
+/* التاريخ */
 
 .student-date{
-  position:absolute;
-  top:67%;
-  left:31%;
-  width:54%;
-  text-align:center;
-  font-size:clamp(15px,1.7vw,23px);
+  margin-top:8px;
+
+  font-size:
+    clamp(12px,1.35vw,19px);
+
   font-weight:bold;
-  color:#3f3f3f;
+
+  color:#444;
 }
+
+
+/* حالة الصفحة */
 
 .status{
   width:min(900px,94%);
+
   margin:16px auto 0;
+
   padding:15px 18px;
+
   border-radius:18px;
+
   text-align:center;
+
   font-weight:bold;
+
   background:#fff;
-  box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+  box-shadow:
+    0 8px 20px rgba(0,0,0,.08);
 }
 
 .status.loading{
@@ -171,39 +258,51 @@ body{
   display:none !important;
 }
 
+
+/* الجوال */
+
 @media(max-width:700px){
 
   .page{
-    padding:10px 4px 25px;
-  }
-
-  .certificate-wrap{
-    width:100%;
+    padding:10px 3px 26px;
   }
 
   .certificate{
     box-shadow:none;
   }
 
+  .certificate-content{
+    top:41%;
+    left:27%;
+    width:61%;
+    height:39%;
+  }
+
+  .award-intro{
+    margin-bottom:2px;
+  }
+
   .student-name{
-    top:48%;
-    left:28%;
-    width:60%;
+    margin-bottom:4px;
   }
 
-  .student-percent{
-    top:56.5%;
+  .award-text{
+    line-height:1.65;
+    margin-bottom:5px;
   }
 
-  .student-grade{
-    top:61.5%;
+  .result-line{
+    gap:4px 10px;
   }
 
   .student-date{
-    top:67%;
+    margin-top:3px;
   }
 
 }
+
+
+/* الطباعة */
 
 @media print{
 
@@ -216,11 +315,8 @@ body{
   body{
     width:100%;
     height:100%;
-    background:#fff;
-  }
-
-  body{
     margin:0;
+    background:#fff;
   }
 
   .page{
@@ -241,9 +337,13 @@ body{
   .certificate{
     width:100vw;
     height:100vh;
+
     aspect-ratio:auto;
+
     box-shadow:none;
+
     background-size:100% 100%;
+
     -webkit-print-color-adjust:exact;
     print-color-adjust:exact;
   }
@@ -289,25 +389,45 @@ body{
       id="certificate"
     >
 
-      <div
-        class="student-name"
-        id="studentName"
-      ></div>
+      <div class="certificate-content">
 
-      <div
-        class="student-percent"
-        id="studentPercent"
-      ></div>
+        <div class="award-intro">
+          تُمنح هذه الشهادة للطالبة
+        </div>
 
-      <div
-        class="student-grade"
-        id="studentGrade"
-      ></div>
+        <div
+          class="student-name"
+          id="studentName"
+        ></div>
 
-      <div
-        class="student-date"
-        id="studentDate"
-      ></div>
+        <div class="award-text">
+          تقديرًا لتميّزها واجتهادها في مادة لغتي الخالدة،
+          وإتمامها متطلبات الفصل الدراسي الثاني بنجاح،
+          وتحقيقها مستوى متميزًا من الإتقان،
+          سائلين الله لها دوام التوفيق والنجاح،
+          ومزيدًا من التميز والإبداع.
+        </div>
+
+        <div class="result-line">
+
+          <span
+            class="percent"
+            id="studentPercent"
+          ></span>
+
+          <span
+            class="grade"
+            id="studentGrade"
+          ></span>
+
+        </div>
+
+        <div
+          class="student-date"
+          id="studentDate"
+        ></div>
+
+      </div>
 
     </div>
 
@@ -383,11 +503,13 @@ const auth =
   initializeAuth(
     app,
     {
+
       persistence:
         browserLocalPersistence,
 
       popupRedirectResolver:
         browserPopupRedirectResolver
+
     }
   );
 
@@ -500,28 +622,50 @@ function formatDate(){
 }
 
 
-function getStudentName(data,user){
+/*
+  نبحث أولًا عن الاسم الرباعي أو الكامل،
+  ثم ننتقل للحقول الأخرى إذا لم يكن موجودًا.
+*/
 
-  return (
+function getStudentName(
+  data,
+  user
+){
 
-    data["الاسم"] ||
+  const fullName =
 
-    data["اسم_الطالبة"] ||
+    data["الاسم_الرباعي"] ||
+
+    data["الاسم الرباعي"] ||
 
     data["الاسم_الكامل"] ||
 
-    data["name"] ||
+    data["الاسم الكامل"] ||
+
+    data["اسم_الطالبة_الرباعي"] ||
+
+    data["اسم الطالبة الرباعي"] ||
 
     user.displayName ||
 
-    "الطالبة"
+    data["اسم_الطالبة"] ||
 
-  );
+    data["الاسم"] ||
+
+    data["name"] ||
+
+    "الطالبة";
+
+
+  return String(
+    fullName
+  ).trim();
 
 }
   onAuthStateChanged(
   auth,
   async user => {
+
 
     if(!user){
 
