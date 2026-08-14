@@ -26,7 +26,6 @@
   --paper:#fff;
   --text:#403347;
   --green:#2f6f43;
-  --green-light:#edf8f0;
   --shadow:0 15px 35px rgba(79,55,99,.14);
 }
 
@@ -283,47 +282,6 @@ main{
   font-size:17px;
 }
 
-.test-tools{
-  margin-top:22px;
-  padding:20px;
-  text-align:center;
-  background:#fff8e8;
-  border:2px dashed #d7b45d;
-  border-radius:22px;
-}
-
-.test-tools h3{
-  margin:0 0 6px;
-  color:#7a5b17;
-}
-
-.test-tools p{
-  margin:0 0 14px;
-  color:#705f3d;
-}
-
-.test-now-btn{
-  border:0;
-  width:min(420px,100%);
-  padding:13px 18px;
-  border-radius:15px;
-  background:linear-gradient(
-    135deg,
-    #c9a85c,
-    #a98232
-  );
-  color:#fff;
-  font-family:inherit;
-  font-size:17px;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-.test-status{
-  margin-top:12px;
-  font-weight:bold;
-}
-
 .back{
   display:block;
   width:min(340px,100%);
@@ -396,13 +354,9 @@ footer{
 
   <article class="test-card">
 
-    <div class="number">
-      ١
-    </div>
+    <div class="number">١</div>
 
-    <h3>
-      النموذج الأول
-    </h3>
+    <h3>النموذج الأول</h3>
 
     <p>
       مراجعة شاملة لمهارات الفصل الدراسي الثاني.
@@ -420,13 +374,9 @@ footer{
 
   <article class="test-card">
 
-    <div class="number">
-      ٢
-    </div>
+    <div class="number">٢</div>
 
-    <h3>
-      النموذج الثاني
-    </h3>
+    <h3>النموذج الثاني</h3>
 
     <p>
       أسئلة متنوعة في الفهم القرائي والمهارات اللغوية.
@@ -444,13 +394,9 @@ footer{
 
   <article class="test-card">
 
-    <div class="number">
-      ٣
-    </div>
+    <div class="number">٣</div>
 
-    <h3>
-      النموذج الثالث
-    </h3>
+    <h3>النموذج الثالث</h3>
 
     <p>
       تدريب إضافي على التراكيب والرسم الإملائي.
@@ -468,13 +414,9 @@ footer{
 
   <article class="test-card">
 
-    <div class="number">
-      ٤
-    </div>
+    <div class="number">٤</div>
 
-    <h3>
-      النموذج الرابع
-    </h3>
+    <h3>النموذج الرابع</h3>
 
     <p>
       اختبار شامل يتضمن نصوصًا وأسئلة تطبيقية متنوعة.
@@ -492,13 +434,9 @@ footer{
 
   <article class="test-card final-card">
 
-    <div class="number">
-      ٥
-    </div>
+    <div class="number">٥</div>
 
-    <h3>
-      النموذج الخامس الختامي
-    </h3>
+    <h3>النموذج الخامس الختامي</h3>
 
     <p>
       النموذج الأخير لإكمال المراجعة الشاملة والاستعداد للاختبار.
@@ -565,32 +503,6 @@ footer{
   >
     عرض الشهادة وطباعتها
   </a>
-
-</section>
-
-
-<section class="test-tools">
-
-  <h3>
-    🧪 تجربة مؤقتة
-  </h3>
-
-  <p>
-    هذا الزر مخصص لنا فقط للتأكد من أن النتيجة والشهادة تعملان دون حل ٢٠٠ سؤال.
-  </p>
-
-  <button
-    class="test-now-btn"
-    id="temporaryTestBtn"
-    type="button"
-  >
-    تشغيل تجربة الشهادة
-  </button>
-
-  <div
-    class="test-status"
-    id="temporaryTestStatus"
-  ></div>
 
 </section>
 
@@ -710,18 +622,6 @@ const certificateText =
   );
 
 
-const temporaryTestBtn =
-  document.getElementById(
-    "temporaryTestBtn"
-  );
-
-
-const temporaryTestStatus =
-  document.getElementById(
-    "temporaryTestStatus"
-  );
-
-
 function arabicDigits(value){
 
   return String(value).replace(
@@ -749,7 +649,9 @@ function getBestPercentage(test){
     Number.isFinite(best) &&
     best >= 0
   ){
+
     return best;
+
   }
 
 
@@ -763,7 +665,9 @@ function getBestPercentage(test){
     Number.isFinite(percentage) &&
     percentage >= 0
   ){
+
     return percentage;
+
   }
 
 
@@ -968,21 +872,14 @@ onAuthStateChanged(
         "سجلي الدخول إلى المنصة لعرض نتيجتكِ.";
 
 
-      temporaryTestBtn.disabled =
-        true;
-
-
-      temporaryTestStatus.textContent =
-        "يلزم تسجيل الدخول بحساب الطالبة التجريبي أولًا.";
+      certificateCard.classList.remove(
+        "show"
+      );
 
 
       return;
 
     }
-
-
-    temporaryTestBtn.disabled =
-      false;
 
 
     try{
@@ -1007,178 +904,6 @@ onAuthStateChanged(
 
       resultNote.textContent =
         "تعذّر حساب النتيجة النهائية الآن.";
-
-    }
-
-  }
-);
-
-
-temporaryTestBtn.addEventListener(
-  "click",
-  async () => {
-
-    const user =
-      auth.currentUser;
-
-
-    if(!user){
-
-      temporaryTestStatus.textContent =
-        "سجلي الدخول بحساب الطالبة التجريبي أولًا.";
-
-      return;
-
-    }
-
-
-    temporaryTestBtn.disabled =
-      true;
-
-
-    temporaryTestStatus.textContent =
-      "جارٍ إضافة النتائج التجريبية...";
-
-
-    try{
-
-      const studentRef =
-        doc(
-          db,
-          "students",
-          user.uid
-        );
-
-
-      const snapshot =
-        await getDoc(
-          studentRef
-        );
-
-
-      if(
-        !snapshot.exists()
-      ){
-
-        temporaryTestStatus.textContent =
-          "تعذّر العثور على سجل الطالبة.";
-
-        temporaryTestBtn.disabled =
-          false;
-
-        return;
-
-      }
-
-
-      await updateDoc(
-        studentRef,
-        {
-
-          "اختبارات_الفصل_الثاني.النموذج_الأول":{
-            "اسم_الاختبار":
-              "النموذج الأول للفصل الدراسي الثاني",
-            "الدرجة":36,
-            "المجموع":40,
-            "النسبة":90,
-            "أفضل_نسبة":90,
-            "مكتمل":true,
-            "عدد_الأسئلة":40,
-            "عدد_المحاولات":1,
-            "استحقت_الإتقان":true
-          },
-
-
-          "اختبارات_الفصل_الثاني.النموذج_الثاني":{
-            "اسم_الاختبار":
-              "النموذج الثاني للفصل الدراسي الثاني",
-            "الدرجة":36,
-            "المجموع":40,
-            "النسبة":90,
-            "أفضل_نسبة":90,
-            "مكتمل":true,
-            "عدد_الأسئلة":40,
-            "عدد_المحاولات":1,
-            "استحقت_الإتقان":true
-          },
-
-
-          "اختبارات_الفصل_الثاني.النموذج_الثالث":{
-            "اسم_الاختبار":
-              "النموذج الثالث للفصل الدراسي الثاني",
-            "الدرجة":36,
-            "المجموع":40,
-            "النسبة":90,
-            "أفضل_نسبة":90,
-            "مكتمل":true,
-            "عدد_الأسئلة":40,
-            "عدد_المحاولات":1,
-            "استحقت_الإتقان":true
-          },
-
-
-          "اختبارات_الفصل_الثاني.النموذج_الرابع":{
-            "اسم_الاختبار":
-              "النموذج الرابع للفصل الدراسي الثاني",
-            "الدرجة":36,
-            "المجموع":40,
-            "النسبة":90,
-            "أفضل_نسبة":90,
-            "مكتمل":true,
-            "عدد_الأسئلة":40,
-            "عدد_المحاولات":1,
-            "استحقت_الإتقان":true
-          },
-
-
-          "اختبارات_الفصل_الثاني.النموذج_الخامس":{
-            "اسم_الاختبار":
-              "النموذج الخامس الختامي للفصل الدراسي الثاني",
-            "الدرجة":36,
-            "المجموع":40,
-            "النسبة":90,
-            "أفضل_نسبة":90,
-            "مكتمل":true,
-            "عدد_الأسئلة":40,
-            "عدد_المحاولات":1,
-            "استحقت_الإتقان":true
-          }
-
-        }
-      );
-
-
-      temporaryTestStatus.textContent =
-        "تمت إضافة النتائج التجريبية ✅";
-
-
-      await calculateTerm2Result(
-        user
-      );
-
-
-      temporaryTestStatus.textContent =
-        "نجحت التجربة ✅ يجب أن تظهر الآن نتيجة ٩٠٪ وزر الشهادة.";
-
-
-    }catch(error){
-
-
-      console.error(
-        "خطأ في التجربة:",
-        error
-      );
-
-
-      temporaryTestStatus.textContent =
-        "تعذّر تشغيل التجربة.";
-
-
-    }finally{
-
-
-      temporaryTestBtn.disabled =
-        false;
 
     }
 
