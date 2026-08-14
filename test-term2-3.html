@@ -1,300 +1,3098 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>النموذج الثالث | اختبارات الفصل الدراسي الثاني</title>
-  <style>
-    :root{
-      --purple:#76548f;--purple-dark:#4f3763;--purple-light:#eee5f4;
-      --gold:#c9a85c;--gold-light:#f6e9bd;--cream:#fffaf2;--paper:#fff;
-      --text:#403347;--green:#2f8a5b;--green-light:#e8f7ef;
-      --red:#b74848;--red-light:#fff0f0;--shadow:0 14px 35px rgba(79,55,99,.14)
-    }
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Tahoma,Arial,sans-serif;color:var(--text);background:linear-gradient(180deg,var(--cream),#f7eff9);line-height:1.9;min-height:100vh}
-    header{padding:34px 18px 26px;text-align:center;color:#fff;background:linear-gradient(135deg,var(--purple),var(--purple-dark));border-bottom:5px solid var(--gold)}
-    header h1{margin:0;font-size:clamp(26px,6vw,39px)}
-    header p{margin:8px 0 0}
-    .wrap{width:min(950px,92%);margin:24px auto 50px}
-    .top-card,.quiz-card,.result-card{background:var(--paper);border:1px solid #eadff0;border-radius:24px;box-shadow:var(--shadow)}
-    .top-card{padding:18px;margin-bottom:18px}
-    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-    .stat{text-align:center;background:var(--purple-light);border:1px solid #dfcfe8;border-radius:16px;padding:10px 8px;font-weight:bold}
-    .stat span{display:block;font-size:19px;color:var(--purple-dark)}
-    .progress-shell{height:13px;border-radius:999px;background:#eee8f0;overflow:hidden;margin-top:15px}
-    .progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--gold),#e3c575);transition:width .35s}
-    .reading{background:linear-gradient(180deg,#fffdfa,#fff9ed);border:1px solid #ead8ad;border-right:6px solid var(--gold);border-radius:20px;padding:20px;margin-bottom:18px}
-    .reading h2{margin:0 0 10px;color:var(--purple-dark);font-size:22px}
-    .reading p{margin:0;text-align:justify}
-    .poem{text-align:center;font-weight:bold;line-height:2.2;white-space:pre-line}
-    .quiz-card{padding:24px}
-    .section-label{display:inline-block;background:var(--gold-light);color:#6c5520;border:1px solid #e4cb80;border-radius:999px;padding:5px 13px;font-weight:bold;font-size:14px;margin-bottom:12px}
-    .question-number{color:var(--purple);font-weight:bold;margin-bottom:6px}
-    .question{font-size:21px;font-weight:bold;margin:0 0 19px}
-    .options{display:grid;gap:11px}
-    .option{width:100%;border:2px solid #e6dceb;background:#fff;color:var(--text);border-radius:16px;padding:14px 15px;font-size:17px;font-family:inherit;text-align:right;cursor:pointer;display:flex;align-items:center;gap:11px}
-    .option:disabled{cursor:default}
-    .choice-letter{flex:0 0 35px;height:35px;display:grid;place-items:center;border-radius:50%;background:var(--purple-light);color:var(--purple-dark);font-weight:bold}
-    .option.correct{border-color:var(--green);background:var(--green-light)}
-    .option.wrong{border-color:var(--red);background:var(--red-light)}
-    .option.correct .choice-letter{background:var(--green);color:#fff}
-    .option.wrong .choice-letter{background:var(--red);color:#fff}
-    .feedback{display:none;margin-top:17px;padding:14px 16px;border-radius:15px;font-weight:bold}
-    .feedback.show{display:block}
-    .feedback.good{background:var(--green-light);border:1px solid #a9d8be;color:#1f6842}
-    .feedback.bad{background:var(--red-light);border:1px solid #e4b7b7;color:#8c3333}
-    .explain{display:block;font-weight:normal;margin-top:4px}
-    .controls{display:flex;justify-content:flex-end;margin-top:20px}
-    button.nav,.nav-link{border:0;border-radius:14px;padding:12px 20px;font-family:inherit;font-size:16px;font-weight:bold;cursor:pointer;text-decoration:none;text-align:center;display:inline-block}
-    #nextBtn{background:linear-gradient(135deg,var(--purple),var(--purple-dark));color:#fff;min-width:145px;display:none}
-    #resultRestart{background:var(--gold-light);color:#5c481a;border:1px solid #ddc26d;width:100%}
-    .result-card{display:none;padding:28px 20px;text-align:center}
-    .result-card.show{display:block}
-    .result-icon{font-size:68px}
-    .score-big{font-size:44px;color:var(--gold);font-weight:bold;margin:10px 0}
-    .result-nav{display:grid;gap:10px;margin-top:18px}
-    .home-link{background:#76548f;color:#fff}.tests-link{background:#c9a85c;color:#4f3763}.next-test-link{background:#eee5f4;color:#4f3763;border:1px solid #d8c5e3}
-    .review{margin-top:20px;text-align:right;display:grid;gap:12px}
-    .review-item{padding:13px;border-radius:14px;border:1px solid #eadff0;background:#fff}
-    .footer-note{text-align:center;color:#776b7e;margin-top:20px;font-size:14px}
-    .confetti{position:fixed;top:-20px;z-index:9999;pointer-events:none;animation:fall linear forwards}
-    @keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:.95}}
-    @media(max-width:600px){.stat{font-size:12px}.stat span{font-size:17px}.quiz-card{padding:19px 15px}.question{font-size:18px}.option{font-size:16px;padding:12px}.controls{flex-direction:column}button.nav,.nav-link{width:100%}}
-  </style>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+النموذج الثالث | اختبارات الفصل الدراسي الثاني
+</title>
+
+<style>
+
+:root{
+
+  --purple:#76548f;
+  --purple-dark:#4f3763;
+  --purple-light:#eee5f4;
+
+  --gold:#c9a85c;
+  --gold-light:#f6e9bd;
+
+  --cream:#fffaf2;
+  --paper:#fff;
+
+  --text:#403347;
+
+  --green:#2f8a5b;
+  --green-light:#e8f7ef;
+
+  --red:#b74848;
+  --red-light:#fff0f0;
+
+  --shadow:
+    0 14px 35px
+    rgba(79,55,99,.14);
+
+}
+
+
+*{
+  box-sizing:border-box;
+}
+
+
+body{
+
+  margin:0;
+
+  font-family:
+    Tahoma,
+    Arial,
+    sans-serif;
+
+  color:
+    var(--text);
+
+  background:
+    linear-gradient(
+      180deg,
+      var(--cream),
+      #f7eff9
+    );
+
+  line-height:1.9;
+
+  min-height:100vh;
+
+}
+
+
+header{
+
+  padding:
+    34px 18px 26px;
+
+  text-align:center;
+
+  color:#fff;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--purple),
+      var(--purple-dark)
+    );
+
+  border-bottom:
+    5px solid
+    var(--gold);
+
+}
+
+
+header h1{
+
+  margin:0;
+
+  font-size:
+    clamp(
+      26px,
+      6vw,
+      39px
+    );
+
+}
+
+
+header p{
+
+  margin:
+    8px 0 0;
+
+}
+
+
+.wrap{
+
+  width:
+    min(
+      950px,
+      92%
+    );
+
+  margin:
+    24px auto 50px;
+
+}
+
+
+.top-card,
+.quiz-card,
+.result-card{
+
+  background:
+    var(--paper);
+
+  border:
+    1px solid
+    #eadff0;
+
+  border-radius:
+    24px;
+
+  box-shadow:
+    var(--shadow);
+
+}
+
+
+.top-card{
+
+  padding:18px;
+
+  margin-bottom:
+    18px;
+
+}
+
+
+.stats{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      1fr
+    );
+
+  gap:10px;
+
+}
+
+
+.stat{
+
+  text-align:center;
+
+  background:
+    var(--purple-light);
+
+  border:
+    1px solid
+    #dfcfe8;
+
+  border-radius:
+    16px;
+
+  padding:
+    10px 8px;
+
+  font-weight:bold;
+
+}
+
+
+.stat span{
+
+  display:block;
+
+  font-size:
+    19px;
+
+  color:
+    var(--purple-dark);
+
+}
+
+
+.progress-shell{
+
+  height:13px;
+
+  border-radius:
+    999px;
+
+  background:
+    #eee8f0;
+
+  overflow:hidden;
+
+  margin-top:
+    15px;
+
+}
+
+
+.progress-bar{
+
+  height:100%;
+
+  width:0;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--gold),
+      #e3c575
+    );
+
+  transition:
+    width .35s;
+
+}
+
+
+.reading{
+
+  background:
+    linear-gradient(
+      180deg,
+      #fffdfa,
+      #fff9ed
+    );
+
+  border:
+    1px solid
+    #ead8ad;
+
+  border-right:
+    6px solid
+    var(--gold);
+
+  border-radius:
+    20px;
+
+  padding:20px;
+
+  margin-bottom:
+    18px;
+
+}
+
+
+.reading h2{
+
+  margin:
+    0 0 10px;
+
+  color:
+    var(--purple-dark);
+
+  font-size:
+    22px;
+
+}
+
+
+.reading p{
+
+  margin:0;
+
+  text-align:
+    justify;
+
+}
+
+
+.poem{
+
+  text-align:center;
+
+  font-weight:bold;
+
+  line-height:2.2;
+
+  white-space:
+    pre-line;
+
+}
+
+
+.quiz-card{
+
+  padding:24px;
+
+}
+
+
+.section-label{
+
+  display:
+    inline-block;
+
+  background:
+    var(--gold-light);
+
+  color:
+    #6c5520;
+
+  border:
+    1px solid
+    #e4cb80;
+
+  border-radius:
+    999px;
+
+  padding:
+    5px 13px;
+
+  font-weight:bold;
+
+  font-size:
+    14px;
+
+  margin-bottom:
+    12px;
+
+}
+
+
+.question-number{
+
+  color:
+    var(--purple);
+
+  font-weight:bold;
+
+  margin-bottom:
+    6px;
+
+}
+
+
+.question{
+
+  font-size:
+    21px;
+
+  font-weight:bold;
+
+  margin:
+    0 0 19px;
+
+}
+
+
+.options{
+
+  display:grid;
+
+  gap:11px;
+
+}
+
+
+.option{
+
+  width:100%;
+
+  border:
+    2px solid
+    #e6dceb;
+
+  background:#fff;
+
+  color:
+    var(--text);
+
+  border-radius:
+    16px;
+
+  padding:
+    14px 15px;
+
+  font-size:
+    17px;
+
+  font-family:
+    inherit;
+
+  text-align:right;
+
+  cursor:pointer;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:11px;
+
+}
+
+
+.option:disabled{
+
+  cursor:default;
+
+}
+
+
+.choice-letter{
+
+  flex:
+    0 0 35px;
+
+  height:35px;
+
+  display:grid;
+
+  place-items:center;
+
+  border-radius:
+    50%;
+
+  background:
+    var(--purple-light);
+
+  color:
+    var(--purple-dark);
+
+  font-weight:bold;
+
+}
+
+
+.option.correct{
+
+  border-color:
+    var(--green);
+
+  background:
+    var(--green-light);
+
+}
+
+
+.option.wrong{
+
+  border-color:
+    var(--red);
+
+  background:
+    var(--red-light);
+
+}
+
+
+.option.correct
+.choice-letter{
+
+  background:
+    var(--green);
+
+  color:#fff;
+
+}
+
+
+.option.wrong
+.choice-letter{
+
+  background:
+    var(--red);
+
+  color:#fff;
+
+}
+
+
+.feedback{
+
+  display:none;
+
+  margin-top:
+    17px;
+
+  padding:
+    14px 16px;
+
+  border-radius:
+    15px;
+
+  font-weight:bold;
+
+}
+
+
+.feedback.show{
+
+  display:block;
+
+}
+
+
+.feedback.good{
+
+  background:
+    var(--green-light);
+
+  border:
+    1px solid
+    #a9d8be;
+
+  color:
+    #1f6842;
+
+}
+
+
+.feedback.bad{
+
+  background:
+    var(--red-light);
+
+  border:
+    1px solid
+    #e4b7b7;
+
+  color:
+    #8c3333;
+
+}
+
+
+.explain{
+
+  display:block;
+
+  font-weight:
+    normal;
+
+  margin-top:
+    4px;
+
+}
+
+
+.controls{
+
+  display:flex;
+
+  justify-content:
+    flex-end;
+
+  margin-top:
+    20px;
+
+}
+
+
+button.nav,
+.nav-link{
+
+  border:0;
+
+  border-radius:
+    14px;
+
+  padding:
+    12px 20px;
+
+  font-family:
+    inherit;
+
+  font-size:
+    16px;
+
+  font-weight:bold;
+
+  cursor:pointer;
+
+  text-decoration:none;
+
+  text-align:center;
+
+  display:
+    inline-block;
+
+}
+
+
+#nextBtn{
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--purple),
+      var(--purple-dark)
+    );
+
+  color:#fff;
+
+  min-width:
+    145px;
+
+  display:none;
+
+}
+
+
+#resultRestart{
+
+  background:
+    var(--gold-light);
+
+  color:
+    #5c481a;
+
+  border:
+    1px solid
+    #ddc26d;
+
+  width:100%;
+
+}
+
+
+.result-card{
+
+  display:none;
+
+  padding:
+    28px 20px;
+
+  text-align:center;
+
+}
+
+
+.result-card.show{
+
+  display:block;
+
+}
+
+
+.result-icon{
+
+  font-size:
+    68px;
+
+}
+
+
+.score-big{
+
+  font-size:
+    44px;
+
+  color:
+    var(--gold);
+
+  font-weight:bold;
+
+  margin:
+    10px 0;
+
+}
+
+
+.save-status{
+
+  margin:
+    10px 0 4px;
+
+  padding:
+    10px 12px;
+
+  border-radius:
+    14px;
+
+  font-size:
+    14px;
+
+  font-weight:bold;
+
+  background:
+    #f5eff9;
+
+  color:
+    var(--purple-dark);
+
+  border:
+    1px solid
+    #dfcfe8;
+
+}
+
+
+.save-status.success{
+
+  background:
+    #e8f7ef;
+
+  color:
+    #1f6842;
+
+  border-color:
+    #a9d8be;
+
+}
+
+
+.save-status.error{
+
+  background:
+    #fff0f0;
+
+  color:
+    #8c3333;
+
+  border-color:
+    #e4b7b7;
+
+}
+
+
+.result-nav{
+
+  display:grid;
+
+  gap:10px;
+
+  margin-top:
+    18px;
+
+}
+
+
+.home-link{
+
+  background:
+    #76548f;
+
+  color:#fff;
+
+}
+
+
+.tests-link{
+
+  background:
+    #c9a85c;
+
+  color:
+    #4f3763;
+
+}
+
+
+.next-test-link{
+
+  background:
+    #eee5f4;
+
+  color:
+    #4f3763;
+
+  border:
+    1px solid
+    #d8c5e3;
+
+}
+
+
+.review{
+
+  margin-top:
+    20px;
+
+  text-align:right;
+
+  display:grid;
+
+  gap:12px;
+
+}
+
+
+.review-item{
+
+  padding:13px;
+
+  border-radius:
+    14px;
+
+  border:
+    1px solid
+    #eadff0;
+
+  background:#fff;
+
+}
+
+
+.footer-note{
+
+  text-align:center;
+
+  color:
+    #776b7e;
+
+  margin-top:
+    20px;
+
+  font-size:
+    14px;
+
+}
+
+
+.confetti{
+
+  position:fixed;
+
+  top:-20px;
+
+  z-index:9999;
+
+  pointer-events:none;
+
+  animation:
+    fall linear forwards;
+
+}
+
+
+@keyframes fall{
+
+  to{
+
+    transform:
+      translateY(110vh)
+      rotate(720deg);
+
+    opacity:.95;
+
+  }
+
+}
+
+
+@media(
+  max-width:600px
+){
+
+  .stat{
+    font-size:12px;
+  }
+
+  .stat span{
+    font-size:17px;
+  }
+
+  .quiz-card{
+    padding:19px 15px;
+  }
+
+  .question{
+    font-size:18px;
+  }
+
+  .option{
+    font-size:16px;
+    padding:12px;
+  }
+
+  .controls{
+    flex-direction:column;
+  }
+
+  button.nav,
+  .nav-link{
+    width:100%;
+  }
+
+}
+
+</style>
+
 </head>
+
 <body>
+
+
 <header>
-  <h1>النموذج الثالث</h1>
-  <p>اختبار لغتي الخالدة – الفصل الدراسي الثاني</p>
+
+  <h1>
+    النموذج الثالث
+  </h1>
+
+  <p>
+    اختبار لغتي الخالدة – الفصل الدراسي الثاني
+  </p>
+
 </header>
 
+
 <main class="wrap">
-  <section class="top-card" id="topCard">
-    <div class="stats">
-      <div class="stat">السؤال<span id="currentStat">١ / ٤٠</span></div>
-      <div class="stat">الصحيح<span id="correctStat">٠</span></div>
-      <div class="stat">الدرجة<span id="scoreStat">٠ / ٤٠</span></div>
+
+
+<section
+  class="top-card"
+  id="topCard"
+>
+
+  <div class="stats">
+
+    <div class="stat">
+
+      السؤال
+
+      <span id="currentStat">
+        ١ / ٤٠
+      </span>
+
     </div>
-    <div class="progress-shell"><div class="progress-bar" id="progressBar"></div></div>
-  </section>
 
-  <section class="reading" id="readingOne">
-    <h2>النص الأول: الذكاء الاصطناعي</h2>
-    <p>
-      على مرِّ العصور كان الذكاء الاصطناعي حاضرًا فقط في الخيال العلمي؛ فتارةً يُسلَّط الضوء على الفوائد المحتملة للذكاء الاصطناعي وجوانبه الإنسانية المشرقة،
-      وتارةً أخرى يُسلَّط الضوء على الجوانب السلبية المتوقعة منه، وفي عام ٢٠١٨م أصبحت التقنية واقعًا لا خيالًا، وكان هذا العام بمنزلة النقلة الكبرى للذكاء الاصطناعي؛
-      فقد نمت هذه التكنولوجيا بشكل كبير على أرض الواقع، حتى أصبحت أداة رئيسة تدخل في صلب جميع القطاعات. لقد خرج الذكاء الاصطناعي من مختبرات البحوث ومن صفحات
-      روايات الخيال العلمي ليصبح جزءًا لا يتجزأ من حياتنا اليومية، ابتداءً من مساعدتنا في التنقل بين المدن، وتمكين أجهزة الترجمة الفورية، ووصولًا إلى استخدام
-      مساعدين افتراضيين لمساعدتنا في أداء المهام المختلفة، واليوم أصبح استخدامنا للذكاء الاصطناعي ضرورة متأصلة من أجل الصالح العام للمجتمع.
-    </p>
-  </section>
+    <div class="stat">
 
-  <section class="reading" id="readingTwo" style="display:none">
-    <h2>النص الثاني: الشباب</h2>
-    <p>
-      الشباب في كل دولة هم عماد نهضتها، وقناة مجدها وعزتها في أوقات السِّلم، وهم كذلك ذخرها وعتادها، والذائدون عن حياضها والحماة لأرضها في أوقات الحرب.
-      ومن هنا عرفت الدول الناهضة أهمية الشباب؛ فاهتمت بهم تثقيفًا وتهذيبًا وتربيةً وتعليمًا؛ لتعتمد عليهم في حاضرها ومستقبلها.
-      وقد اهتم الإسلام بالشباب أيما اهتمام، وأولاهم من العناية والرعاية ما هم به جديرون؛ فركّز على أهمية النصح والتوجيه والإرشاد لهذه الشريحة المهمة من شرائح المجتمع،
-      وقد ضرب لنا الرسول الكريم ﷺ أروع المثل في التعامل مع جموح الشباب وطيشهم، وكيفية احتوائهم وتعديل أفكارهم، وترشيد سلوكهم بالمناقشة الهادئة،
-      والحجة القوية، والبراهين الساطعة، والعقل الراشد بعيدًا عن العنف.
-    </p>
-  </section>
+      الإجابات الصحيحة
 
-  <section class="reading" id="poemBox" style="display:none">
-    <h2>النص الشعري</h2>
-    <div class="poem">
+      <span id="correctStat">
+        ٠
+      </span>
+
+    </div>
+
+    <div class="stat">
+
+      الدرجة
+
+      <span id="scoreStat">
+        ٠ / ٤٠
+      </span>
+
+    </div>
+
+  </div>
+
+
+  <div class="progress-shell">
+
+    <div
+      class="progress-bar"
+      id="progressBar"
+    ></div>
+
+  </div>
+
+</section>
+
+
+<section
+  class="reading"
+  id="readingOne"
+>
+
+  <h2>
+    النص الأول: الذكاء الاصطناعي
+  </h2>
+
+  <p>
+    على مرِّ العصور كان الذكاء الاصطناعي حاضرًا فقط في الخيال العلمي؛ فتارةً يُسلَّط الضوء على الفوائد المحتملة للذكاء الاصطناعي وجوانبه الإنسانية المشرقة،
+    وتارةً أخرى يُسلَّط الضوء على الجوانب السلبية المتوقعة منه، وفي عام ٢٠١٨م أصبحت التقنية واقعًا لا خيالًا، وكان هذا العام بمنزلة النقلة الكبرى للذكاء الاصطناعي؛
+    فقد نمت هذه التكنولوجيا بشكل كبير على أرض الواقع، حتى أصبحت أداة رئيسة تدخل في صلب جميع القطاعات.
+    لقد خرج الذكاء الاصطناعي من مختبرات البحوث ومن صفحات روايات الخيال العلمي ليصبح جزءًا لا يتجزأ من حياتنا اليومية،
+    ابتداءً من مساعدتنا في التنقل بين المدن، وتمكين أجهزة الترجمة الفورية، ووصولًا إلى استخدام مساعدين افتراضيين لمساعدتنا في أداء المهام المختلفة،
+    واليوم أصبح استخدامنا للذكاء الاصطناعي ضرورة متأصلة من أجل الصالح العام للمجتمع.
+  </p>
+
+</section>
+
+
+<section
+  class="reading"
+  id="readingTwo"
+  style="display:none"
+>
+
+  <h2>
+    النص الثاني: الشباب
+  </h2>
+
+  <p>
+    الشباب في كل دولة هم عماد نهضتها، وقناة مجدها وعزتها في أوقات السِّلم، وهم كذلك ذخرها وعتادها، والذائدون عن حياضها والحماة لأرضها في أوقات الحرب.
+    ومن هنا عرفت الدول الناهضة أهمية الشباب؛ فاهتمت بهم تثقيفًا وتهذيبًا وتربيةً وتعليمًا؛ لتعتمد عليهم في حاضرها ومستقبلها.
+    وقد اهتم الإسلام بالشباب أيما اهتمام، وأولاهم من العناية والرعاية ما هم به جديرون؛ فركّز على أهمية النصح والتوجيه والإرشاد لهذه الشريحة المهمة من شرائح المجتمع،
+    وقد ضرب لنا الرسول الكريم ﷺ أروع المثل في التعامل مع جموح الشباب وطيشهم، وكيفية احتوائهم وتعديل أفكارهم، وترشيد سلوكهم بالمناقشة الهادئة،
+    والحجة القوية، والبراهين الساطعة، والعقل الراشد بعيدًا عن العنف.
+  </p>
+
+</section>
+
+
+<section
+  class="reading"
+  id="poemBox"
+  style="display:none"
+>
+
+  <h2>
+    النص الشعري
+  </h2>
+
+  <div class="poem">
 فهي تحيا في بحر ليلٍ طويلٍ
 تتلوى به أفاعي الحِمام
 
 كُفِّنَت في الحياة قبل المنايا
 وتراءى الإدمان بالأسقام
-    </div>
-  </section>
+  </div>
 
-  <section class="quiz-card" id="quizCard">
-    <div class="section-label" id="sectionLabel"></div>
-    <div class="question-number" id="questionNumber"></div>
-    <h2 class="question" id="questionText"></h2>
-    <div class="options" id="options"></div>
-    <div class="feedback" id="feedback"></div>
-    <div class="controls"><button class="nav" id="nextBtn" type="button">السؤال التالي</button></div>
-  </section>
+</section>
 
-  <section class="result-card" id="resultCard">
-    <div class="result-icon" id="resultIcon">🏆</div>
-    <h2>اكتمل النموذج الثالث</h2>
-    <div class="score-big" id="finalScore">٠ / ٤٠</div>
-    <div id="resultNote"></div>
-    <button class="nav" id="resultRestart" type="button">إعادة المحاولة</button>
-    <div class="result-nav">
-      <a class="nav-link home-link" href="index.html">العودة إلى الصفحة الرئيسية</a>
-      <a class="nav-link tests-link" href="tests-term2.html">العودة إلى صفحة الاختبارات</a>
-      <a class="nav-link next-test-link" href="test-term2-4.html">الانتقال إلى الاختبار التالي</a>
-    </div>
-    <div class="review" id="review"></div>
-  </section>
 
-  <div class="footer-note">منصة آفاق التعليمية</div>
+<section
+  class="quiz-card"
+  id="quizCard"
+>
+
+  <div
+    class="section-label"
+    id="sectionLabel"
+  ></div>
+
+  <div
+    class="question-number"
+    id="questionNumber"
+  ></div>
+
+  <h2
+    class="question"
+    id="questionText"
+  ></h2>
+
+  <div
+    class="options"
+    id="options"
+  ></div>
+
+  <div
+    class="feedback"
+    id="feedback"
+  ></div>
+
+  <div class="controls">
+
+    <button
+      class="nav"
+      id="nextBtn"
+      type="button"
+    >
+      السؤال التالي
+    </button>
+
+  </div>
+
+</section>
+
+
+<section
+  class="result-card"
+  id="resultCard"
+>
+
+  <div
+    class="result-icon"
+    id="resultIcon"
+  >
+    🏆
+  </div>
+
+  <h2>
+    اكتمل النموذج الثالث
+  </h2>
+
+  <div
+    class="score-big"
+    id="finalScore"
+  >
+    ٠ / ٤٠
+  </div>
+
+  <div id="resultNote"></div>
+
+  <div
+    class="save-status"
+    id="saveStatus"
+  >
+    ستُحفظ نتيجتكِ في سجل الفصل الدراسي الثاني.
+  </div>
+
+  <button
+    class="nav"
+    id="resultRestart"
+    type="button"
+  >
+    إعادة المحاولة
+  </button>
+
+  <div class="result-nav">
+
+    <a
+      class="nav-link home-link"
+      href="index.html"
+    >
+      العودة إلى الصفحة الرئيسية
+    </a>
+
+    <a
+      class="nav-link tests-link"
+      href="tests-term2.html"
+    >
+      العودة إلى صفحة الاختبارات
+    </a>
+
+    <a
+      class="nav-link next-test-link"
+      href="test-term2-4.html"
+    >
+      الانتقال إلى الاختبار التالي
+    </a>
+
+  </div>
+
+  <div
+    class="review"
+    id="review"
+  ></div>
+
+</section>
+
+
+<div class="footer-note">
+  منصة آفاق التعليمية
+</div>
+
+
 </main>
+<script type="module">
 
-<script>
+
+import {
+  initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+
+
+import {
+
+  initializeAuth,
+
+  browserLocalPersistence,
+
+  browserPopupRedirectResolver,
+
+  onAuthStateChanged
+
+}
+from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+
+import {
+
+  getFirestore,
+
+  doc,
+
+  getDoc,
+
+  updateDoc,
+
+  serverTimestamp
+
+}
+from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+
+const firebaseConfig = {
+
+  apiKey:
+    "AIzaSyB48av9gx4jzFyYoUQtcLwaR52qETevKGs",
+
+  authDomain:
+    "afaq-language-platform.firebaseapp.com",
+
+  projectId:
+    "afaq-language-platform",
+
+  storageBucket:
+    "afaq-language-platform.firebasestorage.app",
+
+  messagingSenderId:
+    "362601061474",
+
+  appId:
+    "1:362601061474:web:bc405291332b9e4ef9453b"
+
+};
+
+
+const app =
+  initializeApp(
+    firebaseConfig
+  );
+
+
+const auth =
+  initializeAuth(
+    app,
+    {
+
+      persistence:
+        browserLocalPersistence,
+
+      popupRedirectResolver:
+        browserPopupRedirectResolver
+
+    }
+  );
+
+
+const db =
+  getFirestore(
+    app
+  );
+
+
+let currentUser =
+  null;
+
+
+onAuthStateChanged(
+  auth,
+  user => {
+
+    currentUser =
+      user || null;
+
+  }
+);
+
+
 const questions = [
-{section:"الفهم القرائي",q:"انحصرت بدايات ظهور الذكاء الاصطناعي في:",options:["العالم الافتراضي","الخيال العلمي","التنقل بين المدن","الازدحام المروري"],answer:1,explain:"بدأ ظهوره في الخيال العلمي."},
-{section:"الفهم القرائي",q:"وردت كلمة «الشرس» في النص بمعنى:",options:["الشديد","المثير","اللين","المكابر"],answer:0,explain:"الشرس بمعنى الشديد."},
-{section:"الفهم القرائي",q:"من مميزات الذكاء الاصطناعي الواردة في النص:",options:["استخدام المساعد الافتراضي","بناء المدن الافتراضية","نشر الثقافة المجتمعية","تقوية العلاقات الإنسانية"],answer:0,explain:"ذكر النص استخدام المساعد الافتراضي."},
-{section:"الفهم القرائي",q:"يسهم استخدام الذكاء الاصطناعي في أداء المهام الآتية، ما عدا:",options:["التخطيط والتطوير","اتخاذ القرارات","التعليم والتعلم","زيادة القوى العاملة"],answer:3,explain:"زيادة القوى العاملة ليست من المهام المذكورة."},
-{section:"الفهم القرائي",q:"وردت في النص كلمة بمعنى «الأدلة والقرائن الواضحة»:",options:["الأفكار","البراهين","الجموح","التهذيب"],answer:1,explain:"البراهين تعني الأدلة والقرائن الواضحة."},
-{section:"الفهم القرائي",q:"يعود الضمير في كلمة «شدتها» في عبارة «لحالات رخائها وشدتها» على:",options:["الأرض","السِّلم","الشباب","الدول"],answer:3,explain:"الضمير يعود على الدول."},
-{section:"الفهم القرائي",q:"العبارة التي جاءت بمعنى القوة والثبات:",options:["الرعاية والعناية","الركن الشديد","النصح والتوجيه","العقل الراشد"],answer:1,explain:"الركن الشديد يدل على القوة والثبات."},
-{section:"الفهم القرائي",q:"الأسلوب الذي يتفق مع المنهج النبوي القويم في الحوار مع الشباب:",options:["التسامح المطلق","الزجر والتأنيب","المناقشة الهادئة","القوة والردع"],answer:2,explain:"المناقشة الهادئة هي الأسلوب الصحيح."},
-{section:"النص الشعري",q:"الدلالة التي تحملها صورة «تتلوى به أفاعي الحِمام»:",options:["التنفير","التشويق","الترغيب","التحسر"],answer:0,explain:"الصورة تنفّر من الإدمان."},
-{section:"النص الشعري",q:"معنى كلمة «المنايا»:",options:["الحياة","الموت","الأمل","التمني"],answer:1,explain:"المنايا تعني الموت."},
-{section:"الوظيفة النحوية",q:"في قوله تعالى: ﴿سلام هي حتى مطلع الفجر﴾ يفيد حرف العطف «حتى»:",options:["الشك","التخيير","النفي","الغاية"],answer:3,explain:"حتى تفيد الغاية."},
-{section:"الوظيفة النحوية",q:"في الجملة «خرج خالد وزيادٌ» تعرب كلمة «زياد» معطوفًا:",options:["مجزومًا","منصوبًا","مرفوعًا","مجرورًا"],answer:2,explain:"المعطوف يتبع المعطوف عليه في الرفع."},
-{section:"الوظيفة النحوية",q:"الجملة التي تعبّر عن الترتيب مع التراخي:",options:["سافر محمد ثم عاد.","سافر محمد وعاد.","سافر محمد فعاد.","سافر محمد أو عاد."],answer:0,explain:"ثم تفيد الترتيب مع التراخي."},
-{section:"الوظيفة النحوية",q:"الجملة التي اشتملت على بدل اشتمال:",options:["حفظت السورة نصفها.","حضر الطالب سعد.","قرأت نصف القصة.","أعجبني الطالب أدبه."],answer:3,explain:"أدبه بدل اشتمال."},
-{section:"الوظيفة النحوية",q:"في الجملة «أصبح الذكاء الاصطناعي حقيقةً، لا خيالًا» إعراب «خيالًا»:",options:["حالًا منصوبًا","نعتًا منصوبًا","معطوفًا منصوبًا","بدلًا منصوبًا"],answer:2,explain:"خيالًا معطوف منصوب."},
-{section:"الأسلوب اللغوي",q:"أسلوب التعجب الصحيح من جمال البحر:",options:["البحر جميل","ما أجمل البحر!","البحر للجمال","أجمل بالبحر"],answer:1,explain:"الصيغة الصحيحة: ما أجمل البحر!"},
-{section:"الأسلوب اللغوي",q:"قالت المعلمة: «فازت ١٤ طالبة». الكتابة الصحيحة للعدد:",options:["أربع عشرة","أربعة عشرة","أربعة عشر","أربع عشر"],answer:0,explain:"الصواب: أربع عشرة طالبة."},
-{section:"الصنف اللغوي",q:"في الجملة «أضاء الفتى المصباح» اسم الآلة «المصباح» على وزن:",options:["فاعل","مِفعال","مفعول","مفاعل"],answer:1,explain:"المصباح على وزن مِفعال."},
-{section:"الصنف اللغوي",q:"الاسم الذي يدل على حدث مجرد من الزمن يسمى:",options:["تعجبًا","صفةً","بدلًا","مصدرًا"],answer:3,explain:"هذا تعريف المصدر."},
-{section:"الصنف اللغوي",q:"مصدر الفعل الرباعي «درَّس» هو:",options:["دارس","تدرُّس","درسًا","تدريس"],answer:3,explain:"مصدر درّس هو تدريس."},
-{section:"الرسم الإملائي",q:"تصح زيادة الألف بعد الواو في كلمة:",options:["ذهبوا","يدعو","مسلمو","نرجو"],answer:0,explain:"تزاد الألف بعد واو الجماعة في ذهبوا."},
-{section:"الرسم الإملائي",q:"عند تنوين الكلمات «فناء — حديقة — حلم» تنوين فتح، تكتب:",options:["فناءًا — حديقةً — حلمًا","فناءً — حديقةً — حلمًا","فناءً — حديقةاً — حلمًا","فناءا — حديقةً — حلمًا"],answer:1,explain:"الصواب: فناءً، حديقةً، حلمًا."},
-{section:"الرسم الإملائي",q:"الكلمة التي توافق كتابتها نطقها هي:",options:["عمرو","أولو","أحمد","الرحمن"],answer:2,explain:"أحمد تكتب كما تنطق."},
-{section:"صح أو خطأ",q:"في الجملة «أقبل التلميذ وثغرُه باسم» الواو واو عطف.",options:["صح","خطأ"],answer:1,explain:"هي واو الحال."},
-{section:"صح أو خطأ",q:"يتبع البدل المبدل منه في إعرابه رفعًا ونصبًا وجرًّا.",options:["صح","خطأ"],answer:0,explain:"العبارة صحيحة."},
-{section:"صح أو خطأ",q:"«شعور داخلي تنفعل به النفس لاستعظام أمر نادر أو لا مثيل له» هو أسلوب الاستفهام.",options:["صح","خطأ"],answer:1,explain:"هذا تعريف التعجب."},
-{section:"صح أو خطأ",q:"العددان واحد واثنان يطابقان المعدود تذكيرًا وتأنيثًا.",options:["صح","خطأ"],answer:0,explain:"العبارة صحيحة."},
-{section:"صح أو خطأ",q:"كلمة «مِقص» اسم آلة مشتق من الفعل «قصَّ».",options:["صح","خطأ"],answer:0,explain:"العبارة صحيحة."},
-{section:"صح أو خطأ",q:"في رسم الحروف بخط الرقعة تستقر الحروف في الجملة على السطر.",options:["صح","خطأ"],answer:0,explain:"العبارة صحيحة بحسب قاعدة السؤال."},
-{section:"صح أو خطأ",q:"تُحذف همزة كلمة «ابن» إذا جاءت في أول السطر.",options:["صح","خطأ"],answer:1,explain:"تثبت همزة ابن إذا جاءت أول السطر."},
-{section:"الوظيفة النحوية",q:"في الجملة «سلّمتُ على عامرٍ ثم عادلٍ» إعراب «عادلٍ»:",options:["معطوف مرفوع وعلامة رفعه الضمة","معطوف منصوب وعلامة نصبه الفتحة","معطوف مجرور وعلامة جره الكسرة","بدل مجرور وعلامة جره الكسرة"],answer:2,explain:"معطوف مجرور."},
-{section:"الأسلوب اللغوي",q:"أسلوب التعجب الصحيح من شجاعة عنترة:",options:["عنترة شجاع.","هل عنترة شجاع؟","ما أشجعَ عنترةَ!","عنترة أشجع الرجال."],answer:2,explain:"الصواب: ما أشجع عنترة!"},
-{section:"الصنف اللغوي",q:"اسم الآلة المشتق من الفعل «ذاع»:",options:["مذيع","إذاعة","مذياع","ذائع"],answer:2,explain:"اسم الآلة: مذياع."},
-{section:"الرسم الإملائي",q:"التصويب الصحيح للكلمة في العبارة «الواجب على الشباب المسلم أن يستثمرو أوقات فراغهم»:",options:["يستثمرون","يستثمروا","يستثمرُ","يستثمران"],answer:1,explain:"الصواب: يستثمروا، وتكتب الألف الفارقة بعد واو الجماعة."},
-{section:"الوظيفة النحوية",q:"التصويب الصحيح للكلمة في العبارة «ولهذا عليهم أن يقرؤوا كتاب مفيدًا»:",options:["كتابٌ","كتابٍ","كتابًا","كتابْ"],answer:2,explain:"كتابًا مفعول به منصوب."},
-{section:"الوظيفة النحوية",q:"نوع الواو في الجملة «دخل الطالب وهو مبتسم»:",options:["واو العطف","واو الحال","واو القسم","واو الجماعة"],answer:1,explain:"الواو واو الحال."},
-{section:"الوظيفة النحوية",q:"أي الجمل اشتملت على بدل بعض من كل؟",options:["أعجبني الطالب أدبه.","قرأت الكتاب نصفه.","حضر الخليفة عمرُ.","شاهدت الطالب المجتهد."],answer:1,explain:"نصفه بدل بعض من كل."},
-{section:"الصنف اللغوي",q:"المصدر الصحيح للفعل الرباعي «ناقش»:",options:["نِقاش","مناقشة","تناقش","نقاشًا"],answer:1,explain:"مصدر ناقش: مناقشة."},
-{section:"الصنف اللغوي",q:"المصدر الصحيح للفعل الرباعي «أكرم»:",options:["كرامة","تكريم","إكرام","مكرمة"],answer:2,explain:"مصدر أكرم: إكرام."},
-{section:"الصنف اللغوي",q:"الجملة التي اشتملت على اسم آلة على وزن «مِفعال»:",options:["استخدم العامل المطرقة.","استعمل النجار المنشار.","فتح الحارس الباب بالمفتاح.","نظر الباحث في المجهر."],answer:1,explain:"المنشار على وزن مِفعال."}
+
+
+{
+section:"الفهم القرائي",
+
+q:"انحصرت بدايات ظهور الذكاء الاصطناعي في:",
+
+options:[
+"العالم الافتراضي",
+"الخيال العلمي",
+"التنقل بين المدن",
+"الازدحام المروري"
+],
+
+answer:1,
+
+explain:
+"بدأ ظهوره في الخيال العلمي."
+},
+
+
+{
+section:"الفهم القرائي",
+
+q:"وردت كلمة «الشرس» في النص بمعنى:",
+
+options:[
+"الشديد",
+"المثير",
+"اللين",
+"المكابر"
+],
+
+answer:0,
+
+explain:
+"الشرس بمعنى الشديد."
+},
+
+
+{
+section:"الفهم القرائي",
+
+q:"من مميزات الذكاء الاصطناعي الواردة في النص:",
+
+options:[
+"استخدام المساعد الافتراضي",
+"بناء المدن الافتراضية",
+"نشر الثقافة المجتمعية",
+"تقوية العلاقات الإنسانية"
+],
+
+answer:0,
+
+explain:
+"ذكر النص استخدام المساعد الافتراضي."
+},
+
+
+{
+section:"الفهم القرائي",
+
+q:"يسهم استخدام الذكاء الاصطناعي في أداء المهام الآتية، ما عدا:",
+
+options:[
+"التخطيط والتطوير",
+"اتخاذ القرارات",
+"التعليم والتعلم",
+"زيادة القوى العاملة"
+],
+
+answer:3,
+
+explain:
+"زيادة القوى العاملة ليست من المهام المذكورة."
+},
+
+
+{
+section:"الفهم القرائي",
+
+q:"وردت في النص كلمة بمعنى «الأدلة والقرائن الواضحة»:",
+
+options:[
+"الأفكار",
+"البراهين",
+"الجموح",
+"التهذيب"
+],
+
+answer:1,
+
+explain:
+"البراهين تعني الأدلة والقرائن الواضحة."
+},
+
+
+{
+section:"الفهم القرائي",
+
+q:"يعود الضمير في كلمة «شدتها» في عبارة «لحالات رخائها وشدتها» على:",
+
+options:[
+"الأرض",
+"السِّلم",
+"الشباب",
+"الدول"
+],
+
+answer:3,
+
+explain:
+"الضمير يعود على الدول."
+},
+
+
+{
+section:"الفهم القرائي",
+
+q:"العبارة التي جاءت بمعنى القوة والثبات:",
+
+options:[
+"الرعاية والعناية",
+"الركن الشديد",
+"النصح والتوجيه",
+"العقل الراشد"
+],
+
+answer:1,
+
+explain:
+"الركن الشديد يدل على القوة والثبات."
+},
+
+
+{
+section:"الفهم القرائي",
+
+q:"الأسلوب الذي يتفق مع المنهج النبوي القويم في الحوار مع الشباب:",
+
+options:[
+"التسامح المطلق",
+"الزجر والتأنيب",
+"المناقشة الهادئة",
+"القوة والردع"
+],
+
+answer:2,
+
+explain:
+"المناقشة الهادئة هي الأسلوب الصحيح."
+},
+
+
+{
+section:"النص الشعري",
+
+q:"الدلالة التي تحملها صورة «تتلوى به أفاعي الحِمام»:",
+
+options:[
+"التنفير",
+"التشويق",
+"الترغيب",
+"التحسر"
+],
+
+answer:0,
+
+explain:
+"الصورة تنفّر من الإدمان."
+},
+
+
+{
+section:"النص الشعري",
+
+q:"معنى كلمة «المنايا»:",
+
+options:[
+"الحياة",
+"الموت",
+"الأمل",
+"التمني"
+],
+
+answer:1,
+
+explain:
+"المنايا تعني الموت."
+},
+
+
+{
+section:"الوظيفة النحوية",
+
+q:"في قوله تعالى: ﴿سلام هي حتى مطلع الفجر﴾ يفيد حرف العطف «حتى»:",
+
+options:[
+"الشك",
+"التخيير",
+"النفي",
+"الغاية"
+],
+
+answer:3,
+
+explain:
+"حتى تفيد الغاية."
+},
+
+
+{
+section:"الوظيفة النحوية",
+
+q:"في الجملة «خرج خالد وزيادٌ» تعرب كلمة «زياد» معطوفًا:",
+
+options:[
+"مجزومًا",
+"منصوبًا",
+"مرفوعًا",
+"مجرورًا"
+],
+
+answer:2,
+
+explain:
+"المعطوف يتبع المعطوف عليه في الرفع."
+},
+
+
+{
+section:"الوظيفة النحوية",
+
+q:"الجملة التي تعبّر عن الترتيب مع التراخي:",
+
+options:[
+"سافر محمد ثم عاد.",
+"سافر محمد وعاد.",
+"سافر محمد فعاد.",
+"سافر محمد أو عاد."
+],
+
+answer:0,
+
+explain:
+"ثم تفيد الترتيب مع التراخي."
+},
+
+
+{
+section:"الوظيفة النحوية",
+
+q:"الجملة التي اشتملت على بدل اشتمال:",
+
+options:[
+"حفظت السورة نصفها.",
+"حضر الطالب سعد.",
+"قرأت نصف القصة.",
+"أعجبني الطالب أدبه."
+],
+
+answer:3,
+
+explain:
+"«أدبه» بدل اشتمال."
+},
+
+
+{
+section:"الوظيفة النحوية",
+
+q:"في الجملة «أصبح الذكاء الاصطناعي حقيقةً، لا خيالًا» إعراب «خيالًا»:",
+
+options:[
+"حالًا منصوبًا",
+"نعتًا منصوبًا",
+"معطوفًا منصوبًا",
+"بدلًا منصوبًا"
+],
+
+answer:2,
+
+explain:
+"«خيالًا» معطوف منصوب."
+},
+
+
+{
+section:"الأسلوب اللغوي",
+
+q:"أسلوب التعجب الصحيح من جمال البحر:",
+
+options:[
+"البحر جميل",
+"ما أجمل البحر!",
+"البحر للجمال",
+"أجمل بالبحر"
+],
+
+answer:1,
+
+explain:
+"الصيغة الصحيحة: «ما أجمل البحر!»"
+},
+
+
+{
+section:"الأسلوب اللغوي",
+
+q:"قالت المعلمة: «فازت ١٤ طالبة». الكتابة الصحيحة للعدد:",
+
+options:[
+"أربع عشرة",
+"أربعة عشرة",
+"أربعة عشر",
+"أربع عشر"
+],
+
+answer:0,
+
+explain:
+"الصواب: «أربع عشرة طالبة»."
+},
+
+
+{
+section:"الصنف اللغوي",
+
+q:"في الجملة «أضاء الفتى المصباح» اسم الآلة «المصباح» على وزن:",
+
+options:[
+"فاعل",
+"مِفعال",
+"مفعول",
+"مفاعل"
+],
+
+answer:1,
+
+explain:
+"«المصباح» على وزن «مِفعال»."
+},
+
+
+{
+section:"الصنف اللغوي",
+
+q:"الاسم الذي يدل على حدث مجرد من الزمن يسمى:",
+
+options:[
+"تعجبًا",
+"صفةً",
+"بدلًا",
+"مصدرًا"
+],
+
+answer:3,
+
+explain:
+"هذا تعريف المصدر."
+},
+
+
+{
+section:"الصنف اللغوي",
+
+q:"مصدر الفعل الرباعي «درَّس» هو:",
+
+options:[
+"دارس",
+"تدرُّس",
+"درسًا",
+"تدريس"
+],
+
+answer:3,
+
+explain:
+"مصدر «درّس» هو «تدريس»."
+},
+
+
+{
+section:"الرسم الإملائي",
+
+q:"تصح زيادة الألف بعد الواو في كلمة:",
+
+options:[
+"ذهبوا",
+"يدعو",
+"مسلمو",
+"نرجو"
+],
+
+answer:0,
+
+explain:
+"تُزاد الألف بعد واو الجماعة في «ذهبوا»."
+},
+
+
+{
+section:"الرسم الإملائي",
+
+q:"عند تنوين الكلمات «فناء — حديقة — حلم» تنوين فتح، تكتب:",
+
+options:[
+"فناءًا — حديقةً — حلمًا",
+"فناءً — حديقةً — حلمًا",
+"فناءً — حديقةاً — حلمًا",
+"فناءا — حديقةً — حلمًا"
+],
+
+answer:1,
+
+explain:
+"الصواب: «فناءً، حديقةً، حلمًا»."
+},
+
+
+{
+section:"الرسم الإملائي",
+
+q:"الكلمة التي توافق كتابتها نطقها هي:",
+
+options:[
+"عمرو",
+"أولو",
+"أحمد",
+"الرحمن"
+],
+
+answer:2,
+
+explain:
+"«أحمد» تُكتب كما تُنطق."
+},
+
+
+{
+section:"صواب أو خطأ",
+
+q:"في الجملة «أقبل التلميذ وثغرُه باسم» الواو واو عطف.",
+
+options:[
+"صحيحة",
+"خاطئة"
+],
+
+answer:1,
+
+explain:
+"العبارة خاطئة؛ لأنها واو الحال."
+},
+
+
+{
+section:"صواب أو خطأ",
+
+q:"يتبع البدل المبدل منه في إعرابه رفعًا ونصبًا وجرًّا.",
+
+options:[
+"صحيحة",
+"خاطئة"
+],
+
+answer:0,
+
+explain:
+"العبارة صحيحة."
+},
+
+
+{
+section:"صواب أو خطأ",
+
+q:"«شعور داخلي تنفعل به النفس لاستعظام أمر نادر أو لا مثيل له» هو أسلوب الاستفهام.",
+
+options:[
+"صحيحة",
+"خاطئة"
+],
+
+answer:1,
+
+explain:
+"العبارة خاطئة؛ فهذا تعريف التعجب."
+},
+
+
+{
+section:"صواب أو خطأ",
+
+q:"العددان واحد واثنان يطابقان المعدود تذكيرًا وتأنيثًا.",
+
+options:[
+"صحيحة",
+"خاطئة"
+],
+
+answer:0,
+
+explain:
+"العبارة صحيحة."
+},
+
+
+{
+section:"صواب أو خطأ",
+
+q:"كلمة «مِقص» اسم آلة مشتق من الفعل «قصَّ».",
+
+options:[
+"صحيحة",
+"خاطئة"
+],
+
+answer:0,
+
+explain:
+"العبارة صحيحة."
+},
+
+
+{
+section:"صواب أو خطأ",
+
+q:"في رسم الحروف بخط الرقعة تستقر الحروف في الجملة على السطر.",
+
+options:[
+"صحيحة",
+"خاطئة"
+],
+
+answer:0,
+
+explain:
+"العبارة صحيحة بحسب قاعدة السؤال."
+},
+
+
+{
+section:"صواب أو خطأ",
+
+q:"تُحذف همزة كلمة «ابن» إذا جاءت في أول السطر.",
+
+options:[
+"صحيحة",
+"خاطئة"
+],
+
+answer:1,
+
+explain:
+"العبارة خاطئة؛ إذ تثبت همزة «ابن» إذا جاءت في أول السطر."
+},
+
+
+{
+section:"الوظيفة النحوية",
+
+q:"في الجملة «سلّمتُ على عامرٍ ثم عادلٍ» إعراب «عادلٍ»:",
+
+options:[
+"معطوف مرفوع وعلامة رفعه الضمة",
+"معطوف منصوب وعلامة نصبه الفتحة",
+"معطوف مجرور وعلامة جره الكسرة",
+"بدل مجرور وعلامة جره الكسرة"
+],
+
+answer:2,
+
+explain:
+"«عادلٍ» معطوف مجرور."
+},
+
+
+{
+section:"الأسلوب اللغوي",
+
+q:"أسلوب التعجب الصحيح من شجاعة عنترة:",
+
+options:[
+"عنترة شجاع.",
+"هل عنترة شجاع؟",
+"ما أشجعَ عنترةَ!",
+"عنترة أشجع الرجال."
+],
+
+answer:2,
+
+explain:
+"الصواب: «ما أشجعَ عنترةَ!»"
+},
+
+
+{
+section:"الصنف اللغوي",
+
+q:"اسم الآلة المشتق من الفعل «ذاع»:",
+
+options:[
+"مذيع",
+"إذاعة",
+"مذياع",
+"ذائع"
+],
+
+answer:2,
+
+explain:
+"اسم الآلة هو «مذياع»."
+},
+
+
+{
+section:"الرسم الإملائي",
+
+q:"التصويب الصحيح للكلمة في العبارة «الواجب على الشباب المسلم أن يستثمرو أوقات فراغهم»:",
+
+options:[
+"يستثمرون",
+"يستثمروا",
+"يستثمرُ",
+"يستثمران"
+],
+
+answer:1,
+
+explain:
+"الصواب: «يستثمروا»، وتُكتب الألف الفارقة بعد واو الجماعة."
+},
+
+
+{
+section:"الوظيفة النحوية",
+
+q:"التصويب الصحيح للكلمة في العبارة «ولهذا عليهم أن يقرؤوا كتاب مفيدًا»:",
+
+options:[
+"كتابٌ",
+"كتابٍ",
+"كتابًا",
+"كتابْ"
+],
+
+answer:2,
+
+explain:
+"«كتابًا» مفعول به منصوب."
+},
+
+
+{
+section:"الوظيفة النحوية",
+
+q:"نوع الواو في الجملة «دخل الطالب وهو مبتسم»:",
+
+options:[
+"واو العطف",
+"واو الحال",
+"واو القسم",
+"واو الجماعة"
+],
+
+answer:1,
+
+explain:
+"الواو واو الحال."
+},
+
+
+{
+section:"الوظيفة النحوية",
+
+q:"أي الجمل اشتملت على بدل بعض من كل؟",
+
+options:[
+"أعجبني الطالب أدبه.",
+"قرأت الكتاب نصفه.",
+"حضر الخليفة عمرُ.",
+"شاهدت الطالب المجتهد."
+],
+
+answer:1,
+
+explain:
+"«نصفه» بدل بعض من كل."
+},
+
+
+{
+section:"الصنف اللغوي",
+
+q:"المصدر الصحيح للفعل الرباعي «ناقش»:",
+
+options:[
+"نِقاش",
+"مناقشة",
+"تناقش",
+"نقاشًا"
+],
+
+answer:1,
+
+explain:
+"مصدر «ناقش» هو «مناقشة»."
+},
+
+
+{
+section:"الصنف اللغوي",
+
+q:"المصدر الصحيح للفعل الرباعي «أكرم»:",
+
+options:[
+"كرامة",
+"تكريم",
+"إكرام",
+"مكرمة"
+],
+
+answer:2,
+
+explain:
+"مصدر «أكرم» هو «إكرام»."
+},
+
+
+{
+section:"الصنف اللغوي",
+
+q:"الجملة التي اشتملت على اسم آلة على وزن «مِفعال»:",
+
+options:[
+"استخدم العامل المطرقة.",
+"استعمل النجار المنشار.",
+"فتح الحارس الباب بالمفتاح.",
+"نظر الباحث في المجهر."
+],
+
+answer:1,
+
+explain:
+"«المنشار» على وزن «مِفعال»."
+}
+
+
 ];
+  const arabicDigits =
+  n =>
+    String(n).replace(
+      /\d/g,
+      d =>
+        "٠١٢٣٤٥٦٧٨٩"[d]
+    );
 
-const arabicDigits=n=>String(n).replace(/\d/g,d=>"٠١٢٣٤٥٦٧٨٩"[d]);
-let current=0,score=0,answered=false,userAnswers=[];
-const qText=document.getElementById("questionText"),qNum=document.getElementById("questionNumber"),sectionLabel=document.getElementById("sectionLabel"),optionsBox=document.getElementById("options"),feedback=document.getElementById("feedback"),nextBtn=document.getElementById("nextBtn"),quizCard=document.getElementById("quizCard"),resultCard=document.getElementById("resultCard"),topCard=document.getElementById("topCard"),readingOne=document.getElementById("readingOne"),readingTwo=document.getElementById("readingTwo"),poemBox=document.getElementById("poemBox"),currentStat=document.getElementById("currentStat"),correctStat=document.getElementById("correctStat"),scoreStat=document.getElementById("scoreStat"),progressBar=document.getElementById("progressBar");
 
-function tone(ok=true){
+let current = 0;
+
+let score = 0;
+
+let answered = false;
+
+let userAnswers = [];
+
+
+const qText =
+  document.getElementById(
+    "questionText"
+  );
+
+
+const qNum =
+  document.getElementById(
+    "questionNumber"
+  );
+
+
+const sectionLabel =
+  document.getElementById(
+    "sectionLabel"
+  );
+
+
+const optionsBox =
+  document.getElementById(
+    "options"
+  );
+
+
+const feedback =
+  document.getElementById(
+    "feedback"
+  );
+
+
+const nextBtn =
+  document.getElementById(
+    "nextBtn"
+  );
+
+
+const quizCard =
+  document.getElementById(
+    "quizCard"
+  );
+
+
+const resultCard =
+  document.getElementById(
+    "resultCard"
+  );
+
+
+const topCard =
+  document.getElementById(
+    "topCard"
+  );
+
+
+const readingOne =
+  document.getElementById(
+    "readingOne"
+  );
+
+
+const readingTwo =
+  document.getElementById(
+    "readingTwo"
+  );
+
+
+const poemBox =
+  document.getElementById(
+    "poemBox"
+  );
+
+
+const currentStat =
+  document.getElementById(
+    "currentStat"
+  );
+
+
+const correctStat =
+  document.getElementById(
+    "correctStat"
+  );
+
+
+const scoreStat =
+  document.getElementById(
+    "scoreStat"
+  );
+
+
+const progressBar =
+  document.getElementById(
+    "progressBar"
+  );
+
+
+function tone(
+  ok = true
+){
+
   try{
-    const C=window.AudioContext||window.webkitAudioContext,c=new C(),o=c.createOscillator(),g=c.createGain();
-    o.connect(g);g.connect(c.destination);o.frequency.value=ok?700:220;g.gain.value=.1;o.start();g.gain.exponentialRampToValueAtTime(.001,c.currentTime+.25);o.stop(c.currentTime+.26)
+
+    const C =
+      window.AudioContext ||
+      window.webkitAudioContext;
+
+
+    const c =
+      new C();
+
+
+    const o =
+      c.createOscillator();
+
+
+    const g =
+      c.createGain();
+
+
+    o.connect(g);
+
+
+    g.connect(
+      c.destination
+    );
+
+
+    o.frequency.value =
+      ok
+        ? 700
+        : 220;
+
+
+    g.gain.value =
+      .1;
+
+
+    o.start();
+
+
+    g.gain
+      .exponentialRampToValueAtTime(
+        .001,
+        c.currentTime + .25
+      );
+
+
+    o.stop(
+      c.currentTime + .26
+    );
+
+
   }catch(e){}
+
 }
+
+
 function confetti(){
-  const chars=["●","■","▲","★"],colors=["#76548f","#c9a85c","#d895aa","#4e8a68"];
-  for(let i=0;i<24;i++){const e=document.createElement("span");e.className="confetti";e.textContent=chars[Math.floor(Math.random()*chars.length)];e.style.left=Math.random()*100+"vw";e.style.color=colors[Math.floor(Math.random()*colors.length)];e.style.animationDuration=(1.5+Math.random()*1.5)+"s";document.body.appendChild(e);setTimeout(()=>e.remove(),3200)}
-}
-function updateStats(){
-  currentStat.textContent=`${arabicDigits(Math.min(current+1,questions.length))} / ${arabicDigits(questions.length)}`;
-  correctStat.textContent=arabicDigits(score);
-  scoreStat.textContent=`${arabicDigits(score)} / ${arabicDigits(questions.length)}`;
-  progressBar.style.width=`${(current/questions.length)*100}%`;
-}
-function render(){
-  answered=false;feedback.className="feedback";feedback.innerHTML="";nextBtn.style.display="none";
-  const item=questions[current];sectionLabel.textContent=item.section;qNum.textContent=`السؤال ${arabicDigits(current+1)} من ${arabicDigits(questions.length)}`;qText.textContent=item.q;optionsBox.innerHTML="";
-  ["أ","ب","ج","د"].forEach((l,i)=>{if(!item.options[i])return;const b=document.createElement("button");b.className="option";b.innerHTML=`<span class="choice-letter">${l}</span><span>${item.options[i]}</span>`;b.onclick=()=>select(i,b);optionsBox.appendChild(b)});
-  readingOne.style.display=current<4?"block":"none";
-  readingTwo.style.display=current>=4&&current<8?"block":"none";
-  poemBox.style.display=current>=8&&current<10?"block":"none";
-  updateStats();
-}
-function select(i,btn){
-  if(answered)return;answered=true;const item=questions[current],buttons=[...document.querySelectorAll(".option")];buttons.forEach(b=>b.disabled=true);buttons[item.answer].classList.add("correct");userAnswers[current]=i;
-  if(i===item.answer){score++;btn.classList.add("correct");feedback.className="feedback show good";feedback.innerHTML=`أحسنتِ! إجابة صحيحة 🌟<span class="explain">${item.explain}</span>`;tone(true);if(navigator.vibrate)navigator.vibrate([50,30,50]);confetti()}
-  else{btn.classList.add("wrong");feedback.className="feedback show bad";feedback.innerHTML=`الإجابة غير صحيحة.<span class="explain">الصحيح: ${item.options[item.answer]} — ${item.explain}</span>`;tone(false);if(navigator.vibrate)navigator.vibrate(150)}
-  updateStats();nextBtn.textContent=current===questions.length-1?"عرض النتيجة":"السؤال التالي";nextBtn.style.display="inline-block";
-}
-nextBtn.onclick=()=>{if(!answered)return;current++;current<questions.length?render():showResult()};
-function showResult(){
-  quizCard.style.display="none";topCard.style.display="none";readingOne.style.display="none";readingTwo.style.display
-   document.getElementById("finalScore").textContent =
-    `${arabicDigits(score)} / ${arabicDigits(questions.length)}`;
 
-  const p = Math.round(score / questions.length * 100);
-  const note = document.getElementById("resultNote");
-  const icon = document.getElementById("resultIcon");
+  const chars = [
+    "●",
+    "■",
+    "▲",
+    "★"
+  ];
 
-  if (p >= 90) {
-    icon.textContent = "🏆";
-    note.textContent = "ممتازة! أداء رائع وإتقان مميز.";
-    confetti();
-  } else if (p >= 75) {
-    icon.textContent = "🌟";
-    note.textContent = "أداء جميل جدًا، واصلي التقدم.";
-  } else if (p >= 60) {
-    icon.textContent = "👏";
-    note.textContent = "نتيجة جيدة، وتحتاج بعض المهارات إلى مراجعة.";
-  } else {
-    icon.textContent = "📚";
-    note.textContent = "راجعي المهارات ثم أعيدي المحاولة.";
+
+  const colors = [
+    "#76548f",
+    "#c9a85c",
+    "#d895aa",
+    "#4e8a68"
+  ];
+
+
+  for(
+    let i = 0;
+    i < 24;
+    i++
+  ){
+
+    const e =
+      document.createElement(
+        "span"
+      );
+
+
+    e.className =
+      "confetti";
+
+
+    e.textContent =
+      chars[
+        Math.floor(
+          Math.random() *
+          chars.length
+        )
+      ];
+
+
+    e.style.left =
+      Math.random() *
+      100 +
+      "vw";
+
+
+    e.style.color =
+      colors[
+        Math.floor(
+          Math.random() *
+          colors.length
+        )
+      ];
+
+
+    e.style.animationDuration =
+      (
+        1.5 +
+        Math.random() *
+        1.5
+      ) +
+      "s";
+
+
+    document.body
+      .appendChild(
+        e
+      );
+
+
+    setTimeout(
+      () =>
+        e.remove(),
+      3200
+    );
+
   }
 
-  const review = document.getElementById("review");
-  review.innerHTML = "<h3>مراجعة الإجابات غير الصحيحة</h3>";
+}
 
-  let mistakes = 0;
 
-  questions.forEach((q, i) => {
-    if (userAnswers[i] !== q.answer) {
-      mistakes++;
+function updateStats(){
 
-      const box = document.createElement("div");
-      box.className = "review-item";
+  currentStat.textContent =
+    `${arabicDigits(
+      Math.min(
+        current + 1,
+        questions.length
+      )
+    )} / ${arabicDigits(
+      questions.length
+    )}`;
 
-      const chosen =
-        userAnswers[i] === undefined
-          ? "لم تتم الإجابة"
-          : q.options[userAnswers[i]];
 
-      box.innerHTML = `
-        <strong>السؤال ${arabicDigits(i + 1)}:</strong>
-        ${q.q}
-        <br>
-        <span>إجابتك: ${chosen}</span>
-        <br>
-        <span>الإجابة الصحيحة: ${q.options[q.answer]}</span>
+  correctStat.textContent =
+    arabicDigits(
+      score
+    );
+
+
+  scoreStat.textContent =
+    `${arabicDigits(
+      score
+    )} / ${arabicDigits(
+      questions.length
+    )}`;
+
+
+  progressBar.style.width =
+    `${(
+      current /
+      questions.length
+    ) * 100}%`;
+
+}
+
+
+function render(){
+
+  answered =
+    false;
+
+
+  feedback.className =
+    "feedback";
+
+
+  feedback.innerHTML =
+    "";
+
+
+  nextBtn.style.display =
+    "none";
+
+
+  const item =
+    questions[current];
+
+
+  sectionLabel.textContent =
+    item.section;
+
+
+  qNum.textContent =
+    `السؤال ${arabicDigits(
+      current + 1
+    )} من ${arabicDigits(
+      questions.length
+    )}`;
+
+
+  qText.textContent =
+    item.q;
+
+
+  optionsBox.innerHTML =
+    "";
+
+
+  [
+    "أ",
+    "ب",
+    "ج",
+    "د"
+  ]
+  .forEach(
+    (letter,index) => {
+
+
+      if(
+        !item.options[index]
+      ){
+        return;
+      }
+
+
+      const button =
+        document.createElement(
+          "button"
+        );
+
+
+      button.className =
+        "option";
+
+
+      button.type =
+        "button";
+
+
+      button.innerHTML = `
+
+        <span class="choice-letter">
+          ${letter}
+        </span>
+
+        <span>
+          ${item.options[index]}
+        </span>
+
       `;
 
-      review.appendChild(box);
-    }
-  });
 
-  if (mistakes === 0) {
-    review.innerHTML =
-      "<h3>رائعة! جميع الإجابات صحيحة 🎉</h3>";
-  }
+      button.onclick =
+        () =>
+          select(
+            index,
+            button
+          );
+
+
+      optionsBox.appendChild(
+        button
+      );
+
+    }
+  );
+
+
+  readingOne.style.display =
+    current < 4
+      ? "block"
+      : "none";
+
+
+  readingTwo.style.display =
+    current >= 4 &&
+    current < 8
+      ? "block"
+      : "none";
+
+
+  poemBox.style.display =
+    current >= 8 &&
+    current < 10
+      ? "block"
+      : "none";
+
+
+  updateStats();
+
 }
 
-document.getElementById("resultRestart").onclick = () => {
-  current = 0;
-  score = 0;
-  answered = false;
-  userAnswers = [];
 
-  resultCard.classList.remove("show");
-  quizCard.style.display = "block";
-  topCard.style.display = "block";
+function select(
+  selected,
+  button
+){
 
-  render();
-};
+  if(answered){
+    return;
+  }
+
+
+  answered =
+    true;
+
+
+  const item =
+    questions[current];
+
+
+  const buttons = [
+    ...document.querySelectorAll(
+      ".option"
+    )
+  ];
+
+
+  buttons.forEach(
+    button =>
+      button.disabled =
+        true
+  );
+
+
+  buttons[
+    item.answer
+  ]
+  .classList
+  .add(
+    "correct"
+  );
+
+
+  userAnswers[
+    current
+  ] =
+    selected;
+
+
+  if(
+    selected ===
+    item.answer
+  ){
+
+    score++;
+
+
+    button.classList.add(
+      "correct"
+    );
+
+
+    feedback.className =
+      "feedback show good";
+
+
+    feedback.innerHTML = `
+
+      أحسنتِ! إجابة صحيحة 🌟
+
+      <span class="explain">
+        ${item.explain}
+      </span>
+
+    `;
+
+
+    tone(true);
+
+
+    if(
+      navigator.vibrate
+    ){
+
+      navigator.vibrate(
+        [50,30,50]
+      );
+
+    }
+
+
+    confetti();
+
+
+  }else{
+
+
+    button.classList.add(
+      "wrong"
+    );
+
+
+    feedback.className =
+      "feedback show bad";
+
+
+    feedback.innerHTML = `
+
+      الإجابة غير صحيحة.
+
+      <span class="explain">
+
+        الإجابة الصحيحة:
+        ${item.options[item.answer]}
+
+        —
+
+        ${item.explain}
+
+      </span>
+
+    `;
+
+
+    tone(false);
+
+
+    if(
+      navigator.vibrate
+    ){
+
+      navigator.vibrate(
+        150
+      );
+
+    }
+
+  }
+
+
+  updateStats();
+
+
+  nextBtn.textContent =
+
+    current ===
+    questions.length - 1
+
+      ? "عرض النتيجة"
+
+      : "السؤال التالي";
+
+
+  nextBtn.style.display =
+    "inline-block";
+
+}
+
+
+nextBtn.onclick =
+  () => {
+
+
+    if(
+      !answered
+    ){
+      return;
+    }
+
+
+    current++;
+
+
+    if(
+      current <
+      questions.length
+    ){
+
+      render();
+
+    }else{
+
+      showResult();
+
+    }
+
+  };
+
+
+async function showResult(){
+
+
+  quizCard.style.display =
+    "none";
+
+
+  topCard.style.display =
+    "none";
+
+
+  readingOne.style.display =
+    "none";
+
+
+  readingTwo.style.display =
+    "none";
+
+
+  poemBox.style.display =
+    "none";
+
+
+  resultCard.classList.add(
+    "show"
+  );
+
+
+  document.getElementById(
+    "finalScore"
+  ).textContent =
+
+    `${arabicDigits(
+      score
+    )} / ${arabicDigits(
+      questions.length
+    )}`;
+
+
+  const percent =
+    Math.round(
+      score /
+      questions.length *
+      100
+    );
+
+
+  const note =
+    document.getElementById(
+      "resultNote"
+    );
+
+
+  const icon =
+    document.getElementById(
+      "resultIcon"
+    );
+
+
+  if(
+    percent >= 90
+  ){
+
+    icon.textContent =
+      "🏆";
+
+
+    note.textContent =
+      "أداء ممتاز وإتقان مميز 🌟";
+
+
+    confetti();
+
+
+  }else if(
+    percent >= 75
+  ){
+
+    icon.textContent =
+      "🌟";
+
+
+    note.textContent =
+      "أداء متميز، واصلي التقدم.";
+
+
+  }else if(
+    percent >= 60
+  ){
+
+    icon.textContent =
+      "👏";
+
+
+    note.textContent =
+      "نتيجة جيدة، وتحتاج بعض المهارات إلى مراجعة.";
+
+
+  }else{
+
+
+    icon.textContent =
+      "📚";
+
+
+    note.textContent =
+      "راجعي المهارات، ثم أعيدي المحاولة لتحسين مستواكِ.";
+
+  }
+
+
+  const review =
+    document.getElementById(
+      "review"
+    );
+
+
+  review.innerHTML =
+    "<h3>مراجعة الإجابات غير الصحيحة</h3>";
+
+
+  let mistakes =
+    0;
+
+
+  questions.forEach(
+    (
+      question,
+      index
+    ) => {
+
+
+      if(
+        userAnswers[index] !==
+        question.answer
+      ){
+
+        mistakes++;
+
+
+        const box =
+          document.createElement(
+            "div"
+          );
+
+
+        box.className =
+          "review-item";
+
+
+        const chosen =
+
+          userAnswers[index] ===
+          undefined
+
+            ? "لم تُجيبي"
+
+            : question.options[
+                userAnswers[index]
+              ];
+
+
+        box.innerHTML = `
+
+          <strong>
+
+            السؤال ${arabicDigits(
+              index + 1
+            )}:
+
+          </strong>
+
+          ${question.q}
+
+          <br>
+
+          <span>
+
+            إجابتكِ:
+            ${chosen}
+
+          </span>
+
+          <br>
+
+          <span>
+
+            الإجابة الصحيحة:
+            ${question.options[
+              question.answer
+            ]}
+
+          </span>
+
+        `;
+
+
+        review.appendChild(
+          box
+        );
+
+      }
+
+    }
+  );
+
+
+  if(
+    mistakes === 0
+  ){
+
+    review.innerHTML =
+      "<h3>أحسنتِ! جميع الإجابات صحيحة 🎉</h3>";
+
+  }
+
+
+  await saveResult(
+    percent
+  );
+
+}
+
+
+async function saveResult(
+  percent
+){
+
+  const saveStatus =
+    document.getElementById(
+      "saveStatus"
+    );
+
+
+  const user =
+    auth.currentUser ||
+    currentUser;
+
+
+  if(!user){
+
+    saveStatus.className =
+      "save-status error";
+
+
+    saveStatus.textContent =
+      "لم تُحفظ النتيجة؛ يلزم تسجيل الدخول إلى المنصة أولًا.";
+
+
+    return;
+
+  }
+
+
+  try{
+
+    saveStatus.className =
+      "save-status";
+
+
+    saveStatus.textContent =
+      "جارٍ حفظ نتيجة النموذج الثالث في سجل الفصل الدراسي الثاني...";
+
+
+    const studentRef =
+      doc(
+        db,
+        "students",
+        user.uid
+      );
+
+
+    const studentSnap =
+      await getDoc(
+        studentRef
+      );
+
+
+    if(
+      !studentSnap.exists()
+    ){
+
+      throw new Error(
+        "student-document-not-found"
+      );
+
+    }
+
+
+    const data =
+      studentSnap.data();
+
+
+    const oldTest =
+      data?.[
+        "اختبارات_الفصل_الثاني"
+      ]?.[
+        "النموذج_الثالث"
+      ] || {};
+
+
+    const oldAttempts =
+      Number(
+        oldTest[
+          "عدد_المحاولات"
+        ] || 0
+      );
+
+
+    const oldBest =
+      Number(
+        oldTest[
+          "أفضل_نسبة"
+        ] || 0
+      );
+
+
+    const bestPercentage =
+      Math.max(
+        oldBest,
+        percent
+      );
+
+
+    await updateDoc(
+      studentRef,
+      {
+
+        "اختبارات_الفصل_الثاني.النموذج_الثالث":
+        {
+
+          "اسم_الاختبار":
+            "النموذج الثالث للفصل الدراسي الثاني",
+
+          "الدرجة":
+            score,
+
+          "المجموع":
+            questions.length,
+
+          "النسبة":
+            percent,
+
+          "أفضل_نسبة":
+            bestPercentage,
+
+          "مكتمل":
+            true,
+
+          "عدد_الأسئلة":
+            questions.length,
+
+          "عدد_المحاولات":
+            oldAttempts + 1,
+
+          "استحقت_الإتقان":
+            percent >= 80,
+
+          "آخر_محاولة":
+            serverTimestamp()
+
+        }
+
+      }
+    );
+
+
+    saveStatus.className =
+      "save-status success";
+
+
+    saveStatus.textContent =
+      "✅ حُفظت نتيجة النموذج الثالث بنجاح في سجل الفصل الدراسي الثاني.";
+
+
+  }catch(error){
+
+
+    console.error(
+      "خطأ في حفظ نتيجة النموذج الثالث:",
+      error
+    );
+
+
+    saveStatus.className =
+      "save-status error";
+
+
+    saveStatus.textContent =
+      "تعذّر حفظ النتيجة الآن. أعيدي المحاولة بعد التأكد من تسجيل الدخول.";
+
+  }
+
+}
+
+
+document.getElementById(
+  "resultRestart"
+).onclick =
+  () => {
+
+
+    current = 0;
+
+    score = 0;
+
+    answered = false;
+
+    userAnswers = [];
+
+
+    resultCard.classList.remove(
+      "show"
+    );
+
+
+    quizCard.style.display =
+      "block";
+
+
+    topCard.style.display =
+      "block";
+
+
+    const saveStatus =
+      document.getElementById(
+        "saveStatus"
+      );
+
+
+    saveStatus.className =
+      "save-status";
+
+
+    saveStatus.textContent =
+      "ستُحفظ نتيجتكِ في سجل الفصل الدراسي الثاني.";
+
+
+    render();
+
+  };
+
 
 render();
 
-window.scrollTo = function () {};
+
+window.scrollTo =
+  function(){};
+
+
 </script>
 
 </body>
+
 </html>
