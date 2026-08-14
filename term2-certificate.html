@@ -10,9 +10,7 @@
   content="width=device-width, initial-scale=1.0"
 >
 
-<title>
-شهادة الفصل الدراسي الثاني | منصة آفاق
-</title>
+<title>شهادة الفصل الدراسي الثاني | منصة آفاق</title>
 
 <style>
 
@@ -40,7 +38,6 @@ body{
 .toolbar{
   display:flex;
   justify-content:center;
-  align-items:center;
   flex-wrap:wrap;
   gap:10px;
   margin-bottom:16px;
@@ -80,12 +77,18 @@ body{
   margin:auto;
 }
 
+
+/* =========================
+   الشهادة
+========================= */
+
 .certificate{
   position:relative;
 
   width:100%;
 
-  aspect-ratio:1440 / 1024;
+  /* مهم: نفس أبعاد صورة 500 */
+  aspect-ratio:3 / 2;
 
   background-image:url("500.png");
   background-repeat:no-repeat;
@@ -99,51 +102,45 @@ body{
 }
 
 
-/* =========================
-   عبارة تُمنح
-========================= */
+/* عبارة تُمنح */
 
 .award-intro{
   position:absolute;
 
-  top:38.8%;
+  top:39.5%;
   left:29%;
 
   width:57%;
 
   text-align:center;
 
-  font-size:
-    clamp(13px,1.55vw,22px);
+  font-size:clamp(12px,1.45vw,21px);
 
   font-weight:700;
 
-  line-height:1.3;
+  line-height:1.2;
 
   color:#333;
 }
 
 
-/* =========================
-   اسم الطالبة
-========================= */
+/* الاسم الرباعي */
 
 .student-name{
   position:absolute;
 
-  top:43.7%;
-  left:27%;
+  top:44.5%;
+  left:25%;
 
-  width:61%;
+  width:65%;
 
   text-align:center;
 
-  font-size:
-    clamp(23px,3vw,42px);
+  font-size:clamp(20px,2.7vw,39px);
 
   font-weight:900;
 
-  line-height:1.25;
+  line-height:1.2;
 
   color:#34752e;
 
@@ -151,54 +148,48 @@ body{
 }
 
 
-/* =========================
-   الديباجة
-========================= */
+/* الديباجة */
 
 .award-text{
   position:absolute;
 
-  top:51.3%;
-  left:30%;
+  top:52.5%;
+  left:28%;
 
-  width:55%;
+  width:59%;
 
   text-align:center;
 
-  font-size:
-    clamp(11px,1.28vw,18px);
+  font-size:clamp(10px,1.15vw,17px);
 
   font-weight:600;
 
-  line-height:1.75;
+  line-height:1.65;
 
   color:#333;
 }
 
 
-/* =========================
-   النتيجة
-========================= */
+/* النسبة والتقدير */
 
 .result-line{
   position:absolute;
 
-  top:65.3%;
-  left:30%;
+  top:63.8%;
+  left:29%;
 
-  width:55%;
+  width:57%;
 
   display:flex;
+
   justify-content:center;
   align-items:center;
-  flex-wrap:wrap;
 
-  gap:8px 22px;
+  gap:10px 26px;
 
   text-align:center;
 
-  font-size:
-    clamp(11px,1.25vw,18px);
+  font-size:clamp(10px,1.15vw,17px);
 
   font-weight:bold;
 }
@@ -212,13 +203,13 @@ body{
 }
 
 
-/* =========================
-   رسائل الصفحة
-========================= */
+/* الرسائل */
 
 .status{
   width:min(900px,94%);
+
   margin:16px auto 0;
+
   padding:15px 18px;
 
   text-align:center;
@@ -265,22 +256,36 @@ body{
   }
 
   .award-intro{
-    top:38.5%;
+    top:39%;
+    font-size:clamp(10px,2.6vw,16px);
   }
 
   .student-name{
-    top:43.5%;
-    font-size:clamp(16px,5vw,28px);
+    top:44%;
+    left:24%;
+    width:67%;
+
+    font-size:clamp(15px,4.4vw,27px);
   }
 
   .award-text{
-    top:51%;
-    line-height:1.6;
+    top:52%;
+    left:27%;
+    width:61%;
+
+    font-size:clamp(8px,2.25vw,14px);
+
+    line-height:1.55;
   }
 
   .result-line{
-    top:65%;
-    gap:3px 9px;
+    top:63%;
+    left:28%;
+    width:59%;
+
+    gap:4px 12px;
+
+    font-size:clamp(8px,2.2vw,14px);
   }
 
 }
@@ -301,6 +306,7 @@ body{
   body{
     width:100%;
     height:100%;
+    margin:0;
     background:#fff;
   }
 
@@ -321,9 +327,9 @@ body{
 
   .certificate{
     width:100vw;
-    height:100vh;
+    height:auto;
 
-    aspect-ratio:auto;
+    aspect-ratio:3 / 2;
 
     box-shadow:none;
 
@@ -384,11 +390,10 @@ body{
 
       <div class="award-text">
 
-        تقديرًا لتميّزها واجتهادها في مادة لغتي الخالدة،<br>
+        تقديرًا لتميّزها واجتهادها في مادة لغتي الخالدة،
+        وإتمامها متطلبات الفصل الدراسي الثاني بنجاح.<br>
 
-        وإتمامها متطلبات الفصل الدراسي الثاني بنجاح،<br>
-
-        مع أطيب الأمنيات لها بمزيد من التميز والتوفيق.
+        مع أطيب الأمنيات لها بدوام التميز والتوفيق.
 
       </div>
 
@@ -567,6 +572,8 @@ function getGrade(percent){
 }
 
 
+/* الاسم الرباعي */
+
 function getStudentName(
   data,
   user
@@ -601,9 +608,10 @@ function getStudentName(
     String(name).trim();
 
 
+  /* الحساب التجريبي الحالي */
+
   if(
-    name ===
-    "إيناس محمد يحيى"
+    name === "إيناس محمد يحيى"
   ){
 
     name =
