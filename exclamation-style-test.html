@@ -180,6 +180,24 @@ h2{
   color:var(--g);
   font-weight:bold;
 }
+.save-status{
+  margin:7px 0 3px;
+  padding:8px 10px;
+  border-radius:12px;
+  font-size:12px;
+  font-weight:bold;
+  line-height:1.7;
+  background:#f5eff9;
+  color:var(--p);
+}
+.save-status.success{
+  background:#edf8f1;
+  color:#2f7650;
+}
+.save-status.error{
+  background:#fff2f3;
+  color:#96394a;
+}
 .restart,.lesson{
   display:block;
   text-decoration:none;
@@ -241,192 +259,996 @@ footer{
 </head>
 
 <body>
+
 <div class="app">
 
 <header>
   <span class="tag">منصة آفاق التعليمية</span>
   <h1>تحدي التعجب</h1>
-  <p>١٠ أسئلة • تعقيب فوري • صوت وحماس ✨</p>
+  <p>١٠ أسئلة • تعقيب فوري • تحدٍّ تفاعلي ✨</p>
 </header>
 
 <main>
+
   <div class="top">
     <span id="counter">السؤال ١ من ١٠</span>
-    <span id="correctCount">الصحيح: ٠</span>
+    <span id="correctCount">الإجابات الصحيحة: ٠</span>
   </div>
 
-  <div class="progress"><div id="bar"></div></div>
+  <div class="progress">
+    <div id="bar"></div>
+  </div>
 
   <section class="card" id="card">
     <div class="qnum" id="qnum"></div>
     <h2 id="question"></h2>
     <div class="options" id="options"></div>
     <div class="feedback" id="feedback"></div>
-    <button class="next" id="next">السؤال التالي</button>
+
+    <button
+      class="next"
+      id="next"
+      type="button"
+    >
+      السؤال التالي
+    </button>
   </section>
 
   <section class="result" id="result">
+
     <h2>انتهى التحدي ✨</h2>
+
     <div class="score" id="score"></div>
+
     <p id="message"></p>
-    <button class="restart" onclick="restartQuiz()">أعيدي التحدي</button>
-    <a class="lesson" href="exclamation-style-file.html">راجعي ملف الدرس</a>
-    <a class="lesson" href="exclamation-style.html">العودة إلى درس التعجب</a>
+
+    <div
+      id="saveStatus"
+      class="save-status"
+    >
+      ستُحفظ نتيجتكِ في سجل الفصل الدراسي الثاني.
+    </div>
+
+    <button
+      class="restart"
+      type="button"
+      onclick="restartQuiz()"
+    >
+      أعيدي التحدي
+    </button>
+
+    <a
+      class="lesson"
+      href="exclamation-style-file.html"
+    >
+      راجعي ملف الدرس
+    </a>
+
+    <a
+      class="lesson"
+      href="exclamation-style.html"
+    >
+      العودة إلى درس التعجب
+    </a>
+
   </section>
+
 </main>
 
-<footer>منصة آفاق التعليمية | لغتي الخالدة | الصف الثالث المتوسط</footer>
+<footer>
+  منصة آفاق التعليمية | لغتي الخالدة | الصف الثالث المتوسط
+</footer>
+
 </div>
 
-<div class="burst" id="burst"></div>
+<div
+  class="burst"
+  id="burst"
+></div>
+<script type="module">
 
-<script>
-const questions = [{"q": "ما التعريف الأدق لأسلوب التعجب؟", "o": ["أسلوب يدل على طلب حدوث الفعل", "أسلوب يدل على الدهشة والاستعظام لصفة في شيء ما", "أسلوب يدل على النفي", "أسلوب يدل على الشرط"], "a": 1, "ok": "أحسنتِ 🌟 التعجب يدل على الدهشة والاستعظام لصفة في شيء ما.", "bad": "تذكري معنى التعجب أولًا: دهشة واستعظام لصفة في شيء ما."}, {"q": "في الجملة «ما أجملَ السماءَ!» ما المتعجب منه؟", "o": ["ما", "أجمل", "السماء", "الجملة كلها"], "a": 2, "ok": "رائعة ✨ «السماء» هي المتعجب منه.", "bad": "الأركان هنا: ما التعجبية + أجمل فعل التعجب + السماء المتعجب منه."}, {"q": "أيُّ زوج يمثل صيغتي التعجب القياسي؟", "o": ["ما أفعله! / أفعل به!", "سبحان الله! / لله دره!", "هل أفعل؟ / لم أفعل", "أفعلُ / سيفعلُ"], "a": 0, "ok": "ممتازة 💜 للتعجب القياسي صيغتان: «ما أفعله!» و«أفعل به!».", "bad": "الصيغتان القياسيتان هما: ما أفعله! وأفعل به!"}, {"q": "أيُّ جملة تعد تعجبًا سماعيًا؟", "o": ["ما أجملَ الصدقَ!", "أجملْ بالصدقِ!", "لله درُّه!", "ما أعظمَ الوفاءَ!"], "a": 2, "ok": "صحيح 👏 «لله درُّه!» من أساليب التعجب السماعية.", "bad": "السماعي لا يلتزم بصيغتي «ما أفعله» و«أفعل به»، ومن أمثلته: لله دره!"}, {"q": "أيُّ مجموعة تمثل شروط صياغة التعجب مباشرة من الفعل؟", "o": ["ثلاثي، تام، متصرف، مثبت، معلوم، قابل للتفاوت، وليس الوصف منه أفعل/فعلاء", "رباعي، منفي، جامد، مبني للمجهول", "ثلاثي فقط دون شروط أخرى", "أي فعل يمكن صياغة التعجب منه مباشرة"], "a": 0, "ok": "إتقان رائع 🏆 هذه هي شروط الصياغة المباشرة كاملة.", "bad": "ثبتيها: ثلاثي، تام، متصرف، مثبت، معلوم، قابل للتفاوت، وليس الوصف منه أفعل/فعلاء."}, {"q": "الفعل «استقام» غير ثلاثي، فكيف نتعجب منه تعجبًا قياسيًا؟", "o": ["ما أستقامَ الطالبَ!", "ما أجملَ استقامةَ الطالبِ!", "استقمْ بالطالبِ!", "لا يمكن التعجب من معناه مطلقًا"], "a": 1, "ok": "أحسنتِ جدًا 🎯 عند اختلال شرط الثلاثية نستخدم فعل تعجب مساعدًا + المصدر: «ما أجملَ استقامةَ الطالبِ!»", "bad": "لأن «استقام» غير ثلاثي، لا نصوغ منه مباشرة؛ نستخدم فعلًا مساعدًا + مصدره «استقامة»."}, {"q": "كيف نتعجب من «احمرَّ الوردُ»؟", "o": ["ما أحمرَ الوردَ!", "أحمرْ بالوردِ!", "ما أشدَّ احمرارَ الوردِ!", "ما أحمرَّ الوردُ!"], "a": 2, "ok": "رائعة 🔥 لأن الوصف منه «أحمر/حمراء» فلا نصوغ منه مباشرة، فنقول: «ما أشدَّ احمرارَ الوردِ!»", "bad": "إذا كان الوصف على «أفعل/فعلاء» نستخدم فعل تعجب مساعدًا + المصدر: ما أشد احمرار الورد!"}, {"q": "أيُّ فعل لا نصوغ منه تعجبًا قياسيًا لأنه لا يقبل التفاوت؟", "o": ["جَمُلَ", "حَسُنَ", "ماتَ", "كَبُرَ"], "a": 2, "ok": "صحيح 🌿 «مات» لا يقبل التفاوت، فلا يصاغ منه تعجب قياسي.", "bad": "الفعل الذي لا تقبل صفته الزيادة والنقصان، مثل «مات»، لا يصاغ منه تعجب قياسي."}, {"q": "ما التحويل الصحيح لـ «ما أجملَ الصدقَ!» إلى الصيغة القياسية الثانية؟", "o": ["أجملَ الصدقُ!", "أجملْ بالصدقِ!", "ما جمالَ الصدقِ!", "بالصدقِ أجملَ!"], "a": 1, "ok": "ممتازة 🌟 «ما أجملَ الصدقَ!» ↔ «أجملْ بالصدقِ!».", "bad": "الصيغة الثانية تكون على وزن «أفعل به»: أجملْ بالصدقِ!"}, {"q": "أيُّ قاعدة تلخص التصرف إذا اختل شرط من شروط الصياغة المباشرة؟", "o": ["نصوغ من الفعل مباشرة مهما كان", "نحذف الفعل ونضع علامة تعجب فقط", "إذا كان المعنى قابلًا للتعجب نستخدم فعل تعجب مساعدًا + المصدر، وإذا لم يقبل التفاوت فلا نصوغ تعجبًا قياسيًا", "نحوّل كل فعل إلى فعل ماضٍ ثلاثي"], "a": 2, "ok": "بطلة التعجب ✨ هذه قاعدة الحسم الصحيحة.", "bad": "قاعدة الحسم: اختل شرط لكن المعنى قابل للتعجب → فعل مساعد + مصدر. لا يقبل التفاوت → لا تعجب قياسي."}];
-let index=0,score=0,answered=false;
-
-const arabicDigits=n=>String(n).replace(/\d/g,d=>'٠١٢٣٤٥٦٧٨٩'[d]);
-const q=document.getElementById('question');
-const options=document.getElementById('options');
-const feedback=document.getElementById('feedback');
-const next=document.getElementById('next');
-const card=document.getElementById('card');
-
-function tone(ok){
-  try{
-    const AC=window.AudioContext||window.webkitAudioContext;
-    const c=new AC(),o=c.createOscillator(),g=c.createGain();
-    o.connect(g);g.connect(c.destination);
-    o.type=ok?'sine':'triangle';
-    o.frequency.setValueAtTime(ok?660:220,c.currentTime);
-    if(ok)o.frequency.exponentialRampToValueAtTime(920,c.currentTime+.16);
-    g.gain.setValueAtTime(.07,c.currentTime);
-    g.gain.exponentialRampToValueAtTime(.001,c.currentTime+.23);
-    o.start();o.stop(c.currentTime+.24);
-  }catch(e){}
+import {
+  initializeApp
 }
+from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
 
-function confetti(){
-  const burst=document.getElementById('burst');
-  burst.innerHTML='';
-  const colors=['#5b4677','#776094','#b69750','#d8c28a','#eee5f5'];
-  for(let i=0;i<24;i++){
-    const s=document.createElement('i');
-    s.className='confetti';
-    s.style.left=(Math.random()*100)+'vw';
-    s.style.top='-10px';
-    s.style.background=colors[i%colors.length];
-    s.style.animationDelay=(Math.random()*180)+'ms';
-    burst.appendChild(s);
-  }
-  setTimeout(()=>burst.innerHTML='',1200);
+
+import {
+  initializeAuth,
+  browserLocalPersistence,
+  browserPopupRedirectResolver,
+  onAuthStateChanged
 }
+from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
 
-function render(){
-  answered=false;
-  const x=questions[index];
 
-  document.getElementById('qnum').textContent='السؤال '+arabicDigits(index+1);
-  document.getElementById('counter').textContent='السؤال '+arabicDigits(index+1)+' من '+arabicDigits(questions.length);
-  document.getElementById('correctCount').textContent='الصحيح: '+arabicDigits(score);
-  document.getElementById('bar').style.width=(index/questions.length*100)+'%';
-
-  q.textContent=x.q;
-  options.innerHTML='';
-  feedback.className='feedback';
-  feedback.innerHTML='';
-  next.style.display='none';
-  card.classList.remove('pop');
-
-  x.o.forEach((t,j)=>{
-    const b=document.createElement('button');
-    b.className='opt';
-    b.textContent=t;
-    b.onclick=()=>choose(j,b);
-    options.appendChild(b);
-  });
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  updateDoc,
+  serverTimestamp
 }
+from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 
-function choose(choice,button){
-  if(answered)return;
-  answered=true;
 
-  const x=questions[index];
-  const btns=[...document.querySelectorAll('.opt')];
-  btns.forEach(b=>b.disabled=true);
-  btns[x.a].classList.add('correct');
+const firebaseConfig={
 
-  if(choice===x.a){
-    score++;
-    button.classList.add('correct');
-    feedback.className='feedback show good';
-    feedback.textContent=x.ok;
-    tone(true);
-    confetti();
-    if(navigator.vibrate)navigator.vibrate(45);
-  }else{
-    button.classList.add('wrong');
-    feedback.className='feedback show bad';
-    feedback.innerHTML='<b>ركزي على القاعدة 👀</b><br>'+x.bad;
-    tone(false);
-    if(navigator.vibrate)navigator.vibrate([70,40,70]);
-  }
+  apiKey:
+    "AIzaSyB48av9gx4jzFyYoUQtcLwaR52qETevKGs",
 
-  document.getElementById('correctCount').textContent='الصحيح: '+arabicDigits(score);
-  card.classList.add('pop');
+  authDomain:
+    "afaq-language-platform.firebaseapp.com",
 
-  next.textContent=index===questions.length-1
-    ?'شوفي نتيجتك ✨'
-    :'كمّلي التحدي ←';
+  projectId:
+    "afaq-language-platform",
 
-  next.style.display='block';
-}
+  storageBucket:
+    "afaq-language-platform.firebasestorage.app",
 
-next.onclick=()=>{
-  index++;
-  if(index<questions.length)render();
-  else finish();
+  messagingSenderId:
+    "362601061474",
+
+  appId:
+    "1:362601061474:web:bc405291332b9e4ef9453b"
+
 };
 
-function finish(){
-  document.getElementById('bar').style.width='100%';
-  card.style.display='none';
-  document.querySelector('.top').style.display='none';
-  document.querySelector('.progress').style.display='none';
 
-  const result=document.getElementById('result');
-  result.classList.add('show');
+const app=
+  initializeApp(
+    firebaseConfig
+  );
 
-  document.getElementById('score').textContent=
-    arabicDigits(score)+' / '+arabicDigits(questions.length);
 
-  const pct=score/questions.length;
+const auth=
+  initializeAuth(
+    app,
+    {
+      persistence:
+        browserLocalPersistence,
 
-  document.getElementById('message').textContent=
-    pct===1
-    ?'إتقان كامل! بطلة التعجب 🏆'
-    :pct>=.8
-    ?'ممتازة جدًا 🌟 أتقنتِ القياسي والسماعي والشروط.'
-    :pct>=.6
-    ?'أداء جميل 👏 راجعي شروط الصياغة وطريقة التصرف عند اختلال الشرط ثم أعيدي التحدي.'
-    :'راجعي ملف الدرس، خاصة شروط التعجب والقياسي والسماعي، ثم عودي للتحدي.';
+      popupRedirectResolver:
+        browserPopupRedirectResolver
+    }
+  );
 
-  if(pct>=.8)confetti();
+
+const db=
+  getFirestore(
+    app
+  );
+
+
+let currentUser=null;
+
+
+onAuthStateChanged(
+  auth,
+  user=>{
+    currentUser=user||null;
+  }
+);
+
+
+const questions=[
+
+{
+ q:"ما التعريف الأدق لأسلوب التعجب؟",
+ o:[
+  "أسلوب يدل على طلب حدوث الفعل",
+  "أسلوب يدل على الدهشة والاستعظام لصفة في شيء ما",
+  "أسلوب يدل على النفي",
+  "أسلوب يدل على الشرط"
+ ],
+ a:1,
+ ok:"أحسنتِ 🌟 التعجب يدل على الدهشة والاستعظام لصفة في شيء ما.",
+ bad:"تذكري معنى التعجب أولًا: الدهشة والاستعظام لصفة في شيء ما."
+},
+
+{
+ q:"في الجملة «ما أجملَ السماءَ!» ما المتعجب منه؟",
+ o:[
+  "ما",
+  "أجمل",
+  "السماء",
+  "الجملة كلها"
+ ],
+ a:2,
+ ok:"أحسنتِ ✨ «السماء» هي المتعجب منه.",
+ bad:"الأركان هنا: «ما» التعجبية، و«أجمل» فعل التعجب، و«السماء» المتعجب منه."
+},
+
+{
+ q:"أيُّ زوج يمثل صيغتي التعجب القياسي؟",
+ o:[
+  "ما أفعله! / أفعل به!",
+  "سبحان الله! / لله دره!",
+  "هل أفعل؟ / لم أفعل",
+  "أفعلُ / سيفعلُ"
+ ],
+ a:0,
+ ok:"أحسنتِ 💜 للتعجب القياسي صيغتان: «ما أفعله!» و«أفعل به!».",
+ bad:"الصيغتان القياسيتان هما: «ما أفعله!» و«أفعل به!»."
+},
+
+{
+ q:"أيُّ جملة تعد تعجبًا سماعيًا؟",
+ o:[
+  "ما أجملَ الصدقَ!",
+  "أجملْ بالصدقِ!",
+  "لله درُّه!",
+  "ما أعظمَ الوفاءَ!"
+ ],
+ a:2,
+ ok:"إجابة صحيحة 👏 «لله درُّه!» من أساليب التعجب السماعية.",
+ bad:"التعجب السماعي لا يلتزم بصيغتي «ما أفعله» و«أفعل به»، ومن أمثلته: «لله دره!»."
+},
+
+{
+ q:"أيُّ مجموعة تمثل شروط صياغة التعجب مباشرة من الفعل؟",
+ o:[
+  "ثلاثي، تام، متصرف، مثبت، معلوم، قابل للتفاوت، وليس الوصف منه أفعل/فعلاء",
+  "رباعي، منفي، جامد، مبني للمجهول",
+  "ثلاثي فقط دون شروط أخرى",
+  "أي فعل يمكن صياغة التعجب منه مباشرة"
+ ],
+ a:0,
+ ok:"إتقان رائع 🏆 هذه هي شروط الصياغة المباشرة كاملة.",
+ bad:"تذكري الشروط: ثلاثي، تام، متصرف، مثبت، معلوم، قابل للتفاوت، وليس الوصف منه على أفعل/فعلاء."
+},
+
+{
+ q:"الفعل «استقام» غير ثلاثي، فكيف نتعجب منه تعجبًا قياسيًا؟",
+ o:[
+  "ما أستقامَ الطالبَ!",
+  "ما أجملَ استقامةَ الطالبِ!",
+  "استقمْ بالطالبِ!",
+  "لا يمكن التعجب من معناه مطلقًا"
+ ],
+ a:1,
+ ok:"أحسنتِ جدًا 🎯 عند اختلال شرط الثلاثية نستخدم فعل تعجب مساعدًا مع المصدر: «ما أجملَ استقامةَ الطالبِ!»",
+ bad:"لأن «استقام» غير ثلاثي، فلا نصوغ منه التعجب مباشرة؛ بل نستخدم فعلًا مساعدًا مع مصدره «استقامة»."
+},
+
+{
+ q:"كيف نتعجب من «احمرَّ الوردُ»؟",
+ o:[
+  "ما أحمرَ الوردَ!",
+  "أحمرْ بالوردِ!",
+  "ما أشدَّ احمرارَ الوردِ!",
+  "ما أحمرَّ الوردُ!"
+ ],
+ a:2,
+ ok:"أحسنتِ 🔥 لأن الوصف منه «أحمر/حمراء» فلا نصوغ منه مباشرة، فنقول: «ما أشدَّ احمرارَ الوردِ!»",
+ bad:"إذا كان الوصف على «أفعل/فعلاء»، نستخدم فعل تعجب مساعدًا مع المصدر: «ما أشدَّ احمرارَ الوردِ!»"
+},
+
+{
+ q:"أيُّ فعل لا نصوغ منه تعجبًا قياسيًا لأنه لا يقبل التفاوت؟",
+ o:[
+  "جَمُلَ",
+  "حَسُنَ",
+  "ماتَ",
+  "كَبُرَ"
+ ],
+ a:2,
+ ok:"إجابة صحيحة 🌿 «مات» لا يقبل التفاوت، فلا يُصاغ منه تعجب قياسي.",
+ bad:"الفعل الذي لا تقبل صفته الزيادة والنقصان، مثل «مات»، لا يُصاغ منه تعجب قياسي."
+},
+
+{
+ q:"ما التحويل الصحيح لـ«ما أجملَ الصدقَ!» إلى الصيغة القياسية الثانية؟",
+ o:[
+  "أجملَ الصدقُ!",
+  "أجملْ بالصدقِ!",
+  "ما جمالَ الصدقِ!",
+  "بالصدقِ أجملَ!"
+ ],
+ a:1,
+ ok:"أحسنتِ 🌟 «ما أجملَ الصدقَ!» تقابلها «أجملْ بالصدقِ!».",
+ bad:"الصيغة القياسية الثانية تكون على وزن «أفعل به»: «أجملْ بالصدقِ!»."
+},
+
+{
+ q:"أيُّ قاعدة تلخص التصرف إذا اختل شرط من شروط الصياغة المباشرة؟",
+ o:[
+  "نصوغ من الفعل مباشرة مهما كان",
+  "نحذف الفعل ونضع علامة تعجب فقط",
+  "إذا كان المعنى قابلًا للتعجب نستخدم فعل تعجب مساعدًا مع المصدر، وإذا لم يقبل التفاوت فلا نصوغ تعجبًا قياسيًا",
+  "نحوّل كل فعل إلى فعل ماضٍ ثلاثي"
+ ],
+ a:2,
+ ok:"أحسنتِ ✨ هذه هي القاعدة الصحيحة.",
+ bad:"إذا اختل شرط وكان المعنى قابلًا للتعجب نستخدم فعلًا مساعدًا مع المصدر، أما ما لا يقبل التفاوت فلا يُصاغ منه تعجب قياسي."
 }
 
-function restartQuiz(){
-  index=0;
-  score=0;
+];
+
+
+let index=0;
+let score=0;
+let answered=false;
+
+
+const arabicDigits=
+  n=>
+    String(n).replace(
+      /\d/g,
+      d=>"٠١٢٣٤٥٦٧٨٩"[d]
+    );
+
+
+const questionElement=
+  document.getElementById(
+    "question"
+  );
+
+
+const options=
+  document.getElementById(
+    "options"
+  );
+
+
+const feedback=
+  document.getElementById(
+    "feedback"
+  );
+
+
+const next=
+  document.getElementById(
+    "next"
+  );
+
+
+const card=
+  document.getElementById(
+    "card"
+  );
+
+
+function tone(ok){
+
+  try{
+
+    const AC=
+      window.AudioContext||
+      window.webkitAudioContext;
+
+    const c=new AC();
+    const o=c.createOscillator();
+    const g=c.createGain();
+
+    o.connect(g);
+    g.connect(c.destination);
+
+    o.type=
+      ok?"sine":"triangle";
+
+    o.frequency.setValueAtTime(
+      ok?660:220,
+      c.currentTime
+    );
+
+    if(ok){
+
+      o.frequency.exponentialRampToValueAtTime(
+        920,
+        c.currentTime+.16
+      );
+
+    }
+
+    g.gain.setValueAtTime(
+      .07,
+      c.currentTime
+    );
+
+    g.gain.exponentialRampToValueAtTime(
+      .001,
+      c.currentTime+.23
+    );
+
+    o.start();
+
+    o.stop(
+      c.currentTime+.24
+    );
+
+  }
+
+  catch(e){}
+
+}
+
+
+function confetti(){
+
+  const burst=
+    document.getElementById(
+      "burst"
+    );
+
+  burst.innerHTML="";
+
+
+  const colors=[
+    "#5b4677",
+    "#776094",
+    "#b69750",
+    "#d8c28a",
+    "#eee5f5"
+  ];
+
+
+  for(
+    let i=0;
+    i<24;
+    i++
+  ){
+
+    const s=
+      document.createElement(
+        "i"
+      );
+
+    s.className=
+      "confetti";
+
+    s.style.left=
+      Math.random()*100+"vw";
+
+    s.style.top=
+      "-10px";
+
+    s.style.background=
+      colors[i%colors.length];
+
+    s.style.animationDelay=
+      Math.random()*180+"ms";
+
+    burst.appendChild(s);
+
+  }
+
+
+  setTimeout(
+    ()=>burst.innerHTML="",
+    1200
+  );
+
+}
+  function render(){
+
   answered=false;
 
-  card.style.display='flex';
-  document.querySelector('.top').style.display='flex';
-  document.querySelector('.progress').style.display='block';
-  document.getElementById('result').classList.remove('show');
+  const x=
+    questions[index];
 
-  render();
+
+  document.getElementById(
+    "qnum"
+  ).textContent=
+    "السؤال "+
+    arabicDigits(index+1);
+
+
+  document.getElementById(
+    "counter"
+  ).textContent=
+    "السؤال "+
+    arabicDigits(index+1)+
+    " من "+
+    arabicDigits(
+      questions.length
+    );
+
+
+  document.getElementById(
+    "correctCount"
+  ).textContent=
+    "الإجابات الصحيحة: "+
+    arabicDigits(score);
+
+
+  document.getElementById(
+    "bar"
+  ).style.width=
+    (
+      index/
+      questions.length*
+      100
+    )+"%";
+
+
+  questionElement.textContent=
+    x.q;
+
+
+  options.innerHTML="";
+
+  feedback.className=
+    "feedback";
+
+  feedback.innerHTML="";
+
+  next.style.display=
+    "none";
+
+  card.classList.remove(
+    "pop"
+  );
+
+
+  x.o.forEach(
+    (text,choiceIndex)=>{
+
+      const button=
+        document.createElement(
+          "button"
+        );
+
+      button.className=
+        "opt";
+
+      button.type=
+        "button";
+
+      button.textContent=
+        text;
+
+      button.onclick=
+        ()=>choose(
+          choiceIndex,
+          button
+        );
+
+      options.appendChild(
+        button
+      );
+
+    }
+  );
+
 }
 
+
+function choose(
+  choice,
+  button
+){
+
+  if(answered){
+    return;
+  }
+
+
+  answered=true;
+
+
+  const x=
+    questions[index];
+
+
+  const buttons=[
+    ...document.querySelectorAll(
+      ".opt"
+    )
+  ];
+
+
+  buttons.forEach(
+    item=>
+      item.disabled=true
+  );
+
+
+  buttons[x.a]
+    .classList.add(
+      "correct"
+    );
+
+
+  if(choice===x.a){
+
+    score++;
+
+
+    button.classList.add(
+      "correct"
+    );
+
+
+    feedback.className=
+      "feedback show good";
+
+
+    feedback.textContent=
+      x.ok;
+
+
+    tone(true);
+
+    confetti();
+
+
+    if(navigator.vibrate){
+      navigator.vibrate(45);
+    }
+
+  }
+
+  else{
+
+    button.classList.add(
+      "wrong"
+    );
+
+
+    feedback.className=
+      "feedback show bad";
+
+
+    feedback.innerHTML=
+      "<b>راجعي القاعدة 👀</b><br>"+
+      x.bad;
+
+
+    tone(false);
+
+
+    if(navigator.vibrate){
+
+      navigator.vibrate(
+        [70,40,70]
+      );
+
+    }
+
+  }
+
+
+  document.getElementById(
+    "correctCount"
+  ).textContent=
+    "الإجابات الصحيحة: "+
+    arabicDigits(score);
+
+
+  card.classList.add(
+    "pop"
+  );
+
+
+  next.textContent=
+    index===
+      questions.length-1
+
+      ? "شاهدي نتيجتكِ ✨"
+
+      : "تابعي التحدي ←";
+
+
+  next.style.display=
+    "block";
+
+}
+
+
+next.onclick=()=>{
+
+  index++;
+
+
+  if(
+    index<
+    questions.length
+  ){
+
+    render();
+
+  }
+
+  else{
+
+    finish();
+
+  }
+
+};
+
+
+async function saveResult(){
+
+  const saveStatus=
+    document.getElementById(
+      "saveStatus"
+    );
+
+
+  if(!currentUser){
+
+    saveStatus.className=
+      "save-status error";
+
+
+    saveStatus.textContent=
+      "لم تُحفظ النتيجة؛ يلزم تسجيل الدخول إلى المنصة أولًا.";
+
+
+    return;
+
+  }
+
+
+  try{
+
+    saveStatus.className=
+      "save-status";
+
+
+    saveStatus.textContent=
+      "جارٍ حفظ نتيجتكِ في الفصل الدراسي الثاني...";
+
+
+    const studentRef=
+      doc(
+        db,
+        "students",
+        currentUser.uid
+      );
+
+
+    const snapshot=
+      await getDoc(
+        studentRef
+      );
+
+
+    let previousBest=0;
+
+
+    if(snapshot.exists()){
+
+      const data=
+        snapshot.data();
+
+
+      previousBest=
+        Number(
+          data?.[
+            "اختبارات_الفصل_الثاني"
+          ]?.[
+            "التعجب"
+          ]?.[
+            "أفضل_نسبة"
+          ] || 0
+        );
+
+    }
+
+
+    const percentage=
+      Math.round(
+        score/
+        questions.length*
+        100
+      );
+
+
+    const bestPercentage=
+      Math.max(
+        previousBest,
+        percentage
+      );
+
+
+    await updateDoc(
+      studentRef,
+      {
+
+        "اختبارات_الفصل_الثاني.التعجب":
+        {
+
+          "اسم_الاختبار":
+            "اختبار التعجب",
+
+          "الدرجة":
+            score,
+
+          "المجموع":
+            questions.length,
+
+          "النسبة":
+            percentage,
+
+          "أفضل_نسبة":
+            bestPercentage,
+
+          "مكتمل":
+            true,
+
+          "عدد_الأسئلة":
+            questions.length,
+
+          "استحقت_الإتقان":
+            percentage>=80,
+
+          "آخر_محاولة":
+            serverTimestamp()
+
+        }
+
+      }
+    );
+
+
+    saveStatus.className=
+      "save-status success";
+
+
+    saveStatus.textContent=
+      "✅ حُفظت نتيجتكِ بنجاح في سجل الفصل الدراسي الثاني.";
+
+  }
+
+  catch(error){
+
+    console.error(
+      "خطأ في حفظ اختبار التعجب:",
+      error
+    );
+
+
+    saveStatus.className=
+      "save-status error";
+
+
+    saveStatus.textContent=
+      "تعذّر حفظ النتيجة الآن. أعيدي المحاولة بعد التأكد من تسجيل الدخول.";
+
+  }
+
+}
+
+
+async function finish(){
+
+  document.getElementById(
+    "bar"
+  ).style.width=
+    "100%";
+
+
+  card.style.display=
+    "none";
+
+
+  document.querySelector(
+    ".top"
+  ).style.display=
+    "none";
+
+
+  document.querySelector(
+    ".progress"
+  ).style.display=
+    "none";
+
+
+  const result=
+    document.getElementById(
+      "result"
+    );
+
+
+  result.classList.add(
+    "show"
+  );
+
+
+  document.getElementById(
+    "score"
+  ).textContent=
+    arabicDigits(score)+
+    " / "+
+    arabicDigits(
+      questions.length
+    );
+
+
+  const pct=
+    score/
+    questions.length;
+
+
+  document.getElementById(
+    "message"
+  ).textContent=
+
+    pct===1
+
+      ? "إتقان كامل لأسلوب التعجب 🏆"
+
+      : pct>=.8
+
+        ? "أداء ممتاز جدًا 🌟 أتقنتِ التعجب القياسي والسماعي وشروط الصياغة."
+
+        : pct>=.6
+
+          ? "أداء جيد 👏 راجعي شروط صياغة التعجب وطريقة التصرف عند اختلال أحد الشروط، ثم أعيدي التحدي."
+
+          : "راجعي ملف الدرس، وبخاصة شروط التعجب والتعجب القياسي والسماعي، ثم عودي إلى التحدي.";
+
+
+  if(pct>=.8){
+    confetti();
+  }
+
+
+  await saveResult();
+
+}
+
+
+window.restartQuiz=
+  function(){
+
+    index=0;
+    score=0;
+    answered=false;
+
+
+    card.style.display=
+      "flex";
+
+
+    document.querySelector(
+      ".top"
+    ).style.display=
+      "flex";
+
+
+    document.querySelector(
+      ".progress"
+    ).style.display=
+      "block";
+
+
+    document.getElementById(
+      "result"
+    ).classList.remove(
+      "show"
+    );
+
+
+    const saveStatus=
+      document.getElementById(
+        "saveStatus"
+      );
+
+
+    saveStatus.className=
+      "save-status";
+
+
+    saveStatus.textContent=
+      "ستُحفظ نتيجتكِ في سجل الفصل الدراسي الثاني.";
+
+
+    render();
+
+  };
+
+
 render();
+
 </script>
+
 </body>
 </html>
