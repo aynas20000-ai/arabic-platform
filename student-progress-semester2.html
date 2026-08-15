@@ -1,0 +1,1541 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+تقدمي في الفصل الدراسي الثاني | منصة آفاق
+</title>
+
+<style>
+
+:root{
+  --purple:#5b4677;
+  --purple2:#76548f;
+  --lavender:#eee5f4;
+  --gold:#c9a85c;
+  --cream:#fffaf2;
+  --paper:#fffdf8;
+  --green:#2f7650;
+  --green-bg:#edf8f1;
+  --text:#44384f;
+  --muted:#746779;
+  --shadow:0 12px 30px rgba(91,70,119,.12);
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html,
+body{
+  margin:0;
+  min-height:100%;
+}
+
+body{
+  font-family:
+    Tahoma,
+    Arial,
+    sans-serif;
+
+  color:var(--text);
+
+  background:
+    linear-gradient(
+      145deg,
+      #fffaf2,
+      #f7eff9
+    );
+
+  line-height:1.8;
+}
+
+header{
+  padding:34px 18px 28px;
+  text-align:center;
+  color:white;
+
+  background:
+    linear-gradient(
+      135deg,
+      #76548f,
+      #4f3763
+    );
+
+  border-bottom:5px solid var(--gold);
+}
+
+header .icon{
+  font-size:44px;
+  margin-bottom:4px;
+}
+
+header h1{
+  margin:0 0 7px;
+  font-size:clamp(27px,7vw,42px);
+}
+
+header p{
+  margin:0;
+  color:#f6eef9;
+  font-size:15px;
+}
+
+main{
+  width:min(950px,92%);
+  margin:24px auto 45px;
+}
+
+.status{
+  padding:15px;
+  margin-bottom:18px;
+  border-radius:18px;
+  text-align:center;
+  font-weight:bold;
+  background:#fff8e7;
+  border:1px solid #dfc77f;
+}
+
+.status.success{
+  background:#edf8f1;
+  color:#286943;
+  border-color:#acd2b8;
+}
+
+.status.error{
+  background:#fff0f2;
+  color:#96394a;
+  border-color:#dfb0b9;
+}
+
+.hidden{
+  display:none !important;
+}
+
+.welcome{
+  margin-bottom:20px;
+  padding:20px;
+
+  text-align:center;
+
+  background:var(--paper);
+  border:2px solid #dfcc92;
+  border-radius:24px;
+  box-shadow:var(--shadow);
+}
+
+.welcome small{
+  display:block;
+  color:var(--muted);
+}
+
+.student-name{
+  display:block;
+  margin-top:3px;
+  color:var(--purple);
+  font-size:clamp(22px,6vw,34px);
+  font-weight:bold;
+}
+
+.summary{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+  margin-bottom:20px;
+}
+
+.summary-card{
+  padding:17px 10px;
+  text-align:center;
+
+  background:#fff;
+  border:2px solid #dfcc92;
+  border-radius:21px;
+
+  box-shadow:var(--shadow);
+}
+
+.summary-icon{
+  font-size:28px;
+}
+
+.summary-number{
+  display:block;
+
+  margin-top:4px;
+
+  color:var(--purple);
+  font-size:28px;
+  font-weight:bold;
+}
+
+.summary-label{
+  display:block;
+
+  color:var(--muted);
+  font-size:12px;
+  font-weight:bold;
+}
+
+.progress-box{
+  margin-bottom:22px;
+  padding:20px;
+
+  background:#fff;
+  border:2px solid #dfcc92;
+  border-radius:24px;
+  box-shadow:var(--shadow);
+}
+
+.progress-title{
+  margin:0 0 12px;
+  text-align:center;
+  color:var(--purple);
+  font-size:20px;
+}
+
+.progress-track{
+  height:20px;
+  overflow:hidden;
+  background:#eee6f1;
+  border-radius:999px;
+}
+
+.progress-fill{
+  width:0%;
+  height:100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--gold),
+      var(--purple2)
+    );
+
+  border-radius:999px;
+
+  transition:width .5s ease;
+}
+
+.progress-text{
+  margin-top:8px;
+  text-align:center;
+  color:var(--muted);
+  font-weight:bold;
+}
+
+.models-section{
+  padding:20px;
+
+  background:var(--paper);
+  border:2px solid #dfcc92;
+  border-radius:24px;
+
+  box-shadow:var(--shadow);
+}
+
+.models-section h2{
+  margin:0 0 15px;
+  text-align:center;
+  color:var(--purple);
+}
+
+.models-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+
+.model-card{
+  padding:16px;
+  border-radius:19px;
+  border:1px solid #dfd3e5;
+  background:#fff;
+}
+
+.model-card.completed{
+  border:2px solid #9bc7aa;
+  background:#f1faf4;
+}
+
+.model-card.pending{
+  background:#faf7fb;
+}
+
+.model-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+  margin-bottom:8px;
+}
+
+.model-title{
+  color:var(--purple);
+  font-weight:bold;
+}
+
+.badge{
+  display:inline-block;
+  padding:3px 8px;
+  border-radius:999px;
+  font-size:11px;
+  font-weight:bold;
+}
+
+.badge.done{
+  color:#286943;
+  background:#dff2e5;
+}
+
+.badge.pending{
+  color:#806b42;
+  background:#fff4d9;
+}
+
+.model-score{
+  margin:5px 0;
+  font-size:14px;
+}
+
+.model-score strong{
+  color:var(--purple);
+}
+
+.model-link{
+  display:block;
+
+  margin-top:10px;
+  padding:8px 10px;
+
+  text-align:center;
+  text-decoration:none;
+
+  color:white;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--purple2),
+      var(--purple)
+    );
+
+  border-radius:12px;
+
+  font-size:13px;
+  font-weight:bold;
+}
+
+.final-result{
+  margin-top:22px;
+  padding:22px;
+
+  text-align:center;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fffdf8,
+      #f8f2fb
+    );
+
+  border:2px solid #dfcc92;
+  border-radius:24px;
+
+  box-shadow:var(--shadow);
+}
+
+.final-result h2{
+  margin:0 0 8px;
+  color:var(--purple);
+}
+
+.final-score{
+  margin:5px 0;
+  color:var(--purple);
+  font-size:38px;
+  font-weight:bold;
+}
+
+.certificate-box{
+  display:none;
+
+  margin-top:20px;
+  padding:23px;
+
+  text-align:center;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f0faf3,
+      #e5f5ea
+    );
+
+  border:2px solid #9dc8aa;
+  border-radius:24px;
+
+  box-shadow:var(--shadow);
+}
+
+.certificate-box.show{
+  display:block;
+}
+
+.certificate-box h2{
+  margin:0 0 7px;
+  color:#286943;
+}
+
+.certificate-link{
+  display:block;
+
+  width:min(430px,100%);
+  margin:15px auto 0;
+  padding:12px 17px;
+
+  text-decoration:none;
+  color:white;
+
+  background:
+    linear-gradient(
+      135deg,
+      #347d51,
+      #28623f
+    );
+
+  border-radius:14px;
+  font-weight:bold;
+}
+
+.teacher-message{
+  margin-top:20px;
+  padding:20px;
+
+  background:#fff9e7;
+  border:2px solid #dfc77f;
+  border-radius:23px;
+
+  box-shadow:var(--shadow);
+}
+
+.teacher-message h2{
+  margin:0 0 8px;
+  color:#745820;
+  text-align:center;
+}
+
+.teacher-message p{
+  margin:0;
+  white-space:pre-wrap;
+  text-align:center;
+}
+
+.back{
+  display:block;
+
+  width:min(400px,100%);
+  margin:24px auto 0;
+  padding:12px 16px;
+
+  text-align:center;
+  text-decoration:none;
+
+  color:var(--purple);
+
+  background:var(--lavender);
+  border:1px solid #d5c4df;
+  border-radius:15px;
+
+  font-weight:bold;
+}
+
+footer{
+  padding:0 15px 26px;
+  text-align:center;
+  color:#7b6e80;
+  font-size:13px;
+}
+
+@media(min-width:760px){
+
+  .summary{
+    grid-template-columns:
+      repeat(4,minmax(0,1fr));
+  }
+
+}
+
+@media(max-width:650px){
+
+  .models-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+  <div class="icon">
+    📗
+  </div>
+
+  <h1>
+    تقدمي في الفصل الدراسي الثاني
+  </h1>
+
+  <p>
+    تابعي نماذجكِ ونتائجكِ واستحقاقكِ للشهادة
+  </p>
+
+</header>
+
+<main>
+
+<div
+  id="status"
+  class="status"
+>
+  جارٍ تحميل بياناتكِ...
+</div>
+
+
+<div
+  id="content"
+  class="hidden"
+>
+
+  <section class="welcome">
+
+    <small>
+      أهلًا بكِ
+    </small>
+
+    <span
+      id="studentName"
+      class="student-name"
+    >
+      —
+    </span>
+
+    <small>
+      هنا يظهر تقدمكِ الحقيقي في اختبارات الفصل الدراسي الثاني
+    </small>
+
+  </section>
+
+
+  <section class="summary">
+
+    <div class="summary-card">
+
+      <div class="summary-icon">
+        ✅
+      </div>
+
+      <span
+        id="completedCount"
+        class="summary-number"
+      >
+        ٠
+      </span>
+
+      <span class="summary-label">
+        نماذج مكتملة من ٥
+      </span>
+
+    </div>
+
+
+    <div class="summary-card">
+
+      <div class="summary-icon">
+        📊
+      </div>
+
+      <span
+        id="currentAverage"
+        class="summary-number"
+      >
+        ٠٪
+      </span>
+
+      <span class="summary-label">
+        متوسط النماذج المكتملة
+      </span>
+
+    </div>
+
+
+    <div class="summary-card">
+
+      <div class="summary-icon">
+        🎯
+      </div>
+
+      <span
+        id="finalScore"
+        class="summary-number"
+      >
+        —
+      </span>
+
+      <span class="summary-label">
+        النتيجة النهائية
+      </span>
+
+    </div>
+
+
+    <div class="summary-card">
+
+      <div class="summary-icon">
+        🎓
+      </div>
+
+      <span
+        id="certificateStatus"
+        class="summary-number"
+      >
+        🔒
+      </span>
+
+      <span class="summary-label">
+        حالة الشهادة
+      </span>
+
+    </div>
+
+  </section>
+
+
+  <section class="progress-box">
+
+    <h2 class="progress-title">
+      نسبة الإنجاز
+    </h2>
+
+    <div class="progress-track">
+
+      <div
+        id="progressFill"
+        class="progress-fill"
+      ></div>
+
+    </div>
+
+    <div
+      id="progressText"
+      class="progress-text"
+    >
+      ٠ من ٥
+    </div>
+
+  </section>
+    <section class="models-section">
+
+    <h2>
+      نتائج النماذج الخمسة
+    </h2>
+
+    <div
+      id="modelsGrid"
+      class="models-grid"
+    ></div>
+
+  </section>
+
+
+  <section class="final-result">
+
+    <h2>
+      النتيجة النهائية للفصل الدراسي الثاني
+    </h2>
+
+    <div
+      id="bigFinalScore"
+      class="final-score"
+    >
+      —
+    </div>
+
+    <p id="finalMessage">
+      أكملي النماذج الخمسة لإظهار النتيجة النهائية.
+    </p>
+
+  </section>
+
+
+  <section
+    id="certificateBox"
+    class="certificate-box"
+  >
+
+    <div style="font-size:48px;">
+      🏆
+    </div>
+
+    <h2>
+      أحسنتِ، استحققتِ الشهادة
+    </h2>
+
+    <p id="certificateMessage">
+      لقد حققتِ شرط استحقاق شهادة الفصل الدراسي الثاني.
+    </p>
+
+    <a
+      class="certificate-link"
+      href="term2-certificate.html"
+    >
+      عرض الشهادة وطباعتها
+    </a>
+
+  </section>
+
+
+  <section
+    id="teacherMessageBox"
+    class="teacher-message hidden"
+  >
+
+    <h2>
+      💌 رسالة المعلمة لكِ
+    </h2>
+
+    <p id="teacherMessage"></p>
+
+  </section>
+
+
+  <a
+    class="back"
+    href="tests-term2.html"
+  >
+    العودة إلى اختبارات الفصل الثاني
+  </a>
+
+</div>
+
+</main>
+
+
+<footer>
+  جميع الحقوق محفوظة © 2026 — منصة آفاق التعليمية
+</footer>
+
+
+<script type="module">
+
+import {
+  initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+
+
+import {
+  initializeAuth,
+  browserLocalPersistence,
+  browserPopupRedirectResolver,
+  onAuthStateChanged
+}
+from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+
+import {
+  getFirestore,
+  doc,
+  getDoc
+}
+from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+
+const firebaseConfig = {
+
+  apiKey:
+    "AIzaSyB48av9gx4jzFyYoUQtcLwaR52qETevKGs",
+
+  authDomain:
+    "afaq-language-platform.firebaseapp.com",
+
+  projectId:
+    "afaq-language-platform",
+
+  storageBucket:
+    "afaq-language-platform.firebasestorage.app",
+
+  messagingSenderId:
+    "362601061474",
+
+  appId:
+    "1:362601061474:web:bc405291332b9e4ef9453b"
+
+};
+
+
+const app =
+  initializeApp(
+    firebaseConfig
+  );
+
+
+const auth =
+  initializeAuth(
+    app,
+    {
+
+      persistence:
+        browserLocalPersistence,
+
+      popupRedirectResolver:
+        browserPopupRedirectResolver
+
+    }
+  );
+
+
+const db =
+  getFirestore(
+    app
+  );
+
+
+const statusBox =
+  document.getElementById(
+    "status"
+  );
+
+
+const content =
+  document.getElementById(
+    "content"
+  );
+
+
+const studentName =
+  document.getElementById(
+    "studentName"
+  );
+
+
+const completedCount =
+  document.getElementById(
+    "completedCount"
+  );
+
+
+const currentAverage =
+  document.getElementById(
+    "currentAverage"
+  );
+
+
+const finalScore =
+  document.getElementById(
+    "finalScore"
+  );
+
+
+const bigFinalScore =
+  document.getElementById(
+    "bigFinalScore"
+  );
+
+
+const certificateStatus =
+  document.getElementById(
+    "certificateStatus"
+  );
+
+
+const certificateBox =
+  document.getElementById(
+    "certificateBox"
+  );
+
+
+const certificateMessage =
+  document.getElementById(
+    "certificateMessage"
+  );
+
+
+const finalMessage =
+  document.getElementById(
+    "finalMessage"
+  );
+
+
+const progressFill =
+  document.getElementById(
+    "progressFill"
+  );
+
+
+const progressText =
+  document.getElementById(
+    "progressText"
+  );
+
+
+const modelsGrid =
+  document.getElementById(
+    "modelsGrid"
+  );
+
+
+const teacherMessageBox =
+  document.getElementById(
+    "teacherMessageBox"
+  );
+
+
+const teacherMessage =
+  document.getElementById(
+    "teacherMessage"
+  );
+
+
+function arabicDigits(value){
+
+  return String(value).replace(
+    /\d/g,
+    d =>
+      "٠١٢٣٤٥٦٧٨٩"[d]
+  );
+
+}
+
+
+function safeNumber(value){
+
+  const number =
+    Number(value);
+
+  return Number.isFinite(number)
+    ? number
+    : 0;
+
+}
+
+
+function escapeHtml(value){
+
+  return String(
+    value ?? ""
+  )
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
+
+
+function getStudentName(
+  data,
+  user
+){
+
+  return String(
+
+    data?.["الاسم_الرباعي"] ||
+
+    data?.["الاسم الرباعي"] ||
+
+    data?.["الاسم_الكامل"] ||
+
+    data?.["الاسم الكامل"] ||
+
+    data?.["اسم_الطالبة"] ||
+
+    data?.["الاسم"] ||
+
+    user.displayName ||
+
+    "الطالبة"
+
+  ).trim();
+
+}
+
+
+function getPercentage(test){
+
+  if(
+    !test ||
+    typeof test !== "object"
+  ){
+    return 0;
+  }
+
+
+  const best =
+    Number(
+      test["أفضل_نسبة"]
+    );
+
+
+  if(
+    Number.isFinite(best)
+  ){
+    return best;
+  }
+
+
+  const percentage =
+    Number(
+      test["النسبة"]
+    );
+
+
+  if(
+    Number.isFinite(percentage)
+  ){
+    return percentage;
+  }
+
+
+  return 0;
+
+}
+
+
+const modelInfo = [
+
+  {
+    key:"النموذج_الأول",
+    title:"النموذج الأول",
+    file:"test-term2-1.html"
+  },
+
+  {
+    key:"النموذج_الثاني",
+    title:"النموذج الثاني",
+    file:"test-term2-2.html"
+  },
+
+  {
+    key:"النموذج_الثالث",
+    title:"النموذج الثالث",
+    file:"test-term2-3.html"
+  },
+
+  {
+    key:"النموذج_الرابع",
+    title:"النموذج الرابع",
+    file:"test-term2-4.html"
+  },
+
+  {
+    key:"النموذج_الخامس",
+    title:"النموذج الخامس الختامي",
+    file:"test-term2-5.html"
+  }
+
+];
+  function renderModels(
+  tests
+){
+
+  modelsGrid.innerHTML =
+    "";
+
+
+  let completed =
+    0;
+
+
+  let sum =
+    0;
+
+
+  modelInfo.forEach(
+    (model,index) => {
+
+      const test =
+        tests[model.key];
+
+
+      const isCompleted =
+        test &&
+        test["مكتمل"] === true;
+
+
+      const percentage =
+        isCompleted
+          ? getPercentage(test)
+          : 0;
+
+
+      if(isCompleted){
+
+        completed++;
+
+        sum += percentage;
+
+      }
+
+
+      const attempts =
+        isCompleted
+
+          ? safeNumber(
+              test["عدد_المحاولات"]
+            )
+
+          : 0;
+
+
+      const card =
+        document.createElement(
+          "article"
+        );
+
+
+      card.className =
+        `model-card ${
+          isCompleted
+            ? "completed"
+            : "pending"
+        }`;
+
+
+      card.innerHTML = `
+
+        <div class="model-head">
+
+          <span class="model-title">
+            ${arabicDigits(index + 1)}
+            —
+            ${escapeHtml(model.title)}
+          </span>
+
+          <span
+            class="badge ${
+              isCompleted
+                ? "done"
+                : "pending"
+            }"
+          >
+
+            ${
+              isCompleted
+                ? "مكتمل ✅"
+                : "لم يُنجز بعد"
+            }
+
+          </span>
+
+        </div>
+
+
+        ${
+          isCompleted
+
+            ? `
+
+              <div class="model-score">
+
+                أفضل نسبة:
+                <strong>
+                  ${arabicDigits(
+                    percentage
+                  )}٪
+                </strong>
+
+              </div>
+
+
+              <div class="model-score">
+
+                عدد المحاولات:
+                <strong>
+                  ${arabicDigits(
+                    attempts
+                  )}
+                </strong>
+
+              </div>
+
+            `
+
+            : `
+
+              <div class="model-score">
+                لم تسجّل نتيجة لهذا النموذج بعد.
+              </div>
+
+            `
+        }
+
+
+        <a
+          class="model-link"
+          href="${model.file}"
+        >
+
+          ${
+            isCompleted
+              ? "إعادة المحاولة"
+              : "ابدئي النموذج"
+          }
+
+        </a>
+
+      `;
+
+
+      modelsGrid.appendChild(
+        card
+      );
+
+    }
+  );
+
+
+  const average =
+    completed > 0
+
+      ? Math.round(
+          sum /
+          completed
+        )
+
+      : 0;
+
+
+  completedCount.textContent =
+    arabicDigits(
+      completed
+    );
+
+
+  currentAverage.textContent =
+    `${arabicDigits(
+      average
+    )}٪`;
+
+
+  progressFill.style.width =
+    `${completed * 20}%`;
+
+
+  progressText.textContent =
+    `${arabicDigits(
+      completed
+    )} من ٥ — ${
+      arabicDigits(
+        completed * 20
+      )
+    }٪ إنجاز`;
+
+
+  return {
+
+    completed,
+    average
+
+  };
+
+}
+
+
+function renderFinalResult(
+  result,
+  progress
+){
+
+  const completed =
+    result["مكتمل"] === true;
+
+
+  const score =
+    safeNumber(
+      result["الدرجة"]
+    );
+
+
+  const eligible =
+    result[
+      "استحقت_الشهادة"
+    ] === true;
+
+
+  if(
+    !completed ||
+    progress.completed < 5
+  ){
+
+    finalScore.textContent =
+      "—";
+
+
+    bigFinalScore.textContent =
+      "—";
+
+
+    certificateStatus.textContent =
+      "🔒";
+
+
+    finalMessage.textContent =
+      `أكملتِ ${
+        arabicDigits(
+          progress.completed
+        )
+      } من أصل ٥ نماذج. أكملي النماذج المتبقية لإظهار النتيجة النهائية.`;
+
+
+    certificateBox.classList.remove(
+      "show"
+    );
+
+
+    return;
+
+  }
+
+
+  finalScore.textContent =
+    `${arabicDigits(
+      score
+    )}٪`;
+
+
+  bigFinalScore.textContent =
+    `${arabicDigits(
+      score
+    )}٪`;
+
+
+  if(eligible){
+
+    certificateStatus.textContent =
+      "✅";
+
+
+    finalMessage.textContent =
+      "أحسنتِ، اكتملت النماذج الخمسة وظهرت نتيجتكِ النهائية.";
+
+
+    certificateMessage.textContent =
+      `بلغ متوسطكِ النهائي ${
+        arabicDigits(
+          score
+        )
+      }٪، وقد استحققتِ شهادة الإتقان والتميّز.`;
+
+
+    certificateBox.classList.add(
+      "show"
+    );
+
+
+  }else{
+
+
+    certificateStatus.textContent =
+      "🔒";
+
+
+    finalMessage.textContent =
+      `بلغ متوسطكِ النهائي ${
+        arabicDigits(
+          score
+        )
+      }٪. يلزم تحقيق ٨٠٪ فأعلى لاستحقاق الشهادة.`;
+
+
+    certificateBox.classList.remove(
+      "show"
+    );
+
+  }
+
+}
+
+
+onAuthStateChanged(
+  auth,
+  async user => {
+
+
+    if(!user){
+
+      statusBox.className =
+        "status error";
+
+
+      statusBox.textContent =
+        "يلزم تسجيل الدخول بحساب الطالبة لعرض التقدم.";
+
+
+      content.classList.add(
+        "hidden"
+      );
+
+
+      return;
+
+    }
+
+
+    try{
+
+      const studentRef =
+        doc(
+          db,
+          "students",
+          user.uid
+        );
+
+
+      const snapshot =
+        await getDoc(
+          studentRef
+        );
+
+
+      if(!snapshot.exists()){
+
+        throw new Error(
+          "student-not-found"
+        );
+
+      }
+
+
+      const data =
+        snapshot.data();
+
+
+      studentName.textContent =
+        getStudentName(
+          data,
+          user
+        );
+
+
+      const tests =
+        data[
+          "اختبارات_الفصل_الثاني"
+        ] || {};
+
+
+      const result =
+        data[
+          "نتيجة_الفصل_الثاني"
+        ] || {};
+
+
+      const progress =
+        renderModels(
+          tests
+        );
+
+
+      renderFinalResult(
+        result,
+        progress
+      );
+
+
+      const message =
+
+        data["رسالة_المعلمة"] ||
+
+        data["ملاحظة_المعلمة"] ||
+
+        data["رسالة_للطالبة"] ||
+
+        "";
+
+
+      if(
+        String(message).trim()
+      ){
+
+        teacherMessage.textContent =
+          String(message).trim();
+
+
+        teacherMessageBox.classList.remove(
+          "hidden"
+        );
+
+      }
+
+
+      statusBox.className =
+        "status success";
+
+
+      statusBox.textContent =
+        "✅ تم تحميل تقدمكِ في الفصل الدراسي الثاني.";
+
+
+      content.classList.remove(
+        "hidden"
+      );
+
+
+      setTimeout(
+        () => {
+
+          statusBox.style.display =
+            "none";
+
+        },
+        1600
+      );
+
+
+    }catch(error){
+
+
+      console.error(
+        "خطأ في تحميل تقدم الفصل الثاني:",
+        error
+      );
+
+
+      statusBox.className =
+        "status error";
+
+
+      statusBox.textContent =
+        "تعذّر تحميل بيانات التقدم في الفصل الدراسي الثاني.";
+
+
+      content.classList.add(
+        "hidden"
+      );
+
+    }
+
+  }
+);
+
+</script>
+
+</body>
+
+</html>
