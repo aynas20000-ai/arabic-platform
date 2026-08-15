@@ -420,8 +420,6 @@ tbody tr:nth-child(even){
     );
 }
 
-/* نافذة التفاصيل */
-
 .modal{
   display:none;
   position:fixed;
@@ -546,8 +544,6 @@ tbody tr:nth-child(even){
   line-height:1.6;
 }
 
-/* الطباعة والحفظ والرسائل */
-
 .report-actions{
   display:flex;
   justify-content:center;
@@ -637,7 +633,8 @@ tbody tr:nth-child(even){
 .print-meta{
   display:none;
 }
-  @media print{
+
+@media print{
 
   @page{
     size:A4 landscape;
@@ -898,7 +895,7 @@ tbody tr:nth-child(even){
 
           <option value="ثالث متوسط ج">
             ثالث متوسط ج
-          </option>
+                      </option>
 
         </select>
 
@@ -1251,7 +1248,8 @@ const challengeNames = {
   20:"تحدي المدن الذكية"
 
 };
-  const el =
+
+const el =
   id =>
     document.getElementById(
       id
@@ -1791,11 +1789,14 @@ function prepareStudentData(
     id,
 
     name:
-      data?.["الاسم"] ||
+      data?.["الاسم_الرباعي"] ||
+      data?.["الاسم الرباعي"] ||
+      data?.["الاسم_الكامل"] ||
+      data?.["الاسم الكامل"] ||
       data?.["اسم_الطالبة"] ||
-      "طالبة غير مسماة",
-
-    className:
+      data?.["الاسم"] ||
+      "طالبة مسجلة",
+        className:
       normalizeClassName(
         data?.["الفصل"]
       ),
@@ -1951,11 +1952,21 @@ async function loadStudents(){
           documentSnapshot.data();
 
 
-        if(
-          !data?.["الاسم"] &&
-          !data?.["الفصل"] &&
-          !data?.["معرف_المستخدم"]
-        ){
+        const hasStudentActivity =
+          data?.["الاسم"] ||
+          data?.["الاسم_الرباعي"] ||
+          data?.["الاسم_الكامل"] ||
+          data?.["اسم_الطالبة"] ||
+          data?.["الفصل"] ||
+          data?.["معرف_المستخدم"] ||
+          data?.["اختبارات_الفصل_الأول"] ||
+          data?.["اختبارات_الفصل_الثاني"] ||
+          data?.["نتيجة_الفصل_الأول"] ||
+          data?.["نتيجة_الفصل_الثاني"] ||
+          data?.["نافس_المتابعة"];
+
+
+        if(!hasStudentActivity){
           return;
         }
 
@@ -2114,7 +2125,9 @@ function getFilteredStudents(){
   );
 
 }
-  function setActiveTab(){
+
+
+function setActiveTab(){
 
   tabButtons.forEach(
     button => {
@@ -2639,9 +2652,7 @@ function renderSemesterRows(
   );
 
 }
-
-
-function renderNafesRows(
+  function renderNafesRows(
   students
 ){
 
@@ -2852,7 +2863,9 @@ function renderNafesRows(
     );
 
 }
-  function openStudentDetails(
+
+
+function openStudentDetails(
   student
 ){
 
