@@ -213,6 +213,102 @@
       font-weight: bold;
     }
 
+    .parent-code-box {
+      margin-bottom: 18px;
+      padding: 20px;
+
+      text-align: center;
+
+      background:
+        linear-gradient(
+          135deg,
+          #fffaf0,
+          #f5ecfb
+        );
+
+      border:
+        2px solid #c9a85c;
+
+      border-radius: 22px;
+
+      box-shadow:
+        0 8px 22px
+        rgba(91,70,119,.08);
+    }
+
+    .parent-code-box h2 {
+      margin: 0 0 7px;
+      color: #5b4677;
+      font-size: 21px;
+    }
+
+    .parent-code-box p {
+      max-width: 650px;
+      margin: 0 auto 13px;
+      color: #74677a;
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .parent-code {
+      display: inline-block;
+      min-width: 190px;
+      margin: 4px 0 12px;
+      padding: 11px 18px;
+
+      direction: ltr;
+
+      color: #4f3763;
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 1px;
+
+      background: white;
+
+      border:
+        2px dashed #c9a85c;
+
+      border-radius: 15px;
+    }
+
+    .copy-code {
+      display: block;
+      width: min(320px,100%);
+      margin: 0 auto;
+      padding: 11px 15px;
+
+      color: white;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: bold;
+
+      border: 0;
+      border-radius: 14px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #776094,
+          #5b4677
+        );
+
+      cursor: pointer;
+    }
+
+    .copy-code:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+    }
+
+    .copy-note {
+      min-height: 26px;
+      margin-top: 8px;
+
+      color: #286943;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
     .section-title {
       margin: 25px 0 12px;
 
@@ -369,8 +465,7 @@
 
       background: #eaf7ef;
     }
-
-    .teacher-message {
+        .teacher-message {
       margin-top: 22px;
       padding: 20px;
 
@@ -542,6 +637,41 @@
         >
           الفصل
         </p>
+
+      </section>
+
+
+      <section class="parent-code-box">
+
+        <h2>
+          👨‍👩‍👧 رمز متابعة ولي الأمر
+        </h2>
+
+        <p>
+          أرسلي هذا الرمز إلى ولي أمركِ لربط حسابه بمتابعتكِ.
+          يُستخدم الرمز للربط في المرة الأولى فقط.
+        </p>
+
+        <div
+          id="parentCode"
+          class="parent-code"
+        >
+          جارٍ تحميل الرمز...
+        </div>
+
+        <button
+          id="copyParentCodeBtn"
+          class="copy-code"
+          type="button"
+          disabled
+        >
+          نسخ رمز ولي الأمر
+        </button>
+
+        <div
+          id="copyParentCodeNote"
+          class="copy-note"
+        ></div>
 
       </section>
 
@@ -754,7 +884,9 @@
 
 
     import {
-      getAuth,
+      initializeAuth,
+      browserLocalPersistence,
+      browserPopupRedirectResolver,
       onAuthStateChanged
     }
     from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
@@ -763,7 +895,8 @@
     import {
       getFirestore,
       doc,
-      getDoc
+      getDoc,
+      updateDoc
     }
     from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 
@@ -785,7 +918,16 @@
 
 
     const auth =
-      getAuth(app);
+      initializeAuth(
+        app,
+        {
+          persistence:
+            browserLocalPersistence,
+
+          popupRedirectResolver:
+            browserPopupRedirectResolver
+        }
+      );
 
 
     const db =
@@ -813,6 +955,24 @@
     const studentClass =
       document.getElementById(
         "studentClass"
+      );
+
+
+    const parentCode =
+      document.getElementById(
+        "parentCode"
+      );
+
+
+    const copyParentCodeBtn =
+      document.getElementById(
+        "copyParentCodeBtn"
+      );
+
+
+    const copyParentCodeNote =
+      document.getElementById(
+        "copyParentCodeNote"
       );
 
 
@@ -874,9 +1034,7 @@
       document.getElementById(
         "teacherMessageDate"
       );
-
-
-    function toArabicNumber(
+        function toArabicNumber(
       value
     ) {
 
@@ -925,392 +1083,574 @@
       }
 
     }
-    function showStudentProgress(
-  data,
-  user
-) {
 
-  const name =
-    data?.["الاسم"] ||
-    user?.displayName ||
-    "الطالبة";
 
-
-  const className =
-    data?.["الفصل"] ||
-    "الفصل غير محدد";
-
-
-  const term1TestsData =
-    data?.["اختبارات_الفصل_الأول"] || {};
-
-
-  const term1Final =
-    data?.["نتيجة_الفصل_الأول"] || {};
-
-
-  const testEntries =
-    Object.values(
-      term1TestsData
-    );
-
-
-  const recordedTests =
-    testEntries.filter(
-      item =>
-        item &&
-        typeof item === "object"
-    ).length;
-
-
-  const completed =
-    term1Final["مكتمل"] === true;
-
-
-  const finalScore =
-    Number(
-      term1Final["الدرجة"] || 0
-    );
-
-
-  const certificate =
-    term1Final["استحقت_الشهادة"] === true;
-
-
-  studentName.textContent =
-    name;
-
-
-  studentClass.textContent =
-    className;
-
-
-  term1Tests.textContent =
-    toArabicNumber(
-      recordedTests
-    );
-
-
-  term1ProgressText.textContent =
-    toArabicNumber(
-      recordedTests
-    ) +
-    " اختبارًا";
-
-
-  /*
-    نعرض التقدم على أساس الاختبارات الفردية
-    المرتبطة بالفصل الأول.
-    العدد المتوقع حاليًا 12 اختبارًا.
-  */
-
-  const expectedTests =
-    12;
-
-
-  const progressPercentage =
-    Math.min(
-      100,
-      Math.round(
-        (
-          recordedTests /
-          expectedTests
-        ) *
-        100
-      )
-    );
-
-
-  term1ProgressFill.style.width =
-    progressPercentage +
-    "%";
-
-
-  if (
-    completed
-  ) {
-
-    term1Score.textContent =
-      toArabicNumber(
-        finalScore
-      ) +
-      "٪";
-
-
-    term1Status.textContent =
-      "مكتمل";
-
-
-    term1FinalResult.innerHTML = `
-
-      🏆 نتيجتكِ النهائية في الفصل الدراسي الأول:
-
-      <br>
-
-      <strong>
-        ${toArabicNumber(
-          finalScore
-        )} من ١٠٠
-      </strong>
-
-    `;
-
-
-  } else {
-
-    term1Score.textContent =
-      "—";
-
-
-    term1Status.textContent =
-      "قيد الإنجاز";
-
-
-    term1FinalResult.textContent =
-      "لم تكتمل النتيجة النهائية بعد. واصلي أداء اختبارات الفصل الأول.";
-
-  }
-
-
-  if (
-    certificate
-  ) {
-
-    certificateStatus.textContent =
-      "مستحقة";
-
-
-    certificateBox.style.display =
-      "block";
-
-
-  } else {
-
-    certificateStatus.textContent =
-      completed
-        ? "لم تُستحق بعد"
-        : "—";
-
-
-    certificateBox.style.display =
-      "none";
-
-  }
-
-
-  const messageData =
-    data?.["تعليق_المعلمة"] || {};
-
-
-  let messageText =
-    "";
-
-
-  let messageDate =
-    null;
-
-
-  /*
-    ندعم شكلين للحقل:
-    1) تعليق_المعلمة كنص مباشر.
-    2) تعليق_المعلمة كخريطة فيها نص_التعليق وتاريخ_التعليق.
-  */
-
-  if (
-    typeof messageData ===
-    "string"
-  ) {
-
-    messageText =
-      messageData;
-
-
-  } else if (
-    messageData &&
-    typeof messageData ===
-    "object"
-  ) {
-
-    messageText =
-      messageData["نص_التعليق"] ||
-      "";
-
-
-    messageDate =
-      messageData["تاريخ_التعليق"] ||
-      null;
-
-  }
-
-
-  if (
-    messageText.trim()
-  ) {
-
-    teacherMessage.textContent =
-      messageText;
-
-
-    teacherMessage.classList.remove(
-      "empty-message"
-    );
-
-
-    const formattedDate =
-      formatDate(
-        messageDate
-      );
-
-
-    teacherMessageDate.textContent =
-      formattedDate
-        ? "آخر تحديث: " +
-          formattedDate
-        : "";
-
-
-  } else {
-
-    teacherMessage.textContent =
-      "لا توجد رسالة جديدة من معلمتكِ حتى الآن.";
-
-
-    teacherMessage.classList.add(
-      "empty-message"
-    );
-
-
-    teacherMessageDate.textContent =
-      "";
-
-  }
-
-}
-
-
-async function loadStudentRecord(
-  user
-) {
-
-  try {
-
-    statusBox.className =
-      "status-box loading";
-
-
-    statusBox.textContent =
-      "جارٍ تحميل سجلّكِ...";
-
-
-    const studentRef =
-      doc(
-        db,
-        "students",
-        user.uid
-      );
-
-
-    const studentSnap =
-      await getDoc(
-        studentRef
-      );
-
-
-    if (
-      !studentSnap.exists()
-    ) {
-
-      statusBox.className =
-        "status-box error";
-
-
-      statusBox.textContent =
-        "تعذّر العثور على سجلّكِ في المنصة.";
-
-
-      progressContent.style.display =
-        "none";
-
-
-      return;
-
-    }
-
-
-    const data =
-      studentSnap.data();
-
-
-    showStudentProgress(
+    function getStudentName(
       data,
       user
-    );
-
-
-    progressContent.style.display =
-      "block";
-
-
-    statusBox.style.display =
-      "none";
-
-
-  } catch (
-    error
-  ) {
-
-    console.error(
-      error
-    );
-
-
-    statusBox.className =
-      "status-box error";
-
-
-    statusBox.textContent =
-      "تعذّر تحميل بيانات تقدّمكِ. حاولي مرة أخرى.";
-
-
-    progressContent.style.display =
-      "none";
-
-  }
-
-}
-
-
-onAuthStateChanged(
-  auth,
-  async user => {
-
-    if (
-      !user
     ) {
 
-      statusBox.className =
-        "status-box error";
+      return String(
 
+        data?.["الاسم_الرباعي"] ||
 
-      statusBox.textContent =
-        "🔒 يلزم تسجيل الدخول أولًا لعرض تقدّمكِ.";
+        data?.["الاسم الرباعي"] ||
 
+        data?.["الاسم_الكامل"] ||
 
-      progressContent.style.display =
-        "none";
+        data?.["الاسم الكامل"] ||
 
+        data?.["اسم_الطالبة"] ||
 
-      return;
+        data?.["الاسم"] ||
+
+        user?.displayName ||
+
+        "الطالبة"
+
+      ).trim();
 
     }
 
 
-    await loadStudentRecord(
+    function createParentCode(
+      uid
+    ) {
+
+      let hash =
+        2166136261;
+
+
+      for (
+        let i = 0;
+        i < uid.length;
+        i++
+      ) {
+
+        hash ^=
+          uid.charCodeAt(i);
+
+
+        hash =
+          Math.imul(
+            hash,
+            16777619
+          );
+
+      }
+
+
+      const number =
+        Math.abs(
+          hash >>> 0
+        )
+        .toString()
+        .padStart(
+          8,
+          "0"
+        )
+        .slice(
+          0,
+          8
+        );
+
+
+      return `AFQ-${number}`;
+
+    }
+
+
+    async function ensureParentCode(
+      studentRef,
+      data,
       user
+    ) {
+
+      let code =
+        String(
+          data?.["رمز_ولي_الأمر"] || ""
+        ).trim();
+
+
+      if (!code) {
+
+        code =
+          createParentCode(
+            user.uid
+          );
+
+
+        await updateDoc(
+          studentRef,
+          {
+            "رمز_ولي_الأمر":
+              code
+          }
+        );
+
+
+        data["رمز_ولي_الأمر"] =
+          code;
+
+      }
+
+
+      parentCode.textContent =
+        code;
+
+
+      copyParentCodeBtn.disabled =
+        false;
+
+
+      return code;
+
+    }
+
+
+    copyParentCodeBtn.addEventListener(
+      "click",
+      async () => {
+
+        const code =
+          parentCode.textContent.trim();
+
+
+        if (
+          !code ||
+          !code.startsWith("AFQ-")
+        ) {
+          return;
+        }
+
+
+        try {
+
+          await navigator.clipboard.writeText(
+            code
+          );
+
+
+          copyParentCodeNote.textContent =
+            "✅ تم نسخ رمز ولي الأمر.";
+
+
+        } catch (error) {
+
+
+          copyParentCodeNote.textContent =
+            `رمز ولي الأمر: ${code}`;
+
+        }
+
+
+        setTimeout(
+          () => {
+
+            copyParentCodeNote.textContent =
+              "";
+
+          },
+          2500
+        );
+
+      }
     );
 
-  }
-);
+
+    function showStudentProgress(
+      data,
+      user
+    ) {
+
+      const name =
+        getStudentName(
+          data,
+          user
+        );
+
+
+      const className =
+        data?.["الفصل"] ||
+        "الفصل غير محدد";
+
+
+      const term1TestsData =
+        data?.["اختبارات_الفصل_الأول"] || {};
+
+
+      const term1Final =
+        data?.["نتيجة_الفصل_الأول"] || {};
+
+
+      const testEntries =
+        Object.values(
+          term1TestsData
+        );
+
+
+      const recordedTests =
+        testEntries.filter(
+          item =>
+            item &&
+            typeof item === "object"
+        ).length;
+
+
+      const completed =
+        term1Final["مكتمل"] === true;
+
+
+      const finalScore =
+        Number(
+          term1Final["الدرجة"] || 0
+        );
+
+
+      const certificate =
+        term1Final["استحقت_الشهادة"] === true;
+
+
+      studentName.textContent =
+        name;
+
+
+      studentClass.textContent =
+        className;
+
+
+      term1Tests.textContent =
+        toArabicNumber(
+          recordedTests
+        );
+
+
+      term1ProgressText.textContent =
+        toArabicNumber(
+          recordedTests
+        ) +
+        " اختبارًا";
+
+
+      const expectedTests =
+        12;
+
+
+      const progressPercentage =
+        Math.min(
+          100,
+          Math.round(
+            (
+              recordedTests /
+              expectedTests
+            ) *
+            100
+          )
+        );
+
+
+      term1ProgressFill.style.width =
+        progressPercentage +
+        "%";
+
+
+      if (
+        completed
+      ) {
+
+        term1Score.textContent =
+          toArabicNumber(
+            finalScore
+          ) +
+          "٪";
+
+
+        term1Status.textContent =
+          "مكتمل";
+
+
+        term1FinalResult.innerHTML = `
+
+          🏆 نتيجتكِ النهائية في الفصل الدراسي الأول:
+
+          <br>
+
+          <strong>
+            ${toArabicNumber(
+              finalScore
+            )} من ١٠٠
+          </strong>
+
+        `;
+
+
+      } else {
+
+        term1Score.textContent =
+          "—";
+
+
+        term1Status.textContent =
+          "قيد الإنجاز";
+
+
+        term1FinalResult.textContent =
+          "لم تكتمل النتيجة النهائية بعد. واصلي أداء اختبارات الفصل الأول.";
+
+      }
+
+
+      if (
+        certificate
+      ) {
+
+        certificateStatus.textContent =
+          "مستحقة";
+
+
+        certificateBox.style.display =
+          "block";
+
+
+      } else {
+
+        certificateStatus.textContent =
+          completed
+            ? "لم تُستحق بعد"
+            : "—";
+
+
+        certificateBox.style.display =
+          "none";
+
+      }
+
+
+      const messageData =
+        data?.["تعليق_المعلمة"] ||
+
+        data?.["رسالة_المعلمة"] ||
+
+        data?.["ملاحظة_المعلمة"] ||
+
+        data?.["رسالة_للطالبة"] ||
+
+        {};
+
+
+      let messageText =
+        "";
+
+
+      let messageDate =
+        null;
+
+
+      if (
+        typeof messageData ===
+        "string"
+      ) {
+
+        messageText =
+          messageData;
+
+
+      } else if (
+        messageData &&
+        typeof messageData ===
+        "object"
+      ) {
+
+        messageText =
+          messageData["نص_التعليق"] ||
+          messageData["النص"] ||
+          "";
+
+
+        messageDate =
+          messageData["تاريخ_التعليق"] ||
+          messageData["التاريخ"] ||
+          null;
+
+      }
+
+
+      if (
+        messageText.trim()
+      ) {
+
+        teacherMessage.textContent =
+          messageText;
+
+
+        teacherMessage.classList.remove(
+          "empty-message"
+        );
+
+
+        const formattedDate =
+          formatDate(
+            messageDate
+          );
+
+
+        teacherMessageDate.textContent =
+          formattedDate
+            ? "آخر تحديث: " +
+              formattedDate
+            : "";
+
+
+      } else {
+
+        teacherMessage.textContent =
+          "لا توجد رسالة جديدة من معلمتكِ حتى الآن.";
+
+
+        teacherMessage.classList.add(
+          "empty-message"
+        );
+
+
+        teacherMessageDate.textContent =
+          "";
+
+      }
+
+    }
+
+
+    async function loadStudentRecord(
+      user
+    ) {
+
+      try {
+
+        statusBox.className =
+          "status-box loading";
+
+
+        statusBox.textContent =
+          "جارٍ تحميل سجلّكِ...";
+
+
+        const studentRef =
+          doc(
+            db,
+            "students",
+            user.uid
+          );
+
+
+        const studentSnap =
+          await getDoc(
+            studentRef
+          );
+
+
+        if (
+          !studentSnap.exists()
+        ) {
+
+          statusBox.className =
+            "status-box error";
+
+
+          statusBox.textContent =
+            "تعذّر العثور على سجلّكِ في المنصة.";
+
+
+          progressContent.style.display =
+            "none";
+
+
+          return;
+
+        }
+
+
+        const data =
+          studentSnap.data();
+
+
+        await ensureParentCode(
+          studentRef,
+          data,
+          user
+        );
+
+
+        showStudentProgress(
+          data,
+          user
+        );
+
+
+        progressContent.style.display =
+          "block";
+
+
+        statusBox.style.display =
+          "none";
+
+
+      } catch (
+        error
+      ) {
+
+        console.error(
+          "خطأ في تحميل تقدم الفصل الأول:",
+          error
+        );
+
+
+        statusBox.className =
+          "status-box error";
+
+
+        statusBox.textContent =
+          "تعذّر تحميل بيانات تقدّمكِ. حاولي مرة أخرى.";
+
+
+        progressContent.style.display =
+          "none";
+
+      }
+
+    }
+
+
+    onAuthStateChanged(
+      auth,
+      async user => {
+
+        if (
+          !user
+        ) {
+
+          statusBox.className =
+            "status-box error";
+
+
+          statusBox.textContent =
+            "🔒 يلزم تسجيل الدخول أولًا لعرض تقدّمكِ.";
+
+
+          progressContent.style.display =
+            "none";
+
+
+          return;
+
+        }
+
+
+        await loadStudentRecord(
+          user
+        );
+
+      }
+    );
 
   </script>
 
