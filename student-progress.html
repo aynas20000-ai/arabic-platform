@@ -465,7 +465,8 @@
 
       background: #eaf7ef;
     }
-        .teacher-message {
+
+    .teacher-message {
       margin-top: 22px;
       padding: 20px;
 
@@ -567,8 +568,7 @@
           #5b4677
         );
     }
-
-    @media (min-width: 720px) {
+        @media (min-width: 720px) {
 
       .stats-grid {
         grid-template-columns:
@@ -896,7 +896,9 @@
       getFirestore,
       doc,
       getDoc,
-      updateDoc
+      updateDoc,
+      setDoc,
+      serverTimestamp
     }
     from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 
@@ -1034,7 +1036,9 @@
       document.getElementById(
         "teacherMessageDate"
       );
-        function toArabicNumber(
+
+
+    function toArabicNumber(
       value
     ) {
 
@@ -1158,9 +1162,7 @@
       return `AFQ-${number}`;
 
     }
-
-
-    async function ensureParentCode(
+        async function ensureParentCode(
       studentRef,
       data,
       user
@@ -1191,6 +1193,36 @@
 
         data["رمز_ولي_الأمر"] =
           code;
+
+      }
+
+
+      const parentCodeRef =
+        doc(
+          db,
+          "parent_codes",
+          code
+        );
+
+
+      const parentCodeSnap =
+        await getDoc(
+          parentCodeRef
+        );
+
+
+      if (!parentCodeSnap.exists()) {
+
+        await setDoc(
+          parentCodeRef,
+          {
+            studentUid:
+              user.uid,
+
+            createdAt:
+              serverTimestamp()
+          }
+        );
 
       }
 
