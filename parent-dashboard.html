@@ -1,18 +1,14 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
 <meta charset="UTF-8">
-
 <meta
   name="viewport"
   content="width=device-width, initial-scale=1.0"
 >
-
 <title>متابعة ولي الأمر | منصة آفاق</title>
 
 <style>
-
 :root{
   --purple:#5b4677;
   --purple-light:#7b6498;
@@ -739,7 +735,7 @@ header p{
 
 .modal-body{
   padding:17px;
-}
+  }
 
 .challenge-grid{
   display:grid;
@@ -821,8 +817,8 @@ header p{
 
 }
 
-  </style>
-  </head>
+</style>
+</head>
 
 <body>
 
@@ -959,32 +955,75 @@ header p{
 
       <div class="stat-card">
         <div class="stat-icon">✅</div>
-        <span id="stat1" class="stat-number">—</span>
-        <span id="statLabel1" class="stat-label">
+
+        <span
+          id="stat1"
+          class="stat-number"
+        >
+          —
+        </span>
+
+        <span
+          id="statLabel1"
+          class="stat-label"
+        >
           حالة الإنجاز
         </span>
       </div>
 
+
       <div class="stat-card">
         <div class="stat-icon">📈</div>
-        <span id="stat2" class="stat-number">—</span>
-        <span id="statLabel2" class="stat-label">
+
+        <span
+          id="stat2"
+          class="stat-number"
+        >
+          —
+        </span>
+
+        <span
+          id="statLabel2"
+          class="stat-label"
+        >
           النتيجة
         </span>
       </div>
 
+
       <div class="stat-card">
         <div class="stat-icon">🎓</div>
-        <span id="stat3" class="stat-number">—</span>
-        <span id="statLabel3" class="stat-label">
+
+        <span
+          id="stat3"
+          class="stat-number"
+        >
+          —
+        </span>
+
+        <span
+          id="statLabel3"
+          class="stat-label"
+        >
           الشهادات
         </span>
       </div>
 
+
       <div class="stat-card">
         <div class="stat-icon">🏆</div>
-        <span id="stat4" class="stat-number">—</span>
-        <span id="statLabel4" class="stat-label">
+
+        <span
+          id="stat4"
+          class="stat-number"
+        >
+          —
+        </span>
+
+        <span
+          id="statLabel4"
+          class="stat-label"
+        >
           الإنجاز
         </span>
       </div>
@@ -1006,7 +1045,9 @@ header p{
         class="section-note"
       ></p>
 
-      <div id="viewContent"></div>
+      <div
+        id="viewContent"
+      ></div>
 
     </section>
 
@@ -1014,12 +1055,12 @@ header p{
     <section class="section">
 
       <h2 class="section-title">
-        💌 ملاحظات المعلمة لولي الأمر
+        💌 رسالة المتابعة لولي الأمر
       </h2>
 
       <p class="section-note">
-        تظهر هنا الملاحظات التي خصصتها المعلمة
-        لولي الأمر فقط.
+        تتحدث الرسالة تلقائيًا وفق تقدم ابنتكِ في القسم المعروض،
+        وتظهر الرسالة الخاصة من المعلمة إذا أضيفت.
       </p>
 
       <div
@@ -1495,11 +1536,12 @@ function normalizeChallenge(
       item["الشهادة"] === true ||
       item.certificate === true ||
       percentage >= 80
-
-  };
+      };
 
 }
-  function prepareStudent(
+
+
+function prepareStudent(
   id,
   data
 ){
@@ -1799,11 +1841,6 @@ async function linkParentByCode(){
       "جارٍ التحقق من الرمز...";
 
 
-    /*
-      نقرأ مستند الرمز نفسه فقط:
-      parent_codes/AFQ-xxxxxxxx
-    */
-
     const parentCodeRef =
       doc(
         db,
@@ -1868,11 +1905,6 @@ async function linkParentByCode(){
       );
 
 
-    /*
-      إذا كان الحساب مرتبطًا من قبل
-      لا ننشئ رابطًا جديدًا.
-    */
-
     const existingLink =
       await getDoc(
         parentLinkRef
@@ -1916,12 +1948,6 @@ async function linkParentByCode(){
 
     }
 
-
-    /*
-      إنشاء الربط لأول مرة.
-      حقل code مهم لأن قواعد Firebase
-      تتحقق منه عند إنشاء الرابط.
-    */
 
     await setDoc(
       parentLinkRef,
@@ -1983,6 +2009,256 @@ async function linkParentByCode(){
       false;
 
   }
+
+}
+
+
+/* ==================================
+   رسائل المتابعة التلقائية لولي الأمر
+================================== */
+
+function getAutomaticParentMessage(
+  view,
+  student
+){
+
+  if(
+    !student
+  ){
+
+    return "نعتز بشراكتكم في متابعة تعلم ابنتكم، وسيظهر هنا ما يدعم متابعتها وفق تقدمها في المنصة.";
+
+  }
+
+
+  if(
+    view === "semester1"
+  ){
+
+    const data =
+      student.semester1;
+
+
+    if(
+      data.completed &&
+      data.certificate
+    ){
+
+      return `🌟 يسرنا أن نشارككم إنجاز ابنتكم في الفصل الدراسي الأول؛ فقد أتمت متطلبات الفصل واستحقت الشهادة بنتيجة ${toArabicNumber(data.score)}٪. شكرًا لدعمكم، ونأمل استمرار تشجيعها للمحافظة على هذا التميز.`;
+
+    }
+
+
+    if(
+      data.completed &&
+      data.score >= 80
+    ){
+
+      return `👏 أتمت ابنتكم متطلبات الفصل الدراسي الأول بنتيجة ${toArabicNumber(data.score)}٪، وهو مستوى جيد يدعو للفخر. نأمل مواصلة تشجيعها وتعزيز ثقتها بنفسها.`;
+
+    }
+
+
+    if(
+      data.completed &&
+      data.score >= 60
+    ){
+
+      return `🌷 أتمت ابنتكم متطلبات الفصل الدراسي الأول، وحققت نتيجة ${toArabicNumber(data.score)}٪. دعمكم الهادئ ومراجعة جوانب التحسين معها سيساعدانها على الوصول إلى مستوى أعلى.`;
+
+    }
+
+
+    if(
+      data.completed
+    ){
+
+      return `💛 أتمت ابنتكم متطلبات الفصل الدراسي الأول، وتحتاج في المرحلة القادمة إلى مزيد من المراجعة والتشجيع. وجودكم بجانبها ومتابعتكم المنتظمة سيصنعان فرقًا جميلًا في تقدمها.`;
+
+    }
+
+
+    if(
+      data.testCount > 0
+    ){
+
+      return `📘 بدأت ابنتكم العمل في اختبارات الفصل الدراسي الأول، وقد سُجل لها ${toArabicNumber(data.testCount)} اختبارًا حتى الآن. نأمل تشجيعها على الاستمرار وإكمال ما تبقى بهدوء وانتظام.`;
+
+    }
+
+
+    return "🌱 لم يكتمل تسجيل إنجاز ابنتكم في اختبارات الفصل الدراسي الأول بعد. نشكر متابعتكم، وسيظهر تقدمها هنا فور بدء الإنجاز.";
+
+  }
+
+
+  if(
+    view === "semester2"
+  ){
+
+    const data =
+      student.semester2;
+
+
+    if(
+      data.completed &&
+      data.certificate
+    ){
+
+      return `🌟 مبارك لكم إنجاز ابنتكم في الفصل الدراسي الثاني؛ فقد أتمت المتطلبات واستحقت الشهادة بنتيجة ${toArabicNumber(data.score)}٪. دعمكم المستمر شريك مهم في هذا النجاح.`;
+
+    }
+
+
+    if(
+      data.completed &&
+      data.score >= 80
+    ){
+
+      return `👏 أتمت ابنتكم الفصل الدراسي الثاني بنتيجة ${toArabicNumber(data.score)}٪. نبارك لها هذا التقدم، ونأمل استمرار التشجيع للمحافظة على مستواها.`;
+
+    }
+
+
+    if(
+      data.completed &&
+      data.score < 80
+    ){
+
+      return `🌷 أتمت ابنتكم متطلبات الفصل الدراسي الثاني بنتيجة ${toArabicNumber(data.score)}٪. نأمل دعمها في مراجعة الجوانب التي تحتاج إلى تعزيز؛ فالتشجيع المستمر يساعدها على التقدم بثقة.`;
+
+    }
+
+
+    if(
+      data.testCount > 0 &&
+      data.currentAverage >= 90
+    ){
+
+      return `✨ أداء ابنتكم في نماذج الفصل الدراسي الثاني متميز حتى الآن؛ أتمت ${toArabicNumber(data.testCount)} نموذجًا بمتوسط ${toArabicNumber(data.currentAverage)}٪. نأمل مواصلة الدعم حتى إكمال بقية النماذج.`;
+
+    }
+
+
+    if(
+      data.testCount > 0 &&
+      data.currentAverage >= 80
+    ){
+
+      return `📗 تسير ابنتكم بصورة جيدة في الفصل الدراسي الثاني؛ أتمت ${toArabicNumber(data.testCount)} نموذجًا بمتوسط ${toArabicNumber(data.currentAverage)}٪. استمرار المتابعة والتشجيع سيساعدها على إكمال رحلتها بثبات.`;
+
+    }
+
+
+    if(
+      data.testCount > 0
+    ){
+
+      return `💛 بدأت ابنتكم نماذج الفصل الدراسي الثاني وأتمت ${toArabicNumber(data.testCount)} منها، ومتوسطها الحالي ${toArabicNumber(data.currentAverage)}٪. نأمل دعمها في المراجعة المنتظمة وإكمال النماذج المتبقية.`;
+
+    }
+
+
+    return "🌱 لم تبدأ ابنتكم نماذج الفصل الدراسي الثاني بعد. نشكر اهتمامكم، ونأمل تشجيعها على البدء عند إتاحة النماذج.";
+
+  }
+
+
+  const nafes =
+    student.nafes;
+
+
+  if(
+    nafes.cup
+  ){
+
+    return `🏆 نبارك لكم إنجاز ابنتكم المميز في نافس؛ فقد أتمت التحديات العشرين بمتوسط ${toArabicNumber(nafes.challengeAverage)}٪ واستحقت كأس نافس. شكرًا لشراكتكم ودعمكم المستمر.`;
+
+  }
+
+
+  if(
+    nafes.challengeCount === TOTAL_CHALLENGES
+  ){
+
+    return `🎯 أتمت ابنتكم جميع تحديات نافس العشرين بمتوسط ${toArabicNumber(nafes.challengeAverage)}٪. إنجاز يستحق الإشادة، ونأمل تشجيعها على الاستمرار في تنمية مهاراتها ورفع مستوى أدائها.`;
+
+  }
+
+
+  if(
+    nafes.challengeCount >= 15
+  ){
+
+    return `🌟 اقتربت ابنتكم كثيرًا من إكمال رحلة نافس؛ أنجزت ${toArabicNumber(nafes.challengeCount)} من ٢٠ تحديًا بمتوسط ${toArabicNumber(nafes.challengeAverage)}٪. بقي القليل، وتشجيعكم لها سيعينها على إتمام الرحلة بثقة.`;
+
+  }
+
+
+  if(
+    nafes.challengeCount >= 8
+  ){
+
+    return `👏 تحقق ابنتكم تقدمًا جيدًا في نافس؛ أنجزت ${toArabicNumber(nafes.challengeCount)} من ٢٠ تحديًا بمتوسط ${toArabicNumber(nafes.challengeAverage)}٪. نأمل استمرار دعمها لإكمال التحديات المتبقية.`;
+
+  }
+
+
+  if(
+    nafes.challengeCount > 0
+  ){
+
+    return `🎯 بدأت ابنتكم رحلة نافس وأنجزت ${toArabicNumber(nafes.challengeCount)} من ٢٠ تحديًا. تشجيعكم على الاستمرار والممارسة المنتظمة سيساعدها على بناء مهاراتها وتحسين أدائها.`;
+
+  }
+
+
+  return "🌱 لم تبدأ ابنتكم تحديات نافس بعد. نأمل تشجيعها على خوض التحديات والاستفادة من رحلة التدريب في المنصة.";
+
+}
+
+
+function renderParentMessage(){
+
+  if(
+    !currentStudent
+  ){
+    return;
+  }
+
+
+  const privateMessage =
+    String(
+      currentStudent.parentNotes || ""
+    ).trim();
+
+
+  if(
+    privateMessage
+  ){
+
+    parentNotes.className =
+      "notes-box";
+
+
+    parentNotes.innerHTML =
+      `<strong>💌 رسالة خاصة من المعلمة:</strong><br>${escapeHtml(privateMessage)}`;
+
+
+    return;
+
+  }
+
+
+  parentNotes.className =
+    "notes-box";
+
+
+  parentNotes.textContent =
+    getAutomaticParentMessage(
+      currentView,
+      currentStudent
+    );
 
 }
 
@@ -2114,8 +2390,7 @@ async function loadParentStudent(
 
 
       return;
-
-    }
+          }
 
 
     currentStudent =
@@ -2131,32 +2406,6 @@ async function loadParentStudent(
 
     studentClass.textContent =
       currentStudent.className;
-
-
-    if(
-      currentStudent.parentNotes
-    ){
-
-      parentNotes.className =
-        "notes-box";
-
-
-      parentNotes.textContent =
-        currentStudent.parentNotes;
-
-    }
-
-
-    else{
-
-      parentNotes.className =
-        "notes-box empty";
-
-
-      parentNotes.textContent =
-        "لا توجد ملاحظات جديدة من المعلمة.";
-
-    }
 
 
     dashboardContent.style.display =
@@ -2207,7 +2456,9 @@ async function loadParentStudent(
   }
 
 }
-  function renderSemester(
+
+
+function renderSemester(
   key
 ){
 
@@ -2849,6 +3100,9 @@ function renderCurrentView(){
     renderNafes();
 
   }
+
+
+  renderParentMessage();
 
 }
 
