@@ -1,0 +1,3363 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+متابعة موجّهة الإرشاد الطلابي | منصة آفاق
+</title>
+
+<style>
+
+:root{
+  --purple:#5b4677;
+  --purple-light:#7a6397;
+  --purple-dark:#49385c;
+  --gold:#c9a85c;
+  --paper:#fffdf8;
+  --text:#44384f;
+  --green:#2f7650;
+  --green-bg:#eaf7ef;
+  --red:#96394a;
+  --red-bg:#fff0f2;
+  --yellow:#8b6a18;
+  --yellow-bg:#fff7df;
+  --shadow:0 8px 24px rgba(91,70,119,.09);
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html,
+body{
+  margin:0;
+  width:100%;
+  min-height:100%;
+}
+
+body{
+  font-family:
+    Tahoma,
+    Arial,
+    sans-serif;
+
+  color:var(--text);
+
+  background:
+    linear-gradient(
+      145deg,
+      #fffaf2,
+      #f7eef9
+    );
+}
+
+button,
+input,
+select,
+textarea,
+a{
+  font-family:inherit;
+}
+
+header{
+  padding:
+    30px 16px 26px;
+
+  text-align:center;
+
+  color:white;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--purple-light),
+      var(--purple-dark)
+    );
+
+  border-bottom:
+    5px solid var(--gold);
+}
+
+header .badge{
+  display:inline-block;
+
+  margin-bottom:8px;
+
+  padding:
+    5px 15px;
+
+  color:#fff3c9;
+
+  border:
+    1px solid
+    rgba(255,255,255,.45);
+
+  border-radius:999px;
+
+  background:
+    rgba(255,255,255,.1);
+
+  font-size:12px;
+  font-weight:bold;
+}
+
+header h1{
+  margin:0 0 7px;
+
+  font-size:
+    clamp(
+      25px,
+      6vw,
+      38px
+    );
+}
+
+header p{
+  max-width:800px;
+
+  margin:auto;
+
+  color:#f5edf8;
+
+  font-size:14px;
+  line-height:1.9;
+}
+
+.container{
+  width:
+    min(
+      1220px,
+      calc(100% - 24px)
+    );
+
+  margin:
+    22px auto 45px;
+}
+
+.status-box{
+  margin-bottom:18px;
+
+  padding:14px;
+
+  text-align:center;
+
+  border:
+    1px solid #dec98d;
+
+  border-radius:17px;
+
+  background:#fffdf8;
+
+  font-size:14px;
+  font-weight:bold;
+  line-height:1.8;
+}
+
+.status-box.loading{
+  color:#6d582a;
+  background:#fff8e7;
+}
+
+.status-box.success{
+  color:var(--green);
+  background:var(--green-bg);
+}
+
+.status-box.error{
+  color:var(--red);
+  background:var(--red-bg);
+}
+
+.intro-card{
+  margin-bottom:18px;
+
+  padding:17px;
+
+  text-align:center;
+
+  border:
+    2px solid var(--gold);
+
+  border-radius:21px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #fffdf8,
+      #f6eef9
+    );
+
+  box-shadow:var(--shadow);
+}
+
+.intro-card h2{
+  margin:
+    0 0 6px;
+
+  color:var(--purple);
+
+  font-size:20px;
+}
+
+.intro-card p{
+  margin:0;
+
+  color:#716576;
+
+  font-size:13px;
+  line-height:1.9;
+}
+
+.tabs{
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(0,1fr)
+    );
+
+  gap:9px;
+
+  margin-bottom:18px;
+
+  padding:8px;
+
+  border:
+    2px solid #dec98d;
+
+  border-radius:20px;
+
+  background:#fffdf8;
+}
+
+.tab-button{
+  min-height:58px;
+
+  padding:10px 7px;
+
+  border:none;
+
+  border-radius:15px;
+
+  color:var(--purple);
+
+  background:#f3ecf7;
+
+  font-size:13px;
+  font-weight:bold;
+
+  cursor:pointer;
+}
+
+.tab-button.active{
+  color:white;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--purple-light),
+      var(--purple)
+    );
+}
+
+.filters{
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:10px;
+
+  margin-bottom:18px;
+
+  padding:14px;
+
+  border:
+    1px solid #dec98d;
+
+  border-radius:18px;
+
+  background:#fffdf8;
+}
+
+.filters label{
+  flex:
+    1 1 190px;
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:6px;
+
+  color:var(--purple);
+
+  font-size:12px;
+  font-weight:bold;
+}
+
+.filters select,
+.filters input{
+  width:100%;
+
+  padding:
+    11px 12px;
+
+  border:
+    1px solid #ccb8dc;
+
+  border-radius:12px;
+
+  color:
+    var(--purple-dark);
+
+  background:white;
+
+  font-size:14px;
+}
+
+.stats{
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0,1fr)
+    );
+
+  gap:12px;
+
+  margin-bottom:20px;
+}
+
+.stat-card{
+  padding:
+    18px 10px;
+
+  text-align:center;
+
+  border:
+    2px solid #dec98d;
+
+  border-radius:20px;
+
+  background:#fffdf8;
+
+  box-shadow:var(--shadow);
+}
+
+.stat-icon{
+  font-size:28px;
+}
+
+.stat-number{
+  display:block;
+
+  margin-top:4px;
+
+  color:var(--purple);
+
+  font-size:27px;
+  font-weight:bold;
+}
+
+.stat-label{
+  display:block;
+
+  margin-top:5px;
+
+  color:#72647a;
+
+  font-size:12px;
+  font-weight:bold;
+  line-height:1.6;
+}
+
+.section{
+  padding:16px;
+
+  border:
+    2px solid #dec98d;
+
+  border-radius:21px;
+
+  background:#fffdf8;
+
+  box-shadow:var(--shadow);
+}
+
+.section-title{
+  margin:
+    0 0 8px;
+
+  text-align:center;
+
+  color:var(--purple);
+
+  font-size:21px;
+}
+
+.section-note{
+  margin:
+    0 0 16px;
+
+  text-align:center;
+
+  color:#776b7c;
+
+  font-size:12px;
+  line-height:1.8;
+}
+
+.table-wrap{
+  width:100%;
+
+  overflow-x:auto;
+
+  border-radius:14px;
+}
+
+table{
+  width:100%;
+
+  min-width:1000px;
+
+  border-collapse:collapse;
+
+  background:white;
+}
+
+th,
+td{
+  padding:
+    11px 8px;
+
+  text-align:center;
+  vertical-align:middle;
+
+  border-bottom:
+    1px solid #eee5f1;
+}
+
+th{
+  color:white;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--purple-light),
+      var(--purple)
+    );
+
+  font-size:12px;
+}
+
+td{
+  color:#4d4352;
+
+  font-size:12px;
+  line-height:1.6;
+}
+
+tbody tr:nth-child(even){
+  background:#fcf9ff;
+}
+
+.student-name{
+  color:var(--purple);
+
+  font-weight:bold;
+}
+
+.tag{
+  display:inline-block;
+
+  padding:
+    4px 8px;
+
+  border-radius:999px;
+
+  font-size:11px;
+  font-weight:bold;
+}
+
+.tag.good{
+  color:#286a43;
+
+  background:#e8f7ed;
+}
+
+.tag.follow{
+  color:#7b5d18;
+
+  background:#fff5d9;
+}
+
+.tag.need{
+  color:#8e3d4e;
+
+  background:#ffecef;
+}
+
+.tag.improved{
+  color:#4e5e9a;
+
+  background:#eef0ff;
+}
+
+.score-good,
+.score-mid,
+.score-low{
+  display:inline-block;
+
+  min-width:55px;
+
+  padding:
+    4px 7px;
+
+  border-radius:999px;
+
+  font-weight:bold;
+}
+
+.score-good{
+  color:#276842;
+
+  background:#e7f7ed;
+}
+
+.score-mid{
+  color:#7b5d18;
+
+  background:#fff5d9;
+}
+
+.score-low{
+  color:#923e4e;
+
+  background:#ffecef;
+}
+
+.details-button{
+  padding:
+    8px 11px;
+
+  border:none;
+
+  border-radius:11px;
+
+  color:white;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--purple-light),
+      var(--purple)
+    );
+
+  font-size:11px;
+  font-weight:bold;
+
+  cursor:pointer;
+}
+
+.empty{
+  padding:25px;
+
+  text-align:center;
+
+  color:#75697a;
+
+  font-weight:bold;
+}
+
+.footer{
+  margin-top:24px;
+
+  text-align:center;
+}
+
+.back-button{
+  display:inline-block;
+
+  padding:
+    11px 22px;
+
+  color:white;
+
+  text-decoration:none;
+
+  border:
+    2px solid var(--gold);
+
+  border-radius:999px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--purple-light),
+      var(--purple)
+    );
+
+  font-size:13px;
+  font-weight:bold;
+}
+
+
+/* نافذة الملاحظة */
+
+.modal{
+  display:none;
+
+  position:fixed;
+
+  inset:0;
+
+  z-index:9999;
+
+  padding:16px;
+
+  overflow-y:auto;
+
+  background:
+    rgba(35,27,43,.65);
+}
+
+.modal.show{
+  display:block;
+}
+
+.modal-card{
+  width:
+    min(
+      100%,
+      680px
+    );
+
+  margin:
+    30px auto;
+
+  overflow:hidden;
+
+  border:
+    3px solid var(--gold);
+
+  border-radius:24px;
+
+  background:#fffdf8;
+
+  box-shadow:
+    0 20px 50px
+    rgba(0,0,0,.2);
+}
+
+.modal-head{
+  display:flex;
+
+  justify-content:space-between;
+  align-items:center;
+
+  gap:10px;
+
+  padding:
+    16px 18px;
+
+  color:white;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--purple-light),
+      var(--purple)
+    );
+
+  border-bottom:
+    4px solid var(--gold);
+}
+
+.modal-head h2{
+  margin:0;
+
+  font-size:20px;
+}
+
+.modal-close{
+  width:42px;
+  height:42px;
+
+  border:none;
+
+  border-radius:50%;
+
+  color:var(--purple);
+
+  background:#fff4c9;
+
+  font-size:20px;
+  font-weight:bold;
+
+  cursor:pointer;
+}
+
+.modal-body{
+  padding:18px;
+}
+
+.student-info{
+  margin-bottom:15px;
+
+  padding:13px;
+
+  text-align:center;
+
+  border:
+    1px solid #dec98d;
+
+  border-radius:16px;
+
+  background:#fffaf0;
+
+  line-height:1.8;
+}
+
+.note-label{
+  display:block;
+
+  margin:
+    0 0 7px;
+
+  color:var(--purple);
+
+  font-size:13px;
+  font-weight:bold;
+}
+
+.note-textarea{
+  width:100%;
+
+  min-height:120px;
+
+  padding:12px;
+
+  resize:vertical;
+
+  border:
+    1px solid #ccb8dc;
+
+  border-radius:13px;
+
+  color:#49385c;
+
+  background:white;
+
+  font-size:13px;
+  line-height:1.8;
+}
+
+.note-options{
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0,1fr)
+    );
+
+  gap:9px;
+
+  margin-top:12px;
+}
+
+.note-options label{
+  display:flex;
+
+  align-items:center;
+
+  gap:7px;
+
+  padding:10px;
+
+  border:
+    1px solid #dec98d;
+
+  border-radius:13px;
+
+  background:#faf6fb;
+
+  font-size:12px;
+}
+
+.note-save{
+  width:100%;
+
+  margin-top:13px;
+
+  padding:13px;
+
+  border:none;
+
+  border-radius:14px;
+
+  color:white;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--purple-light),
+      var(--purple)
+    );
+
+  font-size:14px;
+  font-weight:bold;
+
+  cursor:pointer;
+}
+
+.note-message{
+  min-height:28px;
+
+  margin-top:10px;
+
+  text-align:center;
+
+  font-size:12px;
+  font-weight:bold;
+}
+
+@media(min-width:780px){
+
+  .stats{
+    grid-template-columns:
+      repeat(
+        5,
+        minmax(0,1fr)
+      );
+  }
+
+}
+
+@media(max-width:600px){
+
+  .note-options{
+    grid-template-columns:1fr;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+  <div class="badge">
+    الإرشاد الطلابي
+  </div>
+
+  <h1 id="pageTitle">
+    💜 لوحة متابعة موجّهة الإرشاد الطلابي
+  </h1>
+
+  <p id="pageDescription">
+    متابعة الطالبات اللاتي يحتجن إلى دعم،
+    ورصد مؤشرات التحسن والتقدم،
+    وإضافة ملاحظات المتابعة التربوية.
+  </p>
+
+</header>
+
+
+<main class="container">
+
+  <div
+    id="statusBox"
+    class="status-box loading"
+  >
+    جارٍ التحقق من صلاحية الدخول...
+  </div>
+
+
+  <section
+    id="dashboardContent"
+    style="display:none;"
+  >
+
+    <div class="intro-card">
+
+      <h2>
+        🌷 متابعة الدعم والإرشاد
+      </h2>
+
+      <p>
+        تساعد هذه اللوحة على رصد الطالبات
+        اللاتي يحتجن إلى متابعة تربوية،
+        مع إمكانية تسجيل ملاحظة متابعة
+        وإظهارها للطالبة أو ولي الأمر عند الحاجة.
+      </p>
+
+    </div>
+
+
+    <div class="tabs">
+
+      <button
+        class="tab-button active"
+        type="button"
+        data-view="semester1"
+      >
+        📘 الفصل الأول
+      </button>
+
+      <button
+        class="tab-button"
+        type="button"
+        data-view="semester2"
+      >
+        📗 الفصل الثاني
+      </button>
+
+      <button
+        class="tab-button"
+        type="button"
+        data-view="nafes"
+      >
+        🎯 نافس
+      </button>
+
+    </div>
+
+
+    <div class="filters">
+
+      <label>
+
+        الفصل
+
+        <select id="classFilter">
+
+          <option value="all">
+            جميع الفصول
+          </option>
+
+          <option value="ثالث متوسط أ">
+            ثالث متوسط أ
+          </option>
+
+          <option value="ثالث متوسط ب">
+            ثالث متوسط ب
+          </option>
+
+          <option value="ثالث متوسط ج">
+            ثالث متوسط ج
+          </option>
+
+        </select>
+
+      </label>
+
+
+      <label>
+
+        حالة المتابعة
+
+        <select id="supportFilter">
+
+          <option value="all">
+            الجميع
+          </option>
+
+          <option value="need">
+            تحتاج متابعة
+          </option>
+
+          <option value="follow">
+            تمت المتابعة
+          </option>
+
+          <option value="improved">
+            تحسن ملحوظ
+          </option>
+
+        </select>
+
+      </label>
+
+
+      <label>
+
+        البحث باسم الطالبة
+
+        <input
+          id="searchInput"
+          type="search"
+          placeholder="اكتبي الاسم..."
+        >
+
+      </label>
+
+    </div>
+        <section class="stats">
+
+      <div class="stat-card">
+
+        <div class="stat-icon">
+          👩‍🎓
+        </div>
+
+        <span
+          id="stat1"
+          class="stat-number"
+        >
+          ٠
+        </span>
+
+        <span
+          id="statLabel1"
+          class="stat-label"
+        >
+          عدد الطالبات
+        </span>
+
+      </div>
+
+
+      <div class="stat-card">
+
+        <div class="stat-icon">
+          📌
+        </div>
+
+        <span
+          id="stat2"
+          class="stat-number"
+        >
+          ٠
+        </span>
+
+        <span
+          id="statLabel2"
+          class="stat-label"
+        >
+          يحتجن متابعة
+        </span>
+
+      </div>
+
+
+      <div class="stat-card">
+
+        <div class="stat-icon">
+          🤝
+        </div>
+
+        <span
+          id="stat3"
+          class="stat-number"
+        >
+          ٠
+        </span>
+
+        <span
+          id="statLabel3"
+          class="stat-label"
+        >
+          تمت متابعتهن
+        </span>
+
+      </div>
+
+
+      <div class="stat-card">
+
+        <div class="stat-icon">
+          🌱
+        </div>
+
+        <span
+          id="stat4"
+          class="stat-number"
+        >
+          ٠
+        </span>
+
+        <span
+          id="statLabel4"
+          class="stat-label"
+        >
+          تحسن ملحوظ
+        </span>
+
+      </div>
+
+
+      <div class="stat-card">
+
+        <div class="stat-icon">
+          📈
+        </div>
+
+        <span
+          id="stat5"
+          class="stat-number"
+        >
+          ٠٪
+        </span>
+
+        <span
+          id="statLabel5"
+          class="stat-label"
+        >
+          متوسط الأداء
+        </span>
+
+      </div>
+
+    </section>
+
+
+    <section class="section">
+
+      <h2
+        id="tableTitle"
+        class="section-title"
+      >
+        متابعة الطالبات
+      </h2>
+
+      <p
+        id="tableNote"
+        class="section-note"
+      >
+        تظهر هنا مؤشرات تساعد في تحديد الطالبات اللاتي يحتجن إلى دعم.
+      </p>
+
+
+      <div class="table-wrap">
+
+        <table>
+
+          <thead id="tableHead"></thead>
+
+          <tbody id="studentsTable">
+
+            <tr>
+
+              <td
+                colspan="10"
+                class="empty"
+              >
+                جارٍ تحميل البيانات...
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </section>
+
+
+    <div class="footer">
+
+      <a
+        href="index.html"
+        class="back-button"
+      >
+        ↩ العودة إلى المنصة
+      </a>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<div
+  id="noteModal"
+  class="modal"
+>
+
+  <div class="modal-card">
+
+    <div class="modal-head">
+
+      <h2>
+        💌 ملاحظة المتابعة
+      </h2>
+
+      <button
+        id="modalClose"
+        class="modal-close"
+        type="button"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <div class="modal-body">
+
+      <div
+        id="studentInfo"
+        class="student-info"
+      ></div>
+
+
+      <label
+        for="followStatusSelect"
+        class="note-label"
+      >
+        حالة المتابعة
+      </label>
+
+      <select
+        id="followStatusSelect"
+        class="note-textarea"
+        style="min-height:auto;"
+      >
+
+        <option value="need">
+          تحتاج متابعة
+        </option>
+
+        <option value="follow">
+          تمت المتابعة
+        </option>
+
+        <option value="improved">
+          تحسن ملحوظ
+        </option>
+
+      </select>
+
+
+      <label
+        for="noteText"
+        class="note-label"
+        style="margin-top:14px;"
+      >
+        الملاحظة التربوية
+      </label>
+
+      <textarea
+        id="noteText"
+        class="note-textarea"
+        placeholder="اكتبي ملاحظة المتابعة هنا..."
+      ></textarea>
+
+
+      <div class="note-options">
+
+        <label>
+
+          <input
+            id="visibleToStudent"
+            type="checkbox"
+          >
+
+          تظهر للطالبة
+
+        </label>
+
+
+        <label>
+
+          <input
+            id="visibleToParent"
+            type="checkbox"
+          >
+
+          تظهر لولي الأمر
+
+        </label>
+
+      </div>
+
+
+      <button
+        id="saveNoteButton"
+        class="note-save"
+        type="button"
+      >
+        💾 حفظ الملاحظة
+      </button>
+
+
+      <div
+        id="noteMessage"
+        class="note-message"
+      ></div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script type="module">
+
+
+import {
+  initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+
+
+import {
+  initializeAuth,
+  browserLocalPersistence,
+  browserPopupRedirectResolver,
+  onAuthStateChanged
+}
+from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  doc,
+  getDoc,
+  addDoc,
+  serverTimestamp
+}
+from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+
+const firebaseConfig = {
+
+  apiKey:
+    "AIzaSyB48av9gx4jzFyYoUQtcLwaR52qETevKGs",
+
+  authDomain:
+    "afaq-language-platform.firebaseapp.com",
+
+  projectId:
+    "afaq-language-platform",
+
+  storageBucket:
+    "afaq-language-platform.firebasestorage.app",
+
+  messagingSenderId:
+    "362601061474",
+
+  appId:
+    "1:362601061474:web:bc405291332b9e4ef9453b"
+
+};
+
+
+const app =
+  initializeApp(
+    firebaseConfig
+  );
+
+
+const auth =
+  initializeAuth(
+    app,
+    {
+
+      persistence:
+        browserLocalPersistence,
+
+      popupRedirectResolver:
+        browserPopupRedirectResolver
+
+    }
+  );
+
+
+const db =
+  getFirestore(
+    app
+  );
+
+
+const TEACHER_UID =
+  "oIqOvhIaC3TQyr6WcXCW9FZhZio2";
+
+
+const TOTAL_CHALLENGES =
+  20;
+
+
+const el =
+  id =>
+    document.getElementById(
+      id
+    );
+
+
+const statusBox =
+  el("statusBox");
+
+const dashboardContent =
+  el("dashboardContent");
+
+const pageTitle =
+  el("pageTitle");
+
+const pageDescription =
+  el("pageDescription");
+
+const classFilter =
+  el("classFilter");
+
+const supportFilter =
+  el("supportFilter");
+
+const searchInput =
+  el("searchInput");
+
+const tableTitle =
+  el("tableTitle");
+
+const tableNote =
+  el("tableNote");
+
+const tableHead =
+  el("tableHead");
+
+const studentsTable =
+  el("studentsTable");
+
+const stat1 =
+  el("stat1");
+
+const stat2 =
+  el("stat2");
+
+const stat3 =
+  el("stat3");
+
+const stat4 =
+  el("stat4");
+
+const stat5 =
+  el("stat5");
+
+const statLabel1 =
+  el("statLabel1");
+
+const statLabel2 =
+  el("statLabel2");
+
+const statLabel3 =
+  el("statLabel3");
+
+const statLabel4 =
+  el("statLabel4");
+
+const statLabel5 =
+  el("statLabel5");
+
+const noteModal =
+  el("noteModal");
+
+const modalClose =
+  el("modalClose");
+
+const studentInfo =
+  el("studentInfo");
+
+const followStatusSelect =
+  el("followStatusSelect");
+
+const noteText =
+  el("noteText");
+
+const visibleToStudent =
+  el("visibleToStudent");
+
+const visibleToParent =
+  el("visibleToParent");
+
+const saveNoteButton =
+  el("saveNoteButton");
+
+const noteMessage =
+  el("noteMessage");
+
+const tabButtons =
+  document.querySelectorAll(
+    ".tab-button"
+  );
+
+
+let currentView =
+  "semester1";
+
+
+let currentUser =
+  null;
+
+
+let allStudents =
+  [];
+
+
+let selectedStudent =
+  null;
+
+
+let followStateByStudent =
+  {};
+
+
+/* أدوات عامة */
+
+function toArabicNumber(
+  value
+){
+
+  return String(
+    value
+  ).replace(
+    /\d/g,
+    digit =>
+      "٠١٢٣٤٥٦٧٨٩"[digit]
+  );
+
+}
+
+
+function safeNumber(
+  value
+){
+
+  const number =
+    Number(
+      value
+    );
+
+
+  return Number.isFinite(
+    number
+  )
+    ? number
+    : 0;
+
+}
+
+
+function escapeHtml(
+  value
+){
+
+  return String(
+    value ?? ""
+  )
+  .replaceAll(
+    "&",
+    "&amp;"
+  )
+  .replaceAll(
+    "<",
+    "&lt;"
+  )
+  .replaceAll(
+    ">",
+    "&gt;"
+  )
+  .replaceAll(
+    '"',
+    "&quot;"
+  )
+  .replaceAll(
+    "'",
+    "&#039;"
+  );
+
+}
+
+
+function normalizeClassName(
+  value
+){
+
+  const text =
+    String(
+      value || ""
+    )
+    .trim()
+    .replace(
+      /\s+/g,
+      " "
+    );
+
+
+  if(!text){
+    return "غير محدد";
+  }
+
+
+  if(
+    text === "أ" ||
+    text === "ا" ||
+    text.includes("متوسط أ") ||
+    text.includes("متوسط ا") ||
+    text.includes("ثالث أ")
+  ){
+
+    return "ثالث متوسط أ";
+
+  }
+
+
+  if(
+    text === "ب" ||
+    text.includes("متوسط ب") ||
+    text.includes("ثالث ب")
+  ){
+
+    return "ثالث متوسط ب";
+
+  }
+
+
+  if(
+    text === "ج" ||
+    text.includes("متوسط ج") ||
+    text.includes("ثالث ج")
+  ){
+
+    return "ثالث متوسط ج";
+
+  }
+
+
+  return text;
+
+}
+
+
+function scoreClass(
+  value
+){
+
+  if(value >= 80){
+    return "score-good";
+  }
+
+
+  if(value >= 60){
+    return "score-mid";
+  }
+
+
+  return "score-low";
+
+}
+  function prepareStudentData(
+  id,
+  data
+){
+
+  const semester1Result =
+    data?.["نتيجة_الفصل_الأول"] ||
+    {};
+
+
+  const semester2Result =
+    data?.["نتيجة_الفصل_الثاني"] ||
+    {};
+
+
+  const semester1Tests =
+    data?.["اختبارات_الفصل_الأول"] ||
+    {};
+
+
+  const semester2Tests =
+    data?.["اختبارات_الفصل_الثاني"] ||
+    {};
+
+
+  const nafes =
+    data?.["نافس_المتابعة"] ||
+    {};
+
+
+  const challengeResults =
+    nafes["نتائج_التحديات"] &&
+    typeof nafes[
+      "نتائج_التحديات"
+    ] === "object"
+
+      ? nafes[
+          "نتائج_التحديات"
+        ]
+
+      : {};
+
+
+  let challengeCount =
+    0;
+
+
+  let challengeTotal =
+    0;
+
+
+  for(
+    let number=1;
+    number<=TOTAL_CHALLENGES;
+    number++
+  ){
+
+    const item =
+      challengeResults[
+        `challenge${number}`
+      ] ||
+      challengeResults[
+        `challenge${String(number).padStart(2,"0")}`
+      ];
+
+
+    if(
+      !item ||
+      typeof item !== "object"
+    ){
+
+      continue;
+
+    }
+
+
+    const score =
+      safeNumber(
+        item["الدرجة"] ??
+        item.score
+      );
+
+
+    const total =
+      safeNumber(
+        item["المجموع"] ??
+        item.total ??
+        10
+      );
+
+
+    let percentage =
+      Number(
+        item["النسبة"] ??
+        item.percentage
+      );
+
+
+    if(
+      !Number.isFinite(
+        percentage
+      )
+    ){
+
+      percentage =
+        total > 0
+          ? Math.round(
+              score /
+              total *
+              100
+            )
+          : 0;
+
+    }
+
+
+    challengeCount++;
+
+
+    challengeTotal +=
+      percentage;
+
+  }
+
+
+  const challengeAverage =
+    challengeCount > 0
+
+      ? Math.round(
+          challengeTotal /
+          challengeCount
+        )
+
+      : 0;
+
+
+  const semester1TestCount =
+    Object.values(
+      semester1Tests
+    )
+    .filter(
+      item =>
+        item &&
+        typeof item === "object"
+    )
+    .length;
+
+
+  const semester2TestCount =
+    Object.values(
+      semester2Tests
+    )
+    .filter(
+      item =>
+        item &&
+        typeof item === "object" &&
+        item["مكتمل"] === true
+    )
+    .length;
+
+
+  return {
+
+    id,
+
+    name:
+      data?.["الاسم_الرباعي"] ||
+      data?.["الاسم الرباعي"] ||
+      data?.["الاسم_الكامل"] ||
+      data?.["الاسم الكامل"] ||
+      data?.["اسم_الطالبة"] ||
+      data?.["الاسم"] ||
+      "طالبة غير مسماة",
+
+    className:
+      normalizeClassName(
+        data?.["الفصل"]
+      ),
+
+    semester1:{
+
+      completed:
+        semester1Result[
+          "مكتمل"
+        ] === true,
+
+      score:
+        safeNumber(
+          semester1Result[
+            "الدرجة"
+          ]
+        ),
+
+      testCount:
+        semester1TestCount
+
+    },
+
+    semester2:{
+
+      completed:
+        semester2Result[
+          "مكتمل"
+        ] === true,
+
+      score:
+        safeNumber(
+          semester2Result[
+            "الدرجة"
+          ]
+        ),
+
+      testCount:
+        semester2TestCount
+
+    },
+
+    nafes:{
+
+      challengeCount,
+
+      challengeAverage
+
+    }
+
+  };
+
+}
+
+
+function calculateSupportState(
+  student
+){
+
+  const stored =
+    followStateByStudent[
+      student.id
+    ];
+
+
+  if(
+    stored === "follow" ||
+    stored === "improved"
+  ){
+
+    return stored;
+
+  }
+
+
+  if(
+    currentView === "semester1"
+  ){
+
+    if(
+      student.semester1.completed &&
+      student.semester1.score >= 80
+    ){
+
+      return "improved";
+
+    }
+
+
+    return "need";
+
+  }
+
+
+  if(
+    currentView === "semester2"
+  ){
+
+    if(
+      student.semester2.completed &&
+      student.semester2.score >= 80
+    ){
+
+      return "improved";
+
+    }
+
+
+    return "need";
+
+  }
+
+
+  if(
+    student.nafes.challengeCount ===
+      TOTAL_CHALLENGES &&
+    student.nafes.challengeAverage >= 80
+  ){
+
+    return "improved";
+
+  }
+
+
+  return "need";
+
+}
+
+
+function supportText(
+  state
+){
+
+  if(
+    state === "improved"
+  ){
+
+    return `
+      <span class="tag improved">
+        🌱 تحسن ملحوظ
+      </span>
+    `;
+
+  }
+
+
+  if(
+    state === "follow"
+  ){
+
+    return `
+      <span class="tag follow">
+        🤝 تمت المتابعة
+      </span>
+    `;
+
+  }
+
+
+  return `
+    <span class="tag need">
+      📌 تحتاج متابعة
+    </span>
+  `;
+
+}
+
+
+/* تحميل آخر حالات المتابعة */
+
+async function loadFollowStates(){
+
+  followStateByStudent =
+    {};
+
+
+  const snapshot =
+    await getDocs(
+      collection(
+        db,
+        "staff_notes"
+      )
+    );
+
+
+  const latestByStudent =
+    {};
+
+
+  snapshot.forEach(
+    documentSnapshot => {
+
+      const data =
+        documentSnapshot.data();
+
+
+      if(
+        !data?.studentUid
+      ){
+
+        return;
+
+      }
+
+
+      const created =
+        data.createdAt?.seconds ||
+        0;
+
+
+      const current =
+        latestByStudent[
+          data.studentUid
+        ];
+
+
+      if(
+        !current ||
+        created >= current.created
+      ){
+
+        latestByStudent[
+          data.studentUid
+        ] = {
+
+          created,
+
+          status:
+            data.followStatus ||
+            "follow"
+
+        };
+
+      }
+
+    }
+  );
+
+
+  Object.entries(
+    latestByStudent
+  )
+  .forEach(
+    (
+      [
+        studentUid,
+        data
+      ]
+    ) => {
+
+      followStateByStudent[
+        studentUid
+      ] =
+        data.status;
+
+    }
+  );
+
+}
+
+
+/* تحميل بيانات الطالبات */
+
+async function loadStudents(){
+
+  statusBox.style.display =
+    "block";
+
+
+  statusBox.className =
+    "status-box loading";
+
+
+  statusBox.textContent =
+    "جارٍ تحميل بيانات المتابعة...";
+
+
+  try{
+
+    await loadFollowStates();
+
+
+    const snapshot =
+      await getDocs(
+        collection(
+          db,
+          "students"
+        )
+      );
+
+
+    allStudents =
+      [];
+
+
+    snapshot.forEach(
+      documentSnapshot => {
+
+        if(
+          documentSnapshot.id ===
+          TEACHER_UID
+        ){
+
+          return;
+
+        }
+
+
+        const data =
+          documentSnapshot.data();
+
+
+        if(
+          !data?.["الاسم"] &&
+          !data?.["اسم_الطالبة"] &&
+          !data?.["الاسم_الرباعي"] &&
+          !data?.["معرف_المستخدم"]
+        ){
+
+          return;
+
+        }
+
+
+        allStudents.push(
+          prepareStudentData(
+            documentSnapshot.id,
+            data
+          )
+        );
+
+      }
+    );
+
+
+    renderCurrentView();
+
+
+    statusBox.className =
+      "status-box success";
+
+
+    statusBox.textContent =
+      "✅ تم تحميل متابعة الطالبات بنجاح.";
+
+
+    setTimeout(
+      () => {
+
+        statusBox.style.display =
+          "none";
+
+      },
+      1500
+    );
+
+
+  }catch(error){
+
+    console.error(
+      "Counselor data error:",
+      error
+    );
+
+
+    statusBox.className =
+      "status-box error";
+
+
+    statusBox.textContent =
+      "تعذر تحميل بيانات المتابعة. تحققي من صلاحية الحساب.";
+
+  }
+
+}
+
+
+function getFilteredStudents(){
+
+  const classValue =
+    classFilter.value;
+
+
+  const supportValue =
+    supportFilter.value;
+
+
+  const searchValue =
+    searchInput.value
+      .trim()
+      .toLowerCase();
+
+
+  return allStudents.filter(
+    student => {
+
+      const classMatches =
+        classValue === "all" ||
+        student.className ===
+          classValue;
+
+
+      const state =
+        calculateSupportState(
+          student
+        );
+
+
+      const supportMatches =
+        supportValue === "all" ||
+        state === supportValue;
+
+
+      const searchMatches =
+        !searchValue ||
+        student.name
+          .toLowerCase()
+          .includes(
+            searchValue
+          );
+
+
+      return (
+        classMatches &&
+        supportMatches &&
+        searchMatches
+      );
+
+    }
+  );
+
+}
+
+
+function configureView(){
+
+  if(
+    currentView ===
+    "semester1"
+  ){
+
+    pageTitle.textContent =
+      "📘 الإرشاد — الفصل الدراسي الأول";
+
+
+    pageDescription.textContent =
+      "متابعة الطالبات اللاتي يحتجن إلى دعم في نتائج وإنجاز الفصل الدراسي الأول.";
+
+
+    tableTitle.textContent =
+      "مؤشرات المتابعة للفصل الأول";
+
+
+    tableNote.textContent =
+      "تظهر النتيجة وحالة الإكمال مع حالة المتابعة الإرشادية لكل طالبة.";
+
+
+    tableHead.innerHTML = `
+      <tr>
+        <th>الطالبة</th>
+        <th>الفصل</th>
+        <th>الاختبارات</th>
+        <th>الإكمال</th>
+        <th>النتيجة</th>
+        <th>الحالة الإرشادية</th>
+        <th>المتابعة</th>
+      </tr>
+    `;
+
+    return;
+
+  }
+
+
+  if(
+    currentView ===
+    "semester2"
+  ){
+
+    pageTitle.textContent =
+      "📗 الإرشاد — الفصل الدراسي الثاني";
+
+
+    pageDescription.textContent =
+      "متابعة الطالبات اللاتي يحتجن إلى دعم في إنجاز نماذج الفصل الدراسي الثاني.";
+
+
+    tableTitle.textContent =
+      "مؤشرات المتابعة للفصل الثاني";
+
+
+    tableNote.textContent =
+      "تظهر النماذج المكتملة والنتيجة عند اكتمالها وحالة المتابعة الإرشادية.";
+
+
+    tableHead.innerHTML = `
+      <tr>
+        <th>الطالبة</th>
+        <th>الفصل</th>
+        <th>النماذج</th>
+        <th>الإكمال</th>
+        <th>النتيجة</th>
+        <th>الحالة الإرشادية</th>
+        <th>المتابعة</th>
+      </tr>
+    `;
+
+    return;
+
+  }
+
+
+  pageTitle.textContent =
+    "🎯 الإرشاد — نافس";
+
+
+  pageDescription.textContent =
+    "متابعة تقدم الطالبات في تحديات نافس وتحديد من تحتاج إلى دعم للاستمرار في الإنجاز.";
+
+
+  tableTitle.textContent =
+    "مؤشرات المتابعة في نافس";
+
+
+  tableNote.textContent =
+    "يظهر عدد التحديات ومتوسط الأداء وحالة المتابعة الإرشادية لكل طالبة.";
+
+
+  tableHead.innerHTML = `
+    <tr>
+      <th>الطالبة</th>
+      <th>الفصل</th>
+      <th>التحديات</th>
+      <th>المتوسط</th>
+      <th>الحالة الإرشادية</th>
+      <th>المتابعة</th>
+    </tr>
+  `;
+
+}
+  function updateStats(
+  students
+){
+
+  stat1.textContent =
+    toArabicNumber(
+      students.length
+    );
+
+
+  const states =
+    students.map(
+      student =>
+        calculateSupportState(
+          student
+        )
+    );
+
+
+  const need =
+    states.filter(
+      state =>
+        state === "need"
+    ).length;
+
+
+  const follow =
+    states.filter(
+      state =>
+        state === "follow"
+    ).length;
+
+
+  const improved =
+    states.filter(
+      state =>
+        state === "improved"
+    ).length;
+
+
+  stat2.textContent =
+    toArabicNumber(
+      need
+    );
+
+
+  stat3.textContent =
+    toArabicNumber(
+      follow
+    );
+
+
+  stat4.textContent =
+    toArabicNumber(
+      improved
+    );
+
+
+  let average =
+    0;
+
+
+  if(
+    currentView === "semester1"
+  ){
+
+    const scored =
+      students.filter(
+        student =>
+          student.semester1.completed
+      );
+
+
+    average =
+      scored.length > 0
+
+        ? Math.round(
+            scored.reduce(
+              (
+                total,
+                student
+              ) =>
+                total +
+                student.semester1.score,
+              0
+            ) /
+            scored.length
+          )
+
+        : 0;
+
+  }
+
+
+  else if(
+    currentView === "semester2"
+  ){
+
+    const scored =
+      students.filter(
+        student =>
+          student.semester2.completed
+      );
+
+
+    average =
+      scored.length > 0
+
+        ? Math.round(
+            scored.reduce(
+              (
+                total,
+                student
+              ) =>
+                total +
+                student.semester2.score,
+              0
+            ) /
+            scored.length
+          )
+
+        : 0;
+
+  }
+
+
+  else{
+
+    const active =
+      students.filter(
+        student =>
+          student.nafes.challengeCount > 0
+      );
+
+
+    average =
+      active.length > 0
+
+        ? Math.round(
+            active.reduce(
+              (
+                total,
+                student
+              ) =>
+                total +
+                student.nafes.challengeAverage,
+              0
+            ) /
+            active.length
+          )
+
+        : 0;
+
+  }
+
+
+  stat5.textContent =
+    toArabicNumber(
+      average
+    ) + "٪";
+
+}
+
+
+function openNoteModal(
+  student
+){
+
+  selectedStudent =
+    student;
+
+
+  studentInfo.innerHTML = `
+    <strong>
+      الطالبة:
+    </strong>
+    ${escapeHtml(
+      student.name
+    )}
+    <br>
+    <strong>
+      الفصل:
+    </strong>
+    ${escapeHtml(
+      student.className
+    )}
+  `;
+
+
+  const state =
+    calculateSupportState(
+      student
+    );
+
+
+  followStatusSelect.value =
+    state;
+
+
+  noteText.value =
+    "";
+
+
+  visibleToStudent.checked =
+    false;
+
+
+  visibleToParent.checked =
+    false;
+
+
+  noteMessage.textContent =
+    "";
+
+
+  noteModal.classList.add(
+    "show"
+  );
+
+}
+
+
+function closeModal(){
+
+  noteModal.classList.remove(
+    "show"
+  );
+
+}
+
+
+/* عرض صفوف الفصلين */
+
+function renderSemesterRows(
+  students,
+  key
+){
+
+  studentsTable.innerHTML =
+    "";
+
+
+  if(
+    students.length === 0
+  ){
+
+    studentsTable.innerHTML = `
+      <tr>
+        <td
+          colspan="7"
+          class="empty"
+        >
+          لا توجد طالبات مطابقة لخيارات المتابعة.
+        </td>
+      </tr>
+    `;
+
+    return;
+
+  }
+
+
+  students.forEach(
+    student => {
+
+      const data =
+        student[key];
+
+
+      const state =
+        calculateSupportState(
+          student
+        );
+
+
+      const row =
+        document.createElement(
+          "tr"
+        );
+
+
+      row.innerHTML = `
+
+        <td class="student-name">
+          ${escapeHtml(
+            student.name
+          )}
+        </td>
+
+        <td>
+          ${escapeHtml(
+            student.className
+          )}
+        </td>
+
+        <td>
+          ${toArabicNumber(
+            data.testCount
+          )}
+        </td>
+
+        <td>
+          ${
+            data.completed
+
+              ? `
+                  <span class="tag good">
+                    ✅ مكتمل
+                  </span>
+                `
+
+              : `
+                  <span class="tag need">
+                    غير مكتمل
+                  </span>
+                `
+          }
+        </td>
+
+        <td>
+          ${
+            data.completed
+
+              ? `
+                  <span class="${scoreClass(
+                    data.score
+                  )}">
+                    ${toArabicNumber(
+                      data.score
+                    )}٪
+                  </span>
+                `
+
+              : "—"
+          }
+        </td>
+
+        <td>
+          ${supportText(
+            state
+          )}
+        </td>
+
+        <td>
+          <button
+            class="details-button"
+            type="button"
+            data-id="${escapeHtml(
+              student.id
+            )}"
+          >
+            💌 متابعة
+          </button>
+        </td>
+
+      `;
+
+
+      studentsTable.appendChild(
+        row
+      );
+
+    }
+  );
+
+
+  bindFollowButtons();
+
+}
+
+
+/* عرض نافس */
+
+function renderNafesRows(
+  students
+){
+
+  studentsTable.innerHTML =
+    "";
+
+
+  if(
+    students.length === 0
+  ){
+
+    studentsTable.innerHTML = `
+      <tr>
+        <td
+          colspan="6"
+          class="empty"
+        >
+          لا توجد طالبات مطابقة لخيارات المتابعة.
+        </td>
+      </tr>
+    `;
+
+    return;
+
+  }
+
+
+  students.forEach(
+    student => {
+
+      const nafes =
+        student.nafes;
+
+
+      const state =
+        calculateSupportState(
+          student
+        );
+
+
+      const row =
+        document.createElement(
+          "tr"
+        );
+
+
+      row.innerHTML = `
+
+        <td class="student-name">
+          ${escapeHtml(
+            student.name
+          )}
+        </td>
+
+        <td>
+          ${escapeHtml(
+            student.className
+          )}
+        </td>
+
+        <td>
+          ${toArabicNumber(
+            nafes.challengeCount
+          )}
+          من ٢٠
+        </td>
+
+        <td>
+          ${
+            nafes.challengeCount > 0
+
+              ? `
+                  <span class="${scoreClass(
+                    nafes.challengeAverage
+                  )}">
+                    ${toArabicNumber(
+                      nafes.challengeAverage
+                    )}٪
+                  </span>
+                `
+
+              : "—"
+          }
+        </td>
+
+        <td>
+          ${supportText(
+            state
+          )}
+        </td>
+
+        <td>
+          <button
+            class="details-button"
+            type="button"
+            data-id="${escapeHtml(
+              student.id
+            )}"
+          >
+            💌 متابعة
+          </button>
+        </td>
+
+      `;
+
+
+      studentsTable.appendChild(
+        row
+      );
+
+    }
+  );
+
+
+  bindFollowButtons();
+
+}
+
+
+function bindFollowButtons(){
+
+  document
+    .querySelectorAll(
+      ".details-button"
+    )
+    .forEach(
+      button => {
+
+        button.addEventListener(
+          "click",
+          () => {
+
+            const student =
+              allStudents.find(
+                item =>
+                  item.id ===
+                  button.dataset.id
+              );
+
+
+            if(student){
+
+              openNoteModal(
+                student
+              );
+
+            }
+
+          }
+        );
+
+      }
+    );
+
+}
+
+
+function renderCurrentView(){
+
+  configureView();
+
+
+  tabButtons.forEach(
+    button => {
+
+      button.classList.toggle(
+        "active",
+        button.dataset.view ===
+          currentView
+      );
+
+    }
+  );
+
+
+  const students =
+    getFilteredStudents()
+      .sort(
+        (
+          first,
+          second
+        ) =>
+
+          first.className.localeCompare(
+            second.className,
+            "ar"
+          )
+
+          ||
+
+          first.name.localeCompare(
+            second.name,
+            "ar"
+          )
+      );
+
+
+  updateStats(
+    students
+  );
+
+
+  if(
+    currentView === "semester1"
+  ){
+
+    renderSemesterRows(
+      students,
+      "semester1"
+    );
+
+  }
+
+
+  else if(
+    currentView === "semester2"
+  ){
+
+    renderSemesterRows(
+      students,
+      "semester2"
+    );
+
+  }
+
+
+  else{
+
+    renderNafesRows(
+      students
+    );
+
+  }
+
+}
+
+
+/* حفظ الملاحظة */
+
+async function saveNote(){
+
+  if(
+    !currentUser ||
+    !selectedStudent
+  ){
+
+    return;
+
+  }
+
+
+  const text =
+    noteText.value
+      .trim();
+
+
+  const followStatus =
+    followStatusSelect.value;
+
+
+  if(
+    !text
+  ){
+
+    noteMessage.style.color =
+      "#96394a";
+
+
+    noteMessage.textContent =
+      "اكتبي ملاحظة المتابعة أولًا.";
+
+
+    return;
+
+  }
+
+
+  try{
+
+    saveNoteButton.disabled =
+      true;
+
+
+    noteMessage.style.color =
+      "#6d582a";
+
+
+    noteMessage.textContent =
+      "جارٍ حفظ الملاحظة...";
+
+
+    await addDoc(
+      collection(
+        db,
+        "staff_notes"
+      ),
+      {
+
+        studentUid:
+          selectedStudent.id,
+
+        studentName:
+          selectedStudent.name,
+
+        className:
+          selectedStudent.className,
+
+        authorUid:
+          currentUser.uid,
+
+        authorRole:
+          "counselor",
+
+        followStatus:
+          followStatus,
+
+        note:
+          text,
+
+        visibleToStudent:
+          visibleToStudent.checked,
+
+        visibleToParent:
+          visibleToParent.checked,
+
+        createdAt:
+          serverTimestamp()
+
+      }
+    );
+
+
+    followStateByStudent[
+      selectedStudent.id
+    ] =
+      followStatus;
+
+
+    noteMessage.style.color =
+      "#2f7650";
+
+
+    noteMessage.textContent =
+      "✅ تم حفظ ملاحظة المتابعة.";
+
+
+    renderCurrentView();
+
+
+    setTimeout(
+      closeModal,
+      900
+    );
+
+
+  }catch(error){
+
+    console.error(
+      "Save counselor note error:",
+      error
+    );
+
+
+    noteMessage.style.color =
+      "#96394a";
+
+
+    noteMessage.textContent =
+      "تعذر حفظ الملاحظة الآن.";
+
+
+  }finally{
+
+    saveNoteButton.disabled =
+      false;
+
+  }
+
+}
+
+
+/* الأحداث */
+
+tabButtons.forEach(
+  button => {
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        currentView =
+          button.dataset.view;
+
+
+        supportFilter.value =
+          "all";
+
+
+        renderCurrentView();
+
+      }
+    );
+
+  }
+);
+
+
+classFilter.addEventListener(
+  "change",
+  renderCurrentView
+);
+
+
+supportFilter.addEventListener(
+  "change",
+  renderCurrentView
+);
+
+
+searchInput.addEventListener(
+  "input",
+  renderCurrentView
+);
+
+
+modalClose.addEventListener(
+  "click",
+  closeModal
+);
+
+
+noteModal.addEventListener(
+  "click",
+  event => {
+
+    if(
+      event.target ===
+      noteModal
+    ){
+
+      closeModal();
+
+    }
+
+  }
+);
+
+
+saveNoteButton.addEventListener(
+  "click",
+  saveNote
+);
+
+
+/* التحقق من صلاحية الموجّهة */
+
+onAuthStateChanged(
+  auth,
+  async user => {
+
+
+    currentUser =
+      user;
+
+
+    if(
+      !user
+    ){
+
+      statusBox.className =
+        "status-box error";
+
+
+      statusBox.textContent =
+        "🔒 يلزم تسجيل الدخول بحساب موجّهة الإرشاد الطلابي لعرض المتابعة.";
+
+
+      dashboardContent.style.display =
+        "none";
+
+
+      return;
+
+    }
+
+
+    try{
+
+      statusBox.className =
+        "status-box loading";
+
+
+      statusBox.textContent =
+        "جارٍ التحقق من صلاحية حساب موجّهة الإرشاد الطلابي...";
+
+
+      const roleRef =
+        doc(
+          db,
+          "user_roles",
+          user.uid
+        );
+
+
+      const roleSnap =
+        await getDoc(
+          roleRef
+        );
+
+
+      if(
+        !roleSnap.exists()
+      ){
+
+        statusBox.className =
+          "status-box error";
+
+
+        statusBox.textContent =
+          "⛔ هذا الحساب غير مفعّل كحساب موجّهة الإرشاد الطلابي.";
+
+
+        dashboardContent.style.display =
+          "none";
+
+
+        return;
+
+      }
+
+
+      const roleData =
+        roleSnap.data();
+
+
+      const role =
+        String(
+          roleData?.role || ""
+        ).trim();
+
+
+      const roleStatus =
+        String(
+          roleData?.status || ""
+        ).trim();
+
+
+      if(
+        role !== "counselor" ||
+        roleStatus !== "active"
+      ){
+
+        statusBox.className =
+          "status-box error";
+
+
+        statusBox.textContent =
+          "⛔ هذه الصفحة مخصصة لحساب موجّهة الإرشاد الطلابي فقط.";
+
+
+        dashboardContent.style.display =
+          "none";
+
+
+        return;
+
+      }
+
+
+      dashboardContent.style.display =
+        "block";
+
+
+      await loadStudents();
+
+
+    }catch(error){
+
+      console.error(
+        "Counselor role error:",
+        error
+      );
+
+
+      statusBox.className =
+        "status-box error";
+
+
+      statusBox.textContent =
+        "تعذر التحقق من صلاحية حساب موجّهة الإرشاد الطلابي الآن.";
+
+
+      dashboardContent.style.display =
+        "none";
+
+    }
+
+  }
+);
+
+</script>
+
+</body>
+</html>
