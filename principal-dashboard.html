@@ -67,9 +67,7 @@ a{
 
 header{
   padding:30px 16px 26px;
-
   text-align:center;
-
   color:white;
 
   background:
@@ -85,9 +83,7 @@ header{
 
 header .badge{
   display:inline-block;
-
   padding:5px 15px;
-
   margin-bottom:8px;
 
   color:#fff3c9;
@@ -117,7 +113,6 @@ header h1{
 
 header p{
   max-width:780px;
-
   margin:auto;
 
   color:#f5edf8;
@@ -139,9 +134,7 @@ header p{
 
 .status-box{
   margin-bottom:18px;
-
   padding:14px;
-
   text-align:center;
 
   border:
@@ -173,9 +166,7 @@ header p{
 
 .principal-card{
   margin-bottom:18px;
-
   padding:16px;
-
   text-align:center;
 
   border:
@@ -222,7 +213,6 @@ header p{
   gap:9px;
 
   margin-bottom:18px;
-
   padding:8px;
 
   border:
@@ -235,15 +225,12 @@ header p{
 
 .tab-button{
   min-height:58px;
-
   padding:10px 7px;
 
   border:none;
-
   border-radius:15px;
 
   color:#5b4677;
-
   background:#f3ecf7;
 
   font-size:13px;
@@ -265,21 +252,16 @@ header p{
 
 .report-actions{
   display:flex;
-
   justify-content:center;
-
   align-items:center;
-
   flex-wrap:wrap;
 
   gap:10px;
-
   margin-bottom:18px;
 }
 
 .report-button{
   min-height:45px;
-
   padding:9px 16px;
 
   border:
@@ -322,7 +304,6 @@ header p{
   gap:10px;
 
   margin-bottom:18px;
-
   padding:14px;
 
   border:
@@ -338,7 +319,6 @@ header p{
     1 1 190px;
 
   display:flex;
-
   flex-direction:column;
 
   gap:6px;
@@ -362,7 +342,6 @@ header p{
   border-radius:12px;
 
   color:#49385c;
-
   background:white;
 
   font-size:14px;
@@ -516,16 +495,12 @@ tbody tr:nth-child(even){
 
 .student-name{
   color:var(--purple);
-
   font-weight:bold;
 }
 
 .tag{
   display:inline-block;
-
-  padding:
-    4px 8px;
-
+  padding:4px 8px;
   border-radius:999px;
 
   font-size:11px;
@@ -587,7 +562,6 @@ tbody tr:nth-child(even){
     8px 11px;
 
   border:none;
-
   border-radius:11px;
 
   color:white;
@@ -617,7 +591,6 @@ tbody tr:nth-child(even){
 
 .footer{
   margin-top:24px;
-
   text-align:center;
 }
 
@@ -697,7 +670,6 @@ tbody tr:nth-child(even){
 
 .modal-head{
   display:flex;
-
   align-items:center;
   justify-content:space-between;
 
@@ -790,7 +762,6 @@ tbody tr:nth-child(even){
 
 .student-report-info{
   margin-bottom:16px;
-
   padding:14px;
 
   border:
@@ -811,9 +782,7 @@ tbody tr:nth-child(even){
 
 .modal-actions{
   display:flex;
-
   justify-content:center;
-
   flex-wrap:wrap;
 
   gap:9px;
@@ -874,8 +843,7 @@ tbody tr:nth-child(even){
 
 .challenge-card.pending{
   opacity:.7;
-
-  background:#faf7fa;
+    background:#faf7fa;
 }
 
 .challenge-card h3{
@@ -1186,7 +1154,9 @@ tbody tr:nth-child(even){
       </label>
 
     </div>
-        <section class="stats">
+
+
+    <section class="stats">
 
       <div class="stat-card">
 
@@ -1459,7 +1429,9 @@ from
 import {
   getFirestore,
   collection,
-  getDocs
+  getDocs,
+  doc,
+  getDoc
 }
 from
 "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
@@ -1513,15 +1485,6 @@ const db =
   getFirestore(
     app
   );
-
-
-/*
-  نترك بريد المديرة فارغًا الآن
-  حتى يتم ربط حساب المديرة لاحقًا.
-*/
-
-const PRINCIPAL_EMAIL =
-  "";
 
 
 /*
@@ -1757,9 +1720,7 @@ function normalizeClassName(
     return "ثالث متوسط ب";
 
   }
-
-
-  if(
+    if(
     text === "ج" ||
     text.includes("متوسط ج") ||
     text.includes("ثالث ج")
@@ -1823,7 +1784,9 @@ function scoreClass(
   return "score-low";
 
 }
-  function normalizeChallenge(
+
+
+function normalizeChallenge(
   item,
   number
 ){
@@ -2601,7 +2564,9 @@ function updateStats(
     "اختبارات مسجلة";
 
 }
-  function renderSemesterRows(
+
+
+function renderSemesterRows(
   students,
   key
 ){
@@ -2635,9 +2600,7 @@ function updateStats(
 
       const data =
         student[key];
-
-
-      const row =
+            const row =
         document.createElement(
           "tr"
         );
@@ -3370,6 +3333,8 @@ detailsModal.addEventListener(
 );
 
 
+/* التحقق من دور المديرة */
+
 onAuthStateChanged(
   auth,
   async user => {
@@ -3393,62 +3358,116 @@ onAuthStateChanged(
     }
 
 
-    /*
-      حساب المديرة لم يتم ربطه بعد.
-      لذلك نحافظ على إغلاق الصفحة
-      حتى نربطه لاحقًا.
-    */
+    try{
 
-    if(
-      !PRINCIPAL_EMAIL
-    ){
+      statusBox.className =
+        "status-box loading";
+
+
+      statusBox.textContent =
+        "جارٍ التحقق من صلاحية حساب المديرة...";
+
+
+      const roleRef =
+        doc(
+          db,
+          "user_roles",
+          user.uid
+        );
+
+
+      const roleSnap =
+        await getDoc(
+          roleRef
+        );
+
+
+      if(
+        !roleSnap.exists()
+      ){
+
+        statusBox.className =
+          "status-box error";
+
+
+        statusBox.textContent =
+          "⛔ هذا الحساب غير مفعّل كحساب مديرة المدرسة.";
+
+
+        dashboardContent.style.display =
+          "none";
+
+
+        return;
+
+      }
+
+
+      const roleData =
+        roleSnap.data();
+
+
+      const role =
+        String(
+          roleData?.role || ""
+        ).trim();
+
+
+      const roleStatus =
+        String(
+          roleData?.status || ""
+        ).trim();
+
+
+      if(
+        role !== "principal" ||
+        roleStatus !== "active"
+      ){
+
+        statusBox.className =
+          "status-box error";
+
+
+        statusBox.textContent =
+          "⛔ هذه الصفحة مخصصة لحساب مديرة المدرسة فقط.";
+
+
+        dashboardContent.style.display =
+          "none";
+
+
+        return;
+
+      }
+
+
+      dashboardContent.style.display =
+        "block";
+
+
+      await loadStudents();
+
+
+    }catch(error){
+
+      console.error(
+        "Principal role check error:",
+        error
+      );
+
 
       statusBox.className =
         "status-box error";
 
 
       statusBox.textContent =
-        "⚙️ صفحة المديرة جاهزة، ويتبقى ربط حساب المديرة بها.";
+        "تعذر التحقق من صلاحية حساب المديرة الآن.";
 
 
       dashboardContent.style.display =
         "none";
 
-
-      return;
-
     }
-
-
-    if(
-      String(
-        user.email || ""
-      ).toLowerCase() !==
-      PRINCIPAL_EMAIL.toLowerCase()
-    ){
-
-      statusBox.className =
-        "status-box error";
-
-
-      statusBox.textContent =
-        "⛔ هذه الصفحة مخصصة لحساب مديرة المدرسة فقط.";
-
-
-      dashboardContent.style.display =
-        "none";
-
-
-      return;
-
-    }
-
-
-    dashboardContent.style.display =
-      "block";
-
-
-    await loadStudents();
 
   }
 );
