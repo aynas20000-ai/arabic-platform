@@ -396,6 +396,7 @@ footer{
 </div>
 
 <div class="burst" id="burst"></div>
+
 <script type="module">
 
 import {
@@ -403,7 +404,6 @@ import {
 }
 from
 "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
-
 
 import {
   initializeAuth,
@@ -414,7 +414,6 @@ import {
 from
 "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
 
-
 import {
   getFirestore,
   doc,
@@ -424,7 +423,6 @@ import {
 }
 from
 "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
-
 
 const firebaseConfig={
 
@@ -448,10 +446,8 @@ const firebaseConfig={
 
 };
 
-
 const app=
   initializeApp(firebaseConfig);
-
 
 const auth=
   initializeAuth(
@@ -465,13 +461,10 @@ const auth=
     }
   );
 
-
 const db=
   getFirestore(app);
 
-
 let currentUser=null;
-
 
 onAuthStateChanged(
   auth,
@@ -480,10 +473,8 @@ onAuthStateChanged(
   }
 );
 
-
 const questions=[
-
-{
+  {
  q:"أيُّ كتابةٍ صحيحة للكلمتين في الجملة: «___ تجتهدي فلن تحققي هدفك»؟",
  o:[
   "إنلم",
@@ -504,9 +495,9 @@ const questions=[
   "مِنْ مَن",
   "منمن"
  ],
- a:2,
- ok:"أحسنتِ ✨ الصواب في هذا الدرس: «مِنْ مَن» مفصولتين.",
- bad:"«مِنْ» حرف جر، و«مَن» اسم مستقل؛ لذلك نكتب «مِنْ مَن»."
+ a:0,
+ ok:"أحسنتِ ✨ الصواب: «مِمَّن»؛ لأن حرف الجر «مِنْ» تقدّم على «مَن»، فتُكتبان موصولتين.",
+ bad:"إذا تقدّم حرف الجر «مِنْ» على «مَن» تُوصلان في الكتابة: مِنْ + مَن ← مِمَّن."
 },
 
 {
@@ -517,9 +508,9 @@ const questions=[
   "عنمن",
   "عَن مَن"
  ],
- a:1,
- ok:"أحسنتِ 👏 الصواب: «عَنْ مَن» مفصولتين.",
- bad:"القاعدة: «عَنْ» حرف جر، و«مَن» اسم مستقل؛ لذلك نكتب «عَنْ مَن»."
+ a:0,
+ ok:"أحسنتِ 👏 الصواب: «عَمَّن»؛ لأن حرف الجر «عن» تقدّم على «مَن»، فتُكتبان موصولتين.",
+ bad:"إذا تقدّم حرف الجر «عن» على «مَن» تُوصلان في الكتابة: عن + مَن ← عَمَّن."
 },
 
 {
@@ -562,42 +553,42 @@ const questions=[
 },
 
 {
- q:"أيُّ مجموعة كُتبت كلماتها مفصولة خطًّا على النحو الصحيح؟",
+ q:"أيُّ مجموعة كُتبت كلماتها كتابة صحيحة؟",
  o:[
-  "إنْ لم – مِنْ مَن – عَنْ مَن – أنْ لا",
-  "إنلم – مِمَّن – عَمَّن – ألّا",
+  "إنْ لم – مِمَّن – عَمَّن – أنْ لا",
+  "إنلم – مِنْ مَن – عَنْ مَن – ألّا",
   "إنْلم – منمن – عنمن – أنلا",
   "إن لم – مِمَن – عَنمن – ألا"
  ],
  a:0,
- ok:"أحسنتِ جدًا 🌟 هذه هي صور الفصل الأربع التي يركز عليها الدرس.",
- bad:"تذكري صور الفصل الأربع: «إنْ لم – مِنْ مَن – عَنْ مَن – أنْ لا»."
+ ok:"أحسنتِ جدًا 🌟 «إنْ لم» و«أنْ لا» مفصولتان، و«مِمَّن» و«عَمَّن» موصولتان لتقدّم حرف الجر على «مَن».",
+ bad:"تذكري: «إنْ لم» و«أنْ لا» تُكتبان مفصولتين، أما مِنْ + مَن ← مِمَّن، وعن + مَن ← عَمَّن."
 },
 
 {
- q:"اختاري التصويب الصحيح للجملة: «ممن سمعتِ هذه المعلومة؟» وفق قاعدة الدرس.",
+ q:"أيُّ الجمل الآتية توضّح حالة الفصل الصحيحة؟",
  o:[
-  "مِنْ مَن سمعتِ هذه المعلومة؟",
-  "منمن سمعتِ هذه المعلومة؟",
-  "مِمَّا سمعتِ هذه المعلومة؟",
-  "عن من سمعتِ هذه المعلومة؟"
+  "مَن مِن الطلاب حاضرٌ؟",
+  "مِمَّن الطلاب حاضرٌ؟",
+  "مَنمِن الطلاب حاضرٌ؟",
+  "مِنمَن الطلاب حاضرٌ؟"
  ],
  a:0,
- ok:"أحسنتِ 👏 التصويب: «مِنْ مَن سمعتِ هذه المعلومة؟».",
- bad:"نريد حرف الجر «مِنْ» وبعده «مَن»؛ ولذلك نكتبها «مِنْ مَن»."
+ ok:"أحسنتِ 👏 هنا جاءت «مَن» أولًا ثم جاء حرف الجر «مِنْ» بعدها، لذلك تبقيان مفصولتين: «مَن مِن الطلاب حاضرٌ؟».",
+ bad:"الفصل يكون عندما تأتي «مَن» أولًا ثم يأتي حرف الجر بعدها، مثل: «مَن مِن الطلاب حاضرٌ؟»."
 },
 
 {
- q:"اختاري التصويب الصحيح للجملة: «عمن سألتِ المعلمة؟» وفق قاعدة الدرس.",
+ q:"أيُّ الجمل الآتية توضّح حالة الوصل الصحيحة؟",
  o:[
-  "عَنْ مَن سألتِ المعلمة؟",
-  "عنمن سألتِ المعلمة؟",
-  "مِنْ مَن سألتِ المعلمة؟",
-  "عَمَّا سألتِ المعلمة؟"
+  "فيمن تثقين؟",
+  "في مَن تثقين؟",
+  "مَنفي تثقين؟",
+  "فيمنْ تثقين؟"
  ],
  a:0,
- ok:"أحسنتِ ✨ «عَنْ مَن» هي الصورة المطلوبة في الدرس.",
- bad:"التصويب الصحيح هو: «عَنْ مَن سألتِ المعلمة؟»."
+ ok:"أحسنتِ ✨ الصواب: «فيمن تثقين؟»؛ لأن حرف الجر «في» تقدّم على «مَن»، فتُكتبان موصولتين.",
+ bad:"إذا تقدّم حرف الجر على «مَن» يُوصل بها: في + مَن ← فيمن."
 },
 
 {
@@ -615,11 +606,9 @@ const questions=[
 
 ];
 
-
 let index=0;
 let score=0;
 let answered=false;
-
 
 const arabicDigits=
   n=>
@@ -627,7 +616,6 @@ const arabicDigits=
       /\d/g,
       d=>"٠١٢٣٤٥٦٧٨٩"[d]
     );
-
 
 function tone(ok){
 
@@ -687,7 +675,6 @@ function tone(ok){
   }catch(e){}
 
 }
-
 
 function confetti(){
 
@@ -749,13 +736,11 @@ function confetti(){
   const x=
     questions[index];
 
-
   document.getElementById(
     "qnum"
   ).textContent=
     "السؤال "+
     arabicDigits(index+1);
-
 
   document.getElementById(
     "counter"
@@ -767,13 +752,11 @@ function confetti(){
       questions.length
     );
 
-
   document.getElementById(
     "correctCount"
   ).textContent=
     "الإجابات الصحيحة: "+
     arabicDigits(score);
-
 
   document.getElementById(
     "bar"
@@ -784,12 +767,10 @@ function confetti(){
       100
     )+"%";
 
-
   document.getElementById(
     "question"
   ).textContent=
     x.q;
-
 
   const options=
     document.getElementById(
@@ -811,7 +792,6 @@ function confetti(){
       "card"
     );
 
-
   options.innerHTML="";
 
   feedback.className=
@@ -825,7 +805,6 @@ function confetti(){
   card.classList.remove(
     "pop"
   );
-
 
   x.o.forEach(
     (text,choiceIndex)=>{
@@ -859,7 +838,6 @@ function confetti(){
 
 }
 
-
 function choose(
   choice,
   button
@@ -869,13 +847,10 @@ function choose(
     return;
   }
 
-
   answered=true;
-
 
   const x=
     questions[index];
-
 
   const buttons=[
     ...document.querySelectorAll(
@@ -883,47 +858,38 @@ function choose(
     )
   ];
 
-
   buttons.forEach(
     item=>
       item.disabled=true
   );
-
 
   buttons[x.a]
     .classList.add(
       "correct"
     );
 
-
   const feedback=
     document.getElementById(
       "feedback"
     );
 
-
   if(choice===x.a){
 
     score++;
-
 
     button.classList.add(
       "correct"
     );
 
-
     feedback.className=
       "feedback show good";
-
 
     feedback.textContent=
       x.ok;
 
-
     tone(true);
 
     confetti();
-
 
     if(navigator.vibrate){
       navigator.vibrate(45);
@@ -935,18 +901,14 @@ function choose(
       "wrong"
     );
 
-
     feedback.className=
       "feedback show bad";
-
 
     feedback.innerHTML=
       "<b>راجعي القاعدة 👀</b><br>"+
       x.bad;
 
-
     tone(false);
-
 
     if(navigator.vibrate){
 
@@ -958,13 +920,11 @@ function choose(
 
   }
 
-
   document.getElementById(
     "correctCount"
   ).textContent=
     "الإجابات الصحيحة: "+
     arabicDigits(score);
-
 
   document.getElementById(
     "card"
@@ -972,12 +932,10 @@ function choose(
     "pop"
   );
 
-
   const next=
     document.getElementById(
       "next"
     );
-
 
   next.textContent=
     index===
@@ -987,19 +945,16 @@ function choose(
 
       : "تابعي التحدي ←";
 
-
   next.style.display=
     "block";
 
 }
-
 
 document.getElementById(
   "next"
 ).onclick=()=>{
 
   index++;
-
 
   if(
     index<
@@ -1016,14 +971,12 @@ document.getElementById(
 
 };
 
-
 async function saveResult(){
 
   const saveStatus=
     document.getElementById(
       "saveStatus"
     );
-
 
   if(!currentUser){
 
@@ -1037,7 +990,6 @@ async function saveResult(){
 
   }
 
-
   try{
 
     saveStatus.className=
@@ -1046,7 +998,6 @@ async function saveResult(){
     saveStatus.textContent=
       "جارٍ حفظ نتيجتكِ في الفصل الدراسي الثاني...";
 
-
     const studentRef=
       doc(
         db,
@@ -1054,21 +1005,17 @@ async function saveResult(){
         currentUser.uid
       );
 
-
     const snapshot=
       await getDoc(
         studentRef
       );
 
-
     let previousBest=0;
-
 
     if(snapshot.exists()){
 
       const data=
         snapshot.data();
-
 
       previousBest=
         Number(
@@ -1083,7 +1030,6 @@ async function saveResult(){
 
     }
 
-
     const percentage=
       Math.round(
         score/
@@ -1091,13 +1037,11 @@ async function saveResult(){
         100
       );
 
-
     const bestPercentage=
       Math.max(
         previousBest,
         percentage
       );
-
 
     await updateDoc(
       studentRef,
@@ -1138,10 +1082,8 @@ async function saveResult(){
       }
     );
 
-
     saveStatus.className=
       "save-status success";
-
 
     saveStatus.textContent=
       "✅ حُفظت نتيجتكِ بنجاح في سجل الفصل الدراسي الثاني.";
@@ -1155,10 +1097,8 @@ async function saveResult(){
       error
     );
 
-
     saveStatus.className=
       "save-status error";
-
 
     saveStatus.textContent=
       "تعذّر حفظ النتيجة الآن. أعيدي المحاولة بعد التأكد من تسجيل الدخول.";
@@ -1166,44 +1106,36 @@ async function saveResult(){
   }
 
 }
-
-
-async function finish(){
+  async function finish(){
 
   document.getElementById(
     "bar"
   ).style.width=
     "100%";
 
-
   document.getElementById(
     "card"
   ).style.display=
     "none";
-
 
   document.querySelector(
     ".top"
   ).style.display=
     "none";
 
-
   document.querySelector(
     ".progress"
   ).style.display=
     "none";
-
 
   const result=
     document.getElementById(
       "result"
     );
 
-
   result.classList.add(
     "show"
   );
-
 
   document.getElementById(
     "score"
@@ -1214,11 +1146,9 @@ async function finish(){
       questions.length
     );
 
-
   const pct=
     score/
     questions.length;
-
 
   document.getElementById(
     "message"
@@ -1234,20 +1164,17 @@ async function finish(){
 
         : pct>=.6
 
-          ? "أداء جيد 👏 راجعي صور الفصل الأربع، ثم أعيدي التحدي."
+          ? "أداء جيد 👏 راجعي قواعد الوصل والفصل، ثم أعيدي التحدي."
 
-          : "راجعي ملف الدرس، وبخاصة «إنْ لم – مِنْ مَن – عَنْ مَن – أنْ لا»، ثم عودي إلى التحدي.";
-
+          : "راجعي ملف الدرس، وبخاصة «إنْ لم – أنْ لا – مِمَّن – عَمَّن – فيمن»، ثم عودي إلى التحدي.";
 
   if(pct>=.8){
     confetti();
   }
 
-
   await saveResult();
 
 }
-
 
 window.restartQuiz=
   function(){
@@ -1256,24 +1183,20 @@ window.restartQuiz=
     score=0;
     answered=false;
 
-
     document.getElementById(
       "card"
     ).style.display=
       "flex";
-
 
     document.querySelector(
       ".top"
     ).style.display=
       "flex";
 
-
     document.querySelector(
       ".progress"
     ).style.display=
       "block";
-
 
     document.getElementById(
       "result"
@@ -1281,25 +1204,20 @@ window.restartQuiz=
       "show"
     );
 
-
     const saveStatus=
       document.getElementById(
         "saveStatus"
       );
 
-
     saveStatus.className=
       "save-status";
-
 
     saveStatus.textContent=
       "ستُحفظ نتيجتكِ في سجل الفصل الدراسي الثاني.";
 
-
     render();
 
   };
-
 
 render();
 
