@@ -3,622 +3,870 @@
 
 <head>
 
-<meta charset="UTF-8">
-
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
->
-
-<title>
-تفعيل صلاحية المتابعة | منصة آفاق
-</title>
-
-<style>
-
-:root{
-  --purple:#5b4677;
-  --purple-light:#7b6498;
-  --purple-dark:#49385c;
-  --gold:#c9a85c;
-  --paper:#fffdf8;
-  --cream:#fffaf2;
-  --text:#44384f;
-  --green:#2f7650;
-  --green-bg:#edf8f1;
-  --red:#96394a;
-  --red-bg:#fff0f2;
-  --yellow:#7c6120;
-  --yellow-bg:#fff7df;
-}
-
-*{
-  box-sizing:border-box;
-}
-
-html,
-body{
-  margin:0;
-  width:100%;
-  min-height:100%;
-}
-
-body{
-  font-family:
-    Tahoma,
-    Arial,
-    sans-serif;
-
-  color:
-    var(--text);
-
-  background:
-    linear-gradient(
-      145deg,
-      #fffaf2,
-      #f7eef9
-    );
-}
-
-button,
-input,
-a{
-  font-family:inherit;
-}
-
-header{
-  padding:
-    30px
-    16px
-    28px;
-
-  text-align:center;
-
-  color:white;
-
-  background:
-    linear-gradient(
-      135deg,
-      var(--purple-light),
-      var(--purple-dark)
-    );
-
-  border-bottom:
-    5px solid
-    var(--gold);
-}
-
-.header-badge{
-  display:inline-block;
-
-  margin-bottom:8px;
-
-  padding:
-    5px
-    15px;
-
-  color:#fff4cf;
-
-  border:
-    1px solid
-    rgba(255,255,255,.45);
-
-  border-radius:999px;
+  <meta charset="UTF-8">
 
-  background:
-    rgba(255,255,255,.10);
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-  font-size:12px;
-  font-weight:bold;
-}
+  <title>
+    تفعيل صلاحية المتابعة | منصة آفاق
+  </title>
 
-header h1{
-  margin:
-    0 0 8px;
 
-  font-size:
-    clamp(
-      25px,
-      7vw,
-      38px
-    );
-}
+  <style>
 
-header p{
-  max-width:720px;
+    :root{
+      --purple:#5b4677;
+      --purple-light:#7b6498;
+      --purple-dark:#49385c;
 
-  margin:auto;
+      --gold:#c9a85c;
 
-  color:#f5edf8;
+      --paper:#fffdf8;
+      --cream:#fffaf2;
 
-  font-size:14px;
-  line-height:1.9;
-}
+      --text:#44384f;
 
-.container{
-  width:
-    min(
-      93%,
-      720px
-    );
+      --green:#2f7650;
+      --green-bg:#edf8f1;
 
-  margin:
-    25px auto
-    45px;
-}
+      --red:#96394a;
+      --red-bg:#fff0f2;
 
-.status-box{
-  margin-bottom:18px;
+      --yellow:#7c6120;
+      --yellow-bg:#fff7df;
+    }
 
-  padding:14px;
 
-  text-align:center;
+    *{
+      box-sizing:border-box;
+    }
 
-  border:
-    1px solid
-    #dec98d;
 
-  border-radius:17px;
+    html,
+    body{
+      margin:0;
+      width:100%;
+      min-height:100%;
+    }
 
-  background:#fffdf8;
 
-  font-size:14px;
-  font-weight:bold;
-  line-height:1.9;
-}
+    body{
+      font-family:
+        Tahoma,
+        Arial,
+        sans-serif;
 
-.status-box.loading{
-  color:#6d582a;
-  background:#fff8e7;
-}
+      color:var(--text);
 
-.status-box.success{
-  color:var(--green);
-  background:var(--green-bg);
-}
+      background:
+        linear-gradient(
+          145deg,
+          #fffaf2,
+          #f7eef9
+        );
+    }
 
-.status-box.error{
-  color:var(--red);
-  background:var(--red-bg);
-}
 
-.activation-card{
-  position:relative;
+    button,
+    input,
+    a{
+      font-family:inherit;
+    }
 
-  overflow:hidden;
 
-  padding:
-    24px
-    18px;
 
-  border:
-    2px solid
-    var(--gold);
+    /* =========================
+       رأس الصفحة
+    ========================= */
 
-  border-radius:25px;
+    header{
 
-  background:
-    linear-gradient(
-      145deg,
-      #fffdf8,
-      #f7effa
-    );
+      padding:
+        30px
+        16px
+        28px;
 
-  box-shadow:
-    0 10px 28px
-    rgba(91,70,119,.10);
-}
+      text-align:center;
 
-.activation-card::before{
-  content:"";
+      color:white;
 
-  position:absolute;
+      background:
+        linear-gradient(
+          135deg,
+          var(--purple-light),
+          var(--purple-dark)
+        );
 
-  top:0;
-  right:0;
-  left:0;
+      border-bottom:
+        5px solid
+        var(--gold);
+    }
 
-  height:7px;
 
-  background:
-    linear-gradient(
-      90deg,
-      var(--gold),
-      var(--purple-light),
-      var(--gold)
-    );
-}
+    .header-badge{
 
-.icon{
-  margin-top:5px;
+      display:inline-block;
 
-  text-align:center;
+      margin-bottom:8px;
 
-  font-size:54px;
-}
+      padding:
+        5px
+        15px;
 
-.activation-card h2{
-  margin:
-    7px 0 8px;
+      color:#fff4cf;
 
-  text-align:center;
+      border:
+        1px solid
+        rgba(255,255,255,.45);
 
-  color:
-    var(--purple);
+      border-radius:999px;
 
-  font-size:
-    clamp(
-      22px,
-      6vw,
-      29px
-    );
-}
+      background:
+        rgba(255,255,255,.10);
 
-.intro{
-  max-width:600px;
+      font-size:12px;
+      font-weight:bold;
+    }
 
-  margin:
-    0 auto 18px;
 
-  text-align:center;
+    header h1{
 
-  color:#726678;
+      margin:
+        0
+        0
+        8px;
 
-  font-size:13px;
-  line-height:2;
-}
+      font-size:
+        clamp(
+          25px,
+          7vw,
+          38px
+        );
+    }
 
-.account-box{
-  margin-bottom:18px;
 
-  padding:13px;
+    header p{
 
-  text-align:center;
+      max-width:720px;
 
-  border:
-    1px solid
-    #e1d5e3;
+      margin:auto;
 
-  border-radius:16px;
+      color:#f5edf8;
 
-  background:#faf6fb;
-}
+      font-size:14px;
+      line-height:1.9;
+    }
 
-.account-label{
-  display:block;
 
-  color:#796e7d;
 
-  font-size:11px;
-  font-weight:bold;
-}
+    /* =========================
+       الحاوية
+    ========================= */
 
-.account-email{
-  display:block;
+    .container{
 
-  margin-top:5px;
+      width:
+        min(
+          93%,
+          720px
+        );
 
-  direction:ltr;
+      margin:
+        25px auto
+        45px;
+    }
 
-  color:
-    var(--purple);
 
-  font-size:14px;
-  font-weight:bold;
 
-  word-break:
-    break-word;
-}
+    /* =========================
+       حالة الصفحة
+    ========================= */
 
-.code-label{
-  display:block;
+    .status-box{
 
-  margin:
-    0 0 7px;
+      margin-bottom:18px;
 
-  color:
-    var(--purple-dark);
+      padding:14px;
 
-  font-size:14px;
-  font-weight:bold;
-}
+      text-align:center;
 
-.code-input{
-  width:100%;
+      border:
+        1px solid
+        #dec98d;
 
-  padding:
-    15px
-    13px;
+      border-radius:17px;
 
-  direction:ltr;
-  text-align:center;
+      background:#fffdf8;
 
-  color:
-    var(--purple-dark);
+      font-size:14px;
+      font-weight:bold;
+      line-height:1.9;
+    }
 
-  border:
-    2px solid
-    #d5c079;
 
-  border-radius:16px;
+    .status-box.loading{
+      color:#6d582a;
+      background:#fff8e7;
+    }
 
-  background:white;
 
-  outline:none;
+    .status-box.success{
+      color:var(--green);
+      background:var(--green-bg);
+    }
 
-  font-size:
-    clamp(
-      17px,
-      5vw,
-      21px
-    );
 
-  font-weight:bold;
+    .status-box.error{
+      color:var(--red);
+      background:var(--red-bg);
+    }
 
-  letter-spacing:.5px;
-}
 
-.code-input:focus{
-  border-color:
-    var(--purple-light);
 
-  box-shadow:
-    0 0 0 3px
-    rgba(123,100,152,.12);
-}
+    /* =========================
+       البطاقات
+    ========================= */
 
-.activate-button{
-  width:100%;
+    .card{
 
-  margin-top:13px;
+      position:relative;
 
-  padding:
-    14px;
+      overflow:hidden;
 
-  color:white;
+      padding:
+        24px
+        18px;
 
-  border:0;
+      border:
+        2px solid
+        var(--gold);
 
-  border-radius:16px;
+      border-radius:25px;
 
-  background:
-    linear-gradient(
-      135deg,
-      var(--purple-light),
-      var(--purple)
-    );
+      background:
+        linear-gradient(
+          145deg,
+          #fffdf8,
+          #f7effa
+        );
 
-  font-size:15px;
-  font-weight:bold;
+      box-shadow:
+        0 10px 28px
+        rgba(91,70,119,.10);
+    }
 
-  cursor:pointer;
-}
 
-.activate-button:disabled{
-  opacity:.6;
-  cursor:not-allowed;
-}
+    .card::before{
 
-.activation-message{
-  min-height:30px;
+      content:"";
 
-  margin-top:12px;
+      position:absolute;
 
-  text-align:center;
+      top:0;
+      right:0;
+      left:0;
 
-  font-size:13px;
-  font-weight:bold;
-  line-height:1.9;
-}
+      height:7px;
 
-.help-box{
-  margin-top:17px;
+      background:
+        linear-gradient(
+          90deg,
+          var(--gold),
+          var(--purple-light),
+          var(--gold)
+        );
+    }
 
-  padding:13px;
 
-  color:#705b28;
+    .icon{
 
-  border-radius:15px;
+      margin-top:5px;
 
-  background:
-    var(--yellow-bg);
+      text-align:center;
 
-  font-size:12px;
-  line-height:1.9;
-}
+      font-size:54px;
+    }
 
-.success-card{
-  display:none;
 
-  padding:
-    25px 18px;
+    .card h2{
 
-  text-align:center;
+      margin:
+        7px
+        0
+        8px;
 
-  border:
-    2px solid
-    var(--gold);
+      text-align:center;
 
-  border-radius:25px;
+      color:var(--purple);
 
-  background:
-    linear-gradient(
-      145deg,
-      #fffdf8,
-      #f1faf4
-    );
+      font-size:
+        clamp(
+          22px,
+          6vw,
+          29px
+        );
+    }
 
-  box-shadow:
-    0 10px 28px
-    rgba(91,70,119,.10);
-}
 
-.success-card.show{
-  display:block;
-}
+    .intro{
 
-.success-icon{
-  font-size:58px;
-}
+      max-width:600px;
 
-.success-card h2{
-  margin:
-    8px 0;
+      margin:
+        0 auto
+        18px;
 
-  color:
-    var(--green);
+      text-align:center;
 
-  font-size:
-    clamp(
-      22px,
-      6vw,
-      30px
-    );
-}
+      color:#726678;
 
-.role-badge{
-  display:inline-block;
+      font-size:13px;
+      line-height:2;
+    }
 
-  margin:
-    8px 0 14px;
 
-  padding:
-    8px 15px;
 
-  color:
-    var(--purple-dark);
+    /* =========================
+       تسجيل الدخول
+    ========================= */
 
-  border:
-    1px solid
-    #d6c077;
+    .login-card{
+      display:none;
+    }
 
-  border-radius:999px;
 
-  background:#fff4cc;
+    .login-card.show{
+      display:block;
+    }
 
-  font-size:14px;
-  font-weight:bold;
-}
 
-.success-text{
-  margin:
-    0 auto;
+    .google-button{
 
-  max-width:570px;
+      width:100%;
 
-  color:#6f6475;
+      margin-top:10px;
 
-  font-size:13px;
-  line-height:2;
-}
+      padding:
+        14px
+        16px;
 
-.back-button{
-  display:inline-block;
+      color:#ffffff;
 
-  margin-top:20px;
+      border:
+        2px solid
+        var(--gold);
 
-  padding:
-    12px
-    23px;
+      border-radius:18px;
 
-  color:white;
+      background:
+        linear-gradient(
+          135deg,
+          var(--purple-light),
+          var(--purple)
+        );
 
-  text-decoration:none;
+      font-size:15px;
+      font-weight:bold;
 
-  border:
-    2px solid
-    var(--gold);
+      cursor:pointer;
+    }
 
-  border-radius:999px;
 
-  background:
-    linear-gradient(
-      135deg,
-      var(--purple-light),
-      var(--purple)
-    );
+    .google-button:disabled{
+      opacity:.65;
+      cursor:wait;
+    }
 
-  font-size:13px;
-  font-weight:bold;
-}
 
-.roles-info{
-  margin-top:20px;
+    .login-help{
 
-  padding:16px;
+      margin-top:14px;
 
-  border:
-    2px solid
-    #dec98d;
+      padding:13px;
 
-  border-radius:20px;
+      color:#705b28;
 
-  background:#fffdf8;
-}
+      text-align:center;
 
-.roles-info h3{
-  margin:
-    0 0 12px;
+      border-radius:15px;
 
-  text-align:center;
+      background:
+        var(--yellow-bg);
 
-  color:
-    var(--purple);
+      font-size:12px;
+      line-height:1.9;
+    }
 
-  font-size:17px;
-}
 
-.role-row{
-  display:flex;
 
-  align-items:center;
+    /* =========================
+       بطاقة التفعيل
+    ========================= */
 
-  gap:10px;
+    .activation-card{
+      display:none;
+    }
 
-  margin-top:8px;
 
-  padding:
-    11px 12px;
+    .activation-card.show{
+      display:block;
+    }
 
-  border-radius:14px;
 
-  background:#f8f3fa;
+    .account-box{
 
-  font-size:12px;
-  line-height:1.7;
-}
+      margin-bottom:18px;
 
-.role-row-icon{
-  font-size:24px;
-}
+      padding:13px;
 
-.role-row strong{
-  display:block;
+      text-align:center;
 
-  color:
-    var(--purple);
-}
+      border:
+        1px solid
+        #e1d5e3;
 
-@media(max-width:500px){
+      border-radius:16px;
 
-  .container{
-    width:94%;
-  }
+      background:#faf6fb;
+    }
 
-  .activation-card,
-  .success-card{
-    padding:
-      22px
-      14px;
-  }
 
-}
+    .account-label{
 
-</style>
+      display:block;
+
+      color:#796e7d;
+
+      font-size:11px;
+      font-weight:bold;
+    }
+
+
+    .account-email{
+
+      display:block;
+
+      margin-top:5px;
+
+      direction:ltr;
+
+      color:var(--purple);
+
+      font-size:14px;
+      font-weight:bold;
+
+      word-break:
+        break-word;
+    }
+
+
+    .change-account-button{
+
+      margin-top:10px;
+
+      padding:
+        7px
+        14px;
+
+      color:var(--purple);
+
+      background:#fff;
+
+      border:
+        1px solid
+        #d5c079;
+
+      border-radius:999px;
+
+      font-size:11px;
+      font-weight:bold;
+
+      cursor:pointer;
+    }
+
+
+    .code-label{
+
+      display:block;
+
+      margin:
+        0
+        0
+        7px;
+
+      color:var(--purple-dark);
+
+      font-size:14px;
+      font-weight:bold;
+    }
+
+
+    .code-input{
+
+      width:100%;
+
+      padding:
+        15px
+        13px;
+
+      direction:ltr;
+      text-align:center;
+
+      color:var(--purple-dark);
+
+      border:
+        2px solid
+        #d5c079;
+
+      border-radius:16px;
+
+      background:white;
+
+      outline:none;
+
+      font-size:
+        clamp(
+          17px,
+          5vw,
+          21px
+        );
+
+      font-weight:bold;
+
+      letter-spacing:.5px;
+    }
+
+
+    .code-input:focus{
+
+      border-color:
+        var(--purple-light);
+
+      box-shadow:
+        0 0 0 3px
+        rgba(123,100,152,.12);
+    }
+
+
+    .activate-button{
+
+      width:100%;
+
+      margin-top:13px;
+
+      padding:14px;
+
+      color:white;
+
+      border:0;
+
+      border-radius:16px;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--purple-light),
+          var(--purple)
+        );
+
+      font-size:15px;
+      font-weight:bold;
+
+      cursor:pointer;
+    }
+
+
+    .activate-button:disabled{
+      opacity:.6;
+      cursor:not-allowed;
+    }
+
+
+    .activation-message{
+
+      min-height:30px;
+
+      margin-top:12px;
+
+      text-align:center;
+
+      font-size:13px;
+      font-weight:bold;
+      line-height:1.9;
+    }
+
+
+    .help-box{
+
+      margin-top:17px;
+
+      padding:13px;
+
+      color:#705b28;
+
+      border-radius:15px;
+
+      background:
+        var(--yellow-bg);
+
+      font-size:12px;
+      line-height:1.9;
+    }
+
+
+
+    /* =========================
+       بطاقة النجاح
+    ========================= */
+
+    .success-card{
+      display:none;
+    }
+
+
+    .success-card.show{
+      display:block;
+    }
+
+
+    .success-icon{
+      font-size:58px;
+      text-align:center;
+    }
+
+
+    .success-card h2{
+
+      margin:
+        8px
+        0;
+
+      color:var(--green);
+
+      font-size:
+        clamp(
+          22px,
+          6vw,
+          30px
+        );
+    }
+
+
+    .role-badge{
+
+      display:block;
+
+      width:fit-content;
+
+      margin:
+        8px
+        auto
+        14px;
+
+      padding:
+        8px
+        15px;
+
+      color:var(--purple-dark);
+
+      border:
+        1px solid
+        #d6c077;
+
+      border-radius:999px;
+
+      background:#fff4cc;
+
+      font-size:14px;
+      font-weight:bold;
+    }
+
+
+    .success-text{
+
+      margin:
+        0 auto;
+
+      max-width:570px;
+
+      text-align:center;
+
+      color:#6f6475;
+
+      font-size:13px;
+      line-height:2;
+    }
+
+
+    .dashboard-button{
+
+      display:block;
+
+      width:100%;
+
+      margin-top:20px;
+
+      padding:
+        14px
+        20px;
+
+      color:white;
+
+      text-align:center;
+      text-decoration:none;
+
+      border:
+        2px solid
+        var(--gold);
+
+      border-radius:999px;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--purple-light),
+          var(--purple)
+        );
+
+      font-size:14px;
+      font-weight:bold;
+    }
+
+
+    .home-button{
+
+      display:block;
+
+      width:fit-content;
+
+      margin:
+        13px auto
+        0;
+
+      padding:
+        9px
+        18px;
+
+      color:var(--purple);
+
+      text-align:center;
+      text-decoration:none;
+
+      border:
+        1px solid
+        #d5c079;
+
+      border-radius:999px;
+
+      background:#fffdf8;
+
+      font-size:12px;
+      font-weight:bold;
+    }
+
+
+
+    /* =========================
+       تعريف الصلاحيات
+    ========================= */
+
+    .roles-info{
+
+      margin-top:20px;
+
+      padding:16px;
+
+      border:
+        2px solid
+        #dec98d;
+
+      border-radius:20px;
+
+      background:#fffdf8;
+    }
+
+
+    .roles-info h3{
+
+      margin:
+        0
+        0
+        12px;
+
+      text-align:center;
+
+      color:var(--purple);
+
+      font-size:17px;
+    }
+
+
+    .role-row{
+
+      display:flex;
+
+      align-items:center;
+
+      gap:10px;
+
+      margin-top:8px;
+
+      padding:
+        11px
+        12px;
+
+      border-radius:14px;
+
+      background:#f8f3fa;
+
+      font-size:12px;
+      line-height:1.7;
+    }
+
+
+    .role-row-icon{
+      font-size:24px;
+    }
+
+
+    .role-row strong{
+
+      display:block;
+
+      color:var(--purple);
+    }
+
+
+
+    /* =========================
+       الجوال
+    ========================= */
+
+    @media(max-width:500px){
+
+      .container{
+        width:94%;
+      }
+
+
+      .card{
+        padding:
+          22px
+          14px;
+      }
+
+    }
+
+  </style>
 
 </head>
 
+
 <body>
+
 
 <header>
 
@@ -631,28 +879,79 @@ header p{
   </h1>
 
   <p>
-    صفحة مخصصة لتفعيل صلاحيات
-    الكادر الإداري والإرشادي في منصة آفاق.
-    يستخدم رمز التفعيل في المرة الأولى فقط.
+    صفحة مخصصة للكادر الإداري والإرشادي.
+    سجلي الدخول بحساب Google، ثم استخدمي
+    رمز التفعيل في المرة الأولى فقط.
   </p>
 
 </header>
 
 
+
 <main class="container">
+
 
   <div
     id="statusBox"
     class="status-box loading"
   >
-    جارٍ التحقق من حسابك...
+    جارٍ التحقق من الحساب...
   </div>
 
 
+
+  <!-- =========================
+       تسجيل الدخول
+  ========================= -->
+
+  <section
+    id="loginCard"
+    class="card login-card"
+  >
+
+    <div class="icon">
+      🔐
+    </div>
+
+    <h2>
+      تسجيل الدخول
+    </h2>
+
+    <p class="intro">
+      اضغطي الزر التالي وسجلي الدخول
+      بحساب Google الذي ستستخدمينه
+      في متابعة منصة آفاق.
+    </p>
+
+    <button
+      id="googleLoginButton"
+      class="google-button"
+      type="button"
+    >
+      🔐 تسجيل الدخول بحساب Google
+    </button>
+
+    <div
+      id="loginMessage"
+      class="activation-message"
+    ></div>
+
+    <div class="login-help">
+      يكفي تسجيل الدخول والتفعيل مرة واحدة فقط.
+      بعد ذلك ستتعرف المنصة على الحساب تلقائيًا.
+    </div>
+
+  </section>
+
+
+
+  <!-- =========================
+       التفعيل
+  ========================= -->
+
   <section
     id="activationCard"
-    class="activation-card"
-    style="display:none;"
+    class="card activation-card"
   >
 
     <div class="icon">
@@ -664,10 +963,9 @@ header p{
     </h2>
 
     <p class="intro">
-      أدخلي رمز التفعيل الذي خصصته لكِ
-      إدارة منصة آفاق.
-      بعد نجاح التفعيل سيُحفظ دورك على الحساب
-      ولن تحتاجي إلى إدخال الرمز في كل مرة.
+      أدخلي رمز التفعيل المخصص لكِ.
+      بعد نجاح التفعيل سيُحفظ دورك
+      على حسابك ولن تحتاجي إلى الرمز مرة أخرى.
     </p>
 
 
@@ -684,6 +982,14 @@ header p{
         —
       </span>
 
+      <button
+        id="changeAccountButton"
+        class="change-account-button"
+        type="button"
+      >
+        تغيير الحساب
+      </button>
+
     </div>
 
 
@@ -693,6 +999,7 @@ header p{
     >
       رمز التفعيل
     </label>
+
 
     <input
       id="activationCode"
@@ -721,16 +1028,28 @@ header p{
 
 
     <div class="help-box">
+
       🔒 رمز التفعيل مخصص لصاحبته فقط.
-      لا تشاركي الرمز مع أي حساب آخر.
-      بعد تفعيل الحساب ستتعرف المنصة
-      على الصلاحية تلقائيًا.
+      لا تشاركيه مع أي حساب آخر.
+
+      <br>
+
+      بعد نجاح التفعيل ستظهر لكِ
+      لوحة المتابعة المناسبة لصلاحيتكِ.
+
     </div>
 
   </section>
-    <section
+
+
+
+  <!-- =========================
+       نجاح التفعيل
+  ========================= -->
+
+  <section
     id="successCard"
-    class="success-card"
+    class="card success-card"
   >
 
     <div class="success-icon">
@@ -738,8 +1057,9 @@ header p{
     </div>
 
     <h2>
-      تم تفعيل الحساب
+      الحساب جاهز للمتابعة
     </h2>
+
 
     <div
       id="roleBadge"
@@ -748,6 +1068,7 @@ header p{
       صلاحية المتابعة
     </div>
 
+
     <p
       id="successText"
       class="success-text"
@@ -755,15 +1076,30 @@ header p{
       تم تسجيل صلاحية الحساب بنجاح.
     </p>
 
+
+    <a
+      id="dashboardButton"
+      href="index.html"
+      class="dashboard-button"
+    >
+      📊 الدخول إلى لوحة المتابعة
+    </a>
+
+
     <a
       href="index.html"
-      class="back-button"
+      class="home-button"
     >
-      ↩ العودة إلى منصة آفاق
+      🏠 العودة إلى منصة آفاق
     </a>
 
   </section>
 
+
+
+  <!-- =========================
+       الصلاحيات
+  ========================= -->
 
   <section class="roles-info">
 
@@ -779,12 +1115,14 @@ header p{
       </span>
 
       <div>
+
         <strong>
           مديرة المدرسة
         </strong>
 
         متابعة شاملة لمؤشرات الإنجاز
         والنتائج والتقدم.
+
       </div>
 
     </div>
@@ -797,12 +1135,14 @@ header p{
       </span>
 
       <div>
+
         <strong>
           وكيلة شؤون الطالبات
         </strong>
 
         متابعة إنجاز الطالبات
         وحالات الإكمال والتقدم.
+
       </div>
 
     </div>
@@ -815,764 +1155,1033 @@ header p{
       </span>
 
       <div>
+
         <strong>
           موجّهة الإرشاد الطلابي
         </strong>
 
         متابعة الطالبات اللاتي يحتجن
         إلى دعم ومساندة تربوية.
+
       </div>
 
     </div>
 
   </section>
 
+
 </main>
+
 
 
 <script type="module">
 
 
-import {
-  initializeApp
-}
-from
-"https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+  /* =========================
+     Firebase
+  ========================= */
+
+  import {
+    initializeApp
+  }
+  from
+  "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
 
 
-import {
-  initializeAuth,
-  browserLocalPersistence,
-  browserPopupRedirectResolver,
-  onAuthStateChanged
-}
-from
-"https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+  import {
+    initializeAuth,
+    browserLocalPersistence,
+    browserPopupRedirectResolver,
+    GoogleAuthProvider,
+    signInWithRedirect,
+    signOut,
+    onAuthStateChanged
+  }
+  from
+  "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
 
 
-import {
-  getFirestore,
-  doc,
-  getDoc,
-  setDoc,
-  serverTimestamp
-}
-from
-"https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+  import {
+    getFirestore,
+    doc,
+    getDoc,
+    setDoc,
+    serverTimestamp
+  }
+  from
+  "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 
 
-const firebaseConfig = {
 
-  apiKey:
-    "AIzaSyB48av9gx4jzFyYoUQtcLwaR52qETevKGs",
+  const firebaseConfig = {
 
-  authDomain:
-    "afaq-language-platform.firebaseapp.com",
+    apiKey:
+      "AIzaSyB48av9gx4jzFyYoUQtcLwaR52qETevKGs",
 
-  projectId:
-    "afaq-language-platform",
+    authDomain:
+      "afaq-language-platform.firebaseapp.com",
 
-  storageBucket:
-    "afaq-language-platform.firebasestorage.app",
+    projectId:
+      "afaq-language-platform",
 
-  messagingSenderId:
-    "362601061474",
+    storageBucket:
+      "afaq-language-platform.firebasestorage.app",
 
-  appId:
-    "1:362601061474:web:bc405291332b9e4ef9453b"
+    messagingSenderId:
+      "362601061474",
 
-};
+    appId:
+      "1:362601061474:web:bc405291332b9e4ef9453b"
 
-
-const app =
-  initializeApp(
-    firebaseConfig
-  );
+  };
 
 
-const auth =
-  initializeAuth(
-    app,
+
+  const app =
+    initializeApp(
+      firebaseConfig
+    );
+
+
+
+  const auth =
+    initializeAuth(
+      app,
+      {
+
+        persistence:
+          browserLocalPersistence,
+
+        popupRedirectResolver:
+          browserPopupRedirectResolver
+
+      }
+    );
+
+
+
+  const db =
+    getFirestore(
+      app
+    );
+
+
+
+  const provider =
+    new GoogleAuthProvider();
+
+
+
+  provider.setCustomParameters(
     {
-      persistence:
-        browserLocalPersistence,
-
-      popupRedirectResolver:
-        browserPopupRedirectResolver
+      prompt:"select_account"
     }
   );
 
 
-const db =
-  getFirestore(
-    app
-  );
+
+  const el =
+    id =>
+      document.getElementById(
+        id
+      );
 
 
-const el =
-  id =>
-    document.getElementById(
-      id
+
+  const statusBox =
+    el("statusBox");
+
+
+  const loginCard =
+    el("loginCard");
+
+
+  const googleLoginButton =
+    el("googleLoginButton");
+
+
+  const loginMessage =
+    el("loginMessage");
+
+
+  const activationCard =
+    el("activationCard");
+
+
+  const accountEmail =
+    el("accountEmail");
+
+
+  const changeAccountButton =
+    el("changeAccountButton");
+
+
+  const activationCode =
+    el("activationCode");
+
+
+  const activateButton =
+    el("activateButton");
+
+
+  const activationMessage =
+    el("activationMessage");
+
+
+  const successCard =
+    el("successCard");
+
+
+  const roleBadge =
+    el("roleBadge");
+
+
+  const successText =
+    el("successText");
+
+
+  const dashboardButton =
+    el("dashboardButton");
+
+
+
+  let currentUser =
+    null;
+
+
+
+  /* =========================
+     اسم الدور
+  ========================= */
+
+  function getRoleArabicName(
+    role
+  ){
+
+    if(
+      role === "principal"
+    ){
+
+      return "مديرة المدرسة";
+
+    }
+
+
+    if(
+      role === "student_affairs"
+    ){
+
+      return "وكيلة شؤون الطالبات";
+
+    }
+
+
+    if(
+      role === "counselor"
+    ){
+
+      return "موجّهة الإرشاد الطلابي";
+
+    }
+
+
+    return "صلاحية المتابعة";
+
+  }
+
+
+
+  /* =========================
+     رابط لوحة الدور
+  ========================= */
+
+  function getRoleDashboard(
+    role
+  ){
+
+    if(
+      role === "principal"
+    ){
+
+      return "principal-dashboard.html";
+
+    }
+
+
+    if(
+      role === "student_affairs"
+    ){
+
+      return "student-affairs-dashboard.html";
+
+    }
+
+
+    if(
+      role === "counselor"
+    ){
+
+      return "counselor-dashboard.html";
+
+    }
+
+
+    return "index.html";
+
+  }
+
+
+
+  /* =========================
+     وصف النجاح
+  ========================= */
+
+  function getRoleSuccessText(
+    role
+  ){
+
+    if(
+      role === "principal"
+    ){
+
+      return "تم تفعيل حساب مديرة المدرسة بنجاح. يمكنكِ الآن الدخول مباشرة إلى لوحة المتابعة الإدارية.";
+
+    }
+
+
+    if(
+      role === "student_affairs"
+    ){
+
+      return "تم تفعيل حساب وكيلة شؤون الطالبات بنجاح. يمكنكِ الآن متابعة إنجاز الطالبات وحالات الإكمال والتقدم.";
+
+    }
+
+
+    if(
+      role === "counselor"
+    ){
+
+      return "تم تفعيل حساب موجّهة الإرشاد الطلابي بنجاح. يمكنكِ الآن الدخول إلى لوحة الإرشاد ومتابعة مؤشرات الطالبات.";
+
+    }
+
+
+    return "تم تسجيل صلاحية المتابعة لهذا الحساب بنجاح.";
+
+  }
+
+
+
+  /* =========================
+     إظهار النجاح
+  ========================= */
+
+  function showActivatedRole(
+    role
+  ){
+
+    loginCard.classList.remove(
+      "show"
     );
 
 
-const statusBox =
-  el("statusBox");
-
-
-const activationCard =
-  el("activationCard");
-
-
-const successCard =
-  el("successCard");
-
-
-const accountEmail =
-  el("accountEmail");
-
-
-const activationCode =
-  el("activationCode");
-
-
-const activateButton =
-  el("activateButton");
-
-
-const activationMessage =
-  el("activationMessage");
-
-
-const roleBadge =
-  el("roleBadge");
-
-
-const successText =
-  el("successText");
-
-
-let currentUser =
-  null;
-
-
-/* =============================
-   أسماء الأدوار بالعربية
-============================= */
-
-function getRoleArabicName(
-  role
-){
-
-  if(
-    role === "principal"
-  ){
-
-    return "مديرة المدرسة";
-
-  }
-
-
-  if(
-    role === "student_affairs"
-  ){
-
-    return "وكيلة شؤون الطالبات";
-
-  }
-
-
-  if(
-    role === "counselor"
-  ){
-
-    return "موجّهة الإرشاد الطلابي";
-
-  }
-
-
-  return "صلاحية المتابعة";
-
-}
-
-
-/* =============================
-   وصف نجاح التفعيل
-============================= */
-
-function getRoleSuccessText(
-  role
-){
-
-  if(
-    role === "principal"
-  ){
-
-    return "تم تفعيل حساب مديرة المدرسة بنجاح. ستتمكنين من استخدام صلاحيات المتابعة الإدارية المخصصة لكِ في منصة آفاق.";
-
-  }
-
-
-  if(
-    role === "student_affairs"
-  ){
-
-    return "تم تفعيل حساب وكيلة شؤون الطالبات بنجاح. ستتمكنين من متابعة إنجاز الطالبات وحالات الإكمال والتقدم وفق الصلاحيات المخصصة لكِ.";
-
-  }
-
-
-  if(
-    role === "counselor"
-  ){
-
-    return "تم تفعيل حساب موجّهة الإرشاد الطلابي بنجاح. ستتمكنين من متابعة مؤشرات الطالبات التي تساعد على تقديم الدعم والإرشاد المناسب.";
-
-  }
-
-
-  return "تم تسجيل صلاحية المتابعة لهذا الحساب بنجاح.";
-
-}
-
-
-/* =============================
-   إظهار نجاح التفعيل
-============================= */
-
-function showActivatedRole(
-  role
-){
-
-  activationCard.style.display =
-    "none";
-
-
-  successCard.classList.add(
-    "show"
-  );
-
-
-  statusBox.className =
-    "status-box success";
-
-
-  statusBox.textContent =
-    "✅ الحساب مفعّل وجاهز للمتابعة.";
-
-
-  roleBadge.textContent =
-    getRoleArabicName(
-      role
+    activationCard.classList.remove(
+      "show"
     );
 
 
-  successText.textContent =
-    getRoleSuccessText(
-      role
-    );
-
-}
-
-
-/* =============================
-   التحقق من تفعيل الحساب سابقًا
-============================= */
-
-async function checkExistingRole(
-  user
-){
-
-  const roleRef =
-    doc(
-      db,
-      "user_roles",
-      user.uid
+    successCard.classList.add(
+      "show"
     );
 
 
-  const roleSnap =
-    await getDoc(
-      roleRef
-    );
+    statusBox.className =
+      "status-box success";
 
 
-  if(
-    !roleSnap.exists()
+    statusBox.textContent =
+      "✅ الحساب مفعّل وجاهز للمتابعة.";
+
+
+    roleBadge.textContent =
+      getRoleArabicName(
+        role
+      );
+
+
+    successText.textContent =
+      getRoleSuccessText(
+        role
+      );
+
+
+    dashboardButton.href =
+      getRoleDashboard(
+        role
+      );
+
+  }
+
+
+
+  /* =========================
+     التحقق من دور سابق
+  ========================= */
+
+  async function checkExistingRole(
+    user
   ){
+
+    const roleRef =
+      doc(
+        db,
+        "user_roles",
+        user.uid
+      );
+
+
+    const roleSnap =
+      await getDoc(
+        roleRef
+      );
+
+
+    if(
+      !roleSnap.exists()
+    ){
+
+      return false;
+
+    }
+
+
+    const data =
+      roleSnap.data();
+
+
+    const role =
+      String(
+        data?.role || ""
+      ).trim();
+
+
+    const status =
+      String(
+        data?.status || ""
+      ).trim();
+
+
+    if(
+      role &&
+      status === "active"
+    ){
+
+          showActivatedRole(
+        role
+      );
+
+
+      return true;
+
+    }
+
 
     return false;
 
   }
 
 
-  const data =
-    roleSnap.data();
 
+  /* =========================
+     تنظيف رمز التفعيل
+  ========================= */
 
-  const role =
-    String(
-      data?.role || ""
-    ).trim();
-
-
-  const status =
-    String(
-      data?.status || ""
-    ).trim();
-
-
-  if(
-    role &&
-    status === "active"
+  function normalizeActivationCode(
+    value
   ){
 
-    showActivatedRole(
-      role
+    return String(
+      value || ""
+    )
+    .trim()
+    .toUpperCase()
+    .replace(
+      /\s+/g,
+      ""
     );
-
-    return true;
 
   }
 
 
-  return false;
 
-}
+  /* =========================
+     تسجيل الدخول
+  ========================= */
 
-
-/* =============================
-   تنظيف الرمز
-============================= */
-
-function normalizeActivationCode(
-  value
-){
-
-  return String(
-    value || ""
-  )
-  .trim()
-  .toUpperCase()
-  .replace(
-    /\s+/g,
-    ""
-  );
-
-}
-
-
-/* =============================
-   تفعيل الحساب
-============================= */
-
-async function activateRole(){
-
-  if(
-    !currentUser
-  ){
-
-    activationMessage.style.color =
-      "#96394a";
-
-
-    activationMessage.textContent =
-      "يلزم تسجيل الدخول أولًا.";
-
-    return;
-
-  }
-
-
-  const code =
-    normalizeActivationCode(
-      activationCode.value
-    );
-
-
-  if(
-    !code
-  ){
-
-    activationMessage.style.color =
-      "#96394a";
-
-
-    activationMessage.textContent =
-      "أدخلي رمز التفعيل أولًا.";
-
-    return;
-
-  }
-
-
-  try{
-
-    activateButton.disabled =
-      true;
-
-
-    activationMessage.style.color =
-      "#6d582a";
-
-
-    activationMessage.textContent =
-      "جارٍ التحقق من رمز التفعيل...";
-
-
-    /* قراءة مستند الرمز المحدد فقط */
-
-    const codeRef =
-      doc(
-        db,
-        "role_codes",
-        code
-      );
-
-
-    const codeSnap =
-      await getDoc(
-        codeRef
-      );
-
-
-    if(
-      !codeSnap.exists()
-    ){
-
-      activationMessage.style.color =
-        "#96394a";
-
-
-      activationMessage.textContent =
-        "رمز التفعيل غير صحيح. تأكدي من كتابته كما استلمته.";
-
-      return;
-
-    }
-
-
-    const codeData =
-      codeSnap.data();
-
-
-    const role =
-      String(
-        codeData?.role || ""
-      ).trim();
-
-
-    const codeStatus =
-      String(
-        codeData?.status || ""
-      ).trim();
-
-
-    if(
-      codeStatus !== "active"
-    ){
-
-      activationMessage.style.color =
-        "#96394a";
-
-
-      activationMessage.textContent =
-        "رمز التفعيل غير متاح حاليًا.";
-
-      return;
-
-    }
-
-
-    if(
-      ![
-        "principal",
-        "student_affairs",
-        "counselor"
-      ].includes(
-        role
-      )
-    ){
-
-      activationMessage.style.color =
-        "#96394a";
-
-
-      activationMessage.textContent =
-        "تعذر تحديد نوع الصلاحية لهذا الرمز.";
-
-      return;
-
-    }
-        /* التأكد أن الحساب لم يُفعّل سابقًا */
-
-    const userRoleRef =
-      doc(
-        db,
-        "user_roles",
-        currentUser.uid
-      );
-
-
-    const existingRoleSnap =
-      await getDoc(
-        userRoleRef
-      );
-
-
-    if(
-      existingRoleSnap.exists()
-    ){
-
-      const existingData =
-        existingRoleSnap.data();
-
-
-      const existingRole =
-        String(
-          existingData?.role || ""
-        ).trim();
-
-
-      const existingStatus =
-        String(
-          existingData?.status || ""
-        ).trim();
-
-
-      if(
-        existingRole &&
-        existingStatus === "active"
-      ){
-
-        showActivatedRole(
-          existingRole
-        );
-
-
-        return;
-
-      }
-
-
-      activationMessage.style.color =
-        "#96394a";
-
-
-      activationMessage.textContent =
-        "يوجد سجل صلاحية سابق لهذا الحساب، ويلزم مراجعته من إدارة المنصة.";
-
-
-      return;
-
-    }
-
-
-    /* إنشاء صلاحية المستخدم */
-
-    await setDoc(
-      userRoleRef,
-      {
-
-        role:
-          role,
-
-        status:
-          "active",
-
-        activationCode:
-          code,
-
-        userUid:
-          currentUser.uid,
-
-        userEmail:
-          currentUser.email ||
-          "",
-
-        activatedAt:
-          serverTimestamp()
-
-      }
-    );
-
-
-    activationMessage.style.color =
-      "#2f7650";
-
-
-    activationMessage.textContent =
-      "✅ تم تفعيل الحساب بنجاح.";
-
-
-    showActivatedRole(
-      role
-    );
-
-
-  }catch(error){
-
-    console.error(
-      "Role activation error:",
-      error
-    );
-
-
-    activationMessage.style.color =
-      "#96394a";
-
-
-    activationMessage.textContent =
-      "تعذر تفعيل الحساب الآن. تأكدي من تسجيل الدخول ومن صحة الرمز ثم حاولي مرة أخرى.";
-
-
-  }finally{
-
-    activateButton.disabled =
-      false;
-
-  }
-
-}
-
-
-/* =============================
-   الأحداث
-============================= */
-
-activateButton.addEventListener(
-  "click",
-  activateRole
-);
-
-
-activationCode.addEventListener(
-  "keydown",
-  event => {
-
-    if(
-      event.key === "Enter"
-    ){
-
-      activateRole();
-
-    }
-
-  }
-);
-
-
-/* =============================
-   التحقق من تسجيل الدخول
-============================= */
-
-onAuthStateChanged(
-  auth,
-  async user => {
-
-
-    currentUser =
-      user;
-
-
-    if(
-      !user
-    ){
-
-      statusBox.className =
-        "status-box error";
-
-
-      statusBox.textContent =
-        "🔒 يلزم تسجيل الدخول بحسابك في منصة آفاق قبل استخدام رمز التفعيل.";
-
-
-      activationCard.style.display =
-        "none";
-
-
-      successCard.classList.remove(
-        "show"
-      );
-
-
-      return;
-
-    }
-
-
-    accountEmail.textContent =
-      user.email ||
-      "حساب مسجل";
-
-
-    statusBox.className =
-      "status-box loading";
-
-
-    statusBox.textContent =
-      "جارٍ التحقق من صلاحية الحساب...";
-
+  async function loginWithGoogle(){
 
     try{
 
-      const alreadyActivated =
-        await checkExistingRole(
-          user
-        );
+      googleLoginButton.disabled =
+        true;
 
 
-      if(
-        alreadyActivated
-      ){
-
-        return;
-
-      }
+      loginMessage.style.color =
+        "#6d582a";
 
 
-      statusBox.className =
-        "status-box success";
+      loginMessage.textContent =
+        "جارٍ فتح تسجيل الدخول بحساب Google...";
 
 
-      statusBox.textContent =
-        "الحساب مسجل. أدخلي رمز التفعيل المخصص لكِ.";
-
-
-      activationCard.style.display =
-        "block";
-
-
-      successCard.classList.remove(
-        "show"
+      await signInWithRedirect(
+        auth,
+        provider
       );
 
+    }
 
-    }catch(error){
+
+    catch(error){
 
       console.error(
-        "Role check error:",
+        "Google login error:",
         error
       );
 
 
-      statusBox.className =
-        "status-box error";
+      googleLoginButton.disabled =
+        false;
 
 
-      statusBox.textContent =
-        "تعذر التحقق من صلاحية الحساب الآن.";
+      loginMessage.style.color =
+        "#96394a";
 
 
-      activationCard.style.display =
-        "none";
+      loginMessage.textContent =
+        "تعذر فتح تسجيل الدخول. افتحي الصفحة في متصفح Chrome ثم حاولي مرة أخرى.";
 
     }
 
   }
-);
+
+
+
+  /* =========================
+     تغيير الحساب
+  ========================= */
+
+  async function changeAccount(){
+
+    try{
+
+      await signOut(
+        auth
+      );
+
+
+      currentUser =
+        null;
+
+
+      window.location.reload();
+
+    }
+
+
+    catch(error){
+
+      console.error(
+        "Sign out error:",
+        error
+      );
+
+    }
+
+  }
+
+
+
+  /* =========================
+     تفعيل الصلاحية
+  ========================= */
+
+  async function activateRole(){
+
+    if(
+      !currentUser
+    ){
+
+      activationMessage.style.color =
+        "#96394a";
+
+
+      activationMessage.textContent =
+        "يلزم تسجيل الدخول أولًا.";
+
+
+      return;
+
+    }
+
+
+
+    const code =
+      normalizeActivationCode(
+        activationCode.value
+      );
+
+
+
+    if(
+      !code
+    ){
+
+      activationMessage.style.color =
+        "#96394a";
+
+
+      activationMessage.textContent =
+        "أدخلي رمز التفعيل أولًا.";
+
+
+      return;
+
+    }
+
+
+
+    try{
+
+      activateButton.disabled =
+        true;
+
+
+      activationMessage.style.color =
+        "#6d582a";
+
+
+      activationMessage.textContent =
+        "جارٍ التحقق من رمز التفعيل...";
+
+
+
+      const codeRef =
+        doc(
+          db,
+          "role_codes",
+          code
+        );
+
+
+
+      const codeSnap =
+        await getDoc(
+          codeRef
+        );
+
+
+
+      if(
+        !codeSnap.exists()
+      ){
+
+        activationMessage.style.color =
+          "#96394a";
+
+
+        activationMessage.textContent =
+          "رمز التفعيل غير صحيح. تأكدي من كتابته كما استلمته.";
+
+
+        return;
+
+      }
+
+
+
+      const codeData =
+        codeSnap.data();
+
+
+
+      const role =
+        String(
+          codeData?.role || ""
+        ).trim();
+
+
+
+      const codeStatus =
+        String(
+          codeData?.status || ""
+        ).trim();
+
+
+
+      if(
+        codeStatus !== "active"
+      ){
+
+        activationMessage.style.color =
+          "#96394a";
+
+
+        activationMessage.textContent =
+          "رمز التفعيل غير متاح حاليًا.";
+
+
+        return;
+
+      }
+
+
+
+      if(
+        ![
+          "principal",
+          "student_affairs",
+          "counselor"
+        ].includes(
+          role
+        )
+      ){
+
+        activationMessage.style.color =
+          "#96394a";
+
+
+        activationMessage.textContent =
+          "تعذر تحديد نوع الصلاحية لهذا الرمز.";
+
+
+        return;
+
+      }
+
+
+
+      const userRoleRef =
+        doc(
+          db,
+          "user_roles",
+          currentUser.uid
+        );
+
+
+
+      const existingRoleSnap =
+        await getDoc(
+          userRoleRef
+        );
+
+
+
+      if(
+        existingRoleSnap.exists()
+      ){
+
+        const existingData =
+          existingRoleSnap.data();
+
+
+
+        const existingRole =
+          String(
+            existingData?.role || ""
+          ).trim();
+
+
+
+        const existingStatus =
+          String(
+            existingData?.status || ""
+          ).trim();
+
+
+
+        if(
+          existingRole &&
+          existingStatus === "active"
+        ){
+
+          showActivatedRole(
+            existingRole
+          );
+
+
+          return;
+
+        }
+
+
+
+        activationMessage.style.color =
+          "#96394a";
+
+
+        activationMessage.textContent =
+          "يوجد سجل صلاحية سابق لهذا الحساب، ويلزم مراجعته من إدارة المنصة.";
+
+
+        return;
+
+      }
+
+
+
+      await setDoc(
+        userRoleRef,
+        {
+
+          role:
+            role,
+
+          status:
+            "active",
+
+          activationCode:
+            code,
+
+          userUid:
+            currentUser.uid,
+
+          userEmail:
+            currentUser.email ||
+            "",
+
+          activatedAt:
+            serverTimestamp()
+
+        }
+      );
+
+
+
+      activationMessage.style.color =
+        "#2f7650";
+
+
+      activationMessage.textContent =
+        "✅ تم تفعيل الحساب بنجاح.";
+
+
+
+      showActivatedRole(
+        role
+      );
+
+
+
+    }
+
+
+    catch(error){
+
+      console.error(
+        "Role activation error:",
+        error
+      );
+
+
+      activationMessage.style.color =
+        "#96394a";
+
+
+      activationMessage.textContent =
+        "تعذر التفعيل الآن. تأكدي من الاتصال بالإنترنت ثم حاولي مرة أخرى.";
+
+    }
+
+
+    finally{
+
+      activateButton.disabled =
+        false;
+
+    }
+
+  }
+
+
+
+  /* =========================
+     الأحداث
+  ========================= */
+
+  googleLoginButton.addEventListener(
+    "click",
+    loginWithGoogle
+  );
+
+
+
+  changeAccountButton.addEventListener(
+    "click",
+    changeAccount
+  );
+
+
+
+  activateButton.addEventListener(
+    "click",
+    activateRole
+  );
+
+
+
+  activationCode.addEventListener(
+    "keydown",
+    event => {
+
+      if(
+        event.key === "Enter"
+      ){
+
+        activateRole();
+
+      }
+
+    }
+  );
+
+
+
+  /* =========================
+     حالة تسجيل الدخول
+  ========================= */
+
+  onAuthStateChanged(
+    auth,
+    async user => {
+
+
+      currentUser =
+        user;
+
+
+
+      if(
+        !user
+      ){
+
+        statusBox.className =
+          "status-box loading";
+
+
+        statusBox.textContent =
+          "سجلي الدخول بحساب Google للمتابعة.";
+
+
+        loginCard.classList.add(
+          "show"
+        );
+
+
+        activationCard.classList.remove(
+          "show"
+        );
+
+
+        successCard.classList.remove(
+          "show"
+        );
+
+
+        googleLoginButton.disabled =
+          false;
+
+
+        return;
+
+      }
+
+
+
+      loginCard.classList.remove(
+        "show"
+      );
+
+
+      accountEmail.textContent =
+        user.email ||
+        "حساب مسجل";
+
+
+      statusBox.className =
+        "status-box loading";
+
+
+      statusBox.textContent =
+        "جارٍ التحقق من صلاحية الحساب...";
+
+
+
+      try{
+
+        const alreadyActivated =
+          await checkExistingRole(
+            user
+          );
+
+
+
+        if(
+          alreadyActivated
+        ){
+
+          return;
+
+        }
+
+
+
+        statusBox.className =
+          "status-box success";
+
+
+        statusBox.textContent =
+          "✅ تم تسجيل الدخول. أدخلي رمز التفعيل المخصص لكِ.";
+
+
+        activationCard.classList.add(
+          "show"
+        );
+
+
+        successCard.classList.remove(
+          "show"
+        );
+
+
+
+      }
+
+
+      catch(error){
+
+        console.error(
+          "Role check error:",
+          error
+        );
+
+
+        statusBox.className =
+          "status-box error";
+
+
+        statusBox.textContent =
+          "تعذر التحقق من الصلاحية الآن. حدّثي الصفحة وحاولي مرة أخرى.";
+
+      }
+
+    }
+  );
+
 
 </script>
 
 </body>
+
 </html>
