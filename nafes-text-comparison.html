@@ -1,0 +1,2614 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>مقارنة النصوص | مكتبة نافس</title>
+
+  <style>
+    :root{
+      --purple:#75558d;
+      --purple-dark:#4b385b;
+      --gold:#c9a85c;
+      --cream:#fffaf1;
+      --paper:#fffdf8;
+      --text:#403347;
+      --green:#2f7d4a;
+      --red:#b64040;
+    }
+
+    *{
+      box-sizing:border-box;
+    }
+
+    [hidden]{
+      display:none!important;
+    }
+
+    body{
+      margin:0;
+      overflow-x:hidden;
+      font-family:Tahoma,Arial,sans-serif;
+      line-height:1.9;
+      color:var(--text);
+
+      background:
+        radial-gradient(
+          circle at top,
+          #f2e8f7 0,
+          transparent 38%
+        ),
+        linear-gradient(
+          180deg,
+          var(--cream),
+          #f7f0f8
+        );
+    }
+
+    button,
+    a{
+      font-family:inherit;
+    }
+
+    header{
+      padding:32px 16px 28px;
+      text-align:center;
+      color:white;
+
+      background:
+        linear-gradient(
+          135deg,
+          #786094,
+          #594474
+        );
+
+      border-bottom:5px solid var(--gold);
+    }
+
+    header h1{
+      margin:0;
+      font-size:34px;
+    }
+
+    header p{
+      max-width:760px;
+      margin:8px auto 0;
+      font-size:17px;
+    }
+
+    main{
+      width:min(94%,950px);
+      margin:22px auto 38px;
+    }
+
+    .top-bar{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      gap:10px;
+
+      padding:12px;
+      margin-bottom:20px;
+
+      background:var(--paper);
+      border:2px solid #dfd3e5;
+      border-radius:17px;
+
+      box-shadow:
+        0 7px 18px
+        rgba(73,56,92,.09);
+    }
+
+    .home-btn,
+    .sound-btn{
+      padding:10px 13px;
+      font-weight:bold;
+      text-decoration:none;
+      border:0;
+      border-radius:12px;
+      cursor:pointer;
+    }
+
+    .home-btn{
+      color:#35263d;
+      background:var(--gold);
+    }
+
+    .sound-btn{
+      color:white;
+      background:var(--purple);
+    }
+
+    .progress-area{
+      flex:1;
+      min-width:190px;
+    }
+
+    .progress-label{
+      display:flex;
+      justify-content:space-between;
+      font-size:14px;
+      font-weight:bold;
+    }
+
+    .progress-track{
+      height:11px;
+      margin-top:5px;
+      overflow:hidden;
+      background:#eee4f2;
+      border-radius:999px;
+    }
+
+    .progress-bar{
+      width:0;
+      height:100%;
+
+      background:
+        linear-gradient(
+          90deg,
+          var(--gold),
+          var(--purple)
+        );
+
+      transition:width .35s ease;
+    }
+
+    .map-view,
+    .workspace,
+    .final-card{
+      padding:20px;
+      background:var(--paper);
+      border:2px solid #dfd3e5;
+      border-radius:24px;
+
+      box-shadow:
+        0 8px 22px
+        rgba(73,56,92,.10);
+    }
+
+    .map-view h2,
+    .final-card h2{
+      margin-top:0;
+      text-align:center;
+      color:var(--purple-dark);
+    }
+
+    .intro-note{
+      max-width:760px;
+      margin:0 auto 22px;
+      text-align:center;
+      color:#685b6e;
+    }
+
+    .map-board{
+      position:relative;
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:28px 22px;
+      padding:24px 10px;
+    }
+
+    .map-board::before{
+      content:"";
+      position:absolute;
+      top:10%;
+      right:50%;
+      width:3px;
+      height:78%;
+
+      background:
+        repeating-linear-gradient(
+          180deg,
+          var(--gold) 0,
+          var(--gold) 12px,
+          transparent 12px,
+          transparent 23px
+        );
+
+      opacity:.6;
+      transform:translateX(50%);
+    }
+
+    .map-card{
+      position:relative;
+      z-index:1;
+
+      min-height:176px;
+      padding:28px 16px 20px;
+
+      text-align:center;
+      color:#3e3342;
+
+      background:
+        linear-gradient(
+          145deg,
+          var(--map-color),
+          #fffdf8
+        );
+
+      border:3px solid rgba(255,255,255,.7);
+
+      border-radius:
+        48% 52% 45% 55% /
+        52% 44% 56% 48%;
+
+      box-shadow:
+        0 9px 0 rgba(75,56,91,.08),
+        0 13px 24px rgba(73,56,92,.12);
+
+      cursor:pointer;
+      transition:.2s ease;
+    }
+
+    .map-card:nth-child(even){
+      transform:translateY(24px);
+    }
+
+    .map-card:hover,
+    .map-card:focus{
+      transform:
+        translateY(-4px)
+        scale(1.02);
+
+      outline:
+        3px solid
+        rgba(201,168,92,.45);
+    }
+
+    .map-card:nth-child(even):hover,
+    .map-card:nth-child(even):focus{
+      transform:
+        translateY(18px)
+        scale(1.02);
+    }
+
+    .map-card.completed::after{
+      content:"✓";
+
+      position:absolute;
+      left:10px;
+      bottom:9px;
+
+      display:grid;
+      place-items:center;
+
+      width:31px;
+      height:31px;
+
+      color:white;
+      font-weight:bold;
+
+      background:var(--green);
+      border-radius:50%;
+    }
+
+    .map-pin{
+      display:block;
+      margin-bottom:5px;
+      font-size:40px;
+    }
+
+    .map-title{
+      display:block;
+      color:var(--purple-dark);
+      font-size:21px;
+      font-weight:bold;
+    }
+
+    .map-summary{
+      display:block;
+      margin-top:6px;
+      color:#665a69;
+      font-size:14px;
+    }
+
+    .workspace{
+      min-height:720px;
+    }
+
+    .workspace-top{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-bottom:15px;
+    }
+
+    .back-maps{
+      flex:0 0 auto;
+      padding:10px 13px;
+
+      font-weight:bold;
+      color:var(--purple-dark);
+
+      background:#efe6f4;
+      border:2px solid #d2c1dc;
+      border-radius:12px;
+      cursor:pointer;
+    }
+
+    .workspace-heading{
+      flex:1;
+      margin:0;
+      text-align:center;
+      color:var(--purple-dark);
+      font-size:27px;
+    }
+
+    .stage-status{
+      display:flex;
+      justify-content:center;
+      gap:7px;
+      margin-bottom:12px;
+    }
+
+    .stage-dot{
+      width:11px;
+      height:11px;
+      background:#cabdd1;
+      border-radius:50%;
+    }
+
+    .stage-dot.active{
+      background:var(--gold);
+      transform:scale(1.35);
+    }
+
+    .stage-label{
+      margin-bottom:12px;
+      text-align:center;
+      font-weight:bold;
+      color:var(--purple);
+    }
+
+    .stage-window,
+    .stage-content{
+      min-height:520px;
+    }
+
+    .stage-content{
+      padding:20px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #fffefb,
+          #faf5fc
+        );
+
+      border:2px solid #e1d5e7;
+      border-radius:19px;
+
+      animation:fadeStage .22s ease;
+    }
+
+    @keyframes fadeStage{
+      from{opacity:0}
+      to{opacity:1}
+    }
+
+    .stage-content h3{
+      margin-top:0;
+      color:var(--purple);
+      font-size:23px;
+    }
+
+    .definition-box,
+    .elements-box,
+    .reading-box,
+    .build-box,
+    .question-box,
+    .analysis-box,
+    .self-box{
+      padding:17px;
+      border-radius:16px;
+    }
+
+    .definition-box{
+      font-size:18px;
+      background:#f3eaf8;
+      border-right:6px solid var(--gold);
+    }
+
+    .strategy-box{
+      margin-top:14px;
+      padding:15px;
+      background:#fff6dc;
+      border-radius:15px;
+    }
+
+    .elements-box{
+      background:white;
+      border:2px solid #e1d5e7;
+    }
+
+    .elements-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:11px;
+    }
+
+    .element-card{
+      padding:13px;
+      background:#f7f1fa;
+      border:1px solid #dacbe2;
+      border-radius:13px;
+    }
+
+    .element-card strong{
+      color:var(--purple);
+    }
+
+    .reading-box{
+      background:white;
+      border:2px solid #e1d5e7;
+    }
+
+    .reading-text{
+      margin:0 0 18px;
+      text-align:justify;
+      font-size:18px;
+      line-height:2.15;
+    }
+
+    .text-label{
+      display:inline-block;
+      margin-bottom:8px;
+      padding:4px 12px;
+      color:white;
+      font-weight:bold;
+      background:var(--purple);
+      border-radius:999px;
+    }
+
+    .build-box{
+      background:#fbf7fd;
+      border:2px solid #ddcee5;
+    }
+
+    .mini-map{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
+      margin-top:13px;
+    }
+
+    .map-node{
+      padding:14px;
+      text-align:center;
+      background:white;
+      border:2px solid var(--gold);
+      border-radius:16px;
+    }
+
+    .map-node strong{
+      display:block;
+      color:var(--purple);
+    }
+        .question-box{
+      background:#fff9e9;
+      border:2px dashed var(--gold);
+    }
+
+    .options{
+      display:grid;
+      gap:10px;
+      margin-top:13px;
+    }
+
+    .option{
+      padding:13px;
+      text-align:right;
+      color:var(--text);
+      font-size:16px;
+
+      background:#f6eff9;
+
+      border:2px solid transparent;
+      border-radius:13px;
+      cursor:pointer;
+    }
+
+    .option.correct{
+      color:var(--green);
+      background:#e8f6ed;
+      border-color:#72ae87;
+    }
+
+    .option.wrong{
+      color:var(--red);
+      background:#fdeaea;
+      border-color:#dd9292;
+      animation:shake .35s ease;
+    }
+
+    @keyframes shake{
+      0%,100%{transform:translateX(0)}
+      25%{transform:translateX(7px)}
+      50%{transform:translateX(-7px)}
+      75%{transform:translateX(4px)}
+    }
+
+    .feedback{
+      display:none;
+      margin-top:12px;
+      padding:12px;
+      font-weight:bold;
+      border-radius:12px;
+    }
+
+    .feedback.show{
+      display:block;
+    }
+
+    .feedback.good{
+      color:var(--green);
+      background:#e8f6ed;
+    }
+
+    .feedback.bad{
+      color:var(--red);
+      background:#fdeaea;
+    }
+
+    .analysis-box{
+      background:#f8f1fb;
+      border:2px solid #d7c6e2;
+    }
+
+    .analysis-item,
+    .evidence{
+      padding:12px;
+      margin-top:10px;
+      background:white;
+      border-radius:12px;
+    }
+
+    .analysis-item{
+      border-right:5px solid var(--gold);
+    }
+
+    .evidence{
+      font-weight:bold;
+      background:#fff6d9;
+    }
+
+    .self-box{
+      text-align:center;
+      background:white;
+      border:2px solid #ddd0e4;
+    }
+
+    .self-options{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+      margin-top:14px;
+    }
+
+    .self-btn{
+      min-height:77px;
+      padding:10px;
+
+      font-weight:bold;
+      color:var(--purple-dark);
+
+      background:
+        linear-gradient(
+          135deg,
+          #fffdf8,
+          #f2eaf7
+        );
+
+      border:2px solid var(--gold);
+      border-radius:14px;
+      cursor:pointer;
+    }
+
+    .self-btn.selected{
+      color:white;
+      background:var(--purple);
+    }
+
+    .self-message{
+      display:none;
+      margin-top:12px;
+      padding:12px;
+      font-weight:bold;
+      background:#f3eaf8;
+      border-radius:12px;
+    }
+
+    .self-message.show{
+      display:block;
+    }
+
+    .navigation{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      margin-top:16px;
+    }
+
+    .nav-btn{
+      flex:1;
+      padding:13px;
+
+      color:white;
+      font-size:17px;
+      font-weight:bold;
+
+      background:var(--purple);
+
+      border:0;
+      border-radius:13px;
+      cursor:pointer;
+    }
+
+    .nav-btn.secondary{
+      color:var(--purple-dark);
+      background:#eee5f2;
+    }
+
+    .nav-btn:disabled{
+      opacity:.4;
+      cursor:not-allowed;
+    }
+
+    .final-card{
+      display:none;
+      text-align:center;
+      border:3px solid var(--gold);
+    }
+
+    .final-card.show{
+      display:block;
+    }
+
+    .badge{
+      display:inline-grid;
+      place-items:center;
+
+      width:120px;
+      height:120px;
+
+      font-size:49px;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--gold),
+          #f0d588
+        );
+
+      border:6px solid #fff5cf;
+      border-radius:50%;
+    }
+
+    .final-stars{
+      color:var(--gold);
+      font-size:32px;
+      letter-spacing:7px;
+    }
+
+    footer{
+      padding:18px;
+      text-align:center;
+      color:white;
+      background:var(--purple-dark);
+      border-top:4px solid var(--gold);
+    }
+
+    @media(max-width:700px){
+
+      header h1{
+        font-size:29px;
+      }
+
+      .map-board{
+        grid-template-columns:1fr;
+      }
+
+      .map-board::before{
+        right:18px;
+        transform:none;
+      }
+
+      .map-card,
+      .map-card:nth-child(even){
+        width:100%;
+        transform:none;
+      }
+
+      .map-card:hover,
+      .map-card:focus,
+      .map-card:nth-child(even):hover,
+      .map-card:nth-child(even):focus{
+        transform:translateY(-3px);
+      }
+
+      .workspace{
+        min-height:760px;
+        padding:14px;
+      }
+
+      .stage-window,
+      .stage-content{
+        min-height:570px;
+      }
+
+      .workspace-heading{
+        font-size:22px;
+      }
+
+      .elements-grid,
+      .mini-map,
+      .self-options{
+        grid-template-columns:1fr;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <header>
+
+    <h1>
+      مقارنة النصوص
+    </h1>
+
+    <p>
+      قارني بين النصوص بوعي،
+      واكتشفي أوجه التشابه والاختلاف،
+      وقوة الأدلة، ونوع الأمثلة، واللغة والأسلوب.
+    </p>
+
+  </header>
+
+  <main>
+
+    <div class="top-bar">
+
+      <a
+        class="home-btn"
+        href="nafes.html"
+      >
+        العودة إلى مكتبة نافس
+      </a>
+
+      <div class="progress-area">
+
+        <div class="progress-label">
+          <span>تقدّمكِ</span>
+          <span id="progressText">0 من 4</span>
+        </div>
+
+        <div class="progress-track">
+
+          <div
+            class="progress-bar"
+            id="progressBar"
+          ></div>
+
+        </div>
+
+      </div>
+
+      <button
+        class="sound-btn"
+        id="soundBtn"
+        type="button"
+      >
+        🔊 الصوت مفعّل
+      </button>
+
+    </div>
+
+
+    <section
+      class="map-view"
+      id="mapView"
+    >
+
+      <h2>
+        اختاري محور المقارنة
+      </h2>
+
+      <p class="intro-note">
+        كل محطة تدربكِ على جانب مختلف
+        من مقارنة نصين.
+        أكملي المحطات الأربع حتى تتقني المقارنة بدقة.
+      </p>
+
+      <div
+        class="map-board"
+        id="mapBoard"
+      ></div>
+
+    </section>
+
+
+    <section
+      class="workspace"
+      id="workspace"
+      hidden
+    >
+
+      <div class="workspace-top">
+
+        <button
+          class="back-maps"
+          id="backMaps"
+          type="button"
+        >
+          رجوع إلى المحطات
+        </button>
+
+        <h2
+          class="workspace-heading"
+          id="workspaceHeading"
+        ></h2>
+
+      </div>
+
+
+      <div class="stage-status">
+
+        <span class="stage-dot active"></span>
+        <span class="stage-dot"></span>
+        <span class="stage-dot"></span>
+        <span class="stage-dot"></span>
+        <span class="stage-dot"></span>
+        <span class="stage-dot"></span>
+        <span class="stage-dot"></span>
+
+      </div>
+
+
+      <div
+        class="stage-label"
+        id="stageLabel"
+      >
+        التعريف
+      </div>
+
+
+      <div class="stage-window">
+
+        <div
+          class="stage-content"
+          id="stageContent"
+        ></div>
+
+      </div>
+
+
+      <div class="navigation">
+
+        <button
+          class="nav-btn secondary"
+          id="prevBtn"
+          type="button"
+        >
+          السابق
+        </button>
+
+        <button
+          class="nav-btn"
+          id="nextBtn"
+          type="button"
+        >
+          التالي
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <section
+      class="final-card"
+      id="finalCard"
+    >
+
+      <div class="badge">
+        🔄
+      </div>
+
+      <h2>
+        أتممتِ رحلة مقارنة النصوص
+      </h2>
+
+      <p>
+        أصبحتِ أكثر قدرة على مقارنة النصوص
+        من حيث الأفكار والأمثلة والأدلة
+        واللغة والأسلوب.
+      </p>
+
+      <div class="final-stars">
+        ★ ★ ★
+      </div>
+
+      <button
+        class="nav-btn"
+        id="returnMaps"
+        type="button"
+      >
+        العودة إلى محطات المقارنة
+      </button>
+
+    </section>
+
+
+    <script>
+
+      const comparisons = [
+
+        {
+          id:"similarities-differences",
+          pin:"↔️",
+          color:"#d8c9d9",
+
+          name:"التشابه والاختلاف",
+
+          summary:
+            "تحديد ما يتفق فيه النصان وما يختلفان فيه.",
+
+          definition:
+            "مقارنة التشابه والاختلاف تعني تحديد العناصر أو الأفكار المشتركة بين النصين، ثم تحديد ما يميز كل نص عن الآخر.",
+
+          strategy:
+            "ابدئي بتحديد موضوع كل نص، ثم اكتبي: يتفق النصان في... ويختلفان في... ولا تخلطي بين التشابه والاختلاف.",
+
+          elements:[
+            ["موضوع النص الأول","عمّ يتحدث؟"],
+            ["موضوع النص الثاني","عمّ يتحدث؟"],
+            ["أوجه التشابه","ما الفكرة أو العنصر المشترك؟"],
+            ["أوجه الاختلاف","ما الذي انفرد به كل نص؟"]
+          ],
+
+          textOneTitle:
+            "النص الأول: القراءة اليومية",
+
+          textOne:
+            `تساعد القراءة اليومية على توسيع معرفة القارئ، وتمنحه فرصة للتعرف إلى أفكار وتجارب متنوعة. كما أن الاستمرار فيها ينمي الثروة اللغوية، ويجعل التعامل مع النصوص المختلفة أكثر سهولة.`,
+
+          textTwoTitle:
+            "النص الثاني: الاستماع إلى الكتب الصوتية",
+
+          textTwo:
+            `تتيح الكتب الصوتية الاستفادة من المحتوى أثناء التنقل أو ممارسة بعض الأنشطة اليومية. كما تساعد المستمع على التعرف إلى أفكار وتجارب متنوعة، وتمنحه وسيلة مرنة للاستفادة من الكتب.`,
+
+          mapValues:[
+            ["التشابه","كلاهما يتيح التعرف إلى أفكار وتجارب متنوعة"],
+            ["النص الأول","يركز على القراءة وتنمية الثروة اللغوية"],
+            ["النص الثاني","يركز على المرونة وإمكان الاستماع أثناء التنقل"],
+            ["النتيجة","الوسيلتان مفيدتان لكن طريقة الاستفادة تختلف"]
+          ],
+
+          question:
+            "أي عبارة تعبّر عن أوجه التشابه بين النصين؟",
+
+          options:[
+            "كلاهما يركز على زيادة سرعة الكتابة.",
+            "كلاهما يتيح التعرف إلى أفكار وتجارب متنوعة.",
+            "النصان يرفضان استخدام التقنية.",
+            "كلاهما يتحدث عن ممارسة الرياضة."
+          ],
+
+          answer:1,
+
+          reason:
+            "لأن هذه الفكرة وردت في النصين، بينما تختلف بقية التفاصيل بينهما.",
+
+          evidence:
+            "ورد في النصين أن الوسيلة تساعد على التعرف إلى أفكار وتجارب متنوعة.",
+
+          distractors:
+            "البدائل الأخرى لم ترد في النصين أو لا تمثل فكرة مشتركة بينهما.",
+
+          selfQuestion:
+            "هل استطعتِ الفصل بوضوح بين أوجه التشابه وأوجه الاختلاف؟"
+        },
+
+
+        {
+          id:"examples",
+          pin:"🧠",
+          color:"#c9d8cf",
+
+          name:"نوع الأمثلة",
+
+          summary:
+            "مقارنة الأمثلة التي يستخدمها كل نص لدعم فكرته.",
+
+          definition:
+            "عند مقارنة الأمثلة ننظر إلى نوع المثال الذي استخدمه كل كاتب، ومدى ارتباطه بالفكرة التي يريد توضيحها أو دعمها.",
+
+          strategy:
+            "اسألي: هل المثال واقعي؟ هل هو موقف حياتي؟ هل هو تجربة؟ وهل يوضح الفكرة بوضوح؟",
+
+          elements:[
+            ["مثال النص الأول","ما المثال المستخدم؟"],
+            ["مثال النص الثاني","ما المثال المستخدم؟"],
+            ["نوع المثال","واقعي، حياتي، تجربة، حالة..."],
+            ["صلة المثال","كيف يخدم الفكرة؟"]
+          ],
+
+          textOneTitle:
+            "النص الأول: تنظيم الوقت",
+
+          textOne:
+            `يساعد تنظيم الوقت على إنجاز الأعمال دون تراكم. فمثلًا، تستطيع الطالبة التي توزع مراجعة ثلاثة دروس على ثلاثة أيام أن تراجع كل درس بهدوء بدل محاولة إنجازها جميعًا في ليلة واحدة.`,
+
+          textTwoTitle:
+            "النص الثاني: تنظيم الوقت",
+
+          textTwo:
+            `يعد تنظيم الوقت من العادات التي تساعد على تحقيق الأهداف. وقد أظهرت تجربة مجموعة من الطالبات أن إعداد قائمة يومية بالمهام ساعدهن على تذكر الواجبات وتنفيذها في أوقاتها.`,
+
+          mapValues:[
+            ["النص الأول","مثال حياتي لطالبة توزع المراجعة"],
+            ["النص الثاني","تجربة لمجموعة من الطالبات"],
+            ["التشابه","كلا المثالين يدعم فائدة تنظيم الوقت"],
+            ["الاختلاف","الأول موقف افتراضي، والثاني تجربة جماعية"]
+          ],
+
+          question:
+            "ما الفرق الرئيس بين المثالين؟",
+
+          options:[
+            "الأول مثال حياتي افتراضي، والثاني تجربة لمجموعة.",
+            "الأول يتحدث عن الرياضة والثاني عن القراءة.",
+            "كلا المثالين لا يرتبط بالفكرة.",
+            "النص الأول لا يحتوي على مثال."
+          ],
+
+          answer:0,
+
+          reason:
+            "لأن النص الأول يقدم موقفًا توضيحيًا لطالبة، بينما النص الثاني يعتمد على تجربة مجموعة من الطالبات.",
+
+          evidence:
+            "النص الأول استخدم «فمثلًا»، بينما الثاني ذكر «تجربة مجموعة من الطالبات».",
+
+          distractors:
+            "بقية البدائل لا تصف طبيعة المثالين كما وردا في النصين.",
+
+          selfQuestion:
+            "هل استطعتِ تحديد نوع المثال ودرجة ارتباطه بالفكرة في كل نص؟"
+        },
+                {
+          id:"evidence",
+          pin:"⚖️",
+          color:"#d7c6c1",
+
+          name:"قوة الأدلة",
+
+          summary:
+            "الموازنة بين الأدلة وتحديد أيها أكثر إقناعًا.",
+
+          definition:
+            "قوة الدليل تعني مقدار قدرته على دعم الفكرة بوضوح، ويكون الدليل أقوى عندما يكون مرتبطًا بالقضية ومحددًا وقابلًا للتحقق.",
+
+          strategy:
+            "لا تختاري الدليل لأنه أطول فقط. اسألي: هل يرتبط مباشرة بالفكرة؟ وهل يقدم معلومة محددة يمكن التحقق منها؟",
+
+          elements:[
+            ["الفكرة","ما الرأي أو القضية؟"],
+            ["دليل النص الأول","بماذا دعمه؟"],
+            ["دليل النص الثاني","بماذا دعمه؟"],
+            ["الأقوى","أي الدليلين أكثر مباشرة وتحديدًا؟"]
+          ],
+
+          textOneTitle:
+            "النص الأول: أهمية النوم",
+
+          textOne:
+            `النوم الكافي مهم للطالبات؛ لأن الإنسان يشعر عادة براحة أكبر عندما ينام جيدًا، ويصبح أكثر استعدادًا للقيام بأعماله اليومية.`,
+
+          textTwoTitle:
+            "النص الثاني: أهمية النوم",
+
+          textTwo:
+            `النوم الكافي مهم للطالبات؛ إذ يساعد الدماغ على تنظيم المعلومات التي تعلمها الإنسان خلال اليوم، كما أن قلة النوم قد تؤثر في الانتباه أثناء أداء المهام.`,
+
+          mapValues:[
+            ["القضية","أهمية النوم الكافي"],
+            ["دليل النص الأول","الشعور بالراحة والاستعداد"],
+            ["دليل النص الثاني","تنظيم المعلومات والانتباه"],
+            ["الأقوى","الثاني لأنه أكثر تحديدًا وارتباطًا بالتعلم"]
+          ],
+
+          question:
+            "أي النصين قدم دليلًا أكثر تحديدًا لدعم أهمية النوم للطالبة؟",
+
+          options:[
+            "النص الأول؛ لأنه أقصر.",
+            "النص الثاني؛ لأنه يربط النوم بتنظيم المعلومات والانتباه.",
+            "النصان لا يقدمان أي دليل.",
+            "النص الأول؛ لأنه استخدم كلمة مهم."
+          ],
+
+          answer:1,
+
+          reason:
+            "لأن النص الثاني يقدم آثارًا محددة مرتبطة بالتعلم والانتباه، وهي أكثر مباشرة في دعم القضية.",
+
+          evidence:
+            "«يساعد الدماغ على تنظيم المعلومات... وقد تؤثر قلة النوم في الانتباه».",
+
+          distractors:
+            "طول النص أو استخدام كلمة «مهم» لا يحدد قوة الدليل، كما أن النصين يتضمنان دعمًا للفكرة.",
+
+          selfQuestion:
+            "هل استطعتِ الحكم على الدليل من حيث صلته بالفكرة وتحديده؟"
+        },
+
+
+        {
+          id:"language-style",
+          pin:"✍️",
+          color:"#d9cfbf",
+
+          name:"اللغة والأسلوب",
+
+          summary:
+            "مقارنة طريقة التعبير واختيار الألفاظ في النصين.",
+
+          definition:
+            "عند مقارنة اللغة والأسلوب نلاحظ نوع الألفاظ، وطريقة عرض الأفكار، وهل الأسلوب معلوماتي أو وصفي أو إقناعي أو يحمل تعبيرات مؤثرة.",
+
+          strategy:
+            "قارني الألفاظ والجمل لا الموضوع فقط. اسألي: هل اللغة مباشرة؟ هل فيها وصف؟ هل يستخدم الكاتب ألفاظًا إقناعية أو صورًا تعبيرية؟",
+
+          elements:[
+            ["لغة النص الأول","مباشرة أم وصفية؟"],
+            ["لغة النص الثاني","مباشرة أم مؤثرة؟"],
+            ["الأسلوب","معلوماتي، وصفي، إقناعي..."],
+            ["الأثر","كيف تؤثر طريقة التعبير في القارئ؟"]
+          ],
+
+          textOneTitle:
+            "النص الأول: الصباح",
+
+          textOne:
+            `تشرق الشمس صباحًا فتزداد الإضاءة وترتفع درجة الحرارة تدريجيًا، ويبدأ الناس أنشطتهم اليومية في أوقات متفاوتة.`,
+
+          textTwoTitle:
+            "النص الثاني: الصباح",
+
+          textTwo:
+            `يمد الصباح خيوط الضوء على الطرقات، وتستيقظ المدينة ببطء، كأنها تفتح عينيها على يوم جديد.`,
+
+          mapValues:[
+            ["النص الأول","لغة مباشرة معلوماتية"],
+            ["النص الثاني","لغة وصفية تصويرية"],
+            ["التشابه","كلاهما يتحدث عن الصباح"],
+            ["الاختلاف","طريقة التعبير والغرض من الأسلوب"]
+          ],
+
+          question:
+            "ما الفرق الأوضح بين أسلوب النصين؟",
+
+          options:[
+            "الأول معلوماتي مباشر، والثاني وصفي تصويري.",
+            "الأول شعري والثاني لا يحتوي أي وصف.",
+            "النصان يستخدمان الأسلوب نفسه تمامًا.",
+            "النص الأول يقارن بين مدينتين."
+          ],
+
+          answer:0,
+
+          reason:
+            "لأن النص الأول يقدم معلومات مباشرة، بينما يستخدم الثاني صورة تعبيرية ووصفًا يجعل الصباح مشهدًا حيًا.",
+
+          evidence:
+            "النص الثاني يقول: «كأنها تفتح عينيها على يوم جديد»، وهو تعبير تصويري لا يظهر في النص الأول.",
+
+          distractors:
+            "النصان لا يستخدمان الأسلوب نفسه، ولا توجد مقارنة بين مدينتين.",
+
+          selfQuestion:
+            "هل استطعتِ مقارنة طريقة التعبير لا مجرد موضوع النصين؟"
+        }
+
+      ];
+
+
+      const stageNames = [
+        "التعريف",
+        "عناصر المقارنة",
+        "النصان التطبيقيان",
+        "نتيجة المقارنة",
+        "السؤال",
+        "السبب والشاهد",
+        "التقييم الذاتي"
+      ];
+
+
+      const mapBoard =
+        document.getElementById(
+          "mapBoard"
+        );
+
+      const mapView =
+        document.getElementById(
+          "mapView"
+        );
+
+      const workspace =
+        document.getElementById(
+          "workspace"
+        );
+
+      const workspaceHeading =
+        document.getElementById(
+          "workspaceHeading"
+        );
+
+      const stageLabel =
+        document.getElementById(
+          "stageLabel"
+        );
+
+      const stageContent =
+        document.getElementById(
+          "stageContent"
+        );
+
+      const stageDots =
+        [
+          ...document.querySelectorAll(
+            ".stage-dot"
+          )
+        ];
+
+      const prevBtn =
+        document.getElementById(
+          "prevBtn"
+        );
+
+      const nextBtn =
+        document.getElementById(
+          "nextBtn"
+        );
+
+      const backMaps =
+        document.getElementById(
+          "backMaps"
+        );
+
+      const progressText =
+        document.getElementById(
+          "progressText"
+        );
+
+      const progressBar =
+        document.getElementById(
+          "progressBar"
+        );
+
+      const soundBtn =
+        document.getElementById(
+          "soundBtn"
+        );
+
+      const finalCard =
+        document.getElementById(
+          "finalCard"
+        );
+
+      const returnMaps =
+        document.getElementById(
+          "returnMaps"
+        );
+
+
+      let currentMapIndex = 0;
+      let currentStage = 0;
+
+
+      let soundOn =
+        localStorage.getItem(
+          "nafesSound"
+        ) !== "off";
+
+
+      const solved = {};
+
+
+      const completed =
+        new Set(
+          JSON.parse(
+            localStorage.getItem(
+              "nafesTextComparisonCompleted"
+            ) || "[]"
+          )
+        );
+
+
+      const ratings =
+        JSON.parse(
+          localStorage.getItem(
+            "nafesTextComparisonRatings"
+          ) || "{}"
+        );
+
+
+      function createAudioContext(){
+
+        return new(
+          window.AudioContext ||
+          window.webkitAudioContext
+        )();
+
+      }
+
+
+      function playCorrectSound(){
+
+        if(!soundOn) return;
+
+
+        const context =
+          createAudioContext();
+
+
+        [523,659,784].forEach(
+          (frequency,index) => {
+
+            const oscillator =
+              context.createOscillator();
+
+
+            const gain =
+              context.createGain();
+
+
+            const start =
+              context.currentTime +
+              index * .09;
+
+
+            oscillator.frequency.value =
+              frequency;
+
+
+            oscillator.type =
+              "sine";
+
+
+            gain.gain.setValueAtTime(
+              .0001,
+              start
+            );
+
+
+            gain.gain
+              .exponentialRampToValueAtTime(
+                .18,
+                start + .02
+              );
+
+
+            gain.gain
+              .exponentialRampToValueAtTime(
+                .0001,
+                start + .24
+              );
+
+
+            oscillator.connect(gain);
+            gain.connect(context.destination);
+
+
+            oscillator.start(start);
+            oscillator.stop(start + .26);
+
+          }
+        );
+
+      }
+
+
+      function playWrongSound(){
+
+        if(!soundOn) return;
+
+
+        const context =
+          createAudioContext();
+
+
+        [230,175].forEach(
+          (frequency,index) => {
+
+            const oscillator =
+              context.createOscillator();
+
+
+            const gain =
+              context.createGain();
+
+
+            const start =
+              context.currentTime +
+              index * .14;
+
+
+            oscillator.frequency.value =
+              frequency;
+
+
+            oscillator.type =
+              "square";
+
+
+            gain.gain.setValueAtTime(
+              .0001,
+              start
+            );
+
+
+            gain.gain
+              .exponentialRampToValueAtTime(
+                .08,
+                start + .02
+              );
+
+
+            gain.gain
+              .exponentialRampToValueAtTime(
+                .0001,
+                start + .13
+              );
+
+
+            oscillator.connect(gain);
+            gain.connect(context.destination);
+
+
+            oscillator.start(start);
+            oscillator.stop(start + .15);
+
+          }
+        );
+
+      }
+            function updateProgress(){
+
+        progressText.textContent =
+          completed.size +
+          " من " +
+          comparisons.length;
+
+
+        progressBar.style.width =
+          completed.size /
+          comparisons.length *
+          100 +
+          "%";
+
+
+        localStorage.setItem(
+          "nafesTextComparisonCompleted",
+          JSON.stringify(
+            [...completed]
+          )
+        );
+
+
+        document
+          .querySelectorAll(
+            ".map-card"
+          )
+          .forEach(
+            card => {
+
+              card.classList.toggle(
+                "completed",
+                completed.has(
+                  card.dataset.map
+                )
+              );
+
+            }
+          );
+
+      }
+
+
+      function buildMaps(){
+
+        mapBoard.innerHTML = "";
+
+
+        comparisons.forEach(
+          (map,index) => {
+
+            const button =
+              document.createElement(
+                "button"
+              );
+
+
+            button.type =
+              "button";
+
+
+            button.className =
+              "map-card";
+
+
+            button.dataset.map =
+              map.id;
+
+
+            button.style.setProperty(
+              "--map-color",
+              map.color
+            );
+
+
+            button.innerHTML = `
+
+              <span class="map-pin">
+                ${map.pin}
+              </span>
+
+              <span class="map-title">
+                ${map.name}
+              </span>
+
+              <span class="map-summary">
+                ${map.summary}
+              </span>
+
+            `;
+
+
+            button.addEventListener(
+              "click",
+              () => {
+
+                openMap(index);
+
+              }
+            );
+
+
+            mapBoard.appendChild(
+              button
+            );
+
+          }
+        );
+
+
+        updateProgress();
+
+      }
+
+
+      function openMap(index){
+
+        currentMapIndex =
+          index;
+
+
+        currentStage =
+          0;
+
+
+        mapView.hidden =
+          true;
+
+
+        finalCard.classList.remove(
+          "show"
+        );
+
+
+        workspace.hidden =
+          false;
+
+
+        renderStage();
+
+      }
+
+
+      function renderStage(){
+
+        const map =
+          comparisons[
+            currentMapIndex
+          ];
+
+
+        workspaceHeading.textContent =
+          map.pin +
+          " " +
+          map.name;
+
+
+        stageLabel.textContent =
+          stageNames[
+            currentStage
+          ];
+
+
+        stageDots.forEach(
+          (dot,index) => {
+
+            dot.classList.toggle(
+              "active",
+              index === currentStage
+            );
+
+          }
+        );
+
+
+        prevBtn.disabled =
+          currentStage === 0;
+
+
+        nextBtn.disabled =
+          false;
+
+
+        nextBtn.textContent =
+          "التالي";
+
+
+        if(
+          currentStage === 0
+        ){
+
+          stageContent.innerHTML = `
+
+            <h3>
+              ما ${map.name}؟
+            </h3>
+
+            <div class="definition-box">
+              ${map.definition}
+            </div>
+
+            <div class="strategy-box">
+
+              <strong>
+                طريقة العمل:
+              </strong>
+
+              <p>
+                ${map.strategy}
+              </p>
+
+            </div>
+
+          `;
+
+        }
+
+
+        if(
+          currentStage === 1
+        ){
+
+          stageContent.innerHTML = `
+
+            <h3>
+              عناصر المقارنة
+            </h3>
+
+            <div class="elements-box">
+
+              <div class="elements-grid">
+
+                ${
+                  map.elements
+                    .map(
+                      item => `
+
+                        <div class="element-card">
+
+                          <strong>
+                            ${item[0]}
+                          </strong>
+
+                          <div>
+                            ${item[1]}
+                          </div>
+
+                        </div>
+
+                      `
+                    )
+                    .join("")
+                }
+
+              </div>
+
+            </div>
+
+          `;
+
+        }
+
+
+        if(
+          currentStage === 2
+        ){
+
+          stageContent.innerHTML = `
+
+            <div class="reading-box">
+
+              <span class="text-label">
+                ${map.textOneTitle}
+              </span>
+
+              <p class="reading-text">
+                ${map.textOne}
+              </p>
+
+
+              <span class="text-label">
+                ${map.textTwoTitle}
+              </span>
+
+              <p class="reading-text">
+                ${map.textTwo}
+              </p>
+
+            </div>
+
+          `;
+
+        }
+
+
+        if(
+          currentStage === 3
+        ){
+
+          stageContent.innerHTML = `
+
+            <h3>
+              نتيجة المقارنة
+            </h3>
+
+            <div class="build-box">
+
+              <div class="mini-map">
+
+                ${
+                  map.mapValues
+                    .map(
+                      item => `
+
+                        <div class="map-node">
+
+                          <strong>
+                            ${item[0]}
+                          </strong>
+
+                          <span>
+                            ${item[1]}
+                          </span>
+
+                        </div>
+
+                      `
+                    )
+                    .join("")
+                }
+
+              </div>
+
+            </div>
+
+          `;
+
+        }
+
+
+        if(
+          currentStage === 4
+        ){
+
+          stageContent.innerHTML = `
+
+            <div class="question-box">
+
+              <h3>
+                ${map.question}
+              </h3>
+
+              <div class="options">
+
+                ${
+                  map.options
+                    .map(
+                      (option,index) => `
+
+                        <button
+                          class="option"
+                          data-option="${index}"
+                          type="button"
+                        >
+                          ${option}
+                        </button>
+
+                      `
+                    )
+                    .join("")
+                }
+
+              </div>
+
+              <div class="feedback">
+              </div>
+
+            </div>
+
+          `;
+
+
+          nextBtn.disabled =
+            !solved[
+              map.id
+            ];
+
+
+          attachQuestionEvents(
+            map
+          );
+
+        }
+
+
+        if(
+          currentStage === 5
+        ){
+
+          stageContent.innerHTML = `
+
+            <div class="analysis-box">
+
+              <h3>
+                سبب الإجابة والشاهد
+              </h3>
+
+              <div class="analysis-item">
+
+                <strong>
+                  سبب صحة الإجابة:
+                </strong>
+
+                ${map.reason}
+
+              </div>
+
+
+              <div class="evidence">
+
+                <strong>
+                  الشاهد من النصين:
+                </strong>
+
+                ${map.evidence}
+
+              </div>
+
+
+              <div class="analysis-item">
+
+                <strong>
+                  تحليل البدائل:
+                </strong>
+
+                ${map.distractors}
+
+              </div>
+
+            </div>
+
+          `;
+
+        }
+
+
+        if(
+          currentStage === 6
+        ){
+
+          const savedRating =
+            ratings[
+              map.id
+            ] || "";
+
+
+          stageContent.innerHTML = `
+
+            <div class="self-box">
+
+              <h3>
+                قيّمي إتقانكِ
+              </h3>
+
+              <p>
+                ${map.selfQuestion}
+              </p>
+
+              <div class="self-options">
+
+                <button
+                  class="self-btn ${
+                    savedRating ===
+                    "mastered"
+                      ? "selected"
+                      : ""
+                  }"
+                  data-rating="mastered"
+                  type="button"
+                >
+                  ⭐ أتقنتُ المهارة
+                </button>
+
+
+                <button
+                  class="self-btn ${
+                    savedRating ===
+                    "practice"
+                      ? "selected"
+                      : ""
+                  }"
+                  data-rating="practice"
+                  type="button"
+                >
+                  🔁 أحتاج إلى تدريب
+                </button>
+
+
+                <button
+                  class="self-btn ${
+                    savedRating ===
+                    "help"
+                      ? "selected"
+                      : ""
+                  }"
+                  data-rating="help"
+                  type="button"
+                >
+                  🪜 أحتاج إلى مساعدة
+                </button>
+
+              </div>
+
+
+              <div
+                class="self-message ${
+                  savedRating
+                    ? "show"
+                    : ""
+                }"
+              >
+                ${
+                  savedRating
+                    ? ratingMessage(
+                        savedRating
+                      )
+                    : ""
+                }
+              </div>
+
+            </div>
+
+          `;
+
+
+          nextBtn.textContent =
+            completed.size ===
+            comparisons.length
+
+              ? "عرض النتيجة النهائية"
+
+              : "العودة إلى المحطات";
+
+
+          nextBtn.disabled =
+            !savedRating;
+
+
+          attachRatingEvents(
+            map
+          );
+
+        }
+
+      }
+
+
+      function attachQuestionEvents(
+        map
+      ){
+
+        const options = [
+
+          ...stageContent
+            .querySelectorAll(
+              ".option"
+            )
+
+        ];
+
+
+        const feedback =
+          stageContent
+            .querySelector(
+              ".feedback"
+            );
+
+
+        options.forEach(
+          option => {
+
+            option.addEventListener(
+              "click",
+              () => {
+
+                const selected =
+                  Number(
+                    option.dataset.option
+                  );
+
+
+                if(
+                  selected ===
+                  map.answer
+                ){
+
+                  options.forEach(
+                    item => {
+
+                      item.disabled =
+                        true;
+
+                    }
+                  );
+
+
+                  option.classList.add(
+                    "correct"
+                  );
+
+
+                  feedback.className =
+                    "feedback show good";
+
+
+                  feedback.textContent =
+                    "👏 إجابة صحيحة. أصبح السبب والشاهد متاحين.";
+
+
+                  solved[
+                    map.id
+                  ] =
+                    true;
+
+
+                  nextBtn.disabled =
+                    false;
+
+
+                  playCorrectSound();
+
+                }
+
+                else{
+
+                  option.classList.add(
+                    "wrong"
+                  );
+
+
+                  feedback.className =
+                    "feedback show bad";
+
+
+                  feedback.textContent =
+                    "راجعي النصين وحددي وجه المقارنة المطلوب، ثم قارني البدائل من جديد.";
+
+
+                  playWrongSound();
+
+
+                  if(
+                    navigator.vibrate
+                  ){
+
+                    navigator.vibrate(
+                      [110,60,110]
+                    );
+
+                  }
+
+
+                  setTimeout(
+                    () => {
+
+                      option.classList.remove(
+                        "wrong"
+                      );
+
+                    },
+                    650
+                  );
+
+                }
+
+              }
+            );
+
+          }
+        );
+
+      }
+
+
+      function ratingMessage(
+        rating
+      ){
+
+        if(
+          rating ===
+          "mastered"
+        ){
+
+          return
+            "⭐ أحسنتِ. أتقنتِ مقارنة النصوص وفق المحور المطلوب.";
+
+        }
+
+
+        if(
+          rating ===
+          "practice"
+        ){
+
+          return
+            "🔁 حددي محور المقارنة أولًا، ثم عودي إلى النصين وابحثي عن الشواهد.";
+
+        }
+
+
+        return
+          "🪜 اقرئي النصين، ثم اسألي: ما الذي أقارنه تحديدًا؛ الفكرة أم المثال أم الدليل أم الأسلوب؟";
+
+      }
+
+
+      function attachRatingEvents(
+        map
+      ){
+
+        const buttons = [
+
+          ...stageContent
+            .querySelectorAll(
+              ".self-btn"
+            )
+
+        ];
+
+
+        const message =
+          stageContent
+            .querySelector(
+              ".self-message"
+            );
+
+
+        buttons.forEach(
+          button => {
+
+            button.addEventListener(
+              "click",
+              () => {
+
+                buttons.forEach(
+                  item => {
+
+                    item.classList.remove(
+                      "selected"
+                    );
+
+                  }
+                );
+
+
+                button.classList.add(
+                  "selected"
+                );
+
+
+                const rating =
+                  button.dataset.rating;
+
+
+                ratings[
+                  map.id
+                ] =
+                  rating;
+
+
+                localStorage.setItem(
+                  "nafesTextComparisonRatings",
+                  JSON.stringify(
+                    ratings
+                  )
+                );
+
+
+                completed.add(
+                  map.id
+                );
+
+
+                updateProgress();
+
+
+                message.textContent =
+                  ratingMessage(
+                    rating
+                  );
+
+
+                message.classList.add(
+                  "show"
+                );
+
+
+                nextBtn.disabled =
+                  false;
+
+
+                nextBtn.textContent =
+                  completed.size ===
+                  comparisons.length
+
+                    ? "عرض النتيجة النهائية"
+
+                    : "العودة إلى المحطات";
+
+
+                if(
+                  rating ===
+                  "mastered"
+                ){
+
+                  playCorrectSound();
+
+                }
+
+              }
+            );
+
+          }
+        );
+
+      }
+
+
+      prevBtn.addEventListener(
+        "click",
+        () => {
+
+          if(
+            currentStage > 0
+          ){
+
+            currentStage--;
+
+            renderStage();
+
+          }
+
+        }
+      );
+
+
+      nextBtn.addEventListener(
+        "click",
+        () => {
+
+          if(
+            currentStage < 6
+          ){
+
+            currentStage++;
+
+            renderStage();
+
+            return;
+
+          }
+
+
+          if(
+            completed.size ===
+            comparisons.length
+          ){
+
+            workspace.hidden =
+              true;
+
+
+            mapView.hidden =
+              true;
+
+
+            finalCard.classList.add(
+              "show"
+            );
+
+
+            return;
+
+          }
+
+
+          workspace.hidden =
+            true;
+
+
+          finalCard.classList.remove(
+            "show"
+          );
+
+
+          mapView.hidden =
+            false;
+
+
+          updateProgress();
+
+        }
+      );
+
+
+      backMaps.addEventListener(
+        "click",
+        () => {
+
+          workspace.hidden =
+            true;
+
+
+          finalCard.classList.remove(
+            "show"
+          );
+
+
+          mapView.hidden =
+            false;
+
+
+          updateProgress();
+
+        }
+      );
+
+
+      returnMaps.addEventListener(
+        "click",
+        () => {
+
+          finalCard.classList.remove(
+            "show"
+          );
+
+
+          workspace.hidden =
+            true;
+
+
+          mapView.hidden =
+            false;
+
+
+          updateProgress();
+
+        }
+      );
+
+
+      soundBtn.addEventListener(
+        "click",
+        () => {
+
+          soundOn =
+            !soundOn;
+
+
+          localStorage.setItem(
+            "nafesSound",
+            soundOn
+              ? "on"
+              : "off"
+          );
+
+
+          soundBtn.textContent =
+            soundOn
+              ? "🔊 الصوت مفعّل"
+              : "🔇 الصوت مكتوم";
+
+
+          if(soundOn){
+
+            playCorrectSound();
+
+          }
+
+        }
+      );
+
+
+      soundBtn.textContent =
+        soundOn
+          ? "🔊 الصوت مفعّل"
+          : "🔇 الصوت مكتوم";
+
+
+      buildMaps();
+
+
+      const restartBtn =
+        document.createElement(
+          "button"
+        );
+
+
+      restartBtn.type =
+        "button";
+
+
+      restartBtn.textContent =
+        "↻ البدء من جديد";
+
+
+      restartBtn.style.border =
+        "0";
+
+
+      restartBtn.style.borderRadius =
+        "18px";
+
+
+      restartBtn.style.padding =
+        "14px 24px";
+
+
+      restartBtn.style.background =
+        "#bf4040";
+
+
+      restartBtn.style.color =
+        "white";
+
+
+      restartBtn.style.fontSize =
+        "18px";
+
+
+      restartBtn.style.fontWeight =
+        "bold";
+
+
+      restartBtn.style.cursor =
+        "pointer";
+
+
+      restartBtn.style.marginTop =
+        "18px";
+
+
+      document
+        .querySelector(
+          ".top-bar"
+        )
+        .appendChild(
+          restartBtn
+        );
+
+
+      restartBtn.addEventListener(
+        "click",
+        function(){
+
+          completed.clear();
+
+
+          Object.keys(
+            solved
+          )
+          .forEach(
+            function(key){
+
+              delete solved[key];
+
+            }
+          );
+
+
+          Object.keys(
+            ratings
+          )
+          .forEach(
+            function(key){
+
+              delete ratings[key];
+
+            }
+          );
+
+
+          localStorage.removeItem(
+            "nafesTextComparisonCompleted"
+          );
+
+
+          localStorage.removeItem(
+            "nafesTextComparisonRatings"
+          );
+
+
+          workspace.hidden =
+            true;
+
+
+          finalCard.classList.remove(
+            "show"
+          );
+
+
+          mapView.hidden =
+            false;
+
+
+          buildMaps();
+
+
+          updateProgress();
+
+
+          window.scrollTo({
+            top:0,
+            behavior:"smooth"
+          });
+
+        }
+      );
+
+    </script>
+
+  </main>
+
+  <footer>
+    جميع الحقوق محفوظة © 2026
+  </footer>
+
+</body>
+</html>
