@@ -648,11 +648,9 @@ body{
     );
 
   font-size:17px;
-
   font-weight:bold;
 }
-
-.challenge-title{
+  .challenge-title{
   flex:1;
 
   margin:0;
@@ -760,73 +758,6 @@ body{
 
   line-height:1.9;
 
-  font-weight:bold;
-}
-
-.parent-code-box{
-  margin-bottom:20px;
-  padding:22px 18px;
-  text-align:center;
-  background:linear-gradient(135deg,#fffaf0,#f5ecfb);
-  border:2px solid var(--gold);
-  border-radius:24px;
-  box-shadow:var(--shadow);
-}
-
-.parent-code-box h2{
-  margin:0 0 7px;
-  color:var(--purple);
-  font-size:21px;
-}
-
-.parent-code-box p{
-  max-width:650px;
-  margin:0 auto 13px;
-  color:#75677b;
-  font-size:14px;
-  line-height:1.9;
-}
-
-.parent-code{
-  display:inline-block;
-  min-width:190px;
-  margin:4px 0 12px;
-  padding:11px 18px;
-  direction:ltr;
-  color:#4f3763;
-  background:#fff;
-  border:2px dashed var(--gold);
-  border-radius:15px;
-  font-size:24px;
-  font-weight:900;
-  letter-spacing:1px;
-}
-
-.copy-code{
-  display:block;
-  width:min(320px,100%);
-  margin:0 auto;
-  padding:11px 15px;
-  border:0;
-  border-radius:14px;
-  color:#fff;
-  background:linear-gradient(135deg,var(--purple),var(--lavender));
-  font-family:inherit;
-  font-size:15px;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-.copy-code:disabled{
-  opacity:.5;
-  cursor:not-allowed;
-}
-
-.copy-note{
-  min-height:26px;
-  margin-top:8px;
-  color:#286343;
-  font-size:13px;
   font-weight:bold;
 }
 
@@ -1013,7 +944,8 @@ footer{
     size:A4;
     margin:12mm;
   }
-    body{
+
+  body{
     background:#fff !important;
 
     color:#222;
@@ -1217,41 +1149,6 @@ footer{
   </section>
 
 
-  <section class="parent-code-box">
-
-    <h2>
-      👨‍👩‍👧 رمز متابعة ولي الأمر
-    </h2>
-
-    <p>
-      أرسلي هذا الرمز إلى ولي أمركِ لربط حسابه بمتابعتكِ.
-      يُستخدم الرمز للربط في المرة الأولى فقط.
-    </p>
-
-    <div
-      id="parentCode"
-      class="parent-code"
-    >
-      جارٍ تحميل الرمز...
-    </div>
-
-    <button
-      id="copyParentCodeBtn"
-      class="copy-code"
-      type="button"
-      disabled
-    >
-      نسخ رمز ولي الأمر
-    </button>
-
-    <div
-      id="copyParentCodeNote"
-      class="copy-note"
-    ></div>
-
-  </section>
-
-
   <section class="stats-grid">
 
     <div class="stat-card">
@@ -1399,8 +1296,7 @@ footer{
       <span class="message-label">
         🌷 رسالة تحفيزية
       </span>
-
-      ابدئي رحلتكِ بثقة، فكل خطوة صغيرة تقرّبكِ من هدفكِ.
+            ابدئي رحلتكِ بثقة، فكل خطوة صغيرة تقرّبكِ من هدفكِ.
     </div>
 
 
@@ -1447,7 +1343,6 @@ footer{
   جميع الحقوق محفوظة © 2026
 </footer>
 
-
 <script type="module">
 
 
@@ -1471,8 +1366,7 @@ from
 import {
   getFirestore,
   doc,
-  getDoc,
-  updateDoc
+  getDoc
 }
 from
 "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
@@ -1620,18 +1514,6 @@ const studentEmail =
   el("studentEmail");
 
 
-const parentCode =
-  el("parentCode");
-
-
-const copyParentCodeBtn =
-  el("copyParentCodeBtn");
-
-
-const copyParentCodeNote =
-  el("copyParentCodeNote");
-
-
 const completedValue =
   el("completedValue");
 
@@ -1723,152 +1605,6 @@ function toArabicNumber(
 }
 
 
-function createParentCode(
-  uid
-){
-
-  let hash =
-    2166136261;
-
-
-  for(
-    let i=0;
-    i<uid.length;
-    i++
-  ){
-
-    hash ^=
-      uid.charCodeAt(i);
-
-
-    hash =
-      Math.imul(
-        hash,
-        16777619
-      );
-
-  }
-
-
-  const number =
-    Math.abs(
-      hash >>> 0
-    )
-    .toString()
-    .padStart(
-      8,
-      "0"
-    )
-    .slice(
-      0,
-      8
-    );
-
-
-  return `AFQ-${number}`;
-
-}
-
-
-async function ensureParentCode(
-  studentRef,
-  data,
-  user
-){
-
-  let code =
-    String(
-      data?.["رمز_ولي_الأمر"] || ""
-    ).trim();
-
-
-  if(!code){
-
-    code =
-      createParentCode(
-        user.uid
-      );
-
-
-    await updateDoc(
-      studentRef,
-      {
-        "رمز_ولي_الأمر":
-          code
-      }
-    );
-
-
-    data["رمز_ولي_الأمر"] =
-      code;
-
-  }
-
-
-  parentCode.textContent =
-    code;
-
-
-  copyParentCodeBtn.disabled =
-    false;
-
-
-  return code;
-
-}
-
-
-copyParentCodeBtn.addEventListener(
-  "click",
-  async () => {
-
-    const code =
-      parentCode.textContent.trim();
-
-
-    if(
-      !code ||
-      !code.startsWith("AFQ-")
-    ){
-      return;
-    }
-
-
-    try{
-
-      await navigator.clipboard.writeText(
-        code
-      );
-
-
-      copyParentCodeNote.textContent =
-        "✅ تم نسخ رمز ولي الأمر.";
-
-    }
-
-
-    catch(error){
-
-      copyParentCodeNote.textContent =
-        `رمز ولي الأمر: ${code}`;
-
-    }
-
-
-    setTimeout(
-      () => {
-
-        copyParentCodeNote.textContent =
-          "";
-
-      },
-      2500
-    );
-
-  }
-);
-
-
 function showStatus(
   message,
   type
@@ -1943,7 +1679,9 @@ function getChallengeResult(
   );
 
 }
-  function normalizeChallengeResult(
+
+
+function normalizeChallengeResult(
   data,
   number
 ){
@@ -2208,7 +1946,7 @@ function renderChallenges(
         <div class="challenge-head">
 
           <div class="challenge-number">
-            ${toArabicNumber(number)}
+                      ${toArabicNumber(number)}
           </div>
 
           <h3 class="challenge-title">
@@ -2450,80 +2188,40 @@ function renderSummary(
 }
 
 
-function getAutoMessage(
-  progress
-){
+function getAutoMessage(progress){
 
-  if(
-    progress.completed === 0
-  ){
-
-    return
-      "🌷 ابدئي رحلتكِ بثقة، فكل تحدٍّ تنجزينه يقرّبكِ من هدفكِ.";
-
+  if(progress.completed === 0){
+    return "🌷 ابدئي رحلتكِ بثقة، فكل تحدٍّ تنجزينه يقرّبكِ من هدفكِ.";
   }
 
-
-  if(
-    progress.cupEligible
-  ){
-
-    return
-      `🏆 مبارك لكِ! أتممتِ التحديات العشرين بمتوسط ${toArabicNumber(
-        progress.average
-      )}٪، واستحققتِ كأس نافس. واصلي هذا التميز الجميل.`;
-
+  if(progress.cupEligible){
+    return `🏆 مبارك لكِ! أتممتِ التحديات العشرين بمتوسط ${toArabicNumber(
+      progress.average
+    )}٪، واستحققتِ كأس نافس. واصلي هذا التميز الجميل.`;
   }
 
-
   if(
-    progress.completed ===
-      TOTAL_CHALLENGES &&
-    progress.average <
-      REQUIRED_AVERAGE
+    progress.completed === TOTAL_CHALLENGES &&
+    progress.average < REQUIRED_AVERAGE
   ){
-
-    return
-      `⭐ أنجزتِ التحديات العشرين، وهذا إنجاز رائع. متوسطكِ الحالي ${toArabicNumber(
-        progress.average
-      )}٪؛ راجعي التحديات الأقل نتيجة وارفعي متوسطكِ نحو ٨٠٪ فأكثر.`;
-
+    return `⭐ أنجزتِ التحديات العشرين، وهذا إنجاز رائع. متوسطكِ الحالي ${toArabicNumber(
+      progress.average
+    )}٪؛ راجعي التحديات الأقل نتيجة وارفعي متوسطكِ نحو ٨٠٪ فأكثر.`;
   }
 
-
-  if(
-    progress.average >= 90
-  ){
-
-    return
-      "🌟 أداء متميز جدًا! واصلي بنفس العزيمة، فأنتِ تسيرين بخطوات واثقة نحو كأس نافس.";
-
+  if(progress.average >= 90){
+    return "🌟 أداء متميز جدًا! واصلي بنفس العزيمة، فأنتِ تسيرين بخطوات واثقة نحو كأس نافس.";
   }
 
-
-  if(
-    progress.average >= 80
-  ){
-
-    return
-      "👏 أداء جميل ومطمئن. حافظي على هذا المستوى، وأكملي بقية التحديات بثقة.";
-
+  if(progress.average >= 80){
+    return "👏 أداء جميل ومطمئن. حافظي على هذا المستوى، وأكملي بقية التحديات بثقة.";
   }
 
-
-  if(
-    progress.average >= 60
-  ){
-
-    return
-      "💪 تقدمكِ واضح، ومع قليل من المراجعة والتركيز ستصلين إلى مستوى أعلى بإذن الله.";
-
+  if(progress.average >= 60){
+    return "💪 تقدمكِ واضح، ومع قليل من المراجعة والتركيز ستصلين إلى مستوى أعلى بإذن الله.";
   }
 
-
-  return
-    "🌱 كل محاولة تصنع فرقًا. راجعي ما أخطأتِ فيه، ثم عودي للتحدي بثقة وإصرار.";
-
+  return "🌱 كل محاولة تصنع فرقًا. راجعي ما أخطأتِ فيه، ثم عودي للتحدي بثقة وإصرار.";
 }
 
 
@@ -2693,13 +2391,6 @@ async function loadStudentProgress(){
 
     const data =
       studentSnap.data();
-
-
-    await ensureParentCode(
-      studentRef,
-      data,
-      currentUser
-    );
 
 
     const nafes =
