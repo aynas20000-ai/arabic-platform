@@ -526,8 +526,7 @@ body{
 
   line-height:1.9;
 }
-
-.section-title{
+  .section-title{
   margin:
     27px 0 8px;
 
@@ -573,8 +572,7 @@ body{
 
   overflow:hidden;
 
-  padding:
-    17px;
+  padding:17px;
 
   border:
     3px solid #e2d5df;
@@ -650,7 +648,8 @@ body{
   font-size:17px;
   font-weight:bold;
 }
-  .challenge-title{
+
+.challenge-title{
   flex:1;
 
   margin:0;
@@ -735,59 +734,6 @@ body{
 
   background:#fae9b7;
 }
-
-.empty-message{
-  grid-column:1/-1;
-
-  padding:24px;
-
-  border:
-    2px dashed #cdbccd;
-
-  border-radius:22px;
-
-  text-align:center;
-
-  background:
-    rgba(
-      255,
-      255,
-      255,
-      .72
-    );
-
-  line-height:1.9;
-
-  font-weight:bold;
-}
-
-footer{
-  margin-top:30px;
-
-  padding:
-    20px 14px;
-
-  text-align:center;
-
-  color:white;
-
-  background:
-    linear-gradient(
-      135deg,
-      var(--purple),
-      var(--lavender)
-    );
-
-  border-top:
-    5px solid var(--gold);
-
-  line-height:1.8;
-}
-
-
-/* =========================
-   الطباعة والحفظ والرسائل
-========================= */
 
 .report-actions{
   display:flex;
@@ -938,88 +884,27 @@ footer{
   display:none;
 }
 
-@media print{
+footer{
+  margin-top:30px;
 
-  @page{
-    size:A4;
-    margin:12mm;
-  }
+  padding:
+    20px 14px;
 
-  body{
-    background:#fff !important;
+  text-align:center;
 
-    color:#222;
+  color:white;
 
-    -webkit-print-color-adjust:exact;
+  background:
+    linear-gradient(
+      135deg,
+      var(--purple),
+      var(--lavender)
+    );
 
-    print-color-adjust:exact;
-  }
+  border-top:
+    5px solid var(--gold);
 
-  .hero{
-    padding:18px 12px;
-  }
-
-  .page-shell{
-    width:100%;
-
-    max-width:none;
-
-    padding:12px 0 0;
-  }
-
-  .top-actions,
-  .report-actions,
-  .status-box,
-  footer{
-    display:none !important;
-  }
-
-  .print-meta{
-    display:block;
-
-    margin:
-      0 0 12px;
-
-    text-align:center;
-
-    color:#6b5a70;
-
-    font-size:12px;
-  }
-
-  .student-card,
-  .stat-card,
-  .progress-panel,
-  .cup-summary,
-  .messages-panel,
-  .progress-challenge{
-    box-shadow:none !important;
-
-    break-inside:avoid;
-
-    page-break-inside:avoid;
-  }
-
-  .stats-grid{
-    grid-template-columns:
-      repeat(
-        4,
-        1fr
-      );
-  }
-
-  .challenge-list{
-    grid-template-columns:
-      repeat(
-        2,
-        1fr
-      );
-  }
-
-  .section-title{
-    margin-top:18px;
-  }
-
+  line-height:1.8;
 }
 
 @media(max-width:760px){
@@ -1231,9 +1116,7 @@ footer{
     </div>
 
   </section>
-
-
-  <section class="progress-panel">
+    <section class="progress-panel">
 
     <h2>
       🌸 نسبة إنجاز رحلة نافس
@@ -1288,7 +1171,6 @@ footer{
       💌 رسائل آفاق لكِ
     </h2>
 
-
     <div
       id="autoMessage"
       class="message-card auto-message"
@@ -1296,7 +1178,8 @@ footer{
       <span class="message-label">
         🌷 رسالة تحفيزية
       </span>
-            ابدئي رحلتكِ بثقة، فكل خطوة صغيرة تقرّبكِ من هدفكِ.
+
+      ابدئي رحلتكِ بثقة، فكل خطوة صغيرة تقرّبكِ من هدفكِ.
     </div>
 
 
@@ -1343,6 +1226,7 @@ footer{
   جميع الحقوق محفوظة © 2026
 </footer>
 
+
 <script type="module">
 
 
@@ -1366,7 +1250,10 @@ from
 import {
   getFirestore,
   doc,
-  getDoc
+  getDoc,
+  setDoc,
+  updateDoc,
+  serverTimestamp
 }
 from
 "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
@@ -1432,65 +1319,26 @@ const REQUIRED_AVERAGE =
 
 const challengeNames = {
 
-  1:
-    "تحدي بوصلة الفهم",
-
-  2:
-    "تحدي الأمن السيبراني",
-
-  3:
-    "تحدي مشروع نيوم",
-
-  4:
-    "تحدي القدية",
-
-  5:
-    "تحدي الذكاء الاصطناعي",
-
-  6:
-    "تحدي الفضاء السعودي",
-
-  7:
-    "تحدي البحر الأحمر",
-
-  8:
-    "تحدي الطاقة المتجددة",
-
-  9:
-    "تحدي رؤية المملكة 2030",
-
-  10:
-    "تحدي التراث السعودي",
-
-  11:
-    "تحدي طريق الحرير",
-
-  12:
-    "تحدي العلماء المسلمين",
-
-  13:
-    "تحدي الرسالة القديمة",
-
-  14:
-    "تحدي النوم والذاكرة",
-
-  15:
-    "تحدي الإدمان الرقمي",
-
-  16:
-    "تحدي الهندسة الوراثية",
-
-  17:
-    "تحدي الشعاب المرجانية",
-
-  18:
-    "تحدي الطاقة المتجددة",
-
-  19:
-    "تحدي استكشاف الفضاء",
-
-  20:
-    "تحدي المدن الذكية"
+  1:"تحدي بوصلة الفهم",
+  2:"تحدي الأمن السيبراني",
+  3:"تحدي مشروع نيوم",
+  4:"تحدي القدية",
+  5:"تحدي الذكاء الاصطناعي",
+  6:"تحدي الفضاء السعودي",
+  7:"تحدي البحر الأحمر",
+  8:"تحدي الطاقة المتجددة",
+  9:"تحدي رؤية المملكة 2030",
+  10:"تحدي التراث السعودي",
+  11:"تحدي طريق الحرير",
+  12:"تحدي العلماء المسلمين",
+  13:"تحدي الرسالة القديمة",
+  14:"تحدي النوم والذاكرة",
+  15:"تحدي الإدمان الرقمي",
+  16:"تحدي الهندسة الوراثية",
+  17:"تحدي الشعاب المرجانية",
+  18:"تحدي الطاقة المتجددة",
+  19:"تحدي استكشاف الفضاء",
+  20:"تحدي المدن الذكية"
 
 };
 
@@ -1646,6 +1494,439 @@ function safeNumber(
     : fallback;
 
 }
+  function candidateKeys(
+  number
+){
+
+  const padded =
+    String(
+      number
+    ).padStart(
+      2,
+      "0"
+    );
+
+
+  return [
+
+    `nafesChallenge${padded}Result`,
+
+    `nafesChallenge${number}Result`,
+
+    `nafesChallenge${padded}`,
+
+    `nafesChallenge${number}`,
+
+    `challenge${padded}Result`,
+
+    `challenge${number}Result`
+
+  ];
+
+}
+
+
+function normalizeAnyResult(
+  raw,
+  number
+){
+
+  if(
+    raw === null ||
+    raw === "" ||
+    raw === undefined
+  ){
+
+    return null;
+
+  }
+
+
+  let value =
+    raw;
+
+
+  if(
+    typeof raw ===
+      "string"
+  ){
+
+    try{
+
+      value =
+        JSON.parse(
+          raw
+        );
+
+    }
+
+
+    catch(error){
+
+      const numeric =
+        Number(
+          String(
+            raw
+          )
+          .replace(
+            "%",
+            ""
+          )
+          .trim()
+        );
+
+
+      if(
+        !Number.isFinite(
+          numeric
+        )
+      ){
+
+        return null;
+
+      }
+
+
+      const percentage =
+        Math.max(
+          0,
+          Math.min(
+            100,
+            Math.round(
+              numeric
+            )
+          )
+        );
+
+
+      return {
+
+        number,
+
+        title:
+          challengeNames[number],
+
+        score:
+          numeric,
+
+        total:
+          100,
+
+        percentage,
+
+        certificate:
+          percentage >= 80
+
+      };
+
+    }
+
+  }
+
+
+  if(
+    typeof value ===
+      "number"
+  ){
+
+    const percentage =
+      Math.max(
+        0,
+        Math.min(
+          100,
+          Math.round(
+            value
+          )
+        )
+      );
+
+
+    return {
+
+      number,
+
+      title:
+        challengeNames[number],
+
+      score:
+        value,
+
+      total:
+        100,
+
+      percentage,
+
+      certificate:
+        percentage >= 80
+
+    };
+
+  }
+
+
+  if(
+    !value ||
+    typeof value !==
+      "object"
+  ){
+
+    return null;
+
+  }
+
+
+  let score =
+    Number(
+
+      value["الدرجة"] ??
+
+      value.score ??
+
+      value.correct ??
+
+      value.correctAnswers ??
+
+      value.points ??
+
+      NaN
+
+    );
+
+
+  let total =
+    Number(
+
+      value["المجموع"] ??
+
+      value.total ??
+
+      value.totalQuestions ??
+
+      value.maxScore ??
+
+      value.questionsCount ??
+
+      NaN
+
+    );
+
+
+  let percentage =
+    Number(
+
+      value["النسبة"] ??
+
+      value.percentage ??
+
+      value.percent ??
+
+      value.average ??
+
+      value.result ??
+
+      NaN
+
+    );
+
+
+  if(
+    !Number.isFinite(
+      percentage
+    )
+  ){
+
+    if(
+      Number.isFinite(
+        score
+      ) &&
+      Number.isFinite(
+        total
+      ) &&
+      total > 0
+    ){
+
+      percentage =
+        Math.round(
+          (
+            score /
+            total
+          ) *
+          100
+        );
+
+    }
+
+
+    else if(
+      Number.isFinite(
+        score
+      ) &&
+      score >= 0 &&
+      score <= 100
+    ){
+
+      percentage =
+        score;
+
+
+      total =
+        100;
+
+    }
+
+
+    else{
+
+      return null;
+
+    }
+
+  }
+
+
+  percentage =
+    Math.max(
+      0,
+      Math.min(
+        100,
+        Math.round(
+          percentage
+        )
+      )
+    );
+
+
+  if(
+    !Number.isFinite(
+      score
+    )
+  ){
+
+    score =
+      percentage;
+
+  }
+
+
+  if(
+    !Number.isFinite(
+      total
+    ) ||
+    total <= 0
+  ){
+
+    total =
+      100;
+
+  }
+
+
+  return {
+
+    number,
+
+    title:
+
+      value["اسم_التحدي"] ||
+
+      value.title ||
+
+      challengeNames[number],
+
+    score,
+
+    total,
+
+    percentage,
+
+    certificate:
+
+      value["الشهادة"] === true ||
+
+      value.certificate === true ||
+
+      percentage >= 80
+
+  };
+
+}
+
+
+function readLocalResult(
+  number
+){
+
+  for(
+    const key of
+    candidateKeys(
+      number
+    )
+  ){
+
+    const raw =
+      localStorage.getItem(
+        key
+      );
+
+
+    const result =
+      normalizeAnyResult(
+        raw,
+        number
+      );
+
+
+    if(
+      result
+    ){
+
+      return result;
+
+    }
+
+  }
+
+
+  return null;
+
+}
+
+
+function getLocalResults(){
+
+  const results =
+    {};
+
+
+  for(
+    let number=1;
+    number<=TOTAL_CHALLENGES;
+    number++
+  ){
+
+    const result =
+      readLocalResult(
+        number
+      );
+
+
+    if(
+      result
+    ){
+
+      results[
+        `challenge${number}`
+      ] =
+        result;
+
+    }
+
+  }
+
+
+  return results;
+
+}
 
 
 function getChallengeResult(
@@ -1686,105 +1967,104 @@ function normalizeChallengeResult(
   number
 ){
 
-  if(
-    !data ||
-    typeof data !==
-      "object"
-  ){
-
-    return null;
-
-  }
-
-
-  const score =
-    safeNumber(
-      data["الدرجة"] ??
-      data.score,
-      0
-    );
-
-
-  const total =
-    safeNumber(
-      data["المجموع"] ??
-      data.total,
-      10
-    );
-
-
-  let percentage =
-    safeNumber(
-      data["النسبة"] ??
-      data.percentage,
-      NaN
-    );
-
-
-  if(
-    !Number.isFinite(
-      percentage
-    )
-  ){
-
-    percentage =
-      total > 0
-        ? Math.round(
-            (
-              score /
-              total
-            ) *
-            100
-          )
-        : 0;
-
-  }
-
-
-  percentage =
-    Math.max(
-      0,
-      Math.min(
-        100,
-        Math.round(
-          percentage
-        )
-      )
-    );
-
-
-  const certificate =
-    data["الشهادة"] === true ||
-    data.certificate === true ||
-    percentage >= 80;
-
-
-  const title =
-    data["اسم_التحدي"] ||
-    data.title ||
-    challengeNames[number];
-
-
-  return {
-
-    number,
-
-    title,
-
-    score,
-
-    total,
-
-    percentage,
-
-    certificate
-
-  };
+  return normalizeAnyResult(
+    data,
+    number
+  );
 
 }
 
 
-function calculateProgress(
+function mergeResults(
+  firebaseResults,
+  localResults
+){
+
+  const merged =
+    {};
+
+
+  for(
+    let number=1;
+    number<=TOTAL_CHALLENGES;
+    number++
+  ){
+
+    const firebaseRaw =
+      getChallengeResult(
+        firebaseResults,
+        number
+      );
+
+
+    const localRaw =
+      getChallengeResult(
+        localResults,
+        number
+      );
+
+
+    const firebaseResult =
+      normalizeChallengeResult(
+        firebaseRaw,
+        number
+      );
+
+
+    const localResult =
+      normalizeChallengeResult(
+        localRaw,
+        number
+      );
+
+
+    let chosen =
+      null;
+
+
+    if(
+      localResult &&
+      firebaseResult
+    ){
+
+      chosen =
+        localResult.percentage >=
+          firebaseResult.percentage
+
+        ? localResult
+
+        : firebaseResult;
+
+    }
+
+
+    else{
+
+      chosen =
+        localResult ||
+        firebaseResult;
+
+    }
+
+
+    if(
+      chosen
+    ){
+
+      merged[
+        `challenge${number}`
+      ] =
+        chosen;
+
+    }
+
+  }
+
+
+  return merged;
+
+}
+  function calculateProgress(
   results
 ){
 
@@ -1812,7 +2092,9 @@ function calculateProgress(
       );
 
 
-    if(result){
+    if(
+      result
+    ){
 
       normalized.push(
         result
@@ -1841,10 +2123,12 @@ function calculateProgress(
 
   const average =
     completed > 0
+
       ? Math.round(
           percentageSum /
           completed
         )
+
       : 0;
 
 
@@ -1856,8 +2140,10 @@ function calculateProgress(
 
 
   const cupEligible =
+
     completed ===
       TOTAL_CHALLENGES &&
+
     average >=
       REQUIRED_AVERAGE;
 
@@ -1917,7 +2203,9 @@ function renderChallenges(
       "progress-challenge";
 
 
-    if(result){
+    if(
+      result
+    ){
 
       card.classList.add(
         "completed"
@@ -1946,7 +2234,7 @@ function renderChallenges(
         <div class="challenge-head">
 
           <div class="challenge-number">
-                      ${toArabicNumber(number)}
+            ${toArabicNumber(number)}
           </div>
 
           <h3 class="challenge-title">
@@ -2004,22 +2292,29 @@ function renderChallenges(
         <div class="info-pill">
           الدرجة
           <br>
+
           ${toArabicNumber(
             result.score
           )}
+
           من
+
           ${toArabicNumber(
             result.total
           )}
+
         </div>
 
 
         <div class="info-pill">
+
           النسبة
           <br>
+
           ${toArabicNumber(
             result.percentage
           )}٪
+
         </div>
 
       </div>
@@ -2186,42 +2481,73 @@ function renderSummary(
   }
 
 }
+  function getAutoMessage(
+  progress
+){
 
+  if(
+    progress.completed === 0
+  ){
 
-function getAutoMessage(progress){
-
-  if(progress.completed === 0){
     return "🌷 ابدئي رحلتكِ بثقة، فكل تحدٍّ تنجزينه يقرّبكِ من هدفكِ.";
+
   }
 
-  if(progress.cupEligible){
+
+  if(
+    progress.cupEligible
+  ){
+
     return `🏆 مبارك لكِ! أتممتِ التحديات العشرين بمتوسط ${toArabicNumber(
       progress.average
     )}٪، واستحققتِ كأس نافس. واصلي هذا التميز الجميل.`;
+
   }
 
+
   if(
-    progress.completed === TOTAL_CHALLENGES &&
-    progress.average < REQUIRED_AVERAGE
+    progress.completed ===
+      TOTAL_CHALLENGES &&
+    progress.average <
+      REQUIRED_AVERAGE
   ){
+
     return `⭐ أنجزتِ التحديات العشرين، وهذا إنجاز رائع. متوسطكِ الحالي ${toArabicNumber(
       progress.average
     )}٪؛ راجعي التحديات الأقل نتيجة وارفعي متوسطكِ نحو ٨٠٪ فأكثر.`;
+
   }
 
-  if(progress.average >= 90){
+
+  if(
+    progress.average >= 90
+  ){
+
     return "🌟 أداء متميز جدًا! واصلي بنفس العزيمة، فأنتِ تسيرين بخطوات واثقة نحو كأس نافس.";
+
   }
 
-  if(progress.average >= 80){
+
+  if(
+    progress.average >= 80
+  ){
+
     return "👏 أداء جميل ومطمئن. حافظي على هذا المستوى، وأكملي بقية التحديات بثقة.";
+
   }
 
-  if(progress.average >= 60){
+
+  if(
+    progress.average >= 60
+  ){
+
     return "💪 تقدمكِ واضح، ومع قليل من المراجعة والتركيز ستصلين إلى مستوى أعلى بإذن الله.";
+
   }
+
 
   return "🌱 كل محاولة تصنع فرقًا. راجعي ما أخطأتِ فيه، ثم عودي للتحدي بثقة وإصرار.";
+
 }
 
 
@@ -2308,16 +2634,225 @@ function openPrintDialog(){
 }
 
 
+async function syncLocalResultsToFirebase(
+  user,
+  localResults
+){
+
+  if(
+    !user ||
+    !localResults ||
+    Object.keys(
+      localResults
+    ).length === 0
+  ){
+
+    return;
+
+  }
+
+
+  const progress =
+    calculateProgress(
+      localResults
+    );
+
+
+  const studentRef =
+    doc(
+      db,
+      "students",
+      user.uid
+    );
+
+
+  await setDoc(
+    studentRef,
+    {
+
+      "معرف_المستخدم":
+        user.uid,
+
+      "البريد":
+        user.email ||
+        "",
+
+      "الاسم":
+
+        localStorage.getItem(
+          "nafesStudentName"
+        ) ||
+
+        user.displayName ||
+
+        "طالبة غير مسماة"
+
+    },
+    {
+      merge:true
+    }
+  );
+
+
+  const updates = {
+
+    "نافس_المتابعة.عدد_التحديات_المكتملة":
+      progress.completed,
+
+    "نافس_المتابعة.متوسط_التحديات":
+      progress.average,
+
+    "نافس_المتابعة.الكأس_مستحق":
+      progress.cupEligible,
+
+    "نافس_المتابعة.آخر_تحديث_للتحديات":
+      serverTimestamp()
+
+  };
+
+
+  for(
+    let number=1;
+    number<=TOTAL_CHALLENGES;
+    number++
+  ){
+
+    const result =
+      getChallengeResult(
+        localResults,
+        number
+      );
+
+
+    if(
+      !result
+    ){
+
+      continue;
+
+    }
+
+
+    const base =
+      `نافس_المتابعة.نتائج_التحديات.challenge${number}`;
+
+
+    updates[
+      `${base}.رقم_التحدي`
+    ] =
+      number;
+
+
+    updates[
+      `${base}.اسم_التحدي`
+    ] =
+      result.title ||
+      challengeNames[number];
+
+
+    updates[
+      `${base}.الدرجة`
+    ] =
+      result.score;
+
+
+    updates[
+      `${base}.المجموع`
+    ] =
+      result.total;
+
+
+    updates[
+      `${base}.النسبة`
+    ] =
+      result.percentage;
+
+
+    updates[
+      `${base}.الشهادة`
+    ] =
+      result.certificate === true;
+
+  }
+
+
+  await updateDoc(
+    studentRef,
+    updates
+  );
+
+}
+
+
 async function loadStudentProgress(){
+
+  const localResults =
+    getLocalResults();
+
+
+  const localProgress =
+    calculateProgress(
+      localResults
+    );
+
 
   if(
     !currentUser
   ){
 
-    showStatus(
-      "🔒 سجلي الدخول أولًا من منصة آفاق لعرض تقدمكِ.",
-      "error"
+    const localName =
+
+      localStorage.getItem(
+        "nafesStudentName"
+      ) ||
+
+      "طالبة آفاق";
+
+
+    studentName.textContent =
+      localName;
+
+
+    studentEmail.textContent =
+      "";
+
+
+    renderSummary(
+      localProgress
     );
+
+
+    renderChallenges(
+      localResults
+    );
+
+
+    renderMessages(
+      {},
+      localProgress
+    );
+
+
+    if(
+      localProgress.completed > 0
+    ){
+
+      showStatus(
+        "✅ تم عرض تقدمكِ المحفوظ على هذا الجهاز.",
+        "success"
+      );
+
+    }
+
+
+    else{
+
+      showStatus(
+        "لا توجد نتائج محفوظة على هذا الجهاز حتى الآن.",
+        "error"
+      );
+
+    }
 
 
     return;
@@ -2348,68 +2883,49 @@ async function loadStudentProgress(){
       );
 
 
+    let data =
+      {};
+
+
+    let firebaseResults =
+      {};
+
+
     if(
-      !studentSnap.exists()
+      studentSnap.exists()
     ){
 
-      studentName.textContent =
-        currentUser.displayName ||
-        "طالبة آفاق";
+      data =
+        studentSnap.data();
 
 
-      studentEmail.textContent =
-        currentUser.email ||
-        "";
+      const nafes =
+        data["نافس_المتابعة"] ||
+        {};
 
 
-      renderSummary(
-        calculateProgress({})
-      );
-
-
-      renderChallenges(
-        {}
-      );
-
-
-      renderMessages(
-        {},
-        calculateProgress({})
-      );
-
-
-      showStatus(
-        "لم يتم تسجيل نتائج نافس لهذا الحساب حتى الآن.",
-        "error"
-      );
-
-
-      return;
+      firebaseResults =
+        nafes["نتائج_التحديات"] ||
+        {};
 
     }
 
 
-    const data =
-      studentSnap.data();
-
-
-    const nafes =
-      data["نافس_المتابعة"] ||
-      {};
-
-
-    const results =
-      nafes["نتائج_التحديات"] ||
-      {};
+    const mergedResults =
+      mergeResults(
+        firebaseResults,
+        localResults
+      );
 
 
     const progress =
       calculateProgress(
-        results
+        mergedResults
       );
 
 
     const displayName =
+
       data["الاسم"] ||
 
       localStorage.getItem(
@@ -2426,8 +2942,11 @@ async function loadStudentProgress(){
 
 
     studentEmail.textContent =
+
       data["البريد"] ||
+
       currentUser.email ||
+
       "";
 
 
@@ -2437,7 +2956,7 @@ async function loadStudentProgress(){
 
 
     renderChallenges(
-      results
+      mergedResults
     );
 
 
@@ -2445,6 +2964,34 @@ async function loadStudentProgress(){
       data,
       progress
     );
+
+
+    if(
+      Object.keys(
+        localResults
+      ).length > 0
+    ){
+
+      try{
+
+        await syncLocalResultsToFirebase(
+          currentUser,
+          localResults
+        );
+
+      }
+
+
+      catch(syncError){
+
+        console.error(
+          "تعذر مزامنة نتائج الجهاز:",
+          syncError
+        );
+
+      }
+
+    }
 
 
     showStatus(
@@ -2467,16 +3014,65 @@ async function loadStudentProgress(){
 
   catch(error){
 
+
     console.error(
       "خطأ تحميل تقدم نافس:",
       error
     );
 
 
-    showStatus(
-      "تعذر تحميل تقدمكِ الآن. حاولي مرة أخرى.",
-      "error"
-    );
+    if(
+      localProgress.completed > 0
+    ){
+
+      studentName.textContent =
+
+        localStorage.getItem(
+          "nafesStudentName"
+        ) ||
+
+        currentUser.displayName ||
+
+        "طالبة آفاق";
+
+
+      studentEmail.textContent =
+        currentUser.email ||
+        "";
+
+
+      renderSummary(
+        localProgress
+      );
+
+
+      renderChallenges(
+        localResults
+      );
+
+
+      renderMessages(
+        {},
+        localProgress
+      );
+
+
+      showStatus(
+        "تعذر الاتصال بالحساب، لكن تم عرض نتائج هذا الجهاز.",
+        "error"
+      );
+
+    }
+
+
+    else{
+
+      showStatus(
+        "تعذر تحميل تقدمكِ الآن. حاولي مرة أخرى.",
+        "error"
+      );
+
+    }
 
   }
 
@@ -2497,7 +3093,7 @@ pdfButton.addEventListener(
 
 
     alert(
-      "بعد فتح نافذة الطباعة اختاري «حفظ كملف PDF» أو «Save as PDF» ثم احفظي التقرير في جهازكِ."
+      "بعد فتح نافذة الطباعة اختاري «حفظ كملف PDF» ثم احفظي التقرير."
     );
 
 
@@ -2521,48 +3117,8 @@ onAuthStateChanged(
   auth,
   async user => {
 
-
     currentUser =
       user;
-
-
-    if(
-      !user
-    ){
-
-      studentName.textContent =
-        "طالبة آفاق";
-
-
-      studentEmail.textContent =
-        "";
-
-
-      renderSummary(
-        calculateProgress({})
-      );
-
-
-      renderChallenges(
-        {}
-      );
-
-
-      renderMessages(
-        {},
-        calculateProgress({})
-      );
-
-
-      showStatus(
-        "🔒 سجلي الدخول من منصة آفاق لعرض تقدمكِ.",
-        "error"
-      );
-
-
-      return;
-
-    }
 
 
     await loadStudentProgress();
@@ -2575,9 +3131,27 @@ window.addEventListener(
   "pageshow",
   async () => {
 
+    await loadStudentProgress();
+
+  }
+);
+
+
+window.addEventListener(
+  "storage",
+  async event => {
 
     if(
-      currentUser
+      event.key &&
+      (
+        event.key.includes(
+          "nafesChallenge"
+        ) ||
+
+        event.key.includes(
+          "challenge"
+        )
+      )
     ){
 
       await loadStudentProgress();
@@ -2591,4 +3165,5 @@ window.addEventListener(
 </script>
 
 </body>
+
 </html>
