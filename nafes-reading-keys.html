@@ -1,0 +1,1590 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    مفاتيح الفهم القرائي | منصة آفاق
+  </title>
+
+  <style>
+
+    *{
+      box-sizing:border-box;
+    }
+
+    body{
+      margin:0;
+
+      font-family:
+        Tahoma,
+        Arial,
+        sans-serif;
+
+      background:
+        linear-gradient(
+          180deg,
+          #faf7ff 0%,
+          #fffdf7 100%
+        );
+
+      color:#31253f;
+      line-height:1.9;
+    }
+
+    .page{
+      width:min(1100px,92%);
+      margin:auto;
+      padding:24px 0 55px;
+    }
+
+    .top-actions{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:18px;
+    }
+
+    .back-btn{
+      display:inline-block;
+      text-decoration:none;
+      background:#68438c;
+      color:white;
+      padding:10px 18px;
+      border-radius:14px;
+      font-weight:bold;
+    }
+
+    .hero{
+      background:
+        linear-gradient(
+          135deg,
+          #68438c,
+          #8a63aa
+        );
+
+      color:white;
+      border-radius:28px;
+      padding:32px 22px;
+      text-align:center;
+
+      box-shadow:
+        0 12px 30px
+        rgba(80,48,108,.16);
+
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero::before,
+    .hero::after{
+      content:"✦";
+      position:absolute;
+      color:#e6c56e;
+      font-size:34px;
+      opacity:.7;
+    }
+
+    .hero::before{
+      top:15px;
+      right:25px;
+    }
+
+    .hero::after{
+      bottom:15px;
+      left:25px;
+    }
+
+    .hero-icon{
+      font-size:58px;
+      margin-bottom:4px;
+    }
+
+    .hero h1{
+      margin:0;
+
+      font-size:clamp(
+        27px,
+        6vw,
+        43px
+      );
+    }
+
+    .hero p{
+      max-width:760px;
+      margin:12px auto 0;
+      font-size:17px;
+    }
+
+    .golden-rule{
+      margin:22px auto;
+      padding:20px;
+      max-width:850px;
+      text-align:center;
+      background:#fff9e9;
+      border:2px solid #d7b65d;
+      border-radius:22px;
+      font-size:18px;
+      font-weight:bold;
+      color:#5c4721;
+    }
+
+    .golden-rule strong{
+      color:#68438c;
+    }
+
+    .section-title{
+      text-align:center;
+      margin:34px 0 18px;
+    }
+
+    .section-title h2{
+      margin:0;
+      color:#68438c;
+      font-size:27px;
+    }
+
+    .section-title p{
+      margin:5px 0;
+      color:#715f7e;
+    }
+
+    .keys-grid{
+      display:grid;
+
+      grid-template-columns:
+        repeat(
+          auto-fit,
+          minmax(265px,1fr)
+        );
+
+      gap:15px;
+    }
+
+    details{
+      background:white;
+      border:1px solid #e5dcef;
+      border-radius:19px;
+
+      box-shadow:
+        0 7px 18px
+        rgba(74,53,89,.07);
+
+      overflow:hidden;
+    }
+
+    summary{
+      cursor:pointer;
+      list-style:none;
+      padding:18px;
+      font-weight:bold;
+      font-size:17px;
+      color:#55346e;
+
+      display:flex;
+      gap:9px;
+      align-items:center;
+    }
+
+    summary::-webkit-details-marker{
+      display:none;
+    }
+
+    summary::after{
+      content:"＋";
+      margin-right:auto;
+      color:#b58c28;
+      font-size:22px;
+    }
+
+    details[open] summary::after{
+      content:"−";
+    }
+
+    .key-content{
+      border-top:1px solid #eee5f4;
+      padding:0 18px 18px;
+      color:#44374c;
+    }
+
+    .key-content p{
+      margin:14px 0 0;
+    }
+
+    .question{
+      background:#f7f2fb;
+      padding:12px 14px;
+      border-radius:13px;
+      margin-top:12px;
+      color:#513c60;
+    }
+
+    .hint{
+      color:#7b6425;
+      font-weight:bold;
+    }
+
+    .final-box{
+      margin-top:30px;
+      padding:24px 20px;
+      border-radius:24px;
+      background:white;
+      border:2px solid #d7b65d;
+      text-align:center;
+    }
+
+    .final-box h2{
+      color:#68438c;
+      margin-top:0;
+    }
+
+    .steps{
+      display:grid;
+
+      grid-template-columns:
+        repeat(
+          auto-fit,
+          minmax(150px,1fr)
+        );
+
+      gap:10px;
+      margin-top:15px;
+    }
+
+    .step{
+      background:#f8f4fb;
+      padding:14px 10px;
+      border-radius:15px;
+      font-weight:bold;
+      color:#604672;
+    }
+
+    .footer{
+      text-align:center;
+      color:#7d7085;
+      margin-top:28px;
+      font-size:14px;
+    }
+
+    @media(max-width:520px){
+
+      .hero{
+        padding:25px 16px;
+      }
+
+      .hero p{
+        font-size:15px;
+      }
+
+      .golden-rule{
+        font-size:16px;
+      }
+
+      summary{
+        font-size:16px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+<div class="page">
+
+  <div class="top-actions">
+
+    <a
+      class="back-btn"
+      href="nafes.html"
+    >
+      ← العودة إلى مكتبة نافس
+    </a>
+
+  </div>
+
+
+  <section class="hero">
+
+    <div class="hero-icon">
+      🔑
+    </div>
+
+    <h1>
+      مفاتيح الفهم القرائي
+    </h1>
+
+    <p>
+      لكل سؤال مفتاح يساعدكِ على الوصول
+      إلى الإجابة الأدق.
+      تعلّمي المفتاح أولًا،
+      ثم استخدميه كلما قرأتِ نصًا جديدًا.
+    </p>
+
+  </section>
+
+
+  <div class="golden-rule">
+
+    🔐
+
+    <strong>
+      القاعدة الذهبية:
+    </strong>
+
+    لا تبحثي عن إجابة تبدو صحيحة…
+    ابحثي عن إجابة يثبتها النص.
+
+  </div>
+
+
+  <div class="section-title">
+
+    <h2>
+      ✦ مفاتيح فهم النص ✦
+    </h2>
+
+    <p>
+      اضغطي على كل مفتاح
+      لتتعرفي إلى طريقته.
+    </p>
+
+  </div>
+
+
+  <div class="keys-grid">
+
+
+    <details>
+
+      <summary>
+        🏷️ مفتاح العنوان المناسب
+      </summary>
+
+      <div class="key-content">
+
+        <p>
+          العنوان الصحيح هو الذي
+          <strong>
+            يجمع النص كله
+          </strong>
+          ولا يقتصر على تفصيل صغير.
+        </p>
+
+        <div class="question">
+          اسألي نفسكِ:
+          لو قرأتُ هذا العنوان وحده،
+          فهل يعكس موضوع النص
+          وفكرته العامة؟
+        </div>
+
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        💡 مفتاح الفكرة الرئيسة
+      </summary>
+
+      <div class="key-content">
+
+        <p>
+          ابحثي عن
+          <strong>
+            المظلّة الكبرى
+          </strong>
+          التي تندرج تحتها
+          أغلب أفكار النص.
+        </p>
+
+        <div class="question">
+          اسألي:
+          عن ماذا يتحدث النص كله؟
+          وما الرسالة الأساسية
+          التي يريد الكاتب إيصالها؟
+        </div>
+
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        🌿 مفتاح الفكرة الفرعية
+      </summary>
+
+      <div class="key-content">
+
+        <p>
+          الفكرة الفرعية تشرح
+          أو تدعم
+          <strong>
+            جزءًا من الفكرة الرئيسة
+          </strong>
+          وغالبًا ترتبط بفقرة محددة.
+        </p>
+
+        <div class="question">
+          اسألي:
+          ماذا تضيف هذه الفقرة
+          إلى الفكرة الكبرى للنص؟
+        </div>
+
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        📌 مفتاح الفكرة الصريحة
+      </summary>
+
+      <div class="key-content">
+
+        <p>
+          الإجابة موجودة
+          <strong>
+            مباشرة داخل النص
+          </strong>.
+          لا تحتاجين إلى استنتاج بعيد.
+        </p>
+
+        <div class="question">
+          ارجعي إلى السطر،
+          وابحثي عن العبارة نفسها
+          أو عن معناها الواضح.
+        </div>
+
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        🕯️ مفتاح الفكرة الضمنية
+      </summary>
+
+      <div class="key-content">
+
+        <p>
+          لم يقلها الكاتب صراحة،
+          ولكن توجد
+          <strong>
+            قرائن تقود إليها
+          </strong>.
+        </p>
+
+        <div class="question">
+          اسألي:
+          ما الذي يريد الكاتب
+          أن أفهمه دون أن يقوله مباشرة؟
+        </div>
+
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        🔍 مفتاح الاستنتاج
+      </summary>
+
+      <div class="key-content">
+
+        <p>
+          اجمعي أكثر من قرينة
+          من النص،
+          ثم استخرجي منها نتيجة
+          <strong>
+            منطقية
+          </strong>.
+        </p>
+
+        <div class="question">
+          النص يعطيني الأدلة…
+          فما النتيجة
+          التي تقود إليها؟
+        </div>
+
+      </div>
+
+    </details>
+        <details>
+
+      <summary>
+        🔤 مفتاح معنى الكلمة من السياق
+      </summary>
+
+      <div class="key-content">
+
+        <p>
+          لا تعزلي الكلمة عن الجملة.
+          اقرئي ما قبلها وما بعدها.
+        </p>
+
+        <div class="question">
+          استبدلي الكلمة بكلمة قريبة:
+          هل بقي معنى الجملة مستقيمًا؟
+        </div>
+
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        🔁 مفتاح الترادف
+      </summary>
+
+      <div class="key-content">
+
+        <p>
+          ابحثي عن كلمة
+          <strong>
+            تقارب معنى الكلمة
+          </strong>
+          داخل السياق نفسه.
+        </p>
+
+        <div class="question">
+          تذكري:
+          ليس كل مرادف محفوظ
+          يناسب كل سياق.
+        </div>
+
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        ↔️ مفتاح التضاد
+      </summary>
+
+      <div class="key-content">
+
+        <p>
+          ابحثي عن
+          <strong>
+            المعنى المعاكس
+          </strong>
+          للكلمة كما استُعملت
+          في النص.
+        </p>
+
+        <div class="question">
+          حددي معنى الكلمة أولًا
+          من السياق،
+          ثم ابحثي عن ضدها.
+        </div>
+
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        🔗 مفتاح العلاقة بين الأفكار
+      </summary>
+
+      <div class="key-content">
+
+        <p>
+          قارني الجملتين،
+          واسألي عن وظيفة الثانية
+          بالنسبة إلى الأولى.
+        </p>
+
+        <div class="question">
+          هل العلاقة:
+          سبب ونتيجة؟
+          تفسير؟
+          مثال؟
+          مقارنة؟
+          تضاد؟
+          إجمال وتفصيل؟
+        </div>
+
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        ➡️ مفتاح السبب والنتيجة
+      </summary>
+
+      <div class="key-content">
+
+        <p>
+          <span class="hint">
+            السبب:
+          </span>
+          لماذا حدث الشيء؟
+          <br>
+
+          <span class="hint">
+            النتيجة:
+          </span>
+          ماذا ترتب عليه؟
+        </p>
+
+        <div class="question">
+          حددي الحدث أولًا،
+          ثم اسألي:
+          ما الذي أدى إليه؟
+          وماذا نتج عنه؟
+        </div>
+
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        ⚖️ مفتاح الحقيقة والرأي
+      </summary>
+
+      <div class="key-content">
+
+        <p>
+          <strong>
+            الحقيقة:
+          </strong>
+          معلومة يمكن التحقق منها.
+          <br>
+
+          <strong>
+            الرأي:
+          </strong>
+          يتضمن حكمًا
+          أو موقفًا
+          أو تفضيلًا.
+        </p>
+
+        <div class="question">
+          اسألي:
+          هل أستطيع إثبات العبارة
+          أو التحقق منها؟
+          أم أنها تعبر عن وجهة نظر؟
+        </div>
+
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        👁️ مفتاح وجهة نظر الكاتب
+      </summary>
+
+      <div class="key-content">
+
+        <p>
+          ابحثي عن الألفاظ
+          التي تكشف
+          <strong>
+            موقف الكاتب
+          </strong>
+          من الموضوع،
+          لا عن المعلومات فقط.
+        </p>
+
+        <div class="question">
+          هل يؤيد؟
+          يعارض؟
+          يحذر؟
+          ينتقد؟
+          يدافع؟
+        </div>
+
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        💭 مفتاح مشاعر الكاتب
+      </summary>
+
+      <div class="key-content">
+
+        <p>
+          راقبي الكلمات ذات
+          <strong>
+            الشحنة العاطفية
+          </strong>.
+        </p>
+
+        <div class="question">
+          فخر – أمل – حزن –
+          قلق – إعجاب –
+          غضب – تفاؤل…
+        </div>
+
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        🎯 مفتاح غرض الكاتب
+      </summary>
+
+      <div class="key-content">
+
+        <p>
+          اسألي:
+          <strong>
+            لماذا كُتب النص؟
+          </strong>
+        </p>
+
+        <div class="question">
+          هل يريد الكاتب:
+          الإخبار؟
+          التفسير؟
+          الإقناع؟
+          التوجيه؟
+          التحذير؟
+          التحفيز؟
+          الوصف؟
+        </div>
+
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        🧠 مفتاح الحجة
+      </summary>
+
+      <div class="key-content">
+
+        <p>
+          الحجة هي الفكرة
+          أو الادعاء الذي يريد الكاتب
+          <strong>
+            إقناع القارئ به
+          </strong>.
+        </p>
+
+        <div class="question">
+          اسألي:
+          ما الفكرة التي يحاول الكاتب
+          أن يجعلني أقتنع بها؟
+        </div>
+
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        🧾 مفتاح الدليل
+      </summary>
+
+      <div class="key-content">
+
+        <p>
+          الدليل هو ما يستخدمه الكاتب
+          <strong>
+            لإثبات حجته
+          </strong>.
+        </p>
+
+        <div class="question">
+          قد يكون:
+          حقيقة،
+          رقمًا،
+          مثالًا،
+          تجربة،
+          مقارنة،
+          أو مصدرًا موثوقًا.
+        </div>
+
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        🏅 مفتاح أقوى دليل
+      </summary>
+
+      <div class="key-content">
+
+        <p>
+          اختاري الدليل
+          <strong>
+            الأكثر ارتباطًا بالسؤال
+          </strong>
+          والأوضح في إثبات الفكرة.
+        </p>
+
+        <div class="question">
+          القرب من الموضوع لا يكفي؛
+          يجب أن يثبت الدليل
+          المطلوب مباشرة.
+        </div>
+
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        🛡️ مفتاح مصداقية المعلومة
+      </summary>
+
+      <div class="key-content">
+
+        <p>
+          اسألي عن المصدر،
+          والدليل،
+          وإمكان التحقق
+          من المعلومة.
+        </p>
+
+        <div class="question">
+          من قالها؟
+          هل المصدر معروف؟
+          هل هو متخصص؟
+          هل توجد أدلة؟
+          وهل يمكن التحقق منها؟
+        </div>
+
+      </div>
+
+    </details>
+        <details>
+
+      <summary>
+        🔄 مفتاح المقارنة بين نصين
+      </summary>
+
+      <div class="key-content">
+
+        <p>
+          حددي أولًا موضوع النصين،
+          ثم قارني بين العناصر المهمة.
+        </p>
+
+        <div class="question">
+          قارني:
+          الفكرة،
+          الموقف،
+          الأدلة،
+          الأسلوب،
+          أوجه الاتفاق،
+          وأوجه الاختلاف.
+        </div>
+
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        🧩 مفتاح بناء النص وتنظيمه
+      </summary>
+
+      <div class="key-content">
+
+        <p>
+          راقبي
+          <strong>
+            كيف رتّب الكاتب أفكاره
+          </strong>.
+        </p>
+
+        <div class="question">
+          هل التنظيم:
+          زمني؟
+          سبب ونتيجة؟
+          مقارنة ومقابلة؟
+          مشكلة وحل؟
+          عام إلى خاص؟
+          وصف؟
+        </div>
+
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        📝 مفتاح التلخيص
+      </summary>
+
+      <div class="key-content">
+
+        <p>
+          احتفظي بالفكرة الرئيسة
+          وأهم الأفكار الداعمة،
+          واحذفي التفاصيل غير الضرورية.
+        </p>
+
+        <div class="question">
+          احذفي:
+          التكرار،
+          الأمثلة الثانوية،
+          والتفاصيل الجزئية
+          التي لا يتغير المعنى بحذفها.
+        </div>
+
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        ✍️ مفتاح إعادة الصياغة
+      </summary>
+
+      <div class="key-content">
+
+        <p>
+          حافظي على
+          <strong>
+            المعنى نفسه
+          </strong>
+          وغيري طريقة التعبير عنه
+          دون إضافة فكرة جديدة.
+        </p>
+
+        <div class="question">
+          هل تغيّرت الكلمات
+          وبقي المعنى نفسه؟
+          إذن إعادة الصياغة صحيحة.
+        </div>
+
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        🌍 مفتاح التطبيق في موقف جديد
+      </summary>
+
+      <div class="key-content">
+
+        <p>
+          افهمي الفكرة
+          أو القاعدة أولًا،
+          ثم اختاري موقفًا جديدًا
+          <strong>
+            يطبقها فعلًا
+          </strong>.
+        </p>
+
+        <div class="question">
+          لا تبحثي عن موقف يشبه النص
+          في الكلمات فقط،
+          بل عن موقف يطبق
+          الفكرة نفسها.
+        </div>
+
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        🎯 مفتاح الإجابة الأدق
+      </summary>
+
+      <div class="key-content">
+
+        <p>
+          قد تجدين بديلين
+          مقبولين جزئيًا،
+          لكن الأدق هو الأقرب
+          إلى النص.
+        </p>
+
+        <div class="question">
+          اختاري الإجابة:
+          الأكثر شمولًا،
+          والأكثر اتساقًا مع النص،
+          والأقل اعتمادًا
+          على معلومات من خارجه.
+        </div>
+
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        🔮 مفتاح التنبؤ
+      </summary>
+
+      <div class="key-content">
+
+        <p>
+          توقعي ما يمكن أن يحدث لاحقًا
+          بالاعتماد على
+          <strong>
+            قرائن النص
+          </strong>
+          لا على التخمين.
+        </p>
+
+        <div class="question">
+          ما الحدث المتوقع
+          الذي تؤيده الأحداث
+          أو الصفات الواردة في النص؟
+        </div>
+
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        🔙 مفتاح مرجع الضمير
+      </summary>
+
+      <div class="key-content">
+
+        <p>
+          ارجعي إلى الاسم
+          الذي يعود عليه الضمير،
+          وتحققي من ملاءمته.
+        </p>
+
+        <div class="question">
+          هل يناسب الضمير
+          في المعنى،
+          والجنس،
+          والعدد؟
+        </div>
+
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        🗝️ مفتاح الكلمات المفتاحية
+      </summary>
+
+      <div class="key-content">
+
+        <p>
+          هي الكلمات التي تحمل
+          موضوع الفقرة،
+          وتتكرر أو تدور حولها
+          معاني النص.
+        </p>
+
+        <div class="question">
+          لو حُذفت هذه الكلمات،
+          هل يضعف فهمي
+          لموضوع الفقرة؟
+        </div>
+
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        💎 مفتاح المغزى
+      </summary>
+
+      <div class="key-content">
+
+        <p>
+          لا تتوقفي عند الحدث نفسه.
+          ابحثي عن
+          <strong>
+            الدرس أو الرسالة الأعمق
+          </strong>
+          التي نخرج بها منه.
+        </p>
+
+        <div class="question">
+          ماذا تعلّمتُ من النص؟
+          وما القيمة أو الرسالة
+          التي يمكن تطبيقها في الحياة؟
+        </div>
+
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        🧪 مفتاح القراءة الناقدة
+      </summary>
+
+      <div class="key-content">
+
+        <p>
+          لا تسألي فقط:
+          ماذا قال الكاتب؟
+          بل قيّمي ما قاله.
+        </p>
+
+        <div class="question">
+          هل حجته منطقية؟
+          هل الدليل كافٍ؟
+          هل المصدر موثوق؟
+          هل أغفل جانبًا مهمًا؟
+        </div>
+
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        🔍 مفتاح الخطأ السياقي
+      </summary>
+
+      <div class="key-content">
+
+        <p>
+          ابحثي عن الكلمة
+          التي قد تبدو صحيحة منفردة،
+          لكنها
+          <strong>
+            لا تنسجم مع معنى الجملة
+          </strong>.
+        </p>
+
+        <div class="question">
+          اقرئي الجملة كاملة،
+          ولا تحكمي على الكلمة
+          وهي منفصلة عن سياقها.
+        </div>
+
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        📚 مفتاح التفصيل المهم
+      </summary>
+
+      <div class="key-content">
+
+        <p>
+          التفصيل المهم هو الذي
+          يشرح الفكرة الرئيسة
+          أو يدعمها أو يثبتها.
+        </p>
+
+        <div class="question">
+          اسألي:
+          هل يساعد هذا التفصيل
+          على فهم الفكرة الكبرى؟
+          أم يمكن حذفه دون تأثير؟
+        </div>
+
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        📋 مفتاح ترتيب الأحداث والأفكار
+      </summary>
+
+      <div class="key-content">
+
+        <p>
+          ابحثي عن ألفاظ الترتيب
+          والعلاقات الزمنية والمنطقية.
+        </p>
+
+        <div class="question">
+          أولًا،
+          ثم،
+          بعد ذلك،
+          قبل،
+          عندما،
+          أخيرًا…
+        </div>
+
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        🧭 مفتاح العبارة المناسبة للسياق
+      </summary>
+
+      <div class="key-content">
+
+        <p>
+          اقرئي ما قبل الفراغ
+          وما بعده،
+          وحددي اتجاه المعنى.
+        </p>
+
+        <div class="question">
+          هل السياق يدل على:
+          نتيجة؟
+          تضاد؟
+          سبب؟
+          إضافة؟
+          تأكيد؟
+          ثم اختاري العبارة
+          التي تكمل المعنى.
+        </div>
+
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        📖 مفتاح الاستشهاد المناسب
+      </summary>
+
+      <div class="key-content">
+
+        <p>
+          الاستشهاد الصحيح
+          هو العبارة التي
+          <strong>
+            تدعم الفكرة المطلوبة مباشرة
+          </strong>.
+        </p>
+
+        <div class="question">
+          لا تختاري أجمل عبارة؛
+          اختاري العبارة
+          التي تثبت الإجابة.
+        </div>
+
+      </div>
+
+    </details>
+        <details>
+
+      <summary>
+        🔎 مفتاح التمييز بين المهم والأقل أهمية
+      </summary>
+
+      <div class="key-content">
+
+        <p>
+          ما يرتبط مباشرة
+          بالفكرة الرئيسة
+          <strong>
+            أكثر أهمية
+          </strong>
+          من التفصيل الجانبي.
+        </p>
+
+        <div class="question">
+          اسألي:
+          هل يتأثر فهم النص
+          إذا حذفتُ هذه المعلومة؟
+        </div>
+
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        🪞 مفتاح فهم التعبير المجازي
+      </summary>
+
+      <div class="key-content">
+
+        <p>
+          لا تأخذي العبارة المجازية
+          بمعناها الحرفي فقط.
+          ابحثي عن المعنى
+          الذي يراد منها في السياق.
+        </p>
+
+        <div class="question">
+          ماذا يريد الكاتب
+          أن يصور أو يؤكد
+          بهذه العبارة؟
+        </div>
+
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        🧠 مفتاح دلالة العبارة
+      </summary>
+
+      <div class="key-content">
+
+        <p>
+          افهمي العبارة داخل الفقرة،
+          ثم اسألي عما
+          <strong>
+            تدل عليه
+          </strong>
+          لا عما تقوله حرفيًا فقط.
+        </p>
+
+        <div class="question">
+          ما المعنى الأعمق
+          الذي تشير إليه العبارة؟
+        </div>
+
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        ⚡ مفتاح الاختيار بين بديلين متقاربين
+      </summary>
+
+      <div class="key-content">
+
+        <p>
+          عندما تحتارين بين إجابتين،
+          عودي إلى النص
+          وابحثي عن الفارق الدقيق.
+        </p>
+
+        <div class="question">
+          أي البديلين
+          يطابق النص أكثر؟
+          وأيهما يحتوي
+          على زيادة لم يذكرها النص؟
+        </div>
+
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        🚫 مفتاح استبعاد البدائل
+      </summary>
+
+      <div class="key-content">
+
+        <p>
+          قبل اختيار الإجابة،
+          استبعدي البدائل
+          التي تخالف النص
+          أو تبالغ في معناه.
+        </p>
+
+        <div class="question">
+          احذري الكلمات المطلقة مثل:
+          دائمًا،
+          أبدًا،
+          جميع،
+          لا يمكن…
+          إلا إذا أثبتها النص.
+        </div>
+
+      </div>
+
+    </details>
+
+
+    <details>
+
+      <summary>
+        🔐 المفتاح الجامع
+      </summary>
+
+      <div class="key-content">
+
+        <p>
+          عندما لا تعرفين
+          أي مفتاح تستخدمين،
+          عودي إلى ثلاثة أسئلة:
+        </p>
+
+        <div class="question">
+          1. ماذا يسألني السؤال؟
+          <br>
+          2. أين دليله في النص؟
+          <br>
+          3. أي بديل يطابق الدليل
+          بأكبر دقة؟
+        </div>
+
+      </div>
+
+    </details>
+
+  </div>
+
+
+  <section class="final-box">
+
+    <h2>
+      🔐 كيف أستخدم المفاتيح في الاختبار؟
+    </h2>
+
+    <div class="steps">
+
+      <div class="step">
+        1️⃣ اقرئي السؤال
+      </div>
+
+      <div class="step">
+        2️⃣ حددي المهارة
+      </div>
+
+      <div class="step">
+        3️⃣ اختاري المفتاح
+      </div>
+
+      <div class="step">
+        4️⃣ ارجعي إلى الدليل
+      </div>
+
+      <div class="step">
+        5️⃣ قارني البدائل
+      </div>
+
+      <div class="step">
+        6️⃣ اختاري الأدق
+      </div>
+
+    </div>
+
+
+    <p>
+      <strong>
+        تذكري:
+      </strong>
+
+      الإجابة الصحيحة
+      لا تحتاج إلى تخمين؛
+      غالبًا يترك النص لكِ دليلًا،
+      ومهمتكِ أن تجديه.
+    </p>
+
+  </section>
+
+
+  <div class="golden-rule">
+
+    ⭐
+
+    <strong>
+      سر المتقنة:
+    </strong>
+
+    لا تسألي:
+    «أي إجابة تبدو أجمل؟»
+
+    بل اسألي:
+
+    <strong>
+      «أي إجابة أستطيع إثباتها من النص؟»
+    </strong>
+
+  </div>
+
+
+  <div class="footer">
+    منصة آفاق التعليمية
+    •
+    مكتبة نافس
+    •
+    مفاتيح الفهم القرائي
+  </div>
+
+</div>
+
+</body>
+</html>
