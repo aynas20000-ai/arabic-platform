@@ -1,298 +1,672 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
-  <meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+<meta charset="UTF-8">
 
-  <title>
-    مفاتيح الفهم القرائي | منصة آفاق
-  </title>
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
-  <style>
+<title>
+مفاتيح الفهم القرائي | منصة آفاق
+</title>
 
-    *{
-      box-sizing:border-box;
-    }
+<style>
 
-    body{
-      margin:0;
+*{
+  box-sizing:border-box;
+}
 
-      font-family:
-        Tahoma,
-        Arial,
-        sans-serif;
+body{
+  margin:0;
+  font-family:
+    Tahoma,
+    Arial,
+    sans-serif;
 
-      background:
-        linear-gradient(
-          180deg,
-          #faf7ff 0%,
-          #fffdf7 100%
-        );
+  background:
+    linear-gradient(
+      180deg,
+      #fbf8ff 0%,
+      #fffdf8 100%
+    );
 
-      color:#31253f;
-      line-height:1.9;
-    }
+  color:#352640;
+  line-height:1.9;
+}
 
-    .page{
-      width:min(1100px,92%);
-      margin:auto;
-      padding:24px 0 55px;
-    }
+button,
+input{
+  font-family:inherit;
+}
 
-    .top-actions{
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-bottom:18px;
-    }
+.page{
+  width:min(1120px,94%);
+  margin:auto;
+  padding:22px 0 55px;
+}
 
-    .back-btn{
-      display:inline-block;
-      text-decoration:none;
-      background:#68438c;
-      color:white;
-      padding:10px 18px;
-      border-radius:14px;
-      font-weight:bold;
-    }
 
-    .hero{
-      background:
-        linear-gradient(
-          135deg,
-          #68438c,
-          #8a63aa
-        );
+/* =========================
+   العودة
+========================= */
 
-      color:white;
-      border-radius:28px;
-      padding:32px 22px;
-      text-align:center;
+.top-bar{
+  display:flex;
+  justify-content:flex-start;
+  margin-bottom:16px;
+}
 
-      box-shadow:
-        0 12px 30px
-        rgba(80,48,108,.16);
+.back-btn{
+  text-decoration:none;
 
-      position:relative;
-      overflow:hidden;
-    }
+  background:#68438c;
+  color:white;
 
-    .hero::before,
-    .hero::after{
-      content:"✦";
-      position:absolute;
-      color:#e6c56e;
-      font-size:34px;
-      opacity:.7;
-    }
+  padding:11px 18px;
+  border-radius:14px;
 
-    .hero::before{
-      top:15px;
-      right:25px;
-    }
+  font-weight:700;
+  font-size:15px;
+}
 
-    .hero::after{
-      bottom:15px;
-      left:25px;
-    }
 
-    .hero-icon{
-      font-size:58px;
-      margin-bottom:4px;
-    }
+/* =========================
+   رأس الصفحة
+========================= */
 
-    .hero h1{
-      margin:0;
+.hero{
+  position:relative;
+  overflow:hidden;
 
-      font-size:clamp(
-        27px,
-        6vw,
-        43px
-      );
-    }
+  background:
+    linear-gradient(
+      135deg,
+      #5f3a82,
+      #8760a7
+    );
 
-    .hero p{
-      max-width:760px;
-      margin:12px auto 0;
-      font-size:17px;
-    }
+  color:white;
 
-    .golden-rule{
-      margin:22px auto;
-      padding:20px;
-      max-width:850px;
-      text-align:center;
-      background:#fff9e9;
-      border:2px solid #d7b65d;
-      border-radius:22px;
-      font-size:18px;
-      font-weight:bold;
-      color:#5c4721;
-    }
+  border-radius:30px;
 
-    .golden-rule strong{
-      color:#68438c;
-    }
+  padding:
+    34px
+    22px
+    30px;
 
-    .section-title{
-      text-align:center;
-      margin:34px 0 18px;
-    }
+  text-align:center;
 
-    .section-title h2{
-      margin:0;
-      color:#68438c;
-      font-size:27px;
-    }
+  box-shadow:
+    0 14px 34px
+    rgba(81,53,105,.17);
+}
 
-    .section-title p{
-      margin:5px 0;
-      color:#715f7e;
-    }
+.hero::before{
+  content:"✦";
+  position:absolute;
+  top:15px;
+  right:25px;
 
-    .keys-grid{
-      display:grid;
+  font-size:34px;
+  color:#e6c46b;
+}
 
-      grid-template-columns:
-        repeat(
-          auto-fit,
-          minmax(265px,1fr)
-        );
+.hero::after{
+  content:"✦";
+  position:absolute;
+  bottom:12px;
+  left:25px;
 
-      gap:15px;
-    }
+  font-size:28px;
+  color:#e6c46b;
+}
 
-    details{
-      background:white;
-      border:1px solid #e5dcef;
-      border-radius:19px;
+.hero-key{
+  width:92px;
+  height:92px;
 
-      box-shadow:
-        0 7px 18px
-        rgba(74,53,89,.07);
+  margin:
+    0 auto
+    13px;
 
-      overflow:hidden;
-    }
+  border-radius:50%;
 
-    summary{
-      cursor:pointer;
-      list-style:none;
-      padding:18px;
-      font-weight:bold;
-      font-size:17px;
-      color:#55346e;
+  background:
+    linear-gradient(
+      145deg,
+      #f7dc8d,
+      #c99d3e
+    );
 
-      display:flex;
-      gap:9px;
-      align-items:center;
-    }
+  display:flex;
+  justify-content:center;
+  align-items:center;
 
-    summary::-webkit-details-marker{
-      display:none;
-    }
+  font-size:47px;
 
-    summary::after{
-      content:"＋";
-      margin-right:auto;
-      color:#b58c28;
-      font-size:22px;
-    }
+  border:5px solid
+    rgba(255,255,255,.32);
 
-    details[open] summary::after{
-      content:"−";
-    }
+  box-shadow:
+    0 9px 22px
+    rgba(0,0,0,.15);
+}
 
-    .key-content{
-      border-top:1px solid #eee5f4;
-      padding:0 18px 18px;
-      color:#44374c;
-    }
+.hero h1{
+  margin:0;
 
-    .key-content p{
-      margin:14px 0 0;
-    }
+  font-size:
+    clamp(
+      29px,
+      6vw,
+      44px
+    );
 
-    .question{
-      background:#f7f2fb;
-      padding:12px 14px;
-      border-radius:13px;
-      margin-top:12px;
-      color:#513c60;
-    }
+  font-weight:900;
+}
 
-    .hint{
-      color:#7b6425;
-      font-weight:bold;
-    }
+.hero p{
+  max-width:760px;
 
-    .final-box{
-      margin-top:30px;
-      padding:24px 20px;
-      border-radius:24px;
-      background:white;
-      border:2px solid #d7b65d;
-      text-align:center;
-    }
+  margin:
+    12px auto
+    0;
 
-    .final-box h2{
-      color:#68438c;
-      margin-top:0;
-    }
+  font-size:17px;
+  line-height:2;
+}
 
-    .steps{
-      display:grid;
 
-      grid-template-columns:
-        repeat(
-          auto-fit,
-          minmax(150px,1fr)
-        );
+/* =========================
+   القاعدة الذهبية
+========================= */
 
-      gap:10px;
-      margin-top:15px;
-    }
+.golden-rule{
+  max-width:900px;
 
-    .step{
-      background:#f8f4fb;
-      padding:14px 10px;
-      border-radius:15px;
-      font-weight:bold;
-      color:#604672;
-    }
+  margin:
+    22px auto;
 
-    .footer{
-      text-align:center;
-      color:#7d7085;
-      margin-top:28px;
-      font-size:14px;
-    }
+  padding:
+    19px
+    18px;
 
-    @media(max-width:520px){
+  background:#fff8e4;
 
-      .hero{
-        padding:25px 16px;
-      }
+  border:
+    2px solid
+    #d4af55;
 
-      .hero p{
-        font-size:15px;
-      }
+  border-radius:22px;
 
-      .golden-rule{
-        font-size:16px;
-      }
+  text-align:center;
 
-      summary{
-        font-size:16px;
-      }
+  color:#5a451c;
 
-    }
+  font-size:18px;
+  font-weight:700;
+}
 
-  </style>
+.golden-rule strong{
+  color:#664285;
+}
+
+
+/* =========================
+   البحث
+========================= */
+
+.tools{
+  margin:
+    28px auto
+    20px;
+
+  max-width:850px;
+
+  text-align:center;
+}
+
+.tools h2{
+  margin-bottom:5px;
+  color:#674286;
+}
+
+.tools p{
+  margin-top:0;
+  color:#77677f;
+}
+
+.search-box{
+  margin:
+    15px auto
+    0;
+
+  max-width:600px;
+}
+
+.search-box input{
+  width:100%;
+
+  border:
+    2px solid
+    #ded1e9;
+
+  background:white;
+
+  border-radius:17px;
+
+  padding:
+    15px
+    17px;
+
+  font-size:16px;
+
+  outline:none;
+
+  color:#352640;
+}
+
+.search-box input:focus{
+  border-color:#8e67a9;
+
+  box-shadow:
+    0 0 0 4px
+    rgba(142,103,169,.10);
+}
+
+
+/* =========================
+   شبكة المفاتيح
+========================= */
+
+.keys-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(270px,1fr)
+    );
+
+  gap:19px;
+
+  margin-top:25px;
+}
+
+
+/* =========================
+   شكل المفتاح
+========================= */
+
+.key-card{
+  position:relative;
+
+  min-height:155px;
+
+  border:none;
+  background:transparent;
+
+  cursor:pointer;
+
+  text-align:right;
+
+  padding:0;
+
+  transition:
+    transform .2s ease;
+}
+
+.key-card:hover{
+  transform:
+    translateY(-3px);
+}
+
+.key-shape{
+  position:relative;
+
+  min-height:150px;
+
+  padding:
+    20px
+    78px
+    20px
+    20px;
+
+  background:white;
+
+  border:
+    2px solid
+    #e6d9ee;
+
+  border-radius:
+    22px
+    14px
+    14px
+    22px;
+
+  box-shadow:
+    0 8px 19px
+    rgba(73,50,88,.08);
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.key-shape::after{
+  content:"";
+
+  position:absolute;
+
+  left:-13px;
+  top:50%;
+
+  transform:
+    translateY(-50%);
+
+  width:25px;
+  height:48px;
+
+  background:white;
+
+  border-top:
+    2px solid
+    #e6d9ee;
+
+  border-bottom:
+    2px solid
+    #e6d9ee;
+}
+
+.key-head{
+  position:absolute;
+
+  right:-10px;
+  top:50%;
+
+  transform:
+    translateY(-50%);
+
+  width:76px;
+  height:76px;
+
+  border-radius:50%;
+
+  background:
+    linear-gradient(
+      145deg,
+      #f4d887,
+      #c79b38
+    );
+
+  border:
+    6px solid
+    #fff9e8;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  font-size:32px;
+
+  box-shadow:
+    0 5px 12px
+    rgba(120,90,28,.18);
+}
+
+.key-head::after{
+  content:"";
+
+  width:20px;
+  height:20px;
+
+  position:absolute;
+
+  border-radius:50%;
+
+  border:
+    4px solid
+    rgba(255,255,255,.62);
+}
+
+.key-icon{
+  position:relative;
+  z-index:2;
+}
+
+.key-title{
+  color:#603e7d;
+
+  font-size:18px;
+  font-weight:900;
+
+  margin-bottom:7px;
+}
+
+.key-short{
+  color:#76667d;
+
+  font-size:14px;
+  line-height:1.8;
+}
+
+.tap{
+  margin-top:7px;
+
+  color:#9b7624;
+
+  font-size:12px;
+  font-weight:bold;
+}
+
+
+/* =========================
+   نافذة الشرح
+========================= */
+
+.modal{
+  display:none;
+
+  position:fixed;
+  inset:0;
+
+  background:
+    rgba(36,25,45,.58);
+
+  padding:
+    20px;
+
+  z-index:999;
+
+  align-items:center;
+  justify-content:center;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-box{
+  width:min(650px,100%);
+
+  max-height:88vh;
+  overflow:auto;
+
+  background:white;
+
+  border-radius:27px;
+
+  padding:
+    25px 21px;
+
+  box-shadow:
+    0 22px 60px
+    rgba(0,0,0,.26);
+
+  position:relative;
+}
+
+.close-btn{
+  position:absolute;
+
+  top:13px;
+  left:13px;
+
+  width:42px;
+  height:42px;
+
+  border:none;
+  border-radius:50%;
+
+  background:#f0e9f5;
+
+  color:#68438c;
+
+  font-size:24px;
+  font-weight:bold;
+
+  cursor:pointer;
+}
+
+.modal-key{
+  width:76px;
+  height:76px;
+
+  border-radius:50%;
+
+  margin:
+    5px auto
+    12px;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  background:
+    linear-gradient(
+      145deg,
+      #f4d887,
+      #c79b38
+    );
+
+  font-size:34px;
+
+  border:
+    5px solid
+    #fff4d3;
+}
+
+.modal-title{
+  text-align:center;
+  color:#623e7f;
+
+  margin:
+    0 45px
+    12px;
+
+  font-size:24px;
+}
+
+.modal-text{
+  background:#faf7fc;
+
+  border-right:
+    5px solid
+    #805ca0;
+
+  padding:
+    16px;
+
+  border-radius:16px;
+
+  font-size:16px;
+}
+
+.modal-question{
+  margin-top:14px;
+
+  padding:
+    15px;
+
+  border-radius:16px;
+
+  background:#fff8e8;
+
+  border:
+    1px solid
+    #ead29b;
+
+  color:#59451f;
+}
+
+.modal-tip{
+  margin-top:14px;
+
+  padding:
+    14px;
+
+  border-radius:15px;
+
+  background:#f5f0f8;
+
+  color:#5d456d;
+}
+
+
+/* =========================
+   الجوال
+========================= */
+
+@media(max-width:560px){
+
+  .page{
+    width:92%;
+  }
+
+  .hero{
+    padding:
+      27px
+      15px;
+  }
+
+  .hero p{
+    font-size:15px;
+  }
+
+  .golden-rule{
+    font-size:16px;
+  }
+
+  .keys-grid{
+    grid-template-columns:1fr;
+  }
+
+  .key-shape{
+    min-height:135px;
+
+    padding:
+      18px
+      72px
+      18px
+      15px;
+  }
+
+  .key-head{
+    width:70px;
+    height:70px;
+  }
+
+  .key-title{
+    font-size:17px;
+  }
+
+}
+
+</style>
 
 </head>
 
@@ -300,11 +674,11 @@
 
 <div class="page">
 
-  <div class="top-actions">
+  <div class="top-bar">
 
     <a
-      class="back-btn"
       href="nafes.html"
+      class="back-btn"
     >
       ← العودة إلى مكتبة نافس
     </a>
@@ -314,7 +688,7 @@
 
   <section class="hero">
 
-    <div class="hero-icon">
+    <div class="hero-key">
       🔑
     </div>
 
@@ -323,10 +697,10 @@
     </h1>
 
     <p>
-      لكل سؤال مفتاح يساعدكِ على الوصول
-      إلى الإجابة الأدق.
-      تعلّمي المفتاح أولًا،
-      ثم استخدميه كلما قرأتِ نصًا جديدًا.
+      لكل سؤال في القراءة مفتاح…
+      تعرّفي إلى المفتاح،
+      ثم استخدميه للوصول إلى
+      الإجابة التي يثبتها النص.
     </p>
 
   </section>
@@ -337,1254 +711,1463 @@
     🔐
 
     <strong>
-      القاعدة الذهبية:
+      القاعدة الذهبية
     </strong>
 
-    لا تبحثي عن إجابة تبدو صحيحة…
-    ابحثي عن إجابة يثبتها النص.
+    <br>
+
+    لا تبحثي عن إجابة
+    <strong>تبدو صحيحة</strong>…
+
+    ابحثي عن إجابة
+    <strong>يثبتها النص.</strong>
 
   </div>
 
 
-  <div class="section-title">
+  <section class="tools">
 
     <h2>
-      ✦ مفاتيح فهم النص ✦
+      أي مفتاح تحتاجين؟
     </h2>
 
     <p>
-      اضغطي على كل مفتاح
-      لتتعرفي إلى طريقته.
+      اضغطي على المفتاح لفتحه،
+      أو اكتبي اسم المهارة للبحث عنها.
     </p>
 
-  </div>
-
-
-  <div class="keys-grid">
-
-
-    <details>
-
-      <summary>
-        🏷️ مفتاح العنوان المناسب
-      </summary>
-
-      <div class="key-content">
-
-        <p>
-          العنوان الصحيح هو الذي
-          <strong>
-            يجمع النص كله
-          </strong>
-          ولا يقتصر على تفصيل صغير.
-        </p>
-
-        <div class="question">
-          اسألي نفسكِ:
-          لو قرأتُ هذا العنوان وحده،
-          فهل يعكس موضوع النص
-          وفكرته العامة؟
-        </div>
-
-      </div>
-
-    </details>
-
-
-    <details>
-
-      <summary>
-        💡 مفتاح الفكرة الرئيسة
-      </summary>
-
-      <div class="key-content">
-
-        <p>
-          ابحثي عن
-          <strong>
-            المظلّة الكبرى
-          </strong>
-          التي تندرج تحتها
-          أغلب أفكار النص.
-        </p>
-
-        <div class="question">
-          اسألي:
-          عن ماذا يتحدث النص كله؟
-          وما الرسالة الأساسية
-          التي يريد الكاتب إيصالها؟
-        </div>
-
-      </div>
-
-    </details>
-
-
-    <details>
-
-      <summary>
-        🌿 مفتاح الفكرة الفرعية
-      </summary>
-
-      <div class="key-content">
-
-        <p>
-          الفكرة الفرعية تشرح
-          أو تدعم
-          <strong>
-            جزءًا من الفكرة الرئيسة
-          </strong>
-          وغالبًا ترتبط بفقرة محددة.
-        </p>
-
-        <div class="question">
-          اسألي:
-          ماذا تضيف هذه الفقرة
-          إلى الفكرة الكبرى للنص؟
-        </div>
-
-      </div>
-
-    </details>
-
-
-    <details>
-
-      <summary>
-        📌 مفتاح الفكرة الصريحة
-      </summary>
-
-      <div class="key-content">
-
-        <p>
-          الإجابة موجودة
-          <strong>
-            مباشرة داخل النص
-          </strong>.
-          لا تحتاجين إلى استنتاج بعيد.
-        </p>
-
-        <div class="question">
-          ارجعي إلى السطر،
-          وابحثي عن العبارة نفسها
-          أو عن معناها الواضح.
-        </div>
-
-      </div>
-
-    </details>
-
-
-    <details>
-
-      <summary>
-        🕯️ مفتاح الفكرة الضمنية
-      </summary>
-
-      <div class="key-content">
-
-        <p>
-          لم يقلها الكاتب صراحة،
-          ولكن توجد
-          <strong>
-            قرائن تقود إليها
-          </strong>.
-        </p>
-
-        <div class="question">
-          اسألي:
-          ما الذي يريد الكاتب
-          أن أفهمه دون أن يقوله مباشرة؟
-        </div>
-
-      </div>
-
-    </details>
-
-
-    <details>
-
-      <summary>
-        🔍 مفتاح الاستنتاج
-      </summary>
-
-      <div class="key-content">
-
-        <p>
-          اجمعي أكثر من قرينة
-          من النص،
-          ثم استخرجي منها نتيجة
-          <strong>
-            منطقية
-          </strong>.
-        </p>
-
-        <div class="question">
-          النص يعطيني الأدلة…
-          فما النتيجة
-          التي تقود إليها؟
-        </div>
-
-      </div>
-
-    </details>
-        <details>
-
-      <summary>
-        🔤 مفتاح معنى الكلمة من السياق
-      </summary>
-
-      <div class="key-content">
-
-        <p>
-          لا تعزلي الكلمة عن الجملة.
-          اقرئي ما قبلها وما بعدها.
-        </p>
-
-        <div class="question">
-          استبدلي الكلمة بكلمة قريبة:
-          هل بقي معنى الجملة مستقيمًا؟
-        </div>
-
-      </div>
-
-    </details>
-
-
-    <details>
-
-      <summary>
-        🔁 مفتاح الترادف
-      </summary>
-
-      <div class="key-content">
-
-        <p>
-          ابحثي عن كلمة
-          <strong>
-            تقارب معنى الكلمة
-          </strong>
-          داخل السياق نفسه.
-        </p>
-
-        <div class="question">
-          تذكري:
-          ليس كل مرادف محفوظ
-          يناسب كل سياق.
-        </div>
-
-      </div>
-
-    </details>
-
-
-    <details>
-
-      <summary>
-        ↔️ مفتاح التضاد
-      </summary>
-
-      <div class="key-content">
-
-        <p>
-          ابحثي عن
-          <strong>
-            المعنى المعاكس
-          </strong>
-          للكلمة كما استُعملت
-          في النص.
-        </p>
-
-        <div class="question">
-          حددي معنى الكلمة أولًا
-          من السياق،
-          ثم ابحثي عن ضدها.
-        </div>
-
-      </div>
-
-    </details>
-
-
-    <details>
-
-      <summary>
-        🔗 مفتاح العلاقة بين الأفكار
-      </summary>
-
-      <div class="key-content">
-
-        <p>
-          قارني الجملتين،
-          واسألي عن وظيفة الثانية
-          بالنسبة إلى الأولى.
-        </p>
-
-        <div class="question">
-          هل العلاقة:
-          سبب ونتيجة؟
-          تفسير؟
-          مثال؟
-          مقارنة؟
-          تضاد؟
-          إجمال وتفصيل؟
-        </div>
-
-      </div>
-
-    </details>
-
-
-    <details>
-
-      <summary>
-        ➡️ مفتاح السبب والنتيجة
-      </summary>
-
-      <div class="key-content">
-
-        <p>
-          <span class="hint">
-            السبب:
-          </span>
-          لماذا حدث الشيء؟
-          <br>
-
-          <span class="hint">
-            النتيجة:
-          </span>
-          ماذا ترتب عليه؟
-        </p>
-
-        <div class="question">
-          حددي الحدث أولًا،
-          ثم اسألي:
-          ما الذي أدى إليه؟
-          وماذا نتج عنه؟
-        </div>
-
-      </div>
-
-    </details>
-
-
-    <details>
-
-      <summary>
-        ⚖️ مفتاح الحقيقة والرأي
-      </summary>
-
-      <div class="key-content">
-
-        <p>
-          <strong>
-            الحقيقة:
-          </strong>
-          معلومة يمكن التحقق منها.
-          <br>
-
-          <strong>
-            الرأي:
-          </strong>
-          يتضمن حكمًا
-          أو موقفًا
-          أو تفضيلًا.
-        </p>
-
-        <div class="question">
-          اسألي:
-          هل أستطيع إثبات العبارة
-          أو التحقق منها؟
-          أم أنها تعبر عن وجهة نظر؟
-        </div>
-
-      </div>
-
-    </details>
-
-
-    <details>
-
-      <summary>
-        👁️ مفتاح وجهة نظر الكاتب
-      </summary>
-
-      <div class="key-content">
-
-        <p>
-          ابحثي عن الألفاظ
-          التي تكشف
-          <strong>
-            موقف الكاتب
-          </strong>
-          من الموضوع،
-          لا عن المعلومات فقط.
-        </p>
-
-        <div class="question">
-          هل يؤيد؟
-          يعارض؟
-          يحذر؟
-          ينتقد؟
-          يدافع؟
-        </div>
-
-      </div>
-
-    </details>
-
-
-    <details>
-
-      <summary>
-        💭 مفتاح مشاعر الكاتب
-      </summary>
-
-      <div class="key-content">
-
-        <p>
-          راقبي الكلمات ذات
-          <strong>
-            الشحنة العاطفية
-          </strong>.
-        </p>
-
-        <div class="question">
-          فخر – أمل – حزن –
-          قلق – إعجاب –
-          غضب – تفاؤل…
-        </div>
-
-      </div>
-
-    </details>
-
-
-    <details>
-
-      <summary>
-        🎯 مفتاح غرض الكاتب
-      </summary>
-
-      <div class="key-content">
-
-        <p>
-          اسألي:
-          <strong>
-            لماذا كُتب النص؟
-          </strong>
-        </p>
-
-        <div class="question">
-          هل يريد الكاتب:
-          الإخبار؟
-          التفسير؟
-          الإقناع؟
-          التوجيه؟
-          التحذير؟
-          التحفيز؟
-          الوصف؟
-        </div>
-
-      </div>
-
-    </details>
-
-
-    <details>
-
-      <summary>
-        🧠 مفتاح الحجة
-      </summary>
-
-      <div class="key-content">
-
-        <p>
-          الحجة هي الفكرة
-          أو الادعاء الذي يريد الكاتب
-          <strong>
-            إقناع القارئ به
-          </strong>.
-        </p>
-
-        <div class="question">
-          اسألي:
-          ما الفكرة التي يحاول الكاتب
-          أن يجعلني أقتنع بها؟
-        </div>
-
-      </div>
-
-    </details>
-
-
-    <details>
-
-      <summary>
-        🧾 مفتاح الدليل
-      </summary>
-
-      <div class="key-content">
-
-        <p>
-          الدليل هو ما يستخدمه الكاتب
-          <strong>
-            لإثبات حجته
-          </strong>.
-        </p>
-
-        <div class="question">
-          قد يكون:
-          حقيقة،
-          رقمًا،
-          مثالًا،
-          تجربة،
-          مقارنة،
-          أو مصدرًا موثوقًا.
-        </div>
-
-      </div>
-
-    </details>
-
-
-    <details>
-
-      <summary>
-        🏅 مفتاح أقوى دليل
-      </summary>
-
-      <div class="key-content">
-
-        <p>
-          اختاري الدليل
-          <strong>
-            الأكثر ارتباطًا بالسؤال
-          </strong>
-          والأوضح في إثبات الفكرة.
-        </p>
-
-        <div class="question">
-          القرب من الموضوع لا يكفي؛
-          يجب أن يثبت الدليل
-          المطلوب مباشرة.
-        </div>
-
-      </div>
-
-    </details>
-
-
-    <details>
-
-      <summary>
-        🛡️ مفتاح مصداقية المعلومة
-      </summary>
-
-      <div class="key-content">
-
-        <p>
-          اسألي عن المصدر،
-          والدليل،
-          وإمكان التحقق
-          من المعلومة.
-        </p>
-
-        <div class="question">
-          من قالها؟
-          هل المصدر معروف؟
-          هل هو متخصص؟
-          هل توجد أدلة؟
-          وهل يمكن التحقق منها؟
-        </div>
-
-      </div>
-
-    </details>
-        <details>
-
-      <summary>
-        🔄 مفتاح المقارنة بين نصين
-      </summary>
-
-      <div class="key-content">
-
-        <p>
-          حددي أولًا موضوع النصين،
-          ثم قارني بين العناصر المهمة.
-        </p>
-
-        <div class="question">
-          قارني:
-          الفكرة،
-          الموقف،
-          الأدلة،
-          الأسلوب،
-          أوجه الاتفاق،
-          وأوجه الاختلاف.
-        </div>
-
-      </div>
-
-    </details>
-
-
-    <details>
-
-      <summary>
-        🧩 مفتاح بناء النص وتنظيمه
-      </summary>
-
-      <div class="key-content">
-
-        <p>
-          راقبي
-          <strong>
-            كيف رتّب الكاتب أفكاره
-          </strong>.
-        </p>
-
-        <div class="question">
-          هل التنظيم:
-          زمني؟
-          سبب ونتيجة؟
-          مقارنة ومقابلة؟
-          مشكلة وحل؟
-          عام إلى خاص؟
-          وصف؟
-        </div>
-
-      </div>
-
-    </details>
-
-
-    <details>
-
-      <summary>
-        📝 مفتاح التلخيص
-      </summary>
-
-      <div class="key-content">
-
-        <p>
-          احتفظي بالفكرة الرئيسة
-          وأهم الأفكار الداعمة،
-          واحذفي التفاصيل غير الضرورية.
-        </p>
-
-        <div class="question">
-          احذفي:
-          التكرار،
-          الأمثلة الثانوية،
-          والتفاصيل الجزئية
-          التي لا يتغير المعنى بحذفها.
-        </div>
-
-      </div>
-
-    </details>
-
-
-    <details>
-
-      <summary>
-        ✍️ مفتاح إعادة الصياغة
-      </summary>
-
-      <div class="key-content">
-
-        <p>
-          حافظي على
-          <strong>
-            المعنى نفسه
-          </strong>
-          وغيري طريقة التعبير عنه
-          دون إضافة فكرة جديدة.
-        </p>
-
-        <div class="question">
-          هل تغيّرت الكلمات
-          وبقي المعنى نفسه؟
-          إذن إعادة الصياغة صحيحة.
-        </div>
-
-      </div>
-
-    </details>
-
-
-    <details>
-
-      <summary>
-        🌍 مفتاح التطبيق في موقف جديد
-      </summary>
-
-      <div class="key-content">
-
-        <p>
-          افهمي الفكرة
-          أو القاعدة أولًا،
-          ثم اختاري موقفًا جديدًا
-          <strong>
-            يطبقها فعلًا
-          </strong>.
-        </p>
-
-        <div class="question">
-          لا تبحثي عن موقف يشبه النص
-          في الكلمات فقط،
-          بل عن موقف يطبق
-          الفكرة نفسها.
-        </div>
-
-      </div>
-
-    </details>
-
-
-    <details>
-
-      <summary>
-        🎯 مفتاح الإجابة الأدق
-      </summary>
-
-      <div class="key-content">
-
-        <p>
-          قد تجدين بديلين
-          مقبولين جزئيًا،
-          لكن الأدق هو الأقرب
-          إلى النص.
-        </p>
-
-        <div class="question">
-          اختاري الإجابة:
-          الأكثر شمولًا،
-          والأكثر اتساقًا مع النص،
-          والأقل اعتمادًا
-          على معلومات من خارجه.
-        </div>
-
-      </div>
-
-    </details>
-
-
-    <details>
-
-      <summary>
-        🔮 مفتاح التنبؤ
-      </summary>
-
-      <div class="key-content">
-
-        <p>
-          توقعي ما يمكن أن يحدث لاحقًا
-          بالاعتماد على
-          <strong>
-            قرائن النص
-          </strong>
-          لا على التخمين.
-        </p>
-
-        <div class="question">
-          ما الحدث المتوقع
-          الذي تؤيده الأحداث
-          أو الصفات الواردة في النص؟
-        </div>
-
-      </div>
-
-    </details>
-
-
-    <details>
-
-      <summary>
-        🔙 مفتاح مرجع الضمير
-      </summary>
-
-      <div class="key-content">
-
-        <p>
-          ارجعي إلى الاسم
-          الذي يعود عليه الضمير،
-          وتحققي من ملاءمته.
-        </p>
-
-        <div class="question">
-          هل يناسب الضمير
-          في المعنى،
-          والجنس،
-          والعدد؟
-        </div>
-
-      </div>
-
-    </details>
-
-
-    <details>
-
-      <summary>
-        🗝️ مفتاح الكلمات المفتاحية
-      </summary>
-
-      <div class="key-content">
-
-        <p>
-          هي الكلمات التي تحمل
-          موضوع الفقرة،
-          وتتكرر أو تدور حولها
-          معاني النص.
-        </p>
-
-        <div class="question">
-          لو حُذفت هذه الكلمات،
-          هل يضعف فهمي
-          لموضوع الفقرة؟
-        </div>
-
-      </div>
-
-    </details>
-
-
-    <details>
-
-      <summary>
-        💎 مفتاح المغزى
-      </summary>
-
-      <div class="key-content">
-
-        <p>
-          لا تتوقفي عند الحدث نفسه.
-          ابحثي عن
-          <strong>
-            الدرس أو الرسالة الأعمق
-          </strong>
-          التي نخرج بها منه.
-        </p>
-
-        <div class="question">
-          ماذا تعلّمتُ من النص؟
-          وما القيمة أو الرسالة
-          التي يمكن تطبيقها في الحياة؟
-        </div>
-
-      </div>
-
-    </details>
-
-
-    <details>
-
-      <summary>
-        🧪 مفتاح القراءة الناقدة
-      </summary>
-
-      <div class="key-content">
-
-        <p>
-          لا تسألي فقط:
-          ماذا قال الكاتب؟
-          بل قيّمي ما قاله.
-        </p>
-
-        <div class="question">
-          هل حجته منطقية؟
-          هل الدليل كافٍ؟
-          هل المصدر موثوق؟
-          هل أغفل جانبًا مهمًا؟
-        </div>
-
-      </div>
-
-    </details>
-
-
-    <details>
-
-      <summary>
-        🔍 مفتاح الخطأ السياقي
-      </summary>
-
-      <div class="key-content">
-
-        <p>
-          ابحثي عن الكلمة
-          التي قد تبدو صحيحة منفردة،
-          لكنها
-          <strong>
-            لا تنسجم مع معنى الجملة
-          </strong>.
-        </p>
-
-        <div class="question">
-          اقرئي الجملة كاملة،
-          ولا تحكمي على الكلمة
-          وهي منفصلة عن سياقها.
-        </div>
-
-      </div>
-
-    </details>
-
-
-    <details>
-
-      <summary>
-        📚 مفتاح التفصيل المهم
-      </summary>
-
-      <div class="key-content">
-
-        <p>
-          التفصيل المهم هو الذي
-          يشرح الفكرة الرئيسة
-          أو يدعمها أو يثبتها.
-        </p>
-
-        <div class="question">
-          اسألي:
-          هل يساعد هذا التفصيل
-          على فهم الفكرة الكبرى؟
-          أم يمكن حذفه دون تأثير؟
-        </div>
-
-      </div>
-
-    </details>
-
-
-    <details>
-
-      <summary>
-        📋 مفتاح ترتيب الأحداث والأفكار
-      </summary>
-
-      <div class="key-content">
-
-        <p>
-          ابحثي عن ألفاظ الترتيب
-          والعلاقات الزمنية والمنطقية.
-        </p>
-
-        <div class="question">
-          أولًا،
-          ثم،
-          بعد ذلك،
-          قبل،
-          عندما،
-          أخيرًا…
-        </div>
-
-      </div>
-
-    </details>
-
-
-    <details>
-
-      <summary>
-        🧭 مفتاح العبارة المناسبة للسياق
-      </summary>
-
-      <div class="key-content">
-
-        <p>
-          اقرئي ما قبل الفراغ
-          وما بعده،
-          وحددي اتجاه المعنى.
-        </p>
-
-        <div class="question">
-          هل السياق يدل على:
-          نتيجة؟
-          تضاد؟
-          سبب؟
-          إضافة؟
-          تأكيد؟
-          ثم اختاري العبارة
-          التي تكمل المعنى.
-        </div>
-
-      </div>
-
-    </details>
-
-
-    <details>
-
-      <summary>
-        📖 مفتاح الاستشهاد المناسب
-      </summary>
-
-      <div class="key-content">
-
-        <p>
-          الاستشهاد الصحيح
-          هو العبارة التي
-          <strong>
-            تدعم الفكرة المطلوبة مباشرة
-          </strong>.
-        </p>
-
-        <div class="question">
-          لا تختاري أجمل عبارة؛
-          اختاري العبارة
-          التي تثبت الإجابة.
-        </div>
-
-      </div>
-
-    </details>
-        <details>
-
-      <summary>
-        🔎 مفتاح التمييز بين المهم والأقل أهمية
-      </summary>
-
-      <div class="key-content">
-
-        <p>
-          ما يرتبط مباشرة
-          بالفكرة الرئيسة
-          <strong>
-            أكثر أهمية
-          </strong>
-          من التفصيل الجانبي.
-        </p>
-
-        <div class="question">
-          اسألي:
-          هل يتأثر فهم النص
-          إذا حذفتُ هذه المعلومة؟
-        </div>
-
-      </div>
-
-    </details>
-
-
-    <details>
-
-      <summary>
-        🪞 مفتاح فهم التعبير المجازي
-      </summary>
-
-      <div class="key-content">
-
-        <p>
-          لا تأخذي العبارة المجازية
-          بمعناها الحرفي فقط.
-          ابحثي عن المعنى
-          الذي يراد منها في السياق.
-        </p>
-
-        <div class="question">
-          ماذا يريد الكاتب
-          أن يصور أو يؤكد
-          بهذه العبارة؟
-        </div>
-
-      </div>
-
-    </details>
-
-
-    <details>
-
-      <summary>
-        🧠 مفتاح دلالة العبارة
-      </summary>
-
-      <div class="key-content">
-
-        <p>
-          افهمي العبارة داخل الفقرة،
-          ثم اسألي عما
-          <strong>
-            تدل عليه
-          </strong>
-          لا عما تقوله حرفيًا فقط.
-        </p>
-
-        <div class="question">
-          ما المعنى الأعمق
-          الذي تشير إليه العبارة؟
-        </div>
-
-      </div>
-
-    </details>
-
-
-    <details>
-
-      <summary>
-        ⚡ مفتاح الاختيار بين بديلين متقاربين
-      </summary>
-
-      <div class="key-content">
-
-        <p>
-          عندما تحتارين بين إجابتين،
-          عودي إلى النص
-          وابحثي عن الفارق الدقيق.
-        </p>
-
-        <div class="question">
-          أي البديلين
-          يطابق النص أكثر؟
-          وأيهما يحتوي
-          على زيادة لم يذكرها النص؟
-        </div>
-
-      </div>
-
-    </details>
-
-
-    <details>
-
-      <summary>
-        🚫 مفتاح استبعاد البدائل
-      </summary>
-
-      <div class="key-content">
-
-        <p>
-          قبل اختيار الإجابة،
-          استبعدي البدائل
-          التي تخالف النص
-          أو تبالغ في معناه.
-        </p>
-
-        <div class="question">
-          احذري الكلمات المطلقة مثل:
-          دائمًا،
-          أبدًا،
-          جميع،
-          لا يمكن…
-          إلا إذا أثبتها النص.
-        </div>
-
-      </div>
-
-    </details>
-
-
-    <details>
-
-      <summary>
-        🔐 المفتاح الجامع
-      </summary>
-
-      <div class="key-content">
-
-        <p>
-          عندما لا تعرفين
-          أي مفتاح تستخدمين،
-          عودي إلى ثلاثة أسئلة:
-        </p>
-
-        <div class="question">
-          1. ماذا يسألني السؤال؟
-          <br>
-          2. أين دليله في النص؟
-          <br>
-          3. أي بديل يطابق الدليل
-          بأكبر دقة؟
-        </div>
-
-      </div>
-
-    </details>
-
-  </div>
-
-
-  <section class="final-box">
-
-    <h2>
-      🔐 كيف أستخدم المفاتيح في الاختبار؟
-    </h2>
-
-    <div class="steps">
-
-      <div class="step">
-        1️⃣ اقرئي السؤال
-      </div>
-
-      <div class="step">
-        2️⃣ حددي المهارة
-      </div>
-
-      <div class="step">
-        3️⃣ اختاري المفتاح
-      </div>
-
-      <div class="step">
-        4️⃣ ارجعي إلى الدليل
-      </div>
-
-      <div class="step">
-        5️⃣ قارني البدائل
-      </div>
-
-      <div class="step">
-        6️⃣ اختاري الأدق
-      </div>
+    <div class="search-box">
+
+      <input
+        id="keySearch"
+        type="search"
+        placeholder="مثال: الفكرة الرئيسة، الاستنتاج، التلخيص..."
+        aria-label="البحث عن مفتاح"
+      >
 
     </div>
-
-
-    <p>
-      <strong>
-        تذكري:
-      </strong>
-
-      الإجابة الصحيحة
-      لا تحتاج إلى تخمين؛
-      غالبًا يترك النص لكِ دليلًا،
-      ومهمتكِ أن تجديه.
-    </p>
 
   </section>
 
 
-  <div class="golden-rule">
+  <div
+    class="keys-grid"
+    id="keysGrid"
+  >
+    <button
+  class="key-card"
+  type="button"
+  data-title="مفتاح العنوان المناسب"
+  data-icon="🏷️"
+  data-text="العنوان الصحيح هو الذي يجمع النص كله، ولا يقتصر على فكرة فرعية أو تفصيل صغير."
+  data-question="اسألي نفسكِ: لو قرأتُ هذا العنوان وحده، هل يعكس موضوع النص كله؟"
+  data-tip="المفتاح: العنوان الأشمل أدق من العنوان الذي يناسب فقرة واحدة فقط."
+>
+  <div class="key-shape">
+
+    <div class="key-head">
+      <span class="key-icon">
+        🏷️
+      </span>
+    </div>
+
+    <div class="key-title">
+      العنوان المناسب
+    </div>
+
+    <div class="key-short">
+      اختاري العنوان الذي يظلّل النص كله.
+    </div>
+
+    <div class="tap">
+      اضغطي لفتح المفتاح ←
+    </div>
+
+  </div>
+</button>
+
+
+<button
+  class="key-card"
+  type="button"
+  data-title="مفتاح الفكرة الرئيسة"
+  data-icon="💡"
+  data-text="الفكرة الرئيسة هي المظلّة الكبرى التي تندرج تحتها أغلب أفكار النص وتفاصيله."
+  data-question="اسألي: عن ماذا يتحدث النص كله؟ وما الرسالة الأساسية التي يريد الكاتب إيصالها؟"
+  data-tip="المفتاح: إذا كانت العبارة تشمل معظم فقرات النص فهي أقرب إلى الفكرة الرئيسة."
+>
+  <div class="key-shape">
+
+    <div class="key-head">
+      <span class="key-icon">
+        💡
+      </span>
+    </div>
+
+    <div class="key-title">
+      الفكرة الرئيسة
+    </div>
+
+    <div class="key-short">
+      ابحثي عن المظلّة الكبرى للنص.
+    </div>
+
+    <div class="tap">
+      اضغطي لفتح المفتاح ←
+    </div>
+
+  </div>
+</button>
+
+
+<button
+  class="key-card"
+  type="button"
+  data-title="مفتاح الفكرة الفرعية"
+  data-icon="🌿"
+  data-text="الفكرة الفرعية تشرح أو تدعم جانبًا من الفكرة الرئيسة، وغالبًا ترتبط بفقرة أو جزء محدد."
+  data-question="اسألي: ماذا تضيف هذه الفقرة إلى الفكرة الكبرى للنص؟"
+  data-tip="المفتاح: الفكرة الفرعية أصغر من الفكرة الرئيسة، لكنها تخدمها."
+>
+  <div class="key-shape">
+
+    <div class="key-head">
+      <span class="key-icon">
+        🌿
+      </span>
+    </div>
+
+    <div class="key-title">
+      الفكرة الفرعية
+    </div>
+
+    <div class="key-short">
+      فكرة تدعم جزءًا من الفكرة الكبرى.
+    </div>
+
+    <div class="tap">
+      اضغطي لفتح المفتاح ←
+    </div>
+
+  </div>
+</button>
+
+
+<button
+  class="key-card"
+  type="button"
+  data-title="مفتاح المعلومة الصريحة"
+  data-icon="📌"
+  data-text="المعلومة الصريحة مذكورة في النص بصورة مباشرة، أو ورد معناها بوضوح."
+  data-question="ارجعي إلى النص وحددي السطر الذي يجيب عن السؤال مباشرة."
+  data-tip="المفتاح: لا تحتاجين إلى استنتاج؛ الإجابة أمامكِ في النص."
+>
+  <div class="key-shape">
+
+    <div class="key-head">
+      <span class="key-icon">
+        📌
+      </span>
+    </div>
+
+    <div class="key-title">
+      المعلومة الصريحة
+    </div>
+
+    <div class="key-short">
+      الإجابة موجودة مباشرة في النص.
+    </div>
+
+    <div class="tap">
+      اضغطي لفتح المفتاح ←
+    </div>
+
+  </div>
+</button>
+
+
+<button
+  class="key-card"
+  type="button"
+  data-title="مفتاح الفكرة الضمنية"
+  data-icon="🕯️"
+  data-text="الفكرة الضمنية لم يقلها الكاتب حرفيًا، لكن قرائن النص تسمح لكِ بفهمها."
+  data-question="اسألي: ما الذي يريد الكاتب أن أفهمه دون أن يقوله مباشرة؟"
+  data-tip="المفتاح: اجمعي القرائن، ولا تدخلي معلومة من خارج النص."
+>
+  <div class="key-shape">
+
+    <div class="key-head">
+      <span class="key-icon">
+        🕯️
+      </span>
+    </div>
+
+    <div class="key-title">
+      الفكرة الضمنية
+    </div>
+
+    <div class="key-short">
+      اقرئي ما بين السطور.
+    </div>
+
+    <div class="tap">
+      اضغطي لفتح المفتاح ←
+    </div>
+
+  </div>
+</button>
+
+
+<button
+  class="key-card"
+  type="button"
+  data-title="مفتاح الاستنتاج"
+  data-icon="🔍"
+  data-text="الاستنتاج نتيجة منطقية تصلين إليها من خلال قرينة أو أكثر وردت في النص."
+  data-question="اسألي: ماذا أستطيع أن أفهم من هذه الأدلة مجتمعة؟"
+  data-tip="المفتاح: دليل من النص + تفكير منطقي = استنتاج صحيح."
+>
+  <div class="key-shape">
+
+    <div class="key-head">
+      <span class="key-icon">
+        🔍
+      </span>
+    </div>
+
+    <div class="key-title">
+      الاستنتاج
+    </div>
+
+    <div class="key-short">
+      اجمعي القرائن ثم استخرجي النتيجة.
+    </div>
+
+    <div class="tap">
+      اضغطي لفتح المفتاح ←
+    </div>
+
+  </div>
+</button>
+
+
+<button
+  class="key-card"
+  type="button"
+  data-title="مفتاح معنى الكلمة من السياق"
+  data-icon="🔤"
+  data-text="لا تعزلي الكلمة عن الجملة؛ اقرئي ما قبلها وما بعدها حتى تحددي المعنى المقصود."
+  data-question="استبدلي الكلمة بأحد البدائل، ثم اسألي: هل بقي معنى الجملة سليمًا؟"
+  data-tip="المفتاح: السياق هو الحكم، وليس المعنى المحفوظ وحده."
+>
+  <div class="key-shape">
+
+    <div class="key-head">
+      <span class="key-icon">
+        🔤
+      </span>
+    </div>
+
+    <div class="key-title">
+      معنى الكلمة من السياق
+    </div>
+
+    <div class="key-short">
+      اقرئي قبل الكلمة وبعدها.
+    </div>
+
+    <div class="tap">
+      اضغطي لفتح المفتاح ←
+    </div>
+
+  </div>
+</button>
+
+
+<button
+  class="key-card"
+  type="button"
+  data-title="مفتاح الترادف"
+  data-icon="🔁"
+  data-text="المرادف كلمة تقارب معنى الكلمة في السياق الذي وردت فيه."
+  data-question="أي كلمة يمكن أن تحل محل الكلمة مع بقاء المعنى قريبًا؟"
+  data-tip="المفتاح: اختبري المرادف داخل الجملة، لا منفردًا."
+>
+  <div class="key-shape">
+
+    <div class="key-head">
+      <span class="key-icon">
+        🔁
+      </span>
+    </div>
+
+    <div class="key-title">
+      الترادف
+    </div>
+
+    <div class="key-short">
+      معنى قريب ينسجم مع السياق.
+    </div>
+
+    <div class="tap">
+      اضغطي لفتح المفتاح ←
+    </div>
+
+  </div>
+</button>
+
+
+<button
+  class="key-card"
+  type="button"
+  data-title="مفتاح التضاد"
+  data-icon="↔️"
+  data-text="لتحديد الضد، افهمي معنى الكلمة أولًا كما وردت في النص، ثم ابحثي عن معناها المعاكس."
+  data-question="ما المعنى المقصود بالكلمة هنا؟ وما الكلمة التي تعاكس هذا المعنى؟"
+  data-tip="المفتاح: افهمي السياق أولًا ثم اختاري الضد."
+>
+  <div class="key-shape">
+
+    <div class="key-head">
+      <span class="key-icon">
+        ↔️
+      </span>
+    </div>
+
+    <div class="key-title">
+      التضاد
+    </div>
+
+    <div class="key-short">
+      ابحثي عن المعنى المعاكس.
+    </div>
+
+    <div class="tap">
+      اضغطي لفتح المفتاح ←
+    </div>
+
+  </div>
+</button>
+
+
+<button
+  class="key-card"
+  type="button"
+  data-title="مفتاح العلاقة بين الأفكار"
+  data-icon="🔗"
+  data-text="ابحثي عن وظيفة الجملة الثانية بالنسبة للأولى: هل تفسرها، تسببها، تنتج عنها، تمثل لها، تقارن بها، أم تخالفها؟"
+  data-question="ما وظيفة الفكرة الثانية بالنسبة إلى الفكرة الأولى؟"
+  data-tip="المفتاح: حددي معنى كل جملة أولًا ثم حددي الرابط بينهما."
+>
+  <div class="key-shape">
+
+    <div class="key-head">
+      <span class="key-icon">
+        🔗
+      </span>
+    </div>
+
+    <div class="key-title">
+      العلاقة بين الأفكار
+    </div>
+
+    <div class="key-short">
+      سبب، نتيجة، تفسير، مقارنة، تضاد…
+    </div>
+
+    <div class="tap">
+      اضغطي لفتح المفتاح ←
+    </div>
+
+  </div>
+</button>
+
+
+<button
+  class="key-card"
+  type="button"
+  data-title="مفتاح السبب والنتيجة"
+  data-icon="➡️"
+  data-text="السبب يجيب عن سؤال: لماذا حدث؟ والنتيجة تجيب عن سؤال: ماذا ترتب عليه؟"
+  data-question="حددي الحدث، ثم ابحثي عما أدى إليه وما نتج عنه."
+  data-tip="المفتاح: لماذا؟ = سبب. ماذا حدث بعد ذلك؟ = نتيجة."
+>
+  <div class="key-shape">
+
+    <div class="key-head">
+      <span class="key-icon">
+        ➡️
+      </span>
+    </div>
+
+    <div class="key-title">
+      السبب والنتيجة
+    </div>
+
+    <div class="key-short">
+      لماذا حدث؟ وماذا ترتب عليه؟
+    </div>
+
+    <div class="tap">
+      اضغطي لفتح المفتاح ←
+    </div>
+
+  </div>
+</button>
+
+
+<button
+  class="key-card"
+  type="button"
+  data-title="مفتاح الحقيقة والرأي"
+  data-icon="⚖️"
+  data-text="الحقيقة يمكن التحقق منها، أما الرأي فيتضمن حكمًا أو موقفًا أو تفضيلًا."
+  data-question="هل أستطيع إثبات هذه العبارة والتحقق منها، أم أنها وجهة نظر؟"
+  data-tip="المفتاح: قابل للتحقق = حقيقة. حكم شخصي = رأي."
+>
+  <div class="key-shape">
+
+    <div class="key-head">
+      <span class="key-icon">
+        ⚖️
+      </span>
+    </div>
+
+    <div class="key-title">
+      الحقيقة والرأي
+    </div>
+
+    <div class="key-short">
+      تحققي: معلومة أم حكم؟
+    </div>
+
+    <div class="tap">
+      اضغطي لفتح المفتاح ←
+    </div>
+
+  </div>
+</button>
+<button
+  class="key-card"
+  type="button"
+  data-title="مفتاح وجهة نظر الكاتب"
+  data-icon="👁️"
+  data-text="وجهة النظر هي موقف الكاتب من القضية التي يناقشها، وتظهر في اختياراته للألفاظ والحجج والأمثلة."
+  data-question="هل الكاتب يؤيد الفكرة أم يعارضها أم يحذر منها أم ينتقدها؟"
+  data-tip="المفتاح: لا تبحثي عن الموضوع فقط؛ ابحثي عن موقف الكاتب منه."
+>
+  <div class="key-shape">
+
+    <div class="key-head">
+      <span class="key-icon">
+        👁️
+      </span>
+    </div>
+
+    <div class="key-title">
+      وجهة نظر الكاتب
+    </div>
+
+    <div class="key-short">
+      ما موقف الكاتب من الموضوع؟
+    </div>
+
+    <div class="tap">
+      اضغطي لفتح المفتاح ←
+    </div>
+
+  </div>
+</button>
+
+
+<button
+  class="key-card"
+  type="button"
+  data-title="مفتاح مشاعر الكاتب"
+  data-icon="💭"
+  data-text="يمكن استنتاج المشاعر من الألفاظ والتعبيرات ذات الشحنة العاطفية."
+  data-question="هل ألفاظ النص تدل على فخر، حزن، أمل، قلق، إعجاب، غضب أو تفاؤل؟"
+  data-tip="المفتاح: المشاعر لا تُختار من التخمين؛ ابحثي عن كلمات تدل عليها."
+>
+  <div class="key-shape">
+
+    <div class="key-head">
+      <span class="key-icon">
+        💭
+      </span>
+    </div>
+
+    <div class="key-title">
+      مشاعر الكاتب
+    </div>
+
+    <div class="key-short">
+      راقبي الكلمات ذات الشحنة العاطفية.
+    </div>
+
+    <div class="tap">
+      اضغطي لفتح المفتاح ←
+    </div>
+
+  </div>
+</button>
+
+
+<button
+  class="key-card"
+  type="button"
+  data-title="مفتاح غرض الكاتب"
+  data-icon="🎯"
+  data-text="الغرض هو السبب الذي جعل الكاتب يكتب النص: للإخبار أو التفسير أو الإقناع أو التوجيه أو التحذير أو التحفيز أو الوصف."
+  data-question="اسألي: ماذا يريد الكاتب من القارئ بعد قراءة النص؟"
+  data-tip="المفتاح: الغرض مرتبط بما يريد الكاتب تحقيقه، وليس بموضوع النص وحده."
+>
+  <div class="key-shape">
+
+    <div class="key-head">
+      <span class="key-icon">
+        🎯
+      </span>
+    </div>
+
+    <div class="key-title">
+      غرض الكاتب
+    </div>
+
+    <div class="key-short">
+      لماذا كتب هذا النص؟
+    </div>
+
+    <div class="tap">
+      اضغطي لفتح المفتاح ←
+    </div>
+
+  </div>
+</button>
+
+
+<button
+  class="key-card"
+  type="button"
+  data-title="مفتاح الحجة"
+  data-icon="🧠"
+  data-text="الحجة هي الفكرة أو الادعاء الذي يريد الكاتب إقناع القارئ بصحته."
+  data-question="ما الفكرة التي يحاول الكاتب إثباتها أو إقناعي بها؟"
+  data-tip="المفتاح: الحجة تحتاج إلى دليل يدعمها."
+>
+  <div class="key-shape">
+
+    <div class="key-head">
+      <span class="key-icon">
+        🧠
+      </span>
+    </div>
+
+    <div class="key-title">
+      الحجة
+    </div>
+
+    <div class="key-short">
+      ماذا يريد الكاتب أن يثبت؟
+    </div>
+
+    <div class="tap">
+      اضغطي لفتح المفتاح ←
+    </div>
+
+  </div>
+</button>
+
+
+<button
+  class="key-card"
+  type="button"
+  data-title="مفتاح الدليل"
+  data-icon="🧾"
+  data-text="الدليل هو ما يقدمه الكاتب لدعم حجته، وقد يكون حقيقة أو رقمًا أو مثالًا أو تجربة أو نتيجة دراسة."
+  data-question="أي معلومة في النص تثبت الادعاء الذي يطرحه الكاتب؟"
+  data-tip="المفتاح: اسألي دائمًا: ما الذي يثبت هذا الكلام؟"
+>
+  <div class="key-shape">
+
+    <div class="key-head">
+      <span class="key-icon">
+        🧾
+      </span>
+    </div>
+
+    <div class="key-title">
+      الحجة والدليل
+    </div>
+
+    <div class="key-short">
+      الادعاء شيء، وما يثبته شيء آخر.
+    </div>
+
+    <div class="tap">
+      اضغطي لفتح المفتاح ←
+    </div>
+
+  </div>
+</button>
+
+
+<button
+  class="key-card"
+  type="button"
+  data-title="مفتاح أقوى دليل"
+  data-icon="🏅"
+  data-text="ليس كل دليل بالقوة نفسها؛ الأقوى هو الأكثر ارتباطًا بالفكرة والأوضح في إثباتها."
+  data-question="أي دليل يدعم المطلوب مباشرة دون الحاجة إلى افتراضات إضافية؟"
+  data-tip="المفتاح: الدليل المباشر والدقيق أقوى من الدليل العام."
+>
+  <div class="key-shape">
+
+    <div class="key-head">
+      <span class="key-icon">
+        🏅
+      </span>
+    </div>
+
+    <div class="key-title">
+      أقوى دليل
+    </div>
+
+    <div class="key-short">
+      أي دليل يثبت المطلوب بأكبر قوة؟
+    </div>
+
+    <div class="tap">
+      اضغطي لفتح المفتاح ←
+    </div>
+
+  </div>
+</button>
+
+
+<button
+  class="key-card"
+  type="button"
+  data-title="مفتاح مصداقية المعلومة"
+  data-icon="🛡️"
+  data-text="تزداد المصداقية عندما يكون المصدر معروفًا ومتخصصًا، وتكون المعلومة مدعومة بأدلة قابلة للتحقق."
+  data-question="من مصدر المعلومة؟ وهل هو متخصص؟ وهل يمكن التحقق من الدليل؟"
+  data-tip="المفتاح: مصدر موثوق + دليل قابل للتحقق = مصداقية أعلى."
+>
+  <div class="key-shape">
+
+    <div class="key-head">
+      <span class="key-icon">
+        🛡️
+      </span>
+    </div>
+
+    <div class="key-title">
+      مصداقية المعلومات
+    </div>
+
+    <div class="key-short">
+      من قالها؟ وبأي دليل؟
+    </div>
+
+    <div class="tap">
+      اضغطي لفتح المفتاح ←
+    </div>
+
+  </div>
+</button>
+
+
+<button
+  class="key-card"
+  type="button"
+  data-title="مفتاح المقارنة بين نصين"
+  data-icon="🔄"
+  data-text="ابدئي بموضوع النصين، ثم قارني الفكرة والموقف والأدلة والأسلوب وأوجه الاتفاق والاختلاف."
+  data-question="في أي جانب يتفق النصان؟ وفي أي جانب يختلفان؟"
+  data-tip="المفتاح: قارني العنصر نفسه بالعنصر نفسه في النصين."
+>
+  <div class="key-shape">
+
+    <div class="key-head">
+      <span class="key-icon">
+        🔄
+      </span>
+    </div>
+
+    <div class="key-title">
+      مقارنة النصوص
+    </div>
+
+    <div class="key-short">
+      اتفاق، اختلاف، فكرة، دليل، أسلوب.
+    </div>
+
+    <div class="tap">
+      اضغطي لفتح المفتاح ←
+    </div>
+
+  </div>
+</button>
+
+
+<button
+  class="key-card"
+  type="button"
+  data-title="مفتاح بناء النص وتنظيمه"
+  data-icon="🧩"
+  data-text="انتبهي إلى الطريقة التي رتّب بها الكاتب أفكاره: زمنيًا، أو سببًا ونتيجة، أو مقارنة، أو مشكلة وحل، أو من العام إلى الخاص."
+  data-question="ما العلاقة التنظيمية التي تربط أجزاء النص؟"
+  data-tip="المفتاح: لا تنظري إلى الأفكار منفصلة؛ راقبي طريقة ترتيبها."
+>
+  <div class="key-shape">
+
+    <div class="key-head">
+      <span class="key-icon">
+        🧩
+      </span>
+    </div>
+
+    <div class="key-title">
+      بناء النص وتنظيمه
+    </div>
+
+    <div class="key-short">
+      كيف رتّب الكاتب أفكاره؟
+    </div>
+
+    <div class="tap">
+      اضغطي لفتح المفتاح ←
+    </div>
+
+  </div>
+</button>
+
+
+<button
+  class="key-card"
+  type="button"
+  data-title="مفتاح التلخيص"
+  data-icon="📝"
+  data-text="التلخيص يحافظ على الفكرة الرئيسة وأهم الأفكار الداعمة، ويحذف التكرار والأمثلة والتفاصيل الثانوية."
+  data-question="أي خيار يحافظ على جوهر النص دون زيادة أو حذف فكرة أساسية؟"
+  data-tip="المفتاح: فكرة رئيسة + أهم الدعامات − التفاصيل = تلخيص جيد."
+>
+  <div class="key-shape">
+
+    <div class="key-head">
+      <span class="key-icon">
+        📝
+      </span>
+    </div>
+
+    <div class="key-title">
+      التلخيص
+    </div>
+
+    <div class="key-short">
+      احتفظي بالجوهر واحذفي التفاصيل.
+    </div>
+
+    <div class="tap">
+      اضغطي لفتح المفتاح ←
+    </div>
+
+  </div>
+</button>
+
+
+<button
+  class="key-card"
+  type="button"
+  data-title="مفتاح إعادة الصياغة"
+  data-icon="✍️"
+  data-text="إعادة الصياغة تعني التعبير عن الفكرة نفسها بكلمات وتراكيب مختلفة، من غير تغيير المعنى."
+  data-question="هل بقي المعنى نفسه بعد تغيير الكلمات؟"
+  data-tip="المفتاح: غيّري التعبير ولا تغيّري الفكرة."
+>
+  <div class="key-shape">
+
+    <div class="key-head">
+      <span class="key-icon">
+        ✍️
+      </span>
+    </div>
+
+    <div class="key-title">
+      إعادة الصياغة
+    </div>
+
+    <div class="key-short">
+      معنى واحد بصياغة أخرى.
+    </div>
+
+    <div class="tap">
+      اضغطي لفتح المفتاح ←
+    </div>
+
+  </div>
+</button>
+
+
+<button
+  class="key-card"
+  type="button"
+  data-title="مفتاح التطبيق في موقف جديد"
+  data-icon="🌍"
+  data-text="استخرجي القاعدة أو الفكرة من النص أولًا، ثم اختاري الموقف الجديد الذي يطبق الفكرة نفسها."
+  data-question="أي موقف جديد يعكس المبدأ الذي تعلمته من النص؟"
+  data-tip="المفتاح: لا تبحثي عن تشابه الكلمات، بل عن تشابه الفكرة."
+>
+  <div class="key-shape">
+
+    <div class="key-head">
+      <span class="key-icon">
+        🌍
+      </span>
+    </div>
+
+    <div class="key-title">
+      التطبيق في موقف جديد
+    </div>
+
+    <div class="key-short">
+      انقلي الفكرة إلى موقف مختلف.
+    </div>
+
+    <div class="tap">
+      اضغطي لفتح المفتاح ←
+    </div>
+
+  </div>
+</button>
+
+
+<button
+  class="key-card"
+  type="button"
+  data-title="مفتاح الإجابة الأدق"
+  data-icon="🎯"
+  data-text="قد يكون أكثر من بديل قريبًا من الصواب، لكن الأدق هو الأكثر شمولًا واتساقًا مع النص والأقل اعتمادًا على معلومات من خارجه."
+  data-question="أي خيار أستطيع إثباته بصورة أوضح من النص؟"
+  data-tip="المفتاح: صحيح جزئيًا لا يعني أنه الإجابة الأدق."
+>
+  <div class="key-shape">
+
+    <div class="key-head">
+      <span class="key-icon">
+        🎯
+      </span>
+    </div>
+
+    <div class="key-title">
+      الإجابة الأدق
+    </div>
+
+    <div class="key-short">
+      قارني البدائل قبل الاختيار.
+    </div>
+
+    <div class="tap">
+      اضغطي لفتح المفتاح ←
+    </div>
+
+  </div>
+</button>
+
+
+<button
+  class="key-card"
+  type="button"
+  data-title="مفتاح التنبؤ"
+  data-icon="🔮"
+  data-text="التنبؤ توقع منطقي مبني على أحداث النص وصفات الشخصيات والقرائن، وليس على التخمين الحر."
+  data-question="ما المتوقع أن يحدث إذا استمرت الأمور وفق القرائن الموجودة؟"
+  data-tip="المفتاح: كل تنبؤ صحيح يجب أن يستند إلى دليل."
+>
+  <div class="key-shape">
+
+    <div class="key-head">
+      <span class="key-icon">
+        🔮
+      </span>
+    </div>
+
+    <div class="key-title">
+      التنبؤ
+    </div>
+
+    <div class="key-short">
+      توقّع مدعوم بقرائن النص.
+    </div>
+
+    <div class="tap">
+      اضغطي لفتح المفتاح ←
+    </div>
+
+  </div>
+</button>
+<button
+  class="key-card"
+  type="button"
+  data-title="مفتاح مرجع الضمير"
+  data-icon="🔙"
+  data-text="حددي الاسم الذي يعود عليه الضمير، وتأكدي من مناسبة المعنى والجنس والعدد."
+  data-question="لو وضعتُ الاسم مكان الضمير، هل يستقيم المعنى؟"
+  data-tip="المفتاح: الأقرب ليس دائمًا الصحيح؛ المعنى هو الحكم."
+>
+  <div class="key-shape">
+
+    <div class="key-head">
+      <span class="key-icon">
+        🔙
+      </span>
+    </div>
+
+    <div class="key-title">
+      مرجع الضمير
+    </div>
+
+    <div class="key-short">
+      إلى مَن أو إلى ماذا يعود؟
+    </div>
+
+    <div class="tap">
+      اضغطي لفتح المفتاح ←
+    </div>
+
+  </div>
+</button>
+
+
+<button
+  class="key-card"
+  type="button"
+  data-title="مفتاح الكلمات المفتاحية"
+  data-icon="🗝️"
+  data-text="الكلمات المفتاحية تحمل موضوع الفقرة أو تتكرر حولها المعاني الأساسية."
+  data-question="أي الكلمات لو حُذفت سيضعف فهمي لموضوع الفقرة؟"
+  data-tip="المفتاح: الكلمات المفتاحية تقودكِ إلى موضوع الفقرة وفكرتها."
+>
+  <div class="key-shape">
+
+    <div class="key-head">
+      <span class="key-icon">
+        🗝️
+      </span>
+    </div>
+
+    <div class="key-title">
+      الكلمات المفتاحية
+    </div>
+
+    <div class="key-short">
+      كلمات تقودكِ إلى قلب النص.
+    </div>
+
+    <div class="tap">
+      اضغطي لفتح المفتاح ←
+    </div>
+
+  </div>
+</button>
+
+
+<button
+  class="key-card"
+  type="button"
+  data-title="مفتاح المغزى"
+  data-icon="💎"
+  data-text="المغزى هو الرسالة أو الدرس الأعمق الذي نخرج به من الأحداث أو الأفكار."
+  data-question="ماذا يريد النص أن أتعلم أو أدرك بعد قراءته؟"
+  data-tip="المفتاح: تجاوزي الحدث نفسه إلى ما يعلمكِ إياه."
+>
+  <div class="key-shape">
+
+    <div class="key-head">
+      <span class="key-icon">
+        💎
+      </span>
+    </div>
+
+    <div class="key-title">
+      المغزى
+    </div>
+
+    <div class="key-short">
+      ما الرسالة الأعمق للنص؟
+    </div>
+
+    <div class="tap">
+      اضغطي لفتح المفتاح ←
+    </div>
+
+  </div>
+</button>
+
+
+<button
+  class="key-card"
+  type="button"
+  data-title="مفتاح القراءة الناقدة"
+  data-icon="🧪"
+  data-text="القراءة الناقدة لا تكتفي بفهم ما قاله الكاتب، بل تفحص قوة منطقه وأدلته ومصادر معلوماته."
+  data-question="هل الحجة منطقية؟ هل الدليل كافٍ؟ وهل المصدر موثوق؟"
+  data-tip="المفتاح: افهمي أولًا، ثم قيّمي."
+>
+  <div class="key-shape">
+
+    <div class="key-head">
+      <span class="key-icon">
+        🧪
+      </span>
+    </div>
+
+    <div class="key-title">
+      القراءة الناقدة
+    </div>
+
+    <div class="key-short">
+      افهمي، ثم افحصي، ثم احكمي.
+    </div>
+
+    <div class="tap">
+      اضغطي لفتح المفتاح ←
+    </div>
+
+  </div>
+</button>
+
+
+<button
+  class="key-card"
+  type="button"
+  data-title="مفتاح الخطأ السياقي"
+  data-icon="🚨"
+  data-text="الكلمة الخاطئة سياقيًا قد تكون صحيحة لغويًا، لكنها لا تنسجم مع معنى الجملة أو اتجاهها."
+  data-question="أي كلمة كسرت انسجام المعنى بين أجزاء الجملة؟"
+  data-tip="المفتاح: اقرئي الجملة كاملة، لا الكلمة منفردة."
+>
+  <div class="key-shape">
+
+    <div class="key-head">
+      <span class="key-icon">
+        🚨
+      </span>
+    </div>
+
+    <div class="key-title">
+      الخطأ السياقي
+    </div>
+
+    <div class="key-short">
+      ابحثي عن الكلمة التي كسرت المعنى.
+    </div>
+
+    <div class="tap">
+      اضغطي لفتح المفتاح ←
+    </div>
+
+  </div>
+</button>
+
+
+<button
+  class="key-card"
+  type="button"
+  data-title="مفتاح التعبير المجازي"
+  data-icon="🪞"
+  data-text="لا يُفهم التعبير المجازي على ظاهره الحرفي فقط؛ ابحثي عن الصورة والمعنى الذي يريد الكاتب توصيله."
+  data-question="ماذا يقصد الكاتب بهذه الصورة أو العبارة في سياق النص؟"
+  data-tip="المفتاح: انتقلي من الصورة الظاهرة إلى المعنى المقصود."
+>
+  <div class="key-shape">
+
+    <div class="key-head">
+      <span class="key-icon">
+        🪞
+      </span>
+    </div>
+
+    <div class="key-title">
+      التعبير المجازي
+    </div>
+
+    <div class="key-short">
+      وراء الصورة معنى.
+    </div>
+
+    <div class="tap">
+      اضغطي لفتح المفتاح ←
+    </div>
+
+  </div>
+</button>
+
+
+<button
+  class="key-card"
+  type="button"
+  data-title="مفتاح ترتيب الأحداث والأفكار"
+  data-icon="📋"
+  data-text="ابحثي عن ألفاظ الزمن والتسلسل والعلاقات المنطقية بين الأحداث والأفكار."
+  data-question="ماذا حدث أولًا؟ وما الذي تلاه؟"
+  data-tip="المفتاح: أولًا، ثم، بعد ذلك، قبل، أخيرًا… تساعدكِ على الترتيب."
+>
+  <div class="key-shape">
+
+    <div class="key-head">
+      <span class="key-icon">
+        📋
+      </span>
+    </div>
+
+    <div class="key-title">
+      ترتيب الأحداث والأفكار
+    </div>
+
+    <div class="key-short">
+      رتّبيها وفق الزمن أو المنطق.
+    </div>
+
+    <div class="tap">
+      اضغطي لفتح المفتاح ←
+    </div>
+
+  </div>
+</button>
+
+
+<button
+  class="key-card"
+  type="button"
+  data-title="مفتاح استبعاد البدائل"
+  data-icon="🚫"
+  data-text="استبعدي أولًا البدائل التي تناقض النص أو تضيف إليه معنى لم يذكره أو تبالغ في الفكرة."
+  data-question="أي البدائل أستطيع رفضه مباشرة بسبب دليل واضح من النص؟"
+  data-tip="انتبهي لكلمات مثل: دائمًا، أبدًا، جميع، لا يمكن؛ فهي تحتاج إلى دليل صريح."
+>
+  <div class="key-shape">
+
+    <div class="key-head">
+      <span class="key-icon">
+        🚫
+      </span>
+    </div>
+
+    <div class="key-title">
+      استبعاد البدائل
+    </div>
+
+    <div class="key-short">
+      احذفي الخطأ قبل اختيار الصحيح.
+    </div>
+
+    <div class="tap">
+      اضغطي لفتح المفتاح ←
+    </div>
+
+  </div>
+</button>
+
+
+<button
+  class="key-card"
+  type="button"
+  data-title="المفتاح الجامع"
+  data-icon="🔐"
+  data-text="إذا احتَرْتِ في السؤال، عودي إلى ثلاث خطوات أساسية: افهمي المطلوب، ابحثي عن الدليل، ثم قارني البدائل بالدليل."
+  data-question="ماذا يسألني السؤال؟ أين دليله؟ أي بديل يطابق الدليل بأكبر دقة؟"
+  data-tip="هذا المفتاح ينقذكِ عندما لا تعرفين من أين تبدأين."
+>
+  <div class="key-shape">
+
+    <div class="key-head">
+      <span class="key-icon">
+        🔐
+      </span>
+    </div>
+
+    <div class="key-title">
+      المفتاح الجامع
+    </div>
+
+    <div class="key-short">
+      السؤال ← الدليل ← الإجابة الأدق.
+    </div>
+
+    <div class="tap">
+      اضغطي لفتح المفتاح ←
+    </div>
+
+  </div>
+</button>
+
+  </div>
+
+
+  <section class="golden-rule">
 
     ⭐
 
     <strong>
-      سر المتقنة:
+      سر المتقنة
     </strong>
+
+    <br>
 
     لا تسألي:
     «أي إجابة تبدو أجمل؟»
 
-    بل اسألي:
+    <br>
+
+    اسألي:
 
     <strong>
       «أي إجابة أستطيع إثباتها من النص؟»
     </strong>
 
-  </div>
+  </section>
 
 
-  <div class="footer">
-    منصة آفاق التعليمية
-    •
-    مكتبة نافس
-    •
-    مفاتيح الفهم القرائي
+  <div
+    id="keyModal"
+    class="modal"
+    aria-hidden="true"
+  >
+
+    <div
+      class="modal-box"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modalTitle"
+    >
+
+      <button
+        id="closeModal"
+        class="close-btn"
+        type="button"
+        aria-label="إغلاق"
+      >
+        ×
+      </button>
+
+
+      <div
+        id="modalIcon"
+        class="modal-key"
+      >
+        🔑
+      </div>
+
+
+      <h2
+        id="modalTitle"
+        class="modal-title"
+      >
+        المفتاح
+      </h2>
+
+
+      <div
+        id="modalText"
+        class="modal-text"
+      ></div>
+
+
+      <div
+        id="modalQuestion"
+        class="modal-question"
+      ></div>
+
+
+      <div
+        id="modalTip"
+        class="modal-tip"
+      ></div>
+
+    </div>
+
   </div>
 
 </div>
+
+
+<script>
+
+const cards =
+  document.querySelectorAll(
+    ".key-card"
+  );
+
+const modal =
+  document.getElementById(
+    "keyModal"
+  );
+
+const modalTitle =
+  document.getElementById(
+    "modalTitle"
+  );
+
+const modalIcon =
+  document.getElementById(
+    "modalIcon"
+  );
+
+const modalText =
+  document.getElementById(
+    "modalText"
+  );
+
+const modalQuestion =
+  document.getElementById(
+    "modalQuestion"
+  );
+
+const modalTip =
+  document.getElementById(
+    "modalTip"
+  );
+
+const closeModal =
+  document.getElementById(
+    "closeModal"
+  );
+
+const searchInput =
+  document.getElementById(
+    "keySearch"
+  );
+
+
+cards.forEach(
+  card => {
+
+    card.addEventListener(
+      "click",
+      () => {
+
+        modalTitle.textContent =
+          card.dataset.title;
+
+        modalIcon.textContent =
+          card.dataset.icon;
+
+        modalText.innerHTML =
+          "<strong>🔑 المفتاح:</strong><br>" +
+          card.dataset.text;
+
+        modalQuestion.innerHTML =
+          "<strong>❓ اسألي نفسكِ:</strong><br>" +
+          card.dataset.question;
+
+        modalTip.innerHTML =
+          "<strong>✨ تذكري:</strong><br>" +
+          card.dataset.tip;
+
+        modal.classList.add(
+          "show"
+        );
+
+        modal.setAttribute(
+          "aria-hidden",
+          "false"
+        );
+
+      }
+    );
+
+  }
+);
+
+
+function hideModal(){
+
+  modal.classList.remove(
+    "show"
+  );
+
+  modal.setAttribute(
+    "aria-hidden",
+    "true"
+  );
+
+}
+
+
+closeModal.addEventListener(
+  "click",
+  hideModal
+);
+
+
+modal.addEventListener(
+  "click",
+  event => {
+
+    if(
+      event.target === modal
+    ){
+      hideModal();
+    }
+
+  }
+);
+
+
+document.addEventListener(
+  "keydown",
+  event => {
+
+    if(
+      event.key === "Escape"
+    ){
+      hideModal();
+    }
+
+  }
+);
+
+
+searchInput.addEventListener(
+  "input",
+  () => {
+
+    const searchValue =
+      searchInput
+        .value
+        .trim()
+        .toLowerCase();
+
+    cards.forEach(
+      card => {
+
+        const text =
+          (
+            card.dataset.title +
+            " " +
+            card.dataset.text +
+            " " +
+            card.dataset.question
+          )
+          .toLowerCase();
+
+        card.style.display =
+          text.includes(
+            searchValue
+          )
+            ? ""
+            : "none";
+
+      }
+    );
+
+  }
+);
+
+</script>
 
 </body>
 </html>
