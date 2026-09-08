@@ -673,8 +673,7 @@ main{
     2px solid
     #c9a85c;
 }
-
-.teacher-dashboard-btn.show{
+  .teacher-dashboard-btn.show{
   display:inline-block;
 }
 
@@ -872,7 +871,8 @@ footer{
 </head>
 
 <body>
-  <header class="hero">
+
+<header class="hero">
 
   <div class="brand-logo">
 
@@ -1137,26 +1137,28 @@ footer{
 
       <div class="nafes-buttons">
 
-      <a
-  class="nafes-btn"
-  href="nafees-target-skills.html"
->
-  📋 مهارات نافس
-</a>
+        <a
+          class="nafes-btn"
+          href="nafees-target-skills.html"
+        >
+          📋 مهارات نافس
+        </a>
 
-<a
-  class="nafes-btn"
-  href="nafes.html"
->
-  📚 مكتبة نافس
-</a>
+        <a
+          class="nafes-btn"
+          href="nafes.html"
+        >
+          📚 مكتبة نافس
+        </a>
 
-<a
-  class="nafes-btn"
-  href="nafes-progress.html"
->
-  📊 تقدّمي في نافس
-</a>
+        <a
+          class="nafes-btn"
+          href="nafes-progress.html"
+        >
+          📊 تقدّمي في نافس
+        </a>
+
+      </div>
 
     </div>
 
@@ -1256,8 +1258,6 @@ footer{
   <div class="cards">
 
 
-    <!-- المعلمة أولًا -->
-
     <div class="card">
 
       <div class="icon-box">
@@ -1285,8 +1285,6 @@ footer{
 
     </div>
 
-
-    <!-- ولي الأمر بعد المعلمة -->
 
     <a
       class="card"
@@ -1473,7 +1471,6 @@ footer{
 
   <!-- =====================
        تواصل معنا
-       آخر بطاقة
   ====================== -->
 
   <div class="section-heading">
@@ -1599,6 +1596,17 @@ from
 "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
 
 
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  serverTimestamp
+}
+from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+
 const firebaseConfig = {
 
   apiKey:
@@ -1643,6 +1651,12 @@ const auth =
   );
 
 
+const db =
+  getFirestore(
+    app
+  );
+
+
 const provider =
   new GoogleAuthProvider();
 
@@ -1674,7 +1688,237 @@ const teacherDashboardBtn =
 
 const TEACHER_UID =
   "oIqOvhIaC3TQyr6WcXCW9FZhZio2";
-  function showLoginError(
+
+
+function hasArabicName(value){
+
+  const name =
+    String(value || "")
+      .trim();
+
+  if(!name){
+    return false;
+  }
+
+  const blockedNames = [
+    "طالبة مسجلة",
+    "طالبة غير مسماة",
+    "طالبة آفاق",
+    "طالبتنا"
+  ];
+
+  if(
+    blockedNames.includes(name)
+  ){
+    return false;
+  }
+
+  const words =
+    name
+      .split(/\s+/)
+      .filter(Boolean);
+
+  return (
+    /[\u0600-\u06FF]/.test(name) &&
+    words.length >= 3
+  );
+
+}
+
+
+function getSavedArabicName(data){
+
+  const candidates = [
+    data?.["الاسم_الرباعي"],
+    data?.["الاسم الرباعي"],
+    data?.["الاسم_الكامل"],
+    data?.["الاسم الكامل"],
+    data?.["اسم_الطالبة"],
+    data?.["الاسم"]
+  ];
+
+  return (
+    candidates.find(
+      value => hasArabicName(value)
+    ) || ""
+  );
+
+}
+  async function ensureArabicStudentName(user){
+
+  if(
+    !user ||
+    user.uid === TEACHER_UID
+  ){
+    return "";
+  }
+
+  try{
+
+    const roleSnap =
+      await getDoc(
+        doc(
+          db,
+          "user_roles",
+          user.uid
+        )
+      );
+
+    if(roleSnap.exists()){
+      return "";
+    }
+
+
+    const parentLinkSnap =
+      await getDoc(
+        doc(
+          db,
+          "parent_links",
+          user.uid
+        )
+      );
+
+    if(parentLinkSnap.exists()){
+      return "";
+    }
+
+
+    const studentRef =
+      doc(
+        db,
+        "students",
+        user.uid
+      );
+
+
+    const studentSnap =
+      await getDoc(
+        studentRef
+      );
+
+
+    if(!studentSnap.exists()){
+      return "";
+    }
+
+
+    const data =
+      studentSnap.data();
+
+
+    const savedName =
+      getSavedArabicName(
+        data
+      );
+
+
+    if(savedName){
+
+      localStorage.setItem(
+        "nafesStudentName",
+        savedName
+      );
+
+      return savedName;
+
+    }
+
+
+    let enteredName =
+      "";
+
+
+    while(
+      !hasArabicName(
+        enteredName
+      )
+    ){
+
+      const answer =
+        window.prompt(
+          "🌷 اكتبي اسمكِ الثلاثي أو الرباعي بالعربية كما تريدين أن يظهر في منصة آفاق:"
+        );
+
+
+      if(
+        answer === null
+      ){
+        return "";
+      }
+
+
+      enteredName =
+        String(
+          answer
+        )
+          .trim()
+          .replace(
+            /\s+/g,
+            " "
+          );
+
+
+      if(
+        !hasArabicName(
+          enteredName
+        )
+      ){
+
+        window.alert(
+          "فضلاً اكتبي الاسم بالعربية، من ثلاثة أسماء على الأقل."
+        );
+
+      }
+
+    }
+
+
+    await setDoc(
+      studentRef,
+      {
+
+        "الاسم":
+          enteredName,
+
+        "الاسم_الرباعي":
+          enteredName,
+
+        "آخر_تحديث_للاسم":
+          serverTimestamp()
+
+      },
+      {
+        merge:true
+      }
+    );
+
+
+    localStorage.setItem(
+      "nafesStudentName",
+      enteredName
+    );
+
+
+    return enteredName;
+
+  }
+
+
+  catch(error){
+
+    console.error(
+      "Name setup error:",
+      error
+    );
+
+    return "";
+
+  }
+
+}
+
+
+function showLoginError(
   error
 ){
 
@@ -1773,7 +2017,6 @@ async function loginWithGoogle(){
 
     }
 
-
     catch(error){
 
       console.error(
@@ -1782,7 +2025,6 @@ async function loginWithGoogle(){
       );
 
     }
-
 
     return;
 
@@ -1843,7 +2085,7 @@ loginBtn.addEventListener(
 onAuthStateChanged(
   auth,
 
-  user => {
+  async user => {
 
 
     loginBtn.disabled =
@@ -1854,7 +2096,14 @@ onAuthStateChanged(
       user
     ){
 
+      const arabicStudentName =
+        await ensureArabicStudentName(
+          user
+        );
+
+
       const studentName =
+        arabicStudentName ||
         user.displayName ||
         "طالبتنا";
 
@@ -1929,3 +2178,4 @@ onAuthStateChanged(
 
 </body>
 </html>
+
