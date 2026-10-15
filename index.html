@@ -1589,6 +1589,8 @@ import {
   browserPopupRedirectResolver,
   GoogleAuthProvider,
   signInWithPopup,
+  signInWithRedirect,
+  getRedirectResult,
   signOut,
   onAuthStateChanged
 }
@@ -1797,13 +1799,8 @@ function getSavedArabicName(data){
       );
 
 
-    if(!studentSnap.exists()){
-      return "";
-    }
-
-
     const data =
-      studentSnap.data();
+      studentSnap.exists() ? studentSnap.data() : {};
 
 
     const savedName =
@@ -1911,6 +1908,8 @@ function getSavedArabicName(data){
       error
     );
 
+    studentStatus.className = "student-status show error";
+    studentStatus.textContent = "تم الدخول إلى Google، لكن تعذر حفظ الاسم. أبلغي المعلمة برمز الخطأ: " + (error?.code || "unknown");
     return "";
 
   }
@@ -2059,10 +2058,18 @@ async function loginWithGoogle(){
 
   catch(error){
 
-    showLoginError(
-      error
-    );
-
+    if (["auth/popup-blocked", "auth/popup-closed-by-user", "auth/cancelled-popup-request", "auth/operation-not-supported-in-this-environment"].includes(error?.code)) {
+      studentStatus.className = "student-status show";
+      studentStatus.textContent = "جارٍ الانتقال إلى Google لإكمال تسجيل الدخول...";
+      try {
+        await signInWithRedirect(auth, provider);
+        return;
+      } catch (redirectError) {
+        showLoginError(redirectError);
+      }
+    } else {
+      showLoginError(error);
+    }
 
     loginBtn.disabled =
       false;
@@ -2080,6 +2087,9 @@ loginBtn.addEventListener(
   "click",
   loginWithGoogle
 );
+
+// استكمال تسجيل الدخول بعد العودة من صفحة Google على الجوال.
+getRedirectResult(auth).catch(showLoginError);
 
 
 onAuthStateChanged(
@@ -2112,10 +2122,10 @@ onAuthStateChanged(
         "student-status show";
 
 
-      studentStatus.textContent =
-        "🌷 أهلًا " +
-        studentName +
-        "، تم تسجيل الدخول بنجاح.";
+      if (!studentStatus.classList.contains("error")) {
+        studentStatus.textContent =
+          "🌷 أهلًا " + studentName + "، تم تسجيل الدخول بنجاح.";
+      }
 
 
       loginBtn.textContent =
